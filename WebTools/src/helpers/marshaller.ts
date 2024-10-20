@@ -1127,9 +1127,15 @@ class Marshaller {
             }
         }
         if (json.focuses) {
-            result._focuses = [...json.focuses];
+            let focuses = [...json.focuses];
             if (result.stereotype === Stereotype.MainCharacter) {
                 result.legacyMode = true;
+                result._focuses = focuses;
+            } else if (result.stereotype === Stereotype.SupportingCharacter) {
+                if (result.supportingStep == null) {
+                    result.supportingStep = new SupportingStep();
+                }
+                result.supportingStep.focuses = focuses;
             }
         }
         if (json.attributes) {
@@ -1232,7 +1238,9 @@ class Marshaller {
             }
         }
         if (json.supporting && result.stereotype === Stereotype.SupportingCharacter) {
-            result.supportingStep = new SupportingStep();
+            if (result.supportingStep == null) {
+                result.supportingStep = new SupportingStep();
+            }
             if (json.supporting.focuses) {
                 result.supportingStep.focuses = [...json.supporting.focuses];
             }

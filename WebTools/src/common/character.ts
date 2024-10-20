@@ -1211,7 +1211,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
             if (this.speciesStep?.abilityOptions?.focuses?.length) {
                 result.push(...this.speciesStep.abilityOptions.focuses);
             }
-            result.push(...this.supportingStep?.focuses?.filter(f => f.trim().length));
+            if (this.supportingStep?.focuses?.length) {
+                result.push(...this.supportingStep?.focuses?.filter(f => f.trim().length));
+            }
             this.improvements?.filter(i => i.focus).forEach(i => result.push(i.focus));
             return result;
         } else {
