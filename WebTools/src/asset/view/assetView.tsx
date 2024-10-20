@@ -3,6 +3,11 @@ import { Header } from "../../components/header";
 import { Asset } from "../asset";
 import { AssetTypes } from "../assetType";
 import { AssetStatType } from "../assetStat";
+import { useState } from "react";
+import { LoadingButton } from "../../common/loadingButton";
+import { PDFDocument } from "@cantoo/pdf-lib";
+
+declare function download(bytes: any, fileName: any, contentType: any): any;
 
 interface IAssetViewProperties {
     asset: Asset;
@@ -10,6 +15,27 @@ interface IAssetViewProperties {
 
 const AssetView:React.FC<IAssetViewProperties> = ({asset}) => {
     const { t } = useTranslation();
+    const [loadingExport, setLoadingExport] = useState(false);
+
+    const exportPdf = async () => {
+        setLoadingExport(true);
+        import(/* webpackChunkName: 'export' */ '../../exportpdf/spaderCard').then(async ({SpaderCard}) => {
+            setLoadingExport(false);
+
+            const card = new SpaderCard();
+
+            const existingPdfBytes = await fetch(card.getPdfUrl(asset)).then(res => res.arrayBuffer())
+            const pdfDoc = await PDFDocument.load(existingPdfBytes)
+            await card.populate(pdfDoc, asset);
+
+            const pdfBytes = await pdfDoc.save();
+
+            // Trigger the browser to download the PDF document
+            download(pdfBytes, card.createFileName(asset), "application/pdf");
+        });
+    }
+
+
     return (<main>
         <Header>{asset.name}</Header>
 
@@ -66,6 +92,9 @@ const AssetView:React.FC<IAssetViewProperties> = ({asset}) => {
 
             </div>
 
+            <div className="mt-5 mb-3">
+                <LoadingButton loading={loadingExport} className="button-small me-3" onClick={() => exportPdf() }>{t('Common.button.exportPdf')}</LoadingButton>
+            </div>
         </div>
     </main>);
 }

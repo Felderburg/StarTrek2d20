@@ -21,11 +21,13 @@ export class Asset {
     readonly name: string;
     readonly additionalInformation?: Spaceframe|Rank;
     readonly stats: AssetStat[];
+    readonly specialAbility?: string;
 
-    constructor(type: AssetType, name: string, stats: AssetStat[], additionalInformation?: Spaceframe|Rank) {
+    constructor(type: AssetType, name: string, stats: AssetStat[], additionalInformation?: Spaceframe|Rank, specialAbility?: string) {
         this.type = type;
         this.name = name;
         this.stats = stats;
         this.additionalInformation = additionalInformation;
+        this.specialAbility = specialAbility;
     }
 }

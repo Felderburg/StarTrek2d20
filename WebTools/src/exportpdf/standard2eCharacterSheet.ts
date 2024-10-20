@@ -17,6 +17,7 @@ import { TracksHelper } from "../helpers/tracks";
 import { CareersHelper } from "../helpers/careers";
 import { CheckMarkMaker } from "./checkMarkMaker";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
+import { determineIdealFontWidth } from "./fontWidthDeterminer";
 
 
 export class Standard2eCharacterSheet extends BaseFormFillingSheet {
@@ -265,7 +266,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     writeTitle(page: PDFPage) {
         const originalText = i18next.t("Sheet.text.title.alt").toLocaleUpperCase();
         let text = originalText;
-        const fontSize = this.determineIdealFontWidth([ text ],
+        const fontSize = determineIdealFontWidth([ text ],
             Standard2eCharacterSheet.headingColumn.width, 11, 8, this.headingFont);
         const block = Standard2eCharacterSheet.headingColumn;
         let width = this.headingFont.widthOfTextAtSize(text, fontSize);

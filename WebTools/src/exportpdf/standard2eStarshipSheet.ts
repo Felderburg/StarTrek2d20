@@ -8,7 +8,7 @@ import { Starship } from "../common/starship";
 import { Column } from "./column";
 import { labelWriter, VerticalAlignment } from "./labelWriter";
 import { TextAlign } from "./textAlign";
-import { blueColour2e, darkGreyColour2e, greyColour2e, labelColourProvider } from "./colourProvider2e";
+import { blueColour2e, darkGreyColour2e, labelColourProvider } from "./colourProvider2e";
 import { Construct } from "../common/construct";
 import { XYLocation } from "../common/xyLocation";
 import { SimpleColor } from "../common/colour";
@@ -22,6 +22,7 @@ import { FontSpecification } from "./fontSpecification";
 import { System } from "../helpers/systems";
 import { Department } from "../helpers/departments";
 import { staTextFieldAppearanceProvider } from "../helpers/pdfTextFieldAppearance";
+import { determineIdealFontWidth } from "./fontWidthDeterminer";
 
 export class Standard2eStarshipSheet extends BasicGeneratedSheet {
 
@@ -355,7 +356,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
     writeTitle(page: PDFPage) {
         const originalText = i18next.t("Sheet.text.title.starship").toLocaleUpperCase();
         let text = originalText;
-        const fontSize = this.determineIdealFontWidth([ text ],
+        const fontSize = determineIdealFontWidth([ text ],
             Standard2eStarshipSheet.headingColumn.width, 11, 8, this.headingFont);
         const block = Standard2eStarshipSheet.headingColumn;
         let width = this.headingFont.widthOfTextAtSize(text, fontSize);
