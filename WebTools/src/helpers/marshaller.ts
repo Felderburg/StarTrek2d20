@@ -149,6 +149,10 @@ class Marshaller {
                     block["attributes"] = this.toAttributeObject(character.npcGenerationStep?.attributes)
                 }
 
+                if (character.npcGenerationStep.focuses.length) {
+                    block["focuses"] = character.focuses
+                }
+
                 sheet["npc"] = block;
             }
         }
@@ -1136,6 +1140,11 @@ class Marshaller {
                     result.supportingStep = new SupportingStep();
                 }
                 result.supportingStep.focuses = focuses;
+            } else if (result.stereotype === Stereotype.Npc) {
+                if (result.npcGenerationStep == null) {
+                    result.npcGenerationStep = new NpcGenerationStep();
+                }
+                result.npcGenerationStep.focuses = focuses;
             }
         }
         if (json.attributes) {
@@ -1235,6 +1244,9 @@ class Marshaller {
             }
             if (json.npc.type) {
                 result.npcGenerationStep.type = NpcTypes.getNpcTypeByName(json.npc.type);
+            }
+            if (json.npc.focuses) {
+                result.npcGenerationStep.focuses = [...json.npc.focuses];
             }
         }
         if (json.supporting && result.stereotype === Stereotype.SupportingCharacter) {

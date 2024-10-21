@@ -372,6 +372,7 @@ export class NpcGenerationStep {
     public values: string[] = [];
     public talents: SelectedTalent[] = [];
     public attributes: number[];
+    public focuses: string[] = [];
 
     constructor(type?: NpcType) {
         this.type = type;
@@ -385,6 +386,7 @@ export class NpcGenerationStep {
         result.talents = this.talents.map(t => t.copy());
         result.enlisted = this.enlisted;
         result.attributes = [...this.attributes];
+        result.focuses = [...this.focuses];
         return result;
     }
 }
@@ -1216,6 +1218,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
             this.improvements?.filter(i => i.focus).forEach(i => result.push(i.focus));
             return result;
+        } else if (this.stereotype === Stereotype.Npc) {
+            return [...(this.npcGenerationStep?.focuses ?? [])];
         } else {
             return this._focuses;
         }

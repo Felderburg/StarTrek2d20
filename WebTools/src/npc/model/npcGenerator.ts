@@ -735,7 +735,7 @@ export class NpcGenerator {
                     let focus = focuses[Math.floor(Math.random() * focuses.length)];
                     focus = localizedFocus(focus);
                     if (character.focuses.indexOf(focus) < 0) {
-                        character.addFocus(focus);
+                        character.npcGenerationStep.focuses.push(focus);
                         done = true;
                     }
                 }
