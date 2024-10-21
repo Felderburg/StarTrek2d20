@@ -2025,7 +2025,7 @@ export class SpaceframeHelper {
             CharacterType.Starfleet,
             "California Class",
             2370, // not really specified
-            [ Source.LowerDecksCampaign ],
+            [ Source.LowerDecksCampaign, Source.Core2ndEdition ],
             [10, 10, 8, 9, 10, 8],
             [0, 0, 0, 1, 1, 1],
             4,
