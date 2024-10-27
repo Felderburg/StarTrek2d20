@@ -104,7 +104,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
         result.registry = RegistryNumber.generate(result.serviceYear, result.type, result.spaceframeModel);
     }
     result.name = determinePrefix(result)
-        + StarshipRandomNameTable(config.era, config.type);
+        + StarshipRandomNameTable(config.era, config.type, result.spaceframeModel?.type);
 
     return result;
 }

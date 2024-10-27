@@ -1,3 +1,4 @@
+import { CharacterType } from "../../common/characterType";
 import { Era } from "../../helpers/eras"
 import { RandomStarshipCharacterType } from "./randomStarshipCharacterTypes"
 
@@ -336,8 +337,80 @@ const starshipTngEraNames = [
     "Spader"
 ]
 
-const chooseOptions = (era: Era, type: RandomStarshipCharacterType) => {
-    if (type === RandomStarshipCharacterType.Klingon) {
+const starshipCivilianNames = [
+    "Rising Star",
+    "Pride of Rigel",
+    "Horizon",
+    "Sirius",
+    "Aurora",
+    "Santa Maria",
+    "Rodis",
+    "Golden Eagle",
+    "Roosendahl",
+    "Midnight Express",
+    "Lone Wolf",
+    "The Bellerophon",
+    "Sceptre",
+    "Amanda's Lament",
+    "The Fortunate",
+    "Bentham's Head",
+    "Stag's Head",
+    "Flying Buttress",
+    "Drexler's Delight",
+    "The Rebuke",
+    "Yuma",
+    "The Surprise",
+    "Time of Life",
+    "Aloha Dawn",
+    "Deye Mon Gen Mon",
+    "Dawn Trader",
+    "Amber Dawn",
+    "Emerald Rose",
+    "Cataluna",
+    "Dolce Luna",
+    "Blue Moon",
+    "Moondancer",
+    "Moon Shadow",
+    "Moon Tide",
+    "Silver Moon",
+    "Black Pearl",
+    "Island Star",
+    "Star Sapphire",
+    "Solara",
+    "Solar Wind",
+    "Summer Breeze",
+    "Avalon Sunset",
+    "Blue Sun",
+    "Red Sunset",
+    "Liquid Sunshine",
+    "Pacific Sunset",
+    "Morning Star",
+    "Starwind",
+    "Stardust",
+    "Wind Rose",
+    "Rigel Star",
+    "Windswept",
+    "Ophiucus",
+    "Ophiuci Hotline",
+    "Lotus Blossom",
+    "Red Thunder",
+    "Le Guin's Star",
+    "Tehanu",
+    "Rotterdam",
+    "Anubis Run",
+    "Vaquero",
+    "Entschlossenheit",
+    "Stern-Strähne",
+    "Hand der Freundschaft",
+    "Mano de la Amistad",
+    "Dynamo Dream",
+    "Halcón Milenario",
+    "Scalzi Supernova",
+    "Weeping Willow"
+]
+
+const chooseOptions = (era: Era, type: RandomStarshipCharacterType, spaceframeType?: CharacterType) => {
+    if (type === RandomStarshipCharacterType.Klingon || spaceframeType === CharacterType.KlingonWarrior) {
         let result = [...klingonEnterpriseEraNames];
         switch (era) {
             case Era.NextGeneration:
@@ -348,6 +421,9 @@ const chooseOptions = (era: Era, type: RandomStarshipCharacterType) => {
         return result;
     } else if (type === RandomStarshipCharacterType.Romulan) {
         let result = [...starshipRomulanNames];
+        return result;
+    } else if (type === RandomStarshipCharacterType.Civilian) {
+        let result = [...starshipCivilianNames];
         return result;
     } else {
         let result = [...starshipEnterpriseEraNames];
@@ -365,9 +441,9 @@ const chooseOptions = (era: Era, type: RandomStarshipCharacterType) => {
     }
 }
 
-export const StarshipRandomNameTable = (era: Era, type: RandomStarshipCharacterType) => {
+export const StarshipRandomNameTable = (era: Era, type: RandomStarshipCharacterType, spaceframeType?: CharacterType) => {
 
-    let options = chooseOptions(era, type);
+    let options = chooseOptions(era, type, spaceframeType);
     let index = Math.floor(Math.random() * options.length);
 
     return options[index];

@@ -1,6 +1,8 @@
 import i18next from "i18next";
 import store from "../../state/store";
 import { Era } from "../../helpers/eras";
+import { hasAnySource, hasSource } from "../../state/contextFunctions";
+import { Source } from "../../helpers/sources";
 
 export enum RandomStarshipCharacterType {
     Starfleet,
@@ -59,6 +61,9 @@ export class RandomStarshipCharacterTypes {
                 return true;
             } else if (t.type === RandomStarshipCharacterType.Romulan) {
                 return store.getState().context.era !== Era.Enterprise;
+            } else if (t.type === RandomStarshipCharacterType.Civilian) {
+                return (store.getState().context.era !== Era.Enterprise && hasSource(Source.ContinuingMissions))
+                    || hasSource(Source.UtopiaPlanitia);
             } else {
                 return true;
             }
