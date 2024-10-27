@@ -25,6 +25,8 @@ const convertStarshipType = (type: RandomStarshipCharacterType) => {
             return CharacterType.Romulan;
         case RandomStarshipCharacterType.Klingon:
             return CharacterType.KlingonWarrior;
+        case RandomStarshipCharacterType.Civilian:
+            return CharacterType.Civilian;
         case RandomStarshipCharacterType.Starfleet:
         default:
             return CharacterType.Starfleet;
@@ -46,9 +48,10 @@ const determinePrefix = (starship: Starship) => {
 export const starshipGenerator = (config: IStarshipConfiguration) => {
 
     let result = Starship.createStandardStarship(config.era, convertStarshipType(config.type), isSecondEdition() ? 2 : 1);
+
     result.serviceYear = config.campaignYear;
     const frames = SpaceframeHelper.instance().getSpaceframes(result, false)
-        .filter(s => !s.isCivilian && !s.isSmallCraft);
+        .filter(s => result.type === CharacterType.Civilian ? true : (!s.isCivilian && !s.isSmallCraft));
 
     if (frames?.length) {
         result.spaceframeModel = frames[Math.floor(Math.random() * frames.length)];

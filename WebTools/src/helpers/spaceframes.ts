@@ -2,7 +2,7 @@
 import { Starship } from '../common/starship';
 import { hasAnySource } from '../state/contextFunctions';
 import { Era } from './eras';
-import { IConstructPrerequisite, ServiceYearPrerequisite } from './prerequisite';
+import { IConstructPrerequisite, ServiceYearPrerequisite, StarshipTypePrerequisite } from './prerequisite';
 import {Source} from './sources';
 import { Spaceframe } from './spaceframeEnum';
 import { SoloSpaceframeStats, SpaceframeModel } from './spaceframeModel';
@@ -1038,12 +1038,13 @@ export class SpaceframeHelper {
             [ "Federation Starship", "Section 31 Starship" ],
             2299),
         // Utopia Planitia Ships
-        [Spaceframe.JClassYClass]: SpaceframeModel.createStandardSpaceframe(
+        [Spaceframe.JClassYClass]: new SpaceframeModel(
             Spaceframe.JClassYClass,
             CharacterType.Starfleet,
             "J-Class/Y-Class",
             2103,
-            [ Source.UtopiaPlanitia ],
+            [ new SourcePrerequisite(Source.UtopiaPlanitia), new ServiceYearPrerequisite(2103),
+                new StarshipTypePrerequisite(CharacterType.Starfleet, CharacterType.Civilian) ],
             [4, 4, 5, 5, 6, 4],
             [0, 1, 0, 1, 0, 1],
             2,
@@ -2528,12 +2529,12 @@ export class SpaceframeHelper {
                 "Bad Reputation"
             ],
             99999),
-        [Spaceframe.KlingonCivilianTransport]: SpaceframeModel.createStandardSpaceframe(
+        [Spaceframe.KlingonCivilianTransport]: new SpaceframeModel(
             Spaceframe.KlingonCivilianTransport,
             CharacterType.KlingonWarrior,
             "Klingon Civilian Transport",
             2352,
-            [ Source.KlingonCore ],
+            [ new SourcePrerequisite(Source.KlingonCore), new StarshipTypePrerequisite(CharacterType.KlingonWarrior, CharacterType.Civilian) ],
             [7, 8, 9, 8, 9, 8],
             [0, 1, 1, 0, 0, 1],
             4,
@@ -2575,12 +2576,15 @@ export class SpaceframeHelper {
                 "Bird-of-Prey"
             ],
             99999),
-        [Spaceframe.ParTok]: SpaceframeModel.createStandardSpaceframe(
+        [Spaceframe.ParTok]: new SpaceframeModel(
             Spaceframe.ParTok,
             CharacterType.KlingonWarrior,
             "Par'Tok Transport",
             2356,
-            [ Source.KlingonCore ],
+            [
+                new SourcePrerequisite(Source.KlingonCore), new ServiceYearPrerequisite(2356),
+                new StarshipTypePrerequisite(CharacterType.KlingonWarrior, CharacterType.Civilian)
+            ],
             [9, 7, 10, 8, 8, 7],
             [0, 1, 0, 2, 0, 0],
             5,
@@ -3668,6 +3672,24 @@ export class SpaceframeHelper {
             ],
             [ "Romulan Starship", "Warbird" ],
             99999),
+
+
+
+        [Spaceframe.Merchantman]: new SpaceframeModel(
+            Spaceframe.Merchantman,
+            CharacterType.Civilian,
+            "Merchantman class",
+            2240,
+            [ new SourcePrerequisite(Source.ContinuingMissions), new ServiceYearPrerequisite(2240), new StarshipTypePrerequisite(CharacterType.Civilian) ],
+            [7, 7, 7, 7, 8, 6],
+            [1, 1, 0, 1, 0, 0],
+            2,
+            [
+            ],
+            [
+            ],
+            [ "Civlian Starship" ],
+            99999),
         //[Spaceframe.]: SpaceframeModel.createStandardSpaceframe(
         //    CharacterType.Starfleet,
         //    "",
@@ -3687,7 +3709,8 @@ export class SpaceframeHelper {
         for (var frame in this._frames) {
             let f = this._frames[frame];
             if (f.serviceYear <= starship.serviceYear && (f.maxServiceYear >= starship.serviceYear || ignoreMaxServiceYear)) {
-                if (f.isPrerequisiteFulfilled(starship) && starship.type === f.type) {
+                if (f.isPrerequisiteFulfilled(starship) && (starship.type === f.type ||
+                        (starship.type === CharacterType.Civilian && f.isCivilian))) {
                     frames.push(f);
                 }
             }

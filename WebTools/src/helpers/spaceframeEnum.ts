@@ -183,4 +183,6 @@ export enum Spaceframe {
     Perseus,
     Ptolemy,
 
+    Merchantman,
+
 }

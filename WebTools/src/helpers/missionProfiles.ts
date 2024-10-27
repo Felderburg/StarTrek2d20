@@ -641,6 +641,12 @@ class MissionProfiles {
             list = (starship.type === CharacterType.KlingonWarrior && starship.version === 1)
                 ? this._klingonProfiles
                 : this._profiles;
+        } else if (starship.type === CharacterType.Civilian) {
+            list = {
+                [MissionProfile.CivilianMerchantMarine]: this._profiles2e[MissionProfile.CivilianMerchantMarine],
+                [MissionProfile.TechnicalTestBed]: this._profiles2e[MissionProfile.TechnicalTestBed],
+                [MissionProfile.ScientificAndSurvey]: this._profiles2e[MissionProfile.ScientificAndSurvey],
+            }
         }
         for (let profile of Object.values(list)) {
             if (profile && profile.isPrerequisitesFulfilled(starship)) {

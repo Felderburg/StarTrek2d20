@@ -5,7 +5,8 @@ import { Era } from "../../helpers/eras";
 export enum RandomStarshipCharacterType {
     Starfleet,
     Klingon,
-    Romulan
+    Romulan,
+    Civilian
 }
 
 export class RandomStarshipCharacterTypeModel {
@@ -26,6 +27,8 @@ export class RandomStarshipCharacterTypeModel {
                 return i18next.t('AlliedMilitaryType.name.klingonDefenceForce');
             case RandomStarshipCharacterType.Romulan:
                 return i18next.t('AlliedMilitaryType.name.romulanStarEmpire');
+            case RandomStarshipCharacterType.Civilian:
+                return i18next.t('CharacterType.name.civilian');
             default:
                 return this.name;
         }
@@ -47,6 +50,7 @@ export class RandomStarshipCharacterTypes {
         new RandomStarshipCharacterTypeModel(RandomStarshipCharacterType.Starfleet, "Starfleet"),
         new RandomStarshipCharacterTypeModel(RandomStarshipCharacterType.Klingon, "Klingon Defense Force"),
         new RandomStarshipCharacterTypeModel(RandomStarshipCharacterType.Romulan, "Romulan Star Empire"),
+        new RandomStarshipCharacterTypeModel(RandomStarshipCharacterType.Civilian, "Civilian"),
     ];
 
     get types() {

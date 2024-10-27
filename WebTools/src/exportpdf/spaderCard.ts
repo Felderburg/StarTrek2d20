@@ -1,4 +1,4 @@
-import { PDFDocument, PDFFont, PDFPage } from "@cantoo/pdf-lib";
+import { PDFDocument, PDFPage } from "@cantoo/pdf-lib";
 import fontkit from '@pdf-lib/fontkit'
 import { Column } from "./column";
 import { Asset } from "../asset/asset";

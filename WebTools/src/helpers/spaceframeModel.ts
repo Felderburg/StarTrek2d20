@@ -88,7 +88,7 @@ export class SpaceframeModel {
     }
 
     get isCivilian() {
-        return this.name.indexOf("Civilian") >= 0 || this.id === Spaceframe.JClassYClass;
+        return this.name.indexOf("Civilian") >= 0 || this.id === Spaceframe.JClassYClass || this.type === CharacterType.Civilian;
     }
 
     get key() {
