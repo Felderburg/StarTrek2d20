@@ -20,6 +20,7 @@ import { CharacterType, CharacterTypeModel } from "../common/characterType";
 import { TracksHelper } from "../helpers/tracks";
 import { cardassianBrownColour2e, divisionColour2e, ferengiOrangeColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, orionGreenColour2e, romulanGreenColour2e, tealColour2e, tholianFlameColour2e } from "./colourProvider2e";
 import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolArrowHeadOperations, politySymbolArrowHeadScience, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolOrionSymbol, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird, politySymbolSona, politySymbolTalarianExtra, politySymbolTalarianMain, politySymbolTholianBackground, politySymbolTholianForeground, politySymbolTzenkethiBack, politySymbolTzenkethiFront } from "./politySymbols";
+import { determineIdealFontWidth } from "./fontWidthDeterminer";
 
 export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
@@ -448,7 +449,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     writeTitle(page: PDFPage, colour: SimpleColor) {
         const originalText = i18next.t("Sheet.text.title.alt").toLocaleUpperCase();
         let text = originalText;
-        const fontSize = this.determineIdealFontWidth([ text ],
+        const fontSize = determineIdealFontWidth([ text ],
             Landscape2eCharacterSheet.headingColumn.width, 10, 7.5, this.headingFont);
         const block = Landscape2eCharacterSheet.headingColumn;
         let width = this.headingFont.widthOfTextAtSize(text, fontSize);

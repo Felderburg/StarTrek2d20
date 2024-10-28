@@ -1713,7 +1713,7 @@
 
     "Talent.commandShip": "Vaisseau de commandement",
 
-    "Talent.commandShip.soloDescription": "En situation de crise, les commandes et les systèmes de contrôle du vaisseau lui permettent de se coordonner facilement avec ses alliés. Lorsqu’un personnage réussit la Tâche Créer un Avantage, cela leur permet d’être aidés en permanence par le vaisseau avec Communications + Commandement. Ils peuvent également étendre l’Avantage aux navires alliés ou aux équipes éloignées, à condition d’être en communication avec eux.",
+    "Talent.commandShip.description2e": "En situation de crise, les commandes et les systèmes de contrôle du vaisseau lui permettent de se coordonner facilement avec ses alliés. Lorsqu’un personnage réussit la Tâche Créer un Avantage, cela leur permet d’être aidés en permanence par le vaisseau avec Communications + Commandement. Ils peuvent également étendre l’Avantage aux navires alliés ou aux équipes éloignées, à condition d’être en communication avec eux.",
 
     "Talent.computerExpertise": "Expertise informatique",
 
@@ -1757,7 +1757,7 @@
 
     "Talent.diplomaticSuites": "Suites diplomatiques",
 
-    "Talent.diplomaticSuites.soloDescription": "Le vaisseau possède un grand nombre de cabines de luxe destinées aux invités VIP, ainsi que des salles de réunion et tout autre espace lui permettant de faire office de terrain neutre pour les sommets diplomatiques, les négociations commerciales, etc. Lorsque des pourparlers se déroulent à bord, les membres d’équipages peuvent être aidés par le vaisseau avec Ordinateurs + Commandement, ou Structure + Commandement.",
+    "Talent.diplomaticSuites.description2e": "Le vaisseau possède un grand nombre de cabines de luxe destinées aux invités VIP, ainsi que des salles de réunion et tout autre espace lui permettant de faire office de terrain neutre pour les sommets diplomatiques, les négociations commerciales, etc. Lorsque des pourparlers se déroulent à bord, les membres d’équipages peuvent être aidés par le vaisseau avec Ordinateurs + Commandement, ou Structure + Commandement.",
 
     "Talent.doctorsOrders": "Les ordres du docteur",
 

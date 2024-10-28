@@ -7,6 +7,7 @@ import { Source } from "./sources";
 import { Spaceframe } from "./spaceframeEnum";
 import { SourcePrerequisite } from "./spaceframes";
 import { TalentSelection } from "./talentSelection";
+import { IServiceYearProvider } from "../common/serviceYearProvider";
 
 
 export class SoloSpaceframeStats {
@@ -19,7 +20,7 @@ export class SoloSpaceframeStats {
     }
 }
 
-export class SpaceframeModel {
+export class SpaceframeModel implements IServiceYearProvider {
     id: Spaceframe|null;
     type: CharacterType;
     name: string;

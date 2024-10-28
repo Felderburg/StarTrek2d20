@@ -2330,7 +2330,7 @@
     "Talent.advancedResearchFacilities": "Advanced Research Facilities",
 
     "Talent.advancedResearchFacilities.description": "The vessel is equipped with additional laboratories and long-term research facilities, which allow the crew to study phenomena over a protracted period, and thus generate a wealth of useful information. Whenever a character on board the ship attempts a Task to perform research, and they are assisted by the ship’s Computers + Science, the character gains one bonus Momentum, which must be used for the Obtain Information Momentum Spend.",
-    "Talent.advancedResearchFacilities.description2e": "The vessel is equipped with additional laboratories and long-term research facilities. Whenever a character aboard the ship succeeds at a task to perform research, and they are assisted by the ship’s Computers + Science, they may ask two additional questions, as if they had spent Momentum to Obtain Information.",
+    "Talent.advancedResearchFacilities.description2e": "The vessel is equipped with additional laboratories and long-term research facilities. Whenever a character aboard the ship succeeds at a task to perform research, and they are assisted by the ship’s **Computers + Science**, they may ask two additional questions, as if they had spent Momentum to Obtain Information.",
     "Talent.advancedResearchFacilities.soloDescription": "The vessel is equipped with additional laboratories and long-term research facilities, which allow the crew to study phenomena over a protracted period, and thus generate a wealth of useful information.",
 
     "Talent.advancedSensorSuites": "Advanced Sensor Suites",
@@ -2395,7 +2395,7 @@
     "Talent.automatedDefenses": "Automated Defenses",
 
     "Talent.automatedDefenses.soloDescription": "The ship’s weapons systems can automatically lock on to a target and fire even if the crew is incapacitated or unavailable.",
-    "Talent.automatedDefenses.description2e": "At the end of a round, if no attacks were made using the ship’s weapons, the ship may make an energy weapon attack using its Weapons + Security (without assis- tance) against a target within Close range. Momentum may be used and generated as normal for this attack.",
+    "Talent.automatedDefenses.description2e": "At the end of a round, if no attacks were made using the ship’s weapons, the ship may make an energy weapon attack using its **Weapons + Security** (without assis- tance) against a target within Close range. Momentum may be used and generated as normal for this attack.",
 
     "Talent.automatedReturn": "Automatic Return",
 
@@ -2510,7 +2510,7 @@
     "Talent.cloakingDevice": "Cloaking Device",
 
     "Talent.cloakingDevice.soloDescription": "The vessel has a device that allows it to vanish from sensors. While cloaked, the vessel cannot attempt any attacks, nor can it be the target of an attack unless the attacker finds some way of detecting the cloaked vessel. While cloaked, a vessel’s shields are down.",
-    "Talent.cloakingDevice.description2e": "Activating the device is a major action which requires Reserve Power, and which requires a Control + Engineering task with a Difficulty of 2, assisted by the ship’s Engines + Security. This is operated from the ship’s Tactical position. If successful, the vessel gains the Cloaked trait. While cloaked, the vessel cannot attempt any attacks, nor can it be the target of an attack unless the attacker has found some way of detecting the cloaked vessel. While cloaked, a vessel’s shields are down. Deactivating the cloaking device requires a minor action.",
+    "Talent.cloakingDevice.description2e": "Activating the device is a major action which requires Reserve Power, and which requires a **Control + Engineering** task with a Difficulty of 2, assisted by the ship’s **Engines + Security**. This is operated from the ship’s Tactical position. If successful, the vessel gains the Cloaked trait. While cloaked, the vessel cannot attempt any attacks, nor can it be the target of an attack unless the attacker has found some way of detecting the cloaked vessel. While cloaked, a vessel’s shields are down. Deactivating the cloaking device requires a minor action.",
 
     "Talent.closeKnitCrew": "Close-Knit Crew",
 
@@ -2560,7 +2560,7 @@
     "Talent.commandShip": "Command Ship",
 
     "Talent.commandShip.soloDescription": "The ship has command and control systems allowing it to coordinate easily with allies during a crisis.",
-    "Talent.commandShip.description2e": "When a character on the ship succeeds at a Command task to create a trait, they may always be assisted by the ship’s Communications + Command, and they may confer the trait to allied ships, landing parties, or away teams with whom the ship maintains a communication link.",
+    "Talent.commandShip.description2e": "When a character on the ship succeeds at a Command task to create a trait, they may always be assisted by the ship’s **Communications + Command**, and they may confer the trait to allied ships, landing parties, or away teams with whom the ship maintains a communication link.",
 
     "Talent.compactVessel": "Compact Vessel",
 
@@ -2654,7 +2654,7 @@
     "Talent.diplomaticSuites": "Diplomatic Suites",
 
     "Talent.diplomaticSuites.soloDescription": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions.",
-    "Talent.diplomaticSuites.description2e": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions, including making environmental adjustments to make alien diplomats more comfortable.\n\nWhen hosting negotiations, members of the crew may be assisted by the ship’s Computers + Command or Structure + Command.",
+    "Talent.diplomaticSuites.description2e": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions, including making environmental adjustments to make alien diplomats more comfortable.\n\nWhen hosting negotiations, members of the crew may be assisted by the ship’s **Computers + Command** or **Structure + Command**.",
 
     "Talent.doctorsOrders": "Doctor’s Orders",
 
@@ -2663,7 +2663,7 @@
 
     "Talent.dontYouDieOnMe": "Don't You Die on Me!",
 
-    "Talent.dontYouDieOnMe.description2e": "When a character is killed, you may spend Determination to make one attempt to revive them. If they were killed instantly by an Attack, then this may only be attempted within that scene. If the character suffered an Injury and died because they didn’t receive medical treatment in time, this may be attempted before the end of the subsequent scene. This requires a Daring + Medicine task, with a Difficulty of 3. If suc- cessful, the character is brought back from the brink of death, though they will remain Defeated for the remain- der of the adventure. Failure means that your efforts were unsuccessful and the character dies.",
+    "Talent.dontYouDieOnMe.description2e": "When a character is killed, you may spend Determination to make one attempt to revive them. If they were killed instantly by an Attack, then this may only be attempted within that scene. If the character suffered an Injury and died because they didn’t receive medical treatment in time, this may be attempted before the end of the subsequent scene. This requires a **Daring + Medicine** task, with a Difficulty of 3. If successful, the character is brought back from the brink of death, though they will remain Defeated for the remain- der of the adventure. Failure means that your efforts were unsuccessful and the character dies.",
 
     "Talent.dualEnvironment": "Dual Environment",
 
@@ -2784,7 +2784,7 @@
     "Talent.followMyLead": "Follow My Lead",
 
     "Talent.followMyLead.description": "Once per scene, when you succeed at a Task during combat or another perilous situation, you may spend one Determination. If you do, choose a single ally. The next Task that ally attempts counts as having assistance from you, using your Presence + Command.",
-    "Talent.followMyLead.description2e": "When you succeed at a task during combat or another perilous situation, you may spend Determination. If you do, choose a single ally who can hear you. The next task that ally attempts counts as having assistance from you, using your Presence + Command. On this task, do not roll your assistance die: it counts as having already rolled a 1.",
+    "Talent.followMyLead.description2e": "When you succeed at a task during combat or another perilous situation, you may spend Determination. If you do, choose a single ally who can hear you. The next task that ally attempts counts as having assistance from you, using your **Presence + Command**. On this task, do not roll your assistance die: it counts as having already rolled a 1.",
 
     "Talent.formerInitiate": "Former Initiate",
 
@@ -2997,7 +2997,7 @@
     "Talent.mindMeld": "Mind-Meld",
 
     "Talent.mindMeld.description": "You have undergone training in telepathic techniques that allow the melding of minds through physical contact. This will always require a Task with a Difficulty of at least 1, which can be opposed by an unwilling participant. If successful, you link minds with the participant, sharing thoughts and memories; Momentum may be spent to gain more information, or perform deeper telepathic exchanges. This link goes both ways, and it is a tiring and potentially hazardous process for you. Complications can result in pain, disorientation, or lingering emotional or behavioral difficulties.",
-    "Talent.mindMeld.description2e": "You’ve undergone training in telepathic techniques that allow the melding of minds through physical contact. This always requires a task (normally Control + Sciences) with a Difficulty of at least 1, which can be opposed by an unwilling participant. If successful, you link minds with the participant, sharing thoughts and memories. Momentum may be spent to gain more information or perform deeper telepathic exchanges. This link goes both ways, and it is a tiring and potentially hazardous process. Complications can result in taking Stress, pain, disorientation, or lingering emotional or behavioral difficulties.",
+    "Talent.mindMeld.description2e": "You’ve undergone training in telepathic techniques that allow the melding of minds through physical contact. This always requires a task (normally **Control + Sciences**) with a Difficulty of at least 1, which can be opposed by an unwilling participant. If successful, you link minds with the participant, sharing thoughts and memories. Momentum may be spent to gain more information or perform deeper telepathic exchanges. This link goes both ways, and it is a tiring and potentially hazardous process. Complications can result in taking Stress, pain, disorientation, or lingering emotional or behavioral difficulties.",
 
     "Talent.miracleWorker": "Miracle Worker",
 
@@ -3094,7 +3094,7 @@
 
     "Talent.percussiveMaintenance": "Percussive Maintenance",
 
-    "Talent.percussiveMaintenance.description2e": "When you attempt a Control + Engineering task, you may add 1 Threat to use your Daring instead of your Control. If you do this, and the task succeeds, then you may reduce the time taken by 1 interval without spending Momentum.",
+    "Talent.percussiveMaintenance.description2e": "When you attempt a **Control + Engineering** task, you may add 1 Threat to use your Daring instead of your Control. If you do this, and the task succeeds, then you may reduce the time taken by 1 interval without spending Momentum.",
 
     "Talent.personalEffects": "Personal Effects",
 
@@ -3124,7 +3124,7 @@
 
     "Talent.positiveReinforcement": "Positive Reinforcement",
 
-    "Talent.positiveReinforcement.description2e": "Once per mission, you may attempt a Presence + Medicine task with a Difficulty of 3, while providing emotional or mental treatment for another character. Success creates a character trait for your patient that lasts until the end of the mission: Boosted Confidence. In addition to the normal effects of the trait, that character can reroll their dice pool, as if they’d spent Determination, once before the end of the mission. If the task the character used their reroll on fails, they lose the trait created by this talent.",
+    "Talent.positiveReinforcement.description2e": "Once per mission, you may attempt a **Presence + Medicine** task with a Difficulty of 3, while providing emotional or mental treatment for another character. Success creates a character trait for your patient that lasts until the end of the mission: Boosted Confidence. In addition to the normal effects of the trait, that character can reroll their dice pool, as if they’d spent Determination, once before the end of the mission. If the task the character used their reroll on fails, they lose the trait created by this talent.",
 
     "Talent.practiceMakesPerfect": "Practice Makes Perfect",
 
@@ -3174,7 +3174,7 @@
 
     "Talent.psychokinesis": "Psychokinesis",
 
-    "Talent.psychokinesis.description2e": "You can manipulate and control objects using only the power of the mind. You may exert a psychic force upon an object within Close range equivalent to the force that you would normally be able to exert physically, though this takes concentration and cannot be done violently.\n\nYou may spend 1 Momentum (Immediate, Repeatable) to increase the magnitude of the force you apply, with each Momentum spent counting as an additional person’s worth of force applied (that is, you can move or manipulate objects that would take two people to move or manipulate by spending 1 Momentum). Momentum (Immediate) may also be spent to increase the range of this: 1 Momentum to affect objects in Medium range, 2 Momentum to affect objects at Long range, and gamemaster’s discretion for distances beyond. To apply force violently instead, add 1 Threat to make a Control + Security task with a Difficulty of 2 to strike an opponent (as a Ranged Attack), inflicting a Stun or Deadly Injury with a Severity of 3.",
+    "Talent.psychokinesis.description2e": "You can manipulate and control objects using only the power of the mind. You may exert a psychic force upon an object within Close range equivalent to the force that you would normally be able to exert physically, though this takes concentration and cannot be done violently.\n\nYou may spend 1 Momentum (Immediate, Repeatable) to increase the magnitude of the force you apply, with each Momentum spent counting as an additional person’s worth of force applied (that is, you can move or manipulate objects that would take two people to move or manipulate by spending 1 Momentum). Momentum (Immediate) may also be spent to increase the range of this: 1 Momentum to affect objects in Medium range, 2 Momentum to affect objects at Long range, and gamemaster’s discretion for distances beyond. To apply force violently instead, add 1 Threat to make a **Control + Security** task with a Difficulty of 2 to strike an opponent (as a Ranged Attack), inflicting a Stun or Deadly Injury with a Severity of 3.",
 
     "Talent.pulsePhaserCannons": "Pulse Phaser Cannons",
 

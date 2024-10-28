@@ -9,8 +9,9 @@ import { SpaceframeHelper } from "../../helpers/spaceframes";
 import { allSystems } from "../../helpers/systems";
 import { TalentsHelper } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";
+import { randomStarshipEvent } from "./randomStarshipEvent";
 import { RandomStarshipCharacterType } from "./randomStarshipCharacterTypes";
-import { ServiceRecordList } from "./serviceRecord";
+import { ServiceRecord, ServiceRecordList } from "./serviceRecord";
 import { StarshipRandomNameTable } from "./starshipNameTable";
 
 export interface IStarshipConfiguration {
@@ -90,13 +91,18 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
     }
 
     if (result.version > 1) {
-        if (D20.roll() > 12) {
+        if (result.type === CharacterType.Starfleet && D20.roll() > 12) {
 
             const records = ServiceRecordList.instance.records;
             let record = records[Math.floor(Math.random() * records.length)];
 
-            result.serviceRecordStep = new ServiceRecordStep(record);
-            result.serviceRecordStep.specialRule = TalentsHelper.getTalent(record.specialRule);
+            if (record.type !== ServiceRecord.AgingRelic || result.serviceYear - result.spaceframeModel.serviceYear > 20) {
+                result.serviceRecordStep = new ServiceRecordStep(record);
+                if (record.type === ServiceRecord.SurvivorOfX) {
+                    result.serviceRecordStep.selection = randomStarshipEvent(result.spaceframeModel, result.serviceYear);
+                }
+                result.serviceRecordStep.specialRule = TalentsHelper.getTalent(record.specialRule);
+            }
         }
     }
 

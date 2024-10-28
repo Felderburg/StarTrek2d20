@@ -1,15 +1,18 @@
 import { Header } from "./header";
 
 const HomePageAnnouncement = () => {
-    if (true) {
+    if (false) {
         return undefined;
     } else {
         return (<div className="my-4">
-                <Header level={2}>Congratulations</Header>
-                <p>Congratulations to everyone at Modiphius, and to Jim J., Michael D., Josh A., Alison C., and many others,
-                    including designer team Michael C., Roo T., and Jane R. for the Origins nomination for <cite>Captain's Log</cite> {' '}
-                    in the category of Best RPG Core Product.</p>
-                <p>Even if it wasn't a win, it's still incredible recognition for an excellent product. Well done!</p>
+                <Header level={2}>Patreon</Header>
+                <p>
+                    I've spent a few years poo-poo-ing the idea of a crowdfunding model like Patreon. {' '}
+                    <a href="https://github.com/bcholmes/StarTrek2d20/discussions/236" target="_blank"  rel="noreferrer">I'm
+                    currently in the process of re-evaluating my position on that</a>. Have thoughts on
+                    that? I'd love to hear them.
+                </p>
+                <p className="text-end">- BC</p>
             </div>);
     }
 }

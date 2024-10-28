@@ -18,6 +18,8 @@ import { CareersHelper } from "../helpers/careers";
 import { CheckMarkMaker } from "./checkMarkMaker";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { determineIdealFontWidth } from "./fontWidthDeterminer";
+import { TextBlock } from "./textBlock";
+import { FontSpecification } from "./fontSpecification";
 
 
 export class Standard2eCharacterSheet extends BaseFormFillingSheet {
@@ -27,7 +29,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     static goldColour: SimpleColor = SimpleColor.from("#D0990F");
     static redColour: SimpleColor = SimpleColor.from("#C9242B");
 
-    static readonly headingColumn = new Column(436.5, 53.9, 8.8, 142);
+    static readonly headingColumn = new Column(436.5, 52.9, 10.8, 142);
 
     getName(): string {
         return i18next.t("Sheet.standard2eCharacterSheet");
@@ -268,9 +270,9 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         let text = originalText;
         const fontSize = determineIdealFontWidth([ text ],
             Standard2eCharacterSheet.headingColumn.width, 11, 8, this.headingFont);
-        const block = Standard2eCharacterSheet.headingColumn;
+        const column = Standard2eCharacterSheet.headingColumn;
         let width = this.headingFont.widthOfTextAtSize(text, fontSize);
-        while (width > block.width) {
+        while (width > column.width) {
             text = text.substring(0, text.length-1);
             width = this.headingFont.widthOfTextAtSize(text + "...", fontSize);
         }
@@ -279,9 +281,11 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
             text += "...";
         }
 
+        let block = TextBlock.create(text, new FontSpecification(this.headingFont, fontSize), false);
+
         page.drawText(text, {
-            x: block.start.x,
-            y: page.getHeight() - (block.end.y),
+            x: column.start.x,
+            y: page.getHeight() - (column.end.y + ((column.height - block.height) / 2)),
             color: SimpleColor.from("#ffffff").asPdfRbg(),
             font: this.headingFont,
             size: fontSize

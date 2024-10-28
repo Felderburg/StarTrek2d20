@@ -214,6 +214,23 @@
     "Home.tokenCreator": "Tokens",
     "Home.otherTools": "Outras Ferramentas",
 
+    "ModifySupportingCharacter.instruction": "Sempre que uma personagem coadjuvante é introduzida numa aventura, e esta _não_ é a primeira vez que é introduzida (ou seja, já foi introduzida antes), ela recebe uma melhoria",
+    "ModifySupportingCharacter.improvementType": "Tipo de Melhoria",
+
+    "ModifySupportingCharacter.improvementType.instruction": "Escolha um tipo de melhoria",
+
+    "ModifySupportingCharacter.value.instruction": "A personagem coadjuvante ganha um único valor. Esta opção pode ser escolhida até quatro vezes, ganhando um novo valor a cada vez. Uma vez que uma personagem coadjuvante tenha pelo menos um valor, ela também ganha uma faixa de Estresse, e pode sofrer Estresse para evitar Ferimentos e outras consequências.",
+
+    "ModifySupportingCharacter.focus.instruction": "A personagem coadjuvante escolhe um foco adicional. Esta opção pode ser escolhida três vezes, ganhando um novo foco a cada vez.",
+
+    "ModifySupportingCharacter.attribute.instruction": "A personagem coadjuvante aumenta um único atributo em 1. Esta opção só pode ser escolhida uma vez.",
+
+    "ModifySupportingCharacter.department.instruction": "A personagem coadjuvante aumenta um único departamento em 1. Esta opção só pode ser escolhida uma vez.",
+
+    "ModifySupportingCharacter.finish.instruction": "As suas alterações foram aplicadas a este personagem coadjuvante. Para ver ou imprimir a personagem revista, utilize o botão abaixo.",
+
+    "ModifySupportingCharacter.error.improvementType": "Por favor, selecione um tipo de melhoria.",
+
     "MilestonePage.instruction": "Selecione o tipo de modificação que você deseja aplicar a esse marco.",
 
     "MissionPodSelectionPage.text": "Certas estruturas espaciais podem ser equipadas com um único módulo de missão, escolhido da lista abaixo. Os talentos fornecidos pelo módulo não podem ser trocados normalmente, mas o módulo integral da missão (e todos os seus benefícios) pode ser trocado como se fosse um único talento.",
@@ -222,7 +239,12 @@
     "MissionProfileSelectionPage.text": "Um perfil de missão é o que diferencia uma nave estelar de outra de sua mesma classe. Ele determina o equipamento especializado instalado antes de se aventurar no desconhecido, a prioridade de pessoal que a Frota Estelar concede à nave e o objetivo geral da missão. Todas as estruturas espaciais têm um perfil de missão.",
     "MissionProfileSelectionPage.errorNoSelection": "Selecione um perfil de missão antes de continuar.",
 
+    "MissionProfileTalentSelection.error.talent": "Por favor, selecione um talento antes de prosseguir.",
+    "MissionProfileTalentSelection.error.system": "Por favor, selecione um Sistema antes de prosseguir.",
+
     "MissionProfileTalentSelection.instruction": "Escolha 1 talento da lista de talentos associados ao perfil da missão.",
+
+    "MissionProfileTalentSelection.instruction.system": "Esse perfil de missão exige que você selecione um sistema da lista abaixo.",
 
     "ModificationCompletePage.instruction": "A personagem foi modificada. Você pode visualizar a personagem revisada ou fazer outra modificação.\n\nTalvez você queira salvar a URL da personagem revisada.",
 
@@ -236,6 +258,9 @@
     "NpcConfigurationPage.specialization": "Especialização",
     "NpcConfigurationPage.text": "Especifique o tipo de PdM que você está tentando criar.",
 
+    "NoviceOrCadetExperiencePage.attribute.instruction": "Escolha 1 atributo para usar com esse talento.",
+    "NoviceOrCadetExperiencePage.attribute.error": "Por favor, escolha um atributo.",
+
     "OtherToolsPage.instruction": "Esta seção contém várias ferramentas adicionais diversas que podem ser usadas no seu jogo STA.",
 
     "OtherToolsPage.safetyChecklist.instruction": "Esta lista de verificação é uma ferramenta que o mestre de jogo pode usar para ajudar os jogadores a discutir onde estão seus limites pessoais para determinados temas desta campanha. Essa lista está dividida em várias categorias, cada uma das quais inclui uma série de tópicos. Essa versão on-line da lista de verificação de segurança pode permitir que os MJs ou jogadores analisem os tópicos e avaliem como desejam que esses tópicos sejam tratados no jogo.",
@@ -247,6 +272,10 @@
     "ReputationChangePage.instruction": "Ajuste a reputação da personagem conforme apropriado.",
 
     "SafetyChecklist.instruction": "Esta lista de verificação é uma ferramenta que o mestre de jogo pode usar para ajudar os jogadores a discutir onde estão seus limites pessoais para determinados temas nesta campanha.\n\n- **Sempre OK**: Isso significa que o jogador sempre se sente confortável com a descrição, a exibição e a representação desse tópico em um jogo.\n\n- **Alerta Amarelo**: Isso significa que o jogador geralmente se sente confortável com a discussão desse tópico em um jogo, mas prefere que as descrições mais vívidas sejam feitas “fora da tela”.\n\n- **Alerta Vermelho**: Isso significa que o jogador não quer que esse assunto seja discutido em um jogo; ele pode ter vários motivos para isso. Alguns motivos podem incluir objeção ao tópico por princípios morais, experiência pessoal traumática, aversão à banalização do tópico em um meio de entretenimento fictício como um jogo e assim por diante. Não pergunte qual é o motivo do jogador que se sente assim; não cabe a ninguém mudar a opinião desse jogador. Simplesmente aceite a posição dele, respeite-a e não inclua o tópico em questão.",
+
+    "ServiceRecordPage.instruction": "Opcionalmente, você pode escolher um registro de serviço para sua nave para representar os principais elementos da vida de serviço de uma nave. A seleção de um registro de serviço fornece um Traço adicional para a nave.",
+
+    "ServiceRecordPage.survivorOfX.selection": "Batalhas ou Guerras",
 
     "SoloCareerEvent.instruction": "A carreira de sua personagem é uma tapeçaria de eventos e experiências, mas alguns deles terão sido momentos fundamentais na vida da personagem. Uma personagem define quais momentos de sua vida são importantes em retrospecto, e o que parecia definitivo para um jovem alferes pode ser inconsequente para esse mesmo oficial décadas depois.\n\nSua personagem tem dois eventos definidores de carreira, escolhidos ou determinados aleatoriamente na lista abaixo, e ganha os benefícios que eles proporcionam.\n\nPara as personagens que escolheram a Carreira de Novato, presuma que esses eventos de carreira ocorreram durante o período em que a personagem estava na Academia ou equivalente, talvez durante uma missão de treinamento de campo a bordo de uma nave estelar.",
 
@@ -384,8 +413,11 @@
     "SupportingCharacter.whatPurpose": "Determine qual será o propósito da Personagem Coadjuvante. Ela é engenheira, médica, cientista ou oficial de segurança?",
     "SupportingCharacter.speciesAndAttributes": "Espécies e Atributos",
     "SupportingCharacter.speciesAndAttributesInstruction": "Atribua pontuações de Atributos e escolha a espécie do personagem. A espécie escolhida afetará as pontuações finais dos Atributos. Selecione dois valores diferentes para trocá-los.",
+    "SupportingCharacter.supervisoryNote": "As personagens coadjuvantes de supervisão representam chefes de departamento ou, no caso das campanhas _Subalternos_, oficiais sênior que são superiores aos jogadores.",
     "SupportingCharacter.disciplineInstruction": "Atribua as Disciplinas da personagem. O valor mais alto deve corresponder ao departamento/propósito do personagem. Selecione dois valores diferentes para trocá-los.",
     "SupportingCharacter.focusInstruction": "Escolha três Focos para a personagem. Pelo menos um deles deve refletir o departamento/propósito da personagem.",
+    "SupportingCharacter.additionalFocusInstruction": "Personagens de supervisão recebem um foco adicional.",
+    "SupportingCharacter.valueInstruction": "Personagens de supervisão começam com um único valor.",
     "SupportingCharacter.nameAndRank": "Nome e Patente",
     "SupportingCharacter.nameAndRankInstruction": "Dê à personagem um nome e uma patente apropriados. As Personagens Coadjuvantes nunca devem ter uma patente acima de Tenente e, muitas vezes, podem ser alistados em vez de oficiais.",
     "SupportingCharacter.numericalValue": "Valor",
@@ -419,6 +451,7 @@
     "Common.button.create": "Criar",
     "Common.button.modify": "Modificar",
     "Common.button.next": "Próximo",
+    "Common.button.previous": "Anterior",
     "Common.button.view": "Visualizar",
 
     "Common.text.description": "Descrição",
@@ -441,6 +474,7 @@
     "Construct.other.attacks": "Ataques",
     "Construct.other.attribute": "Atributo",
     "Construct.other.attributes": "Atributos",
+    "Construct.other.breaches": "Rompimentos",
     "Construct.other.career": "Carreira",
     "Construct.other.careerEvent1": "Evento de Carreira 1",
 
@@ -496,8 +530,11 @@
     "Construct.other.reputation": "Reputação",
     "Construct.other.scale": "Escala",
     "Construct.other.serviceDate": "Data de Serviço",
+    "Construct.other.serviceRecord": "Registro de Seriviço",
     "Construct.other.shields": "Escudos",
     "Construct.other.ship": "Nave",
+    "Construct.other.shuttlebay": "Baia de Naves Auxiliares",
+    "Construct.other.smallCraftReadiness": "Prontidão de Naves Menores",
     "Construct.other.sources": "Fontes",
     "Construct.other.spaceFrame": "Estrutura Espacial",
     "Construct.other.specialRules": "Regras Especiais",
@@ -507,6 +544,7 @@
     "Construct.other.starshipType": "Tipo de Nave",
     "Construct.other.stats": "Estatísticas",
     "Construct.other.stress": "Estresse",
+    "Construct.other.supervisory": "Supervisório",
     "Construct.other.systems": "Sistemas",
     "Construct.other.talent": "Talento",
     "Construct.other.talents": "Talentos",
@@ -516,6 +554,7 @@
     "Construct.other.trait": "Traço",
     "Construct.other.traits": "Traços",
     "Construct.other.additionalTraits": "Traços Adicionais",
+    "Construct.other.unnamedCharacter": "Personagem Sem Nome",
     "Construct.other.upbringing": "Educação",
     "Construct.other.value": "Valor",
     "Construct.other.values": "Valores",
@@ -582,9 +621,11 @@
     "Page.title.finish": "Toques Finais",
     "Page.title.gamemasterTrackerPage": "Acompanhamento",
     "Page.title.home": "Principal",
+    "Page.title.modifySupportingCharacter": "Modificar Personagem Coadjuvante",
     "Page.title.missionPodSelection": "Seleção do Módulo de Missão",
     "Page.title.missionProfileSelection": "Seleção do Perfil da Missão",
     "Page.title.missionProfileTalentSelection": "Talento do Perfil da Missão",
+    "Page.title.missionProfileDetails": "Detalhes do Perfil da Missão",
     "Page.title.otherTools": "Outras Ferramentas",
     "Page.title.randomStarship": "Configuração de Nave Aleatória",
     "Page.title.safetyChecklist": "Lista de Verificação de Segurança",
@@ -608,6 +649,7 @@
     "Page.title.starshipTypeSelection": "Tipo de Nave Estelar",
     "Page.title.starshipWeaponsSelection": "Armas de Nave Estelar",
     "Page.title.starSystemDetails": "Detalhes do Sistema Estelar",
+    "Page.title.starshipServiceRecord": "Registro de Seriviço",
     "Page.title.starshipToolSelection": "Seleção de Ferramentas de Nave Estelar",
     "Page.title.starshipTraits": "Traços da Nave Estelar",
     "Page.title.supportingCharacter": "Personagem Coadjuvante",
@@ -891,6 +933,7 @@
     "CharacterType.name.other": "Outro",
     "CharacterType.name.cardassian": "União Cardassiana",
     "CharacterType.name.romulan": "Império Estelar Romulano",
+    "CharacterType.name.ferengi": "Aliança Ferengi",
 
     "EarlyOutlook.MilitaryOrExploration": "Frota Estelar",
 
@@ -1266,22 +1309,67 @@
     "MissionPod.warpPropulsionPod": "Módulo de Propulsão de Dobra",
 
     "MissionProfile.default.strategicAndDiplomatic": "Operações Estratégicas e Diplomáticas",
+
+    "MissionProfile.default.strategicAndDiplomatic.description": "Naves equipadas para esse perfil são frequentemente colocadas sob o comando de oficiais almirantes e usadas como o coração de esquadrões, grupos de batalha e até mesmo frotas inteiras. Essas naves, e o prestígio e a posição que as acompanham, também são usadas para grandes empreendimentos diplomáticos, onde podem servir como embaixadas móveis e representar o melhor da Federação.",
+
     "MissionProfile.default.pathfinderAndReconaissance": "Operações de Desbravamento e Reconhecimento",
+
+    "MissionProfile.default.pathfinderAndReconaissance.description": "As missões de longo alcance geralmente empregam as mais avançadas instalações de cartografia estelar e astrometria, o que lhes permite mapear e navegar com mais eficiência em regiões desconhecidas do espaço, especialmente quando as distorções espaciais dificultam a navegação nessas regiões. Essas naves são utilizadas em missões exploratórias prolongadas, operações militares de coleta de informações e operações arriscadas de “desbravamento” do desconhecido.",
+
     "MissionProfile.default.technicalTestBed": "Campo de Testes Técnicos",
+
+    "MissionProfile.default.technicalTestBed.description": "A nave é equipada com várias tecnologias de última geração ou até mesmo protótipos, permitindo que sejam testadas ou estudadas em condições práticas para que as falhas possam ser descobertas e solucionadas, e para que os sistemas possam ser refinados e aprimorados. Essas naves costumam ser utilizadas em uma ampla gama de missões com uso intensivo de recursos para oferecer uma gama diversificada de condições para testes de equipamentos e tecnologias.",
+
     "MissionProfile.default.tactical": "Operações Táticas",
+
+    "MissionProfile.default.tactical.description": "Embora a Frota Estelar não seja um exército, a defesa da Federação é uma das responsabilidades da Frota Estelar, e a Frota Estelar já foi solicitada a se preparar para a guerra em várias ocasiões. Assim, muitas naves são equipadas para ações militares e de manutenção da paz, embora o número de naves equipadas dessa maneira varie de acordo com a política do momento.",
+
     "MissionProfile.default.scientificAndSurvey": "Operações Científicas e de Pesquisa",
+
+    "MissionProfile.default.scientificAndSurvey.description": "A missão de exploração e descoberta da Frota Estelar significa que ela emprega muitas naves para missões puramente científicas, estudando fenômenos desconhecidos ou auxiliando pesquisas em andamento. Embora se espere que a maioria das naves estelares da Federação tenha pelo menos alguma capacidade de empreendimento científico, algumas naves são equipadas especificamente para essas missões.",
+
     "MissionProfile.default.crisisAndEmergencyResponse": "Resopsta a Crises e Emergências",
+
+    "MissionProfile.default.crisisAndEmergencyResponse.description": "Essas naves são equipadas para responder rapidamente a uma crise, seja ela qual for. Normalmente capazes de suportar amplos compartimentos de transporte, eles podem enviar grandes quantidades de pessoal ou carga para áreas de desastre ou evacuar grandes populações dessas áreas. Essas embarcações também servem como naves-hospital e transporte de tropas durante conflitos.",
+
     "MissionProfile.default.multiroleExplorer": "Explorador Multifunção",
+
+    "MissionProfile.default.multiroleExplorer.description": "Muitas das naves mais renomadas e reverenciadas da Frota Estelar foram naves “pau para toda obra”, em vez de serem especializadas em um único tipo de missão. Essa versatilidade permitiu que pessoas como Jonathan Archer, Christopher Pike, James Kirk e Jean-Luc Picard explorassem novos mundos estranhos, buscassem novas vidas e novas civilizações e fossem corajosamente aonde ninguém havia ido antes.",
+
     "MissionProfile.default.projectEscalante": "Projeto Escalante",
     "MissionProfile.default.battlecruiser": "Cruzador de Batalha",
+
+    "MissionProfile.default.battlecruiser.description": "Em meados do século 23, as lições da Guerra Terra-Romulana ainda estão bem presentes nas mentes daqueles que vivem nos mundos centrais da Federação, e algumas naves são equipadas como naves de guerra para o caso de as hostilidades começarem com os Impérios Klingon ou Romulano. Um impulso semelhante para desenvolver naves de combate pesadas surgiu durante a crise Borg e a Guerra Dominion nas décadas de 2360 e 2370. Essas naves são raras na Frota Estelar, e aquelas equipadas como tal raramente se afastam de bases estelares importantes ou dos mundos que protegem.",
+
     "MissionProfile.default.reserveFleet": "Frota Reserva",
+
+    "MissionProfile.default.reserveFleet.description": "Essas naves estelares geralmente são embarcações mais antigas que foram retiradas do serviço ativo e são equipadas como embarcações de reserva em caso de desastres naturais ou provocados. Algumas naves novas também são equipadas dessa maneira, mas são classificadas como “apoio à frota”, auxiliando as flotilhas em deslocamentos longe das linhas de suprimento dos mundos centrais.",
+
     "MissionProfile.default.civilianMerchantMarine": "Marinha Mercante Civil",
+
+    "MissionProfile.default.civilianMerchantMarine.description": "Muitas naves da Frota Estelar descomissionadas acabam entrando para a Marinha Mercante, uma reserva ativa para onde as naves estelares e o pessoal vão para continuar servindo à Federação de uma maneira menos formal e menos arriscada. A Marinha Mercante pode ser chamada pela Frota Estelar para servir como naves logísticas em momentos de necessidade, e muitas dessas naves atuam no lugar de naves da Frota Estelar em serviço ativo quando não há outras disponíveis. A maioria das outras civilizações que habitam o espaço tem serviços semelhantes.",
+
     "MissionProfile.default.colonySupport": "Suporte a Colônias",
+
+    "MissionProfile.default.colonySupport.description": "Naves equipadas para auxiliar as colônias em seus estágios iniciais fornecem os suprimentos necessários, bem como apoio científico e médico para novos mundos-colônia, os tipos de lugares que lidam com o desconhecido que ainda pode se apresentar anos após o assentamento inicial.",
+
     "MissionProfile.default.entertainmentPleasureShip": "Nave de Entretenimento/Prazer",
     "MissionProfile.default.espionageIntelligence": "Espionagem/Inteligência",
+
+    "MissionProfile.default.espionageIntelligence.description": "As naves equipadas para espionagem são raras no serviço ativo da Frota Estelar, mas são usadas por culturas membros da Federação e por outros países, como o Império Romulano e a União Cardassiana, cujas agências de inteligência geralmente empregam naves dedicadas (com ou sem permissão legal) e, em muitas culturas, as agências de inteligência podem requisitar naves existentes para suas necessidades. Essas naves geralmente são equipadas com dispositivos de monitoramento altamente sensíveis, sensores aprimorados e sistemas furtivos (embora não cheguem a ser dispositivos de camuflagem reais para as naves da Frota Estelar). Essas embarcações chegam perto - e às vezes além - das fronteiras estrangeiras. Servir nessas naves costuma ser uma proposta perigosa e ingrata.",
+
     "MissionProfile.default.flagship": "Nave Capitânia",
+
+    "MissionProfile.default.flagship.description": "As naves capitânia são uma forma especializada de navio de comando, com uma ponte de bandeira dedicada ou um centro de operações estratégicas dentro da nave. Essas naves podem atuar como um quartel-general móvel da frota, com sistemas e pessoal dedicados a garantir as operações de frotas inteiras ou até mesmo servir como uma embarcação para a continuidade do comando em caso de desastre.",
+
     "MissionProfile.default.logisticalQuartermaster": "Logística/Intendente",
+
+    "MissionProfile.default.logisticalQuartermaster.description": "Essas naves são a espinha dorsal de qualquer frota, mesmo na era dos replicadores. Sempre que equipamentos vitais ou pessoal precisam ser deslocados, naves como essas são frequentemente fundamentais para garantir que essas ferramentas e pessoas cheguem onde são mais necessárias. Na Frota Estelar, em particular, essas naves também servem como uma segunda linha de operações após o importante negócio do primeiro contato, fornecendo suporte material e de infraestrutura para mundos recém-contatados ou que buscam a adesão à Federação.",
+
     "MissionProfile.default.patrol": "Patrulhamento",
+
+    "MissionProfile.default.patrol.description": "As naves de patrulha são dedicadas a atuar como mantenedoras da paz em regiões do espaço onde a hostilidade não é apenas possível, mas provável. Essas naves tendem a operar ao longo das fronteiras com outros países e atuam como naves de piquete durante as ações da frota. Em tempos de paz, as naves de patrulha podem ser designadas para missões de pesquisa ou para patrulhar a área contra piratas, contrabandistas e outros perigos seme",
+
     "MissionProfile.default.warship": "Nave de Guerra",
 
     "MissionProfile.klingon.crisisAndEmergencyResponse": "Resposta a Crises e Interceptação",
@@ -1291,6 +1379,10 @@
     "MissionProfile.klingon.strategicAndDiplomatic": "Operações Estratégicas e Diplomáticas",
     "MissionProfile.klingon.houseGuard": "Guarda da Casa",
     "MissionProfile.klingon.warship": "Nave de Guerra",
+
+    "InjuryType.deadly": "Letal",
+    "InjuryType.stun": "Atordoante",
+    "InjuryType.stunOrDeadly": "Atordoante/Letal",
 
     "MouthType.mouth1": "Lábios Finos",
     "MouthType.mouth2": "Lábios Médios",
@@ -1403,55 +1495,92 @@
     "Rank.private.name": "Soldado",
     "Rank.private.abbrev": "Sd.",
 
+    "Rank.cadetFirstClass.name": "Cadete, Primeira Classe",
+    "Rank.cadetFirstClass.abbrev": "Cdt, 1ª Cl",
+
+    "Rank.cadetSecondClass.name": "Cadete, Segunda Classe",
+    "Rank.cadetSecondClass.abbrev": "Cdt, 2ª Cl",
+
+    "Rank.cadetThirdClass.name": "Cadete, Terceira Classe",
+    "Rank.cadetThirdClass.abbrev": "Cdt, 3ª Cl",
+
+    "Rank.cadetFourthClass.name": "Cadete, Quarta Classe",
+    "Rank.cadetFourthClass.abbrev": "Cdt, 4ª Cl",
+
     "Role.commandingOfficer": "Oficial Comandante",
 
     "Role.commandingOfficer.description": "O capitão. Mesmo se o oficial de comando não tiver o posto de capitão, ele será chamado de capitão por seus subordinados. Toda nave precisa ter um oficial comandante.",
+    "Role.commandingOfficer.description2e": "Mesmo que o oficial de comando não tenha o posto de capitão, ele geralmente é chamado de capitão por seus subordinados a bordo de uma nave estelar. A bordo das estações, os oficiais de comando são chamados por sua patente. Os oficiais de comando são responsáveis pela nave ou instalação sob seu comando, bem como pela execução das ordens e diretrizes de sua liderança.",
     "Role.commandingOfficer.ability": "O oficial de comando pode gastar um ponto de Determinação para conceder um ponto de Determinação a qualquer outro personagem com o qual possa se comunicar; isso não precisa estar vinculado a um Valor.",
+    "Role.commandingOfficer.ability2e": "Você pode gastar Determinação para conceder 1 Determinação a qualquer outra pessoa com quem possa se comunicar; isso não precisa estar vinculado ao uso ou ao desafio de um valor.",
 
     "Role.executiveOfficer": "Oficial Executivo",
 
     "Role.executiveOfficer.description": "Segundo em comando. O oficial executivo é o conselheiro chefe do capitão e quem assume o comando quando o capitão não está apto. Se uma nave não tiver um oficial executivo dedicado, um oficial em outra função deve ser indicado como segundo em comando, mas ele não receberá o benefício dessa função.",
+    "Role.executiveOfficer.description2e": "Segundo em comando. O oficial executivo é o principal conselheiro do capitão e assume o comando em situações em que o capitão não pode fazê-lo. Se um navio não tiver um oficial executivo dedicado, um oficial em outra função deve ser registrado como segundo em comando, mas ele não terá os benefícios dessa função.",
     "Role.executiveOfficer.ability": "Quando outro personagem em comunicação com o oficial executivo gasta um ponto de Determinação, o oficial executivo pode gastar 3 de Ímpeto (Imediato) para permitir que esse personagem recupere o ponto de Determinação gasto.",
+    "Role.executiveOfficer.ability2e": "Quando uma personagem aliada em comunicação com você gasta Determinação, você pode gastar 3 de Ímpeto (Imediato) para permitir que essa personagem recupere o ponto de Determinação gasto.",
 
     "Role.operationsManager": "Gerente de Operações",
 
     "Role.operationsManager.description": "O gerente de operações administra e supervisiona todas as operações técnicas a bordo ou envolvendo a nave, normalmente da estação de Operações na Ponte de Comando, ou em conjunto com o engenheiro-chefe (em naves menores, um oficial pode ocupar ambas as funções). Isso frequentemente envolve assumir as tarefas de um oficial de ciências, se não houver um oficial de ciências dedicado na equipe sênior.",
+    "Role.operationsManager.description2e": "O gerente de operações gerencia e supervisiona todas as operações técnicas a bordo ou que envolvam a nave, normalmente a partir da estação de operações na ponte, ou em conjunto com o engenheiro-chefe (em naves menores, um oficial pode desempenhar as duas funções). Isso geralmente implica em assumir as funções de um oficial de ciências se não houver um oficial de ciências dedicado entre a equipe sênior.",
     "Role.operationsManager.ability": "Quando o gerente de operações é bem-sucedido em uma Tarefa auxiliado pelos Computadores ou Sensores da nave, ou usando um tricorder, a personagem gera um Ímpeto de bônus, que só pode ser usado no Gasto de Ímpeto para Obter Informações.",
+    "Role.operationsManager.ability2e": "Sempre que você criar um Traço que represente uma peça de equipamento ou uma alteração feita em um equipamento existente, qualquer personagem que se beneficie desse Traço enquanto você estiver presente na cena poderá rolar novamente um d20.",
 
     "Role.chiefEngineer": "Engenheiro-Chefe",
 
     "Role.chiefEngineer.description": "O engenheiro-chefe é responsável por garantir que a nave permaneça operacional e funcional, além de comandar o departamento de engenharia a bordo da nave.",
+    "Role.chiefEngineer.description2e": "O engenheiro-chefe é responsável por garantir que a nave permaneça operacional e funcional, além de comandar o departamento de engenharia a bordo da nave.",
     "Role.chiefEngineer.ability": "Quando a bordo da nave, o engenheiro-chefe sempre tem a vantagem “Departamento de Engenharia”, que representa o complemento de engenheiros e técnicos da nave.",
+    "Role.chiefEngineer.ability2e": "Você reduz o custo de oportunidade das equipes de engenharia em 1, até um mínimo de 0. Além disso, quando você tenta realizar uma tarefa de reparo em uma nave estelar ou tenta levar as capacidades da nave além dos limites normais, pode gastar 1 Ímpeto (Imediato) para rolar novamente um d20.",
 
     "Role.chiefOfSecurity": "Chefe de Segurança",
 
     "Role.chiefOfSecurity.description": "O chefe de segurança supervisiona o departamento de segurança da nave e é responsável por garantir a segurança da nave e da tripulação durante missões, pela investigação de assuntos disciplinares e criminais e por supervisionar a proteção de pessoas importantes a bordo da nave. Em muitas naves, o chefe de segurança opera a partir da estação Tática na ponte de comando.",
+    "Role.chiefOfSecurity.description2e": "O chefe de segurança supervisiona o departamento de segurança da nave e é responsável por garantir a segurança da nave e da tripulação durante as missões, pela investigação de questões disciplinares e criminais e por supervisionar a proteção de pessoas importantes a bordo da nave.",
     "Role.chiefOfSecurity.ability": "Quando a bordo da nave, o chefe de segurança sempre tem a vantagem “Destacamento de Segurança”, que representa a equipe de segurança da nave.",
+    "Role.chiefOfSecurity.ability2e": "Você reduz o custo de oportunidade de armas e equipes de segurança em 1, até um mínimo de 0. Além disso, quando for bem-sucedido em um _Ataque_ contra um inimigo durante um combate pessoal, você pode gastar 1 Ímpeto para aumentar a Dificuldade do próximo _Ataque_ desse inimigo em 1.",
 
     "Role.chiefMedicalOfficer": "Oficial Médico-Chefe",
 
     "Role.chiefMedicalOfficer.description": "O oficial médico chefe, também conhecido como cirurgião da nave ou médico da nave, é responsável pela saúde e pelo bem-estar da tripulação e das outras pessoas a bordo da nave, chefiando o departamento médico da nave. Um oficial médico chefe pode ordenar e revogar as ordens dos oficiais sêniores em questões de saúde.",
+    "Role.chiefMedicalOfficer.description2e": "O oficial médico-chefe é responsável pela saúde e pelo bem-estar da tripulação e de outras pessoas a bordo da nave e lidera o departamento médico da nave. Um oficial médico-chefe pode dar ordens e revogar as ordens de oficiais superiores no que diz respeito à saúde do oficial. Em situações extremas, o médico-chefe pode declarar um oficial incapaz e removê-lo do serviço ativo (inclusive o oficial comandante).\n\nUma nave pode ter ou um oficial médico-chefe ou um médico de bordo.",
     "Role.chiefMedicalOfficer.ability": "Quando a bordo da nave, o oficial médico chefe sempre tem a vantagem \"Departamento Médico\", que representa a equipe médica da nave.",
+    "Role.chiefMedicalOfficer.ability2e": "Você reduz o custo de oportunidade de equipamentos médicos e equipes médicas em 1, até um mínimo de 0. Além disso, quando tentar realizar uma tarefa usando sua classificação de Medicina e tiver assistência, você gera 1 Ímpeto adicional (o Ímpeto adicional não pode ser salvo).",
 
     "Role.scienceOfficer": "Oficial de Ciências",
 
     "Role.scienceOfficer.description": "Um oficial de ciências é responsável por aconselhar o oficial comandante sobre todos os assuntos científicos, fornecendo hipóteses em assuntos a respeito do desconhecido. Nem todas as naves têm um oficial de ciências dedicado entre os funcionários seniores, frequentemente tendo o gerente de operações a cargo disso.",
+    "Role.scienceOfficer.description2e": "O oficial de ciências (às vezes chamado de oficial chefe de ciências) é responsável por aconselhar o oficial comandante sobre todos os assuntos científicos, fornecendo hipóteses sobre o desconhecido. O oficial de ciências também é responsável por toda a equipe científica da nave ou estação.",
     "Role.scienceOfficer.ability": "Quando o oficial de ciências é bem-sucedido em uma Tarefa auxiliado pelos Computadores ou Sensores da nave ou usando um tricorder, o personagem gera um Ímpeto de bônus, que só pode ser usado no gasto de Ímpeto de Obter Informações.",
+    "Role.scienceOfficer.ability2e": "Quando for bem-sucedido em uma tarefa auxiliada pelos sensores ou computadores da nave, ou em uma tarefa que use um tricorder ou outro dispositivo de detecção, você poderá fazer uma pergunta adicional como se tivesse gasto Ímpeto em _Obter Informações_.",
+
+    "Role.tacticalOfficer": "Oficial Tático",
+
+    "Role.tacticalOfficer.description": "Presente nas naves da Frota Estelar dos séculos 22 e 23, e comum em outras organizações, essa função também é conhecida como oficial de arsenal ou oficial de armas. O oficial é responsável pela manutenção e uso dos armamentos da nave e, normalmente, é um especialista em combate entre naves.",
+    "Role.tacticalOfficer.ability": "Quando você for bem-sucedido em um _Ataque_ com as armas da nave, poderá aumentar a classificação de dano desse sistema de armas gastando 1 Ímpeto em vez de 2.",
 
     "Role.flightController": "Controlador de Voo",
 
     "Role.flightController.description": "Não sendo uma típica função sênior da equipe, alguns capitães, particularmente aqueles operando em espaço desconhecido, escolha o timoneiro ou oficial de controle de voo mais sênior para servir como funcionário sênior também.",
+    "Role.flightController.description2e": "Também conhecido como timoneiro nas embarcações da Frota Estelar dos séculos 22 e 23. Não é uma função típica da equipe sênior, embora alguns capitães, especialmente os que operam em espaço não cartografado, escolham o timoneiro ou oficial de controle de voo mais graduado para servir na equipe sênior.",
     "Role.flightController.ability": "Quando o controlador de voo precisa analisar ou reparar a tecnologia relacionada a voo ou propulsão, ele pode usar a Disciplina Condução em vez de Engenharia.",
+    "Role.flightController.ability2e": "Também conhecido como timoneiro nas embarcações da Frota Estelar dos séculos 22 e 23. Não é uma função típica da equipe sênior, embora alguns capitães, especialmente os que operam em espaço não cartografado, escolham o timoneiro ou oficial de controle de voo mais graduado para servir na equipe sênior.",
 
-    "Role.shipsCounselor": "Psicólogo da Nave",
+    "Role.shipsCounselor": "Conselheiro da Nave",
 
     "Role.shipsCounselor.description": "Em naves maiores e bases estelares, é comum ter pessoal dedicado à saúde mental. Alguns capitães os consideram conselheiros valiosos, já que o treinamento deles cobre cultura e psicologia, tornando-os excepcionalmente bons em ler o humor e as intenções dos outros.",
+    "Role.shipsCounselor.description2e": "Em naves maiores e bases estelares, é comum (especialmente no século 24 em diante) ter uma equipe dedicada ao bem-estar mental da tripulação. Alguns capitães os consideram conselheiros valiosos, pois seu treinamento abrange tanto a cultura quanto a psicologia, tornando-os excepcionalmente bons em ler o humor e as intenções dos outros.",
     "Role.shipsCounselor.ability": "Depois de ser bem-sucedido em uma Tarefa para determinar o estado emocional ou a intenção de outra criatura viva, o conselheiro da nave ganha um Ímpeto de bônus, que só pode ser usado no gasto de Ímpeto para Obter Informações.",
+    "Role.shipsCounselor.ability2e": "Quando você _Assistir_ uma personagem que sofre de um Traço que representa um estado emocional negativo, você pode rolar novamente o dado de assistência. Além disso, uma vez por missão, você pode passar uma cena aconselhando uma personagem que tenha desafiado um de seus valores durante a missão atual. No final da cena, a personagem pode reescrever seu valor riscado imediatamente, em vez de esperar até o final da missão. Se fizer isso, também ganhará imediatamente 1 Determinação.",
 
     "Role.communicationsOfficer": "Oficial de Comunicações",
 
     "Role.communicationsOfficer.description": "Mais comuns nos primórdios da Frota Estelar, oficiais de comunicações dedicados normalmente são habilidosos em linguística e criptografia e auxiliam com tecnologias avançadas de tradução e decodificação, portanto, são valiosos durante encontros com novas culturas e com povos hostis.",
+    "Role.communicationsOfficer.description2e": "Mais comuns nos primórdios da Frota Estelar, os oficiais de comunicações dedicados são normalmente especializados em linguística e criptografia, auxiliados por tecnologias avançadas de tradução e decodificação, e são valiosos durante encontros com novas culturas, hostis ou não.",
     "Role.communicationsOfficer.ability": "Quando uma Tarefa tentada pelo oficial de comunicações tiver sua Dificuldade aumentada devido a um idioma ou criptografia desconhecidos, ignore esse aumento de Dificuldade.",
+    "Role.communicationsOfficer.ability2e": "Quando você tentar realizar uma tarefa auxiliada pelos sistemas de computação ou comunicação da nave, não role o dado de assistência da nave: em vez disso, conte o dado da nave como se tivesse rolado um 1.",
 
     "Role.admiral": "Almirante",
 
@@ -1461,7 +1590,44 @@
     "Role.navigator": "Navegador",
 
     "Role.navigator.description": "Não é uma função típica de equipe sênior, mas alguns capitães, especialmente os que operam em espaço desconhecido, escolhem o navegador mais sênior para servir também como equipe sênior.",
+    "Role.navigator.description2e": "Nas naves que desbravam as fronteiras inexploradas do espaço, um navegador, oficial de astrometria ou cartógrafo estelar habilidoso traça rotas, estuda e atualiza gráficos e dados astrométricos e dá suporte ao timoneiro ou ao controlador de voo. Os navegadores raramente são chamados para servir na equipe sênior.",
     "Role.navigator.ability": "Quando o navegador precisa analisar ou reparar a tecnologia relacionada a voo ou propulsão, ele pode usar a Disciplina Condução em vez de Engenharia.",
+    "Role.navigator.ability2e": "Ao tentar uma tarefa científica relacionada à astrofísica ou à navegação estelar, você pode usar sua classificação de Condução em vez de Ciência. Ao tentar ou _Auxiliar_ uma tarefa para manobrar uma nave estelar em um terreno difícil ou perigoso, você pode gastar 1 Ímpeto para ignorar uma complicação sofrida (Repetível).",
+
+    "Role.shipsDoctor": "Médico de Bordo",
+
+    "Role.shipsDoctor.description2e": "Você cuida da tripulação de sua nave ou da estação em que serve (nesse caso, renomeie a função para Médico da Estação), mas, diferentemente de um oficial médico-chefe, você não tem um departamento médico extenso para gerenciar ou ajudar. Isso é comum em tripulações menores que não precisam de uma enfermaria grande e tende a significar que esses cargos menores favorecem os generalistas que podem se adaptar a uma variedade de circunstâncias.\n\nUm navio pode ter um oficial médico chefe ou um médico de bordo.",
+    "Role.shipsDoctor.ability2e": "Você tem dois focos adicionais, que devem estar relacionados aos campos de estudo da medicina. No entanto, sua nave não pode usar Tripulação de Apoio para introduzir personagens coadjuvantes que sejam médicos.",
+
+    "Role.bodyguard": "Guarda-Costas",
+
+    "Role.bodyguard.description2e": "Você é especializado em segurança pessoal, protegendo um indivíduo, seja um cliente pagante ou alguém para quem foi designado. Os militares não costumam empregar guarda-costas específicos nesse sentido, mas podem ter especialistas treinados para proteger pessoas importantes - embaixadores, almirantes, figuras políticas e similares - conforme necessário.",
+    "Role.bodyguard.ability2e": "Escolha uma única personagem - outra personagem jogadora ou um PdM - que você está encarregado de proteger. Quando estiver na mesma zona que esse personagem, você poderá gastar 1 Ímpeto (Imediato) quando esse personagem for atacado para que o _Ataque_ mire em você. Se você fizer isso, a Dificuldade do ataque será aumentada em 1.",
+
+    "Role.expert": "Especialista",
+
+    "Role.expert.description2e": "Você é um especialista em um determinado campo, trabalhando ao lado da tripulação para prestar consultoria sobre um assunto relacionado à sua especialidade. Você é altamente especializado e extremamente capaz no campo escolhido, mas isso pode levá-lo a ignorar ou negligenciar coisas que estão fora de seu conhecimento ou resultar em uma obsessão que o leva a priorizar seu trabalho em detrimento de outras preocupações.",
+    "Role.expert.ability2e": "Você ganha um valor adicional, que deve refletir a importância do seu trabalho para você. Além disso, selecione um de seus focos - esse é o campo em que você é especialista. Ao usar esse foco em uma tarefa e ser bem-sucedido, você gera 1 Ímpeto adicional (o Ímpeto adicional não pode ser salvo).",
+
+    "Role.intelligenceAgent": "Agente de inteligência",
+
+    "Role.intelligenceAgent.description2e": "Você não é um membro tradicional da frota. Em vez disso, você é um agente dos serviços de inteligência de sua civilização. Você é encarregado de coletar informações de lugares e pessoas que não querem que suas informações sejam coletadas, e consegue isso por meio de uma combinação de suas próprias habilidades e da rede de informantes e contatos que cultivou.",
+    "Role.intelligenceAgent.ability2e": "Uma vez por aventura, você pode criar um Traço sem exigir uma tarefa ou gastar qualquer Ímpeto, Ameaça ou Determinação. Esse Traço deve refletir informações, recursos físicos ou acesso a um local (como códigos de acesso ou dados de identificação) fornecidos a você por um contato ou por sua agência.",
+
+    "Role.merchant": "Comerciante",
+
+    "Role.merchant.description2e": "Você é um comerciante ou negociante, trocando mercadorias valiosas por latinum ou outras mercadorias. Mesmo na Federação, os comerciantes são necessários para garantir que os recursos possam se deslocar facilmente de um lugar para outro. A Federação e seus membros mantêm reservas de latinum e outras mercadorias preciosas para que possam negociar com outras civilizações. Em um sentido prático, os comerciantes são bem relacionados e geralmente têm acesso a itens incomuns ou a recursos especializados que normalmente não estão disponíveis.",
+    "Role.merchant.ability2e": "Uma vez por aventura, você pode ignorar os custos de oportunidade de até três itens de equipamento que estejam sendo adquiridos por outros personagens jogadores. Você pode até permitir que outros personagens jogadores obtenham itens que normalmente não estão disponíveis para eles (como disruptores para uma tripulação da Frota Estelar ou itens restritos ou ilegais), embora você adicione 1 Ameaça para cada item fornecido.",
+
+    "Role.politicalLiaison": "Contato político",
+
+    "Role.politicalLiaison.description2e": "Você atua como representante de um governo, representando suas necessidades e interesses durante as operações da tripulação e fornecendo à tripulação um meio de se comunicar com esse governo. Esse é frequentemente o caso em que é necessária a coexistência de vários grupos, como uma instalação da Frota Estelar operando perto de um mundo aliado não pertencente à Federação ou como parte de uma operação conjunta entre a Frota Estelar e o pessoal da Força de Defesa Klingon.",
+    "Role.politicalLiaison.ability2e": "Você representa o governo oficial ao qual sua organização pertence - ou seja, se for membro da Milícia Bajoriana, você representa o governo bajoriano atual. Você ganha uma Diretiva adicional, que só se aplica a você, que reflete a posição política do governo que você representa. Seu mestre de jogo trabalhará com você para determinar o texto dessa Diretiva. Ela serve para fornecer a você uma fonte de complicações e possíveis restrições quando agir contra os interesses do seu governo, e benefícios quando estiver agindo com o apoio total dos seus superiores.",
+
+    "Role.translator": "Tradutor",
+
+    "Role.translator.description2e": "Você é um especialista em linguagem e comunicação. Embora o desenvolvimento do tradutor universal tenha reduzido a necessidade de tradutores na vida cotidiana nos séculos 23 e 24, ainda há situações que exigem especialistas em linguística. Encontros com novas culturas geralmente requerem o apoio de especialistas em xenolinguística para solucionar quaisquer problemas que o tradutor universal tenha, especialmente se uma cultura tiver um estilo ou método de comunicação incomum. Da mesma forma, a pesquisa arqueológica muitas vezes exige a junção de idiomas extintos a partir de evidências de maneiras que não podem ser facilmente automatizadas.",
+    "Role.translator.ability2e": "Ao tentar ler, entender ou falar um idioma que não lhe é familiar, você pode gastar 2 Ímpeto (Imediato) para reunir imediatamente uma compreensão básica desse idioma, suficiente para transmitir ideias simples. Isso permite a realização de tarefas sociais nesse idioma, mas o nível de complicação dessas tarefas aumenta para 18-20. Um estudo mais aprofundado, a critério do mestre de jogo, permite que você remova essa penalidade e discuta ideias mais complexas.",
 
     "SafetyEvaluationType.alwaysOk": "Sempre OK",
     "SafetyEvaluationType.yellowAlert": "Alerta Amarelo",
@@ -1499,14 +1665,44 @@
     "SafetySectionType.helplessness": "Desamparo",
     "SafetySectionType.warCrimes": "Crimes de guerra",
 
+    "ServiceRecord.agingRelic": "Relíquia Envelhecida",
+
+    "ServiceRecord.agingRelic.description": "A nave está em serviço há décadas e já abrigou muitas tripulações. É provável que apenas os tripulantes mais antigos se lembrem de quando ele era novo.",
+
+    "ServiceRecord.dependableWorkhorse": "Cavalo de Batalha Confiável",
+
+    "ServiceRecord.dependableWorkhorse.description": "A nave é confiável, com um sólido registro de missões e realizações bem-sucedidas. Embora ofuscada por naves mais famosas, essa unidade é, no entanto, um dos pilares da frota, com uma tripulação competente e dedicada.",
+
+    "ServiceRecord.legendary": "Lendária",
+
+    "ServiceRecord.legendary.description": "Essa nave é famosa, tendo estado no centro de um ou mais eventos importantes que moldaram a história e a política de uma ou mais civilizações. Isso traz grande prestígio para os envolvidos.",
+
+    "ServiceRecord.hopeShip": "Nave Esperança",
+
+    "ServiceRecord.hopeShip.description": "O serviço dessa nave tem sido dedicado a responder a pedidos de socorro e desastres, indo ao resgate de pessoas em perigo ou sujeitas a grandes dificuldades. A nave é altamente equipada para alívio de desastres, evacuação e catástrofes médicas, e a tripulação geralmente tem treinamento médico de emergência adicional.",
+
+    "ServiceRecord.prototype": "Protótipo",
+
+    "ServiceRecord.prototype.description": "A nave é nova em folha, a primeira de sua classe e carregada com as mais novas tecnologias, montada para ser testada e estudada. É possível que haja uma série de problemas e desafios desconhecidos a serem enfrentados, pois os novos sistemas entram em conflito ou apresentam mau funcionamento ao interagirem de maneiras inesperadas.",
+
+    "ServiceRecord.survivorOfX": "Sobrevivente de X",
+
+    "ServiceRecord.survivorOfX.description": "Esta nave esteve envolvida em algumas das batalhas mais ferozes, sobrevivendo aos combates, embora não sem cicatrizes. A tripulação é resistente à batalha e está preparada para tudo.",
+    "ServiceRecord.survivorOfX.trait": "Sobrevivente de {{X}}",
+
     "Sheet.basicGeneratedHalfPageCharacterSheet": "Nova ficha de personagem de meia página no estilo da 2ª edição",
     "Sheet.generatedTngPortraitCharacterSheet": "Ficha de personagem retrato da TNG (US-Letter)",
     "Sheet.generatedTngPortraitA4CharacterSheet": "Ficha de personagem retrato da TNG (A4)",
     "Sheet.halfPageSupportingCharacterSheet": "Ficha de personagem de Apoio de meia página",
     "Sheet.landscapeGeneratedCharacterSheet": "Ficha de Personagem Paisagem da TNG (US-Letter)",
+    "Sheet.landscape2eCharacterSheet": "Nova Ficha de Personagem 2E Paisagem (US-Letter)",
     "Sheet.standardTngCharacterSheet": "Ficha de personagem padrão de TNG (US-Letter)",
+    "Sheet.standard2eCharacterSheet": "Ficha de Personagem Padrão 2E (US-Letter)",
 
     "Sheet.text.title": "Registro de pessoal da Frota Estelar",
+
+    "Sheet.text.title.starship": "Entrada de Registro da Nave",
+    "Sheet.text.title.alt": "Arquivo de Pessoal",
 
     "SheetTag.a4": "A4",
     "SheetTag.halfPage": "Meia página",
@@ -1907,6 +2103,11 @@
     "Species.megarite.exampleValue": "Tão Ágil Quanto a Maré, Tão Forte Quanto a Geleira",
     "Species.megarite.traitDescription": "Megaritas acreditam que cada momento deve ser apreciado pelo que ele é. Suas peles grossas os protegem da maioria das ameaças, o que faz com que os megaritas corram riscos se isso significar que podem realizar suas tarefas. Embora os megaritas prefiram se manter isolados, eles se tornam entusiasmados quando outros têm interesses semelhantes aos deles, e um dos maiores presentes que podem dar a alguém é um poema personalizado composto em sua homenagem.",
 
+    "Species.napean.name": "Napeanos",
+    "Species.napean.description": "Os napeanos, nativos de Napea II (quadrante Beta), são humanoides com pele cor de betume e uma grande crista óssea em forma de folha que desce da coroa da testa alta até o topo do nariz. Um pequeno órgão em forma de ovo próximo à base do cérebro, criado como uma mutação por um experimento de engenharia genética, recebe sinais empáticos e os transmite para o cérebro propriamente dito. Eles terraformaram seu planeta natal em um estado de conformidade que parece obsessivo para muitas pessoas de fora. Embora seus poderes empáticos tenham criado estabilidade social, eles também lutam para suprimir emoções negativas e sentimentos embaraçosos. Isso é praticamente impossível entre os de sua própria espécie, mas eles tentam mesmo assim, pois a transparência emocional absoluta pode prejudicar as relações familiares e sociais. Sua história os ensinou a depositar grande fé na tecnologia avançada como forma de resolver problemas sérios. Entretanto, a ideia de alterar geneticamente formas de vida os assusta.",
+    "Species.napean.exampleValue": "Aprender mais sobre o universo precisa ser um trabalho de lógica e paixão.",
+    "Species.napean.traitDescription": "Fisicamente, os napeanos se assemelham aos terráqueos e betazoides, e a análise genética leva à suposição de que a raça napeana é um cruzamento transplantado entre as duas raças, com diferenças genéticas suficientes para serem detectadas. Eles são fisicamente semelhantes à maioria dos humanoides, exceto por sua grande crista na testa em forma de folha.",
+
     "Species.nausicaan.name": "Nausicaanos",
     "Species.nausicaan.traitDescription": "Os Nausicaanos são uma espécie alta e muito forte originária de Nausicaa. Em geral, são mais fortes do que um humano comum, embora muitas vezes sejam um pouco menos inteligentes, preferindo a força bruta à delicadeza e aos métodos diretos, em vez da sutileza. Eles têm pouca paciência para formas organizadas de governo, embora tolerem seguir um capitão, desde que esse capitão conquiste sua lealdade caprichosa. Os Nausicaanos são um tanto resistentes à dor e aos ferimentos e desistem raramente de um desafio, especialmente quando envolve jogos que podem causar sérios danos corporais a eles mesmos ou a seus oponentes.",
 
@@ -2045,6 +2246,10 @@
 
     "SpeciesAbility.klingon.description": "Você ganha 1 de Proteção que acumula com os benefícios de qualquer armadura vestida. Além disso, quando outra personagem tentar _Primeiros Socorros_ para curá-lo, ele pode relançar um d20.",
 
+    "SpeciesAbility.napean": "Empático/Escudo Mental",
+
+    "SpeciesAbility.napean.description": "Os napeanos recebem automaticamente o talento Empático. Além disso, você usa constantemente o Escudo Mental para ocultar suas habilidades empáticas de outras espécies.",
+
     "SpeciesAbility.orion": "Nunca Pelo Valor Aparente",
 
     "SpeciesAbility.orion.description": "Uma vez por cena, você pode adicionar 1 Ameaça para fazer uma pergunta ao mestre do jogo sobre a situação, como se tivesse gasto Momentum para _Obter Informações_.",
@@ -2079,15 +2284,25 @@
     "Talent.ablativeArmor": "Armadura Ablativa",
 
     "Talent.ablativeArmor.description": "O revestimento do casco da nave possui uma camada ablativa adicional que desintegra lentamente sob temperaturas extremas, como as causadas por armas de energia ou explosões de torpedos, dissipando a energia e protegendo a nave. Esse revestimento é substituído periodicamente. A Resistência da nave aumenta em 2.",
+    "Talent.ablativeArmor.description2e": "O revestimento do casco da nave tem uma camada ablativa adicional que se desintegra lentamente sob temperaturas extremas. Aumenta a Resistência da nave em 2.",
     "Talent.ablativeArmor.soloDescription": "O revestimento do casco da nave possui uma camada ablativa adicional que desintegra lentamente sob temperaturas extremas, como as causadas por armas de energia ou explosões de torpedos, dissipando a energia e protegendo a nave. Esse revestimento é substituído periodicamente.",
+
+    "Talent.ablativeArmorGenerator": "Gerador de Armadura Ablativa",
+
+    "Talent.ablativeArmorGenerator.description2e": "A nave é equipada com vários replicadores externos pré-configurados para materializar uma camada externa de blindagem sobre o casco, reforçada com campos de integridade estrutural.\n\nQuando a nave eleva seus escudos, ela pode implantar a blindagem em seu lugar, mas isso requer o uso de Energia de Reserva. A implantação da armadura aumenta a capacidade máxima dos escudos da nave em 5 e aumenta a Resistência da nave em\n3. Enquanto a blindagem estiver implantada, as ações _Modular Escudos_ e _Regenerar Escudos_ não podem ser executadas - a blindagem não pode ser ajustada.",
 
     "Talent.ablativeFieldProjector": "Projetor de Campo Ablativo",
 
     "Talent.ablativeFieldProjector.soloDescription": "Os emissores de escudo da nave são combinados com um projetor de campo ablativo que permite que seu campo de grávitons seja compartilhado com outro alvo a curta distância. Complicações podem significar falha no escudo ou perda de energia nos principais sistemas.",
+    "Talent.ablativeFieldProjector.description2e": "Os emissores de escudo da nave são combinados com um projetor de campo ablativo, permitindo que seu campo de grávitons seja compartilhado com outro alvo em alcance Próximo. Esses projetores carregam os escudos do alvo enquanto dissipam os seus próprios escudos.\n\nAo tentar a ação _Regenerar Escudos_, qualquer Ímpeto gasto para aumentar os escudos regenerados pode restaurar os escudos de uma nave aliada dentro do alcance Próximo.",
 
     "Talent.abruptInsights": "Insights Abruptos",
 
     "Talent.abruptInsights.description": "Sua percepção da mente dos outros pode lhe dar uma vantagem ao interagir com eles, embora nem todos se sintam à vontade quando outra pessoa fala o que pensa. Ao tentar realizar uma tarefa como parte de um conflito social, você pode aumentar o alcance da complicação em 1, 2 ou 3; se for bem-sucedido, você gera um bônus de Ímpeto igual ao aumento do alcance da complicação. O bônus de Ímpeto não pode ser salvo.",
+
+    "Talent.abundantPersonnel": "Pessoal Abundante",
+
+    "Talent.abundantPersonnel.description": "O Tripulação de Apoio da nave é dobrada, após quaisquer outros modificadores, e quaisquer efeitos ou habilidades que aumentariam a Tripulação de Apoio têm o dobro do efeito normal a bordo de uma nave com essa regra especial. Além disso, ao introduzir um personagem coadjuvante, você pode usar um suporte de tripulação adicional para conceder a ele uma melhoria imediata.",
 
     "Talent.acuteSenses": "Sentidos Aguçados",
 
@@ -2096,28 +2311,38 @@
     "Talent.adaptableEnergyWeapons": "Armas de Energia Adaptáveis",
 
     "Talent.adaptableEnergyWeapons.soloDescription": "Os sistemas de lançamento de armas da nave são aprimorados por emissores de múltiplas partículas. Esses emissores permitem que as capacidades das armas de energia da nave sejam modificadas quando disparadas. Isso pode criar vantagens distintas durante uma batalha.",
+    "Talent.adaptableEnergyWeapons.description2e": "Ao selecionar esse talento, selecione uma das armas de energia em sua nave e escolha um tipo diferente de arma de energia (o emissor permanece inalterado). Quando fizer um ataque usando essa arma de energia, você poderá usar o tipo de arma de energia alternativo para o ataque, mas a faixa de complicação desse ataque será aumentada em 1.\n\nVocê pode selecionar esse talento várias vezes, escolhendo um tipo de arma de energia diferente a cada vez.",
+
+    "Talent.adaptiveShieldModulator": "Modulador de Escudo Adaptativo",
+
+    "Talent.adaptiveShieldModulator.description": "Quando a ação Modular Escudos é executada, a Resistência da nave é aumentada em mais +1 por essa ação. Além disso, a nave pode ter seus escudos levantados quando estiver operando em modo silencioso.",
 
     "Talent.advancedEmergencyCrewHolograms": "Hologramas Avançados de Tripulação de Emergência",
 
     "Talent.advancedEmergencyCrewHolograms.soloDescription": "A nave espacial tem todos os seus espaços internos e algumas áreas críticas em seu exterior equipados com holoemissores, permitindo que o computador projete pessoal simulado durante emergências. Eles não podem operar afastados da nave.",
+    "Talent.advancedEmergencyCrewHolograms.description2e": "A nave possui várias personagens holográficas coadjuvantes, iguais à metade do valor de Computadores da nave (arredondado para cima); sua aparência e personalidade são determinadas quando a nave é criada, embora esses personagens de apoio possuam o Traço de espécie Holograma. Eles podem ser ativados ou desativados como uma ação menor e não requerem nenhuma Tripulação de Apoio para aparecer. Eles não podem operar fora da nave e não melhoram quando introduzidos em aventuras subsequentes. No entanto, se quaisquer avanços de personagem forem usados para melhorar esses personagens coadjuvantes, todos os personagens coadjuvantes concedidos por este talento receberão o avanço.",
 
     "Talent.advancedSickbay": "Enfermaria Avançada",
 
     "Talent.advancedSickbay.soloDescription": "A enfermaria da nave é extremamente bem equipada e maior\ndo que o normal para uma nave do seu tamanho.",
+    "Talent.advancedSickbay.description2e": "A nave ganha o Traço de Enfermaria Médica Avançada ou Enfermaria Avançada, o que se aplica a todas as tarefas relacionadas à medicina e biologia realizadas dentro da enfermaria, acumulando-se com os benefícios normais de estar na enfermaria. Esse Traço é perdido se o sistema de Computadores da nave for desativado. Além disso, a nave recebe um Tripulante de Apoio adicional, que só pode ser usado para introduzir personagens de apoio do departamento médico.",
 
     "Talent.advancedResearchFacilities": "Instalações de Pesquisa Avançada",
 
     "Talent.advancedResearchFacilities.description": "A astronave é equipada com laboratórios adicionais e instalações de pesquisa a longo prazo, que permite a tripulação estudar fenômenos por um longo período e, dessa forma, gerar uma variedade de informações úteis. Sempre que uma personagem a bordo da nave fizer uma Tarefa para pesquisar e for auxiliado pelo Computadores + Ciência da nave, ele recebe um ponto de Ímpeto extra, que deve ser usado para o Gasto de Ímpeto Obter Informação.",
+    "Talent.advancedResearchFacilities.description2e": "A nave está equipada com laboratórios adicionais e instalações de pesquisa de longo prazo. Sempre que um personagem a bordo da nave tiver sucesso em uma tarefa de pesquisa, e for assistido pelos **Computadores + Ciência** da nave, ele poderá fazer duas perguntas adicionais, como se tivesse gasto Ímpeto para Obter Informações.",
     "Talent.advancedResearchFacilities.soloDescription": "A nave estelar é equipada com laboratórios adicionais e instalações de pesquisa a longo prazo, que permite a tripulação estudar fenômenos por um longo período e, dessa forma, gerar uma variedade de informações úteis.",
 
     "Talent.advancedSensorSuites": "Conjunto de Sensores Avançados",
 
     "Talent.advancedSensorSuites.description": "Os sensores da embarcação estão entre os mais avançados e sofisticados na frota. A menos que os Sensores da nave sofram um ou mais Rompimentos, sempre que a personagem fizer uma Tarefa auxiliada pelos Sensores, ele pode reduzir em um a Dificuldade da Tarefa, até um mínimo de 0.",
+    "Talent.advancedSensorSuites.description2e": "Sempre que uma personagem realizar uma rolagem de tarefa com a assistência dos Sensores da nave, a nave poderá rolar 2d20 para a assistência, em vez de apenas 1 (se a Energia Reserva for redirecionada para os Sensores, um desses dados será definido como 1). Este talento não pode ser utilizado se a nave tiver sofrido uma ou mais avarias nos Sensores.",
     "Talent.advancedSensorSuites.soloDescription": "Os sensores da embarcação estão entre os mais avançados\ne sofisticados na frota",
 
     "Talent.advancedShields": "Escudos Avançados",
 
     "Talent.advancedShields.description": "Os escudos da astronave são de ponta, usando desenvolvimentos que outras culturas ainda não aprenderam a sobrepujar ou que simplesmente fornecendo mais proteção pelo mesmo gasto de energia. Os Escudos máximos da nave\nsão aumentados em 5.",
+    "Talent.advancedShields.description2e": "Os escudos da nave são de última geração, utilizando os mais recentes desenvolvimentos. A capacidade máxima dos escudos da nave é aumentada em 5",
     "Talent.advancedShields.soloDescription": "Os escudos da nave estelar são de ponta, usando desenvolvimentos que outras culturas ainda não aprenderam a sobrepujar ou que simplesmente fornecendo mais proteção pelo mesmo gasto de energia.",
 
     "Talent.advancedTeamDynamics": "Dinâmica de Equipe Avançada",
@@ -2127,6 +2352,7 @@
     "Talent.advancedTransporters": "Transportadores Avançados",
 
     "Talent.advancedTransporters.soloDescription": "A nave é equipada com dezenas de painéis de emissores de transporte, o que permite que os scanners de mira fixem seus alvos e destinos com mais facilidade.",
+    "Talent.advancedTransporters.description2e": "Quando você usa os transportadores, se você redirecionou a Reserva de Energia para os Sensores da nave, selecione um Traço em jogo que esteja afetando negativamente a tarefa do transportador. Se o Traço estiver aumentando a Dificuldade da tarefa, ignore os efeitos dessa característica. Se o Traço, em vez disso, tornar a tarefa do transportador impossível, mude esse efeito para aumentar a Dificuldade em 1.",
 
     "Talent.advisor": "Orientador",
 
@@ -2145,6 +2371,10 @@
     "Talent.anAnswerForEverything": "Uma Resposta Para Todas as Coisas",
 
     "Talent.anAnswerForEverything.description": "Você gosta de debates intensos, nos quais pode ver o argumento de seu oponente se desdobrar e, em seguida, voltar-se contra ele. Quando for bem-sucedido em uma tarefa como parte de uma tarefa estendida em um conflito social, você pode fazer um rejogar de um número de [D] equivalente à sua pontuação de Comando.",
+
+    "Talent.annularConfinementJacketing": "Jacket de Confinamento Anular",
+
+    "Talent.annularConfinementJacketing.description2e": "A nave pode realizar um ataque com suas armas de energia enquanto está em dobra; no entanto, o alcance desses ataques é limitado ao alcance Próximo, e a Dificuldade para o ataque é aumentada em 1.",
 
     "Talent.appliedForce": "Força Aplicada",
 
@@ -2165,10 +2395,16 @@
     "Talent.automatedDefenses": "Defesas Automatizadas",
 
     "Talent.automatedDefenses.soloDescription": "Os sistemas de armas da nave podem travar automaticamente em um alvo e disparar mesmo se a tripulação estiver incapacitada ou indisponível.",
+    "Talent.automatedDefenses.description2e": "No final de uma rodada, se nenhum ataque foi realizado usando as armas da nave, a nave pode fazer um ataque com uma arma de energia usando **Armas + Segurança** (sem assistência) contra um alvo dentro do alcance Próximo. O Ímpeto pode ser usado e gerado normalmente para esse ataque.",
+
+    "Talent.automatedReturn": "Retorno Automático",
+
+    "Talent.automatedReturn.description2e": "O computador da nave é programado para reconhecer uma base estelar, colônia ou algum outro local como sua base de origem. As naves auxiliares a bordo têm a mesma programação e reconhecem a nave como sua base de origem. Se o sistema de Computadores da nave ficar 10 dias sem comandos da tripulação, ele irá pilotar automaticamente a nave de volta à base de origem na máxima velocidade de impulso.",
 
     "Talent.backupEpsConduits": "Conduítes EPS Reserva",
 
     "Talent.backupEpsConduits.soloDescription": "Os conduítes de energia da nave contam redundâncias adicionais, que podem ser ativadas para redirecionar energia com mais facilidade em caso de emergência, impedindo que seja perdida quando a nave for danificada. ",
+    "Talent.backupEpsConduits.description2e": "Quando a nave é abalroada e perde Energia de Reserva, role 1d20; se você rolar um número igual ou inferior à Estrutura da sua nave, recupere Energia de Reserva.",
 
     "Talent.backUpPlans": "Planos Alternativos",
 
@@ -2229,6 +2465,7 @@
     "Talent.captainsYacht": "Iate do Capitão",
 
     "Talent.captainsYacht.soloDescription": "A nave tem uma única embarcação de apoio adicional, normalmente montada em uma porta dedicada sob a seção do pires da nave. Essa nave, maior\ndo que a maioria das naves auxiliares, são frequentemente usadas para missões diplomáticas e excursões especiais pelo oficial comandante e são conhecidas como o Iate do Capitão.",
+    "Talent.captainsYacht.description2e": "A nave possui um único veículo de apoio adicional, normalmente montada em um porto dedicado sob o disco da nave. Esses veículos, maiores do que a maioria dos transportes, são frequentemente utilizadas para missões diplomáticas e excursões especiais.\n\nA nave tem uma transportador pequeno adicional, que não conta contra a capacidade de naves pequenas da nave e não é lançada do hangar de transportes.",
 
     "Talent.cautiousCommand": "Cauteloso: Comando",
 
@@ -2262,6 +2499,10 @@
 
     "Talent.chosenSpeaker.description2e": "Nas comunidades Aenar, os líderes e mediadores são escolhidos quando surge a necessidade, nomeando um indivíduo para servir como Orador. Você foi escolhido para essa função com frequência e é hábil em usar seus sentidos e sua telepatia para ajudar na comunicação. Ao tentar uma tarefa de comunicação telepática com um ser disposto a isso, você pode rolar novamente 1d20.",
 
+    "Talent.classifiedDesign": "Design Restrito",
+
+    "Talent.classifiedDesign.description": "Como a classe _Crossfield_ é uma estrutura espacial altamente experimental, a Frota Estelar equipou todas as naves dessa classe com o perfil de missão Campo de Testes Técnicos.",
+
     "Talent.cloakedMines": "Minas Camufladas",
 
     "Talent.cloakedMines.soloDescription": "As minas do navio são equipadas com tecnologia de camuflagem de última geração, tornando-as quase impossíveis de serem detectadas.",
@@ -2269,6 +2510,7 @@
     "Talent.cloakingDevice": "Dispositivo de Camuflagem",
 
     "Talent.cloakingDevice.soloDescription": "A embarcação possui um dispositivo que permite que ela suma dos sensores. Enquanto está camuflada, a embarcação não  pode tentar ataques, nem pode ser alvo de um ataque, a menos que o atacante tenha encontrado alguma forma de  detectar a nave camuflada. Enquanto estiver camuflada, os escudos da embarcação permanecem abaixados.",
+    "Talent.cloakingDevice.description2e": "Ativar o dispositivo é uma ação principal que requer Energia de Reserva e que exige uma tarefa de **Controle + Engenharia** com uma Dificuldade de 2, assistida por **Motores + Segurança** da nave. Isso é operado a partir da posição Tática da nave. Se bem-sucedido, a embarcação ganha o Traço Camuflado. Enquanto estiver camuflada, a nave não pode realizar ataques e não pode ser o alvo de um ataque, a menos que o atacante tenha encontrado alguma maneira de detectar a nave camuflada. Enquanto camuflada, os escudos da embarcação estão desativados. Desativar o dispositivo de camuflagem requer uma ação menor.",
 
     "Talent.closeKnitCrew": "Equipe Coesa",
 
@@ -2318,6 +2560,11 @@
     "Talent.commandShip": "Nave de Comando",
 
     "Talent.commandShip.soloDescription": "A nave possui sistemas de comando e controle que permitem que ela coordene aliados facilmente durante uma crise.",
+    "Talent.commandShip.description2e": "Quando uma personagem na nave tem sucesso em uma tarefa de Comando para criar um traço, ela pode sempre ser assistido por **Comunicações + Comando** da nave e pode passar o traço a naves aliadas, grupos avançados ou equipes de apoio com os quais a nave mantém um link de comunicação.",
+
+    "Talent.compactVessel": "Nave Compacta",
+
+    "Talent.compactVessel.description": "Esta estrutura espacial tem uma Escala de 2, mas não conta como uma nave pequena. Ela não possui capacidade para naves pequenas e não pode lançar ou receber pods de transporte, naves de transporte ou qualquer veículo do tipo.",
 
     "Talent.computerExpertise": "Especialidade em Computação",
 
