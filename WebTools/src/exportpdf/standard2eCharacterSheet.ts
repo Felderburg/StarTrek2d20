@@ -29,7 +29,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     static goldColour: SimpleColor = SimpleColor.from("#D0990F");
     static redColour: SimpleColor = SimpleColor.from("#C9242B");
 
-    static readonly headingColumn = new Column(436.5, 52.9, 10.8, 142);
+    static readonly headingColumn = new Column(436.5, 49, 17.4, 142);
 
     getName(): string {
         return i18next.t("Sheet.standard2eCharacterSheet");
@@ -282,10 +282,11 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         }
 
         let block = TextBlock.create(text, new FontSpecification(this.headingFont, fontSize), false);
+        let y = column.end.y - 1 - ((column.height - block.height) / 2)
 
         page.drawText(text, {
             x: column.start.x,
-            y: page.getHeight() - (column.end.y + ((column.height - block.height) / 2)),
+            y: page.getHeight() - y,
             color: SimpleColor.from("#ffffff").asPdfRbg(),
             font: this.headingFont,
             size: fontSize

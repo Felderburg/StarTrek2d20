@@ -1108,12 +1108,12 @@ export class SpaceframeHelper {
                 [6, 5, 7, 6, 5, 5],
                 [2, 3, 3, 2, 3, 1]
             )),
-        [Spaceframe.Antares]: SpaceframeModel.createStandardSpaceframe(
+        [Spaceframe.Antares]: new SpaceframeModel(
             Spaceframe.Antares,
             CharacterType.Starfleet,
             "Antares",
             2245,
-            [ Source.UtopiaPlanitia ],
+            [ new SourcePrerequisite(Source.UtopiaPlanitia), new StarshipTypePrerequisite(CharacterType.Starfleet, CharacterType.Civilian) ],
             [8, 6, 7, 8, 7, 6],
             [0, 0, 0, 1, 1, 1],
             2,
@@ -3690,6 +3690,23 @@ export class SpaceframeHelper {
             ],
             [ "Civlian Starship" ],
             99999),
+        [Spaceframe.XhosaType]: new SpaceframeModel(
+            Spaceframe.XhosaType,
+            CharacterType.Civilian,
+            "Antares class (Xhosa-type)",
+            2300,
+            [ new SourcePrerequisite(Source.ContinuingMissions), new StarshipTypePrerequisite(CharacterType.Starfleet, CharacterType.Civilian) ],
+            [6, 7, 9, 6, 8, 4],
+            [0, 1, 0, 1, 0, 1],
+            3,
+            [
+                "Phaser Banks",
+                "Tractor Beam (Strength 2)"
+            ],
+            [
+                TalentSelection.selectTalent("Improved Warp Drive")
+            ],
+            [ "Civilian Starship" ]),
         //[Spaceframe.]: SpaceframeModel.createStandardSpaceframe(
         //    CharacterType.Starfleet,
         //    "",

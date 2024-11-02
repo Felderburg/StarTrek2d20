@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import store from "../../state/store";
 import { Era } from "../../helpers/eras";
-import { hasAnySource, hasSource } from "../../state/contextFunctions";
+import { hasSource } from "../../state/contextFunctions";
 import { Source } from "../../helpers/sources";
 
 export enum RandomStarshipCharacterType {

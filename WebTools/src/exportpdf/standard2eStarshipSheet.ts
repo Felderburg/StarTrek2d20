@@ -23,6 +23,7 @@ import { System } from "../helpers/systems";
 import { Department } from "../helpers/departments";
 import { staTextFieldAppearanceProvider } from "../helpers/pdfTextFieldAppearance";
 import { determineIdealFontWidth } from "./fontWidthDeterminer";
+import { TextBlock } from "./textBlock";
 
 export class Standard2eStarshipSheet extends BasicGeneratedSheet {
 
@@ -33,7 +34,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
 
     static readonly specialRulesColumn = new Column(345.7, 387.1, 114.1, 226.7);
 
-    static readonly headingColumn = new Column(383, 54.5 - 2, 9.5, 196.1);
+    static readonly headingColumn = new Column(383, 54.5 - 2, 9.5, 195.1);
 
     getName(): string {
         return i18next.t(makeKey('Sheet.', "Standard2eCharacterSheet"),
@@ -358,9 +359,9 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
         let text = originalText;
         const fontSize = determineIdealFontWidth([ text ],
             Standard2eStarshipSheet.headingColumn.width, 11, 8, this.headingFont);
-        const block = Standard2eStarshipSheet.headingColumn;
+        const column = Standard2eStarshipSheet.headingColumn;
         let width = this.headingFont.widthOfTextAtSize(text, fontSize);
-        while (width > block.width) {
+        while (width > column.width) {
             text = text.substring(0, text.length-1);
             width = this.headingFont.widthOfTextAtSize(text + "...", fontSize);
         }
@@ -369,9 +370,12 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
             text += "...";
         }
 
+        let block = TextBlock.create(text, new FontSpecification(this.headingFont, fontSize), false);
+        let y = column.end.y - 1 - ((column.height - block.height) / 2)
+
         page.drawText(text, {
-            x: block.start.x,
-            y: page.getHeight() - (block.end.y),
+            x: column.start.x,
+            y: page.getHeight() - y,
             color: SimpleColor.from("#ffffff").asPdfRbg(),
             font: this.headingFont,
             size: fontSize

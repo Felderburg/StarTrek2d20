@@ -184,5 +184,5 @@ export enum Spaceframe {
     Ptolemy,
 
     Merchantman,
-
+    XhosaType,
 }

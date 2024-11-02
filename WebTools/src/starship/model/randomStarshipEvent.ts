@@ -7,7 +7,7 @@ const majorEvents = {
             "Battle of the Binary Stars",
             "Federation-Klingon War"
         ],
-    2257: ["The Battle of Axanar"],
+    2257: ["The Battle of Axanar", "The Attack on Starbase 12", "The Attack on Starbase 19", "The Attack on Starbase 22"],
     2263: ["The Battle of Caleb IV"],
     2267: ["Second Federation-Klingon War", "Altair Sector Conflicts"],
     2301: ["Destruction of Pollyea's World"],
@@ -24,7 +24,7 @@ const majorEvents = {
     2370: ["Feira Incident"],
     2373: ["The Battle of Ajilon Prime", "The Battle of Sector 001", "The Battle of Torros III"],
     2374: ["The Battle of Betazed", "Operation Return", "The Bolian Operation"],
-    2375: ["Second Battle of Chin'toka", "Invasion of Cardassia"],
+    2375: ["The Second Battle of Chin'toka", "Invasion of Cardassia", "The Battle of Ricktor Prime", "The Breen attack on Earth"],
     2384: ["Vau N'Akat Construct Infection"],
     2385: ["Attack on Mars"],
 }

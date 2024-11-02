@@ -89,7 +89,9 @@ export class SpaceframeModel implements IServiceYearProvider {
     }
 
     get isCivilian() {
-        return this.name.indexOf("Civilian") >= 0 || this.id === Spaceframe.JClassYClass || this.type === CharacterType.Civilian;
+        return this.name.indexOf("Civilian") >= 0
+            || [Spaceframe.JClassYClass, Spaceframe.Antares].includes(this.id)
+            || this.type === CharacterType.Civilian;
     }
 
     get key() {

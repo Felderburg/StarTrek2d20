@@ -15,9 +15,9 @@ import { TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
 import { Column } from "./column";
 import { FontOptions } from "./fontOptions";
 import { FontType } from "./fontLibrary";
-import { cardassianBrownColour2e, ferengiOrangeColour2e, klingonRedColour2e, labelColourProvider, romulanGreenColour2e, tealColour2e } from "./colourProvider2e";
+import { cardassianBrownColour2e, ferengiOrangeColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, romulanGreenColour2e, tealColour2e } from "./colourProvider2e";
 import { CharacterType } from "../common/characterType";
-import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird } from "./politySymbols";
+import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird } from "./politySymbols";
 import { ReadableTalentModel, TalentWriter } from "./talentWriter";
 import { bullet2EWriter } from "./bullet2eWriter";
 
@@ -364,6 +364,23 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
             page.drawSvgPath(politySymbolRomulanSymbolBird, {
                 borderColor: Generated2eStarshipSheet.greyColour.asPdfRbg(),
                 color: colour.asPdfRbg(),
+                borderWidth: 0,
+                scale: 0.6
+            });
+
+        } else if (construct.type === CharacterType.Civilian) {
+            page.moveTo(499.5, page.getHeight() - 187.9);
+
+            page.drawSvgPath(politySymbolFederationLaurels, {
+                borderColor: greyColour2e.asPdfRbg(),
+                color: greyColour2e.asPdfRbg(),
+                borderWidth: 0,
+                scale: 0.6
+            });
+
+            page.drawSvgPath(politySymbolFederationStarfield, {
+                borderColor: greyColour2e.asPdfRbg(),
+                color: greyColour2e.asPdfRbg(),
                 borderWidth: 0,
                 scale: 0.6
             });
