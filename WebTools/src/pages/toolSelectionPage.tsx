@@ -32,6 +32,14 @@ const ToolSelectionPage = () => {
         }
     }
 
+    const renderTacticalAssetButton = () => {
+        if (hasSource(Source.FederationKlingonWar)) {
+            return (<Button className="btn btn-primary mt-4" onClick={() => goToPage(PageIdentity.TacticalAssets)}>{t('Page.title.tacticalAssets')}</Button>);
+        } else {
+            return undefined;
+        }
+    }
+
     const startCharacterCreation = () => {
         if (hasSource(Source.Core2ndEdition)) {
             let character = Character.createMainCharacter(CharacterType.Starfleet, 2);
@@ -84,6 +92,8 @@ const ToolSelectionPage = () => {
             navigate("/systemGenerator");
         } else if (page === PageIdentity.RandomStarship) {
             navigate("/starship/generate");
+        } else if (page === PageIdentity.TacticalAssets) {
+            navigate("/tactical");
         } else {
             Navigation.navigateToPage(page);
         }
@@ -113,6 +123,7 @@ const ToolSelectionPage = () => {
                         <div className="col-md-6 button-column">
                             <LoadingButton onClick={() => { loadNpcAndGoToPage(); } } loading={loadingNpc}>{t('ToolSelection.randomNpc')}</LoadingButton>
                             <LoadingButton onClick={() => { loadRandomStarshipAndGoToPage(); } } loading={loadingRandomStarship}>{t('ToolSelection.randomStarship')}</LoadingButton>
+                            {renderTacticalAssetButton()}
                         </div>
                     </div>
                 </main>

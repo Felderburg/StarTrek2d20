@@ -12,6 +12,15 @@ class News extends React.Component<INewsProperties, {}> {
     render() {
         return (
             <Modal size="lg" show={this.props.showModal} onClose={() => this.props.onClose()} header="What's New?">
+                <b>v1.241103</b>
+                <ul>
+                    <li>
+                        Minor starship updates.
+                    </li>
+                    <li>
+                        Some additional support for the <cite>Federation-Klingon War</cite> book.
+                    </li>
+                </ul>
                 <b>v1.241027</b>
                 <ul>
                     <li>
@@ -238,16 +247,6 @@ class News extends React.Component<INewsProperties, {}> {
                         hate that because they like really like editability. Again: this is an experiment at the moment
                         to try out some new programming patterns.
                     </li>
-                </ul>
-                <b>v1.240430</b>
-                <ul>
-                    <li>Minor, mostly non-visible changes.</li>
-                </ul>
-                <b>v1.240428</b>
-                <ul>
-                    <li>Minor bug fixes.</li>
-                    <li>Additional translations.</li>
-                    <li>A bit of under-the-covers prep for 2nd edition (based on the little information that we currently have).</li>
                 </ul>
 
                 <div className="text-center">

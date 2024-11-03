@@ -137,11 +137,11 @@ const AssetView:React.FC<IAssetViewProperties> = ({asset}) => {
                     </div>
                 </div>
 
+                <div className="col mt-4">
+                    <AssetAbilityView ability={asset.specialAbility} />
+                </div>
 
-            </div>
 
-            <div className="mt-4">
-                <AssetAbilityView ability={asset.specialAbility} />
             </div>
 
             <div className="mt-5 mb-3">

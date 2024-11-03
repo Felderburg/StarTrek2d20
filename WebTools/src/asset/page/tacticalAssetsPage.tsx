@@ -5,8 +5,6 @@ import { PageIdentity } from "../../pages/pageIdentity";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { useState } from "react";
 import { AssetType, AssetTypes } from "../assetType";
-import { assetTypeRandomTable } from "../assetTypeRandomTable";
-import { assetRandomTable } from "../assetCatalog";
 import LcarsFrame from "../../components/lcarsFrame";
 import { Button } from "react-bootstrap";
 import { Header } from "../../components/header";
@@ -15,6 +13,8 @@ import { marshaller } from "../../helpers/marshaller";
 import { AssetStatType } from "../assetStat";
 import { SpaceframeHelper } from "../../helpers/spaceframes";
 import { Spaceframe } from "../../helpers/spaceframeEnum";
+import { characterAssets, resourceAssets, starshipAssets } from "../assetCatalog";
+import toast from "react-hot-toast";
 
 const TacticalAssetsPage = () => {
 
@@ -27,10 +27,6 @@ const TacticalAssetsPage = () => {
         let result = [ new DropDownElement("", "Any")];
         AssetTypes.instance.getTypes().forEach(t => result.push(new DropDownElement(t.type, t.name)));
         return result;
-    }
-
-    const numberOfCharacters = () => {
-        return assets.filter(a => a.type === AssetType.Character).length;
     }
 
     const showViewPage = (asset: Asset) => {
@@ -53,21 +49,30 @@ const TacticalAssetsPage = () => {
     }
 
     const generateAsset = () => {
-        let asset = null;
-        while (asset == null) {
-            let assetType = null;
-            if (type === "") {
-                assetType = assetTypeRandomTable(numberOfCharacters());
-            } else {
-                assetType = type as AssetType;
-            }
 
-            let newAssets = [...assets];
-            asset = assetRandomTable(assetType);
-            if (asset) {
-                newAssets.push(asset);
-                setAssets(newAssets);
-            }
+        let newAssets = [...assets];
+        let options = [];
+        if (type === AssetType.Character) {
+            options = [...characterAssets];
+        } else if (type === AssetType.Ship) {
+            options = [...starshipAssets];
+        } else if (type === AssetType.Resource) {
+            options = [...resourceAssets];
+        } else if (type === "") {
+            options.push(...characterAssets);
+            options.push(...starshipAssets);
+            options.push(...resourceAssets);
+        }
+
+        let names = newAssets.map(a => a.name);
+        options = options.filter(a => !names.includes(a.name));
+
+        if (options.length > 0) {
+            let asset = options[Math.floor(Math.random() * options.length)];
+            newAssets.push(asset);
+            setAssets(newAssets);
+        } else {
+            toast("Sorry. There aren't any more assets to choose from.", { className: 'bg-danger text-white' });
         }
     }
 
