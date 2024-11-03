@@ -67,9 +67,10 @@ export class SpaderCard {
         })
 
 
-        if (asset.specialAbility?.length) {
+        if (asset.specialAbility) {
             const paragraph = new Paragraph(page, SpaderCard.textColumn, this.fonts);
-            paragraph.append(asset.specialAbility, new FontOptions(8));
+            paragraph.append(asset.specialAbility.title + ": ", new FontOptions(8, FontType.Bold));
+            paragraph.append(asset.specialAbility.description, new FontOptions(8));
             paragraph.write();
         }
     }

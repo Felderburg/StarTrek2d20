@@ -12,7 +12,7 @@ import { allDepartments, Department } from './departments';
 import { Environment, EnvironmentsHelper } from './environments';
 import { MissionPod, MissionPodHelper } from './missionPods';
 import { MissionProfile, MissionProfileHelper } from './missionProfiles';
-import { RanksHelper } from './ranks';
+import { Rank, RanksHelper } from './ranks';
 import { Skill, SkillsHelper } from './skills';
 import { Spaceframe } from './spaceframeEnum';
 import { SpaceframeModel } from './spaceframeModel';
@@ -29,7 +29,7 @@ import { Role, RolesHelper } from './roles';
 import { BorgImplantType, BorgImplants } from './borgImplant';
 import { Specialization, allSpecializations } from '../common/specializationEnum';
 import { Era, ErasHelper } from './eras';
-import { Asset, AssetStat } from '../asset/asset';
+import { Asset, AssetAbility, AssetStat } from '../asset/asset';
 import { AssetType } from '../asset/assetType';
 import { AssetStatType, allAssetStatTypes } from '../asset/assetStat';
 import { SpeciesAbilityList } from './speciesAbility';
@@ -56,7 +56,22 @@ class Marshaller {
             "stats": {}
         }
 
-        allAssetStatTypes().forEach(t => sheet.stats[AssetStatType[t]] = "" + asset.stats[t].base + "/" + asset.stats[t].critical);
+        if (asset.additionalInformation != null) {
+            if (asset.type === AssetType.Ship) {
+                sheet["additionalInformation"] = Spaceframe[asset.additionalInformation];
+            } else if (asset.type === AssetType.Character) {
+                sheet["additionalInformation"] = Rank[asset.additionalInformation];
+            }
+        }
+
+        if (asset.specialAbility) {
+            sheet["ability"] = {
+                "title": asset.specialAbility.title,
+                "description": asset.specialAbility.description
+            }
+        }
+
+        allAssetStatTypes().forEach(t => sheet.stats[AssetStatType[t]] = "" + asset.stats[t].asString);
         return this.encode(sheet);
     }
 
@@ -658,7 +673,9 @@ class Marshaller {
             allAssetStatTypes().forEach(a => {
                 let statName = AssetStatType[a];
                 let s = json.stats[statName];
-                if (s?.length && s?.indexOf('/') >= 0) {
+                if (s === "-") {
+                    stats[a] = new AssetStat();
+                } else if (s?.length && s?.indexOf('/') >= 0) {
                     let base = parseInt(s.substring(0, s.indexOf('/')));
                     let critical = parseInt(s.substring(s.indexOf('/') + 1));
 
@@ -667,7 +684,22 @@ class Marshaller {
             });
         }
 
-        return new Asset(type, name, stats);
+        let additionalInformation: Spaceframe|Rank|undefined = undefined;
+        let ability = undefined;
+        if (json["additionalInformation"]) {
+            if (type === AssetType.Ship) {
+                additionalInformation = SpaceframeHelper.instance().getSpaceframeByName(json["additionalInformation"])?.id;
+            } else if (type === AssetType.Character) {
+                additionalInformation = RanksHelper.instance().getRankByRankName(json["additionalInformation"]);
+            }
+        }
+
+        if (json["ability"]) {
+            const temp = json["ability"];
+            ability = new AssetAbility(temp["title"], temp["description"]);
+        }
+
+        return new Asset(type, name, stats, additionalInformation, ability);
     }
 
 

@@ -1,13 +1,31 @@
 import { useTranslation } from "react-i18next";
 import { Header } from "../../components/header";
-import { Asset } from "../asset";
-import { AssetTypes } from "../assetType";
+import { Asset, AssetAbility } from "../asset";
+import { AssetType, AssetTypes } from "../assetType";
 import { AssetStatType } from "../assetStat";
 import { useState } from "react";
 import { LoadingButton } from "../../common/loadingButton";
 import { PDFDocument } from "@cantoo/pdf-lib";
+import { SpaceframeHelper } from "../../helpers/spaceframes";
+import { Spaceframe } from "../../helpers/spaceframeEnum";
+import { Rank, RanksHelper } from "../../helpers/ranks";
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
+
+interface IAssetAbilityViewProperties {
+    ability?: AssetAbility;
+}
+
+const AssetAbilityView:React.FC<IAssetAbilityViewProperties> = ({ability}) => {
+    if (ability == null) {
+        return undefined;
+    } else {
+        return (<p>
+            <b>{ability.title}:</b> {' '}
+            {ability.description}
+        </p>)
+    }
+}
 
 interface IAssetViewProperties {
     asset: Asset;
@@ -35,6 +53,8 @@ const AssetView:React.FC<IAssetViewProperties> = ({asset}) => {
         });
     }
 
+    console.log(asset.additionalInformation, Spaceframe[asset.additionalInformation]);
+
 
     return (<main>
         <Header>{asset.name}</Header>
@@ -44,13 +64,41 @@ const AssetView:React.FC<IAssetViewProperties> = ({asset}) => {
             <div className="col-12 col-xl-6">
                 <div className="row">
                     <div className="col-4 view-field-label pb-2">{t('Construct.other.name')}:</div>
-                    <div className="col-8 text-white"><div className="view-border-bottom pb-2">{asset.name}</div></div>
+                    <div className="col-8 text-white">
+                        <div className="view-border-bottom pb-2">
+                            {asset.name}
+                        </div>
+                    </div>
                 </div>
 
                 <div className="row">
                     <div className="col-4 view-field-label pb-2">{t('Construct.other.assetType')}:</div>
-                    <div className="col-8 text-white"><div className="view-border-bottom pb-2">{AssetTypes.instance.getTypes()[asset.type].name}</div></div>
+                    <div className="col-8 text-white">
+                        <div className="view-border-bottom pb-2">{AssetTypes.instance.getTypes()[asset.type].name}</div>
+                    </div>
                 </div>
+
+                {asset.additionalInformation != null && asset.type === AssetType.Ship
+                    ? (<div className="row">
+                        <div className="col-4 view-field-label pb-2">{t('Construct.other.spaceFrame')}:</div>
+                        <div className="col-8 text-white">
+                            <div className="view-border-bottom pb-2">
+                                {SpaceframeHelper.instance().getSpaceframe(asset.additionalInformation as Spaceframe).localizedName}
+                            </div>
+                        </div>
+                    </div>)
+                    : undefined}
+
+                {asset.additionalInformation != null && asset.type === AssetType.Character
+                    ? (<div className="row">
+                        <div className="col-4 view-field-label pb-2">{t('Construct.other.rank')}:</div>
+                        <div className="col-8 text-white">
+                            <div className="view-border-bottom pb-2">
+                                {RanksHelper.instance().getRank(asset.additionalInformation as Rank).localizedName}
+                            </div>
+                        </div>
+                    </div>)
+                    : undefined}
 
                 <div className="row row-cols-3 row-cols-md-6 justify-content-md-center">
                     <div className="col">
@@ -90,6 +138,10 @@ const AssetView:React.FC<IAssetViewProperties> = ({asset}) => {
                 </div>
 
 
+            </div>
+
+            <div className="mt-4">
+                <AssetAbilityView ability={asset.specialAbility} />
             </div>
 
             <div className="mt-5 mb-3">

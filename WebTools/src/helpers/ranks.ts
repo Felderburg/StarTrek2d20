@@ -1118,6 +1118,17 @@ export class RanksHelper {
         return null;
     }
 
+    getRankByRankName(name: string): Rank|undefined {
+        for (const rank in this._ranks) {
+            const r = this._ranks[rank];
+            if (Rank[r.id] === name) {
+                return r.id;
+            }
+        }
+
+        return undefined;
+    }
+
     applyRank(character: Character, rank: Rank) {
         const r = this.getRank(rank);
         character.rank = new CharacterRank(r.name, r.id);

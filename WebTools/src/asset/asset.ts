@@ -2,17 +2,31 @@ import { Rank } from "../helpers/ranks";
 import { Spaceframe } from "../helpers/spaceframeEnum";
 import { AssetType } from "./assetType";
 
-export class AssetStat {
-    readonly base: number;
-    readonly critical: number;
+export class AssetAbility {
+    readonly title: string;
+    readonly description: string;
 
-    constructor(base: number, critical: number) {
+    constructor(title: string, description: string) {
+        this.title = title;
+        this.description = description;
+    }
+}
+
+export class AssetStat {
+    readonly base?: number;
+    readonly critical?: number;
+
+    constructor(base?: number, critical?: number) {
         this.base = base;
         this.critical = critical;
     }
 
     get asString() {
-        return this.base + "/" + this.critical;
+        if (this.base == null || this.critical == null) {
+            return "-";
+        } else {
+            return this.base + "/" + this.critical;
+        }
     }
 }
 
@@ -21,9 +35,9 @@ export class Asset {
     readonly name: string;
     readonly additionalInformation?: Spaceframe|Rank;
     readonly stats: AssetStat[];
-    readonly specialAbility?: string;
+    readonly specialAbility?: AssetAbility;
 
-    constructor(type: AssetType, name: string, stats: AssetStat[], additionalInformation?: Spaceframe|Rank, specialAbility?: string) {
+    constructor(type: AssetType, name: string, stats: AssetStat[], additionalInformation?: Spaceframe|Rank, specialAbility?: AssetAbility) {
         this.type = type;
         this.name = name;
         this.stats = stats;

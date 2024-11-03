@@ -110,24 +110,47 @@ const TacticalAssetsPage = () => {
                             <thead>
                                 <tr>
                                     <th className="bg-black"></th>
-                                    <th className="bg-black d-none d-md-table-cell">{t('Construct.assetStat.medical')}</th>
-                                    <th className="bg-black d-none d-md-table-cell">{t('Construct.assetStat.military')}</th>
-                                    <th className="bg-black d-none d-md-table-cell">{t('Construct.assetStat.personal')}</th>
-                                    <th className="bg-black d-none d-md-table-cell">{t('Construct.assetStat.science')}</th>
-                                    <th className="bg-black d-none d-md-table-cell">{t('Construct.assetStat.social')}</th>
+                                    <th className="bg-black d-none d-md-table-cell text-center">{t('Construct.assetStat.medical')}</th>
+                                    <th className="bg-black d-none d-md-table-cell text-center">{t('Construct.assetStat.military')}</th>
+                                    <th className="bg-black d-none d-md-table-cell text-center">{t('Construct.assetStat.personal')}</th>
+                                    <th className="bg-black d-none d-md-table-cell text-center">{t('Construct.assetStat.science')}</th>
+                                    <th className="bg-black d-none d-md-table-cell text-center">{t('Construct.assetStat.social')}</th>
                                     <th className="bg-black d-none d-md-table-cell"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {assets.map((a, i) => (<tr key={'asset-' + i }>
-                                    <td><p>{a.name} {getSpaceframe(a)}</p></td>
-                                    <td className="d-none d-md-table-cell">{a.stats[AssetStatType.Medical].asString} </td>
-                                    <td className="d-none d-md-table-cell">{a.stats[AssetStatType.Military].asString} </td>
-                                    <td className="d-none d-md-table-cell">{a.stats[AssetStatType.Personal].asString} </td>
-                                    <td className="d-none d-md-table-cell">{a.stats[AssetStatType.Science].asString} </td>
-                                    <td className="d-none d-md-table-cell">{a.stats[AssetStatType.Social].asString} </td>
-                                    <td className="text-end d-none d-md-table-cell"><Button size="sm" onClick={() => showViewPage(a)}>{t('Common.button.view')}</Button></td>
-                                </tr>))}
+                                {assets.map((a, i) =>{
+                                    if (a.specialAbility) {
+                                        return (<><tr key={'asset-' + i }>
+                                            <td rowSpan={2}><p>{a.name} {getSpaceframe(a)}</p></td>
+                                            <td className="d-none d-md-table-cell text-center border-bottom-0">{a.stats[AssetStatType.Medical].asString} </td>
+                                            <td className="d-none d-md-table-cell text-center border-bottom-0">{a.stats[AssetStatType.Military].asString} </td>
+                                            <td className="d-none d-md-table-cell text-center border-bottom-0">{a.stats[AssetStatType.Personal].asString} </td>
+                                            <td className="d-none d-md-table-cell text-center border-bottom-0">{a.stats[AssetStatType.Science].asString} </td>
+                                            <td className="d-none d-md-table-cell text-center border-bottom-0">{a.stats[AssetStatType.Social].asString} </td>
+                                            <td rowSpan={2} className="text-end d-none d-md-table-cell"><Button size="sm" onClick={() => showViewPage(a)}>{t('Common.button.view')}</Button></td>
+                                        </tr>
+                                        <tr>
+                                            <td colSpan={5} className="d-none d-md-table-cell border-top-0">
+                                                <b>{a.specialAbility.title}: </b>
+                                                {a.specialAbility.description}
+                                            </td>
+                                        </tr>
+                                        </>);
+                                    } else {
+                                        return (<tr key={'asset-' + i }>
+                                            <td><p>{a.name} {getSpaceframe(a)}</p></td>
+                                            <td className="d-none d-md-table-cell text-center">{a.stats[AssetStatType.Medical].asString} </td>
+                                            <td className="d-none d-md-table-cell text-center">{a.stats[AssetStatType.Military].asString} </td>
+                                            <td className="d-none d-md-table-cell text-center">{a.stats[AssetStatType.Personal].asString} </td>
+                                            <td className="d-none d-md-table-cell text-center">{a.stats[AssetStatType.Science].asString} </td>
+                                            <td className="d-none d-md-table-cell text-center">{a.stats[AssetStatType.Social].asString} </td>
+                                            <td className="text-end d-none d-md-table-cell"><Button size="sm" onClick={() => showViewPage(a)}>{t('Common.button.view')}</Button></td>
+                                        </tr>);
+                                    }
+
+                                    })
+                                }
                             </tbody>
 
                         </table>) : undefined}
