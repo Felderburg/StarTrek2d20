@@ -63,7 +63,7 @@ const TacticalAssetsPage = () => {
             }
 
             let newAssets = [...assets];
-            asset = assetRandomTable(assetType.type);
+            asset = assetRandomTable(assetType);
             if (asset) {
                 newAssets.push(asset);
                 setAssets(newAssets);
