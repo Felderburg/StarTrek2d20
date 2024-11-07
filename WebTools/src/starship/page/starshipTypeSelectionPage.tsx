@@ -111,7 +111,7 @@ class StarshipTypeSelectionPage extends React.Component<StarshipTypeSelectionPag
                 this.state.buildType.type, this.state.campaignYear, this.state.type.type, stats.scale));
             stats.departments = BuildPoints.allocatePointsEvenly(BuildPoints.departmentPointsForType(
                 this.state.buildType.type));
-            store.dispatch(createNewStarship(this.state.type.type, this.props.era, this.state.campaignYear, stats, workflow, this.state.buildType.type));
+            store.dispatch(createNewStarship(this.state.type.type, this.props.era, this.state.campaignYear, stats, workflow, this.state.buildType.type, isSecondEdition() ? 2 : 1));
             Navigation.navigateToPage(workflow.currentStep().page);
        } else if (this.state.type != null) {
             let workflow = ShipBuildWorkflow.createStarshipBuildWorkflow(isSecondEdition() ? 2 : 1);
