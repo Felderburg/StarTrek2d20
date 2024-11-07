@@ -1,4 +1,3 @@
-import { D20 } from "../common/die";
 import { Rank } from "../helpers/ranks";
 import { Spaceframe } from "../helpers/spaceframeEnum";
 import { Asset, AssetAbility, AssetStat } from "./asset";

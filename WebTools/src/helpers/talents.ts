@@ -121,6 +121,16 @@ class Version1Prerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
+class Version2Prerequisite implements IConstructPrerequisite<Character> {
+    isPrerequisiteFulfilled(c: Character) {
+        return c.version === 2;
+    }
+
+    describe(): string {
+        return "";
+    }
+}
+
 class SpeciesPrerequisite implements IConstructPrerequisite<Character> {
     private species: number;
     private allowCrossSelection: boolean;
@@ -4476,6 +4486,12 @@ export class Talents {
             [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
             1,
             "Pakled", true),
+        new TalentModel(
+            "Intensive Training (Special Rule)",
+            "",
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
 
     ];
 

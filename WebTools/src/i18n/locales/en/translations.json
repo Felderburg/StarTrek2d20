@@ -2918,6 +2918,10 @@
     "Talent.intenseScrutiny.description": "Whenever you succeed at a Task using Reason or Control as part of an Extended Task, you may ignore up to two Resistance for every Effect rolled.",
     "Talent.intenseScrutiny.description2e": "Whenever you succeed at a task using Reason or Control as part of an extended task, you ignore any Resistance on that extended task.",
 
+    "Talent.intensiveTrainingSpecialRule": "Intensive Training",
+
+    "Talent.intensiveTrainingSpecialRule.description": "Members of this group are given considerable training in a wide range of fields. They have a minimum of 1 in all departments: when creating an NPC with this ability, increase any department with a rating of 0 to 1.",
+
     "Talent.interrogation": "Interrogation",
 
     "Talent.interrogation.description": "When you succeed at a Task to coerce someone to reveal information in a social conflict, you will gain one bonus Momentum, which may only be spent on the Obtain Information Momentum Spend.",

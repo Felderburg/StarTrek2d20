@@ -640,7 +640,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
             })
             return result;
         } else {
-            return [...this._skills];
+            let result = [...this._skills];
+            if (this.hasTalent("Intensive Training (Special Rule)")) {
+                result = result.map(d => d === 0 ? 1 :d);
+            }
+            return result;
         }
     }
 
