@@ -58,7 +58,7 @@ const ViewSheetPage = () => {
                 </nav>
                 <AssetView asset={asset}/>
             </div>);
-        } else if (json.stereotype === "starship") {
+        } else if (json.stereotype === "starship" || json.stereotype === "simple") {
             let starship = marshaller.decodeStarship(encodedSheet);
             modifyTitle(starship);
             return (<div className="page container ms-0">

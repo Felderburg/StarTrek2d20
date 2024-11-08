@@ -12,6 +12,12 @@ class News extends React.Component<INewsProperties, {}> {
     render() {
         return (
             <Modal size="lg" show={this.props.showModal} onClose={() => this.props.onClose()} header="What's New?">
+                <b>v1.241107</b>
+                <ul>
+                    <li>
+                        Minor bug fixes and clean-up.
+                    </li>
+                </ul>
                 <b>v1.241103</b>
                 <ul>
                     <li>
@@ -234,18 +240,6 @@ class News extends React.Component<INewsProperties, {}> {
                 <ul>
                     <li>The big new thing is that I've converted the one-page TNG Landscape PDF to better support
                         non-English languages.
-                    </li>
-                </ul>
-                <b>v1.240505</b>
-                <ul>
-                    <li>I'm experimenting with a new type of character sheet: one of the limitations of the existing
-                        character sheet system is that the PDFs are (mostly) hard-coded as English (in the sense that
-                        when the sheet as a heading that says "Attributes", that text doesn't change if you're a
-                        German user). So I'm trying out a more dynamically-generated sheet. Not gonna lie:
-                        this is a lot more complicated. The new sheet is a simple sheet for supporting characters.
-                        At the moment, the sheet that I'm creating isn't especially form-based; I'm sure some folks will
-                        hate that because they like really like editability. Again: this is an experiment at the moment
-                        to try out some new programming patterns.
                     </li>
                 </ul>
 
