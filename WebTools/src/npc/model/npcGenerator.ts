@@ -148,7 +148,8 @@ const typeSpecificValues: { [type : number ]: string[]} = {
         "Klingons do not take prisoners. But I offer you a blade, so that you may take your own life.",
         "It is foolish to give my word to a foe with no honour.",
         "I do not seek to lead, but will take that role if honour demands it.",
-        "I see you have forgotten the first time we met. I assure you that I have not forgotten."
+        "I see you have forgotten the first time we met. I assure you that I have not forgotten.",
+        "Experience bIj!"
     ],
     [ NpcCharacterType.Ferengi ] : [
     ],

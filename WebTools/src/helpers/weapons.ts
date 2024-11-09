@@ -834,15 +834,15 @@ export class PersonalWeapons {
 class PersonalWeaponsVersion1 extends PersonalWeapons {
 
     get unarmedStrike() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.strike.name'), InjuryType.Stun, 2, [new WeaponQuality(Quality.Knockdown)], [new WeaponQuality(Quality.NonLethal)], WeaponType.MELEE);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.strike.name'), InjuryType.Stun, 1, [new WeaponQuality(Quality.Knockdown)], [new WeaponQuality(Quality.NonLethal)], WeaponType.MELEE);
     }
 
     get unarmedStrikeMean() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.strike.name'), InjuryType.Stun, 2, [new WeaponQuality(Quality.Knockdown), new WeaponQuality(Quality.Vicious, 1)], [new WeaponQuality(Quality.NonLethal)], WeaponType.MELEE);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.strike.name'), InjuryType.Stun, 1, [new WeaponQuality(Quality.Knockdown), new WeaponQuality(Quality.Vicious, 1)], [new WeaponQuality(Quality.NonLethal)], WeaponType.MELEE);
     }
 
     get unarmedStrikeMartialArtist() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.strike.name'), InjuryType.Stun, 2, [new WeaponQuality(Quality.Knockdown), new WeaponQuality(Quality.Intense)], [new WeaponQuality(Quality.NonLethal)], WeaponType.MELEE);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.strike.name'), InjuryType.Stun, 1, [new WeaponQuality(Quality.Knockdown), new WeaponQuality(Quality.Intense)], [new WeaponQuality(Quality.NonLethal)], WeaponType.MELEE);
     }
 
     get unarmedStrikeBruteForce() {
