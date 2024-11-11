@@ -20,5 +20,6 @@ export const isTallForeheadHair = (hairType: HairType) => {
         hairType === HairType.KlingonHair1 || hairType === HairType.KlingonHair2 || hairType === HairType.KlingonHair3 ||
         hairType === HairType.StraightCombedBackShort ||
         hairType === HairType.StraightCombedBackMedium ||
+        hairType === HairType.SidePartSweptBack ||
         HairType[hairType].indexOf("HighForehead") === 0;
 }

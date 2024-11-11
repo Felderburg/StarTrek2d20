@@ -371,8 +371,10 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
             default:
         }
 
-        return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.StrangeNewWorlds)
+        let finalResult = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.StrangeNewWorlds)
             + result.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+
+        return division === "Nursing" ? finalResult.replace(/#2d2d2d/, token.divisionColor) : finalResult;
     }
 
     getUniformVariantSwatches(token: Token) {
