@@ -242,6 +242,8 @@ class SpeciesRestrictions {
             return [SpeciesOption.Option1, SpeciesOption.Option2, SpeciesOption.Option3, SpeciesOption.Option4, SpeciesOption.Option5];
         } else if (species === Species.Romulan) {
             return [SpeciesOption.Option1, SpeciesOption.Option2];
+        } else if (species === Species.Tellarite) {
+            return [SpeciesOption.Option1, SpeciesOption.Option2];
         } else {
             return [SpeciesOption.Option1];
         }

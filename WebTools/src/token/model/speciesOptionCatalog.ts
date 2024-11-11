@@ -1,6 +1,7 @@
 import { Species } from "../../helpers/speciesEnum";
-import { BolianEar, FerengiEar1, FerengiEar2, FerengiEar3, FerengiEar4, StandardEar, VulcanEar } from "./earCatalog";
+import { BolianEar, FerengiEar1, FerengiEar2, FerengiEar3, FerengiEar4, StandardEar, TellariteEar, VulcanEar } from "./earCatalog";
 import { BolianSeam, BolianStripes, FerengiCheekAppliances, FerengiForehead, ReferenceHead, RomulanForehead, SimpleNeck } from "./headCatalog";
+import { TellariteTusks } from "./prostheticCatalog";
 import { SpeciesOption } from "./speciesOptionEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
@@ -229,6 +230,11 @@ class SpeciesOptionCatalog {
                 new Swatch(SpeciesOption.Option1, "\"Northern\"", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option1, token)),
                 new Swatch(SpeciesOption.Option2, "Other", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option2, token))
             ];
+        } else if (token.species === Species.Tellarite) {
+            return [
+                new Swatch(SpeciesOption.Option1, "Standard", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option1, token)),
+                new Swatch(SpeciesOption.Option2, "Tusks", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option2, token))
+            ];
         } else if (token.species === Species.Klingon) {
             return [
                 new Swatch(SpeciesOption.Option1, "Klingon Forehead 1", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option1, token)),
@@ -343,6 +349,31 @@ class SpeciesOptionCatalog {
                         + ReferenceHead.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
                         + forehead.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
                         + StandardEar.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
+                +  `</g>
+                </g>
+            </svg>`;
+        } else if (token.species === Species.Tellarite) {
+            let tusk1 = "";
+            let tusk2 = "";
+            switch (option) {
+                case SpeciesOption.Option2:
+                    tusk1 = TellariteTusks.front;
+                    tusk2 = TellariteTusks.back;
+                    break;
+                default:
+            }
+            return `<svg viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <clipPath id="speciesOptionPath` + option + `">
+                        <circle cx="100" cy="100" r="100" fill="#ffffff" />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#speciesOptionPath` + option + `">
+                    <g transform="translate(-180, -50)">`
+                        + tusk2.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
+                        + ReferenceHead.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
+                        + tusk1.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
+                        + TellariteEar.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
                 +  `</g>
                 </g>
             </svg>`;
