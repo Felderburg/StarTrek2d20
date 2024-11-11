@@ -188,6 +188,8 @@ class Marshaller {
                     result["attribute"] = Attribute[i.attribute];
                 } else if (i.discipline != null) {
                     result["discipline"] = Skill[i.discipline];
+                } else if (i.talent != null) {
+                    result["talent"] = this.talentToJson(i.talent);
                 }
                 return result;
             });
@@ -1334,6 +1336,8 @@ class Marshaller {
                         improvement.attribute = AttributesHelper.getAttributeByName(j["attribute"]);
                     } else if (j["discipline"] != null) {
                         improvement.discipline = SkillsHelper.getSkillByName(j["discipline"]);
+                    } else if (j["talent"] != null) {
+                        improvement.talent = this.hydrateTalent(j["talent"]);
                     }
                     return improvement;
                 } else {

@@ -526,6 +526,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
     get talents(): SelectedTalent[] {
         if (this.stereotype === Stereotype.Npc) {
             return this.npcGenerationStep ? [...this.npcGenerationStep.talents] : [];
+        } else if (this.stereotype === Stereotype.SupportingCharacter) {
+            return this.improvements?.filter(s => s.talent != null)?.map(s => s.talent) ?? [];
         } else {
             let result = [];
             if (this.speciesStep?.talent != null) {

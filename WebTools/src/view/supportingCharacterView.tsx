@@ -15,6 +15,7 @@ import { LoadingButton } from "../common/loadingButton";
 import store from "../state/store";
 import { setCharacter } from "../state/characterActions";
 import { useNavigate } from "react-router";
+import TalentsBlockView from "./talentsBlockView";
 
 const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -84,6 +85,7 @@ const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}
                 <CharacterStatBlock character={character} />
 
                 <SpeciesAbilityBlockView character={character} />
+                <TalentsBlockView construct={character} />
             </div>
             <div className="col-xl-6">
                 <div className="row">

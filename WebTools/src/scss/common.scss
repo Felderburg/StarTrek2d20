@@ -746,7 +746,7 @@ h2.header-text {
 }
 
 table.selection-list {
-    width: 90%;
+    width: 100%;
     color: white;
     font-size: 12px;
     td {
@@ -757,10 +757,6 @@ table.selection-list {
             line-height: normal;
         }
     }
-}
-
-.container .selection-list {
-    width: 100%;
 }
 
 .text-selection {

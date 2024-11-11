@@ -225,11 +225,19 @@
 
     "ModifySupportingCharacter.attribute.instruction": "The supporting character increases a single attribute by 1. This option may only be chosen once.",
 
+    "ModifySupportingCharacter.talent.instruction": "The supporting character gains a single talent that they meet the requirements for. This option may be chosen four times, gaining a different talent each time.",
+
     "ModifySupportingCharacter.department.instruction": "The supporting character increases a single department by 1. This option may only be chosen once.",
 
     "ModifySupportingCharacter.finish.instruction": "Your changes have been applied to this supporting character. To view or print the revised character, use the button, below.",
 
     "ModifySupportingCharacter.error.improvementType": "Please select an improvement type.",
+    "ModifySupportingCharacter.error.talent": "Please select a talent before proceeding.",
+    "ModifySupportingCharacter.error.value": "Please select a value before proceeding.",
+
+    "ModifySupportingCharacter.noTalent": "Please select a talent.",
+
+    "ModifySupportingCharacter.talentModal.title": "Select Talent",
 
     "MilestonePage.instruction": "Select what type of modification you want to apply for this milestone.",
 
@@ -2278,6 +2286,12 @@
     "StarSystem.common.noWorlds": "No worlds",
     "StarSystem.common.primaryStar": "Primary Star",
     "StarSystem.common.companionStar": "Companion Star",
+
+    "SupportingCharacterModificationType.additionalAttribute": "Additional attribute",
+    "SupportingCharacterModificationType.additionalDepartment": "Additional department",
+    "SupportingCharacterModificationType.additionalFocus": "Additional focus",
+    "SupportingCharacterModificationType.additionalTalent": "Additional talent",
+    "SupportingCharacterModificationType.additionalValue": "Additional value",
 
     "Talent.text.rank": "{{talentName}} [Rank: {{rank}}]",
 

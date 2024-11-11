@@ -25,6 +25,10 @@ import D20IconButton from "../../solo/component/d20IconButton";
 import { FocusRandomTable } from "../../solo/table/focusRandomTable";
 import { Skill } from "../../helpers/skills";
 import { SimpleDepartmentSelector } from "../../components/simpleDepartmentSelector";
+import { TalentsHelper } from "../../helpers/talents";
+import { TalentDescription } from "../../components/talentDescription";
+import { ModalControl } from "../../components/modal";
+import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -37,6 +41,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const [attriubteSelection, setAttributeSelection] = useState<Attribute>();
     const [departmentSelection, setDepartmentSelection] = useState<Skill>();
     const [focusSelection, setFocusSelection] = useState<string>("");
+    const [talentSelection, setTalentSelection] = useState<string>(null);
     const navigate = useNavigate();
 
     const onNextPage = () => {
@@ -66,6 +71,8 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
             return character.improvements?.filter(i => i.focus != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalValue:
             return character.improvements?.filter(i => i.value != null)?.length ?? 0
+        case SupportingCharacterModificationType.AdditionalTalent:
+            return character.improvements?.filter(i => i.talent != null)?.length ?? 0
         }
     }
 
@@ -89,6 +96,13 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                 Dialog.show("Please select an attribute");
             } else {
                 store.dispatch(modifySupportingCharacterAddImprovement(modificationType, attriubteSelection));
+                onNextPage();
+            }
+        } else if (modificationType === SupportingCharacterModificationType.AdditionalTalent) {
+            if (talentSelection == null) {
+                Dialog.show(t("ModifySupportingCharacter.error.talent"));
+            } else {
+                store.dispatch(modifySupportingCharacterAddImprovement(modificationType, talentSelection));
                 onNextPage();
             }
         } else if (modificationType === SupportingCharacterModificationType.AdditionalDepartment) {
@@ -149,6 +163,27 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
         }
     }
 
+    const closeModal = () => {
+        ModalControl.hide();
+    }
+
+    const showTalentSelectionModal = () => {
+        const talents = TalentsHelper.getAllAvailableTalentsForCharacter(character);
+
+        ModalControl.show("xl", () => closeModal(),
+
+            (<div>
+                <SingleTalentSelectionList construct={character} talents={talents} onSelection={(t) => setTalentSelection(t?.name)}
+                    initialSelection={talentSelection == null ? null : TalentsHelper.getTalent(talentSelection)} />
+
+                <div className="text-center mt-4">
+                    <Button className="btn btn-primary btn-sm" onClick={() => closeModal()}>{t('Common.button.ok')}</Button>
+                </div>
+            </div>),
+
+            t("ModifySupportingCharacter.talentModal.title"));
+    }
+
     const renderImprovementSection = () => {
         if (modificationType === SupportingCharacterModificationType.AdditionalValue) {
             return (<div className="row">
@@ -182,6 +217,21 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                     <SimpleAttributeSelector onSelectAttribute={(a) => setAttributeSelection(a)} isChecked={(a) => attriubteSelection === a} />
                 </div>
             </div>);
+        } else if (modificationType === SupportingCharacterModificationType.AdditionalTalent) {
+            const talent = talentSelection == null ? null : TalentsHelper.getTalent(talentSelection);
+            return (<div className="row">
+                <div className="col-12 col-md-6">
+                    <Header level={2} className="my-4">{t('Construct.other.talent')}</Header>
+                    <Markdown>{t('ModifySupportingCharacter.talent.instruction')}</Markdown>
+                    <div className="text-end">
+                        <Button className="btn btn-primary btn-sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
+                    </div>
+                    {talent == null
+                    ? (<p>No talent selected.</p>)
+                    :  <TalentDescription name={talent.localizedDisplayName}
+                            description={character.version > 1 ? talent.localizedDescription2e : talent.localizedDescription} />}
+                </div>
+            </div>);
         } else if (modificationType === SupportingCharacterModificationType.AdditionalDepartment) {
             return (<div className="row">
                 <div className="col-12 col-md-6">
@@ -203,10 +253,11 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const dropDownItems = () => {
         return [
             new DropDownElement("", ""),
-            new DropDownElement(SupportingCharacterModificationType.AdditionalAttribute, "Additional attribute"),
-            new DropDownElement(SupportingCharacterModificationType.AdditionalDepartment, "Additional department"),
-            new DropDownElement(SupportingCharacterModificationType.AdditionalFocus, "Additional focus"),
-            new DropDownElement(SupportingCharacterModificationType.AdditionalValue, "Additional value"),
+            new DropDownElement(SupportingCharacterModificationType.AdditionalAttribute, t('SupportingCharacterModificationType.additionalAttribute')),
+            new DropDownElement(SupportingCharacterModificationType.AdditionalDepartment, t('SupportingCharacterModificationType.additionalDepartment')),
+            new DropDownElement(SupportingCharacterModificationType.AdditionalFocus, t('SupportingCharacterModificationType.additionalFocus')),
+            new DropDownElement(SupportingCharacterModificationType.AdditionalTalent, t('SupportingCharacterModificationType.additionalTalent')),
+            new DropDownElement(SupportingCharacterModificationType.AdditionalValue, t('SupportingCharacterModificationType.additionalValue')),
         ];
     }
 

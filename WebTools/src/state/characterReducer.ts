@@ -793,6 +793,10 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 let improvement = new SupportingImrovementStep();
                 improvement.discipline = action.payload.value;
                 temp.improvements.push(improvement);
+            } else if (action.payload.type === SupportingCharacterModificationType.AdditionalTalent) {
+                let improvement = new SupportingImrovementStep();
+                improvement.talent = new SelectedTalent(action.payload.value);
+                temp.improvements.push(improvement);
             }
             return {
                 ...state,

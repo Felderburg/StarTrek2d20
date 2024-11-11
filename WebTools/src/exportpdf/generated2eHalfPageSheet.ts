@@ -20,6 +20,7 @@ import { labelWriter, VerticalAlignment } from "./labelWriter";
 import { TextAlign } from "./textAlign";
 import { assembleWritableItems } from "./generatedsheet";
 import { SpeciesAbility } from "../helpers/speciesAbility";
+import { TalentWriter } from "./talentWriter";
 
 export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
 
@@ -242,15 +243,17 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
         if (character.version > 1 && items.length > 0) {
             if (items.length === 1 && items[0] instanceof SpeciesAbility) {
                 this.writeSubTitle(page, i18next.t("Construct.other.speciesAbility"), column.topBefore(13));
+                column = column.bottomAfter(16);
+                let paragraph = new Paragraph(page, column, this.fonts);
+                paragraph.append(character.speciesStep.ability.name + ": ", new FontOptions(9, FontType.Bold), tealColour2e);
+                paragraph.append(character.speciesStep.ability.description, new FontOptions(9));
+                paragraph.write();
+
             } else {
                 this.writeSubTitle(page, i18next.t("Construct.other.specialRules"), column.topBefore(13));
+                column = column.bottomAfter(16);
+                new TalentWriter(page, this.fonts, character.version, tealColour2e).writeTalents(items, column, 9);
             }
-
-            column = column.bottomAfter(16);
-            let paragraph = new Paragraph(page, column, this.fonts);
-            paragraph.append(character.speciesStep.ability.name + ": ", new FontOptions(9, FontType.Bold), tealColour2e);
-            paragraph.append(character.speciesStep.ability.description, new FontOptions(9));
-            paragraph.write();
         }
     }
 
