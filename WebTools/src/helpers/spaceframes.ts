@@ -3082,7 +3082,7 @@ export class SpaceframeHelper {
             CharacterType.Starfleet,
             "Ambassador Class",
             2335,
-            [ Source.UtopiaPlanitia ],
+            [ Source.Core2ndEdition ],
             [9, 9, 9, 9, 9, 9],
             [1, 1, 0, 0, 1, 0],
             5,
@@ -3181,7 +3181,6 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
                 TalentSelection.selectTalent("Improved Impulse Drive"),
                 TalentSelection.selectTalent("Improved Warp Drive"),
             ],

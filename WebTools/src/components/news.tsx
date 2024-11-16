@@ -12,6 +12,12 @@ class News extends React.Component<INewsProperties, {}> {
     render() {
         return (
             <Modal size="lg" show={this.props.showModal} onClose={() => this.props.onClose()} header="What's New?">
+                <b>v1.241115</b>
+                <ul>
+                    <li>
+                        More bug fixes. It's never-ending!
+                    </li>
+                </ul>
                 <b>v1.241111</b>
                 <ul>
                     <li>
@@ -241,12 +247,6 @@ class News extends React.Component<INewsProperties, {}> {
                 <b>v1.240518</b>
                 <ul>
                     <li>Minor revisions.</li>
-                </ul>
-                <b>v1.240512</b>
-                <ul>
-                    <li>The big new thing is that I've converted the one-page TNG Landscape PDF to better support
-                        non-English languages.
-                    </li>
                 </ul>
 
                 <div className="text-center">
