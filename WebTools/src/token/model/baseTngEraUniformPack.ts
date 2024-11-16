@@ -3,6 +3,8 @@ import { BaseNeckProvider } from "./baseNeckProvider";
 import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import Swatch from "./swatch";
 import { Token } from "./token";
+import { UniformEra } from "./uniformEra";
+import UniformVariantRestrictions from "./uniformVariantRestrictions";
 
 const DominionWarCommbadge = `<g id="g6426">
     <path id="path882_1_" fill="#ffffff" d="m 328.76833,314.91763 c -15.72989,0.062 -31.06633,1.08076 -39.00882,3.49535 -1.32402,0.34773 -1.83501,0.94526 -2.65783,2.39172 -2.2301,5.49689 -3.92635,13.13572 -4.14838,20.14438 0.43426,1.94766 -0.13551,3.10026 2.38683,3.27985 31.89893,6.34583 82.19702,3.20965 95.26744,-1.32239 1.93787,-0.67589 1.46442,-0.74935 1.46605,-2.8766 -0.20243,-8.91877 -2.23826,-14.45648 -5.71075,-20.64558 -1.05465,-1.21301 -1.33055,-1.21464 -2.77702,-1.62605 -8.65592,-1.75339 -26.98977,-2.91252 -44.81752,-2.84068 z m -34.48984,12.44187 h 75.76793 c 1.48402,0 2.67906,1.19505 2.67906,2.67906 0,1.48402 -1.19504,2.67906 -2.67906,2.67906 h -75.76793 c -1.48401,0 -2.67906,-1.19504 -2.67906,-2.67906 0,-1.48401 1.19505,-2.67906 2.67906,-2.67906 z" style="fill:#d9a14b;fill-opacity:1;stroke:#000000;stroke-width:1.63258;stroke-opacity:1"/>
@@ -60,48 +62,6 @@ const TngCaptainRankPip: string = `<g id="4Pips">
     <path d="m 206.39236,227.88386 c -2.32534,0 -4.20934,1.884 -4.20934,4.20934 0,2.32533 1.884,4.20933 4.20934,4.20933 2.32533,0 4.20933,-1.884 4.20933,-4.20933 0,-2.32534 -1.884,-4.20934 -4.20933,-4.20934" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path27070"/>
     <path d="m 206.39236,228.42533 c -2.02534,0 -3.668,1.64267 -3.668,3.668 0,2.02533 1.64266,3.668 3.668,3.668 2.02533,0 3.668,-1.64267 3.668,-3.668 0,-2.02533 -1.64267,-3.668 -3.668,-3.668 m 4.88933,3.81067 c 0,2.63866 -2.13867,4.77733 -4.77733,4.77733 -2.63734,0 -4.776,-2.13867 -4.776,-4.77733 0,-2.63734 2.13866,-4.776 4.776,-4.776 2.63866,0 4.77733,2.13866 4.77733,4.776" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path27072"/>
 </g>`;
-
-const TngCaptainRankPipBorder: string = `<g>
-    <rect style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
-    <circle style="opacity:1;fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="path40811" cx="111.18644" cy="365.93219" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40813" cx="69.152542" cy="336.27118" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40815" cx="90.169495" cy="351.01694" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40817" cx="48.135593" cy="321.52542" r="8.8999996"/>
-</g>`;
-
-const TngCmdrRankPipBorder: string = `<g>
-    <rect style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
-    <circle style="opacity:1;fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="path40811" cx="111.18644" cy="365.93219" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40813" cx="69.152542" cy="336.27118" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40815" cx="90.169495" cy="351.01694" r="8.8999996"/>
-</g>`;
-
-const TngLcdrRankPipBorder: string = `<g>
-    <rect style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
-    <circle style="opacity:1;fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="path40811" cx="111.18644" cy="365.93219" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40813" cx="69.152542" cy="336.27118" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40815" cx="90.169495" cy="351.01694" r="8.8999996"/>
-    <circle style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.17822;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle41628" cx="69.152542" cy="336.27118" r="5.2430916"/>
-</g>`
-
-const TngLtRankPipBorder: string = `<g>
-    <rect style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
-    <circle style="opacity:1;fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="path40811" cx="111.18644" cy="365.93219" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40815" cx="90.169495" cy="351.01694" r="8.8999996"/>
-</g>`;
-
-const TngLtJgRankPipBorder: string = `<g>
-    <rect style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
-    <circle style="opacity:1;fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="path40811" cx="111.18644" cy="365.93219" r="8.8999996"/>
-    <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40815" cx="90.169495" cy="351.01694" r="8.8999996"/>
-    <circle style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.17822;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle43141" cx="90.169495" cy="351.01694" r="5.2430916"/>
-</g>`;
-
-const TngEnsignRankPipBorder: string = `<g>
-    <rect style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
-    <circle style="opacity:1;fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="path40811" cx="111.18644" cy="365.93219" r="8.8999996"/>
-</g>`;
-
 
 const TngMasterChiefPettyOfficer: string = `<g>
     <path style="fill:#a1b7cc;fill-opacity:1;stroke:#a1b7cc;stroke-width:0.400393;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 228.24801,242.35683 12.71512,6.86982 1.01368,3.47707 -3.03947,5.62565 -3.37082,0.88569 -12.71512,-6.86983 z" id="path132489"/>
@@ -248,7 +208,106 @@ const TngCrewman3rdBorder: string = `<g>
 </g>`;
 
 
+const CollarPips = {
+    admiral: `<g>
+        <path id="rect1" style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:0.763104;stroke-miterlimit:40" d="m 204.39104,224.41029 40.88796,25.47305 -6.10259,9.79556 -40.88796,-25.47305 z"/>
+        <path d="m 237.17608,247.42976 c -2.28571,0 -4.1376,1.8519 -4.1376,4.1376 0,2.28572 1.85189,4.13761 4.1376,4.13761 2.2857,0 4.1376,-1.85189 4.1376,-4.13761 0,-2.2857 -1.8519,-4.1376 -4.1376,-4.1376" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path22601"/>
+        <path d="m 237.17608,247.962 c -1.99082,0 -3.6055,1.61467 -3.6055,3.6055 0,1.99082 1.61468,3.60549 3.6055,3.60549 1.99081,0 3.60549,-1.61467 3.60549,-3.60549 0,-1.99083 -1.61468,-3.6055 -3.60549,-3.6055 m 4.80601,3.74573 c 0,2.5937 -2.10222,4.69593 -4.69592,4.69593 -2.59239,0 -4.69462,-2.10223 -4.69462,-4.69593 0,-2.59239 2.10223,-4.69462 4.69462,-4.69462 2.5937,0 4.69592,2.10223 4.69592,4.69462" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path22605"/>
+        <path d="m 226.59992,240.8371 c -2.28572,0 -4.13761,1.8519 -4.13761,4.13761 0,2.28571 1.85189,4.1376 4.13761,4.1376 2.2857,0 4.1376,-1.85189 4.1376,-4.1376 0,-2.28571 -1.8519,-4.13761 -4.1376,-4.13761" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path22609"/>
+        <path d="m 226.59992,241.36935 c -1.99083,0 -3.6055,1.61467 -3.6055,3.60549 0,1.99082 1.61467,3.6055 3.6055,3.6055 1.99081,0 3.60549,-1.61468 3.60549,-3.6055 0,-1.99082 -1.61468,-3.60549 -3.60549,-3.60549 m 4.80601,3.74573 c 0,2.59369 -2.10223,4.69592 -4.69592,4.69592 -2.5924,0 -4.69462,-2.10223 -4.69462,-4.69592 0,-2.5924 2.10222,-4.69461 4.69462,-4.69461 2.59369,0 4.69592,2.10221 4.69592,4.69461" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path22613"/>
+        <path d="m 216.44785,234.5088 c -2.28571,0 -4.13761,1.8519 -4.13761,4.13761 0,2.28571 1.8519,4.1376 4.13761,4.1376 2.28571,0 4.1376,-1.85189 4.1376,-4.1376 0,-2.28571 -1.85189,-4.13761 -4.1376,-4.13761" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path26929"/>
+        <path d="m 216.44785,235.04104 c -1.99082,0 -3.60549,1.61468 -3.60549,3.6055 0,1.99082 1.61467,3.60549 3.60549,3.60549 1.99082,0 3.6055,-1.61467 3.6055,-3.60549 0,-1.99082 -1.61468,-3.6055 -3.6055,-3.6055 m 4.80602,3.74574 c 0,2.59369 -2.10223,4.69592 -4.69593,4.69592 -2.59239,0 -4.69461,-2.10223 -4.69461,-4.69592 0,-2.5924 2.10222,-4.69462 4.69461,-4.69462 2.5937,0 4.69593,2.10222 4.69593,4.69462" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path26931"/>
+        <path d="m 206.52938,228.32612 c -2.28571,0 -4.13761,1.85189 -4.13761,4.13761 0,2.2857 1.8519,4.1376 4.13761,4.1376 2.28571,0 4.1376,-1.8519 4.1376,-4.1376 0,-2.28572 -1.85189,-4.13761 -4.1376,-4.13761" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path27070"/>
+        <path d="m 206.52938,228.85836 c -1.99083,0 -3.60549,1.61468 -3.60549,3.60549 0,1.99082 1.61466,3.6055 3.60549,3.6055 1.99082,0 3.6055,-1.61468 3.6055,-3.6055 0,-1.99081 -1.61468,-3.60549 -3.6055,-3.60549 m 4.80601,3.74573 c 0,2.5937 -2.10222,4.69592 -4.69592,4.69592 -2.59239,0 -4.69461,-2.10222 -4.69461,-4.69592 0,-2.5924 2.10222,-4.69461 4.69461,-4.69461 2.5937,0 4.69592,2.10221 4.69592,4.69461" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path27072"/>
+    </g>`,
+
+    viceAdmiral: `<g>
+        <path id="path5" style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:0.763104;stroke-miterlimit:40" d="m 214.20771,230.54571 31.07129,19.33763 -6.10259,9.79556 -30.91791,-19.79779 z" />
+        <path d="m 237.17608,247.42976 c -2.28571,0 -4.1376,1.8519 -4.1376,4.1376 0,2.28572 1.85189,4.13761 4.1376,4.13761 2.2857,0 4.1376,-1.85189 4.1376,-4.13761 0,-2.2857 -1.8519,-4.1376 -4.1376,-4.1376" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path6"/>
+        <path d="m 237.17608,247.962 c -1.99082,0 -3.6055,1.61467 -3.6055,3.6055 0,1.99082 1.61468,3.60549 3.6055,3.60549 1.99081,0 3.60549,-1.61467 3.60549,-3.60549 0,-1.99083 -1.61468,-3.6055 -3.60549,-3.6055 m 4.80601,3.74573 c 0,2.5937 -2.10222,4.69593 -4.69592,4.69593 -2.59239,0 -4.69462,-2.10223 -4.69462,-4.69593 0,-2.59239 2.10223,-4.69462 4.69462,-4.69462 2.5937,0 4.69592,2.10223 4.69592,4.69462" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path7"/>
+        <path d="m 226.59992,240.8371 c -2.28572,0 -4.13761,1.8519 -4.13761,4.13761 0,2.28571 1.85189,4.1376 4.13761,4.1376 2.2857,0 4.1376,-1.85189 4.1376,-4.1376 0,-2.28571 -1.8519,-4.13761 -4.1376,-4.13761" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path8"/>
+        <path d="m 226.59992,241.36935 c -1.99083,0 -3.6055,1.61467 -3.6055,3.60549 0,1.99082 1.61467,3.6055 3.6055,3.6055 1.99081,0 3.60549,-1.61468 3.60549,-3.6055 0,-1.99082 -1.61468,-3.60549 -3.60549,-3.60549 m 4.80601,3.74573 c 0,2.59369 -2.10223,4.69592 -4.69592,4.69592 -2.5924,0 -4.69462,-2.10223 -4.69462,-4.69592 0,-2.5924 2.10222,-4.69461 4.69462,-4.69461 2.59369,0 4.69592,2.10221 4.69592,4.69461" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path9"/>
+        <path d="m 216.44785,234.5088 c -2.28571,0 -4.13761,1.8519 -4.13761,4.13761 0,2.28571 1.8519,4.1376 4.13761,4.1376 2.28571,0 4.1376,-1.85189 4.1376,-4.1376 0,-2.28571 -1.85189,-4.13761 -4.1376,-4.13761" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path10"/>
+        <path d="m 216.44785,235.04104 c -1.99082,0 -3.60549,1.61468 -3.60549,3.6055 0,1.99082 1.61467,3.60549 3.60549,3.60549 1.99082,0 3.6055,-1.61467 3.6055,-3.60549 0,-1.99082 -1.61468,-3.6055 -3.6055,-3.6055 m 4.80602,3.74574 c 0,2.59369 -2.10223,4.69592 -4.69593,4.69592 -2.59239,0 -4.69461,-2.10223 -4.69461,-4.69592 0,-2.5924 2.10222,-4.69462 4.69461,-4.69462 2.5937,0 4.69593,2.10222 4.69593,4.69462" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path11"/>
+    </g>`,
+
+    rearAdmiral: `<g>
+        <path id="path18" style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:0.763104;stroke-miterlimit:40" d="m 224.29448,237.16176 20.98452,12.72158 -6.10259,9.79556 -20.83114,-13.18174 z"/>
+        <path d="m 237.17608,247.42976 c -2.28571,0 -4.1376,1.8519 -4.1376,4.1376 0,2.28572 1.85189,4.13761 4.1376,4.13761 2.2857,0 4.1376,-1.85189 4.1376,-4.13761 0,-2.2857 -1.8519,-4.1376 -4.1376,-4.1376" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path19"/>
+        <path d="m 237.17608,247.962 c -1.99082,0 -3.6055,1.61467 -3.6055,3.6055 0,1.99082 1.61468,3.60549 3.6055,3.60549 1.99081,0 3.60549,-1.61467 3.60549,-3.60549 0,-1.99083 -1.61468,-3.6055 -3.60549,-3.6055 m 4.80601,3.74573 c 0,2.5937 -2.10222,4.69593 -4.69592,4.69593 -2.59239,0 -4.69462,-2.10223 -4.69462,-4.69593 0,-2.59239 2.10223,-4.69462 4.69462,-4.69462 2.5937,0 4.69592,2.10223 4.69592,4.69462" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path20"/>
+        <path d="m 226.59992,240.8371 c -2.28572,0 -4.13761,1.8519 -4.13761,4.13761 0,2.28571 1.85189,4.1376 4.13761,4.1376 2.2857,0 4.1376,-1.85189 4.1376,-4.1376 0,-2.28571 -1.8519,-4.13761 -4.1376,-4.13761" style="fill:#fbb03b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path21"/>
+        <path d="m 226.59992,241.36935 c -1.99083,0 -3.6055,1.61467 -3.6055,3.60549 0,1.99082 1.61467,3.6055 3.6055,3.6055 1.99081,0 3.60549,-1.61468 3.60549,-3.6055 0,-1.99082 -1.61468,-3.60549 -3.60549,-3.60549 m 4.80601,3.74573 c 0,2.59369 -2.10223,4.69592 -4.69592,4.69592 -2.5924,0 -4.69462,-2.10223 -4.69462,-4.69592 0,-2.5924 2.10222,-4.69461 4.69462,-4.69461 2.59369,0 4.69592,2.10221 4.69592,4.69461" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.31061" id="path22"/>
+    </g>`
+}
+
+const BorderIndicator = {
+    admiral: `<g>
+        <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="123.12957" height="30.247999" x="198.5629" y="222.34625" rx="0" ry="0" transform="rotate(34.627047)"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="path40811" cx="111.18644" cy="365.93219" r="8.8999996"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40813" cx="69.152542" cy="336.27118" r="8.8999996"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40815" cx="90.169495" cy="351.01694" r="8.8999996"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40817" cx="48.135593" cy="321.52542" r="8.8999996"/>
+    </g>`,
+
+    viceAdmiral: `<g>
+        <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect13" width="91.35611" height="30.045582" x="230.33636" y="222.54866" rx="0" ry="0" transform="rotate(34.627047)"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle13" cx="111.18644" cy="365.93219" r="8.8999996"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle14" cx="69.152542" cy="336.27118" r="8.8999996"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle15" cx="90.169495" cy="351.01694" r="8.8999996"/>
+    </g>`,
+
+    rearAdmiral: `<g>
+        <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect16" width="70.543617" height="30.446129" x="251.14888" y="222.14812" rx="0" ry="0" transform="rotate(34.627047)"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle16" cx="111.18644" cy="365.93219" r="8.8999996"/>
+        <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle18" cx="90.169495" cy="351.01694" r="8.8999996"/>
+    </g>`,
+
+    captain: `<g>
+        <path id="path40811" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
+        <path id="use40813" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 70.869008,340.34397 a 8.8999996,8.8999996 0 0 1 -9.661258,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067224,9.66126 z"/>
+        <path id="use40815" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
+        <path id="use40817" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 51.25919,323.77278 a 8.8999996,8.8999996 0 0 1 -9.661258,8.06722 8.8999996,8.8999996 0 0 1 -8.067223,-9.66126 8.8999996,8.8999996 0 0 1 9.661257,-8.06722 8.8999996,8.8999996 0 0 1 8.067224,9.66126 z"/>
+    </g>`,
+
+    commander: `<g>
+        <path id="path1" style="display:inline;fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
+        <path id="path2" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 70.869008,340.34397 a 8.8999996,8.8999996 0 0 1 -9.661258,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067224,9.66126 z"/>
+        <path id="path3" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
+    </g>`,
+
+    ltCommander: `<g>
+        <path id="path8" style="display:inline;fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
+        <path id="path9" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 70.869008,340.34397 a 8.8999996,8.8999996 0 0 1 -9.661258,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067224,9.66126 z"/>
+        <path id="path10" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
+        <path id="path11" style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1.25436;stroke-miterlimit:40;fill-opacity:1" d="m 66.452333,339.94685 a 4.4655076,4.4655076 0 0 1 -4.847463,4.04767 4.4655076,4.4655076 0 0 1 -4.047669,-4.84747 4.4655076,4.4655076 0 0 1 4.847463,-4.04767 4.4655076,4.4655076 0 0 1 4.047669,4.84747 z"/>
+    </g>`,
+
+    lieutenant: `<g>
+        <path id="path4" style="display:inline;fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
+        <path id="path6" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
+    </g>`,
+
+    lieutenantJG: `<g>
+        <path id="path12" style="display:inline;fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
+        <path id="path14" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
+        <path id="path15" style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.25436;stroke-miterlimit:40" d="m 86.062143,356.51808 a 4.4655076,4.4655076 0 0 1 -4.847463,4.04767 4.4655076,4.4655076 0 0 1 -4.047669,-4.84747 4.4655076,4.4655076 0 0 1 4.847463,-4.04767 4.4655076,4.4655076 0 0 1 4.047669,4.84747 z"/>
+    </g>`,
+
+    ensign: `<g>
+        <path id="path7" style="display:inline;fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
+    </g>`
+
+}
+
+
 export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
+
+    readonly era: UniformEra;
+
+    constructor(era: UniformEra) {
+        super();
+        this.era = era;
+    }
 
     getRankSwatches() {
         return [
@@ -268,24 +327,34 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
             new Swatch(Rank.PettyOfficer1stClass, "Petty Officer 1st Class", (token) => RankIndicatorCatalog.decorateSwatch(TngPettyOfficer1stClass, Rank.PettyOfficer1stClass, token), "Rank.pettyOfficer1stClass.name"),
             new Swatch(Rank.ChiefPettyOfficer, "Chief Petty Officer", (token) => RankIndicatorCatalog.decorateSwatch(TngChiefPettyOfficer, Rank.ChiefPettyOfficer, token), "Rank.chiefPettyOfficer.name"),
             new Swatch(Rank.SeniorChiefPettyOfficer, "Senior Chief Petty Officer", (token) => RankIndicatorCatalog.decorateSwatch(TngSeniorChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, token), "Rank.seniorChiefPettyOfficer.name"),
-            new Swatch(Rank.MasterChiefPettyOfficer, "Master Chief Petty Officer", (token) => RankIndicatorCatalog.decorateSwatch(TngMasterChiefPettyOfficer, Rank.MasterChiefPettyOfficer, token), "Rank.masterChiefPettyOfficer.name")
-            ];
+            new Swatch(Rank.MasterChiefPettyOfficer, "Master Chief Petty Officer", (token) => RankIndicatorCatalog.decorateSwatch(TngMasterChiefPettyOfficer, Rank.MasterChiefPettyOfficer, token), "Rank.masterChiefPettyOfficer.name"),
+
+            new Swatch(Rank.RearAdmiral, "Rear Admiral", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.rearAdmiral, Rank.RearAdmiral, token), "Rank.rearAdmiral.name"),
+            new Swatch(Rank.ViceAdmiral, "Vice Admiral", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.viceAdmiral, Rank.ViceAdmiral, token), "Rank.viceAdmiral.name"),
+            new Swatch(Rank.Admiral, "Admiral", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.admiral, Rank.Admiral, token), "Rank.admiral.name"),
+        ].filter(s => UniformVariantRestrictions.isRankSupported(s.id as Rank, this.era));
     }
 
     getRankBorderIndicator(token: Token) {
         switch (token.rankIndicator) {
             case Rank.Ensign:
-                return TngEnsignRankPipBorder;
+                return BorderIndicator.ensign;
             case Rank.LieutenantJG:
-                return TngLtJgRankPipBorder;
+                return BorderIndicator.lieutenantJG;
             case Rank.Lieutenant:
-                return TngLtRankPipBorder;
+                return BorderIndicator.lieutenant;
             case Rank.LtCommander:
-                return TngLcdrRankPipBorder;
+                return BorderIndicator.ltCommander;
             case Rank.Commander:
-                return TngCmdrRankPipBorder;
+                return BorderIndicator.commander;
             case Rank.Captain:
-                return TngCaptainRankPipBorder;
+                return BorderIndicator.captain;
+            case Rank.RearAdmiral:
+                return BorderIndicator.rearAdmiral;
+            case Rank.ViceAdmiral:
+                return BorderIndicator.viceAdmiral;
+            case Rank.Admiral:
+                return BorderIndicator.admiral;
             case Rank.Crewman3rdClass:
                 return TngCrewman3rdBorder;
             case Rank.Crewman2ndClass:
@@ -323,6 +392,12 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
                 return TngCmdrRankPip;
             case Rank.Captain:
                 return TngCaptainRankPip;
+            case Rank.RearAdmiral:
+                return CollarPips.rearAdmiral;
+            case Rank.ViceAdmiral:
+                return CollarPips.viceAdmiral;
+            case Rank.Admiral:
+                return CollarPips.admiral;
 
             case Rank.Crewman3rdClass:
                 return TngCrewman3rd;
@@ -345,6 +420,18 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
 
             default:
                 return "";
+        }
+    }
+
+    isAdmiralty(token: Token) {
+        switch (token.rankIndicator) {
+            case Rank.Admiral:
+            case Rank.ViceAdmiral:
+            case Rank.RearAdmiral:
+            case Rank.Commodore:
+                return true;
+            default:
+                return false;
         }
     }
 

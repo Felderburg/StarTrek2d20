@@ -371,7 +371,8 @@ export class NpcGenerationStep {
     public enlisted: boolean = false;
     public values: string[] = [];
     public talents: SelectedTalent[] = [];
-    public attributes: number[];
+    public attributes: number[] = [];
+    public departments: number[] = [];
     public focuses: string[] = [];
 
     constructor(type?: NpcType) {
@@ -386,6 +387,7 @@ export class NpcGenerationStep {
         result.talents = this.talents.map(t => t.copy());
         result.enlisted = this.enlisted;
         result.attributes = [...this.attributes];
+        result.departments = [...this.departments];
         result.focuses = [...this.focuses];
         return result;
     }
@@ -642,7 +644,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             })
             return result;
         } else {
-            let result = [...this._skills];
+            let result = this.stereotype === Stereotype.Npc ? [...this.npcGenerationStep?.departments] : [...this._skills];
             if (this.hasTalent("Intensive Training (Special Rule)")) {
                 result = result.map(d => d === 0 ? 1 :d);
             }

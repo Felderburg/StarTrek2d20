@@ -96,6 +96,9 @@ class Marshaller {
 
         if (character.stereotype === Stereotype.Npc || character.legacyMode) {
             sheet["attributes"] = this.toAttributeObject(character._attributes);
+        }
+
+        if (character.legacyMode) {
             sheet["disciplines"] = this.getSkillByNameObject(character.departments);
         }
 
@@ -166,6 +169,10 @@ class Marshaller {
 
                 if (character.npcGenerationStep.focuses.length) {
                     block["focuses"] = character.focuses
+                }
+
+                if (character.npcGenerationStep.departments?.length) {
+                    block["departments"] = this.getSkillByNameObject(character.npcGenerationStep?.departments)
                 }
 
                 sheet["npc"] = block;
@@ -1190,9 +1197,18 @@ class Marshaller {
             });
         }
         if (json.disciplines) {
-            SkillsHelper.getSkills().forEach(s =>
-                result._skills[s] = json.disciplines[Skill[s]]
-            );
+            if (result.stereotype === Stereotype.Npc) {
+                if (result.npcGenerationStep == null) {
+                    result.npcGenerationStep = new NpcGenerationStep();
+                }
+                SkillsHelper.getSkills().forEach(s =>
+                    result.npcGenerationStep.departments[s] = json.disciplines[Skill[s]]
+                );
+            } else {
+                SkillsHelper.getSkills().forEach(s =>
+                    result._skills[s] = json.disciplines[Skill[s]]
+                );
+            }
         }
         if (json.environment) {
             let environment = EnvironmentsHelper.getEnvironmentByTypeName(json.environment.id, result.type);
@@ -1281,6 +1297,11 @@ class Marshaller {
             }
             if (json.npc.focuses) {
                 result.npcGenerationStep.focuses = [...json.npc.focuses];
+            }
+            if (json.npc.departments) {
+                SkillsHelper.getSkills().forEach(s =>
+                    result.npcGenerationStep.departments[s] = json.npc.departments[Skill[s]]
+                );
             }
         }
         if (json.supporting && result.stereotype === Stereotype.SupportingCharacter) {

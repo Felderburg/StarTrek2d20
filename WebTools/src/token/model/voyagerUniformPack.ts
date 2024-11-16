@@ -59,6 +59,10 @@ const VoyagerUniforms = {
 
 export class VoyagerUniformPack extends BaseTngEraUniformPack implements IUniformPack {
 
+    constructor() {
+        super(UniformEra.VoyagerDS9);
+    }
+
     getUniformSwatches() {
         return [
             new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.VoyagerDS9) + VoyagerUniforms.averageMale, BodyType.AverageMale, token), "BodyType.averageMale"),

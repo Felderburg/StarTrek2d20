@@ -3189,7 +3189,7 @@ export class SpaceframeHelper {
         [Spaceframe.Freedom_22ndCentury]: SpaceframeModel.createStandardSpaceframe(
             Spaceframe.Freedom_22ndCentury,
             CharacterType.Starfleet,
-            "Freedome",
+            "Freedom-class",
             2148,
             [ Source.GmToolkit2e ],
             [5, 5, 5, 6, 5, 6],

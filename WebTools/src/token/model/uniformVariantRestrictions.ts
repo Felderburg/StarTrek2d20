@@ -53,9 +53,16 @@ export default class UniformVariantRestrictions {
 
     static isRankSupported(rankIndicator: Rank, uniformEra: UniformEra) {
         switch (uniformEra) {
+            case UniformEra.DominionWar:
+                return [
+                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.LieutenantJG, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                    Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,
+                    Rank.PettyOfficer1stClass, Rank.ChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, Rank.MasterChiefPettyOfficer,
+                    Rank.RearAdmiral, Rank.ViceAdmiral, Rank.Admiral
+                ].includes(rankIndicator);
+
             case UniformEra.NextGeneration:
             case UniformEra.VoyagerDS9:
-            case UniformEra.DominionWar:
             case UniformEra.LowerDecks:
                 return [
                         Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.LieutenantJG, Rank.LtCommander, Rank.Commander, Rank.Captain,

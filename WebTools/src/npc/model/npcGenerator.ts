@@ -465,6 +465,9 @@ export class NpcGenerator {
 
         NpcGenerator.assignAttributes(npcType, character, species, specialization);
 
+        character.npcGenerationStep = new NpcGenerationStep(npcType);
+        character.npcGenerationStep.specialization = specialization.id;
+
         let disciplines = SkillsHelper.getSkills();
         let disciplinePoints = NpcTypes.disciplinePoints(npcType);
 
@@ -473,7 +476,7 @@ export class NpcGenerator {
             if (i === 0 && specialization.primaryDiscipline != null) {
                 a = specialization.primaryDiscipline;
             }
-            character._skills[a] = disciplinePoints[i];
+            character.npcGenerationStep.departments[a] = disciplinePoints[i];
             disciplines.splice(disciplines.indexOf(a), 1);
         }
 
@@ -489,8 +492,6 @@ export class NpcGenerator {
         }
 
         character.careerStep = new CareerStep(careers[Math.floor(Math.random() * careers.length)]);
-        character.npcGenerationStep = new NpcGenerationStep(npcType);
-        character.npcGenerationStep.specialization = specialization.id;
         character.npcGenerationStep.enlisted = (Math.random() < specialization.officerProbability) ? false : true;
 
         if (!character.isCivilian()) {

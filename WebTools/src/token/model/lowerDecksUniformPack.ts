@@ -71,6 +71,10 @@ const LowerDeckUniforms = {
 
 export class LowerDecksUniformPack extends BaseTngEraUniformPack implements IUniformPack {
 
+    constructor() {
+        super(UniformEra.LowerDecks);
+    }
+
     getUniformSwatches() {
         return [
             new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.LowerDecks) + LowerDeckUniforms.averageMale, BodyType.AverageMale, token), "BodyType.averageMale"),
