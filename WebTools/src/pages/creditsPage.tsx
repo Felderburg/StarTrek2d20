@@ -253,14 +253,10 @@ const CreditsPage = () => {
                     </p>
 
                     <p>
-                        I can't imagine anything people want less than that.
-                    </p>
-
-                    <p className="mt-5">
-                        <strong>But how do you make money?</strong>
-                    </p>
-
-                    <p>I don't. I'm okay with that. It's a labour of love for me.</p>
+                        I have one of those, now. {' '}
+                        <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+                        target="_blank"  rel="noreferrer">Support me Patreon.</a> Only if that's convenient for you. No pressure.
+                        This is still a labour of love for me.</p>
                 </div>
             </div>
         </LcarsFrame>);

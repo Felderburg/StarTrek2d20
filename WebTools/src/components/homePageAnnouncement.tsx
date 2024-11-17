@@ -7,10 +7,9 @@ const HomePageAnnouncement = () => {
         return (<div className="my-4">
                 <Header level={2}>Patreon</Header>
                 <p>
-                    I've spent a few years poo-poo-ing the idea of a crowdfunding model like Patreon. {' '}
-                    <a href="https://github.com/bcholmes/StarTrek2d20/discussions/236" target="_blank"  rel="noreferrer">I'm
-                    currently in the process of re-evaluating my position on that</a>. Have thoughts on
-                    that? I'd love to hear them.
+                    <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+                        target="_blank"  rel="noreferrer">Support me Patreon</a>. Only if that's
+                        convenient for you. No pressure.
                 </p>
                 <p className="text-end">- BC</p>
             </div>);
