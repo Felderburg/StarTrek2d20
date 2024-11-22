@@ -112,7 +112,7 @@ class CharacterTypePage extends React.Component<WithTranslation, ICharacterTypeP
 
         return (
             <div className="page container ms-0">
-                <CharacterCreationBreadcrumbs />
+                <CharacterCreationBreadcrumbs pageIdentity={PageIdentity.CharacterType} />
                 <Header level={1}>{t('Page.title.characterType')}</Header>
                 <p>{t('CharacterTypePage.whatType')}</p>
                 <select onChange={(e) => this.selectType(e.target.value)} value={this.state.type}>

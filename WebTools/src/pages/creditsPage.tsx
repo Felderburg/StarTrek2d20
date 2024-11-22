@@ -113,6 +113,21 @@ const CreditsPage = () => {
 
                     </div>
                     <div className="col">
+                        <Header className="my-4" level={2}>Patreon Supporters!</Header>
+
+                        <p>
+                            This site benefits from the amazing backing of <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+                            target="_blank"  rel="noreferrer">Patreon supporters</a>.
+                            In particular, I want to shout out to the Senior Staff:
+                        </p>
+
+                        <ul>
+                            <li>Charles C. Li</li>
+                            <li>Ricardo Gonzales</li>
+                        </ul>
+
+                    </div>
+                    <div className="col">
                         <Header className="my-4" level={2}>Continuing Mission</Header>
 
                         <p>
