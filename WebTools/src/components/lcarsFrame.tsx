@@ -133,7 +133,8 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
             </div>
             <div className="lcar-content">
                 <div className="lcar-content-start">
-                    <div className="lcar-content-start-top"></div>
+                    <div className="lcar-content-start-top">
+                    </div>
                     <div className="lcar-content-action" role="button" tabIndex={0}>
                         <div id="history-button" className="lcar-content-history" onClick={ () => toggleHistory() }>{t('Lcars.history')}</div>
                         <div id="history-container" className="history-container-hidden">
@@ -155,7 +156,10 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
                     <div className="lcar-content-left-button lcar-content-credits" role="button" tabIndex={0} onClick={() => goToCredits()}>
                         {t('Lcars.credits')}
                     </div>
-                    <div></div>
+                    <div className=" d-flex justify-content-end pe-4">
+                        <a href="https://bsky.app/profile/bcholmes.bsky.social"  target="_blank" rel="noreferrer"><img src="/static/img/bluesky_logo.svg" className="my-2 mx-1 social-media" alt="Bluesky Logo" title="Bluesky" /></a>
+                        <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"  target="_blank" rel="noreferrer"><img src="/static/img/patreon_logo.svg" className="my-2 mx-1 social-media" alt="Patreon Logo" title="Patreon" /></a>
+                    </div>
                 </div>
                 <div className="lcar-content-round"></div>
                 {children}

@@ -318,6 +318,10 @@ div.align-items-stretch > label.textinput-label {
     border-color: #d3cae1;
 }
 
+img.social-media {
+    height: 20px;
+}
+
 /* RESPONSIVE */
 
 @media screen and (min-width: 768px) {
@@ -385,6 +389,10 @@ div.align-items-stretch > label.textinput-label {
 
     .talent-desc {
         max-width: 100%;
+    }
+
+    img.social-media {
+        height: 15px;
     }
 }
 

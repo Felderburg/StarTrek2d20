@@ -1,5 +1,6 @@
 import { CharacterType } from "../../common/characterType";
 import { Era } from "../../helpers/eras"
+import { Spaceframe } from "../../helpers/spaceframeEnum";
 import { RandomStarshipCharacterType } from "./randomStarshipCharacterTypes"
 
 const starshipRomulanNames = [
@@ -182,7 +183,6 @@ const starshipEnterpriseEraNames = [
     "Ibn Sina",
     "Al-Haytham",
     "Ibn Zuhr",
-    "Salk",
     "Winton",
     "Lumumba",
     "Christopher",
@@ -337,6 +337,94 @@ const starshipTngEraNames = [
     "Spader"
 ]
 
+
+const spaceframeNames: {[id: number ]: string[]} = {
+    [Spaceframe.Luna_2E]: [
+        "Miranda",
+        "Deimos",
+        "Phobos",
+        "Io",
+        "Rhea",
+        "Iapetus",
+        "Tethys",
+        "Dione",
+        "Hyperion",
+        "Enceladus",
+        "Mimas",
+        "Methone",
+        "Anthe",
+        "Pallene",
+        "Phoebe",
+        "Ymir",
+        "Europa",
+        "Ganymede",
+        "Callisto",
+        "Thebe",
+        "Triton",
+        "Galatea",
+        "Larissa",
+        "Naiad",
+        "Proteus",
+        "Despina",
+        "Thalassa",
+        "Ariel",
+        "Umbriel",
+        "Titania",
+        "Oberon",
+        "Juliet",
+        "Puck",
+        "Rosalind",
+        "Perdita",
+        "Portia",
+        "Bianca",
+        "Desdemona",
+        "Cressida",
+        "Belinda",
+        "Charon",
+        "Styx",
+        "Nix",
+        "Kerberos",
+        "Hydra",
+        "Andoria"
+    ],
+
+    [Spaceframe.Hiawatha]: [
+        "Nightengale",
+        "Salk",
+        "Farmer",
+        "Brangman",
+        "Johnson-Brown",
+        "Barton",
+        "Jenner",
+        "Taussig",
+        "Mathé",
+        "Apgar",
+        "Fleming",
+        "Blackwell",
+        "DeBakey",
+        "Gayle",
+        "Vesalius"
+    ],
+
+    [Spaceframe.Olympic_UP]: [
+        "Nightengale",
+        "Salk",
+        "Farmer",
+        "Brangman",
+        "Johnson-Brown",
+        "Barton",
+        "Jenner",
+        "Taussig",
+        "Mathé",
+        "Apgar",
+        "Fleming",
+        "Blackwell",
+        "DeBakey",
+        "Gayle",
+        "Vesalius"
+    ]
+}
+
 const starshipCivilianNames = [
     "Rising Star",
     "Pride of Rigel",
@@ -381,6 +469,7 @@ const starshipCivilianNames = [
     "Summer Breeze",
     "Avalon Sunset",
     "Blue Sun",
+    "Blue Monday",
     "Red Sunset",
     "Liquid Sunshine",
     "Pacific Sunset",
@@ -409,7 +498,7 @@ const starshipCivilianNames = [
     "Weeping Willow"
 ]
 
-const chooseOptions = (era: Era, type: RandomStarshipCharacterType, spaceframeType?: CharacterType) => {
+const chooseOptions = (era: Era, type: RandomStarshipCharacterType, spaceframeType?: CharacterType, spaceframe?: Spaceframe) => {
     if (type === RandomStarshipCharacterType.Klingon || spaceframeType === CharacterType.KlingonWarrior) {
         let result = [...klingonEnterpriseEraNames];
         switch (era) {
@@ -437,13 +526,18 @@ const chooseOptions = (era: Era, type: RandomStarshipCharacterType, spaceframeTy
                 break;
             default:
         }
+
+        if (spaceframe != null && spaceframeNames[spaceframe] != null) {
+            const names = spaceframeNames[spaceframe];
+            result.push(...names)
+        }
         return result;
     }
 }
 
-export const StarshipRandomNameTable = (era: Era, type: RandomStarshipCharacterType, spaceframeType?: CharacterType) => {
+export const StarshipRandomNameTable = (era: Era, type: RandomStarshipCharacterType, spaceframeType?: CharacterType, spaceframe?: Spaceframe) => {
 
-    let options = chooseOptions(era, type, spaceframeType);
+    let options = chooseOptions(era, type, spaceframeType, spaceframe);
     let index = Math.floor(Math.random() * options.length);
 
     return options[index];

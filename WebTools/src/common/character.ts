@@ -665,6 +665,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
             return true;
         } else if (this.stereotype === Stereotype.SupportingCharacter) {
             return this.values?.length;
+        } else if (this.stereotype === Stereotype.Npc) {
+            return false;
         } else {
             return false;
         }
@@ -672,13 +674,20 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get stress() {
         let stress = this.attributes[Attribute.Fitness].value;
-        if (this.version === 1) {
-            stress +=  + this.departments[Skill.Security];
-        } else if (this.speciesStep?.species === Species.Vulcan) {
-            // species ability makes stress based on Control
-            stress = this.attributes[Attribute.Control].value;
+        if (this.version !== 1 && this.stereotype === Stereotype.SupportingCharacter) {
+            if (this.values.length === 1) {
+                stress = Math.ceil(stress / 2);
+            } else if (this.values.length === 0) {
+                stress = 0;
+            }
+        } else {
+            if (this.version === 1) {
+                stress +=  + this.departments[Skill.Security];
+            } else if (this.speciesStep?.species === Species.Vulcan) {
+                // species ability makes stress based on Control
+                stress = this.attributes[Attribute.Control].value;
+            }
         }
-
         if (this.hasTalent("Resolute")) {
             if (this.version === 1) {
                 stress += 3;

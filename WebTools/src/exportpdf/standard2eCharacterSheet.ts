@@ -374,9 +374,12 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     fillStressBox(form: PDFForm, character: Character): void {
-        this.fillField(form, "Stress", "" + character.stress);
+        if (character.isStressTrackPresent) {
+            this.fillField(form, "Stress", "" + character.stress);
+        } else {
+            this.fillField(form, "Stress", "-");
+        }
     }
-
 
     fillCareerPath(form: PDFForm, character: Character): void {
         let path = CharacterTypeModel.getByType(character.type)?.localizedName ?? "";

@@ -426,24 +426,26 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     createStressBoxes(page: PDFPage, pdf: PDFDocument, character: Character) {
-        let columns = [];
-        let startX = 464.9;
-        let startY = 221.3;
-        let gap = 478.8 - startX;
+        if (character.isStressTrackPresent) {
+            let columns = [];
+            let startX = 464.9;
+            let startY = 221.3;
+            let gap = 478.8 - startX;
 
-        let availableVerticalSpace = 4 * gap;
-        let numberOfLines = Math.ceil(character.stress / 5);
+            let availableVerticalSpace = 4 * gap;
+            let numberOfLines = Math.ceil(character.stress / 5);
 
-        let verticalOffset = (availableVerticalSpace - numberOfLines * gap) / 2;
+            let verticalOffset = (availableVerticalSpace - numberOfLines * gap) / 2;
 
-        for (let i = 0; i < character.stress; i++) {
-            let x = startX + (gap * (i % 5));
-            let y = startY + (gap * Math.floor(i / 5)) + verticalOffset;
-            columns.push(new Column(x, y, 9.5, 9.5));
+            for (let i = 0; i < character.stress; i++) {
+                let x = startX + (gap * (i % 5));
+                let y = startY + (gap * Math.floor(i / 5)) + verticalOffset;
+                columns.push(new Column(x, y, 9.5, 9.5));
+            }
+
+            new CheckMarkMaker(page, pdf).createCheckMarksAndBoxes(columns, "Stress ",
+                Landscape2eCharacterSheet.greyColour);
         }
-
-        new CheckMarkMaker(page, pdf).createCheckMarksAndBoxes(columns, "Stress ",
-            Landscape2eCharacterSheet.greyColour);
     }
 
     writeTitle(page: PDFPage, colour: SimpleColor) {
@@ -536,7 +538,11 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     fillStressBox(form: PDFForm, character: Character): void {
-        this.fillField(form, "Stress", "" + character.stress);
+        if (character.isStressTrackPresent) {
+            this.fillField(form, "Stress", "" + character.stress);
+        } else {
+            this.fillField(form, "Stress", "-");
+        }
     }
 
 

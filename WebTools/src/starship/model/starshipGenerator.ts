@@ -41,6 +41,8 @@ const determinePrefix = (starship: Starship) => {
         return "IKS ";
     } else if (starship.type === CharacterType.Romulan) {
         return "IRW ";
+    } else if (starship.type === CharacterType.Civilian && starship.spaceframeModel?.type !== CharacterType.KlingonWarrior) {
+        return "SS ";
     } else {
         return "";
     }
@@ -110,7 +112,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
         result.registry = RegistryNumber.generate(result.serviceYear, result.type, result.spaceframeModel);
     }
     result.name = determinePrefix(result)
-        + StarshipRandomNameTable(config.era, config.type, result.spaceframeModel?.type);
+        + StarshipRandomNameTable(config.era, config.type, result.spaceframeModel?.type, result.spaceframeModel?.id);
 
     return result;
 }

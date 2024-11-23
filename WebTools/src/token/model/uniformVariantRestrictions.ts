@@ -55,7 +55,7 @@ export default class UniformVariantRestrictions {
         switch (uniformEra) {
             case UniformEra.DominionWar:
                 return [
-                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.LieutenantJG, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
                     Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,
                     Rank.PettyOfficer1stClass, Rank.ChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, Rank.MasterChiefPettyOfficer,
                     Rank.RearAdmiral, Rank.ViceAdmiral, Rank.Admiral
@@ -65,21 +65,21 @@ export default class UniformVariantRestrictions {
             case UniformEra.VoyagerDS9:
             case UniformEra.LowerDecks:
                 return [
-                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.LieutenantJG, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
                         Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,
                         Rank.PettyOfficer1stClass, Rank.ChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, Rank.MasterChiefPettyOfficer
                     ].indexOf(rankIndicator) >= 0;
 
             case UniformEra.MonsterMaroon:
                 return [
-                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.LieutenantJG, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
                         Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer2ndClass,
                         Rank.PettyOfficer1stClass, Rank.ChiefPettyOfficer, Rank.SeniorChiefPettyOfficer
                     ].indexOf(rankIndicator) >= 0;
 
             case UniformEra.Enterprise:
                 return [
-                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.LieutenantJG, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
                         Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass
                     ].indexOf(rankIndicator) >= 0;
 
@@ -100,13 +100,13 @@ export default class UniformVariantRestrictions {
             case UniformEra.StrangeNewWorlds:
             case UniformEra.OriginalSeries:
                 return [
-                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.LieutenantJG, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
                     Rank.Commodore
                 ].indexOf(rankIndicator) >= 0;
 
             default:
                 return [
-                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.LieutenantJG, Rank.LtCommander, Rank.Commander, Rank.Captain
+                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain
                     ].indexOf(rankIndicator) >= 0;
         }
     }
