@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { Header } from "../../components/header";
-import { navigateTo, preventDefaultAnchorEvent } from "../../common/navigator";
+import { preventDefaultAnchorEvent } from "../../common/navigator";
 import { Button } from "react-bootstrap";
 import { starshipGenerator } from "../model/starshipGenerator";
 import { Era, eraDefaultYear } from "../../helpers/eras";
