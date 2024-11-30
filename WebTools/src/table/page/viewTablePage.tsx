@@ -57,7 +57,8 @@ const ViewTablePage: React.FC<IViewTablePageProperties> = ({tableCollection}) =>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><a href="/index.html">{t('Page.title.home')}</a></li>
-                            <li className="breadcrumb-item"><a href="/table/list" onClick={(e) => preventDefaultAnchorEvent(e, () => navigate("/table/list"))}>{t('Page.title.tableList')}</a></li>
+                            <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => preventDefaultAnchorEvent(e, () => navigate("/tools"))}>{t('Page.title.otherTools')}</a></li>
+                            <li className="breadcrumb-item"><a href="/tools/table" onClick={(e) => preventDefaultAnchorEvent(e, () => navigate("/tools/table"))}>{t('Page.title.tableList')}</a></li>
                             <li className="breadcrumb-item active" aria-current="page">{t('Page.title.viewTable')}</li>
                         </ol>
                     </nav>

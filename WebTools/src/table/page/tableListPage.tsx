@@ -10,6 +10,7 @@ import store from "../../state/store"
 import { useNavigate } from "react-router"
 import { toCamelCase } from "../../common/camelCaseUtil"
 import { TableCollectionDescription } from "./tableDescription"
+import { preventDefaultAnchorEvent } from "../../common/navigator"
 
 interface ITableListPageProperties {
     collections: TableCollection[];
@@ -29,12 +30,12 @@ const TableListPage: React.FC<ITableListPageProperties> = ({collections}) => {
 
     const selectCollection = (collection: TableCollection) => {
         store.dispatch(setTableCollectionSelection(collection));
-        navigate("/table/view");
+        navigate("/tools/table/view");
     }
 
     const createTable = () => {
-        store.dispatch(setTableForEditing(new TableCollection()));
-        navigate("/table/edit");
+        store.dispatch(setTableForEditing(null));
+        navigate("/tools/table/edit");
     }
 
     const renderCategories = () => {
@@ -52,7 +53,7 @@ const TableListPage: React.FC<ITableListPageProperties> = ({collections}) => {
                                         <TableCollectionDescription tableCollection={tc} />
                                     </td>
                                     <td>
-                                        <div className="text-right">
+                                        <div className="text-end">
                                             <Button className="btn btn-primary btn-xs" onClick={() => selectCollection(tc)}>Select</Button>
                                         </div>
                                     </td>
@@ -71,6 +72,7 @@ const TableListPage: React.FC<ITableListPageProperties> = ({collections}) => {
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                         <li className="breadcrumb-item"><a href="/index.html">{t('Page.title.home')}</a></li>
+                        <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => preventDefaultAnchorEvent(e, () => navigate("/tools"))}>{t('Page.title.otherTools')}</a></li>
                         <li className="breadcrumb-item active" aria-current="page">{t('Page.title.tableList')}</li>
                     </ol>
                 </nav>

@@ -55,10 +55,10 @@ root.render(
                     <Route path="/tools" element={<OtherToolsPage />} />
                     <Route path="/tools/safety" element={<SafetyChecklistPage />} />
                     <Route path="/token" element={<TokenCreationPage />} />
-                    <Route path="/table/list" element={<TableListPage />} />
-                    <Route path="/table/view" element={<ViewTablePage />} />
-                    <Route path="/table/edit" element={<EditTablePage />} />
-                    <Route path="/table/import" element={<ImportTablePage />} />
+                    <Route path="/tools/table" element={<TableListPage />} />
+                    <Route path="/tools/table/view" element={<ViewTablePage />} />
+                    <Route path="/tools/table/edit" element={<EditTablePage />} />
+                    <Route path="/tools/table/import" element={<ImportTablePage />} />
                     <Route path="*" element={<CharacterCreationApp />} />
                 </Routes>
             </Suspense>

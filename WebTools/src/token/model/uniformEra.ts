@@ -22,6 +22,7 @@ export enum UniformEra {
     Maco,
     TheMotionPicture,
     Discovery23,
+    StarTrekOnline,
 }
 
 export const allUniformEras = (): UniformEra[] => {

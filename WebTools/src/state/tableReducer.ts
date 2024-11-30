@@ -1,6 +1,6 @@
 import { Table, TableCollection, TableRow, ValueResult } from "../table/model/table";
 import TableMarshaller from "../table/model/tableMarshaller";
-import { IMPORT_TABLE_COLLECTION, SAVE_EDITED_TABLE, SET_TABLE_COLLECTION_SELECTION, SET_TABLE_FOR_EDITING } from "./tableActions";
+import { ADD_TABLE_COLLECTION, IMPORT_TABLE_COLLECTION, SAVE_EDITED_TABLE, SET_TABLE_COLLECTION_SELECTION, SET_TABLE_FOR_EDITING } from "./tableActions";
 
 const tableCollection = new TableCollection(
         new Table("Probability Matrix: Things That Could Go Wrong While Visiting an Alien Bar",
@@ -51,7 +51,8 @@ const getInitialData = () => {
 
 const tableReducer = (state = getInitialData(), action) => {
     switch (action.type) {
-        case IMPORT_TABLE_COLLECTION: {
+        case IMPORT_TABLE_COLLECTION:
+        case ADD_TABLE_COLLECTION: {
             let collections = [...state.collections];
             let collection = action.payload.collection;
             collections.push(collection);
