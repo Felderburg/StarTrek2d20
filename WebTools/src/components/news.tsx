@@ -12,6 +12,12 @@ class News extends React.Component<INewsProperties, {}> {
     render() {
         return (
             <Modal size="lg" show={this.props.showModal} onClose={() => this.props.onClose()} header="What's New?">
+                <b>v1.241201</b>
+                <ul>
+                    <li>
+                        Some attention to some esoteric species.
+                    </li>
+                </ul>
                 <b>v1.241124</b>
                 <ul>
                     <li>
@@ -244,27 +250,6 @@ class News extends React.Component<INewsProperties, {}> {
                 <ul>
                     <li>Some additional French and Spanish translations.</li>
                     <li>Minor improvements to the Starship export for Roll20.</li>
-                </ul>
-                <b>v1.240601</b>
-                <ul>
-                    <li>A handful of smaller updates: export starships for Roll20, a new Safety checklist based on
-                        the <cite>Federation-Klingon War</cite> book, and other bits.</li>
-                </ul>
-                <b>v1.240524</b>
-                <ul>
-                    <li>Incorporate some feedback items.</li>
-                </ul>
-                <b>v1.240520</b>
-                <ul>
-                    <li>Minor character sheet updates.</li>
-                </ul>
-                <b>v1.240519</b>
-                <ul>
-                    <li>New starship sheet.</li>
-                </ul>
-                <b>v1.240518</b>
-                <ul>
-                    <li>Minor revisions.</li>
                 </ul>
 
                 <div className="text-center">
