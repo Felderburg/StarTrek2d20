@@ -460,6 +460,7 @@
     "Common.button.modify": "Modify",
     "Common.button.next": "Next",
     "Common.button.previous": "Previous",
+    "Common.button.save": "Save",
     "Common.button.view": "View",
 
     "Common.text.description": "Description",
@@ -2070,7 +2071,10 @@
     "Species.hologram.soloDescription": "Holograms can be programmed to any specification, though the nature of their holomatrix means that they are essentially impervious to direct physical harm – they can allow energy and objects to pass through them at will. However, they are unable to go anywhere that lacks holographic emitters that can project their image and forcefields, and those emitters can be damaged even if the holograms themselves cannot. Holograms also tend not to receive much respect or consideration from flesh- and-blood people, who may see them as tools at best or annoyances at worst. While the majority of holograms are no more sentient than a character in a holo-novel, under the right circumstances, they can become self-aware and deserve the same rights as any biological sentient life-form. Holograms may also have a second species trait, reflecting the species they were designed to emulate.",
 
     "Species.horta.name": "Horta",
-    "Species.horta.description": "The Horta is a highly intelligent, silicon-based species capable of tunneling through solid rock.",
+    "Species.horta.description": "The Horta are a silicon-based life form native to Janus VI. Literate and tool-using, Horta are a highly emotional and intelligent species, who appreciate the strengths and differences of others. Family orientated, Horta are social and protective of those they consider kin, especially those younger than themselves. The Hortas’ preferred habitat was surrounded by solid rock. While they can survive in a Oxygen-Nitrogen atmosphere, they found it disconcertingly empty to the touch, and required a thin coating of Teflon to avoid damaging structures. The Horta diet consisted of minerals dissolved with a powerful acid secreted from glands across their bodies. This acid permits Horta to tunnel through solid rock as easily as a humanoid can swim through water. When Horta are afraid, they can lose control of their acid glands and express the powerful corrosive all around them. They also have the urge to tunnel to safety, although they can suppress this instinct when needed.",
+    "Species.horta.exampleValue": "Protect the Future",
+    "Species.horta.soloDescription": "The Horta is a highly intelligent, silicon-based species capable of tunneling through solid rock.",
+    "Species.horta.traitDescription": "The exterior of a Horta consists of a brown rocky carapace that is highly resistant to damage; anything but the highest phaser settings is just a mild irritation to a Horta. On their underside, Horta have numerous cilia upon which they move. Horta  sensory organs can detect the chemical composition of materials around them. This permits them to tell what gases make up the surrounding air, identify species by the chemical composition of their blood, and sense veins of ore. They have poor eyesight but can partially see in the infrared spectrum. Their method of hearing involves detecting atmospheric vibrations, and they have a highly developed sense of smell that is their primary means of communication. To communicate with humanoids Horta are fitted with specialized universal translators and vocalizers, but they can also communicate by etching text into surfaces. Horta can survive exposure to the vacuum of space, though the shock results in a temporary coma.",
 
     "Species.human.name": "Human",
     "Species.human.aboutNames": "Human names vary wildly, and rather than make sweeping generalizations here, it’s better that Players seek out other sources for names, considering the vast range of languages, cultures, and traditions Humanity encompasses.",
@@ -2317,6 +2321,10 @@
     "Talent.abundantPersonnel": "Abundant Personnel",
 
     "Talent.abundantPersonnel.description": "The ship’s Crew Support is doubled, after any other modifiers, and any effects or abilities which would increase Crew Support have twice the normal effect aboard a ship with this special rule. Further, when you introduce a supporting character, you may use one additional Crew Support to grant them an improvement immediately.",
+
+    "Talent.acidicTouchUnofficial": "Acidic Touch",
+
+    "Talent.acidicTouchUnofficial.description": "You can use your natural acidic offensively. Your touch counts as a melee weapon with 3[D], Intense, Size 1H. When you use your acid touch, add 2 to the Threat pool.",
 
     "Talent.acuteSenses": "Acute Senses",
 
@@ -2837,6 +2845,10 @@
 
     "Talent.handsOnPilot.description2e": "When you perform the Warp, Evasive Action, or Attack Pattern major actions, the ship may count its focus range as double the relevant department rating (i.e., if the ship has a Conn of 3, it will score a critical success on any roll of 6 or less). However, when anyone else pilots the ship, increase the complication range by 1.",
 
+    "Talent.hardenedBiologyUnofficial": "Hardened Biology",
+
+    "Talent.hardenedBiologyUnofficial.description": "Your cilia act independently and can continue to move even if you have been severely hurt. When you have only 1 injury, you can continue to take the Movement Minor Action.",
+
     "Talent.highIntensityEnergyWeapons": "High-Intensity Energy Weapons",
 
     "Talent.highIntensityEnergyWeapons.description": "If Reserve Power is rerouted to Weapons, the next attack using one of the ship’s energy weapons increases Damage by 2.",
@@ -3281,6 +3293,10 @@
     "Talent.rightToolForTheRightJob": "Right Tool for the Right Job",
 
     "Talent.rightToolForTheRightJob.description2e": "Whenever you acquire an engineering tool with an Opportunity Cost, that equipment trait of that tool gains +1 Potency (typically this will result in Potency 2). If the tool is used in an extended task, whoever is using that tool increases their Impact by 1.",
+
+    "Talent.rockyExteriorUnofficial": "Rocky Exterior",
+
+    "Talent.rockyExteriorUnofficial.description": "Your hard stony carapace makes you impervious to minor damage. Your Resistance is increased by +2 against energy attacks.",
 
     "Talent.rousingSpeaker": "Rousing Speaker",
 

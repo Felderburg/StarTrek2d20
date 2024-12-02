@@ -119,7 +119,7 @@
     "CustomSpeciesDetails.speciesName": "Nombre",
     "CustomSpeciesDetails.instruction": "¿Cuál es el nombre de esta especie?",
     "CustomSpeciesDetails.speciesTrait": "Cada especie obtiene un rasgo específico de la especie que puede proporcionar beneficios adicionales en circunstancias especiales.",
-    "CustomSpeciesDetails.speciesNameWarning": "Por favor, proporciona un nombre para esa especie.",
+    "CustomSpeciesDetails.speciesNameWarning": "Por favor selecciona un talento antes de continuar",
 
     "CharacterTypePage.whatType": "¿Qué tipo de personaje es?",
     "CharacterTypePage.whatGovernment": "¿A qué gobierno representa este personaje?",
@@ -214,6 +214,31 @@
     "Home.tokenCreator": "Tokens",
     "Home.otherTools": "Otras Herramientas",
 
+    "ModifySupportingCharacter.instruction": "Siempre que un personaje de apoyo es presentado en una aventura, y no es la primera vez que han sido presentado (ej.: han sido presentados antes, reciben una mejora",
+    "ModifySupportingCharacter.improvementType": "Tipo de Mejora",
+
+    "ModifySupportingCharacter.improvementType.instruction": "Escoge un tipo de mejora",
+
+    "ModifySupportingCharacter.value.instruction": "El personaje de apoyo obtiene un único valor. Esta opción puede ser elegida hasta cuatro veces, obteniendo un nuevo valor cada vez. Una vez que un personaje de apoyo tiene al menos un valor, tambien obtiene un punto de Estrés y puede tomar Estrés para evitar heridas y otras consecuencias.",
+
+    "ModifySupportingCharacter.focus.instruction": "El personaje de apoyo escoge una especialidad adicional. Esta opción puede ser elegida tres veces, obteniendo una nueva especialidad cada vez. ",
+
+    "ModifySupportingCharacter.attribute.instruction": "Ell personaje de apoyo aumenta un único atributo en 1. Esta opción sólo puede ser elegida una vez.",
+
+    "ModifySupportingCharacter.talent.instruction": "El personaje de apouo obtiene un único talento que cumpla con sus requerimientos. Esta opción puede ser elegida cuatro veces, obteniendo un talento diferente cada vez.",
+
+    "ModifySupportingCharacter.department.instruction": "El personaje de apoyo aumenta una única disciplina en 1. Esta opción solo puede ser escogida una vez. ",
+
+    "ModifySupportingCharacter.finish.instruction": "Tus cambios se han aplicado a este personaje de apoyo. Para ver o imprimir el personaje actualizado, utilice el botón de abajo.",
+
+    "ModifySupportingCharacter.error.improvementType": "Por favor selecciona un tipo de mejora",
+    "ModifySupportingCharacter.error.talent": "Por favor selecciona un talento antes de continuar",
+    "ModifySupportingCharacter.error.value": "Por favor selecciona un valor antes de continuar",
+
+    "ModifySupportingCharacter.noTalent": "Por favor selecciona un talento antes de continuar",
+
+    "ModifySupportingCharacter.talentModal.title": "Selecciona un talento",
+
     "MilestonePage.instruction": "Selecciona el tipo de modificación que quieres aplicar para el Hito.",
 
     "MissionPodSelectionPage.text": "Algunas plantillas de nave tienen la habilidad de encajar con un único módulo de misión, escogido de la lista a continuación. Los talentos proporcionados por el módulo (y todos sus beneficios) normalmente no se pueden intercambiar, pero todo el módulo de misión se podría intercambiar como si fuera un solo talento.",
@@ -222,7 +247,12 @@
     "MissionProfileSelectionPage.text": "El perfil de misión es lo que diferencia a una nave estelar de otra de su misma clase. Determina el equipo especializado que se instala antes de aventurarse hacia lo desconocido, la prioridad de personal que la Flota Estelar proporciona a la nave y el objetivo general de su misión. Todas las plantillas tienen un perfil de misión.",
     "MissionProfileSelectionPage.errorNoSelection": "Selecciona un perfil de misión antes de continuar, por favor.",
 
+    "MissionProfileTalentSelection.error.talent": "Por favor, selecciona un talento antes de continuar",
+    "MissionProfileTalentSelection.error.system": "Por favor, selecciona un Sistema antes de continuar",
+
     "MissionProfileTalentSelection.instruction": "Elige 1 talento de la lista de talentos asociados al perfil de misión.",
+
+    "MissionProfileTalentSelection.instruction.system": "Este perfil de misión requiere que selecciones un sistema de la lista de abajo.",
 
     "ModificationCompletePage.instruction": "El personaje ha sido modificado. Puedes ver el personaje revisado o realizar otra modificación.\n\nEs posible que quieras guardar la URL del personaje revisado.",
 
@@ -250,6 +280,10 @@
     "ReputationChangePage.instruction": "Ajusta la reputación del personaje según corresponda.",
 
     "SafetyChecklist.instruction": "Esta lista de verificación es una herramienta que el director del juego puede utilizar para ayudar a los jugadores a debatir dónde pueden encontrarse sus límites personales para ciertos temas durante la partida.\n\n- **Siempre OK**: Esto significa que el jugador está siempre cómodo con este tema como se está siendo descrito, mostrado y representado en la partida.\n\n- **Alerta amarilla**: Esto significa que el jugador por lo general se siente cómodo con que este tema se trate en la partida, pero prefiere que las descripciones más detalladas se manejen \"fuera de escena\".\n\n- **Alerta Roja**: Esto significa que el jugador no quiere que este tema se trate en la partida; puede tener varias razones para ello. Algunos motivos pueden incluir objeciones al tema por principios morales, experiencia personal traumática, malestar por que el tema sea trivializado en un medio de entretenimiento ficticio como un juego, etc. No preguntes cuál es el motivo del jugador que se siente así; No le corresponde a nadie cambiar la opinión de ese jugador. Simplemente acepta su postura, respétala y no incluyas el tema en cuestión.",
+
+    "ServiceRecordPage.instruction": "Opcionalmente, puedes escoger un registro de servicio para tu nave para representar los principales elementos de la vida de servicio de una nave. Seleccionando un registro de servicio se proprorciona un rasgo adicional a la nave.",
+
+    "ServiceRecordPage.survivorOfX.selection": "Batalla o Guerra",
 
     "SoloCareerEvent.instruction": "La carrera de tu personaje es un tapiz de eventos y experiencias, pero algunos habrán sido momentos cruciales en la vida del personaje. Un personaje define qué momentos de su vida son importantes en retrospectiva, y lo que parecía determinante para un joven alférez puede resultar intrascendente para ese mismo oficial décadas después.\n\nTu personaje tiene dos eventos de carrera que lo definen, elegidos o determinados al azar de la lista a continuación, y obtiene los beneficios que le proporcionan.\n\nPara los personajes que eligieron Duración de Carrera como Novato, se puede suponer que estos eventos profesionales tuvieron lugar durante el tiempo que el personaje estuvo en la Academia o equivalente, tal vez durante una asignación de entrenamiento de campo a bordo de una nave estelar.",
 
@@ -387,12 +421,18 @@
     "SupportingCharacter.whatPurpose": "Determina qué puesto ocupará el personaje secundario. ¿Es un ingeniero, un médico, un científico o un oficial de seguridad?",
     "SupportingCharacter.speciesAndAttributes": "Especie y Atributos",
     "SupportingCharacter.speciesAndAttributesInstruction": "Asigna las puntuaciones de Atributos y elige la especie del personaje. La especie escogida afectará a las puntuaciones finales de los Atributos. Selecciona dos valores diferentes para intercambiarlos. ",
+    "SupportingCharacter.supervisoryNote": "Los personajes de apoyo de supervisión representan jefes de departamento o, en el caso de campañas de Lower Decks, oficiales experimentados que son superiores de los jugadores.",
     "SupportingCharacter.disciplineInstruction": "Asigna las Disciplinas del personaje. El valor más alto debe coincidir con el departamento/puesto del personaje. Selecciona dos valores diferentes para intercambiarlos.",
     "SupportingCharacter.focusInstruction": "Escoge tres Especialidades para el personaje. Al menos uno debería reflejar el departamento/puesto del personaje.",
+    "SupportingCharacter.additionalFocusInstruction": "Los personajes de supervisión reciben una especialidad adicional",
+    "SupportingCharacter.valueInstruction": "Los personajes de supervisión comienzan con un único valor",
     "SupportingCharacter.nameAndRank": "Nombre y Rango",
     "SupportingCharacter.nameAndRankInstruction": "Proporciona al personaje un nombre y rango apropiado. Los Personajes de Apoyo nunca deberían tener un rango por encima de Teniente y la mayoría de las veces será personal alistado en vez de oficiales.",
     "SupportingCharacter.numericalValue": "Valor",
     "SupportingCharacter.speciesBonus": "Bonificación por Especie",
+
+    "TacticalAssetsPage.instruction": "Añade otros recursos a tu lista de recursos.",
+    "TacticalAssetsPage.assets": "Lista de Recursos",
 
     "ToolSelection.instruction": "¿Qué quieres crear?",
     "ToolSelection.mainCharacter": "Personaje principal",
@@ -419,6 +459,7 @@
     "Common.button.create": "Crear",
     "Common.button.modify": "Modificar",
     "Common.button.next": "Siguiente",
+    "Common.button.previous": "Anterior",
     "Common.button.view": "Visualizar",
 
     "Common.text.description": "Descripción",
@@ -436,10 +477,12 @@
 
     "Common.select.choose": "Elegir...",
 
+    "Construct.other.assetType": "Tipo de Recurso",
     "Construct.other.assignment": "Asignación",
     "Construct.other.attacks": "Ataques",
     "Construct.other.attribute": "Atributo",
     "Construct.other.attributes": "Atributos",
+    "Construct.other.breaches": "Brechas",
     "Construct.other.career": "Carrera",
     "Construct.other.careerEvent1": "Evento durante la Carrera 1",
 
@@ -451,6 +494,8 @@
 
     "Construct.other.careerEvents": "Eventos durante la Carrera",
     "Construct.other.careerPath": "Carrera",
+    "Construct.other.characterRole": "Papel del personaje",
+    "Construct.other.characterType": "Tipo de personaje",
     "Construct.other.crew": "Tripulación",
     "Construct.other.crewSupport": "Apoyo de la Tripulación",
     "Construct.other.department": "Departamento",
@@ -473,6 +518,7 @@
     "Construct.other.injuries": "Heridas",
     "Construct.other.job": "Trabajo",
     "Construct.other.launchYear": "Año de Lanzamiento",
+    "Construct.other.lineage": "Linaje",
     "Construct.other.missionPod": "Módulo de Misión",
     "Construct.other.missionProfile": "Perfil de Misión",
     "Construct.other.name": "Nombre",
@@ -492,8 +538,11 @@
     "Construct.other.reputation": "Reputación",
     "Construct.other.scale": "Escala",
     "Construct.other.serviceDate": "Fecha de Entrada en Servicio",
+    "Construct.other.serviceRecord": "Registro de Servicio",
     "Construct.other.shields": "Escudos",
     "Construct.other.ship": "Nave",
+    "Construct.other.shuttlebay": "Bahía de Naves Auxiliares",
+    "Construct.other.smallCraftReadiness": "Preparación de Naves Menores",
     "Construct.other.sources": "Fuentes",
     "Construct.other.spaceFrame": "Plantilla",
     "Construct.other.specialRules": "Reglas Especiales",
@@ -503,6 +552,7 @@
     "Construct.other.starshipType": "Tipo de nave estelar",
     "Construct.other.stats": "Estadísticas",
     "Construct.other.stress": "Estrés",
+    "Construct.other.supervisory": "Supervisor",
     "Construct.other.systems": "Sistemas",
     "Construct.other.talent": "Talento",
     "Construct.other.talents": "Talentos",
@@ -512,6 +562,7 @@
     "Construct.other.trait": "Rasgo",
     "Construct.other.traits": "Rasgos",
     "Construct.other.additionalTraits": "Rasgos Adicionales",
+    "Construct.other.unnamedCharacter": "Personaje sin nombre",
     "Construct.other.upbringing": "Educación",
     "Construct.other.value": "Valor",
     "Construct.other.values": "Valores",
@@ -606,11 +657,13 @@
     "Page.title.starshipTypeSelection": "Tipo de Nave Estelar",
     "Page.title.starshipWeaponsSelection": "Armas de Nave Estelar",
     "Page.title.starSystemDetails": "Detalles del Sistema Estelar",
+    "Page.title.starshipServiceRecord": "Registro de Servicio",
     "Page.title.starshipToolSelection": "Selección de herramientas de nave estelar",
     "Page.title.starshipTraits": "Rasgos de Nave Estelar",
     "Page.title.supportingCharacter": "Personaje de Apoyo",
     "Page.title.systemGeneration": "Generación del Sistema Estelar",
     "Page.title.tableList": "Lista de Tabla",
+    "Page.title.tacticalAssets": "Recursos Tácticos",
     "Page.title.talentsOverview": "Descripción general de talentos",
     "Page.title.toolSelection": "Herramienta de Selección",
     "Page.title.viewSheet": "Ver hoja",
@@ -710,6 +763,70 @@
     "CareerEvent.common.20.name": "Primer contacto",
     "CareerEvent.common.20.description": "El personaje fue elegido para participar en una de las misiones más importantes de la Flota Estelar: un primer contacto con otra cultura.\n\n-¿Con qué cultura estableció el personaje un primer contacto? ¿Fue bien la misión?",
     "CareerEvent.common.20.focusSuggestion": "El personaje recibe una Especialidad que refleja la naturaleza de la misión. Como ejemplos se ofrecen: Estudios Culturales, Diplomacia o Infiltración.",
+
+    "CareerEvent.unofficial.21.name": "Entrenamiento Táctico Avanzado",
+    "CareerEvent.unofficial.21.description": "El personaje realizo un curso especializado en técnicas avazandas de de táctica e inteligencia.\n\n- ¿Donde tuvo lugar el curso? ¿Quién recomendó al personajes para el curso?\n- ¿Aprobo el curso el personaje? ¿Que calificaciones obtuvo el personaje en las distintas materias?",
+    "CareerEvent.unofficial.21.focusDescription": "El personaje obtiene una Especialidad que debería reflejar el entranamiento especial que ha recibido. Ejemplos: Tácticas de Guerrilla, Defensa Estratégica o Maniobras de Combate",
+
+    "CareerEvent.unofficial.22.name": "Test de Prototipo",
+    "CareerEvent.unofficial.22.description": "El personaje estuvo involucrado en las pruebas de un prototipo, un nuevo tratamiento o una nave estelar experimental. \n\n- ¿Cual fue el dispositivo, tratamiento o nave y que la hizo unica o experimental?\n- ¿Era un projecto confidencial? ¿Fue el prototipo destruido o un éxito?",
+
+    "CareerEvent.unofficial.23.name": "Esfuerzo de Colonización",
+
+    "CareerEvent.unofficial.24.name": "Programa de Intercambio",
+
+    "CareerEvent.unofficial.25.name": "Golpe de Suerte",
+
+    "CareerEvent.unofficial.26.name": "Aprendí de errores importantes",
+    "CareerEvent.unofficial.26.focusDescription": "Puesto de Observación Cultural",
+
+    "CareerEvent.unofficial.27.name": "Puesto de Observación Cultural",
+
+    "CareerEvent.unofficial.28.name": "Lucha contra la adición",
+
+    "CareerEvent.unofficial.29.name": "Rivalidad",
+
+    "CareerEvent.unofficial.30.name": "Actividad fuera de servicio",
+
+    "CareerEvent.unofficial.31.name": "Destacamento en Base Estelar",
+
+    "CareerEvent.unofficial.32.name": "Destacamento Planetario",
+
+    "CareerEvent.unofficial.33.name": "Dejado atras",
+
+    "CareerEvent.unofficial.34.name": "Crisis Familiar",
+
+    "CareerEvent.unofficial.35.name": "Desempeño satisfactorio",
+
+    "CareerEvent.unofficial.36.name": "Confinamiento",
+
+    "CareerEvent.unofficial.37.name": "Misión de Terraformación",
+
+    "CareerEvent.unofficial.38.name": "Licenciado temporalmente",
+
+    "CareerEvent.unofficial.39.name": "Exposición en los Medios",
+
+    "CareerEvent.unofficial.40.name": "Operación clandestina",
+
+    "CareerEvent.unofficial.41.name": "Destacamento en Astilleros",
+
+    "CareerEvent.unofficial.42.name": "Recuerdos perdidos",
+
+    "CareerEvent.unofficial.43.name": "Oportunidad para Enseñar",
+
+    "CareerEvent.unofficial.44.name": "Conflicto Juridicos",
+
+    "CareerEvent.unofficial.45.name": "Victima de control mental",
+
+    "CareerEvent.unofficial.46.name": "Inadaptado",
+
+    "CareerEvent.unofficial.47.name": "Objeto significativo",
+
+    "CareerEvent.unofficial.48.name": "Destacamento en Espacio Profundo",
+
+    "CareerEvent.unofficial.49.name": "Afectado por anomalia temporal",
+
+    "CareerEvent.unofficial.50.name": "Destacamento en Instalación Médica",
 
     "CareerEvent.common.99.name": "Reclutado para la Inteligencia de la Flota Estelar",
 
@@ -1306,12 +1423,24 @@
     "Rank.private.name": "Soldado raso",
     "Rank.private.abbrev": "Sol.",
 
+    "Rank.cadetFirstClass.name": "Cadete, Primera Clase",
+    "Rank.cadetFirstClass.abbrev": "Cdt, 1ª Cl",
+
+    "Rank.cadetSecondClass.name": "Cadete, Segunda Clase",
+    "Rank.cadetSecondClass.abbrev": "Cdt, 2ª Cl",
+
+    "Rank.cadetThirdClass.name": "Cadete, Tercera Clase",
+    "Rank.cadetThirdClass.abbrev": "Cdt, 3ª Cl",
+
+    "Rank.cadetFourthClass.name": "Cadete, Cuarta Clase",
+    "Rank.cadetFourthClass.abbrev": "Cdt, 4ª Cl",
+
     "Role.commandingOfficer": "Oficial al mando",
 
     "Role.commandingOfficer.description": "El capitán. Aunque el oficial al mando no ostente el rango de capitán, sus subordinados se referirán a él como tal. Toda nave tiene un oficial al mando.",
     "Role.commandingOfficer.ability": "El oficial al mando puede gastar un punto de Determinación para proporcionar a otro personaje con el que pueda comunicarse un punto de Determinación (esta acción no tiene por qué estar asociada a un Valor).",
 
-    "Role.executiveOfficer": "Oficiale ejecutivo",
+    "Role.executiveOfficer": "Oficial ejecutivo",
 
     "Role.executiveOfficer.description": "Primer oficial. El oficial ejecutivo es el principal consejero del capitán y asume el mando en situaciones en que al capitán no le sea posible. Si una nave no tiene un oficial ejecutivo asignado, se debería designar como primer oficial a un oficial con otra función, pero este no recibirá los beneficios de un oficial ejecutivo.",
     "Role.executiveOfficer.ability": "Cuando otro personaje que se esté comunicando con el oficial ejecutivo gaste un punto de Determinación, el oficial ejecutivo puede gastar tres puntos de Inercia (Inmediata) para que dicho personaje recupere el punto de Determinación gastado.",
@@ -1341,6 +1470,7 @@
     "Role.scienceOfficer.description": "Un oficial científico es el responsable de aconsejar al oficial al mando en cuestiones científicas y aportar hipótesis en asuntos relacionados con lo desconocido. No todas las naves tienen asignado un oficial científico entre el personal del puente y a menudo el jefe de operaciones asume sus funciones. ",
     "Role.scienceOfficer.ability": "Cuando el oficial científico tenga éxito en una Tarea en que cuente con la ayuda de los ordenadores o sensores de la nave o en que utilice un tricorder, el personaje genera un punto de Inercia adicional que solo se puede utilizar para el Uso de Inercia “\"Obtener información\"”.",
 
+    "Role.tacticalOfficer": "Oficial Táctico",
     "Role.flightController": "Controlador de vuelo",
 
     "Role.flightController.description": "Aunque no es un puesto habitual entre el personal del puente, algunos capitanes (especialmente los que operan en espacio inexplorado) escogen al timonel o navegante más veterano para que sirva también como oficial del puente.",
@@ -1365,6 +1495,14 @@
 
     "Role.navigator.description": "No es una función típica del personal superior; algunos capitanes, particularmente aquellos que operan en espacio inexplorado, eligen al navegante de mayor rango para que también sirva como personal superior.",
     "Role.navigator.ability": "Cuando se requiere que el navegante analice o repare tecnología relacionada con el vuelo o la propulsión, podrá utilizar la Disciplina Pilotaje en lugar de Ingeniería.",
+
+    "Role.shipsDoctor": "Medico de a bordo",
+    "Role.bodyguard": "Guardaespaldas",
+    "Role.expert": "Especialista",
+    "Role.intelligenceAgent": "Agente de Inteligencia",
+    "Role.merchant": "Comerciante",
+    "Role.politicalLiaison": "Enlace Politico",
+    "Role.translator": "Traductor",
 
     "SafetyEvaluationType.alwaysOk": "Siempre OK",
     "SafetyEvaluationType.yellowAlert": "Alerta Amarilla",
@@ -1406,7 +1544,27 @@
 
     "ServiceRecord.agingRelic.description": "La nave lleva décadas en servicio y ha acogido a muchas tripulaciones. Sólo los más veteranos podrán recordar cuando era nueva.",
 
+    "ServiceRecord.dependableWorkhorse": "Máquina fiable",
+    "ServiceRecord.legendary": "Legendaria",
+    "ServiceRecord.hopeShip": "Nave Esperanza",
+    "ServiceRecord.prototype": "Prototipo",
+    "ServiceRecord.survivorOfX": "Superviviente de X",
+
+    "ServiceRecord.survivorOfX.trait": "Superviviente de {{X}}",
+
+    "Sheet.basicGeneratedHalfPageCharacterSheet": "Nueva hoja de personaje a media pagina 2E",
+    "Sheet.generatedTngPortraitCharacterSheet": "Hoja de Personaje de TNG (US-Letter)",
+    "Sheet.generatedTngPortraitA4CharacterSheet": "Hoja de Personaje de TNG (A4)",
+    "Sheet.halfPageSupportingCharacterSheet": "Hoja de Personaje de Apoyo a media pagina",
+    "Sheet.landscapeGeneratedCharacterSheet": "Hoja de Personaje apaisada de TNG  (US-Letter)",
+    "Sheet.landscape2eCharacterSheet": "Nueva hoja de personaje apaisada 2E (US-Letter)",
+    "Sheet.standardTngCharacterSheet": "Hoja de Personaje Estándard TNG (US-Letter)",
+    "Sheet.standard2eCharacterSheet": "Hoja de Personaje Estándard 2E (US-Letter)",
+
     "Sheet.text.title": "Registro de personal de la Flota Estelar",
+
+    "Sheet.text.title.starship": "Entrada de Registro de Nave",
+    "Sheet.text.title.alt": "Archivo de Personal",
 
     "SheetTag.a4": "A4",
     "SheetTag.halfPage": "Media Página",
@@ -1505,23 +1663,31 @@
 
     "Spaceframe.defiant.description": "La función principal de la Flota Estelar es la ciencia y la exploración, el poderío militar no es una prioridad. Salvo algunas notables excepciones durante la guerra con los romulanos, la Flota Estelar había tenido poca experiencia en diseñar naves específicamente orientadas a la guerra. La clase Defiant empezó a desarrollarse un año antes de la Batalla de Wolf 359 y su diseño y producción se convirtieron en una prioridad tras aquel desastroso encuentro con los borg. Las pruebas iniciales sobre el prototipo revelaron serios fallos y quedó apartado, así como el proyecto de diseño. El desarrollo de esta clase se suspendió hasta 2370, cuando el oficial al mando de la Espacio Profundo 9 pidió que se le asignase el prototipo para que sirviese de ayuda ante las crecientes tensiones entre la Federación y el Dominio.",
 
+    "Spaceframe.engle": "Clase Engle",
     "Spaceframe.excelsior": "Clase Excelsior",
 
     "Spaceframe.excelsior.description": "Muchos científicos e ingenieros proclamaron a la clase Excelsior como “El Gran Experimento”. Iba a ser la primera nave que utilizase tecnología de “motor transwarp”, un teórico salto adelante en la tecnología de propulsión que se había llevado a cabo con éxito en simulaciones y pruebas de laboratorio. La primera comprobación en una situación real de la U.S.S. Excelsior y sus sistemas transwarp en 2285 resultó en un fallo absoluto de todos los sistemas de propulsión debido a una combinación de sabotaje e incapacidad de la nave para generar y mantener un campo transwarp. El prototipo volvió a dique seco para rediseñarlo con tecnología de propulsión de curvatura estándar. Hacia 2290 se habían eliminado todos los “fallos” de diseño, lo que dio lugar a una nave estelar muy adaptable y capaz que serviría desde finales del siglo XXIII en adelante.",
 
+    "Spaceframe.gagarin": "Clase Gagarin",
     "Spaceframe.galaxy": "Clase Galaxy",
 
     "Spaceframe.galaxy.description": "La clase Galaxy, diseñada para ser la mejor nave de exploración jamás desplegada por la Flota Estelar, entró en servicio con buena parte de las tecnologías más avanzadas disponibles a finales de los 2350 y al mismo tiempo que su diseño hermano, la clase Nebula. También representaba una nueva filosofía en la Flota Estelar, según la cual los oficiales y la tripulación podían llevar a su familia y seres que-ridos al espacio profundo y a misiones prolongadas en lugar de separarse de ellos durante años. Esta filosofía suponía que esta nave estelar sería una de las más grandes jamás producidas: estaba preparada para contar con una tripulación superior a 2.000 miembros más sus familiares, y tenía un límite de evacuación de emergencia que alcanzaba los 15.000 individuos. Sin embargo, el volumen de la tripulación más habitual rondaba los 1.000 miembros. Aunque el personal no ligado a la Flota Estelar se limitaba a un 15-20% de la dotación total, cada nave estelar de la clase Galaxy contaba con instalaciones y servicios a bordo que servían tanto a miembros de la Flota Estelar como a civiles y que, normalmente, solo se veían en bases estelares. Esto incluía escuelas para los niños, bares (e incluso restaurantes), guarderías y las mayores holocubiertas existentes hasta ese momento.",
 
+    "Spaceframe.ganashia": "Clase Ganashia",
     "Spaceframe.hermes": "Clase Hermes",
+    "Spaceframe.hiawatha": "Clase Hiawatha",
+    "Spaceframe.hoover": "Clase Hoover",
     "Spaceframe.intrepid": "Clase Intrepid",
 
     "Spaceframe.intrepid.description": "A mediados de los 2360, los éxitos y fracasos de la clase Galaxy eran evidentes para la Flota Estelar. Su gran tamaño y tripulación, junto con su creciente uso como nave diplomática más que como nave de exploración, hizo que los ingenieros de la Flota Estelar empezasen a diseñar el siguiente gran explorador: la clase Intrepid. La primera de su clase se fletó con gran algarabía en 2371 y, pronto, el Consejo Científico de la Federación la vio como un recurso valioso. Es pequeña en comparación con la clase Galaxy, más parecida a la clase Constitution, pero contiene la mejor tecnología disponible en la Federación.",
 
+    "Spaceframe.inquiry": "Clase Inquiry",
     "Spaceframe.luna": "Clase Luna",
 
     "Spaceframe.luna.description": "Dado el éxito de la clase Intrepid, la Flota Estelar no tardó en comenzar el desarrollo paralelo de una nave pesada de reconocimiento capaz de realizar las mismas funciones exploratorias y científicas de la clase Intrepid, pero con instalaciones de investigación más grandes, más potencia de proceso informático y la capacidad de realizar misiones más largas. La clase Luna finalizó su fase de diseño ocho meses después que su clase hermana y, aunque ha habido varios retrasos durante la construcción, se espera que la U.S.S. Luna NX-80101 salga del dique seco en Marte a finales del 2372. Como la clase Intrepid, la clase Luna tiene dos estructuras de casco integradas con curvas orgánicas, con un perfil muy similar al de los nuevos navíos de la Flota Estelar que salen de los astilleros de Utopia Planitia.",
 
+    "Spaceframe.magee": "Clase Magee",
+    "Spaceframe.malachowski": "Clase Malachowski",
     "Spaceframe.miranda": "Clase Miranda",
     "Spaceframe.nebula": "Clase Nebula",
     "Spaceframe.newOrleans": "Clase New Orlans",
@@ -1533,6 +1699,11 @@
     "Spaceframe.oberth": "Clase Oberth",
     "Spaceframe.olympic": "Clase Olympic",
     "Spaceframe.odyssey": "Clase Odyssey",
+    "Spaceframe.osler": "Clase Osler",
+    "Spaceframe.parliament": "Clase Parliament",
+    "Spaceframe.pathfinder": "Clase Pathfinder",
+    "Spaceframe.reliant": "Clase Reliant",
+    "Spaceframe.ross": "Clase Ross",
     "Spaceframe.saber": "Clase Saber",
     "Spaceframe.shepard": "Clase Shepard",
     "Spaceframe.sovereign": "Clase Sovereign",
@@ -1592,6 +1763,22 @@
     "Species.andorian.exampleValue": "Orgulloso/a hijo/a de Andoria",
     "Species.andorian.traitDescription": "Este Rasgo puede reducir la Dificultad de Tareas para resistir el frío extremo o aquellas afectadas por temperaturas extremadamente bajas. Sus antenas les ayudan a mantener el equilibrio y el sentido espacial, la pérdida de una antena puede resultar perjudicial hasta que vuelva a crecer. Los andorianos también tienen un metabolismo rápido, lo que supone (entre otras cosas) que son más rápidos que los humanos pero también que son más vulnerables a infecciones causadas por determinados tipos de daño. Antes de la fundación de la Federación, andorianos y vulcanos tuvieron numerosas disputas, y aunque esos asuntos se consideran en general como cosa del pasado, los andorianos y los vulcanos no siempre se llevan bien.",
 
+    "Species.aquan.name": "Aquano",
+    "Species.aquan.aboutNames": "Los nombres Aquanos tipicamente son una única palabra compuesta o solo unas pocas silabas",
+    "Species.aquan.exampleValue": "Los que respiran rara vez vienen en son de paz",
+
+    "Species.arbazan.name": "Arbazano",
+
+    "Species.ardanan.name": "Ardanano",
+
+    "Species.arcadian.name": "Arcadiano",
+    "Species.arcadian.exampleValue": "La Páz es un ideal por el que vale la pena morir",
+
+    "Species.ariolo.name": "Ariolo",
+    "Species.ariolo.exampleValue": "Usa aquello con lo que nacemos para cambiar la galaxia",
+
+    "Species.aurelian.name": "Aurelianos",
+
     "Species.bajoran.name": "Bajorano",
     "Species.bajoran.aboutNames": "Los nombres bajoranos empiezan por el apellido, seguido del nombre de pila. Los nombres propiamente dichos suelen ser breves (rara vez tienen más de dos sílabas) y suenan de forma suave o melódica. Bajor tiene una tradición matriarcal y los niños adoptan el apellido de la madre.",
     "Species.bajoran.description": "Los bajoranos, un pueblo espiritual e intrépido del planeta Bajor, han perdido mucho durante las décadas de ocupación por parte de la Unión Cardassiana. Durante la invasión, muchos bajoranos se dispersaron por el Cuadrante Alfa, mientras que los que permanecieron en Bajor a menudo llevaban a cabo actos de insurgencia o cultivaban en los campos de trabajo bajo el gobierno cardassiano. La ocupación terminó hace poco tiempo, pero sus cicatrices tardarán años en curarse. Bajor no es miembro de la Federación pero muchos bajoranos llevados por el éxodo llegaron a ingresar en la Flota Estelar. La cultura bajorana cree firmemente en los Profetas, seres celestiales que se dice que han cuidado de Bajor durante milenios. La doctrina religiosa actual afirma que el Agujero de Gusano Bajorano es el Templo Celestial de los Profetas.",
@@ -1599,6 +1786,11 @@
     "Species.bajoran.exampleValue": "Fe en los Profetas",
     "Species.bajoran.traitDescription": "Por razones obvias, los bajoranos tienden a ser hostiles con los cardassianos y guardan rencor a quienes desprecian o cierran los ojos ante el sufrimiento de su pueblo. Aunque no todos los bajoranos tienen el mismo grado de espiritualidad o religiosidad, la mayoría tiene una noción cultural del papel de los Profetas en la sociedad bajorana.",
     "Species.bajoran.traitDescription2e": "Los bajoranos tienden a ser hostiles con los cardassianos y guardan rencor a quienes desprecian o cierran los ojos ante el sufrimiento de su pueblo. Aunque no todos los bajoranos tienen el mismo grado de espiritualidad o religiosidad, la mayoría tiene una noción cultural del papel de los Profetas en la sociedad bajorana.",
+
+    "Species.barzan.name": "Barzanianos",
+
+    "Species.baul.name": "Ba'ul",
+    "Species.baul.exampleValue": "Nunca más seremos comida para Kelpianos",
 
     "Species.benzite.name": "Benzita",
     "Species.benzite.soloDescription": "La fisiología benzita otorga a los miembros de esta especie una piel suave, sin pelo y de un tono verdoso o azulado. Su cráneo tiene una gruesa protuberancia que se extiende sobre la nariz y el ceño, con dos barbos faciales justo encima de los labios. Hasta el año 2370, los benzitas de la Flota Estelar tenían problemas para respirar la atmósfera de oxígeno-nitrógeno estándar y dependían de un aparato respirador.",
@@ -1611,6 +1803,9 @@
     "Species.betazoid.traitDescription": "Todos los los betazoides son telépatas en mayor o menor medida e incluso cuando no utilizan sus capacidades activamente, son muy perceptivos respecto a quienes los rodean, aunque también muy sensibles a las perturbaciones telepáticas y los asaltos mentales. Están poco familiarizados con las mentiras y los engaños dada su cultura abierta y su capacidad para leer los pensamientos y emociones de los demás. Como son sensibles a las mentes de otros seres vivos, tienden a no estar cómodos entre los animales por miedo a perderse en las mentes de las criaturas salvajes.",
     "Species.betazoid.traitDescription2e": "Todos los los betazoides son telépatas en mayor o menor medida e incluso cuando no utilizan sus capacidades activamente, son muy perceptivos respecto a quienes los rodean, aunque también muy sensibles a las perturbaciones telepáticas y los asaltos mentales. Están poco familiarizados con las mentiras y los engaños dada su cultura abierta y su capacidad para leer los pensamientos y emociones de los demás. Como son sensibles a las mentes de otros seres vivos, tienden a no estar cómodos entre los animales por miedo a perderse en las mentes de las criaturas salvajes. Del mismo modo, las especies inmunes a la telepatía pueden resultarles desagradables.",
 
+    "Species.betelgeusian.name": "Betelgeusiano",
+    "Species.betelgeusian.exampleValue": "Habrá un único vencedor aquí y ese seré yo",
+
     "Species.bolian.name": "Boliano",
     "Species.bolian.soloDescription": "Nativos del planeta Bolarus IX, los bolianos son muy famosos por su hospitalidad y por su personalidad extrovertida. Fáciles de identificar gracias a una cresta cartilaginosa vertical que les cruza la cabeza dividiéndola en dos partes y que llega hasta el pecho. Su tono de piel va desde el azul claro hasta el verde oscuro con manchas púrpuras, y algunos tienen bandas más oscuras en el cráneo. Aunque la mayoría son calvos, algunas mujeres tienen algo de cabello en sus cabezas. Los matrimonios bolianos están formados por más de dos miembros, de ambos sexos, pero la procreación con otras especies no es común, dada la incompatibilidad genética boliana. Los humanos, en particular, notan varios efectos secundarios al tener relaciones interespecies, incluyendo náuseas, fatiga e inflamaciones.",
 
@@ -1618,9 +1813,23 @@
     "Species.borg.description": "Una persona no nace borg sino que se le obliga a convertirse en uno (aunque en el caso de bebés y niños asimilados por el Colectivo, puede que tengan pocos o ningún recuerdo de su vida anterior). Los borg combinan biología con tecnología y un dron contará con innumerables implantes, resultado de una cirugía intrusiva y de una agresiva nanotecnología. En 2371, solo un individuo ha abandonado el Colectivo Borg: Jean-Luc Picard, que había sido capturado apenas unos días antes (lo que implica que sus implantes eran menos significativos que los de alguien que llevara años o décadas asimilado). Todos los PNJ borg son híbridos: pertenecen a su especie original y a su nueva realidad como miembros del Colectivo.",
     "Species.borg.traitDescription": "Los borg son extremadamente fuertes y resistentes gracias a su fisiología potenciada tecnológicamente. Carecen de autodeterminación e intuición, puesto que dependen de directrices y protocolos del Colectivo y de la consciencia gestáltica de incontables drones borg.",
 
+    "Species.bynar.name": "Bynar",
+    "Species.bynar.exampleValue": "Siempre hay solo dos opciones",
+
+    "Species.caitian.name": "Caitiano",
+
     "Species.cardassian.name": "Cardassiano",
     "Species.cardassian.description2e": "A menudo vilipendiados y desconfiados debido a las acciones de su gobierno, los cardassianos tienen fama de ser despiadados, engañosos y agresivos. Debido a la escasez de recursos naturales y a un colapso económico, la cultura cardassiana fue dominada por un régimen autoritario opresivo dominado por los militares, que iniciaron una campaña de expansión, conquista y explotación que duró décadas y que incluyó la ocupación de Bajor y un largo conflicto fronterizo con la Federación. Tras la Guerra del Dominio, y una vez derrocado el gobierno militar, la reconstrucción de Cardassia fue un proceso difícil, entre otras cosas por los antiguos sentimientos de resentimiento hacia los cardassianos.\n\nLos cardassianos son un pueblo creativo y dedicado, con una fuerte fascinación cultural por la intriga. Los cardassianos tienden a guardar secretos y a considerar la sospecha como sabiduría, y el desvelamiento de secretos se considera una habilidad valiosa.",
     "Species.cardassian.traitDescription2e": "Los cardassianos son una especie pseudorreptiliana, acostumbrados a un entorno algo más cálido y húmedo de lo que es cómodo para los humanos, y tienden a encontrar incómoda la luz brillante. Su cultura valora la disciplina mental y la obediencia a jerarquías estrictas, y tienen fama de arrogantes, crueles y engreídos.",
+
+    "Species.changeling.name": "Metamorfo",
+
+    "Species.chelon.name": "Rigeliano Chelo",
+
+    "Species.coridanite.name": "Coridanita",
+    "Species.coridanite.exampleValue": "Finalmente podemos hablar sobre nuestras necesidades",
+
+    "Species.deltan.name": "Deltano",
 
     "Species.denobulan.name": "Denobulano",
     "Species.denobulan.aboutNames": "Los denobulanos suelen tener un solo nombre (un mismo denobulano puede pertenecer a diversas familias a la vez). Algunos pueden emplear el nombre de uno de sus cónyuges como apellido improvisado, llegado el caso. A menudo eso sirve para indicar alguna relación ante especies que tal vez no entiendan las familias denobulanas. Los nombres denobulanos tienden a ser breves y bruscos, especialmente los masculinos.",
@@ -1630,7 +1839,14 @@
     "Species.denobulan.traitDescription": "Los denobulanos tienen un sistema inmunológico resistente pero son vulnerables a varias formas de intoxicación por radiación. Son escaladores natos que se arrastran por paredes empinadas como algunas formas de lagarto terrícola. Los debobulanos no necesitan dormir pero deben hibernar varios días al año y se desorientan si permanecen despiertos durante ese período.",
     "Species.denobulan.traitDescription2e": "Los denobulanos tienen un sistema inmunológico resistente pero son vulnerables a varias formas de intoxicación por radiación. Son escaladores natos que se arrastran por paredes empinadas como algunas formas de lagarto terrícola. Los debobulanos no necesitan dormir pero deben hibernar varios días al año y se desorientan si permanecen despiertos durante ese período.",
 
+    "Species.doopler.name": "Doopler",
+
+    "Species.edosian.name": "Edosiano",
+
     "Species.efrosian.name": "Efrosiano",
+
+    "Species.elAurian.name": "El-Auriano",
+    "Species.elAurian.exampleValue": "Te lo dije, yo escucho.",
 
     "Species.ferengi.name": "Ferengi",
     "Species.ferengi.aboutNames": "Los ferengis suelen tener un solo nombre, que suele ser de una o dos sílabas, aunque hay excepciones. Entre las culturas que tienen apellidos, los ferengis se refieren a sí mismos ocasionalmente como «hijo de...», «hija de...», «hijo de...», etc., pero como se espera que cada ferengi haga su propio camino en la vida, los apellidos son inusuales entre los ferengis.",
@@ -1639,6 +1855,10 @@
 
     "Species.gorn.name": "Gorn",
 
+    "Species.hologram.name": "Holograma",
+
+    "Species.horta.name": "Horta",
+
     "Species.human.name": "Humano",
     "Species.human.aboutNames": "Los nombres humanos varían ampliamente y, en lugar de hacer grandes generalizaciones, es mejor que los Jugadores busquen fuentes para sus nombres, teniendo en cuenta la vasta diversidad de lenguas, culturas y tradiciones que engloba la humanidad.",
     "Species.human.description": "Los humanos, originarios del planeta Tierra del sistema solar, son una especie resistente, diversa y adaptable que pasó de estar conformada por naciones divididas y en guerra al borde de la aniquilación mutua a ser una sociedad unida y pacífica en menos de un siglo. También consiguió forjar alianzas entre antiguos enemigos menos de 100 años después de lograr su primer viaje interestelar. La tierra es un miembro fundador y esencial de la Federación Unida de Planetas y muchas de las instituciones de la Federación tienen su sede en la Tierra. Los humanos suelen manifestar una naturaleza dual (se rigen tanto por intensas emociones como por una prudente razón) y, aunque han dejado muy atrás su pasado divisivo y beligerante, su impulso y capacidad de agresión son causa de su éxito tanto como su \ncuriosidad y su mente analítica.",
@@ -1646,16 +1866,45 @@
     "Species.human.exampleValue": "La Llamada de la exploración",
     "Species.human.traitDescription": "Los humanos son adaptables y resistentes, su resolución y su ambición suelen permitirles superar grandes adversidades y triunfar ante enormes dificultades. Sin embargo, los humanos también pueden resultar temerarios, testarudos, irracionales e impredecibles.",
 
+    "Species.hupyrian.name": "Hupyriano",
+    "Species.hupyrian.exampleValue": "Obedezco a un único maestro",
+
+    "Species.illyrian.name": "Illiirano",
+
+    "Species.jelna.name": "Rigeliano Jeina",
+
     "Species.jemHadar.name": "Jem'Hadar",
     "Species.jemHadar.soloDescription": "Los jem'hadar son físicamente poderosos, mucho más fuertes y resistentes que los humanos. También tienen una vista excepcionalmente aguda y actúan sin miedo ni vacilación en la batalla. No temen a la muerte y son extremadamente agresivos, limitados únicamente por su absoluta obediencia a los Fundadores y a los Vorta.",
+
+    "Species.kazon.name": "Kazon",
+
+    "Species.kelpien.name": "Kelpiano",
 
     "Species.klingon.name": "Klingon",
     "Species.klingon.description2e": "Los klingons son un pueblo orgulloso y marcial, nativo del planeta Qo'noS en el Cuadrante Beta. Su físico alto y fuerte, sus dientes afilados y la densa cresta distintiva que les recorre desde la frente, sobre la cabeza y por la columna vertebral, contribuyen a una apariencia que es sinónimo de destreza marcial y ferocidad. Duros y agresivos, los klingons combinan un sentimiento de orgullo y convicción personal con una vena fatalista, considerando preferible una muerte honorable a lo que ellos considerarían una vida vergonzosa o cobarde.\n\nLos klingons aceptan la vida y la muerte sin miedo. También son un pueblo con un gran sentido del honor, tanto personal como familiar, y no tardan en enfadarse cuando se les ataca; los mayores desaires pueden dar lugar a enemistades de sangre que duren generaciones.",
     "Species.klingon.traitDescription2e": "La fisiología klingon es resistente, con un esqueleto reforzado y muchos órganos internos redundantes que les permiten resistir daños y numerosas toxinas que serían mortales para otras especies, aunque esto tiene el potencial de provocar complicaciones médicas. Son mucho más fuertes y resistentes que los humanos, aunque toleran peor el frío.",
 
+    "Species.klingonQuchHa.name": "Klingon (QuchHa’)",
+
+    "Species.megarite.name": "Megarita",
+    "Species.megarite.exampleValue": "Tan rápido como la marea, tan fuerte como el glaciar",
+
+    "Species.napean.name": "Napeano",
+    "Species.napean.exampleValue": "Aprender más sobre el universo requiere un trabajo de lógica y pasión",
+
+    "Species.nausicaan.name": "Nausicaano",
+
     "Species.orion.name": "Orion",
     "Species.orion.description2e": "Los oriones, una especie con una reputación pintoresca, son objeto de rumores, especulaciones y fantasías, hasta el punto de que existen numerosos conceptos erróneos sobre su especie y su cultura. Esto parece ser, al menos en parte, intencionado. Los Oriones están acostumbrados a aprovechar al máximo cualquier oportunidad que se les presente, y la incertidumbre y el malentendido que les rodea es una ventaja considerable. La influencia de los comerciantes de Orión y del Sindicato de Orión se puede sentir en los Cuadrantes Alfa y Beta, a menudo de forma contraria a las leyes de otras culturas, y a menudo empleando agentes de otras especies.\n\nLa cultura de Orión parece estar dividida en función del género, y hay pruebas que sugieren que tienen una cultura matriarcal, con las mujeres desempeñando funciones de liderazgo, mientras que los hombres de Orión sirven más a menudo como músculo, trabajadores y operativos menores, aunque esto ha cambiado un poco a lo largo de los siglos. Esto parece ser debido a un rasgo de algunas hembras de Orión, que se ha observado que producen feromonas que pueden hacer que los Oriones masculinos (y los machos de algunas otras especies, incluidos los Humanos) sean obedientes. No se sabe hasta qué punto está extendido este rasgo.",
     "Species.orion.traitDescription2e": "Los Oriones tienen una tolerancia medioambiental similar a la de los Humanos y están física y culturalmente bien acostumbrados a los viajes interestelares. La reputación de los Oriones como ladrones, piratas y comerciantes ilícitos puede hacer que otros desconfíen de ellos, pero también puede abrir puertas y crear oportunidades en partes más desagradables de la Galaxia.",
+
+    "Species.other.name": "Personalizado/Otro",
+
+    "Species.pandronian.name": "Pandroniano",
+
+    "Species.phylosian.name": "Phylosiano",
+
+    "Species.risian.name": "Risiano",
 
     "Species.reman.name": "Remano",
 
@@ -1665,12 +1914,23 @@
     "Species.romulan.traitDescription": "La fisiología romulana no es muy diferente de la vulcana, aunque una parte de la especie romulana cuenta con un ceño en forma de V que no se da en los vulcanos. La mayor diferencia es que los romulanos carecen de la intensiva disciplina mental común entre los vulcanos. Fisiológica y culturalmente, los romulanos valoran la astucia y la fuerza de voluntad, aparte de desconfiar de otras especies. Este sentimiento es mutuo, puesto que los romulanos tienen fama de ser manipuladores, engañosos y traicioneros.",
     "Species.romulan.traitDescription2e": "La fisiología romulana no es muy diferente de la vulcana, aunque una parte de la especie romulana cuenta con un ceño en forma de V que no se da en los vulcanos. La mayor diferencia es que los romulanos carecen de la intensiva disciplina mental común entre los vulcanos. Fisiológica y culturalmente, los romulanos valoran la astucia y la fuerza de voluntad, aparte de desconfiar de otras especies. Este sentimiento es mutuo, puesto que los romulanos tienen fama de ser manipuladores, engañosos y traicioneros.",
 
+    "Species.skorr.name": "Skorr",
+    "Species.skorr.aboutNames": "Los individuos Skorr generalmente tienen  un único nombre",
+    "Species.skorr.exampleValue": "Alar es nuestra salvación y nuestro maestro",
+
     "Species.suliban.name": "Suliban",
+
+    "Species.talarian.name": "Talariano",
+    "Species.talarian.exampleValue": "Poner a prueba constantemente las capacidades de uno promueve la Fuerza",
 
     "Species.tellarite.name": "Tellarita",
     "Species.tellarite.aboutNames": "Los nombres tellaritas manifiestan una gran diversidad pero tienden a componerse de ruidos broncos, incluso guturales. Sus nombres se componen de un nombre de pila y un apellido, aunque el apellido suele ser compuesto, lo que indica que es un patronímico (el nombre del padre), matronímico (el de la madre), toponímico (derivado de un nombre de lugar) o algo similar. En este aspecto, los prefijos funcionan de modo similar a “o’”, “Mc”, “von” y otros elementos similares en los nombres humanos.",
     "Species.tellarite.description": "La robusta y hosca especie tellarita procede de Tellar Prime, un planeta templado del Cuadrante Alfa. La suya es una cultura caracterizada por la hosquedad y la tendencia a discutir, por ser gente testarudamente orgullosa, malhumorada y poco paciente. Sin embargo, esa es solo la imagen superficial: aunque los tellaritas son dados a discutir, se debe a su sentido de honestidad intelectual y riguroso escepticismo. Para un tellarita, ninguna idea, concepto o persona está por encima de pruebas y análisis y cualquier noción que no pueda superar su verificación no vale la pena. Los tellaritas disfrutan debatiendo y tienden a recibirse entre sí con críticas, quejas e incluso insultos. No pagar con la misma moneda está mal visto, puesto que representa un carácter débil y poca disposición a enfrentarse a los defectos y errores.",
+    "Species.tellarite.exampleValue": "Todas las ideas deben soportar el escrutinio",
     "Species.tellarite.traitDescription": "Los tellaritas tienen un potente sentido del olfato y una alta tolerancia a muchas drogas, toxinas y estupefacientes comunes (los tellaritas no se emborrachan, solo se vuelven más pendencieros). También tienen una vista excelente y una percepción de la distancia, profundidad y volumen más agudas que las humanas.",
+
+    "Species.tiburonian.name": "Tiburoniano",
+    "Species.tiburonian.exampleValue": "La vida no es nada sin la busqueda de la alegría",
 
     "Species.trill.name": "Trill",
     "Species.trill.aboutNames": "Los nombres trill se componen de un nombre de pila y un apellido aunque, en el caso de un trill Unido, el apellido se sustituye por el nombre del simbionte.",
@@ -1679,6 +1939,9 @@
     "Species.trill.exampleValue": "Cuatro vidas de aventuras",
     "Species.trill.traitDescription": "Los trill son especialmente resistentes a los parásitos, como efecto secundario de su capacidad para Unirse a los simbiontes. Los trill Unidos son totalmente inmunes a las infecciones parasitarias. Sin embargo, tienden a sufrir fuertes reacciones alérgicas a las picaduras de insecto y a otras formas de veneno, que pueden interferir en su neuroquímica, sobre todo si están Unidos. Como muchos detalles de la fisiología trill (especialmente los relacionados con su simbiosis) no son de conocimiento público, pueden darse complicaciones médicas.",
     "Species.trill.traitDescription2e": "Los trill son especialmente resistentes a los parásitos, como efecto secundario de su capacidad para Unirse a los simbiontes. Los trill Unidos son totalmente inmunes a las infecciones parasitarias. Sin embargo, tienden a sufrir fuertes reacciones alérgicas a las picaduras de insecto y a otras formas de veneno, que pueden interferir en su neuroquímica, sobre todo si están Unidos. Como muchos detalles de la fisiología trill (especialmente los relacionados con su simbiosis) no son de conocimiento público, pueden darse complicaciones médicas.",
+
+    "Species.tzenkethi.name": "Tzenkethi",
+    "Species.tzenkethi.exampleValue": "El poder es el único derecho",
 
     "Species.vorta.name": "Vorta",
     "Species.vorta.description": "Los vorta son formas de vida diseñadas genéticamente, creadas para servir como consejeros, científicos, diplomáticos y supervisores del Dominio, por lo que actúan como máximos representantes de los Fundadores, a la vez que son sus sirvientes más próximos. Los vorta se clonan en remesas de seres idénticos. Cada nuevo clon se activa y entra en servicio a la muerte de su predecesor, con lo que recibe los recuerdos de los que le precedieron, pese a lo cual cada uno es un individuo distinto. Los vorta son extremadamente astutos e ingeniosos pero tienen poca creatividad o sentido de la estética. Los personajes vorta tienen los siguientes modificadores:",
@@ -1691,6 +1954,18 @@
     "Species.vulcan.exampleValue": "El bienestar de la mayoría supera al bienestar de la minoría o de uno solo",
     "Species.vulcan.traitDescription": "Al provenir de un mundo árido, duro y de alta gravedad, los vulcanos tienen una resistencia natural al calor extremo y a la deshidratación. Son extremadamente fuertes y tienen unos agudos sentidos del oído y el olfato. También poseen telepatía, aunque requiere formación manifestarla adecuadamente, y desarrollan desde la infancia la disciplina mental y el control de las emociones. Sin embargo, mantener este control requiere meditaciones regulares, y su naturaleza aucontrolada unida a su deseo de intimidad puede alejarles de los demás y hacer que la interacción con ellos resulte ocasionalmente incómoda.",
     "Species.vulcan.traitDescription2e": "Los vulcanos tienen una alta tolerancia natural al calor extremo, son resistentes a la deshidratación y pueden proteger sus ojos de la luz cegadora con un par de párpados secundarios. Sus sentidos auditivo y olfativo son extremadamente agudos, y la gravedad de su mundo natal significa que un vulcano medio es tres veces más fuerte que un humano de tamaño y peso similares. Los vulcanos son telepáticos por naturaleza y, gracias a un exhaustivo entrenamiento desde la infancia, sus mentes pueden suprimir sus respuestas emocionales e incluso influir en los procesos biológicos, aunque para ello necesitan meditar con regularidad.",
+
+    "Species.xindiArboreal.name": "Xindi-Arbóreo",
+
+    "Species.xindiPrimate.name": "Xindi-Primate",
+
+    "Species.xindiReptilian.name": "Xindi-Reptiliano",
+
+    "Species.xindiInsectoid.name": "Xindi-Insectoide",
+
+    "Species.yridian.name": "Yridiano",
+
+    "Species.zakdorn.name": "Zakdorn",
 
     "Species.mixedSpecies.text": "{{primarySpecies}} / {{secondarySpecies}}",
 
@@ -1732,6 +2007,7 @@
 
     "SpeciesAbility.klingon.description": "Ganas 1 Protección que se acumula con los beneficios de cualquier armadura que lleves. Además, cuando otro personaje intente _Primeros auxilios_ para curarte, puede repetir la tirada de un d20.",
 
+    "SpeciesAbility.napean": "Empático/Escudo Mental",
     "SpeciesAbility.orion": "Nunca al pie de la letra",
 
     "SpeciesAbility.orion.description": "Una vez por escena, puedes añadir 1 punto de Amenaza para hacer una pregunta al director de juego sobre la situación, como si hubieras gastado Inercia para _\"Obtener información\"_.",
@@ -1761,6 +2037,12 @@
     "StarSystem.common.primaryStar": "Estrella Primaria",
     "StarSystem.common.companionStar": "Estrella Compañera",
 
+    "SupportingCharacterModificationType.additionalAttribute": "Atributo adicional",
+    "SupportingCharacterModificationType.additionalDepartment": "Disciplina adicional",
+    "SupportingCharacterModificationType.additionalFocus": "Especialidad adicional",
+    "SupportingCharacterModificationType.additionalTalent": "Talento adicional",
+    "SupportingCharacterModificationType.additionalValue": "Valor adicional",
+
     "Talent.text.rank": "{{talentName}} [Rank: {{rank}}]",
 
     "Talent.ablativeArmor": "Armadura Ablativa",
@@ -1768,6 +2050,8 @@
     "Talent.ablativeArmor.description": "El blindaje del casco de la nave tiene una capa ablativa adicional que se desintegra lentamente a temperaturas extremas, como las causadas por las armas de energía y las explosiones de los torpedos, disipando la energía y protegiendo la nave. Este blindaje se sustituye periódicamente. La Resistencia de la nave aumenta en 2.",
     "Talent.ablativeArmor.description2e": "El blindaje del casco de la nave tiene una capa ablativa adicional que se desintegra lentamente bajo temperaturas extremas. Aumenta la Resistencia de la nave en 2.",
 
+    "Talent.ablativeArmorGenerator": "Generador de Armadura Ablativa",
+    "Talent.ablativeFieldProjector": "Projector de Campo Ablativo",
     "Talent.abruptInsights": "Perspectivas abruptas",
 
     "Talent.abruptInsights.description": "Tu perspicacia para comprender la mente de los demás puede darte una ventaja a la hora de interactuar con ellos, aunque no todo el mundo se siente cómodo cuando otra persona te dice lo que piensas. Cuando intentas realizar una tarea como parte de un conflicto social, puedes aumentar el nivel de complicación en 1, 2 ó 3; si lo logras, generas 1 punto de Inercia adicional igual al aumento del nivel de complicación. Esta Inercia adicional no se puede guardar.",
@@ -1781,6 +2065,7 @@
 
     "Talent.adaptableEnergyWeapons.description2e": "\nCuando selecciones este talento, elige una de las armas de energía de tu nave y elige un tipo de arma de energía diferente (el emisor permanece inalterado). Cuando realices un ataque con esa arma de energía, puedes utilizar el tipo de arma de energía alternativo para el ataque, pero el rango de complicación de ese ataque aumenta en 1.\n\nPuedes seleccionar este talento varias veces, eligiendo un tipo de arma de energía diferente cada vez.",
 
+    "Talent.adaptiveShieldModulator": "Modulador de Escudo Adaptativo",
     "Talent.advancedEmergencyCrewHolograms": "Personal de emergencia holográfico avanzado",
 
     "Talent.advancedEmergencyCrewHolograms.description2e": "La nave tiene varios personajes holográficos de apoyo equivalentes a la mitad de la puntuación de Ordenadores de la nave (redondeando hacia arriba); su apariencia y personalidad se determinan cuando se crea la nave, aunque los personajes de apoyo tienen un rasgo de especie de Holograma. Pueden activarse o desactivarse como una acción menor, y no requieren ningún Apoyo de Tripulación para aparecer. No pueden operar fuera de la nave, y no mejoran cuando se introducen en aventuras posteriores. Sin embargo, si se utiliza cualquier avance de personaje para mejorar estos personajes de apoyo, todos los personajes de apoyo otorgados por este talento reciben el avance.",
@@ -1828,6 +2113,7 @@
 
     "Talent.ambushTactics.description2e": "Cuando tienes éxito en un Ataque contra un enemigo que no es consciente de tu presencia, o que sufre un rasgo o complicación que representa una debilidad o vulnerabilidad, aumenta la Gravedad del Ataque en 2.",
 
+    "Talent.anAnswerForEverything": "Una respuesta para todas las cosas",
     "Talent.annularConfinementJacketing": "Revestimiento de confinamiento anular",
 
     "Talent.annularConfinementJacketing.description2e": "La nave puede realizar un ataque con sus armas de energía mientras está en warp; sin embargo, el alcance de estos ataques se limita a Corto alcance, y la Dificultad del ataque se incrementa en 1.",
@@ -1916,6 +2202,7 @@
 
     "Talent.calmAndLogical.description2e": "Cuando obtienes un rasgo que representa un estado de ánimo o emocional, puedes suprimir ese rasgo (ignorando su efecto) durante la duración de una única tarea o un único turno en combate sufriendo 1 punto de Estrés.",
 
+    "Talent.captainsYacht": "Yate del Capitán",
     "Talent.cautiousCommand": "Prudente: Mando",
 
     "Talent.cautiousCommand.description": "Cuando emprendas una Tarea con Mando y adquieras 1 o más d20 gastando Inercia, puedes repetir un único d20. ",
@@ -1948,6 +2235,9 @@
 
     "Talent.chosenSpeaker.description2e": "Entre las comunidades de Aenar, los líderes y mediadores se eligen cuando surge la necesidad, nombrando a un individuo para servir como Portavoz. Has sido elegido para este papel a menudo y eres experto en usar tus sentidos y tu telepatía para facilitar la comunicación. Cuando intentes comunicarte telepáticamente con un ser dispuesto, puedes repetir la tirada de 1d20.",
 
+    "Talent.classifiedDesign": "Diseño Restringido",
+    "Talent.cloakedMines": "Minas camufladas",
+    "Talent.cloakingDevice": "Dispositivo de camuflaje",
     "Talent.closeKnitCrew": "Tripulación estrechamente unida",
 
     "Talent.closeKnitCrew.description2e": "Cuando comienza una escena, si hay menos puntos de Inercia en la reserva del grupo que personajes en la escena que tengan este talento, añade inmediatamente 1 punto de Inercia a la reserva del grupo.",
@@ -1985,10 +2275,13 @@
 
     "Talent.collaborationSecurity.description": "Siempre que un aliado emprenda una Tarea usando Seguridad, puedes gastar un punto de Inercia (Inmediato) para permitirle usar tu valor en la Disciplina en cuestión y una de tus Especialidades.",
 
+    "Talent.combatGunner": "Artillero de combate",
     "Talent.combatMedic": "Médico de combate",
 
     "Talent.combatMedic.description2a": "Al intentar una tarea de Medicina durante el combate, puedes elegir un rasgo que aumente la Dificultad de la tarea e ignorarlo.",
 
+    "Talent.commandShip": "Nave de Comando",
+    "Talent.compactVessel": "Nave compacta",
     "Talent.computerExpertise": "Pericia informática",
 
     "Talent.computerExpertise.description": "Cuando emprendas una Tarea relacionada con la programación o el análisis de un sistema informático, puedes añadir 1d20 a tu reserva de dados.",
@@ -2052,6 +2345,9 @@
     "Talent.defuseTheTension.description": "Cuando emprendas una Tarea para convencer a alguien de no actuar con violencia, puedes añadir 1d20 adicional a tu reserva de dados.",
     "Talent.defuseTheTension.description2e": "Cuando emprendas una Tarea para convencer a alguien de no actuar con violencia, el primer d20 que compras para esta tarea es gratis.",
 
+    "Talent.dedicatedSubspaceTransceiverArray": "Matriz Dedicada de Transceptores Subespaciales",
+    "Talent.deluxeGalley": "Cocina Lujosa",
+    "Talent.demolitionist": "Experto en Demoliciones",
     "Talent.diagnosticExpertise": "Experiencia en diagnósticos",
 
     "Talent.diagnosticExpertise.description": "Cuando tienes éxito en una tarea de Medicina para identificar y diagnosticar la naturaleza de un problema médico, puedes hacer una pregunta -como en \"Obtener Información\"- por cada d20 adicional que hayas comprado gastando Inercia.",
@@ -2060,6 +2356,7 @@
 
     "Talent.didTheReading.description2e": "Cuando intentas una tarea, puedes gastar 1 punto de Inercia (Inmediato) para usar Ciencia en esa tarea en lugar del departamento que usarías normalmente. Además, cuentas como si tuvieras una especialidad aplicable para esa tarea. Cada vez que utilizas esta habilidad después de la primera en una misma escena, el coste de Inercia aumenta en 1: esto es acumulativo.",
 
+    "Talent.diplomaticSuites": "Suites Diplomáticos",
     "Talent.doctorsOrders": "Órdenes del doctor",
 
     "Talent.doctorsOrders.description": "Cuando emprendas una Tarea para coordinar a otros o para obligar a alguien a adoptar o abandonar cierto curso de acción, puedes usar la Disciplina de Medicina en lugar de Mando.",
@@ -2069,6 +2366,7 @@
 
     "Talent.dontYouDieOnMe.description2e": "Cuando un personaje muere, puedes gastar Determinación para hacer un intento de revivirlo. Si murió instantáneamente por un Ataque, esto sólo puede intentarse dentro de esa escena. Si el personaje sufrió una Herida y murió porque no recibió tratamiento médico a tiempo, esto puede intentarse antes del final de la escena siguiente. Esto requiere una tarea de Osadía + Medicina, con una Dificultad de 3. Si tienes éxito, el personaje vuelve del umbral de la muerte, aunque permanecerá Derrotado durante el resto de la aventura. Fracasar significa que tus esfuerzos han sido infructuosos y el personaje muere.",
 
+    "Talent.dualEnvironment": "Ambiente Dual",
     "Talent.durability": "Resistencia",
 
     "Talent.durability.description": "Ya sea mediante ingeniería genética o implantes cibernéticos, eres más resistente que la mayoría de la gente. Obtienes Protección 2.",
@@ -2077,6 +2375,8 @@
 
     "Talent.efficientEvasion.description2e": "Cuando intentas una acción mayor de \"Evasión\" por segunda vez consecutiva durante una escena, añades 1 punto de Inercia a la reserva del grupo.",
 
+    "Talent.electronicWarfareSystems": "Sistemas de Guerra Electrónica",
+    "Talent.emergencyMedicalHologram": "Holograma Médico de Emergencia",
     "Talent.empath": "Émpata",
 
     "Talent.empath.description": "Puedes percibir las emociones de la mayoría de seres vivos cercanos y puedes comunicarte telepáticamente con otros émpatas y con telépatas, así como con aquellos con los que tengas una familiaridad extrema. No puedes decidir no percibir las emociones de los seres cercanos, salvo aquellos resistentes a la telepatía. Puede suponer un esfuerzo y una Tarea localizar las emociones de un individuo concreto entre una multitud o bloquear las emociones de los seres cercanos. Aumenta la Dificultad de esta Tarea en situaciones estresantes, si hay muchos seres presentes, si el personaje es resistente a la telepatía o cualquier otro factor relevante.",
@@ -2085,11 +2385,18 @@
 
     "Talent.empathy2e.description": "Puedes percibir las emociones de la mayoría de seres vivos cercanos y puedes comunicarte telepáticamente con otros émpatas y con telépatas, así como con aquellos con los que tengas una familiaridad extrema. No puedes decidir no percibir las emociones de los seres cercanos, salvo aquellos resistentes a la telepatía. Puede suponer un esfuerzo y una Tarea localizar las emociones de un individuo concreto entre una multitud o bloquear las emociones de los seres cercanos. Aumenta la Dificultad de esta Tarea en situaciones estresantes, si hay muchos seres presentes, si el personaje es resistente a la telepatía o cualquier otro factor relevante.",
 
+    "Talent.engineeringScienceAffinityUnofficial": "Afinidad Ingeniería/Ciencia",
+    "Talent.expandedEmergencyMedicalFacilities": "Instalaciones médicas de emergencia ampliadas",
+    "Talent.expandedMunitions": "Municiones ampliadas",
+    "Talent.expansiveDepartment": "Departamento Extenso",
     "Talent.expeditionExpert": "Experto en expediciones",
 
     "Talent.expeditionExpert.description2e": "Antes de participar en una misión del equipo de salida, puedes hacer preparativos adicionales gastando 2 puntos de Inercia (inmediato). Durante la expedición, cualquier miembro del equipo de salida puede repetir una tirada de dados en cualquier tarea para desplazarse por el terreno o sortear un peligro u obstáculo. El equipo de salida puede repetir un número total de dados igual a tu nivel de Ciencia.",
 
+    "Talent.experimentalVessel": "Nave experimental",
+    "Talent.exploitWeakness": "Aprovechar debilidades",
     "Talent.extensiveAutomation": "Automatismo ampliado",
+    "Talent.extensiveMedicalLaboratories": "Laboratorios Médicos amplios",
     "Talent.extensiveShuttlebays": "Hangares amplios",
     "Talent.extraEffort": "Esfuerzo adicional",
 
@@ -2099,6 +2406,7 @@
 
     "Talent.extraSensoryPerception.description2e": "Tienes la capacidad de percibir cosas más allá de los límites normales de los sentidos humanoides, lo que te permite obtener conocimiento de personas, lugares y objetos más allá de tu capacidad para percibirlos de forma convencional. Esto se conoce como percepción extrasensorial o PES. No está directamente bajo su control, sino que suele presentarse en forma de suposiciones precisas, sensaciones fuertes o destellos de perspicacia. Esta sensibilidad a menudo te hace vulnerable a los peligros psíquicos. En cualquier momento durante el juego, puedes pedir al director de juego pistas o intuiciones sobre la situación actual, y el director de juego puede ofrecerte información sobre la situación actual que normalmente no serías capaz de determinar. Cada pista añade 1 punto de Amenaza, y siempre puedes negarte a aceptar las pistas ofrecidas.",
 
+    "Talent.fastTargetingSystems": "Sistemas de Mira Rápida",
     "Talent.fellowshipSpeciality": "Especialidad de la beca de investigación",
 
     "Talent.fellowshipSpeciality.description2e": "Selecciona una especialidad. Cuando tienes éxito en una tarea de Medicina en la que se aplica esa especialidad, el coste de puntos de Inercia de \"Crear rasgo\" se reduce a 1.",
@@ -2112,6 +2420,7 @@
     "Talent.fieldMedicine.description": "Cuando emprendas una Tarea de Medicina, puedes ignorar cualquier aumento de la Dificultad debido a trabajar sin herramientas o equipo apropiados.",
     "Talent.fieldMedicine.description2e": "Cuando emprendas una Tarea de Medicina, puedes ignorar cualquier aumento de la Dificultad o rango de complicación debido a trabajar sin herramientas o equipo apropiados.",
 
+    "Talent.finesseStrikes": "Ataques refinados",
     "Talent.firstResponse": "Atención primaria",
 
     "Talent.firstResponse.description": "Cuando emprendas una Tarea de “Primeros Auxilios” en combate, recibes 1d20 adicional. Además, siempre puedes tener Éxito por un Precio, de modo que cada Complicación que sufras sume un +1 a la Dificultad a los posteriores intentos de curar la Herida del paciente.",
@@ -2122,6 +2431,7 @@
     "Talent.flyBy.description": "Cuando emplees el Uso de Inercia “Tarea Rápida”, no aumentes la Dificultad de la segunda Tarea si esta consiste en pilotar una nave o vehículo.",
     "Talent.flyBy.description2e": "Cuando emplees el Uso de Inercia “Tarea Rápida”, no aumentes la Dificultad de la segunda Tarea si esta consiste en pilotar una nave.",
 
+    "Talent.focusedFire": "Fuego concentrado",
     "Talent.followMyLead": "Sígueme",
 
     "Talent.followMyLead.description": "Una vez por escena, cuando tengas éxito en una Tarea en combate o en otra situación peligrosa, puedes gastar un punto de Determinación. Si lo haces, escoge a un aliado. Se considera que la próxima Tarea que emprenda dicho aliado cuenta con tu ayuda, para lo cual tiras Presencia + Mando",
@@ -2132,6 +2442,7 @@
     "Talent.formerInitiate.description": "Te uniste al Programa de Iniciados con la esperanza de que el Comité de Simbiosis te escogiese para Unirte. Como hay muchos más iniciados que simbiontes, fuiste uno de los muchos que no lo lograron pero la calidad de un iniciado, incluso uno rechazado, es suficiente como para que te reclute la Flota Estelar. Cuando emprendes una Tarea usando Control o Razón y gastas Determinación para adquirir un d20 adicional para la Tarea, puedes repetir toda la tirada. Antiguo Iniciado no se puede adquirir si el personaje tiene el Talento Unido (se excluyen mutuamente).",
     "Talent.formerInitiate.description2e": "Te uniste al Programa de Iniciados con la esperanza de que el Comité de Simbiosis te escogiese para Unirte. Como hay muchos más iniciados que simbiontes, fuiste uno de los muchos que no lo lograron pero la calidad de un iniciado, incluso uno rechazado, es suficiente como para que te reclute la Flota Estelar u otras organizaciones. Cuando emprendes una Tarea usando Control o Razón y gastas Determinación para adquirir un d20 adicional para la Tarea, puedes repetir toda la tirada. Antiguo Iniciado no se puede adquirir si el personaje tiene el Talento Unido (se excluyen mutuamente).",
 
+    "Talent.fourNacelleStability": "Estabilidad de cuatro góndolas",
     "Talent.getDown": "¡A cubierto!",
 
     "Talent.getDown.description": "Tú y los aliados que estéis a Corto alcance ganáis +1 Protección mientras estéis a Cubierto.",
@@ -2140,6 +2451,7 @@
 
     "Talent.glancingImpact.description2e": "Siempre que tengas éxito en la acción mayor \"Acción evasiva\", aumenta la Resistencia de la nave que pilotas en 2; esta bonificación dura hasta el inicio de tu siguiente turno.",
 
+    "Talent.grapplerCableSpecialRule": "Cable de agarre",
     "Talent.greedIsEternal": "La codicia es eterna",
 
     "Talent.greedIsEternal.description2e": "Cuando participes en negociaciones -incluso en conflictos sociales- que puedan reportarte beneficios personales, puedes añadir 1 punto de Amenaza para repetir tu tirada de dados.",
@@ -2156,6 +2468,10 @@
 
     "Talent.handsOnPilot.description2e": "Cuando realices las acciones principales \"Warp\", \"Acción Evasiva\" o \"Patrón de Ataque\", la nave puede contar su rango de especialidad como el doble del valor del departamento correspondiente (es decir, si la nave tiene un Pilotaje de 3, obtendrá un éxito crítico en cualquier tirada de 6 o menos). Sin embargo, cuando otra persona pilote la nave, aumenta el rango de complicación en 1.",
 
+    "Talent.highIntensityEnergyWeapons": "Armas de energía de alta intensidad",
+    "Talent.highResolutionSensors": "Sensores de alta resolución",
+    "Talent.highPowerTractorBeam": "Rayo tractor de alta potencia",
+    "Talent.highResolutionSensors": "Sensores de alta resolución",
     "Talent.iKnowMyShip": "Conozco mi nave",
 
     "Talent.iKnowMyShip.description": "Cuando emprendas una Tarea para determinar el origen de un problema técnico en tu nave, añade 1d20 adicional a tu reserva de dados.",
@@ -2165,6 +2481,15 @@
 
     "Talent.imGivingItAllShesGot.description2e": "Una vez por escena, cuando a la nave no le quede Energía de Reserva al comienzo de tu turno, puedes añadir 2 puntos de Amenaza para ganar Energía de Reserva.",
 
+    "Talent.improvedDamageControl": "Control de Daños Mejorado",
+    "Talent.improvedHullIntegrity": "Integridad del casco mejorada",
+    "Talent.improvedImpulseDrive": "Motor de impulso mejorado",
+    "Talent.improvedPowerSystems": "Sistemas de Energia mejorados",
+    "Talent.improvedProbeBay": "Bahía de Sondas mejorada",
+    "Talent.improvedReactionControlSystem": "Sistema de control de reacción mejorado",
+    "Talent.improvedShieldRecharge": "Recarga de Escudo mejorada",
+    "Talent.improvedWarpDrive": "Motor de Curvatura mejorado",
+    "Talent.improvisedWeaponTraining": "Entrenamiento en Armas mejorado",
     "Talent.incisiveScrutiny": "Escrutinio incisivo",
 
     "Talent.incisiveScrutiny.description": "Se te da bien encontrar puntos débiles en argumentos, teorías y máquinas por igual así como \"Obtener información\" y averiguar cosas por cómo responden a la presión sobre sus puntos vulnerables. Cuando tengas éxito una Tarea de Control o Perspicacia, recibes un punto adicional de Inecia que solo se puede utilizar para \"Obtener información\".",
@@ -2174,6 +2499,7 @@
 
     "Talent.indefatigable.description2e": "Cuando fallas una tarea, y vuelves a intentar esa tarea durante la misma escena, reduces la Dificultad del segundo intento (y de cualquier intento posterior si sigues fallando) en 1.",
 
+    "Talent.independentPhaserSupply": "Suplemento independiente de Faser",
     "Talent.inertia": "Inercia",
 
     "Talent.inertia.description2e": "Cuando utilizas la acción menor Impulso, puedes gastar 1 punto de Inercia para moverte una zona adicional siempre que hayas utilizado la acción menor Impulso o la acción mayor Warp en tu turno anterior.",
@@ -2187,6 +2513,7 @@
     "Talent.intenseScrutiny.description": "Cuando tengas éxito en una Tarea de Razón o Control que forme parte de una Tarea Extendida, puedes ignorar hasta 2 puntos de Resistencia por cada Efecto obtenido.",
     "Talent.intenseScrutiny.description2e": "Cuando tengas éxito en una Tarea de Razón o Control que forme parte de una Tarea Extendida, puedes ignorar cualquier Resistencia en esa tarea extendida.",
 
+    "Talent.intensiveTrainingSpecialRule": "Entrenamiento intensivo",
     "Talent.interrogation": "Interrogación",
 
     "Talent.interrogation.description": "Cuando tengas éxito en una Tarea para obligar a alguien a revelar información en un Conflicto Social, recibes un punto adicional de Inercia que solo se puede emplear en el uso de Inercia “Obtener Información”.",
@@ -2220,6 +2547,8 @@
 
     "Talent.labRat.description2e": "Cuando intentes realizar una tarea extendida en un laboratorio, aumenta tu Impacto en 1.",
 
+    "Talent.landingGear": "Tren de aterrizaje",
+    "Talent.largerCrew": "Tripulación Incrementada",
     "Talent.leadInvestigator": "Investigador principal",
 
     "Talent.leadInvestigator.description2e": "Siempre que intentes una tarea para recuperar o analizar pruebas de un crimen, puedes volver a tirar 1d20. Cuando gastas uno o más puntos de Inercia para \"Obtener Información\" para hacer preguntas sobre la escena del crimen o las pruebas, puedes hacer una pregunta adicional.",
@@ -2237,6 +2566,8 @@
     "Talent.martialArtist.description2e": "Tus Ataques Desarmados pueden infligir heridas mortíferas y no letales.",
 
     "Talent.meanRightHook": "Buen gancho de derecha",
+
+    "Talent.meanRightHook.alias.klingonCore": "Ataque del guerrero",
 
     "Talent.meanRightHook.description": "Tu Ataque Desarmado tiene el Efecto de Daño “Cruel 1”.",
     "Talent.meanRightHook.description2e": "Tu Ataque Desarmado gana la calidad Intenso.",
@@ -2262,6 +2593,10 @@
 
     "Talent.miracleWorker.description2e": "Siempre que tengas éxito en una tarea de Ingeniería para superar una tarea extendida, puedes aumentar tu Impacto en 1 gastando 1 punto de Inercia en lugar de 2.",
 
+    "Talent.missionOfMercy": "Misión misericordiosa",
+    "Talent.missionPod": "Cápsula de misión",
+    "Talent.modularLaboratories": "Laboratorios Modulares",
+    "Talent.movingTarget": "Blanco móvil",
     "Talent.multiDiscipline": "Multidisciplinar",
 
     "Talent.multiDiscipline.description2e": "Puede seleccionar un Beneficio de Función adicional, que no puede ser Oficial de Mando.",
@@ -2270,6 +2605,7 @@
 
     "Talent.multiTasking.description2e": "Cuando intentas la acción mayor Tomar el control mientras estás en un puesto del puente que incluye uno o ambos puestos de timonel o navegante, puedes usar tu departamento Pilotaje en lugar del departamento normalmente requerido para esa tarea.",
 
+    "Talent.multiVectorAssaultMode": "Modo de ataque Multi-vector",
     "Talent.nervePinch": "Pinza vulcana",
 
     "Talent.nervePinch.description": "Has aprendido numerosas técnicas de estimulación y control de impulsos nerviosos (llamadas en conjunto “neuropresión”). Algunas aplicaciones de la neuropresión permiten incapacitar a un agresor de forma rápida y no letal. La pinza vulcana, también llamado pellizco vulcano, se considera un arma Cuerpo a cuerpo con 1[D], Tamaño 1M y las cualidades Intensa y No Letal. Puedes usar Ciencia o Medicina en lugar de Seguridad al intentar realizar un Ataque de pinza vulcana y puedes aumentar el daño utilizando las Disciplinas Ciencia o Medicina en lugar de Seguridad.",
@@ -2283,6 +2619,7 @@
 
     "Talent.neverPlaceFriendshipAboveProfit.description2e": "Cuando ayudas a otra persona (incluso usando la acción Directa), y se producen una o más complicaciones, puedes sumar 1 punto de Amenaza para evitar sufrir cualquier efecto negativo de esa complicación (los demás personajes implicados se ven afectados normalmente).",
 
+    "Talent.nimbleWar": "Ágil",
     "Talent.noHesitation": "Sin vacilaciones",
 
     "Talent.noHesitation.description2e": "Al comienzo de cualquier ronda en una escena de acción, puedes sumar 1 punto de Amenaza para que lleve a cabo el primer Turno, independientemente de quién hubiera actuado primero en caso contrario.",
@@ -2291,11 +2628,13 @@
 
     "Talent.noPainNoGain.description2e": "Cuando fallas una tarea (pero no una tarea opuesta) en la que has utilizado tu Osadía, siempre puedes elegir tener éxito con un coste.",
 
+    "Talent.novice": "Novato",
     "Talent.orbExperience": "Experiencia del orbe",
 
     "Talent.orbExperience.description": "Has recibido una visión de los Profetas bajoranos mediante uno de los Orbes. Esta singular experiencia, aunque confusa en principio, ha cambiado tu vida y tu visión del mundo. Tienes un Valor adicional, que refleja las revelaciones que recibiste en dicha experiencia. La primera vez que te Enfrentes a este Valor, tira 1[D] ; si sacas un Efecto, ha acontecido alguno de los elementos predichos y el Valor no se tacha como sería habitual.",
     "Talent.orbExperience.description2e": "Has recibido una visión de los Profetas bajoranos mediante uno de los Orbes. Esta singular experiencia, aunque confusa en principio, ha cambiado tu vida y tu visión del mundo. Tienes un Valor adicional, que refleja alguna profecía o visión del futuro obtenida de tu visión. Además, una vez por sesión, cuando se utiliza ese valor, obtienes el doble del beneficio normal: si gastas Determinación, puedes obtener dos beneficios de la lista, mientras que si ganaras Determinación, ganarías 2 puntos en lugar de 1.",
 
+    "Talent.outOfHarmsWay": "Fuera de peligro",
     "Talent.openBook": "Libro abierto",
 
     "Talent.openBook.description": "Cuando un personaje entra en escena, puedes gastar 1 punto de Inercia (Inmediato) para hacer inmediatamente al director de juego una pregunta sobre las emociones actuales o los pensamientos superficiales de ese personaje. No puedes hacer esto con personajes inmunes a la telepatía.",
@@ -2339,6 +2678,8 @@
 
     "Talent.planOfAction.description2e": "Siempre que un aliado tenga éxito en una tarea que haya sido posible, o haya tenido una Dificultad reducida, gracias a un rasgo que hayas creado, y ese rasgo represente un plan, estrategia o curso de acción, genera 2 puntos de Inercía adicionales. Esta Inercia adicional no se puede guardar.",
 
+    "Talent.pointDefenseSystem": "Sistema de Defensa de Puntos",
+    "Talent.polarizedHullPlatingSpecialRule": "Revestimiento de casco polarizado",
     "Talent.positiveReinforcement": "Refuerzo positivo",
 
     "Talent.positiveReinforcement.description2e": "Una vez por misión, puedes intentar una tarea de Presencia + Medicina con una Dificultad de 3, mientras proporcionas tratamiento emocional o mental a otro personaje. El éxito crea un rasgo de carácter para tu paciente que dura hasta el final de la misión: Confianza Aumentada. Además de los efectos normales del rasgo, ese personaje puede volver a tirar su reserva de dados, como si hubiera gastado Determinación, una vez antes del final de la misión. Si la tarea en la que el personaje utilizó su repetición de tirada falla, pierde el rasgo creado por este talento.",
@@ -2364,10 +2705,13 @@
 
     "Talent.precisionTargeting2e.description": "Puedes elegir y apuntar más fácilmente a sistemas específicos cuando realices un Ataque contra una nave enemiga. Cuando realizas un Ataque con las armas de una nave espacial que tenga como objetivo un sistema de nave específico, puedes repetir la tirada de un d20.",
 
+    "Talent.prestigiousPosting": "Destacamento Prestigioso",
+    "Talent.preferentialTargeting": "Blanco preferente",
     "Talent.proceduralCompliance": "Cumplimiento de los procedimientos",
 
     "Talent.proceduralCompliance.description2e": "Cuando intentas una tarea de Ingeniería, puedes eliminar un d20 de tu reserva de dados antes de tirar. Si lo haces, obtienes un éxito automático en tu tarea.",
 
+    "Talent.prototypeCloakingDevice": "Prototipo",
     "Talent.proudAndHonorable": "Orgulloso y Honorable",
 
     "Talent.proudAndHonorable.description": "Tu integridad personal es intachable y no romperás voluntariamente una promesa que hayas hecho. Cuando emprendas una Tarea para resistir un intento de coaccionarte para romper una promesa, traicionar a tus aliados o actuar de algún otro modo deshonroso, reduces la Dificultad en 1.",
@@ -2381,16 +2725,20 @@
 
     "Talent.psychokinesis.description2e": "Puedes manipular y controlar objetos utilizando únicamente el poder de la mente. Puedes ejercer una fuerza psíquica sobre un objeto dentro de un radio de acción Corto equivalente a la fuerza que normalmente serías capaz de ejercer físicamente, aunque esto requiere concentración y no puede hacerse violentamente.\n\nPuedes gastar 1 punto de Inercia (Inmediata, Repetible) para aumentar la magnitud de la fuerza que aplicas, contando cada Inercia gastada como el valor de una persona adicional de fuerza aplicada (es decir, puedes mover o manipular objetos que necesitarían dos personas para moverse o manipularse gastando 1 punto de Inercia). También se puede gastar Inercia (Inmediata) para aumentar su alcance: 1 punto de Inercia para afectar a objetos a Medio alcance, 2 puntos de Inercia para afectar a objetos a Largo alcance, y a discreción del director de juego para distancias superiores. Para aplicar la fuerza violentamente en su lugar, añade 1 punto de Amenaza para realizar una tarea de Control + Seguridad con una Dificultad de 2 para golpear a un oponente (como un Ataque a Distancia), infligiendo un Daño no letal o Mortal con una Gravedad de 3.",
 
+    "Talent.pulsePhaserCannons": "Cañones de pulso faser",
     "Talent.pushTheLimits": "Forzar el límite",
 
     "Talent.pushTheLimits.description": "Cuando emprendas una Tarea de Pilotaje cuya Dificultad se haya aumentado a causa de condiciones del entorno o daño a los motores, reduce la Dificultad en uno (hasta un mínimo de Dificultad 1).",
     "Talent.pushTheLimits.description2e": "Cuando emprendas una Tarea de Pilotaje cuya Dificultad se haya aumentado a causa de condiciones del entorno o daño a los motores, puedes añadir 1 punto de Amenaza para ignorar el incremento de dificultad.",
 
+    "Talent.quantumTorpedoes": "Torpedos Quánticos",
+    "Talent.quantumSlipstreamBurstDrive": "Motor de explosión de deslizamiento cuántico",
     "Talent.quickStudy": "Reconocimiento rápido",
 
     "Talent.quickStudy.description": "Cuando emprendas una Tarea relacionada con un procedimiento médico o especie con los que no estés familiarizado, ignora cualquier aumento de la Dificultad debido a dicha falta de familiaridad.",
     "Talent.quickStudy.description2e": "Cuando emprendas una Tarea relacionada con un procedimiento médico o especie con los que no estés familiarizado, ignora cualquier aumento de la Dificultad o complicación debido a dicha falta de familiaridad.",
 
+    "Talent.quickSurvey": "Vistazo Rápido",
     "Talent.quickToAction": "Listo para la acción",
 
     "Talent.quickToAction.description": "Durante el primer Asalto de cualquier Combate, tú y tus aliados podéis ignorar el coste normal de Retener la Iniciativa.",
@@ -2404,10 +2752,15 @@
 
     "Talent.rapidHypothesis.description2e": "Una vez por escena, cuando hagas dos o más preguntas usando \"Obtener Información\", puedes crear inmediatamente un rasgo que represente tu comprensión teórica del tema de esas preguntas.",
 
+    "Talent.rapidFireTorpedoLauncher": "Lanzador de torpedos de disparo rápido",
+    "Talent.reasonedDiscourse": "Discurso fundamentado",
     "Talent.reassuring": "Reconfortante",
 
     "Talent.reassuring.description2e": "Cuando tienes éxito en una tarea utilizando tu Presencia, puedes gastar Inercia para tranquilizar a tus aliados, siempre que puedan oírte. Puedes gastar 1 punto de Inercia (repetible) para que un aliado que pueda verte y oírte recupere 1 punto de Estrés. Ese aliado no puede recuperar más de 3 puntos de Estrés con un solo uso de este talento.",
 
+    "Talent.readyForBattle": "Listo para la batalla",
+    "Talent.redundantSystems": "Sistemas redundantes",
+    "Talent.reliable": "Fiable",
     "Talent.repairTeamLeader": "Jefe del equipo de reparaciones",
 
     "Talent.repairTeamLeader.description2e": "Estás entrenado para dirigir y liderar equipos de reparación de daños durante emergencias, proporcionándoles tu guía y conocimiento experto de los sistemas de la nave. Si tienes éxito en la acción principal \"Control de daños\", puedes gastar 2 puntos de Inercia (repetible) para reparar una brecha adicional.",
@@ -2417,6 +2770,7 @@
     "Talent.resolute.description": "Eres indomable y no estás dispuesto a sucumbir ante la adversidad. Tu Estrés máximo aumenta en 3.",
     "Talent.resolute.description2e": "Tu Estrés Máximo aumenta en una cantidad igual a tu nivel de Mando.",
 
+    "Talent.regenerativeHull": "Casco regenerativo",
     "Talent.regimentedMind": "Mente disciplinada",
 
     "Talent.regimentedMind.description2e": "Cuando gastas Inercia para \"\"Obtener información\"\", puedes reducir en 1 la Dificultad de una tarea posterior en la misma escena, siempre que esa tarea esté relacionada con la información obtenida.",
@@ -2425,10 +2779,17 @@
 
     "Talent.rightToolForTheRightJob.description2e": "Siempre que adquieras una herramienta de ingeniería con un Coste de Oportunidad, el rasgo de equipo de esa herramienta gana 1 punto de Potencia (normalmente esto dará como resultado Potencia 2). Si la herramienta se utiliza en una tarea extendida, quien esté utilizando esa herramienta aumenta su Impacto en 1.",
 
+    "Talent.rousingSpeaker": "Orador enardecedor",
+    "Talent.ruggedDesign": "Diseño Robusto",
     "Talent.saboteur": "Saboteador",
 
     "Talent.saboteur.description2e": "Cuando realizas un Ataque contra una estructura, máquina o vehículo inmóvil mientras estás en combate personal (es decir, no estás usando las armas de una nave para realizar el Ataque), puedes usar tu Ingeniería en lugar de tu Seguridad para realizar el Ataque.",
 
+    "Talent.saboteurWar": "Saboteador",
+    "Talent.saucerSeparation": "Separador de disco",
+    "Talent.saucerSeparation2ndEdition": "Separador de disco",
+    "Talent.saucerSeparationAndReconnect": "Separador y reconector de disco",
+    "Talent.secondaryReactors": "Reactores secundarios",
     "Talent.secondWind": "Tomar aliento",
 
     "Talent.secondWind.description2e": "Puedes gastar Determinación al comienzo de tu turno para eliminar el estado de Derrotado y recuperar hasta la mitad de tu Estrés máximo. Se siguen aplicando los requisitos normales para gastar un punto de Determinación.",
@@ -2437,10 +2798,15 @@
 
     "Talent.selfReliant.description2e": "Siempre que tengas éxito en una tarea en la que no hayas comprado dados adicionales gastando Inercia o añadiendo a Amenaza, generas 1 punto Inercia adicional igual a la Dificultad de la tarea. Esta Inercia adicional no se puede guardar.",
 
+    "Talent.selfReplicatingMines": "Minas auto-replicantes",
+    "Talent.siphoningShields": "Escudos Sifónicos",
+    "Talent.slimSensorSilhouette": "Sensor de Silueta reducida",
+    "Talent.sophisticatedAstrometricsFacilities": "Instalaciones astrométricas sofisticadas",
     "Talent.spacewalk": "Paseo espacial",
 
     "Talent.spacewalk.description2e": "Siempre que la Dificultad de una tarea aumente debido a la gravedad baja o cero, ignora ese aumento de Dificultad. Si una tarea que normalmente es posible resulta imposible debido a la gravedad baja o nula, puedes intentarla con una dificultad +1.",
 
+    "Talent.specializedShuttlebay": "Bahía de lanzadera especializada",
     "Talent.spiritOfDiscovery": "Espíritu pionero",
 
     "Talent.spiritOfDiscovery.description": "Tienes el empuje, el espíritu y el coraje para viajar a lo desconocido. Puedes gastar un punto de Determinación para añadir tres puntos de Inercia al fondo común. Se siguen aplicando las condiciones normales para gastar Determinación.",
@@ -2477,7 +2843,10 @@
     "Talent.studious.description": "Cuando gastes uno o más puntos de Inercia para \"Obtener información\", puedes realizar una pregunta adicional (en total, no por cada punto de Inercia así gastado).",
     "Talent.studious.description2e": "Cuando gastes uno o más puntos de Inercia para \"Obtener información\", puedes realizar una pregunta adicional (en total, no por cada punto de Inercia así gastado).",
 
+    "Talent.sturdy": "Resistente",
     "Talent.supervisor": "Supervisor",
+
+    "Talent.supervisor.alias.klingonCore": "Líder de Guerra",
 
     "Talent.supervisor.description": "El Apoyo de Tripulación de la nave aumenta en 1. Este aumento es acumulativo si más de un Personaje Principal del grupo lo escoge, pero cada Personaje Principal solo puede escoger este Talento una vez.",
     "Talent.supervisor.description2e": "El Apoyo de Tripulación de la nave aumenta en 1. Este aumento es acumulativo si más de un Personaje Principal lo escoge, pero cada Personaje Principal solo puede escoger este Talento una vez.",
@@ -2486,6 +2855,7 @@
 
     "Talent.surverySavant.description2e": "Al intentar una tarea de Medicina durante una tarea extendida relacionada con la cirugía, tu Impacto aumenta en 1.",
 
+    "Talent.tachyonDetectionField": "Campo de detección de taquiones",
     "Talent.teacher": "Profesor",
 
     "Talent.teacher.description2e": "Cuando creas un rasgo para un aliado que representa tu orientación o consejo, ese aliado puede volver a tirar un d20 en una sola tarea que intente y que se beneficie de ese rasgo.",
@@ -2551,6 +2921,8 @@
     "Talent.untappedPotential.description": "Eres inexperto pero tienes talento y un brillante futuro en la Flota Estelar. No puedes tener ningún Atributo por encima de 11 ni ninguna Disciplina por encima de 4 mientras tengas este Talento (y puede que tengas que ajustar tus Atributos y Disciplinas en consecuencia al final de la creación de personaje). Cuando superes una Tarea en la que hayas adquirido uno o más dados mediante Inercia o Amenaza, puedes tirar 1[D] . Recibes una cantidad de Inercia igual a la tirada del [D] y sumas un punto de Amenaza si obtienes un Efecto. No puedes acceder a un rango superior al de teniente júnior mientras poseas este Talento.",
     "Talent.untappedPotential.description2e": "Selecciona uno de tus atributos cuando recibas este talento. Eres inexperto, pero con talento y un futuro brillante. No puedes tener ni aumentar ningún atributo por encima de 11, ni ningún departamento por encima de 4 mientras tengas este talento (y puede que tengas que ajustar los atributos y departamentos en consecuencia al final de la creación del personaje).\n\nSiempre que tengas éxito en una tarea para la que hayas comprado uno o más dados adicionales (por cualquier medio), tira un d20 después de la tirada. Si obtienes un resultado igual o inferior al atributo elegido, obtienes 1 punto de Inercia adicional; si obtienes un resultado superior, añade 1 punto de Amenaza en su lugar.  No puedes acceder a un rango superior al de teniente júnior mientras poseas este Talento, ni un rango de alistado superior al de Contramaestre.",
 
+    "Talent.variableGeometryWarpField": "Campo de Curvatura de geometría variable",
+    "Talent.versatileTractorBeam": "Rayo tractor versatíl",
     "Talent.veteran": "Veterano",
 
     "Talent.veteran.description": "Tienes experiencia, sabiduría y accedes a tus reservas interiores de fuerza de voluntad y determinación de forma más comedida y concienzuda. Cuando gastas un punto de Determinación, tiras 1[D] . Si obtienes un Efecto, recuperas inmediatamente el punto de Determinación gastado. Tienes un rango mínimo de teniente comandante.",
@@ -2580,9 +2952,17 @@
 
     "Talent.wellInformed.description2e": "Tienes contactos por doquier y escuchas noticias y rumores de todas partes. Al comienzo de una escena, puedes añadir 1 punto de Amenaza para hacer al director de juego dos preguntas sobre la situación o el lugar, como si hubieras gastado Inercia en el gasto \"Obtener información\". Las respuestas que recibas serán conocimientos que hayas obtenido de tus contactos y de las noticias y rumores que hayas oído.",
 
+    "Talent.wormholeRelaySystem": "Sistema de repetidor de agujero de gusano",
     "Talent.zeroGCombat": "Combate en gravedad cero",
 
     "Talent.zeroGCombat.description2e": "En combate, cuando realizas un Ataque mientras estás en un entorno de gravedad cero o microgravedad, puedes utilizar para la tarea el que tenga mayor valor de tus departamentos de Pilotaje o Seguridad, e ignoras cualquier aumento de dificultad causado por la falta de gravedad. Además, los enemigos que carezcan de un entrenamiento similar aumentan en 1 la Dificultad de los Ataques contra ti.",
+
+    "TalentCategory.general": "General",
+    "TalentCategory.career": "Carrera",
+    "TalentCategory.enhancement": "Mejora",
+    "TalentCategory.starship": "Nave Estelar",
+    "TalentCategory.starbase": "Base Estelar",
+    "TalentCategory.esoteric": "Esotérico",
 
     "Track.starfleet.command": "División de mando",
 
@@ -2613,6 +2993,7 @@
     "UniformEra.romulan": "Romulano",
     "UniformEra.suliban": "Suliban",
     "UniformEra.strangeNewWorlds": "Strange New Worlds",
+    "UniformEra.theMotionPicture": "La Película",
     "UniformEra.voyagerDS9": "Voyager/DS9",
 
     "Upbringing.starfleet.militaryOrExploration.name": "Flota Estelar",

@@ -70,7 +70,7 @@ class SingleTalentSelectionList extends React.Component<ISingleTalentSelectionPr
 
             return (
                 <tr key={i}>
-                    <td className="selection-header-small">{t.displayName}</td>
+                    <td className="selection-header-small">{t.localizedName}</td>
                     <td>{lines} {prerequisites}</td>
                     <td>
                         <CheckBox

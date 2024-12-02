@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { TableCollection } from "../model/table";
+import { TableCollection, ValueResult } from "../model/table";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import LcarsFrame from "../../components/lcarsFrame";
@@ -15,6 +15,7 @@ import { Button } from "react-bootstrap";
 import store from "../../state/store";
 import { addTableCollection } from "../../state/tableActions";
 import { Dialog } from "../../components/dialog";
+import { InputField } from "../../common/inputField";
 
 interface IEditTablePageProperties {
     initialTableCollection?: TableCollection;
@@ -29,7 +30,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [otherSelected, setOtherSelected] = useState(false);
-    const [tableCollection, setTableCollection] = useState(EditableTableCollection.from(initialTableCollection));
+    const [tableCollection, setTableCollection] = useState(() => EditableTableCollection.from(initialTableCollection));
 
     const categoryItems = () => {
         let sorted = categories.sort().map((v, i) => new DropDownElement(i, v));
@@ -82,6 +83,38 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
         }
     }
 
+    const selectRowName = (name: string, index: number) => {
+        const collection = tableCollection.copy();
+        const row = collection.mainTable.rows[index];
+        row.result = new ValueResult(name, row.result?.description);
+        setTableCollection(collection);
+    }
+
+    const selectRowDescription = (description: string, index: number) => {
+        const collection = tableCollection.copy();
+        const row = collection.mainTable.rows[index];
+        row.result = new ValueResult(row.result?.name, description);
+        setTableCollection(collection);
+    }
+
+    const selectRowFrom = (from: string, index: number) => {
+        const collection = tableCollection.copy();
+        const row = collection.mainTable.rows[index];
+        row.from = parseInt(from);
+        collection.mainTable.fillGaps();
+
+        setTableCollection(collection);
+    }
+
+    const selectRowTo = (to: string, index: number) => {
+        const collection = tableCollection.copy();
+        const row = collection.mainTable.rows[index];
+        row.to = parseInt(to);
+        collection.mainTable.fillGaps();
+
+        setTableCollection(collection);
+    }
+
     return (<LcarsFrame activePage={PageIdentity.ViewTable}>
         <div id="app">
 
@@ -129,6 +162,64 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
                         </div>
                     </div>
 
+                </div>
+
+                <div className="mt-3">
+                    <Header level={2}>Options</Header>
+
+                    <table className="table table-dark mt-3">
+                        <colgroup>
+                            <col width={"7%"} />
+                            <col width={"7%"} />
+                            <col width={"25%"} />
+                            <col width={"61%"} />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>
+                                    From
+                                </th>
+                                <th>
+                                    To
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Description
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            {tableCollection.mainTable.rows.map((r,i) =>
+                                (<tr key={'row-' + r.key}>
+                                    <td>
+                                        <InputField value={r.from} onChange={(value) => selectRowFrom(value, i)}
+                                            maxLength={2} className="rounded-1"
+                                            max={20} min={1}
+                                            style={{width: "3rem", textAlign: "center"}} />
+                                    </td>
+                                    <td>
+                                        <InputField value={r.to} onChange={(value) => selectRowTo(value, i)}
+                                            max={20} min={1}
+                                            maxLength={2} className="rounded-1" style={{width: "3rem", textAlign: "center"}} />
+                                    </td>
+                                    <td>
+                                        <InputField value={r.result?.name ?? ""}
+                                                onChange={(value) => selectRowName(value, i)}
+                                                className="rounded-1 w-100" />
+
+                                    </td>
+                                    <td>
+                                        <InputField value={r.result?.description ?? ""}
+                                                onChange={(value) => selectRowDescription(value, i)}
+                                                className="rounded-1 w-100" />
+                                    </td>
+                                </tr>)
+                            )}
+                        </tbody>
+                    </table>
                 </div>
 
                 <div className="text-end mt-4">

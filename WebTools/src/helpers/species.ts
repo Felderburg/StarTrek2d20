@@ -1705,13 +1705,13 @@ class _Species {
             Species.Horta,
             "Horta",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.CaptainsLog],
+            [Source.CaptainsLog, Source.ContinuingMissions],
             ["The Horta is a highly intelligent, silicon-based species capable of tunneling through solid rock."],
             [Attribute.Fitness, Attribute.Presence, Attribute.Reason],
             "Horta",
             "",
-            "",
-            [],
+            "Protect the Future",
+            [TalentsHelper.getTalent("Acidic Touch (Unofficial)"), TalentsHelper.getTalent("Hardened Biology (Unofficial)"), TalentsHelper.getTalent("Rocky Exterior (Unofficial)")],
             "",
             []),
         [Species.Illyrian]: new SpeciesModel(
@@ -1963,7 +1963,19 @@ class _Species {
             [TalentsHelper.getTalent("Engineering/Science Affinity (Unofficial)")],
             "",
             []),
-
+        [Species.Tribble]: new SpeciesModel(
+            Species.Tribble,
+            "Tribble",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.TribblePlayerCharacter],
+            ["Tribbles are small furry life-forms, often regarded as unintelligent, and are native to the plant Iota Geminorium IV. They make soft, calming, purring sounds when touched, and breed at an alarming rate outside of their native world. When in close proximity to Klingons, tribbles emit a high-pitched shriek. It is suggested that due to both species having a keen sense of smell, they find each other repulsive, the main reason for their mortal rivalry."],
+            [Attribute.Presence, Attribute.Fitness, Attribute.Insight],
+            "Tribble, Hungry",
+            "",
+            "",
+            [TalentsHelper.getTalent("Duplicate"), TalentsHelper.getTalent("Soothe"), TalentsHelper.getTalent("Klingons")],
+            "",
+            []),
 
 
         [Species.Nausicaan]: new SpeciesModel(

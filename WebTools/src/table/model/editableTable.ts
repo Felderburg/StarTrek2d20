@@ -1,37 +1,67 @@
 import { Table, TableCollection, TableRow, ValueResult } from "./table";
-
+import { v4 as uuidv4 } from 'uuid';
 
 export class EditableTableRow {
-    from: number;
-    to?: number;
-    result: ValueResult;
+    key: string;
+    private _from: number;
+    private _to?: number;
+    private _result: ValueResult;
     edited: boolean = false;
 
-    constructor(result?: ValueResult, from?: number, to?: number) {
-        this.from = from;
-        this.to = to;
-        this.result = result;
+    constructor(result?: ValueResult, from?: number, to?: number, key: string = uuidv4()) {
+        this.key = key;
+        this._from = from;
+        this._to = to;
+        this._result = result;
     }
 
     static from(row?: TableRow) {
         const result = new EditableTableRow();
-        result.from = row?.from;
-        result.to = row?.to;
-        result.result = row?.result;
+        result._from = row?.from;
+        result._to = row?.to;
+        result._result = row?.result;
         return result;
+    }
+
+    get result() {
+        return this._result;
+    }
+
+    set result(value: ValueResult) {
+        this._result = value;
+        this.edited = true;
+    }
+
+    get from() {
+        return this._from;
+    }
+
+    set from(value: number|undefined) {
+        this._from = value;
+        this.edited = true;
+    }
+
+    get to() {
+        return this._to;
+    }
+
+    set to(value: number|undefined) {
+        this._to = value;
+        this.edited = true;
     }
 
     copy() {
         const result = new EditableTableRow();
-        result.from = this.from;
-        result.to = this.to;
-        result.result = this.result;
+        result.key = this.key;
+        result._from = this._from;
+        result._to = this._to;
+        result._result = this._result;
         result.edited = this.edited;
         return result;
     }
 
     asTableRow() {
-        return new TableRow(this.result, this.from, this.to);
+        return new TableRow(this._result, this._from, this.to);
     }
 }
 
@@ -65,6 +95,69 @@ export class EditableTable {
     asTable() {
         return new Table(this.name, this.rows.map(r => r.asTableRow()));
     }
+
+    sortRows() {
+        this.rows.sort((r1, r2) => {
+            if (r1.from !== r2.from) {
+                return r1.from - r2.from;
+            } else if (r1.to !== r2.to) {
+                return r1.to - r2.to;
+            } else {
+                return -1;
+            }
+        });
+    }
+
+    fillGaps() {
+        let values = [
+            1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+            11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        ];
+
+        this.sortRows();
+
+        this.rows.forEach(r => {
+            let to = r.to == null ? r.from : Math.max(r.from, r.to);
+            for (let i = r.from; i <= to; i++) {
+                if (values.includes(i)) {
+                    values.splice(values.indexOf(i), 1);
+                }
+            }
+        });
+
+        let chunks: number[][] = [];
+        values.forEach(v => {
+            if (chunks.length === 0) {
+                chunks.push([v]);
+            } else {
+                let last = chunks[chunks.length-1];
+                if (last[last.length-1] === (v-1)) {
+                    last.push(v);
+                } else {
+                    chunks.push([v]);
+                }
+            }
+        });
+
+        chunks.forEach(c => {
+            let existingRow = undefined;
+            if (c[c.length-1] < 20) {
+                let temp = this.rows.filter(r => r.from === (c[c.length-1]+1));
+                if (temp.length) {
+                    existingRow = temp[0];
+                }
+            }
+
+            if (existingRow != null && !existingRow.edited) {
+                let index = this.rows.indexOf(existingRow);
+                this.rows[index] = new EditableTableRow(existingRow.result, c[0], existingRow.to, existingRow.key);
+            } else {
+                this.rows.push(new EditableTableRow(new ValueResult("Name", "Description"), c[0], c[c.length-1]));
+            }
+        });
+
+        this.sortRows();
+    }
 }
 
 
@@ -82,7 +175,7 @@ export class EditableTableCollection {
             result.category = tableCollection.category;
             result.mainTable = EditableTable.from(tableCollection.mainTable);
         } else {
-            result.mainTable = new EditableTable();
+            result.mainTable = EditableTable.from();
         }
         return result;
     }

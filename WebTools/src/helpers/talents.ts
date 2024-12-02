@@ -3260,6 +3260,24 @@ export class Talents {
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Napean, false)],
                 1,
                 "Napean"),
+            new TalentModel(
+                "Acidic Touch (Unofficial)",
+                "",
+                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Horta, false)],
+                1,
+                "Horta"),
+            new TalentModel(
+                "Hardened Biology (Unofficial)",
+                "",
+                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Horta, false)],
+                1,
+                "Horta"),
+            new TalentModel(
+                "Rocky Exterior (Unofficial)",
+                "",
+                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Horta, false)],
+                1,
+                "Horta"),
         ];
 
         private _starshipTalents: TalentModel[] = [

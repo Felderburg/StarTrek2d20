@@ -18,8 +18,8 @@ export class TableRow {
 }
 
 export class ValueResult {
-    name: string;
-    description?: string;
+    readonly name: string;
+    readonly description?: string;
 
     constructor(name: string, description?: string) {
         this.name = name;

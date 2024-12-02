@@ -84,7 +84,9 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
         let talents = [];
         if (character.speciesStep?.ability == null) {
             let species = SpeciesHelper.getSpeciesByType(character.speciesStep?.species);
-            species.talents.forEach(t => talents.push(t));
+            species.talents
+                .map(t => ToViewModel(t, 1, character.type, character.version))
+                .forEach(t => talents.push(t));
         } else if (character.speciesStep?.ability?.talentNames?.length) {
             character.speciesStep.ability.talentNames
                 .map(t => ToViewModel(TalentsHelper.getTalent(t), 1, character.type, character.version))

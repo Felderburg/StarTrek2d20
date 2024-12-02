@@ -124,6 +124,7 @@ const CreditsPage = () => {
                         <ul>
                             <li>Charles C. Li</li>
                             <li>Dr. Twitch</li>
+                            <li>James McShane</li>
                             <li>Ricardo Gonzales</li>
                         </ul>
 
