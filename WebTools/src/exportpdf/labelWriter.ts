@@ -9,6 +9,8 @@ import { FontSpecification } from "./fontSpecification";
 const changeLabelForVersion = (key: string, version: number) => {
     if (key === "Construct.other.departments" && version === 1) {
         return "Construct.other.disciplines";
+    } else if (key === "Construct.other.protection" && version === 1) {
+        return "Construct.other.resistance";
     } else {
         return key;
     }

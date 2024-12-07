@@ -402,7 +402,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
             this.headingFont, 5, Landscape2eCharacterSheet.greyColour, TextAlign.Left);
 
         labelWriter(page, {
-                "Construct.other.resistance": new Column(506.8, 305, 6, 46.5)
+                "Construct.other.protection": new Column(506.8, 305, 6, 46.5)
             }, construct.version,
             this.headingFont, 5, Landscape2eCharacterSheet.greyColour, TextAlign.Centre);
 

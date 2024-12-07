@@ -643,7 +643,10 @@ class MissionProfiles {
                 : this._profiles;
         } else if (starship.type === CharacterType.Civilian) {
             list = {
+                [MissionProfile.CrisisAndEmergencyResponse]: this._profiles2e[MissionProfile.CrisisAndEmergencyResponse],
+                [MissionProfile.EntertainmentPleasureShip]: this._profiles2e[MissionProfile.EntertainmentPleasureShip],
                 [MissionProfile.CivilianMerchantMarine]: this._profiles2e[MissionProfile.CivilianMerchantMarine],
+                [MissionProfile.ColonySupport]: this._profiles2e[MissionProfile.ColonySupport],
                 [MissionProfile.TechnicalTestBed]: this._profiles2e[MissionProfile.TechnicalTestBed],
                 [MissionProfile.ScientificAndSurvey]: this._profiles2e[MissionProfile.ScientificAndSurvey],
             }

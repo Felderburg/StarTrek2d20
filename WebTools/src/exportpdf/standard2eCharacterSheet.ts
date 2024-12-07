@@ -97,7 +97,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
             "Construct.other.attacks": new Column(109.2, 691.7, 5.7, 150),
             "Construct.other.equipment": new Column(350, 704.9, 5.7, 150),
             "Construct.other.determination": new Column(44.4, 249.2, 5.7, 100),
-            "Construct.other.resistance": new Column(93.1, 282.1, 5.7, 150),
+            "Construct.other.protection": new Column(93.1, 282.1, 5.7, 150),
             "Construct.other.stress": new Column(44.4, 295.3, 5.7, 50),
         };
     }

@@ -107,7 +107,8 @@ export class CharacterTypeModel {
                 CharacterType.KlingonWarrior,
                 CharacterType.Romulan,
                 CharacterType.Cardassian,
-                CharacterType.Ferengi].indexOf(t.type) >= 0);
+                CharacterType.Ferengi,
+                CharacterType.Civilian].indexOf(t.type) >= 0);
         }
     }
 }
