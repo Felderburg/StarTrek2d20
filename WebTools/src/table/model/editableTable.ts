@@ -50,6 +50,15 @@ export class EditableTableRow {
         this.edited = true;
     }
 
+    containsRangeOf(row: EditableTableRow) {
+        return this.from <= row.from && (this.to >= row.to);
+    }
+
+    overlapsRangeOf(row: EditableTableRow) {
+        return this.containsRangeOf(row) || (row.from >= this.from && row.from <= this.to) ||
+            (row.to >= this.from && row.to <= this.to);
+    }
+
     copy() {
         const result = new EditableTableRow();
         result.key = this.key;
@@ -109,12 +118,19 @@ export class EditableTable {
     }
 
     fillGaps() {
+        let suffixValue = (this.rows.length + 1);
         let values = [
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
             11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
         ];
 
         this.sortRows();
+
+        [...this.rows].filter(r => r.edited)
+            .forEach(r => {
+                let overlaps = this.rows.filter(r2 => !r2.edited && r.overlapsRangeOf(r2));
+                overlaps.forEach(r2 => this.rows.splice(this.rows.indexOf(r2), 1));
+            })
 
         this.rows.forEach(r => {
             let to = r.to == null ? r.from : Math.max(r.from, r.to);
@@ -155,6 +171,22 @@ export class EditableTable {
                 this.rows.push(new EditableTableRow(new ValueResult("Name", "Description"), c[0], c[c.length-1]));
             }
         });
+
+        [...this.rows].filter(r1 => r1.edited)
+            .forEach(r1 => {
+                let overlaps = this.rows.filter(r2 => !r2.edited && r1.overlapsRangeOf(r2));
+                overlaps.forEach(r2 => {
+                    if (r1.containsRangeOf(r2)) {
+                        this.rows.splice(this.rows.indexOf(r2), 1);
+                    } else {
+                        let from = (r2.from >= r1.from && r2.from <= r1.to) ? r1.to + 1 : r2.from;
+                        let to = (r2.to >= r1.from && r2.to <= r1.to) ? r1.from - 1 : r2.to;
+                        let index = this.rows.indexOf(r2);
+                        this.rows[index] = new EditableTableRow(r2.result, from, to);
+                    }
+                })
+            }
+        );
 
         this.sortRows();
     }
