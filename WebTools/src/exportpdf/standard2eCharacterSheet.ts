@@ -20,14 +20,13 @@ import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { determineIdealFontWidth } from "./fontWidthDeterminer";
 import { TextBlock } from "./textBlock";
 import { FontSpecification } from "./fontSpecification";
+import { blueColour2e, goldColour2e, redColour2e } from "./colourProvider2e";
 
 
 export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
     static labelColour: SimpleColor = SimpleColor.from("#1A82AF");
     static greyColour: SimpleColor = SimpleColor.from("#656668");
-    static goldColour: SimpleColor = SimpleColor.from("#D0990F");
-    static redColour: SimpleColor = SimpleColor.from("#C9242B");
 
     static readonly headingColumn = new Column(436.5, 49, 17.4, 142);
 
@@ -166,14 +165,14 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         switch (key) {
             case "Construct.discipline.command":
             case "Construct.discipline.conn":
-                return Standard2eCharacterSheet.goldColour;
+                return goldColour2e;
 
             case "Construct.discipline.engineering":
             case "Construct.discipline.security":
-                return Standard2eCharacterSheet.redColour;
+                return redColour2e;
 
             default:
-                return Standard2eCharacterSheet.labelColour;
+                return blueColour2e;
         }
     }
 
@@ -383,7 +382,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
     fillCareerPath(form: PDFForm, character: Character): void {
         let path = CharacterTypeModel.getByType(character.type)?.localizedName ?? "";
-        if (character.educationStep) {
+        if (character.educationStep?.track != null) {
             path += " / " + TracksHelper.instance.getTrack(character.educationStep?.track, character.type, character.version).localizedName;
         }
 

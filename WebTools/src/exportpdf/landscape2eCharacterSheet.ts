@@ -548,7 +548,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
     fillCareerPath(form: PDFForm, character: Character): void {
         let path = CharacterTypeModel.getByType(character.type)?.localizedName ?? "";
-        if (character.educationStep) {
+        if (character.educationStep?.track != null) {
             path += " / " + TracksHelper.instance.getTrack(character.educationStep?.track, character.type, character.version).localizedName;
         }
 
