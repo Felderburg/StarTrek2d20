@@ -35,6 +35,10 @@ export class DivisionColors {
             return [ new NamedColor(i18next.t("Division.command"), "#d01c2f"),
                 new NamedColor(i18next.t("Division.science"), "#0070b8"),
                 new NamedColor(i18next.t("Division.operations"), "#eb9e3c")];
+        } else if (era === UniformEra.StarTrekOnline) {
+            return [ new NamedColor(i18next.t("Division.command"), "#6b0007"),
+                new NamedColor(i18next.t("Division.science"), "#0e6b86"),
+                new NamedColor(i18next.t("Division.operations"), "#a06e0c")];
         } else if (era === UniformEra.TheMotionPicture) {
             return [
                 new NamedColor(i18next.t("Division.command"), "#ffffff"),

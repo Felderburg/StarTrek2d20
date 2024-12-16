@@ -99,6 +99,11 @@ export default class UniformPackCollection {
                     this.uniformPacks[era] = new TngUniformPack();
                     completion();
                 }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
+            } else if (era === UniformEra.StarTrekOnline) {
+                import(/* webpackChunkName: 'sto' */ './stoUniformPack').then(({StoUniformPack}) => {
+                    this.uniformPacks[era] = new StoUniformPack();
+                    completion();
+                }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
             } else if (era === UniformEra.Romulan) {
                 import(/* webpackChunkName: 'romulan' */ './romulanUniformPack').then(({RomulanUniformPack}) => {
                     this.uniformPacks[era] = new RomulanUniformPack();

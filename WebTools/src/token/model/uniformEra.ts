@@ -70,6 +70,7 @@ export class UniformEraHelper {
         new UniformEraModel(UniformEra.Suliban, "Suliban"),
         new UniformEraModel(UniformEra.VoyagerDS9, "Voyager/DS9"),
         new UniformEraModel(UniformEra.MonsterMaroon, "The Wrath of Khan and Later Movies"),
+        new UniformEraModel(UniformEra.StarTrekOnline, "Star Trek Online"),
     ]
 
     static get instance() {
