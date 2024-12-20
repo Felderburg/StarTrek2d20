@@ -1321,7 +1321,7 @@ class Marshaller {
                 result.supportingStep.value = json.supporting.value;
             }
             if (json.supporting.supervisory) {
-                result.supportingStep.supervisory = json.supporting.supervistory === true;
+                result.supportingStep.supervisory = (json.supporting.supervisory === true);
             }
         }
 
