@@ -127,6 +127,7 @@ const CreditsPage = () => {
                             <li>James McShane</li>
                             <li>John Till</li>
                             <li>Mark Shock</li>
+                            <li>Michael Dismuke</li>
                             <li>Patrick Patterson</li>
                             <li>Ricardo Gonzales</li>
                         </ul>
@@ -275,7 +276,7 @@ const CreditsPage = () => {
                     <p>
                         I have one of those, now. {' '}
                         <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
-                        target="_blank"  rel="noreferrer">Support me Patreon.</a> Only if that's convenient for you. No pressure.
+                        target="_blank"  rel="noreferrer">Support me on Patreon.</a> Only if that's convenient for you. No pressure.
                         This is still a labour of love for me.</p>
                 </div>
             </div>

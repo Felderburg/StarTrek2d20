@@ -8,7 +8,7 @@ const HomePageAnnouncement = () => {
                 <Header level={2}>Patreon</Header>
                 <p>
                     <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
-                        target="_blank"  rel="noreferrer">Support me Patreon</a>. Only if that's
+                        target="_blank"  rel="noreferrer">Support me on Patreon</a>. Only if that's
                         convenient for you. No pressure.
                 </p>
                 <p className="text-end">- BC</p>

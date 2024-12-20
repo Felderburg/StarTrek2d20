@@ -42,6 +42,12 @@ class RankIndicatorCatalog {
                     + svg
                     + `</g>
                 </svg>`;
+        } else if (token.uniformEra === UniformEra.StarTrekOnline) {
+            return `<svg viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g transform="translate(-195, -220)">`
+                    + svg
+                    + `</g>
+                </svg>`;
         } else {
             if (isEnlistedRank(rankIndicator)) {
                 return `<svg viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
