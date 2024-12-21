@@ -12,6 +12,15 @@ class News extends React.Component<INewsProperties, {}> {
     render() {
         return (
             <Modal size="lg" show={this.props.showModal} onClose={() => this.props.onClose()} header="What's New?">
+                <b>v1.241220</b>
+                <ul>
+                    <li>
+                        Some additional bug fixes.
+                    </li>
+                    <li>
+                        An additional token uniform.
+                    </li>
+                </ul>
                 <b>v1.241207</b>
                 <ul>
                     <li>
@@ -229,33 +238,6 @@ class News extends React.Component<INewsProperties, {}> {
                 <b>v1.240621</b>
                 <ul>
                     <li>Add translation to a few pages that weren't translating.</li>
-                </ul>
-                <b>v1.240616</b>
-                <ul>
-                    <li>I tracked down a layout bug I would periodically see on the 2e Starship sheet, where the
-                        talents wouldn't quite render correctly.
-                    </li>
-                    <li>Minor token updates</li>
-                    <li>Translations!</li>
-                </ul>
-                <b>v1.240615</b>
-                <ul>
-                    <li>A handful of mostly cosmetic changes.</li>
-                    <li>A few additional translations.</li>
-                </ul>
-                <b>v1.240607</b>
-                <ul>
-                    <li>Another round of French and Spanish translations.</li>
-                    <li>I've adjusted the Roll20 export for Starships to export them as usable sheets, rather than just handouts.</li>
-                </ul>
-                <b>v1.240603</b>
-                <ul>
-                    <li>Even more French and Spanish translations.</li>
-                </ul>
-                <b>v1.240602</b>
-                <ul>
-                    <li>Some additional French and Spanish translations.</li>
-                    <li>Minor improvements to the Starship export for Roll20.</li>
                 </ul>
 
                 <div className="text-center">
