@@ -550,7 +550,7 @@ export class TracksHelper {
             .filter(t => hasSource(t.source));
     }
 
-    generateTrack(characterType: CharacterType, version: number = 1): Track {
+    generateTrack(characterType: CharacterType, version: number): Track {
         if (characterType === CharacterType.Starfleet && version === 1) {
             let tracks = [ Track.Command, Track.Operations, Track.Sciences ];
             let roll = Math.floor(Math.random() * tracks.length);

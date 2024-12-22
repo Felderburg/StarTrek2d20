@@ -11,6 +11,7 @@ import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
 import UniformVariantRestrictions from "./uniformVariantRestrictions";
+import { UniformVariantType } from "./uniformVariantTypeEnum";
 
 const StoUniforms = {
 
@@ -219,6 +220,10 @@ const RankIndicators = {
     }
 }
 
+const DARK_SHOULDER_COLOUR = "#423f3f;";
+const WHITE_COMMAND_SHOULDER_COLOUR = "#cbcbcb;";
+const WHITE_MEDICAL_BODY = "#cbcbcb;";
+const STANDARD_BODY = "#2d2d2d;";
 
 export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPack {
 
@@ -228,13 +233,46 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
 
     getUniformSwatches() {
         return [
-            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.NextGeneration) + StoUniforms.averageMale, BodyType.AverageMale, token), "BodyType.averageMale"),
-            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.NextGeneration) + StoUniforms.averageFemale, BodyType.AverageFemale, token), "BodyType.averageFemale"),
+            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.StarTrekOnline) + StoUniforms.averageMale, BodyType.AverageMale, token), "BodyType.averageMale"),
+            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.StarTrekOnline) + StoUniforms.averageFemale, BodyType.AverageFemale, token), "BodyType.averageFemale"),
         ];
     }
 
     getUniformVariantSwatches(token: Token) {
-        return [];
+        if (DivisionColors.getDivision(UniformEra.StarTrekOnline, token.divisionColor) === Division[Division.Command]
+                && token.rankIndicator === Rank.Captain) {
+
+            if (token.bodyType === BodyType.AverageMale) {
+                return [
+                    new Swatch(UniformVariantType.Base, "Base", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.StarTrekOnline) + StoUniforms.averageMale, BodyType.AverageMale, token)),
+                    new Swatch(UniformVariantType.Variant1, "Command Variant", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.StarTrekOnline) + StoUniforms.averageMale.replace(DARK_SHOULDER_COLOUR, WHITE_COMMAND_SHOULDER_COLOUR), BodyType.AverageMale, token)),
+                ];
+            } else {
+                return [
+                    new Swatch(UniformVariantType.Base, "Base", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.StarTrekOnline) + StoUniforms.averageFemale, BodyType.AverageFemale, token)),
+                    new Swatch(UniformVariantType.Variant1, "Command Variant", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.StarTrekOnline) + StoUniforms.averageFemale.replace(DARK_SHOULDER_COLOUR, WHITE_COMMAND_SHOULDER_COLOUR), BodyType.AverageFemale, token)),
+                ];
+            }
+        } else if (DivisionColors.isScience(UniformEra.StarTrekOnline, token.divisionColor)) {
+
+            if (token.bodyType === BodyType.AverageMale) {
+                return [
+                    new Swatch(UniformVariantType.Base, "Base", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.StarTrekOnline) + StoUniforms.averageMale, BodyType.AverageMale, token)),
+                    new Swatch(UniformVariantType.Variant1, "Medical Variant", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.StarTrekOnline) +
+                        StoUniforms.averageMale.replace(STANDARD_BODY, WHITE_MEDICAL_BODY).replace(DARK_SHOULDER_COLOUR, STANDARD_BODY),
+                        BodyType.AverageMale, token)),
+                ];
+            } else {
+                return [
+                    new Swatch(UniformVariantType.Base, "Base", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.StarTrekOnline) + StoUniforms.averageFemale, BodyType.AverageFemale, token)),
+                    new Swatch(UniformVariantType.Variant1, "Medical Variant", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.StarTrekOnline) +
+                        StoUniforms.averageFemale.replace(STANDARD_BODY, WHITE_MEDICAL_BODY).replace(DARK_SHOULDER_COLOUR, STANDARD_BODY),
+                        BodyType.AverageFemale, token)),
+                ];
+            }
+        } else {
+            return [];
+        }
     }
 
     getUniformAndVariantBody(token: Token) {
@@ -249,9 +287,15 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
                 divisionInsignia = StoUniforms.deltaSymbolMale.operations;
             }
 
+            let uniform = StoUniforms.averageMale.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            if (token.variant === UniformVariantType.Variant1 && DivisionColors.isCommand(token.uniformEra, token.divisionColor)) {
+                uniform = uniform.replace(DARK_SHOULDER_COLOUR, WHITE_COMMAND_SHOULDER_COLOUR);
+            } else if (token.variant === UniformVariantType.Variant1 && DivisionColors.isScience(token.uniformEra, token.divisionColor)) {
+                uniform = uniform.replace(STANDARD_BODY, WHITE_MEDICAL_BODY).replace(DARK_SHOULDER_COLOUR, STANDARD_BODY);
+            }
+
             return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.NextGeneration)
-                + StoUniforms.averageMale.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
-                + divisionInsignia;
+                + uniform + divisionInsignia;
         } else {
             let divisionInsignia = "";
             if (division === Division[Division.Command]) {
@@ -262,13 +306,19 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
                 divisionInsignia = StoUniforms.deltaSymbolFemale.operations;
             }
 
+            let uniform = StoUniforms.averageFemale.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            if (token.variant === UniformVariantType.Variant1 && DivisionColors.isCommand(token.uniformEra, token.divisionColor)) {
+                uniform = uniform.replace(DARK_SHOULDER_COLOUR, WHITE_COMMAND_SHOULDER_COLOUR);
+            } else if (token.variant === UniformVariantType.Variant1 && DivisionColors.isScience(token.uniformEra, token.divisionColor)) {
+                uniform = uniform.replace(STANDARD_BODY, WHITE_MEDICAL_BODY).replace(DARK_SHOULDER_COLOUR, STANDARD_BODY);
+            }
+
             return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.NextGeneration)
-                + StoUniforms.averageFemale.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
-                + divisionInsignia
+                + uniform + divisionInsignia
         }
     }
 
-    fitToBody(svg: string, bodyType: BodyType) {
+    fitPipsToBody(svg: string, bodyType: BodyType) {
         if (bodyType === BodyType.AverageMale) {
             return `<g transform="matrix(1.0037078,0.07226495,0.01499498,0.99738547,-4.0109993,-16.318204)">` + svg + `</g>`;
         } else {
@@ -279,17 +329,17 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
     getRankIndicator(token: Token) {
         switch (token.rankIndicator) {
             case Rank.Captain:
-                return this.fitToBody(RankIndicators.collar.captain, token.bodyType);
+                return this.fitPipsToBody(RankIndicators.collar.captain, token.bodyType);
             case Rank.Commander:
-                return this.fitToBody(RankIndicators.collar.commander, token.bodyType);
+                return this.fitPipsToBody(RankIndicators.collar.commander, token.bodyType);
             case Rank.LtCommander:
-                return this.fitToBody(RankIndicators.collar.ltCommander, token.bodyType);
+                return this.fitPipsToBody(RankIndicators.collar.ltCommander, token.bodyType);
             case Rank.Lieutenant:
-                return this.fitToBody(RankIndicators.collar.lieutenant, token.bodyType);
+                return this.fitPipsToBody(RankIndicators.collar.lieutenant, token.bodyType);
             case Rank.LieutenantJG:
-                return this.fitToBody(RankIndicators.collar.lieutenantJG, token.bodyType);
+                return this.fitPipsToBody(RankIndicators.collar.lieutenantJG, token.bodyType);
             case Rank.Ensign:
-                return this.fitToBody(RankIndicators.collar.ensign, token.bodyType);
+                return this.fitPipsToBody(RankIndicators.collar.ensign, token.bodyType);
             default:
                 return "";
         }

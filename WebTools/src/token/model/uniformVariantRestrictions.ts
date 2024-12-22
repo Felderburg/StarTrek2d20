@@ -1,3 +1,4 @@
+import { Division } from "../../common/character";
 import { Rank } from "../../helpers/ranks";
 import { Species } from "../../helpers/speciesEnum";
 import { BodyType } from "./bodyTypeEnum";
@@ -29,6 +30,13 @@ export default class UniformVariantRestrictions {
         } else if (uniformEra === UniformEra.StrangeNewWorlds) {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === "Medical") {
                 result.push(UniformVariantType.Variant2);
+            }
+        } else if (uniformEra === UniformEra.StarTrekOnline) {
+            if (DivisionColors.getDivision(uniformEra, divisionColor) === Division[Division.Command]
+                    && rank === Rank.Captain) {
+                result.push(UniformVariantType.Variant1);
+            } else if (DivisionColors.getDivision(uniformEra, divisionColor) === Division[Division.Science]) {
+                result.push(UniformVariantType.Variant1);
             }
         } else if (uniformEra === UniformEra.Civilian) {
             result.push(UniformVariantType.Variant1);

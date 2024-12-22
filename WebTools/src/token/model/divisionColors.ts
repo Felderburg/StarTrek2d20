@@ -62,6 +62,14 @@ export class DivisionColors {
         }
     }
 
+    static isCommand(era: UniformEra, color: string) {
+        return this.getDivision(era, color) === Division[Division.Command];
+    }
+
+    static isScience(era: UniformEra, color: string) {
+        return this.getDivision(era, color) === Division[Division.Science];
+    }
+
     static getDivision(era: UniformEra, color: string) {
         let index = this.indexOf(era, color);
         if (!this.isDivisionColorsSupported(era)) {
