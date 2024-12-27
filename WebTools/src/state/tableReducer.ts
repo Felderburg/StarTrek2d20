@@ -27,7 +27,8 @@ const tableCollection = new TableCollection(
                 new TableRow(new ValueResult("Temporal Anomaly", "A sudden temporal anomaly disrupts the space-time continuum, causing bizarre effects in the bar."), 20)
             ]),
         "Roll a D20 to determine which complication your character encounters while visiting an alien bar in the sci-fi setting!",
-        "Probability Matrices");
+        "Probability Matrices",
+        "71dcc0f9-adcc-42c4-8d31-3abd6646fab5");
 
 
 const persistTables = (tables: TableCollection[]) => {

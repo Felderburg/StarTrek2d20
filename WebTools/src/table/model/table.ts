@@ -1,5 +1,6 @@
 import { D20 } from "../../common/die";
 import { TableRoll } from "../../common/tableRoll";
+import { v4 as uuidv4 } from 'uuid';
 
 export class TableRow {
     from: number;
@@ -44,11 +45,13 @@ export class Table {
 
 export class TableCollection {
 
+    uuid: string;
     mainTable: Table;
     description: string;
     category: string;
 
-    constructor(mainTable?: Table, description: string = "", category: string = "") {
+    constructor(mainTable?: Table, description: string = "", category: string = "", uuid: string = uuidv4()) {
+        this.uuid = uuid;
         this.mainTable = mainTable;
         this.description = description;
         this.category = category;

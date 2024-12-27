@@ -225,6 +225,7 @@ export class EditableTable {
 
 export class EditableTableCollection {
 
+    uuid: string;
     mainTable: EditableTable;
     description?: string;
     category?: string;
@@ -247,10 +248,11 @@ export class EditableTableCollection {
         result.description = this.description;
         result.category = this.category;
         result.mainTable = this.mainTable?.copy();
+        result.uuid = this.uuid;
         return result;
     }
 
     asTableCollection() {
-        return new TableCollection(this.mainTable.asTable(), this.description, this.category);
+        return new TableCollection(this.mainTable.asTable(), this.description, this.category, this.uuid);
     }
 }

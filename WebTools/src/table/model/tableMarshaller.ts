@@ -15,6 +15,9 @@ class TableMarshaller {
 
     marshall(tableCollection: TableCollection) {
         let json = { mainTable: this.marshallTable(tableCollection.mainTable) }
+        if (tableCollection.uuid) {
+            json["uuid"] = tableCollection.uuid;
+        }
         if (tableCollection.category) {
             json["category"] = tableCollection.category;
         }
@@ -32,8 +35,13 @@ class TableMarshaller {
 
             const description = json["description"];
             const category = json["category"];
+            const uuid = json["uuid"];
 
-            return new TableCollection(mainTable, description, category);
+            if (uuid) {
+                return new TableCollection(mainTable, description, category, uuid);
+            } else {
+                return new TableCollection(mainTable, description, category);
+            }
         } else {
             return undefined;
         }

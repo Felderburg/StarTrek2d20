@@ -18,7 +18,7 @@ const ImportTablePage = () => {
 
     let collection = TableMarshaller.instance.unmarshall(encodedTable);
 
-    if (isTableCollectionAlreadyImported(collection.name, encodedTable)) {
+    if (isTableCollectionAlreadyImported(collection.uuid, encodedTable)) {
 
         setTimeout(() => {
             navigate("/table/list");
