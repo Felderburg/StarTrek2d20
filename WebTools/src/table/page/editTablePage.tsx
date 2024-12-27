@@ -129,7 +129,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
     const isStartOverlapping = (row: EditableTableRow) => {
         let error = false;
         tableCollection.mainTable.rows
-            .filter(r => r != row)
+            .filter(r => r !== row)
             .forEach(r => error = error || r.overlapsStartOf(row));
         return error;
     }
@@ -137,7 +137,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
     const isEndOverlapping = (row: EditableTableRow) => {
         let error = false;
         tableCollection.mainTable.rows
-            .filter(r => r != row)
+            .filter(r => r !== row)
             .forEach(r => error = error || r.overlapsEndOf(row));
         return error;
     }
