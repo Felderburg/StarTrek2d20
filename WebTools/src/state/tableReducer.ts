@@ -42,8 +42,23 @@ let initialData: { selection: TableCollection, collections: TableCollection[], e
 
 const getInitialData = () => {
     let base = { selection: null, collections: [ tableCollection ] };
+
     if (initialData == null) {
         initialData = { ...base };
+    }
+
+    let temp = (typeof window !== "undefined" && window?.localStorage)
+            ? window.localStorage.getItem("settings.tableData")
+            : null;
+    if (temp) {
+        const marshalled = JSON.parse(temp);
+        if (marshalled.collections) {
+
+            const collections = marshalled.collections.map(t => TableMarshaller.instance.unmarshall(t));
+            if (collections?.length) {
+                initialData.collections = collections;
+            }
+        }
     }
 
     return initialData;

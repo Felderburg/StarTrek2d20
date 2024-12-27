@@ -16,6 +16,7 @@ interface IInputFieldProperties {
     placeholder?: string,
     maxLength?: number,
     onChange: (value: string) => void,
+    error?: boolean,
     style?: CSSProperties
 }
 
@@ -44,8 +45,10 @@ export class InputField extends React.Component<IInputFieldProperties, IInputFie
             additionalProps["min"] = this.props.min;
         }
 
+
+
         return (<input
-            className={this.props.className ?? ""}
+            className={(this.props.className ?? "") + (this.props.error ? " is-invalid" : "")}
             id={this.props.id}
             type={this.props.type ? this.props.type : "text"}
             placeholder={this.props.placeholder}

@@ -40,6 +40,30 @@ describe('testing tables', () => {
         expect(row2.overlapsRangeOf(row3)).toBeFalsy();
     });
 
+    test('detect overlapped starts', () => {
+        let row1 = new EditableTableRow(new ValueResult("", ""), 2, 8);
+        let row2 = new EditableTableRow(new ValueResult("", ""), 4, 10);
+        let row3 = new EditableTableRow(new ValueResult("", ""), 1, 3);
+        let row4 = new EditableTableRow(new ValueResult("", ""), 4, 8);
+
+        expect(row1.overlapsStartOf(row2)).toBeTruthy();
+        expect(row1.overlapsStartOf(row3)).toBeFalsy();
+        expect(row1.overlapsStartOf(row4)).toBeTruthy();
+        expect(row2.overlapsStartOf(row3)).toBeFalsy();
+    });
+
+    test('detect overlapped ends', () => {
+        let row1 = new EditableTableRow(new ValueResult("", ""), 2, 8);
+        let row2 = new EditableTableRow(new ValueResult("", ""), 4, 10);
+        let row3 = new EditableTableRow(new ValueResult("", ""), 1, 3);
+        let row4 = new EditableTableRow(new ValueResult("", ""), 4, 8);
+
+        expect(row1.overlapsEndOf(row2)).toBeFalsy();
+        expect(row1.overlapsEndOf(row3)).toBeTruthy();
+        expect(row1.overlapsEndOf(row4)).toBeTruthy();
+        expect(row2.overlapsEndOf(row3)).toBeFalsy();
+    });
+
     test('should fill gaps in table', () => {
         let table = EditableTable.from();
         expect(table.rows.length).toBe(4);

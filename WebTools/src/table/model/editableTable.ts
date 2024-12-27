@@ -55,8 +55,20 @@ export class EditableTableRow {
     }
 
     overlapsRangeOf(row: EditableTableRow) {
-        return this.containsRangeOf(row) || (row.from >= this.from && row.from <= this.to) ||
-            (row.to >= this.from && row.to <= this.to);
+        return this.containsRangeOf(row) || this.overlapsStartOf(row) ||
+            this.overlapsEndOf(row);
+    }
+
+    overlapsEndOf(row: EditableTableRow) {
+        return this.overlapsValue(row.to);
+    }
+
+    overlapsStartOf(row: EditableTableRow) {
+        return this.overlapsValue(row.from);
+    }
+
+    overlapsValue(value: number) {
+        return (value >= this.from && value <= this.to);
     }
 
     copy() {
@@ -77,6 +89,7 @@ export class EditableTableRow {
 export class EditableTable {
     name: string;
     rows: EditableTableRow[] = [];
+    suffixValue: number = 0;
 
     static from(table?: Table) {
         const result = new EditableTable();
@@ -91,6 +104,8 @@ export class EditableTable {
                 new EditableTableRow(new ValueResult("Option 4", "Option 4"), 16, 20)
             ];
         }
+
+        result.determineSuffix();
         return result;
     }
 
@@ -98,6 +113,7 @@ export class EditableTable {
         const result = new EditableTable();
         result.name = this.name;
         result.rows = this.rows.map(r => r.copy());
+        result.suffixValue = this.suffixValue;
         return result;
     }
 
@@ -117,8 +133,21 @@ export class EditableTable {
         });
     }
 
+    private determineSuffix() {
+        this.suffixValue = (this.rows.length + 1);
+        let done = false;
+        while (!done) {
+            done = true;
+            this.rows.forEach(r => {
+                if (r.result.name === ("Option " + this.suffixValue)) {
+                    this.suffixValue += 1;
+                    done = false;
+                }
+            })
+        }
+    }
+
     fillGaps() {
-        let suffixValue = (this.rows.length + 1);
         let values = [
             1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
             11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
@@ -168,7 +197,8 @@ export class EditableTable {
                 let index = this.rows.indexOf(existingRow);
                 this.rows[index] = new EditableTableRow(existingRow.result, c[0], existingRow.to, existingRow.key);
             } else {
-                this.rows.push(new EditableTableRow(new ValueResult("Name", "Description"), c[0], c[c.length-1]));
+                this.rows.push(new EditableTableRow(new ValueResult("Option " + this.suffixValue, "Option " + this.suffixValue), c[0], c[c.length-1]));
+                this.suffixValue++;
             }
         });
 

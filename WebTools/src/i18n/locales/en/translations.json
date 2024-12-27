@@ -3563,6 +3563,10 @@
 
     "Track.starfleet.sciences.description": "Somewhat isolated from the other Tracks, the Sciences track is primarily academic, with Starfleet Academy producing many accomplished scientists. Included within the sciences track, but separated by a distinct curriculum, is Starfleet Medical, training doctors, nurses, and counselors to serve aboard Starfleet vessels and facilities across the Federation.",
 
+    "Track.starfleet.intelligenceTraining": "Intelligence",
+
+    "Track.starfleet.intelligenceTraining.description": "Starfleet maintains an intelligence division which monitors and analyzes the activities of its neighbors, assessing threats, identifying future problems or challenges, and carrying out covert operations. A lot of this work is passive, carried out as a natural part of Starfleet’s operations, by analysts and computer algorithms sifting through mission logs, sensor records, and similar data, but it cannot be done exclusively in this way. \n\nStarfleet Intelligence recruits operatives and assets across the Federation, and sometimes even beyond. Most established operatives are handlers and analysts, gathering information from a variety of sources and establishing their own networks of informants, who live ordinary lives and only occasionally pass on information. When Starfleet Intelligence needs to perform more significant actions, it often selects personnel from elsewhere in Starfleet to carry out the work. \n\nMany starbases and a few starships have an Intelligence officer on board, who serve as a point of contact for their commanding officers and spend much of their time gathering and summarizing information that may be of use to ongoing missions.\n\nOther civilizations in the Galaxy have comparable intelligence agencies, such as the Romulan Tal Shiar or the Cardassian Obsidian Order, both of which are infamous examples feared both within and beyond those civilizations.",
+
     "UniformEra.bynar": "Bynar",
     "UniformEra.cardassian": "Cardassian Military",
     "UniformEra.civilian": "Civilian",
@@ -3579,6 +3583,7 @@
     "UniformEra.originalSeriesKlingon": "Klingon (Original Series)",
     "UniformEra.romulan": "Romulan",
     "UniformEra.suliban": "Suliban",
+    "UniformEra.starTrekOnline": "Star Trek Online",
     "UniformEra.strangeNewWorlds": "Strange New Worlds",
     "UniformEra.theMotionPicture": "The Motion Picture",
     "UniformEra.voyagerDS9": "Voyager/DS9",

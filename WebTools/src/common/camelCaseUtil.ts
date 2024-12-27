@@ -2,7 +2,7 @@
 export const toCamelCase = (phrase: string) => {
     let result = "";
     let upperCase = false;
-    for (let i = 0; i < phrase.length; i++) {
+    for (let i = 0; i < (phrase?.length ?? 0); i++) {
         let c = phrase.charAt(i);
         if ("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".indexOf(c) >= 0) {
             if (upperCase) {

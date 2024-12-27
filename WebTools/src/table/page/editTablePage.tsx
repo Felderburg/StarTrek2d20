@@ -9,13 +9,14 @@ import { Header } from "../../components/header";
 import Markdown from "react-markdown";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { useState } from "react";
-import { EditableTableCollection } from "../model/editableTable";
+import { EditableTableCollection, EditableTableRow } from "../model/editableTable";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { Button } from "react-bootstrap";
 import store from "../../state/store";
 import { addTableCollection } from "../../state/tableActions";
 import { Dialog } from "../../components/dialog";
 import { InputField } from "../../common/inputField";
+import { IconButton } from "../../components/iconButton";
 
 interface IEditTablePageProperties {
     initialTableCollection?: TableCollection;
@@ -77,6 +78,8 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
             Dialog.show("Please provide a name for this table.");
         } else if (tableCollection.description == null) {
             Dialog.show("Please provide a description for this table.");
+        } else if (isErrorPresent()) {
+            Dialog.show("Please address the table errors before proceeding.");
         } else {
             store.dispatch(addTableCollection(tableCollection.asTableCollection()));
             navigate("/tools/table");
@@ -115,6 +118,43 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
         setTableCollection(collection);
     }
 
+    const deleteRow = (index: number) => {
+        const collection = tableCollection.copy();
+        collection.mainTable.rows.splice(index, 1);
+        collection.mainTable.fillGaps();
+
+        setTableCollection(collection);
+    }
+
+    const isStartOverlapping = (row: EditableTableRow) => {
+        let error = false;
+        tableCollection.mainTable.rows
+            .filter(r => r != row)
+            .forEach(r => error = error || r.overlapsStartOf(row));
+        return error;
+    }
+
+    const isEndOverlapping = (row: EditableTableRow) => {
+        let error = false;
+        tableCollection.mainTable.rows
+            .filter(r => r != row)
+            .forEach(r => error = error || r.overlapsEndOf(row));
+        return error;
+    }
+
+    const isMissingName = (row: EditableTableRow) => {
+        return !row.result?.name?.length;
+    }
+
+    const isErrorPresent = () => {
+        let error = false;
+        let rows = tableCollection.mainTable.rows;
+        rows.forEach(r =>
+            error = error || isMissingName(r) || isEndOverlapping(r) || isStartOverlapping(r)
+        );
+        return error;
+    }
+
     return (<LcarsFrame activePage={PageIdentity.ViewTable}>
         <div id="app">
 
@@ -150,7 +190,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
                         <Header level={2}>Name and Description</Header>
                         <div className="mt-4">
                             <InputFieldAndLabel labelName={t('Construct.other.name')} id="name"
-                                value={""}
+                                value={tableCollection.mainTable.name ?? ""}
                                 onChange={(value) => selectTableName(value) }/>
                         </div>
                         <div className="mt-3">
@@ -172,21 +212,25 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
                             <col width={"7%"} />
                             <col width={"7%"} />
                             <col width={"25%"} />
-                            <col width={"61%"} />
+                            <col width={"55%"} />
+                            <col width={"6%"} />
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>
+                                <th className="bg-black">
                                     From
                                 </th>
-                                <th>
+                                <th className="bg-black">
                                     To
                                 </th>
-                                <th>
+                                <th className="bg-black">
                                     Name
                                 </th>
-                                <th>
+                                <th className="bg-black">
                                     Description
+                                </th>
+                                <th className="bg-black">
+
                                 </th>
                             </tr>
                         </thead>
@@ -196,26 +240,32 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
                                 (<tr key={'row-' + r.key}>
                                     <td>
                                         <InputField value={r.from} onChange={(value) => selectRowFrom(value, i)}
-                                            maxLength={2} className="rounded-1"
+                                            maxLength={2} className="form-control bg-black rounded-1"
                                             max={20} min={1}
+                                            error={isStartOverlapping(r)}
                                             style={{width: "3rem", textAlign: "center"}} />
                                     </td>
                                     <td>
                                         <InputField value={r.to} onChange={(value) => selectRowTo(value, i)}
                                             max={20} min={1}
-                                            maxLength={2} className="rounded-1" style={{width: "3rem", textAlign: "center"}} />
+                                            error={isEndOverlapping(r)}
+                                            maxLength={2} className="form-control bg-black rounded-1" style={{width: "3rem", textAlign: "center"}} />
                                     </td>
                                     <td>
                                         <InputField value={r.result?.name ?? ""}
                                                 onChange={(value) => selectRowName(value, i)}
-                                                className="rounded-1 w-100" />
+                                                error={isMissingName(r)}
+                                                className="form-control bg-black rounded-1 w-100" />
 
                                     </td>
                                     <td>
                                         <InputField value={r.result?.description ?? ""}
                                                 onChange={(value) => selectRowDescription(value, i)}
-                                                className="rounded-1 w-100" />
+                                                className="form-control bg-black rounded-1 w-100" />
                                     </td>
+                                        <td className="text-end">
+                                            <IconButton onClick={() => { deleteRow(i) }} icon="trash" />
+                                        </td>
                                 </tr>)
                             )}
                         </tbody>
