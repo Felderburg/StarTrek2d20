@@ -45,8 +45,6 @@ export class InputField extends React.Component<IInputFieldProperties, IInputFie
             additionalProps["min"] = this.props.min;
         }
 
-
-
         return (<input
             className={(this.props.className ?? "") + (this.props.error ? " is-invalid" : "")}
             id={this.props.id}

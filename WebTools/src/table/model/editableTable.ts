@@ -20,6 +20,7 @@ export class EditableTableRow {
         result._from = row?.from;
         result._to = (row?.to == null) ? row?.from : row?.to;
         result._result = row?.result;
+        result.edited = true;
         return result;
     }
 

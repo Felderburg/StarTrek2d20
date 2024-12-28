@@ -90,15 +90,15 @@ const ViewTablePage: React.FC<IViewTablePageProperties> = ({tableCollection}) =>
 
                     <main>
                         <Header>{t('Page.title.viewTable')}</Header>
-                        <div className="d-flex justify-content-between align-items-start" >
-                            <div className="mt-4">
-                                <Header level={3}>{tableCollection.name}</Header>
-                                <ReactMarkdown>{tableCollection.description}</ReactMarkdown>
-                            </div>
-                            <div className="text-nowrap">
+                        <div className="d-md-flex justify-content-between align-items-start flex-row-reverse" >
+                            <div className="text-nowrap text-end">
                                 <IconButton onClick={showModal} icon="share" />
                                 <IconButton onClick={editTable} icon="pencil" />
                                 <IconButton variant="danger" onClick={deleteTable} icon="trash" />
+                            </div>
+                            <div className="mt-4">
+                                <Header level={3}>{tableCollection.name}</Header>
+                                <ReactMarkdown>{tableCollection.description}</ReactMarkdown>
                             </div>
                         </div>
 
