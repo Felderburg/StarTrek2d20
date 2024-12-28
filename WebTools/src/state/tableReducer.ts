@@ -1,6 +1,6 @@
 import { Table, TableCollection, TableRow, ValueResult } from "../table/model/table";
 import TableMarshaller from "../table/model/tableMarshaller";
-import { ADD_TABLE_COLLECTION, IMPORT_TABLE_COLLECTION, SAVE_EDITED_TABLE, SET_TABLE_COLLECTION_SELECTION, SET_TABLE_FOR_EDITING } from "./tableActions";
+import { ADD_TABLE_COLLECTION, DELETE_TABLE_COLLECTION, IMPORT_TABLE_COLLECTION, REPLACE_TABLE_COLLECTION, SET_TABLE_COLLECTION_SELECTION, SET_TABLE_FOR_EDITING } from "./tableActions";
 
 const tableCollection = new TableCollection(
         new Table("Probability Matrix: Things That Could Go Wrong While Visiting an Alien Bar",
@@ -83,14 +83,23 @@ const tableReducer = (state = getInitialData(), action) => {
             temp.selection = action.payload.selection;
             return temp;
         }
+        case DELETE_TABLE_COLLECTION: {
+            let temp = {...state };
+            let tableCollection = action.payload.collection;
+            temp.collections = temp.collections.filter(t => t.uuid !== tableCollection.uuid);
+            persistTables(temp.collections);
+            return temp;
+        }
         case SET_TABLE_FOR_EDITING: {
             let temp = {...state };
             temp.editing = action.payload.collection;
             return temp;
         }
-        case SAVE_EDITED_TABLE: {
+        case REPLACE_TABLE_COLLECTION: {
             let temp = {...state };
-            temp.selection = temp.editing;
+            let tableCollection = action.payload.collection;
+            temp.collections = temp.collections.filter(t => t.uuid !== action.payload.uuid);
+            temp.collections.push(tableCollection);
             return temp;
         }
         default:

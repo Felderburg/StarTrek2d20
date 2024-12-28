@@ -5,7 +5,6 @@ import { PageIdentity } from "../../pages/pageIdentity"
 import { TableCollection, ValueResult } from "../model/table"
 import ReactMarkdown from "react-markdown"
 import { TableView } from "./tableView"
-import { Button } from "../../components/button"
 import { useState } from "react"
 import { ModalControl } from "../../components/modal"
 import { ShareTableModal } from "./shareTableModal"
@@ -14,6 +13,11 @@ import { connect } from "react-redux"
 import { useNavigate } from "react-router"
 import { preventDefaultAnchorEvent } from "../../common/navigator"
 import { AccessingView } from "../../common/accessingView"
+import store from "../../state/store"
+import { deleteTableCollection, setTableForEditing } from "../../state/tableActions"
+import { Button } from "react-bootstrap"
+import { IconButton } from "../../components/iconButton"
+import { DeleteConfirmationModal } from "./deleteConfirmationModal"
 
 interface IViewTablePageProperties {
     tableCollection?: TableCollection;
@@ -33,14 +37,35 @@ const ViewTablePage: React.FC<IViewTablePageProperties> = ({tableCollection}) =>
         ModalControl.hide();
     }
 
+    const showDeleteModal = () => {
+        ModalControl.show("lg", closeModal,
+            (<DeleteConfirmationModal close={closeModal} confirmDelete={confirmDelete} />),
+            t('DeleteConfirmationModal.title'));
+    }
+
     const createUrl = () => {
         const { hostname, protocol, port } = window.location;
-        return protocol + "//" + hostname + ((port !== "80" && port !== "443" && port !== "") ? ":" + port : "") + "/table/import?table=" + TableMarshaller.instance.marshall(tableCollection);
+        return protocol + "//" + hostname + ((port !== "80" && port !== "443" && port !== "") ? ":" + port : "") + "/tools/table/import?table=" + TableMarshaller.instance.marshall(tableCollection);
+    }
+
+    const deleteTable = () => {
+        showDeleteModal();
+    }
+
+    const editTable = () => {
+        store.dispatch(setTableForEditing(tableCollection));
+        navigate("/tools/table/edit");
+    }
+
+    const confirmDelete = () => {
+        closeModal();
+        store.dispatch(deleteTableCollection(tableCollection));
+        navigate("/tools/table");
     }
 
     if (tableCollection == null) {
         setTimeout(() => {
-            navigate("/table/list");
+            navigate("/tools/table");
         }, 500);
         return (<LcarsFrame activePage={PageIdentity.ViewTable}>
                 <div id="app">
@@ -70,7 +95,11 @@ const ViewTablePage: React.FC<IViewTablePageProperties> = ({tableCollection}) =>
                                 <Header level={3}>{tableCollection.name}</Header>
                                 <ReactMarkdown>{tableCollection.description}</ReactMarkdown>
                             </div>
-                            <Button className="btn btn-link mt-4" onClick={() => showModal()} title="Share"><i className="bi bi-share"></i></Button>
+                            <div className="text-nowrap">
+                                <IconButton onClick={showModal} icon="share" />
+                                <IconButton onClick={editTable} icon="pencil" />
+                                <IconButton variant="danger" onClick={deleteTable} icon="trash" />
+                            </div>
                         </div>
 
                         <div className="row">

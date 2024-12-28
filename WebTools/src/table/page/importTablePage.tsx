@@ -21,14 +21,14 @@ const ImportTablePage = () => {
     if (isTableCollectionAlreadyImported(collection.uuid, encodedTable)) {
 
         setTimeout(() => {
-            navigate("/table/list");
+            navigate("/tools/table");
             toast("This table has already been imported", { className: "bg-warning" });
         }, 500);
     } else {
         setTimeout(() => {
             store.dispatch(importTableCollection(collection));
             store.dispatch(setTableCollectionSelection(collection));
-            navigate("/table/view");
+            navigate("/tools/table/view");
             toast("Table successfully imported.", { className: "bg-success" });
         }, 500);
     }

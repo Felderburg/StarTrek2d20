@@ -134,6 +134,9 @@
     "CareerLength.instruction.cadet": "The character is an officer-in-training, still studying at Starfleet Academy or a similar institution. They have great potential, and some skill, but lack the experience to put their abilities to the best use.",
     "CareerLength.instruction.child": "Naturally, a child character doesn’t have much in the way of a career.",
 
+    "DeleteConfirmationModal.instruction": "Are you sure you want to delete this?",
+    "DeleteConfirmationModal.title": "Delete Table",
+
     "EarlyOutlookPage.instruction": "The nature of a person’s family and their surroundings as they grew up can have a massive impact upon them, and, whether they accept this influence or rebelled against it, it will shape the rest of their lives.\n\nEither select or roll your early outlook.",
 
     "EarlyOutlookPage.instruction.klingon": "The Klingon Empire has long had a system of castes, divided amongst the professions and vocations which allow society to function. Families within these castes tend to train in certain vocations, generation after generation. Throughout Klingon history, different castes have risen and fallen in prominence, though the Warrior caste has always held a place of significance. Within the last few centuries, however, this system has begun to break down, with caste divisions no longer as strictly defined as they once were, and while more traditional families still expect their children to follow in their footsteps, many Klingons break from caste and pursue whatever careers they desire.\n\nEither select or roll your caste.",
@@ -272,6 +275,8 @@
     "OtherToolsPage.instruction": "This section contains a number of miscellaneous additional tools that might be used in your STA game.",
 
     "OtherToolsPage.safetyChecklist.instruction": "This checklist is a tool which the gamemaster can use to help players in discussing where their personal boundaries for certain themes in this campaign may lie. This list is divided into several categories, each of which includes a number of topics. This online version of the safety checklist can allow GMs or players to review the topics and evaluate how they want those topics handled in-game.",
+
+    "OtherToolsPage.tables.instruction": "Create and use random roll tables to help guide some dice-driven outcomes for your campaigns.",
 
     "PromotionPage.instruction": "Select a new rank for this character.",
 
@@ -457,6 +462,7 @@
     "Common.button.add": "Add",
     "Common.button.cancel": "Cancel",
     "Common.button.create": "Create",
+    "Common.button.delete": "Delete",
     "Common.button.modify": "Modify",
     "Common.button.next": "Next",
     "Common.button.previous": "Previous",

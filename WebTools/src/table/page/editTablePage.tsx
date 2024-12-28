@@ -13,7 +13,7 @@ import { EditableTableCollection, EditableTableRow } from "../model/editableTabl
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { Button } from "react-bootstrap";
 import store from "../../state/store";
-import { addTableCollection } from "../../state/tableActions";
+import { addTableCollection, replaceTableCollection } from "../../state/tableActions";
 import { Dialog } from "../../components/dialog";
 import { InputField } from "../../common/inputField";
 import { IconButton } from "../../components/iconButton";
@@ -81,7 +81,11 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
         } else if (isErrorPresent()) {
             Dialog.show("Please address the table errors before proceeding.");
         } else {
-            store.dispatch(addTableCollection(tableCollection.asTableCollection()));
+            if (initialTableCollection == null) {
+                store.dispatch(addTableCollection(tableCollection.asTableCollection()));
+            } else {
+                store.dispatch(replaceTableCollection(initialTableCollection.uuid, tableCollection.asTableCollection()));
+            }
             navigate("/tools/table");
         }
     }
@@ -264,7 +268,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({initialTableCollecti
                                                 className="form-control bg-black rounded-1 w-100" />
                                     </td>
                                         <td className="text-end">
-                                            <IconButton onClick={() => { deleteRow(i) }} icon="trash" />
+                                            <IconButton onClick={() => { deleteRow(i) }} icon="trash" variant="danger" />
                                         </td>
                                 </tr>)
                             )}

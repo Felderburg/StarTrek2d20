@@ -11,14 +11,14 @@ export class EditableTableRow {
     constructor(result?: ValueResult, from?: number, to?: number, key: string = uuidv4()) {
         this.key = key;
         this._from = from;
-        this._to = to;
+        this._to = (to == null) ? from : to;
         this._result = result;
     }
 
     static from(row?: TableRow) {
         const result = new EditableTableRow();
         result._from = row?.from;
-        result._to = row?.to;
+        result._to = (row?.to == null) ? row?.from : row?.to;
         result._result = row?.result;
         return result;
     }

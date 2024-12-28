@@ -36,6 +36,18 @@ const OtherToolsPage = () => {
                                     <Button onClick={() => navigate("/tools/safety")} >{t('Page.title.safetyChecklist')}</Button>
                                 </div>
                             </div>
+
+                            <div className="col mt-5">
+                                <Header level={2}>{t('Page.title.tableList')}</Header>
+                                <p className="mt-3">
+                                    {t('OtherToolsPage.tables.instruction')}
+                                </p>
+                                <div className="text-end mt-4">
+                                    <Button onClick={() => navigate("/tools/table")} >{t('Page.title.tableList')}</Button>
+                                </div>
+                            </div>
+
+
                         </div>
                     </main>
                 </div>

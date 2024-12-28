@@ -4,7 +4,8 @@ export const IMPORT_TABLE_COLLECTION = 'IMPORT_TABLE_COLLECTION';
 export const ADD_TABLE_COLLECTION = 'ADD_TABLE_COLLECTION';
 export const SET_TABLE_COLLECTION_SELECTION = 'SET_TABLE_COLLECTION_SELECTION';
 export const SET_TABLE_FOR_EDITING = 'SET_TABLE_FOR_EDITING';
-export const SAVE_EDITED_TABLE = 'SAVE_EDITED_TABLE';
+export const REPLACE_TABLE_COLLECTION = 'REPLACE_TABLE_COLLECTION';
+export const DELETE_TABLE_COLLECTION = "DELETE_TABLE_COLLECTION";
 
 export function setTableCollectionSelection(selection: TableCollection) {
     let payload = { selection: selection };
@@ -40,10 +41,21 @@ export function addTableCollection(collection: TableCollection) {
     }
 }
 
-export function saveEditedTable() {
-    let payload = {};
+export function deleteTableCollection(collection: TableCollection) {
+    let payload = { collection: collection };
     return {
-       type: SAVE_EDITED_TABLE,
+       type: DELETE_TABLE_COLLECTION,
+       payload: payload
+    }
+}
+
+export function replaceTableCollection(uuid: string, collection: TableCollection) {
+    let payload = {
+        uuid: uuid,
+        collection: collection
+    };
+    return {
+       type: REPLACE_TABLE_COLLECTION,
        payload: payload
     }
 }
