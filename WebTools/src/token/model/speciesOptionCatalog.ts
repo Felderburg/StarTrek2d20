@@ -357,8 +357,8 @@ class SpeciesOptionCatalog {
             let tusk2 = "";
             switch (option) {
                 case SpeciesOption.Option2:
-                    tusk1 = TellariteTusks.front;
-                    tusk2 = TellariteTusks.back;
+                    tusk1 = `<g transform="translate(20, 0)">` + TellariteTusks.front + `</g>`;
+                    tusk2 = `<g transform="translate(20, 0)">` + TellariteTusks.back + `</g>`;
                     break;
                 default:
             }

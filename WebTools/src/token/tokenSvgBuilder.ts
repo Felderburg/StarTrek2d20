@@ -48,8 +48,8 @@ export class TokenSvgBuilder {
                         ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.VeryBack) +
                         UniformCatalog.instance.getBody(token) +
                         RankIndicatorCatalog.instance.getRankIndicator(token) +
+                        ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.BehindHead) +
                         "<g transform=\"translate(-20,0)\">" +
-                            ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.BehindHead) +
                             HeadCatalog.instance.getHead(token) +
                             ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.BaseHead) +
                             NasoLabialFoldCatalog.instance.getNasoLabialFold(token) +
@@ -68,8 +68,8 @@ export class TokenSvgBuilder {
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Ear) +
                             HairCatalog.instance.getHair(token, HairElement.CoveringEars) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Headwear) +
-                            ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.VeryFront) +
                         "</g>" +
+                        ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.VeryFront) +
                     "</g>" +
                 "</g>"
 
