@@ -3,7 +3,7 @@ import {Character} from '../common/character';
 import { CharacterType } from '../common/characterType';
 import {navigateTo, Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
-import {Button} from '../components/button';
+import {Button} from 'react-bootstrap';
 import {Source} from '../helpers/sources';
 import { hasSource } from '../state/contextFunctions';
 import { useTranslation } from 'react-i18next';
@@ -34,7 +34,7 @@ const ToolSelectionPage = () => {
 
     const renderTacticalAssetButton = () => {
         if (hasSource(Source.FederationKlingonWar)) {
-            return (<Button className="btn btn-primary mt-4" onClick={() => goToPage(PageIdentity.TacticalAssets)}>{t('Page.title.tacticalAssets')}</Button>);
+            return (<Button className="mt-4" onClick={() => goToPage(PageIdentity.TacticalAssets)}>{t('Page.title.tacticalAssets')}</Button>);
         } else {
             return undefined;
         }
@@ -117,8 +117,8 @@ const ToolSelectionPage = () => {
 
                     <div className="row">
                         <div className="col-md-6 button-column">
-                            <Button className="btn btn-primary mt-4" onClick={() => { startCharacterCreation(); } } >{t('ToolSelection.mainCharacter')}</Button>
-                            <Button className="btn btn-primary mt-4" onClick={() => { goToPage(PageIdentity.SupportingCharacter); } } >{t('ToolSelection.supportingCharacter')}</Button>
+                            <Button className="mt-4" onClick={() => { startCharacterCreation(); } } >{t('ToolSelection.mainCharacter')}</Button>
+                            <Button className="mt-4" onClick={() => { goToPage(PageIdentity.SupportingCharacter); } } >{t('ToolSelection.supportingCharacter')}</Button>
                             <LoadingButton onClick={() => { loadStarshipAndGoToPage(); } } loading={loadingStarship}>{t('ToolSelection.starship')}</LoadingButton>
                             {renderSystemGenerationButton()}
                         </div>

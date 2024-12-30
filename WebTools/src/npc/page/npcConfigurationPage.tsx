@@ -2,7 +2,6 @@ import React from 'react';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { navigateTo } from '../../common/navigator';
-import { Button } from '../../components/button';
 import { DropDownElement, DropDownSelect } from '../../components/dropDownInput';
 import { Header } from '../../components/header';
 import InstructionText from '../../components/instructionText';
@@ -18,6 +17,7 @@ import { SpecializationModel, Specializations } from '../model/specializations';
 import { hasAnySource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
 import { Specialization } from '../../common/specializationEnum';
+import { Button } from 'react-bootstrap';
 
 interface INpcConfigurationPageProperties extends WithTranslation {
     era: Era;
@@ -111,7 +111,7 @@ class NpcConfigurationPage extends React.Component<INpcConfigurationPageProperti
                 </div>
 
                 <div className="mt-5 text-end">
-                    <Button className="btn btn-primary" onClick={() => this.createNpc(this.props.era)}>{t('Common.button.create')}</Button>
+                    <Button size="sm" onClick={() => this.createNpc(this.props.era)}>{t('Common.button.create')}</Button>
                 </div>
             </div>
         </div>);

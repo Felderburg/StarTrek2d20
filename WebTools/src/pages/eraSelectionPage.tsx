@@ -3,7 +3,7 @@ import {Era, ErasHelper} from '../helpers/eras';
 import {navigateTo, Navigation} from '../common/navigator';
 import {Window} from '../common/window';
 import {PageIdentity} from './pageIdentity';
-import {Button} from '../components/button';
+import { Button } from 'react-bootstrap';
 import store from '../state/store';
 import { setEra } from '../state/contextActions';
 import { withTranslation, WithTranslation } from 'react-i18next';
@@ -18,7 +18,7 @@ class EraSelectionPage extends React.Component<WithTranslation, {}> {
             return (
                 <tr key={i} onClick={() => { if (Window.isCompact()) this.eraSelected(e.id); }}>
                     <td className="selection-header">{e.localizedName}</td>
-                    <td className="text-end"><Button className="button-small" onClick={() => { this.eraSelected(e.id) }}>{t('Common.button.select')}</Button></td>
+                    <td className="text-end"><Button size="sm" onClick={() => { this.eraSelected(e.id) }}>{t('Common.button.select')}</Button></td>
                 </tr>
             );
         });

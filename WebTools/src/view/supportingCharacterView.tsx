@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "../components/button";
 import { Header } from "../components/header";
 import { useTranslation } from 'react-i18next';
 import { getNameAndShortRankOf } from "../helpers/ranks";
@@ -16,6 +15,7 @@ import store from "../state/store";
 import { setCharacter } from "../state/characterActions";
 import { useNavigate } from "react-router";
 import TalentsBlockView from "./talentsBlockView";
+import { Button } from "react-bootstrap";
 
 const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -117,14 +117,14 @@ const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}
 
         <div className="button-container d-flex justify-content-between">
             <div className="mt-5 mb-3">
-                <LoadingButton loading={loadingExport} className="button-small me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
-                <Button className="button-small me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
+                <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+                <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
             </div>
 
             {character.version === 1
                 ? undefined
                 : (<div className="mt-5 mb-3">
-                    <Button className="button-small" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>
+                    <Button size="sm" className="me-3" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>
                 </div>)}
 
         </div>

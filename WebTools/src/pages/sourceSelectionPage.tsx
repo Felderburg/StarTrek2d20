@@ -8,12 +8,12 @@ import { addSource, removeSource, setSources } from '../state/contextActions';
 import { connect } from 'react-redux';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { Window } from '../common/window';
-import { Button } from '../components/button';
 import { PageFactory } from './pageFactory';
 import { LoadingButton } from '../common/loadingButton';
 import { setCharacter } from '../state/characterActions';
 import { Header } from '../components/header';
 import toast from 'react-hot-toast';
+import { Button } from 'react-bootstrap';
 
 interface ISourceSelectionPageProperties extends WithTranslation {
     sources: Source[]
@@ -98,7 +98,7 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
                         <tbody>
                             <tr onClick={() => { if (Window.isCompact()) this.selectStandardRules(); }}>
                                 <td className="selection-header">{t('SourceSelectionPage.standardGameType')}</td>
-                                <td className="text-end d-none d-sm-table-cell"><Button className="btn btn-sm btn-primary" onClick={() => { this.selectStandardRules() }}>{t('Common.button.select')}</Button></td>
+                                <td className="text-end d-none d-sm-table-cell"><Button size="sm" onClick={() => { this.selectStandardRules() }}>{t('Common.button.select')}</Button></td>
                             </tr>
                             <tr onClick={() => {
                                 if (Window.isCompact() && this.hasSource(Source.CaptainsLog)) {

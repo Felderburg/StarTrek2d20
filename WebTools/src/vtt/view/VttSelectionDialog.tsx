@@ -2,7 +2,7 @@ import React from "react";
 import { Character } from "../../common/character";
 import { Construct } from "../../common/construct";
 import { Starship } from "../../common/starship";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { ModalControl } from "../../components/modal";
 import { FoundryVttExporter, FoundryVttExporterOptions } from "../foundryVttExporter";
@@ -53,8 +53,8 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
                 {this.renderVttSpecificSettings()}
 
                 <div className="mt-5 text-center">
-                    <Button className="btn btn-primary" onClick={() => this.export() }
-                        enabled={this.state.vttType !== VttType.FantasyGrounds || this.props.construct instanceof Character} >Export</Button>
+                    <Button size="sm" onClick={() => this.export() }
+                        disabled={this.state.vttType === VttType.FantasyGrounds && !(this.props.construct instanceof Character)} >Export</Button>
                 </div>
             </div>
         );

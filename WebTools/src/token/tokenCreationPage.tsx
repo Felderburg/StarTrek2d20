@@ -5,7 +5,7 @@ import {Helmet} from "react-helmet";
 import LcarsFrame from '../components/lcarsFrame';
 import { PageIdentity } from '../pages/pageIdentity';
 import { Header } from '../components/header';
-import { Button } from '../components/button';
+import Button from 'react-bootstrap/Button';
 import { Canvg, presets } from 'canvg'
 import UniformSelectionView from './view/uniformSelectionView';
 import SpeciesSelectionView from './view/speciesSelectionView';
@@ -120,7 +120,7 @@ class TokenCreationPage extends React.Component<ITokenCreationPageProperties, IT
 
                                         <div className="col-6">
                                             <div className="mt-4 text-end">
-                                                <Button className='btn btn-primary btn-xs mw-100' onClick={() => this.exportPng()}>{t('Common.button.export')}</Button>
+                                                <Button className='btn-xs mw-100' onClick={() => this.exportPng()}>{t('Common.button.export')}</Button>
                                             </div>
                                         </div>
 

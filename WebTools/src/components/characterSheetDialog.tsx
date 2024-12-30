@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import i18n from 'i18next';
 import { PDFDocument } from '@cantoo/pdf-lib'
-import {Button} from './button';
+import Button from 'react-bootstrap/button';
 import { ModalControl } from './modal';
 import { Construct } from '../common/construct';
 import { getNavigatorLanguage } from '../i18n/config';
@@ -115,7 +115,7 @@ const _CharacterSheetDialog: React.FC<ICharacterSheetDialogProperties> = ({sheet
                 {sheetList}
             </div>
             <div className="text-center">
-                <Button className="btn btn-primary mt-4" onClick={() => { exportPdf() } } enabled={filtered.length > 0}>{i18n.t('Common.button.exportPdf')}</Button>
+                <Button size="sm" className="mt-4" onClick={() => { exportPdf() } } disabled={filtered.length === 0}>{i18n.t('Common.button.exportPdf')}</Button>
             </div>
         </div>
     );

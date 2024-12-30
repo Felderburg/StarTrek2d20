@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "../components/button";
 import { Header } from "../components/header";
 import { useTranslation } from 'react-i18next';
 import { getNameAndShortRankOf } from "../helpers/ranks";
@@ -13,6 +12,7 @@ import ValuesBlockView from "./valuesBlockView";
 import TalentsBlockView from "./talentsBlockView";
 import SpeciesAbilityBlockView from "./speciesAbilityBlockView";
 import { LoadingButton } from "../common/loadingButton";
+import { Button } from "react-bootstrap";
 
 const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -99,8 +99,8 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
         </div>
 
         <div className="button-container mt-5 mb-3">
-            <LoadingButton loading={loadingExport} className="button-small me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
-            <Button className="button-small me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
+            <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+            <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
         </div>
     </main>);
 
