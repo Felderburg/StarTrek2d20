@@ -145,7 +145,7 @@ const AssetView:React.FC<IAssetViewProperties> = ({asset}) => {
             </div>
 
             <div className="mt-5 mb-3">
-                <LoadingButton loading={loadingExport} className="button-small me-3" onClick={() => exportPdf() }>{t('Common.button.exportPdf')}</LoadingButton>
+                <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => exportPdf() }>{t('Common.button.exportPdf')}</LoadingButton>
             </div>
         </div>
     </main>);

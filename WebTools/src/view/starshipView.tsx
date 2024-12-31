@@ -184,7 +184,7 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
         </div>
 
         <div className="button-container mt-5 mb-3">
-            <LoadingButton loading={loadingExport} className="button-small me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+            <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
             <Button className="button-small me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
         </div>
     </main>);

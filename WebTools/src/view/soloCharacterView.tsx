@@ -190,7 +190,7 @@ const SoloCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
         {(showButtons == null || showButtons === true)
             ? (<div className="d-flex justify-content-between">
                     <div className="mt-5 mb-3">
-                        <LoadingButton loading={loadingExport} className="button-small me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+                        <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
                         <Button className="button-small me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
                     </div>
                     <div className="mt-5 mb-3">

@@ -8,6 +8,7 @@ import { Spaceframe } from "./spaceframeEnum";
 import { SourcePrerequisite } from "./spaceframes";
 import { TalentSelection } from "./talentSelection";
 import { IServiceYearProvider } from "../common/serviceYearProvider";
+import { CenturyPrerequisite, MaxServiceYearPrerequisite } from "./talents";
 
 
 export class SoloSpaceframeStats {
@@ -62,6 +63,28 @@ export class SpaceframeModel implements IServiceYearProvider {
 
     get isCustom() {
         return this.id == null;
+    }
+
+    talentsEffectiveForDate(serviceYear?: number) {
+        if (serviceYear != null) {
+            return this.talents.filter(t => {
+                let result = true;
+                t.talent.prerequisites.forEach(p => {
+                    if (p instanceof MaxServiceYearPrerequisite) {
+                        result = result && serviceYear <= (p as MaxServiceYearPrerequisite).year;
+                    } else if (p instanceof CenturyPrerequisite) {
+                        const prereq = p as CenturyPrerequisite;
+                        if (prereq.toYear != null) {
+                            result = result && serviceYear <= prereq.toYear;
+                        }
+                    }
+                });
+
+                return result;
+            });
+        } else {
+            return this.talents;
+        }
     }
 
     isPrerequisiteFulfilled(s: Starship) {

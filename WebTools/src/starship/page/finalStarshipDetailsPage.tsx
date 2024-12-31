@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { CharacterType } from "../../common/characterType";
 import { Starship } from "../../common/starship";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import RegistryNumber from "../../components/registryNumberGenerator";
 import { marshaller } from "../../helpers/marshaller";
@@ -124,8 +124,8 @@ const FinalStarshipDetailsPage: React.FC<IFinalStarshipDetailsPageProperties> = 
 
             <div className="starship-panel mt-5">
                 <div className="button-container mb-3">
-                    <LoadingButton loading={loadingExport} className="button-small me-2 mb-2" onClick={() => showExportDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
-                    <Button className="button-small me-2 mb-2" onClick={() => showViewPage() } >{t('Common.button.view')}</Button>
+                    <LoadingButton loading={loadingExport} className="btn-sm me-2 mb-2" onClick={() => showExportDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
+                    <Button size="sm" className="me-2 mb-2" onClick={() => showViewPage() } >{t('Common.button.view')}</Button>
                 </div>
             </div>
         </div>);

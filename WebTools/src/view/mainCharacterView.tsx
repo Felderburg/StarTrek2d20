@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { Button } from "../components/button";
+import Button from "react-bootstrap/Button";
 import { Header } from "../components/header";
 import { CharacterSerializer } from "../common/characterSerializer";
 import { useTranslation } from 'react-i18next';
@@ -196,11 +196,11 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
         {(showButtons == null || showButtons === true)
             ? (<div className="d-flex justify-content-between">
                     <div className="mt-5 mb-3">
-                        <LoadingButton loading={loadingExport} className="button-small me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
-                        <Button className="button-small me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
+                        <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+                        <Button size="sm" className="button-small me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
                     </div>
                     <div className="mt-5 mb-3 d-none">
-                        <Button className="button-small" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>
+                        <Button size="sm" className="button-small" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>
                     </div>
                 </div>)
             : null}

@@ -42,6 +42,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
             activePage === PageIdentity.SpaceframeOption ||
             activePage === PageIdentity.SpaceframeSelection ||
             activePage === PageIdentity.StarshipRefits ||
+            activePage === PageIdentity.StarshipServiceRecord ||
             activePage === PageIdentity.StarshipToolSelection ||
             activePage === PageIdentity.StarshipTypeSelection ||
             activePage === PageIdentity.StarshipWeaponsSelection ||

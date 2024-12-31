@@ -373,8 +373,8 @@ class StarbasePrerequisite implements IConstructPrerequisite<Construct> {
     }
 }
 
-class MaxServiceYearPrerequisite implements IConstructPrerequisite<Starship> {
-    private year: number;
+export class MaxServiceYearPrerequisite implements IConstructPrerequisite<Starship> {
+    readonly year: number;
 
     constructor(year: number) {
         this.year = year;
@@ -409,6 +409,10 @@ export class CenturyPrerequisite implements IConstructPrerequisite<Starship> {
 
     constructor(century: number, toCentury?: number) {
         this.century = century;
+    }
+
+    get toYear() {
+        return this.toCentury == null ? null : centuryToYear(this.toCentury);
     }
 
     isPrerequisiteFulfilled(s: Starship) {
@@ -3339,7 +3343,7 @@ export class Talents {
             new TalentModel(
                 "Emergency Medical Hologram",
                 "The ship’s sickbay is equipped with holoemitters and a stateof-the-art holographic doctor, able to assist medical personnel during emergencies. The ship has one additional Supporting Character, an Emergency Medical Hologram, using the Attributes, Disciplines, and so forth as shown in the sidebar, which does not cost any Crew Support to introduce, and which does not automatically improve when introduced. This character cannot go into any location not equipped with holoemitters.",
-                [new StarshipPrerequisite(), new NotCharacterTypePrerequisite(CharacterType.KlingonWarrior), new ServiceYearPrerequisite(2371), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipPrerequisite(), new NotCharacterTypePrerequisite(CharacterType.KlingonWarrior), new ServiceYearPrerequisite(2371), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition), new MaxServiceYearPrerequisite(2380)],
                 1,
                 "Starship"),
             new TalentModel(

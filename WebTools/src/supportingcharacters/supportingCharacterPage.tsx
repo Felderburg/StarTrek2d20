@@ -378,7 +378,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
                 </div>
             </div>
             <div className="button-container mt-4">
-                <LoadingButton loading={loadingExport} className="button-small me-2 mb-2" onClick={() => showDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
+                <LoadingButton loading={loadingExport} className="btn-sm me-2 mb-2" onClick={() => showDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
                 <Button className="button-small me-2 mb-2" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>
             </div>
         </div>

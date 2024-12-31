@@ -96,7 +96,7 @@ const SoloStarshipFinalPage: React.FC<ISoloStarshipFinalProperties> = ({starship
         </div>
 
         <div className="button-container mb-5">
-            <LoadingButton loading={loadingExport} className="button-small me-2" onClick={() => showDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
+            <LoadingButton loading={loadingExport} className="btn-sm me-2" onClick={() => showDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
         </div>
 
     </div>);
