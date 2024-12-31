@@ -8,7 +8,7 @@ import { Species } from "../../helpers/speciesEnum";
 import { makeKey } from "../../common/translationKey";
 import { Attribute } from "../../helpers/attributes";
 import { Window } from "../../common/window";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import { SpeciesRandomTable } from "../table/speciesRandomTable";
 import store from "../../state/store";
@@ -57,7 +57,7 @@ const SoloSpeciesPage: React.FC<ISoloSpeciesPageProperties> = ({era, character})
             <tr key={i} onClick={() => { if (Window.isCompact()) selectSpecies(s); }}>
                 <td className="selection-header">{s.localizedName}</td>
                 <td>{attributes}</td>
-                <td className="text-end"><Button className="button-small"onClick={() => { selectSpecies(s) }} >{t('Common.button.select')}</Button></td>
+                <td className="text-end"><Button size="sm" onClick={() => { selectSpecies(s) }} >{t('Common.button.select')}</Button></td>
             </tr>
         );
     });
@@ -71,10 +71,10 @@ const SoloSpeciesPage: React.FC<ISoloSpeciesPageProperties> = ({era, character})
             </p>
 
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomSpecies( SpeciesRandomTable(era)) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomSpecies( SpeciesRandomTable(era)) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomSpecies != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomSpecies(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomSpecies != null ? (<Button size="sm" className="me-3" onClick={() => setRandomSpecies(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
 
             <table className="selection-list">

@@ -2,7 +2,7 @@ import React from 'react';
 import { Window } from '../common/window';
 import { SpeciesModel } from '../helpers/species';
 import { AttributesHelper } from '../helpers/attributes';
-import { Button } from './button';
+import Button from 'react-bootstrap/Button';
 import { Species } from '../helpers/speciesEnum';
 import { Character } from '../common/character';
 
@@ -46,7 +46,7 @@ export class SimpleSpeciesSelection extends React.Component<ISimpleSpeciesSelect
                     <td>{attributes}</td>
                     <td>{talents}</td>
                     <td className="text-end">
-                        <Button className="button-small" onClick={() => { this.props.onSelection(s) }}>Select</Button>
+                        <Button size="sm" onClick={() => { this.props.onSelection(s) }}>Select</Button>
                     </td>
                 </tr>
             );

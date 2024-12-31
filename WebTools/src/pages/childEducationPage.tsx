@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Navigation } from '../common/navigator';
 import { Window } from '../common/window';
-import { Button } from '../components/button';
+import Button from 'react-bootstrap/Button';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { Header } from '../components/header';
 import InstructionText from '../components/instructionText';
@@ -27,7 +27,7 @@ const AgeSelection : React.FC<ITrackSelectionProperties> = ({onSelection}) => {
                 onClick={() => { if (Window.isCompact()) onSelection(a); } }>
                 <td className="selection-header">{a.name}</td>
                 <td>{a.description}</td>
-                <td><Button className="button-small" onClick={() => { onSelection(a) } }>{t('Common.button.select')}</Button></td>
+                <td><Button size="sm" onClick={() => { onSelection(a) } }>{t('Common.button.select')}</Button></td>
             </tr>
         )
     });

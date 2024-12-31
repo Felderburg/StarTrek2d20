@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { CharacterType } from "../../common/characterType";
 import { makeKey } from "../../common/translationKey";
 import { TrackModel, TracksHelper } from "../../helpers/tracks";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { Window } from "../../common/window";
 import { EducationTrackRandomTable } from "../table/educationRandomTable";
 import store from "../../state/store";
@@ -29,7 +29,7 @@ const SoloEducationPage: React.FC<ICharacterProperties> = ({character}) => {
         return (
             <tr key={i} onClick={() => { if (Window.isCompact()) trackSelected(track); }}>
                 <td className="selection-header">{track.localizedName}</td>
-                <td className="text-end"><Button className="button-small" onClick={() => { trackSelected(track) }}>{t('Common.button.select')}</Button></td>
+                <td className="text-end"><Button size="sm" onClick={() => { trackSelected(track) }}>{t('Common.button.select')}</Button></td>
             </tr>
         );
     }
@@ -48,10 +48,10 @@ const SoloEducationPage: React.FC<ICharacterProperties> = ({character}) => {
                 {t(makeKey('SoloEducationPage.instruction.', CharacterType[character.type]))}
             </p>
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomTrack( EducationTrackRandomTable(character.type)) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomTrack( EducationTrackRandomTable(character.type)) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomTrack != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomTrack(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomTrack != null ? (<Button size="sm" className="me-3" onClick={() => setRandomTrack(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
             <table className="selection-list">
                 <tbody>

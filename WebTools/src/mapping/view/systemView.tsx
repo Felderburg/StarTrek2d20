@@ -1,6 +1,6 @@
 import React from "react";
 import { Window } from "../../common/window";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { StarSystem } from "../table/starSystem";
 import { withTranslation, WithTranslation } from "react-i18next";
 
@@ -18,7 +18,7 @@ class SystemView extends React.Component<ISystemViewProperties, {}> {
             <td>{this.props.system.star ? this.props.system.star.description : ""}</td>
             <td className="text-center">{this.props.system.worlds ? this.props.system.worlds.length : ""}</td>
             <td className="text-end">
-                <Button className="button-small" onClick={() => this.props.onClick()}>{t('Common.button.view')}</Button>
+                <Button size="sm" onClick={() => this.props.onClick()}>{t('Common.button.view')}</Button>
             </td>
         </tr>) : null;
     }

@@ -6,7 +6,7 @@ import {DropDownElement, DropDownSelect} from '../components/dropDownInput';
 import SupportingCharacterAttributes from './supportingCharacterAttributes';
 import SupportingCharacterDisciplines from './supportingCharacterDisciplines';
 import {Rank, RanksHelper} from '../helpers/ranks';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import AgeHelper from '../helpers/age';
 import { Source } from '../helpers/sources';
 import { marshaller } from '../helpers/marshaller';
@@ -379,7 +379,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
             </div>
             <div className="button-container mt-4">
                 <LoadingButton loading={loadingExport} className="btn-sm me-2 mb-2" onClick={() => showDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
-                <Button className="button-small me-2 mb-2" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>
+                <Button size="sm" className="me-2 mb-2" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>
             </div>
         </div>
     ) : undefined;

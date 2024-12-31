@@ -3,7 +3,7 @@ import { Starship } from "../common/starship";
 import { CharacterType } from "../common/characterType";
 import { Department } from "../helpers/departments";
 import { System } from "../helpers/systems";
-import { Button } from "../components/button";
+import Button from "react-bootstrap/Button";
 import { Header } from "../components/header";
 import { StatView } from "../components/StatView";
 import { useTranslation } from 'react-i18next';
@@ -185,7 +185,7 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
 
         <div className="button-container mt-5 mb-3">
             <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
-            <Button className="button-small me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
+            <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
         </div>
     </main>);
 

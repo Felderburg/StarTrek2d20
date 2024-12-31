@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Navigation } from "../../common/navigator";
 import { Starship } from "../../common/starship";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { ModalControl } from "../../components/modal";
 import { Weapon } from "../../helpers/weapons";
@@ -96,8 +96,8 @@ class StarshipWeaponsPageProperties extends React.Component<IStarshipWeaponsPage
     confirmationContents(w: Weapon) {
         return (<div>Are you sure you want to delete this weapon?
             <div className="mt-4 text-center">
-                <Button  className="button-small me-3" onClick={() => { this.closeModal() }} >Cancel</Button>
-                <Button  className="button-small" onClick={() => { this.deleteWeapon(w) }} >Delete</Button>
+                <Button size="sm" className="me-3" onClick={() => { this.closeModal() }} >Cancel</Button>
+                <Button size="sm" onClick={() => { this.deleteWeapon(w) }} >Delete</Button>
             </div>
         </div>);
     }

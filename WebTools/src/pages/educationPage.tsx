@@ -2,7 +2,7 @@
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {TrackModel, TracksHelper} from '../helpers/tracks';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { Window } from '../common/window';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +46,7 @@ const EducationPage: React.FC<ICharacterProperties> = ({character}) => {
         return (
             <tr key={i} onClick={() => { if (Window.isCompact()) selectTrack(track); }}>
                 <td className="selection-header">{track.localizedName}</td>
-                <td className="text-end"><Button className="button-small" onClick={() => { selectTrack(track) }}>{t('Common.button.select')}</Button></td>
+                <td className="text-end"><Button size="sm" onClick={() => { selectTrack(track) }}>{t('Common.button.select')}</Button></td>
             </tr>
         );
     }
@@ -93,10 +93,10 @@ const EducationPage: React.FC<ICharacterProperties> = ({character}) => {
 
                 {tab !== StarfleetTrackTab.Other
                     ? (<div className="my-4">
-                        <Button className="btn btn-primary btn-sm me-3" onClick={() => rollTrack() }>
+                        <Button size="sm" className="me-3" onClick={() => rollTrack() }>
                             <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                         </Button>
-                        {randomTrack != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomTrack(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                        {randomTrack != null ? (<Button size="sm" className="me-3" onClick={() => setRandomTrack(null)} >{t('Common.button.showAll')}</Button>) : undefined}
                     </div>)
                     : undefined}
 

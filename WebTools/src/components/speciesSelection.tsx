@@ -4,7 +4,7 @@ import { CharacterType } from '../common/characterType';
 import { Window } from '../common/window';
 import { SpeciesHelper } from '../helpers/species';
 import { Attribute } from '../helpers/attributes';
-import { Button } from './button';
+import Button from 'react-bootstrap/Button';
 import { CheckBox } from './checkBox';
 import { Species } from '../helpers/speciesEnum';
 import { useTranslation } from 'react-i18next';
@@ -125,7 +125,7 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({character, onS
                 <td>{attributes}</td>
                 <td className="d-none d-md-table-cell">{sources}</td>
                 <td>{talents}</td>
-                <td className="text-end d-none d-sm-table-cell"><Button className="button-small"onClick={() => { onSelection(s.id) }} >{t('Common.button.select')}</Button></td>
+                <td className="text-end d-none d-sm-table-cell"><Button size="sm" onClick={() => { onSelection(s.id) }} >{t('Common.button.select')}</Button></td>
             </tr>
         );
     });

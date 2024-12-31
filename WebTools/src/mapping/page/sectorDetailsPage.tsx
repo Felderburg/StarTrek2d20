@@ -9,7 +9,7 @@ import LcarsDecorationLeftView from "../view/lcarsDecorationLeft";
 import LcarsDecorationRightView from "../view/lcarsDecorationRight";
 import SectorMapView from "../view/sectorMapView";
 import SystemView from "../view/systemView";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { Sector } from "../table/sector";
 import { StarSystem } from "../table/starSystem";
 import { PDFDocument } from "@cantoo/pdf-lib";
@@ -85,7 +85,7 @@ const SectorDetailsPage: React.FC<ISectorDetailsPageProperties> = ({sector}) => 
                 </table>
             </div>
             <div className="mt-3">
-                <Button onClick={() => exportPdf()} className="button-small me-2">{t('Common.button.exportPdf')}</Button>
+                <Button size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</Button>
             </div>
         </div>)
     : null;
