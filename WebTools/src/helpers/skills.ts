@@ -30,7 +30,7 @@ export class Skills {
     getSkillByName(name: string) {
         for (var i = 0; i < Skill.None; i++) {
             const skill = Skill[i];
-            if (skill === name) {
+            if (skill.toLocaleLowerCase() === name.toLocaleLowerCase()) {
                 return i as Skill;
             }
         }

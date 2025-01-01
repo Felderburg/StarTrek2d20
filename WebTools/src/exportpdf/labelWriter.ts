@@ -70,28 +70,37 @@ export const labelWriter = (page: PDFPage, locations: {[key: string]: Column},
         }
 
         text += suffix;
-
-        let x = column.start.x;
-        if (textAlign === TextAlign.Centre) {
-            x = column.start.x + ((column.width - width) / 2);
-        } else if (textAlign === TextAlign.Right) {
-            x = column.end.x - width - 2;
-        }
-
-        let y = column.end.y;
-        if (verticalAlignment === VerticalAlignment.Middle) {
-            const block = TextBlock.create(text, new FontSpecification(font, fontSize), false);
-            console.log(column.height, font.heightAtSize(fontSize));
-            y = column.end.y - 1 - ((column.height - block.height) / 2)
-        }
-
-        page.drawText(text, {
-            x: x,
-            y: page.getHeight() - y,
-            color: colourProvider(key).asPdfRbg(),
-            font: font,
-            size: fontSize
-        });
+        simpleLabelWriter(page, text, column, font, fontSize,
+            colourProvider(key), textAlign, verticalAlignment);
     });
 
+}
+
+export const simpleLabelWriter = (page: PDFPage, text: string, column: Column,
+    font: PDFFont, fontSize: number,
+    colour: SimpleColor,
+    textAlign: TextAlign = TextAlign.Left,
+    verticalAlignment: VerticalAlignment = VerticalAlignment.Baseline) => {
+
+    let width = font.widthOfTextAtSize(text, fontSize);
+    let x = column.start.x;
+    if (textAlign === TextAlign.Centre) {
+        x = column.start.x + ((column.width - width) / 2);
+    } else if (textAlign === TextAlign.Right) {
+        x = column.end.x - width - 2;
+    }
+
+    let y = column.end.y;
+    if (verticalAlignment === VerticalAlignment.Middle) {
+        const block = TextBlock.create(text, new FontSpecification(font, fontSize), false);
+        y = column.end.y - 1 - ((column.height - block.height) / 2)
+    }
+
+    page.drawText(text, {
+        x: x,
+        y: page.getHeight() - y,
+        color: colour.asPdfRbg(),
+        font: font,
+        size: fontSize
+    });
 }

@@ -1,4 +1,4 @@
-import { PDFFont, PDFPage } from "@cantoo/pdf-lib";
+import { degrees, PDFFont, PDFPage, Rotation } from "@cantoo/pdf-lib";
 import { SimpleColor } from "../common/colour";
 import { FontSpecification } from "./fontSpecification";
 
@@ -39,13 +39,14 @@ export class TextBlock {
         return fontSpec.font.heightAtSize(fontSpec.size) - fontSpec.font.heightAtSize(fontSpec.size, { descender: false });
     }
 
-    writeToPage(x: number, y: number, page: PDFPage, color: SimpleColor) {
+    writeToPage(x: number, y: number, page: PDFPage, color: SimpleColor, rotate: Rotation = degrees(0)) {
         page.drawText(this.text, {
             x: x,
             y: y,
             size: this.fontSize,
             font: this.font,
-            color: this.colour == null ? color.asPdfRbg() : this.colour.asPdfRbg()
+            color: this.colour == null ? color.asPdfRbg() : this.colour.asPdfRbg(),
+            rotate: rotate
         });
     }
 }

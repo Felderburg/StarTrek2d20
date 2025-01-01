@@ -148,6 +148,13 @@ const CreditsPage = () => {
 
                         </p>
 
+                        <Header className="my-4" level={2}>Others</Header>
+
+                        <p>
+                            The main inspiration for the "tent card" version of the character sheet originates with Modiphius
+                            Discord member mattcapiche.
+                        </p>
+
                     </div>
                     <div className="col">
                         <Header className="my-4" level={2}>Contact</Header>

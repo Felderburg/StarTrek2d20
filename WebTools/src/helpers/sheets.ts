@@ -33,6 +33,7 @@ import { assembleWritableItems } from '../exportpdf/generatedsheet';
 import { WeaponDescriber } from '../exportpdf/weaponDescriber';
 import { Landscape2eCharacterSheet } from '../exportpdf/landscape2eCharacterSheet';
 import { Standard2eStarshipSheet } from '../exportpdf/standard2eStarshipSheet';
+import { BasicGeneratedTentCardCharacterSheet } from '../exportpdf/generated2eTentCard';
 
 
 abstract class BasicSheet implements ICharacterSheet {
@@ -1144,6 +1145,7 @@ class CharacterSheets {
         } else if (character.version > 1) {
             return [ new Standard2eCharacterSheet(),
                 new Landscape2eCharacterSheet(),
+                new BasicGeneratedTentCardCharacterSheet(),
                 new GeneratedTngPortraitCharacterSheet(),
                 new StandardGermanCharacterSheet(),
                 new GeneratedTngPortraitA4CharacterSheet(),
@@ -1160,6 +1162,7 @@ class CharacterSheets {
                 new GeneratedTngPortraitA4CharacterSheet(),
                 new StandardRussianCharacterSheet(), new Standard2eCharacterSheet(),
                 new Landscape2eCharacterSheet(),
+                new BasicGeneratedTentCardCharacterSheet(),
                 new StandardTosCharacterSheet(), new LandscapeGeneratedCharacterSheet(), new TwoPageTngLandscapeCharacterSheet(),
                 new TwoPageTngCharacterSheet(), new RomulanCharacterSheet() ];
         } else if (character.era === Era.NextGeneration) {
@@ -1167,6 +1170,7 @@ class CharacterSheets {
                 new GeneratedTngPortraitA4CharacterSheet(), new StandardRussianCharacterSheet(), new KlingonCharacterSheet(),
                 new Standard2eCharacterSheet(),
                 new Landscape2eCharacterSheet(),
+                new BasicGeneratedTentCardCharacterSheet(),
                 new StandardTosCharacterSheet(),
                 new LandscapeGeneratedCharacterSheet(), new TwoPageTngLandscapeCharacterSheet(), new TwoPageTngCharacterSheet(),
                 new TwoPageKlingonCharacterSheet(), new RomulanCharacterSheet() ];
@@ -1175,6 +1179,7 @@ class CharacterSheets {
                 new GeneratedTngPortraitA4CharacterSheet(), new StandardRussianCharacterSheet(),
                 new Standard2eCharacterSheet(),
                 new Landscape2eCharacterSheet(),
+                new BasicGeneratedTentCardCharacterSheet(),
                 new LandscapeGeneratedCharacterSheet(), new TwoPageTngCharacterSheet(),
                 new TwoPageTngLandscapeCharacterSheet(), new TwoPageKlingonCharacterSheet(), new RomulanCharacterSheet() ];
         }
