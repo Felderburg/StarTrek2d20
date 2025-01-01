@@ -1,7 +1,7 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {AlliedMilitaryDetails, Character} from '../common/character';
 import {CharacterType} from '../common/characterType';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import {CheckBox} from '../components/checkBox';
 import {ANY_NAMES, SpeciesHelper} from '../helpers/species';
 import {RankModel, RanksHelper} from '../helpers/ranks';
@@ -376,7 +376,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({character}) => {
                 <AllCharacterValues />
                 <div className="button-container mb-5">
                     <LoadingButton loading={loadingExport} className="btn-sm me-2" onClick={() => showDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
-                    <Button className="button-small me-2" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>
+                    <Button size="sm" className="me-2" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>
                 </div>
             </main>
         </div>

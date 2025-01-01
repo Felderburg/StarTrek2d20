@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Navigation } from "../../common/navigator";
 import { ShipTalentDetailSelection, Starship } from "../../common/starship";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { ModalControl } from "../../components/modal";
 import { addStarshipTalentDetailSelection, nextStarshipWorkflowStep, removeStarshipTalentDetailSelection } from "../../state/starshipActions";
@@ -113,8 +113,8 @@ class ExpandedMunitionsWeaponsSelectionPage extends React.Component<IExpandedMun
     confirmationContents(selection: ShipTalentDetailSelection) {
         return (<div>Are you sure you want to delete this weapon?
             <div className="mt-4 text-center">
-                <Button  className="button-small me-3" onClick={() => { this.closeModal() }} >Cancel</Button>
-                <Button  className="button-small" onClick={() => { this.deleteWeapon(selection) }} >Delete</Button>
+                <Button size="sm" className="me-3" onClick={() => { this.closeModal() }} >Cancel</Button>
+                <Button size="sm" onClick={() => { this.deleteWeapon(selection) }} >Delete</Button>
             </div>
         </div>);
     }

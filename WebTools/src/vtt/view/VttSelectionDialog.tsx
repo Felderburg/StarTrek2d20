@@ -2,7 +2,7 @@ import React from "react";
 import { Character } from "../../common/character";
 import { Construct } from "../../common/construct";
 import { Starship } from "../../common/starship";
-import Button from "react-bootstrap/button";
+import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { ModalControl } from "../../components/modal";
 import { FoundryVttExporter, FoundryVttExporterOptions } from "../foundryVttExporter";

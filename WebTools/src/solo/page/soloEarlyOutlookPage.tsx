@@ -3,7 +3,7 @@ import { Header } from "../../components/header";
 import { Navigation } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { useTranslation } from "react-i18next";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
 import { makeKey } from "../../common/translationKey";
 import { AttributesHelper } from "../../helpers/attributes";
@@ -97,7 +97,7 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({character}) => {
                         <div>{AttributesHelper.getAttributeName(u.attributeRebelPlus1) } +1</div>
                     </td>
                     <td>{disciplines}</td>
-                    <td className="text-end"><Button className="button-small" onClick={() => { selectOutlook(u) } }>{t('Common.button.select')}</Button></td>
+                    <td className="text-end"><Button size="sm" onClick={() => { selectOutlook(u) } }>{t('Common.button.select')}</Button></td>
                 </tr>
             )
         }
@@ -113,10 +113,10 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({character}) => {
 
         return (<>
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomUpbringing( EarlyOutlookUpbringingRandomTable()) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomUpbringing( EarlyOutlookUpbringingRandomTable()) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomUpbringing != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomUpbringing(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomUpbringing != null ? (<Button size="sm" className="me-3" onClick={() => setRandomUpbringing(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
 
             <table className="selection-list">
@@ -145,10 +145,10 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({character}) => {
 
         return (<>
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomCaste( EarlyOutlookCasteRandomTable()) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomCaste( EarlyOutlookCasteRandomTable()) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomCaste != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomCaste(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomCaste != null ? (<Button size="sm" className="me-3" onClick={() => setRandomCaste(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
 
             <table className="selection-list">
@@ -177,10 +177,10 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({character}) => {
 
         return (<>
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomAsperation( EarlyOutlookAspirationRandomTable()) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomAsperation( EarlyOutlookAspirationRandomTable()) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomAsperation != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomAsperation(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomAsperation != null ? (<Button size="sm" className="me-3" onClick={() => setRandomAsperation(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
 
             <table className="selection-list">

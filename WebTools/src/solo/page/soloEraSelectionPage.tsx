@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Era, EraModel, ErasHelper, eraDefaultYear } from '../../helpers/eras';
 import { Window } from '../../common/window';
-import { Button } from '../../components/button';
+import Button from 'react-bootstrap/Button';
 import { navigateTo, Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { setEra } from '../../state/contextActions';
@@ -45,7 +45,7 @@ const SoloEraSelectionPage: React.FC<ISoloEraSelectionPage> = ({stereotype}) => 
         return (
             <tr key={i} onClick={() => { if (Window.isCompact()) eraSelected(e.id); }}>
                 <td className="selection-header">{e.localizedName}</td>
-                <td className="text-end"><Button className="button-small"
+                <td className="text-end"><Button size="sm"
                      onClick={() => { eraSelected(e.id) }} >{t('Common.button.select')}</Button></td>
             </tr>
         );
@@ -73,11 +73,11 @@ const SoloEraSelectionPage: React.FC<ISoloEraSelectionPage> = ({stereotype}) => 
                 {t('SoloEraSelectionPage.instruction')}
             </p>
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() =>
+                <Button size="sm" className="me-3" onClick={() =>
                     setRandomEra( stereotype === Stereotype.SoloStarship ? eraRandomTableForStarships() : eraRandomTable()) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomEra != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomEra(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomEra != null ? (<Button size="sm" className="me-3" onClick={() => setRandomEra(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
             <table className="selection-list">
                 <tbody>

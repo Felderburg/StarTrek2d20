@@ -89,7 +89,7 @@ const CreditsPage = () => {
                         <Header className="my-4" level={2}>Token Art</Header>
 
                         <p>Many of the art images used in the token generator were commissioned from {' '}
-                            <a href="http://kacurtis.com/" target="_blank" rel="noreferrer">Keith Curtis</a> (no SSL).
+                            <a href="https://kacurtis.com/" target="_blank" rel="noreferrer">Keith Curtis</a>.
                             I've sought out work from Keith multiple times; he's a reliable guy.
                         </p>
                         <p>

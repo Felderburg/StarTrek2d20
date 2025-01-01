@@ -2,7 +2,7 @@
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {EarlyOutlook, EarlyOutlookModel, UpbringingsHelper} from '../helpers/upbringings';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import InstructionText from '../components/instructionText';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import store from '../state/store';
@@ -108,7 +108,7 @@ const EarlyOutlookPage : React.FC<ICharacterProperties> = ({character}) => {
                         <div>{t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(u.attributeRebelPlus1))) } +1</div>
                     </td>
                     <td>{disciplines}</td>
-                    <td className="text-end"><Button className="button-small" onClick={() => { selectOutlook(u) } }>{t('Common.button.select')}</Button></td>
+                    <td className="text-end"><Button size="sm" onClick={() => { selectOutlook(u) } }>{t('Common.button.select')}</Button></td>
                 </tr>
             )
         }
@@ -124,10 +124,10 @@ const EarlyOutlookPage : React.FC<ICharacterProperties> = ({character}) => {
 
         return (<>
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomUpbringing( EarlyOutlookUpbringingRandomTable()) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomUpbringing( EarlyOutlookUpbringingRandomTable()) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomUpbringing != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomUpbringing(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomUpbringing != null ? (<Button size="sm" className="me-3" onClick={() => setRandomUpbringing(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
 
             <table className="selection-list">
@@ -190,10 +190,10 @@ const EarlyOutlookPage : React.FC<ICharacterProperties> = ({character}) => {
 
         return (<>
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomAsperation( EarlyOutlookAspirationRandomTable()) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomAsperation( EarlyOutlookAspirationRandomTable()) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomAsperation != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomAsperation(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomAsperation != null ? (<Button size="sm" className="me-3" onClick={() => setRandomAsperation(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
 
             <table className="selection-list">

@@ -7,7 +7,7 @@ import { ICharacterProperties, characterMapStateToProperties } from "./soloChara
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Window } from "../../common/window";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { StepContext, addCharacterCareerEvent } from "../../state/characterActions";
 import { CareerEventModel, CareerEventsHelper } from "../../helpers/careerEvents";
 import { CharacterType } from "../../common/characterType";
@@ -48,7 +48,7 @@ const SoloCareerEventPage: React.FC<ISoloCareerEventProperties> = ({character, c
                 <td className="selection-header">{careerEvent.name}</td>
                 <td>{attributes}</td>
                 <td>{disciplines}</td>
-                <td className="text-end"><Button className="button-small" onClick={() => { careerEventSelected(careerEvent) } }>{t('Common.text.select')}</Button></td>
+                <td className="text-end"><Button size="sm" onClick={() => { careerEventSelected(careerEvent) } }>{t('Common.text.select')}</Button></td>
             </tr>
         )
     }
@@ -63,10 +63,10 @@ const SoloCareerEventPage: React.FC<ISoloCareerEventProperties> = ({character, c
             <Header>{t('Page.title.careerEvent')}</Header>
             <InstructionText text={t('SoloCareerEvent.instruction')} />
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomEvent( CareerEventsHelper.generateEvent(CharacterType.Starfleet).roll) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomEvent( CareerEventsHelper.generateEvent(CharacterType.Starfleet).roll) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomEvent != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomEvent(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomEvent != null ? (<Button size="sm" className="me-3" onClick={() => setRandomEvent(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
             <table className="selection-list">
                 <tbody>
