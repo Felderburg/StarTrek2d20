@@ -3210,7 +3210,7 @@ export class SpaceframeHelper {
             Spaceframe.Walker_2E,
             CharacterType.Starfleet,
             "Walker",
-            2396,
+            2195,
             [ new SourcePrerequisite(Source.GmToolkit2e), new ServiceYearPrerequisite(2195) ],
             [6, 7, 6, 7, 6, 8],
             [0, 0, 0, 1, 1, 1],

@@ -85,6 +85,7 @@ class SpeciesSelectionView extends React.Component<ISpeciesSelectionProperties, 
                 Species.Saurian, Species.Suliban, Species.Tellarite, Species.Trill,
                 Species.Vulcan, Species.XindiPrimate, Species.XindiReptilian,
                 Species.Yridian,
+//                Species.Zakdorn,
                 Species.Zaranite
             ].map(s => new DropDownElement(s, SpeciesHelper.getSpeciesByType(s).localizedName))
             .sort((d1, d2) => d1.name.localeCompare(d2.name));

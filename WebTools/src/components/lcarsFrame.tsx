@@ -175,7 +175,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
                 </div>
             </div>
             <footer className="text-primary text-center copyright">
-                TM &amp; &copy; 2024 CBS Studios Inc. {t('Lcars.copyright')}
+                TM &amp; &copy; 2025 CBS Studios Inc. {t('Lcars.copyright')}
             </footer>
         </div>,
         <div id="dialog" key="modal-dialog"></div>,
