@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { preventDefaultAnchorEvent } from '../../common/navigator';
-import { Button } from '../../components/button';
+import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { setStarSystemName } from '../../state/starActions';
 import store from '../../state/store';
@@ -102,8 +102,8 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
                         </div>
 
                         <div>
-                            <Button className="me-2 btn btn-primary btn-sm" onClick={() => navigate("/sectorDetails") }>Back to Sector</Button>
-                            <Button onClick={() => exportPdf()} className="btn btn-primary btn-sm me-2">{t('Common.button.exportPdf')}</Button>
+                            <Button size="sm" className="me-2" onClick={() => navigate("/sectorDetails") }>Back to Sector</Button>
+                            <Button size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</Button>
                         </div>
                     </div>
                 </div>

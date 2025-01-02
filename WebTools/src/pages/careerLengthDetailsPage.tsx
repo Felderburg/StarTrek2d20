@@ -2,7 +2,7 @@
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {CareerModel, CareersHelper} from '../helpers/careers';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {TalentDescription} from '../components/talentDescription';
 import ValueInput from '../components/valueInputWithRandomOption';
@@ -112,7 +112,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
             {renderMainBody(career)}
 
             <div className="text-end">
-                <Button className="btn btn-primary" onClick={() => onNext() }>{t('Common.button.next')}</Button>
+                <Button onClick={() => onNext() }>{t('Common.button.next')}</Button>
             </div>
         </div>
     );

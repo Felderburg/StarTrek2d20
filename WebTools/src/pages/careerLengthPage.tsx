@@ -7,7 +7,7 @@ import { setCharacterCareerLength } from "../state/characterActions";
 import store from "../state/store";
 import { Navigation } from "../common/navigator";
 import { PageIdentity } from "./pageIdentity";
-import { Button } from "../components/button";
+import Button from "react-bootstrap/Button";
 import { Window } from "../common/window";
 import SoloCharacterBreadcrumbs from "../solo/component/soloCharacterBreadcrumbs";
 import { Header } from "../components/header";
@@ -40,7 +40,7 @@ const CareerLengthPage: React.FC<ICharacterProperties> = ({character}) => {
         return (
             <tr key={i} onClick={() => { if (Window.isCompact()) careerLengthSelected(careerLength); }}>
                 <td className="selection-header">{careerLength.localizedName}</td>
-                <td className="text-end"><Button className="btn btn-primary btn-sm"
+                <td className="text-end"><Button size="sm"
                     onClick={() => { careerLengthSelected(careerLength) }}
                 >{t('Common.button.select')}</Button></td>
             </tr>
@@ -85,10 +85,10 @@ const CareerLengthPage: React.FC<ICharacterProperties> = ({character}) => {
             {message}
 
             <div className="my-4">
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomLength( selectRandomCareerLength()) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomLength( selectRandomCareerLength()) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
-                {randomLength != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomLength(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomLength != null ? (<Button size="sm" className="me-3" onClick={() => setRandomLength(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
             <table className="selection-list">
                 <tbody>

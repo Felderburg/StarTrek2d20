@@ -4,7 +4,7 @@ import LcarsFrame from "../../components/lcarsFrame"
 import { PageIdentity } from "../../pages/pageIdentity"
 import { connect } from "react-redux"
 import { TableCollection } from "../model/table"
-import { Button } from "../../components/button"
+import Button from "react-bootstrap/Button"
 import { setTableCollectionSelection, setTableForEditing } from "../../state/tableActions"
 import store from "../../state/store"
 import { useNavigate } from "react-router"
@@ -54,7 +54,7 @@ const TableListPage: React.FC<ITableListPageProperties> = ({collections}) => {
                                     </td>
                                     <td>
                                         <div className="text-end">
-                                            <Button className="btn btn-primary btn-xs" onClick={() => selectCollection(tc)}>Select</Button>
+                                            <Button className="btn-xs" onClick={() => selectCollection(tc)}>Select</Button>
                                         </div>
                                     </td>
                                 </tr>))}
@@ -81,7 +81,7 @@ const TableListPage: React.FC<ITableListPageProperties> = ({collections}) => {
                     <Header>{t('Page.title.tableList')}</Header>
 
                     <div className="text-end mt-3">
-                        <Button className="btn btn-primary btn-sm" onClick={createTable}>{t('Common.button.create')}</Button>
+                        <Button size="sm" onClick={createTable}>{t('Common.button.create')}</Button>
                     </div>
 
                     <div className="row">

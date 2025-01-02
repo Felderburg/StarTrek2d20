@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '../../components/button';
+import Button from 'react-bootstrap/Button';
 import { SystemGenerationTable } from '../table/systemGenerator';
 import { SpaceRegion, SpaceRegionModel, SpecialSectors, SpecialSectorTypeModel } from '../table/star';
 import { DropDownElement, DropDownSelect } from '../../components/dropDownInput';
@@ -56,7 +56,7 @@ export const SystemGenerationPage = () => {
             </div>
             {renderSectorTypeSection()}
             <div className="button-container mt-4">
-                <Button className="btn btn-primary" onClick={() => generateSystem()}>Generate Sector</Button>
+                <Button onClick={() => generateSystem()}>Generate Sector</Button>
             </div>
         </div>
     );

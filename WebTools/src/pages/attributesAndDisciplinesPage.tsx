@@ -3,7 +3,7 @@ import {Character} from '../common/character';
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WISDOM_OF_YEARS, TalentsHelper } from '../helpers/talents';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import ValueInput from '../components/valueInputWithRandomOption';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
@@ -140,7 +140,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
 
             {talentSelection}
             <div className="text-end mt-4">
-                <Button className="btn btn-primary" onClick={() => navigateToNextPage() }>FINISH</Button>
+                <Button onClick={() => navigateToNextPage() }>{t('Common.button.finish')}</Button>
             </div>
         </div>
     );

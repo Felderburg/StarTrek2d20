@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { CheckBox } from '../components/checkBox';
-import { Button } from '../components/button';
+import Button from 'react-bootstrap/Button';
 import { PageIdentity } from './pageIdentity';
 import { Navigation } from '../common/navigator';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
@@ -192,7 +192,7 @@ const ExtraTalentChoicesPage : React.FC<ICharacterProperties> = ({character}) =>
                 </div>
 
                 <div className="text-end my-4">
-                    <Button className="btn btn-primary" onClick={() => onNext()} >{t('Common.button.next')}</Button>
+                    <Button onClick={() => onNext()} >{t('Common.button.next')}</Button>
                 </div>
             </main>
         </div>);

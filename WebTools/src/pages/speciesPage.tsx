@@ -13,7 +13,7 @@ import { SpeciesHelper } from '../helpers/species';
 import { setCharacterSpecies } from '../state/characterActions';
 import store from '../state/store';
 import { Navigation } from '../common/navigator';
-import { Button } from '../components/button';
+import Button from 'react-bootstrap/Button';
 
 enum SpeciesTab {
     Standard,
@@ -61,7 +61,7 @@ const SpeciesPage: React.FC<ICharacterProperties> = ({character}) => {
                     <tr>
                         <td className="selection-header">Custom Species</td>
                         <td className="text-end">
-                            <Button className="btn btn-primary btn-sm" onClick={() => showCustomSpecies() }>{t('Common.text.select')}</Button>
+                            <Button size="sm" onClick={() => showCustomSpecies() }>{t('Common.text.select')}</Button>
                         </td>
                     </tr>
                 </tbody>
