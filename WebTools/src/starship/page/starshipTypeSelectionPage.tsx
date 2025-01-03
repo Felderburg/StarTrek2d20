@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { CharacterTypeModel } from "../../common/characterType";
 import { navigateTo, Navigation } from "../../common/navigator";
 import { ShipBuildType, ShipBuildTypeModel, SimpleStats } from "../../common/starship";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { Header } from "../../components/header";
 import { Era, eraDefaultYear } from "../../helpers/eras";

@@ -4,7 +4,7 @@ import { Navigation } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { Header } from "../../components/header";
 import { connect } from "react-redux";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import SoloValueInput from "../component/soloValueInput";
 import store from "../../state/store";
 import { StepContext, setCharacterValue } from "../../state/characterActions";
@@ -87,7 +87,7 @@ const SoloFinishingTouchesPage: React.FC<ICharacterProperties> = ({character}) =
 
             </div>
             <div className='text-end mt-4'>
-                <Button className="btn btn-primary" onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
+                <Button onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
             </div>
         </div>);
 

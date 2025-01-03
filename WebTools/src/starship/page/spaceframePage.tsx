@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Navigation } from "../../common/navigator";
 import { ShipBuildType, Starship } from "../../common/starship";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { SpaceframeModel } from "../../helpers/spaceframeModel";
 import { PageIdentity } from "../../pages/pageIdentity";

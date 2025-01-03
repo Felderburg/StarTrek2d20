@@ -3,7 +3,7 @@ import React from "react";
 import { Header } from "../components/header";
 import LcarsFrame from "../components/lcarsFrame";
 import { PageIdentity } from "../pages/pageIdentity";
-import { Button } from "../components/button";
+import Button from "react-bootstrap/Button";
 import { ModalControl } from "../components/modal";
 import AddCharacterView from "./addCharacterView";
 import { connect } from "react-redux";
@@ -11,6 +11,7 @@ import GmCharacterView from "./gmCharacterView";
 import { CharacterWithTracking } from "./model/characterWithTracking";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+import { IconButton } from "../components/iconButton";
 
 interface IGMTrackerPageProperties {
     characters: CharacterWithTracking[];
@@ -54,7 +55,7 @@ const GMTrackerPage: React.FC<IGMTrackerPageProperties> = ({characters}) => {
                     <p>{t('GMTracker.instruction')}</p>
 
                     <div className="text-end">
-                        <Button className="btn btn-link btn-lg" onClick={() => showAddModal()}><i className="bi bi-plus-circle"></i></Button>
+                        <IconButton onClick={() => showAddModal()} icon="plus-circle" />
                     </div>
 
                     {characters.map((c, i) => <GmCharacterView tracking={c} key={'character-' + c.id}/>)}

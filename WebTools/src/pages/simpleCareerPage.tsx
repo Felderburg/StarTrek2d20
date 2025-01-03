@@ -1,6 +1,6 @@
 ﻿import React, { useEffect } from 'react';
 import {Navigation} from '../common/navigator';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import {TalentDescription} from '../components/talentDescription';
 import ValueInput from '../components/valueInputWithRandomOption';
 import { TalentsHelper } from '../helpers/talents';
@@ -66,7 +66,7 @@ const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({character, tal
                     </div>
                 </div>
                 <div className="text-end">
-                    <Button className="btn btn-primary" onClick={() => onNext() }>{t('Common.button.next')}</Button>
+                    <Button onClick={() => onNext() }>{t('Common.button.next')}</Button>
                 </div>
             </main>
         </div>

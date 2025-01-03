@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigation } from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import { TalentsHelper, TalentViewModel } from '../helpers/talents';
-import { Button } from '../components/button';
+import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
 import { Dialog } from '../components/dialog';
 import { Source } from '../helpers/sources';
@@ -132,7 +132,7 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
                 </div>
                 {renderTalentsSection()}
                 <div className="text-end">
-                    <Button className="button-next" onClick={() => onNext()}>{t('Common.button.next')}</Button>
+                    <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
                 </div>
             </div>
         </div>);

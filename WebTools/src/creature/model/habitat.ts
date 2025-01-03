@@ -10,18 +10,23 @@ export enum Habitat {
     Ocean,
     Plains,
     River,
+    Space,
     Swamp,
-    UpperAtmosphere
+    UpperAtmosphere,
 }
 
 export class HabitatModel {
 
     id: Habitat;
-    name: string;
+    private name: string;
 
     constructor(id: Habitat, name: string) {
         this.id = id;
         this.name = name;
+    }
+
+    get localizedName() {
+        return this.name;
     }
 }
 

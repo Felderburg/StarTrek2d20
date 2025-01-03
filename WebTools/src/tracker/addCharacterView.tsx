@@ -60,7 +60,7 @@ class AddCharacterView extends React.Component<IAddCharacterProperties, IAddChar
                         message: t('AddCharacterView.errorMessage'),
                         characterString: undefined
                     }));
-                } else if (json.stereotype !== "supportingCharacter" && json.stereotype !== "mainCharacter") {
+                } else if (json.stereotype !== "supportingCharacter" && json.stereotype !== "mainCharacter" && json.stereotype !== "npc") {
                     this.setState((state) => ({...state, enabled: false,
                         message: t('AddCharacterView.errorCharacterType'),
                         characterString: undefined

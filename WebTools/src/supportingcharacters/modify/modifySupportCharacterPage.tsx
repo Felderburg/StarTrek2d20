@@ -8,7 +8,7 @@ import { Header } from "../../components/header";
 import Markdown from "react-markdown";
 import Carousel from 'react-bootstrap/Carousel';
 import { useState } from "react";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { SupportingCharacterModificationType } from "./supportingCharacterModificationType";
 import ValueInput from "../../components/valueInputWithRandomOption";
@@ -157,7 +157,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
             </div>);
         } else {
             return (<div className="mt-4">
-                <Button className="btn btn-primary btn-sm" onClick={() => viewCharacter()}>{t('Common.button.view')}</Button>
+                <Button size="sm" onClick={() => viewCharacter()}>{t('Common.button.view')}</Button>
             </div>);
 
         }
@@ -177,7 +177,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                     initialSelection={talentSelection == null ? null : TalentsHelper.getTalent(talentSelection)} />
 
                 <div className="text-center mt-4">
-                    <Button className="btn btn-primary btn-sm" onClick={() => closeModal()}>{t('Common.button.ok')}</Button>
+                    <Button size="sm" onClick={() => closeModal()}>{t('Common.button.ok')}</Button>
                 </div>
             </div>),
 
@@ -224,7 +224,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                     <Header level={2} className="my-4">{t('Construct.other.talent')}</Header>
                     <Markdown>{t('ModifySupportingCharacter.talent.instruction')}</Markdown>
                     <div className="text-end">
-                        <Button className="btn btn-primary btn-sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
+                        <Button size="sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
                     </div>
                     {talent == null
                     ? (<p>No talent selected.</p>)

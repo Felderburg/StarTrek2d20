@@ -3,7 +3,7 @@ import { Navigation, navigateTo } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { useTranslation } from "react-i18next";
 import InstructionText from "../../components/instructionText";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import store from "../../state/store";
 import { setCharacter } from "../../state/characterActions";
 import { Character } from "../../common/character";
@@ -41,8 +41,8 @@ const SoloConstructTypePage = () => {
                 <InstructionText text={t('SoloConstructTypePage.instruction')} />
 
                 <div className="button-column">
-                    <Button className="btn btn-primary mt-4" onClick={() => createCharacter() } >{t('SoloConstructTypePage.character')}</Button>
-                    <Button className="btn btn-primary mt-4" onClick={() => createSoloStarship() } >{t('SoloConstructTypePage.starship')}</Button>
+                    <Button className="mt-4" onClick={() => createCharacter() } >{t('SoloConstructTypePage.character')}</Button>
+                    <Button className="mt-4" onClick={() => createSoloStarship() } >{t('SoloConstructTypePage.starship')}</Button>
                 </div>
             </div>
         </div>

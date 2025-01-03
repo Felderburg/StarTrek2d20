@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import ReactMarkdown from "react-markdown";
 import { Header } from "../../components/header";
 import SoloStarshipBreadcrumbs from "../component/soloStarshipBreadcrumbs";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import replaceDiceWithArrowhead from "../../common/arrowhead";
 import { CheckBox } from "../../components/checkBox";
 import { CenturyPrerequisite, TalentModel, TalentsHelper, ToViewModel } from "../../helpers/talents";
@@ -145,7 +145,7 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({star
             </table>
 
             <div className='text-end mt-4'>
-                <Button className="btn btn-primary" onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
+                <Button onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
             </div>
         </div>);
 }

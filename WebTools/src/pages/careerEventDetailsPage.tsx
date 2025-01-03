@@ -3,7 +3,7 @@ import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {CareerEventsHelper} from '../helpers/careerEvents';
 import {AttributesHelper} from '../helpers/attributes';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {AttributeView} from '../components/attribute';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
@@ -124,7 +124,7 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({charac
 
                 </div>
                 <div className='text-end mt-4'>
-                    <Button className="btn btn-primary" onClick={() => navigateToNextStep() }>{t('Common.button.next')}</Button>
+                    <Button onClick={() => navigateToNextStep() }>{t('Common.button.next')}</Button>
                 </div>
         </div>);
 

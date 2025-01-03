@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import store from "../../state/store";
 import { setCharacterAssignment, setCharacterName, setCharacterPronouns, setCharacterRank } from "../../state/characterActions";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { Rank, RanksHelper } from "../../helpers/ranks";
@@ -165,8 +165,8 @@ const SoloFinalPage: React.FC<ICharacterProperties> = ({character}) => {
                 </div>)}
             </div>
             <div className="button-container my-5">
-                <LoadingButton loading={loadingExport} className="btn btn-primary btn-sm me-3" onClick={() => showDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
-                <Button className="btn btn-primary btn-sm me-3" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>
+                <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+                <Button size="sm" className="me-3" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>
             </div>
 
         </div>);

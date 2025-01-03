@@ -3,7 +3,7 @@ import { Header } from "../../components/header";
 import { Navigation } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { useTranslation } from "react-i18next";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import store from "../../state/store";
 import { StepContext, setCharacterValue } from "../../state/characterActions";
 import SoloValueInput from "../component/soloValueInput";
@@ -61,7 +61,7 @@ const SoloCareerLengthDetailsPage: React.FC<ICharacterProperties> = ({character}
                 </div>
             </div>
             <div className='text-end mt-4'>
-                <Button className="btn btn-primary" onClick={() => navigateToNextStep() }>{t('Common.button.next')}</Button>
+                <Button onClick={() => navigateToNextStep() }>{t('Common.button.next')}</Button>
             </div>
         </div>);
 

@@ -21,8 +21,6 @@ export class Button extends React.Component<IButtonProperties, {}> {
         let className = this.props.className ?? "";
         if (className.indexOf("btn-link") >= 0) {
             variant = undefined;
-        } else if (className.indexOf("button-next") >= 0) {
-            className = className.replace("button-next", "btn btn-" + variant + " btn-sm");
         } else if (className.indexOf("btn") < 0) {
             className = "btn btn-" + variant + " " + className;
         }

@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { SpeciesHelper } from "../../helpers/species";
 import InstructionText from "../../components/instructionText";
 import AttributeListComponent from "../../components/attributeListComponent";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { ICharacterProperties } from "./soloCharacterProperties";
 import { Dialog } from "../../components/dialog";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
@@ -46,7 +46,7 @@ const SoloSpeciesDetailsPage: React.FC<ICharacterProperties> = ({character}) => 
             </div>
 
             <div className="text-end mt-4">
-                <Button onClick={() => navigateToNextPage()} className="btn btn-primary">{t('Common.button.next')}</Button>
+                <Button onClick={() => navigateToNextPage()}>{t('Common.button.next')}</Button>
             </div>
         </div>
     )

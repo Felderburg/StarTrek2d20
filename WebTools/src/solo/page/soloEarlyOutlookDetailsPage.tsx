@@ -13,7 +13,7 @@ import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import DisciplineListComponent from "../../components/disciplineListComponent";
 import store from "../../state/store";
 import { StepContext, setCharacterEarlyOutlook, setCharacterFocus } from "../../state/characterActions";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
 import D20IconButton from "../component/d20IconButton";
@@ -100,7 +100,7 @@ const SoloEarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}
                 </div>
             </div>
             <div className='text-end mt-4'>
-                <Button className="btn btn-primary" onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
+                <Button onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
             </div>
         </div>);
 }

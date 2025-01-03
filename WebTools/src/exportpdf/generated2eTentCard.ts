@@ -1,4 +1,4 @@
-import { degrees, drawSvgPath, PDFDocument, PDFPage } from "@cantoo/pdf-lib";
+import { degrees, PDFDocument, PDFPage } from "@cantoo/pdf-lib";
 import { BaseNonForm2eSheet } from "./generated2eBaseSheet";
 import { SheetTag } from "./icharactersheet";
 import i18next from "i18next";

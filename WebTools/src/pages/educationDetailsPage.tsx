@@ -3,7 +3,7 @@ import {CharacterType} from '../common/characterType';
 import {Navigation} from '../common/navigator';
 import {TrackModel, TracksHelper} from '../helpers/tracks';
 import {Skill} from '../helpers/skills';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import ValueInput from '../components/valueInputWithRandomOption';
 import SkillView from '../components/skill';
@@ -226,7 +226,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
             </div>
             {renderTalents()}
             <div className="mt-5 text-end">
-                <Button className="btn btn-primary btn" onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
+                <Button onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
             </div>
         </div>
     );

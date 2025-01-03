@@ -3,7 +3,7 @@ import {AlliedMilitaryDetails, Character, GovernmentDetails} from '../common/cha
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import AllyHelper, { AlliedMilitaryType } from '../helpers/alliedMilitary';
 import { Source } from '../helpers/sources';
 import Governments, { Polity } from '../helpers/governments';
@@ -123,7 +123,7 @@ class CharacterTypePage extends React.Component<WithTranslation, ICharacterTypeP
                 {governments}
 
                 <div className="mt-4">
-                    <Button className="btn btn-primary" onClick={() => this.startWorkflow()}>{t('Common.button.create')}</Button>
+                    <Button onClick={() => this.startWorkflow()}>{t('Common.button.create')}</Button>
                 </div>
             </div>
         );

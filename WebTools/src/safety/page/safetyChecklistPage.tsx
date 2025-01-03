@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import store from "../../state/store";
 import { setSafetyEvaluation } from "../../state/safetyActions";
 import { SafetyChecklistPdf } from "../export/safetyPdf";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
 import { preventDefaultAnchorEvent } from "../../common/navigator";
 
@@ -101,7 +101,7 @@ const SafetyChecklistPage: React.FC<ISafetyChecklistPageProperties> = ({evaluati
                     </div>
 
                     <div className="mt-4 text-end">
-                        <Button className='btn btn-primary btn-xs mw-100' onClick={() => exportPdf()}>{t('Common.button.export')}</Button>
+                        <Button className='btn-xs mw-100' onClick={() => exportPdf()}>{t('Common.button.export')}</Button>
                     </div>
 
                 </div>

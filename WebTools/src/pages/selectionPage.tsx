@@ -1,7 +1,7 @@
 ﻿import * as React from 'react';
 import { Navigation } from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
-import { Button } from '../components/button';
+import Button from 'react-bootstrap/Button';
 import LanguageNotice from '../components/languageNotice';
 import { isEnglishDefault } from '../i18n/config';
 import { useTranslation } from 'react-i18next';

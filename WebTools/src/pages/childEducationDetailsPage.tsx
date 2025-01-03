@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button } from '../components/button';
+import Button from 'react-bootstrap/Button';
 import { Header } from '../components/header';
 import ValueInput from '../components/valueInputWithRandomOption';
 import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
@@ -316,7 +316,7 @@ const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({characte
         </div>
 
         <div className="text-end">
-            <Button className="btn btn-primary" onClick={() => onNext() }>{t('Common.button.next')}</Button>
+            <Button onClick={() => onNext() }>{t('Common.button.next')}</Button>
         </div>
     </div>);
 }

@@ -3,7 +3,7 @@ import { Navigation } from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import { SpeciesHelper, SpeciesModel } from '../helpers/species';
 import { TalentsHelper, TalentViewModel, ToViewModel } from '../helpers/talents';
-import { Button } from '../components/button';
+import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
 import { Dialog } from '../components/dialog';
 import { Source } from '../helpers/sources';
@@ -201,7 +201,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
                     </div>
                     {renderTalentsSection()}
                     <div className="text-end mt-4">
-                        <Button className="btn btn-primary" onClick={() => onNext()}>{t('Common.button.next')}</Button>
+                        <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
                     </div>
                 </main>
             </div>

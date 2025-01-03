@@ -553,32 +553,31 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get attributes(): CharacterAttribute[] {
         if (this.stereotype === Stereotype.SoloCharacter || (this.stereotype === Stereotype.MainCharacter && !this.legacyMode)) {
-            let result = [];
-            AttributesHelper.getAllAttributes().forEach(a => result.push(new CharacterAttribute(a, 7)));
-            this.speciesStep?.attributes?.forEach(a => result[a].value = result[a].value + 1);
-            this.speciesStep?.decrementAttributes?.forEach(a => result[a].value = result[a].value - 1);
+            let result = [7, 7, 7, 7, 7, 7];
+            this.speciesStep?.attributes?.forEach(a => result[a] = result[a] + 1);
+            this.speciesStep?.decrementAttributes?.forEach(a => result[a] = result[a] - 1);
             if (this.environmentStep?.attribute != null) {
-                result[this.environmentStep.attribute].value = result[this.environmentStep.attribute].value + 1;
+                result[this.environmentStep.attribute] = result[this.environmentStep.attribute] + 1;
             }
             if (this.upbringingStep != null) {
                 let earlyOutlook = this.upbringingStep.upbringing;
                 if (this.upbringingStep.acceptedUpbringing) {
-                    result[earlyOutlook.attributeAcceptPlus2].value = result[earlyOutlook.attributeAcceptPlus2].value + 2;
-                    result[earlyOutlook.attributeAcceptPlus1].value = result[earlyOutlook.attributeAcceptPlus1].value + 1;
+                    result[earlyOutlook.attributeAcceptPlus2] = result[earlyOutlook.attributeAcceptPlus2] + 2;
+                    result[earlyOutlook.attributeAcceptPlus1] = result[earlyOutlook.attributeAcceptPlus1] + 1;
                 } else {
-                    result[earlyOutlook.attributeRebelPlus2].value = result[earlyOutlook.attributeRebelPlus2].value + 2;
-                    result[earlyOutlook.attributeRebelPlus1].value = result[earlyOutlook.attributeRebelPlus1].value + 1;
+                    result[earlyOutlook.attributeRebelPlus2] = result[earlyOutlook.attributeRebelPlus2] + 2;
+                    result[earlyOutlook.attributeRebelPlus1] = result[earlyOutlook.attributeRebelPlus1] + 1;
                 }
             }
-            this.educationStep?.decrementAttributes?.forEach(a => result[a].value = result[a].value - 1);
-            this.educationStep?.attributes?.forEach(a => result[a].value = result[a].value + 1);
-            this.careerEvents.filter(e => e.attribute != null).forEach(e => result[e.attribute].value = result[e.attribute].value + 1);
+            this.educationStep?.decrementAttributes?.forEach(a => result[a] = result[a] - 1);
+            this.educationStep?.attributes?.forEach(a => result[a] = result[a] + 1);
+            this.careerEvents.filter(e => e.attribute != null).forEach(e => result[e.attribute] = result[e.attribute] + 1);
 
-            this.finishingStep?.attributes?.forEach(a => result[a].value = result[a].value + 1)
+            this.finishingStep?.attributes?.forEach(a => result[a] = result[a] + 1)
 
-            AttributesHelper.getAllAttributes().forEach(a => result[a].value = Math.min(Character.maxAttribute(this), result[a].value));
+            AttributesHelper.getAllAttributes().forEach(a => result[a] = Math.min(Character.maxAttribute(this), result[a]));
 
-            return result;
+            return AttributesHelper.getAllAttributes().map(a => new CharacterAttribute(a, result[a]));
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = this.age.attributes;
             if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {
@@ -1447,7 +1446,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return character;
     }
 
-    public static maxAttribute(character) {
+    public static maxAttribute(character: Character) {
         if (character.age.isChild) {
             return 10;
         } else if (character.isYoung() || character.type === CharacterType.Cadet) {
@@ -1457,7 +1456,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
     }
 
-    public static maxDiscipline(character) {
+    public static maxDiscipline(character: Character) {
         if (character.age.isChild) {
             return 3;
         } else if (character.isYoung() || character.type === CharacterType.Cadet) {

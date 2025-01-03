@@ -2,7 +2,7 @@ import React from "react";
 import { CharacterType } from "../../common/characterType";
 import { navigateTo, Navigation } from "../../common/navigator";
 import { SimpleStats } from "../../common/starship";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { createNewStarship } from "../../state/starshipActions";
