@@ -5,7 +5,7 @@ import {PageIdentity} from './pageIdentity';
 import {Environment, EnvironmentsHelper } from '../helpers/environments';
 import {SpeciesHelper } from '../helpers/species';
 import {Skill} from '../helpers/skills';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import { Species } from '../helpers/speciesEnum';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
@@ -222,7 +222,7 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({character}) => 
                     </div>
                 </div>
                 <div className='text-end mt-4'>
-                    <Button className="btn btn-primary" onClick={() => navigateToNextStep() }>{t('Common.button.next')}</Button>
+                    <Button onClick={() => navigateToNextStep() }>{t('Common.button.next')}</Button>
                 </div>
             </main>
         </div>);

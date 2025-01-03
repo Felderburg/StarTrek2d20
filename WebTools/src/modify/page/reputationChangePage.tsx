@@ -6,7 +6,7 @@ import { Character } from "../../common/character";
 import { navigateTo } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { StatControl } from "../../starship/view/statControl";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import store from "../../state/store";
 import { modifyCharacterReputation } from "../../state/characterActions";
 import { ModifyBreadcrumb } from "../modifyBreadcrumb";
@@ -40,7 +40,7 @@ const ReputationChangePage: React.FC<ReputationChangePageProperties> = ({charact
                     onDecrease={() => setDelta((delta) => (delta - 1))} />
 
         <div className="mt-4 text-end">
-            <Button onClick={() => nextPage()} className="btn btn-primary btn-sm">{t('Common.button.next')}</Button>
+            <Button onClick={() => nextPage()} size="sm">{t('Common.button.next')}</Button>
         </div>
 
     </div>);

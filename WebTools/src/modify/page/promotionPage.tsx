@@ -4,7 +4,7 @@ import { Header } from "../../components/header";
 import { Character, CharacterRank } from "../../common/character";
 import { navigateTo } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import store from "../../state/store";
 import { modifyCharacterRank } from "../../state/characterActions";
 import { RanksHelper } from "../../helpers/ranks";
@@ -47,7 +47,7 @@ const PromotionPage: React.FC<IPromotionPageProperties> = ({character}) => {
             }} defaultValue={rank || ""}/>
 
         <div className="mt-4 text-end">
-            <Button onClick={() => nextPage()} className="btn btn-primary btn-sm">{t('Common.button.next')}</Button>
+            <Button onClick={() => nextPage()} size="sm">{t('Common.button.next')}</Button>
         </div>
 
     </div>);

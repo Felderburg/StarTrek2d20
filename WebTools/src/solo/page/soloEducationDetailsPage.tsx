@@ -11,7 +11,7 @@ import { StepContext, setCharacterFocus, setCharacterValue } from "../../state/c
 import store from "../../state/store";
 import AttributeListComponent from "../../components/attributeListComponent";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import SoloValueInput from "../component/soloValueInput";
 import DisciplineListComponent from "../../components/disciplineListComponent";
 import { Dialog } from "../../components/dialog";
@@ -131,7 +131,7 @@ const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({character}) =
                 </div>
             </div>
             <div className='text-end mt-4'>
-                <Button className="btn btn-primary" onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
+                <Button onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
             </div>
         </div>);
 }

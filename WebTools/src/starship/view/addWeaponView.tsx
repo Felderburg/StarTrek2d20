@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownInput, DropDownSelect } from "../../components/dropDownInput";
 import { CaptureTypeModel, DeliverySystemModel, EnergyLoadTypeModel, MineType, MineTypeModel, TorpedoLoadTypeModel, Weapon, WeaponType, WeaponTypeModel } from "../../helpers/weapons";
 

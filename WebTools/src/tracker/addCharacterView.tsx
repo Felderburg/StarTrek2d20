@@ -1,6 +1,6 @@
 import React from "react";
 import { withTranslation, WithTranslation } from 'react-i18next';
-import { Button } from "../components/button";
+import Button from "react-bootstrap/Button";
 import { marshaller } from "../helpers/marshaller";
 import { addGMTrackedCharacter } from "../state/gmTrackerActions";
 import store from "../state/store";
@@ -39,8 +39,8 @@ class AddCharacterView extends React.Component<IAddCharacterProperties, IAddChar
                 <p className="mt-3">{this.state.message}</p>
 
                 <div className="mt-5 text-end">
-                    <Button className="btn btn-sm btn-primary"
-                        enabled={this.state.enabled}
+                    <Button size="sm"
+                        disabled={!this.state.enabled}
                         onClick={() => this.addCharacter()}>{t('Common.button.add')}</Button>
                 </div>
             </div>);

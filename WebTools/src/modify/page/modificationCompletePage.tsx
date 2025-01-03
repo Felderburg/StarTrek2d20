@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useTranslation } from 'react-i18next';
 import { Character } from "../../common/character";
 import { Header } from "../../components/header";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { navigateTo } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { marshaller } from "../../helpers/marshaller";

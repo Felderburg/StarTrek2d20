@@ -2,7 +2,7 @@
 import {Navigation} from '../common/navigator';
 import {AttributesHelper} from '../helpers/attributes';
 import {AttributeView} from '../components/attribute';
-import {Button} from '../components/button';
+import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {CheckBox} from '../components/checkBox';
 import { TALENT_NAME_BRAK_LUL, TalentsHelper, TalentViewModel, ToViewModel } from '../helpers/talents';
@@ -139,7 +139,7 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
                 <SingleTalentSelectionList talents={talents} onSelection={(talent) => { onTalentSelected(talent) } } construct={character}/>
             </div>
             <div className="text-end">
-                <Button className="btn btn-primary mt-4" onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
+                <Button className="mt-4" onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
             </div>
         </div>
     );

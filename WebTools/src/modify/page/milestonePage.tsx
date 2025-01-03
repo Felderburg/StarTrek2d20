@@ -4,7 +4,7 @@ import { Header } from "../../components/header";
 import { Character } from "../../common/character";
 import { navigateTo } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { MilestoneType } from "../model/milestoneType";
 import { makeKey } from "../../common/translationKey";
@@ -218,7 +218,7 @@ const MilestonePage: React.FC<IMilestonePageProperties> = ({character, milestone
         {renderNormalMilestoneAdjustment()}
 
         <div className="mt-4 text-end">
-            <Button onClick={() => nextPage()} className="btn btn-primary btn-sm">{t('Common.button.next')}</Button>
+            <Button onClick={() => nextPage()} size="sm">{t('Common.button.next')}</Button>
         </div>
 
     </div>);

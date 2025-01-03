@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useTranslation } from 'react-i18next';
 import { Character } from "../../common/character";
 import { Header } from "../../components/header";
-import { Button } from "../../components/button";
+import Button from "react-bootstrap/Button";
 import { DropDownInput, DropDownElement, DropDownSelect  } from "../../components/dropDownInput";
 import Modifications, { ModificationType } from "../model/modificationType";
 import Milestones, { MilestoneType } from "../model/milestoneType";
@@ -60,7 +60,7 @@ const ModificationTypeSelectionPage: React.FC<ModificationTypeSelectionPagePrope
                     </div>)
                 : null}
                 <div className="my-4 text-end">
-                    <Button className="btn btn-primary btn-sm" onClick={() => nextPage()}>Next</Button>
+                    <Button size="sm" onClick={() => nextPage()}>Next</Button>
                 </div>
             </div>);
 

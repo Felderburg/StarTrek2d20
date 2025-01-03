@@ -1,7 +1,6 @@
 import React from "react";
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { makeKey } from "../common/translationKey";
-import { Button } from "../components/button";
 import { Header } from "../components/header";
 import { StatView } from "../components/StatView";
 import { Attribute } from "../helpers/attributes";
@@ -11,6 +10,7 @@ import { Skill } from "../helpers/skills";
 import { removeGMTrackedCharacter, setGMTrackedCharacterNotes, setGMTrackedCharacterStress } from "../state/gmTrackerActions";
 import store from "../state/store";
 import { CharacterWithTracking } from "./model/characterWithTracking";
+import { IconButton } from "../components/iconButton";
 
 interface IGMCharacterViewProperties extends WithTranslation {
 
@@ -61,8 +61,8 @@ class GMCharacterView extends React.Component<IGMCharacterViewProperties, {}> {
                     <div className="text-white"><b>{t('Construct.other.talents')}:</b> {character.getTalentNameList()?.map((t, i) => (i > 0 ? ', ' : '') + t)}</div>
                 </div>
                 <div className="col-lg-3 text-end">
-                    <Button className="btn btn-link" onClick={() => this.viewCharacter()}><i className="bi bi-eyeglasses"></i></Button>
-                    <Button className="btn btn-link text-danger" onClick={() => this.removeCharacter()}><i className="bi bi-trash"></i></Button>
+                    <IconButton onClick={() => this.viewCharacter()} icon="eyeglasses" />
+                    <IconButton variant="danger" onClick={() => this.removeCharacter()} icon="trash" />
                 </div>
             </div>
         </div>)
