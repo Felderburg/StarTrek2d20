@@ -13,7 +13,7 @@ import { LoadingButton } from '../common/loadingButton';
 import { setCharacter } from '../state/characterActions';
 import { Header } from '../components/header';
 import toast from 'react-hot-toast';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 interface ISourceSelectionPageProperties extends WithTranslation {
     sources: Source[]

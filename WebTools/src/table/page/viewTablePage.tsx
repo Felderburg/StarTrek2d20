@@ -15,7 +15,7 @@ import { preventDefaultAnchorEvent } from "../../common/navigator"
 import { AccessingView } from "../../common/accessingView"
 import store from "../../state/store"
 import { deleteTableCollection, setTableForEditing } from "../../state/tableActions"
-import { Button } from "react-bootstrap"
+import Button from "react-bootstrap/Button"
 import { IconButton } from "../../components/iconButton"
 import { DeleteConfirmationModal } from "./deleteConfirmationModal"
 

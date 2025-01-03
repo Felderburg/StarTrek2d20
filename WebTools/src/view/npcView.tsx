@@ -12,7 +12,7 @@ import ValuesBlockView from "./valuesBlockView";
 import TalentsBlockView from "./talentsBlockView";
 import SpeciesAbilityBlockView from "./speciesAbilityBlockView";
 import { LoadingButton } from "../common/loadingButton";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
 

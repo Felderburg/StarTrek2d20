@@ -11,7 +11,7 @@ import { DropDownElement, DropDownSelect } from "../../components/dropDownInput"
 import { useState } from "react";
 import { EditableTableCollection, EditableTableRow } from "../model/editableTable";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import store from "../../state/store";
 import { addTableCollection, replaceTableCollection } from "../../state/tableActions";
 import { Dialog } from "../../components/dialog";

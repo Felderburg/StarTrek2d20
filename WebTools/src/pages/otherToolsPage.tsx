@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { Header } from "../components/header";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { PageIdentity } from "./pageIdentity";
 import { preventDefaultAnchorEvent } from "../common/navigator";
 import LcarsFrame from "../components/lcarsFrame";

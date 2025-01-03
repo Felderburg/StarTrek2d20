@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-markdown";
 

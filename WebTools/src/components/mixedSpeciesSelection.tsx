@@ -3,7 +3,7 @@ import {Window} from '../common/window';
 import {SpeciesHelper} from '../helpers/species';
 import {AttributesHelper} from '../helpers/attributes';
 import {CheckBox} from './checkBox';
-import {Button} from './button';
+import Button from 'react-bootstrap/Button';
 import { Species } from '../helpers/speciesEnum';
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { Header } from './header';
@@ -158,7 +158,7 @@ const MixedSpeciesSelection: React.FC<ICharacterProperties> = ({character}) => {
             </div>
         </div>
         <div className="text-end mt-4">
-            <Button className="btn btn-primary" onClick={() => navigateToNextPage()} >{t('Common.button.next')}</Button>
+            <Button onClick={() => navigateToNextPage()} >{t('Common.button.next')}</Button>
         </div>
     </>);
 }

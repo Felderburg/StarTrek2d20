@@ -3,7 +3,7 @@ import { Starship } from "../../common/starship";
 import { Header } from "../../components/header";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { useTranslation } from "react-i18next";
 import { nextStarshipWorkflowStep, setStarshipServiceRecord } from "../../state/starshipActions";
 import store from "../../state/store";

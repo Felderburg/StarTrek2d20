@@ -15,7 +15,7 @@ import store from "../state/store";
 import { setCharacter } from "../state/characterActions";
 import { useNavigate } from "react-router";
 import TalentsBlockView from "./talentsBlockView";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 
 const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}) => {
 

@@ -6,7 +6,7 @@ import { DropDownElement, DropDownSelect } from "../../components/dropDownInput"
 import { useState } from "react";
 import { AssetType, AssetTypes } from "../assetType";
 import LcarsFrame from "../../components/lcarsFrame";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { Asset } from "../asset";
 import { marshaller } from "../../helpers/marshaller";

@@ -17,7 +17,7 @@ import { SpecializationModel, Specializations } from '../model/specializations';
 import { hasAnySource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
 import { Specialization } from '../../common/specializationEnum';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 interface INpcConfigurationPageProperties extends WithTranslation {
     era: Era;

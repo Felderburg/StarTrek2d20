@@ -3,7 +3,7 @@ import {Character} from '../common/character';
 import { CharacterType } from '../common/characterType';
 import {navigateTo, Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
-import {Button} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import {Source} from '../helpers/sources';
 import { hasSource } from '../state/contextFunctions';
 import { useTranslation } from 'react-i18next';

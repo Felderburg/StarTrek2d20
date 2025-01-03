@@ -4,7 +4,7 @@ import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { Header } from "../../components/header";
 import { preventDefaultAnchorEvent } from "../../common/navigator";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import { starshipGenerator } from "../model/starshipGenerator";
 import { Era, eraDefaultYear } from "../../helpers/eras";
 import ReactMarkdown from "react-markdown";

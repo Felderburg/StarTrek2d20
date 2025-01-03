@@ -3,7 +3,7 @@ import {Era, ErasHelper} from '../helpers/eras';
 import {navigateTo, Navigation} from '../common/navigator';
 import {Window} from '../common/window';
 import {PageIdentity} from './pageIdentity';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import store from '../state/store';
 import { setEra } from '../state/contextActions';
 import { withTranslation, WithTranslation } from 'react-i18next';
