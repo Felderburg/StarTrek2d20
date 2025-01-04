@@ -5,7 +5,7 @@ import { Character } from "../common/character";
 import { CharacterSerializer } from "../common/characterSerializer";
 import { Skill, SkillsHelper } from "../helpers/skills";
 import { CareerEventsHelper } from "../helpers/careerEvents";
-import { Attribute } from "../helpers/attributes";
+import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Column } from "./column";
 import i18next from "i18next";
 import { SimpleColor } from "../common/colour";
@@ -72,25 +72,26 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
     }
 
     fillAttributes(form: PDFForm, character: Character) {
-        character.attributes.forEach( (a, i) => {
-            switch (a.attribute) {
+        const attributes = character.attributes;
+        AttributesHelper.getAllAttributes().forEach( (a, i) => {
+            switch (a) {
             case Attribute.Control:
-                this.fillField(form, 'Control', "" + a.value);
+                this.fillField(form, 'Control', "" + attributes[a]);
                 break;
             case Attribute.Fitness:
-                this.fillField(form, 'Fitness', "" + a.value);
+                this.fillField(form, 'Fitness', "" + attributes[a]);
                 break;
             case Attribute.Presence:
-                this.fillField(form, 'Presence', "" + a.value);
+                this.fillField(form, 'Presence', "" + attributes[a]);
                 break;
             case Attribute.Daring:
-                this.fillField(form, 'Daring', "" + a.value);
+                this.fillField(form, 'Daring', "" + attributes[a]);
                 break;
             case Attribute.Insight:
-                this.fillField(form, 'Insight', "" + a.value);
+                this.fillField(form, 'Insight', "" + attributes[a]);
                 break;
             case Attribute.Reason:
-                this.fillField(form, 'Reason', "" + a.value);
+                this.fillField(form, 'Reason', "" + attributes[a]);
                 break;
             }
         });

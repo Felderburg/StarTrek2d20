@@ -1,6 +1,6 @@
 import { Character } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
-import { Attribute } from '../helpers/attributes';
+import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { Skill, SkillsHelper } from '../helpers/skills';
 import { PDFCheckBox, PDFDocument, PDFFont, PDFForm, PDFPage, PDFTextField, rgb, StandardFonts } from "@cantoo/pdf-lib";
 import fontkit from '@pdf-lib/fontkit'
@@ -470,25 +470,26 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
     }
 
     fillAttributes(form: PDFForm, character: Character) {
-        character.attributes.forEach( (a, i) => {
-            switch (a.attribute) {
+        const attributes = character.attributes;
+        AttributesHelper.getAllAttributes().forEach( (a, i) => {
+            switch (a) {
             case Attribute.Control:
-                this.fillField(form, 'Control', "" + a.value);
+                this.fillField(form, 'Control', "" + attributes[a]);
                 break;
             case Attribute.Fitness:
-                this.fillField(form, 'Fitness', "" + a.value);
+                this.fillField(form, 'Fitness', "" + attributes[a]);
                 break;
             case Attribute.Presence:
-                this.fillField(form, 'Presence', "" + a.value);
+                this.fillField(form, 'Presence', "" + attributes[a]);
                 break;
             case Attribute.Daring:
-                this.fillField(form, 'Daring', "" + a.value);
+                this.fillField(form, 'Daring', "" + attributes[a]);
                 break;
             case Attribute.Insight:
-                this.fillField(form, 'Insight', "" + a.value);
+                this.fillField(form, 'Insight', "" + attributes[a]);
                 break;
             case Attribute.Reason:
-                this.fillField(form, 'Reason', "" + a.value);
+                this.fillField(form, 'Reason', "" + attributes[a]);
                 break;
             }
         });
@@ -939,10 +940,10 @@ class TwoPageTngLandscapeCharacterSheet extends BaseTextCharacterSheet {
             }
         }
 
-        this.fillField(form, "Sprint", "" + (character.attributes[Attribute.Fitness].value + character.departments[Skill.Security]));
-        this.fillField(form, "First Aid", "" + (character.attributes[Attribute.Daring].value + character.departments[Skill.Medicine]));
-        this.fillField(form, "Ranged Attack", "" + (character.attributes[Attribute.Control].value + character.departments[Skill.Security]));
-        this.fillField(form, "Melee Attack", "" + (character.attributes[Attribute.Daring].value + character.departments[Skill.Security]));
+        this.fillField(form, "Sprint", "" + (character.attributes[Attribute.Fitness] + character.departments[Skill.Security]));
+        this.fillField(form, "First Aid", "" + (character.attributes[Attribute.Daring] + character.departments[Skill.Medicine]));
+        this.fillField(form, "Ranged Attack", "" + (character.attributes[Attribute.Control] + character.departments[Skill.Security]));
+        this.fillField(form, "Melee Attack", "" + (character.attributes[Attribute.Daring] + character.departments[Skill.Security]));
     }
 
     fillName(form: PDFForm, character: Character) {

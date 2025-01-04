@@ -22,7 +22,7 @@ export class FinishingTouchesAttributeController implements IAttributeController
         return true;
     }
     getValue(attribute: Attribute): number {
-        return this.character.attributes[attribute].value;
+        return this.character.attributes[attribute];
     }
     getDeltaValue(attribute: Attribute): number|undefined {
         return undefined;

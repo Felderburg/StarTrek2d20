@@ -72,16 +72,6 @@ export class GovernmentDetails {
     }
 }
 
-class CharacterAttribute {
-    readonly attribute: Attribute;
-    readonly value: number;
-
-    constructor(attr: Attribute, val: number) {
-        this.attribute = attr;
-        this.value = val;
-    }
-}
-
 export class CharacterRank {
     readonly name: string;
     readonly id?: Rank;
@@ -551,7 +541,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
     }
 
-    get attributes(): CharacterAttribute[] {
+    get attributes(): number[] {
         if (this.stereotype === Stereotype.SoloCharacter || (this.stereotype === Stereotype.MainCharacter && !this.legacyMode)) {
             let result = [7, 7, 7, 7, 7, 7];
             this.speciesStep?.attributes?.forEach(a => result[a] = result[a] + 1);
@@ -577,7 +567,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
             AttributesHelper.getAllAttributes().forEach(a => result[a] = Math.min(Character.maxAttribute(this), result[a]));
 
-            return AttributesHelper.getAllAttributes().map(a => new CharacterAttribute(a, result[a]));
+            return result;
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = this.age.attributes;
             if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {
@@ -594,15 +584,15 @@ export class Character extends Construct implements IWeaponDiceProvider {
                     result[i.attribute] += 1;
                 }
             });
-            return AttributesHelper.getAllAttributes().map(a => new CharacterAttribute(a, result[a]));
+            return result;
         } else {
-            return AttributesHelper.getAllAttributes().map(a => new CharacterAttribute(a, this._attributes[a]));
+            return [...this._attributes];
         }
     }
 
     get attributeTotal() {
         let attributeTotal = 0;
-        this.attributes.forEach(a => attributeTotal += a.value);
+        this.attributes.forEach(a => attributeTotal += a);
         return attributeTotal;
     }
 
@@ -672,7 +662,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get stress() {
-        let stress = this.attributes[Attribute.Fitness].value;
+        let stress = this.attributes[Attribute.Fitness];
         if (this.version !== 1 && this.stereotype === Stereotype.SupportingCharacter) {
             if (this.values.length === 1) {
                 stress = Math.ceil(stress / 2);
@@ -684,7 +674,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 stress +=  + this.departments[Skill.Security];
             } else if (this.speciesStep?.species === Species.Vulcan) {
                 // species ability makes stress based on Control
-                stress = this.attributes[Attribute.Control].value;
+                stress = this.attributes[Attribute.Control];
             }
         }
         if (this.hasTalent("Resolute")) {
@@ -1328,7 +1318,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     hasMaxedAttribute() {
         const max = Character.ABSOLUTE_MAX_ATTRIBUTE;
-        return this.attributes.some(a => a.value === max);
+        return this.attributes.some(a => a === max);
     }
 
     hasMaxedSkill() {

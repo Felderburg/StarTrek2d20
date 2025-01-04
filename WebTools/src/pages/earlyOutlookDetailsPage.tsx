@@ -82,12 +82,12 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
 
     const attributes = character.upbringingStep?.acceptedUpbringing
         ? (<div>
-            <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeAcceptPlus2))) } points={2} value={character.attributes[earlyOutlook.attributeAcceptPlus2].value}/>
-            <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeAcceptPlus1))) } points={1} value={character.attributes[earlyOutlook.attributeAcceptPlus1].value}/>
+            <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeAcceptPlus2))) } points={2} value={character.attributes[earlyOutlook.attributeAcceptPlus2]}/>
+            <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeAcceptPlus1))) } points={1} value={character.attributes[earlyOutlook.attributeAcceptPlus1]}/>
         </div>)
         : (<div>
-            <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeRebelPlus2))) } points={2} value={character.attributes[earlyOutlook.attributeRebelPlus2].value}/>
-            <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeRebelPlus1))) } points={1} value={character.attributes[earlyOutlook.attributeRebelPlus1].value}/>
+            <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeRebelPlus2))) } points={2} value={character.attributes[earlyOutlook.attributeRebelPlus2]}/>
+            <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeRebelPlus1))) } points={1} value={character.attributes[earlyOutlook.attributeRebelPlus1]}/>
         </div>);
 
 

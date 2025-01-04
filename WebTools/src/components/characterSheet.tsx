@@ -194,7 +194,7 @@ class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-purple text-uppercase">{t('Construct.attribute.control')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.attributes[Attribute.Control].value}
+                                                {c.attributes[Attribute.Control]}
                                             </div>
                                         </div>
                                     </div>
@@ -203,7 +203,7 @@ class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-purple text-uppercase">{t('Construct.attribute.daring')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.attributes[Attribute.Daring].value}
+                                                {c.attributes[Attribute.Daring]}
                                             </div>
                                         </div>
                                     </div>
@@ -212,7 +212,7 @@ class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-purple text-uppercase">{t('Construct.attribute.fitness')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.attributes[Attribute.Fitness].value}
+                                                {c.attributes[Attribute.Fitness]}
                                             </div>
                                         </div>
                                     </div>
@@ -221,7 +221,7 @@ class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-purple text-uppercase">{t('Construct.attribute.insight')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.attributes[Attribute.Insight].value}
+                                                {c.attributes[Attribute.Insight]}
                                             </div>
                                         </div>
                                     </div>
@@ -230,7 +230,7 @@ class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-purple text-uppercase">{t('Construct.attribute.presence')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.attributes[Attribute.Presence].value}
+                                                {c.attributes[Attribute.Presence]}
                                             </div>
                                         </div>
                                     </div>
@@ -239,7 +239,7 @@ class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-purple text-uppercase">{t('Construct.attribute.reason')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.attributes[Attribute.Reason].value}
+                                                {c.attributes[Attribute.Reason]}
                                             </div>
                                         </div>
                                     </div>

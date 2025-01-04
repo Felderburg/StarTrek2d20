@@ -114,7 +114,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
             const key = i18next.t(makeKey("Construct.attribute.", Attribute[a]));
             labels[key] = labelColumn;
 
-            this.writeLabel(page, "" + character.attributes[a].value, this.valueBlock(labelColumn), new FontSpecification(this.boldFont, 9),
+            this.writeLabel(page, "" + character.attributes[a], this.valueBlock(labelColumn), new FontSpecification(this.boldFont, 9),
                 tealColour2e);
         });
 

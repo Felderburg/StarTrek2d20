@@ -20,7 +20,7 @@ const SoloFinishingTouchesPage: React.FC<ICharacterProperties> = ({character}) =
     const { t } = useTranslation();
 
     let attributeTotal = 0;
-    character.attributes.forEach(a => attributeTotal += a.value);
+    character.attributes.forEach(a => attributeTotal += a);
     attributeTotal -= (character.finishingStep?.attributes?.length ?? 0);
 
     const attributeCount = 56 - attributeTotal;

@@ -23,7 +23,7 @@ export class SpeciesAttributeController implements IAttributeController {
         return this.species.attributes.length > 3;
     }
     getValue(attribute: Attribute): number {
-        return this.character.attributes[attribute].value;
+        return this.character.attributes[attribute];
     }
     getDeltaValue(attribute: Attribute): number {
         return (this.character.speciesStep?.attributes?.filter(a => a === attribute)?.length ?? 0)
@@ -72,7 +72,7 @@ export class CustomSpeciesAttributeController implements IAttributeController {
         return true;
     }
     getValue(attribute: Attribute): number {
-        return this.character.attributes[attribute].value;
+        return this.character.attributes[attribute];
     }
     getDeltaValue(attribute: Attribute): number {
         return (this.character.speciesStep?.attributes?.filter(a => a === attribute)?.length ?? 0)

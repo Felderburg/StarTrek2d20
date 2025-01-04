@@ -598,8 +598,8 @@ export class FantasyGroupsVttExporter {
                                 "type": "text",
                                 "text": (
                                     w.type === WeaponType.ENERGY
-                                    ? (character.attributes[Attribute.Control].value + character.departments[Skill.Security])
-                                    : (character.attributes[Attribute.Daring].value + character.departments[Skill.Security]))
+                                    ? (character.attributes[Attribute.Control] + character.departments[Skill.Security])
+                                    : (character.attributes[Attribute.Daring] + character.departments[Skill.Security]))
                             }
                         ]
                     },
@@ -1160,7 +1160,7 @@ export class FantasyGroupsVttExporter {
                     "type": "element",
                     "elements": [{
                         "type":"text",
-                        "text": character.attributes[a].value
+                        "text": character.attributes[a]
                     }]
                 },{
                     "name": "environment",
@@ -1200,7 +1200,7 @@ export class FantasyGroupsVttExporter {
                     "type": "element",
                     "elements": [{
                         "type":"text",
-                        "text": character.attributes[a].value
+                        "text": character.attributes[a]
                     }]
                 },{
                     "name": "training",

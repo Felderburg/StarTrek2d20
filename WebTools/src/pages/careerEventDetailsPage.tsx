@@ -81,7 +81,7 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({charac
                         {careerEvent.attributes.length === 1
                             ? (<div>
                                     <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(careerEvent.attributes[0])))}
-                                        points={1} value={character.attributes[careerEvent.attributes[0]].value}/>
+                                        points={1} value={character.attributes[careerEvent.attributes[0]]}/>
                                 </div>)
                             : (<AttributeListComponent controller={attributeController} />)}
                     </div>

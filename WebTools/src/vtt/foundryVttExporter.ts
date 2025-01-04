@@ -356,7 +356,7 @@ export class FoundryVttExporter {
             let name = Attribute[a].toLowerCase();
             result.system.attributes[name] = {
                 "label": "sta.actor.character.attribute." + name,
-                "value": ("" + character.attributes[a].value),
+                "value": ("" + character.attributes[a]),
                 "selected": false
             };
         });

@@ -101,7 +101,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
             let text = "";
             if (key.includes("Construct.attribute.")) {
                 let attribute = AttributesHelper.getAttributeByName(key.substring("Construct.attribute.".length));
-                text = "" + character.attributes[attribute].value;
+                text = "" + character.attributes[attribute];
             }
 
             if (key.includes("Construct.discipline.")) {

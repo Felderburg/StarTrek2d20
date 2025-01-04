@@ -660,8 +660,8 @@ export class NpcGenerator {
         if (!species.isAttributeSelectionRequired) {
             for (let i = 0; i < species.attributes.length; i++) {
                 let attr = species.attributes[i];
-                if (character.attributes[attr].value < 12 &&
-                    (!hasMax || character.attributes[attr].value < 11)) {
+                if (character.attributes[attr] < 12 &&
+                    (!hasMax || character.attributes[attr] < 11)) {
 
                     speciesAttributes.push(attr);
                 }
@@ -680,8 +680,8 @@ export class NpcGenerator {
             let attr = allAttributes[Math.floor(Math.random() * allAttributes.length)];
             if (speciesAttributes.indexOf(attr) >= 0) {
                 // already have this one. skip it.
-            } else if (character.attributes[attr].value < 12 &&
-                (!hasMax || character.attributes[attr].value < 11)) {
+            } else if (character.attributes[attr] < 12 &&
+                (!hasMax || character.attributes[attr] < 11)) {
 
                 speciesAttributes.push(attr);
             }

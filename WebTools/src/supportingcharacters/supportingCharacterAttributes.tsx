@@ -128,7 +128,7 @@ const SupportingCharacterAttributes: React.FC<ICharacterProperties> = ({characte
                             isSelected={selectedAttribute === a} />
                     </td>
                     <td className='text-center'>{deltaValue !== 0 ? (deltaValue > 0 ? "+" : "") + deltaValue : "-"}</td>
-                    <td className='text-center'>{character.attributes[a].value }</td>
+                    <td className='text-center'>{character.attributes[a] }</td>
                 </tr>
             );
         } else { // Ktarians have two attributes pre-defined, and can choose from Secondary Attributes as a third attribute

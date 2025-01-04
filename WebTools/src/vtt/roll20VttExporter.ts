@@ -736,7 +736,7 @@ export class Roll20VttExporter {
     convertAttribute(character: Character, a: Attribute, id: IdHelper) {
         return {
             "name": Attribute[a].toLocaleLowerCase(),
-            "current": character.attributes[a].value,
+            "current": character.attributes[a],
             "max": "",
             "id": id.nextId()
         };

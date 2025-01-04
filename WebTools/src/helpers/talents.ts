@@ -52,7 +52,7 @@ class AttributePrerequisite implements IConstructPrerequisite<Character> {
     }
 
     isPrerequisiteFulfilled(c: Character) {
-        return c.attributes[this.attribute].value >= this.value;
+        return c.attributes[this.attribute] >= this.value;
     }
     describe(): string {
         return "Requires " + Attribute[this.attribute] + " " + this.value + "+";
