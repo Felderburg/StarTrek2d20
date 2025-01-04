@@ -37,8 +37,36 @@ import { allServiceRecords, ServiceRecord, ServiceRecordList } from '../starship
 import AllyHelper, { AlliedMilitary, AlliedMilitaryType } from './alliedMilitary';
 import Governments, { Government, Polity } from './governments';
 import { NpcType, NpcTypes } from '../npc/model/npcType';
+import { Creature } from '../creature/model/creature';
+import { Habitat, HabitatHelper } from '../creature/model/habitat';
+import { CreatureType, CreatureTypeHelper } from '../creature/model/creatureType';
+import { DietType, DietTypeHelper } from '../creature/model/diet';
 
 class Marshaller {
+
+    encodeCreature(creature: Creature) {
+        let sheet = {
+            "stereotype": "creature",
+            "type": CharacterType[creature.type],
+            "era": Era[creature.era],
+            "name": creature.name,
+            "version": creature.version,
+        };
+
+        if (creature.habitat) {
+            sheet["habitat"] = Habitat[creature.habitat?.id];
+        }
+
+        if (creature.creatureType) {
+            sheet["creatureType"] = CreatureType[creature.creatureType?.id];
+        }
+
+        if (creature.diet) {
+            sheet["diet"] = DietType[creature.diet?.id];
+        }
+
+        return this.encode(sheet);
+    }
 
     encodeSupportingCharacter(character: Character) {
         return this.encode(this.encodeSimpleCharacterAsJson("supportingCharacter", character));
@@ -890,6 +918,35 @@ class Marshaller {
         }
 
         return new Weapon(usageCategory, name, baseDice, weaponType, loadType, deliverySystem);
+    }
+
+    decodeCreature(json: any) {
+        console.log(json);
+        let result = new Creature();
+        result.stereotype = Stereotype.Creature;
+        if (json.era) {
+            let era = ErasHelper.getEraByName(json.era);
+            if (era != null) {
+                result.era = era;
+            }
+        }
+        if (json.version) {
+            result.version = json.version;
+        }
+
+        if (json.habitat) {
+            result.habitat = HabitatHelper.instance.getTypeByIdName(json.habitat);
+        }
+
+        if (json.creatureType) {
+            result.creatureType = CreatureTypeHelper.instance.getTypeByIdName(json.creatureType);
+        }
+
+        if (json.diet) {
+            result.diet = DietTypeHelper.instance.getTypeByIdName(json.diet);
+        }
+
+        return result;
     }
 
     decodeCharacter(json: any) {

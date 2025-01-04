@@ -65,6 +65,12 @@ export class HabitatHelper {
         let items = this.items.filter(h => h.id === id);
         return items?.length ? items[0] : undefined;
     }
+
+    getTypeByIdName(name: string) {
+        let items = this.items.filter(h => Habitat[h.id] === name);
+        return items?.length ? items[0] : undefined;
+
+    }
 }
 
 export const createRandomHabitat = () => {

@@ -21,6 +21,7 @@ import { toCamelCase } from '../common/camelCaseUtil';
 import { Specialization } from '../common/specializationEnum';
 import { ITalent } from './italent';
 import { System } from './systems';
+import { Creature } from '../creature/model/creature';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -30,6 +31,7 @@ export const TALENT_NAME_WISDOM_OF_YEARS = "Wisdom of Years";
 export const TALENT_NAME_BRAK_LUL = "Brak’lul";
 export const TALENT_NAME_MISSION_POD = "Mission Pod";
 export const TALENT_NAME_UNTAPPED_POTENTIAL = "Untapped Potential";
+export const TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT = "Aquatic / Liquid Environment (Special Rule, Creature)";
 
 enum TalentCategory {
     General,
@@ -516,6 +518,16 @@ class SystemPrerequisite implements IConstructPrerequisite<Starship> {
     }
     describe(): string {
         return "";
+    }
+}
+
+class CreaturePrerequisite implements IConstructPrerequisite<Creature> {
+
+    isPrerequisiteFulfilled(creature: Creature) {
+        return creature instanceof Creature;
+    }
+    describe(): string {
+        return "Creatures only";
     }
 }
 
@@ -4514,6 +4526,15 @@ export class Talents {
             [new CharacterStereotypePrerequisite(Stereotype.Npc), new Version2Prerequisite()],
             1,
             "Special Rule", true),
+
+
+        new TalentModel(
+            TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT,
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+
 
     ];
 

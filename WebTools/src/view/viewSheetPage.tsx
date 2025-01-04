@@ -14,6 +14,7 @@ import SoloCharacterView from "./soloCharacterView";
 import { Asset } from "../asset/asset";
 
 const AssetView = lazy(() => import(/* webpackChunkName: 'asset' */ '../asset/view/assetView'));
+const CreatureView = lazy(() => import(/* webpackChunkName: 'creature' */ '../creature/view/creatureView'));
 
 
 const ViewSheetPage = () => {
@@ -57,6 +58,18 @@ const ViewSheetPage = () => {
                     </ol>
                 </nav>
                 <AssetView asset={asset}/>
+            </div>);
+        } else if (json.stereotype === "creature") {
+            let creature = marshaller.decodeCreature(json);
+            modifyTitle(creature);
+            return (<div className="page container ms-0">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => goToHome(e)}>{t('Page.title.home')}</a></li>
+                        <li className="breadcrumb-item active" aria-current="page">{t('ViewPage.viewCreature')}</li>
+                    </ol>
+                </nav>
+                <CreatureView creature={creature}/>
             </div>);
         } else if (json.stereotype === "starship" || json.stereotype === "simple") {
             let starship = marshaller.decodeStarship(encodedSheet);

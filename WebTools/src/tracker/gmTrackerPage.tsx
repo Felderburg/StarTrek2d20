@@ -3,7 +3,6 @@ import React from "react";
 import { Header } from "../components/header";
 import LcarsFrame from "../components/lcarsFrame";
 import { PageIdentity } from "../pages/pageIdentity";
-import Button from "react-bootstrap/Button";
 import { ModalControl } from "../components/modal";
 import AddCharacterView from "./addCharacterView";
 import { connect } from "react-redux";

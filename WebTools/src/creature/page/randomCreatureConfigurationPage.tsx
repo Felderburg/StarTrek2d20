@@ -12,6 +12,7 @@ import Button from "react-bootstrap/Button";
 import { CreatureGenerator } from "../model/creatureGenerator";
 import { connect } from "react-redux";
 import { Era } from "../../helpers/eras";
+import { marshaller } from "../../helpers/marshaller";
 
 interface IRandomCreatureConfigurationProperties {
     era: Era;
@@ -24,7 +25,7 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
     const [ habitat, setHabitat] = useState<Habitat|null>(null);
 
     const getHabitatTypes = () => {
-        let result = [ new DropDownElement("", "Any")];
+        let result = [ new DropDownElement("", t('RandomCreatureConfiguration.anyHabitat'))];
         result.push(...HabitatHelper.instance.getTypes().map(h => new DropDownElement(h.id, h.localizedName)));
         return result;
     }
@@ -32,6 +33,9 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
     const createCreature = () => {
         let creature = CreatureGenerator(era, habitat);
         console.log(creature);
+
+        const value = marshaller.encodeCreature(creature);
+        window.open('/view?s=' + value, "_blank");
     }
 
     return (
@@ -41,11 +45,11 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                         <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => preventDefaultAnchorEvent(e, () => navigate("/"))}>{t('Page.title.home')}</a></li>
-                        <li className="breadcrumb-item active" aria-current="page">{t('Page.title.randomStarship')}</li>
+                        <li className="breadcrumb-item active" aria-current="page">{t('Page.title.randomCreature')}</li>
                     </ol>
                     </nav>
                     <main>
-                        <Header>{t('Page.title.randomCreatureConfiguration')}</Header>
+                        <Header>{t('Page.title.randomCreature')}</Header>
 
                         <div className="my-4">
                             <InstructionText text={t('RandomCreatureConfiguration.text')} />

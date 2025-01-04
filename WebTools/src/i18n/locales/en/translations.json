@@ -280,6 +280,11 @@
 
     "PromotionPage.instruction": "Select a new rank for this character.",
 
+    "RandomCreatureConfiguration.text": "Choose the options to create a random creature.",
+    "RandomCreatureConfiguration.anyHabitat": "Any Habitat",
+    "RandomCreatureConfiguration.habitat": "Habitat/Environment",
+    "RandomCreatureConfiguration.creatureType": "Creature Type",
+
     "RandomStarshipPage.instructions": "Specify what kind of starship you're trying to create.",
 
     "ReputationChangePage.instruction": "Adjust the character's reputation as appropriate.",
@@ -396,7 +401,7 @@
     "StarshipToolSelection.standardBuild": "Standard Build",
     "StarshipToolSelection.standardBuildDescription": "The standard Starship creation process follows the build steps as outlined in the rulebooks. E.g.: starships choose a Spaceframe, Mission Profile, etc.",
     "StarshipToolSelection.simplifiedBuild": "Simplified Build",
-    "StarshipToolSelection.simplifiedBuildDescription": "The Simplified build is a good option for transcribing a set of stats, say from an online source or other other reference.",
+    "StarshipToolSelection.simplifiedBuildDescription": "The Simplified build is a good option for transcribing a set of stats, say from an online source or other reference.",
 
     "StarshipTypeSelection.campaignYear": "Campaign Year",
     "StarshipTypeSelection.instruction": "What is the current year in your campaign? You'll probably need to consult your GM.\n\nA default year will be filled in automatically dependent on the chosen Era.",
@@ -484,6 +489,12 @@
 
     "Common.select.choose": "Choose...",
 
+    "Construct.creature.habitat": "Habitat",
+    "Construct.creature.creatureType": "Creature Type",
+    "Construct.creature.dietType": "Diet Type",
+    "Construct.creature.size": "Size",
+    "Construct.creature.locomotion": "Locomotion",
+
     "Construct.other.assetType": "Asset Type",
     "Construct.other.assignment": "Assignment",
     "Construct.other.attacks": "Attacks",
@@ -570,6 +581,7 @@
     "Construct.other.traits": "Traits",
     "Construct.other.additionalTraits": "Additional Traits",
     "Construct.other.unnamedCharacter": "Unnamed Character",
+    "Construct.other.unnamedCreature": "Unnamed Creature",
     "Construct.other.upbringing": "Upbringing",
     "Construct.other.value": "Value",
     "Construct.other.values": "Values",
@@ -642,6 +654,7 @@
     "Page.title.missionProfileTalentSelection": "Mission Profile Talent",
     "Page.title.missionProfileDetails": "Mission Profile Details",
     "Page.title.otherTools": "Other Tools",
+    "Page.title.randomCreature": "Random Creature Configuration",
     "Page.title.randomStarship": "Random Starship Configuration",
     "Page.title.safetyChecklist": "Safety Checklist",
     "Page.title.sectorDetails": "Sector Details",
@@ -2411,6 +2424,10 @@
     "Talent.appliedResearch": "Applied Research",
 
     "Talent.appliedResearch.description2e": "Once per scene, when you attempt a task which relates to information you received earlier that scene from an Obtain Information question, the first bonus die you purchase is free.",
+
+    "Talent.aquaticLiquidEnvironmentSpecialRuleCreature": "Aquatic / Liquid Environment",
+
+    "Talent.aquaticLiquidEnvironmentSpecialRuleCreature.description": "The being is at home in the water and has physiological structures that allow them to move through liquids with ease. While underwater (or another liquid), the being can move up to two zones with a minor action. The creature cannot drown while in a liquid environment but may do so in a non-liquid environment.",
 
     "Talent.askingTheRightQuestions": "Asking the Right Questions",
 
