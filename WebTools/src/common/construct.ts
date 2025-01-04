@@ -14,9 +14,12 @@ export enum Stereotype {
     SoloCharacter,
     SupportingCharacter,
     Npc,
+
     Starship,
     SimpleStarship,
-    SoloStarship
+    SoloStarship,
+
+    Creature
 }
 
 export abstract class Construct implements IConstruct, IWeaponDiceProvider {

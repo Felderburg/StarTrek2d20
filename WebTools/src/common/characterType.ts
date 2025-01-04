@@ -17,6 +17,8 @@ export enum CharacterType {
 
     Tribble,
 
+    Creature,
+
     Other
 }
 
@@ -72,6 +74,8 @@ export class CharacterTypeModel {
             } else if (t.type === CharacterType.Civilian || t.type === CharacterType.AmbassadorDiplomat) {
                 return sources.indexOf(Source.PlayersGuide) || sources.indexOf(Source.Core2ndEdition);
             } else if (t.type === CharacterType.Romulan || t.type === CharacterType.Ferengi || t.type === CharacterType.Cardassian) {
+                return false;
+            } else if (t.type === CharacterType.Creature) {
                 return false;
             } else {
                 return sources.indexOf(Source.PlayersGuide) >= 0

@@ -32,6 +32,7 @@ const ViewTablePage = React.lazy(() => import(/* webpackChunkName: 'table' */ '.
 const EditTablePage = React.lazy(() => import(/* webpackChunkName: 'table' */ './table/page/editTablePage'));
 const SafetyChecklistPage = React.lazy(() => import(/* webpackChunkName: 'safety' */ './safety/page/safetyChecklistPage'));
 const RandomStarshipPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './starship/page/randomStarshipPage'));
+const RandomCreaturePage = React.lazy(() => import(/* webpackChunkName: 'creature' */ './creature/page/randomCreatureConfigurationPage'));
 const TacticalAssetsPage = React.lazy(() => import(/* webpackChunkName: 'statc' */ './asset/page/tacticalAssetsPage'));
 
 
@@ -51,6 +52,7 @@ root.render(
                     <Route path="/sectorDetails" element={<SectorContainerPage activePage={PageIdentity.SectorDetails} />} />
                     <Route path="/starSystemDetails" element={<StarSystemDetailsPage />} />
                     <Route path="/starship/generate" element={<RandomStarshipPage />} />
+                    <Route path="/random/creature" element={<RandomCreaturePage />} />
                     <Route path="/tactical" element={<TacticalAssetsPage />} />
                     <Route path="/tools" element={<OtherToolsPage />} />
                     <Route path="/tools/safety" element={<SafetyChecklistPage />} />

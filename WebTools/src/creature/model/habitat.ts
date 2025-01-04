@@ -1,3 +1,4 @@
+import { D20 } from "../../common/die";
 
 export enum Habitat {
 
@@ -33,7 +34,7 @@ export class HabitatModel {
 export class HabitatHelper {
     private static _instance: HabitatHelper;
 
-    items = [
+    private items = [
         new HabitatModel(Habitat.Caves, "Caves"),
         new HabitatModel(Habitat.Desert, "Desert"),
         new HabitatModel(Habitat.Forest, "Forest"),
@@ -54,5 +55,51 @@ export class HabitatHelper {
             HabitatHelper._instance = new HabitatHelper();
         }
         return HabitatHelper._instance;
+    }
+
+    getTypes() {
+        return this.items;
+    }
+
+    getTypeById(id: Habitat) {
+        let items = this.items.filter(h => h.id === id);
+        return items?.length ? items[0] : undefined;
+    }
+}
+
+export const createRandomHabitat = () => {
+
+    switch (D20.roll()) {
+        case 1:
+        case 2:
+            return Habitat.Caves;
+        case 3:
+        case 4:
+            return Habitat.Desert;
+        case 5:
+        case 6:
+            return Habitat.Forest;
+        case 7:
+        case 8:
+            return Habitat.Hills;
+        case 9:
+        case 10:
+            return Habitat.Jungle;
+        case 11:
+        case 12:
+            return Habitat.Mountains;
+        case 13:
+        case 14:
+            return Habitat.Ocean;
+        case 15:
+        case 16:
+            return Habitat.Plains;
+        case 17:
+            return Habitat.Space;
+        case 18:
+        case 19:
+            return Habitat.Swamp;
+        case 20:
+            return Habitat.UpperAtmosphere;
     }
 }
