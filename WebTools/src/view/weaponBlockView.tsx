@@ -17,7 +17,7 @@ const WeaponBlockView: React.FC<IWeaponBlockViewProperties> = ({construct}) => {
             return (<WeaponView key={'weapon-' + i} weapon={w} dice={dice} version={construct.version} />);
         });
         return (<>
-                <Header level={2} className="mt-4">{t('Construct.other.weapons')}</Header>
+                <Header level={2} className="mt-4">{t('Construct.other.attacks')}</Header>
                 <div>{weapons}</div>
             </>);
     } else {

@@ -7,9 +7,10 @@ import { Starship } from "../common/starship";
 import { Character } from "../common/character";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import ReactMarkdown from "react-markdown";
+import { Creature } from "../creature/model/creature";
 
 interface IConstructPageProperties {
-    construct: Character|Starship;
+    construct: Character|Starship|Creature;
 }
 
 const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
@@ -108,9 +109,27 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
         </>);
     }
 
+    const renderCreatureTalents = () => {
+        return (<>
+            <Header level={2} className="mt-4">{t('Construct.other.specialRules')}</Header>
+            {construct?.getDistinctTalentNameList().map((tName, i) => {
+                let t = TalentsHelper.getTalent(tName);
+                return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
+                    {renderDescription(t.localizedDisplayName, t)}
+                </div>);
+            })}
+        </>);
+    }
+
     const { t } = useTranslation();
     if (construct?.getDistinctTalentNameList()?.length) {
-        return construct instanceof Character ? renderCharacterTalents() : renderStarshipTalents();
+        if (construct instanceof Character) {
+            return renderCharacterTalents();
+        } else if (construct instanceof Starship) {
+            return renderStarshipTalents();
+        } else {
+            return renderCreatureTalents();
+        }
     } else {
         return undefined;
     }

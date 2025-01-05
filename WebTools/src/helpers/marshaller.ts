@@ -41,6 +41,8 @@ import { Creature } from '../creature/model/creature';
 import { Habitat, HabitatHelper } from '../creature/model/habitat';
 import { CreatureType, CreatureTypeHelper } from '../creature/model/creatureType';
 import { DietType, DietTypeHelper } from '../creature/model/diet';
+import { CreatureSize, CreatureSizeHelper } from '../creature/model/creatureSize';
+import { NaturalAttacks, NaturalAttacksHelper } from '../creature/model/naturalAttacks';
 
 class Marshaller {
 
@@ -63,6 +65,14 @@ class Marshaller {
 
         if (creature.diet) {
             sheet["diet"] = DietType[creature.diet?.id];
+        }
+
+        if (creature.size) {
+            sheet["size"] = CreatureSize[creature.size?.id];
+        }
+
+        if (creature.naturalAttacks) {
+            sheet["naturalAttack"] = NaturalAttacks[creature.naturalAttacks];
         }
 
         return this.encode(sheet);
@@ -944,6 +954,14 @@ class Marshaller {
 
         if (json.diet) {
             result.diet = DietTypeHelper.instance.getTypeByIdName(json.diet);
+        }
+
+        if (json.size) {
+            result.size = CreatureSizeHelper.instance.getTypeByIdName(json.size);
+        }
+
+        if (json.naturalAttack) {
+            result.naturalAttacks = NaturalAttacksHelper.instance.getTypeByIdName(json.naturalAttack);
         }
 
         return result;
