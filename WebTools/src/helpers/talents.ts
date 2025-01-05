@@ -12,7 +12,7 @@ import { Starship } from '../common/starship';
 import store from '../state/store';
 import { centuryToYear } from './weapons';
 import { Spaceframe } from './spaceframeEnum';
-import { CareersPrerequisite, CharacterStereotypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, OfficerPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite } from './prerequisite';
+import { CareersPrerequisite, CharacterStereotypePrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, OfficerPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite } from './prerequisite';
 import { NotSourcePrerequisite } from './spaceframes';
 import { Career } from './careerEnum';
 import { hasAnySource } from '../state/contextFunctions';
@@ -4017,6 +4017,24 @@ export class Talents {
             "Ready for Battle",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Any Knowledge of Your Actions",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.ContinuingMissions), new CharacterTypePrerequisite(CharacterType.Romulan)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Once More Unto the Breach",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.ContinuingMissions), new CharacterTypePrerequisite(CharacterType.Romulan)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Dreaded",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.ContinuingMissions), new CharacterTypePrerequisite(CharacterType.Romulan)],
             1,
             "Starship", true),
         new TalentModel(

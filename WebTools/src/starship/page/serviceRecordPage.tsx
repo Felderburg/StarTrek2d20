@@ -45,7 +45,17 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
         }
     }
 
-    const serviceRecords = ServiceRecordList.instance.records.map((r, i) => {
+    let serviceRecords = ServiceRecordList.instance.records
+        .filter(r => r.starshipType == null || r.starshipType === starship.type)
+    serviceRecords.sort((r1, r2) => {
+        if (r1.name === r2.name) {
+            return r2.type - r1.type;
+        } else {
+            return r1.name.localeCompare(r2.name);
+        }
+    });
+
+    const rows = serviceRecords.map((r, i) => {
         const talent = TalentsHelper.getTalent(r.specialRule);
 
         return (
@@ -90,7 +100,7 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
                     <td></td>
                 </tr>
             </thead>
-            {serviceRecords}
+            {rows}
         </table>
         <div className="text-end mt-4">
             <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>

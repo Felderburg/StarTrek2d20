@@ -1,5 +1,6 @@
 import i18next from "i18next";
 import { makeKey } from "../../common/translationKey";
+import { CharacterType } from "../../common/characterType";
 
 export enum ServiceRecord {
     AgingRelic,
@@ -7,7 +8,11 @@ export enum ServiceRecord {
     Legendary,
     HopeShip,
     Prototype,
-    SurvivorOfX
+    SurvivorOfX,
+
+    Disavowed,
+    Loyalist,
+    Terror
 }
 
 export const allServiceRecords = (): ServiceRecord[] => {
@@ -19,10 +24,12 @@ export const allServiceRecords = (): ServiceRecord[] => {
 export class ServiceRecordModel {
     type: ServiceRecord;
     specialRule: string;
+    starshipType?: CharacterType;
 
-    constructor(type: ServiceRecord, specialRule: string) {
+    constructor(type: ServiceRecord, specialRule: string, starshipType?: CharacterType) {
         this.type = type;
         this.specialRule = specialRule;
+        this.starshipType = starshipType;
     }
 
     get name() {
@@ -47,6 +54,10 @@ export class ServiceRecordList {
         new ServiceRecordModel(ServiceRecord.HopeShip, "Mission of Mercy"),
         new ServiceRecordModel(ServiceRecord.Prototype, "Experimental Vessel"),
         new ServiceRecordModel(ServiceRecord.SurvivorOfX, "Ready for Battle"),
+
+        new ServiceRecordModel(ServiceRecord.Disavowed, "Any Knowledge of Your Actions", CharacterType.Romulan),
+        new ServiceRecordModel(ServiceRecord.Loyalist, "Once More Unto the Breach", CharacterType.Romulan),
+        new ServiceRecordModel(ServiceRecord.Terror, "Dreaded", CharacterType.Romulan),
     ]
 
     static get instance() {

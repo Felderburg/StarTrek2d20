@@ -79,6 +79,7 @@
     "TokenCreator.section.extras.headwear": "Headwear",
 
     "ViewPage.viewAsset": "View Asset",
+    "ViewPage.viewCreature": "View Creature",
     "ViewPage.viewSupportingCharacter": "View Supporting Character",
     "ViewPage.viewNpc": "View NPC",
     "ViewPage.viewMainCharacter": "View Main Character",
@@ -1701,6 +1702,10 @@
 
     "ServiceRecord.dependableWorkhorse.description": "The ship is dependable, with a solid record of successful missions and accomplishments. While overshadowed by more famous ships, this vessel is nevertheless a mainstay of the fleet, with a competent, dedicated crew.",
 
+    "ServiceRecord.disavowed": "Disavowed",
+
+    "ServiceRecord.disavowed.description": "The ship has been disavowed by its government, either no longer recognized as flying under its authority, gone rogue, or in extreme cases, its very existence denied or officially recorded as destroyed. Whether the ship’s actions are sanctioned or not is a matter only the senior crew or captain knows.",
+
     "ServiceRecord.legendary": "Legendary",
 
     "ServiceRecord.legendary.description": "This ship is famous, having been at the center of one or more major events that shaped the history and politics of one or more civilizations. This comes with great prestige for those involved.",
@@ -1708,6 +1713,10 @@
     "ServiceRecord.hopeShip": "Hope Ship",
 
     "ServiceRecord.hopeShip.description": "This vessel’s service has been spent responding to distress calls and disasters, warping to the rescue of those in danger or subjected to great hardship. The ship is heavily refitted for disaster relief, evacuation, and medical catastrophes, and the crew often have additional emergency medical training.",
+
+    "ServiceRecord.loyalist": "Loyalist",
+
+    "ServiceRecord.loyalist.description": "The ship is lauded as a vessel whose crew exemplifies unwavering loyalty to its government and doctrine.",
 
     "ServiceRecord.prototype": "Prototype",
 
@@ -1717,6 +1726,10 @@
 
     "ServiceRecord.survivorOfX.description": "This ship was involved in some of the fiercest battles, surviving the fighting, though not without scars. The crew is battle-hardened and prepared for anything.",
     "ServiceRecord.survivorOfX.trait": "Survivor of {{X}}",
+
+    "ServiceRecord.terror": "Terror",
+
+    "ServiceRecord.terror.description": "The ship is a veritable terror in the space lanes. This could arise from a history of violence or crimes, notoriety, or affiliation (such as the Tal Shiar).",
 
     "Sheet.basicGeneratedHalfPageCharacterSheet": "New Half-Page 2nd Ed.-style Character Sheet",
     "Sheet.generatedTngPortraitCharacterSheet": "TNG Portrait Character Sheet (US-Letter)",
@@ -2417,6 +2430,10 @@
 
     "Talent.annularConfinementJacketing.description2e": "The ship may make an attack with its energy weapons while at warp; however, the range of these attacks is limited to Close range, and the Difficulty for the attack is increased by 1.",
 
+    "Talent.anyKnowledgeOfYourActions": "Any Knowledge of Your Actions",
+
+    "Talent.anyKnowledgeOfYourActions.description": "When enemies attempt to discover background information about the ship or its crew, increase the Difficulty of the task by 1.",
+
     "Talent.appliedForce": "Applied Force",
 
     "Talent.appliedForce.description2e": "When you make a Melee Attack, you may use Fitness instead of Daring. In addition, you add 1 to the Severity of your Unarmed Attacks.",
@@ -2709,6 +2726,10 @@
     "Talent.dontYouDieOnMe": "Don't You Die on Me!",
 
     "Talent.dontYouDieOnMe.description2e": "When a character is killed, you may spend Determination to make one attempt to revive them. If they were killed instantly by an Attack, then this may only be attempted within that scene. If the character suffered an Injury and died because they didn’t receive medical treatment in time, this may be attempted before the end of the subsequent scene. This requires a **Daring + Medicine** task, with a Difficulty of 3. If successful, the character is brought back from the brink of death, though they will remain Defeated for the remain- der of the adventure. Failure means that your efforts were unsuccessful and the character dies.",
+
+    "Talent.dreaded": "Dreaded",
+
+    "Talent.dreaded.description": "When the ship assists in creating a trait that reflects or represents intimidation or fear, the first d20 you purchase for that task is free.",
 
     "Talent.dualEnvironment": "Dual Environment",
 
@@ -3122,6 +3143,10 @@
     "Talent.outOfHarmsWay": "Out of Harm's Way",
 
     "Talent.outOfHarmsWay.description": "You are used to balancing the need to keep a patient still and the need to get them somewhere safer. When attempting to carry or restrain another person, you may use Medicine instead of Security, and you ignore the first complication rolled on any such tasks.",
+
+    "Talent.onceMoreUntoTheBreach": "Once More unto the Breach",
+
+    "Talent.onceMoreUntoTheBreach.description": "The first time the Rally action (Command major action) is used aboard the ship in a scene, you may re-roll one d20.",
 
     "Talent.openBook": "Open Book",
 
