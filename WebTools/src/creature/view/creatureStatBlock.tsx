@@ -4,7 +4,6 @@ import { StatView } from "../../components/StatView";
 import { makeKey } from "../../common/translationKey";
 import { Attribute } from "../../helpers/attributes";
 import { Skill } from "../../helpers/skills";
-import { DisciplinesOrDepartments } from "../../view/disciplinesOrDepartments";
 import { Creature } from "../model/creature";
 
 interface ICreatureStatBlockProperties {

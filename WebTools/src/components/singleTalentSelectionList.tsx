@@ -46,7 +46,11 @@ class SingleTalentSelectionList extends React.Component<ISingleTalentSelectionPr
     }
 
     render() {
-        const { talents } = this.props;
+        let { talents } = this.props;
+
+        talents = talents.sort((t1, t2) => {
+            return t1.localizedName.localeCompare(t2.localizedName);
+        })
 
         const talentList = talents.map((t, i) => {
             let prerequisites = undefined;

@@ -32,6 +32,7 @@ export const TALENT_NAME_BRAK_LUL = "Brak’lul";
 export const TALENT_NAME_MISSION_POD = "Mission Pod";
 export const TALENT_NAME_UNTAPPED_POTENTIAL = "Untapped Potential";
 export const TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT = "Aquatic / Liquid Environment (Special Rule, Creature)";
+export const TALENT_NAME_ABLATIVE_ARMOUR = "Ablative Armor";
 
 enum TalentCategory {
     General,
