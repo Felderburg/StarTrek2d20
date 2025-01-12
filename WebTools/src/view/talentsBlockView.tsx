@@ -15,8 +15,16 @@ interface IConstructPageProperties {
 
 const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
 
-    const renderDescription = (talentName: string, talent: TalentModel) => {
+    const renderDescription = (talentName: string, talent: TalentModel, x?: number) => {
         let description = construct.version === 1 ? talent.localizedDescription : talent.localizedDescription2e;
+        if (talent.isXQualified && x !== undefined) {
+            if (description.includes(" X.")) {
+                description = description.replace(" X.", " " + x + ".");
+            }
+            if (description.includes(" X ")) {
+                description = description.replace(" X ", " " + x + " ");
+            }
+        }
         if (description.indexOf(CHALLENGE_DICE_NOTATION) >= 0) {
             return (
                 <>
@@ -110,12 +118,25 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
     }
 
     const renderCreatureTalents = () => {
+        const creature = construct as Creature;
+        let x = undefined;
         return (<>
             <Header level={2} className="mt-4">{t('Construct.other.specialRules')}</Header>
-            {construct?.getDistinctTalentNameList().map((tName, i) => {
+            {creature?.getDistinctTalentNameList().map((tName, i) => {
                 let t = TalentsHelper.getTalent(tName);
+                let name = t.localizedDisplayName;
+                if (t.isXQualified) {
+                    const talents = creature.talents.filter(t => t.talent === tName);
+                    if (talents.length) {
+                        x = talents[0].x;
+                        if (x != null) {
+                            let xLocation = name.lastIndexOf(" X");
+                            name = name.substring(0, xLocation + 1) + x + name.substring(xLocation + 2)
+                        }
+                    }
+                }
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
-                    {renderDescription(t.localizedDisplayName, t)}
+                    {renderDescription(name, t, x)}
                 </div>);
             })}
         </>);

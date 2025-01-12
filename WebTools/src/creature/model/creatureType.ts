@@ -71,6 +71,7 @@ export class CreatureTypeHelper {
 export const createRandomCreatureType = (habitat: Habitat) => {
 
     switch (habitat) {
+        case Habitat.Caves:
         case Habitat.Desert:
             switch (D20.roll()) {
                 case 1:

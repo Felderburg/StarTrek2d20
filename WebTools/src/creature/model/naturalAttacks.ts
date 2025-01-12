@@ -58,7 +58,11 @@ export class NaturalAttacksHelper {
                 return Weapon.createCharacterWeapon("Bludgeoning", InjuryType.StunOrDeadly,
                     4, [new WeaponQuality(Quality.Intense)], [], WeaponType.MELEE, 1);
         }
+    }
 
+    getSpikedTailAttack() {
+        return Weapon.createCharacterWeapon("Spiked Tail", InjuryType.Deadly,
+            6, [], [new WeaponQuality(Quality.Intense), new WeaponQuality(Quality.Debilitating), new WeaponQuality(Quality.Piercing)], WeaponType.MELEE, 1);
     }
 
     getTypeByIdName(name: string) {

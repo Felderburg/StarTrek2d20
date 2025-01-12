@@ -1,6 +1,7 @@
-import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, SelectedTalent, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from "../common/character";
+import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from "../common/character";
 import { CharacterType } from "../common/characterType";
 import { Stereotype } from "../common/construct";
+import { SelectedTalent } from "../common/selectedTalent";
 import AgeHelper from "../helpers/age";
 import { Skill } from "../helpers/skills";
 import { SpeciesAbilityList } from "../helpers/speciesAbility";

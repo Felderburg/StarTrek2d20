@@ -32,7 +32,6 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
 
     const createCreature = () => {
         let creature = CreatureGenerator(era, habitat);
-        console.log(creature);
 
         const value = marshaller.encodeCreature(creature);
         window.open('/view?s=' + value, "_blank");

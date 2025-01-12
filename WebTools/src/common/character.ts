@@ -25,6 +25,7 @@ import { Era } from '../helpers/eras';
 import { SpeciesAbility, SpeciesAbilityList } from '../helpers/speciesAbility';
 import { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';
+import { SelectedTalent } from './selectedTalent';
 
 export enum Division {
     Command,
@@ -143,31 +144,6 @@ export class SupportingImrovementStep {
         return result;
     }
 }
-
-export class SelectedTalent {
-
-    readonly talent: string;
-    implants: BorgImplantType[];
-    focuses: string[];
-    value: string;
-    attribute?: Attribute;
-
-    constructor(talent: string) {
-        this.talent = talent;
-        this.implants = [];
-        this.focuses = [];
-    }
-
-    copy() {
-        let result = new SelectedTalent(this.talent);
-        result.implants = [...this.implants];
-        result.focuses = [...this.focuses];
-        result.value = this.value;
-        result.attribute = this.attribute;
-        return result;
-    }
-}
-
 
 export class CareerStep {
     career?: Career;

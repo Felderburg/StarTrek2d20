@@ -2331,15 +2331,15 @@
 
     "Talent.text.rank": "{{talentName}} [Rank: {{rank}}]",
 
-    "Talent.ablativeArmor": "Ablative Armor",
+    "Talent.ablativeArmor": "Ablative Armour",
 
     "Talent.ablativeArmor.description": "The vessel’s hull plating has an additional ablative layer that disintegrates slowly under extreme temperatures, such as those caused by energy weapons and torpedo blasts, dissipating the energy, and protecting the ship. This plating is replaced periodically. The ship’s Resistance is increased by 2.",
     "Talent.ablativeArmor.description2e": "The vessel’s hull plating has an additional ablative layer that disintegrates slowly under extreme temperatures. Increase the ship's Resistance by 2.",
     "Talent.ablativeArmor.soloDescription": "The vessel’s hull plating has an additional ablative layer that disintegrates slowly under extreme temperatures, such as those caused by energy weapons and torpedo blasts, dissipating the energy and protecting the ship. This plating is replaced periodically.",
 
-    "Talent.ablativeArmorGenerator": "Ablative Armor Generator",
+    "Talent.ablativeArmorGenerator": "Ablative Armour Generator",
 
-    "Talent.ablativeArmorGenerator.description2e": "The ship is fitted with several external replicators pre-set to materialize an outer layer of armor plating over the hull, reinforced with structural integrity fields.\n\nWhen the ship raises its shields, it may deploy armor instead, but this requires using Reserve Power. Deploying the armor increases the ship’s maximum shields capacity by 5 and increases the ship’s Resistance by\n3. While armor is deployed, the _Modulate Shields_ and _Regenerate Shields_ actions cannot be taken—the armor cannot be fine-tuned.",
+    "Talent.ablativeArmorGenerator.description2e": "The ship is fitted with several external replicators pre-set to materialize an outer layer of armour plating over the hull, reinforced with structural integrity fields.\n\nWhen the ship raises its shields, it may deploy armor instead, but this requires using Reserve Power. Deploying the armor increases the ship’s maximum shields capacity by 5 and increases the ship’s Resistance by\n3. While armour is deployed, the _Modulate Shields_ and _Regenerate Shields_ actions cannot be taken—the armour cannot be fine-tuned.",
 
     "Talent.ablativeFieldProjector": "Ablative Field Projector",
 
@@ -2421,6 +2421,10 @@
     "Talent.ambushTactics": "Ambush Tactics",
 
     "Talent.ambushTactics.description2e": "When you succeed at an Attack against an enemy who is unaware of your presence, or who is suffering from a trait or complication which represents a weakness or vulnerability, increase the Severity of the Attack by 2.",
+
+    "Talent.amphibiousSpecialRuleCreature": "Amphibious",
+
+    "Talent.amphibiousSpecialRuleCreature.description": "This creature can move on the ground or through the water with ease. Complications normally suffered by a creature moving through an environment in which it is not native are ignored. This special rule can apply to any two environments, such as vacuum and magma, or aquatic and air.",
 
     "Talent.anAnswerForEverything": "An Answer for Everything",
 
@@ -2523,6 +2527,10 @@
     "Talent.calmAndLogical": "Calm and Logical",
 
     "Talent.calmAndLogical.description2e": "When you gain a trait which represents a mood or emotional state, you may suppress that trait (ignoring its effect) for the duration of a single task or a single turn in combat by suffering 1 Stress.",
+
+    "Talent.camouflagedXSpecialRuleCreature": "Camouflaged X",
+
+    "Talent.camouflagedXSpecialRuleCreature.description2e": "The Difficulty of any task to locate the being is increased\nby X.",
 
     "Talent.captainsYacht": "Captain's Yacht",
 
@@ -2641,6 +2649,10 @@
     "Talent.coordinatedEfforts": "Coordinated Efforts",
 
     "Talent.coordinatedEfforts.description2e": "When you Assist another character during an extended task, the character you Assist increases their Impact by 1.",
+
+    "Talent.coordinationSpecialRuleCreature": "Coordination",
+
+    "Talent.coordinationSpecialRuleCreature.description2e": "A group of these creatures can cooperate through communications of some sort, be it sound, sight, or even pheromones. These creatures can create advantages for themselves (complications toward the characters) representing more complex problem-solving and tactics.",
 
     "Talent.coveringAdvance": "Covering Advance",
 
@@ -2762,6 +2774,10 @@
 
     "Talent.empathy2e.description": "You can sense the emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom you are extremely familiar. You cannot choose not to sense the emotions of those nearby, except for those who are resistant to telepathy. It may require effort and a task to pick out the emotions of a specific individual in a crowd, or to block out the emotions of those nearby. Increase the Difficulty of this task if the situation is stressful, if there are a lot of beings present, if the target has resist- ance to telepathy, and other relevant factors.",
 
+    "Talent.energyBasedSpecialRuleCreature": "Energy-Based",
+
+    "Talent.energyBasedSpecialRuleCreature.description2e": "The creature’s body is made of coherent energy or radiation. They may also emit energy from their skin. This creature’s Protection is increased by 2 against energy similar to what it is made of. Additionally, any time another creature makes physical contact with the energy-based creature, it inflicts a Deadly Injury with a Severity of 1.",
+
     "Talent.engineeringScienceAffinityUnofficial": "Engineering/Science Affinity",
 
     "Talent.engineeringScienceAffinityUnofficial.description": "Napeans have an affinity for the Engineering & Science Disciplines. Whenever, you use these you gain a bonus 1d20 for your rolls. ",
@@ -2811,6 +2827,10 @@
 
     "Talent.extraSensoryPerception.description2e": "You have an ability to perceive things beyond the normal limits of humanoid senses, allowing you to gain knowledge of people, places, and objects beyond your ability to sense them conventionally. This is known as extra- sensory perception, or ESP. It is not directly under your control but instead tends to come in the form of accurate guesses, strong feelings, or flashes of insight. Such sensitivity often leaves you vulnerable to psychic dangers as well. At any point during play, you may ask the gamemaster for hints or insights about the current situation, and the gamemaster may similarly offer you information about the current situation that you would not normally be able to determine. Each hint adds 1 Threat, and you may always refuse to accept the hints offered.",
 
+    "Talent.fastRecoverySpecialRuleCreature": "Fast Recovery",
+
+    "Talent.fastRecoverySpecialRuleCreature.description2e": "The creature recovers from stress and injury quickly. At the start of each of its turns, if the creature has one or more Injuries, roll a d20. If you roll equal to or under the creature’s Fitness, the NPC immediately removes an Injury. If the NPC has no more Injuries, it immediately ceases to be Defeated.",
+
     "Talent.fastTargetingSystems": "Fast Targeting Systems",
 
     "Talent.fastTargetingSystems.soloDescription": "The ship’s targeting systems can lock weapons on target much faster and more accurately than other ships of its class, giving it an edge in battle.",
@@ -2838,6 +2858,10 @@
     "Talent.firstResponse.description": "Whenever you attempt the First Aid Task during combat, you gain a bonus d20. Further, you may always Succeed at a Cost, with each Complication you suffer adding +1 to the Difficulty of healing the patient’s Injury subsequently.",
     "Talent.firstResponse.description2e": "When you attempt the First Aid task during combat, the first die you purchase is free. Further, you may always Succeed at Cost, with each complication you suffer adding 1 to the Difficulty of healing the patient’s Injury subsequently.",
 
+    "Talent.flightSpecialRuleCreature": "Flight",
+
+    "Talent.flightSpecialRuleCreature.description2e": "The creature has the ability to fly through the atmosphere of a planet, or ways of propelling it through the vacuum of space. This creature can move zones horizontally and vertically. In an atmosphere or gravity well, a creature must spend at least a minor action to move each turn or suffer from the effects of falling, but creatures existing in the vacuum of space don’t have this restriction. Flying creatures which are stunned or rendered unconscious fall to the ground.",
+
     "Talent.flyBy": "Fly-By",
 
     "Talent.flyBy.description": "Whenever you use the Swift Task Momentum Spend, you do not increase the Difficulty of the second Task if one of the Tasks you attempt is to pilot a vessel or vehicle.",
@@ -2856,6 +2880,10 @@
 
     "Talent.formerInitiate.description": "You joined the Initiate Program, hoping to be chosen by the Symbiosis Commission to become Joined. As there are far more Initiates than there are Symbionts, you were one of the many who failed, but the quality of even a failed initiate is enough for Starfleet to recruit you. When you attempt a Task using Control or Reason, and spend Determination to buy a bonus d20 for that Task, you may re-roll your dice pool. Former Initiate cannot be taken if the character has the Joined Talent — they are mutually exclusive.",
     "Talent.formerInitiate.description2e": "You joined the Initiate Program, hoping to be chosen by the Symbiosis Commission to become Joined. As there are far more Initiates than there are symbionts, you were one of many who failed, but the capabilities of even a failed Initiate are highly sought after by Starfleet and other organizations. When you attempt a task using Control or Reason, and you spend Determination to set a die as a 1, you may also re-roll your dice pool after the roll. You cannot select this talent if you have the Joined talent.",
+
+    "Talent.formlessSpecialRuleCreature": "Formless",
+
+    "Talent.formlessSpecialRuleCreature.description2e": "This creature can contort their body, or change their overall shape drastically. They may be able to escape through small areas, or make themselves appear as something entirely different, creating traits to represent the forms they take.",
 
     "Talent.fourNacelleStability": "Four-Nacelle Stability",
 
@@ -2910,6 +2938,10 @@
 
     "Talent.highResolutionSensors.description2e": "The vessel’s sensors can gain large amounts of accurate data, though they are extremely sensitive. While the vessel is not in combat, any successful task assisted by the ship’s Sensors gains 1 bonus Momentum. Bonus Momentum may not be saved.",
 
+    "Talent.hyperAgileSpecialRuleCreature": "Hyper-Agile",
+
+    "Talent.hyperAgileSpecialRuleCreature.description2e": "The Difficulty to hit the creature with a ranged attack is\nincreased by 1.",
+
     "Talent.iKnowMyShip": "I Know My Ship",
 
     "Talent.iKnowMyShip.description": "Whenever you attempt a Task to determine the source of a technical problem with your ship, add one bonus d20.",
@@ -2918,6 +2950,34 @@
     "Talent.imGivingItAllShesGot": "I'm Giving It All She's Got!",
 
     "Talent.imGivingItAllShesGot.description2e": "Once per scene, when the ship has no Reserve Power remaining at the start of your turn, you may add 2 Threat to gain Reserve Power.",
+
+    "Talent.immuneToColdSpecialRuleCreature": "Immune to Cold",
+
+    "Talent.immuneToColdSpecialRuleCreature.description2e": "The creature is unaffected by effects derived from extreme cold, including Stress or Injuries.",
+
+    "Talent.immuneToDiseaseSpecialRuleCreature": "Immune to Disease",
+
+    "Talent.immuneToDiseaseSpecialRuleCreature.description2e": "The creature is immune to the effects of disease, and will never suffer the symptoms of any disease. If the creature is exposed to a disease, it may become a carrier—able to spread the disease if it is contagious.",
+
+    "Talent.immuneToFearSpecialRuleCreature": "Immune to Fear",
+
+    "Talent.immuneToFearSpecialRuleCreature.description": "The creature is incapable of feeling fear, continuing undeterred despite the greatest terror. The creature cannot be intimidated or threatened.",
+
+    "Talent.immuneToHeatSpecialRuleCreature": "Immune to Heat",
+
+    "Talent.immuneToHeatSpecialRuleCreature.description2e": "The creature is unaffected by effects derived from extreme heat, including Stress or Injuries caused by fire.",
+
+    "Talent.immuneToPainSpecialRuleCreature": "Immune to Pain",
+
+    "Talent.immuneToPainSpecialRuleCreature.description2e": "The creature is incapable of feeling pain, continuing undeterred despite the most horrific Injury. The creature ignores all Stun Injuries, and cannot be Defeated by an attack which inflicts a Stun Injury.",
+
+    "Talent.immuneToPoisonSpecialRuleCreature": "Immune to Poison",
+
+    "Talent.immuneToPoisonSpecialRuleCreature.description2e": "The creature is unaffected by all forms of poison, venom, and toxin, and cannot suffer Stress or Injuries from them.",
+
+    "Talent.immuneToVacuumSpecialRuleCreature": "Immune to Vacuum",
+
+    "Talent.immuneToVacuumSpecialRuleCreature.description2e": "The creature suffers no Injuries from being exposed to hard vacuum, or other extremes of atmospheric pressure, and cannot suffocate.",
 
     "Talent.improvedDamageControl": "Improved Damage Control",
 
@@ -2966,6 +3026,10 @@
 
     "Talent.incisiveScrutiny.description": "You have a knack for finding weak spots in arguments, theories, and machines alike to glean information from them, learning about things by how they respond to pressure against vulnerable points. When you succeed at a Task using Control or Insight, you gain one bonus Momentum, which may only be used for the Obtain Information Momentum Spend.",
     "Talent.incisiveScrutiny.description2e": "When you succeed at a task using Control or Insight, you may ask one question, as if you had spent Momentum to Obtain Information.",
+
+    "Talent.incorporealSpecialRuleCreature": "Incorporeal",
+
+    "Talent.incorporealSpecialRuleCreature.description2e": "Incorporeal NPCs—also including energy, gaseous, or fluid creatures, and “creatures” composed of a swarm of tiny creatures—are only partially of the physical universe, and they do not fully interact with it physically. The NPC gains 3 Protection. There may be some form of special energy or radiation-based attack which ignores this Protection, at the gamemaster’s discretion. \n\nThe NPC may move freely through rough or difficult terrain, but they cannot move through larger or heavier physical barriers.",
 
     "Talent.indefatigable": "Indefatigable",
 
@@ -3041,6 +3105,10 @@
 
     "Talent.learnFromFailure.description2e": "When you fail at a Science task, you may add 3 Threat to create a trait which represents knowledge or insights gained from the failure. The cost of this is reduced by 1 for each success you scored on the failed task.",
 
+    "Talent.machineSpecialRuleCreature": "Machine",
+
+    "Talent.machineSpecialRuleCreature.description2e": "The creature is not a living being, but a machine, or some form of cybernetic organism. It is highly resistant to environmental conditions, reducing the Difficulty of tasks to resist extremes of heat and cost by 2, and it is immune to the effects of  suffocation, hard vacuum, starvation, and thirst.",
+
     "Talent.maintenanceSpecialist": "Maintenance Specialist",
 
     "Talent.maintenanceSpecialist.description2e": "You may ignore the first complication rolled on any Engineering task. Further, when you create any equipment trait, any character who uses that piece of equipment in a task may ignore the first complication rolled.",
@@ -3049,12 +3117,20 @@
 
     "Talent.martialArtist.description2e": "Your Unarmed Strike Attack may be used to inflict Deadly Injuries as well as Stun Injuries.",
 
+    "Talent.massiveSpecialRuleCreature": "Massive",
+
+    "Talent.massiveSpecialRuleCreature.description2e": "The creature is massive. It must suffer three Injuries before it is defeated.",
+
     "Talent.meanRightHook": "Mean Right Hook",
 
     "Talent.meanRightHook.alias.klingonCore": "Warrior’s Strike",
 
     "Talent.meanRightHook.description": "Your Unarmed Strike Attack has the Vicious 1 Damage Effect.",
     "Talent.meanRightHook.description2e": "Your Unarmed Strike Attack gains the Intense quality.",
+
+    "Talent.menacingXSpecialRuleCreature": "Menacing X",
+
+    "Talent.menacingXSpecialRuleCreature.description2e": "When a creature with this rule enters a scene, immediately add X Threat. This applies whether the NPC is an adversary or an ally.",
 
     "Talent.mentalRepository": "Mental Repository",
 
@@ -3067,6 +3143,10 @@
     "Talent.methodicalPlanning": "Methodical Planning",
 
     "Talent.methodicalPlanning.description2e": "When an ally attempts a task which benefits from a trait you created which represents your plan or strategy, then you may Assist that ally’s task even if you are not present. In combat, this assistance does not require you to use your task to Assist that ally.",
+
+    "Talent.mimicrySpecialRuleCreature": "Mimicry",
+
+    "Talent.mimicrySpecialRuleCreature.description2e": "The creature has the capability to mimic a certain sense that it has experienced, such as a parrot mimicking speech, or perhaps a shape-shifting creature appearing as a humanoid they’ve encountered before.",
 
     "Talent.mindMeld": "Mind-Meld",
 
@@ -3098,6 +3178,14 @@
 
     "Talent.multiDiscipline.description2e": "You may select one additional Role Benefit, which may not be Commanding Officer.",
 
+    "Talent.multidimensionalSpecialRuleCreature": "Multidimensional",
+
+    "Talent.multidimensionalSpecialRuleCreature.description2e": "This creature can move through walls and barriers and avoid simple attacks, as determined by the gamemaster, simply by moving itself out of observable space-time and re-entering it elsewhere.",
+
+    "Talent.multiLimbedSpecialRuleCreature": "Multi-Limbed",
+
+    "Talent.multiLimbedSpecialRuleCreature.description2e": "The creature has more than two limbs that it can attack with at once effectively. If it succeeds at an attack, it adds 1 Threat.",
+
     "Talent.multiTasking": "Multi-Tasking",
 
     "Talent.multiTasking.description2e": "When you attempt the Override major action while at a bridge station that includes one or both helm or navigator positions, you may use your Conn department instead of the department usually required for that task.",
@@ -3105,6 +3193,10 @@
     "Talent.multiVectorAssaultMode": "Multi-Vector Assault Mode",
 
     "Talent.multiVectorAssaultMode.soloDescription": "The vessel can split apart into three distinct sections. Each section has the same systems and departments scores as the original fully integrated starship, but each individual section has less power than when the ship is integrated. Use this in narration to create interesting advantages or complications.",
+
+    "Talent.naturalProtectionXSpecialRuleCreature": "Natural Protection X",
+
+    "Talent.naturalProtectionXSpecialRuleCreature.description2e": "The creature has X Protection.",
 
     "Talent.nervePinch": "Nerve Pinch",
 
@@ -3118,6 +3210,10 @@
     "Talent.neverPlaceFriendshipAboveProfit": "Never Place Friendship Above Profit",
 
     "Talent.neverPlaceFriendshipAboveProfit.description2e": "When you assist someone else (including using the Direct action), and one or more complications occur, you may add 1 Threat to avoid suffering any ill-effect from that complication (other characters involved are affected normally).",
+
+    "Talent.nightVisionSpecialRuleCreature": "Night Vision",
+
+    "Talent.nightVisionSpecialRuleCreature.description2e": "The creature is unaffected by any traits which represent darkness or poor lighting.",
 
     "Talent.nimbleWar": "Nimble",
 
@@ -3286,6 +3382,10 @@
     "Talent.quickToAction.description": "During the first round of any combat, you and your allies may ignore the normal cost to Retain the Initiative.",
     "Talent.quickToAction.description2e": "During the first round of any combat, you and your allies may ignore the normal cost to Keep the Initiative.",
 
+    "Talent.ramSpecialRuleCreature": "Ram",
+
+    "Talent.ramSpecialRuleCreature.description2e": "A creature may improve attacks with its horns, claws, or tail to represent gaining momentum through charging forward, spinning, or otherwise putting all it can into the attack. The creature may add the Intense quality to its melee attacks by taking the Prepare minor action before attacking.",
+
     "Talent.rapidAnalysis": "Rapid Analysis",
 
     "Talent.rapidAnalysis.description2e": "When you succeed at a Science task, the cost of the Reduce Time Momentum option is reduced to 1.",
@@ -3323,6 +3423,10 @@
     "Talent.repairTeamLeader": "Repair Team Leader",
 
     "Talent.repairTeamLeader.description2e": "You are trained to direct and lead damage repair teams during emergencies, giving them your guidance and expert knowledge of the ship’s systems. If you succeed at the Damage Control major action you may spend 2 Momentum (Repeatable) to repair one additional Breach.",
+
+    "Talent.resilientSpecialRuleCreature": "Resilient",
+
+    "Talent.resilientSpecialRuleCreature.description2e": "Whenever the creature suffers an Injury, roll a d20. If you roll equal to or under the creature’s Fitness, that Injury is not inflicted. Do this before deciding to _Avoid Injury_.",
 
     "Talent.resolute": "Resolute",
 
@@ -3392,6 +3496,10 @@
 
     "Talent.selfReplicatingMines.soloDescription": "The ship carries mines that are capable of replicating themselves over time, allowing for a more thorough spread filling the area they’re deployed in. Note that Starfleet does not normally utilize mines.",
 
+    "Talent.senseSpectrumSpecialRuleCreature": "Sense Spectrum",
+
+    "Talent.senseSpectrumSpecialRuleCreature.description2e": "These creatures may “see” with X-rays, or hear sounds far too high pitched to often be considered useful. They may “smell” by sensing subspace particles, or even feel where their prey is through detecting the pattern of time surrounding its target.",
+
     "Talent.siphoningShields": "Siphoning Shields",
 
     "Talent.siphoningShields.description2e": "When the ship is hit by an energy weapon, after the attack is resolved, you may add 2 Threat to restore Shields equal to the ship’s Security department.",
@@ -3414,6 +3522,10 @@
 
     "Talent.specializedShuttlebay.description": "_Akira_-class vessels are built with a shuttlebay running the length of the saucer section, allowing small craft to depart from the prow and return safely via the aft. Any friendly small craft within Close range may count the ship as providing Cover (+1 Difficulty on attacks targeting them). Any small craft launching from the bay may take one additional helm minor action at no additional cost after they launch.",
 
+    "Talent.spikedTailSpecialRuleCreature": "Spiked Tail",
+
+    "Talent.spikedTailSpecialRuleCreature.description2e": "The creature has a spiked tail that can be used for damaging attacks.",
+
     "Talent.spiritOfDiscovery": "Spirit of Discovery",
 
     "Talent.spiritOfDiscovery.description": "You have the drive, spirit, and courage to voyage into the unknown. You may spend one Determination to add three points to the group Momentum pool. The normal conditions for spending Determination still apply.",
@@ -3427,6 +3539,10 @@
     "Talent.steadyHands": "Steady Hands",
 
     "Talent.steadyHands.description2e": "When you take the Aim minor action before a Ranged Attack, you add 1 to the Attack’s Severity, in addition to the other effects of aiming.",
+
+    "Talent.stealthySpecialRuleCreature": "Stealthy",
+
+    "Talent.stealthySpecialRuleCreature.description2e": "The creature is exceptionally quiet when approaching potential prey. Attempts to detect the presence or approach of the creature are increased by 3.",
 
     "Talent.stimulantShot": "Stimulant Shot",
 
@@ -3453,6 +3569,10 @@
     "Talent.sturdy": "Sturdy",
 
     "Talent.sturdy.description": "You have a blend of physical resilience and mental fortitude such that you’re difficult to subdue. You reduce the cost to resist being knocked prone by the Knockdown damage effect by one, to a minimum of 0, and gain +1 Resistance against all non-lethal attacks.",
+
+    "Talent.sturdySpecialRuleCreature": "Sturdy",
+
+    "Talent.sturdySpecialRuleCreature.description2e": "This creature cannot be knocked prone.",
 
     "Talent.supervisor": "Supervisor",
 
@@ -3513,14 +3633,26 @@
 
     "Talent.threadTheNeedle.description2e": "When you perform the Impulse minor action or Warp major action when piloting a starship, enemy Attacks from ships with a greater Scale than yours increase in difficulty by +1. If attacked by a ship with a Scale that is double or more the Scale of your ship, then you increase the Difficulty by 2 instead.",
 
+    "Talent.threatGestureSpecialRuleCreature": "Threat Gesture",
+
+    "Talent.threatGestureSpecialRuleCreature.description2e": "The creature can suddenly rear up on its hind legs and tower over its prey, bellow an intimidating roar, suddenly display brightly colored spines, or even spray noxious juices in defense of itself. Once per encounter, the creature may make an opposed task of **Presence + Command** or **Security**. Characters that tie or fail that task are knocked prone as they backpedal, are startled, or otherwise pause due to a flight-or-fight response.",
+
     "Talent.theoryIntoPractice": "Theory into Practice",
 
     "Talent.theoryIntoPractice.description2e": "When you succeed at a task using Engineering or Science where you gain the additional d20 from the Testing a Theory talent, or which benefits from a trait that represents a hypothesis you’ve made, you generate 2 bonus Momentum. Bonus Momentum may not be saved.",
+
+    "Talent.toolUserSpecialRuleCreature": "Tool User",
+
+    "Talent.toolUserSpecialRuleCreature.description2e": "While not sentient or self-aware, these creatures have a nervous system advanced enough to be able to manipulate the environment somehow in their favor. These creatures can be taught how to use simple devices or tools, or perhaps can learn through observation.",
 
     "Talent.tough": "Tough",
 
     "Talent.tough.description": "Whenever you Avoid an Injury, the cost is reduced by 1, to a minimum of 1.",
     "Talent.tough.description2e": "Your maximum Stress is increased by 2.",
+
+    "Talent.toxicPoisonousOrVenomousSpecialRuleCreature": "Toxic, Poisonous or Venomous",
+
+    "Talent.toxicPoisonousOrVenomousSpecialRuleCreature.description2e": "Creatures that by their inherent nature can cause harm to other creatures through toxins they naturally produce or via microorganisms they symbiotically exist with are **Toxic** or **Poisonous**. Creatures that have venom sacks like snakes, or creatures that deliver toxins with an attack, are considered **Venomous**. Regardless of this distinction, a gamemaster can determine what is toxic or venomous about a creature. Any attack against, or by, the creature can have this as an additional trait.",
 
     "Talent.tracker": "Tracker",
 
@@ -3715,6 +3847,8 @@
     "Weapon.quality.charge.name": "Charge",
 
     "Weapon.quality.calibration.name": "Calibration",
+
+    "Weapon.quality.cumbersome.name": "Cumbersome",
 
     "Weapon.quality.dampening.name": "Dampening",
 

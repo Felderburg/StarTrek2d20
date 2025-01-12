@@ -1,6 +1,6 @@
 import { Base64 } from 'js-base64';
 import pako from 'pako';
-import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, SelectedTalent, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from '../common/character';
+import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, ShipTalentDetailSelection, SimpleStats, Starship } from '../common/starship';
@@ -43,6 +43,7 @@ import { CreatureType, CreatureTypeHelper } from '../creature/model/creatureType
 import { DietType, DietTypeHelper } from '../creature/model/diet';
 import { CreatureSize, CreatureSizeHelper } from '../creature/model/creatureSize';
 import { NaturalAttacks, NaturalAttacksHelper } from '../creature/model/naturalAttacks';
+import { SelectedTalent } from '../common/selectedTalent';
 
 class Marshaller {
 
@@ -73,6 +74,10 @@ class Marshaller {
 
         if (creature.naturalAttacks) {
             sheet["naturalAttack"] = NaturalAttacks[creature.naturalAttacks];
+        }
+
+        if (creature.additionalTalents?.length) {
+            sheet["talents"] = this.toTalentList(creature.additionalTalents)
         }
 
         return this.encode(sheet);
@@ -527,6 +532,9 @@ class Marshaller {
         if (t.attribute != null) {
             talent["attribute"] = Attribute[t.attribute];
         }
+        if (t.x != null) {
+            talent["x"] = t.x;
+        }
         return talent;
     }
 
@@ -962,6 +970,15 @@ class Marshaller {
 
         if (json.naturalAttack) {
             result.naturalAttacks = NaturalAttacksHelper.instance.getTypeByIdName(json.naturalAttack);
+        }
+
+        if (json.talents) {
+            json.talents.forEach(t => {
+                let talent = this.hydrateTalent(t);
+                if (talent != null) {
+                    result.additionalTalents.push(talent);
+                }
+            });
         }
 
         return result;
@@ -1461,6 +1478,10 @@ class Marshaller {
             if (t["attribute"] != null) {
                 selectedTalent.attribute = AttributesHelper.getAttributeByName(t["attribute"]);
             }
+            if (t["x"] != null) {
+                selectedTalent.x = t["x"];
+            }
+
             return selectedTalent;
         } else {
             return undefined;
