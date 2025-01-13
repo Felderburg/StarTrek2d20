@@ -283,6 +283,7 @@
 
     "RandomCreatureConfiguration.text": "Choose the options to create a random creature.",
     "RandomCreatureConfiguration.anyHabitat": "Any Habitat",
+    "RandomCreatureConfiguration.anyCreatureType": "Any Creature Type",
     "RandomCreatureConfiguration.habitat": "Habitat/Environment",
     "RandomCreatureConfiguration.creatureType": "Creature Type",
 
@@ -2418,6 +2419,10 @@
     "Talent.aLittleMorePower.description": "Whenever you succeed at an Engineering Task aboard your own ship, you may spend one Momentum to regain one spent Power.",
     "Talent.aLittleMorePower.description2e": "Whenever you use the Reroute Power major action, you may spend 2 Momentum to give Reserve Power to two systems, rather than one.",
 
+    "Talent.ambushHunterSpecialRuleCreature": "Ambush Hunter",
+
+    "Talent.ambushHunterSpecialRuleCreature.description2e": "This creature hunts using surprise attacks such as dropping quickly from above or emerging from the ground. When the creature succeeds at attacking a character that is unaware of its presence or suffering from a complication that represents a weakness or vulnerability, increase the attack's Severity by 2.",
+
     "Talent.ambushTactics": "Ambush Tactics",
 
     "Talent.ambushTactics.description2e": "When you succeed at an Attack against an enemy who is unaware of your presence, or who is suffering from a trait or complication which represents a weakness or vulnerability, increase the Severity of the Attack by 2.",
@@ -2823,6 +2828,10 @@
 
     "Talent.extraEffort.description2e": "When you attempt a task, you may reduce the Difficulty of the task by 1, to a minimum of 0. However, once the task is completed, you immediately take Stress equal to the original Difficulty of the task.",
 
+    "Talent.extraordinaryAttributeXSpecialRuleCreature": "Extraordinary Attribute X",
+
+    "Talent.extraordinaryAttributeXSpecialRuleCreature.description2e": "One or more of the creature’s attributes are far beyond the normal range for humanoids. This is indicated by a number, which is added as automatic successes on tasks using that attribute. For example, a creature with Extraordinary Reason 1 gains one success on all tasks using Reason. ",
+
     "Talent.extraSensoryPerception": "Extrasensory Perception",
 
     "Talent.extraSensoryPerception.description2e": "You have an ability to perceive things beyond the normal limits of humanoid senses, allowing you to gain knowledge of people, places, and objects beyond your ability to sense them conventionally. This is known as extra- sensory perception, or ESP. It is not directly under your control but instead tends to come in the form of accurate guesses, strong feelings, or flashes of insight. Such sensitivity often leaves you vulnerable to psychic dangers as well. At any point during play, you may ask the gamemaster for hints or insights about the current situation, and the gamemaster may similarly offer you information about the current situation that you would not normally be able to determine. Each hint adds 1 Threat, and you may always refuse to accept the hints offered.",
@@ -3043,9 +3052,17 @@
 
     "Talent.inertia.description2e": "When you use the Impulse minor action, you may spend 1 Momentum to move one additional zone so long as you used the Impulse minor action or Warp major action in your previous turn.",
 
+    "Talent.initiativeXSpecialRuleCreature": "Initiative X",
+
+    "Talent.initiativeXSpecialRuleCreature.description2e": "The creature is fast enough to act more than once per round. Unless otherwise noted, creatures have Initiative 1; this creature may take X turns each round.",
+
     "Talent.insightfulGuidance": "Insightful Guidance",
 
     "Talent.insightfulGuidance.description2e": "Whenever you Assist a character in a social conflict, using your knowledge of psychology or emotional states, that character is considered to have a beneficial trait (Psychological Profile) in addition to the normal benefits provided by your Assist.",
+
+    "Talent.instinctiveDodgeSpecialRuleCreature": "Instinctive Dodge",
+
+    "Talent.instinctiveDodgeSpecialRuleCreature.description2e": "In combat situations, the creature may make an Opposed task (**Daring + Security**) to dodge an incoming melee or ranged attack. The attacker receives an increased difficulty of 1 and the creature gains an additional d20.",
 
     "Talent.intenseScrutiny": "Intense Scrutiny",
 
@@ -3193,6 +3210,10 @@
     "Talent.multiVectorAssaultMode": "Multi-Vector Assault Mode",
 
     "Talent.multiVectorAssaultMode.soloDescription": "The vessel can split apart into three distinct sections. Each section has the same systems and departments scores as the original fully integrated starship, but each individual section has less power than when the ship is integrated. Use this in narration to create interesting advantages or complications.",
+
+    "Talent.naturalClimberSpecialRuleCreature": "Natural Climber",
+
+    "Talent.naturalClimberSpecialRuleCreature.description2e": "The creature reduces the difficulty for climbing tasks by 3 to a minimum of 0.",
 
     "Talent.naturalProtectionXSpecialRuleCreature": "Natural Protection X",
 

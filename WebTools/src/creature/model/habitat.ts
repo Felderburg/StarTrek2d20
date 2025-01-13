@@ -47,7 +47,6 @@ export class HabitatHelper {
         new HabitatModel(Habitat.Space, "Space"),
         new HabitatModel(Habitat.Swamp, "Swamp"),
         new HabitatModel(Habitat.UpperAtmosphere, "Upper Atmosphere"),
-
     ]
 
     static get instance() {

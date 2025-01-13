@@ -3,6 +3,7 @@ import { Rank } from "../../helpers/ranks";
 import { Species } from "../../helpers/speciesEnum";
 import { BodyType } from "./bodyTypeEnum";
 import { DivisionColors } from "./divisionColors";
+import { isEnlistedRank } from "./rankHelper";
 import { Token } from "./token";
 import { UniformEra } from "./uniformEra";
 import { UniformVariantType } from "./uniformVariantTypeEnum";
@@ -35,7 +36,8 @@ export default class UniformVariantRestrictions {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === Division[Division.Command]
                     && rank === Rank.Captain) {
                 result.push(UniformVariantType.Variant1);
-            } else if (DivisionColors.getDivision(uniformEra, divisionColor) === Division[Division.Science]) {
+            } else if (DivisionColors.getDivision(uniformEra, divisionColor) === Division[Division.Science]
+                    && !isEnlistedRank(rank)) {
                 result.push(UniformVariantType.Variant1);
             }
         } else if (uniformEra === UniformEra.Civilian) {
@@ -72,11 +74,12 @@ export default class UniformVariantRestrictions {
             case UniformEra.NextGeneration:
             case UniformEra.VoyagerDS9:
             case UniformEra.LowerDecks:
+            case UniformEra.StarTrekOnline:
                 return [
-                        Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
-                        Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,
-                        Rank.PettyOfficer1stClass, Rank.ChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, Rank.MasterChiefPettyOfficer
-                    ].indexOf(rankIndicator) >= 0;
+                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                    Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,
+                    Rank.PettyOfficer1stClass, Rank.ChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, Rank.MasterChiefPettyOfficer
+                ].indexOf(rankIndicator) >= 0;
 
             case UniformEra.MonsterMaroon:
                 return [

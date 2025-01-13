@@ -4574,6 +4574,12 @@ export class Talents {
             1,
             "Special Rule", true),
         new TalentModel(
+            "Ambush Hunter (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
             TALENT_NAME_AMPHIBIOUS,
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
@@ -4676,6 +4682,12 @@ export class Talents {
             1,
             "Special Rule", true),
         new TalentModel(
+            "Instinctive Dodge (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
             "Initiative X (Special Rule, Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
@@ -4718,13 +4730,13 @@ export class Talents {
             1,
             "Special Rule", true),
         new TalentModel(
-            "Natural Protection X (Special Rule, Creature)",
+            "Natural Climber (Special Rule, Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Night Vision (Special Rule, Creature)",
+            "Natural Protection X (Special Rule, Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,

@@ -55,6 +55,7 @@ export class Creature extends Construct {
             result.push(new SelectedTalent(TALENT_NAME_FLIGHT));
         } else if (this.habitat?.id === Habitat.UpperAtmosphere) {
             result.push(new SelectedTalent(TALENT_NAME_IMMUNE_TO_COLD));
+            result.push(new SelectedTalent(TALENT_NAME_FLIGHT));
         }
 
         result.push(...this.additionalTalents);
@@ -87,6 +88,8 @@ export class Creature extends Construct {
     }
 
     getAllTraits() {
-        return "Creature";
+        let result = [...this.additionalTraits];
+        result.push("Animal");
+        return result.join(", ");
     }
 }

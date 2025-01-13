@@ -10,7 +10,6 @@ export enum CreatureType {
     Plant,
     Reptile,
     Energy,
-    Gelatinous,
 }
 
 export class CreatureTypeModel {
@@ -40,8 +39,6 @@ export class CreatureTypeHelper {
         new CreatureTypeModel(CreatureType.Plant, "Plant"),
         new CreatureTypeModel(CreatureType.Reptile, "Reptile"),
         new CreatureTypeModel(CreatureType.Energy, "Energy"),
-        new CreatureTypeModel(CreatureType.Gelatinous, "Gelloid"),
-
     ]
 
     static get instance() {
@@ -97,7 +94,7 @@ export const createRandomCreatureType = (habitat: Habitat) => {
                     return CreatureType.Bird;
                 case 18:
                 case 19:
-                    return CreatureType.Gelatinous;
+                    return CreatureType.Plant;
                 case 20:
                     return CreatureType.Energy;
             }
@@ -161,9 +158,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
                     return CreatureType.Plant;
                 case 18:
                 case 19:
-                    return CreatureType.Fish;
                 case 20:
-                    return CreatureType.Gelatinous
+                    return CreatureType.Fish;
             }
             break;
         case Habitat.Forest:
@@ -221,9 +217,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
                 case 16:
                 case 17:
                 case 18:
-                    return CreatureType.Fish;
                 case 19:
-                    return CreatureType.Gelatinous;
+                    return CreatureType.Fish;
                 case 20:
                     return CreatureType.Energy;
             }
@@ -251,9 +246,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
                 case 16:
                 case 17:
                 case 18:
-                    return CreatureType.Reptile;
                 case 19:
-                    return CreatureType.Gelatinous;
+                    return CreatureType.Reptile;
                 case 20:
                     return CreatureType.Energy;
             }
@@ -271,16 +265,15 @@ export const createRandomCreatureType = (habitat: Habitat) => {
                 case 8:
                 case 9:
                 case 10:
-                    return CreatureType.Mammal;
                 case 11:
+                    return CreatureType.Mammal;
                 case 12:
                 case 13:
                 case 14:
-                    return CreatureType.Reptile;
                 case 15:
                 case 16:
+                    return CreatureType.Reptile;
                 case 17:
-                    return CreatureType.Gelatinous;
                 case 18:
                 case 19:
                 case 20:

@@ -13,6 +13,7 @@ import { CreatureGenerator } from "../model/creatureGenerator";
 import { connect } from "react-redux";
 import { Era } from "../../helpers/eras";
 import { marshaller } from "../../helpers/marshaller";
+import { CreatureType, CreatureTypeHelper } from "../model/creatureType";
 
 interface IRandomCreatureConfigurationProperties {
     era: Era;
@@ -23,6 +24,7 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
     const { t } = useTranslation();
     const navigate = useNavigate();
     const [ habitat, setHabitat] = useState<Habitat|null>(null);
+    const [ creatureType, setCreatureType] = useState<CreatureType|null>(null);
 
     const getHabitatTypes = () => {
         let result = [ new DropDownElement("", t('RandomCreatureConfiguration.anyHabitat'))];
@@ -30,8 +32,14 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
         return result;
     }
 
+    const getCreatureTypes = () => {
+        let result = [ new DropDownElement("", t('RandomCreatureConfiguration.anyCreatureType'))];
+        result.push(...CreatureTypeHelper.instance.getTypes().map(c => new DropDownElement(c.id, c.localizedName)));
+        return result;
+    }
+
     const createCreature = () => {
-        let creature = CreatureGenerator(era, habitat);
+        let creature = CreatureGenerator(era, habitat, creatureType);
 
         const value = marshaller.encodeCreature(creature);
         window.open('/view?s=' + value, "_blank");
@@ -66,9 +74,22 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
                                 </div>
 
                             </div>
+
+                            <div className="col-md-6 mt-4">
+                                <Header level={2}>{t('Construct.creature.creatureType')}</Header>
+
+                                <div className="my-4">
+                                    <DropDownSelect
+                                        items={getCreatureTypes()}
+                                        defaultValue={ creatureType ?? "" }
+                                        onChange={(type) => setCreatureType(type === "" ? undefined : type as CreatureType)} />
+                                </div>
+
+                            </div>
+
                         </div>
 
-                        <div className="text-end">
+                        <div className="text-end mt-5">
                             <Button onClick={() => createCreature()}>{t('Common.button.create')}</Button>
                         </div>
 

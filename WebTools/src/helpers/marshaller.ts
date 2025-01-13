@@ -72,12 +72,16 @@ class Marshaller {
             sheet["size"] = CreatureSize[creature.size?.id];
         }
 
-        if (creature.naturalAttacks) {
+        if (creature.naturalAttacks != null) {
             sheet["naturalAttack"] = NaturalAttacks[creature.naturalAttacks];
         }
 
         if (creature.additionalTalents?.length) {
             sheet["talents"] = this.toTalentList(creature.additionalTalents)
+        }
+
+        if (creature.additionalTraits?.length) {
+            sheet["traits"] = [...creature.additionalTraits];
         }
 
         return this.encode(sheet);
@@ -939,9 +943,12 @@ class Marshaller {
     }
 
     decodeCreature(json: any) {
-        console.log(json);
         let result = new Creature();
         result.stereotype = Stereotype.Creature;
+        if (json.name?.length) {
+            result.name = json.name;
+        }
+
         if (json.era) {
             let era = ErasHelper.getEraByName(json.era);
             if (era != null) {
@@ -979,6 +986,10 @@ class Marshaller {
                     result.additionalTalents.push(talent);
                 }
             });
+        }
+
+        if (json.traits?.length) {
+            result.additionalTraits = [...json.traits];
         }
 
         return result;

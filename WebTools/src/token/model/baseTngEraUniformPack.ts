@@ -309,16 +309,8 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
         this.era = era;
     }
 
-    getRankSwatches() {
+    protected getEnlistedRankSwatches() {
         return [
-            new Swatch(Rank.None, "None", (token) => RankIndicatorCatalog.decorateSwatch("", Rank.None, token), "Rank.none.name"),
-            new Swatch(Rank.Ensign, "Ensign", (token) => RankIndicatorCatalog.decorateSwatch(TngEnsignRankPip, Rank.Ensign, token), "Rank.ensign.name"),
-            new Swatch(Rank.LieutenantJG, "Lieutenant J.G.", (token) => RankIndicatorCatalog.decorateSwatch(TngLtJGRankPip, Rank.LieutenantJG, token), "Rank.lieutenantJG.name"),
-            new Swatch(Rank.Lieutenant, "Lieutenant", (token) => RankIndicatorCatalog.decorateSwatch(TngLtRankPip, Rank.Lieutenant, token), "Rank.lieutenant.name"),
-            new Swatch(Rank.LtCommander, "Lt. Commander", (token) => RankIndicatorCatalog.decorateSwatch(TngLcdrRankPip, Rank.LtCommander, token), "Rank.ltCommander.name"),
-            new Swatch(Rank.Commander, "Commander", (token) => RankIndicatorCatalog.decorateSwatch(TngCmdrRankPip, Rank.Commander, token), "Rank.commander.name"),
-            new Swatch(Rank.Captain, "Captain", (token) => RankIndicatorCatalog.decorateSwatch(TngCaptainRankPip, Rank.Captain, token), "Rank.captain.name"),
-
             new Swatch(Rank.Crewman3rdClass, "Crewman 3rd Class", (token) => RankIndicatorCatalog.decorateSwatch(TngCrewman3rd, Rank.Crewman3rdClass, token), "Rank.crewman3rdClass.name"),
             new Swatch(Rank.Crewman2ndClass, "Crewman 2nd Class", (token) => RankIndicatorCatalog.decorateSwatch(TngCrewman2nd, Rank.Crewman2ndClass, token), "Rank.crewman2ndClass.name"),
             new Swatch(Rank.Crewman1stClass, "Crewman 1st Class", (token) => RankIndicatorCatalog.decorateSwatch(TngCrewman1st, Rank.Crewman1stClass, token), "Rank.crewman1stClass.name"),
@@ -327,12 +319,33 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
             new Swatch(Rank.PettyOfficer1stClass, "Petty Officer 1st Class", (token) => RankIndicatorCatalog.decorateSwatch(TngPettyOfficer1stClass, Rank.PettyOfficer1stClass, token), "Rank.pettyOfficer1stClass.name"),
             new Swatch(Rank.ChiefPettyOfficer, "Chief Petty Officer", (token) => RankIndicatorCatalog.decorateSwatch(TngChiefPettyOfficer, Rank.ChiefPettyOfficer, token), "Rank.chiefPettyOfficer.name"),
             new Swatch(Rank.SeniorChiefPettyOfficer, "Senior Chief Petty Officer", (token) => RankIndicatorCatalog.decorateSwatch(TngSeniorChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, token), "Rank.seniorChiefPettyOfficer.name"),
-            new Swatch(Rank.MasterChiefPettyOfficer, "Master Chief Petty Officer", (token) => RankIndicatorCatalog.decorateSwatch(TngMasterChiefPettyOfficer, Rank.MasterChiefPettyOfficer, token), "Rank.masterChiefPettyOfficer.name"),
+            new Swatch(Rank.MasterChiefPettyOfficer, "Master Chief Petty Officer", (token) => RankIndicatorCatalog.decorateSwatch(TngMasterChiefPettyOfficer, Rank.MasterChiefPettyOfficer, token), "Rank.masterChiefPettyOfficer.name")
+        ]
+    }
 
+    protected getFlagOfficerRankSwatches() {
+        return [
             new Swatch(Rank.RearAdmiral, "Rear Admiral", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.rearAdmiral, Rank.RearAdmiral, token), "Rank.rearAdmiral.name"),
             new Swatch(Rank.ViceAdmiral, "Vice Admiral", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.viceAdmiral, Rank.ViceAdmiral, token), "Rank.viceAdmiral.name"),
             new Swatch(Rank.Admiral, "Admiral", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.admiral, Rank.Admiral, token), "Rank.admiral.name"),
-        ].filter(s => UniformVariantRestrictions.isRankSupported(s.id as Rank, this.era));
+        ];
+    }
+
+    getRankSwatches() {
+        let result = [
+            new Swatch(Rank.None, "None", (token) => RankIndicatorCatalog.decorateSwatch("", Rank.None, token), "Rank.none.name"),
+            new Swatch(Rank.Ensign, "Ensign", (token) => RankIndicatorCatalog.decorateSwatch(TngEnsignRankPip, Rank.Ensign, token), "Rank.ensign.name"),
+            new Swatch(Rank.LieutenantJG, "Lieutenant J.G.", (token) => RankIndicatorCatalog.decorateSwatch(TngLtJGRankPip, Rank.LieutenantJG, token), "Rank.lieutenantJG.name"),
+            new Swatch(Rank.Lieutenant, "Lieutenant", (token) => RankIndicatorCatalog.decorateSwatch(TngLtRankPip, Rank.Lieutenant, token), "Rank.lieutenant.name"),
+            new Swatch(Rank.LtCommander, "Lt. Commander", (token) => RankIndicatorCatalog.decorateSwatch(TngLcdrRankPip, Rank.LtCommander, token), "Rank.ltCommander.name"),
+            new Swatch(Rank.Commander, "Commander", (token) => RankIndicatorCatalog.decorateSwatch(TngCmdrRankPip, Rank.Commander, token), "Rank.commander.name"),
+            new Swatch(Rank.Captain, "Captain", (token) => RankIndicatorCatalog.decorateSwatch(TngCaptainRankPip, Rank.Captain, token), "Rank.captain.name"),
+
+        ];
+        result.push(...this.getEnlistedRankSwatches());
+        result.push(...this.getFlagOfficerRankSwatches());
+
+        return result.filter(s => UniformVariantRestrictions.isRankSupported(s.id as Rank, this.era));
     }
 
     getRankBorderIndicator(token: Token) {
