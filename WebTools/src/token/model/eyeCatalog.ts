@@ -458,7 +458,7 @@ class EyeCatalog {
                 </defs>
                 <g clip-path="url(#eyeType` + eyeType + `">
                     <g transform="translate(-250, -75)">`
-                    + EyeBrowCatalog.instance.getBrow(eyeType, token.species, "#f8f9fa")
+                    + EyeBrowCatalog.instance.getBrow(eyeType, token.species, "#f8f9fa", token.speciesOption)
                     + EyeCatalog.instance.getEyeAndNoseEdge(eyeType, token.species, "#ffffff").replace(/#754324/g, token.eyeColor)
                 + `</g>
                 </g>
