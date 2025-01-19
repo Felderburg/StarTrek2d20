@@ -134,6 +134,7 @@ class SpeciesRestrictions {
 
             return ["#fdf2dc", "#fae9b5", "#f0c882", "#f9c861", "#e9a63d", "#e38732", "#913c13", "#430c05", "#4e0300", "#811002",
                 "#ba260a", "#230703", "#391201", "#722707", "#202020", "#2a2a2a", SpeciesRestrictions.DEFAULT_HAIR_COLOR, "#37261e", "#706f74", "#a78c6f",
+                "#c7b799",
                 "#f1eae4", "#f4f3f1", "#e1ddda",
 
                 "#d0c7e2", "#bcb8db", "#8180bc", "#6d6aaf", "#514fa3", "#352f8f", "#3d387a",
@@ -229,6 +230,8 @@ class SpeciesRestrictions {
             || species === Species.Benzite
             || species === Species.Caitian
             || species === Species.Cetacean
+            || species === Species.Edosian
+            || species === Species.Grazerite
             || species === Species.Jelna
             || species === Species.JemHadar || species === Species.Kelpien || species === Species.Reman
             || species === Species.Saurian || species === Species.Suliban

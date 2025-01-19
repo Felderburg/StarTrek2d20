@@ -48,11 +48,17 @@ const updateSvgFill = (data) => {
     return result;
 }
 
-try {
-    const svgData = fs.readFileSync(svgFileName, 'utf8');
-    const revisedData = updateSvgFill(svgData);
-    fs.writeFileSync(svgFileName.substring(0, svgFileName.indexOf(".svg")) + "-revised.svg", revisedData, {encoding:  'utf-8'});
-} catch (err) {
-    console.log(err);
+if (svgFileName?.length && fs.existsSync(svgFileName)) {
+    try {
+        const svgData = fs.readFileSync(svgFileName, 'utf8');
+        const revisedData = updateSvgFill(svgData);
+        fs.writeFileSync(svgFileName.substring(0, svgFileName.indexOf(".svg")) + "-revised.svg", revisedData, {encoding:  'utf-8'});
+    } catch (err) {
+        console.log(err);
+    }
+} else if (svgFileName?.length) {
+    console.log("File name " + svgFileName + " does not exist");
+} else {
+    console.log("You must specify a file name");
 }
 
