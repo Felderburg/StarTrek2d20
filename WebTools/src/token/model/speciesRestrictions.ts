@@ -113,6 +113,8 @@ class SpeciesRestrictions {
                 MouthType.Mouth7, MouthType.Mouth8,
                 MouthType.Mouth1Lipstick, MouthType.Mouth2Lipstick, MouthType.Mouth3Lipstick, MouthType.Mouth4Lipstick, MouthType.Mouth5Lipstick, MouthType.Mouth6Lipstick,
             ]
+        } else if (species === Species.Zakdorn) {
+            return [ MouthType.Mouth1 ];
         } else {
             return [ MouthType.Mouth1, MouthType.Mouth2, MouthType.Mouth3, MouthType.Mouth4, MouthType.Mouth5, MouthType.Mouth6,
                 MouthType.Mouth1Lipstick, MouthType.Mouth2Lipstick, MouthType.Mouth3Lipstick, MouthType.Mouth4Lipstick, MouthType.Mouth5Lipstick, MouthType.Mouth6Lipstick,
@@ -229,7 +231,9 @@ class SpeciesRestrictions {
             || species === Species.Cetacean
             || species === Species.Jelna
             || species === Species.JemHadar || species === Species.Kelpien || species === Species.Reman
-            || species === Species.Saurian || species === Species.Suliban || species === Species.XindiReptilian
+            || species === Species.Saurian || species === Species.Suliban
+            || species === Species.XindiArboreal
+            || species === Species.XindiReptilian
             || species === Species.Yridian || species === Species.Zaranite;
     }
 
@@ -252,7 +256,8 @@ class SpeciesRestrictions {
     }
 
     static getNoseTypes(species: Species) {
-        if (species === Species.Tellarite || species === Species.Ferengi || species === Species.Cardassian) {
+        if (species === Species.Tellarite || species === Species.Ferengi || species === Species.Cardassian
+            || species === Species.Zakdorn) {
             return [ NoseType.StraightBasic ];
         } else {
             return allNoseTypes();

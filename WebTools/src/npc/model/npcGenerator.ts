@@ -394,7 +394,8 @@ const speciesSpecificValues: { [species : number ]: string[]} = {
     [Species.Romulan] : [
         "I Will Not Fail in My Duty to the Empire",
         "The Ends Justify the Means",
-        "Everything I Do, I Do for Romulus"
+        "Everything I Do, I Do for Romulus",
+        "My people have a reputation for arrogance. I'm afraid it's well-earned."
     ],
     [Species.Reman] : [
         "You think darkness is your ally? You merely adopted the dark. I was born in it, molded by it.",
