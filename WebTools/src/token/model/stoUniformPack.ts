@@ -200,8 +200,40 @@ const RankIndicators = {
             <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.12073;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect83" width="21.581312" height="48.977036" x="196.80949" y="312.40225" ry="2.9913416"/>
             <path id="path83" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 201.64453,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 10.64843 l 17.22071,-2.98828 v -7.66015 c 0,-1.47086 -1.18344,-2.6543 -2.6543,-2.6543 z"/>
             <path id="path84" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 217.29455,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" />
-        </g>`
+        </g>`,
 
+        crewman1stClass: `<g transform="matrix(0.29464264,0.1315665,-0.03634795,0.25543505,187.03143,143.45082)">
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect50" width="21.581312" height="48.977036" x="196.80949" y="312.40225" ry="2.9913416"/>
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect51" width="21.581312" height="48.977036" x="175.04704" y="312.40225" ry="2.9913416"/>
+            <path id="path54" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 179.88281,315.15625 c -1.47085,0 -2.65625,1.18344 -2.65625,2.6543 v 14.42187 l 17.22266,-2.98633 v -11.43554 c 0,-1.47086 -1.1854,-2.6543 -2.65625,-2.6543 z"/>
+            <path id="path55" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 201.64453,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 10.64843 l 17.22071,-2.98828 v -7.66015 c 0,-1.47086 -1.18344,-2.6543 -2.6543,-2.6543 z"/>
+            <path id="path56" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 217.29455,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <path id="path57" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 195.67496,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect59" width="15.669414" height="42.881184" x="178.00299" y="315.45016" ry="2.9913416"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect60" width="15.669414" height="42.881184" x="199.90314" y="315.60516" ry="2.9913416"/>
+            <rect style="display:inline;fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect61" width="21.581312" height="48.977036" x="153.28459" y="312.40225" ry="2.9913416"/>
+            <path id="path66" style="display:inline;fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 158.11914,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 18.19726 l 17.22071,-2.98633 v -15.21093 c 0,-1.47086 -1.18345,-2.6543 -2.6543,-2.6543 z"/>
+            <path id="path67" style="display:none;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 173.73027,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <rect style="display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect67" width="15.669414" height="42.881184" x="156.24054" y="315.45016" ry="2.9913416"/>
+        </g>`,
+
+        crewman2ndClass: `<g transform="matrix(0.29464264,0.1315665,-0.03634795,0.25543505,187.03143,143.45082)">
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect79" width="21.581312" height="48.977036" x="196.80949" y="312.40225" ry="2.9913416"/>
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect80" width="21.581312" height="48.977036" x="175.04704" y="312.40225" ry="2.9913416"/>
+            <path id="path81" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 179.88281,315.15625 c -1.47085,0 -2.65625,1.18344 -2.65625,2.6543 v 14.42187 l 17.22266,-2.98633 v -11.43554 c 0,-1.47086 -1.1854,-2.6543 -2.65625,-2.6543 z"/>
+            <path id="path82" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 201.64453,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 10.64843 l 17.22071,-2.98828 v -7.66015 c 0,-1.47086 -1.18344,-2.6543 -2.6543,-2.6543 z"/>
+            <path id="path85" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 217.29455,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <path id="path86" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 195.67496,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect86" width="15.669414" height="42.881184" x="178.00299" y="315.45016" ry="2.9913416"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect87" width="15.669414" height="42.881184" x="199.90314" y="315.60516" ry="2.9913416"/>
+        </g>`,
+
+        crewman3rdClass: `<g transform="matrix(0.29464264,0.1315665,-0.03634795,0.25543505,187.03143,143.45082)">
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect17" width="21.581312" height="48.977036" x="196.80949" y="312.40225" ry="2.9913416"/>
+            <path id="path28" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 201.64453,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 10.64843 l 17.22071,-2.98828 v -7.66015 c 0,-1.47086 -1.18344,-2.6543 -2.6543,-2.6543 z"/>
+            <path id="path29" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 217.29455,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect31" width="15.669414" height="42.881184" x="199.90314" y="315.60516" ry="2.9913416"/>
+        </g>`,
     },
 
     border: {
@@ -264,11 +296,44 @@ const RankIndicators = {
             <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect54" width="15.669414" height="42.881184" x="178.00299" y="315.45016" ry="2.9913416"/>
         </g>`,
 
-        ensign: `<g id="g39" transform="rotate(38.629995,107.59204,201.42364)" style="display:inline">
+        ensign: `<g id="g39" transform="rotate(38.629995,107.59204,201.42364)">
             <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect35" width="21.581312" height="48.977036" x="196.80949" y="312.40225" ry="2.9913416"/>
             <path id="path37" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 201.64453,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 10.64843 l 17.22071,-2.98828 v -7.66015 c 0,-1.47086 -1.18344,-2.6543 -2.6543,-2.6543 z"/>
             <path id="path38" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 217.29455,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" />
-        </g>`
+        </g>`,
+
+        crewman1stClass: `<g transform="rotate(38.629995,107.59204,201.42364)">
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect32" width="21.581312" height="48.977036" x="196.80949" y="312.40225" ry="2.9913416"/>
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect33" width="21.581312" height="48.977036" x="175.04704" y="312.40225" ry="2.9913416"/>
+            <path id="path35" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 179.88281,315.15625 c -1.47085,0 -2.65625,1.18344 -2.65625,2.6543 v 14.42187 l 17.22266,-2.98633 v -11.43554 c 0,-1.47086 -1.1854,-2.6543 -2.65625,-2.6543 z"/>
+            <path id="path36" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 201.64453,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 10.64843 l 17.22071,-2.98828 v -7.66015 c 0,-1.47086 -1.18344,-2.6543 -2.6543,-2.6543 z"/>
+            <path id="path39" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 217.29455,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <path id="path40" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 195.67496,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect42" width="15.669414" height="42.881184" x="178.00299" y="315.45016" ry="2.9913416"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect43" width="15.669414" height="42.881184" x="199.90314" y="315.60516" ry="2.9913416"/>
+            <rect style="display:inline;fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect44" width="21.581312" height="48.977036" x="153.28459" y="312.40225" ry="2.9913416"/>
+            <path id="path47" style="display:inline;fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 158.11914,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 18.19726 l 17.22071,-2.98633 v -15.21093 c 0,-1.47086 -1.18345,-2.6543 -2.6543,-2.6543 z"/>
+            <path id="path48" style="display:none;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 173.73027,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <rect style="display:inline;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect49" width="15.669414" height="42.881184" x="156.24054" y="315.45016" ry="2.9913416"/>
+        </g>`,
+
+        crewman2ndClass: `<g transform="rotate(38.629995,107.59204,201.42364)">
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect9" width="21.581312" height="48.977036" x="196.80949" y="312.40225" ry="2.9913416"/>
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect10" width="21.581312" height="48.977036" x="175.04704" y="312.40225" ry="2.9913416"/>
+            <path id="path10" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 179.88281,315.15625 c -1.47085,0 -2.65625,1.18344 -2.65625,2.6543 v 14.42187 l 17.22266,-2.98633 v -11.43554 c 0,-1.47086 -1.1854,-2.6543 -2.65625,-2.6543 z"/>
+            <path id="path11" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 201.64453,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 10.64843 l 17.22071,-2.98828 v -7.66015 c 0,-1.47086 -1.18344,-2.6543 -2.6543,-2.6543 z"/>
+            <path id="path12" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 217.29455,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc"/>
+            <path id="path13" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 195.67496,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect14" width="15.669414" height="42.881184" x="178.00299" y="315.45016" ry="2.9913416"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect16" width="15.669414" height="42.881184" x="199.90314" y="315.60516" ry="2.9913416"/>
+        </g>`,
+
+        crewman3rdClass: `<g transform="rotate(38.629995,107.59204,201.42364)">
+            <rect style="fill:#d7d7d7;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect17" width="21.581312" height="48.977036" x="196.80949" y="312.40225" ry="2.9913416"/>
+            <path id="path28" style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.26235;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 201.64453,315.15625 c -1.47085,0 -2.6543,1.18344 -2.6543,2.6543 v 10.64843 l 17.22071,-2.98828 v -7.66015 c 0,-1.47086 -1.18344,-2.6543 -2.6543,-2.6543 z"/>
+            <path id="path29" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.3453;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 217.29455,314.46406 c 0.0308,0.71342 -0.0143,1.65536 -0.026,2.1011 l -1.0566,40.14214 c -0.0409,1.553 -1.25271,2.73303 -2.80469,2.80274 l -12.79522,0.57471 c -0.3563,0.016 -1.2712,0.0479 -2.18792,-0.0151 0.72211,0.74541 2.43923,0.59076 3.45384,0.59076 h 12.90821 c 2.01331,0 2.80469,-0.70517 2.80469,-2.80469 v -40.30469 c 0,-1.19598 0.15023,-2.1652 -0.18138,-3.20193 z" sodipodi:nodetypes="csssscsssscc" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"/>
+            <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.5;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" id="rect31" width="15.669414" height="42.881184" x="199.90314" y="315.60516" ry="2.9913416"/>
+        </g>`,
     }
 }
 
@@ -401,9 +466,14 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
                 return this.fitPipsToBody(RankIndicators.collar.lieutenantJG, token.bodyType);
             case Rank.Ensign:
                 return this.fitPipsToBody(RankIndicators.collar.ensign, token.bodyType);
+            case Rank.Crewman1stClass:
+                return this.fitPipsToBody(RankIndicators.collar.crewman1stClass, token.bodyType);
+            case Rank.Crewman2ndClass:
+                return this.fitPipsToBody(RankIndicators.collar.crewman2ndClass, token.bodyType);
+            case Rank.Crewman3rdClass:
+                return this.fitPipsToBody(RankIndicators.collar.crewman3rdClass, token.bodyType);
             default:
-                const rank = super.getRankIndicator(token);
-                return rank?.length ? `<g transform="translate(-2, 2)">` + rank + `</g>` : rank;
+                return "";
         }
     }
 
@@ -416,8 +486,10 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
             new Swatch(Rank.LtCommander, "Lt. Commander", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.ltCommander, Rank.LtCommander, token), "Rank.ltCommander.name"),
             new Swatch(Rank.Commander, "Commander", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.commander, Rank.Commander, token), "Rank.commander.name"),
             new Swatch(Rank.Captain, "Captain", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.captain, Rank.Captain, token), "Rank.captain.name"),
+            new Swatch(Rank.Crewman1stClass, "Crewman 1st Class", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.crewman1stClass, Rank.Crewman1stClass, token), "Rank.crewman1stClass.name"),
+            new Swatch(Rank.Crewman2ndClass, "Crewman 2nd Class", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.crewman2ndClass, Rank.Crewman2ndClass, token), "Rank.crewman2ndClass.name"),
+            new Swatch(Rank.Crewman3rdClass, "Crewman 3rd Class", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.crewman3rdClass, Rank.Crewman3rdClass, token), "Rank.crewman3rdClass.name"),
         ]
-        result.push(...this.getEnlistedRankSwatches());
         return result.filter(s => UniformVariantRestrictions.isRankSupported(s.id as Rank, this.era));
     }
 
@@ -447,8 +519,14 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
                 return RankIndicators.border.lieutenantJG;
             case Rank.Ensign:
                 return RankIndicators.border.ensign;
+            case Rank.Crewman1stClass:
+                return RankIndicators.border.crewman1stClass;
+            case Rank.Crewman2ndClass:
+                return RankIndicators.border.crewman2ndClass;
+            case Rank.Crewman3rdClass:
+                return RankIndicators.border.crewman3rdClass;
             default:
-                return super.getRankBorderIndicator(token);
+                return "";
         }
     }
     isDivisionColorSupported(token: Token): boolean {

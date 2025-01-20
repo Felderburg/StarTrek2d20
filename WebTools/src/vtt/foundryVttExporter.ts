@@ -544,7 +544,7 @@ export class FoundryVttExporter {
 
         character.determineWeapons().forEach(w => {
             result.items.push({
-                "name": w.name,
+                "name": w.description,
                 "type": "characterweapon",
                 "img": this.determineWeaponIcon(w, options, character),
                 "effects": [],

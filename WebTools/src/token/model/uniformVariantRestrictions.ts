@@ -74,10 +74,15 @@ export default class UniformVariantRestrictions {
                     Rank.RearAdmiral, Rank.ViceAdmiral, Rank.Admiral
                 ].includes(rankIndicator);
 
+            case UniformEra.StarTrekOnline:
+                return [
+                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                    Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass
+                ].indexOf(rankIndicator) >= 0;
+
             case UniformEra.NextGeneration:
             case UniformEra.VoyagerDS9:
             case UniformEra.LowerDecks:
-            case UniformEra.StarTrekOnline:
                 return [
                     Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
                     Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,

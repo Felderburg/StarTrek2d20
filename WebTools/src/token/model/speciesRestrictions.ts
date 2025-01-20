@@ -248,7 +248,9 @@ class SpeciesRestrictions {
         } else if (species === Species.Ferengi) {
             return [SpeciesOption.Option1, SpeciesOption.Option2, SpeciesOption.Option3];
         } else if (species === Species.Klingon) {
-            return [SpeciesOption.Option1, SpeciesOption.Option2, SpeciesOption.Option3, SpeciesOption.Option4, SpeciesOption.Option5];
+            return [SpeciesOption.Option1, SpeciesOption.Option2, SpeciesOption.Option3,
+                SpeciesOption.Option4, SpeciesOption.Option5,
+                SpeciesOption.Option6, SpeciesOption.Option7];
         } else if (species === Species.Romulan) {
             return [SpeciesOption.Option1, SpeciesOption.Option2];
         } else if (species === Species.Talaxian) {

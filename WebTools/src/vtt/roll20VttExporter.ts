@@ -908,7 +908,7 @@ export class Roll20VttExporter {
         const rowId = id.nextId();
         return [{
             "name": "repeating_weapons_" + rowId + "_weapon_name",
-            "current": weapon.name,
+            "current": weapon.description,
             "max": "",
             "id": id.nextId()
         },{

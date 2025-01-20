@@ -52,7 +52,7 @@ if (svgFileName?.length && fs.existsSync(svgFileName)) {
     try {
         const svgData = fs.readFileSync(svgFileName, 'utf8');
         const revisedData = updateSvgFill(svgData);
-        fs.writeFileSync(svgFileName.substring(0, svgFileName.indexOf(".svg")) + "-revised.svg", revisedData, {encoding:  'utf-8'});
+        fs.writeFileSync(svgFileName, revisedData, {encoding:  'utf-8'});
     } catch (err) {
         console.log(err);
     }
