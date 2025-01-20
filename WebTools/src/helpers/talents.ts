@@ -41,6 +41,7 @@ export const TALENT_NAME_IMMUNE_TO_VACUUM = "Immune to Vacuum (Special Rule, Cre
 export const TALENT_NAME_IMMUNE_TO_COLD = "Immune to Cold (Special Rule, Creature)";
 export const TALENT_NAME_MASSIVE = "Massive (Special Rule, Creature)";
 export const TALENT_NAME_SPIKED_TAIL = "Spiked Tail (Special Rule, Creature)";
+export const TALENT_NAME_IMPROVED_HULL_INTEGRITY = "Improved Hull Integrity";
 
 enum TalentCategory {
     General,

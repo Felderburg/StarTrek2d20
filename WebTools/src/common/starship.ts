@@ -4,7 +4,7 @@ import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
-import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper, TalentViewModel } from "../helpers/talents";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper, TalentViewModel } from "../helpers/talents";
 import { TalentSelection } from "../helpers/talentSelection";
 import StarshipWeaponRegistry, { Weapon } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
@@ -218,16 +218,22 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
     get resistance() {
         if (this.version === 1) {
+            let base = this.scale;
             if (this.hasTalent(TALENT_NAME_ABLATIVE_ARMOUR)) {
-                return this.scale + 2;
-            } else {
-                return this.scale;
+                base += 2;
             }
+            if (this.hasTalent(TALENT_NAME_IMPROVED_HULL_INTEGRITY)) {
+                base += 1;
+            }
+            return base;
         } else {
             let base = Math.ceil(this.scale / 2);
             let structure = this.systems[System.Structure];
             if (this.hasTalent(TALENT_NAME_ABLATIVE_ARMOUR)) {
                 base += 2;
+            }
+            if (this.hasTalent(TALENT_NAME_IMPROVED_HULL_INTEGRITY)) {
+                base += 1;
             }
             if (structure >= 13) {
                 return base + 4;
