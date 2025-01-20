@@ -218,11 +218,13 @@ class SpeciesRestrictions {
 
     static isTallForeheaded(species: Species) {
         return species === Species.Cardassian
+            // || species === Species.Denobulan
+            || species === Species.Efrosian
             || species === Species.Klingon
-            || species === Species.Tellarite || species === Species.Efrosian
             || species === Species.Ktarian
+            || species === Species.Napean
+            || species === Species.Tellarite
             || species === Species.XindiPrimate;
-            // species === Species.Denobulan ||
     }
 
     static isRubberHeaded(species: Species) {
