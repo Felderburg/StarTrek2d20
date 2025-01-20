@@ -14,6 +14,17 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250120</b>
+            <ul>
+                <li>
+                    A handful of bug fixes.
+                </li>
+                <li>
+                    Some new token assets. (I just snagged a bunch
+                    of <a href="https://www.patreon.com/posts/new-art-assets-120027524"  target="_blank" rel="noreferrer">new
+                    items from my artist</a>, and you should see new options show up over the couple of weeks).
+                </li>
+            </ul>
             <b>v1.250102</b>
             <ul>
                 <li>
