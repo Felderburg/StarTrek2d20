@@ -18,97 +18,91 @@ interface IStarshipWeaponsPageProperties {
     workflow: ShipBuildWorkflow;
 }
 
-class StarshipWeaponsPageProperties extends React.Component<IStarshipWeaponsPageProperties, {}> {
+const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = ({starship, workflow}) => {
 
-    render() {
-        return (<div className="page container ms-0">
-                <ShipBuildingBreadcrumbs />
-                <Header>Ship Weapons</Header>
-
-                <div className="d-flex mb-3 mt-4 ">
-                    <p className="me-auto mb-0">This ship has the following weapons:</p>
-                    <div className="text-end">
-                        <IconButton className="mt-0" onClick={() => this.showModal()} icon="plus-circle" />
-                    </div>
-                </div>
-
-                <table className="selection-list">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Dice</th>
-                            <th>Qualities</th>
-                        </tr>
-                    </thead>
-                    {this.renderWeapons()}
-                </table>
-
-                <div className="text-end mt-4">
-                    <Button onClick={() => this.nextPage()}>Next</Button>
-                </div>
-            </div>);
-    }
-
-    renderWeapons() {
-        if (this.props.starship.weapons.length === 0) {
+    const renderWeapons = () => {
+        if (starship.weapons.length === 0) {
             return (<tbody>
                     <tr><td colSpan={4}>None</td></tr>
                 </tbody>);
         } else {
             return (<tbody>
-                {this.props.starship.weapons.map((w, i) => (<tr key={'weapon-' + i}>
+                {starship.weapons.map((w, i) => (<tr key={'weapon-' + i}>
                     <td className="selection-header">{w.description}</td>
                     <td><p className="m-0">{w.dice}</p></td>
                     <td><p className="m-0">{w.effectsAndQualities}</p></td>
                     <td className="text-end">
-                        <IconButton variant="danger" onClick={() => { this.confirmRemove(w) }} icon="trash" />
+                        <IconButton variant="danger" onClick={() => { confirmRemove(w) }} icon="trash" />
                     </td>
                 </tr>))}
             </tbody>);
         }
     }
 
-    nextPage() {
-        let step = this.props.workflow.peekNextStep();
+    const nextPage = () => {
+        let step = workflow.peekNextStep();
         store.dispatch(nextStarshipWorkflowStep());
         Navigation.navigateToPage(step.page);
     }
 
-    closeModal() {
+    const closeModal = () => {
         ModalControl.hide();
-        this.forceUpdate();
     }
 
-    addWeapon() {
-        this.closeModal();
+    const confirmRemove = (w: Weapon) => {
+        ModalControl.show(undefined, () => closeModal(), confirmationContents(w), "Delete Weapon");
     }
 
-    confirmRemove(w: Weapon) {
-        ModalControl.show(undefined, () => this.closeModal(), this.confirmationContents(w), "Delete Weapon");
+    const showModal = () => {
+        ModalControl.show("lg", () => closeModal(), modalContents(), "Add Weapon");
     }
 
-    showModal() {
-        ModalControl.show("lg", () => this.closeModal(), this.modalContents(), "Add Weapon");
+    const modalContents = () => {
+        return (<AddWeaponView onClose={() => closeModal()} serviceYear={starship.serviceYear}
+            addWeapon={(weapon) => store.dispatch(addStarshipWeapon(weapon))} version={starship.version} />)
     }
 
-    modalContents() {
-        return (<AddWeaponView onClose={() => this.closeModal()} serviceYear={this.props.starship.serviceYear}
-            addWeapon={(weapon) => store.dispatch(addStarshipWeapon(weapon))} version={this.props.starship.version} />)
-    }
-
-    confirmationContents(w: Weapon) {
+    const confirmationContents = (w: Weapon) => {
         return (<div>Are you sure you want to delete this weapon?
             <div className="mt-4 text-center">
-                <Button size="sm" className="me-3" onClick={() => { this.closeModal() }} >Cancel</Button>
-                <Button size="sm" onClick={() => { this.deleteWeapon(w) }} >Delete</Button>
+                <Button size="sm" className="me-3" onClick={() => { closeModal() }} >Cancel</Button>
+                <Button size="sm" onClick={() => { deleteWeapon(w) }} >Delete</Button>
             </div>
         </div>);
     }
 
-    deleteWeapon(weapon: Weapon) {
+    const deleteWeapon = (weapon: Weapon) => {
         store.dispatch(deleteStarshipWeapon(weapon));
-        this.closeModal();
+        closeModal();
     }
+
+    return (<div className="page container ms-0">
+            <ShipBuildingBreadcrumbs />
+            <Header>Ship Weapons</Header>
+
+            <div className="d-flex mb-3 mt-4 ">
+                <p className="me-auto mb-0">This ship has the following weapons:</p>
+                <div className="text-end">
+                    <IconButton className="mt-0" onClick={() => showModal()} icon="plus-circle" title="Add" />
+                </div>
+            </div>
+
+            <table className="selection-list">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Dice</th>
+                        <th>Qualities</th>
+                    </tr>
+                </thead>
+                {renderWeapons()}
+            </table>
+
+            <div className="text-end mt-4">
+                <Button onClick={() => nextPage()}>Next</Button>
+            </div>
+        </div>);
+
 }
 
 function mapStateToProps(state, ownProps) {

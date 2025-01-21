@@ -120,7 +120,8 @@ export abstract class BaseNeckProvider {
             || uniformEra === UniformEra.NextGeneration
             || uniformEra === UniformEra.LowerDecks
             || uniformEra === UniformEra.StarTrekOnline
-            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant5);
+            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant5)
+            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant6);
     }
 
 
