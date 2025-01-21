@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250121</b>
+            <ul>
+                <li>
+                    A few more fixes and token stuff.
+                </li>
+            </ul>
             <b>v1.250120</b>
             <ul>
                 <li>
@@ -249,27 +255,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
             <b>v1.240821</b>
             <ul>
                 <li>A few more minor fixes.</li>
-            </ul>
-            <b>v1.240820</b>
-            <ul>
-                <li>More minor fixes.</li>
-            </ul>
-            <b>v1.240819</b>
-            <ul>
-                <li>A small number of minor fixes.</li>
-                <li>An A4 character sheet.</li>
-            </ul>
-            <b>v1.240818</b>
-            <ul>
-                <li>A very preliminary version of character creation for 2nd Edition. Fuller and better support still
-                    to come.
-                </li>
-                <li>Importantly, starship creation has not yet been updated. So there's that.</li>
-            </ul>
-            <b>v1.240706</b>
-            <ul>
-                <li>A bit more work on the random starship generator.</li>
-                <li>A few new spaceframes from <cite>Continuing Mission</cite>.</li>
             </ul>
 
             <div className="text-center">
