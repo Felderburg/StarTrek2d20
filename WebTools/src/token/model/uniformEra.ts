@@ -23,6 +23,7 @@ export enum UniformEra {
     TheMotionPicture,
     Discovery23,
     StarTrekOnline,
+    RomulanNemesis,
 }
 
 export const allUniformEras = (): UniformEra[] => {
@@ -66,6 +67,7 @@ export class UniformEraHelper {
         new UniformEraModel(UniformEra.OriginalSeries, "Original Series"),
         new UniformEraModel(UniformEra.OriginalSeriesKlingon, "Klingon (Original Series)"),
         new UniformEraModel(UniformEra.Romulan, "Romulan"),
+        new UniformEraModel(UniformEra.RomulanNemesis, "Romulan (Nemesis)"),
         new UniformEraModel(UniformEra.StrangeNewWorlds, "Strange New Worlds"),
         new UniformEraModel(UniformEra.Suliban, "Suliban"),
         new UniformEraModel(UniformEra.VoyagerDS9, "Voyager/DS9"),

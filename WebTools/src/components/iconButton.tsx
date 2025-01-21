@@ -4,10 +4,11 @@ interface IIconButtonProperties {
     onClick: () => void;
     icon: string;
     variant?: "primary"|"danger";
+    className?: string
 }
 
-export const IconButton: React.FC<IIconButtonProperties> = ({onClick, icon, variant}) => {
-    let classes = "text-primary";
+export const IconButton: React.FC<IIconButtonProperties> = ({onClick, icon, variant, className}) => {
+    let classes = "text-primary" + (className ? " " + className : "");
     if (variant === "danger") {
         classes = "text-danger";
     }

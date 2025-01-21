@@ -1,6 +1,6 @@
 import { Species } from "../../helpers/speciesEnum";
 import { HairType } from "./hairTypeEnum";
-import { KlingonForehead1, KlingonForehead2, KlingonForehead3, KlingonForehead4, KlingonForehead5, KlingonForehead6 } from "./speciesOptionCatalog";
+import { KlingonForehead1, KlingonForehead2, KlingonForehead3, KlingonForehead4, KlingonForehead5, KlingonForehead6, KlingonForehead7 } from "./speciesOptionCatalog";
 import { SpeciesOption } from "./speciesOptionEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
@@ -159,6 +159,8 @@ class ProstheticCatalog {
                         return KlingonForehead5.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
                     case SpeciesOption.Option6:
                         return svgTranslationHelper(KlingonForehead6.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor));
+                    case SpeciesOption.Option7:
+                        return svgTranslationHelper(KlingonForehead7.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor));
                     default:
                         return "";
                 }

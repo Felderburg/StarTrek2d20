@@ -114,6 +114,7 @@ export abstract class BaseNeckProvider {
         return uniformEra === UniformEra.Suliban
             || uniformEra === UniformEra.StrangeNewWorlds
             || uniformEra === UniformEra.JemHadar
+            || uniformEra === UniformEra.RomulanNemesis
             || uniformEra === UniformEra.DominionWar
             || uniformEra === UniformEra.Maco
             || uniformEra === UniformEra.NextGeneration
