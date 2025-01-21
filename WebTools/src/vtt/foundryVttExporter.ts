@@ -152,7 +152,7 @@ export class FoundryVttExporter {
         starship.determineWeapons().forEach(w => {
             if (w.type !== WeaponType.CAPTURE) {
                 result.items.push({
-                    "name": w.name,
+                    "name": w.description,
                     "type": "starshipweapon",
                     "img": this.determineStarshipWeaponIcon(w, options),
                     "effects": [],

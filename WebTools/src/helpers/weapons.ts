@@ -487,7 +487,7 @@ export class Weapon {
     }
 
     get description() {
-        if (this.name) {
+        if (this.name?.length) {
             return this.name;
         } else if (this.deliveryType != null) {
             return this.loadType.description + " " + this.deliveryType.description;

@@ -60,7 +60,9 @@ class StarshipWeaponsPageProperties extends React.Component<IStarshipWeaponsPage
                     <td className="selection-header">{w.description}</td>
                     <td><p className="m-0">{w.dice}</p></td>
                     <td><p className="m-0">{w.effectsAndQualities}</p></td>
-                    <td className="text-end"><Button className="btn btn-link text-danger" onClick={() => { this.confirmRemove(w) }} ><i className="bi bi-trash"></i></Button></td>
+                    <td className="text-end">
+                        <IconButton variant="danger" onClick={() => { this.confirmRemove(w) }} icon="trash" />
+                    </td>
                 </tr>))}
             </tbody>);
         }
