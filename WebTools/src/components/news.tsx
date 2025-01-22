@@ -14,6 +14,13 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250122</b>
+            <ul>
+                <li>
+                    Downgraded a PDF library after some folks reported issues with filled-out
+                    character sheets.
+                </li>
+            </ul>
             <b>v1.250121</b>
             <ul>
                 <li>
