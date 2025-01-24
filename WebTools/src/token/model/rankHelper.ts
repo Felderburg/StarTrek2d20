@@ -19,3 +19,19 @@ export const isEnlistedRank = (rank: Rank) => {
             return false;
     }
 }
+
+export const isFlagRank = (rank: Rank) => {
+    switch (rank) {
+        case Rank.FleetAdmiral:
+        case Rank.Admiral:
+        case Rank.ViceAdmiral:
+        case Rank.RearAdmiral:
+        case Rank.RearAdmiralUpper:
+        case Rank.RearAdmiralLower:
+        case Rank.Commodore:
+        case Rank.General:
+            return true;
+        default:
+            return false;
+    }
+}

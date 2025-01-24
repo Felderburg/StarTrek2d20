@@ -2,6 +2,7 @@ import i18next from "i18next";
 import { makeKey } from "../../common/translationKey";
 
 export enum UniformEra {
+    None,
     DominionWar,
     Cardassian,
     Civilian,
@@ -24,6 +25,7 @@ export enum UniformEra {
     Discovery23,
     StarTrekOnline,
     RomulanNemesis,
+    Tzenkethi,
 }
 
 export const allUniformEras = (): UniformEra[] => {
@@ -53,6 +55,7 @@ export class UniformEraHelper {
     private static _instance: UniformEraHelper;
 
     types = [
+        new UniformEraModel(UniformEra.None, "None"),
         new UniformEraModel(UniformEra.Bynar, "Bynar"),
         new UniformEraModel(UniformEra.Cardassian, "Cardassian"),
         new UniformEraModel(UniformEra.Civilian, "Civilian"),
@@ -73,6 +76,7 @@ export class UniformEraHelper {
         new UniformEraModel(UniformEra.VoyagerDS9, "Voyager/DS9"),
         new UniformEraModel(UniformEra.MonsterMaroon, "The Wrath of Khan and Later Movies"),
         new UniformEraModel(UniformEra.StarTrekOnline, "Star Trek Online"),
+        new UniformEraModel(UniformEra.Tzenkethi, "Tzenkethi"),
     ]
 
     static get instance() {

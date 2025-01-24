@@ -29,8 +29,10 @@ class SpeciesRestrictions {
     static getUniformTypes(species: Species) {
         if (species === Species.Cetacean) {
             return [ UniformEra.DominionWar, UniformEra.LowerDecks ];
+        } else if (species === Species.Tzenkethi) {
+            return [ UniformEra.None, UniformEra.Tzenkethi ];
         } else {
-            return allUniformEras();
+            return allUniformEras().filter(e => e !== UniformEra.None && e !== UniformEra.Tzenkethi);
         }
     }
 

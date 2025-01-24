@@ -80,7 +80,8 @@ export default class UniformVariantRestrictions {
             case UniformEra.StarTrekOnline:
                 return [
                     Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
-                    Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass
+                    Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.Admiral,
+                    Rank.ViceAdmiral, Rank.RearAdmiral
                 ].indexOf(rankIndicator) >= 0;
 
             case UniformEra.NextGeneration:
