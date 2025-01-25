@@ -69,6 +69,8 @@ class SpeciesRestrictions {
             return ["#de898a", "#ca7882", "#b6677a", "#a77e86", "#989591", "#626163", "#7c6a61", "#603f31"];
         } else if (species === Species.Suliban) {
             return ["#c7b799", "#d1ba77", "#bea55f", "#c6b923"];
+        } else if (species === Species.Tzenkethi) {
+            return ["#6d5830", "#7b4344", "#344453", "#777398", "#504c74", "#524035", "#594a3d"];
         } else if (species === Species.XindiReptilian) {
             return ["#bbb895", "#aea433", "#bba326", "#898558"];
         } else {
@@ -207,6 +209,8 @@ class SpeciesRestrictions {
             return species === Species.Zaranite;
         } else if (extra === ExtraType.SecurityHelmet) {
             return uniformEra === UniformEra.MonsterMaroon && !SpeciesRestrictions.isRubberHeaded(species);
+        } else if (extra === ExtraType.Visor) {
+            return species !== Species.Cetacean && species !== Species.Tzenkethi;
         } else {
             return true;
         }
@@ -239,6 +243,7 @@ class SpeciesRestrictions {
             || species === Species.Jelna
             || species === Species.JemHadar || species === Species.Kelpien || species === Species.Reman
             || species === Species.Saurian || species === Species.Suliban
+            || species === Species.Tzenkethi
             || species === Species.XindiArboreal
             || species === Species.XindiReptilian
             || species === Species.Yridian || species === Species.Zaranite;

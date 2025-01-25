@@ -130,6 +130,8 @@ export abstract class BaseNeckProvider {
 
         if (species === Species.Cetacean) {
             return CetaceanNeck;
+        } else if (species === Species.Tzenkethi) {
+            return "";
         } else  if (body === BodyType.AverageMale) {
             let result = Necks.straightenedMale.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, skinColor);
             if (species === Species.Bolian) {

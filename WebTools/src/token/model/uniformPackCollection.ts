@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { DominionWarUniformPack } from "./dominionWarUniformPack";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
+import { NoneUniformPack } from "./noneUniformPack";
 
 export default class UniformPackCollection {
 
@@ -14,6 +15,7 @@ export default class UniformPackCollection {
             UniformPackCollection._instance = new UniformPackCollection();
         }
         UniformPackCollection._instance.uniformPacks[UniformEra.DominionWar] = new DominionWarUniformPack();
+        UniformPackCollection._instance.uniformPacks[UniformEra.None] = new NoneUniformPack();
         return UniformPackCollection._instance;
     }
 
@@ -122,6 +124,11 @@ export default class UniformPackCollection {
             } else if (era === UniformEra.Suliban) {
                 import(/* webpackChunkName: 'suliban' */ './sulibanUniformPack').then(({SulibanUniformPack}) => {
                     this.uniformPacks[era] = new SulibanUniformPack();
+                    completion();
+                }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
+            } else if (era === UniformEra.Tzenkethi) {
+                import(/* webpackChunkName: 'tzenkethi' */ './tzenkethiArmourUniformPack').then(({TzenkethiArmourUniformPack}) => {
+                    this.uniformPacks[era] = new TzenkethiArmourUniformPack();
                     completion();
                 }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
             } else {

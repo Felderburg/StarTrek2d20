@@ -118,6 +118,8 @@ export default class UniformVariantRestrictions {
             case UniformEra.Cardassian:
             case UniformEra.Suliban:
             case UniformEra.Romulan:
+            case UniformEra.None:
+            case UniformEra.Tzenkethi:
                 return [ Rank.None ].indexOf(rankIndicator) >= 0;
 
             case UniformEra.StrangeNewWorlds:
