@@ -1,7 +1,7 @@
 import { Species } from "../../helpers/speciesEnum";
 import { BolianEar, FerengiEar1, FerengiEar2, FerengiEar3, FerengiEar4, StandardEar, TellariteEar, VulcanEar } from "./earCatalog";
 import { BolianSeam, BolianStripes, FerengiCheekAppliances, FerengiForehead, ReferenceHead, RomulanForehead, SimpleNeck } from "./headCatalog";
-import { TellariteTusks } from "./prostheticCatalog";
+import { TalaxianHead, TellariteTusks } from "./prostheticCatalog";
 import { SpeciesOption } from "./speciesOptionEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
@@ -250,6 +250,11 @@ class SpeciesOptionCatalog {
                 new Swatch(SpeciesOption.Option1, "\"Northern\"", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option1, token)),
                 new Swatch(SpeciesOption.Option2, "Other", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option2, token))
             ];
+        } else if (token.species === Species.Talaxian) {
+            return [
+                new Swatch(SpeciesOption.Option1, "Whiskers", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option1, token)),
+                new Swatch(SpeciesOption.Option2, "No whiskers", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option2, token))
+            ];
         } else if (token.species === Species.Tellarite) {
             return [
                 new Swatch(SpeciesOption.Option1, "Standard", (token) => SpeciesOptionCatalog.instance.decorateSwatch(SpeciesOption.Option1, token)),
@@ -380,7 +385,28 @@ class SpeciesOptionCatalog {
                 +  `</g>
                 </g>
             </svg>`;
-        } else if (token.species === Species.Tellarite) {
+        } else if (token.species === Species.Talaxian) {
+            let result = "";
+            switch (option) {
+                case SpeciesOption.Option1:
+                    result = ReferenceHead + svgTranslationHelper(TalaxianHead.male);
+                    break;
+                default:
+                    result = ReferenceHead + svgTranslationHelper(TalaxianHead.female);
+            }
+            return `<svg viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <defs>
+                    <clipPath id="speciesOptionPath` + option + `">
+                        <circle cx="100" cy="100" r="100" fill="#ffffff" />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#speciesOptionPath` + option + `">
+                    <g transform="translate(-170, -30)">`
+                    + result.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
+                    +  `</g>
+                    </g>
+                </svg>`;
+            } else if (token.species === Species.Tellarite) {
             let tusk1 = "";
             let tusk2 = "";
             switch (option) {

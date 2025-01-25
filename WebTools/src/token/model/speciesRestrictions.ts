@@ -70,7 +70,7 @@ class SpeciesRestrictions {
         } else if (species === Species.Suliban) {
             return ["#c7b799", "#d1ba77", "#bea55f", "#c6b923"];
         } else if (species === Species.Tzenkethi) {
-            return ["#6d5830", "#7b4344", "#344453", "#777398", "#504c74", "#524035", "#594a3d"];
+            return ["#6d5830", "#7b4344", "#344453", "#504c74", "#777398", "#524035", "#594a3d", "#6ca4ab"];
         } else if (species === Species.XindiReptilian) {
             return ["#bbb895", "#aea433", "#bba326", "#898558"];
         } else {
@@ -217,9 +217,13 @@ class SpeciesRestrictions {
     }
 
     static isBald(species: Species) {
-        return species === Species.Bolian || species === Species.Ferengi
-            || species === Species.Deltan || species === Species.Saurian
-            || species === Species.XindiReptilian || species === Species.Benzite;
+        return species === Species.Benzite
+            || species === Species.Bolian
+            || species === Species.Deltan
+            || species === Species.Ferengi
+            || species === Species.Saurian
+            || species === Species.Talaxian
+            || species === Species.XindiReptilian;
     }
 
     static isTallForeheaded(species: Species) {

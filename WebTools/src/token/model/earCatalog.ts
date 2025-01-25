@@ -212,6 +212,8 @@ class EarCatalog {
             return CardassianEar.replace(SpeciesColors.DEFAULT_SKIN_COLOR, token.skinColor);
         } else if (token.species === Species.Denobulan) {
             return DenobulanEar.replace(SpeciesColors.DEFAULT_SKIN_COLOR, token.skinColor);
+        } else if (token.species === Species.Talaxian) {
+            return "";
         } else if (token.species === Species.Tellarite) {
             return TellariteEar.replace(SpeciesColors.DEFAULT_SKIN_COLOR, token.skinColor);
         } else if (token.species === Species.Bolian) {
