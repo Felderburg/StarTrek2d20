@@ -3,7 +3,7 @@ import { Rank } from "../../helpers/ranks";
 import { Species } from "../../helpers/speciesEnum";
 import { BodyType } from "./bodyTypeEnum";
 import { DivisionColors } from "./divisionColors";
-import { isEnlistedRank } from "./rankHelper";
+import { isEnlistedRank, isFlagRank } from "./rankHelper";
 import { Token } from "./token";
 import { UniformEra } from "./uniformEra";
 import { UniformVariantType } from "./uniformVariantTypeEnum";
@@ -39,7 +39,7 @@ export default class UniformVariantRestrictions {
                     && rank === Rank.Captain) {
                 result.push(UniformVariantType.Variant1);
             } else if (DivisionColors.getDivision(uniformEra, divisionColor) === Division[Division.Science]
-                    && !isEnlistedRank(rank)) {
+                    && !isEnlistedRank(rank) && !isFlagRank(rank)) {
                 result.push(UniformVariantType.Variant1);
             }
         } else if (uniformEra === UniformEra.Civilian) {

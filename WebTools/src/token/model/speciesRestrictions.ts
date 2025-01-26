@@ -203,6 +203,8 @@ class SpeciesRestrictions {
             return species === Species.Human;
         } else if (extra === ExtraType.FerengiHeadFlap) {
             return species === Species.Ferengi;
+        } else if (extra === ExtraType.FerengiRankTattoo) {
+            return species === Species.Ferengi && uniformEra === UniformEra.Ferengi;
         } else if (extra === ExtraType.VulcanHeaddress) {
             return species === Species.Vulcan && uniformEra === UniformEra.Civilian;
         } else if (extra === ExtraType.ZaraniteMask) {

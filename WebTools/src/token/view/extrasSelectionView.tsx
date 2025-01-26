@@ -7,6 +7,7 @@ import ExtrasCatalog from "../model/extrasCatalog";
 import { ExtraCategory, ExtraType, getExtraCategory } from "../model/extrasTypeEnum";
 import store from "../../state/store";
 import { setTokenExtrasTypes } from "../../state/tokenActions";
+import { Species } from "../../helpers/speciesEnum";
 
 interface IExtraSelectionViewProperties extends WithTranslation {
     token: Token;
@@ -30,7 +31,7 @@ class ExtraSelectionView extends React.Component<IExtraSelectionViewProperties, 
         {ExtrasCatalog.instance.getSwatches(this.props.token, ExtraCategory.Forehead).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
             onClick={() => this.addExtra(s.id, ExtraCategory.Forehead)}
             active={this.props.token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !this.isExtraCategoryPresent(ExtraCategory.Forehead))}
-            token={this.props.token}
+            token={this.props.token} size={this.props.token.species === Species.Ferengi ? "lg" : "md"}
             key={'extra-swatch-forehead-' + s.id }/>)}
         </div>
 

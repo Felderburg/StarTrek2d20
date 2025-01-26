@@ -7,6 +7,7 @@ import { Eye2StandardBrows } from "./eyeBrowCatalog";
 import { Eye2 } from "./eyeCatalog";
 import { FerengiForehead, ReferenceHead } from "./headCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
+import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";
 import { Token } from "./token";
 import { DefaultRed } from "./uniformCatalog";
@@ -208,6 +209,8 @@ const VulcanHeaddress = `<g>
     <path d="m 181.39021,150.05695 c 1.48,2.83733 -0.21333,10.82931 -0.34667,13.97997 -0.77466,18.32929 -2.38666,36.86524 0.988,55.04253 0.66933,3.60399 1.508,7.29865 3.12666,10.56664 -3.89199,-1.62533 -4.47599,-11.80931 -5.23332,-15.4653 -1.11866,-5.40932 -3.22132,-10.68397 -3.57866,-16.33862 -0.62133,-9.85864 -0.84,-21.28795 0.0653,-31.26526 0.44133,-4.86265 -0.32534,-10.03731 1.03866,-14.79196 0.60267,-2.09999 2.09466,-4.95465 3.88666,-1.82533 0.0187,0.032 0.036,0.064 0.0533,0.0973" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;stroke-width:1.33333;fill:#000000;fill-opacity:1" id="path29"/>
 </g>`;
 
+const FerengiRankTattoo = `<path style="fill:#0aaa71;fill-opacity:0.4;stroke:none;stroke-width:0.99013px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 256.99399,54.7801 -4.2653,8.101699 4.2653,8.363043 h 1.3329 l -3.86572,-8.363043 4.39889,-8.101699 z m 2.68615,0 -4.2653,8.101699 4.2653,8.363043 h 1.3329 l -3.86572,-8.363043 4.39889,-8.101699 z m 10.34785,9.0668 h 0.67217 c 0.49789,0.892083 0.74933,1.528916 2.36504,2.240563 l 1.64308,-2.862943 h 3.41064 l -4.45624,4.530919 c -1.93492,-0.52169 -3.16783,-1.827463 -3.63469,-3.908539 z m -0.83901,-0.62238 h -9.04437 c 0,4.132596 3.93344,7.991348 7.76729,7.991348 h 8.2403 l 4.15749,-7.194702 h -0.87133 l -4.73008,4.754976 c -3.22807,-0.0332 -5.4206,-2.752046 -5.5193,-5.551622 z m 0.83901,-1.046477 h 0.67217 c 0.49789,-0.892083 0.74933,-1.528918 2.36504,-2.240565 l 1.64308,2.862943 h 3.41064 l -4.45623,-4.53092 c -1.93493,0.52169 -3.16784,1.827463 -3.6347,3.908542 z m -0.83901,0.622378 h -9.04437 c 0,-4.132596 3.93344,-7.991347 7.76729,-7.991347 h 8.2403 l 4.15749,7.194702 h -0.87133 l -4.73008,-4.754978 c -3.22807,0.03319 -5.4206,2.752046 -5.5193,5.551623 z m 4.65306,0.212049 a 1.2372895,1.2372895 0 0 1 -1.23729,1.23729 1.2372895,1.2372895 0 0 1 -1.23729,-1.237289 1.2372895,1.2372895 0 0 1 1.23729,-1.23729 1.2372895,1.2372895 0 0 1 1.23729,1.237289 z"/>`
+
 class ExtraItem {
 
     readonly id: ExtraType;
@@ -238,6 +241,7 @@ class ExtrasCatalog {
         new ExtraItem(ExtraType.SmallBindi, ExtraCategory.Forehead, "Small Bindi", SmallBindi),
         new ExtraItem(ExtraType.RisanSymbol, ExtraCategory.Forehead, "Risan Symbol", RisanSymbol),
         new ExtraItem(ExtraType.InuitTattoo, ExtraCategory.Forehead, "Inuit Tattoo", InuitTattoo),
+        new ExtraItem(ExtraType.FerengiRankTattoo, ExtraCategory.Forehead, "Ferengi Rank Tattoo", svgTranslationHelper(FerengiRankTattoo)),
 
         new ExtraItem(ExtraType.None, ExtraCategory.Headwear, "None", ""),
         new ExtraItem(ExtraType.FerengiHeadFlap, ExtraCategory.Headwear, "Ferengi Head Flap", FerengiHeadFlap.standard),
@@ -303,7 +307,8 @@ class ExtrasCatalog {
                     + `</g>
                     </g>
                 </svg>`;
-        } else if (item.category === ExtraCategory.Headwear || item.category === ExtraCategory.Face) {
+        } else if (item.category === ExtraCategory.Headwear || item.category === ExtraCategory.Face
+            || token.species === Species.Ferengi) {
             let headflapColour = "#0aaa71";
             if (DivisionColors.isDivisionColorsSupported(token.uniformEra)) {
                 headflapColour = token.divisionColor;
