@@ -167,7 +167,7 @@ export class JemHadarUniformPack extends BaseNeckProvider implements IUniformPac
 
     getUniformAndVariantBody(token: Token) {
         let result = "";
-        let neck = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.JemHadar)
+        let neck = this.getNeck(BodyType.AverageMale, token.skinColor, token.species, UniformEra.JemHadar)
         switch (token.bodyType) {
             case BodyType.AverageMale:
             default:
