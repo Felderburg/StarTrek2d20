@@ -274,7 +274,10 @@ class SpeciesRestrictions {
     }
 
     static getNoseTypes(species: Species) {
-        if (species === Species.Tellarite || species === Species.Ferengi || species === Species.Cardassian
+        if (species === Species.Cardassian
+            || species === Species.Ferengi
+            || species === Species.Talaxian
+            || species === Species.Tellarite
             || species === Species.Zakdorn) {
             return [ NoseType.StraightBasic ];
         } else {

@@ -27,10 +27,9 @@ export default class UniformVariantRestrictions {
         } else if (uniformEra === UniformEra.Klingon) {
             if (bodyType === BodyType.AverageMale && rank === Rank.Captain) {
                 result.push(UniformVariantType.Variant1); // Klingon sash
+                result.push(UniformVariantType.Variant3); // Kruge
             }
-            if (bodyType === BodyType.AverageMale) {
-                result.push(UniformVariantType.Variant2); // Klingon vest
-            }
+            result.push(UniformVariantType.Variant2); // Klingon vest or Key'lehr
         } else if (uniformEra === UniformEra.StrangeNewWorlds) {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === "Medical") {
                 result.push(UniformVariantType.Variant2);
