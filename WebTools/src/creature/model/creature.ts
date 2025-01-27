@@ -7,6 +7,7 @@ import { CreatureSize, CreatureSizeModel } from "./creatureSize";
 import { CreatureType, CreatureTypeModel } from "./creatureType";
 import { DietTypeModel } from "./diet";
 import { Habitat, HabitatModel } from "./habitat";
+import { LocomotionModel } from "./locomotion";
 import { NaturalAttacks, NaturalAttacksHelper } from "./naturalAttacks";
 
 export class Creature extends Construct {
@@ -16,6 +17,7 @@ export class Creature extends Construct {
     diet?: DietTypeModel;
     size?: CreatureSizeModel;
     naturalAttacks?: NaturalAttacks;
+    locomotion: LocomotionModel[] = [];
     additionalTalents: SelectedTalent[] = [];
     additionalTraits: string[] = [];
 

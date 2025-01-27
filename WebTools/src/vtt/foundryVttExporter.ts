@@ -24,7 +24,7 @@ const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg
 export class FoundryVttExporterOptions {
     isStaCompendiumUsed: boolean;
 
-    constructor(isStaCompendiumUsed: boolean = false) {
+    constructor(isStaCompendiumUsed: boolean = true) {
         this.isStaCompendiumUsed = isStaCompendiumUsed;
     }
 }
@@ -40,8 +40,11 @@ export class FoundryVttExporter {
         return FoundryVttExporter._instance;
     }
 
-    exportStarship(starship: Starship, options: FoundryVttExporterOptions) {
+    exportStarship(starship: Starship) {
         let now = Date.now();
+
+        // this isn't really used any more. Leave it around for migration reasons
+        let options = new FoundryVttExporterOptions();
 
         let result = {
             "name": starship.name || "Unnamed Starship",
@@ -201,40 +204,40 @@ export class FoundryVttExporter {
     determineStarshipIcon(starship: Starship, options: FoundryVttExporterOptions) {
         if (options.isStaCompendiumUsed) {
             if (starship.buildType === ShipBuildType.Runabout) {
-                return "modules/sta-compendia/assets/ships/starfleet/danube-runabout-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/danube-runabout-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Intrepid ||
                 starship.spaceframeModel?.id === Spaceframe.Intrepid_UP) {
-                return "modules/sta-compendia/assets/ships/starfleet/intrepid-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/intrepid-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Constitution ||
                 starship.spaceframeModel?.id === Spaceframe.Constitution_UP) {
-                return "modules/sta-compendia/assets/ships/starfleet/constitution-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/constitution-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Constellation ||
                 starship.spaceframeModel?.id === Spaceframe.Constellation_UP) {
-                return "modules/sta-compendia/assets/ships/starfleet/constellation-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/constellation-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Galaxy) {
-                return "modules/sta-compendia/assets/ships/starfleet/galaxy-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/galaxy-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Akira ||
                 starship.spaceframeModel?.id === Spaceframe.Akira_UP) {
-                return "modules/sta-compendia/assets/ships/starfleet/akira-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/akira-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Defiant ||
                 starship.spaceframeModel?.id === Spaceframe.Defiant_UP) {
-                return "modules/sta-compendia/assets/ships/starfleet/defiant-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/defiant-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Excelsior ||
                 starship.spaceframeModel?.id === Spaceframe.Excelsior_UP) {
-                return "modules/sta-compendia/assets/ships/starfleet/excelsior-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/excelsior-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Miranda ||
                 starship.spaceframeModel?.id === Spaceframe.Miranda_UP) {
-                return "modules/sta-compendia/assets/ships/starfleet/miranda-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/miranda-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Nova) {
-                return "modules/sta-compendia/assets/ships/starfleet/nova-token.webp";
+                return "systems/sta/assets/compendia/ships/starfleet/nova-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.Brel) {
-                return "modules/sta-compendia/assets/ships/klingon/b-rel-token.webp";
+                return "systems/sta/assets/compendia/ships/klingon/b-rel-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.D7) {
-                return "modules/sta-compendia/assets/ships/klingon/d7-battle-cruiser-token.webp";
+                return "systems/sta/assets/compendia/ships/klingon/d7-battle-cruiser-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.KVort) {
-                return "modules/sta-compendia/assets/ships/klingon/k-vort-token.webp";
+                return "systems/sta/assets/compendia/ships/klingon/k-vort-token.webp";
             } else if (starship.spaceframeModel?.id === Spaceframe.VorCha) {
-                return "modules/sta-compendia/assets/ships/klingon/vor-cha-token.webp";
+                return "systems/sta/assets/compendia/ships/klingon/vor-cha-token.webp";
             } else {
                 return DEFAULT_STARSHIP_ICON;
             }
@@ -262,17 +265,17 @@ export class FoundryVttExporter {
                     } else if (weapon.deliveryType.type === DeliverySystem.Cannons) {
                         filename += "-cannon";
                     }
-                    return "modules/sta-compendia/assets/icons/starshipweapons-core/" + filename + ".svg";
+                    return "systems/sta/assets/compendia/icons/starshipweapons-core/" + filename + ".svg";
                 } else {
                     return DEFAULT_EQUIPMENT_ICON;
                 }
             } else if (weapon.type === WeaponType.TORPEDO) {
                 if (weapon.loadType.type === TorpedoLoadType.Photon) {
-                    return "modules/sta-compendia/assets/icons/starshipweapons-core/weapon-photon-torpedo.svg";
+                    return "systems/sta/assets/compendia/icons/starshipweapons-core/weapon-photon-torpedo.svg";
                 } else if (weapon.loadType.type === TorpedoLoadType.Plasma) {
-                    return "modules/sta-compendia/assets/icons/starshipweapons-core/weapon-plasma-torpedo.svg";
+                    return "systems/sta/assets/compendia/icons/starshipweapons-core/weapon-plasma-torpedo.svg";
                 } else if (weapon.loadType.type === TorpedoLoadType.Quantum) {
-                    return "modules/sta-compendia/assets/icons/starshipweapons-core/weapon-quantum-torpedo.svg";
+                    return "systems/sta/assets/compendia/icons/starshipweapons-core/weapon-quantum-torpedo.svg";
                 } else {
                     return DEFAULT_EQUIPMENT_ICON;
                 }
@@ -606,7 +609,7 @@ export class FoundryVttExporter {
 
     determineFocusIcon(focus: string, options: FoundryVttExporterOptions) {
         if (options.isStaCompendiumUsed) {
-            return "modules/sta-compendia/assets/icons/focuses-core/focus-core.svg";
+            return "systems/sta/assets/compendia/icons/focuses-core/focus-core.svg";
         } else {
             return DEFAULT_EQUIPMENT_ICON;
         }
@@ -615,15 +618,15 @@ export class FoundryVttExporter {
     determineItemIcon(item: string, options: FoundryVttExporterOptions) {
         if (options.isStaCompendiumUsed) {
             if (item === "Communicator") {
-                return "modules/sta-compendia/assets/icons/items-core/communicator.webp";
+                return "systems/sta/assets/compendia/icons/items-core/communicator.webp";
             } else if (item === "Tricorder") {
-                return "modules/sta-compendia/assets/icons/items-core/tricorder.webp";
+                return "systems/sta/assets/compendia/icons/items-core/tricorder.webp";
             } else if (item === "MedKit") {
-                return "modules/sta-compendia/assets/icons/items-core/medkit.webp";
+                return "systems/sta/assets/compendia/icons/items-core/medkit.webp";
             } else if (item === "Engineering Kit") {
-                return "modules/sta-compendia/assets/icons/items-core/engineering_kit.webp";
+                return "systems/sta/assets/compendia/icons/items-core/engineering_kit.webp";
             } else {
-                return "modules/sta-compendia/assets/icons/items-core/placeholder.webp";
+                return "systems/sta/assets/compendia/icons/items-core/placeholder.webp";
             }
         } else {
             return DEFAULT_EQUIPMENT_ICON;
@@ -633,25 +636,25 @@ export class FoundryVttExporter {
     determineRoleIcon(role: RoleModel, options: FoundryVttExporterOptions) {
         if (options.isStaCompendiumUsed) {
             if (role.id === Role.ChiefEngineer) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-chief-engineer.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-chief-engineer.svg";
             } else if (role.id === Role.ChiefMedicalOfficer) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-chief-medical-officer.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-chief-medical-officer.svg";
             } else if (role.id === Role.ChiefOfSecurity) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-chief-of-security.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-chief-of-security.svg";
             } else if (role.id === Role.CommandingOfficer) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-commanding-officer.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-commanding-officer.svg";
             } else if (role.id === Role.CommunicationsOfficer) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-communications-officer.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-communications-officer.svg";
             } else if (role.id === Role.ExecutiveOfficer) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-executive-officer.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-executive-officer.svg";
             } else if (role.id === Role.FlightController) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-flight-controller.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-flight-controller.svg";
             } else if (role.id === Role.OperationsManager) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-operations-manager.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-operations-manager.svg";
             } else if (role.id === Role.ScienceOfficer) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-science-officer.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-science-officer.svg";
             } else if (role.id === Role.ShipsCounselor) {
-                return "modules/sta-compendia/assets/icons/roles-core/role-ships-counsellor.svg";
+                return "systems/sta/assets/compendia/icons/roles-core/role-ships-counsellor.svg";
             } else {
                 return DEFAULT_EQUIPMENT_ICON;
             }
@@ -662,7 +665,7 @@ export class FoundryVttExporter {
 
     determineTalentIcon(talent: TalentModel, options: FoundryVttExporterOptions) {
         if (options.isStaCompendiumUsed) {
-            return "modules/sta-compendia/assets/icons/talents-core/talent-core.svg";
+            return "systems/sta/assets/compendia/icons/talents-core/talent-core.svg";
         } else {
             return DEFAULT_EQUIPMENT_ICON;
         }
@@ -670,7 +673,7 @@ export class FoundryVttExporter {
 
     determineValueIcon(value: string, options: FoundryVttExporterOptions) {
         if (options.isStaCompendiumUsed) {
-            return "modules/sta-compendia/assets/icons/values-core/value-core.svg";
+            return "systems/sta/assets/compendia/icons/values-core/value-core.svg";
         } else {
             return DEFAULT_EQUIPMENT_ICON;
         }
@@ -679,21 +682,21 @@ export class FoundryVttExporter {
     determineWeaponIcon(weapon: Weapon, options: FoundryVttExporterOptions, character: Character) {
         if (options.isStaCompendiumUsed) {
             if (weapon.name === PersonalWeapons.instance(character.version).unarmedStrike.name) {
-                return "modules/sta-compendia/assets/icons/weapons-core/unarmed-strike.webp";
+                return "systems/sta/assets/compendia/icons/weapons-core/unarmed-strike.webp";
             } else if (weapon.name === PersonalWeapons.instance(character.version).phaser1.name) {
-                return "modules/sta-compendia/assets/icons/weapons-core/phaser-type-1.webp";
+                return "systems/sta/assets/compendia/icons/weapons-core/phaser-type-1.webp";
             } else if (weapon.name === PersonalWeapons.instance(character.version).phaser2.name) {
-                return "modules/sta-compendia/assets/icons/weapons-core/phaser-type-2.webp";
+                return "systems/sta/assets/compendia/icons/weapons-core/phaser-type-2.webp";
             } else if (weapon.name === PersonalWeapons.instance(character.version).batLeth.name) {
-                return "modules/sta-compendia/assets/icons/weapons-core/bat-leth.webp";
+                return "systems/sta/assets/compendia/icons/weapons-core/bat-leth.webp";
             } else if (weapon.name === PersonalWeapons.instance(character.version).disruptorPistol.name) {
                 if (character.speciesStep.species === Species.Romulan) {
-                    return "modules/sta-compendia/assets/icons/weapons-core/romulan-disruptor-pistol.webp";
+                    return "systems/sta/assets/compendia/icons/weapons-core/romulan-disruptor-pistol.webp";
                 } else if(character.speciesStep.species === Species.Klingon) {
-                    return "modules/sta-compendia/assets/icons/weapons-core/klingon-disruptor-pistol.webp";
+                    return "systems/sta/assets/compendia/icons/weapons-core/klingon-disruptor-pistol.webp";
                 }
             } else {
-                return "modules/sta-compendia/assets/icons/items-core/placeholder.webp";
+                return "systems/sta/assets/compendia/icons/items-core/placeholder.webp";
             }
         } else {
             return DEFAULT_EQUIPMENT_ICON;

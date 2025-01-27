@@ -44,6 +44,7 @@ import { DietType, DietTypeHelper } from '../creature/model/diet';
 import { CreatureSize, CreatureSizeHelper } from '../creature/model/creatureSize';
 import { NaturalAttacks, NaturalAttacksHelper } from '../creature/model/naturalAttacks';
 import { SelectedTalent } from '../common/selectedTalent';
+import { LocomotionModel, LocomotionType, LocomotionTypeHelper } from '../creature/model/locomotion';
 
 class Marshaller {
 
@@ -83,6 +84,19 @@ class Marshaller {
         if (creature.additionalTraits?.length) {
             sheet["traits"] = [...creature.additionalTraits];
         }
+
+        if (creature.locomotion?.length) {
+            sheet["locomotion"] = creature.locomotion.map(l => {
+                let result = {
+                    type: LocomotionType[l.type.id]
+                };
+                if (l.count != null) {
+                    result["count"] = l.count;
+                }
+                return result;
+            });
+        }
+
 
         return this.encode(sheet);
     }
@@ -943,6 +957,7 @@ class Marshaller {
     }
 
     decodeCreature(json: any) {
+        console.log(json);
         let result = new Creature();
         result.stereotype = Stereotype.Creature;
         if (json.name?.length) {
@@ -977,6 +992,19 @@ class Marshaller {
 
         if (json.naturalAttack) {
             result.naturalAttacks = NaturalAttacksHelper.instance.getTypeByIdName(json.naturalAttack);
+        }
+
+        if (json.locomotion) {
+
+            result.locomotion = json.locomotion.map(l => {
+                let type = LocomotionTypeHelper.instance.getTypeByIdName(l.type);
+                let count = undefined;
+                if (l.count != null) {
+                    count = l.count;
+                }
+                return new LocomotionModel(type, count);
+            });
+
         }
 
         if (json.talents) {

@@ -7,7 +7,6 @@ import { DropDownElement, DropDownSelect } from "../../components/dropDownInput"
 import { ModalControl } from "../../components/modal";
 import { FoundryVttExporter, FoundryVttExporterOptions } from "../foundryVttExporter";
 import { VttType, VttTypes } from "../vttType";
-import i18next from 'i18next';
 import { FantasyGroupsVttExporter } from "../fantasyGroundsVttExport";
 import { Roll20VttExporter } from "../roll20VttExporter";
 
@@ -19,7 +18,6 @@ interface IVttSelectionModalProperties {
 
 interface IVttSelectionModalState {
     vttType: VttType
-    foundryCompendium?: boolean
 }
 
 class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IVttSelectionModalState> {
@@ -35,8 +33,7 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
             // ignore
         }
         this.state = {
-            vttType: VttTypes.instance.getTypeByTypeName(data["vttType"])?.type ?? VttType.Foundry,
-            foundryCompendium: data["foundryCompendium"] || false
+            vttType: VttTypes.instance.getTypeByTypeName(data["vttType"])?.type ?? VttType.Foundry
         }
     }
 
@@ -61,15 +58,7 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
     }
 
     renderVttSpecificSettings() {
-        if (this.state.vttType === VttType.Foundry) {
-            return (<div className="mt-4">
-                <p>Do you use the Foundry STA Compendia?</p>
-                <DropDownSelect defaultValue={this.state.foundryCompendium ? "Y" : "N"}
-                    items={this.getFoundryCompendiumOptions()}
-                    onChange={(yesNo) => this.selectFoundryCompendium(yesNo === "Y" ? true : false)} />
-
-            </div>)
-        } else if (this.state.vttType === VttType.Roll20) {
+        if (this.state.vttType === VttType.Roll20) {
             return (<div className="mt-4">
                 <p>Roll20 doesn't have a standard way to import characters into STA games. This
                     exporter was designed to work with a browser plugin called the {' '}
@@ -79,25 +68,6 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
         } else {
             return undefined;
         }
-    }
-
-    getFoundryCompendiumOptions() {
-        return [
-            new DropDownElement("Y", i18next.t('Common.text.yes')),
-            new DropDownElement("N", i18next.t('Common.text.no'))
-        ]
-    }
-
-    selectFoundryCompendium(foundryCompendium: boolean) {
-        this.setState((state) => {
-            let newState = {
-                ...state,
-                foundryCompendium: foundryCompendium
-            };
-            this.persistVtt(newState);
-            return newState;
-        });
-
     }
 
     selectVttType(t: VttType) {
@@ -132,7 +102,7 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
     }
 
     exportCharacterToFoundryVtt(character: Character) {
-        const json = FoundryVttExporter.instance.exportCharacter(character, new FoundryVttExporterOptions(this.state.foundryCompendium));
+        const json = FoundryVttExporter.instance.exportCharacter(character, new FoundryVttExporterOptions(true));
         const jsonBytes = new TextEncoder().encode(JSON.stringify(json, null, 4));
 
         const escaped = this.sanitizeName(character.name, "sta-character");
@@ -162,7 +132,7 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
     }
 
     exportStarshipToFoundryVtt(starship: Starship) {
-        const json = FoundryVttExporter.instance.exportStarship(starship, new FoundryVttExporterOptions(this.state.foundryCompendium));
+        const json = FoundryVttExporter.instance.exportStarship(starship);
         const jsonBytes = new TextEncoder().encode(JSON.stringify(json, null, 4));
 
         const escaped = this.sanitizeName(starship.name, "sta-starship");
@@ -175,8 +145,7 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
 
     persistVtt(state: IVttSelectionModalState) {
         let data = {
-            vttType: VttType[state.vttType],
-            foundryCompendium: state.foundryCompendium
+            vttType: VttType[state.vttType]
         }
         window.localStorage.setItem("settings.vttOptions", JSON.stringify(data));
     }

@@ -11,6 +11,7 @@ import { generateRandomBasicCreatureTalent, generateRandomCreatureDietTalent, ge
 import { createRandomCreatureType, CreatureType, CreatureTypeHelper } from "./creatureType";
 import { createRandomDiet, DietTypeHelper } from "./diet";
 import { createRandomHabitat, Habitat, HabitatHelper } from "./habitat";
+import { generateRandomLocomotionType } from "./locomotion";
 import { generateRandomNaturalAttacks } from "./naturalAttacks";
 
 export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: CreatureType) => {
@@ -36,6 +37,8 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
     result.size = CreatureSizeHelper.instance.getTypeById(size);
 
     result.naturalAttacks = generateRandomNaturalAttacks(diet);
+
+    result.locomotion = generateRandomLocomotionType(creatureType, habitat);
 
     if (result.creatureType?.id === CreatureType.Bird && D20.roll() <= 15) {
         result.additionalTalents.push(new SelectedTalent(TALENT_NAME_FLIGHT));
