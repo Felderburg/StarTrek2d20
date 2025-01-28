@@ -14,6 +14,18 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250127</b>
+            <ul>
+                <li>
+                    A minor fix for VTT exports.
+                </li>
+            </ul>
+            <b>v1.250126</b>
+            <ul>
+                <li>
+                    A number of new token assets.
+                </li>
+            </ul>
             <b>v1.250122</b>
             <ul>
                 <li>
@@ -249,19 +261,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                     character sheet, both to support internationalization and to deal with some features
                     (like rich text) that my PDF library does not support.
                 </li>
-            </ul>
-            <b>v1.240825</b>
-            <ul>
-                <li>Minor improvements and fixes to some of the PDF sheets.</li>
-            </ul>
-            <b>v1.240824</b>
-            <ul>
-                <li>Some bug fixes.</li>
-                <li>Better 2nd edition support for Fantasy Grounds and Foundry exports.</li>
-            </ul>
-            <b>v1.240821</b>
-            <ul>
-                <li>A few more minor fixes.</li>
             </ul>
 
             <div className="text-center">
