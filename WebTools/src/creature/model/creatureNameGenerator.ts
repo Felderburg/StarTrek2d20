@@ -1,3 +1,5 @@
+import {Buffer} from 'buffer';
+
 const type1Name = [["br","c","cr","dr","g","gh","gr","k","kh","kr","n","q","qh","sc","scr","str","st","t","tr","thr","v","vr","x","z","","","","",""],
 	["ae","aa","ai","au","uu","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u"],
 	["c","k","n","q","t","v","x","z","c","cc","cr","cz","dr","gr","gn","gm","gv","gz","k","kk","kn","kr","kt","kv","kz","lg","lk","lq","lx","lz","nc","ndr","nkr","ngr","nk","nq","nqr","nz","q","qr","qn","rc","rg","rk","rkr","rq","rqr","sc","sq","str","t","v","vr","x","z","q'","k'","rr","r'","t'","tt","vv","v'","x'","z'","","","","","","","","","","","","","","","","",""],
@@ -17,16 +19,38 @@ const type3Name = [["b","bh","br","c","ch","cr","d","dh","dr","f","g","gh","gr",
     ["","a","e","i","o","u","a","e","i","o","u","a","e","i","o","u","oi","ie","ai","ea","ae"],
     ["d","ds","k","ks","l","ll","ls","n","ns","r","rs","s","t","ts","th","x","","","",""]];
 
+const encode = (str: string):string => Buffer.from(str, 'binary').toString('base64');
+
 export const creatureNameGenerator = () => {
 
-    const options = [type1Name, type2Name, type3Name];
-	const nameParts = options[Math.floor(Math.random() * options.length)];
+    let retry = false;
+    let result = "";
+    do {
+        result = "";
 
-	let result = "";
-	nameParts.forEach(a => {
-		const index = Math.floor(Math.random() * a.length);
-		result += a[index];
-	});
+        const options = [type1Name, type2Name, type3Name];
+        const nameParts = options[Math.floor(Math.random() * options.length)];
+
+        nameParts.forEach(a => {
+            const index = Math.floor(Math.random() * a.length);
+            result += a[index];
+        });
+
+        if (isBadWord(encode(result.toLocaleLowerCase()))) {
+            retry = true;
+        }
+
+    } while (retry);
 
     return result;
+}
+
+const isBadWord = (word: string) => {
+    const badWords = [
+        "ZnVjaw==",
+        "bmlnZ2Vy",
+        "Y3VudA==",
+        "c2hpdA=="
+    ];
+    return badWords.includes(word);
 }

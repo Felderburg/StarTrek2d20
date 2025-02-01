@@ -7,7 +7,7 @@ import { CreatureSize, CreatureSizeModel } from "./creatureSize";
 import { CreatureType, CreatureTypeModel } from "./creatureType";
 import { DietTypeModel } from "./diet";
 import { Habitat, HabitatModel } from "./habitat";
-import { LocomotionModel } from "./locomotion";
+import { LocomotionModel, LocomotionType } from "./locomotion";
 import { NaturalAttacks, NaturalAttacksHelper } from "./naturalAttacks";
 
 export class Creature extends Construct {
@@ -20,6 +20,7 @@ export class Creature extends Construct {
     locomotion: LocomotionModel[] = [];
     additionalTalents: SelectedTalent[] = [];
     additionalTraits: string[] = [];
+    form?: string;
 
     constructor() {
         super(Stereotype.Creature);
@@ -77,6 +78,30 @@ export class Creature extends Construct {
         return 1;
     }
 
+    get isFlightlessBird() {
+        return this.creatureType?.id === CreatureType.Bird && !this.hasTalent(TALENT_NAME_FLIGHT);
+    }
+
+    get isSlithering() {
+        return this.locomotion?.filter(l => l.type?.id === LocomotionType.Slithering)?.length ? true : false;
+    }
+
+    get isTentacled() {
+        return this.locomotion?.filter(l => l.type?.id === LocomotionType.Tentacles)?.length ? true : false;
+    }
+
+    get isFlippered() {
+        return this.locomotion?.filter(l => l.type?.id === LocomotionType.Flippers)?.length ? true : false;
+    }
+
+    get isLegged() {
+        return this.locomotion?.filter(l => l.type?.id === LocomotionType.Legs)?.length ? true : false;
+    }
+
+    get isFourOrMoreLegged() {
+        return this.locomotion?.filter(l => l.type?.id === LocomotionType.Legs && l.count >= 4)?.length ? true : false;
+    }
+
     determineWeapons(): Weapon[] {
         const result: Weapon[] = [];
         if (this.naturalAttacks != null) {
@@ -91,7 +116,14 @@ export class Creature extends Construct {
 
     getAllTraits() {
         let result = [...this.additionalTraits];
-        result.push("Animal");
+        if (this.creatureType?.id === CreatureType.Plant) {
+            result.push("Flora");
+        } else {
+            result.push("Fauna");
+        }
+        if (this.isFlightlessBird) {
+            result.push("Flightless");
+        }
         return result.join(", ");
     }
 }

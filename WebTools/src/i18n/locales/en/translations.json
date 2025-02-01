@@ -474,6 +474,7 @@
     "Common.button.next": "Next",
     "Common.button.previous": "Previous",
     "Common.button.save": "Save",
+    "Common.button.share": "Share",
     "Common.button.view": "View",
 
     "Common.text.description": "Description",
@@ -491,11 +492,12 @@
 
     "Common.select.choose": "Choose...",
 
-    "Construct.creature.habitat": "Habitat",
     "Construct.creature.creatureType": "Creature Type",
     "Construct.creature.dietType": "Diet Type",
-    "Construct.creature.size": "Size",
+    "Construct.creature.form": "Form",
+    "Construct.creature.habitat": "Habitat",
     "Construct.creature.locomotion": "Locomotion",
+    "Construct.creature.size": "Size",
 
     "Construct.other.assetType": "Asset Type",
     "Construct.other.assignment": "Assignment",

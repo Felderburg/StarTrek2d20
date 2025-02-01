@@ -97,6 +97,9 @@ class Marshaller {
             });
         }
 
+        if (creature.form?.length) {
+            sheet["form"] = creature.form;
+        }
 
         return this.encode(sheet);
     }
@@ -1014,6 +1017,10 @@ class Marshaller {
                     result.additionalTalents.push(talent);
                 }
             });
+        }
+
+        if (json.form) {
+            result.form = json.form;
         }
 
         if (json.traits?.length) {

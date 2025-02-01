@@ -2148,7 +2148,7 @@
 
     "Talent.backUpPlans": "Planes de emergencia",
 
-    "Talent.backUpPlans.description2e": "Cada vez que tú o un aliado falléis una tarea (siempre que estéis presentes en la escena), podéis añadir 1 punto a la reserva de Inercia del grupo.",
+    "Talent.backUpPlans.description2e": "Cada vez que tú o un aliado falléis una tarea (siempre que estéis presentes en la escena), puedes añadir 1 punto a la reserva de Inercia del grupo.",
 
     "Talent.bafflingBriefing": "Información desconcertante",
 
@@ -2679,7 +2679,7 @@
     "Talent.planOfAction.description2e": "Siempre que un aliado tenga éxito en una tarea que haya sido posible, o haya tenido una Dificultad reducida, gracias a un rasgo que hayas creado, y ese rasgo represente un plan, estrategia o curso de acción, genera 2 puntos de Inercía adicionales. Esta Inercia adicional no se puede guardar.",
 
     "Talent.pointDefenseSystem": "Sistema de Defensa de Puntos",
-    "Talent.polarizedHullPlatingSpecialRule": "Revestimiento de casco polarizado",
+    "Talent.polarizedHullPlatingSpecialRule": "Revestimiento del casco polarizado",
     "Talent.positiveReinforcement": "Refuerzo positivo",
 
     "Talent.positiveReinforcement.description2e": "Una vez por misión, puedes intentar una tarea de Presencia + Medicina con una Dificultad de 3, mientras proporcionas tratamiento emocional o mental a otro personaje. El éxito crea un rasgo de carácter para tu paciente que dura hasta el final de la misión: Confianza Aumentada. Además de los efectos normales del rasgo, ese personaje puede volver a tirar su reserva de dados, como si hubiera gastado Determinación, una vez antes del final de la misión. Si la tarea en la que el personaje utilizó su repetición de tirada falla, pierde el rasgo creado por este talento.",
@@ -2875,7 +2875,7 @@
     "Talent.technicalExpertise": "Pericia técnica",
 
     "Talent.technicalExpertise.description": "Cuando emprendas una Tarea con la ayuda de los ordenadores o sensores de la nave, puedes repetir 1d20 (que puede ser el dado de la nave).",
-    "Talent.technicalExpertise.description2e": "Cuando emprendas una Tarea con la ayuda de los ordenadores o sensores de la nave, puedes repetir 1d20 (que puede ser el dado de la nave).",
+    "Talent.technicalExpertise.description2e": "Cuando emprendas una Tarea con la ayuda de los ordenadores o sensores de la nave, puedes repetir 1d20 de tu reserva o puedes permitir a la nave repetir su d20.",
 
     "Talent.testingATheory": "Probar una hipótesis",
 

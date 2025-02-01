@@ -6,17 +6,16 @@ import { TALENT_NAME_FLIGHT, TalentModel } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { Creature } from "./creature";
 import { creatureNameGenerator } from "./creatureNameGenerator";
-import { CreatureSizeHelper, generateRandomCreatureSize } from "./creatureSize";
+import { CreatureSize, CreatureSizeHelper, generateRandomCreatureSize } from "./creatureSize";
 import { generateRandomBasicCreatureTalent, generateRandomCreatureDietTalent, generateRandomCreatureTypeTalent } from "./creatureTalents";
 import { createRandomCreatureType, CreatureType, CreatureTypeHelper } from "./creatureType";
-import { createRandomDiet, DietTypeHelper } from "./diet";
+import { createRandomDiet, DietType, DietTypeHelper } from "./diet";
 import { createRandomHabitat, Habitat, HabitatHelper } from "./habitat";
-import { generateRandomLocomotionType } from "./locomotion";
+import { generateRandomLocomotionType, LocomotionType } from "./locomotion";
 import { generateRandomNaturalAttacks } from "./naturalAttacks";
 
 export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: CreatureType) => {
     const result = new Creature();
-    result.name = creatureNameGenerator();
     result.version = isSecondEdition() ? 2 : 1;
     result.era = era;
 
@@ -42,8 +41,6 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
 
     if (result.creatureType?.id === CreatureType.Bird && D20.roll() <= 15) {
         result.additionalTalents.push(new SelectedTalent(TALENT_NAME_FLIGHT));
-    } else if (result.creatureType?.id === CreatureType.Bird) {
-        result.additionalTraits.push("Flightless");
     }
 
     addAllTalents(result, generateRandomBasicCreatureTalent());
@@ -53,6 +50,10 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
     if (result.creatureType) {
         addAllTalents(result, generateRandomCreatureTypeTalent(result.creatureType.id));
     }
+
+    result.form = deriveForm(result);
+    result.name = creatureNameGenerator() + ((result.form != "Unique" && result.form !== undefined)
+        ? " " + result.form : "");
 
     return result;
 }
@@ -102,4 +103,387 @@ const determineXIfNecessary = (talent: TalentModel) => {
     } else {
         return undefined;
     }
+}
+
+const deriveForm = (creature: Creature) => {
+
+    let result = "Unique";
+
+    if (D20.roll() >= 8) {
+        switch (creature.creatureType?.id) {
+            case CreatureType.Bird: {
+                const roll = D20.roll();
+
+                if (creature.diet?.id === DietType.Carnivore) {
+                    if (creature.size?.id === CreatureSize.Small) {
+                        if (roll < 12) {
+                            result = "Kestrel";
+                        } else {
+                            result = "Falcon";
+                        }
+                    } else if (creature.size?.id === CreatureSize.Average) {
+                        if (roll < 4) {
+                            result = "Vulture";
+                        } else if (roll < 8) {
+                            result = "Condor";
+                        } else if (roll < 12) {
+                            result = "Eagle";
+                        } else if (roll < 16) {
+                            result = "Owl";
+                        } else {
+                            result = "Hawk";
+                        }
+                    } else if (creature.size?.id === CreatureSize.Large
+                            || creature.size?.id === CreatureSize.Huge) {
+                        if (creature.isFlightlessBird) {
+                            result = "Titanis";
+                        } else if (roll < 6) {
+                            result = "Vulture";
+                        } else if (roll < 12) {
+                            result = "Eagle";
+                        } else {
+                            result = "Hawk";
+                        }
+                    }
+                } else if (creature.diet?.id === DietType.Omnivore) {
+                    if (creature.size?.id === CreatureSize.Small) {
+                        if (roll < 4) {
+                            result = "Duck";
+                        } else if (roll < 6) {
+                            result = "Gull";
+                        } else if (roll < 8) {
+                            result = "Crow";
+                        } else if (roll < 12) {
+                            result = "Blackbird";
+                        } else if (roll < 14) {
+                            result = "Crane";
+                        } else if (roll < 16) {
+                            result = "Thrush";
+                        } else if (roll < 18) {
+                            result = "Chicken";
+                        } else {
+                            result = "Pheasant";
+                        }
+                    }
+                } else {
+                    if (creature.size?.id === CreatureSize.Small) {
+                        if (creature.isFlightlessBird) {
+                            result = "Penguin";
+                        } else if (roll < 2) {
+                            result = "Flamingo";
+                        } else if (roll < 4) {
+                            result = "Peafowl";
+                        } else if (roll < 6) {
+                            result = "Sparrow";
+                        } else if (roll < 8) {
+                            result = "Ibis";
+                        } else if (roll < 10) {
+                            result = "Cormorant";
+                        } else if (roll < 12) {
+                            result = "Partridge";
+                        } else if (roll < 16) {
+                            result = "Parrot";
+                        } else if (roll < 18) {
+                            result = "Budgee";
+                        } else {
+                            result = "Toucan";
+                        }
+                    } else if (creature.size?.id === CreatureSize.Average
+                            || creature.size?.id === CreatureSize.Huge) {
+
+                        if (creature.isFlightlessBird) {
+                            if (roll < 5) {
+                                result = "Osterich";
+                            } else if (roll < 8) {
+                                result = "Emu";
+                            } else if (roll < 13) {
+                                result = "Moa";
+                            } else {
+                                result = "Dodo";
+                            }
+                        } else {
+                            if (roll < 5) {
+                                result = "Turkey";
+                            } else if (roll < 9) {
+                                result = "Pelican";
+                            } else {
+                                result = "Swan";
+                            }
+                        }
+                    }
+                }
+            }
+            break;
+            case CreatureType.Mammal: {
+                const roll = D20.roll();
+                if (creature.hasTalent(TALENT_NAME_FLIGHT)) {
+                    if (roll < 14) {
+                        result = "Bat";
+                    } else if (roll < 18) {
+                        result = "Flying Squirrel";
+                    } else if (roll === 19) {
+                        result = "Sifaka";
+                    } else {
+                        result = "Anomalure";
+                    }
+                } else if (creature.size?.id === CreatureSize.Small) {
+                    if (creature.isFourOrMoreLegged && creature.diet?.id === DietType.Carnivore) {
+                        if (roll < 2) {
+                            result = "Otter";
+                        } else if (roll < 4) {
+                            result = "Fox";
+                        } else if (roll < 6) {
+                            result = "Wolverine";
+                        } else if (roll < 8) {
+                            result = "Badger";
+                        } else if (roll < 12) {
+                            result = "Mink";
+                        } else if (roll < 14) {
+                            result = "Weasel";
+                        } else if (roll < 16) {
+                            result = "Raccoon";
+                        } else {
+                            result = "Cat";
+                        }
+                    } else if (creature.isFourOrMoreLegged) {
+                        if (roll < 2) {
+                            result = "Possom";
+                        } else if (roll < 4) {
+                            result = "Armadillo";
+                        } else if (roll < 4) {
+                            result = "Hare";
+                        } else if (roll < 6) {
+                            result = "Mole";
+                        } else if (roll < 12) {
+                            result = "Beaver";
+                        } else if (roll < 14) {
+                            result = "Squirrel";
+                        } else if (roll < 16) {
+                            result = "Lemur";
+                        } else {
+                            result = "Rodent";
+                        }
+                    } else if (creature.isLegged) {
+                        if (roll < 14) {
+                            result = "Simian";
+                        } else if (roll < 18) {
+                            result = "Pangolin";
+                        } else if (roll === 19) {
+                            result = "Sloth";
+                        } else {
+                            result = "Kangaroo";
+                        }
+                    }
+                } else if (creature.size?.id === CreatureSize.Average) {
+                    if (creature.isFlippered) {
+                        if (creature.habitat?.id === Habitat.Ocean
+                                || creature.habitat?.id === Habitat.River) {
+                            result = "Dolphin";
+                        } else {
+                            result = "Seal";
+
+                        }
+                    } else if (creature.isFourOrMoreLegged && creature.diet?.id === DietType.Carnivore) {
+                        if (roll < 8) {
+                            result = "Wolf";
+                        } else if (roll < 12) {
+                            result = "Hyena";
+                        } else if (roll < 15) {
+                            result = "Coyote";
+                        } else if (roll < 17) {
+                            result = "Pig";
+                        } else {
+                            result = "Panther";
+                        }
+                    } else if (creature.isFourOrMoreLegged) {
+                        if (roll < 7) {
+                            result = "Gazelle";
+                        } else if (roll < 10) {
+                            result = "Tapir";
+                        } else if (roll < 14) {
+                            result = "Sheep";
+                        } else if (roll < 17) {
+                            result = "Goat";
+                        } else {
+                            result = "Deer";
+                        }
+                    } else if (creature.isLegged) {
+                        result = "Simian";
+                    }
+                } else if (creature.size?.id === CreatureSize.Large) {
+                    if (creature.isFlippered) {
+                        if (creature.habitat?.id === Habitat.Ocean
+                                || creature.habitat?.id === Habitat.River) {
+                            result = "Shark";
+                        } else if (roll < 8) {
+                            result = "Sealion";
+                        } else {
+                            result = "Walrus";
+                        }
+                    } else if (creature.isFourOrMoreLegged && creature.diet?.id === DietType.Carnivore) {
+                        if (roll < 8) {
+                            result = "Bear";
+                        } else if (roll < 12) {
+                            result = "Boar";
+                        } else if (roll < 16) {
+                            result = "Tiger";
+                        } else {
+                            result = "Lion";
+                        }
+                    } else if (creature.isFourOrMoreLegged) {
+                        if (roll < 8) {
+                            result = "Horse";
+                        } else if (roll < 12) {
+                            result = "Zebra";
+                        } else if (roll < 14) {
+                            result = "Elk";
+                        } else if (roll < 16) {
+                            result = "Bison";
+                        } else if (roll < 18) {
+                            result = "Moose";
+                        } else {
+                            result = "Giraffe";
+                        }
+                    } else if (creature.isLegged) {
+                        result = "Ape";
+                    }
+                } else if (creature.size?.id === CreatureSize.Huge) {
+                    if (creature.isFlippered || creature.habitat?.id === Habitat.Ocean
+                        || creature.habitat?.id === Habitat.River) {
+                        result = "Whale";
+                    } else if (creature.isFourOrMoreLegged && creature.diet?.id === DietType.Carnivore) {
+                        result = "Bear";
+                    } else if (creature.isFourOrMoreLegged) {
+                        if (roll < 4) {
+                            result = "Mammoth";
+                        } else if (roll < 10) {
+                            result = "Elephant";
+                        } else if (roll < 14) {
+                            result = "Rhinoceros";
+                        } else {
+                            result = "Hippopotamus";
+                        }
+                    } else if (creature.isLegged) {
+                        result = "Ape";
+                    }
+                }
+            }
+            break;
+            case CreatureType.Invertebrate: {
+                const roll = D20.roll();
+                if (creature.isSlithering) {
+                    result = "Worm";
+                } else if (creature.habitat?.id === Habitat.Ocean
+                        || creature.habitat?.id === Habitat.River) {
+                    if (creature.isTentacled) {
+                        result = "Squid";
+                    } else if (roll < 10) {
+                        result = "Crab";
+                    } else if (roll < 15) {
+                        result = "Lobster";
+                    } else {
+                        result = "Trilobite";
+                    }
+                } else if (creature.isFourOrMoreLegged) {
+                    if (roll < 4) {
+                        result = "Spider";
+                    } else if (roll < 8) {
+                        result = "Roach";
+                    } else if (roll < 12) {
+                        result = "Scarab";
+                    } else if (roll < 16) {
+                        result = "Scorpion";
+                    } else {
+                        result = "Mantis";
+                    }
+                } else if (creature.isLegged) {
+                    result = "Mantis";
+                } else {
+                    result = "Gasbag";
+                }
+            }
+            break;
+            case CreatureType.Amphibian: {
+                const roll = D20.roll();
+
+                if (creature.isSlithering) {
+                    if (roll < 10) {
+                        result = "Worm";
+                    } else {
+                        result = "Caecilian";
+                    }
+                } else if (creature.size?.id === CreatureSize.Small
+                        || creature.size?.id === CreatureSize.Average) {
+                    if (roll < 4) {
+                        result = "Frog";
+                    } else if (roll < 8) {
+                        result = "Newt";
+                    } else if (roll < 16) {
+                        result = "Salamander";
+                    } else {
+                        result = "Toad";
+                    }
+                } else {
+                    result = "Frog";
+                }
+            }
+            break;
+            case CreatureType.Plant: {
+                const roll = D20.roll();
+                if (creature.size?.id === CreatureSize.Small
+                        || creature.size?.id === CreatureSize.Average) {
+                    if (roll < 2) {
+                        result = "Fungus";
+                    } else if (roll < 4) {
+                        result = "Grass";
+                    } else if (roll < 6) {
+                        result = "Moss";
+                    } else if (roll < 8) {
+                        result = "Wheat";
+                    } else if (roll < 12) {
+                        result = "Vines";
+                    } else if (roll < 14) {
+                        result = "Flower";
+                    } else if (roll < 16) {
+                        result = "Lichen";
+                    } else if (roll < 18) {
+                        result = "Tuber";
+                    } else {
+                        result = "Tree";
+                    }
+                } else {
+                    result = "Tree";
+                }
+            }
+            break;
+            case CreatureType.Reptile: {
+                const roll = D20.roll();
+                if (creature.isSlithering) {
+                    result = "Snake";
+                } else if (creature.size?.id === CreatureSize.Gigantic) {
+                    if (roll < 4) {
+                        result = "Ankylosaurus";
+                    } else if (roll < 8) {
+                        result = "Brachiosaurus";
+                    } else if (roll < 12) {
+                        result = "Tyrannosaurus";
+                    } else if (roll < 12) {
+                        result = "Stegosaurus";
+                    } else {
+                        result = "Dinosaur";
+                    }
+                } else if (roll < 5) {
+                    result = creature.isFlippered ? "Turtle" : "Tortoise";
+                } else if (roll < 10) {
+                    result = "Gator";
+                } else if (roll < 15) {
+                    result = "Lizard";
+                } else {
+                    result = "Velociraptor";
+                }
+        }
+            break;
+        }
+    }
+    return result;
 }

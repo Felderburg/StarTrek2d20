@@ -35,6 +35,9 @@ const CreatureView:React.FC<ICreatureViewProperties> = ({creature}) => {
             <div className="row" style={{alignItems: "baseline"}}>
                 <div className="col-md-2 view-field-label pb-2">{t('Construct.creature.locomotion')}:</div>
                 <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{creature?.locomotion.map(l => l.description).join(", ") ?? ""}</div></div>
+
+                <div className="col-md-2 view-field-label pb-2">{t('Construct.creature.form')}:</div>
+                <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{creature?.form ?? ""}</div></div>
             </div>
 
             <div className="row" style={{alignItems: "baseline"}}>
