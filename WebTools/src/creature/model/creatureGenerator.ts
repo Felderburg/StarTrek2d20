@@ -11,7 +11,7 @@ import { generateRandomBasicCreatureTalent, generateRandomCreatureDietTalent, ge
 import { createRandomCreatureType, CreatureType, CreatureTypeHelper } from "./creatureType";
 import { createRandomDiet, DietType, DietTypeHelper } from "./diet";
 import { createRandomHabitat, Habitat, HabitatHelper } from "./habitat";
-import { generateRandomLocomotionType, LocomotionType } from "./locomotion";
+import { generateRandomLocomotionType } from "./locomotion";
 import { generateRandomNaturalAttacks } from "./naturalAttacks";
 
 export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: CreatureType) => {
@@ -52,7 +52,7 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
     }
 
     result.form = deriveForm(result);
-    result.name = creatureNameGenerator() + ((result.form != "Unique" && result.form !== undefined)
+    result.name = creatureNameGenerator() + ((result.form !== "Unique" && result.form !== undefined)
         ? " " + result.form : "");
 
     return result;
