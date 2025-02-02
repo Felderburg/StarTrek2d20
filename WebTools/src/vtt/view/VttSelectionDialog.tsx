@@ -5,7 +5,7 @@ import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { ModalControl } from "../../components/modal";
-import { FoundryVttExporter, FoundryVttExporterOptions } from "../foundryVttExporter";
+import { FoundryVttExporter } from "../foundryVttExporter";
 import { VttType, VttTypes } from "../vttType";
 import { FantasyGroupsVttExporter } from "../fantasyGroundsVttExport";
 import { Roll20VttExporter } from "../roll20VttExporter";
@@ -102,7 +102,7 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
     }
 
     exportCharacterToFoundryVtt(character: Character) {
-        const json = FoundryVttExporter.instance.exportCharacter(character, new FoundryVttExporterOptions(true));
+        const json = FoundryVttExporter.instance.exportCharacter(character);
         const jsonBytes = new TextEncoder().encode(JSON.stringify(json, null, 4));
 
         const escaped = this.sanitizeName(character.name, "sta-character");
