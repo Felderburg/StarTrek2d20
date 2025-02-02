@@ -4605,6 +4605,12 @@ export class Talents {
             1,
             "Special Rule", true),
         new TalentModel(
+            "Entangling Vines (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
             "Extraordinary Attribute X (Special Rule, Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
@@ -4749,6 +4755,12 @@ export class Talents {
             1,
             "Special Rule", true),
         new TalentModel(
+            "Pheromones (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
             "Ram (Special Rule, Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
@@ -4768,6 +4780,12 @@ export class Talents {
             "Special Rule", true),
         new TalentModel(
             "Spiked Tail (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Spore Attack (Special Rule, Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,

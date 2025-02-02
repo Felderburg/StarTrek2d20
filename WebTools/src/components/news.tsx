@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250202</b>
+            <ul>
+                <li>
+                    A few more tweaks to the Foundry VTT exporter.
+                </li>
+            </ul>
             <b>v1.250127</b>
             <ul>
                 <li>
@@ -248,19 +254,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
             <b>v1.240903</b>
             <ul>
                 <li>Minor updates and bug fixes.</li>
-            </ul>
-            <b>v1.240902</b>
-            <ul>
-                <li>Preliminary support for 2nd-edition starships. There's still a bit of work to do on
-                    weapons and mission profiles, and I don't yet support Service Records.
-                </li>
-            </ul>
-            <b>v1.240831</b>
-            <ul>
-                <li>Support for the new character sheet. I've had to make some tweaks to the original
-                    character sheet, both to support internationalization and to deal with some features
-                    (like rich text) that my PDF library does not support.
-                </li>
             </ul>
 
             <div className="text-center">

@@ -556,6 +556,9 @@ class Marshaller {
         if (t.x != null) {
             talent["x"] = t.x;
         }
+        if (t.additionalInformation != null) {
+            talent["additionalInformation"] = t.additionalInformation;
+        }
         return talent;
     }
 
@@ -1526,6 +1529,10 @@ class Marshaller {
             }
             if (t["x"] != null) {
                 selectedTalent.x = t["x"];
+            }
+
+            if (t["additionalInformation"] != null) {
+                selectedTalent.additionalInformation = t["additionalInformation"];
             }
 
             return selectedTalent;

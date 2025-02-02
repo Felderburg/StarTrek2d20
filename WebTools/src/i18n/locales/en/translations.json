@@ -433,7 +433,7 @@
     "SupportingCharacter.whatPurpose": "Determine what purpose the Supporting Character will fill. Are they an engineer, or a doctor, or a scientist, or a security officer?",
     "SupportingCharacter.speciesAndAttributes": "Species & Attributes",
     "SupportingCharacter.speciesAndAttributesInstruction": "Assign Attribute scores and choose the character's species. The chosen species will affect the final Attribute scores. Select two different values to swap them.",
-    "SupportingCharacter.supervisoryNote": "Supervisory supporting characters represent department heads or, in the caes of _Lower Decks_ campaigns, senior officers who outrank the players.",
+    "SupportingCharacter.supervisoryNote": "Supervisory supporting characters represent department heads or, in the case of _Lower Decks_ campaigns, senior officers who outrank the players.",
     "SupportingCharacter.disciplineInstruction": "Assign the character's Disciplines. The highest value should match up with the department/purpose of the character. Select two different values to swap them.",
     "SupportingCharacter.focusInstruction": "Choose three Focuses for the character. At least one should reflect the department/purpose of the character.",
     "SupportingCharacter.additionalFocusInstruction": "Supervisory characters get an additional focus.",
@@ -2789,6 +2789,10 @@
 
     "Talent.engineeringScienceAffinityUnofficial.description": "Napeans have an affinity for the Engineering & Science Disciplines. Whenever, you use these you gain a bonus 1d20 for your rolls. ",
 
+    "Talent.entanglingVinesSpecialRuleCreature": "Entangling Vines",
+
+    "Talent.entanglingVinesSpecialRuleCreature.description2e": "The creature is able to lash out with vines or roots against targets within **Reach**. A successful attack will pin the target and cause a Prone trait to be applied. Characters can attempt to break free with a **Fitness + Security** roll, or another type of attack.",
+
     "Talent.expandedEmergencyMedicalFacilities": "Expanded Emergency Medical Facilities",
 
     "Talent.expandedEmergencyMedicalFacilities.description": "Whenever a character attempts a task to identify specific illnesses or injuries, or to determine the severity of a patient’s condition, they may diagnose a number of patients equal to the ship’s Medical rating. If the character also has the Triage talent, they may diagnose two additional patients by spending 1 Momentum (Repeatable).\n\nDuring an extended task to process and treat many sick or injured patients, a character aboard the ship increases their Impact by 1.",
@@ -3302,6 +3306,10 @@
 
     "Talent.pheromones.description": "You are capable of emitting pheromones which can render Orion males (and others) suggestible. These pheromones affect several other species—including Humans—in a similar way. When dealing with males of a species affected by these pheromones, you gain 2 bonus Momentum on all tasks to persuade or command them. However, female members of species affected often suffer headaches because of the pheromones, increasing the complication range of tasks to interact with them by 1. Vulcans are known to be unaffected, while Denobulans experience a different effect and become drowsy. The gamemaster’s discretion applies as to which species are affected, which are immune, and which suffer unexpected effects, but most species are affected similarly to Humans and Orions.",
 
+    "Talent.pheromonesSpecialRuleCreature": "Pheromones",
+
+    "Talent.pheromonesSpecialRuleCreature.description2e": "The creature excretes a natural aphrodisiac pheromone. The creature may spend a turn emitting these pheromones around them to increase the Difficulty towards attacking them by 1.",
+
     "Talent.piercingSalvo": "Piercing Salvo",
 
     "Talent.piercingSalvo.description2e": "When you make a Torpedo Attack, you may spend 2 Momentum (Immediate) to add the Piercing quality.",
@@ -3553,6 +3561,10 @@
 
     "Talent.spiritOfDiscovery.description": "You have the drive, spirit, and courage to voyage into the unknown. You may spend one Determination to add three points to the group Momentum pool. The normal conditions for spending Determination still apply.",
     "Talent.spiritOfDiscovery.description2e": "You have an additional option you may pick when you spend Determination: you may immediately add 3 Momentum to the group pool.",
+
+    "Talent.sporeAttackSpecialRuleCreature": "Spore Attack",
+
+    "Talent.sporeAttackSpecialRuleCreature.description2e": "The creature can unleash a cloud of toxic spores (affecting any characters in the same zone). The gamemaster can determine the effect of the toxin.",
 
     "Talent.starshipExpert": "Starship Expert",
 

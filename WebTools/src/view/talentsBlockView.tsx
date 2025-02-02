@@ -123,21 +123,16 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
         return (<>
             <Header level={2} className="mt-4">{t('Construct.other.specialRules')}</Header>
             {creature?.getDistinctTalentNameList().map((tName, i) => {
-                let t = TalentsHelper.getTalent(tName);
-                let name = t.localizedDisplayName;
-                if (t.isXQualified) {
-                    const talents = creature.talents.filter(t => t.talent === tName);
-                    if (talents.length) {
-                        x = talents[0].x;
-                        if (x != null) {
-                            let xLocation = name.lastIndexOf(" X");
-                            name = name.substring(0, xLocation + 1) + x + name.substring(xLocation + 2)
-                        }
-                    }
+                const temp = creature.talents.filter(t => t.talent === tName);
+                if (temp.length) {
+                    const selectedTalent = temp[0];
+                    return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
+                        {renderDescription(selectedTalent.displayName, TalentsHelper.getTalent(selectedTalent.talent), x)}
+                    </div>);
+                } else {
+                    return undefined;
                 }
-                return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
-                    {renderDescription(name, t, x)}
-                </div>);
+
             })}
         </>);
     }

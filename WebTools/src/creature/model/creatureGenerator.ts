@@ -1,8 +1,7 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
-import { AttributesHelper } from "../../helpers/attributes";
 import { Era } from "../../helpers/eras";
-import { TALENT_NAME_FLIGHT, TalentModel } from "../../helpers/talents";
+import { TALENT_NAME_FLIGHT } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { Creature } from "./creature";
 import { creatureNameGenerator } from "./creatureNameGenerator";
@@ -43,12 +42,12 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
         result.additionalTalents.push(new SelectedTalent(TALENT_NAME_FLIGHT));
     }
 
-    addAllTalents(result, generateRandomBasicCreatureTalent());
+    addAllTalentSelection(result, generateRandomBasicCreatureTalent());
     if (result.diet) {
-        addAllTalents(result, generateRandomCreatureDietTalent(result.diet.id));
+        addAllTalentSelection(result, generateRandomCreatureDietTalent(result.diet.id));
     }
     if (result.creatureType) {
-        addAllTalents(result, generateRandomCreatureTypeTalent(result.creatureType.id));
+        addAllTalentSelection(result, generateRandomCreatureTypeTalent(result.creatureType.id));
     }
 
     result.form = deriveForm(result);
@@ -58,51 +57,13 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
     return result;
 }
 
-const addAllTalents = (creature: Creature, talents: TalentModel[]) => {
+const addAllTalentSelection = (creature: Creature, talents: SelectedTalent[]) => {
     talents.forEach(t => {
-        const selectedTalent = new SelectedTalent(t.name);
-        selectedTalent.x = determineXIfNecessary(t);
-        selectedTalent.attribute = determineAttributeIfNecessary(t);
-        if (!creature.hasTalent(t.name)) {
-            creature.additionalTalents.push(selectedTalent);
+        if (!creature.hasTalent(t.talent)) {
+            creature.additionalTalents.push(t);
         }
     });
 
-}
-
-const determineAttributeIfNecessary = (talent: TalentModel) => {
-    if (talent.nameWithoutBracketedPart === "Enhanced Attribute X") {
-        const attributes = AttributesHelper.getAllAttributes();
-        return attributes[Math.floor(Math.random() * attributes.length)];
-    } else {
-        return undefined;
-    }
-}
-
-const determineXIfNecessary = (talent: TalentModel) => {
-    if (talent.isXQualified) {
-        if (talent.nameWithoutBracketedPart === "Initiative X") {
-            const roll = D20.roll();
-            if (roll >= 1 && roll <= 15) {
-                return 2;
-            } else if (roll >= 16 && roll <= 19) {
-                return 3;
-            } else if (roll >= 20) {
-                return 4;
-            }
-        } else {
-            const roll = D20.roll();
-            if (roll >= 1 && roll <= 12) {
-                return 1;
-            } else if (roll >= 13 && roll <= 18) {
-                return 2;
-            } else if (roll >= 19) {
-                return 3;
-            }
-        }
-    } else {
-        return undefined;
-    }
 }
 
 const deriveForm = (creature: Creature) => {
