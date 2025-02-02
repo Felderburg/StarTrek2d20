@@ -3,7 +3,7 @@ import { Species } from "./speciesEnum";
 import { makeKey } from "../common/translationKey";
 
 export class SpeciesAbility {
-    private readonly species: Species;
+    readonly species: Species;
     readonly talentNames: string[];
 
     constructor(species: Species, talentNames: string[] = []) {
