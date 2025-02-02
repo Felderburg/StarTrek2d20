@@ -89,6 +89,8 @@ class SpeciesRestrictions {
             return [HeadType.SquareJawed, HeadType.RoundedAverage ];
         } else if (this.isRubberHeaded(species) && species !== Species.Benzite) {
             return [HeadType.RoundedAverage ];
+        } else if (species === Species.Zakdorn) {
+            return [HeadType.RoundedNarrow, HeadType.SofterNarrow, HeadType.PointedDelicate, HeadType.Elfin ];
         } else {
             return [ HeadType.AverageAngular,
                 HeadType.SquareJawed,
