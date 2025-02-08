@@ -1,6 +1,6 @@
 import { Base64 } from 'js-base64';
 import pako from 'pako';
-import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from '../common/character';
+import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, ShipTalentDetailSelection, SimpleStats, Starship } from '../common/starship';
@@ -55,6 +55,7 @@ class Marshaller {
             "era": Era[creature.era],
             "name": creature.name,
             "version": creature.version,
+            "departments": this.toDepartmentObject(creature.departments)
         };
 
         if (creature.habitat) {
@@ -192,10 +193,10 @@ class Marshaller {
             sheet["jobAssignment"] = character.jobAssignment;
         }
 
-        if (character.rank) {
+        if (character._rank) {
             sheet["rank"] = {
-                name: character.rank?.name,
-                id: character.rank?.id
+                name: character._rank?.name,
+                id: character._rank?.id
             }
         }
 
@@ -250,19 +251,28 @@ class Marshaller {
     encodeImprovements(character: Character) {
         if (character.improvements?.length) {
             let json = character.improvements?.map(i => {
-                let result = { type: "supporting" };
-                if (i.value != null) {
-                    result["value"] = i.value;
-                } else if (i.focus != null) {
-                    result["focus"] = i.focus;
-                } else if (i.attribute != null) {
-                    result["attribute"] = Attribute[i.attribute];
-                } else if (i.discipline != null) {
-                    result["discipline"] = Skill[i.discipline];
-                } else if (i.talent != null) {
-                    result["talent"] = this.talentToJson(i.talent);
+                if (i instanceof SupportingImrovementStep) {
+                    let result = { type: "supporting" };
+                    if (i.value != null) {
+                        result["value"] = i.value;
+                    } else if (i.focus != null) {
+                        result["focus"] = i.focus;
+                    } else if (i.attribute != null) {
+                        result["attribute"] = Attribute[i.attribute];
+                    } else if (i.discipline != null) {
+                        result["discipline"] = Skill[i.discipline];
+                    } else if (i.talent != null) {
+                        result["talent"] = this.talentToJson(i.talent);
+                    }
+                    return result;
+                } else if (i instanceof Promotion) {
+                    let result = { type: "promotion" };
+                    result["rank"] = {
+                        name: i.rank.name,
+                        id: i.rank.id
+                    }
+                    return result;
                 }
-                return result;
             });
             return json;
         } else {
@@ -379,10 +389,10 @@ class Marshaller {
             });
         }
 
-        if (character.rank) {
+        if (character._rank) {
             sheet["rank"] = {
-                name: character.rank?.name,
-                id: character.rank?.id
+                name: character._rank?.name,
+                id: character._rank?.id
             }
         }
 
@@ -963,7 +973,6 @@ class Marshaller {
     }
 
     decodeCreature(json: any) {
-        console.log(json);
         let result = new Creature();
         result.stereotype = Stereotype.Creature;
         if (json.name?.length) {
@@ -1026,6 +1035,12 @@ class Marshaller {
             result.form = json.form;
         }
 
+        if (json.departments) {
+            SkillsHelper.getSkills().forEach(s =>
+                result.departments[s] = json.departments[Skill[s]]
+            );
+        }
+
         if (json.traits?.length) {
             result.additionalTraits = [...json.traits];
         }
@@ -1034,6 +1049,7 @@ class Marshaller {
     }
 
     decodeCharacter(json: any) {
+        console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;
@@ -1057,9 +1073,9 @@ class Marshaller {
         let rank = json.rank;
         if (rank) {
             if (typeof rank === "string") {
-                result.rank = new CharacterRank(rank as string);
+                result._rank = new CharacterRank(rank as string);
             } else if (rank.name) {
-                result.rank = new CharacterRank(rank.name, rank.id);
+                result._rank = new CharacterRank(rank.name, rank.id);
             }
         }
         if (json.version) {
@@ -1304,7 +1320,7 @@ class Marshaller {
                 }
             }
         } else {
-            let rank = result.rank == null ? null : RanksHelper.instance().getRankByName(result.rank?.name);
+            let rank = result._rank == null ? null : RanksHelper.instance().getRankByName(result._rank?.name);
             if (rank && result.stereotype === Stereotype.Npc) {
                 if (result.npcGenerationStep == null) {
                     result.npcGenerationStep = new NpcGenerationStep();
@@ -1482,6 +1498,7 @@ class Marshaller {
             result.improvements = this.decodeImprovements(json.improvements);
         }
 
+        console.log(result);
         return result;
     }
 
@@ -1502,6 +1519,10 @@ class Marshaller {
                         improvement.talent = this.hydrateTalent(j["talent"]);
                     }
                     return improvement;
+                } else if (j["type"] === "promotion") {
+                    const jsonRank = j["rank"];
+                    const rank = new CharacterRank(jsonRank["name"], jsonRank["id"]);
+                    return new Promotion(rank);
                 } else {
                     return undefined;
                 }

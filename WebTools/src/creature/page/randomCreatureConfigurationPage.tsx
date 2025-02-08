@@ -13,7 +13,7 @@ import { CreatureGenerator } from "../model/creatureGenerator";
 import { connect } from "react-redux";
 import { Era } from "../../helpers/eras";
 import { marshaller } from "../../helpers/marshaller";
-import { CreatureType, CreatureTypeHelper } from "../model/creatureType";
+import { CreatureType, CreatureTypeHelper, habitatsByCreatureType } from "../model/creatureType";
 
 interface IRandomCreatureConfigurationProperties {
     era: Era;
@@ -28,7 +28,10 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
 
     const getHabitatTypes = () => {
         let result = [ new DropDownElement("", t('RandomCreatureConfiguration.anyHabitat'))];
-        result.push(...HabitatHelper.instance.getTypes().map(h => new DropDownElement(h.id, h.localizedName)));
+        result.push(
+            ...HabitatHelper.instance.getTypes()
+            .filter(h => creatureType == null || habitatsByCreatureType(creatureType).includes(h.id))
+            .map(h => new DropDownElement(h.id, h.localizedName)));
         return result;
     }
 
@@ -43,6 +46,18 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
 
         const value = marshaller.encodeCreature(creature);
         window.open('/view?s=' + value, "_blank");
+    }
+
+    const selectCreatureType = (type: string|number) => {
+        if (type === "") {
+            setCreatureType(undefined);
+        } else {
+            const c = type as CreatureType;
+            setCreatureType(c);
+            if (habitat != null && !habitatsByCreatureType(c).includes(habitat)) {
+                setHabitat(undefined);
+            }
+        }
     }
 
     return (
@@ -82,7 +97,7 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
                                     <DropDownSelect
                                         items={getCreatureTypes()}
                                         defaultValue={ creatureType ?? "" }
-                                        onChange={(type) => setCreatureType(type === "" ? undefined : type as CreatureType)} />
+                                        onChange={selectCreatureType} />
                                 </div>
 
                             </div>

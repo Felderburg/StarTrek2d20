@@ -17,7 +17,7 @@ import { Dialog } from "../../components/dialog";
 import { ValueRandomTable } from "../../solo/table/valueRandomTable";
 import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
-import { modifySupportingCharacterAddImprovement } from "../../state/characterActions";
+import { modifyCharacterRank, modifySupportingCharacterAddImprovement } from "../../state/characterActions";
 import { Attribute } from "../../helpers/attributes";
 import { SimpleAttributeSelector } from "../../components/simpleAttributeSelector";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
@@ -29,6 +29,9 @@ import { TalentsHelper } from "../../helpers/talents";
 import { TalentDescription } from "../../components/talentDescription";
 import { ModalControl } from "../../components/modal";
 import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
+import { CharacterRank, Promotion, SupportingImrovementStep } from "../../common/character";
+import { Rank, RanksHelper } from "../../helpers/ranks";
+import { isEnlistedRank } from "../../token/model/rankHelper";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -42,6 +45,8 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const [departmentSelection, setDepartmentSelection] = useState<Skill>();
     const [focusSelection, setFocusSelection] = useState<string>("");
     const [talentSelection, setTalentSelection] = useState<string>(null);
+    const [ rank, setRank ] = useState<Rank|undefined>(character?.rank?.id);
+    const [ rankName, setRankName ] = useState<string|undefined>(character?.rank?.name);
     const navigate = useNavigate();
 
     const onNextPage = () => {
@@ -64,15 +69,17 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const existingImprovementCountByType = () => {
         switch (modificationType) {
         case SupportingCharacterModificationType.AdditionalAttribute:
-            return character.improvements?.filter(i => i.attribute != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.attribute != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalDepartment:
-            return character.improvements?.filter(i => i.discipline != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.discipline != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalFocus:
-            return character.improvements?.filter(i => i.focus != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.focus != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalValue:
-            return character.improvements?.filter(i => i.value != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.value != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalTalent:
-            return character.improvements?.filter(i => i.talent != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.talent != null)?.length ?? 0
+        case SupportingCharacterModificationType.Promotion:
+            return character.improvements?.filter(i => i instanceof Promotion)?.length ?? 0
         }
     }
 
@@ -110,6 +117,13 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                 Dialog.show("Please select a department");
             } else {
                 store.dispatch(modifySupportingCharacterAddImprovement(modificationType, departmentSelection));
+                onNextPage();
+            }
+        } else if (modificationType === SupportingCharacterModificationType.Promotion) {
+            if (rank === character.rank?.id) {
+                Dialog.show("Please select a new rank");
+            } else {
+                store.dispatch(modifyCharacterRank(new CharacterRank(rankName, rank)));
                 onNextPage();
             }
         }
@@ -165,6 +179,13 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
 
     const closeModal = () => {
         ModalControl.hide();
+    }
+
+    const getRanks = () => {
+        return RanksHelper.instance()
+            .getRanksByType(character.type, character.version)
+            .filter(r => (isEnlistedRank(character.rank.id) && isEnlistedRank(r.id)) || (!isEnlistedRank(character.rank.id) && !isEnlistedRank(r.id)))
+            .map(r => new DropDownElement(r.id, r.name));
     }
 
     const showTalentSelectionModal = () => {
@@ -240,6 +261,20 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                     <SimpleDepartmentSelector onSelectDepartment={(a) => setDepartmentSelection(a)} isChecked={(a) => departmentSelection === a} />
                 </div>
             </div>);
+        } else if (modificationType === SupportingCharacterModificationType.Promotion) {
+            return (<div className="row">
+                <div className="col-12 col-md-6">
+                    <Header level={2} className="my-4">{t('ModificationType.name.promotion')}</Header>
+                    <Markdown>{t('PromotionPage.instruction')}</Markdown>
+
+                    <DropDownSelect items={getRanks()} onChange={(id) => {
+                            let allRanks = RanksHelper.instance().getRanksByType(character.type, character.version);
+                            let rank = allRanks.filter(r => r.id === id)[0];
+                            setRank(rank.id);
+                            setRankName(rank.name);
+                        }} defaultValue={rank || ""}/>
+                </div>
+            </div>);
         }
     }
 
@@ -251,7 +286,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     }
 
     const dropDownItems = () => {
-        return [
+        const result = [
             new DropDownElement("", ""),
             new DropDownElement(SupportingCharacterModificationType.AdditionalAttribute, t('SupportingCharacterModificationType.additionalAttribute')),
             new DropDownElement(SupportingCharacterModificationType.AdditionalDepartment, t('SupportingCharacterModificationType.additionalDepartment')),
@@ -259,6 +294,10 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
             new DropDownElement(SupportingCharacterModificationType.AdditionalTalent, t('SupportingCharacterModificationType.additionalTalent')),
             new DropDownElement(SupportingCharacterModificationType.AdditionalValue, t('SupportingCharacterModificationType.additionalValue')),
         ];
+        if (character.rank != null) {
+            result.push(new DropDownElement(SupportingCharacterModificationType.Promotion, t('ModificationType.name.promotion')))
+        }
+        return result;
     }
 
     if (character == null) {

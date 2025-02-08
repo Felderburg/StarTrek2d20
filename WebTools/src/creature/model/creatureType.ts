@@ -1,5 +1,6 @@
 import { D20 } from "../../common/die";
-import { Habitat } from "./habitat";
+import { DietType } from "./diet";
+import { Habitat, HabitatHelper } from "./habitat";
 
 export enum CreatureType {
     Amphibian,
@@ -64,6 +65,53 @@ export class CreatureTypeHelper {
     }
 }
 
+export const habitatsByCreatureType = (creatureType: CreatureType) => {
+    switch (creatureType) {
+    case CreatureType.Invertebrate:
+        return [Habitat.Caves, Habitat.Desert, Habitat.Forest,
+            Habitat.Hills, Habitat.Jungle, Habitat.Mountains,
+            Habitat.Ocean, Habitat.Plains,
+            Habitat.River, Habitat.Space, Habitat.Swamp,
+            Habitat.UpperAtmosphere ];
+    case CreatureType.Reptile:
+        return [Habitat.Caves, Habitat.Desert, Habitat.Forest,
+            Habitat.Hills, Habitat.Jungle, Habitat.Mountains,
+            Habitat.Plains,
+            Habitat.River, Habitat.Space, Habitat.Swamp,
+            Habitat.UpperAtmosphere ];
+    case CreatureType.Amphibian:
+        return [Habitat.Caves, Habitat.Desert, Habitat.Forest,
+            Habitat.Hills, Habitat.Jungle, Habitat.Mountains,
+            Habitat.Plains,
+            Habitat.River, Habitat.Swamp ];
+    case CreatureType.Bird:
+        return [Habitat.Caves, Habitat.Desert, Habitat.Forest,
+            Habitat.Hills, Habitat.Jungle, Habitat.Mountains,
+            Habitat.Ocean, Habitat.Plains,
+            Habitat.River, Habitat.Swamp,
+            Habitat.UpperAtmosphere ];
+    case CreatureType.Energy:
+        return [Habitat.Caves, Habitat.Desert,
+            Habitat.Ocean,
+            Habitat.UpperAtmosphere ];
+    case CreatureType.Fish:
+        return [
+            Habitat.Ocean, Habitat.River, Habitat.Swamp ];
+    case CreatureType.Mammal:
+        return [Habitat.Caves, Habitat.Desert, Habitat.Forest,
+            Habitat.Hills, Habitat.Jungle, Habitat.Mountains,
+            Habitat.Ocean, Habitat.Plains,
+            Habitat.River, Habitat.Space, Habitat.Swamp,
+            Habitat.UpperAtmosphere ];
+    case CreatureType.Plant:
+        return [Habitat.Caves, Habitat.Desert, Habitat.Forest,
+            Habitat.Hills, Habitat.Jungle, Habitat.Mountains,
+            Habitat.Ocean, Habitat.Plains,
+            Habitat.River, Habitat.Swamp ];
+    default:
+        return HabitatHelper.instance.getTypes().map(h => h.id);
+    }
+}
 
 export const createRandomCreatureType = (habitat: Habitat) => {
 

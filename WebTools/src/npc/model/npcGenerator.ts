@@ -1,4 +1,4 @@
-import { AlliedMilitaryDetails, CareerStep, Character, EducationStep, GovernmentDetails, NpcGenerationStep, SpeciesStep } from "../../common/character";
+import { AlliedMilitaryDetails, CareerStep, Character, CharacterRank, EducationStep, GovernmentDetails, NpcGenerationStep, SpeciesStep } from "../../common/character";
 import { CharacterType } from "../../common/characterType";
 import { D20 } from "../../common/die";
 import { AttributesHelper } from "../../helpers/attributes";
@@ -273,6 +273,7 @@ const speciesSpecificValues: { [species : number ]: string[]} = {
         "Passion! Exhilaration! Excellence! These are the vital components of life!"
     ],
     [ Species.Human ] : [
+        "An injustice to one is an injustice to all!",
         "You only live once!",
         "Live fast and die hard!",
         "Life of the party!",
@@ -785,7 +786,8 @@ export class NpcGenerator {
             if (specialization.id === Specialization.MedicalDoctor && rank.id === Rank.Ensign) {
                 character.jobAssignment = specialization.localizedName + " (Resident)";
             }
-            RanksHelper.instance().applyRank(character, rank.id);
+
+            character._rank = new CharacterRank(rank.name, rank.id);
         }
     }
 

@@ -65,6 +65,11 @@ export class NaturalAttacksHelper {
             6, [], [new WeaponQuality(Quality.Intense), new WeaponQuality(Quality.Debilitating), new WeaponQuality(Quality.Piercing)], WeaponType.MELEE, 1);
     }
 
+    getCorrosiveSpit() {
+        return Weapon.createCharacterWeapon("Corrosive Spit", InjuryType.Deadly,
+            3, [], [new WeaponQuality(Quality.Area), new WeaponQuality(Quality.Piercing), new WeaponQuality(Quality.PersistentX)], WeaponType.ENERGY, 1);
+    }
+
     getTypeByIdName(name: string) {
         let item = this.allAttackTypes().filter(a => NaturalAttacks[a] === name);
         return item?.length ? item[0] : undefined;

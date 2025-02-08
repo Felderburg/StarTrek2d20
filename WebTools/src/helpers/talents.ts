@@ -41,6 +41,7 @@ export const TALENT_NAME_IMMUNE_TO_VACUUM = "Immune to Vacuum (Special Rule, Cre
 export const TALENT_NAME_IMMUNE_TO_COLD = "Immune to Cold (Special Rule, Creature)";
 export const TALENT_NAME_MASSIVE = "Massive (Special Rule, Creature)";
 export const TALENT_NAME_SPIKED_TAIL = "Spiked Tail (Special Rule, Creature)";
+export const TALENT_NAME_CORROSIVE_SPIT = "Corrosive Spit (Special Rule, Creature)";
 export const TALENT_NAME_IMPROVED_HULL_INTEGRITY = "Improved Hull Integrity";
 
 enum TalentCategory {
@@ -821,7 +822,7 @@ export class TalentViewModel {
 
     private constructDisplayName(name: string, localizedName: string, rank: number, showRank: boolean, skill: Skill, category: string) {
         let displayName = localizedName + ((showRank && category !== "Starship" && category !== "Starbase") ? " [Rank: " + rank + "]" : "");
-        let suffix = skill !== undefined && skill !== Skill.None
+        let suffix = skill !== undefined
             ? ` (${SkillsHelper.getSkillName(skill)})`
             : category.length > 0 ? ` (${category})` : "";
         if (displayName.indexOf(suffix) < 0) {
@@ -4594,6 +4595,12 @@ export class Talents {
             "Special Rule", true),
         new TalentModel(
             "Coordination (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Corrosive Spit (Special Rule, Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,

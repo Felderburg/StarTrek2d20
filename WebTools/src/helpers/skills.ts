@@ -4,9 +4,7 @@
     Engineering,
     Security,
     Science,
-    Medicine,
-
-    None
+    Medicine
 }
 
 export class Skills {
@@ -20,15 +18,11 @@ export class Skills {
     }
 
     getSkillName(skill: Skill) {
-        if (skill === Skill.None) {
-            return "";
-        }
-
         return Skill[skill];
     }
 
-    getSkillByName(name: string) {
-        for (var i = 0; i < Skill.None; i++) {
+    getSkillByName(name: string): Skill|undefined {
+        for (var i = 0; i <= Skill.Medicine; i++) {
             const skill = Skill[i];
             if (skill.toLocaleLowerCase() === name.toLocaleLowerCase()) {
                 return i as Skill;

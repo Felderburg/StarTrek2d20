@@ -103,6 +103,18 @@ export class CharacterRank {
     }
 }
 
+export class Promotion {
+    rank: CharacterRank;
+
+    constructor(rank: CharacterRank) {
+        this.rank = rank;
+    }
+
+    copy() {
+        return new Promotion(this.rank);
+    }
+}
+
 export class SupportingStep {
     focuses: string[];
     attributes: Attribute[];
@@ -375,7 +387,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     public lineage?: string;
     public house?: string;
     public careerEvents: CareerEventStep[];
-    public rank?: CharacterRank;
+    public _rank?: CharacterRank;
     public role?: Role;
     public jobAssignment?: string;
     public assignedShip?: string;
@@ -395,7 +407,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     public npcGenerationStep?: NpcGenerationStep;
     public supportingStep?: SupportingStep;
 
-    public improvements: SupportingImrovementStep[];
+    public improvements: (SupportingImrovementStep|Promotion)[];
 
     public legacyMode: boolean;
 
@@ -495,7 +507,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
         if (this.stereotype === Stereotype.Npc) {
             return this.npcGenerationStep ? [...this.npcGenerationStep.talents] : [];
         } else if (this.stereotype === Stereotype.SupportingCharacter) {
-            return this.improvements?.filter(s => s.talent != null)?.map(s => s.talent) ?? [];
+            return this.improvements
+                ?.filter(s => s instanceof SupportingImrovementStep)
+                .filter(s => (s as SupportingImrovementStep).talent != null)
+                ?.map(s => (s as SupportingImrovementStep).talent) ?? [];
         } else {
             let result = [];
             if (this.speciesStep?.talent != null) {
@@ -556,10 +571,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 return values[index] + speciesBonus - speciesminuses;
             });
             this.improvements?.forEach(i => {
-                if (i.attribute != null) {
-                    result[i.attribute] += 1;
-                }
-            });
+                    if (i instanceof SupportingImrovementStep && i.attribute != null) {
+                        result[i.attribute] += 1;
+                    }
+                });
             return result;
         } else {
             return [...this._attributes];
@@ -603,10 +618,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 return values[index];
             });
             this.improvements?.forEach(i => {
-                if (i.discipline != null) {
-                    result[i.discipline] += 1;
-                }
-            })
+                    if (i instanceof SupportingImrovementStep && i.discipline != null) {
+                        result[i.discipline] += 1;
+                    }
+                })
             return result;
         } else {
             let result = this.stereotype === Stereotype.Npc ? [...this.npcGenerationStep?.departments] : [...this._skills];
@@ -842,10 +857,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
 
         this.improvements?.forEach(i => {
-            if (i.value != null) {
-                result.push(i.value);
-            }
-        })
+                if (i instanceof SupportingImrovementStep && i.value != null) {
+                    result.push(i.value);
+                }
+            })
 
         return result;
     }
@@ -1198,7 +1213,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
             if (this.supportingStep?.focuses?.length) {
                 result.push(...this.supportingStep?.focuses?.filter(f => f.trim().length));
             }
-            this.improvements?.filter(i => i.focus).forEach(i => result.push(i.focus));
+            this.improvements?.filter(i => i instanceof SupportingImrovementStep)
+                .filter(i => (i as SupportingImrovementStep).focus)
+                .forEach(i => result.push((i as SupportingImrovementStep).focus));
             return result;
         } else if (this.stereotype === Stereotype.Npc) {
             return [...(this.npcGenerationStep?.focuses ?? [])];
@@ -1235,6 +1252,16 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return this.type === CharacterType.KlingonWarrior ||
             (this.type === CharacterType.AlliedMilitary &&
                 (this.typeDetails as AlliedMilitaryDetails)?.alliedMilitary.type === AlliedMilitaryType.KlingonDefenceForce);
+    }
+
+    get rank() {
+        const promotions = this.improvements?.filter(i => i instanceof Promotion);
+        if (promotions?.length) {
+            const promotion = promotions[promotions.length-1] as Promotion;
+            return promotion.rank;
+        } else {
+            return this._rank;
+        }
     }
 
     get isKlingonImperialCitizen() {
@@ -1362,7 +1389,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         });
         character.jobAssignment = this.jobAssignment;
         character.assignedShip = this.assignedShip;
-        character.rank = this.rank;
+        character._rank = this._rank;
         character.role = this.role;
         if (this.speciesStep) {
             character.speciesStep = this.speciesStep.copy();
@@ -1408,7 +1435,6 @@ export class Character extends Construct implements IWeaponDiceProvider {
         character.house = this.house;
         character.era = this.era;
         character.pastime = this.pastime == null ? [] : [...this.pastime];
-        character.improvements = this.improvements?.map(i => i.copy());
         return character;
     }
 
@@ -1474,7 +1500,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
         result.supportingStep = new SupportingStep();
         let rank = RanksHelper.instance().getRank(Rank.Ensign);
-        result.rank = new CharacterRank(rank.localizedName, rank.id);
+        result._rank = new CharacterRank(rank.localizedName, rank.id);
         return result;
     }
 

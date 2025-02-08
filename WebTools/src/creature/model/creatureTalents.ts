@@ -1,6 +1,6 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
-import { AttributesHelper } from "../../helpers/attributes";
+import { Attribute, AttributesHelper } from "../../helpers/attributes";
 import { TalentModel, TalentsHelper } from "../../helpers/talents";
 import { CreatureType } from "./creatureType";
 import { DietType } from "./diet";
@@ -195,7 +195,7 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
                 case 9:
                     return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)")) ];
                 case 10:
-                    return [ toSelection(TalentsHelper.getTalent("Coordination")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Coordination (Special Rule, Creature)")) ];
                 case 11:
                     return [ toSelection(TalentsHelper.getTalent("Resilient (Special Rule, Creature)")) ];
                 case 12:
@@ -252,6 +252,44 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
                     return result;
             }
             break;
+        case CreatureType.Reptile:
+            switch (D20.roll()) {
+                case 1:
+                case 2:
+                case 3:
+                    return [];
+                case 4:
+                case 5:
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Scaly Hide", 1) ];
+                case 6:
+                case 7:
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Hardened Shell", 3) ];
+                case 8:
+                case 9:
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Bone Plates", 2) ];
+                case 10:
+                case 11:
+                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous (Special Rule, Creature)"), "Poisonous") ];
+                case 12:
+                case 13:
+                    return [ toSelection(TalentsHelper.getTalent("Flight (Special Rule, Creature)"), "Leathery Wings") ];
+                case 14:
+                case 15:
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                case 16:
+                    return [ toSelection(TalentsHelper.getTalent("Fast Recovery (Special Rule, Creature)")) ];
+                case 17:
+                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold (Special Rule, Creature)")) ];
+                case 18:
+                    return [ toSelection(TalentsHelper.getTalent("Corrosive Spit (Special Rule, Creature)")) ];
+                case 19:
+                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X (Special Rule, Creature)"), undefined, 1, Attribute.Control) ];
+                case 20:
+                    let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
+                    result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
+                    return result;
+            }
+            break;
 
         default:
             return [];
@@ -259,26 +297,32 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
 
 }
 
-const toSelection = (talent: TalentModel, additionalInformation?: string) => {
+const toSelection = (talent: TalentModel, additionalInformation?: string, x?: number, attribute?: Attribute) => {
     const selectedTalent = new SelectedTalent(talent.name);
-    selectedTalent.x = determineXIfNecessary(talent);
-    selectedTalent.attribute = determineAttributeIfNecessary(talent);
+    selectedTalent.x = determineXIfNecessary(talent, x);
+    selectedTalent.attribute = determineAttributeIfNecessary(talent, attribute);
     selectedTalent.additionalInformation = additionalInformation;
     return selectedTalent;
 }
 
-const determineAttributeIfNecessary = (talent: TalentModel) => {
+const determineAttributeIfNecessary = (talent: TalentModel, attribute?: Attribute) => {
     if (talent.nameWithoutBracketedPart === "Enhanced Attribute X") {
-        const attributes = AttributesHelper.getAllAttributes();
-        return attributes[Math.floor(Math.random() * attributes.length)];
+        if (attribute != null) {
+            return attribute;
+        } else {
+            const attributes = AttributesHelper.getAllAttributes();
+            return attributes[Math.floor(Math.random() * attributes.length)];
+        }
     } else {
         return undefined;
     }
 }
 
-const determineXIfNecessary = (talent: TalentModel) => {
+const determineXIfNecessary = (talent: TalentModel, x?: number) => {
     if (talent.isXQualified) {
-        if (talent.nameWithoutBracketedPart === "Initiative X") {
+        if (x != null) {
+            return x;
+        } else if (talent.nameWithoutBracketedPart === "Initiative X") {
             const roll = D20.roll();
             if (roll >= 1 && roll <= 15) {
                 return 2;

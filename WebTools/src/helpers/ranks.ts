@@ -1129,11 +1129,6 @@ export class RanksHelper {
         return undefined;
     }
 
-    applyRank(character: Character, rank: Rank) {
-        const r = this.getRank(rank);
-        character.rank = new CharacterRank(r.name, r.id);
-    }
-
     getAdmiralRanks() {
         return [this.getRank(Rank.Admiral), this.getRank(Rank.ViceAdmiral), this.getRank(Rank.RearAdmiral)];
     }

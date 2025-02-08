@@ -1,13 +1,15 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { Era } from "../../helpers/eras";
+import { Skill, SkillsHelper } from "../../helpers/skills";
 import { TALENT_NAME_FLIGHT } from "../../helpers/talents";
+import { NpcType, NpcTypes } from "../../npc/model/npcType";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { Creature } from "./creature";
 import { creatureNameGenerator } from "./creatureNameGenerator";
 import { CreatureSize, CreatureSizeHelper, generateRandomCreatureSize } from "./creatureSize";
 import { generateRandomBasicCreatureTalent, generateRandomCreatureDietTalent, generateRandomCreatureTypeTalent } from "./creatureTalents";
-import { createRandomCreatureType, CreatureType, CreatureTypeHelper } from "./creatureType";
+import { createRandomCreatureType, CreatureType, CreatureTypeHelper, habitatsByCreatureType } from "./creatureType";
 import { createRandomDiet, DietType, DietTypeHelper } from "./diet";
 import { createRandomHabitat, Habitat, HabitatHelper } from "./habitat";
 import { generateRandomLocomotionType } from "./locomotion";
@@ -18,7 +20,10 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
     result.version = isSecondEdition() ? 2 : 1;
     result.era = era;
 
-    if (habitat == null) {
+    if (habitat == null && creatureType != null) {
+        const habitats = habitatsByCreatureType(creatureType);
+        habitat = habitats[Math.floor(Math.random() * habitats.length)];
+    } else if (habitat == null) {
         habitat = createRandomHabitat();
     }
 
@@ -40,6 +45,18 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
 
     if (result.creatureType?.id === CreatureType.Bird && D20.roll() <= 15) {
         result.additionalTalents.push(new SelectedTalent(TALENT_NAME_FLIGHT));
+    }
+
+    let skillImprovements = NpcTypes.disciplinePoints(NpcType.Minor);
+    let skills = SkillsHelper.getSkills();
+    for (let i = 0; i < skillImprovements.length; i++) {
+        let index = Math.floor(Math.random() * skills.length);
+        let skill = skills.splice(index, 1)[0];
+
+        result.departments[skill] = skillImprovements[i];
+
+        console.log(skill);
+        console.log(result.departments);
     }
 
     addAllTalentSelection(result, generateRandomBasicCreatureTalent());
@@ -330,23 +347,52 @@ const deriveForm = (creature: Creature) => {
                 }
             }
             break;
+            case CreatureType.Fish: {
+                const roll = D20.roll();
+                if (roll < 12) {
+                    result = creature.diet?.id === DietType.Carnivore ? "Piranha" : "Fish";
+                } else if (roll < 16) {
+                    result = "Eel";
+                } else if (roll < 18) {
+                    result = "Ray";
+                } else {
+                    result = "Seahorse";
+                }
+            }
+            break;
             case CreatureType.Invertebrate: {
                 const roll = D20.roll();
                 if (creature.isSlithering) {
                     result = "Worm";
                 } else if (creature.habitat?.id === Habitat.Ocean
                         || creature.habitat?.id === Habitat.River) {
-                    if (creature.isTentacled) {
+                    if (creature.isTentacled && roll < 15) {
                         result = "Squid";
-                    } else if (roll < 10) {
+                    } else if (creature.isTentacled) {
+                        result = "Jellyfish";
+                    } else if (roll < 2) {
+                        result = "Sponge";
+                    } else if (roll < 4) {
+                        result = "Sea Cucumber";
+                    } else if (roll < 8) {
                         result = "Crab";
-                    } else if (roll < 15) {
+                    } else if (roll < 12) {
                         result = "Lobster";
+                    } else if (roll < 14) {
+                        result = "Starfish";
+                    } else if (roll < 16) {
+                        result = "Urchin";
                     } else {
                         result = "Trilobite";
                     }
                 } else if (creature.isFourOrMoreLegged) {
-                    if (roll < 4) {
+                    if (creature.size?.id === CreatureSize.Swarm && roll < 10) {
+                        result = "Ant";
+                    } else if (creature.size?.id === CreatureSize.Swarm && roll < 15) {
+                        result = "Fly";
+                    } else if (creature.size?.id === CreatureSize.Swarm && roll < 15) {
+                        result = "Wasp";
+                    } else if (roll < 4) {
                         result = "Spider";
                     } else if (roll < 8) {
                         result = "Roach";
@@ -355,7 +401,7 @@ const deriveForm = (creature: Creature) => {
                     } else if (roll < 16) {
                         result = "Scorpion";
                     } else {
-                        result = "Mantis";
+                        result = "Beetle";
                     }
                 } else if (creature.isLegged) {
                     result = "Mantis";
@@ -391,7 +437,16 @@ const deriveForm = (creature: Creature) => {
             break;
             case CreatureType.Plant: {
                 const roll = D20.roll();
-                if (creature.size?.id === CreatureSize.Small
+                    if (creature.habitat?.id === Habitat.Ocean
+                            || creature.habitat?.id === Habitat.River) {
+                        if (roll < 12) {
+                            result = "Algae";
+                        } else if (roll < 12) {
+                            result = "Seaweed";
+                        } else {
+                            result = "Kelp";
+                        }
+                    } else if (creature.size?.id === CreatureSize.Small
                         || creature.size?.id === CreatureSize.Average) {
                     if (roll < 2) {
                         result = "Fungus";
@@ -410,7 +465,7 @@ const deriveForm = (creature: Creature) => {
                     } else if (roll < 18) {
                         result = "Tuber";
                     } else {
-                        result = "Tree";
+                        result = "Reeds";
                     }
                 } else {
                     result = "Tree";

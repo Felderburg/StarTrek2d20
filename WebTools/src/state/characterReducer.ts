@@ -1,4 +1,4 @@
-import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from "../common/character";
+import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, Promotion, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from "../common/character";
 import { CharacterType } from "../common/characterType";
 import { Stereotype } from "../common/construct";
 import { SelectedTalent } from "../common/selectedTalent";
@@ -543,7 +543,7 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
         }
         case SET_CHARACTER_RANK: {
             let temp = state.currentCharacter.copy();
-            temp.rank = new CharacterRank(action.payload.name, action.payload.rank ?? undefined);
+            temp._rank = new CharacterRank(action.payload.name, action.payload.rank ?? undefined);
             return {
                 ...state,
                 currentCharacter: temp,
@@ -741,7 +741,11 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
         }
         case MODIFY_CHARACTER_RANK: {
             let temp = state.currentCharacter.copy();
-            temp.rank = action.payload.rank;
+            if (temp.improvements == null) {
+                temp.improvements = [];
+            }
+            console.log(action.payload.rank);
+            temp.improvements.push(new Promotion(action.payload.rank));
             return {
                 ...state,
                 currentCharacter: temp,
