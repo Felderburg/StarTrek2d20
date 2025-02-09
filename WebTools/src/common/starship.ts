@@ -6,7 +6,7 @@ import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
 import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper, TalentViewModel } from "../helpers/talents";
 import { TalentSelection } from "../helpers/talentSelection";
-import StarshipWeaponRegistry, { Weapon } from "../helpers/weapons";
+import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
 import { makeKey } from "./translationKey";
@@ -677,6 +677,10 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             } else if (this.systems[System.Weapons] >= 9) {
                 dice += 2;
             } else if (this.systems[System.Weapons] >= 7) {
+                dice += 1;
+            }
+
+            if (weapon.type === WeaponType.TORPEDO && this.hasTalent("Rapid-Fire Torpedo Launcher")) {
                 dice += 1;
             }
 

@@ -20,6 +20,19 @@ export const isEnlistedRank = (rank: Rank) => {
     }
 }
 
+export const isCadetRank = (rank: Rank) => {
+    switch (rank) {
+        case Rank.CadetFirstClass:
+        case Rank.CadetSecondClass:
+        case Rank.CadetThirdClass:
+        case Rank.CadetFourthClass:
+            return true;
+        default:
+            return false;
+
+    }
+}
+
 export const isFlagRank = (rank: Rank) => {
     switch (rank) {
         case Rank.FleetAdmiral:

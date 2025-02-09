@@ -10,6 +10,7 @@ import { AllOfPrerequisite, AnyOfPrerequisite, CareersPrerequisite, CharacterTyp
 import store from '../state/store';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
+import { isCadetRank, isEnlistedRank } from '../token/model/rankHelper';
 
 export enum Rank {
     // Core
@@ -1090,6 +1091,33 @@ export class RanksHelper {
                 break;
         }
         return ranks.map(r => this.getRank(r))
+    }
+
+    getPromotionRanks(character: Character) {
+        if (character.rank) {
+
+            let ranks = this.getRanksByType(character.type, character.version);
+
+            let currentRank = ranks.filter(r => r.id === character.rank?.id);
+            if (currentRank.length === 0) {
+                currentRank = [ this.getRank(character.rank?.id)];
+            }
+
+            if (isCadetRank(character.rank?.id)) {
+                ranks = ranks.filter(r => isCadetRank(r.id))
+                    .filter(r => r.levelValue > currentRank[0].levelValue);
+                return ranks.reverse();
+            } else {
+                ranks = ranks.filter(r => !isCadetRank(r.id))
+                    .filter(r =>
+                        (isEnlistedRank(character.rank?.id) && isEnlistedRank(r.id) ||
+                        (!isEnlistedRank(character.rank?.id) && !isEnlistedRank(r.id))))
+                    .filter(r => r.levelValue > currentRank[0].levelValue);
+                return ranks.reverse();
+            }
+        } else {
+            return [];
+        }
     }
 
     getSortedRanks(character: Character, ignorePrerequisites?: boolean) {

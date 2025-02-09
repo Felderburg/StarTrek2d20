@@ -53,7 +53,7 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
 
     function navigateToModification() {
         store.dispatch(setCharacter(character));
-        navigate("/modify");
+        navigate("/modify/main");
     }
 
     function renderTopFields() {
@@ -199,7 +199,7 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
                         <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
                         <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
                     </div>
-                    <div className="mt-5 mb-3 d-none">
+                    <div className="mt-5 mb-3">
                         <Button size="sm" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>
                     </div>
                 </div>)

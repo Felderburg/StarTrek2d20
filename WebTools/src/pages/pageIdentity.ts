@@ -107,4 +107,5 @@ export enum PageIdentity {
     TacticalAssets,
 
     ModifySupportingCharacter,
+    ModifyMainCharacter,
 }

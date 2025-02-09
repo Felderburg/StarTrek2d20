@@ -13,7 +13,6 @@ import { PageIdentity } from './pages/pageIdentity';
 import { PageFactory } from './pages/pageFactory';
 import ImportTablePage from './table/page/importTablePage';
 import OtherToolsPage from './pages/otherToolsPage';
-import ModifySupportCharacterPage from './supportingcharacters/modify/modifySupportCharacterPage';
 
 const CreditsPage = React.lazy(() => import('./pages/creditsPage'));
 const TalentsOverviewMainPage = React.lazy(() => import('./pages/talentsOverviewMainPage'));
@@ -34,6 +33,8 @@ const SafetyChecklistPage = React.lazy(() => import(/* webpackChunkName: 'safety
 const RandomStarshipPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './starship/page/randomStarshipPage'));
 const RandomCreaturePage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './creature/page/randomCreatureConfigurationPage'));
 const TacticalAssetsPage = React.lazy(() => import(/* webpackChunkName: 'statc' */ './asset/page/tacticalAssetsPage'));
+const ModifySupportCharacterPage = React.lazy(() => import(/* webpackChunkName: 'modify' */ './supportingcharacters/modify/modifySupportCharacterPage'));
+const ModifyCharacterPage = React.lazy(() => import(/* webpackChunkName: 'modify' */ './modify/page/modifyMainCharacterPage'));
 
 
 let root = createRoot(document.getElementById("mainBody"));
@@ -43,6 +44,7 @@ root.render(
             <Suspense fallback={<LoadingPage />}>
                 <Routes>
                     <Route path="/modify" element={<ModificationFramePage />} />
+                    <Route path="/modify/main" element={<ModifyCharacterPage />} />
                     <Route path="/modify/supporting" element={<ModifySupportCharacterPage />} />
                     <Route path="/gmtracker" element={<GMTrackerPage />} />
                     <Route path="/talents" element={<TalentsOverviewMainPage />} />
