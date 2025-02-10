@@ -33,8 +33,6 @@ const ModificationTypeSelectionPage: React.FC<ModificationTypeSelectionPagePrope
     const nextPage = () => {
         if (modificationType === ModificationType.Reputation) {
             navigateTo(null, PageIdentity.ReputationChange);
-        } else if (modificationType === ModificationType.Promotion) {
-            navigateTo(null, PageIdentity.Promotion);
         } else if (modificationType === ModificationType.Milestone && milestoneType === MilestoneType.NormalMilestone) {
             navigateTo(null, PageIdentity.NormalMilestone);
         }

@@ -31,7 +31,7 @@ import { ModalControl } from "../../components/modal";
 import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
 import { CharacterRank, Promotion, SupportingImrovementStep } from "../../common/character";
 import { Rank, RanksHelper } from "../../helpers/ranks";
-import { isEnlistedRank } from "../../token/model/rankHelper";
+import { PromotionView } from "../../modify/page/promotionView";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -45,8 +45,8 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const [departmentSelection, setDepartmentSelection] = useState<Skill>();
     const [focusSelection, setFocusSelection] = useState<string>("");
     const [talentSelection, setTalentSelection] = useState<string>(null);
-    const [ rank, setRank ] = useState<Rank|undefined>(character?.rank?.id);
-    const [ rankName, setRankName ] = useState<string|undefined>(character?.rank?.name);
+    const [ rank, setRank ] = useState<Rank|undefined>(undefined);
+    const [ rankName, setRankName ] = useState<string|undefined>(undefined);
     const navigate = useNavigate();
 
     const onNextPage = () => {
@@ -162,13 +162,17 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const renderButtonBar = () => {
         if (index === 0) {
             return (<div className="mt-4 text-end">
-                    <Button onClick={() => onNextPage()}>{t('Common.button.next')}</Button>
+                    <Button size="sm" onClick={() => onNextPage()}>{t('Common.button.next')}</Button>
                 </div>);
         } else if (index === 1) {
-            return (<div className="mt-4 d-flex justify-content-between">
-                <Button onClick={() => setIndex(index - 1)}>{t('Common.button.previous')}</Button>
-                <Button onClick={() => applyModification()}>{t('Common.button.finish')}</Button>
-            </div>);
+            if (modificationType === SupportingCharacterModificationType.Promotion) {
+                return undefined;
+            } else {
+                return (<div className="mt-4 d-flex justify-content-between">
+                    <Button size="sm" onClick={() => setIndex(index - 1)}>{t('Common.button.previous')}</Button>
+                    <Button size="sm" onClick={() => applyModification()}>{t('Common.button.finish')}</Button>
+                </div>);
+            }
         } else {
             return (<div className="mt-4">
                 <Button size="sm" onClick={() => viewCharacter()}>{t('Common.button.view')}</Button>
@@ -183,8 +187,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
 
     const getRanks = () => {
         return RanksHelper.instance()
-            .getRanksByType(character.type, character.version)
-            .filter(r => (isEnlistedRank(character.rank.id) && isEnlistedRank(r.id)) || (!isEnlistedRank(character.rank.id) && !isEnlistedRank(r.id)))
+            .getPromotionRanks(character)
             .map(r => new DropDownElement(r.id, r.name));
     }
 
@@ -262,18 +265,9 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                 </div>
             </div>);
         } else if (modificationType === SupportingCharacterModificationType.Promotion) {
-            return (<div className="row">
-                <div className="col-12 col-md-6">
-                    <Header level={2} className="my-4">{t('ModificationType.name.promotion')}</Header>
-                    <Markdown>{t('PromotionPage.instruction')}</Markdown>
-
-                    <DropDownSelect items={getRanks()} onChange={(id) => {
-                            let allRanks = RanksHelper.instance().getRanksByType(character.type, character.version);
-                            let rank = allRanks.filter(r => r.id === id)[0];
-                            setRank(rank.id);
-                            setRankName(rank.name);
-                        }} defaultValue={rank || ""}/>
-                </div>
+            return (<div className="mt-4">
+                <PromotionView character={character} onNextStep={onNextPage}
+                onPreviousStep={() => setIndex(index-1)} />
             </div>);
         }
     }

@@ -29,7 +29,6 @@ import CustomSpeciesDetailsPage from './customSpeciesDetailsPage';
 import ModificationTypeSelectionPage from '../modify/page/modificationTypeSelectionPage';
 import ReputationChangePage from '../modify/page/reputationChangePage';
 import ModificationCompletePage from '../modify/page/modificationCompletePage';
-import PromotionPage from '../modify/page/promotionPage';
 import MilestonePage from '../modify/page/milestonePage';
 import { MilestoneType } from '../modify/model/milestoneType';
 import SourceSelectionPage from './sourceSelectionPage';
@@ -94,7 +93,6 @@ export class PageFactory {
         this.factories[PageIdentity.SupportingCharacter] = () => <SupportingCharacterPage />;
         this.factories[PageIdentity.ModificationTypeSelection] = () => <ModificationTypeSelectionPage />;
         this.factories[PageIdentity.ReputationChange] = () => <ReputationChangePage />;
-        this.factories[PageIdentity.Promotion] = () => <PromotionPage />;
         this.factories[PageIdentity.NormalMilestone] = () => <MilestonePage milestoneType={MilestoneType.NormalMilestone} />;
         this.factories[PageIdentity.ModificationCompletePage] = () => <ModificationCompletePage />;
     }
