@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { PageIdentity } from "../pages/pageIdentity";
 import AppVersion from "./appVersion";
-import CharacterSheet from "./characterSheet";
+import CharacterProfile from "./characterProfile";
 import History, { HistoryType } from "./history";
 import News from "./news";
 import PageHeader from "./pageHeader";
@@ -148,7 +148,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
                         <div id="profile-button" className={'lcar-content-profile ' + (isProfileSupportedForPage() ? '' : 'd-none')} onClick={ () => toggleProfile() }>{t('Lcars.profile')}</div>
                         {isStarshipPage()
                             ? (<StarshipProfile showProfile={showProfile} close={() => setShowProfile(false)}/>)
-                            : (<CharacterSheet showProfile={showProfile} close={() => setShowProfile(false)} storeBased={true}/>)}
+                            : (<CharacterProfile showProfile={showProfile} close={() => setShowProfile(false)} storeBased={true}/>)}
                     </div>
                     <div className="lcar-content-feedback" role="button"  tabIndex={0} onClick={ () => showFeedbackPage() }>{t('Lcars.feedback')}</div>
                     <div className="lcar-content-news" role="button" tabIndex={0} onClick={() => showNewsPanel()}>

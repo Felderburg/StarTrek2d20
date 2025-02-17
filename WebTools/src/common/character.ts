@@ -374,6 +374,7 @@ export class NpcGenerationStep {
 export class Character extends Construct implements IWeaponDiceProvider {
 
     public static ABSOLUTE_MAX_ATTRIBUTE = 12;
+    public static ABSOLUTE_MAX_DEPARTMENT = 5;
 
     private _attributeInitialValue: number = 7;
 
@@ -1325,7 +1326,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     hasMaxedSkill() {
-        const max = 5;
+        const max = Character.ABSOLUTE_MAX_DEPARTMENT;
         return this.departments.some(s => s === max);
     }
 

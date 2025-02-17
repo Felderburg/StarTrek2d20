@@ -10,9 +10,20 @@ export enum ServiceRecord {
     Prototype,
     SurvivorOfX,
 
+
+    // Continuing Mission
+    GarbageScow,
+    LuckyShip,
+    TheShipThatWontDie,
+    GhostShip,
+    HappyShip,
+
+    // Romulan (Continuing Mission STA)
     Disavowed,
     Loyalist,
-    Terror
+    Terror,
+
+
 }
 
 export const allServiceRecords = (): ServiceRecord[] => {
@@ -54,6 +65,12 @@ export class ServiceRecordList {
         new ServiceRecordModel(ServiceRecord.HopeShip, "Mission of Mercy"),
         new ServiceRecordModel(ServiceRecord.Prototype, "Experimental Vessel"),
         new ServiceRecordModel(ServiceRecord.SurvivorOfX, "Ready for Battle"),
+
+        new ServiceRecordModel(ServiceRecord.GarbageScow, "Jury-Rigged (Service Record)"),
+        new ServiceRecordModel(ServiceRecord.LuckyShip, "Lucky (Service Record)"),
+        new ServiceRecordModel(ServiceRecord.TheShipThatWontDie, "Refuses to Die (Service Record)"),
+        new ServiceRecordModel(ServiceRecord.GhostShip, "Premonitions (Service Record)"),
+        new ServiceRecordModel(ServiceRecord.HappyShip, "Efficiency (Service Record)"),
 
         new ServiceRecordModel(ServiceRecord.Disavowed, "Any Knowledge of Your Actions", CharacterType.Romulan),
         new ServiceRecordModel(ServiceRecord.Loyalist, "Once More Unto the Breach", CharacterType.Romulan),

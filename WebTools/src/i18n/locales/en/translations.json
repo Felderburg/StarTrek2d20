@@ -696,6 +696,8 @@
     "Page.title.promotion": "Promotion",
     "Page.title.normalMilestone": "Normal Milestone",
     "Page.title.modificationComplete": "Modification Completed",
+    "Page.title.modifySupportingCharacter": "Modify Supporting Character",
+    "Page.title.modifyMainCharacter": "Modify Main Character",
     "Page.title.npcConfiguration": "Random NPC Configuration",
     "Page.title.tokenCreationPage": "Token Creation",
     "Page.title.upbringing": "Early Outlook",
@@ -1709,17 +1711,33 @@
 
     "ServiceRecord.disavowed.description": "The ship has been disavowed by its government, either no longer recognized as flying under its authority, gone rogue, or in extreme cases, its very existence denied or officially recorded as destroyed. Whether the ship’s actions are sanctioned or not is a matter only the senior crew or captain knows.",
 
-    "ServiceRecord.legendary": "Legendary",
+    "ServiceRecord.garbageScow": "Garbage Scow",
 
-    "ServiceRecord.legendary.description": "This ship is famous, having been at the center of one or more major events that shaped the history and politics of one or more civilizations. This comes with great prestige for those involved.",
+    "ServiceRecord.garbageScow.description": "The ship is carbon-scored, scarred, and in need of a refit. She's the laughing stock of the fleet. However, her crew have a fierce pride about her, and  keep the bucket of bolts running against all odds.",
+
+    "ServiceRecord.ghostShip": "Ghost Ship",
+
+    "ServiceRecord.ghostShip.description": "The ship was found adrift, its crew missing and logs wiped. Multiple investigations have yet to solve the mystery and the ship has returned to service, but some members of its new crew swear the ghosts of the missing speak to them.",
+
+    "ServiceRecord.happyShip": "Happy Ship",
+
+    "ServiceRecord.happyShip.description": "The vessel has long had a reputation as a ‘happy ship’, with a positive culture that has rubbed off on the crew. Many officers carry that culture with them when they leave for other postings.",
 
     "ServiceRecord.hopeShip": "Hope Ship",
 
     "ServiceRecord.hopeShip.description": "This vessel’s service has been spent responding to distress calls and disasters, warping to the rescue of those in danger or subjected to great hardship. The ship is heavily refitted for disaster relief, evacuation, and medical catastrophes, and the crew often have additional emergency medical training.",
 
+    "ServiceRecord.legendary": "Legendary",
+
+    "ServiceRecord.legendary.description": "This ship is famous, having been at the center of one or more major events that shaped the history and politics of one or more civilizations. This comes with great prestige for those involved.",
+
     "ServiceRecord.loyalist": "Loyalist",
 
     "ServiceRecord.loyalist.description": "The ship is lauded as a vessel whose crew exemplifies unwavering loyalty to its government and doctrine.",
+
+    "ServiceRecord.luckyShip": "Lucky Ship",
+
+    "ServiceRecord.luckyShip.description": "She's regarded as a lucky ship, a talisman of the fleet. Somehow the ship keeps coming up trumps, even in the stickiest of situations. Her crew has an unshakeable belief in her.",
 
     "ServiceRecord.prototype": "Prototype",
 
@@ -1733,6 +1751,10 @@
     "ServiceRecord.terror": "Terror",
 
     "ServiceRecord.terror.description": "The ship is a veritable terror in the space lanes. This could arise from a history of violence or crimes, notoriety, or affiliation (such as the Tal Shiar).",
+
+    "ServiceRecord.theShipThatWontDie": "The Ship that Won't Die",
+
+    "ServiceRecord.theShipThatWontDie.description": "In a previous battle the ship kept on fighting and survived, despite damage that would knock a lesser ship out of commission. The crew believe it might one day repeat that feat.",
 
     "Sheet.basicGeneratedHalfPageCharacterSheet": "New Half-Page 2nd Ed.-style Character Sheet",
     "Sheet.generatedTngPortraitCharacterSheet": "TNG Portrait Character Sheet (US-Letter)",
@@ -2665,6 +2687,10 @@
 
     "Talent.coveringAdvance.description2e": "When you succeed at a task to maneuver your ship, you may spend 2 Momentum to provide cover for allied ships. When an enemy vessel next makes an Attack, before the beginning of your next turn, if you are the closest ship to that attacker but they do not target you, the difficulty of their Attack is equal to your ship’s Scale.",
 
+    "Talent.corrosiveSpitSpecialRuleCreature": "Corrosive Spit",
+
+    "Talent.corrosiveSpitSpecialRuleCreature.description2e": "The creature can spit a corrosive fluid (Severity 3) as a ranged attack.",
+
     "Talent.crisisManagement": "Crisis Management",
 
     "Talent.crisisManagement.description2e": "The Momentum cost to use the Direct major action is removed.",
@@ -2762,6 +2788,10 @@
     "Talent.efficientEvasion": "Efficient Evasion",
 
     "Talent.efficientEvasion.description2e": "When you attempt an Evasive Action major action for the second or subsequent time in a row during a scene, you add 1 Momentum to the group pool.",
+
+    "Talent.efficiencyServiceRecord": "Efficiency",
+
+    "Talent.efficiencyServiceRecord.description2e": "Characters add one additional positive influence to their Reputation Rolls.",
 
     "Talent.electronicWarfareSystems": "Electronic Warfare Systems",
 
@@ -3099,6 +3129,10 @@
     "Talent.juryRig.description": "Whenever you attempt an Engineering Task to perform repairs, you may reduce the Difficulty by two, to a minimum of 0. If you do this, however, then the repairs are only temporary and will last only a single scene, plus one additional scene per Momentum spent (Repeatable) before they fail again. Jury-rigged repairs can only be applied once, and the Difficulty to repair a device that has been Jury-rigged increases by 1.",
     "Talent.juryRig.description2e": "Whenever you attempt an Engineering task to perform repairs, you may reduce the Difficulty by 2, to a minimum of 0. If you do this, however, then the repairs are only temporary and will last only a single scene before they fail again; you may increase this duration by one scene by spending 1 Momentum (Repeatable). Jury-rigged repairs can only be applied once, and the Difficulty to repair a device that has been Jury-rigged increases by 1.",
 
+    "Talent.juryRiggedServiceRecord": "Jury-Rigged",
+
+    "Talent.juryRiggedServiceRecord.description2e": "If the ship die generates a Complication, ignore it.",
+
     "Talent.killersInstinct": "Killer's Instinct",
 
     "Talent.killersInstinct.description2e": "So familiar are you with the intent to kill that you can even see it in others when you look them in the eyes. When you make a Deadly Attack, reduce the amount you add to Threat to 0. In addition, when an enemy attempts to make a Deadly Attack against you, you may add 1 Threat to increase the Difficulty of their Attack by 1, as you react to their intent.",
@@ -3127,6 +3161,10 @@
     "Talent.learnFromFailure": "Learn from Failure",
 
     "Talent.learnFromFailure.description2e": "When you fail at a Science task, you may add 3 Threat to create a trait which represents knowledge or insights gained from the failure. The cost of this is reduced by 1 for each success you scored on the failed task.",
+
+    "Talent.luckyServiceRecord": "Lucky",
+
+    "Talent.luckyServiceRecord.description2e": "For any task in which the Lucky Ship assists, a player can treat the ship as their Value for the purposes of spending Determination.",
 
     "Talent.machineSpecialRuleCreature": "Machine",
 
@@ -3352,6 +3390,10 @@
 
     "Talent.precisionTargeting2e.description": "You can more easily pick out and target specific systems when making an Attack against an enemy vessel. When you make an Attack with starship weapons that targets a specific ship system, you may re-roll a d20.",
 
+    "Talent.premonitionsServiceRecord": "Premonitions",
+
+    "Talent.premonitionsServiceRecord.description2e": "When a character spends momentum to Obtain Information while aboard ship, they may ask the GM an extra question for free.",
+
     "Talent.prestigiousPosting": "Prestigious Posting",
 
     "Talent.prestigiousPosting.description": "When a new supporting character is first introduced, apply a single improvement to them immediately, like a milestone.",
@@ -3446,6 +3488,10 @@
 
     "Talent.redundantSystems.description": "The ship has multiple additional redundancies that allow it to withstand severe damage more easily. Nominate a single System. When that system becomes Damaged or Disabled, the crew may choose to activate the backups as a Minor Action; if the System was Damaged, it is no longer Damaged. If it was Disabled, it becomes Damaged instead. A System’s backups may only be activated once per adventure, so subsequent damage will have the normal effect.",
     "Talent.redundantSystems.description2e": "Select a single system when this talent is chosen. When that system suffers a breach, the crew may choose to activate this talent in response; doing so immediately patches the breach inflicted. These redundant systems may only be activated once per adventure.",
+
+    "Talent.refusesToDieServiceRecord": "Refuses to Die",
+
+    "Talent.refusesToDieServiceRecord.description2e": "If the ship has taken critical damage, it can still function. However, a further breach will still destroy it.",
 
     "Talent.reliable": "Reliable",
 

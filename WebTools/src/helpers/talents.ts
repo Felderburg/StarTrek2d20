@@ -4043,6 +4043,36 @@ export class Talents {
             1,
             "Starship", true),
         new TalentModel(
+            "Jury-Rigged (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Lucky (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Refuses to Die (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Premonitions (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Efficiency (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+            1,
+            "Starship", true),
+        new TalentModel(
             "Any Knowledge of Your Actions",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.ContinuingMissions), new CharacterTypePrerequisite(CharacterType.Romulan)],

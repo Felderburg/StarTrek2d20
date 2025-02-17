@@ -1673,13 +1673,13 @@
 
     "ServiceRecord.dependableWorkhorse.description": "A nave é confiável, com um sólido registro de missões e realizações bem-sucedidas. Embora ofuscada por naves mais famosas, essa unidade é, no entanto, um dos pilares da frota, com uma tripulação competente e dedicada.",
 
-    "ServiceRecord.legendary": "Lendária",
-
-    "ServiceRecord.legendary.description": "Essa nave é famosa, tendo estado no centro de um ou mais eventos importantes que moldaram a história e a política de uma ou mais civilizações. Isso traz grande prestígio para os envolvidos.",
-
     "ServiceRecord.hopeShip": "Nave Esperança",
 
     "ServiceRecord.hopeShip.description": "O serviço dessa nave tem sido dedicado a responder a pedidos de socorro e desastres, indo ao resgate de pessoas em perigo ou sujeitas a grandes dificuldades. A nave é altamente equipada para alívio de desastres, evacuação e catástrofes médicas, e a tripulação geralmente tem treinamento médico de emergência adicional.",
+
+    "ServiceRecord.legendary": "Lendária",
+
+    "ServiceRecord.legendary.description": "Essa nave é famosa, tendo estado no centro de um ou mais eventos importantes que moldaram a história e a política de uma ou mais civilizações. Isso traz grande prestígio para os envolvidos.",
 
     "ServiceRecord.prototype": "Protótipo",
 

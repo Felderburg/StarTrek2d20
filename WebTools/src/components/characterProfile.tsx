@@ -26,7 +26,7 @@ class SectionContent {
     }
 }
 
-class CharacterSheetData {
+class CharacterProfileData {
 
     readonly character: Character;
     private _data: SectionContent[];
@@ -76,8 +76,8 @@ interface ICharacterSheetProperties extends WithTranslation {
     close: () => void;
 }
 
-class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
-    private _sheetData: CharacterSheetData;
+class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
+    private _sheetData: CharacterProfileData;
 
     render() {
         const { t } = this.props;
@@ -86,7 +86,7 @@ class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
             c = store.getState().character.currentCharacter;
         }
 
-        this._sheetData = new CharacterSheetData(c);
+        this._sheetData = new CharacterProfileData(c);
 
         const data = this._sheetData.dataSection.map((s, i) => {
             return (
@@ -182,6 +182,23 @@ class CharacterSheet extends React.Component<ICharacterSheetProperties, {}> {
                                 </div>
                             </div>
 
+                            <div className="col-md-6 mb-2">
+                                <div className="sheet-panel d-flex">
+                                    <div className="sheet-label-purple text-uppercase">{t('Construct.other.rank')}</div>
+                                    <div className="sheet-data">
+                                        {c.rank?.localizedName ?? ""}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-md-6 mb-2">
+                                <div className="sheet-panel d-flex">
+                                    <div className="sheet-label-purple text-uppercase">{t('Construct.other.assignment')}</div>
+                                    <div className="sheet-data">
+                                        {c.assignment ?? ""}
+                                    </div>
+                                </div>
+                            </div>
 
                             <div className="col-md-6 mb-2">
                                 {data}
@@ -384,4 +401,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default withTranslation()(connect(mapStateToProps)(CharacterSheet));
+export default withTranslation()(connect(mapStateToProps)(CharacterProfile));

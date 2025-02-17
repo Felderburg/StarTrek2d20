@@ -17,7 +17,7 @@ import { Dialog } from "../../components/dialog";
 import { ValueRandomTable } from "../../solo/table/valueRandomTable";
 import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
-import { modifyCharacterRank, modifySupportingCharacterAddImprovement } from "../../state/characterActions";
+import { modifySupportingCharacterAddImprovement } from "../../state/characterActions";
 import { Attribute } from "../../helpers/attributes";
 import { SimpleAttributeSelector } from "../../components/simpleAttributeSelector";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
@@ -29,9 +29,9 @@ import { TalentsHelper } from "../../helpers/talents";
 import { TalentDescription } from "../../components/talentDescription";
 import { ModalControl } from "../../components/modal";
 import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
-import { CharacterRank, Promotion, SupportingImrovementStep } from "../../common/character";
-import { Rank, RanksHelper } from "../../helpers/ranks";
+import { Promotion, SupportingImrovementStep } from "../../common/character";
 import { PromotionView } from "../../modify/page/promotionView";
+import { ModifyDepartmentView } from "./modifyDepartmentView";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -45,8 +45,6 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const [departmentSelection, setDepartmentSelection] = useState<Skill>();
     const [focusSelection, setFocusSelection] = useState<string>("");
     const [talentSelection, setTalentSelection] = useState<string>(null);
-    const [ rank, setRank ] = useState<Rank|undefined>(undefined);
-    const [ rankName, setRankName ] = useState<string|undefined>(undefined);
     const navigate = useNavigate();
 
     const onNextPage = () => {
@@ -119,13 +117,6 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                 store.dispatch(modifySupportingCharacterAddImprovement(modificationType, departmentSelection));
                 onNextPage();
             }
-        } else if (modificationType === SupportingCharacterModificationType.Promotion) {
-            if (rank === character.rank?.id) {
-                Dialog.show("Please select a new rank");
-            } else {
-                store.dispatch(modifyCharacterRank(new CharacterRank(rankName, rank)));
-                onNextPage();
-            }
         }
     }
 
@@ -165,7 +156,8 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                     <Button size="sm" onClick={() => onNextPage()}>{t('Common.button.next')}</Button>
                 </div>);
         } else if (index === 1) {
-            if (modificationType === SupportingCharacterModificationType.Promotion) {
+            if (modificationType === SupportingCharacterModificationType.Promotion
+                || modificationType === SupportingCharacterModificationType.AdditionalDepartment) {
                 return undefined;
             } else {
                 return (<div className="mt-4 d-flex justify-content-between">
@@ -183,12 +175,6 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
 
     const closeModal = () => {
         ModalControl.hide();
-    }
-
-    const getRanks = () => {
-        return RanksHelper.instance()
-            .getPromotionRanks(character)
-            .map(r => new DropDownElement(r.id, r.name));
     }
 
     const showTalentSelectionModal = () => {
@@ -257,12 +243,9 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                 </div>
             </div>);
         } else if (modificationType === SupportingCharacterModificationType.AdditionalDepartment) {
-            return (<div className="row">
-                <div className="col-12 col-md-6">
-                    <Header level={2} className="my-4">{t('Construct.other.department')}</Header>
-                    <Markdown>{t('ModifySupportingCharacter.attribute.instruction')}</Markdown>
-                    <SimpleDepartmentSelector onSelectDepartment={(a) => setDepartmentSelection(a)} isChecked={(a) => departmentSelection === a} />
-                </div>
+            return (<div className="mt-4">
+                <ModifyDepartmentView character={character} onNextStep={onNextPage}
+                    onPreviousStep={() => setIndex(index-1)} />
             </div>);
         } else if (modificationType === SupportingCharacterModificationType.Promotion) {
             return (<div className="mt-4">

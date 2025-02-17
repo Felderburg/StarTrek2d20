@@ -1545,8 +1545,8 @@
     "ServiceRecord.agingRelic.description": "La nave lleva décadas en servicio y ha acogido a muchas tripulaciones. Sólo los más veteranos podrán recordar cuando era nueva.",
 
     "ServiceRecord.dependableWorkhorse": "Máquina fiable",
-    "ServiceRecord.legendary": "Legendaria",
     "ServiceRecord.hopeShip": "Nave Esperanza",
+    "ServiceRecord.legendary": "Legendaria",
     "ServiceRecord.prototype": "Prototipo",
     "ServiceRecord.survivorOfX": "Superviviente de X",
 

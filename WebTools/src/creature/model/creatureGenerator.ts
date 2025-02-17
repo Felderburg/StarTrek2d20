@@ -1,7 +1,7 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { Era } from "../../helpers/eras";
-import { Skill, SkillsHelper } from "../../helpers/skills";
+import { SkillsHelper } from "../../helpers/skills";
 import { TALENT_NAME_FLIGHT } from "../../helpers/talents";
 import { NpcType, NpcTypes } from "../../npc/model/npcType";
 import { isSecondEdition } from "../../state/contextFunctions";
@@ -309,7 +309,9 @@ const deriveForm = (creature: Creature) => {
                             result = "Lion";
                         }
                     } else if (creature.isFourOrMoreLegged) {
-                        if (roll < 8) {
+                        if (roll < 4) {
+                            result = "Llama";
+                        } else if (roll < 8) {
                             result = "Horse";
                         } else if (roll < 12) {
                             result = "Zebra";
