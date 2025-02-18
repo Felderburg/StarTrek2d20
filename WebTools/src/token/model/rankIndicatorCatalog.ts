@@ -1,5 +1,5 @@
 import { Rank } from "../../helpers/ranks";
-import { isEnlistedRank } from "./rankHelper";
+import { isEnlistedRank, isFlagRank } from "./rankHelper";
 import { Token } from "./token";
 import { UniformEra } from "./uniformEra";
 import UniformPackCollection from "./uniformPackCollection";
@@ -56,8 +56,8 @@ class RankIndicatorCatalog {
                     + `</g>
                     </svg>`;
             } else {
-                return `<svg viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <g transform="translate(-180, -200)">`
+                return `<svg viewBox="0 0 55 55" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <g transform="translate(-202, -221)">`
                     + svg
                     + `</g>
                     </svg>`;

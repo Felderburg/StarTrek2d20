@@ -23,8 +23,6 @@ import { SimpleAttributeSelector } from "../../components/simpleAttributeSelecto
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import D20IconButton from "../../solo/component/d20IconButton";
 import { FocusRandomTable } from "../../solo/table/focusRandomTable";
-import { Skill } from "../../helpers/skills";
-import { SimpleDepartmentSelector } from "../../components/simpleDepartmentSelector";
 import { TalentsHelper } from "../../helpers/talents";
 import { TalentDescription } from "../../components/talentDescription";
 import { ModalControl } from "../../components/modal";
@@ -42,7 +40,6 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const [modificationType, setModificationType] = useState<string|SupportingCharacterModificationType>("");
     const [valueSelection, setValueSelection] = useState<string>("");
     const [attriubteSelection, setAttributeSelection] = useState<Attribute>();
-    const [departmentSelection, setDepartmentSelection] = useState<Skill>();
     const [focusSelection, setFocusSelection] = useState<string>("");
     const [talentSelection, setTalentSelection] = useState<string>(null);
     const navigate = useNavigate();
@@ -108,13 +105,6 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                 Dialog.show(t("ModifySupportingCharacter.error.talent"));
             } else {
                 store.dispatch(modifySupportingCharacterAddImprovement(modificationType, talentSelection));
-                onNextPage();
-            }
-        } else if (modificationType === SupportingCharacterModificationType.AdditionalDepartment) {
-            if (departmentSelection == null) {
-                Dialog.show("Please select a department");
-            } else {
-                store.dispatch(modifySupportingCharacterAddImprovement(modificationType, departmentSelection));
                 onNextPage();
             }
         }

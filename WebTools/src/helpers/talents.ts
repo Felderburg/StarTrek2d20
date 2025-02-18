@@ -1718,13 +1718,13 @@ export class Talents {
             new TalentModel(
                 "Greed Is Eternal",
                 "As guided by the Rules of Acquisition, a proper Ferengi seeks profit in every endeavor. When engaged in negotiations – including Social Conflict – that have the potential for the Ferengi to profit financially, they may add 1 point to Threat in order to re-roll their dice pool.",
-                [new SpeciesPrerequisite(Species.Ferengi, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.DS9)],
+                [new SpeciesPrerequisite(Species.Ferengi, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.DS9, Source.Core2ndEdition)],
                 1,
                 "Ferengi"),
             new TalentModel(
                 "Never Place Friendship Above Profit",
                 "Ferengi accept and tolerate self-serving behavior as a natural part of business. When the character assists someone else – including using the Direct Task or other methods of assistance – and one or more Complications occurs, the character may add 1 to Threat to avoid suffering any effect from those Complications personally.",
-                [new SpeciesPrerequisite(Species.Ferengi, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.DS9)],
+                [new SpeciesPrerequisite(Species.Ferengi, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.DS9, Source.Core2ndEdition)],
                 1,
                 "Ferengi"),
             new TalentModel(
@@ -1802,13 +1802,13 @@ export class Talents {
             new TalentModel(
                 "Regimented Mind",
                 "Whenever this character spends Momentum to Obtain Information, they reduce the Difficulty of their next Task by 1 so long as that Task in some way relates to the information gained.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Cardassian, true)],
+                [new SourcePrerequisite(Source.AlphaQuadrant, Source.Core2ndEdition), new SpeciesPrerequisite(Species.Cardassian, true)],
                 1,
                 "Cardassian"),
             new TalentModel(
                 "The Ends Justify the Means",
                 "When the character challenges a Directive, they gain a bonus die – in addition to any other benefits.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Cardassian, true)],
+                [new SourcePrerequisite(Source.AlphaQuadrant, Source.Core2ndEdition), new SpeciesPrerequisite(Species.Cardassian, true)],
                 1,
                 "Cardassian"),
             new TalentModel(

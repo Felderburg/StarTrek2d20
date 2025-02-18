@@ -290,7 +290,7 @@ export class FoundryVttExporter {
             "img": "icons/svg/mystery-man.svg",
             "system": {
                 "notes": "",
-                "assignment": character.assignment,
+                "assignment": character.assignedShip,
                 "attributes": {
                 },
                 "careerevents": character
@@ -569,7 +569,7 @@ export class FoundryVttExporter {
         character.determineWeapons().forEach(w => {
             result.items.push({
                 "name": w.description,
-                "type": "characterweapon",
+                "type": character.version === 1 ? "characterweapon" : "characterweapon2e",
                 "img": this.determineWeaponIcon(w, character),
                 "effects": [],
                 "folder": null,
