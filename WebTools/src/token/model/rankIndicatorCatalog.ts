@@ -1,5 +1,5 @@
 import { Rank } from "../../helpers/ranks";
-import { isEnlistedRank, isFlagRank } from "./rankHelper";
+import { isEnlistedRank } from "./rankHelper";
 import { Token } from "./token";
 import { UniformEra } from "./uniformEra";
 import UniformPackCollection from "./uniformPackCollection";
