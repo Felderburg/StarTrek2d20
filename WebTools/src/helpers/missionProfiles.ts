@@ -100,7 +100,7 @@ class MissionProfiles {
         [MissionProfile.CrisisAndEmergencyResponse]: new MissionProfileModel(
             MissionProfile.CrisisAndEmergencyResponse,
             "Crisis and Emergency Response",
-            [2, 2, 2, 1, 3, 2],
+            [2, 2, 2, 1, 2, 3],
             [
                 TalentsHelper.getTalent("Advanced Sickbay"),
                 TalentsHelper.getTalent("Emergency Medical Hologram"),

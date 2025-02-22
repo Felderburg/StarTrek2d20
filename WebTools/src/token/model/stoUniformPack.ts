@@ -601,9 +601,9 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
             new Swatch(Rank.Crewman1stClass, "Crewman 1st Class", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.crewman1stClass, Rank.Crewman1stClass, token), "Rank.crewman1stClass.name"),
             new Swatch(Rank.Crewman2ndClass, "Crewman 2nd Class", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.crewman2ndClass, Rank.Crewman2ndClass, token), "Rank.crewman2ndClass.name"),
             new Swatch(Rank.Crewman3rdClass, "Crewman 3rd Class", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.crewman3rdClass, Rank.Crewman3rdClass, token), "Rank.crewman3rdClass.name"),
-            new Swatch(Rank.Admiral, "Admiral", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.admiral, Rank.Admiral, token), "Rank.admiral.name"),
-            new Swatch(Rank.ViceAdmiral, "Vice Admiral", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.viceAdmiral, Rank.ViceAdmiral, token), "Rank.viceAdmiral.name"),
             new Swatch(Rank.RearAdmiral, "Rear Admiral", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.rearAdmiral, Rank.RearAdmiral, token), "Rank.rearAdmiral.name"),
+            new Swatch(Rank.ViceAdmiral, "Vice Admiral", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.viceAdmiral, Rank.ViceAdmiral, token), "Rank.viceAdmiral.name"),
+            new Swatch(Rank.Admiral, "Admiral", (token) => RankIndicatorCatalog.decorateSwatch(RankIndicators.collar.admiral, Rank.Admiral, token), "Rank.admiral.name"),
         ];
         return result.filter(s => UniformVariantRestrictions.isRankSupported(s.id as Rank, this.era));
     }

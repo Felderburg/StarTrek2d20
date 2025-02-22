@@ -3192,7 +3192,7 @@ export class SpaceframeHelper {
             "Freedom-class",
             2148,
             [ Source.GmToolkit2e ],
-            [5, 5, 5, 6, 5, 6],
+            [5, 5, 5, 5, 5, 6],
             [0, 2, 0, 1, 0, 0],
             2,
             [
