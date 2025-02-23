@@ -25,7 +25,7 @@ export class EarlyOutlookDiscplineController implements IDisciplineController {
         return this.character.departments[discipline];
     }
     canIncrease(discipline: Skill) {
-        return this.character.upbringingStep?.discipline == null && (this.character.departments[discipline] < Character.maxDiscipline(this.character));
+        return this.character.upbringingStep?.discipline == null && (this.character.departments[discipline] < Character.maxDepartment(this.character));
     }
     canDecrease(discipline: Skill) {
         return this.character.upbringingStep?.discipline === discipline;

@@ -479,17 +479,23 @@ const deriveForm = (creature: Creature) => {
                 if (creature.isSlithering) {
                     result = "Snake";
                 } else if (creature.size?.id === CreatureSize.Gigantic) {
-                    if (roll < 4) {
+                    if (creature.hasTalent("Flight") && roll < 10) {
+                        result = "Pterodactyl";
+                    } else if (creature.hasTalent("Flight")) {
+                        result = "Dragon";
+                    } else if (roll < 4) {
                         result = "Ankylosaurus";
                     } else if (roll < 8) {
                         result = "Brachiosaurus";
                     } else if (roll < 12) {
                         result = "Tyrannosaurus";
-                    } else if (roll < 12) {
+                    } else if (roll < 14) {
                         result = "Stegosaurus";
                     } else {
                         result = "Dinosaur";
                     }
+                } else if (creature.hasTalent("Flight")) {
+                    result = "Pterodactyl";
                 } else if (roll < 5) {
                     result = creature.isFlippered ? "Turtle" : "Tortoise";
                 } else if (roll < 10) {

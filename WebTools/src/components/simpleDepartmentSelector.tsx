@@ -17,7 +17,7 @@ export const SimpleDepartmentSelector: React.FC<ISimpleDepartmentSelectorPropert
     const { t } = useTranslation();
 
     const isIncrementable = (s: Skill, departments: number[]) => {
-        if (departments[s] !== Character.maxDiscipline(character)) {
+        if (departments[s] !== Character.maxDepartment(character)) {
             return false;
         } else if (character.hasMaxedSkill() && departments[s] === (Character.ABSOLUTE_MAX_DEPARTMENT - 1)) {
             return false;

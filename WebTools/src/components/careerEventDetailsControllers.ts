@@ -30,8 +30,8 @@ export class CareerEventDisciplineController implements IDisciplineController {
         return this.character.departments[discipline];
     }
     canIncrease(discipline: Skill): boolean {
-        return this.getValue(discipline) < Character.maxDiscipline(this.character) &&
-            (this.getValue(discipline) < (Character.maxDiscipline(this.character) - 1) || !this.character.hasMaxedSkill())
+        return this.getValue(discipline) < Character.maxDepartment(this.character) &&
+            (this.getValue(discipline) < (Character.maxDepartment(this.character) - 1) || !this.character.hasMaxedSkill())
             && this.careerEventStep.discipline == null;
     }
     canDecrease(discipline: Skill): boolean {

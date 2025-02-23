@@ -606,7 +606,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
             this.finishingStep?.disciplines?.forEach(d => result[d] += 1)
 
-            SkillsHelper.getSkills().forEach(s => result[s] = Math.min(Character.maxDiscipline(this), result[s]));
+            SkillsHelper.getSkills().forEach(s => result[s] = Math.min(Character.maxDepartment(this), result[s]));
 
             return result;
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
@@ -1449,7 +1449,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
     }
 
-    public static maxDiscipline(character: Character) {
+    public static maxDepartment(character: Character) {
         if (character.age.isChild) {
             return 3;
         } else if (character.isYoung() || character.type === CharacterType.Cadet) {

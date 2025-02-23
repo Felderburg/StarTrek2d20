@@ -65,6 +65,14 @@ export class SpaceframeModel implements IServiceYearProvider {
         return this.id == null;
     }
 
+    get serviceYearForRefitCalculation() {
+        if (this.id === Spaceframe.Miranda_2E) {
+            return this.serviceYear + 10;
+        } else {
+            return this.serviceYear;
+        }
+    }
+
     talentsEffectiveForDate(serviceYear?: number) {
         if (serviceYear != null) {
             return this.talents.filter(t => {
