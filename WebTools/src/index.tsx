@@ -46,7 +46,6 @@ root.render(
                     <Route path="/modify" element={<ModificationFramePage />} />
                     <Route path="/modify/main" element={<ModifyCharacterPage />} />
                     <Route path="/modify/supporting" element={<ModifySupportCharacterPage />} />
-                    <Route path="/gmtracker" element={<GMTrackerPage />} />
                     <Route path="/talents" element={<TalentsOverviewMainPage />} />
                     <Route path="/view" element={<ViewSheetPage />} />
                     <Route path="/credits" element={<CreditsPage />} />
@@ -63,6 +62,7 @@ root.render(
                     <Route path="/tools/table/view" element={<ViewTablePage />} />
                     <Route path="/tools/table/edit" element={<EditTablePage />} />
                     <Route path="/tools/table/import" element={<ImportTablePage />} />
+                    <Route path="/tools/gmtracker" element={<GMTrackerPage />} />
                     <Route path="*" element={<CharacterCreationApp />} />
                 </Routes>
             </Suspense>

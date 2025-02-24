@@ -162,7 +162,7 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 if (temp.attributeTotal < Character.totalAttributeSum(temp)) {
                     temp.finishingStep.attributes = [];
                 }
-                if (temp.skillTotal < Character.totalDisciplineSum(temp)) {
+                if (temp.skillTotal < Character.totalDepartmentSum(temp)) {
                     temp.finishingStep.disciplines = [];
                 }
             }

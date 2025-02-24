@@ -22,16 +22,16 @@ export class Age {
     attributes: number[];
     disciplines: number[];
     attributeSum: number;
-    disciplineSum: number;
+    departmentSum: number;
     description: string;
     options: AgeLifepathOptions;
 
-    constructor(name: string, attributes: number[], disciplines: number[], attributeSum: number, disciplineSum: number, options: AgeLifepathOptions = new AgeLifepathOptions(), description: string = "") {
+    constructor(name: string, attributes: number[], disciplines: number[], attributeSum: number, departmentSum: number, options: AgeLifepathOptions = new AgeLifepathOptions(), description: string = "") {
         this.name = name;
         this.attributes = attributes;
         this.disciplines = disciplines;
         this.attributeSum = attributeSum;
-        this.disciplineSum = disciplineSum;
+        this.departmentSum = departmentSum;
         this.description = description;
         this.options = options;
     }

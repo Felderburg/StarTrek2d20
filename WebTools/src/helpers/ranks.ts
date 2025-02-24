@@ -96,6 +96,9 @@ export enum Rank {
     CadetFirstClass,
 
     // not specified
+    Menial,
+    Associate,
+    Salesman,
     DaiMon,
     Adhar,
     LorC,
@@ -104,6 +107,18 @@ export enum Rank {
     None
 }
 
+class FerengiPrerequisite implements IConstructPrerequisite<Character> {
+
+    isPrerequisiteFulfilled(character: Character) {
+        return character.type === CharacterType.Ferengi ||
+            (character.type === CharacterType.AlliedMilitary
+                && character.typeDetails
+                &&  character.typeDetails.type === AlliedMilitaryType.FerengiMilitary);
+    }
+    describe(): string {
+        return "";
+    }
+}
 
 class AlliedMilitaryPrerequisite implements IConstructPrerequisite<Character> {
 
@@ -1007,6 +1022,30 @@ export class RanksHelper {
             "Cdt."),
 
         new RankModel(
+            Rank.Menial,
+            "Menial", "O1",
+            [
+                new OfficerPrerequisite(),
+                new FerengiPrerequisite()
+            ],
+            "DaiMon"),
+        new RankModel(
+            Rank.Associate,
+            "Associate", "O2",
+            [
+                new OfficerPrerequisite(),
+                new FerengiPrerequisite()
+            ],
+            "DaiMon"),
+        new RankModel(
+            Rank.Salesman,
+            "Salesman", "O3",
+            [
+                new OfficerPrerequisite(),
+                new FerengiPrerequisite()
+            ],
+            "DaiMon"),
+        new RankModel(
             Rank.DaiMon,
             "DaiMon", "O5",
             [
@@ -1084,7 +1123,7 @@ export class RanksHelper {
                     Rank.Garresh ];
                 break;
             case CharacterType.Ferengi:
-                ranks = [ Rank.DaiMon ];
+                ranks = [ Rank.Menial, Rank.Associate, Rank.Salesman, Rank.DaiMon ];
                 break;
             case CharacterType.Cadet:
                 ranks = [ Rank.CadetFirstClass, Rank.CadetSecondClass, Rank.CadetThirdClass, Rank.CadetFourthClass ];

@@ -70,22 +70,26 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
     writeStatBoxes(page: PDFPage, character: Character) {
 
         this.writeSubTitle(page, i18next.t("Construct.other.attributes"), new Column(211.6, 220.4, 13, 241.2))
-        this.writeSubTitle(page, i18next.t("Construct.other.departments"), new Column(211.6, 300.7, 13, 241.2))
+        this.writeSubTitle(page, i18next.t("Construct.other.departments"), new Column(211.6, 285.7, 13, 241.2))
+        if (character.isStressTrackPresent) {
+            this.writeSubTitle(page, i18next.t("Construct.other.stress"), new Column(211.6, 351.0, 13, 241.2))
+            this.writeStressBoxes(page, character, new Column(211.6, 366.0, 30, 241.2))
+        }
 
         let columns = {
             "Construct.attribute.control": new Column(211.6, 235.4, 18.1, 60),
-            "Construct.attribute.daring": new Column(211.6, 260.2, 18.1, 60),
+            "Construct.attribute.daring": new Column(211.6, 258.2, 18.1, 60),
             "Construct.attribute.fitness": new Column(294.6, 235.4, 18.1, 60),
-            "Construct.attribute.insight": new Column(294.6, 260.2, 18.1, 60),
+            "Construct.attribute.insight": new Column(294.6, 258.2, 18.1, 60),
             "Construct.attribute.presence": new Column(377.6, 235.4, 18.1, 60),
-            "Construct.attribute.reason": new Column(377.6, 260.2, 18.1, 60),
+            "Construct.attribute.reason": new Column(377.6, 258.2, 18.1, 60),
 
-            "Construct.discipline.command": new Column(211.6, 315.7, 18.1, 60),
-            "Construct.discipline.conn": new Column(211.6, 340.5, 18.1, 60),
-            "Construct.discipline.engineering": new Column(294.6, 315.7, 18.1, 60),
-            "Construct.discipline.security": new Column(294.6, 340.5, 18.1, 60),
-            "Construct.discipline.medicine": new Column(377.6, 315.7, 18.1, 60),
-            "Construct.discipline.science": new Column(377.6, 340.5, 18.1, 60),
+            "Construct.discipline.command": new Column(211.6, 300.7, 18.1, 60),
+            "Construct.discipline.conn": new Column(211.6, 323.5, 18.1, 60),
+            "Construct.discipline.engineering": new Column(294.6, 300.7, 18.1, 60),
+            "Construct.discipline.security": new Column(294.6, 323.5, 18.1, 60),
+            "Construct.discipline.medicine": new Column(377.6, 300.7, 18.1, 60),
+            "Construct.discipline.science": new Column(377.6, 323.5, 18.1, 60),
         }
 
         labelWriter(page, columns, character.version,
@@ -112,6 +116,30 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
             simpleLabelWriter(page, text, valueColumn, this.fonts.fontByType(FontType.Bold), 9.5, colour,
                 TextAlign.Centre, VerticalAlignment.Middle);
         });
+    }
+
+    writeStressBoxes(page: PDFPage, character: Character, column: Column) {
+        let stressBox = "m 1,0 h 7.5 c 0.554,0 1,0.446 1,1 v 7.5 c 0,0.554 -0.446,1 -1,1 H 1 C 0.446,9.5 0,9.054 0,8.5 V 1 C 0,0.446 0.446,0 1,0 Z";
+
+        let x = column.translatedStart(page).x;
+        let y = column.translatedStart(page).y;
+        for (let i = 0; i < character.stress; i++) {
+
+            page.moveTo(x, y);
+            page.drawSvgPath(stressBox, {
+                borderColor: SimpleColor.from("#8E9092").asPdfRbg(),
+                borderWidth: 0.5
+            });
+
+            x += 12;
+            if (i % 5 === 4) {
+                x += 10;
+            }
+            if (i % 15 === 14) {
+                y += 12;
+                x = column.translatedStart(page).x;
+            }
+        }
     }
 
     writeTalents(page: PDFPage, character: Character) {
@@ -211,11 +239,16 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
 
     writeFront(page: PDFPage, character: Character) {
 
+        let name = character.name?.toLocaleUpperCase();
+        if (name == null || name.length ===0) {
+            name = i18next.t("Construct.other.unnamedCharacter").toLocaleUpperCase();
+        }
+
         let divisionColour = divisionColour2e(character.era, character.division);
-        let fontSize = determineIdealFontWidth([character.name?.toLocaleUpperCase()], this.frontNameColumn.width,
+        let fontSize = determineIdealFontWidth([name], this.frontNameColumn.width,
             55, 25, this.fonts.fontByType(FontType.Bold));
 
-        let nameBlock = TextBlock.create(character.name?.toLocaleUpperCase() ?? "",
+        let nameBlock = TextBlock.create(name ?? "",
             new FontSpecification(this.fonts.fontByType(FontType.Bold), fontSize), false);
         nameBlock.writeToPage(
             this.frontNameColumn.end.x - ((this.frontNameColumn.width - nameBlock.width) / 2),

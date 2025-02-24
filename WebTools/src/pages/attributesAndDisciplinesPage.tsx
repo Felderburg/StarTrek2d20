@@ -69,7 +69,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
     character.departments.forEach(a => disciplineTotal += a);
     disciplineTotal -= (character.finishingStep?.disciplines?.length ?? 0);
 
-    const disciplineCount = Character.totalDisciplineSum(character) - disciplineTotal;
+    const disciplineCount = Character.totalDepartmentSum(character) - disciplineTotal;
 
     const attributeController = new FinishingTouchesAttributeController(character, attributeCount);
     const disciplineController = new FinishingTouchesDisciplineController(character, disciplineCount);

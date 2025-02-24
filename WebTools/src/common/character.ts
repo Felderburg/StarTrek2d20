@@ -1517,15 +1517,15 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
     }
 
-    public static totalDisciplineSum(character: Character) {
+    public static totalDepartmentSum(character: Character) {
         if (character.type === CharacterType.Cadet) {
             let reduction = 2;
             if (character.careerEvents?.length) {
                 reduction -= character.careerEvents.length;
             }
-            return character.age.disciplineSum - reduction;
+            return character.age.departmentSum - reduction;
         } else {
-            return character.age.disciplineSum;
+            return character.age.departmentSum;
         }
     }
 }

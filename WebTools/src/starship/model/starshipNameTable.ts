@@ -187,7 +187,8 @@ const starshipEnterpriseEraNames = [
     "Lumumba",
     "Christopher",
     "Kelly",
-    "Sloane"
+    "Sloane",
+    "Petrov"
 ]
 
 const klingonEnterpriseEraNames = [
