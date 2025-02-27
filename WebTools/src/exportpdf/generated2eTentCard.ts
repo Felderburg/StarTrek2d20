@@ -109,7 +109,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
             }
 
             if (key.includes("Construct.discipline.")) {
-                let department = SkillsHelper.getSkillByName(key.substring("Construct.discipline.".length));
+                let department = SkillsHelper.instance.getSkillByName(key.substring("Construct.discipline.".length));
                 text = "" + character.departments[department];
             }
 

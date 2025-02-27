@@ -497,7 +497,7 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
 
     fillSkills(form: PDFForm, character: Character) {
         const departments = character.departments;
-        SkillsHelper.getSkills().forEach((s, i) => {
+        SkillsHelper.instance.getSkills().forEach((s, i) => {
             switch (s) {
             case Skill.Command:
                 this.fillField(form, 'Command', "" + departments[s]);

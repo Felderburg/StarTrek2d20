@@ -48,7 +48,7 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
     }
 
     let skillImprovements = NpcTypes.disciplinePoints(NpcType.Minor);
-    let skills = SkillsHelper.getSkills();
+    let skills = SkillsHelper.instance.getSkills();
     for (let i = 0; i < skillImprovements.length; i++) {
         let index = Math.floor(Math.random() * skills.length);
         let skill = skills.splice(index, 1)[0];

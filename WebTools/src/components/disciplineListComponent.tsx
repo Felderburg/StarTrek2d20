@@ -36,7 +36,7 @@ const DisciplineListComponent: React.FC<IDisciplineListControllerProperties> = (
     }
 
     return (<>
-        {SkillsHelper.getSkills().filter(d => controller.isShown(d)).map(d => renderDiscipline(d))}
+        {SkillsHelper.instance.getSkills().filter(d => controller.isShown(d)).map(d => renderDiscipline(d))}
         </>);
 }
 

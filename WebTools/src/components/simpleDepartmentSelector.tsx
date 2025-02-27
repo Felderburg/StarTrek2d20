@@ -29,7 +29,7 @@ export const SimpleDepartmentSelector: React.FC<ISimpleDepartmentSelectorPropert
     const departments = character.departments;
     return (<table className="selection-list">
         <tbody>
-            {SkillsHelper.getSkills().map((s, i) => {
+            {SkillsHelper.instance.getSkills().map((s, i) => {
                 return (<tr key={i}>
                     <td className="selection-header-small">{t(makeKey("Construct.discipline.", Skill[s]))}</td>
                     <td className="text-end">

@@ -340,7 +340,7 @@ export class FoundryVttExporter {
             }
         }
 
-        SkillsHelper.getSkills().forEach(s => {
+        SkillsHelper.instance.getSkills().forEach(s => {
             let name = Skill[s].toLowerCase();
             result.system.disciplines[name] = {
                 "label": "sta.actor.character.discipline." + name,
@@ -792,7 +792,7 @@ export class FoundryVttExporter {
         if (talent.category == null || talent.category === "Esoteric" || talent.category === "General"
                 || talent.category === "Career" || talent.category === "Starship" || talent.category === "Starbase" || talent.category === "") {
             return "general";
-        } else if (SkillsHelper.getSkillByName(talent.category) !== undefined) {
+        } else if (SkillsHelper.instance.getSkillByName(talent.category) !== undefined) {
             return "discipline";
         } else {
             return "species";

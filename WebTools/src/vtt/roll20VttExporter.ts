@@ -491,7 +491,7 @@ export class Roll20VttExporter {
         result.character.attribs.push(this.convertEnvironment(character, id));
         result.character.attribs.push(this.convertAssignment(character, id));
         result.character.attribs.push(this.convertRankSelect(character, id));
-        SkillsHelper.getSkills().forEach(d =>
+        SkillsHelper.instance.getSkills().forEach(d =>
             result.character.attribs.push(this.convertDiscipline(character, d, id))
         );
         AttributesHelper.getAllAttributes().forEach(a =>

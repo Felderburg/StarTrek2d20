@@ -125,7 +125,7 @@ export class SupportingStep {
     constructor() {
         this.focuses = ["", "", ""];
         this.attributes = [...AttributesHelper.getAllAttributes()];
-        this.disciplines = [...SkillsHelper.getSkills()];
+        this.disciplines = [...SkillsHelper.instance.getSkills()];
     }
 
     copy() {
@@ -606,7 +606,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
             this.finishingStep?.disciplines?.forEach(d => result[d] += 1)
 
-            SkillsHelper.getSkills().forEach(s => result[s] = Math.min(Character.maxDepartment(this), result[s]));
+            SkillsHelper.instance.getSkills().forEach(s => result[s] = Math.min(Character.maxDepartment(this), result[s]));
 
             return result;
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
@@ -614,7 +614,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {
                 values = [4, 4, 3, 2, 2, 1];
             }
-            let result = SkillsHelper.getSkills().map(s => {
+            let result = SkillsHelper.instance.getSkills().map(s => {
                 let index = this.supportingStep?.disciplines?.indexOf(s);
                 return values[index];
             });

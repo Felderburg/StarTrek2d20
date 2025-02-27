@@ -121,7 +121,7 @@ export abstract class BaseNonForm2eSheet extends BasicGeneratedSheet {
     determineAllStatLabels(construct: Construct) {
         let text = [];
         if (construct instanceof Character) {
-            SkillsHelper.getSkills().forEach(s => text.push(i18next.t(makeKey('Construct.discipline.', Skill[s]))));
+            SkillsHelper.instance.getSkills().forEach(s => text.push(i18next.t(makeKey('Construct.discipline.', Skill[s]))));
             AttributesHelper.getAllAttributes().forEach(a => text.push(i18next.t(makeKey('Construct.attribute.', Attribute[a]))));
         } else {
             allDepartments().forEach(d => text.push(i18next.t(makeKey('Construct.department.', Department[d]))));

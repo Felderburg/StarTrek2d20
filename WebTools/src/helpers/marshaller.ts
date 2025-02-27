@@ -582,7 +582,7 @@ class Marshaller {
 
     getSkillByNameObject(departments: number[]) {
         let result = {};
-        SkillsHelper.getSkills().forEach(s => result[Skill[s]] = departments[s]);
+        SkillsHelper.instance.getSkills().forEach(s => result[Skill[s]] = departments[s]);
         return result;
     }
 
@@ -1036,7 +1036,7 @@ class Marshaller {
         }
 
         if (json.departments) {
-            SkillsHelper.getSkills().forEach(s =>
+            SkillsHelper.instance.getSkills().forEach(s =>
                 result.departments[s] = json.departments[Skill[s]]
             );
         }
@@ -1145,7 +1145,7 @@ class Marshaller {
                         step.attribute = AttributesHelper.getAttributeByName(e["attribute"]);
                     }
                     if (e["discipline"]) {
-                        step.discipline = SkillsHelper.getSkillByName(e["discipline"]);
+                        step.discipline = SkillsHelper.instance.getSkillByName(e["discipline"]);
                     }
                     if (e["focus"]) {
                         step.focus = e["focus"];
@@ -1299,16 +1299,16 @@ class Marshaller {
                 result.educationStep.attributes = json.training.attributes.map(a => AttributesHelper.getAttributeByName(a));
             }
             if (json.training.disciplines) {
-                result.educationStep.disciplines = json.training.disciplines.map(d => SkillsHelper.getSkillByName(d));
+                result.educationStep.disciplines = json.training.disciplines.map(d => SkillsHelper.instance.getSkillByName(d));
             }
             if (json.training.decrementDisciplines) {
-                result.educationStep.decrementDisciplines = json.training.decrementDisciplines.map(d => SkillsHelper.getSkillByName(d));
+                result.educationStep.decrementDisciplines = json.training.decrementDisciplines.map(d => SkillsHelper.instance.getSkillByName(d));
             }
             if (json.training.decrementAttributes) {
                 result.educationStep.decrementAttributes = json.training.decrementAttributes.map(a => AttributesHelper.getAttributeByName(a));
             }
             if (json.training.primaryDiscipline != null) {
-                result.educationStep.primaryDiscipline = SkillsHelper.getSkillByName(json.training.primaryDiscipline);
+                result.educationStep.primaryDiscipline = SkillsHelper.instance.getSkillByName(json.training.primaryDiscipline);
             }
             if (json.training.value != null) {
                 result.educationStep.value = json.training.value;
@@ -1358,11 +1358,11 @@ class Marshaller {
                 if (result.npcGenerationStep == null) {
                     result.npcGenerationStep = new NpcGenerationStep();
                 }
-                SkillsHelper.getSkills().forEach(s =>
+                SkillsHelper.instance.getSkills().forEach(s =>
                     result.npcGenerationStep.departments[s] = json.disciplines[Skill[s]]
                 );
             } else {
-                SkillsHelper.getSkills().forEach(s =>
+                SkillsHelper.instance.getSkills().forEach(s =>
                     result._skills[s] = json.disciplines[Skill[s]]
                 );
             }
@@ -1385,7 +1385,7 @@ class Marshaller {
                     result.environmentStep.attribute = AttributesHelper.getAttributeByName(json.environment.attribute);
                 }
                 if (json.environment.discipline) {
-                    result.environmentStep.discipline = SkillsHelper.getSkillByName(json.environment.discipline);
+                    result.environmentStep.discipline = SkillsHelper.instance.getSkillByName(json.environment.discipline);
                 }
                 if (json.environment.value) {
                     result.environmentStep.value = json.environment.value;
@@ -1405,7 +1405,7 @@ class Marshaller {
                 result.upbringingStep.focus = json.upbringing.focus;
             }
             if (json.upbringing.discipline != null) {
-                result.upbringingStep.discipline = SkillsHelper.getSkillByName(json.upbringing.discipline);
+                result.upbringingStep.discipline = SkillsHelper.instance.getSkillByName(json.upbringing.discipline);
             }
             if (json.upbringing.talent != null) {
                 result.upbringingStep.talent = this.hydrateTalent(json.upbringing.talent);
@@ -1418,7 +1418,7 @@ class Marshaller {
                 result.finishingStep.attributes = json.finish.attributes.map(a => AttributesHelper.getAttributeByName(a));
             }
             if (json.finish.disciplines) {
-                result.finishingStep.disciplines = json.finish.disciplines.map(d => SkillsHelper.getSkillByName(d));
+                result.finishingStep.disciplines = json.finish.disciplines.map(d => SkillsHelper.instance.getSkillByName(d));
             }
             if (json.finish.value) {
                 result.finishingStep.value = json.finish.value;
@@ -1456,7 +1456,7 @@ class Marshaller {
                 result.npcGenerationStep.focuses = [...json.npc.focuses];
             }
             if (json.npc.departments) {
-                SkillsHelper.getSkills().forEach(s =>
+                SkillsHelper.instance.getSkills().forEach(s =>
                     result.npcGenerationStep.departments[s] = json.npc.departments[Skill[s]]
                 );
             }
@@ -1472,7 +1472,7 @@ class Marshaller {
                 result.supportingStep.attributes = [...json.supporting.attributes.map(a => AttributesHelper.getAttributeByName(a))];
             }
             if (json.supporting.disciplines) {
-                result.supportingStep.disciplines = [...json.supporting.disciplines.map(d => SkillsHelper.getSkillByName(d))];
+                result.supportingStep.disciplines = [...json.supporting.disciplines.map(d => SkillsHelper.instance.getSkillByName(d))];
             }
             if (json.supporting.value?.length) {
                 result.supportingStep.value = json.supporting.value;
@@ -1514,7 +1514,7 @@ class Marshaller {
                     } else if (j["attribute"] != null) {
                         improvement.attribute = AttributesHelper.getAttributeByName(j["attribute"]);
                     } else if (j["discipline"] != null) {
-                        improvement.discipline = SkillsHelper.getSkillByName(j["discipline"]);
+                        improvement.discipline = SkillsHelper.instance.getSkillByName(j["discipline"]);
                     } else if (j["talent"] != null) {
                         improvement.talent = this.hydrateTalent(j["talent"]);
                     }

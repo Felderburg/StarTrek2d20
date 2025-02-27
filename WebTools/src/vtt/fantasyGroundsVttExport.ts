@@ -890,7 +890,7 @@ export class FantasyGroupsVttExporter {
             "elements": []
         };
 
-        SkillsHelper.getSkills().forEach(s => {
+        SkillsHelper.instance.getSkills().forEach(s => {
             let name = Skill[s].toLowerCase();
             let discipline = {
                 "name": name,

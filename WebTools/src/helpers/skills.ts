@@ -1,13 +1,23 @@
 ﻿export enum Skill {
     Command,
     Conn,
-    Engineering,
     Security,
+    Engineering,
     Science,
     Medicine
 }
 
-export class Skills {
+export class SkillsHelper {
+
+    private static _instance: SkillsHelper;
+
+    static get instance() : SkillsHelper {
+        if (SkillsHelper._instance == null) {
+            SkillsHelper._instance = new SkillsHelper();
+        }
+        return SkillsHelper._instance;
+    }
+
     getSkills() {
         let skills: Skill[] = [];
         for (var s = 0; s <= Skill.Medicine; s++) {
@@ -32,5 +42,3 @@ export class Skills {
         return undefined;
     }
 }
-
-export const SkillsHelper = new Skills();

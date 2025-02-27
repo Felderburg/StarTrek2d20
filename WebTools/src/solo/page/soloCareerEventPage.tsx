@@ -39,7 +39,7 @@ const SoloCareerEventPage: React.FC<ISoloCareerEventProperties> = ({character, c
         });
 
         const disciplines = careerEvent.disciplines.map((d, i) => {
-            return <div key={i}>{SkillsHelper.getSkillName(d) }</div>;
+            return <div key={i}>{SkillsHelper.instance.getSkillName(d) }</div>;
         });
 
         return (

@@ -317,7 +317,7 @@ export class RanksHelper {
                 new OfficerPrerequisite(),
                 new CareersPrerequisite(Career.Experienced, Career.Veteran),
                 new NotRolesPrerequisite([Role.Admiral]),
-                new NotPrerequisite(new AlliedMilitaryPrerequisite(AlliedMilitaryType.Maco, AlliedMilitaryType.CardassianUnion))
+                new NotPrerequisite(new AlliedMilitaryPrerequisite(AlliedMilitaryType.Maco, AlliedMilitaryType.CardassianUnion, AlliedMilitaryType.FerengiMilitary))
             ],
             "Cmdr."),
         new RankModel(

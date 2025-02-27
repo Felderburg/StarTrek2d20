@@ -834,7 +834,7 @@ export class RolesHelper {
         let departments = character.departments;
         let maxDepartment = [];
         let maxDepartmentValue = 0;
-        SkillsHelper.getSkills().forEach(s => {
+        SkillsHelper.instance.getSkills().forEach(s => {
             if (maxDepartment.length === 0 || maxDepartmentValue < departments[s]) {
                 maxDepartmentValue = departments[s];
                 maxDepartment = [s];

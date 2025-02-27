@@ -470,7 +470,7 @@ export class NpcGenerator {
         character.npcGenerationStep = new NpcGenerationStep(npcType);
         character.npcGenerationStep.specialization = specialization.id;
 
-        let disciplines = SkillsHelper.getSkills();
+        let disciplines = SkillsHelper.instance.getSkills();
         let disciplinePoints = NpcTypes.disciplinePoints(npcType);
 
         for (let i = 0; i < disciplinePoints.length; i++) {

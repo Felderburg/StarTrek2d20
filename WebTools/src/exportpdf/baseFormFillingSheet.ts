@@ -99,7 +99,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
 
     fillSkills(form: PDFForm, character: Character) {
         let departments = character.departments;
-        SkillsHelper.getSkills().forEach( (a, i) => {
+        SkillsHelper.instance.getSkills().forEach( (a, i) => {
             this.fillField(form, Skill[a], "" + departments[a]);
         });
     }
