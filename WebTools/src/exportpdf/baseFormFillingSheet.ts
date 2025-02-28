@@ -3,7 +3,7 @@ import { BasicGeneratedSheet } from "./generatedsheet";
 import { Construct } from "../common/construct";
 import { Character } from "../common/character";
 import { CharacterSerializer } from "../common/characterSerializer";
-import { Skill, DepartmentsHelper } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/skills";
 import { CareerEventsHelper } from "../helpers/careerEvents";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Column } from "./column";
@@ -99,8 +99,8 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
 
     fillSkills(form: PDFForm, character: Character) {
         let departments = character.departments;
-        DepartmentsHelper.instance.getSkills().forEach( (a, i) => {
-            this.fillField(form, Skill[a], "" + departments[a]);
+        DepartmentsHelper.instance.getDepartments().forEach( (d, i) => {
+            this.fillField(form, Department[d], "" + departments[d]);
         });
     }
 
@@ -131,11 +131,6 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
 
     fillName(form: PDFForm, character: Character) {
         this.fillField(form, 'Name', character.name);
-    }
-
-    findSecurityValue(construct: Construct) {
-        let c = construct as Character;
-        return c.departments[Skill.Security];
     }
 
     fillEquipment(form: PDFForm, character: Character) {

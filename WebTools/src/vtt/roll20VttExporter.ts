@@ -5,7 +5,7 @@ import { Starship } from "../common/starship";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { BorgImplants, Implant } from "../helpers/borgImplant";
 import { EquipmentModel } from "../helpers/equipment";
-import { DepartmentsHelper, Department, Skill } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/skills";
 import { SpeciesHelper } from "../helpers/species";
 import { Species } from "../helpers/speciesEnum";
 import { TalentsHelper } from "../helpers/talents";
@@ -216,7 +216,7 @@ export class Roll20VttExporter {
         result.character.attribs.push(this.convertPower(starship, id));
 
         DepartmentsHelper.instance.getDepartments().forEach(d =>
-            result.character.attribs.push(this.convertDepartment(starship, d, id))
+            result.character.attribs.push(this.convertStarshipDepartment(starship, d, id))
         );
         allSystems().forEach(s =>
             result.character.attribs.push(this.convertSystem(starship, s, id))
@@ -490,7 +490,7 @@ export class Roll20VttExporter {
         result.character.attribs.push(this.convertEnvironment(character, id));
         result.character.attribs.push(this.convertAssignment(character, id));
         result.character.attribs.push(this.convertRankSelect(character, id));
-        DepartmentsHelper.instance.getSkills().forEach(d =>
+        DepartmentsHelper.instance.getDepartments().forEach(d =>
             result.character.attribs.push(this.convertDiscipline(character, d, id))
         );
         AttributesHelper.getAllAttributes().forEach(a =>
@@ -699,16 +699,16 @@ export class Roll20VttExporter {
         };
     }
 
-    convertDiscipline(character: Character, s: Skill, id: IdHelper) {
+    convertDiscipline(character: Character, d: Department, id: IdHelper) {
         return {
-            "name": Skill[s].toLocaleLowerCase(),
-            "current": character.departments[s],
+            "name": Department[d].toLocaleLowerCase(),
+            "current": character.departments[d],
             "max": "",
             "id": id.nextId()
         };
     }
 
-    convertDepartment(starship: Starship, d: Department, id: IdHelper) {
+    convertStarshipDepartment(starship: Starship, d: Department, id: IdHelper) {
         return {
             "name": "ship_" + Department[d].toLocaleLowerCase(),
             "current": starship.departments[d],
@@ -901,7 +901,7 @@ export class Roll20VttExporter {
 
     convertWeapon(character: Character, weapon: Weapon, id: IdHelper) {
         let damage = "";
-        for (let i = 0; i < weapon.dice + character.departments[Skill.Security]; i++) {
+        for (let i = 0; i < weapon.dice + character.departments[Department.Security]; i++) {
             damage += "{{cdice" + (i+1) + "=[[1d6]]}}";
         }
         const rowId = id.nextId();

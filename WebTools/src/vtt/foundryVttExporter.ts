@@ -3,7 +3,7 @@ import { CharacterSerializer } from "../common/characterSerializer";
 import { ShipBuildType, Starship } from "../common/starship";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Role, RoleModel, RolesHelper } from "../helpers/roles";
-import { DepartmentsHelper, Department, Skill } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/skills";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { TALENT_NAME_UNTAPPED_POTENTIAL, TalentModel, TalentsHelper } from "../helpers/talents";
 import { DeliverySystem, EnergyLoadType, InjuryType, PersonalWeapons, Quality, TorpedoLoadType, Weapon, WeaponRange, WeaponType } from "../helpers/weapons";
@@ -339,11 +339,11 @@ export class FoundryVttExporter {
             }
         }
 
-        DepartmentsHelper.instance.getSkills().forEach(s => {
-            let name = Skill[s].toLowerCase();
+        DepartmentsHelper.instance.getDepartments().forEach(d => {
+            let name = Department[d].toLowerCase();
             result.system.disciplines[name] = {
                 "label": "sta.actor.character.discipline." + name,
-                "value": ("" + character.departments[s]),
+                "value": ("" + character.departments[d]),
                 "selected": false
             };
         });
@@ -791,7 +791,7 @@ export class FoundryVttExporter {
         if (talent.category == null || talent.category === "Esoteric" || talent.category === "General"
                 || talent.category === "Career" || talent.category === "Starship" || talent.category === "Starbase" || talent.category === "") {
             return "general";
-        } else if (DepartmentsHelper.instance.getSkillByName(talent.category) !== undefined) {
+        } else if (DepartmentsHelper.instance.getDepartmentByName(talent.category) !== undefined) {
             return "discipline";
         } else {
             return "species";

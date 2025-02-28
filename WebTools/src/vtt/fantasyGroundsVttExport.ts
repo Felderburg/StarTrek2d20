@@ -1,7 +1,7 @@
 import { Character } from "../common/character";
 import convert from "xml-js";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
-import { Skill, DepartmentsHelper } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/skills";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { TalentsHelper } from "../helpers/talents";
 import { CareersHelper } from "../helpers/careers";
@@ -598,8 +598,8 @@ export class FantasyGroupsVttExporter {
                                 "type": "text",
                                 "text": (
                                     w.type === WeaponType.ENERGY
-                                    ? (character.attributes[Attribute.Control] + character.departments[Skill.Security])
-                                    : (character.attributes[Attribute.Daring] + character.departments[Skill.Security]))
+                                    ? (character.attributes[Attribute.Control] + character.departments[Department.Security])
+                                    : (character.attributes[Attribute.Daring] + character.departments[Department.Security]))
                             }
                         ]
                     },
@@ -890,8 +890,8 @@ export class FantasyGroupsVttExporter {
             "elements": []
         };
 
-        DepartmentsHelper.instance.getSkills().forEach(s => {
-            let name = Skill[s].toLowerCase();
+        DepartmentsHelper.instance.getDepartments().forEach(d => {
+            let name = Department[d].toLowerCase();
             let discipline = {
                 "name": name,
                 "type": "element",
@@ -913,7 +913,7 @@ export class FantasyGroupsVttExporter {
                     "type": "element",
                     "elements": [{
                         "type":"text",
-                        "text": character.departments[s]
+                        "text": character.departments[d]
                     }]
                 },{
                     "name": "environment",
@@ -953,7 +953,7 @@ export class FantasyGroupsVttExporter {
                     "type": "element",
                     "elements": [{
                         "type":"text",
-                        "text": character.departments[s]
+                        "text": character.departments[d]
                     }]
                 },{
                     "name": "training",
@@ -1472,7 +1472,7 @@ export class FantasyGroupsVttExporter {
                                                 },
                                                 "elements": [{
                                                     "type": "text",
-                                                    "text": event.disciplines.length === 1 ? Skill[event.disciplines[0]].toLowerCase() : "any"
+                                                    "text": event.disciplines.length === 1 ? Department[event.disciplines[0]].toLowerCase() : "any"
                                                 }]
                                             }
                                         ]

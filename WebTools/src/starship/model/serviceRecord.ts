@@ -1,6 +1,7 @@
 import i18next from "i18next";
 import { makeKey } from "../../common/translationKey";
 import { CharacterType } from "../../common/characterType";
+import { Source } from "../../helpers/sources";
 
 export enum ServiceRecord {
     AgingRelic,
@@ -36,11 +37,13 @@ export class ServiceRecordModel {
     type: ServiceRecord;
     specialRule: string;
     starshipType?: CharacterType;
+    source: Source;
 
-    constructor(type: ServiceRecord, specialRule: string, starshipType?: CharacterType) {
+    constructor(type: ServiceRecord, specialRule: string, source: Source = Source.Core2ndEdition, starshipType?: CharacterType) {
         this.type = type;
         this.specialRule = specialRule;
         this.starshipType = starshipType;
+        this.source = source;
     }
 
     get name() {
@@ -66,15 +69,15 @@ export class ServiceRecordList {
         new ServiceRecordModel(ServiceRecord.Prototype, "Experimental Vessel"),
         new ServiceRecordModel(ServiceRecord.SurvivorOfX, "Ready for Battle"),
 
-        new ServiceRecordModel(ServiceRecord.GarbageScow, "Jury-Rigged (Service Record)"),
-        new ServiceRecordModel(ServiceRecord.LuckyShip, "Lucky (Service Record)"),
-        new ServiceRecordModel(ServiceRecord.TheShipThatWontDie, "Refuses to Die (Service Record)"),
-        new ServiceRecordModel(ServiceRecord.GhostShip, "Premonitions (Service Record)"),
-        new ServiceRecordModel(ServiceRecord.HappyShip, "Efficiency (Service Record)"),
+        new ServiceRecordModel(ServiceRecord.GarbageScow, "Jury-Rigged (Service Record)", Source.ContinuingMissions),
+        new ServiceRecordModel(ServiceRecord.LuckyShip, "Lucky (Service Record)", Source.ContinuingMissions),
+        new ServiceRecordModel(ServiceRecord.TheShipThatWontDie, "Refuses to Die (Service Record)", Source.ContinuingMissions),
+        new ServiceRecordModel(ServiceRecord.GhostShip, "Premonitions (Service Record)", Source.ContinuingMissions),
+        new ServiceRecordModel(ServiceRecord.HappyShip, "Efficiency (Service Record)", Source.ContinuingMissions),
 
-        new ServiceRecordModel(ServiceRecord.Disavowed, "Any Knowledge of Your Actions", CharacterType.Romulan),
-        new ServiceRecordModel(ServiceRecord.Loyalist, "Once More Unto the Breach", CharacterType.Romulan),
-        new ServiceRecordModel(ServiceRecord.Terror, "Dreaded", CharacterType.Romulan),
+        new ServiceRecordModel(ServiceRecord.Disavowed, "Any Knowledge of Your Actions", Source.ContinuingMissions, CharacterType.Romulan),
+        new ServiceRecordModel(ServiceRecord.Loyalist, "Once More Unto the Breach", Source.ContinuingMissions, CharacterType.Romulan),
+        new ServiceRecordModel(ServiceRecord.Terror, "Dreaded", Source.ContinuingMissions, CharacterType.Romulan),
     ]
 
     static get instance() {

@@ -1,7 +1,7 @@
 import { Character } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
-import { DepartmentsHelper, Department, Skill } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/skills";
 import { PDFCheckBox, PDFDocument, PDFFont, PDFForm, PDFPage, PDFTextField, rgb, StandardFonts } from "@cantoo/pdf-lib";
 import fontkit from '@pdf-lib/fontkit'
 import { CharacterSerializer } from '../common/characterSerializer';
@@ -496,25 +496,25 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
 
     fillSkills(form: PDFForm, character: Character) {
         const departments = character.departments;
-        DepartmentsHelper.instance.getSkills().forEach((s, i) => {
-            switch (s) {
-            case Skill.Command:
-                this.fillField(form, 'Command', "" + departments[s]);
+        DepartmentsHelper.instance.getDepartments().forEach((d, i) => {
+            switch (d) {
+            case Department.Command:
+                this.fillField(form, 'Command', "" + departments[d]);
                 break;
-            case Skill.Security:
-                this.fillField(form, 'Security', "" + departments[s]);
+            case Department.Security:
+                this.fillField(form, 'Security', "" + departments[d]);
                 break;
-            case Skill.Science:
-                this.fillField(form, 'Science', "" + departments[s]);
+            case Department.Science:
+                this.fillField(form, 'Science', "" + departments[d]);
                 break;
-            case Skill.Conn:
-                this.fillField(form, 'Conn', "" + departments[s]);
+            case Department.Conn:
+                this.fillField(form, 'Conn', "" + departments[d]);
                 break;
-            case Skill.Engineering:
-                this.fillField(form, 'Engineering', "" + departments[s]);
+            case Department.Engineering:
+                this.fillField(form, 'Engineering', "" + departments[d]);
                 break;
-            case Skill.Medicine:
-                this.fillField(form, 'Medicine', "" + departments[s]);
+            case Department.Medicine:
+                this.fillField(form, 'Medicine', "" + departments[d]);
                 break;
             }
         });
@@ -939,10 +939,10 @@ class TwoPageTngLandscapeCharacterSheet extends BaseTextCharacterSheet {
             }
         }
 
-        this.fillField(form, "Sprint", "" + (character.attributes[Attribute.Fitness] + character.departments[Skill.Security]));
-        this.fillField(form, "First Aid", "" + (character.attributes[Attribute.Daring] + character.departments[Skill.Medicine]));
-        this.fillField(form, "Ranged Attack", "" + (character.attributes[Attribute.Control] + character.departments[Skill.Security]));
-        this.fillField(form, "Melee Attack", "" + (character.attributes[Attribute.Daring] + character.departments[Skill.Security]));
+        this.fillField(form, "Sprint", "" + (character.attributes[Attribute.Fitness] + character.departments[Department.Security]));
+        this.fillField(form, "First Aid", "" + (character.attributes[Attribute.Daring] + character.departments[Department.Medicine]));
+        this.fillField(form, "Ranged Attack", "" + (character.attributes[Attribute.Control] + character.departments[Department.Security]));
+        this.fillField(form, "Melee Attack", "" + (character.attributes[Attribute.Daring] + character.departments[Department.Security]));
     }
 
     fillName(form: PDFForm, character: Character) {

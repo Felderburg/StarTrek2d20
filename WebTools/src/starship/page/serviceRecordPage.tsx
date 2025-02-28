@@ -13,6 +13,7 @@ import { TalentsHelper } from "../../helpers/talents";
 import { CheckBox } from "../../components/checkBox";
 import { connect } from "react-redux";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
+import { hasSource } from "../../state/contextFunctions";
 
 
 interface IServiceRecordPageProperties {
@@ -46,6 +47,7 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
     }
 
     let serviceRecords = ServiceRecordList.instance.records
+        .filter(r => hasSource(r.source))
         .filter(r => r.starshipType == null || r.starshipType === starship.type)
     serviceRecords.sort((r1, r2) => {
         if (r1.name === r2.name) {

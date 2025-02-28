@@ -55,4 +55,16 @@ export class DepartmentsHelper {
 
         return undefined;
     }
+
+    getDepartmentByName(name: string): Department|undefined {
+
+        for (let d of this.getDepartments()) {
+            const department = Department[d];
+            if (department.toLocaleLowerCase() === name.toLocaleLowerCase()) {
+                return d;
+            }
+        }
+
+        return undefined;
+    }
 }
