@@ -1,15 +1,15 @@
 import React from "react";
-import { Skill, DepartmentsHelper } from "../helpers/skills";
+import { Department, DepartmentsHelper } from "../helpers/skills";
 import DisciplineComponent from "./disciplineComponent";
 
 export interface IDisciplineController {
-    isShown: (discipline: Skill) => boolean;
-    isEditable: (discipline: Skill) => boolean;
-    getValue: (discipline: Skill) => number;
-    canIncrease: (discipline: Skill) => boolean;
-    canDecrease: (discipline: Skill) => boolean;
-    onIncrease: (discipline: Skill) => void;
-    onDecrease: (discipline: Skill) => void;
+    isShown: (discipline: Department) => boolean;
+    isEditable: (discipline: Department) => boolean;
+    getValue: (discipline: Department) => number;
+    canIncrease: (discipline: Department) => boolean;
+    canDecrease: (discipline: Department) => boolean;
+    onIncrease: (discipline: Department) => void;
+    onDecrease: (discipline: Department) => void;
 }
 
 interface IDisciplineListControllerProperties {
@@ -18,7 +18,7 @@ interface IDisciplineListControllerProperties {
 
 const DisciplineListComponent: React.FC<IDisciplineListControllerProperties> = ({controller}) => {
 
-    const renderDiscipline = (discipline: Skill) => {
+    const renderDiscipline = (discipline: Department) => {
         if (controller.isEditable(discipline)) {
             return <DisciplineComponent discipline={discipline}
                 onIncrease={() => { controller.onIncrease(discipline)}}
@@ -36,7 +36,7 @@ const DisciplineListComponent: React.FC<IDisciplineListControllerProperties> = (
     }
 
     return (<>
-        {DepartmentsHelper.instance.getSkills().filter(d => controller.isShown(d)).map(d => renderDiscipline(d))}
+        {DepartmentsHelper.instance.getDepartments().filter(d => controller.isShown(d)).map(d => renderDiscipline(d))}
         </>);
 }
 

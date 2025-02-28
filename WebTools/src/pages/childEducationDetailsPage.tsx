@@ -20,7 +20,7 @@ import { Dialog } from '../components/dialog';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import DisciplineListComponent, { IDisciplineController } from '../components/disciplineListComponent';
-import { Skill } from '../helpers/skills';
+import { Department } from '../helpers/skills';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 
 class ChildDecrementAttributeController implements IAttributeController {
@@ -114,27 +114,27 @@ class ChildDecrementDisciplineController implements IDisciplineController {
         this.count = character.age.options.decreaseDisciplines;
     }
 
-    isShown(discipline: Skill) {
+    isShown(discipline: Department) {
         return true;
     }
-    isEditable(discipline: Skill): boolean {
+    isEditable(discipline: Department): boolean {
         return true;
     }
-    getValue(discipline: Skill): number {
+    getValue(discipline: Department): number {
         return this.character.departments[discipline];
     }
-    canIncrease(discipline: Skill): boolean {
+    canIncrease(discipline: Department): boolean {
         return this.character.educationStep?.decrementDisciplines?.indexOf(discipline) >= 0;
     }
-    canDecrease(discipline: Skill): boolean {
+    canDecrease(discipline: Department): boolean {
         return this.isEditable(discipline)
             && this.character.educationStep?.decrementDisciplines?.length < this.count
             && this.character.educationStep?.decrementDisciplines?.indexOf(discipline) < 0;
     }
-    onIncrease(discipline: Skill): void {
+    onIncrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, true, [], true));
     }
-    onDecrease(discipline: Skill): void {
+    onDecrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, false, [], true));
     }
 }
@@ -147,25 +147,25 @@ class ChildPrimaryDisciplineController implements IDisciplineController {
         this.character = character;
     }
 
-    isShown(discipline: Skill) {
+    isShown(discipline: Department) {
         return true;
     }
-    isEditable(discipline: Skill)  {
+    isEditable(discipline: Department)  {
         return true;
     }
-    getValue(discipline: Skill) {
+    getValue(discipline: Department) {
         return this.character.departments[discipline];
     }
-    canIncrease(discipline: Skill) {
+    canIncrease(discipline: Department) {
         return this.character.educationStep?.primaryDiscipline == null && (this.character.departments[discipline] < (Character.maxDepartment(this.character) - 1));
     }
-    canDecrease(discipline: Skill) {
+    canDecrease(discipline: Department) {
         return this.character.educationStep?.primaryDiscipline === discipline;
     }
-    onIncrease(discipline: Skill) {
+    onIncrease(discipline: Department) {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, true, [discipline]));
     }
-    onDecrease(discipline: Skill) {
+    onDecrease(discipline: Department) {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, false, []));
     }
 }
@@ -178,21 +178,21 @@ class ChildSecondaryDisciplineController implements IDisciplineController {
         this.character = character;
     }
 
-    isShown(discipline: Skill) {
+    isShown(discipline: Department) {
         return true;
     }
-    isEditable(discipline: Skill)  {
+    isEditable(discipline: Department)  {
         return true;
     }
-    getValue(discipline: Skill) {
+    getValue(discipline: Department) {
         return this.character.departments[discipline];
     }
-    canIncrease(discipline: Skill) {
+    canIncrease(discipline: Department) {
         if (this.getValue(discipline) === Character.maxDepartment(this.character)) {
             return false;
         } else if (this.character.educationStep?.primaryDiscipline === discipline) {
             return false;
-        } else if (this.getValue(discipline) === (Character.maxDepartment(this.character) - 1) && this.character.hasMaxedSkill()) {
+        } else if (this.getValue(discipline) === (Character.maxDepartment(this.character) - 1) && this.character.hasMaxedDepartment()) {
             return false;
         } else if (this.character.educationStep?.disciplines.length === 2) {
             return false;
@@ -202,13 +202,13 @@ class ChildSecondaryDisciplineController implements IDisciplineController {
             return true;
         }
     }
-    canDecrease(discipline: Skill) {
+    canDecrease(discipline: Department) {
         return this.character.educationStep?.disciplines.indexOf(discipline) >= 0;
     }
-    onIncrease(discipline: Skill) {
+    onIncrease(discipline: Department) {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, true));
     }
-    onDecrease(discipline: Skill) {
+    onDecrease(discipline: Department) {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, false));
     }
 }

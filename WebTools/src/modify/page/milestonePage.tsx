@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { MilestoneType } from "../model/milestoneType";
 import { makeKey } from "../../common/translationKey";
-import { Skill } from "../../helpers/skills";
+import { Department } from "../../helpers/skills";
 import InstructionText from "../../components/instructionText";
 import { StatControl } from "../../starship/view/statControl";
 import { Dialog } from "../../components/dialog";
@@ -39,37 +39,37 @@ const MilestonePage: React.FC<IMilestonePageProperties> = ({character, milestone
         if (normalOption === 0) {
             return (<>
                 <div className="stats-row mt-4">
-                    <StatControl statName={t(makeKey('Construct.discipline.', Skill[Skill.Command]))} value={getSkillValue(Skill.Command)}
-                        showIncrease={canIncreaseSkill(Skill.Command)} showDecrease={canDecreaseSkill(Skill.Command)}
-                        onIncrease={() => {increaseSkill(Skill.Command) }}
-                        onDecrease={() => {decreaseSkill(Skill.Command)}} />
+                    <StatControl statName={t(makeKey('Construct.discipline.', Department[Department.Command]))} value={getDepartmentValue(Department.Command)}
+                        showIncrease={canIncreaseDepartment(Department.Command)} showDecrease={canDecreaseDepartment(Department.Command)}
+                        onIncrease={() => {increaseDepartment(Department.Command) }}
+                        onDecrease={() => {decreaseDepartment(Department.Command)}} />
 
-                    <StatControl statName={t(makeKey('Construct.discipline.', Skill[Skill.Security]))} value={getSkillValue(Skill.Security)}
-                        showIncrease={canIncreaseSkill(Skill.Security)} showDecrease={canDecreaseSkill(Skill.Security)}
-                        onIncrease={() => {increaseSkill(Skill.Security) }}
-                        onDecrease={() => {decreaseSkill(Skill.Security)}} />
+                    <StatControl statName={t(makeKey('Construct.discipline.', Department[Department.Security]))} value={getDepartmentValue(Department.Security)}
+                        showIncrease={canIncreaseDepartment(Department.Security)} showDecrease={canDecreaseDepartment(Department.Security)}
+                        onIncrease={() => {increaseDepartment(Department.Security) }}
+                        onDecrease={() => {decreaseDepartment(Department.Security)}} />
 
-                    <StatControl statName={t(makeKey('Construct.discipline.', Skill[Skill.Science]))} value={getSkillValue(Skill.Science)}
-                        showIncrease={canIncreaseSkill(Skill.Science)} showDecrease={canDecreaseSkill(Skill.Science)}
-                        onIncrease={() => {increaseSkill(Skill.Science) }}
-                        onDecrease={() => {decreaseSkill(Skill.Science)}} />
+                    <StatControl statName={t(makeKey('Construct.discipline.', Department[Department.Science]))} value={getDepartmentValue(Department.Science)}
+                        showIncrease={canIncreaseDepartment(Department.Science)} showDecrease={canDecreaseDepartment(Department.Science)}
+                        onIncrease={() => {increaseDepartment(Department.Science) }}
+                        onDecrease={() => {decreaseDepartment(Department.Science)}} />
                 </div>
 
                 <div className="stats-row">
-                    <StatControl statName={t(makeKey('Construct.discipline.', Skill[Skill.Conn]))} value={getSkillValue(Skill.Conn)}
-                        showIncrease={canIncreaseSkill(Skill.Conn)} showDecrease={canDecreaseSkill(Skill.Conn)}
-                        onIncrease={() => {increaseSkill(Skill.Conn) }}
-                        onDecrease={() => {decreaseSkill(Skill.Conn)}} />
+                    <StatControl statName={t(makeKey('Construct.discipline.', Department[Department.Conn]))} value={getDepartmentValue(Department.Conn)}
+                        showIncrease={canIncreaseDepartment(Department.Conn)} showDecrease={canDecreaseDepartment(Department.Conn)}
+                        onIncrease={() => {increaseDepartment(Department.Conn) }}
+                        onDecrease={() => {decreaseDepartment(Department.Conn)}} />
 
-                    <StatControl statName={t(makeKey('Construct.discipline.', Skill[Skill.Engineering]))} value={getSkillValue(Skill.Engineering)}
-                        showIncrease={canIncreaseSkill(Skill.Engineering)} showDecrease={canDecreaseSkill(Skill.Engineering)}
-                        onIncrease={() => {increaseSkill(Skill.Engineering) }}
-                        onDecrease={() => {decreaseSkill(Skill.Engineering)}} />
+                    <StatControl statName={t(makeKey('Construct.discipline.', Department[Department.Engineering]))} value={getDepartmentValue(Department.Engineering)}
+                        showIncrease={canIncreaseDepartment(Department.Engineering)} showDecrease={canDecreaseDepartment(Department.Engineering)}
+                        onIncrease={() => {increaseDepartment(Department.Engineering) }}
+                        onDecrease={() => {decreaseDepartment(Department.Engineering)}} />
 
-                    <StatControl statName={t(makeKey('Construct.discipline.', Skill[Skill.Medicine]))} value={getSkillValue(Skill.Medicine)}
-                        showIncrease={canIncreaseSkill(Skill.Medicine)} showDecrease={canDecreaseSkill(Skill.Medicine)}
-                        onIncrease={() => {increaseSkill(Skill.Medicine) }}
-                        onDecrease={() => {decreaseSkill(Skill.Medicine)}} />
+                    <StatControl statName={t(makeKey('Construct.discipline.', Department[Department.Medicine]))} value={getDepartmentValue(Department.Medicine)}
+                        showIncrease={canIncreaseDepartment(Department.Medicine)} showDecrease={canDecreaseDepartment(Department.Medicine)}
+                        onIncrease={() => {increaseDepartment(Department.Medicine) }}
+                        onDecrease={() => {decreaseDepartment(Department.Medicine)}} />
                 </div>
             </>);
         } else {
@@ -117,7 +117,7 @@ const MilestonePage: React.FC<IMilestonePageProperties> = ({character, milestone
         setNormalDeletedFocus(focus);
     }
 
-    function canIncreaseSkill(skill: Skill) {
+    function canIncreaseDepartment(skill: Department) {
         let base = character.departments[skill];
         if (normalDisciplineDecrease == null) {
             return false;
@@ -132,7 +132,7 @@ const MilestonePage: React.FC<IMilestonePageProperties> = ({character, milestone
         }
     }
 
-    function canDecreaseSkill(skill: Skill) {
+    function canDecreaseDepartment(skill: Department) {
         let base = character.departments[skill];
         if (base <= 1) {
             return false;
@@ -145,7 +145,7 @@ const MilestonePage: React.FC<IMilestonePageProperties> = ({character, milestone
         }
     }
 
-    function decreaseSkill(skill: Skill) {
+    function decreaseDepartment(skill: Department) {
         if (normalDisciplineIncrease === skill) {
             setNormalDisciplineIncrease(null);
         } else {
@@ -153,7 +153,7 @@ const MilestonePage: React.FC<IMilestonePageProperties> = ({character, milestone
         }
     }
 
-    function increaseSkill(skill: Skill) {
+    function increaseDepartment(skill: Department) {
         if (normalDisciplineDecrease === skill) {
             setNormalDisciplineDecrease(null);
         } else {
@@ -161,7 +161,7 @@ const MilestonePage: React.FC<IMilestonePageProperties> = ({character, milestone
         };
     }
 
-    function getSkillValue(skill: Skill) {
+    function getDepartmentValue(skill: Department) {
         if (skill === normalDisciplineDecrease) {
             return character.departments[skill] - 1;
         } else if (skill === normalDisciplineIncrease) {

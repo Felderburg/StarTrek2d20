@@ -9,12 +9,12 @@ import D20IconButton from "../solo/component/d20IconButton";
 import { localizedFocus } from "./focusHelper";
 import { FocusRandomTableWithHints } from "../solo/table/focusRandomTable";
 import { setCharacterSpeciesAbilityFocus } from "../state/characterActions";
-import { Skill } from "../helpers/skills";
+import { Department } from "../helpers/skills";
 
 interface ISpeciesAbilityProperties{
     character: Character;
     showInstruction?: boolean;
-    skill?: Skill;
+    skill?: Department;
 }
 
 export const SpeciesAbilityView: React.FC<ISpeciesAbilityProperties> = ({character, showInstruction, skill}) => {

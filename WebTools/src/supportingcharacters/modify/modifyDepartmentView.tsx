@@ -9,7 +9,7 @@ import { Dialog } from "../../components/dialog";
 import store from "../../state/store";
 import { modifySupportingCharacterAddImprovement } from "../../state/characterActions";
 import { SupportingCharacterModificationType } from "./supportingCharacterModificationType";
-import { Skill } from "../../helpers/skills";
+import { Department } from "../../helpers/skills";
 
 interface IModifyDepartmentViewProperties extends ICharacterPageProperties {
     onNextStep: () => void;
@@ -19,7 +19,7 @@ interface IModifyDepartmentViewProperties extends ICharacterPageProperties {
 export const ModifyDepartmentView: React.FC<IModifyDepartmentViewProperties> = ({character, onNextStep, onPreviousStep}) => {
 
     const { t } = useTranslation();
-    const [departmentSelection, setDepartmentSelection] = useState<Skill>();
+    const [departmentSelection, setDepartmentSelection] = useState<Department>();
 
     const applyModification = () => {
         if (departmentSelection == null) {

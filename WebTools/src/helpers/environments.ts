@@ -1,5 +1,5 @@
 ﻿import {Attribute, AttributesHelper} from './attributes';
-import {Skill} from './skills';
+import {Department} from './skills';
 import {SpeciesHelper} from './species';
 import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
@@ -29,9 +29,9 @@ export class EnvironmentModel {
     key: string;
     name: string;
     attributes: Attribute[];
-    disciplines: Skill[];
+    disciplines: Department[];
 
-    constructor(id: Environment, key: string, name: string, attributes: Attribute[], disciplines: Skill[]) {
+    constructor(id: Environment, key: string, name: string, attributes: Attribute[], disciplines: Department[]) {
         this.id = id;
         this.key = key;
         this.name = name;
@@ -68,42 +68,42 @@ class Environments {
             "common",
             "Homeworld",
             [],
-            [Skill.Command, Skill.Science, Skill.Security],
+            [Department.Command, Department.Science, Department.Security],
         ),
         [Environment.BusyColony]: new EnvironmentModel(
             Environment.BusyColony,
             "common",
             "Busy Colony",
             [Attribute.Daring, Attribute.Presence],
-            [Skill.Command, Skill.Science, Skill.Security],
+            [Department.Command, Department.Science, Department.Security],
         ),
         [Environment.IsolatedColony]: new EnvironmentModel(
             Environment.IsolatedColony,
             "common",
             "Isolated Colony",
             [Attribute.Insight, Attribute.Reason],
-            [Skill.Engineering, Skill.Medicine, Skill.Science]
+            [Department.Engineering, Department.Medicine, Department.Science]
         ),
         [Environment.FrontierColony]: new EnvironmentModel(
             Environment.FrontierColony,
             "common",
             "Frontier Colony",
             [Attribute.Control, Attribute.Fitness],
-            [Skill.Conn, Skill.Medicine, Skill.Security]
+            [Department.Conn, Department.Medicine, Department.Security]
         ),
         [Environment.StarshipOrStarbase]: new EnvironmentModel(
             Environment.StarshipOrStarbase,
             "common",
             "Starship or Starbase",
             [Attribute.Control, Attribute.Insight],
-            [Skill.Command, Skill.Conn, Skill.Engineering]
+            [Department.Command, Department.Conn, Department.Engineering]
         ),
         [Environment.AnotherSpeciesWorld]: new EnvironmentModel(
             Environment.AnotherSpeciesWorld,
             "common",
             "Another Species' World",
             [], // Another Species
-            [Skill.Command, Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science, Skill.Security]
+            [Department.Command, Department.Conn, Department.Engineering, Department.Medicine, Department.Science, Department.Security]
         ),
     };
 
@@ -113,42 +113,42 @@ class Environments {
             "alternate",
             "Utopian Paradise",
             [Attribute.Control, Attribute.Reason, Attribute.Presence],
-            [Skill.Command, Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science, Skill.Security],
+            [Department.Command, Department.Conn, Department.Engineering, Department.Medicine, Department.Science, Department.Security],
         ),
         [Environment.Cosmopolitan]: new EnvironmentModel(
             Environment.Cosmopolitan,
             "alternate",
             "Cosmopolitan",
             [Attribute.Daring, Attribute.Insight, Attribute.Presence],
-            [Skill.Command, Skill.Conn, Skill.Science],
+            [Department.Command, Department.Conn, Department.Science],
         ),
         [Environment.RigorousDiscipline]: new EnvironmentModel(
             Environment.RigorousDiscipline,
             "alternate",
             "Rigorous Discipline",
             [Attribute.Control, Attribute.Fitness, Attribute.Reason],
-            [Skill.Command, Skill.Security, Skill.Medicine]
+            [Department.Command, Department.Security, Department.Medicine]
         ),
         [Environment.AscetismAndIntrospection]: new EnvironmentModel(
             Environment.AscetismAndIntrospection,
             "alternate",
             "Ascetism and Introspection",
             [Attribute.Control, Attribute.Insight, Attribute.Reason],
-            [Skill.Science, Skill.Engineering, Skill.Medicine]
+            [Department.Science, Department.Engineering, Department.Medicine]
         ),
         [Environment.StruggleAndHardship]: new EnvironmentModel(
             Environment.StruggleAndHardship,
             "alternate",
             "Struggle and Hardship",
             [Attribute.Control, Attribute.Daring, Attribute.Insight],
-            [Skill.Conn, Skill.Engineering, Skill.Science]
+            [Department.Conn, Department.Engineering, Department.Science]
         ),
         [Environment.OccupationOrWar]: new EnvironmentModel(
             Environment.OccupationOrWar,
             "alternate",
             "Occupation or War",
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
-            [Skill.Command, Skill.Security, Skill.Medicine]
+            [Department.Command, Department.Security, Department.Medicine]
         ),
     };
 
@@ -158,42 +158,42 @@ class Environments {
             "klingon",
             "Qo'noS",
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
-            [Skill.Command, Skill.Science, Skill.Security],
+            [Department.Command, Department.Science, Department.Security],
         ),
         [Environment.BusyColony]: new EnvironmentModel(
             Environment.BusyColony,
             "klingon",
             "Core Worlds",
             [Attribute.Daring, Attribute.Presence],
-            [Skill.Command, Skill.Science, Skill.Security],
+            [Department.Command, Department.Science, Department.Security],
         ),
         [Environment.IsolatedColony]: new EnvironmentModel(
             Environment.IsolatedColony,
             "klingon",
             "Isolated Colony",
             [Attribute.Insight, Attribute.Reason],
-            [Skill.Engineering, Skill.Medicine, Skill.Science]
+            [Department.Engineering, Department.Medicine, Department.Science]
         ),
         [Environment.FrontierColony]: new EnvironmentModel(
             Environment.FrontierColony,
             "klingon",
             "Frontier Colony",
             [Attribute.Control, Attribute.Daring],
-            [Skill.Conn, Skill.Medicine, Skill.Security]
+            [Department.Conn, Department.Medicine, Department.Security]
         ),
         [Environment.StarshipOrStarbase]: new EnvironmentModel(
             Environment.StarshipOrStarbase,
             "klingon",
             "Starship or Starbase",
             [Attribute.Control, Attribute.Insight],
-            [Skill.Command, Skill.Conn, Skill.Engineering]
+            [Department.Command, Department.Conn, Department.Engineering]
         ),
         [Environment.AnotherSpeciesWorld]: new EnvironmentModel(
             Environment.AnotherSpeciesWorld,
             "klingon",
             "Another Species' World",
             [], // Another Species
-            [Skill.Command, Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science, Skill.Security]
+            [Department.Command, Department.Conn, Department.Engineering, Department.Medicine, Department.Science, Department.Security]
         ),
     };
 

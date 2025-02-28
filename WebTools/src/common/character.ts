@@ -1,5 +1,5 @@
 ﻿import {Attribute, AttributesHelper} from '../helpers/attributes';
-import {Skill, DepartmentsHelper} from '../helpers/skills';
+import {Department, DepartmentsHelper} from '../helpers/skills';
 import {Career} from '../helpers/careerEnum';
 import {Environment} from '../helpers/environments';
 import {Species} from '../helpers/speciesEnum';
@@ -118,14 +118,14 @@ export class Promotion {
 export class SupportingStep {
     focuses: string[];
     attributes: Attribute[];
-    disciplines: Skill[];
+    disciplines: Department[];
     value: string;
     supervisory: boolean = false;
 
     constructor() {
         this.focuses = ["", "", ""];
         this.attributes = [...AttributesHelper.getAllAttributes()];
-        this.disciplines = [...DepartmentsHelper.instance.getSkills()];
+        this.disciplines = [...DepartmentsHelper.instance.getDepartments()];
     }
 
     copy() {
@@ -142,7 +142,7 @@ export class SupportingStep {
 export class SupportingImrovementStep {
     value: string;
     attribute: Attribute;
-    discipline: Skill;
+    discipline: Department;
     focus: string;
     talent: SelectedTalent;
 
@@ -248,7 +248,7 @@ export class SpeciesStep {
 export class UpbringingStep {
     public readonly upbringing: EarlyOutlookModel;
     public acceptedUpbringing: boolean;
-    public discipline: Skill;
+    public discipline: Department;
     public focus?: string;
     public talent?: SelectedTalent;
 
@@ -276,7 +276,7 @@ export class EnvironmentStep {
     public readonly environment: Environment;
     public readonly otherSpecies?: Species;
     public attribute?: Attribute;
-    public discipline?: Skill;
+    public discipline?: Department;
     public value?: string;
 
     constructor(environment: Environment, otherSpecies?: Species) {
@@ -290,9 +290,9 @@ export class EducationStep {
     public enlisted: boolean;
     public decrementAttributes: Attribute[];
     public attributes: Attribute[];
-    public primaryDiscipline: Skill;
-    public disciplines: Skill[];
-    public decrementDisciplines: Skill[];
+    public primaryDiscipline: Department;
+    public disciplines: Department[];
+    public decrementDisciplines: Department[];
     public focuses: string[];
     public talent?: SelectedTalent;
     public value?: string;
@@ -310,7 +310,7 @@ export class EducationStep {
 
 export class FinishingStep {
     public attributes: Attribute[];
-    public disciplines: Skill[];
+    public disciplines: Department[];
     public value?: string;
     public talent?: SelectedTalent;
 
@@ -334,7 +334,7 @@ export class FinishingStep {
 export class CareerEventStep {
     public readonly id: number;
     attribute?: Attribute;
-    discipline?: Skill;
+    discipline?: Department;
     focus?: string;
     trait?: string;
 
@@ -417,7 +417,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         this._attributes = [this._attributeInitialValue, this._attributeInitialValue, this._attributeInitialValue,
             this._attributeInitialValue, this._attributeInitialValue, this._attributeInitialValue];
 
-        for (var i = 0; i <= Skill.Medicine; i++) {
+        for (var i = 0; i <= Department.Medicine; i++) {
             this._skills.push(0);
         }
 
@@ -606,7 +606,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
             this.finishingStep?.disciplines?.forEach(d => result[d] += 1)
 
-            DepartmentsHelper.instance.getSkills().forEach(s => result[s] = Math.min(Character.maxDepartment(this), result[s]));
+            DepartmentsHelper.instance.getDepartments().forEach(s => result[s] = Math.min(Character.maxDepartment(this), result[s]));
 
             return result;
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
@@ -614,7 +614,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {
                 values = [4, 4, 3, 2, 2, 1];
             }
-            let result = DepartmentsHelper.instance.getSkills().map(s => {
+            let result = DepartmentsHelper.instance.getDepartments().map(s => {
                 let index = this.supportingStep?.disciplines?.indexOf(s);
                 return values[index];
             });
@@ -663,7 +663,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
         } else {
             if (this.version === 1) {
-                stress +=  + this.departments[Skill.Security];
+                stress +=  + this.departments[Department.Security];
             } else if (this.speciesStep?.species === Species.Vulcan) {
                 // species ability makes stress based on Control
                 stress = this.attributes[Attribute.Control];
@@ -673,7 +673,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             if (this.version === 1) {
                 stress += 3;
             } else {
-                stress += this.departments[Skill.Command];
+                stress += this.departments[Department.Command];
             }
         }
 
@@ -882,7 +882,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     getDiceForWeapon(weapon: Weapon) {
         if (this.version === 1) {
-            return weapon.dice + this.departments[Skill.Security];
+            return weapon.dice + this.departments[Department.Security];
         } else {
             return weapon.dice;
         }
@@ -1238,7 +1238,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
                  this.rank?.name?.toLowerCase().indexOf("admiral") >= 0 ||
                  (this.role !== undefined && this.role === Role.ChiefOfSecurity))) ||
                  (this.jobAssignment?.toLowerCase() === "security") ||
-                 (this.stereotype === Stereotype.SupportingCharacter && this.supportingStep?.disciplines[0] === Skill.Security);
+                 (this.stereotype === Stereotype.SupportingCharacter && this.supportingStep?.disciplines[0] === Department.Security);
     }
 
     isYoung() {
@@ -1325,7 +1325,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return this.attributes.some(a => a === max);
     }
 
-    hasMaxedSkill() {
+    hasMaxedDepartment() {
         const max = Character.ABSOLUTE_MAX_DEPARTMENT;
         return this.departments.some(s => s === max);
     }

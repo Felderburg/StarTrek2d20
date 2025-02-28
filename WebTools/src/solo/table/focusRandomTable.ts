@@ -1,5 +1,5 @@
 import { D20 } from "../../common/die"
-import { Skill } from "../../helpers/skills";
+import { Department } from "../../helpers/skills";
 
 const FocusCommandRandomTable = () => {
     const tableRoll = D20.roll();
@@ -572,7 +572,7 @@ const FocusMedicineRandomTable = () => {
     }
 }
 
-export const FocusRandomTableWithHints = (skill?: Skill, hints: string[] =[]) => {
+export const FocusRandomTableWithHints = (skill?: Department, hints: string[] =[]) => {
     if (D20.roll() <= 10 && hints.length > 0) {
         let i = Math.floor(hints.length * Math.random());
         return hints[i];
@@ -581,20 +581,20 @@ export const FocusRandomTableWithHints = (skill?: Skill, hints: string[] =[]) =>
     }
 }
 
-export const FocusRandomTable = (skill?: Skill) => {
+export const FocusRandomTable = (skill?: Department) => {
     if (skill == null) {
         skill = FocusDivisionRandomTable();
     }
 
-    if (skill === Skill.Command) {
+    if (skill === Department.Command) {
         return FocusCommandRandomTable();
-    } else if (skill === Skill.Conn) {
+    } else if (skill === Department.Conn) {
         return FocusConnRandomTable();
-    } else if (skill === Skill.Security) {
+    } else if (skill === Department.Security) {
         return FocusSecurityRandomTable();
-    } else if (skill === Skill.Engineering) {
+    } else if (skill === Department.Engineering) {
         return FocusEngineeringRandomTable();
-    } else if (skill === Skill.Science) {
+    } else if (skill === Department.Science) {
         return FocusScienceRandomTable();
     } else { // Medicine
         return FocusMedicineRandomTable();
@@ -609,27 +609,27 @@ export const FocusDivisionRandomTable = () => {
             case 1:
             case 2:
             case 3:
-                return Skill.Command;
+                return Department.Command;
             case 4:
             case 5:
             case 6:
-                return Skill.Conn;
+                return Department.Conn;
             case 7:
             case 8:
             case 9:
-                return Skill.Security;
+                return Department.Security;
             case 10:
             case 11:
             case 12:
-                return Skill.Engineering;
+                return Department.Engineering;
             case 13:
             case 14:
             case 15:
-                return Skill.Science;
+                return Department.Science;
             case 16:
             case 17:
             case 18:
-                return Skill.Medicine;
+                return Department.Medicine;
             default:
                 roll = D20.roll();
         }

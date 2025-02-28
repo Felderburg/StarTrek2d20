@@ -1,5 +1,5 @@
 ﻿import React, { useState } from 'react';
-import { Skill, DepartmentsHelper } from '../helpers/skills';
+import { Department, DepartmentsHelper } from '../helpers/skills';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
@@ -37,7 +37,7 @@ const SupportingCharacterDisciplines: React.FC<ICharacterProperties> = ({charact
     const { t } = useTranslation();
     const [selectedDiscipline, setSelectedDiscipline] = useState(undefined);
 
-    const selectValue = (index: Skill) => {
+    const selectValue = (index: Department) => {
         if (index > -1) {
             if (selectedDiscipline === undefined) {
                 setSelectedDiscipline(index);
@@ -49,7 +49,7 @@ const SupportingCharacterDisciplines: React.FC<ICharacterProperties> = ({charact
         }
     }
 
-    const swapValues = (from: Skill, to: Skill) => {
+    const swapValues = (from: Department, to: Department) => {
         let disciplineList = [...character.supportingStep?.disciplines];
         let newList = disciplineList.map(d => {
             if (d === from) {
@@ -65,14 +65,14 @@ const SupportingCharacterDisciplines: React.FC<ICharacterProperties> = ({charact
         setSelectedDiscipline(undefined);
     }
 
-    const updateCharacterDisciplines = (disciplines: Skill[]) => {
+    const updateCharacterDisciplines = (disciplines: Department[]) => {
         store.dispatch(setSupportingCharacterDisciplines(disciplines));
     }
 
-    const disciplines = DepartmentsHelper.instance.getSkills().map((s, i) => {
+    const disciplines = DepartmentsHelper.instance.getDepartments().map((s, i) => {
         return (
             <tr key={i}>
-                <td className="selection-header">{t(makeKey('Construct.discipline.', Skill[s]))}</td>
+                <td className="selection-header">{t(makeKey('Construct.discipline.', Department[s]))}</td>
                 <td>
                     <Value
                         index={s}

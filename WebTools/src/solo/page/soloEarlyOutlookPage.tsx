@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
 import { makeKey } from "../../common/translationKey";
 import { AttributesHelper } from "../../helpers/attributes";
-import { Skill } from "../../helpers/skills";
+import { Department } from "../../helpers/skills";
 import { Window } from "../../common/window";
 import InstructionText from "../../components/instructionText";
 import { EarlyOutlook, EarlyOutlookModel, UpbringingsHelper } from "../../helpers/upbringings";
@@ -64,7 +64,7 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({character}) => {
 
     const toTableRow = (u, i) => {
         const disciplines = u.disciplines.map((d, i) => {
-            return <div key={i}>{t(makeKey('Construct.discipline.', Skill[d]))}</div>;
+            return <div key={i}>{t(makeKey('Construct.discipline.', Department[d]))}</div>;
         });
 
         if (Window.isCompact()) {

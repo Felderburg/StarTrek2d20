@@ -2,7 +2,7 @@
 import i18n from 'i18next';
 import {Character} from '../common/character';
 import {Attribute} from '../helpers/attributes';
-import {Skill} from '../helpers/skills';
+import {Department} from '../helpers/skills';
 import {EnvironmentsHelper, Environment} from '../helpers/environments';
 import {TracksHelper} from '../helpers/tracks';
 import {CareersHelper} from '../helpers/careers';
@@ -265,7 +265,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-orange text-uppercase">{t('Construct.discipline.command')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.departments[Skill.Command]}
+                                                {c.departments[Department.Command]}
                                             </div>
                                         </div>
                                     </div>
@@ -274,7 +274,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-orange text-uppercase">{t('Construct.discipline.conn')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.departments[Skill.Conn]}
+                                                {c.departments[Department.Conn]}
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +283,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-orange text-uppercase">{t('Construct.discipline.security')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.departments[Skill.Security]}
+                                                {c.departments[Department.Security]}
                                             </div>
                                         </div>
                                     </div>
@@ -292,7 +292,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-orange text-uppercase">{t('Construct.discipline.engineering')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.departments[Skill.Engineering]}
+                                                {c.departments[Department.Engineering]}
                                             </div>
                                         </div>
                                     </div>
@@ -301,7 +301,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-orange text-uppercase">{t('Construct.discipline.science')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.departments[Skill.Science]}
+                                                {c.departments[Department.Science]}
                                             </div>
                                         </div>
                                     </div>
@@ -310,7 +310,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-orange text-uppercase">{t('Construct.discipline.medicine')}</div>
                                             <div className="sheet-data text-center">
-                                                {c.departments[Skill.Medicine]}
+                                                {c.departments[Department.Medicine]}
                                             </div>
                                         </div>
                                     </div>

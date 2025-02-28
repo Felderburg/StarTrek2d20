@@ -4,7 +4,7 @@ import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {Environment, EnvironmentsHelper } from '../helpers/environments';
 import {SpeciesHelper } from '../helpers/species';
-import {Skill} from '../helpers/skills';
+import {Department} from '../helpers/skills';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import { Species } from '../helpers/speciesEnum';
@@ -71,32 +71,32 @@ class EnvironmentAttributeController implements IAttributeController {
 class SoloEnvironmentDisciplineController implements IDisciplineController {
 
     readonly character: Character;
-    readonly disciplines: Skill[];
+    readonly disciplines: Department[];
 
-    constructor(character: Character, disciplines: Skill[]) {
+    constructor(character: Character, disciplines: Department[]) {
         this.character = character;
         this.disciplines = disciplines;
     }
 
-    isShown(discipline: Skill) {
+    isShown(discipline: Department) {
         return this.disciplines.indexOf(discipline) >= 0;
     }
-    isEditable(discipline: Skill): boolean {
+    isEditable(discipline: Department): boolean {
         return this.isShown(discipline);
     }
-    getValue(discipline: Skill): number {
+    getValue(discipline: Department): number {
         return this.character.departments[discipline];
     }
-    canIncrease(discipline: Skill): boolean {
+    canIncrease(discipline: Department): boolean {
         return this.isEditable(discipline) && this.character.environmentStep?.discipline == null;
     }
-    canDecrease(discipline: Skill): boolean {
+    canDecrease(discipline: Department): boolean {
         return this.isEditable(discipline) && this.character.environmentStep?.discipline === discipline;
     }
-    onIncrease(discipline: Skill): void {
+    onIncrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Environment));
     }
-    onDecrease(discipline: Skill): void {
+    onDecrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Environment, false));
     }
 }

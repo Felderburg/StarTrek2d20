@@ -2,11 +2,11 @@
 import {CharacterType} from '../common/characterType';
 import {Navigation} from '../common/navigator';
 import {TrackModel, TracksHelper} from '../helpers/tracks';
-import {Skill} from '../helpers/skills';
+import {Department} from '../helpers/skills';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import ValueInput from '../components/valueInputWithRandomOption';
-import SkillView from '../components/skill';
+import DepartmentView from '../components/skill';
 import { TalentsHelper, TalentViewModel } from '../helpers/talents';
 import { Header } from '../components/header';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
@@ -122,30 +122,30 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
         if (track.id === Track.EnlistedSecurityTraining) {
             return (<div className="col-lg-6 my-3">
                     <Header level={2}>{t('Construct.other.disciplines')}</Header>
-                    <SkillView points={2} skill={Skill.Security} character={character} />
-                    <SkillView points={1} skill={Skill.Conn}  character={character}/>
-                    <SkillView points={1} skill={Skill.Engineering}  character={character}/>
+                    <DepartmentView points={2} skill={Department.Security} character={character} />
+                    <DepartmentView points={1} skill={Department.Conn}  character={character}/>
+                    <DepartmentView points={1} skill={Department.Engineering}  character={character}/>
                 </div>);
         } else if (track.id === Track.ShipOperations) {
             return (<div className="col-lg-6 my-3">
                     <Header level={2}>{t('Construct.other.disciplines')}</Header>
-                    <SkillView points={2} skill={Skill.Conn}  character={character}/>
-                    <SkillView points={1} skill={Skill.Engineering}  character={character}/>
-                    <SkillView points={1} skill={Skill.Science}  character={character}/>
+                    <DepartmentView points={2} skill={Department.Conn}  character={character}/>
+                    <DepartmentView points={1} skill={Department.Engineering}  character={character}/>
+                    <DepartmentView points={1} skill={Department.Science}  character={character}/>
                 </div>);
         } else if (track.id === Track.UniversityAlumni) {
             return (<div className="col-lg-6 my-3">
                     <Header level={2}>{t('Construct.other.disciplines')}</Header>
-                    <SkillView points={2} skill={Skill.Science}  character={character}/>
-                    <SkillView points={1} skill={Skill.Engineering}  character={character}/>
-                    <SkillView points={1} skill={Skill.Command}  character={character}/>
+                    <DepartmentView points={2} skill={Department.Science}  character={character}/>
+                    <DepartmentView points={1} skill={Department.Engineering}  character={character}/>
+                    <DepartmentView points={1} skill={Department.Command}  character={character}/>
                 </div>);
         } else if (track.id === Track.ResearchInternship) {
             return (<div className="col-lg-6 my-3">
                     <Header level={2}>{t('Construct.other.disciplines')}</Header>
-                    <SkillView points={2} skill={Skill.Science}  character={character}/>
-                    <SkillView points={1} skill={Skill.Engineering}  character={character}/>
-                    <SkillView points={1} skill={Skill.Medicine}  character={character}/>
+                    <DepartmentView points={2} skill={Department.Science}  character={character}/>
+                    <DepartmentView points={1} skill={Department.Engineering}  character={character}/>
+                    <DepartmentView points={1} skill={Department.Medicine}  character={character}/>
                 </div>);
         } else {
             return (<div className="col-lg-6 my-3">

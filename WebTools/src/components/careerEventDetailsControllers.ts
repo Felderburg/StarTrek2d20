@@ -1,6 +1,6 @@
 import { CareerEventStep, Character } from "../common/character";
 import { Attribute } from "../helpers/attributes";
-import { Skill } from "../helpers/skills";
+import { Department } from "../helpers/skills";
 import { StepContext, modifyCharacterAttribute, modifyCharacterDiscipline } from "../state/characterActions";
 import store from "../state/store";
 import { IAttributeController } from "./attributeController";
@@ -11,36 +11,36 @@ export class CareerEventDisciplineController implements IDisciplineController {
     readonly character: Character;
     readonly careerEventStep: CareerEventStep;
     readonly context: StepContext;
-    readonly disciplines: Skill[];
+    readonly disciplines: Department[];
 
-    constructor(character: Character, careerEventStep: CareerEventStep, context: StepContext, disciplines: Skill[]) {
+    constructor(character: Character, careerEventStep: CareerEventStep, context: StepContext, disciplines: Department[]) {
         this.character = character;
         this.disciplines = disciplines;
         this.context = context;
         this.careerEventStep = careerEventStep;
     }
 
-    isShown(discipline: Skill) {
+    isShown(discipline: Department) {
         return this.disciplines.indexOf(discipline) >= 0;
     }
-    isEditable(discipline: Skill): boolean {
+    isEditable(discipline: Department): boolean {
         return true;
     }
-    getValue(discipline: Skill): number {
+    getValue(discipline: Department): number {
         return this.character.departments[discipline];
     }
-    canIncrease(discipline: Skill): boolean {
+    canIncrease(discipline: Department): boolean {
         return this.getValue(discipline) < Character.maxDepartment(this.character) &&
-            (this.getValue(discipline) < (Character.maxDepartment(this.character) - 1) || !this.character.hasMaxedSkill())
+            (this.getValue(discipline) < (Character.maxDepartment(this.character) - 1) || !this.character.hasMaxedDepartment())
             && this.careerEventStep.discipline == null;
     }
-    canDecrease(discipline: Skill): boolean {
+    canDecrease(discipline: Department): boolean {
         return this.careerEventStep?.discipline === discipline;
     }
-    onIncrease(discipline: Skill): void {
+    onIncrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, this.context, true));
     }
-    onDecrease(discipline: Skill): void {
+    onDecrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, this.context, false));
     }
 }

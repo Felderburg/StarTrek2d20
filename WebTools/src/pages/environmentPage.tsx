@@ -17,7 +17,7 @@ import SoloCharacterBreadcrumbs from "../solo/component/soloCharacterBreadcrumbs
 import { Header } from "../components/header";
 import InstructionText from "../components/instructionText";
 import { connect } from "react-redux";
-import { Skill } from "../helpers/skills";
+import { Department } from "../helpers/skills";
 import { DisciplinesOrDepartments } from "../view/disciplinesOrDepartments";
 
 enum EnvironmentTab {
@@ -61,7 +61,7 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({character}) => {
         }
 
         const disciplines = e.disciplines.map((d, i) => {
-            return <div key={'skill-' + i}>{t(makeKey('Construct.discipline.', Skill[d]))}</div>;
+            return <div key={'skill-' + i}>{t(makeKey('Construct.discipline.', Department[d]))}</div>;
         });
 
         return (

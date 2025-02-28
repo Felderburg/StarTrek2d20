@@ -11,7 +11,7 @@ import { ICharacterProperties, characterMapStateToProperties } from '../solo/pag
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
-import { Skill } from '../helpers/skills';
+import { Department } from '../helpers/skills';
 import { Window } from '../common/window';
 import { AttributesHelper } from '../helpers/attributes';
 import { EarlyOutlookAspirationRandomTable, EarlyOutlookCasteRandomTable, EarlyOutlookUpbringingRandomTable } from '../solo/table/earlyOutlookRandomTable';
@@ -75,7 +75,7 @@ const EarlyOutlookPage : React.FC<ICharacterProperties> = ({character}) => {
 
     const toTableRow = (u, i) => {
         const disciplines = u.disciplines.map((d, i) => {
-            return <div key={i}>{t(makeKey('Construct.discipline.', Skill[d]))}</div>;
+            return <div key={i}>{t(makeKey('Construct.discipline.', Department[d]))}</div>;
         });
 
         if (Window.isCompact()) {

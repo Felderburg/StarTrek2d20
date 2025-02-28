@@ -5,7 +5,7 @@ import { SheetTag } from "./icharactersheet";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
 import { Attribute } from "../helpers/attributes";
-import { Skill } from "../helpers/skills";
+import { Department } from "../helpers/skills";
 import { Character } from "../common/character";
 import { Paragraph } from "./paragraph";
 import { FontSpecification } from "./fontSpecification";
@@ -127,7 +127,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
         column = column.bottomAfter(5 + 13);
 
         boxes = new XYLocation(column.start.x, column.start.y);
-        [Skill.Command, Skill.Engineering, Skill.Medicine, Skill.Conn, Skill.Security, Skill.Science].forEach((s, i) => {
+        [Department.Command, Department.Engineering, Department.Medicine, Department.Conn, Department.Security, Department.Science].forEach((s, i) => {
 
             let location = new XYLocation(boxes.x + i % 3 * 81, boxes.y + Math.floor(i / 3) * rowHeight);
             let x = location.x;
@@ -139,7 +139,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
             });
 
             let labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
-            const key = makeKey("Construct.discipline.", Skill[s]);
+            const key = makeKey("Construct.discipline.", Department[s]);
             labels[key] = labelColumn;
 
             this.writeLabel(page, "" + character.departments[s], this.valueBlock(labelColumn), new FontSpecification(this.boldFont, 9),

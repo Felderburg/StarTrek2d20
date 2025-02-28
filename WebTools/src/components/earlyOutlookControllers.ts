@@ -1,5 +1,5 @@
 import { Character } from "../common/character";
-import { Skill } from "../helpers/skills";
+import { Department } from "../helpers/skills";
 import { EarlyOutlookModel } from "../helpers/upbringings";
 import { StepContext, modifyCharacterDiscipline } from "../state/characterActions";
 import store from "../state/store";
@@ -15,25 +15,25 @@ export class EarlyOutlookDiscplineController implements IDisciplineController {
         this.earlyOutlook = earlyOutlook;
     }
 
-    isShown(discipline: Skill) {
+    isShown(discipline: Department) {
         return this.earlyOutlook.disciplines.indexOf(discipline) >= 0;
     }
-    isEditable(discipline: Skill)  {
+    isEditable(discipline: Department)  {
         return this.earlyOutlook.disciplines.length >= 1;
     }
-    getValue(discipline: Skill) {
+    getValue(discipline: Department) {
         return this.character.departments[discipline];
     }
-    canIncrease(discipline: Skill) {
+    canIncrease(discipline: Department) {
         return this.character.upbringingStep?.discipline == null && (this.character.departments[discipline] < Character.maxDepartment(this.character));
     }
-    canDecrease(discipline: Skill) {
+    canDecrease(discipline: Department) {
         return this.character.upbringingStep?.discipline === discipline;
     }
-    onIncrease(discipline: Skill) {
+    onIncrease(discipline: Department) {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.EarlyOutlook, true));
     }
-    onDecrease(discipline: Skill) {
+    onDecrease(discipline: Department) {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.EarlyOutlook, false));
     }
 }

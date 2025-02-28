@@ -1,10 +1,10 @@
 import { D20 } from "../../common/die";
-import { Skill } from "../../helpers/skills";
+import { Department } from "../../helpers/skills";
 import { Source } from "../../helpers/sources";
 import { Species } from "../../helpers/speciesEnum";
 import { hasSource } from "../../state/contextFunctions";
 
-export const ValueRandomTable = (species?: Species, skill?: Skill) => {
+export const ValueRandomTable = (species?: Species, skill?: Department) => {
 
     let roll = D20.roll();
     if (roll <= 15 && hasSource(Source.ContinuingMissions)) {
@@ -919,12 +919,12 @@ const CommandValuesTable = () => {
 
 const disciplineRandomValues: {[species: number]: () => string } = {
 
-    [Skill.Command]: CommandValuesTable,
-    [Skill.Conn]: ConnValuesTable,
-    [Skill.Engineering]: EngineeringValuesTable,
-    [Skill.Science]: ScienceValuesTable,
-    [Skill.Security]: SecurityValuesTable,
-    [Skill.Medicine]: MedicineValuesTable,
+    [Department.Command]: CommandValuesTable,
+    [Department.Conn]: ConnValuesTable,
+    [Department.Engineering]: EngineeringValuesTable,
+    [Department.Science]: ScienceValuesTable,
+    [Department.Security]: SecurityValuesTable,
+    [Department.Medicine]: MedicineValuesTable,
 
 }
 

@@ -48,7 +48,7 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
         });
 
         const disciplines = careerEvent.disciplines.map((d, i) => {
-            return <div key={i}>{t(makeKey('Construct.discipline.', DepartmentsHelper.instance.getSkillName(d))) }</div>;
+            return <div key={i}>{t(makeKey('Construct.discipline.', DepartmentsHelper.instance.getDepartmentName(d))) }</div>;
         });
 
         return (

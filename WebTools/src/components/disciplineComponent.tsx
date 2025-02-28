@@ -1,10 +1,10 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
-import { Skill } from '../helpers/skills';
+import { Department } from '../helpers/skills';
 
 interface IDisciplineComponentProperties {
-    discipline: Skill;
+    discipline: Department;
     value: number;
     showIncrease: boolean;
     showDecrease: boolean;
@@ -27,7 +27,7 @@ const DisciplineComponent: React.FC<IDisciplineComponentProperties> = ({discipli
     return (
         <div className="stat pb-2">
             <div className="stat-entry-name purple">
-                {t(makeKey('Construct.discipline.', Skill[discipline]))}
+                {t(makeKey('Construct.discipline.', Department[discipline]))}
             </div>
             <div className="stat-entry-value">
                 {dec}

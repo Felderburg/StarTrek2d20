@@ -4,7 +4,7 @@ import { D20 } from "../../common/die";
 import { AttributesHelper } from "../../helpers/attributes";
 import { Career } from "../../helpers/careerEnum";
 import { RanksHelper, Rank } from "../../helpers/ranks";
-import { Skill, DepartmentsHelper } from "../../helpers/skills";
+import { Department, DepartmentsHelper } from "../../helpers/skills";
 import { Species } from "../../helpers/speciesEnum";
 import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
 import { TalentsHelper } from "../../helpers/talents";
@@ -470,7 +470,7 @@ export class NpcGenerator {
         character.npcGenerationStep = new NpcGenerationStep(npcType);
         character.npcGenerationStep.specialization = specialization.id;
 
-        let disciplines = DepartmentsHelper.instance.getSkills();
+        let disciplines = DepartmentsHelper.instance.getDepartments();
         let disciplinePoints = NpcTypes.disciplinePoints(npcType);
 
         for (let i = 0; i < disciplinePoints.length; i++) {
@@ -594,7 +594,7 @@ export class NpcGenerator {
             } else {
                 while (!done) {
                     let talentList = TalentsHelper.getAllAvailableTalentsForCharacter(character);
-                    let specializationSkill = Skill[specialization.primaryDiscipline];
+                    let specializationSkill = Department[specialization.primaryDiscipline];
                     let roll = D20.roll();
                     if (roll < 7) {
                         // go for species talents

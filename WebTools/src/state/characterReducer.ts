@@ -3,7 +3,7 @@ import { CharacterType } from "../common/characterType";
 import { Stereotype } from "../common/construct";
 import { SelectedTalent } from "../common/selectedTalent";
 import AgeHelper from "../helpers/age";
-import { Skill } from "../helpers/skills";
+import { Department } from "../helpers/skills";
 import { SpeciesAbilityList } from "../helpers/speciesAbility";
 import { Species } from "../helpers/speciesEnum";
 import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_UNTAPPED_POTENTIAL } from "../helpers/talents";
@@ -27,21 +27,21 @@ interface CharacterState {
 const trackDefaults = (track: Track, step: EducationStep) => {
     switch (track) {
         case Track.EnlistedSecurityTraining:
-            step.primaryDiscipline = Skill.Security;
-            step.disciplines = [ Skill.Security, Skill.Conn ];
+            step.primaryDiscipline = Department.Security;
+            step.disciplines = [ Department.Security, Department.Conn ];
             step.focuses[2] = "Chain of Command";
             break;
         case Track.ShipOperations:
-            step.primaryDiscipline = Skill.Conn;
-            step.disciplines = [ Skill.Engineering, Skill.Science ];
+            step.primaryDiscipline = Department.Conn;
+            step.disciplines = [ Department.Engineering, Department.Science ];
             break;
         case Track.UniversityAlumni:
-            step.primaryDiscipline = Skill.Science;
-            step.disciplines = [ Skill.Engineering, Skill.Command ];
+            step.primaryDiscipline = Department.Science;
+            step.disciplines = [ Department.Engineering, Department.Command ];
             break;
         case Track.ResearchInternship:
-            step.primaryDiscipline = Skill.Science;
-            step.disciplines = [ Skill.Engineering, Skill.Medicine ];
+            step.primaryDiscipline = Department.Science;
+            step.disciplines = [ Department.Engineering, Department.Medicine ];
             break;
         default:
             break;
@@ -755,8 +755,8 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
         case APPLY_NORMAL_MILESTONE_DISCIPLINE: {
             let temp = state.currentCharacter.copy();
             /*
-            temp.skills[action.payload.decrease] = new CharacterSkill(action.payload.decrease, temp.skills[action.payload.decrease].expertise - 1);
-            temp.skills[action.payload.increase] = new CharacterSkill(action.payload.decrease, temp.skills[action.payload.increase].expertise + 1);
+            temp.skills[action.payload.decrease] = new CharacterDepartment(action.payload.decrease, temp.skills[action.payload.decrease].expertise - 1);
+            temp.skills[action.payload.increase] = new CharacterDepartment(action.payload.decrease, temp.skills[action.payload.increase].expertise + 1);
             */
             return {
                 ...state,

@@ -10,7 +10,7 @@ import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcr
 import { CharacterType } from '../common/characterType';
 import { StepContext, setCharacterCareerEventTrait, setCharacterFinishingTouches, setCharacterFocus } from '../state/characterActions';
 import DisciplineListComponent from '../components/disciplineListComponent';
-import { Skill } from '../helpers/skills';
+import { Department } from '../helpers/skills';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
 import AttributeListComponent from '../components/attributeListComponent';
@@ -89,7 +89,7 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({charac
                         <Header level={2} className="mb-3">{t('Construct.other.discipline')}</Header>
                         {careerEvent.disciplines.length === 1
                         ? (<div>
-                                <AttributeView name={t(makeKey('Construct.discipline.', Skill[careerEvent.disciplines[0]])) } points={1} value={character.departments[careerEvent.disciplines[0]]}/>
+                                <AttributeView name={t(makeKey('Construct.discipline.', Department[careerEvent.disciplines[0]])) } points={1} value={character.departments[careerEvent.disciplines[0]]}/>
                             </div>)
                         : (<DisciplineListComponent controller={disciplineController} />)}
                     </div>

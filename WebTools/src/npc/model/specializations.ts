@@ -2,7 +2,7 @@ import i18next from "i18next";
 import { Specialization } from "../../common/specializationEnum";
 import { makeKey } from "../../common/translationKey";
 import { Attribute } from "../../helpers/attributes";
-import { Skill } from "../../helpers/skills";
+import { Department } from "../../helpers/skills";
 import { Species } from "../../helpers/speciesEnum";
 import { NpcCharacterType } from "./npcCharacterType";
 
@@ -12,14 +12,14 @@ export class SpecializationModel {
     type: NpcCharacterType;
     name: string;
     primaryAttributes: Attribute[];
-    primaryDiscipline: Skill;
+    primaryDiscipline: Department;
     primaryFocuses: string[];
     secondaryFocuses: string[];
     values: string[];
     officerProbability: number;
     species: Species[];
 
-    constructor(id: Specialization, type: NpcCharacterType, name: string, primaryAttributes: Attribute[], primaryDiscipline: Skill,
+    constructor(id: Specialization, type: NpcCharacterType, name: string, primaryAttributes: Attribute[], primaryDiscipline: Department,
         primaryFocuses: string[], secondaryFocuses: string[], values: string[],
         officerProbability: number = 0, species: Species[] = []) {
         this.id = id;
@@ -57,7 +57,7 @@ export class Specializations {
         this.specializations = [
             new SpecializationModel(Specialization.Admiral, NpcCharacterType.Starfleet, "Admiralty",
                 [Attribute.Control, Attribute.Presence, Attribute.Reason],
-                Skill.Command,
+                Department.Command,
                 ["Fleet Tactics", "Mission Assignment", "Personnel Allocation", "Ship Capabilities", "Starship Assignment", "Starfleet Protocols",
                 "Tactical Analysis", "Federation Allies and Enemies", "Fleet Deployment Logistics", "Diplomatic Priorities"],
                 ["Risk Assessment", "Mission Parameters", "Diplomacy", "Starfleet Command Structure", "Starfleet Ships and their Captains",
@@ -81,7 +81,7 @@ export class Specializations {
                 1),
             new SpecializationModel(Specialization.Captain, NpcCharacterType.Starfleet, "Captain",
                 [Attribute.Control, Attribute.Presence, Attribute.Reason],
-                Skill.Command,
+                Department.Command,
                 ["Starship Tactics", "Evasive Strategies", "Ship Recognition", "Starfleet Protocols"],
                 ["Risk Assessment", "Mission Parameters", "Diplomacy", "Starfleet Command Structure", "Starfleet Ships and their Captains",
                 "Outside-of-the-box Tactics", "Current Border Readiness", "Negotiation", "Military Intelligence",
@@ -98,7 +98,7 @@ export class Specializations {
                 1),
             new SpecializationModel(Specialization.StationCommander, NpcCharacterType.Starfleet, "Station Commander",
                 [Attribute.Control, Attribute.Presence, Attribute.Reason],
-                Skill.Command,
+                Department.Command,
                 ["Sector Politics", "Station Operations", "Ops Oversight", "System Traffic Control", "Leadership"],
                 [
                     "Administration", "Staffing and Assignments", "Sector Starship Assignments", "Interstellar Politics", "Recreation",
@@ -116,7 +116,7 @@ export class Specializations {
                 1),
             new SpecializationModel(Specialization.Conn, NpcCharacterType.Starfleet, "Conn",
                 [Attribute.Daring, Attribute.Control],
-                Skill.Conn,
+                Department.Conn,
                 ["Helm Operations", "Small Craft Operations", "Evasive Maneuvers", "Precision Flying", "Shuttle Maintenance", "Warp Field Theory",
                 "Test Pilot", "Dogfighting", "Astrogation", "Attack Maneuvers"],
                 ["High Warp Maneuvers", "Warp Trail Identification", "High Gravity Maneuvers", "Starship Landing Procedures", "Stellar Systems",
@@ -137,11 +137,11 @@ export class Specializations {
                 0.7),
             new SpecializationModel(Specialization.Counselor, NpcCharacterType.Starfleet, "Counselor",
                 [Attribute.Insight, Attribute.Reason, Attribute.Control],
-                Skill.Medicine,
+                Department.Medicine,
                 ["Psychology", "Grief Counseling", "Group Therapy", "Conversation and Listening", "Negotiation", "Psychiatry",
                 "Psychoanalysis"],
                 ["Psychopathology", "Crisis Counseling", "Reflection", "Interpretation", "Jungian Psychology", "Psychotherapy",
-                "Coping Skills", "Cognitive-Behavioural Therapy", "Listening Techniques", "Ethics", "Research Skills", "Observation",
+                "Coping Departments", "Cognitive-Behavioural Therapy", "Listening Techniques", "Ethics", "Research Departments", "Observation",
                 "Intuition", "Relaxation Techniques", "Neurochemistry", "Psychopharmacology", "Hypnosis", "Post-Traumatic Stress Treatment",
                 "Phobias and Treatment", "Xenopsychology", "Addiction Issues", "Lacanian Psychoanalysis", "Conflict Resolution" ],
                 [
@@ -159,7 +159,7 @@ export class Specializations {
                 0.95),
             new SpecializationModel(Specialization.HangarDeck, NpcCharacterType.Starfleet, "Hangar Deck",
                 [Attribute.Daring, Attribute.Control],
-                Skill.Conn,
+                Department.Conn,
                 ["Shuttle Maintenance", "Shuttle Piloting", "Work Bee Specialist", "Stevedore", "Shuttle Docking Procedures", "Call Signals",
                 "Shuttle Approach Protocols", "Small Craft Engines"],
                 ["Shuttle Stacking", "Small Craft Identification", "Shuttle Parts and Supply", "Cargo Identification and Storage",
@@ -173,7 +173,7 @@ export class Specializations {
                 0.15),
             new SpecializationModel(Specialization.Engineer, NpcCharacterType.Starfleet, "Engineer",
                 [Attribute.Reason, Attribute.Control, Attribute.Insight],
-                Skill.Engineering,
+                Department.Engineering,
                 ["Warp Drive Maintenance", "Damage Control", "Anti-matter Containment", "Shield Maintenance", "Weapon System Repair",
                 "Structural Engineering", "Materials Fabrication", "Electronics", "Computer Core Repair", "Impulse Drive Systems",
                 "Power Systems", "Sensor Technician", "Transporters and Replicators", "Life Support Systems", "Warp Theory",
@@ -198,7 +198,7 @@ export class Specializations {
                 0.1),
             new SpecializationModel(Specialization.FirstContactSpecialist, NpcCharacterType.Starfleet, "First Contact Specialist",
                 [Attribute.Presence, Attribute.Control, Attribute.Insight],
-                Skill.Command,
+                Department.Command,
                 ["Cultural Studies", "Negotiation", "Diplomacy", "Psychology", "Xenopsycholody", "Governance",
                 "Cultural Politics", "Linguistics", "Comparative Religion", "Politics", "Political Science", "History",
                 "Anthropology"],
@@ -215,7 +215,7 @@ export class Specializations {
                 0.3),
             new SpecializationModel(Specialization.IntelligenceOfficer, NpcCharacterType.Starfleet, "Intelligence Operative",
                 [Attribute.Daring, Attribute.Presence, Attribute.Insight],
-                Skill.Security,
+                Department.Security,
                 ["Infiltration", "Intelligence Analysis", "Building Underground Networks", "Undercover Ops", "Signals Intelligence",
                 "Interrogation", "Data Analysis", "Underworld Environments", "Extra-Legal Operations", "Spycraft"],
                 ["Hand-to-Hand Combat", "Hand Phasers", "Terrorist Networks", "Covert Ops", "Electronic Surveillance", "Computer System Penetration",
@@ -241,7 +241,7 @@ export class Specializations {
                 0.6),
             new SpecializationModel(Specialization.Jag, NpcCharacterType.Starfleet, "Judge Advocate General's Office",
                 [Attribute.Presence, Attribute.Control, Attribute.Insight],
-                Skill.Command,
+                Department.Command,
                 ["Starfleet Protocols", "Federation Laws", "Legal Procedures", "Starfleet Rules and Regulations", "Legal Arguments", "Case Law",
                 "Witness Preparation", "Assessing Evidence", "Standards of Evidence", "Courtmartial Defenses", "Defense Preparation",
                 "Prosecution", "Commercial Law", "Tribunals", "Truth and Reconciliation Processes", "Restorative Justice",
@@ -262,7 +262,7 @@ export class Specializations {
                 0.5),
             new SpecializationModel(Specialization.MedicalDoctor, NpcCharacterType.Starfleet, "Medical Doctor",
                 [Attribute.Presence, Attribute.Insight, Attribute.Control],
-                Skill.Medicine,
+                Department.Medicine,
                 ["Surgery", "Immunology", "Pharmacology", "Orthopedics", "Reconstructive Surgery", "Medical Equipment Specialist",
                 "First Aid", "Diagnosis", "Medical Safety Protocols", "Medical Tricorders and Sensors",
                 "Infectious Diseases", "Xenobiology", "Esoteric Medicine", "Neurology", "Anesthesiology",
@@ -289,7 +289,7 @@ export class Specializations {
                 1),
             new SpecializationModel(Specialization.Nurse, NpcCharacterType.Starfleet, "Nurse",
                 [Attribute.Presence, Attribute.Insight, Attribute.Control],
-                Skill.Medicine,
+                Department.Medicine,
                 ["Post-operative Treatment", "Surgical Nursing", "Patient Aftercare",
                 "Triage and Prioritization", "First Aid", "Medication Administration", "Medical Safety Protocols", "Medical Tricorders and Sensors",
                 "Medical Rehab", "Emergency Nursing"],
@@ -319,7 +319,7 @@ export class Specializations {
                 0.15),
             new SpecializationModel(Specialization.ScienceTech, NpcCharacterType.Starfleet, "Science Technician",
                 [Attribute.Reason, Attribute.Insight, Attribute.Control],
-                Skill.Science,
+                Department.Science,
                 ["Astrophysics", "Sensors", "Biology", "History", "Sociology", "Library Science", "Xenobiology", "Chemistry", "Terraforming",
                 "Archaeology", "Anthropology", "Geology", "Particle Physics", "Botony", "Fauna", "Hydrology", "Entomology", "Warp Theory"],
                 ["Lab Set-up", "Experiemental Method", "Research Techniques", "Equipment Diagnostics", "Equipment Resupply",
@@ -335,7 +335,7 @@ export class Specializations {
                 "Sometimes scientific breakthrough is about doing the repetitive stuff over and over again."]),
             new SpecializationModel(Specialization.StarfleetScientist, NpcCharacterType.Starfleet, "Scientist",
                 [Attribute.Reason, Attribute.Insight, Attribute.Control],
-                Skill.Science,
+                Department.Science,
                 ["Astrophysics", "Sensors", "Biology", "History", "Sociology", "Library Science", "Xenobiology", "Chemistry", "Terraforming",
                 "Archaeology", "Anthropology", "Geology", "Particle Physics", "Botony", "Fauna", "Hydrology", "Entomology", "Warp Theory",
                 "Cultural Theory", "Sociology", "Economics", "Astronomy", "Stellar Cartography", "Cybernetics", "Metallurgy", "Paleontology",
@@ -361,7 +361,7 @@ export class Specializations {
                 0.9),
             new SpecializationModel(Specialization.Security, NpcCharacterType.Starfleet, "Security",
                 [Attribute.Fitness, Attribute.Daring, Attribute.Control],
-                Skill.Security,
+                Department.Security,
                 ["Hand Phasers", "Ground Combat Tactics", "Martial Arts", "Hand-to-Hand Combat", "Shipboard Weapons", "Starship Combat Tactics",
                 "Tactical Analysis", "Special Operations Training", "Infiltration", "Electronic Countermeasures", "Cybersecurity"],
                 ["Investigation", "Evidence Gathering", "Security Protocols", "Brig Guard Duty", "Bodyguard", "Interrogation",
@@ -387,7 +387,7 @@ export class Specializations {
                 0.1),
             new SpecializationModel(Specialization.Admin, NpcCharacterType.Starfleet, "Yeoman",
                 [Attribute.Reason, Attribute.Insight, Attribute.Control],
-                Skill.Command,
+                Department.Command,
                 ["Administrative Procedures", "Starfleet Reports", "Equipment Ordering Procedures", "Planning", "PADD Operation"],
                 ["Starfleet Protocols", "Quartermaster", "Personnel Assignments", "Records Keeping", "Log Submissions", "Creative Coffee Making",
                 "Promotion Paperwork", "General Paperwork", "Cargo Records"],
@@ -399,7 +399,7 @@ export class Specializations {
                 "It sounds silly, but I just think the universe is better when organized."]),
             new SpecializationModel(Specialization.KlingonWarrior, NpcCharacterType.KlingonDefenseForces, "Klingon Warrior",
                 [Attribute.Fitness, Attribute.Daring, Attribute.Presence],
-                Skill.Security,
+                Department.Security,
                 ["Hand-to-Hand Combat", "Melee Weapons", "Disruptors", "Ground Combat Tactics", "Starship Weapons"],
                 ["Rousing speech-making", "Explosives", "Survival", "Armor and Protective Gear", "Tales of Glorious Battle!",
                 "Tactical Analysis", "Special Operations Training"],
@@ -416,7 +416,7 @@ export class Specializations {
                 ], 0.6),
             new SpecializationModel(Specialization.KlingonShipCaptain, NpcCharacterType.KlingonDefenseForces, "Klingon Ship Captain",
                 [Attribute.Reason, Attribute.Control, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 ["Starship Battle Tactics", "Rousing speech-making", "Ship Recognition", "Crew Duties", "Evasive Maneuvers", "Intimidating Speeches"],
                 ["Hand-to-Hand Combat", "Melee Weapons", "Disruptors", "Tales of Glorious Battle!", "Weaknesses of Starfleet"],
                 [
@@ -431,7 +431,7 @@ export class Specializations {
                 ], 1.0),
             new SpecializationModel(Specialization.KlingonWeaponsOfficer, NpcCharacterType.KlingonDefenseForces, "Klingon Weapons Officer",
                 [Attribute.Control, Attribute.Daring, Attribute.Presence],
-                Skill.Security,
+                Department.Security,
                 ["Starship Weapons", "Tactical Analysis", "Starship Shields", "Starship Combat Tactics"],
                 ["Torpedo Spread Patterns", "Defensive Tactics", "Emergency Weapon Repair", "Security Scans", "Situational Analysis"],
                 [
@@ -447,7 +447,7 @@ export class Specializations {
                 ], 0.5),
             new SpecializationModel(Specialization.KlingonMedic, NpcCharacterType.KlingonDefenseForces, "Klingon Medic",
                 [Attribute.Control, Attribute.Insight, Attribute.Reason],
-                Skill.Medicine,
+                Department.Medicine,
                 [
                     "Surgery", "Immunology", "Pharmacology", "Orthopedics", "Reconstructive Surgery", "Medical Equipment Specialist",
                     "First Aid", "Diagnosis", "Medical Safety Protocols", "Medical Tricorders and Sensors",
@@ -475,7 +475,7 @@ export class Specializations {
                 ], 0.95),
             new SpecializationModel(Specialization.KlingonDiplomat, NpcCharacterType.KlingonDefenseForces, "Klingon Diplomat",
                 [Attribute.Control, Attribute.Insight, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Oration", "Negotiation", "Diplomacy", "Composure", "Treaty Issues", "Klingon Law", "Politics",
                     "Posturing"
@@ -494,7 +494,7 @@ export class Specializations {
                 ], 0.5),
             new SpecializationModel(Specialization.SketchyTraderCaptain, NpcCharacterType.RogueRuffianMercenary, "Sketchy Trader Captain",
                 [Attribute.Control, Attribute.Insight, Attribute.Presence],
-                Skill.Conn,
+                Department.Conn,
                 [
                     "Business", "Appraisal", "Negotiation", "Bargaining", "Finance", "Opportunistic Insight", "Trading", "Cargo Carrying"
                 ],
@@ -517,7 +517,7 @@ export class Specializations {
                 ]),
             new SpecializationModel(Specialization.FerengiMerchant, NpcCharacterType.Ferengi, "Ferengi Merchant",
                 [Attribute.Control, Attribute.Insight, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Business", "Appraisal", "Negotiation", "Bargaining", "Finance", "Opportunistic Insight"
                 ],
@@ -538,7 +538,7 @@ export class Specializations {
                 ], 0.0),
             new SpecializationModel(Specialization.FerengiEliminator, NpcCharacterType.Ferengi, "Ferengi Eliminator",
                 [Attribute.Daring, Attribute.Fitness, Attribute.Control],
-                Skill.Security,
+                Department.Security,
                 [
                     "Stealth", "Hand-to-Hand Combat", "Melee Weapons", "Explosives", "Infiltration", "Security Systems"
                 ],
@@ -561,7 +561,7 @@ export class Specializations {
                 ], 0.0),
             new SpecializationModel(Specialization.FerengiLiquidator, NpcCharacterType.Ferengi, "Ferengi Liquidator",
                 [Attribute.Reason, Attribute.Insight, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Ferengi Trade Law", "Fees and Tarifs", "Taxes", "Forensic Accounting", "Valuation", "Investigation"
                 ],
@@ -581,7 +581,7 @@ export class Specializations {
                 ], 1.0),
             new SpecializationModel(Specialization.FerengiDaiMon, NpcCharacterType.Ferengi, "Ferengi DaiMon",
                 [Attribute.Control, Attribute.Daring, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Trade Agreements", "Negotiation", "Bargaining", "Opportunistic Insight", "Intergalactic Trade Law",
                     "Starship Tactics", "Aggressive Stances"
@@ -604,7 +604,7 @@ export class Specializations {
                 ], 1.0),
             new SpecializationModel(Specialization.FerengiBartender, NpcCharacterType.Ferengi, "Bartender",
                 [Attribute.Control, Attribute.Daring, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Fine Spirits", "Entertaining", "Gambling", "Bartending", "Listening"
                 ],
@@ -623,7 +623,7 @@ export class Specializations {
                 ], 1.0),
             new SpecializationModel(Specialization.RomulanSenator, NpcCharacterType.RomulanEmpire, "Romulan Senator",
                 [Attribute.Control, Attribute.Reason, Attribute.Insight],
-                Skill.Command,
+                Department.Command,
                 [
                     "Bureaucracy", "Diplomacy", "Politics", "Linguistics", "History", "Philosophy",
                     "Alliance-building", "Romulan Governmental Priorities", "Senatorial Protocol"
@@ -642,7 +642,7 @@ export class Specializations {
                 ], 0, [ Species.Romulan ]),
             new SpecializationModel(Specialization.RomulanCenturion, NpcCharacterType.RomulanEmpire, "Romulan Centurion",
                 [Attribute.Control, Attribute.Reason, Attribute.Fitness],
-                Skill.Security,
+                Department.Security,
                 [
                     "Using the Fog of War", "Disruptors", "Starship Weapons", "Advanced Ground Tactics",
                     "Aggressive Stances"
@@ -662,7 +662,7 @@ export class Specializations {
                 ], 0.5),
             new SpecializationModel(Specialization.RomulanTalShiar, NpcCharacterType.RomulanEmpire, "Tal Shiar Operative",
                 [Attribute.Daring, Attribute.Presence, Attribute.Insight],
-                Skill.Security,
+                Department.Security,
                 [
                     "Infiltration", "Intelligence Analysis", "Building Underground Networks", "Undercover Ops", "Signals Intelligence",
                     "Interrogation", "Data Analysis", "Underworld Environments", "Extra-Legal Operations", "Spycraft", "Torture", "Disinformation Campaigns"
@@ -687,7 +687,7 @@ export class Specializations {
                 0.7, [ Species.Romulan ]),
             new SpecializationModel(Specialization.QowatMilat, NpcCharacterType.RomulanEmpire, "Qowat Milat",
                 [Attribute.Control, Attribute.Fitness, Attribute.Insight],
-                Skill.Security,
+                Department.Security,
                 [
                     "Acrobatics", "Bladed Weapons", "Hand-to-Hand Combat", "Qowat Milat Teachings", "Vigilance", "Pledges"
                 ],[
@@ -705,7 +705,7 @@ export class Specializations {
                 0.7, [ Species.Romulan ]),
             new SpecializationModel(Specialization.CardassianSoldier, NpcCharacterType.Cardassian, "Cardassian Soldier",
                 [Attribute.Control, Attribute.Reason, Attribute.Fitness],
-                Skill.Security,
+                Department.Security,
                 [
                     "Hand Phasers", "Starship Weapons", "Advanced Ground Tactics",
                     "Aggressive Stances"
@@ -718,7 +718,7 @@ export class Specializations {
                 ], 0.5),
             new SpecializationModel(Specialization.CardassianGul, NpcCharacterType.Cardassian, "Cardassian Gul",
                 [Attribute.Control, Attribute.Reason, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Starship Battle Tactics", "Persuasion", "Advanced Ground Tactics",
                     "Border Agreements", "Leadership", "Diplomacy", "Rules of Engagement"
@@ -739,7 +739,7 @@ export class Specializations {
                 ], 1),
             new SpecializationModel(Specialization.SonaCommandOfficer, NpcCharacterType.MinorPolity, "Son'a Adhar",
                 [Attribute.Control, Attribute.Daring, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Starship Battle Tactics", "Negotiation", "Threats",
                     "The Dominion War", "Leadership", "Diplomacy"
@@ -761,7 +761,7 @@ export class Specializations {
                 ], 1, [Species.SonA]),
             new SpecializationModel(Specialization.TalarianOfficer, NpcCharacterType.MinorPolity, "Talarian Officer",
                 [Attribute.Control, Attribute.Daring, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Starship Battle Tactics", "Negotiation", "Threats",
                     "Leadership", "Diplomacy", "Talarian Military Protocol",
@@ -790,7 +790,7 @@ export class Specializations {
                 ], 1, [Species.Talarian]),
             new SpecializationModel(Specialization.TzenkethiSoldier, NpcCharacterType.MinorPolity, "Tzenkethi Soldier",
                 [Attribute.Daring, Attribute.Fitness, Attribute.Reason],
-                Skill.Security,
+                Department.Security,
                 [
                     "Starship Battle Tactics", "Negotiation", "Threats",
                     "Leadership", "Diplomacy",
@@ -814,7 +814,7 @@ export class Specializations {
                 ], 1, [Species.Tzenkethi]),
             new SpecializationModel(Specialization.TholianWarrior, NpcCharacterType.MinorPolity, "Tholian Warrior",
                 [Attribute.Control, Attribute.Daring, Attribute.Fitness],
-                Skill.Security,
+                Department.Security,
                 [
                     "Starship Battle Tactics", "Negotiation", "Threats",
                     "Leadership", "Diplomacy",
@@ -838,7 +838,7 @@ export class Specializations {
                 ], 1, [Species.Tholian]),
             new SpecializationModel(Specialization.OrionPirate, NpcCharacterType.RogueRuffianMercenary, "Orion Pirate",
                 [Attribute.Daring, Attribute.Presence, Attribute.Control],
-                Skill.Security,
+                Department.Security,
                 [
                     "Starship Breach Tactics", "Tractor Beams", "Starship Disarming Techniques",
                     "Valuation", "Ambushes and Traps", "Starship Detection Prevention"
@@ -862,7 +862,7 @@ export class Specializations {
                 ], 0, [Species.Orion]),
             new SpecializationModel(Specialization.InformationBroker, NpcCharacterType.RogueRuffianMercenary, "Information Broker",
                 [Attribute.Control, Attribute.Insight, Attribute.Reason],
-                Skill.Security,
+                Department.Security,
                 [
                     "Hacking", "Electronic Security Systems", "Cryptography",
                     "Intrusion Counter-Measures", "Information Peddling"
@@ -879,7 +879,7 @@ export class Specializations {
                 ], 0, [Species.Yridian, Species.Bynar, Species.CyberneticallyEnhanced, Species.Betazoid]),
             new SpecializationModel(Specialization.BruteForHire, NpcCharacterType.RogueRuffianMercenary, "Brute-for-Hire",
                 [Attribute.Fitness, Attribute.Daring, Attribute.Presence],
-                Skill.Security,
+                Department.Security,
                 [
                     "Hand-to-Hand Combat", "Disruptors", "Hand Phasers",
                     "Blade Weapons", "Ground Combat Tactics"
@@ -896,7 +896,7 @@ export class Specializations {
                 ], 0, [Species.Nausicaan, Species.Klingon]),
             new SpecializationModel(Specialization.Bodyguard, NpcCharacterType.RogueRuffianMercenary, "Bodyguard",
                 [Attribute.Fitness, Attribute.Daring, Attribute.Presence],
-                Skill.Security,
+                Department.Security,
                 [
                     "Threat Assessment", "Disruptors", "Hand Phasers",
                     "Hand-to-Hand Combat"
@@ -914,7 +914,7 @@ export class Specializations {
                 ], 0, [Species.Nausicaan, Species.Hupyrian]),
             new SpecializationModel(Specialization.Smuggler, NpcCharacterType.RogueRuffianMercenary, "Smuggler",
                 [Attribute.Control, Attribute.Insight, Attribute.Presence],
-                Skill.Conn,
+                Department.Conn,
                 [
                     "Concealment", "Smuggling", "Border Security Protocols",
                     "Scanning Technology", "Cargo Handling"
@@ -938,7 +938,7 @@ export class Specializations {
                         Species.Orion, Species.Nausicaan, Species.Pakled, Species.Tellarite, Species.Trill, Species.Vulcan ]),
             new SpecializationModel(Specialization.Terrorist, NpcCharacterType.RogueRuffianMercenary, "Terrorist / Freedom Fighter",
                 [Attribute.Daring, Attribute.Insight, Attribute.Presence],
-                Skill.Security,
+                Department.Security,
                 [
                     "Explosives", "Ideology", "Concealment",
                     "Scanning Technology", "Symbolic Gestures", "Politics"
@@ -962,7 +962,7 @@ export class Specializations {
                         Species.Orion, Species.Tellarite, Species.Trill, Species.Vulcan ]),
             new SpecializationModel(Specialization.Scientist, NpcCharacterType.Civilian, "Scientist",
                 [Attribute.Reason, Attribute.Insight, Attribute.Control],
-                Skill.Science,
+                Department.Science,
                 ["Astrophysics", "Sensors", "Biology", "History", "Sociology", "Library Science", "Xenobiology", "Chemistry", "Terraforming",
                 "Archaeology", "Anthropology", "Geology", "Particle Physics", "Botony", "Fauna", "Hydrology", "Entomology", "Warp Theory",
                 "Cultural Theory", "Sociology", "Economics", "Astronomy", "Stellar Cartography", "Cybernetics", "Metallurgy", "Paleontology",
@@ -989,7 +989,7 @@ export class Specializations {
                 0),
             new SpecializationModel(Specialization.FederationAmbassador, NpcCharacterType.Civilian, "Federation Ambassador",
                 [Attribute.Control, Attribute.Insight, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Oration", "Negotiation", "Diplomacy", "Composure", "Treaty Issues", "Federation Law", "Politics"
                 ], [
@@ -1011,7 +1011,7 @@ export class Specializations {
                 0),
             new SpecializationModel(Specialization.Bureaucrat, NpcCharacterType.Civilian, "Bureaucrat",
                 [Attribute.Control, Attribute.Insight, Attribute.Presence],
-                Skill.Command,
+                Department.Command,
                 [
                     "Administrative Procedures", "Planning", "Paperwork", "Regulations and Processes"
                 ], [
@@ -1033,7 +1033,7 @@ export class Specializations {
                 0),
             new SpecializationModel(Specialization.IndependentTraderCaptain, NpcCharacterType.Civilian, "Independent Trader Captain",
                 [Attribute.Control, Attribute.Daring, Attribute.Insight],
-                Skill.Conn,
+                Department.Conn,
                 [
                     "Business", "Appraisal", "Negotiation", "Bargaining", "Finance", "Opportunistic Insight", "Trading", "Cargo Carrying"
                 ],
@@ -1051,7 +1051,7 @@ export class Specializations {
                 0),
             new SpecializationModel(Specialization.Colonist, NpcCharacterType.Civilian, "Colonist",
                 [Attribute.Fitness, Attribute.Daring, Attribute.Presence],
-                Skill.Engineering,
+                Department.Engineering,
                 [
                     "Agriculture", "Construction", "City Planning", "Animal Husbandry", "Biology", "Community Building",
                 ], [
@@ -1076,7 +1076,7 @@ export class Specializations {
                 0),
             new SpecializationModel(Specialization.Child, NpcCharacterType.Civilian, "Child",
                 [Attribute.Insight, Attribute.Presence, Attribute.Daring],
-                Skill.Command,
+                Department.Command,
                 [
                     "Toys", "Flotter Stories", "Kadis-kot", "Dinosaurs", "Exploration", "School"
                 ], [
@@ -1093,7 +1093,7 @@ export class Specializations {
                 0),
             new SpecializationModel(Specialization.CivilianDoctor, NpcCharacterType.Civilian, "Medical Doctor",
                 [Attribute.Insight, Attribute.Presence, Attribute.Control],
-                Skill.Medicine,
+                Department.Medicine,
                 [
                     "Surgery", "Immunology", "Pharmacology", "Orthopedics", "Reconstructive Surgery", "Medical Equipment Specialist",
                     "First Aid", "Diagnosis", "Medical Safety Protocols", "Medical Tricorders and Sensors",

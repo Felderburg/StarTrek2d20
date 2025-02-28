@@ -1,6 +1,6 @@
 import { Character } from "../common/character";
 import { Attribute } from "../helpers/attributes";
-import { Skill } from "../helpers/skills";
+import { Department } from "../helpers/skills";
 import { StepContext, modifyCharacterAttribute, modifyCharacterDiscipline } from "../state/characterActions";
 import store from "../state/store";
 import { IAttributeController } from "./attributeController";
@@ -57,28 +57,28 @@ export class FinishingTouchesDisciplineController implements IDisciplineControll
         this.count = count;
     }
 
-    isShown(discipline: Skill) {
+    isShown(discipline: Department) {
         return true;
     }
-    isEditable(discipline: Skill): boolean {
+    isEditable(discipline: Department): boolean {
         return true;
     }
-    getValue(discipline: Skill): number {
+    getValue(discipline: Department): number {
         return this.character.departments[discipline];
     }
-    canIncrease(discipline: Skill): boolean {
+    canIncrease(discipline: Department): boolean {
         return this.getValue(discipline) < Character.maxDepartment(this.character) &&
-            (this.getValue(discipline) < (Character.maxDepartment(this.character) - 1) || !this.character.hasMaxedSkill())
+            (this.getValue(discipline) < (Character.maxDepartment(this.character) - 1) || !this.character.hasMaxedDepartment())
             && (this.character.finishingStep?.disciplines.length < this.count)
             && (this.character.finishingStep?.disciplines.filter(d => d === discipline).length < (this.count - 1));
     }
-    canDecrease(discipline: Skill): boolean {
+    canDecrease(discipline: Department): boolean {
         return this.character.finishingStep?.disciplines.indexOf(discipline) >= 0;
     }
-    onIncrease(discipline: Skill): void {
+    onIncrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.FinishingTouches, true));
     }
-    onDecrease(discipline: Skill): void {
+    onDecrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.FinishingTouches, false));
     }
 }

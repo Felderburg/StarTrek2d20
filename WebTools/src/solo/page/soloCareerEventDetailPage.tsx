@@ -12,7 +12,6 @@ import { CharacterType } from "../../common/characterType";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { AttributeView } from "../../components/attribute";
 import { AttributesHelper } from "../../helpers/attributes";
-import { Skill } from "../../helpers/skills";
 import { makeKey } from "../../common/translationKey";
 import DisciplineListComponent from "../../components/disciplineListComponent";
 import AttributeListComponent from "../../components/attributeListComponent";
@@ -23,6 +22,7 @@ import { FocusRandomTable } from "../table/focusRandomTable";
 import { CareerEventAttributeController, CareerEventDisciplineController } from "../../components/careerEventDetailsControllers";
 import ReactMarkdown from "react-markdown";
 import { localizedFocus } from "../../components/focusHelper";
+import { Department } from "../../helpers/skills";
 
 interface ISoloCareerEventProperties extends ICharacterProperties {
     context: StepContext;
@@ -85,7 +85,7 @@ const SoloCareerEventDetailsPage: React.FC<ISoloCareerEventProperties> = ({chara
                         <Header level={2} className="mb-3">{t('Construct.other.discipline')}</Header>
                         {careerEvent.disciplines.length === 1
                         ? (<div>
-                                <AttributeView name={t(makeKey('Construct.discipline.', Skill[careerEvent.disciplines[0]])) } points={1} value={character.departments[careerEvent.disciplines[0]]}/>
+                                <AttributeView name={t(makeKey('Construct.discipline.', Department[careerEvent.disciplines[0]])) } points={1} value={character.departments[careerEvent.disciplines[0]]}/>
                             </div>)
                         : (<DisciplineListComponent controller={disciplineController} />)}
                     </div>

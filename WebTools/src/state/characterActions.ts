@@ -7,7 +7,7 @@ import { Career } from "../helpers/careerEnum";
 import { Environment } from "../helpers/environments";
 import { Rank } from "../helpers/ranks";
 import { Role } from "../helpers/roles";
-import { Skill } from "../helpers/skills";
+import { Department } from "../helpers/skills";
 import { Species } from "../helpers/speciesEnum";
 import { ITalent } from "../helpers/italent";
 import { Track } from "../helpers/trackEnum";
@@ -114,7 +114,7 @@ export function setSupportingCharacterSupervisorty(supervisory: boolean) {
     }
 }
 
-export function setSupportingCharacterDisciplines(disciplines: Skill[]) {
+export function setSupportingCharacterDisciplines(disciplines: Department[]) {
     let payload = { disciplines: disciplines };
     return {
        type: SET_SUPPORTING_CHARACTER_DISCIPLINES,
@@ -152,7 +152,7 @@ export function setCharacterFinishingTouches() {
     }
 }
 
-export function addCharacterCareerEvent(eventId: number, context: StepContext, attribute?: Attribute, discipline?: Skill) {
+export function addCharacterCareerEvent(eventId: number, context: StepContext, attribute?: Attribute, discipline?: Department) {
     let payload = { eventId: eventId, attribute: attribute, discipline: discipline, context: context };
     return {
        type: ADD_CHARACTER_CAREER_EVENT,
@@ -334,7 +334,7 @@ export function modifyCharacterAttribute(attribute: Attribute, context: StepCont
     }
 }
 
-export function modifyCharacterDiscipline(discipline: Skill, context: StepContext, positive: boolean = true, primaryDisciplines: Skill[] = [], forceDecrement: boolean = false) {
+export function modifyCharacterDiscipline(discipline: Department, context: StepContext, positive: boolean = true, primaryDisciplines: Department[] = [], forceDecrement: boolean = false) {
     let payload = { discipline: discipline, context: context, positive: positive, primaryDisciplines: primaryDisciplines, forceDecrement: forceDecrement };
     return {
        type: MODIFY_CHARACTER_DISCIPLINE,
@@ -358,7 +358,7 @@ export function modifyCharacterRank(rank: CharacterRank) {
     }
 }
 
-export function modifySupportingCharacterAddImprovement(type: SupportingCharacterModificationType, value: string|Attribute|Skill) {
+export function modifySupportingCharacterAddImprovement(type: SupportingCharacterModificationType, value: string|Attribute|Department) {
     let payload = { type: type, value: value };
     return {
        type: MODIFY_SUPPORTING_CHARACTER_ADD_IMPROVEMENT,
@@ -366,7 +366,7 @@ export function modifySupportingCharacterAddImprovement(type: SupportingCharacte
     }
 }
 
-export function applyNormalMilestoneDiscipline(decrease: Skill, increase: Skill) {
+export function applyNormalMilestoneDiscipline(decrease: Department, increase: Department) {
     let payload = { decrease: decrease, increase: increase };
     return {
        type: APPLY_NORMAL_MILESTONE_DISCIPLINE,

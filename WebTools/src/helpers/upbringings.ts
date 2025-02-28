@@ -2,7 +2,7 @@
 import { CharacterType } from '../common/characterType';
 import { makeKey } from '../common/translationKey';
 import {Attribute} from './attributes';
-import {Skill} from './skills';
+import {Department} from './skills';
 
 export enum EarlyOutlook {
     // Core
@@ -38,12 +38,12 @@ export class EarlyOutlookModel {
     attributeAcceptPlus1: Attribute;
     attributeRebelPlus2: Attribute;
     attributeRebelPlus1: Attribute;
-    disciplines: Skill[];
+    disciplines: Department[];
     focusDescription: string;
     focusSuggestions: string[];
     keyPrefix: string
 
-    constructor(id: EarlyOutlook, name: string, description: string, attributesAcceptPlus2: Attribute, attributesAcceptPlus1: Attribute, attributesRebelPlus2: Attribute, attributesRebelPlus1: Attribute, disciplines: Skill[], focusDescription: string, focusSuggestions: string[], keyPrefix?: string) {
+    constructor(id: EarlyOutlook, name: string, description: string, attributesAcceptPlus2: Attribute, attributesAcceptPlus1: Attribute, attributesRebelPlus2: Attribute, attributesRebelPlus1: Attribute, disciplines: Department[], focusDescription: string, focusSuggestions: string[], keyPrefix?: string) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -86,7 +86,7 @@ class Upbringings {
             Attribute.Fitness,
             Attribute.Daring,
             Attribute.Insight,
-            [Skill.Command, Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science, Skill.Security],
+            [Department.Command, Department.Conn, Department.Engineering, Department.Medicine, Department.Science, Department.Security],
             "The character’s Focus should relate to their connection to Starfleet, covering skills learned during the character’s formative years.",
             ["Astronavigation","Composure", "Extra-Vehicular Activity", "Hand-to-Hand Combat","Hand Phasers","Small Craft", "Starfleet Protocol", "Starship Recognition", "History"],
             "Upbringing.starfleet."
@@ -99,7 +99,7 @@ class Upbringings {
             Attribute.Daring,
             Attribute.Insight,
             Attribute.Reason,
-            [Skill.Command, Skill.Engineering, Skill.Science],
+            [Department.Command, Department.Engineering, Department.Science],
             "The character’s Focus should relate to the nature of their family’s business, covering skills that are valuable during trade, or which were useful to the family business in other ways.",
             ["Finances", "Geology", "Linguistics", "Manufacturing", "Metallurgy", "Negotiation", "Survey"],
             "Upbringing.starfleet."
@@ -112,7 +112,7 @@ class Upbringings {
             Attribute.Control,
             Attribute.Reason,
             Attribute.Presence,
-            [Skill.Conn, Skill.Medicine, Skill.Security],
+            [Department.Conn, Department.Medicine, Department.Security],
             "The character’s Focus should relate to the character’s rural lifestyle, and the skills they learned there.",
             ["Animal Handling", "Athletics", "Emergency Medicine", "Endurance", "Ground Vehicles", "Infectious Diseases", "Navigation", "Toxicology"],
             "Upbringing.starfleet."
@@ -125,7 +125,7 @@ class Upbringings {
             Attribute.Reason,
             Attribute.Insight,
             Attribute.Daring,
-            [Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science],
+            [Department.Conn, Department.Engineering, Department.Medicine, Department.Science],
             "The character’s Focus should relate to the character’s favoured fields of study and inquiry.",
             ["Astrophysics", "Astronavigation", "Computers", "Cybernetics", "Power Systems", "Genetics", "Physics", "Subspace Communications", "Surgery", "Quantum Mechanics", "Warp Field Dynamics", "Xenobiology"],
             "Upbringing.starfleet."
@@ -138,7 +138,7 @@ class Upbringings {
             Attribute.Insight,
             Attribute.Fitness,
             Attribute.Daring,
-            [Skill.Command, Skill.Engineering, Skill.Science],
+            [Department.Command, Department.Engineering, Department.Science],
             "The character’s Focus should relate to the character’s preferred way of applying their skills.",
             ["Botany", "Cultural Studies", "Holoprogramming", "Linguistics", "Music", "Observation", "Persuasion", "Psychology"],
             "Upbringing.starfleet."
@@ -151,7 +151,7 @@ class Upbringings {
             Attribute.Control,
             Attribute.Reason,
             Attribute.Fitness,
-            [Skill.Command, Skill.Conn, Skill.Security],
+            [Department.Command, Department.Conn, Department.Security],
             "The character’s Focus should relate to the character’s preferred way of applying their skills.",
             ["Composure", "Debate", "Diplomacy", "Espionage", "Interrogation", "Law", "Philosophy", "Starfleet Protocol"],
             "Upbringing.starfleet."
@@ -167,7 +167,7 @@ class Upbringings {
             Attribute.Fitness,
             Attribute.Reason,
             Attribute.Control,
-            [Skill.Command, Skill.Science],
+            [Department.Command, Department.Science],
             "Your focus should relate to your dreams, covering skills learned because they were the kinds of things that explorers needed to know.",
             ["Astronavigation", "Composure", "Diplomacy", "Linguistics", "Starship Recognition", "Team Dynamics", "Wilderness Survival"]
         ),
@@ -179,7 +179,7 @@ class Upbringings {
             Attribute.Daring,
             Attribute.Insight,
             Attribute.Reason,
-            [Skill.Conn, Skill.Engineering],
+            [Department.Conn, Department.Engineering],
             "Your focus should relate to your dreams, covering skills learned because they would help you fly.",
             ["Astronavigation", "Helm Operations", "Small Craft", "Starship Recognition", "Propulsion Systems"]
         ),
@@ -191,7 +191,7 @@ class Upbringings {
             Attribute.Presence,
             Attribute.Daring,
             Attribute.Control,
-            [Skill.Command, Skill.Engineering],
+            [Department.Command, Department.Engineering],
             "Your focus should relate to your creativity, which is likely to relate to art or engineering.",
             ["Literature", "Theatre", "Art", "Holoprogramming", "Computers", "Cybernetics", "Structural Engineering", "Transporters & Replicators", "Warp Field Dynamics"]
         ),
@@ -203,7 +203,7 @@ class Upbringings {
             Attribute.Presence,
             Attribute.Fitness,
             Attribute.Insight,
-            [Skill.Medicine, Skill.Science],
+            [Department.Medicine, Department.Science],
             "Your focus should relate to your dreams, representing the field you were most curious about growing up.",
             ["Anthropology", "Astrophysics", "Botany", "Genetics", "Linguistics", "Psychology", "Quantum Mechanics", "Xenobiology"]
         ),
@@ -215,7 +215,7 @@ class Upbringings {
             Attribute.Fitness,
             Attribute.Control,
             Attribute.Reason,
-            [Skill.Security, Skill.Medicine],
+            [Department.Security, Department.Medicine],
             "Your focus should relate to the skills you honed protecting and caring for others.",
             ["Hand-to-Hand Combat (may rename as a specific Martial Art)", "Hand Phasers", "Survival", "Threat Awareness", "Emergency Medicine", "Triage"]
         ),
@@ -227,7 +227,7 @@ class Upbringings {
             Attribute.Daring,
             Attribute.Fitness,
             Attribute.Insight,
-            [Skill.Command, Skill.Conn, Skill.Security, Skill.Engineering, Skill.Medicine, Skill.Science],
+            [Department.Command, Department.Conn, Department.Security, Department.Engineering, Department.Medicine, Department.Science],
             "Your focus should relate to the ways you intend to make your way in the galaxy.",
             ["Computers", "Genetics", "Holoprogramming", "Music (may rename as a particular genre or instrument)", "Persuasion", "Philosophy", "Politics", "Trade & Finance"]
         ),
@@ -242,7 +242,7 @@ class Upbringings {
             Attribute.Fitness,
             Attribute.Daring,
             Attribute.Insight,
-            [Skill.Command, Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science, Skill.Security],
+            [Department.Command, Department.Conn, Department.Engineering, Department.Medicine, Department.Science, Department.Security],
             "The character’s Focus should relate to their connection to the service, covering skills learned during the character’s formative years.",
             ["Astronavigation","Composure", "Extra-Vehicular Activity", "Hand-to-Hand Combat","Hand Phasers","Small Craft", "Military Protocol", "Starship Recognition", "History"]
         ),
@@ -254,7 +254,7 @@ class Upbringings {
             Attribute.Daring,
             Attribute.Insight,
             Attribute.Reason,
-            [Skill.Command, Skill.Engineering, Skill.Science],
+            [Department.Command, Department.Engineering, Department.Science],
             "The character’s Focus should relate to the nature of their family’s business, covering skills that are valuable during trade, or which were useful to the family business in other ways.",
             ["Finances", "Geology", "Linguistics", "Manufacturing", "Metallurgy", "Negotiation", "Survey"]
         ),
@@ -266,7 +266,7 @@ class Upbringings {
             Attribute.Control,
             Attribute.Reason,
             Attribute.Presence,
-            [Skill.Conn, Skill.Medicine, Skill.Security],
+            [Department.Conn, Department.Medicine, Department.Security],
             "The character’s Focus should relate to the character’s rural lifestyle, and the skills they learned there.",
             ["Animal Handling", "Athletics", "Emergency Medicine", "Endurance", "Ground Vehicles", "Infectious Diseases", "Navigation", "Toxicology"]
         ),
@@ -278,7 +278,7 @@ class Upbringings {
             Attribute.Reason,
             Attribute.Insight,
             Attribute.Daring,
-            [Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science],
+            [Department.Conn, Department.Engineering, Department.Medicine, Department.Science],
             "The character’s Focus should relate to the character’s favoured fields of study and inquiry.",
             ["Astrophysics", "Astronavigation", "Computers", "Cybernetics", "Power Systems", "Genetics", "Physics", "Subspace Communications", "Surgery", "Quantum Mechanics", "Warp Field Dynamics", "Xenobiology"]
         ),
@@ -290,7 +290,7 @@ class Upbringings {
             Attribute.Insight,
             Attribute.Fitness,
             Attribute.Daring,
-            [Skill.Command, Skill.Engineering, Skill.Science],
+            [Department.Command, Department.Engineering, Department.Science],
             "The character’s Focus should relate to the character’s preferred way of applying their skills.",
             ["Botany", "Cultural Studies", "Holoprogramming", "Linguistics", "Music", "Observation", "Persuasion", "Psychology"]
         ),
@@ -302,7 +302,7 @@ class Upbringings {
             Attribute.Control,
             Attribute.Reason,
             Attribute.Fitness,
-            [Skill.Command, Skill.Conn, Skill.Security],
+            [Department.Command, Department.Conn, Department.Security],
             "The character’s Focus should relate to the character’s preferred way of applying their skills.",
             ["Composure", "Debate", "Diplomacy", "Espionage", "Interrogation", "Law", "Philosophy", "Starfleet Protocol"]
         ),
@@ -317,7 +317,7 @@ class Upbringings {
             Attribute.Fitness,
             Attribute.Daring,
             Attribute.Insight,
-            [Skill.Command, Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science, Skill.Security],
+            [Department.Command, Department.Conn, Department.Engineering, Department.Medicine, Department.Science, Department.Security],
             "Your focus should relate to your upbringing, covering skills learned during your formative years.",
             ["Composure", "Hand-to-Hand Combat (may be renamed to a particular style or weapon)", "Disruptors", "Intimidation", "Military History", "Small Craft", "Starship Recognition", "Survival."]
         ),
@@ -329,7 +329,7 @@ class Upbringings {
             Attribute.Daring,
             Attribute.Insight,
             Attribute.Reason,
-            [Skill.Command, Skill.Engineering, Skill.Science],
+            [Department.Command, Department.Engineering, Department.Science],
             "Your focus should relate to your upbringing, covering skills learned during your formative years.",
             ["Finances", "Geology", "Linguistics", "Manufacturing", "Metallurgy", "Negotiation", "Survey"]
         ),
@@ -341,7 +341,7 @@ class Upbringings {
             Attribute.Reason,
             Attribute.Insight,
             Attribute.Daring,
-            [Skill.Conn, Skill.Engineering, Skill.Medicine, Skill.Science],
+            [Department.Conn, Department.Engineering, Department.Medicine, Department.Science],
             "Your focus should relate to your upbringing, covering skills learned during your formative years.",
             ["Astrophysics", "Astronavigation", "Computers", "Cybernetics", "Power Systems", "Genetics", "Physics", "Subspace Communications", "Temporal Mechanics", "Surgery", "Quantum Mechanics", "Warp Field Dynamics", "Xenobiology"]
         ),
@@ -353,7 +353,7 @@ class Upbringings {
             Attribute.Control,
             Attribute.Reason,
             Attribute.Presence,
-            [Skill.Conn, Skill.Medicine, Skill.Security],
+            [Department.Conn, Department.Medicine, Department.Security],
             "Your focus should relate to your upbringing, covering skills learned during your formative years.",
             ["Animal Handling", "Athletics", "Emergency Medicine", "Endurance", "Ground Vehicles", "Infectious Diseases", "Navigation", "Toxicology", "Survival Training"]
         ),
@@ -365,7 +365,7 @@ class Upbringings {
             Attribute.Insight,
             Attribute.Fitness,
             Attribute.Daring,
-            [Skill.Command, Skill.Engineering, Skill.Science],
+            [Department.Command, Department.Engineering, Department.Science],
             "The character’s Focus should relate to the character’s preferred way of applying their skills.",
             ["Botany", "Cultural Studies", "Holoprogramming", "Linguistics", "Music", "Observation", "Persuasion", "Psychology"]
         ),
@@ -377,7 +377,7 @@ class Upbringings {
             Attribute.Reason,
             Attribute.Fitness,
             Attribute.Insight,
-            [Skill.Command, Skill.Security, Skill.Science],
+            [Department.Command, Department.Security, Department.Science],
             "Your focus should relate to your upbringing, covering skills learned during your formative years.",
             ["Composure", "Debate", "Diplomacy", "Espionage", "Etiquette", "Interrogation", "Law", "Philosophy"]
         ),
