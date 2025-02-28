@@ -5,14 +5,13 @@ import { Starship } from "../common/starship";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { BorgImplants, Implant } from "../helpers/borgImplant";
 import { EquipmentModel } from "../helpers/equipment";
-import { Skill, SkillsHelper } from "../helpers/skills";
+import { DepartmentsHelper, Department, Skill } from "../helpers/skills";
 import { SpeciesHelper } from "../helpers/species";
 import { Species } from "../helpers/speciesEnum";
 import { TalentsHelper } from "../helpers/talents";
 import { Weapon, WeaponRange, WeaponType, WeaponTypeModel } from "../helpers/weapons";
 import { System, allSystems } from "../helpers/systems";
 import { makeKey } from "../common/translationKey";
-import { Department, allDepartments } from "../helpers/departments";
 
 interface IRoll20Attribute {
     name: string,
@@ -216,7 +215,7 @@ export class Roll20VttExporter {
         result.character.attribs.push(this.convertCrew(starship, id));
         result.character.attribs.push(this.convertPower(starship, id));
 
-        allDepartments().forEach(d =>
+        DepartmentsHelper.instance.getDepartments().forEach(d =>
             result.character.attribs.push(this.convertDepartment(starship, d, id))
         );
         allSystems().forEach(s =>
@@ -290,9 +289,9 @@ export class Roll20VttExporter {
 
         result += "<h2>" + i18next.t("Construct.other.departments") + "</h2>\n"
         result += "<table>\n<thead>\n<tr>\n";
-        allDepartments().forEach(d => result += "<th>" + i18next.t(makeKey("Construct.department.", Department[d])) + "</th>\n");
+        DepartmentsHelper.instance.getDepartments().forEach(d => result += "<th>" + i18next.t(makeKey("Construct.department.", Department[d])) + "</th>\n");
         result += "</tr>\n</thead>\n<tbody><tr>\n";
-        allDepartments().forEach(d => result += "<td>" + starship.departments[d] + "</td>\n");
+        DepartmentsHelper.instance.getDepartments().forEach(d => result += "<td>" + starship.departments[d] + "</td>\n");
         result += "</tr>\n</tbody>\n</table>\n";
 
         result += "<p><strong>" + i18next.t("Construct.other.power") + ":</strong> " + starship.power + "<br />";
@@ -491,7 +490,7 @@ export class Roll20VttExporter {
         result.character.attribs.push(this.convertEnvironment(character, id));
         result.character.attribs.push(this.convertAssignment(character, id));
         result.character.attribs.push(this.convertRankSelect(character, id));
-        SkillsHelper.instance.getSkills().forEach(d =>
+        DepartmentsHelper.instance.getSkills().forEach(d =>
             result.character.attribs.push(this.convertDiscipline(character, d, id))
         );
         AttributesHelper.getAllAttributes().forEach(a =>

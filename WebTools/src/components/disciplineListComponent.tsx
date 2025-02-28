@@ -1,5 +1,5 @@
 import React from "react";
-import { Skill, SkillsHelper } from "../helpers/skills";
+import { Skill, DepartmentsHelper } from "../helpers/skills";
 import DisciplineComponent from "./disciplineComponent";
 
 export interface IDisciplineController {
@@ -36,7 +36,7 @@ const DisciplineListComponent: React.FC<IDisciplineListControllerProperties> = (
     }
 
     return (<>
-        {SkillsHelper.instance.getSkills().filter(d => controller.isShown(d)).map(d => renderDiscipline(d))}
+        {DepartmentsHelper.instance.getSkills().filter(d => controller.isShown(d)).map(d => renderDiscipline(d))}
         </>);
 }
 

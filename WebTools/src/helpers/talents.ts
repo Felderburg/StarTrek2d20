@@ -2,8 +2,7 @@ import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import {AliasModel} from './aliases';
 import {Attribute} from './attributes';
-import {Skill, SkillsHelper} from './skills';
-import {Department} from './departments';
+import { DepartmentsHelper, Department, Skill } from "../helpers/skills";
 import {Source} from './sources';
 import {Era} from './eras';
 import { Species } from './speciesEnum';
@@ -775,7 +774,7 @@ export class TalentModel implements ITalent {
             let key = "TalentCategory." + toCamelCase(categoryEnum);
             return i18next.t(key);
         } else {
-            let match = SkillsHelper.instance.getSkills().filter(s => Skill[s] === this.category);
+            let match = DepartmentsHelper.instance.getSkills().filter(s => Skill[s] === this.category);
             if (match.length) {
                 let key = "Construct.discipline." + toCamelCase(Skill[match[0]]);
                 return i18next.t(key);
@@ -823,7 +822,7 @@ export class TalentViewModel {
     private constructDisplayName(name: string, localizedName: string, rank: number, showRank: boolean, skill: Skill, category: string) {
         let displayName = localizedName + ((showRank && category !== "Starship" && category !== "Starbase") ? " [Rank: " + rank + "]" : "");
         let suffix = skill !== undefined
-            ? ` (${SkillsHelper.instance.getSkillName(skill)})`
+            ? ` (${DepartmentsHelper.instance.getSkillName(skill)})`
             : category.length > 0 ? ` (${category})` : "";
         if (displayName.indexOf(suffix) < 0) {
             displayName += suffix;

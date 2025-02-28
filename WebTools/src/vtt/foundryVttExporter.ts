@@ -3,8 +3,7 @@ import { CharacterSerializer } from "../common/characterSerializer";
 import { ShipBuildType, Starship } from "../common/starship";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Role, RoleModel, RolesHelper } from "../helpers/roles";
-import { SkillsHelper, Skill } from "../helpers/skills";
-import { Department, allDepartments } from "../helpers/departments";
+import { DepartmentsHelper, Department, Skill } from "../helpers/skills";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { TALENT_NAME_UNTAPPED_POTENTIAL, TalentModel, TalentsHelper } from "../helpers/talents";
 import { DeliverySystem, EnergyLoadType, InjuryType, PersonalWeapons, Quality, TorpedoLoadType, Weapon, WeaponRange, WeaponType } from "../helpers/weapons";
@@ -87,7 +86,7 @@ export class FoundryVttExporter {
             }
         }
 
-        allDepartments().forEach(d => {
+        DepartmentsHelper.instance.getDepartments().forEach(d => {
             let name = Department[d].toLowerCase();
             result.system.departments[name] = {
                 "label": "sta.actor.starship.department." + name,
@@ -340,7 +339,7 @@ export class FoundryVttExporter {
             }
         }
 
-        SkillsHelper.instance.getSkills().forEach(s => {
+        DepartmentsHelper.instance.getSkills().forEach(s => {
             let name = Skill[s].toLowerCase();
             result.system.disciplines[name] = {
                 "label": "sta.actor.character.discipline." + name,
@@ -792,7 +791,7 @@ export class FoundryVttExporter {
         if (talent.category == null || talent.category === "Esoteric" || talent.category === "General"
                 || talent.category === "Career" || talent.category === "Starship" || talent.category === "Starbase" || talent.category === "") {
             return "general";
-        } else if (SkillsHelper.instance.getSkillByName(talent.category) !== undefined) {
+        } else if (DepartmentsHelper.instance.getSkillByName(talent.category) !== undefined) {
             return "discipline";
         } else {
             return "species";

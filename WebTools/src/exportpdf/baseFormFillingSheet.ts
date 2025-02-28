@@ -3,7 +3,7 @@ import { BasicGeneratedSheet } from "./generatedsheet";
 import { Construct } from "../common/construct";
 import { Character } from "../common/character";
 import { CharacterSerializer } from "../common/characterSerializer";
-import { Skill, SkillsHelper } from "../helpers/skills";
+import { Skill, DepartmentsHelper } from "../helpers/skills";
 import { CareerEventsHelper } from "../helpers/careerEvents";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Column } from "./column";
@@ -99,7 +99,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
 
     fillSkills(form: PDFForm, character: Character) {
         let departments = character.departments;
-        SkillsHelper.instance.getSkills().forEach( (a, i) => {
+        DepartmentsHelper.instance.getSkills().forEach( (a, i) => {
             this.fillField(form, Skill[a], "" + departments[a]);
         });
     }

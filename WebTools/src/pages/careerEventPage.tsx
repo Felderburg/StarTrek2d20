@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import InstructionText from '../components/instructionText';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { AttributesHelper } from '../helpers/attributes';
-import { SkillsHelper } from '../helpers/skills';
+import { DepartmentsHelper } from '../helpers/skills';
 import { Window } from '../common/window';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
@@ -48,7 +48,7 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
         });
 
         const disciplines = careerEvent.disciplines.map((d, i) => {
-            return <div key={i}>{t(makeKey('Construct.discipline.', SkillsHelper.instance.getSkillName(d))) }</div>;
+            return <div key={i}>{t(makeKey('Construct.discipline.', DepartmentsHelper.instance.getSkillName(d))) }</div>;
         });
 
         return (

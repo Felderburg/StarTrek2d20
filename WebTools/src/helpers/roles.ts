@@ -1,4 +1,4 @@
-﻿import {Skill, SkillsHelper} from './skills';
+﻿import {Skill, DepartmentsHelper} from './skills';
 import {Source} from './sources';
 import {Character} from '../common/character';
 import { CharacterType } from '../common/characterType';
@@ -834,7 +834,7 @@ export class RolesHelper {
         let departments = character.departments;
         let maxDepartment = [];
         let maxDepartmentValue = 0;
-        SkillsHelper.instance.getSkills().forEach(s => {
+        DepartmentsHelper.instance.getSkills().forEach(s => {
             if (maxDepartment.length === 0 || maxDepartmentValue < departments[s]) {
                 maxDepartmentValue = departments[s];
                 maxDepartment = [s];

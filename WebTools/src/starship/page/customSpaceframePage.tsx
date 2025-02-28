@@ -3,7 +3,7 @@ import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { Navigation } from "../../common/navigator";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import { allDepartments, Department } from "../../helpers/departments";
+import { Department } from "../../helpers/skills";
 import { allSystems, System } from "../../helpers/systems";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { changeStarshipSpaceframeClassName, changeStarshipSpaceframeDepartment, changeStarshipSpaceframeScale, changeStarshipSpaceframeServiceYear, changeStarshipSpaceframeSystem } from "../../state/starshipActions";
@@ -11,6 +11,7 @@ import store from "../../state/store";
 import { BuildPoints } from "../model/buildPoints";
 import { BaseSimpleStarshipPage } from "./simpleStarshipPage";
 import { withTranslation } from 'react-i18next';
+import { DepartmentsHelper } from "../../helpers/skills";
 
 class SystemValue {
     system: System;
@@ -109,7 +110,7 @@ class CustomSpaceframePage extends BaseSimpleStarshipPage {
 
     sumTotalDepartments() {
         let total = 0;
-        allDepartments().forEach(d => total += this.props.starship.departments[d]);
+        DepartmentsHelper.instance.getDepartments().forEach(d => total += this.props.starship.departments[d]);
         return total;
     }
 

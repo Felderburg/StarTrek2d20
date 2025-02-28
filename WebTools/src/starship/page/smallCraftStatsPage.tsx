@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import { allDepartments, Department } from "../../helpers/departments";
+import { Department } from "../../helpers/skills";
 import { allSystems, System } from "../../helpers/systems";
 import { BuildPoints } from "../model/buildPoints";
 import { BaseSimpleStarshipPage } from "./simpleStarshipPage";
 import { withTranslation } from 'react-i18next';
+import { DepartmentsHelper } from "../../helpers/skills";
 
 
 class SmallCraftStatsPage extends BaseSimpleStarshipPage {
@@ -41,7 +42,7 @@ class SmallCraftStatsPage extends BaseSimpleStarshipPage {
 
     sumTotalDepartments() {
         let total = 0;
-        allDepartments().forEach(d => total += this.props.starship.departments[d]);
+        DepartmentsHelper.instance.getDepartments().forEach(d => total += this.props.starship.departments[d]);
         return total;
     }
 

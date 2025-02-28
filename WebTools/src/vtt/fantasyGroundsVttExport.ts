@@ -1,7 +1,7 @@
 import { Character } from "../common/character";
 import convert from "xml-js";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
-import { Skill, SkillsHelper } from "../helpers/skills";
+import { Skill, DepartmentsHelper } from "../helpers/skills";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { TalentsHelper } from "../helpers/talents";
 import { CareersHelper } from "../helpers/careers";
@@ -890,7 +890,7 @@ export class FantasyGroupsVttExporter {
             "elements": []
         };
 
-        SkillsHelper.instance.getSkills().forEach(s => {
+        DepartmentsHelper.instance.getSkills().forEach(s => {
             let name = Skill[s].toLowerCase();
             let discipline = {
                 "name": name,

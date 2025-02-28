@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import { Starship } from "../common/starship";
 import { CharacterType } from "../common/characterType";
-import { Department } from "../helpers/departments";
+import { Department } from "../helpers/skills";
 import { System } from "../helpers/systems";
 import Button from "react-bootstrap/Button";
 import { Header } from "../components/header";

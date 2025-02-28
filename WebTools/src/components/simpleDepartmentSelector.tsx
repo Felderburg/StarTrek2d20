@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { makeKey } from "../common/translationKey";
-import { Skill, SkillsHelper } from "../helpers/skills"
+import { Skill, DepartmentsHelper } from "../helpers/skills"
 import { CheckBox } from "./checkBox";
 import { ICharacterPageProperties } from "../common/iCharacterPageProperties";
 import { Character } from "../common/character";
@@ -29,7 +29,7 @@ export const SimpleDepartmentSelector: React.FC<ISimpleDepartmentSelectorPropert
     const departments = character.departments;
     return (<table className="selection-list">
         <tbody>
-            {SkillsHelper.instance.getSkills().map((s, i) => {
+            {DepartmentsHelper.instance.getSkills().map((s, i) => {
                 return (<tr key={i}>
                     <td className="selection-header-small">{t(makeKey("Construct.discipline.", Skill[s]))}</td>
                     <td className="text-end">

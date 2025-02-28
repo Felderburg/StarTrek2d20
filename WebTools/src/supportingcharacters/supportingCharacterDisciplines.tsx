@@ -1,5 +1,5 @@
 ﻿import React, { useState } from 'react';
-import { Skill, SkillsHelper } from '../helpers/skills';
+import { Skill, DepartmentsHelper } from '../helpers/skills';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
@@ -69,7 +69,7 @@ const SupportingCharacterDisciplines: React.FC<ICharacterProperties> = ({charact
         store.dispatch(setSupportingCharacterDisciplines(disciplines));
     }
 
-    const disciplines = SkillsHelper.instance.getSkills().map((s, i) => {
+    const disciplines = DepartmentsHelper.instance.getSkills().map((s, i) => {
         return (
             <tr key={i}>
                 <td className="selection-header">{t(makeKey('Construct.discipline.', Skill[s]))}</td>

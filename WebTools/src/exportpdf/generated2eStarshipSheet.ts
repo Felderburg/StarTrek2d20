@@ -10,7 +10,7 @@ import { Paragraph } from "./paragraph";
 import { FontSpecification } from "./fontSpecification";
 import { SimpleColor } from "../common/colour";
 import { System } from "../helpers/systems";
-import { Department } from "../helpers/departments";
+import { Department } from "../helpers/skills";
 import { TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
 import { Column } from "./column";
 import { FontOptions } from "./fontOptions";

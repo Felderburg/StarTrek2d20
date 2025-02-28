@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 import { DropDownElement, DropDownSelect } from "../components/dropDownInput";
-import { Skill, SkillsHelper } from "../helpers/skills";
+import { Skill, DepartmentsHelper } from "../helpers/skills";
 import { TalentModel, TalentsHelper } from "../helpers/talents";
 import { Source, SourcesHelper } from "../helpers/sources";
 import { SpeciesHelper } from "../helpers/species";
@@ -122,7 +122,7 @@ const TalentsOverviewPage = () => {
         _categories.push(new DropDownElement(ALL, ALL));
         for (let sk in Object.keys(Skill).filter(skill => !isNaN(Number(Skill[skill])))) {
             if (skillFilter.indexOf(Number(sk)) === -1) {
-                let s = SkillsHelper.instance.getSkillName(Number(sk));
+                let s = DepartmentsHelper.instance.getSkillName(Number(sk));
                 _categories.push(new DropDownElement(s, t('Construct.discipline.' + toCamelCase(Skill[sk]))));
             }
         }

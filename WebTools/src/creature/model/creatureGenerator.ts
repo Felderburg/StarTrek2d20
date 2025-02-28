@@ -1,7 +1,7 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { Era } from "../../helpers/eras";
-import { SkillsHelper } from "../../helpers/skills";
+import { DepartmentsHelper } from "../../helpers/skills";
 import { TALENT_NAME_FLIGHT } from "../../helpers/talents";
 import { NpcType, NpcTypes } from "../../npc/model/npcType";
 import { isSecondEdition } from "../../state/contextFunctions";
@@ -48,7 +48,7 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
     }
 
     let skillImprovements = NpcTypes.disciplinePoints(NpcType.Minor);
-    let skills = SkillsHelper.instance.getSkills();
+    let skills = DepartmentsHelper.instance.getSkills();
     for (let i = 0; i < skillImprovements.length; i++) {
         let index = Math.floor(Math.random() * skills.length);
         let skill = skills.splice(index, 1)[0];

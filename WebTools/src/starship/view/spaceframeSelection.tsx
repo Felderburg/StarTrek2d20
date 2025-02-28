@@ -4,7 +4,7 @@ import { CharacterType } from '../../common/characterType';
 import formatAsDelta from '../../common/formatAsDelta';
 import { Starship } from '../../common/starship';
 import { CheckBox } from '../../components/checkBox';
-import { Department } from '../../helpers/departments';
+import { Department } from '../../helpers/skills';
 import { Source } from '../../helpers/sources';
 import { SpaceframeModel } from '../../helpers/spaceframeModel';
 import { SpaceframeHelper } from '../../helpers/spaceframes';

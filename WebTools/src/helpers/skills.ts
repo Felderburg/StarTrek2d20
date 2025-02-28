@@ -1,4 +1,4 @@
-﻿export enum Skill {
+﻿export enum Department {
     Command,
     Conn,
     Security,
@@ -7,15 +7,24 @@
     Medicine
 }
 
-export class SkillsHelper {
+export enum Skill {
+    Command,
+    Conn,
+    Security,
+    Engineering,
+    Science,
+    Medicine
+}
 
-    private static _instance: SkillsHelper;
+export class DepartmentsHelper {
 
-    static get instance() : SkillsHelper {
-        if (SkillsHelper._instance == null) {
-            SkillsHelper._instance = new SkillsHelper();
+    private static _instance: DepartmentsHelper;
+
+    static get instance() : DepartmentsHelper {
+        if (DepartmentsHelper._instance == null) {
+            DepartmentsHelper._instance = new DepartmentsHelper();
         }
-        return SkillsHelper._instance;
+        return DepartmentsHelper._instance;
     }
 
     getSkills() {
@@ -25,6 +34,11 @@ export class SkillsHelper {
         }
 
         return skills;
+    }
+
+    getDepartments() {
+        return [ Department.Command, Department.Conn, Department.Security,
+            Department.Engineering, Department.Science, Department.Medicine];
     }
 
     getSkillName(skill: Skill) {

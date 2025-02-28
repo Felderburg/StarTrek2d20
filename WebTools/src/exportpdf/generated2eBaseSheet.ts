@@ -5,12 +5,11 @@ import { FontSpecification } from "./fontSpecification";
 import { Column } from "./column";
 import { SimpleColor } from "../common/colour";
 import { Construct } from "../common/construct";
-import { Skill, SkillsHelper } from "../helpers/skills";
+import { DepartmentsHelper, Department, Skill } from "../helpers/skills";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
 import { Character } from "../common/character";
-import { Department, allDepartments } from "../helpers/departments";
 import { System, allSystems } from "../helpers/systems";
 import { Paragraph } from "./paragraph";
 import { FontLibrary, FontType } from "./fontLibrary";
@@ -121,10 +120,10 @@ export abstract class BaseNonForm2eSheet extends BasicGeneratedSheet {
     determineAllStatLabels(construct: Construct) {
         let text = [];
         if (construct instanceof Character) {
-            SkillsHelper.instance.getSkills().forEach(s => text.push(i18next.t(makeKey('Construct.discipline.', Skill[s]))));
+            DepartmentsHelper.instance.getSkills().forEach(s => text.push(i18next.t(makeKey('Construct.discipline.', Skill[s]))));
             AttributesHelper.getAllAttributes().forEach(a => text.push(i18next.t(makeKey('Construct.attribute.', Attribute[a]))));
         } else {
-            allDepartments().forEach(d => text.push(i18next.t(makeKey('Construct.department.', Department[d]))));
+            DepartmentsHelper.instance.getDepartments().forEach(d => text.push(i18next.t(makeKey('Construct.department.', Department[d]))));
             allSystems().forEach(s => text.push(i18next.t(makeKey('Construct.system.', System[s]))));
         }
         return text;

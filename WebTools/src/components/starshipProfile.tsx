@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Stereotype } from "../common/construct";
 import { Source } from "../helpers/sources";
 import { System } from "../helpers/systems";
-import { Department } from "../helpers/departments";
+import { Department } from "../helpers/skills";
 import { Starship } from "../common/starship";
 
 interface IStarshipProfileProperties {

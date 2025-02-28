@@ -4,7 +4,7 @@ import { D20 } from "../../common/die";
 import { AttributesHelper } from "../../helpers/attributes";
 import { Career } from "../../helpers/careerEnum";
 import { RanksHelper, Rank } from "../../helpers/ranks";
-import { Skill, SkillsHelper } from "../../helpers/skills";
+import { Skill, DepartmentsHelper } from "../../helpers/skills";
 import { Species } from "../../helpers/speciesEnum";
 import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
 import { TalentsHelper } from "../../helpers/talents";
@@ -470,7 +470,7 @@ export class NpcGenerator {
         character.npcGenerationStep = new NpcGenerationStep(npcType);
         character.npcGenerationStep.specialization = specialization.id;
 
-        let disciplines = SkillsHelper.instance.getSkills();
+        let disciplines = DepartmentsHelper.instance.getSkills();
         let disciplinePoints = NpcTypes.disciplinePoints(npcType);
 
         for (let i = 0; i < disciplinePoints.length; i++) {

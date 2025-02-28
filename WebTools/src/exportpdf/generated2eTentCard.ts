@@ -4,7 +4,7 @@ import { SheetTag } from "./icharactersheet";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
 import { AttributesHelper } from "../helpers/attributes";
-import { SkillsHelper } from "../helpers/skills";
+import { DepartmentsHelper } from "../helpers/skills";
 import { Character, Division } from "../common/character";
 import { Construct } from "../common/construct";
 import { Column } from "./column";
@@ -109,7 +109,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
             }
 
             if (key.includes("Construct.discipline.")) {
-                let department = SkillsHelper.instance.getSkillByName(key.substring("Construct.discipline.".length));
+                let department = DepartmentsHelper.instance.getSkillByName(key.substring("Construct.discipline.".length));
                 text = "" + character.departments[department];
             }
 

@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import { allDepartments, Department } from "../helpers/departments";
+import { Department } from "../helpers/skills";
 import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
@@ -13,6 +13,7 @@ import { makeKey } from "./translationKey";
 import { Era } from "../helpers/eras";
 import { IWeaponDiceProvider } from "./iWeaponDiceProvider";
 import { ServiceRecord, ServiceRecordModel } from "../starship/model/serviceRecord";
+import { DepartmentsHelper } from "../helpers/skills";
 
 export class SimpleStats {
     departments: number[];
@@ -636,7 +637,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
                 }
             }
         } else if (this.simpleStats != null) {
-            allDepartments().forEach(d => result[d] = this.simpleStats.departments[d]);
+            DepartmentsHelper.instance.getDepartments().forEach(d => result[d] = this.simpleStats.departments[d]);
         }
         return result;
     }

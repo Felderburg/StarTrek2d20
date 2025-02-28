@@ -1,12 +1,11 @@
 import { Character } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
-import { Skill, SkillsHelper } from '../helpers/skills';
+import { DepartmentsHelper, Department, Skill } from "../helpers/skills";
 import { PDFCheckBox, PDFDocument, PDFFont, PDFForm, PDFPage, PDFTextField, rgb, StandardFonts } from "@cantoo/pdf-lib";
 import fontkit from '@pdf-lib/fontkit'
 import { CharacterSerializer } from '../common/characterSerializer';
 import { Era } from './eras';
-import { Department } from './departments';
 import { System } from './systems';
 import { Weapon } from './weapons';
 import { TalentsHelper } from './talents';
@@ -497,7 +496,7 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
 
     fillSkills(form: PDFForm, character: Character) {
         const departments = character.departments;
-        SkillsHelper.instance.getSkills().forEach((s, i) => {
+        DepartmentsHelper.instance.getSkills().forEach((s, i) => {
             switch (s) {
             case Skill.Command:
                 this.fillField(form, 'Command', "" + departments[s]);

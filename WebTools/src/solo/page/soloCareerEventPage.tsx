@@ -12,7 +12,7 @@ import { StepContext, addCharacterCareerEvent } from "../../state/characterActio
 import { CareerEventModel, CareerEventsHelper } from "../../helpers/careerEvents";
 import { CharacterType } from "../../common/characterType";
 import { AttributesHelper } from "../../helpers/attributes";
-import { SkillsHelper } from "../../helpers/skills";
+import { DepartmentsHelper } from "../../helpers/skills";
 import store from "../../state/store";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
 
@@ -39,7 +39,7 @@ const SoloCareerEventPage: React.FC<ISoloCareerEventProperties> = ({character, c
         });
 
         const disciplines = careerEvent.disciplines.map((d, i) => {
-            return <div key={i}>{SkillsHelper.instance.getSkillName(d) }</div>;
+            return <div key={i}>{DepartmentsHelper.instance.getSkillName(d) }</div>;
         });
 
         return (
