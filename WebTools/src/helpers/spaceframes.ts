@@ -3356,7 +3356,7 @@ export class SpaceframeHelper {
             [0, 0, 0, 2, 0, 0],
             5,
             [
-                "Phaser Banks",
+                "Phaser Arrays",
                 "Photon Torpedoes",
                 "Tractor Beam (Strength 4)"
             ],
@@ -3398,7 +3398,7 @@ export class SpaceframeHelper {
             [0, 0, 0, 1, 2, 0],
             3,
             [
-                "Phaser Banks",
+                "Phaser Arrays",
                 "Photon Torpedoes",
                 "Tractor Beam (Strength 2)"
             ],
@@ -3487,7 +3487,6 @@ export class SpaceframeHelper {
             [
                 "Phaser Arrays",
                 "Phaser Banks",
-                "Photon Torpedoes",
                 "Quantum Torpedoes",
                 "Tractor Beam (Strength 6)"
             ],
