@@ -3,7 +3,7 @@ import { CharacterType } from "../common/characterType";
 import { Stereotype } from "../common/construct";
 import { SelectedTalent } from "../common/selectedTalent";
 import AgeHelper from "../helpers/age";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { SpeciesAbilityList } from "../helpers/speciesAbility";
 import { Species } from "../helpers/speciesEnum";
 import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_UNTAPPED_POTENTIAL } from "../helpers/talents";
@@ -21,7 +21,8 @@ import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_CAREER_EVENT, ADD_CHARACTER_S
 
 interface CharacterState {
     currentCharacter?: Character;
-    isModified: boolean
+    isModified: boolean;
+    replacementHash?: string;
 }
 
 const trackDefaults = (track: Track, step: EducationStep) => {
@@ -56,7 +57,8 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
             return {
                 ...state,
                 currentCharacter: temp,
-                isModified: false
+                isModified: false,
+                replacementHash: action.payload.replacementHash
             }
         }
         case SET_CHARACTER_SPECIES: {

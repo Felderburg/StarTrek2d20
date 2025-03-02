@@ -1,5 +1,5 @@
 ﻿import {Attribute, AttributesHelper} from '../helpers/attributes';
-import {Department, DepartmentsHelper} from '../helpers/skills';
+import {Department, DepartmentsHelper} from '../helpers/department';
 import {Career} from '../helpers/careerEnum';
 import {Environment} from '../helpers/environments';
 import {Species} from '../helpers/speciesEnum';
@@ -98,7 +98,7 @@ export class CharacterRank {
             let result = i18next.t(key);
             return key === result ? this.name : result;
         } else {
-            return this.name;
+            return this.localizedName;
         }
     }
 }
@@ -868,7 +868,15 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get nameAndFullRank() {
         if (this.rank) {
-            return this.rank + " " + this.name;
+            return this.rank.localizedName + " " + this.name;
+        } else {
+            return this.name;
+        }
+    }
+
+    get nameAndAbbreviatedRank() {
+        if (this.rank) {
+            return this.rank.localizedAbbreviation + " " + this.name;
         } else {
             return this.name;
         }

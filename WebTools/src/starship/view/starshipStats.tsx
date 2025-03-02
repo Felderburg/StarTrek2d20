@@ -1,6 +1,6 @@
 import * as React from 'react';
 import formatAsDelta from '../../common/formatAsDelta';
-import {Department} from '../../helpers/skills';
+import {Department} from '../../helpers/department';
 import { MissionPodModel } from '../../helpers/missionPods';
 import { MissionProfileModel } from '../../helpers/missionProfiles';
 import { SpaceframeModel } from '../../helpers/spaceframeModel';

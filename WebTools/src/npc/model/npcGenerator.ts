@@ -4,7 +4,7 @@ import { D20 } from "../../common/die";
 import { AttributesHelper } from "../../helpers/attributes";
 import { Career } from "../../helpers/careerEnum";
 import { RanksHelper, Rank } from "../../helpers/ranks";
-import { Department, DepartmentsHelper } from "../../helpers/skills";
+import { Department, DepartmentsHelper } from "../../helpers/department";
 import { Species } from "../../helpers/speciesEnum";
 import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
 import { TalentsHelper } from "../../helpers/talents";

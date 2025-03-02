@@ -12,7 +12,7 @@ import { StepContext, addCharacterCareerEvent } from "../../state/characterActio
 import { CareerEventModel, CareerEventsHelper } from "../../helpers/careerEvents";
 import { CharacterType } from "../../common/characterType";
 import { AttributesHelper } from "../../helpers/attributes";
-import { DepartmentsHelper } from "../../helpers/skills";
+import { DepartmentsHelper } from "../../helpers/department";
 import store from "../../state/store";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
 

@@ -1,6 +1,6 @@
 import { Character } from "../common/character";
 import { Attribute } from "../helpers/attributes";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { ImprovementRuleType, TrackModel } from "../helpers/tracks";
 import { StepContext, modifyCharacterAttribute, modifyCharacterDiscipline } from "../state/characterActions";
 import store from "../state/store";

@@ -17,7 +17,7 @@ import SoloCharacterBreadcrumbs from "../solo/component/soloCharacterBreadcrumbs
 import { Header } from "../components/header";
 import InstructionText from "../components/instructionText";
 import { connect } from "react-redux";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { DisciplinesOrDepartments } from "../view/disciplinesOrDepartments";
 
 enum EnvironmentTab {

@@ -10,7 +10,7 @@ import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcr
 import { CharacterType } from '../common/characterType';
 import { StepContext, setCharacterCareerEventTrait, setCharacterFinishingTouches, setCharacterFocus } from '../state/characterActions';
 import DisciplineListComponent from '../components/disciplineListComponent';
-import { Department } from '../helpers/skills';
+import { Department } from '../helpers/department';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
 import AttributeListComponent from '../components/attributeListComponent';

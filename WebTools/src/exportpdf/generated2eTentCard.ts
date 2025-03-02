@@ -4,7 +4,7 @@ import { SheetTag } from "./icharactersheet";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
 import { AttributesHelper } from "../helpers/attributes";
-import { DepartmentsHelper } from "../helpers/skills";
+import { DepartmentsHelper } from "../helpers/department";
 import { Character, Division } from "../common/character";
 import { Construct } from "../common/construct";
 import { Column } from "./column";

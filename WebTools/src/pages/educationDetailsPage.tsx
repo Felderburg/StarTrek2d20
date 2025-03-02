@@ -2,7 +2,7 @@
 import {CharacterType} from '../common/characterType';
 import {Navigation} from '../common/navigator';
 import {TrackModel, TracksHelper} from '../helpers/tracks';
-import {Department} from '../helpers/skills';
+import {Department} from '../helpers/department';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import ValueInput from '../components/valueInputWithRandomOption';

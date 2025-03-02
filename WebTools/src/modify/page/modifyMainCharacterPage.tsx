@@ -15,6 +15,7 @@ import { PromotionView } from "./promotionView";
 import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
 import { useNavigate } from "react-router";
+import { MilestoneType } from "../model/milestoneType";
 
 
 const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) => {
@@ -22,6 +23,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     const { t } = useTranslation();
     const [carouselIndex, setCarouselIndex] = useState(0);
     const [modificationType, setModificationType] = useState<string|ModificationType>(ModificationType.Promotion);
+    const [milestoneType, setMilestoneType] = useState<MilestoneType>(MilestoneType.NormalMilestone);
     const navigate = useNavigate();
 
     const dropDownItems = () => {
@@ -29,6 +31,13 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         if (character?.rank != null) {
             result.push(new DropDownElement(ModificationType.Promotion, t('ModificationType.name.promotion')))
         }
+        result.push(new DropDownElement(ModificationType.Milestone, t('ModificationType.name.milestone')))
+        return result;
+    }
+
+    const milestoneTypesDropDownItems = () => {
+        let result = [];
+        result.push(new DropDownElement(MilestoneType.NormalMilestone, t('MilestoneType.name.normalMilestone')))
         return result;
     }
 
@@ -59,6 +68,12 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                 <div className="mt-4">
                     <DropDownSelect items={dropDownItems()} onChange={(v) => setModificationType(v)} defaultValue={modificationType} />
                 </div>
+
+                {modificationType === ModificationType.Milestone
+                    ? (<div className="mt-4">
+                        <DropDownSelect items={milestoneTypesDropDownItems()} onChange={(v) => setMilestoneType(v as MilestoneType)} defaultValue={milestoneType} />
+                    </div>)
+                    : undefined}
 
             </div>
         </div>

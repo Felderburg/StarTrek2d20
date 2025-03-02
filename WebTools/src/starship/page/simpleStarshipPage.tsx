@@ -5,7 +5,7 @@ import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 import { System } from "../../helpers/systems";
 import { changeStarshipScale, changeStarshipSimpleClassName, changeStarshipSimpleDepartment, changeStarshipSimpleSystem, nextStarshipWorkflowStep } from "../../state/starshipActions";
 import store from "../../state/store";

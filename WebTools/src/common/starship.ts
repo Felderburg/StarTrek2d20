@@ -1,10 +1,10 @@
 import i18next from "i18next";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
-import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper, TalentViewModel } from "../helpers/talents";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper, TalentViewModel } from "../helpers/talents";
 import { TalentSelection } from "../helpers/talentSelection";
 import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
@@ -13,7 +13,7 @@ import { makeKey } from "./translationKey";
 import { Era } from "../helpers/eras";
 import { IWeaponDiceProvider } from "./iWeaponDiceProvider";
 import { ServiceRecord, ServiceRecordModel } from "../starship/model/serviceRecord";
-import { DepartmentsHelper } from "../helpers/skills";
+import { DepartmentsHelper } from "../helpers/department";
 
 export class SimpleStats {
     departments: number[];
@@ -319,11 +319,11 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             if (this.hasTalent("Extensive Automation")) {
                 result = Math.ceil(result / 2);
             }
-            if (this.hasTalent("Abundant Personnel")) {
-                result *= 2;
-            }
             if (this.hasTalent("Larger Crew")) {
                 result += 1;
+            }
+            if (this.hasTalent(TALENT_NAME_ABUNDANT_PERSONNEL)) {
+                result *= 2;
             }
 
             return result;

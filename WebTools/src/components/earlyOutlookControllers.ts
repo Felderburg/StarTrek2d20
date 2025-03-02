@@ -1,5 +1,5 @@
 import { Character } from "../common/character";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { EarlyOutlookModel } from "../helpers/upbringings";
 import { StepContext, modifyCharacterDiscipline } from "../state/characterActions";
 import store from "../state/store";

@@ -4,7 +4,7 @@ import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {Environment, EnvironmentsHelper } from '../helpers/environments';
 import {SpeciesHelper } from '../helpers/species';
-import {Department} from '../helpers/skills';
+import {Department} from '../helpers/department';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import { Species } from '../helpers/speciesEnum';

@@ -1,5 +1,5 @@
 ﻿import {Attribute, AttributesHelper} from './attributes';
-import {Department} from './skills';
+import {Department} from './department';
 import {SpeciesHelper} from './species';
 import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';

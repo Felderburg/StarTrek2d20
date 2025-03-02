@@ -9,7 +9,7 @@ import { Dialog } from "../../components/dialog";
 import store from "../../state/store";
 import { modifySupportingCharacterAddImprovement } from "../../state/characterActions";
 import { SupportingCharacterModificationType } from "./supportingCharacterModificationType";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 
 interface IModifyDepartmentViewProperties extends ICharacterPageProperties {
     onNextStep: () => void;

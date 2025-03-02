@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { makeKey } from "../common/translationKey";
-import { Department, DepartmentsHelper } from "../helpers/skills"
+import { Department, DepartmentsHelper } from "../helpers/department"
 import { CheckBox } from "./checkBox";
 import { ICharacterPageProperties } from "../common/iCharacterPageProperties";
 import { Character } from "../common/character";

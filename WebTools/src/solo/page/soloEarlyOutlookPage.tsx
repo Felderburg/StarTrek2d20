@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import React, { useState } from "react";
 import { makeKey } from "../../common/translationKey";
 import { AttributesHelper } from "../../helpers/attributes";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 import { Window } from "../../common/window";
 import InstructionText from "../../components/instructionText";
 import { EarlyOutlook, EarlyOutlookModel, UpbringingsHelper } from "../../helpers/upbringings";

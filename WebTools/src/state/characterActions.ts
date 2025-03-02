@@ -7,7 +7,7 @@ import { Career } from "../helpers/careerEnum";
 import { Environment } from "../helpers/environments";
 import { Rank } from "../helpers/ranks";
 import { Role } from "../helpers/roles";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { Species } from "../helpers/speciesEnum";
 import { ITalent } from "../helpers/italent";
 import { Track } from "../helpers/trackEnum";
@@ -64,8 +64,8 @@ export enum StepContext {
     FinishingTouches
 }
 
-export function setCharacter(character: Character) {
-    let payload = { character: character };
+export function setCharacter(character: Character, replacementHash?: number) {
+    let payload = { character: character, replacementHash: replacementHash };
     return {
        type: SET_CHARACTER,
        payload: payload

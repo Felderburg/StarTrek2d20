@@ -5,7 +5,6 @@ import GMTrackerPage from './tracker/gmTrackerPage';
 import { Provider } from "react-redux";
 import store from './state/store';
 import './i18n/config';
-import ModificationFramePage from './modify/page/modificationFramePage';
 import React, { Suspense } from 'react';
 import LoadingPage from './pages/loadingPage';
 import { Toaster } from 'react-hot-toast';
@@ -43,7 +42,6 @@ root.render(
         <Router>
             <Suspense fallback={<LoadingPage />}>
                 <Routes>
-                    <Route path="/modify" element={<ModificationFramePage />} />
                     <Route path="/modify/main" element={<ModifyCharacterPage />} />
                     <Route path="/modify/supporting" element={<ModifySupportCharacterPage />} />
                     <Route path="/talents" element={<TalentsOverviewMainPage />} />

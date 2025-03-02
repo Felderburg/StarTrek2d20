@@ -9,7 +9,7 @@ import D20IconButton from "../solo/component/d20IconButton";
 import { localizedFocus } from "./focusHelper";
 import { FocusRandomTableWithHints } from "../solo/table/focusRandomTable";
 import { setCharacterSpeciesAbilityFocus } from "../state/characterActions";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 
 interface ISpeciesAbilityProperties{
     character: Character;

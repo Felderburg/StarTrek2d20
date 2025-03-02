@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { Header } from '../components/header';
 import HomePageAnnouncement from '../components/homePageAnnouncement';
+import RecentCreationsView from '../components/recentCreationsView';
 
 enum Tool {
     CharacterGenerator,
@@ -67,6 +68,8 @@ const SelectionPage = () => {
                     <HomePageAnnouncement />
 
                     {isEnglishDefault() ? undefined : (<LanguageNotice />) }
+
+                    <RecentCreationsView />
                 </section>
             </main>
         </div>

@@ -2,7 +2,7 @@ import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import {AliasModel} from './aliases';
 import {Attribute} from './attributes';
-import { DepartmentsHelper, Department } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "./department";
 import {Source} from './sources';
 import {Era} from './eras';
 import { Species } from './speciesEnum';
@@ -42,6 +42,7 @@ export const TALENT_NAME_MASSIVE = "Massive (Special Rule, Creature)";
 export const TALENT_NAME_SPIKED_TAIL = "Spiked Tail (Special Rule, Creature)";
 export const TALENT_NAME_CORROSIVE_SPIT = "Corrosive Spit (Special Rule, Creature)";
 export const TALENT_NAME_IMPROVED_HULL_INTEGRITY = "Improved Hull Integrity";
+export const TALENT_NAME_ABUNDANT_PERSONNEL = "Abundant Personnel";
 
 enum TalentCategory {
     General,
@@ -3964,7 +3965,7 @@ export class Talents {
             1,
             "Starship", true),
         new TalentModel(
-            "Abundant Personnel",
+            TALENT_NAME_ABUNDANT_PERSONNEL,
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,

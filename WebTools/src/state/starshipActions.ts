@@ -1,6 +1,6 @@
 import { CharacterType } from "../common/characterType";
 import { ShipBuildType, ShipTalentDetailSelection, SimpleStats, Starship } from "../common/starship";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { Era } from "../helpers/eras";
 import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";

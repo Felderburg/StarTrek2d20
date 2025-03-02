@@ -10,7 +10,7 @@ import store from "../../state/store";
 import { Era } from "../../helpers/eras";
 import { Starship } from "../../common/starship";
 import { SpaceframeHelper } from "../../helpers/spaceframes";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 import { SpaceframeModel } from "../../helpers/spaceframeModel";
 import { setStarshipSpaceframe } from "../../state/starshipActions";
 import { SpaceframeRandomTable } from "../table/starshipRandomTable";

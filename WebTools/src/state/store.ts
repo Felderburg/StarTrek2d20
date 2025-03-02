@@ -8,6 +8,7 @@ import contextReducer from './contextReducer';
 import safetyReducer from './safetyReducer';
 import tokenReducer from './tokenReducer';
 import tableReducer from './tableReducer';
+import savedConstructReducer from './savedConstructReducer';
 
 const reducer = combineReducers({
     star: star,
@@ -17,7 +18,8 @@ const reducer = combineReducers({
     character: characterReducer,
     token: tokenReducer,
     table: tableReducer,
-    safety: safetyReducer
+    safety: safetyReducer,
+    savedConstructReducer: savedConstructReducer
 })
 const store = configureStore(
     {

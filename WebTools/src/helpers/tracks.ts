@@ -1,4 +1,4 @@
-﻿import {Department} from './skills';
+﻿import {Department} from './department';
 import {CharacterType } from '../common/characterType';
 import {Source} from './sources';
 import { Attribute } from './attributes';

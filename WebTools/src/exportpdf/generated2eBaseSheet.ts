@@ -5,7 +5,7 @@ import { FontSpecification } from "./fontSpecification";
 import { Column } from "./column";
 import { SimpleColor } from "../common/colour";
 import { Construct } from "../common/construct";
-import { DepartmentsHelper, Department } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/department";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";

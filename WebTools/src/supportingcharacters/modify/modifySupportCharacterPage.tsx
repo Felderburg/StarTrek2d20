@@ -30,6 +30,7 @@ import SingleTalentSelectionList from "../../components/singleTalentSelectionLis
 import { Promotion, SupportingImrovementStep } from "../../common/character";
 import { PromotionView } from "../../modify/page/promotionView";
 import { ModifyDepartmentView } from "./modifyDepartmentView";
+import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -113,6 +114,8 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const viewCharacter = () => {
         setTimeout(() => {
             let c = store.getState().character.currentCharacter;
+            let hash = store.getState().character.replacementHash;
+            store.dispatch(saveCharacterToLocalStorage(c, hash));
             const value = marshaller.encodeSupportingCharacter(c);
             navigate('/view?s=' + value);
         }, 200);

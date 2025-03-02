@@ -5,7 +5,7 @@ import { SheetTag } from "./icharactersheet";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
 import { Attribute } from "../helpers/attributes";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { Character } from "../common/character";
 import { Paragraph } from "./paragraph";
 import { FontSpecification } from "./fontSpecification";

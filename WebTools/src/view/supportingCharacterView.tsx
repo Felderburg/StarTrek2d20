@@ -16,6 +16,7 @@ import { setCharacter } from "../state/characterActions";
 import { useNavigate } from "react-router";
 import TalentsBlockView from "./talentsBlockView";
 import Button from "react-bootstrap/Button";
+import { cyrb53 } from "../common/cyrb53";
 
 const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -69,8 +70,16 @@ const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}
         });
     }
 
+    const originalEncodedSheet = () => {
+        let url = new URL(window.location.href);
+        let query = new URLSearchParams(url.search);
+        let encodedSheet = query.get('s');
+        return encodedSheet;
+    }
+
     const navigateToModification = () => {
-        store.dispatch(setCharacter(character));
+        const hash = cyrb53(originalEncodedSheet());
+        store.dispatch(setCharacter(character, hash));
         navigate("/modify/supporting");
     }
 

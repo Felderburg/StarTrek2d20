@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { Starship } from '../../common/starship';
 import { CheckBox } from '../../components/checkBox';
-import { Department } from '../../helpers/skills';
+import { Department } from '../../helpers/department';
 import { MissionProfileHelper, MissionProfileModel } from '../../helpers/missionProfiles';
 import { withTranslation, WithTranslation } from 'react-i18next';
 

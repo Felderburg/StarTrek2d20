@@ -2,7 +2,7 @@ import i18next from "i18next";
 import { Specialization } from "../../common/specializationEnum";
 import { makeKey } from "../../common/translationKey";
 import { Attribute } from "../../helpers/attributes";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 import { Species } from "../../helpers/speciesEnum";
 import { NpcCharacterType } from "./npcCharacterType";
 

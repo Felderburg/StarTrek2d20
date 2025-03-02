@@ -26,11 +26,6 @@ import { CadetSeniorityPage } from './cadetSeniorityPage';
 import SpeciesExtraDetailsPage from './speciesExtraDetailsPage';
 import { Species } from '../helpers/speciesEnum';
 import CustomSpeciesDetailsPage from './customSpeciesDetailsPage';
-import ModificationTypeSelectionPage from '../modify/page/modificationTypeSelectionPage';
-import ReputationChangePage from '../modify/page/reputationChangePage';
-import ModificationCompletePage from '../modify/page/modificationCompletePage';
-import MilestonePage from '../modify/page/milestonePage';
-import { MilestoneType } from '../modify/model/milestoneType';
 import SourceSelectionPage from './sourceSelectionPage';
 import { StepContext } from '../state/characterActions';
 import toast from 'react-hot-toast';
@@ -91,10 +86,6 @@ export class PageFactory {
         this.factories[PageIdentity.ExtraTalentDetails] = () => <ExtraTalentChoicesPage />;
         this.factories[PageIdentity.Finish] = () => <FinishPage/>;
         this.factories[PageIdentity.SupportingCharacter] = () => <SupportingCharacterPage />;
-        this.factories[PageIdentity.ModificationTypeSelection] = () => <ModificationTypeSelectionPage />;
-        this.factories[PageIdentity.ReputationChange] = () => <ReputationChangePage />;
-        this.factories[PageIdentity.NormalMilestone] = () => <MilestonePage milestoneType={MilestoneType.NormalMilestone} />;
-        this.factories[PageIdentity.ModificationCompletePage] = () => <ModificationCompletePage />;
     }
 
     createPage(page: PageIdentity) {

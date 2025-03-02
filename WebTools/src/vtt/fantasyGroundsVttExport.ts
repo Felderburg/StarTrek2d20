@@ -1,7 +1,7 @@
 import { Character } from "../common/character";
 import convert from "xml-js";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
-import { DepartmentsHelper, Department } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/department";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { TalentsHelper } from "../helpers/talents";
 import { CareersHelper } from "../helpers/careers";

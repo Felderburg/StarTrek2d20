@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { CheckBox } from '../../components/checkBox';
 import { System } from '../../helpers/systems';
-import { Department } from '../../helpers/skills';
+import { Department } from '../../helpers/department';
 import formatAsDelta from '../../common/formatAsDelta';
 import { Starship } from '../../common/starship';
 import { MissionPodHelper, MissionPodModel } from '../../helpers/missionPods';

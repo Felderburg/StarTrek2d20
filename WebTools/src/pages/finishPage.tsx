@@ -21,6 +21,7 @@ import AllCharacterValues from '../components/allCharacterValues';
 import { PageIdentity } from './pageIdentity';
 import ReactMarkdown from 'react-markdown';
 import { LoadingButton } from '../common/loadingButton';
+import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
 
 interface IFinishPageProperties {
     character: Character;
@@ -59,6 +60,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({character}) => {
         setTimeout(() => {
             let c = store.getState().character.currentCharacter;
             const value = marshaller.encodeMainCharacter(c);
+            store.dispatch(saveCharacterToLocalStorage(c));
             window.open('/view?s=' + value, "_blank");
         }, 200);
     }
@@ -242,6 +244,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({character}) => {
                 setLoadingExport(false);
                 setTimeout(() => {
                     let c = store.getState().character.currentCharacter;
+                    store.dispatch(saveCharacterToLocalStorage(c));
                     CharacterSheetDialog.show(CharacterSheetRegistry.getCharacterSheets(c), "sta-character", character);
                 }, 200);
             });

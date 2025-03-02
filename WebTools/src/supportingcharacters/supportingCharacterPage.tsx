@@ -28,6 +28,8 @@ import ReactMarkdown from 'react-markdown';
 import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
 import { LoadingButton } from '../common/loadingButton';
+import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
+import { cyrb53 } from '../common/cyrb53';
 
 
 const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
@@ -40,6 +42,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
         setTimeout(() => {
             let c = store.getState().character.currentCharacter;
             const value = marshaller.encodeSupportingCharacter(c);
+            store.dispatch(saveCharacterToLocalStorage(c));
             window.open('/view?s=' + value, "_blank");
         }, 200);
     }

@@ -1,12 +1,12 @@
 import { connect } from "react-redux";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 import { allSystems, System } from "../../helpers/systems";
 import { BuildPoints } from "../model/buildPoints";
 import { BaseSimpleStarshipPage } from "./simpleStarshipPage";
 import { withTranslation } from 'react-i18next';
-import { DepartmentsHelper } from "../../helpers/skills";
+import { DepartmentsHelper } from "../../helpers/department";
 
 
 class SmallCraftStatsPage extends BaseSimpleStarshipPage {

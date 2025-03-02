@@ -20,7 +20,7 @@ import { TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
 import { ReadableTalentModel, TalentWriter } from "./talentWriter";
 import { FontSpecification } from "./fontSpecification";
 import { System } from "../helpers/systems";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { staTextFieldAppearanceProvider } from "../helpers/pdfTextFieldAppearance";
 import { determineIdealFontWidth } from "./fontWidthDeterminer";
 import { TextBlock } from "./textBlock";

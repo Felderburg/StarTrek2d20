@@ -1,7 +1,7 @@
 import { Character } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
-import { DepartmentsHelper, Department } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "./department";
 import { PDFCheckBox, PDFDocument, PDFFont, PDFForm, PDFPage, PDFTextField, rgb, StandardFonts } from "@cantoo/pdf-lib";
 import fontkit from '@pdf-lib/fontkit'
 import { CharacterSerializer } from '../common/characterSerializer';

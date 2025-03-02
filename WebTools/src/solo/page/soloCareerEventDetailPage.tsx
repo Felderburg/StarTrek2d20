@@ -22,7 +22,7 @@ import { FocusRandomTable } from "../table/focusRandomTable";
 import { CareerEventAttributeController, CareerEventDisciplineController } from "../../components/careerEventDetailsControllers";
 import ReactMarkdown from "react-markdown";
 import { localizedFocus } from "../../components/focusHelper";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 
 interface ISoloCareerEventProperties extends ICharacterProperties {
     context: StepContext;

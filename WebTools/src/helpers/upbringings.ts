@@ -2,7 +2,7 @@
 import { CharacterType } from '../common/characterType';
 import { makeKey } from '../common/translationKey';
 import {Attribute} from './attributes';
-import {Department} from './skills';
+import {Department} from './department';
 
 export enum EarlyOutlook {
     // Core

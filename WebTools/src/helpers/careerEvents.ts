@@ -1,4 +1,4 @@
-﻿import {DepartmentsHelper, Department} from './skills';
+﻿import {DepartmentsHelper, Department} from './department';
 import {Attribute, AttributesHelper} from './attributes';
 import { CharacterType } from '../common/characterType';
 import i18next from 'i18next';

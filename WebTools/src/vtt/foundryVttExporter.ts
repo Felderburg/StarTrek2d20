@@ -3,7 +3,7 @@ import { CharacterSerializer } from "../common/characterSerializer";
 import { ShipBuildType, Starship } from "../common/starship";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Role, RoleModel, RolesHelper } from "../helpers/roles";
-import { DepartmentsHelper, Department } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/department";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { TALENT_NAME_UNTAPPED_POTENTIAL, TalentModel, TalentsHelper } from "../helpers/talents";
 import { DeliverySystem, EnergyLoadType, InjuryType, PersonalWeapons, Quality, TorpedoLoadType, Weapon, WeaponRange, WeaponType } from "../helpers/weapons";

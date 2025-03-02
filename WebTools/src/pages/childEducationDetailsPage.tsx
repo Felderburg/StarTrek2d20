@@ -20,7 +20,7 @@ import { Dialog } from '../components/dialog';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import DisciplineListComponent, { IDisciplineController } from '../components/disciplineListComponent';
-import { Department } from '../helpers/skills';
+import { Department } from '../helpers/department';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 
 class ChildDecrementAttributeController implements IAttributeController {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
-import { Department } from '../helpers/skills';
+import { Department } from '../helpers/department';
 
 interface IDisciplineComponentProperties {
     discipline: Department;

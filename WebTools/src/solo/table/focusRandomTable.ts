@@ -1,5 +1,5 @@
 import { D20 } from "../../common/die"
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 
 const FocusCommandRandomTable = () => {
     const tableRoll = D20.roll();

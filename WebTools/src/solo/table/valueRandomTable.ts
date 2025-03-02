@@ -1,5 +1,5 @@
 import { D20 } from "../../common/die";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 import { Source } from "../../helpers/sources";
 import { Species } from "../../helpers/speciesEnum";
 import { hasSource } from "../../state/contextFunctions";

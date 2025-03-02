@@ -16,7 +16,7 @@ import ReactMarkdown from "react-markdown";
 import { ITalent } from "../../helpers/italent";
 import { StatView } from "../../components/StatView";
 import { makeKey } from "../../common/translationKey";
-import { Department } from "../../helpers/skills";
+import { Department } from "../../helpers/department";
 import { AttributeView } from "../../components/attribute";
 import { allSystems, System } from "../../helpers/systems";
 import { CheckBox } from "../../components/checkBox";

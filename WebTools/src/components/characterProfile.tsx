@@ -2,7 +2,7 @@
 import i18n from 'i18next';
 import {Character} from '../common/character';
 import {Attribute} from '../helpers/attributes';
-import {Department} from '../helpers/skills';
+import {Department} from '../helpers/department';
 import {EnvironmentsHelper, Environment} from '../helpers/environments';
 import {TracksHelper} from '../helpers/tracks';
 import {CareersHelper} from '../helpers/careers';

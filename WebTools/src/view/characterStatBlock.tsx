@@ -3,7 +3,7 @@ import { Header } from "../components/header";
 import { StatView } from "../components/StatView";
 import { makeKey } from "../common/translationKey";
 import { Attribute } from "../helpers/attributes";
-import { Department } from "../helpers/skills";
+import { Department } from "../helpers/department";
 import { ICharacterPageProperties } from "../common/iCharacterPageProperties";
 import { DisciplinesOrDepartments } from "./disciplinesOrDepartments";
 

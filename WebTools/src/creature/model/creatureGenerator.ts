@@ -1,7 +1,7 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { Era } from "../../helpers/eras";
-import { DepartmentsHelper } from "../../helpers/skills";
+import { DepartmentsHelper } from "../../helpers/department";
 import { TALENT_NAME_FLIGHT } from "../../helpers/talents";
 import { NpcType, NpcTypes } from "../../npc/model/npcType";
 import { isSecondEdition } from "../../state/contextFunctions";

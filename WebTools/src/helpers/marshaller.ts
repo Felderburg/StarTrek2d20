@@ -12,7 +12,7 @@ import { Environment, EnvironmentsHelper } from './environments';
 import { MissionPod, MissionPodHelper } from './missionPods';
 import { MissionProfile, MissionProfileHelper } from './missionProfiles';
 import { Rank, RanksHelper } from './ranks';
-import { DepartmentsHelper, Department } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "./department";
 import { Spaceframe } from './spaceframeEnum';
 import { SpaceframeModel } from './spaceframeModel';
 import { SpaceframeHelper } from './spaceframes';
@@ -102,6 +102,21 @@ class Marshaller {
         }
 
         return this.encode(sheet);
+    }
+
+
+    encodeCharacter(character: Character) {
+        if (character.stereotype === Stereotype.MainCharacter) {
+            return this.encodeMainCharacter(character);
+        } else if (character.stereotype === Stereotype.Npc) {
+            return this.encodeNpc(character);
+        } else if (character.stereotype === Stereotype.SoloCharacter) {
+            return this.encodeSoloCharacter(character);
+        } else if (character.stereotype === Stereotype.SupportingCharacter) {
+            return this.encodeSupportingCharacter(character);
+        } else {
+            return undefined;
+        }
     }
 
     encodeSupportingCharacter(character: Character) {
@@ -1048,7 +1063,6 @@ class Marshaller {
     }
 
     decodeCharacter(json: any) {
-        console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;
@@ -1497,7 +1511,6 @@ class Marshaller {
             result.improvements = this.decodeImprovements(json.improvements);
         }
 
-        console.log(result);
         return result;
     }
 

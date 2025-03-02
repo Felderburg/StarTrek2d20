@@ -5,7 +5,7 @@ import { Starship } from "../common/starship";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { BorgImplants, Implant } from "../helpers/borgImplant";
 import { EquipmentModel } from "../helpers/equipment";
-import { DepartmentsHelper, Department } from "../helpers/skills";
+import { DepartmentsHelper, Department } from "../helpers/department";
 import { SpeciesHelper } from "../helpers/species";
 import { Species } from "../helpers/speciesEnum";
 import { TalentsHelper } from "../helpers/talents";

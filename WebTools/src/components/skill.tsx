@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import {Department} from '../helpers/skills';
+import {Department} from '../helpers/department';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { Character } from '../common/character';

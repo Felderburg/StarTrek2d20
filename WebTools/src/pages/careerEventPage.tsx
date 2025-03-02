@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import InstructionText from '../components/instructionText';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { AttributesHelper } from '../helpers/attributes';
-import { DepartmentsHelper } from '../helpers/skills';
+import { DepartmentsHelper } from '../helpers/department';
 import { Window } from '../common/window';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
