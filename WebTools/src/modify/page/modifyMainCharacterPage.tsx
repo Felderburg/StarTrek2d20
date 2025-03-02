@@ -16,6 +16,7 @@ import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
 import { useNavigate } from "react-router";
 import { MilestoneType } from "../model/milestoneType";
+import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 
 
 const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) => {
@@ -94,6 +95,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     const viewCharacter = () => {
         setTimeout(() => {
             let c = store.getState().character.currentCharacter;
+            let hash = store.getState().character.replacementHash;
+            store.dispatch(saveCharacterToLocalStorage(c, hash));
             const value = marshaller.encodeMainCharacter(c);
             navigate('/view?s=' + value);
         }, 200);

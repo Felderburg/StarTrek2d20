@@ -14,16 +14,19 @@ const RecentCreationsView: React.FC<IRecentCreationsProperties> = ({records}) =>
     const { t } = useTranslation();
 
     if (records?.length) {
-        return (<>
+        return (<div className="my-4">
             <Header level={2}>{t('RecentCreationsView.title')}</Header>
             <Markdown>{t('RecentCreationsView.instruction')}</Markdown>
+            <ul>
+
             {records.map(r =>
-                (<p className="m-0">
+                (<li className="m-0">
                     <Link to={"/view?s=" + r.marshalled} target="_blank" rel="noopener noreferrer">
                         {r.name}
                     </Link>
-                </p>))}
-        </>);
+                </li>))}
+            </ul>
+        </div>);
     } else {
 
         return undefined;
