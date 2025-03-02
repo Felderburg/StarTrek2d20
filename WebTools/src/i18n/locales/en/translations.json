@@ -289,6 +289,9 @@
 
     "RandomStarshipPage.instructions": "Specify what kind of starship you're trying to create.",
 
+    "RecentCreationsView.title": "Recents",
+    "RecentCreationsView.instruction": "Your most recent creations.",
+
     "ReputationChangePage.instruction": "Adjust the character's reputation as appropriate.",
 
     "SafetyChecklist.instruction": "This checklist is a tool which the gamemaster can use to help players in discussing where their personal boundaries for certain themes in this campaign may lie.\n\n- **Always OK**: This means the player is always comfortable with this topic being described, shown and represented in a game.\n\n- **Yellow Alert**: This means the player is generally comfortable with this topic being discussed in a game, but prefers for the more vivid descriptions to be handled “off-screen.”\n\n- **Red Alert**: This means the player does not want this subject to be discussed in a game; they may have any number of reasons for this. Some reasons may include objection to the topic on moral principles, traumatic personal experience, a dislike of the topic being trivialized in a fictional entertainment medium like a game, and so on. Don’t ask  what the reason is for the player who feels this way; it isn’t anyone’s place to change that player’s mind. Simply accept their stance, respect it, and do not include the topic in question.",

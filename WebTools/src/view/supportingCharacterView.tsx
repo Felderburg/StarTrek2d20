@@ -17,6 +17,7 @@ import { useNavigate } from "react-router";
 import TalentsBlockView from "./talentsBlockView";
 import Button from "react-bootstrap/Button";
 import { cyrb53 } from "../common/cyrb53";
+import { originalEncodedSheet } from "./originalEncodedSheet";
 
 const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -68,13 +69,6 @@ const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}
                 CharacterSheetDialog.show(CharacterSheetRegistry.getSupportingCharacterSheet(character), "sta-character", character);
             });
         });
-    }
-
-    const originalEncodedSheet = () => {
-        let url = new URL(window.location.href);
-        let query = new URLSearchParams(url.search);
-        let encodedSheet = query.get('s');
-        return encodedSheet;
     }
 
     const navigateToModification = () => {

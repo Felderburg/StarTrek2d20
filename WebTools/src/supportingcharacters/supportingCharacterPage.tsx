@@ -62,6 +62,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
                 setLoadingExport(false);
                 setTimeout(() => {
                     let c = store.getState().character.currentCharacter;
+                    store.dispatch(saveCharacterToLocalStorage(c));
                     CharacterSheetDialog.show(CharacterSheetRegistry.getSupportingCharacterSheet(c), "supporting-character", c);
                 }, 200)
             });

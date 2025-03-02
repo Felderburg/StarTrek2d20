@@ -305,6 +305,8 @@ RandomCreatureConfiguration.anyCreatureType,Any Creature Type,,,,,,
 RandomCreatureConfiguration.habitat,Habitat/Environment,,,,,,
 RandomCreatureConfiguration.creatureType,Creature Type,,,,,,
 RandomStarshipPage.instructions,Specify what kind of starship you're trying to create.,,,Indica qué tipo de nave estelar quieres crear.,,,Especifique o tipo de nave estelar que está tentando criar.
+RecentCreationsView.title,Recents,,,,,,
+RecentCreationsView.instruction,Your most recent creations.,,,,,,
 ReputationChangePage.instruction,Adjust the character's reputation as appropriate.,,"Passen Sie das Ansehen des Charakters an, wenn nötig",Ajusta la reputación del personaje según corresponda.,Ajustez la réputation du personnage le cas échéant,Измените репутацию персонада в соответствии с обстаятельствами.,Ajuste a reputação da personagem conforme apropriado.
 SafetyChecklist.instruction,"This checklist is a tool which the gamemaster can use to help players in discussing where their personal boundaries for certain themes in this campaign may lie.
 

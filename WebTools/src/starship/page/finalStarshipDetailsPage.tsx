@@ -12,6 +12,7 @@ import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import { LoadingButton } from "../../common/loadingButton";
+import { saveStarshipToLocalStorage } from "../../state/savedConstructActions";
 
 interface IFinalStarshipDetailsPageProperties {
     starship: Starship;
@@ -43,6 +44,7 @@ const FinalStarshipDetailsPage: React.FC<IFinalStarshipDetailsPageProperties> = 
 
     const showViewPage = () => {
         const value = marshaller.encodeStarship(starship);
+        store.dispatch(saveStarshipToLocalStorage(starship));
         window.open('/view?s=' + value, "_blank");
     }
 
@@ -51,11 +53,11 @@ const FinalStarshipDetailsPage: React.FC<IFinalStarshipDetailsPageProperties> = 
         import(/* webpackChunkName: 'export' */ '../../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
             import(/* webpackChunkName: 'export' */ '../../helpers/sheets').then(({CharacterSheetRegistry}) => {
                 setLoadingExport(false);
+                store.dispatch(saveStarshipToLocalStorage(starship));
                 CharacterSheetDialog.show(CharacterSheetRegistry.getStarshipSheets(starship), "starship", starship);
             });
         });
     }
-
 
     useEffect(() => {
         if (starship.type === CharacterType.Starfleet && starship.serviceYear && (starship.registry == null || starship.registry.length === 0)) {

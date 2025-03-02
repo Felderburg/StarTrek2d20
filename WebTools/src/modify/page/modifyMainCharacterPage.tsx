@@ -31,7 +31,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         if (character?.rank != null) {
             result.push(new DropDownElement(ModificationType.Promotion, t('ModificationType.name.promotion')))
         }
-        result.push(new DropDownElement(ModificationType.Milestone, t('ModificationType.name.milestone')))
+//        result.push(new DropDownElement(ModificationType.Milestone, t('ModificationType.name.milestone')))
         return result;
     }
 

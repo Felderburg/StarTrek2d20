@@ -1,5 +1,5 @@
 import { ILocalStorageConstructRecord } from "../common/iLocalStorageConstructRecord";
-import { SAVE_CHARACTER_TO_LOCAL_STORAGE } from "./savedConstructActions";
+import { SAVE_CONSTRUCT_TO_LOCAL_STORAGE } from "./savedConstructActions";
 
 const persistItems = (records: ILocalStorageConstructRecord[]) => {
     let data = {
@@ -27,7 +27,7 @@ const getInitialData = () => {
 
 const savedConstructReducer = (state = getInitialData(), action) => {
     switch (action.type) {
-        case SAVE_CHARACTER_TO_LOCAL_STORAGE: {
+        case SAVE_CONSTRUCT_TO_LOCAL_STORAGE: {
             let records = [...state.records];
             let hash = action.payload.hash;
             if (action.payload.replacementHash != null) {

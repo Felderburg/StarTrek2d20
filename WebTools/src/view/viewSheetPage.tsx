@@ -12,6 +12,7 @@ import { Character } from "../common/character";
 import NpcView from "./npcView";
 import SoloCharacterView from "./soloCharacterView";
 import { Asset } from "../asset/asset";
+import { originalEncodedSheet } from "./originalEncodedSheet";
 
 const AssetView = lazy(() => import(/* webpackChunkName: 'asset' */ '../asset/view/assetView'));
 const CreatureView = lazy(() => import(/* webpackChunkName: 'creature' */ '../creature/view/creatureView'));
@@ -39,10 +40,7 @@ const ViewSheetPage = () => {
     }
 
     const renderContents = () => {
-        let url = new URL(window.location.href);
-        let query = new URLSearchParams(url.search);
-        let encodedSheet = query.get('s');
-
+        const encodedSheet = originalEncodedSheet();
         let json = marshaller.decode(encodedSheet);
 
         if (!json) {

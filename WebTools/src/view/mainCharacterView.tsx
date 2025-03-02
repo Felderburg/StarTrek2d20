@@ -18,6 +18,8 @@ import WeaponBlockView from "./weaponBlockView";
 import { VttSelectionDialog } from "../vtt/view/VttSelectionDialog";
 import SpeciesAbilityBlockView from "./speciesAbilityBlockView";
 import { LoadingButton } from "../common/loadingButton";
+import { originalEncodedSheet } from "./originalEncodedSheet";
+import { cyrb53 } from "../common/cyrb53";
 
 export interface ICharacterViewProperties {
     character: Character;
@@ -52,7 +54,8 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
     }
 
     function navigateToModification() {
-        store.dispatch(setCharacter(character));
+        const hash = cyrb53(originalEncodedSheet());
+        store.dispatch(setCharacter(character, hash));
         navigate("/modify/main");
     }
 
