@@ -42,13 +42,13 @@ const ToolSelectionPage = () => {
 
     const startCharacterCreation = () => {
         if (hasSource(Source.Core2ndEdition)) {
-            let character = Character.createMainCharacter(CharacterType.Starfleet, 2);
+            let character = Character.createMainCharacter(CharacterType.Starfleet, store.getState().context.era, 2);
             store.dispatch(setCharacter(character));
             goToPage(PageIdentity.CharacterType);
         } else if (hasSource(Source.KlingonCore) || hasSource(Source.PlayersGuide)) {
             goToPage(PageIdentity.CharacterType);
         } else {
-            let character = Character.createMainCharacter(CharacterType.Starfleet);
+            let character = Character.createMainCharacter(CharacterType.Starfleet, store.getState().context.era);
             store.dispatch(setCharacter(character));
             goToPage(PageIdentity.Species);
         }

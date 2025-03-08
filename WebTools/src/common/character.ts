@@ -410,6 +410,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     public improvements: (SupportingImrovementStep|Promotion)[];
 
+    public description?: string;
     public legacyMode: boolean;
 
     constructor() {
@@ -1444,6 +1445,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         character.house = this.house;
         character.era = this.era;
         character.pastime = this.pastime == null ? [] : [...this.pastime];
+        character.description = this.description;
         return character;
     }
 
@@ -1489,10 +1491,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return result;
     }
 
-    public static createMainCharacter(type: CharacterType, version: 1|2 = 1) {
+    public static createMainCharacter(type: CharacterType, era: Era, version: 1|2 = 1) {
         let result = new Character();
         result.type = type;
         result.version = version;
+        result.era = era;
         result.stereotype = Stereotype.MainCharacter;
         return result;
     }

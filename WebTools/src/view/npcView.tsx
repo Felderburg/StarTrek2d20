@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Header } from "../components/header";
 import { useTranslation } from 'react-i18next';
-import { getNameAndShortRankOf } from "../helpers/ranks";
 import StressOrShieldsView from "./stressOrShieldsView";
 import CharacterStatBlock from "./characterStatBlock";
 import { ICharacterPageProperties } from "../common/iCharacterPageProperties";
@@ -13,8 +12,14 @@ import TalentsBlockView from "./talentsBlockView";
 import SpeciesAbilityBlockView from "./speciesAbilityBlockView";
 import { LoadingButton } from "../common/loadingButton";
 import Button from "react-bootstrap/Button";
+import { EditableHeader } from "../mapping/view/editableHeader";
+import { useNavigate } from "react-router";
+import { marshaller } from "../helpers/marshaller";
+import Markdown from "react-markdown";
 
 const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (character.name) {
@@ -28,10 +33,20 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
 
     const { t } = useTranslation();
     const [loadingExport, setLoadingExport] = useState(false);
+    const changeName = (text: string) => {
+        character.name = text;
+        const blob = marshaller.encodeCharacter(character);
+        navigate("/view?s=" + blob, {replace: true});
+    }
 
     function renderTopFields() {
         return (<>
-            <Header>{(character.name ? getNameAndShortRankOf(character) : "Unnamed Character")}</Header>
+            <EditableHeader prefix={character.rank?.localizedAbbreviation} text={character.name ?? t('Construct.other.unnamedCharacter')} onChange={(text) => changeName(text)}/>
+
+            {character.description?.length
+                ? (<Markdown>{character.description}</Markdown>)
+                : undefined}
+
             <div className="row mt-4" style={{alignItems: "baseline"}}>
                 <div className="col-md-2 view-field-label pb-2">{t('Construct.other.pronouns')}:</div>
                 <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{character.pronouns ? character.pronouns  : undefined}</div></div>

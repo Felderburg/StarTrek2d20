@@ -4,6 +4,7 @@ interface IEditableHeaderProperties {
     prefix?: string
     text: string
     onChange?: (text: string) => void
+    separator?: string
 }
 
 interface IEditableHeaderState {
@@ -22,20 +23,28 @@ export class EditableHeader extends React.Component<IEditableHeaderProperties, I
     }
 
     render() {
+        let separator = this.props.separator;
+        if (separator == null) {
+            separator = ' ';
+        }
+
         return (<h1 className="header-text visible-on-hover">
-                <div> 
+                <div>
                     <div  className="d-flex align-items-center">
-                        <div>{this.props.prefix ? (this.props.prefix + ' • ') : ''}</div> {this.renderText()}
-                    </div> 
+                        {this.props.prefix
+                            ? (<><div>{this.props.prefix + separator}</div> <span style={{whiteSpace: "pre"}}>{' '}</span></>)
+                            : undefined}
+                        {this.renderText()}
+                    </div>
                 </div>
-                <button type="button" className="btn btn-link py-0" onClick={() => this.toggleEditMode()}><i className="bi bi-pencil-fill"></i></button> 
+                <button type="button" className="btn btn-link py-0" onClick={() => this.toggleEditMode()}><i className="bi bi-pencil-fill"></i></button>
             </h1>);
     }
 
 
     renderText() {
         if (this.state.editMode) {
-            return (<input value={this.state.editText} type="text" style={{fontSize: '20px', lineHeight: '24px'}} 
+            return (<input value={this.state.editText} type="text" style={{fontSize: '20px', lineHeight: '24px'}}
                 onChange={(e) => {this.setEditText(e.target.value)}}
                 onKeyPress={(e) => {if (e.charCode === 13) this.toggleEditMode() }}
                 onBlur={() => this.toggleEditMode()}

@@ -14,6 +14,12 @@ import { Header } from '../components/header';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { setCharacter } from '../state/characterActions';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
+import { Era } from '../helpers/eras';
+import { connect } from 'react-redux';
+
+interface ICharacterTypeProperties extends WithTranslation {
+    era: Era;
+}
 
 interface ICharacterTypePageState {
     type: CharacterType,
@@ -22,7 +28,7 @@ interface ICharacterTypePageState {
     otherName: string
 }
 
-class CharacterTypePage extends React.Component<WithTranslation, ICharacterTypePageState> {
+class CharacterTypePage extends React.Component<ICharacterTypeProperties, ICharacterTypePageState> {
 
     constructor(props) {
         super(props);
@@ -153,7 +159,8 @@ class CharacterTypePage extends React.Component<WithTranslation, ICharacterTypeP
     }
 
     private startWorkflow() {
-        let character = Character.createMainCharacter(this.state.type, hasSource(Source.Core2ndEdition) ? 2 : 1);
+        const { era } = this.props;
+        let character = Character.createMainCharacter(this.state.type, era, hasSource(Source.Core2ndEdition) ? 2 : 1);
         if (character.type === CharacterType.AlliedMilitary) {
             character.typeDetails = new AlliedMilitaryDetails(AllyHelper.instance.findOption(this.state.alliedMilitary), this.state.otherName);
         } else if (character.type === CharacterType.AmbassadorDiplomat) {
@@ -164,4 +171,10 @@ class CharacterTypePage extends React.Component<WithTranslation, ICharacterTypeP
     }
 }
 
-export default withTranslation()(CharacterTypePage);
+const mapStateToProperties = (state, ownProps) => {
+    return {
+        era: state.context?.era
+    };
+}
+
+export default withTranslation()(connect(mapStateToProperties)(CharacterTypePage));

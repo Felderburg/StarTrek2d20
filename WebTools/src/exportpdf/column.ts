@@ -78,6 +78,15 @@ export class Column {
             return null;
         }
     }
+
+    columnWithAtLeast(height: number, currentPage: PDFPage) {
+        if (this.height >= height) {
+            return this;
+        } else {
+            let output = this.advanceToNextColumn(currentPage);
+            return output != null ? output.column : undefined;
+        }
+    }
 }
 
 

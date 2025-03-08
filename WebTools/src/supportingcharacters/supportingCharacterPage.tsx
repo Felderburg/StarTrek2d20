@@ -29,7 +29,6 @@ import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
 import { LoadingButton } from '../common/loadingButton';
 import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
-import { cyrb53 } from '../common/cyrb53';
 
 
 const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {

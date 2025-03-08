@@ -154,6 +154,9 @@ const CreditsPage = () => {
                             Discord member mattcapiche.
                         </p>
 
+                        <p>
+                            GitHub user bryc created a hashing algorithm that I use in the "recently created" list.
+                        </p>
                     </div>
                     <div className="col">
                         <Header className="my-4" level={2}>Contact</Header>

@@ -21,6 +21,8 @@ import { TracksHelper } from "../helpers/tracks";
 import { cardassianBrownColour2e, divisionColour2e, ferengiOrangeColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, orionGreenColour2e, romulanGreenColour2e, tealColour2e, tholianFlameColour2e } from "./colourProvider2e";
 import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolArrowHeadOperations, politySymbolArrowHeadScience, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolOrionSymbol, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird, politySymbolSona, politySymbolTalarianExtra, politySymbolTalarianMain, politySymbolTholianBackground, politySymbolTholianForeground, politySymbolTzenkethiBack, politySymbolTzenkethiFront } from "./politySymbols";
 import { determineIdealFontWidth } from "./fontWidthDeterminer";
+import { Paragraph } from "./paragraph";
+import { FontOptions } from "./fontOptions";
 
 export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
@@ -32,7 +34,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
     static readonly talentsColumn3 = new Column(390.6, 361, 200, 162);
     static readonly talentsColumn2 = new Column(221.7, 361, 200, 162, this.talentsColumn3);
-    static readonly talentsColumn1 = new Column(51.5, 373, 180, 162, this.talentsColumn2);
+    static readonly talentsColumn1 = new Column(51.5, 361, 200, 162, this.talentsColumn2);
 
     static readonly greyColour: SimpleColor = SimpleColor.from("#979696");
 
@@ -347,12 +349,6 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
             "Construct.other.departments": new Column(286.8, 287.2, 9.5, 211),
         }
 
-        if (construct.stereotype === Stereotype.Npc || construct.stereotype === Stereotype.SupportingCharacter) {
-            subHeadings["Construct.other.specialRules"] = new Column(51.5, 361, 9.5, 162);
-        } else {
-            subHeadings["Construct.other.talents"] = new Column(51.5, 361, 9.5, 162);
-        }
-
         labelWriter(page, subHeadings, construct.version,
             this.headingFont, 9, Landscape2eCharacterSheet.greyColour, TextAlign.Centre);
 
@@ -409,10 +405,60 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     async writeRoleAndTalents(page: PDFPage, character: Character) {
+        let column = Landscape2eCharacterSheet.talentsColumn1;
+
+        if (character.departments?.length) {
+            let subHeadings = {"Construct.other.description": column.topBefore(9.5) };
+            column = column.bottomAfter(12);
+            labelWriter(page, subHeadings, character.version,
+                this.headingFont, 9, Landscape2eCharacterSheet.greyColour, TextAlign.Centre);
+
+            let paragraph = new Paragraph(page, column, this.fonts);
+            let descriptionParagraphs = character.description.split('\n');
+            let paragraphs = [ paragraph ];
+            descriptionParagraphs.forEach((p, i) => {
+                if (i > 0) {
+                    paragraph = paragraph?.nextParagraph();
+                    if (paragraph) {
+                        paragraphs.push(paragraph);
+                    }
+                }
+                paragraph?.append(p, new FontOptions(8));
+            });
+
+            paragraphs.forEach(p => p.write());
+
+            if (paragraphs.length) {
+                let last = paragraphs.filter(p => p.lines?.length).slice(-1)[0];
+                if (last) {
+                    let bottom = last.bottom;
+                    column = last.endColumn.bottomAfter(bottom.y - last.endColumn.start.y);
+
+                    if (column?.height > 10) {
+                        column = column.bottomAfter(10);
+                    }
+                }
+            }
+        }
+
+        column = column.columnWithAtLeast(35, page);
+
+        if (character.stereotype === Stereotype.Npc || character.stereotype === Stereotype.SupportingCharacter) {
+            let subHeadings = {"Construct.other.specialRules": column.topBefore(9.5) };
+            column = column.bottomAfter(12);
+            labelWriter(page, subHeadings, character.version,
+                this.headingFont, 9, Landscape2eCharacterSheet.greyColour, TextAlign.Centre);
+        } else {
+            let subHeadings = { "Construct.other.talents": column.topBefore(9.5) };
+            column = column.bottomAfter(12);
+            labelWriter(page, subHeadings, character.version,
+                this.headingFont, 9, Landscape2eCharacterSheet.greyColour, TextAlign.Centre);
+        }
+
         const writer = new TalentWriter(page, this.fonts, character.version);
         await writer.writeTalents(
             assembleWritableItems(character),
-            Landscape2eCharacterSheet.talentsColumn1, 8);
+            column, 8);
     }
 
     createDeterminationBoxes(page: PDFPage, pdf: PDFDocument) {

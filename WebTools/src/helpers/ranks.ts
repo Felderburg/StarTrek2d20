@@ -3,7 +3,7 @@ import {Role} from './roles';
 import {Era} from './eras';
 import {Source} from './sources';
 import {Track} from './trackEnum';
-import {AlliedMilitaryDetails, Character, CharacterRank } from '../common/character';
+import {AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { AlliedMilitaryType } from './alliedMilitary';
 import { AllOfPrerequisite, AnyOfPrerequisite, CareersPrerequisite, CharacterTypePrerequisite, EnlistedPrerequisite, AnyEraPrerequisite, IConstructPrerequisite, NotPrerequisite, OfficerPrerequisite, SourcePrerequisite, KlingonPrerequisite } from './prerequisite';
@@ -1149,7 +1149,7 @@ export class RanksHelper {
             } else {
                 ranks = ranks.filter(r => !isCadetRank(r.id))
                     .filter(r =>
-                        (isEnlistedRank(character.rank?.id) && isEnlistedRank(r.id) ||
+                        ((isEnlistedRank(character.rank?.id) && isEnlistedRank(r.id)) ||
                         (!isEnlistedRank(character.rank?.id) && !isEnlistedRank(r.id))))
                     .filter(r => r.levelValue > currentRank[0].levelValue);
                 return ranks.reverse();

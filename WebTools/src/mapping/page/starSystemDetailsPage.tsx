@@ -68,7 +68,7 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
                             </ol>
                         </nav>
 
-                        <EditableHeader prefix="System" text={starSystem.name} onChange={(text) => store.dispatch(setStarSystemName(text))}/>
+                        <EditableHeader prefix="System" separator=' • ' text={starSystem.name} onChange={(text) => store.dispatch(setStarSystemName(text))}/>
 
                         <div className="row my-4">
                             <div className="col-md-2 view-field-label pb-2">{t('StarSystem.common.coordinates') + ":"}</div>

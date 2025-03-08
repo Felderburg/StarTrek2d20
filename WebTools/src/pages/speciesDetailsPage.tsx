@@ -66,8 +66,8 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
 
         return (<div>
                 <Header level={2}>{t('Construct.other.trait')}</Header>
-                <div className="text-white my-3"><b>{species.localizedTrait}</b></div>
-                <div className="text-white">{character.version > 1 ? species.localizedDescription2e : species.localizedTraitDescription}</div>
+                <Header level={3} className="text-white my-3">{species.localizedTrait}</Header>
+                <p>{character.version > 1 ? species.localizedTraitDescription2e : species.localizedTraitDescription}</p>
                 {mixedTrait}
             </div>);
     }

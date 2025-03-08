@@ -171,6 +171,10 @@ class Marshaller {
             }
         }
 
+        if (character.description?.length) {
+            sheet["description"] = character.description;
+        }
+
         sheet["typeDetails"] = this.encodeTypeDetails(character);
 
         if (character.stereotype === Stereotype.Npc || character.legacyMode) {
@@ -1509,6 +1513,10 @@ class Marshaller {
 
         if (json.improvements?.length) {
             result.improvements = this.decodeImprovements(json.improvements);
+        }
+
+        if (json.description?.length) {
+            result.description = json.description;
         }
 
         return result;
