@@ -23,7 +23,6 @@ import { Era } from "../../helpers/eras";
 import AgeHelper from "../../helpers/age";
 import { localizedFocus } from "../../components/focusHelper";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
-import { Buffer } from "buffer";
 
 const recreationSkills: { [type: number ]: string[] } = {
 
@@ -504,7 +503,7 @@ export class NpcGenerator {
         NpcGenerator.assignValues(npcType, character, specialization);
         NpcGenerator.assignTalents(npcType, character, species, specialization);
 
-        if (npcType !== NpcType.Minor && character.type === CharacterType.Starfleet) {
+        if (npcType !== NpcType.Minor && (specialization.type === NpcCharacterType.Starfleet || specialization.type === NpcCharacterType.RomulanEmpire)) {
             character.description = await NpcGenerator.generateCharacterDescription(character, specialization, nameOrigin);
         }
 

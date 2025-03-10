@@ -94,8 +94,12 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
                 <TalentsBlockView construct={character} />
             </div>
             <div className="col-xl-6">
-                <div className="row">
 
+            <div className="row">
+
+                {character.isStressTrackPresent
+                    ?
+                    (<>
                     <div className="col-xl-6 mt-4">
                         <Header level={2}>{t('Construct.other.stress')}</Header>
                         <StressOrShieldsView value={character.stress} />
@@ -105,6 +109,11 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
                         <Header level={2}>{t('Construct.other.focuses')}</Header>
                         <FocusBlockView character={character} />
                     </div>
+                    </>)
+                    : (<div className="col-12 mt-4">
+                        <Header level={2}>{t('Construct.other.focuses')}</Header>
+                        <FocusBlockView character={character} />
+                    </div>)}
 
                 </div>
 

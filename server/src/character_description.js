@@ -61,6 +61,17 @@ function describeSpecialization(inputJson, pronoun) {
             prompt += pronoun + serves + " as the commander of a Starfleet space station."
         }
 
+    } else if (inputJson.npcCharacterType === "RomulanEmpire") {
+
+        if (inputJson.specialization === "RomulanCenturion") {
+            prompt += pronounPhrase + " a member of the military fleet of the Romulan Star Empire at the rank of " + inputJson.rank + ".";
+        } else if (inputJson.specialization === "RomulanTalShiar") {
+            prompt += pronounPhrase + " a member of the Tal Shi'ar, the intelligence service of the Romulan Star Empire.";
+        } else if (inputJson.specialization === "RomulanSenator") {
+            prompt += pronounPhrase + " a senator in the government of the Romulan Star Empire.";
+        } else if (inputJson.specialization === "RomulanSenator") {
+            prompt += pronounPhrase + " in the order of the Qowat Milat, an all-female Romulan order of sword-wielding ninja-like fighters.";
+        }
     }
 
     return prompt + " ";
