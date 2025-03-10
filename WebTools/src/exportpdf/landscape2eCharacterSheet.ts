@@ -407,7 +407,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     async writeRoleAndTalents(page: PDFPage, character: Character) {
         let column = Landscape2eCharacterSheet.talentsColumn1;
 
-        if (character.departments?.length) {
+        if (character.description?.length) {
             let subHeadings = {"Construct.other.description": column.topBefore(9.5) };
             column = column.bottomAfter(12);
             labelWriter(page, subHeadings, character.version,

@@ -1,5 +1,5 @@
-import React from 'react';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { navigateTo } from '../../common/navigator';
 import { DropDownElement, DropDownSelect } from '../../components/dropDownInput';
@@ -17,135 +17,49 @@ import { SpecializationModel, Specializations } from '../model/specializations';
 import { hasAnySource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
 import { Specialization } from '../../common/specializationEnum';
-import Button from 'react-bootstrap/Button';
+import { LoadingButton } from '../../common/loadingButton';
 
-interface INpcConfigurationPageProperties extends WithTranslation {
+interface INpcConfigurationPageProperties {
     era: Era;
 }
 
-interface INpcConfigurationPageState {
-    selectedNpcType: NpcType;
-    selectedType: NpcCharacterTypeModel;
-    selectedSpecies?: Species;
-    selectedSpecialization?: SpecializationModel;
-}
+const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({era}) => {
 
-class NpcConfigurationPage extends React.Component<INpcConfigurationPageProperties, INpcConfigurationPageState> {
+    const { t } = useTranslation();
+    const [ selectedType, setSelectedType ] = useState<NpcCharacterTypeModel>(NpcCharacterTypes.instance.types[0]);
+    const [ selectedNpcType, setSelectedNpcType ] = useState<NpcType>(NpcType.Notable);
+    const [ selectedSpecies, setSelectedSpecies ] = useState<Species>();
+    const [ selectedSpecialization, setSelectedSpecialization ] = useState<SpecializationModel>();
+    const [ loading, setLoading ] = useState<boolean>(false);
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            selectedNpcType: NpcType.Notable,
-            selectedType: NpcCharacterTypes.instance.types[0]
-        }
-    }
-
-    render() {
-        const { t } = this.props;
-        return (<div className="page">
-            <div className="container ms-0">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.Home)}>{t('Page.title.home')}</a></li>
-                        <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.SourceSelection)}>{t('Page.title.sourceSelection')}</a></li>
-                        <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.Era)}>{t('Page.title.era')}</a></li>
-                        <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.ToolSelection)}>{t('Page.title.toolSelection')}</a></li>
-                        <li className="breadcrumb-item active" aria-current="page">{t('Page.title.npcConfiguration')}</li>
-                    </ol>
-                </nav>
-
-                <Header>{t('Page.title.npcConfiguration')}</Header>
-
-                <div className="my-4">
-                    <InstructionText text={t('NpcConfigurationPage.text')} />
-                </div>
-
-                <div className="row">
-                    <div className="col-md-6 mt-4">
-                        <Header level={2}>{t('NpcConfigurationPage.npcType')}</Header>
-
-                        <div className="my-4">
-                            <DropDownSelect
-                                items={ NpcTypes.getNpcTypes().map(t => new DropDownElement(t.type, t.localizedName)) }
-                                defaultValue={ this.state.selectedNpcType }
-                                onChange={(type) => this.setState((state) => ({...state, selectedNpcType: type as number })) }/>
-                        </div>
-
-                    </div>
-
-                    <div className="col-md-6 mt-4">
-                        <Header level={2}>{t('Construct.other.characterType')}</Header>
-
-                        <div className="my-4">
-                            <DropDownSelect
-                                items={ NpcCharacterTypes.instance.types.map(t => new DropDownElement(t.type, t.localizedName )) }
-                                defaultValue={ this.state.selectedType?.type ?? "" }
-                                onChange={(type) => this.selectType(NpcCharacterTypes.instance.getType(type as NpcCharacterType) ) }/>
-                        </div>
-
-                    </div>
-
-                    <div className="col-md-6 mt-4">
-                        <Header level={2} className="mt-5">{t('Construct.other.species')}</Header>
-
-                        <div className="mt-4">
-                            <DropDownSelect
-                                items={ this.getSpeciesDropDownList() }
-                                defaultValue={ this.state.selectedSpecies ?? "" }
-                                onChange={(species) => this.selectSpecies(species) }/>
-                        </div>
-
-                    </div>
-
-                    <div className="col-md-6 mt-4">
-                        <Header level={2} className="mt-5">{t('NpcConfigurationPage.specialization')}</Header>
-
-                        <div className="mt-4">
-                            <DropDownSelect
-                                items={ this.getSpecializations() }
-                                defaultValue={ this.state.selectedSpecialization?.id ?? "" }
-                                onChange={(specialization) => this.selectSpecialization(specialization) }/>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="mt-5 text-end">
-                    <Button size="sm" onClick={() => this.createNpc(this.props.era)}>{t('Common.button.create')}</Button>
-                </div>
-            </div>
-        </div>);
-    }
-
-    getSpecializations() {
-        const { t } = this.props;
+    const getSpecializations = () => {
         let result = [ new DropDownElement(null, t('NpcConfigurationPage.option.anySpecialization'))];
-        Specializations.instance.getSpecializations(this.state.selectedType.type)
-            .filter(s => (s.type !== NpcCharacterType.Ferengi || this.props.era === Era.NextGeneration) && hasAnySource([Source.DS9, Source.AlphaQuadrant]))
+        Specializations.instance.getSpecializations(selectedType.type)
+            .filter(s => (s.type !== NpcCharacterType.Ferengi || era === Era.NextGeneration) && hasAnySource([Source.DS9, Source.AlphaQuadrant]))
             .filter(s => (s.id !== Specialization.TzenkethiSoldier) || hasAnySource([Source.AlphaQuadrant]))
             .filter(s => (s.id !== Specialization.TholianWarrior) || hasAnySource([Source.IdwYearFive]))
-            .filter(s => this.state.selectedSpecies == null || s.species.length === 0 || s.species.indexOf(this.state.selectedSpecies) >= 0 )
+            .filter(s => selectedSpecies == null || s.species.length === 0 || s.species.indexOf(selectedSpecies) >= 0 )
             .forEach(s => result.push(new DropDownElement(s.id, s.localizedName)));
         return result;
     }
 
-    getStandardFederationSpeciesList() {
+    const getStandardFederationSpeciesList = () =>  {
         const list = [ Species.Andorian, Species.Bajoran, Species.Betazoid, Species.Bolian, Species.Denobulan, Species.Human, Species.Tellarite, Species.Trill, Species.Vulcan ];
-        return list.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.indexOf(this.props.era) >= 0);
+        return list.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.includes(era));
     }
 
-    getStandardFederationSpeciesListAsTypes() {
-        return this.getStandardFederationSpeciesList().map(s => s.id);
+    const getStandardFederationSpeciesListAsTypes = () => {
+        return getStandardFederationSpeciesList().map(s => s.id);
     }
 
-    getSpeciesList() {
-        if (this.state.selectedSpecialization != null && this.state.selectedSpecialization?.species?.length) {
-            return this.state.selectedSpecialization.species.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.indexOf(this.props.era) >= 0);
-        } else if (this.state.selectedType?.type === NpcCharacterType.RogueRuffianMercenary || this.state.selectedType?.type === NpcCharacterType.MinorPolity) {
+    const getSpeciesList = () => {
+        if (selectedSpecialization != null && selectedSpecialization?.species?.length) {
+            return selectedSpecialization.species.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.includes(era));
+        } else if (selectedType?.type === NpcCharacterType.RogueRuffianMercenary || selectedType?.type === NpcCharacterType.MinorPolity) {
             let items = [];
-            Specializations.instance.getSpecializations(this.state.selectedType?.type).forEach(s => {
-                if (this.state.selectedSpecialization == null || this.state.selectedSpecialization?.id === s.id) {
-                    let speciesList = s.species?.length ? s.species : this.getStandardFederationSpeciesListAsTypes();
+            Specializations.instance.getSpecializations(selectedType?.type).forEach(s => {
+                if (selectedSpecialization == null || selectedSpecialization?.id === s.id) {
+                    let speciesList = s.species?.length ? s.species : getStandardFederationSpeciesListAsTypes();
                     speciesList.forEach(s => {
                         if (items.indexOf(s) < 0) {
                             items.push(s);
@@ -153,80 +67,157 @@ class NpcConfigurationPage extends React.Component<INpcConfigurationPageProperti
                     });
                 }
             });
-            return items.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.indexOf(this.props.era) >= 0);
-        } else if (this.state.selectedType?.type === NpcCharacterType.KlingonDefenseForces) {
-            const list = this.props.era === Era.NextGeneration ? [ Species.Klingon ] : [ Species.Klingon, Species.KlingonQuchHa ];
+            return items.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.includes(era));
+        } else if (selectedType?.type === NpcCharacterType.KlingonDefenseForces) {
+            const list = era === Era.NextGeneration ? [ Species.Klingon ] : [ Species.Klingon, Species.KlingonQuchHa ];
             return list.map(s => SpeciesHelper.getSpeciesByType(s));
-        } else if (this.state.selectedType?.type === NpcCharacterType.Cardassian) {
+        } else if (selectedType?.type === NpcCharacterType.Cardassian) {
             return [ SpeciesHelper.getSpeciesByType(Species.Cardassian)];
-        } else if (this.state.selectedType?.type === NpcCharacterType.Ferengi) {
+        } else if (selectedType?.type === NpcCharacterType.Ferengi) {
             return [ SpeciesHelper.getSpeciesByType(Species.Ferengi)];
-        } else if (this.state.selectedType?.type === NpcCharacterType.RomulanEmpire) {
+        } else if (selectedType?.type === NpcCharacterType.RomulanEmpire) {
             return [ SpeciesHelper.getSpeciesByType(Species.Romulan), SpeciesHelper.getSpeciesByType(Species.Reman)];
         } else {
-            return this.getStandardFederationSpeciesList();
+            return getStandardFederationSpeciesList();
         }
     }
 
-    getSpeciesDropDownList() {
-        const { t } = this.props;
+    const getSpeciesDropDownList = () => {
         let result = [ new DropDownElement(null, t('NpcConfigurationPage.option.anyMajorSpecies'))];
-        this.getSpeciesList().forEach(s => result.push(new DropDownElement(s.id, s.localizedName)));
+        getSpeciesList().forEach(s => result.push(new DropDownElement(s.id, s.localizedName)));
         return result;
     }
 
-    selectSpecialization(type: Specialization|string) {
+    const selectSpecialization = (type: Specialization|string) => {
         if (type == null || type === "") {
-            this.setState((state) => ({...state, selectedSpecialization: null }));
+            setSelectedSpecialization(undefined);
         } else {
-            this.setState((state) => ({...state, selectedSpecialization: Specializations.instance.getSpecialization(type as Specialization) }));
+            setSelectedSpecialization(Specializations.instance.getSpecialization(type as Specialization));
         }
     }
 
-    selectType(type: NpcCharacterTypeModel) {
-        this.setState((state) => ({...state, selectedType: type, selectedSpecies: null, selectedSpecialization: null }));
+    const selectType = (type: NpcCharacterTypeModel) => {
+        setSelectedType(type);
+        setSelectedSpecies(null);
+        setSelectedSpecialization(null);
     }
 
-    selectSpecies(species: Species|string|null) {
+    const selectSpecies = (species: Species|string|null) => {
         if (species == null || species === "") {
-            this.setState((state) => ({...state, selectedSpecies: undefined }));
+            setSelectedSpecies(undefined);
         } else {
-            this.setState((state) => ({...state, selectedSpecies: species as Species }));
+            setSelectedSpecies(species as Species);
         }
     }
 
-    randomSpecies() {
-        if (this.state.selectedType.type === NpcCharacterType.KlingonDefenseForces ||
-            this.state.selectedType.type === NpcCharacterType.Cardassian ||
-            this.state.selectedType.type === NpcCharacterType.Ferengi ||
-            this.state.selectedType.type === NpcCharacterType.MinorPolity ||
-            this.state.selectedType.type === NpcCharacterType.RomulanEmpire) {
-            let list = this.getSpeciesList();
+    const randomSpecies = () => {
+        if (selectedType.type === NpcCharacterType.KlingonDefenseForces ||
+            selectedType.type === NpcCharacterType.Cardassian ||
+            selectedType.type === NpcCharacterType.Ferengi ||
+            selectedType.type === NpcCharacterType.MinorPolity ||
+            selectedType.type === NpcCharacterType.RomulanEmpire) {
+            let list = getSpeciesList();
             return list[Math.floor(Math.random() * list.length)].id;
         } else {
             return SpeciesHelper.generateSpecies();
         }
     }
 
-    createNpc(era: Era) {
-        let specialization = this.state.selectedSpecialization;
+    const createNpc = () => {
+        setLoading(true);
+        let specialization = selectedSpecialization;
         if (specialization == null) {
-            let specializations = Specializations.instance.getSpecializations(this.state.selectedType.type);
+            let specializations = Specializations.instance.getSpecializations(selectedType.type);
             specialization = specializations[Math.floor(Math.random() * specializations.length)];
         }
-        let species = this.state.selectedSpecies;
+        let species = selectedSpecies;
         if (species == null && specialization.species?.length) {
-            let list = specialization.species.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.indexOf(this.props.era) >= 0)
+            let list = specialization.species.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.includes(era))
             species = list[Math.floor(Math.random() * list.length)].id;
         } else if (species == null) {
-            species = this.randomSpecies();
+            species = randomSpecies();
         }
-        let character = NpcGenerator.createNpc(this.state.selectedNpcType, this.state.selectedType.type,
-            SpeciesHelper.getSpeciesByType(species), specialization, era);
-
-        const value = marshaller.encodeNpc(character);
-        window.open('/view?s=' + value, "_blank");
+        NpcGenerator.createNpc(selectedNpcType, selectedType.type,
+            SpeciesHelper.getSpeciesByType(species), specialization, era)
+            .then(character => {
+                const value = marshaller.encodeNpc(character);
+                window.open('/view?s=' + value, "_blank");
+                setLoading(false);
+            });
     }
+
+    return (<div className="page">
+        <div className="container ms-0">
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.Home)}>{t('Page.title.home')}</a></li>
+                    <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.SourceSelection)}>{t('Page.title.sourceSelection')}</a></li>
+                    <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.Era)}>{t('Page.title.era')}</a></li>
+                    <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.ToolSelection)}>{t('Page.title.toolSelection')}</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.npcConfiguration')}</li>
+                </ol>
+            </nav>
+
+            <Header>{t('Page.title.npcConfiguration')}</Header>
+
+            <div className="my-4">
+                <InstructionText text={t('NpcConfigurationPage.text')} />
+            </div>
+
+            <div className="row">
+                <div className="col-md-6 mt-4">
+                    <Header level={2}>{t('NpcConfigurationPage.npcType')}</Header>
+
+                    <div className="my-4">
+                        <DropDownSelect
+                            items={ NpcTypes.getNpcTypes().map(t => new DropDownElement(t.type, t.localizedName)) }
+                            defaultValue={ selectedNpcType }
+                            onChange={(type) => setSelectedNpcType(type as number) }/>
+                    </div>
+
+                </div>
+
+                <div className="col-md-6 mt-4">
+                    <Header level={2}>{t('Construct.other.characterType')}</Header>
+
+                    <div className="my-4">
+                        <DropDownSelect
+                            items={ NpcCharacterTypes.instance.types.map(t => new DropDownElement(t.type, t.localizedName )) }
+                            defaultValue={ selectedType?.type ?? "" }
+                            onChange={(type) => selectType(NpcCharacterTypes.instance.getType(type as NpcCharacterType) ) }/>
+                    </div>
+
+                </div>
+
+                <div className="col-md-6 mt-4">
+                    <Header level={2} className="mt-5">{t('Construct.other.species')}</Header>
+
+                    <div className="mt-4">
+                        <DropDownSelect
+                            items={ getSpeciesDropDownList() }
+                            defaultValue={ selectedSpecies ?? "" }
+                            onChange={(species) => selectSpecies(species) }/>
+                    </div>
+
+                </div>
+
+                <div className="col-md-6 mt-4">
+                    <Header level={2} className="mt-5">{t('NpcConfigurationPage.specialization')}</Header>
+
+                    <div className="mt-4">
+                        <DropDownSelect
+                            items={ getSpecializations() }
+                            defaultValue={ selectedSpecialization?.id ?? "" }
+                            onChange={(specialization) => selectSpecialization(specialization) }/>
+                    </div>
+                </div>
+            </div>
+
+            <div className="mt-5 text-end">
+                <LoadingButton loading={loading} enabled={!loading} className="btn-sm" onClick={() => createNpc()}>{t('Common.button.create')}</LoadingButton>
+            </div>
+        </div>
+    </div>);
 }
 
 function mapStateToProps(state, ownProps) {
@@ -235,4 +226,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default withTranslation()(connect(mapStateToProps)(NpcConfigurationPage));
+export default connect(mapStateToProps)(NpcConfigurationPage);

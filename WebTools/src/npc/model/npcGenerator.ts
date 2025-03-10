@@ -23,6 +23,7 @@ import { Era } from "../../helpers/eras";
 import AgeHelper from "../../helpers/age";
 import { localizedFocus } from "../../components/focusHelper";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
+import { Buffer } from "buffer";
 
 const recreationSkills: { [type: number ]: string[] } = {
 
@@ -428,7 +429,7 @@ const speciesSpecificValues: { [species : number ]: string[]} = {
 
 export class NpcGenerator {
 
-    static createNpc(npcType: NpcType, characterType: NpcCharacterType, species: SpeciesModel, specialization: SpecializationModel, era: Era) {
+    static async createNpc(npcType: NpcType, characterType: NpcCharacterType, species: SpeciesModel, specialization: SpecializationModel, era: Era) {
         let character = Character.createNpcCharacter(era, hasSource(Source.Core2ndEdition) ? 2 : 1);
         if (specialization == null) {
             let specializations = Specializations.instance.getSpecializations(characterType);
@@ -461,7 +462,7 @@ export class NpcGenerator {
             gender = "Female";
         }
 
-        let {name, pronouns} = NameGenerator.instance.createName(nameSpecies, gender);
+        let {name, pronouns, nameOrigin} = NameGenerator.instance.createName(nameSpecies, gender);
         character.name = name;
         character.pronouns = pronouns;
 
@@ -503,11 +504,52 @@ export class NpcGenerator {
         NpcGenerator.assignValues(npcType, character, specialization);
         NpcGenerator.assignTalents(npcType, character, species, specialization);
 
-//        character.description = "Carole Matisse is a warm and compassionate civilian medical doctor of French descent. She stands at 5'4\" with a gentle, slender build that belies her sharp intellect and quick wit. Her curly brown hair is often styled in a neat bob, and her bright hazel eyes sparkle with kindness and intelligence. Carole's features are delicate, with high cheekbones and a soft mouth that curves into a gentle smile when she's pleased.\n\n"
-//            + "As a doctor, Carole is dedicated to helping others and making a positive impact on the lives of those around her. Her personal motto \"The potential to make yourself a better person... that is what it is to be Human... to make yourself more than you are\" reflects her deep commitment to self-improvement and personal growth. She believes that every individual has the power to change and become a better version of themselves, and she strives to inspire and empower others to do the same. Carole's approach to medicine is holistic and compassionate, taking into account not only the physical needs of her patients but also their emotional and psychological well-being.\n\n"
-//            + "Outside of the hospital, Carole enjoys practicing yoga, reading French literature, and exploring the cultural heritage of her ancestors. She is a passionate advocate for social justice and community health initiatives, and she spends much of her free time volunteering at local clinics and charities. Despite her many accomplishments, Carole remains humble and grounded, always seeking to learn and grow as a person. Her kind heart, sharp mind, and infectious enthusiasm have earned her the admiration and respect of her colleagues and patients alike."
+        if (npcType !== NpcType.Minor && character.type === CharacterType.Starfleet) {
+            character.description = await NpcGenerator.generateCharacterDescription(character, specialization, nameOrigin);
+        }
 
         return character;
+    }
+
+    private static async generateCharacterDescription(character: Character, specialization: SpecializationModel, nameOrigin: string) {
+
+        let species = SpeciesHelper.getSpeciesByType(character.speciesStep.species);
+
+        let data = {
+            name: character.name,
+            species: species.name,
+            specialization: Specialization[specialization.id],
+            pronouns: character.pronouns,
+            npcCharacterType: NpcCharacterType[specialization.type],
+            rank: character.rank?.name
+        };
+
+        if (nameOrigin?.length) {
+            data["nameOrigin"] = nameOrigin;
+        }
+
+        let textEncoder = new TextEncoder();
+        let body = textEncoder.encode(JSON.stringify(data));
+
+        try {
+            let response = await fetch('/api/character_description', {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: body
+            })
+
+            if (response.status === 200) {
+                let responseJson = await response.json();
+                console.log(responseJson);
+                return responseJson?.description;
+            } else {
+                return undefined;
+            }
+        } catch (e) {
+            return undefined;
+        }
     }
 
     private static assignCharacterType(character: Character, characterType: NpcCharacterType, specialization: SpecializationModel) {

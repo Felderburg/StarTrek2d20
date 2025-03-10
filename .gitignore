@@ -8,9 +8,13 @@ WebTools/dist/trek.js.LICENSE.txt
 WebTools/src/**/*.js
 /.vs/WebTools-StarTrek
 /packages
+/server/node_modules
 /WebTools/node_modules
 /WebTools/obj/Debug
+/server/obj/Debug
 /WebTools/obj/Release
+/server/obj/Release
 .DS_Store
 .vscode/
 .env
+groq.ini

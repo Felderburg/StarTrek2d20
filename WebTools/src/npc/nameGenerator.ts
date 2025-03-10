@@ -1,5 +1,5 @@
 import { D20 } from "../common/die";
-import { ISpecies } from "../helpers/species";
+import { ISpecies, NameModel } from "../helpers/species";
 import { Species } from "../helpers/speciesEnum";
 
 const names = [
@@ -83,7 +83,7 @@ export class NameGenerator {
 
     createName(species: ISpecies, gender: "Male"|"Female"|"Unisex" = undefined) {
 
-        let result = { name: "", pronouns: "" };
+        let result = { name: "", pronouns: "", nameOrigin: undefined };
         let found = false;
         for (let name of names) {
             if (name.species === species.name) {
@@ -132,9 +132,16 @@ export class NameGenerator {
                     }
                 }
                 let pronouns = this.derivePronouns(firstName.gender, gender != null);
+
+                let nameOrigin = undefined;
+                if (species.id === Species.Human) {
+                    nameOrigin = this.determineNameOrigin(firstName, lastName);
+                }
+
                 result = {
                     name: this.combineParts(firstNameString, lastName?.name, species, pronouns, name.names),
-                    pronouns: pronouns
+                    pronouns: pronouns,
+                    nameOrigin: nameOrigin
                 }
                 found = true;
                 break;
@@ -164,11 +171,19 @@ export class NameGenerator {
             let pronouns = this.derivePronouns(gender, gender != null);
             result = {
                 name: this.combineParts(firstName, lastName, species, pronouns),
-                pronouns: pronouns
+                pronouns: pronouns,
+                nameOrigin: undefined
             }
         }
 
         return result;
+    }
+
+    private determineNameOrigin(firstName: any, lastName: any) {
+
+        let tags = lastName.tags.filter(t => firstName.tags.includes("Common") || firstName.tags.includes(t));
+        let result = tags.length ? tags[Math.floor(Math.random() * tags.length)] : undefined;
+        return result === "Common" ? undefined : result;
     }
 
     private combineParts(firstName: string, lastName: string, species: ISpecies, pronouns: string, names: [] = []) {
