@@ -32,10 +32,6 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     static readonly mainBorder = "m 54.887856,59.425403 c -5.977,0 -10.839,4.862 -10.839,10.839 l -0.074,487.498997 c 0,2.895 1.128,5.617 3.175,7.664 2.047,2.047 4.769,3.174 7.664,3.174 l 686.462004,-0.01 c 5.976,0 10.839,-4.862 10.839,-10.839 v -75.211 c 0,-3.197 -1.802,-7.676 -4.015,-9.983 l -6.712,-6.995 c -4.406,-4.591 -7.99,-13.502 -7.991,-19.866 l 0.026,-375.432997 c -10e-4,-5.977 -4.864,-10.839 -10.84,-10.839 z"
     static readonly cornerDecoration = "m 439.4088,-8.84068 19.12,19.12 c 4.34,4.34 12.864,7.871 19.002,7.871 h 251.115 c 2.359,0 5.513,1.306 7.182,2.975 l 5.594,5.594 c 4.341,4.341 12.865,7.872 19.003,7.872 h 42.94403";
 
-    static readonly talentsColumn3 = new Column(390.6, 361, 200, 162);
-    static readonly talentsColumn2 = new Column(221.7, 361, 200, 162, this.talentsColumn3);
-    static readonly talentsColumn1 = new Column(51.5, 361, 200, 162, this.talentsColumn2);
-
     static readonly greyColour: SimpleColor = SimpleColor.from("#979696");
 
     static readonly headingColumn = new Column(73.8, 45, 8.8, 200);
@@ -81,18 +77,45 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         this.fonts.addFont(FontType.Symbol, symbolFont);
     }
 
+    firstColumn(additionalPage: PDFPage, pdf: PDFDocument) {
+        const page2Column4 = new Column(565.8, 72.6, 479.3, 158.1);
+        const page2Column3 = new Column(396.1, 72.6, 479.3, 158.1, page2Column4);
+        const page2Column2 = new Column(226.5, 72.6, 479.3, 158.1, page2Column3);
+        const page2Column1 = new Column(55.6, 72.6, 479.3, 158.1, page2Column2);
+
+        let talentsColumn3 = new Column(390.6, 361, 200, 162,
+            () => {
+                const page = pdf.addPage(additionalPage);
+                return {
+                    page: page,
+                    column: page2Column1
+                }
+            });
+        let talentsColumn2 = new Column(221.7, 361, 200, 162, talentsColumn3);
+        let talentsColumn1 = new Column(51.5, 361, 200, 162, talentsColumn2);
+
+        return talentsColumn1;
+    }
+
     async populate(pdf: PDFDocument, construct: Construct) {
         await super.populate(pdf, construct);
+
+        const pdfBytes = await fetch('/static/pdf/STA_2e_Landscape_Sheet_blank.pdf').then(res => res.arrayBuffer())
+        const blankPdf = await PDFDocument.load(pdfBytes)
+
+        const [ secondPage ] = await blankPdf.copyPages(blankPdf, [0]);
 
         const page = pdf.getPage(0);
 
         const colour = this.deriveSheetColour(construct as Character);
 
         this.drawSheetDecorations(page, colour);
+        this.writeTitle(page, colour);
+        this.drawSheetDecorations(secondPage, colour);
+        this.writeTitle(secondPage, colour);
 
         this.writeLabels(page, construct as Character);
-        await this.writeRoleAndTalents(page, construct as Character);
-        this.writeTitle(page, colour);
+        await this.writeRoleAndTalents(page, construct as Character, this.firstColumn(secondPage, pdf));
 
         this.createDeterminationBoxes(page, pdf);
         this.createStressBoxes(page, pdf, construct as Character);
@@ -404,8 +427,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
     }
 
-    async writeRoleAndTalents(page: PDFPage, character: Character) {
-        let column = Landscape2eCharacterSheet.talentsColumn1;
+    async writeRoleAndTalents(page: PDFPage, character: Character, column: Column) {
 
         if (character.description?.length) {
             let subHeadings = {"Construct.other.description": column.topBefore(9.5) };
@@ -441,7 +463,9 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
             }
         }
 
-        column = column.columnWithAtLeast(35, page);
+        let temp = column.columnWithAtLeast(35, page);
+        column = temp.column;
+        page = temp.page;
 
         if (character.stereotype === Stereotype.Npc || character.stereotype === Stereotype.SupportingCharacter) {
             let subHeadings = {"Construct.other.specialRules": column.topBefore(9.5) };

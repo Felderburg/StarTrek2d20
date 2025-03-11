@@ -81,10 +81,12 @@ export class Column {
 
     columnWithAtLeast(height: number, currentPage: PDFPage) {
         if (this.height >= height) {
-            return this;
+            return {
+                page: currentPage,
+                column: this
+            }
         } else {
-            let output = this.advanceToNextColumn(currentPage);
-            return output != null ? output.column : undefined;
+            return this.advanceToNextColumn(currentPage);
         }
     }
 }
