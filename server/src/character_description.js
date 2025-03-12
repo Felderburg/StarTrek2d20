@@ -18,9 +18,11 @@ function describeSpecialization(inputJson, pronoun) {
     pronoun = pronoun.substring(0, 1).toLocaleUpperCase() + pronoun.substring(1);
     let pronounPhrase = pronoun + " is ";
     let serves = " serves ";
+    let works = " works ";
     if (pronoun === "They") {
         pronounPhrase = "They are "
-        serves = " serve "
+        serves = " serve ";
+        works = " work ";
     }
 
     if (inputJson.npcCharacterType === "Starfleet") {
@@ -71,6 +73,64 @@ function describeSpecialization(inputJson, pronoun) {
             prompt += pronounPhrase + " a senator in the government of the Romulan Star Empire.";
         } else if (inputJson.specialization === "RomulanSenator") {
             prompt += pronounPhrase + " in the order of the Qowat Milat, an all-female Romulan order of sword-wielding ninja-like fighters.";
+        }
+
+    } else if (inputJson.npcCharacterType === "Ferengi") {
+
+        if (inputJson.specialization === "FerengiMerchant") {
+            prompt += pronounPhrase + " Ferengi merchant seeking fortune through the sale of goods.";
+        } else if (inputJson.specialization === "FerengiDaiMon") {
+            prompt += pronounPhrase + " an officer in the Ferengi mercantile fleet, with the rank of " + inputJson.rank + ".";
+        } else if (inputJson.specialization === "FerengiLiquidator") {
+            prompt += pronounPhrase + " an trade official/liquidator in the Ferengi Commerce Authority.";
+        } else if (inputJson.specialization === "FerengiEliminator") {
+            prompt += pronounPhrase + " an \"eliminator\" or mercenary free agent who is trained for dangerous clandestine missions.";
+        } else if (inputJson.specialization === "FerengiBartender") {
+            prompt += pronounPhrase + " a bartender, providing alcohol and gambling to a wide range of customers.";
+        }
+
+    } else if (inputJson.npcCharacterType === "KlingonDefenseForces") {
+
+        if (inputJson.specialization === "KlingonDiplomat") {
+            prompt += pronounPhrase + " a diplomat for the Klingon Empire.";
+        } else if (inputJson.specialization === "KlingonShipCaptain") {
+            prompt += pronounPhrase + " the captain of Klingon Defense Forces starship, with the rank of " + inputJson.rank + ".";
+        } else if (inputJson.specialization === "KlingonWarrior") {
+            prompt += pronounPhrase + " a warrior in the Klingon Defense Forces starship, with the rank of " + inputJson.rank + ".";
+        } else if (inputJson.specialization === "KlingonWeaponsOfficer") {
+            prompt += pronounPhrase + " a weapons officer in the Klingon Defense Forces starship, with the rank of " + inputJson.rank + ".";
+        } else if (inputJson.specialization === "KlingonMedic") {
+            prompt += pronounPhrase + " a medic in the Klingon Defense Forces starship, with the rank of " + inputJson.rank + ".";
+        }
+
+    } else if (inputJson.npcCharacterType === "Cardassian") {
+
+        if (inputJson.specialization === "CardassianGul") {
+            prompt += pronounPhrase + " a commanding officer in the military of the Cardassian Union, with the rank of " + inputJson.rank + "." ;
+        } else if (inputJson.specialization === "CardassianSoldier") {
+            prompt += pronounPhrase + " a member of the military forces for the Cardassian Union, with the rank of " + inputJson.rank + ".";
+        }
+
+    } else if (inputJson.npcCharacterType === "Civilian") {
+
+        if (inputJson.specialization === "Scientist") {
+            prompt += pronounPhrase + " a civilian Federation scientist." ;
+        } else if (inputJson.specialization === "Bureaucrat") {
+            prompt += pronounPhrase + " a bureaucrat/government official for the Federation.";
+        } else if (inputJson.specialization === "Colonist") {
+            prompt += pronounPhrase + " a colonist on a relatively-new Federation colony world.";
+        } else if (inputJson.specialization === "FederationAmbassador") {
+            prompt += pronoun + serves + " as an Ambassador, working on behalf of the Federation.";
+        } else if (inputJson.specialization === "IndependentTraderCaptain") {
+            prompt += pronounPhrase + " a Federation citizen, and the captain of an independant trading vessel.";
+        } else if (inputJson.specialization === "Child") {
+            if (inputJson.extraDetails?.length) {
+                prompt += pronounPhrase + " a " + inputJson.extraDetails + " living in the Federation.";
+            } else {
+                prompt += pronounPhrase + " a child living in the Federation.";
+            }
+        } else if (inputJson.specialization === "CivilianDoctor") {
+            prompt += pronounPhrase + " a civilian medical doctor working for the Federation.";
         }
     }
 

@@ -503,7 +503,12 @@ export class NpcGenerator {
         NpcGenerator.assignValues(npcType, character, specialization);
         NpcGenerator.assignTalents(npcType, character, species, specialization);
 
-        if (npcType !== NpcType.Minor && (specialization.type === NpcCharacterType.Starfleet || specialization.type === NpcCharacterType.RomulanEmpire)) {
+        if (npcType !== NpcType.Minor && [
+                NpcCharacterType.Starfleet, NpcCharacterType.Ferengi, NpcCharacterType.RomulanEmpire,
+                NpcCharacterType.KlingonDefenseForces, NpcCharacterType.Cardassian,
+                NpcCharacterType.Civilian
+            ].includes(specialization.type)) {
+
             character.description = await NpcGenerator.generateCharacterDescription(character, specialization, nameOrigin);
         }
 
@@ -525,6 +530,10 @@ export class NpcGenerator {
 
         if (nameOrigin?.length) {
             data["nameOrigin"] = nameOrigin;
+        }
+
+        if (specialization.id === Specialization.Child && character.age?.isChild) {
+            data["extraDetail"] = character.age.name;
         }
 
         let textEncoder = new TextEncoder();
