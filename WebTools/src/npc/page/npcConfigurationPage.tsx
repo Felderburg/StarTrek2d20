@@ -18,6 +18,7 @@ import { hasAnySource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
 import { Specialization } from '../../common/specializationEnum';
 import { LoadingButton } from '../../common/loadingButton';
+import { CheckBox } from '../../components/checkBox';
 
 interface INpcConfigurationPageProperties {
     era: Era;
@@ -31,6 +32,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({era}) 
     const [ selectedSpecies, setSelectedSpecies ] = useState<Species>();
     const [ selectedSpecialization, setSelectedSpecialization ] = useState<SpecializationModel>();
     const [ loading, setLoading ] = useState<boolean>(false);
+    const [ includeDescription, setIncludeDescription ] = useState<boolean>(true);
 
     const getSpecializations = () => {
         let result = [ new DropDownElement(null, t('NpcConfigurationPage.option.anySpecialization'))];
@@ -138,7 +140,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({era}) 
             species = randomSpecies();
         }
         NpcGenerator.createNpc(selectedNpcType, selectedType.type,
-            SpeciesHelper.getSpeciesByType(species), specialization, era)
+            SpeciesHelper.getSpeciesByType(species), specialization, era, includeDescription)
             .then(character => {
                 const value = marshaller.encodeNpc(character);
                 window.open('/view?s=' + value, "_blank");
@@ -211,10 +213,25 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({era}) 
                             onChange={(specialization) => selectSpecialization(specialization) }/>
                     </div>
                 </div>
+
+                <div className="col-md-6 mt-4">
+                    <Header level={2} className="mt-5">{t('Construct.other.description')}</Header>
+
+                    <div className="mt-4">
+                        <CheckBox
+                            disabled={ selectedNpcType === NpcType.Minor }
+                            isChecked={ includeDescription }
+                            value={ "includeDescription" }
+                            text={t('NpcConfigurationPage.includeDescription')}
+                            onChanged={(_inc) => setIncludeDescription(!includeDescription) }/>
+                    </div>
+                </div>
+
             </div>
 
+
             <div className="mt-5 text-end">
-                <LoadingButton loading={loading} enabled={!loading} className="btn-sm" onClick={() => createNpc()}>{t('Common.button.create')}</LoadingButton>
+                <LoadingButton loading={loading} enabled={!loading} size="sm" onClick={() => createNpc()}>{t('Common.button.create')}</LoadingButton>
             </div>
         </div>
     </div>);

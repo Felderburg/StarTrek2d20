@@ -269,6 +269,7 @@
     "NpcConfigurationPage.npcType": "NPC Type",
     "NpcConfigurationPage.specialization": "Specialization",
     "NpcConfigurationPage.text": "Specify what kind of NPC you're trying to create.",
+    "NpcConfigurationPage.includeDescription": "Include description",
 
     "NoviceOrCadetExperiencePage.attribute.instruction": "Choose 1 attribute to use with this talent.",
     "NoviceOrCadetExperiencePage.attribute.error": "Please choose an attribute.",

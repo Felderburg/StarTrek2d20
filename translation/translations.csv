@@ -293,6 +293,7 @@ NpcConfigurationPage.option.anySpecialization,Any Specialization,,Jede Spezialis
 NpcConfigurationPage.npcType,NPC Type,,NPC Typ,Tipo de PNJ,Type de PNJ,Тип ВП,Tipo de PdM
 NpcConfigurationPage.specialization,Specialization,,Spezialisierung,Especialización,Spécialisation,Специализация,Especialização
 NpcConfigurationPage.text,Specify what kind of NPC you're trying to create.,,"Lege fest, welche Art NPC du erstellen möchtest.",Especifíca qué tipo de PNJ estás creando.,Spécifiez quel type de PNJ vous voulez créer,Определите тип ВП которого вы пытаетесь создать.,Especifique o tipo de PdM que você está tentando criar.
+NpcConfigurationPage.includeDescription,Include description,,,,,,
 NoviceOrCadetExperiencePage.attribute.instruction,Choose 1 attribute to use with this talent.,,,Elige 1 atributo para utilizar con este talento.,,,Escolha 1 atributo para usar com esse talento.
 NoviceOrCadetExperiencePage.attribute.error,Please choose an attribute.,,,"Por favor, elige un atributo.",,,"Por favor, escolha um atributo."
 OtherToolsPage.instruction,This section contains a number of miscellaneous additional tools that might be used in your STA game.,,,Esta sección contiene una serie de herramientas adicionales diversas que pueden utilizarse en tu partida de STA.,Cette section contient divers outils additionnels à utiliser lors de vos parties de STA,Эта категория содержит несколько дополнительных инструментов которые могут быть использованы в вашей игре.,Esta seção contém várias ferramentas adicionais diversas que podem ser usadas no seu jogo STA.
@@ -598,7 +599,7 @@ Construct.other.characterRole,Character Role,,,Papel del personaje,,,Papel de Pe
 Construct.other.characterType,Character Type,,Art des Charakters,Tipo de personaje,Type de personnage,Тип персонажа,Tipo de Personagem
 Construct.other.crew,Crew,,Crew,Tripulación,Équipage,Персонал,Tripulação
 Construct.other.crewSupport,Crew Support,,,Apoyo de la Tripulación,Support d'équipage,,Tripulação de Apoio
-Construct.other.description,Description,,,,,,
+Construct.other.description,Description,,Beschreibung,Descripción,Description,Описание,
 Construct.other.department,Department,,,Departamento,Département,Отдел,Departamento
 Construct.other.departments,Departments,,Abteilungen,Departamentos,Departements,Отделы,Departamentos
 Construct.other.determination,Determination,,Entschlossenheit,Determinación,Détermination,Целеустремленность,Determinação

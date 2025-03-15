@@ -183,6 +183,7 @@ async function main(key, inputData) {
     prompt += describeSpecialization(inputJson, subjectPronoun);
 
     prompt += "Include a description and personality.  Also include other interesting aspects of " + possessivePronoun + " character. ";
+    prompt += "Use the metric system for any measurements, including character heights. "
 
     const chatCompletion = await groq.chat.completions.create({
         "messages": [{

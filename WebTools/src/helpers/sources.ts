@@ -30,6 +30,7 @@ export enum Source {
     AnimatedSeries,
     FederationKlingonWar,
     GmToolkit2e,
+    TechnicalManual,
 
     ContinuingMissions,
 
@@ -124,6 +125,7 @@ class Sources {
         [Source.AnimatedSeries]: new SourceViewModel(Source.AnimatedSeries, SourceType.Expansion, "Animated Series"),
         [Source.FederationKlingonWar]: new SourceViewModel(Source.FederationKlingonWar, SourceType.Expansion, "Federation-Klingon War"),
         [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion, "GM Toolkit 2e"),
+        [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion, "Technical Manual", false),
     };
 
     getSources() {

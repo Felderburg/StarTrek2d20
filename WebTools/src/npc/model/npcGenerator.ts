@@ -428,7 +428,8 @@ const speciesSpecificValues: { [species : number ]: string[]} = {
 
 export class NpcGenerator {
 
-    static async createNpc(npcType: NpcType, characterType: NpcCharacterType, species: SpeciesModel, specialization: SpecializationModel, era: Era) {
+    static async createNpc(npcType: NpcType, characterType: NpcCharacterType, species: SpeciesModel,
+            specialization: SpecializationModel, era: Era, includeDescription: boolean) {
         let character = Character.createNpcCharacter(era, hasSource(Source.Core2ndEdition) ? 2 : 1);
         if (specialization == null) {
             let specializations = Specializations.instance.getSpecializations(characterType);
@@ -503,7 +504,7 @@ export class NpcGenerator {
         NpcGenerator.assignValues(npcType, character, specialization);
         NpcGenerator.assignTalents(npcType, character, species, specialization);
 
-        if (npcType !== NpcType.Minor && [
+        if (npcType !== NpcType.Minor && includeDescription && [
                 NpcCharacterType.Starfleet, NpcCharacterType.Ferengi, NpcCharacterType.RomulanEmpire,
                 NpcCharacterType.KlingonDefenseForces, NpcCharacterType.Cardassian,
                 NpcCharacterType.Civilian
