@@ -4278,19 +4278,19 @@ export class Talents {
         new TalentModel(
             "No Quarter",
             "When commanding a boarding action and assisting the soldiers under their command by giving them orders, the character may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion), new SpecializationPrerequisite(Specialization.OrionPirate)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
             1,
             "Orion", true),
         new TalentModel(
             "Cutthroat Crew",
-            "Whenever the Orion Pirates attempt a Task related to boarding a captured vessel, and they buy additional d20s with Threat, they may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion), new SpecializationPrerequisite(Specialization.OrionPirate)],
+            "Whenever the pirates attempt a Task related to boarding a captured vessel, and they buy additional d20s with Threat, they may re-roll a single d20.",
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
             1,
             "Orion", true),
         new TalentModel(
             "Vicious",
             "The character knows how to use cruelty to motivate others. When enforcing discipline using threats or violence and buying additional d20s with Threat, the character may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion), new SpecializationPrerequisite(Specialization.OrionPirate)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
             1,
             "Orion", true),
         new TalentModel(

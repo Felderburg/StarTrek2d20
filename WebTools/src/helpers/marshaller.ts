@@ -1464,7 +1464,15 @@ class Marshaller {
                 result.npcGenerationStep.talents = json.npc.talents.map(t => this.hydrateTalent(t));
             }
             if (json.npc.specialization) {
-                allSpecializations().forEach(s => { if (Specialization[s] === json.npc.specialization) {result.npcGenerationStep.specialization = s;}})
+                if (json.npc.specialization === "OrionPirate") {
+                    result.npcGenerationStep.specialization = Specialization.Pirate;
+                } else {
+                    allSpecializations().forEach(s => {
+                        if (Specialization[s] === json.npc.specialization) {
+                            result.npcGenerationStep.specialization = s;
+                        }
+                    });
+                }
             }
             if (json.npc.type) {
                 result.npcGenerationStep.type = NpcTypes.getNpcTypeByName(json.npc.type);

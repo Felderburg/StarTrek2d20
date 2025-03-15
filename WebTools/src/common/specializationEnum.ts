@@ -51,7 +51,7 @@ export enum Specialization {
     Child,
     CivilianDoctor,
 
-    OrionPirate,
+    Pirate,
     InformationBroker,
     BruteForHire,
     Bodyguard,

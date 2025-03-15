@@ -799,7 +799,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             result.push(EquipmentHelper.instance.findByType(EquipmentType.UshaanTor));
         }
 
-        if (this.npcGenerationStep?.specialization === Specialization.OrionPirate) {
+        if (this.npcGenerationStep?.specialization === Specialization.Pirate && this.speciesStep?.species === Species.Orion) {
             result.push(EquipmentHelper.instance.findByType(EquipmentType.OrionMultiKey));
         }
 
@@ -978,7 +978,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 result.push(PersonalWeapons.instance(this.version).particleRifle);
             } else if (this.npcGenerationStep?.specialization === Specialization.SonaCommandOfficer) {
                 result.push(PersonalWeapons.instance(this.version).sonaPlasmaDisruptorShotgun);
-            } else if (this.npcGenerationStep?.specialization === Specialization.OrionPirate) {
+            } else if (this.npcGenerationStep?.specialization === Specialization.Pirate) {
                 result.push(PersonalWeapons.instance(this.version).disruptorPistol);
                 result.push(PersonalWeapons.instance(this.version).dagger);
             } else if (this.type !== CharacterType.Child && this.type !== CharacterType.Civilian
@@ -1308,9 +1308,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get isOrion() {
         return this.stereotype === Stereotype.Npc &&
-            (this.npcGenerationStep?.specialization === Specialization.OrionPirate ||
                 (this.speciesStep?.species === Species.Orion &&
-                    [Specialization.SketchyTraderCaptain, Specialization.IndependentTraderCaptain].indexOf(this.npcGenerationStep?.specialization) >= 0));
+                [Specialization.Pirate, Specialization.SketchyTraderCaptain, Specialization.IndependentTraderCaptain].indexOf(this.npcGenerationStep?.specialization) >= 0);
     }
 
     get isSona() {

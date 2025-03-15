@@ -6,6 +6,16 @@ import { Department } from "../../helpers/department";
 import { Species } from "../../helpers/speciesEnum";
 import { NpcCharacterType } from "./npcCharacterType";
 
+export class Specialty {
+
+    focuses: { [id: string]: string[] }
+
+    constructor(focuses: { [id: string]: string[] }) {
+        this.focuses = focuses;
+    }
+}
+
+
 export class SpecializationModel {
 
     id: Specialization;
@@ -836,7 +846,7 @@ export class Specializations {
                     "You have been told. You will comply.",
                     "All that needs to be said has already been said."
                 ], 1, [Species.Tholian]),
-            new SpecializationModel(Specialization.OrionPirate, NpcCharacterType.RogueRuffianMercenary, "Orion Pirate",
+            new SpecializationModel(Specialization.Pirate, NpcCharacterType.RogueRuffianMercenary, "Pirate",
                 [Attribute.Daring, Attribute.Presence, Attribute.Control],
                 Department.Security,
                 [
@@ -859,7 +869,7 @@ export class Specializations {
                     "Cultural Richness in Diversity",
                     "Freedom in Enterprise",
                     "Resilience in the Face of Scrutiny"
-                ], 0, [Species.Orion]),
+                ], 0, [Species.Orion, Species.Nausicaan]),
             new SpecializationModel(Specialization.InformationBroker, NpcCharacterType.RogueRuffianMercenary, "Information Broker",
                 [Attribute.Control, Attribute.Insight, Attribute.Reason],
                 Department.Security,
