@@ -12,6 +12,37 @@ const getApiKey = () => {
     }
 }
 
+function describeSpecies(species) {
+
+    if (species === "Denobulan") {
+        return "Denobulans are human-like aliens with prominent facial ridges running down either size of the forehead to the cheeks, an enlarged brow ridge under a high receding hairling and a vertical crevice in the center of the forehead. "
+    } else if (species === "Bolian") {
+        return "Bolians are bald, blue-skinned humanoids, with a bifurcating ridge running vertically along the center of the head and face. Some Bolians have darker blue stripes running from ear to ear across the top and back of the head. "
+    } else if (species === "Ferengi") {
+        return "Ferengi are short humanoids with orange-brown skin, enlarged skulls, wrinkled noses and sharp teeth. They are completely hairless. "
+    } else if (species === "Hupyrian") {
+        return "Hupyrians are taller than most humanoid species, and characterized by parallel skin creases around their eyes, mouth, and ears. ";
+    } else if (species === "Yridian") {
+        return "Yridians are humanoids, usually bald with heavily wrinkled skin and large rodent-like ears. Yridians have an indented ridge running across the full length of their heads and down their noses. "
+    } else if (species === "Nausicaan") {
+        return "Nausicaans have large and muscular physiques, generally surpassing two meterss in height and great physical strength. They have ashen-coloured faces with a prominent bone structure and sharp tusks protruding on either side of their mouths. "
+    } else if (species === "Bynar") {
+        return "The Bynars are short, genderless humanoids with lilac-coloured skin and enlarged skulls. Bynars are mostly bald but with a patch of dark purple hair on the sides of the neck. "
+    } else if (species === "Pakled") {
+        return "The Pakleds are a humanoid species with round, mostly bald heads and large brows covering much of their sloping foreheads. Their skin is pale greyish-white and their bodies are heavyset but muscular. Pakleds have low intelligence. "
+    } else if (species === "Son’a") {
+        return "The Son’a are a humanoid species obsessed with efforts to prolong their lives by any possible means, including genetic manipulation and surgical techniques. Almost all Son’a have stretched their skin across their faces in an attempt to look younger. ";
+    } else if (species === "Talarian") {
+        return "The Talarians are human-like aliens, notable for a distinctive hairless enlargement of the coronal area of the skull extending in two lobes to the back of the head. ";
+    } else if (species === "Tholian") {
+        return "The Tholians are a crystalline species, with hard carapace's that are chiefly mineral. They have six thin legs that allow them to move very quickly. ";
+    } else if (species === "Tzenkethi") {
+        return "The Tzenkethi have hulking reptile-like anatomy with a large pair of arms extending from their shoulders and a smaller pair of arms used for finer manipulation. Their skin color ranges from purple to scarlet to emerald green. ";
+    } else {
+        return "";
+    }
+}
+
 function describeSpecialization(inputJson, pronoun) {
 
     let prompt = "";
@@ -52,7 +83,12 @@ function describeSpecialization(inputJson, pronoun) {
         } else if (inputJson.specialization === "ScienceTech") {
             prompt += pronoun + serves + " as a lab technician in a science department."
         } else if (inputJson.specialization === "StarfleetScientist") {
-            prompt += pronoun + serves + " as a science officer for Starfleet."
+            prompt += pronoun + serves + " as a science officer for Starfleet";
+            if (inputJson.specialty?.length) {
+                prompt += " specializing in " + inputJson.specialty + ".";
+            } else {
+                prompt += ".";
+            }
         } else if (inputJson.specialization === "Engineer") {
             prompt += pronoun + serves + " in the engineering department."
         } else if (inputJson.specialization === "IntelligenceOfficer") {
@@ -114,7 +150,12 @@ function describeSpecialization(inputJson, pronoun) {
     } else if (inputJson.npcCharacterType === "Civilian") {
 
         if (inputJson.specialization === "Scientist") {
-            prompt += pronounPhrase + " a civilian Federation scientist." ;
+            prompt += pronounPhrase + " a civilian Federation scientist";
+            if (inputJson.specialty?.length) {
+                prompt += " specializing in " + inputJson.specialty + ".";
+            } else {
+                prompt += ".";
+            }
         } else if (inputJson.specialization === "Bureaucrat") {
             prompt += pronounPhrase + " a bureaucrat/government official for the Federation.";
         } else if (inputJson.specialization === "Colonist") {
@@ -132,6 +173,36 @@ function describeSpecialization(inputJson, pronoun) {
         } else if (inputJson.specialization === "CivilianDoctor") {
             prompt += pronounPhrase + " a civilian medical doctor working for the Federation.";
         }
+    } else if (inputJson.npcCharacterType === "RogueRuffianMercenary") {
+
+        if (inputJson.specialization === "Pirate") {
+            prompt += pronounPhrase + " a pirate, operating outside of the law by seizing ships and stealing their goods." ;
+        } else if (inputJson.specialization === "InformationBroker") {
+            prompt += pronounPhrase + " an information broker, peddling data and insider-knowledge for money.";
+        } else if (inputJson.specialization === "BruteForHire") {
+            prompt += pronounPhrase + " a mercenary/brute-for-hire, paid to rough up the people that their employers dislike.";
+        } else if (inputJson.specialization === "Bodyguard") {
+            prompt += pronounPhrase + " a paid bodyguard, responsible for keeping an employer safe from harm.";
+        } else if (inputJson.specialization === "Smuggler") {
+            prompt += pronounPhrase + " a smuggler, who transports illegal goods across borders and checkzones.";
+        } else if (inputJson.specialization === "SketchyTraderCaptain") {
+            prompt += pronounPhrase + " a less-than-honest captain of an independant trading vessel.";
+        } else if (inputJson.specialization === "Terrorist") {
+            prompt += pronounPhrase + " a terrorist, committing acts of violence for political purposes.";
+        }
+    } else if (inputJson.npcCharacterType === "MinorPolity") {
+
+        if (inputJson.specialization === "SonaCommandOfficer") {
+            prompt += pronounPhrase + " an officer of Son'a Command military fleet with the rank of " + inputJson.rank + "." ;
+        } else if (inputJson.specialization === "TalarianWarrior") {
+            prompt += pronounPhrase + " a member of the Talarian military fleet, with the rank of " + inputJson.rank + ".";
+        } else if (inputJson.specialization === "TalarianOfficer") {
+            prompt += pronounPhrase + " an officer of the Talarian military fleet, with the rank of " + inputJson.rank + ".";
+        } else if (inputJson.specialization === "TzenkethiSoldier") {
+            prompt += pronounPhrase + " a soldier in the Tzenkethi military service, with the rank of " + inputJson.rank + ".";
+        } else if (inputJson.specialization === "TholianWarrior") {
+            prompt += pronounPhrase + " a member of the Tholian military service.";
+        }
     }
 
     return prompt + " ";
@@ -142,21 +213,35 @@ function speciesAndGender(inputJson, pronoun) {
     let prompt = "The character's name is " + inputJson.name;
 
     prompt += " and " + (pronoun === "they" ? "they are " : (pronoun + " is ") + "a ");
+    let species = inputJson.species;
+    if (species === "Cybernetically Enhanced") {
+        species += " Human";
+    } else if (species === "Trill" && inputJson.speciesDetails?.length) {
+        if (inputJson.speciesDetails === "Joined") {
+            species = "Joined Trill";
+        } else {
+            species = "Trill (not joined with a symbiont)";
+        }
+    }
+
     if (pronoun === "they") {
-        prompt += "non-binary " + inputJson.species;
+        prompt += "non-binary " + species;
     } else if (pronoun === "she") {
-        prompt += inputJson.species + " woman";
+        prompt += species + " woman";
     } else if (pronoun === "he") {
-        prompt += inputJson.species + " male";
+        prompt += species + " male";
     } else {
-        prompt += inputJson.species;
+        prompt += species;
     }
 
     if (inputJson.species === "Human" && inputJson.nameOrigin != null) {
         prompt += " of " + inputJson.nameOrigin + " descent";
     }
 
-    return prompt + ". ";
+    prompt += ". ";
+    prompt += describeSpecies(inputJson.species);
+
+    return prompt + " ";
 }
 
 async function main(key, inputData) {

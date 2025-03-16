@@ -13,7 +13,64 @@ export class Specialty {
     constructor(focuses: { [id: string]: string[] }) {
         this.focuses = focuses;
     }
+
+    get categories() {
+        return Object.keys(this.focuses);
+    }
+
+    specialties(category: string) {
+        return this.focuses[category];
+    }
 }
+
+
+const SCIENCE_DISCIPLINES = new Specialty({
+    "Botany": [ "Botany", "Flora ", "Biospehre", "Planetary Ecology", "Plant Biology", "Toxins and Poisons",
+        "Edaphology", "Exobotany", "Mycology", "Phytopathology", "Phytochemistry"
+    ],
+    "Geology": [ "Geology", "Vulcanology ", "Mineralology", "Mining Techniques",
+        "Tectonics", "Astrogeology", "Geochronology", "Magnetostratigraphy",
+        "Topography", "Crystallography", "Soil Sciences", "Hydrogeology", "Geophysics",
+        "Metallurgy" ],
+    "Oceanography": [ "Oceanography", "Ocean Chemistry ", "Marine Biology", "Ecosystems", "Hydrology", "Bathymetry",
+        "Marine Physics", "Fluid Dynamics", "Ichthyology", "Cetology", "Paleoceanography",
+        "Marine Geology" ],
+    "Ecology": [ "Ecology", "Teraforming", "Paleoecology", "Aquatic Ecology", "Microbial Ecology",
+        "Evolutionary Ecology" ],
+    "Astronomy": [ "Astronomy", "Astrophysics", "Cosmology", "Spectroscopy", "Photometry", "Heliophysics",
+        "Helioseismology", "Astrometry", "Planetology", "Astrochemistry",
+        "Stellar Cartography" ],
+    "Archaeology": [ "Archaeology", "Historical Archaeology", "Ethnoarchaeology", "Taphonomy", "Physical Archaeology",
+        "Bioarchaeology", "Paleoecology", "Forensic Archaeology", "Settlement Archaeology",
+        "Anthropology"
+    ],
+    "Cybernetics": [ "Cybernetics", "Artificial Intelligence", "Robotics", "Organizational Theory",
+        "Biological / Machine Interfaces", "Nanotechnology", "Bionics", "Computer Science",
+        "Cyberethics"],
+    "Physics": [ "Physics", "Quantum Mechanics", "Thermodynamics", "Electromagnetism", "Optics", "Quantum Physics",
+        "Nuclear Physics", "Astrophysics", "Warp Field Theory", "Gravitational Physics", "Geophysics"
+    ],
+    "Biology": [ "Biology", "Zoology", "Anthrozoology", "Arachnology", "Embryology", "Cetology", "Entomology",
+        "Herpatology", "Ichthyology", "Ornithology", "Taxonomy", "Pathology", "Exobiology"
+    ],
+    "Chemistry" : [ "Chemistry", "Organic Chemistry", "Analytical Chemistry", "Physical Chemistry", "Biochemistry",
+        "Pharmacology", "Agrochemistry", "Astrochemistry", "Environmental Chemistry", "Phytochemistry",
+        "Radiochemistry", "Thermochemistry"
+    ],
+
+    "History": [ "History", "Political History", "Social History", "Economic History", "Diplomatic History",
+        "History of Oppression and Liberation", "Cultural History", "Archival Science",
+        "History of Science and Medicine", "Art History", "Military History"
+    ],
+    "Linguistics": [ "Linguistics", "Literary Linguistics", "Conversation Analysis", "Dialectology",
+        "Historical Linguistics", "Language Acquisition", "Morphology", "Phonetics",
+        "Phonology", "Psycholinguistics", "Semantics", "Sociolinguistics", "Syntax"
+    ],
+    "Sociology": [ "Sociology", "Theoretical Sociology", "Sociology of Religion", "Economics",
+        "Criminology", "Urban Sociology", "Rural Sociology", "Political Sociology",
+        "Industrial Sociology", "Sociology of Law", "Military Engagement and War"]
+
+});
 
 
 export class SpecializationModel {
@@ -23,14 +80,14 @@ export class SpecializationModel {
     name: string;
     primaryAttributes: Attribute[];
     primaryDiscipline: Department;
-    primaryFocuses: string[];
+    primaryFocuses: (string[])|Specialty;
     secondaryFocuses: string[];
     values: string[];
     officerProbability: number;
     species: Species[];
 
     constructor(id: Specialization, type: NpcCharacterType, name: string, primaryAttributes: Attribute[], primaryDiscipline: Department,
-        primaryFocuses: string[], secondaryFocuses: string[], values: string[],
+        primaryFocuses: string[]|Specialty, secondaryFocuses: string[], values: string[],
         officerProbability: number = 0, species: Species[] = []) {
         this.id = id;
         this.type = type;
@@ -346,14 +403,11 @@ export class Specializations {
             new SpecializationModel(Specialization.StarfleetScientist, NpcCharacterType.Starfleet, "Scientist",
                 [Attribute.Reason, Attribute.Insight, Attribute.Control],
                 Department.Science,
-                ["Astrophysics", "Sensors", "Biology", "History", "Sociology", "Library Science", "Xenobiology", "Chemistry", "Terraforming",
-                "Archaeology", "Anthropology", "Geology", "Particle Physics", "Botony", "Fauna", "Hydrology", "Entomology", "Warp Theory",
-                "Cultural Theory", "Sociology", "Economics", "Astronomy", "Stellar Cartography", "Cybernetics", "Metallurgy", "Paleontology",
-                "Tricorder Operation"],
+                SCIENCE_DISCIPLINES,
                 ["Research Publication", "Scientific Journals", "Research Methods", "Specialized Scientific Equipment", "Emergency Procedures",
                 "Isolation Fields", "Gravitational Theory", "Calculus", "Computer Simulation", "Holographic Simulation", "Computer Programming",
                 "Starfleet Science", "Daystrom Institute Research Priorities", "The Works of Gideon Seyetik", "The Works of Sitar",
-                "The Works of Kazanga"],
+                "The Works of Kazanga", "Tricorder Operation", "Sensors"],
                 ["Nobody remembers the one who confirmed someone else's work.",
                 "They'll remember me alongside Einstein, Kazanga, Sitar!",
                 "'They laughed at Columbus, they laughed at Fulton, they laughed at the Wright Brothers. But they also laughed at Bozo the Clown.'",
@@ -973,14 +1027,16 @@ export class Specializations {
             new SpecializationModel(Specialization.Scientist, NpcCharacterType.Civilian, "Scientist",
                 [Attribute.Reason, Attribute.Insight, Attribute.Control],
                 Department.Science,
-                ["Astrophysics", "Sensors", "Biology", "History", "Sociology", "Library Science", "Xenobiology", "Chemistry", "Terraforming",
-                "Archaeology", "Anthropology", "Geology", "Particle Physics", "Botony", "Fauna", "Hydrology", "Entomology", "Warp Theory",
-                "Cultural Theory", "Sociology", "Economics", "Astronomy", "Stellar Cartography", "Cybernetics", "Metallurgy", "Paleontology",
-                "Tricorder Operation"],
+                SCIENCE_DISCIPLINES,
+
+//                ["Astrophysics", "Sensors", "Biology", "History", "Sociology", "Library Science", "Xenobiology", "Chemistry", "Terraforming",
+//                "Archaeology", "Anthropology", "Geology", "Particle Physics", "Botony", "Fauna", "Hydrology", "Entomology", "Warp Theory",
+//                "Cultural Theory", "Sociology", "Economics", "Astronomy", "Stellar Cartography", "Cybernetics", "Metallurgy", "Paleontology",
+//                "Tricorder Operation"],
                 ["Research Publication", "Scientific Journals", "Research Methods", "Specialized Scientific Equipment", "Emergency Procedures",
                 "Isolation Fields", "Gravitational Theory", "Calculus", "Computer Simulation", "Holographic Simulation", "Computer Programming",
                 "University Politics", "Daystrom Institute Research Priorities", "The Works of Gideon Seyetik", "The Works of Sitar",
-                "The Works of Kazanga"],
+                "The Works of Kazanga", "Tricorder Operation", "Sensors"],
                 ["Nobody remembers the one who confirmed someone else's work.",
                 "They'll remember me alongside Einstein, Kazanga, Sitar!",
                 "'They laughed at Columbus, they laughed at Fulton, they laughed at the Wright Brothers. But they also laughed at Bozo the Clown.'",

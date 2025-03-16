@@ -10,7 +10,7 @@ import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
 import { TalentsHelper } from "../../helpers/talents";
 import { NameGenerator } from "../nameGenerator";
 import { NpcType, NpcTypes } from "./npcType";
-import { SpecializationModel, Specializations } from "./specializations";
+import { SpecializationModel, Specializations, Specialty } from "./specializations";
 import { NpcCharacterType } from "./npcCharacterType";
 import { hasAnySource, hasSource } from "../../state/contextFunctions";
 import { Source } from "../../helpers/sources";
@@ -21,7 +21,6 @@ import { Track } from "../../helpers/trackEnum";
 import Governments, { Polity } from "../../helpers/governments";
 import { Era } from "../../helpers/eras";
 import AgeHelper from "../../helpers/age";
-import { localizedFocus } from "../../components/focusHelper";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
 
 const recreationSkills: { [type: number ]: string[] } = {
@@ -504,12 +503,7 @@ export class NpcGenerator {
         NpcGenerator.assignValues(npcType, character, specialization);
         NpcGenerator.assignTalents(npcType, character, species, specialization);
 
-        if (npcType !== NpcType.Minor && includeDescription && [
-                NpcCharacterType.Starfleet, NpcCharacterType.Ferengi, NpcCharacterType.RomulanEmpire,
-                NpcCharacterType.KlingonDefenseForces, NpcCharacterType.Cardassian,
-                NpcCharacterType.Civilian
-            ].includes(specialization.type)) {
-
+        if (npcType !== NpcType.Minor && includeDescription) {
             character.description = await NpcGenerator.generateCharacterDescription(character, specialization, nameOrigin);
         }
 
@@ -529,12 +523,20 @@ export class NpcGenerator {
             rank: character.rank?.name
         };
 
+        if (character.speciesStep.species === Species.Trill) {
+            data["speciesDetails"] = character.hasTalent("Joined") ? "Joined" : "Unjoined";
+        }
+
         if (nameOrigin?.length) {
             data["nameOrigin"] = nameOrigin;
         }
 
         if (specialization.id === Specialization.Child && character.age?.isChild) {
             data["extraDetail"] = character.age.name;
+        }
+
+        if (specialization.primaryFocuses instanceof Specialty && character.npcGenerationStep?.focuses?.length) {
+            data["specialty"] = character.npcGenerationStep.focuses[0];
         }
 
         let textEncoder = new TextEncoder();
@@ -777,6 +779,7 @@ export class NpcGenerator {
         let numberOfFocuses = NpcTypes.numberOfFocuses(npcType);
         let primaryChances = [20, 12, 8, 6, 4, 2];
         let secondaryChances = [17, 15, 11, 9, 6, 3];
+        let specialtyCategory = undefined;
 
         for (let i = 0; i < numberOfFocuses; i++) {
             let done = false;
@@ -785,14 +788,21 @@ export class NpcGenerator {
                     ? careerSkills[specialization.type]
                     : recreationSkills[specialization.type];
                 if (D20.roll() <= primaryChances[i]) {
-                    focuses = specialization.primaryFocuses;
+                    if (specialization.primaryFocuses instanceof Specialty) {
+                        if (specialtyCategory === undefined) {
+                            const categories = (specialization.primaryFocuses as Specialty).categories;
+                            specialtyCategory = categories[Math.floor(Math.random() * categories.length)];
+                        }
+                        focuses = (specialization.primaryFocuses as Specialty).specialties(specialtyCategory);
+                    } else {
+                        focuses = specialization.primaryFocuses;
+                    }
                 } else if (D20.roll() <= secondaryChances[i]) {
                     focuses = specialization.secondaryFocuses;
                 }
 
                 if (focuses?.length) {
                     let focus = focuses[Math.floor(Math.random() * focuses.length)];
-                    focus = localizedFocus(focus);
                     if (character.focuses.indexOf(focus) < 0) {
                         character.npcGenerationStep.focuses.push(focus);
                         done = true;
