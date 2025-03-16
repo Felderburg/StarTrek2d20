@@ -14,13 +14,22 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250316</b>
+            <ul>
+                <li>
+                    Still tweaking the NPC generator.
+                </li>
+                <li>
+                    A few minor bug fixes.
+                </li>
+            </ul>
             <b>v1.250315</b>
             <ul>
                 <li>
                     Some additional tweaks to the NPC generator.
                 </li>
                 <li>
-                    Additional spaceframes.
+                    Additional spaceframe outlines.
                 </li>
             </ul>
             <b>v1.250311</b>
