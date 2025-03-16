@@ -68,6 +68,7 @@ export default class UniformVariantRestrictions {
         switch (uniformEra) {
             case UniformEra.DominionWar:
             case UniformEra.NextGeneration:
+            case UniformEra.VoyagerDS9:
                 return [
                     Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
                     Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,
@@ -82,7 +83,6 @@ export default class UniformVariantRestrictions {
                     Rank.ViceAdmiral, Rank.RearAdmiral
                 ].indexOf(rankIndicator) >= 0;
 
-            case UniformEra.VoyagerDS9:
             case UniformEra.LowerDecks:
                 return [
                     Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,

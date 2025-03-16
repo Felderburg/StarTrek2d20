@@ -117,6 +117,7 @@ export abstract class BaseNeckProvider {
             || uniformEra === UniformEra.DominionWar
             || uniformEra === UniformEra.Maco
             || uniformEra === UniformEra.NextGeneration
+            || uniformEra === UniformEra.VoyagerDS9
             || uniformEra === UniformEra.LowerDecks
             || uniformEra === UniformEra.StarTrekOnline
             || uniformEra === UniformEra.Klingon

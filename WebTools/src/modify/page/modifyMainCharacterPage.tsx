@@ -70,7 +70,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                     <DropDownSelect items={dropDownItems()} onChange={(v) => setModificationType(v)} defaultValue={modificationType} />
                 </div>
 
-                {modificationType === ModificationType.Milestone
+                {modificationType === ModificationType.CharacterAdvancement
                     ? (<div className="mt-4">
                         <DropDownSelect items={milestoneTypesDropDownItems()} onChange={(v) => setMilestoneType(v as CharacterAdvancementType)} defaultValue={milestoneType} />
                     </div>)

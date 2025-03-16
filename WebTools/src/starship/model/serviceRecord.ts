@@ -24,6 +24,13 @@ export enum ServiceRecord {
     Loyalist,
     Terror,
 
+    // Technical Manual
+    AnomalyMagnet,
+    BroughtOutOfMothballs,
+    LongTermMission,
+    MajorRefit,
+    StateOfTheArt,
+
 
 }
 

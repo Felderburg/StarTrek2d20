@@ -208,7 +208,7 @@ const typeSpecificGeneralValues: { [type : number ]: (string|Value)[]} = {
         "It would have been glorious."
     ],
     [ NpcCharacterType.RomulanEmpire ] : [
-        "We have to prioritize the good of the Empire",
+        new Value("We have to prioritize the good of the Empire", "patriotic to a fault"),
         new Value("Secrecy is Strength", "secretive"),
         "Vigilance is Virtue",
         new Value("Ambition Knows No Bounds", "ambitious"),
@@ -228,19 +228,19 @@ const typeSpecificGeneralValues: { [type : number ]: (string|Value)[]} = {
         "Strength Through Unity",
         "Information is Power",
         "Adaptation is Survival",
-        "Discipline Breeds Excellence",
+        new Value("Discipline Breeds Excellence", "disciplines"),
         "Sacrifice for the Greater Good",
         "Loyalty Commands Respect",
-        "Patriotism as Virtue",
+        new Value("Patriotism as Virtue", "patriotic"),
         "Legacy Endures Through Contribution",
-        "Hierarchy is Inviolate",
+        new Value("Hierarchy is Inviolate", "hierarchical"),
         "Education is the Key to Progress",
         "Security Breeds Prosperity",
-        "Faith in the Central Command",
+        new Value("Faith in the Central Command", "trusts the system"),
         "Cultural Preservation is Paramount",
         new Value("Pragmatism Over Idealism", "pragmatic"),
         "Artistic Expression in Service of the State",
-        "Resilience in the Face of Adversity",
+        new Value("Resilience in the Face of Adversity", "strong-willed"),
         "The State Knows Best",
         "Atonement Through Service"
     ]
@@ -250,23 +250,23 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
     [ Species.Vulcan ] : [
         "Logic is the beginning of wisdom",
         "One can start with irrational premises and still use logical processes",
-        "There are always possibilities",
+        new Value("There are always possibilities", "optimistic"),
         "Greater precision can't hurt",
-        "You must control your passions; they will be your undoing",
-        "May we together become greater than the sum of both of us",
+        new Value("You must control your passions; they will be your undoing", "self-controlled"),
+        new Value("May we together become greater than the sum of both of us", "values people's differences"),
         "Vulcans believe that peace should not depend on force.",
-        "I wish to spend this time in contemplative meditation.",
+        new Value("I wish to spend this time in contemplative meditation.", "meditative"),
         "Music has fascinating mathematical properties",
         "Fascinating",
         "Live long and prosper",
         "When your logic doesn't work, you raise your voice? You've been on Earth too long.",
-        "Your presence here has not been... overly meddlesome."
+        new Value("Your presence here has not been... overly meddlesome.", "reluctantly admiring")
     ],
     [ Species.Andorian ] : [
         "My blood flows with ice like my Andorian ancestors!",
         "My people are a very violent people",
         "The Vulcans say that the desert teaches one the meaning of endurance, but it's the ice that forges real strength",
-        "The honour of my clan demands it!",
+        new Value("The honour of my clan demands it!", "vengeful"),
         "I'll take your blood to Andoria... to the Wall of Heroes!",
         "I come from one of the great clans of Andoria!",
         "My grandmother in her dotage was a greater warrior than you!",
@@ -274,9 +274,9 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
     ],
     [ Species.Human ] : [
         "An injustice to one is an injustice to all!",
-        "You only live once!",
+        new Value("You only live once!", "risk-taker"),
         "Live fast and die hard!",
-        "Life of the party!",
+        new Value("Life of the party!", "partier"),
         "Humanity has had its ugly chapters. We try to learn, to make amends, and to grow.",
         "To strive, to seek, to find, and not to yield.",
         "To err is human...",
@@ -285,13 +285,13 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
     ],
     [ Species.Tellarite ] : [
         "If it cannot stand up to scrutiny, it should be torn down",
-        "Enough with the flowery words; say what you really mean!",
+        new Value("Enough with the flowery words; say what you really mean!", "plain-spoken"),
         "Speak plainly!",
-        "We're not a patient people.",
+        new Value("We're not a patient people.", "impatient"),
         "I'm told this ship is the pride of Starfleet. I find it small and unimpressive.",
         "Let's consider all sides of this argument",
         "I listened to your point of view, now you should listen to mine!",
-        "You're being seduced by wishful thinking! Practicality, not hope, is what we need!"
+        new Value("You're being seduced by wishful thinking! Practicality, not hope, is what we need!", "pragmatic")
     ],
     [ Species.Bajoran ] : [
         "Walk with the Prophets",
@@ -359,8 +359,8 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
     [ Species.Bolian ] : [
         "Cleanliness is next to godliness",
         "Unity through diversity",
-        "Honesty is the best policy",
-        "Family comes first",
+        new Value("Honesty is the best policy", "honest"),
+        new Value("Family comes first", "family-oriented"),
         "A sound mind in a sound body",
         "Respect for authority",
         "Service to others",
@@ -393,10 +393,10 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
         "Free advice is seldom cheap."
     ],
     [Species.Romulan] : [
-        "I Will Not Fail in My Duty to the Empire",
+        new Value("I Will Not Fail in My Duty to the Empire", "dutiful"),
         "The Ends Justify the Means",
-        "Everything I Do, I Do for Romulus",
-        "My people have a reputation for arrogance. I'm afraid it's well-earned."
+        new Value("Everything I Do, I Do for Romulus", "patriotic"),
+        new Value("My people have a reputation for arrogance. I'm afraid it's well-earned.", "arrogant")
     ],
     [Species.Reman] : [
         "You think darkness is your ally? You merely adopted the dark. I was born in it, molded by it.",

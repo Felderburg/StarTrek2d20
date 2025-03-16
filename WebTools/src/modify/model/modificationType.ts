@@ -3,7 +3,7 @@ import { makeKey } from "../../common/translationKey";
 
 export enum ModificationType {
     Reputation,
-    Milestone,
+    CharacterAdvancement,
     Promotion
 }
 
@@ -27,7 +27,7 @@ class Modifications {
 
     private items: ModificationModel[] = [
         new ModificationModel(ModificationType.Reputation, "Reputation"),
-        new ModificationModel(ModificationType.Milestone, "Milestone"),
+        new ModificationModel(ModificationType.CharacterAdvancement, "Character Advancement"),
         new ModificationModel(ModificationType.Promotion, "Promotion"),
     ];
 
