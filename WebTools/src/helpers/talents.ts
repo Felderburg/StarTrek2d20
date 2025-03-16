@@ -3432,7 +3432,7 @@ export class Talents {
             new TalentModel(
                 "Improved Warp Drive",
                 "The ship’s warp drive is more efficient, capitalizing on improved field dynamics, better control of antimatter flow rates, or some other advancement that allows the ship to expend less energy when travelling at warp. Whenever the ship spends power to go to warp, roll 1 for each Power spent; for each Effect rolled, that point of Power is not spent.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog)],
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
                 "Starship"),
             new TalentModel(
@@ -3462,7 +3462,7 @@ export class Talents {
             new TalentModel(
                 "Rugged Design",
                 "The ship is designed with the frontier in mind, with a durable construction and easy access to critical systems that allow repairs to be made easily. Reduce the Difficulty of all Tasks to repair the ship by 1, to a minimum of 1.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog)],
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3652,7 +3652,7 @@ export class Talents {
             new TalentModel(
                 "Dedicated Subspace Transceiver Array",
                 "A starship with this talent has a section of its hull that slides away where a long, tether-like subspace transceiver array can be deployed to enhance the vessel’s communication range and clarity, even at warp. Any tasks involving sending, receiving, or intercepting subspace or standard EM communications have their Difficulty reduced by 1.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog)],
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
