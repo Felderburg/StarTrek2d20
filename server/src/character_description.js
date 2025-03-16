@@ -37,7 +37,7 @@ function describeSpecies(species) {
     } else if (species === "Talarian") {
         return "The Talarians are human-like aliens, notable for a distinctive hairless enlargement of the coronal area of the skull extending in two lobes to the back of the head. ";
     } else if (species === "Tholian") {
-        return "The Tholians are a crystalline species, with hard carapace's that are chiefly mineral. They have six thin legs that allow them to move very quickly. ";
+        return "The Tholians are a crystalline species, with hard, carapaces that are made of flame/orange-hued mineral/crystal. They have six legs that allow them to move very quickly. ";
     } else if (species === "Tzenkethi") {
         return "The Tzenkethi have hulking reptile-like anatomy with a large pair of arms extending from their shoulders and a smaller pair of arms used for finer manipulation. Their skin color ranges from purple to scarlet to emerald green. ";
     } else {
@@ -51,11 +51,9 @@ function describeSpecialization(inputJson, pronoun) {
     pronoun = pronoun.substring(0, 1).toLocaleUpperCase() + pronoun.substring(1);
     let pronounPhrase = pronoun + " is ";
     let serves = " serves ";
-    let works = " works ";
     if (pronoun === "They") {
         pronounPhrase = "They are "
         serves = " serve ";
-        works = " work ";
     }
 
     if (inputJson.npcCharacterType === "Starfleet") {
@@ -216,13 +214,17 @@ function speciesAndGender(inputJson, pronoun) {
 
     prompt += " and " + (pronoun === "they" ? "they are " : (pronoun + " is ") + "a ");
     let species = inputJson.species;
-    if (species === "Cybernetically Enhanced") {
-        species += " Human";
-    } else if (species === "Trill" && inputJson.speciesDetails?.length) {
+    if (species === "Trill" && inputJson.speciesDetails?.length) {
         if (inputJson.speciesDetails === "Joined") {
             species = "Joined Trill";
         } else {
             species = "Trill (not joined with a symbiont)";
+        }
+    } else if (species === "Cybernetically Enhanced") {
+        if (inputJson.originalSpecies) {
+            species += " " + inputJson.originalSpecies;
+        } else {
+            species += " Human";
         }
     }
 
@@ -242,6 +244,9 @@ function speciesAndGender(inputJson, pronoun) {
 
     prompt += ". ";
     prompt += describeSpecies(inputJson.species);
+    if (inputJson.originalSpecies) {
+        prompt += describeSpecies(inputJson.originalSpecies);
+    }
 
     return prompt + " ";
 }
@@ -252,7 +257,8 @@ async function main(key, inputData) {
     });
 
     let inputJson = JSON.parse(inputData);
-    let prompt = "Give me two paragraphs describing an original character in the Star Trek universe. ";
+    let prompt = "Give me " + (inputJson.npcType === "Major" ? "three" : "two")
+        + " paragraphs describing an original character in the Star Trek universe. ";
     let subjectPronoun = inputJson.pronouns;
     if (subjectPronoun != null && subjectPronoun.indexOf('/') >= 0) {
         subjectPronoun = subjectPronoun.substring(0, subjectPronoun.indexOf('/'));
@@ -269,6 +275,11 @@ async function main(key, inputData) {
     prompt += speciesAndGender(inputJson, subjectPronoun);
     prompt += describeSpecialization(inputJson, subjectPronoun);
 
+    if (inputJson.aspects?.length) {
+        prompt += "Here are some phrases that additionally describe the character: "
+            + inputJson.aspects.map(s => "\"" + s + "\"").join(", ");
+        prompt += " ";
+    }
     prompt += "Include a description and personality.  Also include other interesting aspects of " + possessivePronoun + " character. ";
     prompt += "Use the metric system for any measurements, including character heights. "
 
@@ -298,10 +309,7 @@ async function main(key, inputData) {
     process.stdout.write(JSON.stringify(json));
 }
 
-let inputData = "";
-process.stdin.on("data", data => {
-    inputData = data.toString();
-});
+let inputData = fs.readFileSync(0, "utf-8");
 
 const key = getApiKey();
 if (key == null || inputData == null || inputData.length == 0) {

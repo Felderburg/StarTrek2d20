@@ -103,7 +103,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         const pdfBytes = await fetch('/static/pdf/STA_2e_Landscape_Sheet_blank.pdf').then(res => res.arrayBuffer())
         const blankPdf = await PDFDocument.load(pdfBytes)
 
-        const [ secondPage ] = await blankPdf.copyPages(blankPdf, [0]);
+        const [ secondPage ] = await pdf.copyPages(blankPdf, [0]);
 
         const page = pdf.getPage(0);
 

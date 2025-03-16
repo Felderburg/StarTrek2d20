@@ -2,13 +2,13 @@ import { t } from "i18next";
 import { navigateTo } from "../common/navigator";
 import { makeKey } from "../common/translationKey";
 import { PageIdentity } from "../pages/pageIdentity";
-import { MilestoneType } from "./model/milestoneType";
+import { CharacterAdvancementType } from "./model/characterAdvancementType";
 import { NavigateFunction, useNavigate } from "react-router";
 import { ModificationType } from "./model/modificationType";
 
 export interface IModifyBreadcrumbProperties {
   modificationType?: ModificationType;
-  milestoneType?: MilestoneType;
+  milestoneType?: CharacterAdvancementType;
   isComplete?: boolean;
 }
 
@@ -31,7 +31,7 @@ export const ModifyBreadcrumb = (props: IModifyBreadcrumbProperties) => {
 
   if (isComplete) activePageTitle = "modificationComplete";
   // It's a numeric enum, we can't do the regular falsy here with a 0.
-  else if (milestoneType > -1) activePageTitle = MilestoneType[milestoneType];
+  else if (milestoneType > -1) activePageTitle = CharacterAdvancementType[milestoneType];
   else {
     switch (modificationType) {
       case ModificationType.Promotion:

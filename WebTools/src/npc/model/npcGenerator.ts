@@ -10,7 +10,7 @@ import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
 import { TalentsHelper } from "../../helpers/talents";
 import { NameGenerator } from "../nameGenerator";
 import { NpcType, NpcTypes } from "./npcType";
-import { SpecializationModel, Specializations, Specialty } from "./specializations";
+import { SpecializationModel, Specializations, Specialty, Value } from "./specializations";
 import { NpcCharacterType } from "./npcCharacterType";
 import { hasAnySource, hasSource } from "../../state/contextFunctions";
 import { Source } from "../../helpers/sources";
@@ -22,6 +22,7 @@ import Governments, { Polity } from "../../helpers/governments";
 import { Era } from "../../helpers/eras";
 import AgeHelper from "../../helpers/age";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
+import { CharacterSerializer } from "../../common/characterSerializer";
 
 const recreationSkills: { [type: number ]: string[] } = {
 
@@ -173,50 +174,50 @@ const typeSpecificValues: { [type : number ]: string[]} = {
     ]
 }
 
-const typeSpecificGeneralValues: { [type : number ]: string[]} = {
+const typeSpecificGeneralValues: { [type : number ]: (string|Value)[]} = {
     [ NpcCharacterType.Starfleet ] : [
         "Mentally, I'm already on leave to Risa!",
         "I have a special someone back home.",
-        "Looking for love in all the wrong places",
+        new Value("Looking for love in all the wrong places", "hopeless romantic"),
         "I can't wait to get back to my holonovel",
         "That which does not kill me makes me stranger!",
         "I'm not doing the non-corporeal body-stealing alien thing again!",
-        "My word is my bond",
-        "Show-off",
-        "Braggart",
+        new Value("My word is my bond", "trustworthy"),
+        new Value("Show-off", "show-off"),
+        new Value("Braggart", "braggart"),
         "Teller of Tall-Tales",
-        "A Vulcan, a Romulan, and a Klingon walk into a bar...",
-        "Exceptionally dedicated",
+        new Value("A Vulcan, a Romulan, and a Klingon walk into a bar...", "jokester"),
+        new Value("Exceptionally dedicated", "exceptionally dedicated"),
         "Everyone deserves a shot at a second chance",
         "Violence is the last refuge of the incompetent."
     ],
     [ NpcCharacterType.KlingonDefenseForces ] : [
-        "Overflowing with bravado",
-        "Blowhard",
-        "I don't need to be sober to defeat you.",
+        new Value("Overflowing with bravado", "braggart"),
+        new Value("Blowhard", "blowhard"),
+        new Value("I don't need to be sober to defeat you.", "drunkard"),
         "Test me and you'll taste my d'k tahg",
         "Victory is life",
         "The enemy of my enemy is my friend",
         "The enemy of my enemy is my friend. For now.",
         "Great deeds require great risks",
-        "Duty and loyalty are sacred",
+        new Value("Duty and loyalty are sacred", "loyal and dutious"),
         "They will sing songs of glory for my accomplishments",
-        "I'm tired of all this peace. A warrior needs a good war every now and then.",
+        new Value("I'm tired of all this peace. A warrior needs a good war every now and then.", "itching for battle"),
         "Always it is the brave ones who die. The soldiers.",
         "Today we conquer! Oh, if someday we are defeated... well... war has its fortunes. Good and bad.",
         "It would have been glorious."
     ],
     [ NpcCharacterType.RomulanEmpire ] : [
         "We have to prioritize the good of the Empire",
-        "Secrecy is Strength",
+        new Value("Secrecy is Strength", "secretive"),
         "Vigilance is Virtue",
-        "Ambition Knows No Bounds",
+        new Value("Ambition Knows No Bounds", "ambitious"),
         "Unity in Deception",
         "Adapt or Be Conquered",
         "Strength in Isolation",
         "The Ends Justify the Means",
         "Intrigue is the Spice of Life",
-        "Patience in Pursuit",
+        new Value("Patience in Pursuit", "patient"),
         "Honor in Victory, Disgrace in Defeat"
     ],
     [ NpcCharacterType.Ferengi ] : [
@@ -237,7 +238,7 @@ const typeSpecificGeneralValues: { [type : number ]: string[]} = {
         "Security Breeds Prosperity",
         "Faith in the Central Command",
         "Cultural Preservation is Paramount",
-        "Pragmatism Over Idealism",
+        new Value("Pragmatism Over Idealism", "pragmatic"),
         "Artistic Expression in Service of the State",
         "Resilience in the Face of Adversity",
         "The State Knows Best",
@@ -245,7 +246,7 @@ const typeSpecificGeneralValues: { [type : number ]: string[]} = {
     ]
 }
 
-const speciesSpecificValues: { [species : number ]: string[]} = {
+const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
     [ Species.Vulcan ] : [
         "Logic is the beginning of wisdom",
         "One can start with irrational premises and still use logical processes",
@@ -327,33 +328,33 @@ const speciesSpecificValues: { [species : number ]: string[]} = {
     ],
     [ Species.Betazoid ] : [
         "To know oneself is to know others",
-        "Honesty is the highest form of respect",
+        new Value("Honesty is the highest form of respect", "values honesty"),
         "Thoughts have power",
         "Peace begins within",
-        "All life is precious",
-        "Compassion is the highest form of wisdom",
+        new Value("All life is precious", "values life"),
+        new Value("Compassion is the highest form of wisdom", "compassionate"),
         "We are all one",
         "Seek to understand before seeking to be understood",
-        "The heart is the truest compass"
+        new Value("The heart is the truest compass", "follows the heart")
     ],
     [ Species.Klingon ] : [
-        "My family carries a great shame; it is my burden to redeem them",
+        new Value("My family carries a great shame; it is my burden to redeem them", "seeking redemption"),
         "Back-stabbing is for cowards. I will stab you in the chest, while you watch!",
         "Glory to you. And to your House.",
-        "Honor is more important than life itself",
+        new Value("Honor is more important than life itself", "honorable"),
         "The strong survive and the weak perish",
-        "Death is not to be feared, but embraced",
+        new Value("Death is not to be feared, but embraced", "unafraid of death"),
         "The path to enlightenment is through struggle",
         "Revenge is a dish best served cold",
         "Respect is earned, not given",
-        "Family is everything",
-        "A Klingon's word is their bond",
+        new Value("Family is everything", "family-oriented"),
+        new Value("A Klingon's word is their bond", "promise-keeper"),
         "My targ is my trusty companion, but I will kill it if it bites me.",
         "Wisdom comes from experience",
         "Suffering is a test of character",
         "Klingons do not procrastinate",
         "What is that furry thing, and why does it make that noise? Get it away from me.",
-        "I don't trust people who smile too much."
+        new Value("I don't trust people who smile too much.", "suspicious")
     ],
     [ Species.Bolian ] : [
         "Cleanliness is next to godliness",
@@ -363,7 +364,7 @@ const speciesSpecificValues: { [species : number ]: string[]} = {
         "A sound mind in a sound body",
         "Respect for authority",
         "Service to others",
-        "Hard work pays off",
+        new Value("Hard work pays off", "hard-working"),
         "Peace through negotiation",
         "A well-rounded education is a boon",
         "It's not just warp cores, any engine makes for a cheerful baby"
@@ -482,6 +483,7 @@ export class NpcGenerator {
             disciplines.splice(disciplines.indexOf(a), 1);
         }
 
+        let aspects = [];
         let careers = [Career.Young, Career.Young, Career.Young, Career.Young, Career.Young, Career.Young, Career.Young,
             Career.Experienced, Career.Experienced, Career.Experienced, Career.Experienced, Career.Experienced, Career.Experienced,
             Career.Experienced, Career.Veteran, Career.Veteran];
@@ -496,32 +498,56 @@ export class NpcGenerator {
         character.careerStep = new CareerStep(careers[Math.floor(Math.random() * careers.length)]);
         character.npcGenerationStep.enlisted = (Math.random() < specialization.officerProbability) ? false : true;
 
+        if (specialization.id !== Specialization.Child) {
+            switch (character.careerStep.career) {
+                case Career.Young:
+                    aspects.push("youthful");
+                    break;
+                case Career.Veteran:
+                    aspects.push("long-serving and older")
+                    break;
+                default:
+            }
+        }
+
         if (!character.isCivilian()) {
             NpcGenerator.assignRank(character, specialization);
         }
         NpcGenerator.assignFocuses(npcType, character, specialization);
-        NpcGenerator.assignValues(npcType, character, specialization);
+        aspects.push(...NpcGenerator.assignValues(npcType, character, specialization));
         NpcGenerator.assignTalents(npcType, character, species, specialization);
 
         if (npcType !== NpcType.Minor && includeDescription) {
-            character.description = await NpcGenerator.generateCharacterDescription(character, specialization, nameOrigin);
+            character.description = await NpcGenerator.generateCharacterDescription(character, specialization, nameOrigin, aspects);
         }
 
         return character;
     }
 
-    private static async generateCharacterDescription(character: Character, specialization: SpecializationModel, nameOrigin: string) {
+    private static async generateCharacterDescription(character: Character,
+        specialization: SpecializationModel, nameOrigin: string, aspects: string[]) {
 
         let species = SpeciesHelper.getSpeciesByType(character.speciesStep.species);
+        let speciesName = species.name;
 
         let data = {
             name: character.name,
-            species: species.name,
+            species: speciesName,
             specialization: Specialization[specialization.id],
             pronouns: character.pronouns,
             npcCharacterType: NpcCharacterType[specialization.type],
-            rank: character.rank?.name
+            rank: character.rank?.name,
+            npcType: NpcType[character.npcGenerationStep?.type],
+            aspects: aspects
         };
+
+        if (species.id === Species.CyberneticallyEnhanced) {
+            let original = SpeciesHelper.getSpeciesByType(character.speciesStep.originalSpecies)?.name;
+
+            if (original != null) {
+                data["originalSpecies"] = original;
+            }
+        }
 
         if (character.speciesStep.species === Species.Trill) {
             data["speciesDetails"] = character.hasTalent("Joined") ? "Joined" : "Unjoined";
@@ -760,18 +786,28 @@ export class NpcGenerator {
             ? Species.Klingon
             : character.speciesStep.species)] ?? []);
 
+        let aspects = [];
         for (let i = 0; i < count; i++) {
             let done = false;
             while (!done) {
                 if (valueOptions?.length) {
                     let value = valueOptions[Math.floor(Math.random() * valueOptions.length)];
+                    let aspect = undefined;
+                    if (value instanceof Value) {
+                        value = value.value;
+                        aspect = value.aspect;
+                    }
                     if (character.values.indexOf(value) < 0) {
                         character.addValue(value);
+                        if (aspect !== undefined) {
+                            aspects.push(aspect);
+                        }
                         done = true;
                     }
                 }
             }
         }
+        return aspects;
     }
 
     static assignFocuses(npcType: NpcType, character: Character, specialization: SpecializationModel) {

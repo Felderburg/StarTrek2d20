@@ -19,7 +19,7 @@ import i18next from 'i18next';
 import { Role, RolesHelper } from '../helpers/roles';
 import { BorgImplantType, BorgImplants, Implant } from '../helpers/borgImplant';
 import { Specialization } from './specializationEnum';
-import { MilestoneType } from '../modify/model/milestoneType';
+import { CharacterAdvancementType } from '../modify/model/characterAdvancementType';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from '../helpers/equipment';
 import { Era } from '../helpers/eras';
 import { SpeciesAbility, SpeciesAbilityList } from '../helpers/speciesAbility';
@@ -189,11 +189,11 @@ export class MilestoneAttributeChange {
     added: Attribute;
 }
 
-export class Milestone {
-    readonly type: MilestoneType;
+export class CharacterAdvancement {
+    readonly type: CharacterAdvancementType;
     change?: MilestoneTalentChange|MilestoneFocusChange|MilestoneAttributeChange;
 
-    constructor(type: MilestoneType) {
+    constructor(type: CharacterAdvancementType) {
         this.type = type;
     }
 }
@@ -1013,6 +1013,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
         let result = 0;
         if (this.isKlingon()) {
             result += 1; // Klingon standard-issue armour
+        }
+        if (this.isKlingon() && this.version !== 1) {
+            result += 1; // Brak'lul species ability
         }
         if (this.hasTalent("Chelon Shell")) {
             result += 1;

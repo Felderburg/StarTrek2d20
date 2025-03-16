@@ -23,6 +23,15 @@ export class Specialty {
     }
 }
 
+export class Value {
+    readonly value: string;
+    readonly aspect: string;
+
+    constructor(value: string, aspect: string) {
+        this.value = value;
+        this.aspect = aspect;
+    }
+}
 
 const SCIENCE_DISCIPLINES = new Specialty({
     "Botany": [ "Botany", "Flora ", "Biospehre", "Planetary Ecology", "Plant Biology", "Toxins and Poisons",
@@ -52,7 +61,8 @@ const SCIENCE_DISCIPLINES = new Specialty({
         "Temporal Mechanics"
     ],
     "Biology": [ "Biology", "Zoology", "Anthrozoology", "Arachnology", "Embryology", "Cetology", "Entomology",
-        "Herpatology", "Ichthyology", "Ornithology", "Taxonomy", "Pathology", "Exobiology"
+        "Herpatology", "Ichthyology", "Ornithology", "Taxonomy", "Pathology", "Exobiology",
+        "Virology"
     ],
     "Chemistry" : [ "Chemistry", "Organic Chemistry", "Analytical Chemistry", "Physical Chemistry", "Biochemistry",
         "Pharmacology", "Agrochemistry", "Astrochemistry", "Environmental Chemistry", "Phytochemistry",
@@ -65,7 +75,7 @@ const SCIENCE_DISCIPLINES = new Specialty({
     ],
     "Linguistics": [ "Linguistics", "Literary Linguistics", "Conversation Analysis", "Dialectology",
         "Historical Linguistics", "Language Acquisition", "Morphology", "Phonetics",
-        "Phonology", "Psycholinguistics", "Semantics", "Sociolinguistics", "Syntax"
+        "Phonology", "Psycholinguistics", "Semantics", "Sociolinguistics", "Syntax", "Rhetoric"
     ],
     "Sociology": [ "Sociology", "Theoretical Sociology", "Sociology of Religion", "Economics",
         "Criminology", "Urban Sociology", "Rural Sociology", "Political Sociology",
@@ -83,12 +93,12 @@ export class SpecializationModel {
     primaryDiscipline: Department;
     primaryFocuses: (string[])|Specialty;
     secondaryFocuses: string[];
-    values: string[];
+    values: (string|Value)[];
     officerProbability: number;
     species: Species[];
 
     constructor(id: Specialization, type: NpcCharacterType, name: string, primaryAttributes: Attribute[], primaryDiscipline: Department,
-        primaryFocuses: string[]|Specialty, secondaryFocuses: string[], values: string[],
+        primaryFocuses: string[]|Specialty, secondaryFocuses: string[], values: (string|Value)[],
         officerProbability: number = 0, species: Species[] = []) {
         this.id = id;
         this.type = type;
@@ -133,12 +143,12 @@ export class Specializations {
                 "Current Exploration Priorities", "Recent Treaties", "Sheliak Disputes", "Operational Efficiency", "Tzenkethi Treaties",
                 "Klingon Military Deployments", "Romulan Battle Strategies", "Romulan Coups", "Cardassian Governmental Policy",
                 "The Strategies of Adm. Nogura", "Interstellar Law"],
-                ["You call that a salute?",
-                "You have to see the whole board",
+                [new Value("You call that a salute?", "By-the-book"),
+                new Value("You have to see the whole board", "strategic thinker"),
                 "Sometimes I have to withhold information for tactical reasons",
                 "Nothing is more important than the chain of command",
                 "I gave you an order, officer.",
-                "I've sent a lot of good officers to their deaths",
+                new Value("I've sent a lot of good officers to their deaths", "haunted by past decisions"),
                 "Seeking out new civilizations is the fleet's highest mission",
                 "We are as much an organization of science and exploration as we are of defence",
                 "Do not underestimate our enemy",
@@ -155,9 +165,9 @@ export class Specializations {
                 "Outside-of-the-box Tactics", "Current Border Readiness", "Negotiation", "Military Intelligence",
                 "Current Exploration Priorities", "Recent Treaties", "Operational Efficiency",
                 "Interstellar Law"],
-                ["To seek out new life and new civilizations",
+                [new Value("To seek out new life and new civilizations", "explorer"),
                 "Give me a tall ship and a star to steer her by",
-                "I've sent a lot of good officers to their deaths",
+                new Value("I've sent a lot of good officers to their deaths", "haunted by past decisions"),
                 "Do not underestimate our enemy",
                 "Treat this ship like a lady... and she'll always bring you home.",
                 "People don't enter Starfleet to become commanders, or admirals for that matter. It's the captain's chair that everyone has their eye on.",
@@ -291,11 +301,11 @@ export class Specializations {
                 "Political Analysis", "Coercion", "Charm and Affability", "Foreign Intelligence Agencies", "Survival", "Sniper Training"],
                 ["We have to prioritize the greater good",
                 "We're not breaking the law. Bending it a lot, sure, but not breaking it.",
-                "This job requires a certain... moral flexibility",
+                new Value("This job requires a certain... moral flexibility", "moral flexibility"),
                 "Sometimes the job requires that you go to the person who tried to kill you and say, \"Let's work together.\"",
                 "Sorry. The winds have shifted, my friend. And you're no longer in fashion.",
                 "We leave no one behind",
-                "My contact risked everything to get us this data. I can't abandon them.",
+                new Value("My contact risked everything to get us this data. I can't abandon them.", "loyal"),
                 "If you're blown, you walk away. Doesn't matter if the job isn't done.",
                 "What do you do when an operation goes bad? Not much to do, but smile and try to stay alive.",
                 "Spies go to bars for the same reason people go to libraries: full of information if you know where to ask.",
@@ -304,7 +314,7 @@ export class Specializations {
                 "For a covert operative, there's often a fine line between hunter and hunted. Letting someone hunt you is just another way of finding out more about them.",
                 "The ironic thing about infiltrating a group of criminals is that the only way to successfully be accepted is to actually be helpful.",
                 "There's nothing quite like the feeling that you get in the pit of your stomach when you begin to suspect your intelligence on an operation may have been wrong.",
-                "Officially, I was never here.",
+                new Value("Officially, I was never here.", "behind-the-scenes"),
                 "I'll spare you the 'ends justify the means' speech and you spare me the 'we must do what's right' speech. You and I are not going to see eye to eye on this subject, so I suggest we stop discussing it."],
                 0.6),
             new SpecializationModel(Specialization.Jag, NpcCharacterType.Starfleet, "Judge Advocate General's Office",
@@ -342,16 +352,16 @@ export class Specializations {
                 "Cryogenics", "Cosmetic Disguise", "Medical Biofilters", "Genetics", "Cloning", "Genetic Augmentation",
                 "Degenerative Diseases", "Veterinarian Medicine", "Medical Ethics", "Denobulan Consent Model"],
                 ["Consent of the patient is the bedrock of medicine",
-                "I can't let another member of this crew die!",
+                new Value("I can't let another member of this crew die!", "driven to save lives"),
                 "Sit down and let me finish this examination",
                 "When conventional treatments aren't working, it's time to try the unconventional.",
                 "Because I'm a doctor, and I said so!",
-                "Haunted by a past medical mistake",
+                new Value("Haunted by a past medical mistake", "haunted by past mistakes"),
                 "Medicines cure diseases but only doctors can cure patients.",
                 "Drugs are not always necessary. Belief in recovery always is.",
                 "Wherever the art of Medicine is loved, there is also a love of Humanity.",
                 "Observation, Reason, Understanding, Courage; these make the physician.",
-                "Damn. Where are the calluses we doctors are supposed to grow over our feelings?",
+                new Value("Damn. Where are the calluses we doctors are supposed to grow over our feelings?", "emotionally invested"),
                 "You put your research ahead of your patients' lives. And as far as I'm concerned, that's a violation of our most sacred trust.",
                 "I'm just an old country doctor."],
                 1),
@@ -367,7 +377,7 @@ export class Specializations {
                 "Palliative Care"],
                 ["Yes, it hurts. That's how you know you're still alive.",
                 "Don't make me call the doctor on you.",
-                "You'll take this medication, and you'll like it.",
+                new Value("You'll take this medication, and you'll like it.", "bossy"),
                 "It doesn't matter who the patient is; everyone deserves the best possible treatment.",
                 "Sometimes nurses are the last defence against medical errors.",
                 "It's time you got up on your feet, or you'll never recover properly!",
@@ -413,12 +423,12 @@ export class Specializations {
                 "They'll remember me alongside Einstein, Kazanga, Sitar!",
                 "'They laughed at Columbus, they laughed at Fulton, they laughed at the Wright Brothers. But they also laughed at Bozo the Clown.'",
                 "Isn't the opportunity for greatness worth a little risk?",
-                "Science is measured in decades; slow and steady wins the race.",
-                "Measure twice; cut once.",
+                new Value("Science is measured in decades; slow and steady wins the race.", "patient"),
+                new Value("Measure twice; cut once.", "careful"),
                 "You don't understand! They were going to shut us down!",
                 "What do you mean it's already morning?!? Have I been in the lab all night?",
                 "Everything's an experiment, really.",
-                "My work is at a crucial phase! Can't I deal with that tomorrow?",
+                new Value("My work is at a crucial phase! Can't I deal with that tomorrow?", "focused"),
                 "That's not right! It should be... wait. What was I saying?",
                 "Well, now I know one more way in which this isn't going to work. That's progress.",
                 "It's math. Beautiful, beautiful math.",
@@ -433,7 +443,7 @@ export class Specializations {
                 "Security Weakness Analysis", "Explosives", "Undercover Operations", "Computer Hacking", "Codes and Cyphers", "First Aid",
                 "Survival", "Forensics", "Sniper Training", "Hostage Negotiation", "Stealth Tactics", "Undercover Operations",
                 "Armor and Protective Gear", "Crowd Control"],
-                ["Isn't the end result more important than the rules?",
+                [new Value("Isn't the end result more important than the rules?", "ambivalent about rules"),
                 "My job is to put my body on the line to protect others.",
                 "I come alive when the action's hot!",
                 "I don't want to shoot you, but I'm willing to shoot you.",
@@ -447,7 +457,7 @@ export class Specializations {
                 "Don't start none; won't be none.",
                 "Give me a moment; I can practically see how it all went down.",
                 "Have phaser; will travel.",
-                "By the book. It exists for a good reason.",
+                new Value("By the book. It exists for a good reason.", "by-the-book"),
                 "We should not dismiss the possibility of hostile intent."],
                 0.1),
             new SpecializationModel(Specialization.Admin, NpcCharacterType.Starfleet, "Yeoman",
@@ -474,9 +484,9 @@ export class Specializations {
                     "Today is a good day to die",
                     "Qapla' (Success)",
                     "Hab SoSlI' Quch! (Your mother has a smooth forehead)",
-                    "nuqDaq 'oH tach'e' (Where's the bar?)",
+                    new Value("nuqDaq 'oH tach'e' (Where's the bar?)", "fun-loving partier"),
                     "wo’ batlhvaD (For the honour of the Empire!)",
-                    "The Empire used to choke the quadrant with fear, power, but now?! We've lost our way.",
+                    new Value("The Empire used to choke the quadrant with fear, power, but now?! We've lost our way.", "bitter about current political climate"),
                     "Peace was never an option!"
                 ], 0.6),
             new SpecializationModel(Specialization.KlingonShipCaptain, NpcCharacterType.KlingonDefenseForces, "Klingon Ship Captain",
