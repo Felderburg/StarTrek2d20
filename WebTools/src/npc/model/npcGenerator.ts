@@ -553,7 +553,6 @@ export class NpcGenerator {
 
             if (response.status === 200) {
                 let responseJson = await response.json();
-                console.log(responseJson);
                 return responseJson?.description;
             } else {
                 return undefined;

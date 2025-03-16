@@ -11,6 +11,7 @@ import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import AddWeaponView from "../view/addWeaponView";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { Dialog } from "../../components/dialog";
+import { IconButton } from "../../components/iconButton";
 
 interface IExpandedMunitionsWeaponsSelectionPage {
     starship: Starship;
@@ -25,13 +26,13 @@ class ExpandedMunitionsWeaponsSelectionPage extends React.Component<IExpandedMun
                 <Header>Expanded Munitions</Header>
 
                 <div className="d-flex mb-3 mt-4">
-                    <p className="mr-auto mb-0">
+                    <p className="me-auto mb-0">
                         {this.numberOfWeapons() > 1
                             ? "Your ship has the talent \"Expanded Munitions\" (multiple times). You may select " + this.numberOfWeapons() + " additional starship weapons:"
                             : "Your ship has the talent \"Expanded Munitions\". You may select an additional starship weapon:"}
                         </p>
                     <div className="text-end">
-                        <Button className="btn btn-link mt-0" onClick={() => this.showModal()}><i className="bi bi-plus-circle"></i></Button>
+                        <IconButton className="mt-0" icon="plus-circle" onClick={() => this.showModal()} />
                     </div>
                 </div>
 
@@ -67,7 +68,7 @@ class ExpandedMunitionsWeaponsSelectionPage extends React.Component<IExpandedMun
                     <td className="selection-header">{s.weapon.description}</td>
                     <td><p className="m-0">{s.weapon.dice}</p></td>
                     <td><p className="m-0">{s.weapon.effectsAndQualities}</p></td>
-                    <td className="text-end"><Button className="btn btn-link text-danger" onClick={() => { this.confirmRemove(s) }} ><i className="bi bi-trash"></i></Button></td>
+                    <td className="text-end"><IconButton variant="danger" onClick={() => { this.confirmRemove(s) }} icon="trash" /></td>
                 </tr>))}
             </tbody>);
         }

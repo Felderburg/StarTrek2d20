@@ -16,6 +16,8 @@ function describeSpecies(species) {
 
     if (species === "Denobulan") {
         return "Denobulans are human-like aliens with prominent facial ridges running down either size of the forehead to the cheeks, an enlarged brow ridge under a high receding hairling and a vertical crevice in the center of the forehead. "
+    } else if (species === "Betazoid") {
+        return "Betazoids appear human in almost every way except for their completely black irises. "
     } else if (species === "Bolian") {
         return "Bolians are bald, blue-skinned humanoids, with a bifurcating ridge running vertically along the center of the head and face. Some Bolians have darker blue stripes running from ear to ear across the top and back of the head. "
     } else if (species === "Ferengi") {

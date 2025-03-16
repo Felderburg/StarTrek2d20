@@ -48,7 +48,8 @@ const SCIENCE_DISCIPLINES = new Specialty({
         "Biological / Machine Interfaces", "Nanotechnology", "Bionics", "Computer Science",
         "Cyberethics"],
     "Physics": [ "Physics", "Quantum Mechanics", "Thermodynamics", "Electromagnetism", "Optics", "Quantum Physics",
-        "Nuclear Physics", "Astrophysics", "Warp Field Theory", "Gravitational Physics", "Geophysics"
+        "Nuclear Physics", "Astrophysics", "Warp Field Theory", "Gravitational Physics", "Geophysics",
+        "Temporal Mechanics"
     ],
     "Biology": [ "Biology", "Zoology", "Anthrozoology", "Arachnology", "Embryology", "Cetology", "Entomology",
         "Herpatology", "Ichthyology", "Ornithology", "Taxonomy", "Pathology", "Exobiology"
@@ -405,8 +406,8 @@ export class Specializations {
                 Department.Science,
                 SCIENCE_DISCIPLINES,
                 ["Research Publication", "Scientific Journals", "Research Methods", "Specialized Scientific Equipment", "Emergency Procedures",
-                "Isolation Fields", "Gravitational Theory", "Calculus", "Computer Simulation", "Holographic Simulation", "Computer Programming",
-                "Starfleet Science", "Daystrom Institute Research Priorities", "The Works of Gideon Seyetik", "The Works of Sitar",
+                "Isolation Fields", "Calculus", "Computer Simulation", "Holographic Simulation", "Computer Programming",
+                "Starfleet Science Protocols", "Daystrom Institute Research Priorities", "The Works of Gideon Seyetik", "The Works of Sitar",
                 "The Works of Kazanga", "Tricorder Operation", "Sensors"],
                 ["Nobody remembers the one who confirmed someone else's work.",
                 "They'll remember me alongside Einstein, Kazanga, Sitar!",
@@ -1028,13 +1029,8 @@ export class Specializations {
                 [Attribute.Reason, Attribute.Insight, Attribute.Control],
                 Department.Science,
                 SCIENCE_DISCIPLINES,
-
-//                ["Astrophysics", "Sensors", "Biology", "History", "Sociology", "Library Science", "Xenobiology", "Chemistry", "Terraforming",
-//                "Archaeology", "Anthropology", "Geology", "Particle Physics", "Botony", "Fauna", "Hydrology", "Entomology", "Warp Theory",
-//                "Cultural Theory", "Sociology", "Economics", "Astronomy", "Stellar Cartography", "Cybernetics", "Metallurgy", "Paleontology",
-//                "Tricorder Operation"],
                 ["Research Publication", "Scientific Journals", "Research Methods", "Specialized Scientific Equipment", "Emergency Procedures",
-                "Isolation Fields", "Gravitational Theory", "Calculus", "Computer Simulation", "Holographic Simulation", "Computer Programming",
+                "Isolation Fields", "Calculus", "Computer Simulation", "Holographic Simulation", "Computer Programming",
                 "University Politics", "Daystrom Institute Research Priorities", "The Works of Gideon Seyetik", "The Works of Sitar",
                 "The Works of Kazanga", "Tricorder Operation", "Sensors"],
                 ["Nobody remembers the one who confirmed someone else's work.",
