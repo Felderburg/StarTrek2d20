@@ -14,6 +14,7 @@ import { InjuryType, WeaponQuality, WeaponType } from "../helpers/weapons";
 import { EarlyOutlook } from "../helpers/upbringings";
 import { Stereotype } from "../common/construct";
 import { NpcType } from "../npc/model/npcType";
+import { textTokenizer } from "../exportpdf/textTokenizer";
 
 export class FantasyGroupsVttExporter {
 
@@ -1760,15 +1761,49 @@ export class FantasyGroupsVttExporter {
         }
 
         paragraphs?.split("\n")?.forEach(p => {
-            result.elements.push({
+
+            let tokens = textTokenizer(p);
+            let parents = [{
                 "type": "element",
                 "name": "p",
-                "elements": [
-                    {
-                        "type": "text",
-                        "text": p
+                "elements": []
+            }];
+
+            result.elements.push(parents[0]);
+            tokens.forEach(t => {
+                if (t === "**") {
+                    if (parents.length && parents[parents.length - 1].name === "b") {
+                        parents.pop();
+                    } else {
+                        let parent = parents[parents.length - 1];
+                        let element = {
+                            "type": "element",
+                            "name": "b",
+                            "elements": []
+                        };
+                        parent.elements.push(element);
+                        parents.push(element);
                     }
-                ]
+                } else if (t === "_") {
+                    if (parents.length && parents[parents.length - 1].name === "i") {
+                        parents.pop();
+                    } else {
+                        let parent = parents[parents.length - 1];
+                        let element = {
+                            "type": "element",
+                            "name": "i",
+                            "elements": []
+                        };
+                        parent.elements.push(element);
+                        parents.push(element);
+                    }
+                } else {
+                    let parent = parents[parents.length - 1];
+                    parent.elements.push({
+                        "type": "text",
+                        "text": t
+                    });
+                }
             });
         });
 

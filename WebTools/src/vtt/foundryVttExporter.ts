@@ -17,6 +17,8 @@ import { CareersHelper } from "../helpers/careers";
 import { CharacterTypeModel } from "../common/characterType";
 import { TracksHelper } from "../helpers/tracks";
 import { SpeciesAbility } from "../helpers/speciesAbility";
+import { textTokenizer } from "../exportpdf/textTokenizer";
+import { markupToHtml } from "./markupToHtml";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";
@@ -288,7 +290,7 @@ export class FoundryVttExporter {
             "type": "character",
             "img": "icons/svg/mystery-man.svg",
             "system": {
-                "notes": "",
+                "notes": this.convertCharacterDescription(character),
                 "assignment": character.assignedShip,
                 "attributes": {
                 },
@@ -619,6 +621,21 @@ export class FoundryVttExporter {
         return result;
     }
 
+    convertCharacterDescription(character: Character) {
+        if (character.description?.length) {
+            let paragraphs = character.description.split("\n").filter(s => s?.length);
+            let result = "";
+            paragraphs.forEach(p => {
+                result += "<p>";
+                result += p;
+                result += "</p>";
+            });
+            return result;
+        } else {
+            return "";
+        }
+    }
+
     convertCareerPath(character: Character) {
         let path = CharacterTypeModel.getByType(character.type)?.localizedName ?? "";
         if (character.educationStep) {
@@ -809,6 +826,6 @@ export class FoundryVttExporter {
         }
 
         let prerequisites = (talent instanceof TalentModel) ? talent.requirement : "";
-        return description.split("\n").map(d => "<p>" + d + "</p>") + (prerequisites ? "<p><strong>" + prerequisites + "</strong></p>" : "");
+        return markupToHtml(description) + (prerequisites ? "<p><strong>" + prerequisites + "</strong></p>" : "");
     }
 }
