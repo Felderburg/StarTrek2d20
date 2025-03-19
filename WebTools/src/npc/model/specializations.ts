@@ -903,9 +903,9 @@ export class Specializations {
                 [
                     "Protect our borders",
                     "Our enemies do not respect our space",
-                    "That which is of the outside must be isolated",
-                    "Be correct; we do not tolerate deceit.",
-                    "You are an outsider, and you lie!",
+                    new Value("That which is of the outside must be isolated", "xenophobic"),
+                    new Value("Be correct; we do not tolerate deceit.", "intolerant of lies"),
+                    new Value("You are an outsider, and you lie!", "xenophobic"),
                     "Inaccuracy is betrayal.",
                     "You may go no further than this; if you try, we will stop you.",
                     "You have been told. You will comply.",

@@ -57,6 +57,10 @@ class Marshaller {
             "departments": this.toDepartmentObject(creature.departments)
         };
 
+        if (creature.description?.length) {
+            sheet["description"] = creature.description;
+        }
+
         if (creature.habitat) {
             sheet["habitat"] = Habitat[creature.habitat?.id];
         }
@@ -995,6 +999,10 @@ class Marshaller {
         result.stereotype = Stereotype.Creature;
         if (json.name?.length) {
             result.name = json.name;
+        }
+
+        if (json.description?.length) {
+            result.description = json.description;
         }
 
         if (json.era) {

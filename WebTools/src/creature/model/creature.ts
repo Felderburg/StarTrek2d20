@@ -12,6 +12,7 @@ import { NaturalAttacks, NaturalAttacksHelper } from "./naturalAttacks";
 
 export class Creature extends Construct {
 
+    description?: string;
     habitat?: HabitatModel;
     creatureType?: CreatureTypeModel;
     diet?: DietTypeModel;

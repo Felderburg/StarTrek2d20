@@ -39,6 +39,7 @@ export class FantasyGroupsVttExporter {
                     ]
                 },
                 this.convertAttributes(character),
+                this.convertCharacterDescription(character),
                 this.convertDisciplines(character),
                 {
                     "name": "focuses",
@@ -414,6 +415,35 @@ export class FantasyGroupsVttExporter {
         };
 
         return convert.js2xml(result, { spaces: 2 });
+    }
+
+    convertCharacterDescription(character: Character) {
+        if (character.description?.length) {
+            let paragraphs = character.description
+                .split("\n")
+                .filter(s => s?.length)
+                .map(s => {
+                    return {
+                        "name": "p",
+                        "type": "element",
+                        "elements": [{
+                            "type":"text",
+                            "text": s
+                        }]
+                    };
+                });
+        return {
+                "name": "description",
+                "type": "element",
+                "attributes": {
+                    "type": "formattedtext"
+                },
+                "elements": paragraphs
+
+            };
+        } else {
+            return undefined;
+        }
     }
 
     convertUpbringingLink(character: Character) {
