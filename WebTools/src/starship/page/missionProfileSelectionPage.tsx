@@ -46,7 +46,7 @@ const MissionProfileSelectionPage: React.FC<IMissionProfileSelectionPageProperti
             starship={starship}
             onSelection={(profile) => onSelectProfile(profile)} />
         <div className="text-end mt-4">
-            <Button onClick={() => nextPage()}>Next</Button>
+            <Button size="sm" onClick={() => nextPage()}>{t('Common.button.next')}</Button>
         </div>
     </div>);
 

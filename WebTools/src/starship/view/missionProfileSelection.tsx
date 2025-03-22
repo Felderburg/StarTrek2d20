@@ -5,6 +5,7 @@ import { CheckBox } from '../../components/checkBox';
 import { Department } from '../../helpers/department';
 import { MissionProfileHelper, MissionProfileModel } from '../../helpers/missionProfiles';
 import { withTranslation, WithTranslation } from 'react-i18next';
+import { StatView } from '../../components/StatView';
 
 interface IMissionProfileSelectionProperties extends WithTranslation {
     initialSelection?: MissionProfileModel;
@@ -31,29 +32,33 @@ class MissionProfileSelection extends React.Component<IMissionProfileSelectionPr
             return (
                 <tbody key={i}>
                     <tr>
-                        <td className="" rowSpan={2}><div className="selection-header">{m.localizedName}</div> {notes}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.department.command')}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{m.departments[Department.Command]}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.department.security')}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{m.departments[Department.Security]}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.department.science')}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{m.departments[Department.Science]}</td>
-                        <td className="d=none d-md-table-cell" style={{ verticalAlign: "top", paddingLeft: "0.75rem" }} rowSpan={2}><div style={{minHeight: "80px" }}>{talents}</div></td>
-                        <td rowSpan={2}>
+                        <td className=""><div className="selection-header">{m.localizedName}</div> {notes}</td>
+                        <td className="d-none d-md-table-cell">
+                            <div className="row row-cols-1 row-cols-lg-3" style={{maxWidth: "32rem"}}>
+                                <StatView name={t('Construct.department.command')} value={m.departments[Department.Command]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.department.security')} value={m.departments[Department.Security]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.department.science')} value={m.departments[Department.Science]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.department.conn')} value={m.departments[Department.Conn]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.department.engineering')} value={m.departments[Department.Engineering]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.department.medicine')} value={m.departments[Department.Medicine]}
+                                    className="col mb-1" showZero={true} />
+                            </div>
+                        </td>
+                        <td className="d-none d-md-table-cell" style={{ verticalAlign: "top", paddingLeft: "0.75rem" }}>
+                            <div style={{minHeight: "5rem" }}>{talents}</div>
+                        </td>
+                        <td>
                             <CheckBox
                                 isChecked={this.props.initialSelection != null && this.props.initialSelection.id === m.id}
                                 text=""
                                 value={m.id}
                                 onChanged={() => { this.props.onSelection(m); } }/>
                         </td>
-                    </tr>
-                    <tr>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.department.conn')}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{m.departments[Department.Conn]}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.department.engineering')}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{m.departments[Department.Engineering]}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.department.medicine')}</td>
-                        <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{m.departments[Department.Medicine]}</td>
                     </tr>
                 </tbody>
             );
@@ -65,8 +70,8 @@ class MissionProfileSelection extends React.Component<IMissionProfileSelectionPr
                     <thead>
                         <tr>
                             <th></th>
-                            <th className="d=none d-md-table-cell" style={{ textAlign: "left"}} colSpan={6}>{t('Construct.other.departments')}</th>
-                            <th className="d=none d-md-table-cell" style={{ textAlign: "left",  paddingLeft: "0.75rem"}}>Talent options</th>
+                            <th className="d-none d-md-table-cell">{t('Construct.other.departments')}</th>
+                            <th className="d-none d-md-table-cell" style={{ paddingLeft: "0.75rem"}}>Talent options</th>
                             <th></th>
                         </tr>
                     </thead>
