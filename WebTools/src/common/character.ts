@@ -1006,15 +1006,15 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get resistance() {
-        return this.calculateResistance();
+        return this.calculateProtection();
     }
 
-    calculateResistance() {
+    private calculateProtection() {
         let result = 0;
-        if (this.isKlingon()) {
+        if (this.isKlingonWarrior()) {
             result += 1; // Klingon standard-issue armour
         }
-        if (this.isKlingon() && this.version !== 1) {
+        if (this.speciesStep?.species === Species.Klingon && this.version !== 1) {
             result += 1; // Brak'lul species ability
         }
         if (this.hasTalent("Chelon Shell")) {
@@ -1261,7 +1261,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return this.type === CharacterType.AmbassadorDiplomat || this.type === CharacterType.Civilian || this.type === CharacterType.Child;
     }
 
-    isKlingon() {
+    isKlingonWarrior() {
         return this.type === CharacterType.KlingonWarrior ||
             (this.type === CharacterType.AlliedMilitary &&
                 (this.typeDetails as AlliedMilitaryDetails)?.alliedMilitary.type === AlliedMilitaryType.KlingonDefenceForce);
@@ -1278,7 +1278,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get isKlingonImperialCitizen() {
-        return this.isKlingon() ||
+        return this.isKlingonWarrior() ||
                 (this.type === CharacterType.AmbassadorDiplomat && this.typeDetails?.type === Polity.Klingon);
     }
 

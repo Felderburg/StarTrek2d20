@@ -105,7 +105,7 @@ export class ServiceYearPrerequisite implements IConstructPrerequisite<Starship>
 export class KlingonPrerequisite implements IConstructPrerequisite<Character> {
 
     isPrerequisiteFulfilled(character: Character) {
-        return character.isKlingon();
+        return character.isKlingonWarrior();
     }
     describe(): string {
         return "";

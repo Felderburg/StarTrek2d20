@@ -7,7 +7,7 @@ import { NpcType, NpcTypes } from "../../npc/model/npcType";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { Creature } from "./creature";
 import { creatureNameGenerator } from "./creatureNameGenerator";
-import { CreatureSize, CreatureSizeHelper, generateRandomCreatureSize } from "./creatureSize";
+import { CreatureSize, CreatureSizeHelper, CreatureSizeModel, generateRandomCreatureSize } from "./creatureSize";
 import { generateRandomBasicCreatureTalent, generateRandomCreatureDietTalent, generateRandomCreatureTypeTalent } from "./creatureTalents";
 import { createRandomCreatureType, CreatureType, CreatureTypeHelper, habitatsByCreatureType } from "./creatureType";
 import { createRandomDiet, DietType, DietTypeHelper } from "./diet";
@@ -15,7 +15,7 @@ import { createRandomHabitat, Habitat, HabitatHelper } from "./habitat";
 import { generateRandomLocomotionType } from "./locomotion";
 import { generateRandomNaturalAttacks } from "./naturalAttacks";
 
-export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: CreatureType) => {
+export const CreatureGenerator = async (era: Era, habitat?: Habitat, creatureType?: CreatureType) => {
     const result = new Creature();
     result.version = isSecondEdition() ? 2 : 1;
     result.era = era;
@@ -54,9 +54,6 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
         let skill = skills.splice(index, 1)[0];
 
         result.departments[skill] = skillImprovements[i];
-
-        console.log(skill);
-        console.log(result.departments);
     }
 
     addAllTalentSelection(result, generateRandomBasicCreatureTalent());
@@ -68,8 +65,15 @@ export const CreatureGenerator = (era: Era, habitat?: Habitat, creatureType?: Cr
     }
 
     result.form = deriveForm(result);
-    result.name = creatureNameGenerator() + ((result.form !== "Unique" && result.form !== undefined)
-        ? " " + result.form : "");
+    result.name = creatureNameGenerator();
+
+    const includeDescription = true;
+    if (includeDescription) {
+        result.description = await generateCreatureDescription(result);
+    }
+
+    result.name += ((result.form !== "Unique" && result.form !== undefined)
+    ? " " + result.form : "")
 
     return result;
 }
@@ -81,6 +85,42 @@ const addAllTalentSelection = (creature: Creature, talents: SelectedTalent[]) =>
         }
     });
 
+}
+
+const generateCreatureDescription = async (creature: Creature) => {
+
+    let data = {
+        type: CreatureType[creature.creatureType.id],
+        name: creature.name,
+        habitat: creature.habitat != null ? Habitat[creature.habitat?.id] : undefined,
+        size: creature.size != null ? CreatureSize[creature.size?.id] : undefined,
+        diet: creature.diet != null ? DietType[creature.diet?.id] : undefined,
+        form: creature.form,
+        locomotion: creature.locomotion.map(l => l.description)
+    };
+
+    let textEncoder = new TextEncoder();
+    let body = textEncoder.encode(JSON.stringify(data));
+
+    try {
+        let response = await fetch('/api/creature_description', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: body
+        })
+
+        if (response.status === 200) {
+            let responseJson = await response.json();
+
+            return responseJson?.description;
+        } else {
+            return undefined;
+        }
+    } catch (e) {
+        return undefined;
+    }
 }
 
 const deriveForm = (creature: Creature) => {
@@ -500,7 +540,8 @@ const deriveForm = (creature: Creature) => {
                     result = creature.isFlippered ? "Turtle" : "Tortoise";
                 } else if (roll < 10) {
                     result = "Gator";
-                } else if (roll < 15) {
+                } else if (roll < 15 || creature.size?.id === CreatureSize.Small
+                    || creature.size?.id === CreatureSize.Swarm) {
                     result = "Lizard";
                 } else {
                     result = "Velociraptor";

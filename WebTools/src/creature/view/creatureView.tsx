@@ -4,6 +4,7 @@ import { Creature } from "../model/creature";
 import WeaponBlockView from "../../view/weaponBlockView";
 import TalentsBlockView from "../../view/talentsBlockView";
 import CreatureStatBlock from "./creatureStatBlock";
+import Markdown from "react-markdown";
 
 export interface ICreatureViewProperties {
     creature: Creature;
@@ -52,6 +53,10 @@ const CreatureView:React.FC<ICreatureViewProperties> = ({creature}) => {
 
     return (<>
         <Header className="mb-4">{(creature.name ? creature.name : t('Construct.other.unnamedCreature'))}</Header>
+
+        {creature.description?.length
+            ? (<Markdown>{creature.description}</Markdown>)
+            : undefined}
 
         {renderTopFields()}
 

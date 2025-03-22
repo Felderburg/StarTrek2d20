@@ -7,13 +7,15 @@ import { Header } from "../../components/header";
 import InstructionText from "../../components/instructionText";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { Habitat, HabitatHelper } from "../model/habitat";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import { CreatureGenerator } from "../model/creatureGenerator";
 import { connect } from "react-redux";
 import { Era } from "../../helpers/eras";
 import { marshaller } from "../../helpers/marshaller";
 import { CreatureType, CreatureTypeHelper, habitatsByCreatureType } from "../model/creatureType";
+import { LoadingButton } from "../../common/loadingButton";
+import { CheckBox } from "../../components/checkBox";
 
 interface IRandomCreatureConfigurationProperties {
     era: Era;
@@ -25,6 +27,19 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
     const navigate = useNavigate();
     const [ habitat, setHabitat] = useState<Habitat|null>(null);
     const [ creatureType, setCreatureType] = useState<CreatureType|null>(null);
+    const [ loading, setLoading ] = useState<boolean>(false);
+    const [ includeDescription, setIncludeDescription ] = useState<boolean>(true);
+
+    useEffect(() => {
+        let value = window.localStorage.getItem("settings.ai");
+        setIncludeDescription(value !== "false");
+    }, []);
+
+    const updateIncludeDescription =(value: boolean) => {
+        setIncludeDescription(value);
+        window.localStorage.setItem("settings.ai", value ? "true" : "false");
+    }
+
 
     const getHabitatTypes = () => {
         let result = [ new DropDownElement("", t('RandomCreatureConfiguration.anyHabitat'))];
@@ -41,11 +56,13 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
         return result;
     }
 
-    const createCreature = () => {
-        let creature = CreatureGenerator(era, habitat, creatureType);
+    const createCreature = async () => {
+        setLoading(true);
+        let creature = await CreatureGenerator(era, habitat, creatureType);
 
         const value = marshaller.encodeCreature(creature);
         window.open('/view?s=' + value, "_blank");
+        setLoading(false);
     }
 
     const selectCreatureType = (type: string|number) => {
@@ -102,10 +119,21 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
 
                             </div>
 
+                            <div className="col-md-6 mt-4">
+                                <Header level={2} className="mt-5">{t('Construct.other.description')}</Header>
+
+                                <div className="mt-4">
+                                    <CheckBox
+                                        isChecked={ includeDescription }
+                                        value={ "includeDescription" }
+                                        text={t('NpcConfigurationPage.includeDescription')}
+                                        onChanged={(_inc) => updateIncludeDescription(!includeDescription) }/>
+                                </div>
+                            </div>
                         </div>
 
                         <div className="text-end mt-5">
-                            <Button onClick={() => createCreature()}>{t('Common.button.create')}</Button>
+                            <LoadingButton loading={loading} enabled={!loading} size="sm" onClick={() => createCreature()}>{t('Common.button.create')}</LoadingButton>
                         </div>
 
                     </main>

@@ -21,8 +21,8 @@ with the translations), bring up a topic in the [Discussion](https://github.com/
 
 ### Screens
 
-From a programming point of view, each screen in the application needs to be converted to use translation. Some
-screens have been converted, and some have not.
+From a programming point of view, each screen in the application needs to be converted to use
+translation. Some screens have been converted, and some have not.
 
 ### Types of Text
 
@@ -40,12 +40,11 @@ Broadly speaking, there are three types of text in the application:
 
 ### PDFs
 
-Static text that appears on PDF character sheets and starship sheets are part of the PDF itself, and is not
-translated. At the moment, there's a translated character sheet for German (which only appears if the user)
-has selected German as a language; all other PDFs are in English.
+Initially, all of the PDFs had static text on them, and that text would not be translated. That's
+less true, now, but still true of several of the character sheets.
 
-If you've created a character sheet in another language, feel free to send it along and I'll include it
-when I can.
+Dealing with translations on the PDFs is a tricky exercise: often text in different languages
+is different lengths, and that affects layout of the page.
 
 ### Process
 

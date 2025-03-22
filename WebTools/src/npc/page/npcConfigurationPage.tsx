@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { navigateTo } from '../../common/navigator';
@@ -33,6 +33,16 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({era}) 
     const [ selectedSpecialization, setSelectedSpecialization ] = useState<SpecializationModel>();
     const [ loading, setLoading ] = useState<boolean>(false);
     const [ includeDescription, setIncludeDescription ] = useState<boolean>(true);
+
+    useEffect(() => {
+        let value = window.localStorage.getItem("settings.ai");
+        setIncludeDescription(value !== "false");
+    }, []);
+
+    const updateIncludeDescription =(value: boolean) => {
+        setIncludeDescription(value);
+        window.localStorage.setItem("settings.ai", value ? "true" : "false");
+    }
 
     const getSpecializations = () => {
         let result = [ new DropDownElement(null, t('NpcConfigurationPage.option.anySpecialization'))];
@@ -223,12 +233,11 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({era}) 
                             isChecked={ includeDescription }
                             value={ "includeDescription" }
                             text={t('NpcConfigurationPage.includeDescription')}
-                            onChanged={(_inc) => setIncludeDescription(!includeDescription) }/>
+                            onChanged={(_inc) => updateIncludeDescription(!includeDescription) }/>
                     </div>
                 </div>
 
             </div>
-
 
             <div className="mt-5 text-end">
                 <LoadingButton loading={loading} enabled={!loading} size="sm" onClick={() => createNpc()}>{t('Common.button.create')}</LoadingButton>

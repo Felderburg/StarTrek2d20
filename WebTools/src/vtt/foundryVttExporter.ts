@@ -17,7 +17,6 @@ import { CareersHelper } from "../helpers/careers";
 import { CharacterTypeModel } from "../common/characterType";
 import { TracksHelper } from "../helpers/tracks";
 import { SpeciesAbility } from "../helpers/speciesAbility";
-import { textTokenizer } from "../exportpdf/textTokenizer";
 import { markupToHtml } from "./markupToHtml";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";

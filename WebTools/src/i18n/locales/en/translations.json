@@ -3896,10 +3896,12 @@
 
     "Value.final.text": "The character receives one final Value. This might reflect the Career Events rolled in Step Six, or it may represent some other element of the character. This Value might be a relationship, connecting the character to another character in the crew, or to another organization or culture in some way.",
 
+    "Weapon.common.dice": "Dice",
     "Weapon.common.melee": "Melee",
     "Weapon.common.name": "Name/Type",
     "Weapon.common.qualities": "Qualities",
     "Weapon.common.ranged": "Ranged",
+    "Weapon.common.severity": "Severity",
     "Weapon.common.size": "Size {{hands}}H",
 
     "Weapon.personal.dagger.name": "Dagger",

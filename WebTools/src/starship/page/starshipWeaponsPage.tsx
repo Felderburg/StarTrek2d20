@@ -26,7 +26,7 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = 
     const renderWeapons = () => {
         if (starship.weapons.length === 0) {
             return (<tbody>
-                    <tr><td colSpan={4}>None</td></tr>
+                    <tr><td colSpan={4}>{t('Common.text.none')}</td></tr>
                 </tbody>);
         } else {
             return (<tbody>
@@ -68,8 +68,8 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = 
     const confirmationContents = (w: Weapon) => {
         return (<div>Are you sure you want to delete this weapon?
             <div className="mt-4 text-center">
-                <Button size="sm" className="me-3" onClick={() => { closeModal() }} >Cancel</Button>
-                <Button size="sm" onClick={() => { deleteWeapon(w) }} >Delete</Button>
+                <Button size="sm" className="me-3" onClick={() => { closeModal() }} >{t('Common.button.cancel')}</Button>
+                <Button variant="danger" size="sm" onClick={() => { deleteWeapon(w) }} >{t('Common.button.delete')}</Button>
             </div>
         </div>);
     }
