@@ -368,6 +368,7 @@
     "SpaceframeSelectionPage.note": "Note: The Utopia Planitia sourcebook has re-defined the stats for a number of previously-published spaceframes. Those redefined stats are presented, here.",
     "SpaceframeSelectionPage.ignoreEndOfService": "Ignore end-of-service date (GM's decision)",
     "SpaceframeSelectionPage.error": "Please select a spaceframe before proceeding.",
+    "SpaceframeSelectionPage.errata": "A published errata has revised this spaceframe from the original printed book's stats.",
 
     "SpeciesAbilityView.instruction": "Each species provides a talent in the form of a Species Ability, which reflects some unique aspect of their physiology, psychology, or culture. You automatically receive this talent. Species abilities cannot be selected after character creation. These are distinct from talents which have a particular species as a requirement, which are always optional.",
 
@@ -1330,6 +1331,7 @@
     "ModificationType.name.reputation": "Reputation",
     "ModificationType.name.promotion": "Promotion",
     "ModificationType.name.milestone": "Milestone",
+    "ModificationType.name.characterAdvancement": "Character Advancement",
 
     "MilestoneType.name.normalMilestone": "Normal Milestone",
     "MilestoneType.name.spotlightMilestone": "Spotlight Milestone",

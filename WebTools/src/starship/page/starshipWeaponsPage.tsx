@@ -12,6 +12,7 @@ import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import AddWeaponView from "../view/addWeaponView";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { IconButton } from "../../components/iconButton";
+import { useTranslation } from "react-i18next";
 
 interface IStarshipWeaponsPageProperties {
     starship: Starship;
@@ -19,6 +20,8 @@ interface IStarshipWeaponsPageProperties {
 }
 
 const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = ({starship, workflow}) => {
+
+    const { t } = useTranslation();
 
     const renderWeapons = () => {
         if (starship.weapons.length === 0) {
@@ -90,16 +93,16 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = 
             <table className="selection-list">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Dice</th>
-                        <th>Qualities</th>
+                        <th>{t('Weapon.common.name')}</th>
+                        <th>{t(starship.version === 1 ? 'Weapon.common.dice' : 'Weapon.common.severity')}</th>
+                        <th>{t('Weapon.common.qualities')}</th>
                     </tr>
                 </thead>
                 {renderWeapons()}
             </table>
 
             <div className="text-end mt-4">
-                <Button onClick={() => nextPage()}>Next</Button>
+                <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>
             </div>
         </div>);
 

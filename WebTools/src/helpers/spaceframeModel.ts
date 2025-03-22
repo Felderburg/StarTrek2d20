@@ -35,12 +35,13 @@ export class SpaceframeModel implements IServiceYearProvider {
     additionalTraits: string[];
     maxServiceYear: number;
     soloStats?: SoloSpaceframeStats;
+    errata: boolean;
 
     constructor(id: Spaceframe|null, type: CharacterType, name: string, serviceYear: number,
         prerequisites: IConstructPrerequisite<Starship>[], systems: number[], departments: number[],
         scale: number, attacks: string[], talents: TalentSelection[],
         additionalTraits: string[] = [ "Federation Starship" ], maxServiceYear: number = 99999,
-        soloStats?: SoloSpaceframeStats) {
+        soloStats?: SoloSpaceframeStats, errata: boolean = false) {
 
         this.id = id;
         this.type = type;
@@ -55,6 +56,7 @@ export class SpaceframeModel implements IServiceYearProvider {
         this.additionalTraits = additionalTraits;
         this.maxServiceYear = maxServiceYear;
         this.soloStats = soloStats;
+        this.errata = errata;
     }
 
     get isMissionPodAvailable() {
@@ -165,16 +167,18 @@ export class SpaceframeModel implements IServiceYearProvider {
             this.scale, [...this.attacks], [...this.talents], [...this.additionalTraits], this.maxServiceYear);
     }
 
-    static createStandardSpaceframe(id: Spaceframe, type: CharacterType, name: string, serviceYear: number, source: Source[], systems: number[], departments: number[],
-        scale: number, attacks: string[], talents: TalentSelection[], additionalTraits: string[] = [ "Federation Starship" ], maxServiceYear: number = 99999,
-        soloStats?: SoloSpaceframeStats) {
+    static createStandardSpaceframe(id: Spaceframe, type: CharacterType, name: string,
+        serviceYear: number, source: Source[], systems: number[], departments: number[],
+        scale: number, attacks: string[], talents: TalentSelection[], additionalTraits: string[] = [ "Federation Starship" ],
+        maxServiceYear: number = 99999,
+        soloStats?: SoloSpaceframeStats, errata: boolean = false) {
         let sourcePrerequisite = new SourcePrerequisite(...source);
         let prerequisites: IConstructPrerequisite<Starship>[] = [
             sourcePrerequisite, new StarshipTypePrerequisite(type), new ServiceYearPrerequisite(serviceYear) ];
         if (serviceYear > 3100 || id === Spaceframe.ScoutType) {
             prerequisites.push(new NeverPrerequisite());
         }
-        return new SpaceframeModel(id, type, name, serviceYear, prerequisites, systems, departments, scale, attacks, talents, additionalTraits, maxServiceYear, soloStats );
+        return new SpaceframeModel(id, type, name, serviceYear, prerequisites, systems, departments, scale, attacks, talents, additionalTraits, maxServiceYear, soloStats, errata );
     }
 
     static createCustomSpaceframe(type: CharacterType, serviceYear: number,

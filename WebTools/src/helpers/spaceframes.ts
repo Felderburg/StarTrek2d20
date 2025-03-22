@@ -3196,7 +3196,7 @@ export class SpaceframeHelper {
             [0, 2, 0, 1, 0, 0],
             2,
             [
-                "Phaser Cannons",
+                "Phase Cannons",
                 "Spatial Torpedoes",
                 "Grappler Cables (Strength 1)"
             ],
@@ -3205,7 +3205,7 @@ export class SpaceframeHelper {
                 TalentSelection.selectTalent("Polarized Hull Plating"),
             ],
             [ "United Earth Starship", "Compact Size", "No Personnel Transporter" ],
-            2200),
+            2200, undefined, true),
         [Spaceframe.Walker_2E]: new SpaceframeModel(
             Spaceframe.Walker_2E,
             CharacterType.Starfleet,
@@ -3576,7 +3576,7 @@ export class SpaceframeHelper {
             [ Source.Core2ndEdition ],
             [8, 9, 10, 10, 11, 9],
             [1, 0, 1, 1, 0, 0],
-            6,
+            7,
             [
                 "Disruptor Banks",
                 "Plasma Torpedoes",
@@ -3587,7 +3587,7 @@ export class SpaceframeHelper {
                 TalentSelection.selectTalent("Abundant Personnel"),
             ],
             [ "Romulan Starship", "Imposing" ],
-            99999),
+            99999, undefined, true),
         [Spaceframe.Galor]: SpaceframeModel.createStandardSpaceframe(
             Spaceframe.Galor,
             CharacterType.Cardassian,
