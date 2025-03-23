@@ -141,7 +141,7 @@ async function main(key, inputData) {
     prompt += describeDiet(inputJson);
     prompt += describeHabitat(inputJson);
 
-    prompt += "Give me a description of the alien and describe it's demeanor/personality. ";
+    prompt += "Give me a description of the alien and describe its demeanor/personality. ";
 
     const chatCompletion = await groq.chat.completions.create({
         "messages": [{

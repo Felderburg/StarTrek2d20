@@ -3883,6 +3883,14 @@
         ]
     },
     {
+        "name": "Ae-Cha",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Aebba",
         "gender": "Female",
         "type": "FirstName",
@@ -4192,6 +4200,14 @@
         "type": "FirstName",
         "tags": [
             "Greek"
+        ]
+    },
+    {
+        "name": "Aera",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -10106,6 +10122,14 @@
     },
     {
         "name": "Ang",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ang",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
@@ -10303,7 +10327,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
         ]
     },
     {
@@ -15156,6 +15181,14 @@
     },
     {
         "name": "Ba",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ba",
         "gender": "Unisex",
         "type": "LastName",
         "tags": [
@@ -15355,6 +15388,38 @@
         ]
     },
     {
+        "name": "Bae",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Bae",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Baek",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Baek-Hyeon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Baelfire",
         "gender": "Male",
         "type": "FirstName",
@@ -15551,15 +15616,9 @@
         "gender": "Unisex",
         "type": "LastName",
         "tags": [
-            "Pakistani"
-        ]
-    },
-    {
-        "name": "Bai",
-        "type": "LastName",
-        "gender": "Unisex",
-        "tags": [
-            "Chinese"
+            "Pakistani",
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -15680,6 +15739,14 @@
         "type": "LastName",
         "tags": [
             "Pakistani"
+        ]
+    },
+    {
+        "name": "Bak",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -15981,6 +16048,14 @@
         ]
     },
     {
+        "name": "Ban",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Banagher",
         "gender": "Male",
         "type": "FirstName",
@@ -16050,6 +16125,14 @@
         "gender": "Unisex",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Bang",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -16284,6 +16367,14 @@
         "type": "FirstName",
         "tags": [
             "Greek"
+        ]
+    },
+    {
+        "name": "Baram",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -18255,6 +18346,14 @@
         ]
     },
     {
+        "name": "Bento",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Benvolio",
         "gender": "Male",
         "type": "FirstName",
@@ -18276,6 +18375,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Beom-Seok",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -19468,7 +19575,8 @@
         "type": "FirstName",
         "gender": "Female",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -19559,6 +19667,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Bibi",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -19976,6 +20092,14 @@
         "gender": "Unisex",
         "tags": [
             "Afghan"
+        ]
+    },
+    {
+        "name": "Bitgaram",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -20582,6 +20706,14 @@
         ]
     },
     {
+        "name": "Bon-Hwa",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Bona",
         "gender": "Female",
         "type": "FirstName",
@@ -20635,6 +20767,22 @@
         "type": "FirstName",
         "tags": [
             "Scottish"
+        ]
+    },
+    {
+        "name": "Bong",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Bong-Cha",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -20771,6 +20919,22 @@
         "gender": "Unisex",
         "tags": [
             "British"
+        ]
+    },
+    {
+        "name": "Bora",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Boram",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -23133,6 +23297,14 @@
         "type": "FirstName",
         "tags": [
             "Irish"
+        ]
+    },
+    {
+        "name": "Byun",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -26752,11 +26924,35 @@
         ]
     },
     {
+        "name": "Cha",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Cha",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Chadha",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Chae",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -26781,6 +26977,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Chai",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -27021,6 +27225,14 @@
         "gender": "Male",
         "tags": [
             "Chinese"
+        ]
+    },
+    {
+        "name": "Chang",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -27496,6 +27708,14 @@
         ]
     },
     {
+        "name": "Chay",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Chaya",
         "gender": "Female",
         "type": "FirstName",
@@ -27701,6 +27921,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Cheong",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -27952,6 +28180,14 @@
         ]
     },
     {
+        "name": "Chew",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Cheyne",
         "gender": "Male",
         "type": "FirstName",
@@ -27985,10 +28221,19 @@
     },
     {
         "name": "Chi",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chi",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
         ]
     },
     {
@@ -28133,7 +28378,48 @@
         "type": "FirstName",
         "gender": "Male",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chin",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chin-Hae",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chin-Hwa",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chin-Mae",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chin-Sun",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -28290,7 +28576,32 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Japanese"
+            "Japanese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Cho",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Choe",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Choi",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -28302,11 +28613,35 @@
         ]
     },
     {
+        "name": "Chon",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Choncha",
         "gender": "Female",
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Chong",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Choon-Hee",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -28604,6 +28939,14 @@
         ]
     },
     {
+        "name": "Chu",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Chuckie",
         "gender": "Male",
         "type": "FirstName",
@@ -28629,6 +28972,22 @@
         ]
     },
     {
+        "name": "Chul",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chul-Moo",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Chumki",
         "gender": "Female",
         "type": "FirstName",
@@ -28641,15 +29000,24 @@
         "type": "FirstName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
         "name": "Chun",
-        "type": "FirstName",
+        "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chun-Hei",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -28657,7 +29025,40 @@
         "type": "FirstName",
         "gender": "Male",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chung-Ae",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chung-Cha",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chung-Hee",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Chung-Ho",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -31729,6 +32130,38 @@
         ]
     },
     {
+        "name": "Dae",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Dae-Ho",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Dae-Hyun",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Dae-Jung",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Daedalus",
         "gender": "Unisex",
         "type": "FirstName",
@@ -31759,6 +32192,22 @@
         "type": "FirstName",
         "tags": [
             "Dutch"
+        ]
+    },
+    {
+        "name": "Daeun",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Daewon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -32032,7 +32481,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Irish"
+            "Irish",
+            "Korean"
         ]
     },
     {
@@ -32976,6 +33426,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Dasani",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -35460,6 +35918,30 @@
         ]
     },
     {
+        "name": "Do",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Do-Hyun",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Do-Yoon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Doak",
         "gender": "Male",
         "type": "FirstName",
@@ -35537,6 +36019,14 @@
         "type": "FirstName",
         "tags": [
             "Ghanaian"
+        ]
+    },
+    {
+        "name": "Dohan",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -35903,10 +36393,42 @@
     },
     {
         "name": "Dong",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Dong",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
             "Chinese"
+        ]
+    },
+    {
+        "name": "Dong-Min",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Dong-Sun",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Dong-Yul",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -36553,6 +37075,14 @@
         ]
     },
     {
+        "name": "Du-Ho",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Duan",
         "type": "LastName",
         "gender": "Unisex",
@@ -36622,6 +37152,22 @@
         "type": "FirstName",
         "tags": [
             "Kenyan"
+        ]
+    },
+    {
+        "name": "Duck-Hwan",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Duck-Young",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -39433,6 +39979,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Elite",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -43321,6 +43875,14 @@
         ]
     },
     {
+        "name": "Eui",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Euilaun",
         "gender": "Male",
         "type": "FirstName",
@@ -43375,6 +43937,38 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Eun",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Eun-Ae",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Eun-Jung",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Eun-Kyung",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -48595,6 +49189,14 @@
         ]
     },
     {
+        "name": "Gang",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Gangaadatt",
         "gender": "Male",
         "type": "FirstName",
@@ -49663,6 +50265,14 @@
         ]
     },
     {
+        "name": "Geon",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Geonna",
         "gender": "Female",
         "type": "FirstName",
@@ -50490,6 +51100,14 @@
         ]
     },
     {
+        "name": "Gi",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Gia",
         "gender": "Female",
         "type": "FirstName",
@@ -51103,6 +51721,14 @@
         "type": "FirstName",
         "tags": [
             "Scottish"
+        ]
+    },
+    {
+        "name": "Gim",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -51738,6 +52364,14 @@
         ]
     },
     {
+        "name": "Goe",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Goffredo",
         "gender": "Male",
         "type": "FirstName",
@@ -51875,6 +52509,14 @@
         ]
     },
     {
+        "name": "Gon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Goncalo",
         "gender": "Male",
         "type": "FirstName",
@@ -51906,6 +52548,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Goo",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -53239,19 +53889,19 @@
         ]
     },
     {
-        "name": "Guiliaine",
-        "gender": "Female",
-        "type": "FirstName",
-        "tags": [
-            "French"
-        ]
-    },
-    {
         "name": "Guilherme",
         "gender": "Unisex",
         "type": "LastName",
         "tags": [
             "Brazilian"
+        ]
+    },
+    {
+        "name": "Guiliaine",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "French"
         ]
     },
     {
@@ -54480,6 +55130,14 @@
         ]
     },
     {
+        "name": "Gye",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Gynanand",
         "gender": "Male",
         "type": "FirstName",
@@ -54496,11 +55154,68 @@
         ]
     },
     {
+        "name": "Gyu-ha",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Ha",
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ha",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ha-Eun",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ha-Joon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ha-Rin",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ha-yeong",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ha-Yoon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -54640,6 +55355,22 @@
         ]
     },
     {
+        "name": "Hae",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hae-Won",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Haeata",
         "gender": "Female",
         "type": "FirstName",
@@ -54669,6 +55400,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Haein",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -54733,6 +55472,14 @@
         "type": "FirstName",
         "tags": [
             "Māori"
+        ]
+    },
+    {
+        "name": "Hahm",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -54829,6 +55576,22 @@
         "type": "FirstName",
         "tags": [
             "Afghan"
+        ]
+    },
+    {
+        "name": "Hajoon",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hak-Kun",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -55051,10 +55814,19 @@
     },
     {
         "name": "Han",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Han",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -55064,7 +55836,8 @@
         "tags": [
             "Japanese",
             "Spanish",
-            "Māori"
+            "Māori",
+            "Korean"
         ]
     },
     {
@@ -55116,6 +55889,14 @@
         ]
     },
     {
+        "name": "Haneul",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Hang",
         "gender": "Female",
         "type": "FirstName",
@@ -55129,6 +55910,14 @@
         "type": "FirstName",
         "tags": [
             "Vietnamese"
+        ]
+    },
+    {
+        "name": "Hani",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -56022,6 +56811,14 @@
         ]
     },
     {
+        "name": "Hayan",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Hayate",
         "gender": "Male",
         "type": "FirstName",
@@ -56060,6 +56857,14 @@
         "tags": [
             "Irish",
             "African-American"
+        ]
+    },
+    {
+        "name": "Hayoon",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -56116,6 +56921,14 @@
         "gender": "Unisex",
         "tags": [
             "Chinese"
+        ]
+    },
+    {
+        "name": "Hea",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -56248,6 +57061,14 @@
         ]
     },
     {
+        "name": "Hee-Young",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Heemakar",
         "gender": "Male",
         "type": "FirstName",
@@ -56341,6 +57162,22 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Hei-Ran",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hei-Ryung",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -57178,6 +58015,14 @@
         ]
     },
     {
+        "name": "Heo",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Heorstan",
         "gender": "Male",
         "type": "FirstName",
@@ -57922,6 +58767,14 @@
         ]
     },
     {
+        "name": "Him",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Himaanshu",
         "gender": "Male",
         "type": "FirstName",
@@ -58310,7 +59163,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
         ]
     },
     {
@@ -58318,7 +59172,16 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ho-Sook",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -58584,7 +59447,8 @@
         "gender": "Male",
         "tags": [
             "Chinese",
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
         ]
     },
     {
@@ -58592,7 +59456,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
         ]
     },
     {
@@ -58617,6 +59482,14 @@
         "type": "FirstName",
         "tags": [
             "Italian"
+        ]
+    },
+    {
+        "name": "Hoon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -59213,7 +60086,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "German"
+            "German",
+            "Korean"
         ]
     },
     {
@@ -59386,6 +60260,30 @@
         ]
     },
     {
+        "name": "Hwa-Young",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hwan",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hwang",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Hy",
         "type": "LastName",
         "gender": "Unisex",
@@ -59407,6 +60305,14 @@
         "type": "FirstName",
         "tags": [
             "Greek"
+        ]
+    },
+    {
+        "name": "Hye",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -59434,6 +60340,22 @@
         ]
     },
     {
+        "name": "Hyo",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyo-Sonn",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Hyousuke",
         "gender": "Male",
         "type": "FirstName",
@@ -59447,6 +60369,78 @@
         "gender": "Male",
         "tags": [
             "Chinese"
+        ]
+    },
+    {
+        "name": "Hyuk",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyun",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyun",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyun-Ae",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyun-Jae",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyun-Ki",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyun-kyung",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyun-Ok",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Hyun-Shik",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -59741,6 +60735,14 @@
         ]
     },
     {
+        "name": "Il",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Ila",
         "gender": "Female",
         "type": "FirstName",
@@ -59891,6 +60893,14 @@
         ]
     },
     {
+        "name": "Im",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Imai",
         "type": "LastName",
         "gender": "Unisex",
@@ -59944,6 +60954,22 @@
         "type": "FirstName",
         "tags": [
             "Irish"
+        ]
+    },
+    {
+        "name": "In",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "In-Su",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -60453,6 +61479,14 @@
         ]
     },
     {
+        "name": "Iseul",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Isfandiyar",
         "gender": "Male",
         "type": "FirstName",
@@ -60729,6 +61763,14 @@
         "tags": [
             "Italian",
             "Spanish"
+        ]
+    },
+    {
+        "name": "Ja",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -61268,6 +62310,30 @@
         ]
     },
     {
+        "name": "Jae",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jae-Hwa",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jaewon",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Jafar",
         "gender": "Male",
         "type": "FirstName",
@@ -61683,6 +62749,14 @@
         ]
     },
     {
+        "name": "Jandi",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Jandro",
         "gender": "Male",
         "type": "FirstName",
@@ -61705,6 +62779,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Jang",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -61905,6 +62987,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Jari",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -62299,6 +63389,22 @@
         ]
     },
     {
+        "name": "Jee",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jee",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Jeeta",
         "gender": "Male",
         "type": "FirstName",
@@ -62567,6 +63673,22 @@
         "type": "FirstName",
         "tags": [
             "Polish"
+        ]
+    },
+    {
+        "name": "Jeon",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jeon",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -62923,6 +64045,46 @@
         ]
     },
     {
+        "name": "Ji",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ji-Ah",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ji-Woo",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ji-yeon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ji-Yoo",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Jia",
         "type": "FirstName",
         "gender": "Unisex",
@@ -63035,6 +64197,14 @@
         ]
     },
     {
+        "name": "Jii",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Jijesh",
         "gender": "Male",
         "type": "FirstName",
@@ -63084,6 +64254,14 @@
         ]
     },
     {
+        "name": "Jimin",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Jimiyu",
         "gender": "Male",
         "type": "FirstName",
@@ -63105,7 +64283,32 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jin-Ae",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jin-Kyong",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jina",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -63133,6 +64336,30 @@
         ]
     },
     {
+        "name": "Jinju",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jinora",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jinu",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Jiro",
         "gender": "Male",
         "type": "FirstName",
@@ -63146,6 +64373,30 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Jisoo",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jiwoo",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jiyu",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -63324,6 +64575,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Joh",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -63628,6 +64887,14 @@
         ]
     },
     {
+        "name": "Jong",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Jonkers",
         "gender": "Unisex",
         "type": "LastName",
@@ -63641,6 +64908,38 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Joo",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Joo-Won",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Joon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Joon-Woo",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -64093,11 +65392,27 @@
         ]
     },
     {
+        "name": "Ju",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Ju-long",
         "type": "FirstName",
         "gender": "Male",
         "tags": [
             "Chinese"
+        ]
+    },
+    {
+        "name": "Juah",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -64181,6 +65496,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Jue",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -64377,6 +65700,14 @@
         ]
     },
     {
+        "name": "Jum",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Juma",
         "gender": "Unisex",
         "type": "LastName",
@@ -64410,6 +65741,14 @@
         ]
     },
     {
+        "name": "Jun",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Juna",
         "gender": "Female",
         "type": "FirstName",
@@ -64435,10 +65774,27 @@
     },
     {
         "name": "Jung",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jung",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "German"
+            "German",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Jung-Hwa",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -64503,6 +65859,14 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Junu",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -64634,6 +65998,14 @@
         "type": "FirstName",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Ka",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -65770,7 +67142,16 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kang-Dae",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -66053,7 +67434,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Greek"
+            "Greek",
+            "Korean"
         ]
     },
     {
@@ -67479,6 +68861,14 @@
         ]
     },
     {
+        "name": "Keng",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Kenina",
         "gender": "Female",
         "type": "FirstName",
@@ -67607,7 +68997,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Japanese"
+            "Japanese",
+            "Korean"
         ]
     },
     {
@@ -67842,6 +69233,14 @@
         "type": "FirstName",
         "tags": [
             "Irish"
+        ]
+    },
+    {
+        "name": "Keyon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -68173,11 +69572,43 @@
         ]
     },
     {
+        "name": "Khye",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Khyle",
         "gender": "Unisex",
         "type": "FirstName",
         "tags": [
             "Greek"
+        ]
+    },
+    {
+        "name": "Ki",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ki",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kia",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -68233,7 +69664,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Irish"
+            "Irish",
+            "Korean"
         ]
     },
     {
@@ -68447,6 +69879,14 @@
         ]
     },
     {
+        "name": "Kil",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Kiley",
         "gender": "Unisex",
         "type": "FirstName",
@@ -68476,6 +69916,14 @@
         "type": "FirstName",
         "tags": [
             "Scottish"
+        ]
+    },
+    {
+        "name": "Kim",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -69013,6 +70461,14 @@
         ]
     },
     {
+        "name": "Ko",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Kobayashi",
         "type": "LastName",
         "gender": "Unisex",
@@ -69296,6 +70752,14 @@
         ]
     },
     {
+        "name": "Korain",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Koraka",
         "gender": "Male",
         "type": "FirstName",
@@ -69325,6 +70789,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Korea",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -69920,6 +71392,14 @@
         ]
     },
     {
+        "name": "Ku",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Kuba",
         "gender": "Male",
         "type": "FirstName",
@@ -69965,6 +71445,22 @@
         "type": "LastName",
         "tags": [
             "Dutch"
+        ]
+    },
+    {
+        "name": "Kuk",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kuk",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -70036,7 +71532,8 @@
         "type": "FirstName",
         "gender": "Male",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -70184,6 +71681,14 @@
         ]
     },
     {
+        "name": "Kwak",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Kwaku",
         "gender": "Male",
         "type": "FirstName",
@@ -70216,11 +71721,59 @@
         ]
     },
     {
+        "name": "Kwan",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kwan",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kwang",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kwang-Sun",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Kwei-Armah",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
             "Ghanaian"
+        ]
+    },
+    {
+        "name": "Kwock",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kwon",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -70304,6 +71857,14 @@
         ]
     },
     {
+        "name": "Kyong",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Kyosuke",
         "gender": "Male",
         "type": "FirstName",
@@ -70357,6 +71918,54 @@
         "type": "FirstName",
         "tags": [
             "Irish"
+        ]
+    },
+    {
+        "name": "Kyu",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kyubok",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kyung",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kyung-Hu",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kyung-Mi",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Kyung-Soon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -70732,7 +72341,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
         ]
     },
     {
@@ -71928,7 +73538,8 @@
         "type": "FirstName",
         "gender": "Male",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -71938,7 +73549,8 @@
         "tags": [
             "Chinese",
             "British",
-            "African-American"
+            "African-American",
+            "Korean"
         ]
     },
     {
@@ -73443,7 +75055,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -76108,6 +77721,14 @@
         ]
     },
     {
+        "name": "Ma",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Maaka",
         "gender": "Male",
         "type": "FirstName",
@@ -78104,6 +79725,14 @@
         ]
     },
     {
+        "name": "Mal-Chin",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Mala",
         "gender": "Female",
         "type": "FirstName",
@@ -78336,6 +79965,14 @@
         ]
     },
     {
+        "name": "Malli",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Mallon",
         "gender": "Male",
         "type": "FirstName",
@@ -78552,6 +80189,22 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Man-Shik",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Man-Young",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -82535,6 +84188,14 @@
         ]
     },
     {
+        "name": "Mee",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Meese",
         "gender": "Male",
         "type": "FirstName",
@@ -83666,6 +85327,54 @@
         ]
     },
     {
+        "name": "Mi-Cha",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Mi-hi",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Mi-Kyong",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Mi-Ok",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Mi-Sun",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Mi-Young",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Mia",
         "gender": "Female",
         "type": "FirstName",
@@ -84364,7 +86073,56 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Min",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Min-ho",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Min-Jee",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Min-ji",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Min-Joon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Min-Jung",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -84506,6 +86264,14 @@
         ]
     },
     {
+        "name": "Minha",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Minjonet",
         "gender": "Female",
         "type": "FirstName",
@@ -84627,6 +86393,14 @@
     },
     {
         "name": "Mir",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Mir",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
@@ -84680,6 +86454,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Mirae",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -84778,6 +86560,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Mireu",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -85557,6 +87347,14 @@
         ]
     },
     {
+        "name": "Mok",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Molina",
         "gender": "Female",
         "type": "FirstName",
@@ -85699,6 +87497,14 @@
         "gender": "Unisex",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Mong",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -85944,6 +87750,22 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Moon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Moon",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -86526,6 +88348,22 @@
         ]
     },
     {
+        "name": "Mun",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Mun-Hee",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Muncel",
         "gender": "Female",
         "type": "FirstName",
@@ -86864,11 +88702,67 @@
         ]
     },
     {
+        "name": "Myung",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Myung",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Myung-Dae",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Myung-Hee",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Myung-Ok",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Myung-Suck",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Na",
         "type": "FirstName",
         "gender": "Female",
         "tags": [
             "Chinese"
+        ]
+    },
+    {
+        "name": "Na",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -86901,6 +88795,14 @@
         "type": "FirstName",
         "tags": [
             "Scottish"
+        ]
+    },
+    {
+        "name": "Nabi",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -87229,6 +89131,14 @@
         ]
     },
     {
+        "name": "Nahm",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Naia",
         "gender": "Female",
         "type": "FirstName",
@@ -87393,7 +89303,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
         ]
     },
     {
@@ -87465,7 +89376,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Hindi"
+            "Hindi",
+            "Korean"
         ]
     },
     {
@@ -87522,6 +89434,14 @@
         "type": "FirstName",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Namra",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -87843,7 +89763,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Japanese"
+            "Japanese",
+            "Korean"
         ]
     },
     {
@@ -87901,6 +89822,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Nari",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -88085,6 +90014,14 @@
         "type": "FirstName",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Naru",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -91768,6 +93705,14 @@
         ]
     },
     {
+        "name": "No",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Noa",
         "gender": "Female",
         "type": "FirstName",
@@ -92187,6 +94132,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Nouri",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -92740,6 +94693,14 @@
         "gender": "Unisex",
         "tags": [
             "British"
+        ]
+    },
+    {
+        "name": "Oaks",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -93444,6 +95405,22 @@
         ]
     },
     {
+        "name": "Oh",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Oh",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Ohara",
         "type": "LastName",
         "gender": "Unisex",
@@ -93529,6 +95506,14 @@
         "type": "FirstName",
         "tags": [
             "Kenyan"
+        ]
+    },
+    {
+        "name": "Ok",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -95465,6 +97450,22 @@
         ]
     },
     {
+        "name": "Pae",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Paek",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Paetta",
         "gender": "Female",
         "type": "FirstName",
@@ -95489,6 +97490,22 @@
         ]
     },
     {
+        "name": "Pai",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Paik",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Painda",
         "gender": "Male",
         "type": "FirstName",
@@ -95510,6 +97527,14 @@
         "type": "FirstName",
         "tags": [
             "Scottish"
+        ]
+    },
+    {
+        "name": "Pak",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -95710,7 +97735,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -96013,6 +98039,22 @@
         ]
     },
     {
+        "name": "Param",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Paran",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Paraskevi",
         "gender": "Female",
         "type": "FirstName",
@@ -96067,6 +98109,22 @@
         "type": "FirstName",
         "tags": [
             "Afghan"
+        ]
+    },
+    {
+        "name": "Park",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Park",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -99931,6 +101989,14 @@
         ]
     },
     {
+        "name": "Pu",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Puca",
         "gender": "Female",
         "type": "FirstName",
@@ -100787,11 +102853,27 @@
         ]
     },
     {
+        "name": "Quon",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Qurban",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
             "Afghan"
+        ]
+    },
+    {
+        "name": "Ra",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -101170,7 +103252,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Pakistani"
+            "Pakistani",
+            "Korean"
         ]
     },
     {
@@ -102246,6 +104329,14 @@
         ]
     },
     {
+        "name": "Reeh",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Reel",
         "gender": "Male",
         "type": "FirstName",
@@ -103176,6 +105267,14 @@
         ]
     },
     {
+        "name": "Rhee",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Rheia",
         "gender": "Female",
         "type": "FirstName",
@@ -104053,6 +106152,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Rim",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -105014,6 +107121,14 @@
         "type": "LastName",
         "tags": [
             "Dutch"
+        ]
+    },
+    {
+        "name": "Roh",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -107391,6 +109506,22 @@
         ]
     },
     {
+        "name": "Ryu",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ryung",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Ryuu",
         "gender": "Male",
         "type": "FirstName",
@@ -107412,6 +109543,14 @@
         "type": "FirstName",
         "tags": [
             "Polish"
+        ]
+    },
+    {
+        "name": "Sa",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -107748,6 +109887,14 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Saja",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -108250,14 +110397,6 @@
         ]
     },
     {
-        "name": "Santana",
-        "type": "LastName",
-        "gender": "Unisex",
-        "tags": [
-            "Brazilian"
-        ]
-    },
-    {
         "name": "Sancho",
         "gender": "Male",
         "type": "FirstName",
@@ -108271,6 +110410,14 @@
         "type": "FirstName",
         "tags": [
             "Italian"
+        ]
+    },
+    {
+        "name": "Sandara",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -108328,6 +110475,30 @@
         "type": "LastName",
         "tags": [
             "Senegalese"
+        ]
+    },
+    {
+        "name": "Sang",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sang-Hee",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sang-Ook",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -108425,6 +110596,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Santana",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Brazilian"
         ]
     },
     {
@@ -108644,6 +110823,14 @@
         "type": "FirstName",
         "tags": [
             "Irish"
+        ]
+    },
+    {
+        "name": "Sarang",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -109916,6 +112103,62 @@
         ]
     },
     {
+        "name": "Seo",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Seo-Ah",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Seo-Joon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Seo-Yeon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Seo-Yoon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Seok",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Seon",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Seonag",
         "gender": "Female",
         "type": "FirstName",
@@ -109929,6 +112172,14 @@
         "type": "FirstName",
         "tags": [
             "Scottish"
+        ]
+    },
+    {
+        "name": "Seoul",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -110169,6 +112420,14 @@
         ]
     },
     {
+        "name": "Seung",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Severiano",
         "gender": "Male",
         "type": "FirstName",
@@ -110238,6 +112497,14 @@
         "type": "FirstName",
         "tags": [
             "Senegalese"
+        ]
+    },
+    {
+        "name": "Sha",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -110486,6 +112753,14 @@
         "type": "FirstName",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Shaleigh",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -111211,6 +113486,14 @@
     },
     {
         "name": "Shi",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Shi",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
@@ -111263,6 +113546,14 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Shik",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -111327,6 +113618,14 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Shin",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -111831,6 +114130,14 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Si-Woo",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -112566,6 +114873,14 @@
         ]
     },
     {
+        "name": "Sim",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Simcah",
         "type": "LastName",
         "gender": "Unisex",
@@ -112631,6 +114946,14 @@
         "gender": "Unisex",
         "tags": [
             "Scottish"
+        ]
+    },
+    {
+        "name": "Sin",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -112986,6 +115309,22 @@
         "type": "LastName",
         "tags": [
             "Polish"
+        ]
+    },
+    {
+        "name": "So",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "So-Young",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -113349,6 +115688,14 @@
         ]
     },
     {
+        "name": "Som",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Soma",
         "gender": "Unisex",
         "type": "FirstName",
@@ -113397,6 +115744,14 @@
         ]
     },
     {
+        "name": "Somi",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Sommer",
         "type": "LastName",
         "gender": "Unisex",
@@ -113406,10 +115761,19 @@
     },
     {
         "name": "Son",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Son",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Vietnamese"
+            "Vietnamese",
+            "Korean"
         ]
     },
     {
@@ -113441,7 +115805,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -113477,11 +115842,75 @@
         ]
     },
     {
+        "name": "Soo",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Soo-Ah",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Soo-Jin",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Soo-Min",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Soo-Yun",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Sood",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Soojin",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sook",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Soon-Bok",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -113544,7 +115973,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Japanese"
+            "Japanese",
+            "Korean"
         ]
     },
     {
@@ -113552,7 +115982,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Italian"
+            "Italian",
+            "Korean"
         ]
     },
     {
@@ -114315,6 +116746,22 @@
         ]
     },
     {
+        "name": "Su",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sua",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Subaru",
         "gender": "Unisex",
         "type": "FirstName",
@@ -114328,6 +116775,22 @@
         "type": "FirstName",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Suck",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Suck-Chin",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -114363,6 +116826,14 @@
         ]
     },
     {
+        "name": "Suh",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Suhash",
         "gender": "Male",
         "type": "FirstName",
@@ -114376,6 +116847,30 @@
         "type": "LastName",
         "tags": [
             "Dutch"
+        ]
+    },
+    {
+        "name": "Sujin",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Suk",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Suk",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -114451,11 +116946,67 @@
         ]
     },
     {
+        "name": "Sun",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sun",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sun-Hee",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sun-Hi",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sun-Jung",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Sunako",
         "gender": "Female",
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Sung",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Sung",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -114504,6 +117055,14 @@
         "type": "FirstName",
         "tags": [
             "Vietnamese"
+        ]
+    },
+    {
+        "name": "Sur",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -114955,6 +117514,14 @@
         ]
     },
     {
+        "name": "Sza",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Szczepan",
         "gender": "Male",
         "type": "FirstName",
@@ -115148,11 +117715,35 @@
         ]
     },
     {
+        "name": "Tae",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Taemin",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Taemon",
         "gender": "Male",
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Taeo",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -115377,6 +117968,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Tak",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -118339,6 +120938,14 @@
         ]
     },
     {
+        "name": "To",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Tobias",
         "gender": "Male",
         "type": "FirstName",
@@ -118384,6 +120991,14 @@
         "type": "LastName",
         "tags": [
             "Scandinavian"
+        ]
+    },
+    {
+        "name": "Toh",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -120679,7 +123294,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Jewish"
+            "Jewish",
+            "Korean"
         ]
     },
     {
@@ -122552,7 +125168,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -123045,6 +125662,22 @@
         ]
     },
     {
+        "name": "Whan",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Whang",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Whelan",
         "gender": "Unisex",
         "type": "LastName",
@@ -123341,6 +125974,30 @@
         ]
     },
     {
+        "name": "Won",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Won-Shik",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Woo",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Wood",
         "type": "LastName",
         "gender": "Unisex",
@@ -123354,6 +126011,14 @@
         "gender": "Unisex",
         "tags": [
             "British"
+        ]
+    },
+    {
+        "name": "Woong",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -123933,7 +126598,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -124197,7 +126863,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Ghanaian"
+            "Ghanaian",
+            "Korean"
         ]
     },
     {
@@ -124205,7 +126872,16 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Ye-Joon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124246,7 +126922,8 @@
         "gender": "Unisex",
         "tags": [
             "Chinese",
-            "Jamaican"
+            "Jamaican",
+            "Korean"
         ]
     },
     {
@@ -124303,6 +126980,14 @@
         "type": "FirstName",
         "tags": [
             "Jewish"
+        ]
+    },
+    {
+        "name": "Yeji",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124367,6 +127052,14 @@
         ]
     },
     {
+        "name": "Yeon",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Yerachmiel",
         "gender": "Male",
         "type": "FirstName",
@@ -124388,6 +127081,22 @@
         "type": "FirstName",
         "tags": [
             "Pakistani"
+        ]
+    },
+    {
+        "name": "Yeri",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yerin",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124458,6 +127167,14 @@
         ]
     },
     {
+        "name": "Ying",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Yiorgos",
         "gender": "Male",
         "type": "FirstName",
@@ -124503,6 +127220,14 @@
         "type": "FirstName",
         "tags": [
             "Greek"
+        ]
+    },
+    {
+        "name": "Yo",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124554,6 +127279,22 @@
         ]
     },
     {
+        "name": "Yohaan",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yohan",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
         "name": "Yohann",
         "gender": "Male",
         "type": "FirstName",
@@ -124592,6 +127333,54 @@
         "type": "FirstName",
         "tags": [
             "Jewish"
+        ]
+    },
+    {
+        "name": "Yong",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yong-sun",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yoo-Joon",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yoon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yoon",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yoona",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124655,6 +127444,14 @@
     },
     {
         "name": "Young",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Young",
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
@@ -124668,6 +127465,46 @@
         "tags": [
             "British",
             "African-American"
+        ]
+    },
+    {
+        "name": "Young-Il",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Young-Jae",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Young-Mi",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Young-Soo",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Young-Soon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124716,7 +127553,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
         ]
     },
     {
@@ -124733,6 +127571,14 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Yul",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124764,7 +127610,24 @@
         "type": "FirstName",
         "gender": "Female",
         "tags": [
-            "Chinese"
+            "Chinese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yun",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yun-Hee",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124772,7 +127635,16 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Japanese"
+            "Japanese",
+            "Korean"
+        ]
+    },
+    {
+        "name": "Yurani",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
@@ -124781,6 +127653,14 @@
         "type": "FirstName",
         "tags": [
             "Pakistani"
+        ]
+    },
+    {
+        "name": "Yuri",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Korean"
         ]
     },
     {
