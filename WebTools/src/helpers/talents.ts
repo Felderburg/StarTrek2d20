@@ -43,6 +43,8 @@ export const TALENT_NAME_SPIKED_TAIL = "Spiked Tail (Special Rule, Creature)";
 export const TALENT_NAME_CORROSIVE_SPIT = "Corrosive Spit (Special Rule, Creature)";
 export const TALENT_NAME_IMPROVED_HULL_INTEGRITY = "Improved Hull Integrity";
 export const TALENT_NAME_ABUNDANT_PERSONNEL = "Abundant Personnel";
+export const TALENT_NAME_WHIP_LIKE_TAIL = "Whip-like Tail (Special Rule, Creature)";
+export const TALENT_NAME_WEB = "Web (Special Rule, Creature)";
 
 enum TalentCategory {
     General,
@@ -4853,6 +4855,36 @@ export class Talents {
             "Special Rule", true),
         new TalentModel(
             "Toxic, Poisonous or Venomous (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Stink Attack (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Wall Climber (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            TALENT_NAME_WEB,
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Attach (Special Rule, Creature)",
+            "",
+            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            TALENT_NAME_WHIP_LIKE_TAIL,
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,

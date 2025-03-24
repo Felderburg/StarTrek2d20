@@ -142,6 +142,7 @@ async function main(key, inputData) {
     prompt += describeHabitat(inputJson);
 
     prompt += "Give me a description of the alien and describe its demeanor/personality. ";
+    prompt += "Use the metric system for any measurements, including creature size. ";
 
     const chatCompletion = await groq.chat.completions.create({
         "messages": [{
@@ -150,7 +151,7 @@ async function main(key, inputData) {
         }],
         "model": "llama-3.3-70b-versatile",
         "temperature": 1,
-        "max_completion_tokens": 2048,
+        "max_completion_tokens": 1024,
         "top_p": 1,
         "stream": true,
         "stop": null

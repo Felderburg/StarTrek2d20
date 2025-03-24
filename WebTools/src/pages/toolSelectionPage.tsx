@@ -5,7 +5,7 @@ import {navigateTo, Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import Button from 'react-bootstrap/Button';
 import {Source} from '../helpers/sources';
-import { hasSource } from '../state/contextFunctions';
+import { hasSource, isSecondEdition } from '../state/contextFunctions';
 import { useTranslation } from 'react-i18next';
 import InstructionText from '../components/instructionText';
 import { PageFactory } from './pageFactory';
@@ -92,6 +92,8 @@ const ToolSelectionPage = () => {
             navigate("/systemGenerator");
         } else if (page === PageIdentity.RandomStarship) {
             navigate("/starship/generate");
+        } else if (page === PageIdentity.RandomCreature) {
+            navigate("/random/creature");
         } else if (page === PageIdentity.TacticalAssets) {
             navigate("/tactical");
         } else {
@@ -119,12 +121,15 @@ const ToolSelectionPage = () => {
                         <div className="col-md-6 button-column">
                             <Button className="mt-4" onClick={() => { startCharacterCreation(); } } >{t('ToolSelection.mainCharacter')}</Button>
                             <Button className="mt-4" onClick={() => { goToPage(PageIdentity.SupportingCharacter); } } >{t('ToolSelection.supportingCharacter')}</Button>
-                            <LoadingButton onClick={() => { loadStarshipAndGoToPage(); } } loading={loadingStarship}>{t('ToolSelection.starship')}</LoadingButton>
+                            <LoadingButton className="mt-4" onClick={() => { loadStarshipAndGoToPage(); } } loading={loadingStarship}>{t('ToolSelection.starship')}</LoadingButton>
                             {renderSystemGenerationButton()}
                         </div>
                         <div className="col-md-6 button-column">
-                            <LoadingButton onClick={() => { loadNpcAndGoToPage(); } } loading={loadingNpc}>{t('ToolSelection.randomNpc')}</LoadingButton>
-                            <LoadingButton onClick={() => { loadRandomStarshipAndGoToPage(); } } loading={loadingRandomStarship}>{t('ToolSelection.randomStarship')}</LoadingButton>
+                            <LoadingButton className="mt-4" onClick={() => { loadNpcAndGoToPage(); } } loading={loadingNpc}>{t('ToolSelection.randomNpc')}</LoadingButton>
+                            <LoadingButton className="mt-4" onClick={() => { loadRandomStarshipAndGoToPage(); } } loading={loadingRandomStarship}>{t('ToolSelection.randomStarship')}</LoadingButton>
+                            {isSecondEdition()
+                                ? (<Button className="mt-4" onClick={() => { goToPage(PageIdentity.RandomCreature); } }>{t('ToolSelection.randomCreature')}</Button>)
+                                : undefined}
                             {renderTacticalAssetButton()}
                         </div>
                     </div>

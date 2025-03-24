@@ -458,6 +458,7 @@
     "ToolSelection.spaceSector": "Space Sector",
     "ToolSelection.randomNpc": "Random NPC",
     "ToolSelection.randomStarship": "Random Starship",
+    "ToolSelection.randomCreature": "Random Creature",
 
     "Common.button.random": "Random",
     "Common.button.select": "Select",
@@ -2490,6 +2491,10 @@
 
     "Talent.askingTheRightQuestions.description": "When you attempt a task that relates to information you’ve received from Obtain Information questions in the current scene, you may re-roll 1d20.",
 
+    "Talent.attachSpecialRuleCreature": "Attach",
+
+    "Talent.attachSpecialRuleCreature.description2e": "When the creature makes a melee attack, it binds itself to its victim rather than inflicting an Injury. If it succeeds, it attaches itself with the target’s flesh or nervous system and cannot be easily removed.",
+
     "Talent.attackRun": "Attack Run",
 
     "Talent.attackRun.description2e": "Whenever you succeed at the Attack Pattern major action, enemy Attacks against you do not reduce in Difficulty due to that action.",
@@ -3636,6 +3641,10 @@
 
     "Talent.stimulantShot.description2e": "When you perform the First Aid task to revive a Defeated ally, you may add 1 Threat to let that ally recover Stress equal to your Medicine rating. A character may only benefit from this talent once per adventure.",
 
+    "Talent.stinkAttackSpecialRuleCreature": "Stink Attack",
+
+    "Talent.stinkAttackSpecialRuleCreature.description2e": "Twice a scene, the creature can emit a foul-smelling gas that causes wretching and eye watering to every living thing in the same zone. For game purposes, the zone has the trait \"Disadvantage: Overwhelming Smell\"",
+
     "Talent.strafingRun": "Strafing Run",
 
     "Talent.strafingRun.description2e": "Whenever you succeed at the Attack Pattern task and then Keep the Initiative, the cost to Keep the Initiative is reduced to 0. If the character taking the next turn makes an Attack, they may re-roll one d20.",
@@ -3791,6 +3800,10 @@
 
     "Talent.walkingEncyclopedia.description2e": "Once per session, when you attempt a task, you may spend 2 Momentum (Immediate) to gain an additional focus for the remainder of the session, due to your breadth of knowledge. However, any task using that focus increases its complication range by 1, as you are not a true expert on that subject.",
 
+    "Talent.wallClimberSpecialRuleCreature": "Wall Climber",
+
+    "Talent.wallClimberSpecialRuleCreature.description2e": "The creature is able to climb walls and suspend from ceilings.",
+
     "Talent.warriorsSpirit": "Warrior's Spirit",
 
     "Talent.warriorsSpirit.description2e": "When you make a Melee Attack, or are targeted by a Melee Attack, and you buy one or more d20s by adding Threat, you may re-roll the dice pool for your task roll. Further, you own either a mek’leth (a blade) or a bat’leth (a heavy blade) at your discretion, which counts as standard issue for you.",
@@ -3799,9 +3812,17 @@
 
     "Talent.wary.description2e": "When you attempt a task to detect an enemy or hazard, you may re-roll one d20.",
 
+    "Talent.webSpecialRuleCreature": "Web",
+
+    "Talent.webSpecialRuleCreature.description2e": "As a major action, the creature can fill its zone with sticky webbing. This makes the zone difficult terrain with a cost of 1, or adds 1 to the cost of any existing difficult terrain.",
+
     "Talent.wellInformed": "Well-Informed",
 
     "Talent.wellInformed.description2e": "You have contacts everywhere and you listen to news and rumors from far and wide. At the start of a scene, you may add 1 Threat to ask the gamemaster two questions about the situation or location, as if you had spent Momentum on the Obtain Information spend. The answers you receive will be knowledge you’ve gained from your contacts and the news and rumors you’ve heard.",
+
+    "Talent.whipLikeTailSpecialRuleCreature": "Whip-like Tail",
+
+    "Talent.whipLikeTailSpecialRuleCreature.description2e": "The creature can attack with a whip-like tail.",
 
     "Talent.wormholeRelaySystem": "Wormhole Relay System",
 

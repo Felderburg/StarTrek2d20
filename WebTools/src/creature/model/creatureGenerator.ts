@@ -2,7 +2,7 @@ import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { Era } from "../../helpers/eras";
 import { Department } from "../../helpers/department";
-import { TALENT_NAME_FLIGHT } from "../../helpers/talents";
+import { TALENT_NAME_FLIGHT, TALENT_NAME_WEB } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { Creature } from "./creature";
 import { creatureNameGenerator } from "./creatureNameGenerator";
@@ -60,7 +60,7 @@ export const CreatureGenerator = async (era: Era, habitat?: Habitat, creatureTyp
         result.departments[Department.Security] += 1;
     }
 
-    let attributeImprovementBySize = [ 28, 28, 30, 30, 32, 34];
+    let attributeImprovementBySize = [ 26, 26, 28, 28, 30, 32];
     let attributeImprovement = attributeImprovementBySize[result.size.id];
     let attributes = [
         Attribute.Control,
@@ -474,11 +474,11 @@ const deriveForm = (creature: Creature) => {
                 } else if (creature.isFourOrMoreLegged) {
                     if (creature.size?.id === CreatureSize.Swarm && roll < 10) {
                         result = "Ant";
-                    } else if (creature.size?.id === CreatureSize.Swarm && roll < 15) {
+                    } else if (creature.size?.id === CreatureSize.Swarm && roll < 14) {
                         result = "Fly";
-                    } else if (creature.size?.id === CreatureSize.Swarm && roll < 15) {
+                    } else if (creature.size?.id === CreatureSize.Swarm && roll < 18) {
                         result = "Wasp";
-                    } else if (roll < 4) {
+                    } else if (roll < 4 || creature.hasTalent(TALENT_NAME_WEB)) {
                         result = "Spider";
                     } else if (roll < 8) {
                         result = "Roach";

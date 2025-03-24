@@ -178,6 +178,87 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
 
     switch (type) {
 
+        case CreatureType.Invertebrate:
+            switch (D20.roll()) {
+                case 1:
+                case 2:
+                case 3:
+                    return [];
+                case 4:
+                case 5:
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Chitinous Shell", 2) ];
+                case 6:
+                case 7:
+                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous (Special Rule, Creature)"), "Poisonous") ];
+                case 8:
+                    return [ toSelection(TalentsHelper.getTalent("Flight (Special Rule, Creature)"), "Insect-like Wings") ];
+                case 9:
+                case 10:
+                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous (Special Rule, Creature)"), "Venemous") ];
+                case 11:
+                case 12:
+                    return [ toSelection(TalentsHelper.getTalent("Wall Climber (Special Rule, Creature)")) ];
+                case 13:
+                    return [ toSelection(TalentsHelper.getTalent("Web (Special Rule, Creature)")) ];
+                case 14:
+                case 15:
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                case 16:
+                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X (Special Rule, Creature)"), "Precise", 1, Attribute.Control) ];
+                case 17:
+                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum (Special Rule, Creature)"), "360-degree Vision") ];
+                case 18:
+                    return [ toSelection(TalentsHelper.getTalent("Attach (Special Rule, Creature)")) ];
+                case 19:
+                    return [ toSelection(TalentsHelper.getTalent("Whip-like Tail (Special Rule, Creature)")) ];
+                case 20:
+                    let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
+                    result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
+                    return result;
+            }
+            break;
+
+        case CreatureType.Mammal:
+            switch (D20.roll()) {
+                case 1:
+                case 2:
+                case 3:
+                    return [];
+                case 4:
+                case 5:
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Thick Fur", 1) ];
+                case 6:
+                    return [ toSelection(TalentsHelper.getTalent("Tool User (Special Rule, Creature)")) ];
+                case 7:
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Bony Plates", 2) ];
+                case 8:
+                    return [toSelection(TalentsHelper.getTalent("Camouflaged X (Special Rule, Creature)"), "Patterned Fur", 1) ];
+                case 9:
+                case 10:
+                    return [ toSelection(TalentsHelper.getTalent("Flight (Special Rule, Creature)"), "Leathery Wings") ];
+                case 11:
+                case 12:
+                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum (Special Rule, Creature)"), "Excellent Hearing") ];
+                case 13:
+                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum (Special Rule, Creature)"), "Excellent Sense of Smell") ];
+                case 14:
+                case 15:
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                case 16:
+                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X (Special Rule, Creature)"), "Rage", 2, Attribute.Daring) ];
+                case 17:
+                    return [ toSelection(TalentsHelper.getTalent("Menacing X (Special Rule, Creature)")) ];
+                case 18:
+                    return [ toSelection(TalentsHelper.getTalent("Multi-Limbed (Special Rule, Creature)"), "Prehensile Trunk") ];
+                case 19:
+                    return [ toSelection(TalentsHelper.getTalent("Stink Attack (Special Rule, Creature)")) ];
+                case 20:
+                    let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
+                    result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
+                    return result;
+            }
+            break;
+
         case CreatureType.Fish:
             switch (D20.roll()) {
                 case 1:
