@@ -176,12 +176,6 @@ export class EnergyLoadTypeModel {
     get effectsAndQualities() {
         return [...this._qualities].concat(this.effects);
     }
-
-    get effectAndQualitiesAsString() {
-        let effectsAndQualities = [...this._qualities].concat(this.effects);
-        let result = effectsAndQualities.map(q => q.localizedDescription);
-        return result.join(", ");
-    }
 }
 
 export const centuryToYear = (century: number) => {
@@ -221,7 +215,7 @@ export class TorpedoLoadTypeModel {
         new TorpedoLoadTypeModel(TorpedoLoadType.Plasma,      "Plasma",      5, [], [new WeaponQuality(Quality.Calibration, 8), new WeaponQuality(Quality.Cumbersome), new WeaponQuality(Quality.PersistentX)],                                     23),
         new TorpedoLoadTypeModel(TorpedoLoadType.Polaron,     "Polaron",     3, [], [new WeaponQuality(Quality.Calibration), new WeaponQuality(Quality.Piercing, 2)],                                                                               24),
         new TorpedoLoadTypeModel(TorpedoLoadType.Positron,    "Positron",    5, [], [new WeaponQuality(Quality.Calibration), new WeaponQuality(Quality.Cumbersome),new WeaponQuality(Quality.Dampening) ],                                          24),
-        new TorpedoLoadTypeModel(TorpedoLoadType.Quantum,     "Quantum",     4, [], [new WeaponQuality(Quality.Vicious, 1), new WeaponQuality(Quality.Calibration), new WeaponQuality(Quality.HighYield)],                                          24),
+        new TorpedoLoadTypeModel(TorpedoLoadType.Quantum,     "Quantum",     4, [], [new WeaponQuality(Quality.Vicious), new WeaponQuality(Quality.Calibration), new WeaponQuality(Quality.HighYield)],                                          24),
         new TorpedoLoadTypeModel(TorpedoLoadType.Spatial,     "Spatial",     2, [], [],                                                                                                                                                             22),
         new TorpedoLoadTypeModel(TorpedoLoadType.Tetryonic,   "Tetryonic",   2, [], [new WeaponQuality(Quality.Depleting), new WeaponQuality(Quality.HighYield)],                                                                                   25),
         new TorpedoLoadTypeModel(TorpedoLoadType.Transphasic, "Transphasic", 4, [], [new WeaponQuality(Quality.Calibration), new WeaponQuality(Quality.Devastating), new WeaponQuality(Quality.Piercing)],                                          25),
@@ -245,7 +239,7 @@ export class TorpedoLoadTypeModel {
     }
 
     static allTypes(version: number) {
-        return TorpedoLoadTypeModel.TYPES;
+        return version === 1 ? TorpedoLoadTypeModel.TYPES : TorpedoLoadTypeModel.TYPES_2E;
     }
 
     static allTypesByYear(year: number, version: number) {
@@ -256,12 +250,7 @@ export class TorpedoLoadTypeModel {
         let result = [];
         this._weaponEffects.forEach(e => result.push(e.localizedDescription));
         this._weaponQualities.forEach(q => result.push(q.localizedDescription));
-        return result.join(", ");
-    }
-
-    get qualitiesAsString() {
-        let result = this._weaponQualities.map(q => q.localizedDescription);
-        return result.join(", ");
+        return result;
     }
 }
 
@@ -323,7 +312,7 @@ export class MineTypeModel {
         return this.allTypes().filter(l => year > centuryToYear(l.century));
     }
 
-    get effectAndQualities() {
+    get effectAndQualities(): WeaponQuality[] {
         let result = [];
         if (this.effect) {
             result.push(this.effect);
@@ -332,7 +321,7 @@ export class MineTypeModel {
         if (qualities) {
             result.push(qualities);
         }
-        return result.join(", ");
+        return result;
     }
 
     get effect() {
@@ -438,7 +427,11 @@ export class Weapon {
         if (this.usageCategory === UsageCategory.Character) {
             return this.effects.concat(this.qualities);
         } else if (this.loadType instanceof EnergyLoadTypeModel) {
-            return (this.loadType as EnergyLoadTypeModel).effectsAndQualities;
+            let quality = [...(this.loadType as EnergyLoadTypeModel).effectsAndQualities];
+            if (this.deliveryType?.additionalQuality != null) {
+                quality.push(this.deliveryType.additionalQuality);
+            }
+            return quality;
         } else if (this.loadType instanceof TorpedoLoadTypeModel) {
             return (this.loadType as TorpedoLoadTypeModel)._weaponQualities;
         } else {
@@ -547,35 +540,37 @@ export class Weapon {
         if (this.injuryType != null) {
             result.push(i18next.t(makeKey("InjuryType.", InjuryType[this.injuryType])));
         }
-        let temp = this.effectsAndQualities;
+        let temp = this.effectsAndQualitiesAsString;
         if (temp.length) {
             result.push(temp);
         }
         return result.join(", ");
     }
-    get effectsAndQualities() {
+
+    get effectsAndQualities(): WeaponQuality[] {
         if (this.usageCategory === UsageCategory.Character) {
-            return this.weaponQualities.map(q => q.localizedDescription).join(", ");
+            return [...this.weaponQualities.map(q => q.localizedDescription)];
         } else {
-            let result = "";
+            let result = [];
             if (this.loadType != null && this.loadType instanceof EnergyLoadTypeModel) {
-                result = (this.loadType as EnergyLoadTypeModel).effectAndQualitiesAsString;
+                result.push(...(this.loadType as EnergyLoadTypeModel).effectsAndQualities);
             } else if (this.loadType != null && this.loadType instanceof TorpedoLoadTypeModel) {
                 let torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
-                result = torpedoLoadType.effectAndQualities;
+                result.push(...torpedoLoadType.effectAndQualities);
             } else if (this.loadType != null && this.loadType instanceof MineTypeModel) {
                 let torpedoLoadType = this.loadType as MineTypeModel;
-                result = torpedoLoadType.effectAndQualities;
+                result.push(...torpedoLoadType.effectAndQualities);
             }
 
             if (this.deliveryType?.additionalQuality != null) {
-                if (result.length > 0) {
-                    result += ", ";
-                }
-                result += this.deliveryType.additionalQuality.localizedDescription;
+                result.push(this.deliveryType.additionalQuality);
             }
             return result;
         }
+    }
+
+    get effectsAndQualitiesAsString() {
+        return this.effectsAndQualities.map(q => q.localizedDescription).join(", ");
     }
 
     get isTractorOrGrappler() {

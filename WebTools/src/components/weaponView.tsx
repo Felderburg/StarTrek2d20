@@ -13,7 +13,7 @@ const WeaponView: React.FC<IWeaponViewProperties> = ({weapon, dice, version}) =>
     const { t } = useTranslation();
 
     const renderInjuryAndDetails = () => {
-        let result = version > 1 ? weapon.injuryTypeEffectsAndQualities : weapon.effectsAndQualities;
+        let result = version > 1 ? weapon.injuryTypeEffectsAndQualities : weapon.effectsAndQualitiesAsString;
         return result?.length ? result : '\u00A0';
     }
 

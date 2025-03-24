@@ -310,7 +310,7 @@ export class Roll20VttExporter {
                     + (w.isTractorOrGrappler ? "" : (WeaponTypeModel.TYPES[w.type].description + ", "))
                     + (w.range != null ? "Range " + WeaponRange[w.range] + ", " : "")
                     + (w.isTractorOrGrappler ? "Strength " + starship.getDiceForWeaponForRoll20(w) : (starship.getDiceForWeaponForRoll20(w) + delta)) + " "
-                    + w.effectsAndQualities + ")"
+                    + w.effectsAndQualitiesAsString + ")"
                     + "</p></li>";
             });
 

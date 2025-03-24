@@ -24,7 +24,7 @@ export class WeaponDescriber {
             injuryType = i18next.t(makeKey("InjuryType.", InjuryType[weapon.injuryType])) + " ";
         }
 
-        let qualities = weapon.weaponQualities.map(q => q.localizedDescription).join(", ");
+        let qualities = weapon.effectsAndQualities.map(q => q.localizedDescription).join(", ");
         if (qualities?.length) {
             qualities = ", " + qualities;
         } else {
@@ -39,6 +39,6 @@ export class WeaponDescriber {
     }
 
     describe(weapon: Weapon) {
-        return this.version > 1 ? weapon.injuryTypeEffectsAndQualities : weapon.effectsAndQualities;
+        return this.version > 1 ? weapon.injuryTypeEffectsAndQualities : weapon.effectsAndQualitiesAsString;
     }
 }

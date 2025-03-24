@@ -118,7 +118,7 @@ abstract class BasicSheet implements ICharacterSheet {
 
         this.fillField(form, 'Weapon ' + index + ' name', weapon.name);
         this.fillField(form, 'Weapon ' + index + ' dice', (weapon.dice == null) ? "" : ("" + construct.getDiceForWeapon(weapon)));
-        this.fillField(form, 'Weapon ' + index + ' qualities', weapon.effectsAndQualities);
+        this.fillField(form, 'Weapon ' + index + ' qualities', weapon.effectsAndQualitiesAsString);
     }
 
     fillCheckbox(form: PDFForm, name: string, value: boolean) {
@@ -279,7 +279,7 @@ abstract class BasicStarshipSheet extends BasicSheet {
 
         this.fillField(form, 'Weapon ' + index + ' name', weapon.description);
         this.fillField(form, 'Weapon ' + index + ' dice', "" + construct.getDiceForWeapon(weapon));
-        this.fillField(form, 'Weapon ' + index + ' qualities', weapon.effectsAndQualities);
+        this.fillField(form, 'Weapon ' + index + ' qualities', weapon.effectsAndQualitiesAsString);
     }
 }
 

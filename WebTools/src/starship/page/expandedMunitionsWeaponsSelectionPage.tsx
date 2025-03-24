@@ -37,7 +37,7 @@ const ExpandedMunitionsWeaponsSelectionPage: React.FC<IExpandedMunitionsWeaponsS
                 {starship.talentDetailSelections.filter(s => s.weapon).map((s, i) => (<tr key={'weapon-' + i}>
                     <td className="selection-header">{s.weapon.description}</td>
                     <td><p className="m-0">{s.weapon.dice}</p></td>
-                    <td><p className="m-0">{s.weapon.effectsAndQualities}</p></td>
+                    <td><p className="m-0">{s.weapon.effectsAndQualitiesAsString}</p></td>
                     <td className="text-end"><IconButton variant="danger" onClick={() => { confirmRemove(s) }} icon="trash" /></td>
                 </tr>))}
             </tbody>);

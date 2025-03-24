@@ -33,7 +33,7 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = 
                 {starship.weapons.map((w, i) => (<tr key={'weapon-' + i}>
                     <td className="selection-header">{w.description}</td>
                     <td><p className="m-0">{w.dice}</p></td>
-                    <td><p className="m-0">{w.effectsAndQualities}</p></td>
+                    <td><p className="m-0">{w.effectsAndQualitiesAsString}</p></td>
                     <td className="text-end">
                         <IconButton variant="danger" onClick={() => { confirmRemove(w) }} icon="trash" />
                     </td>
