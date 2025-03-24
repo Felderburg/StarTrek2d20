@@ -1,9 +1,8 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { Era } from "../../helpers/eras";
-import { DepartmentsHelper } from "../../helpers/department";
+import { Department } from "../../helpers/department";
 import { TALENT_NAME_FLIGHT } from "../../helpers/talents";
-import { NpcType, NpcTypes } from "../../npc/model/npcType";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { Creature } from "./creature";
 import { creatureNameGenerator } from "./creatureNameGenerator";
@@ -14,6 +13,7 @@ import { createRandomDiet, DietType, DietTypeHelper } from "./diet";
 import { createRandomHabitat, Habitat, HabitatHelper } from "./habitat";
 import { generateRandomLocomotionType } from "./locomotion";
 import { generateRandomNaturalAttacks } from "./naturalAttacks";
+import { Attribute } from "../../helpers/attributes";
 
 export const CreatureGenerator = async (era: Era, habitat?: Habitat, creatureType?: CreatureType) => {
     const result = new Creature();
@@ -47,13 +47,57 @@ export const CreatureGenerator = async (era: Era, habitat?: Habitat, creatureTyp
         result.additionalTalents.push(new SelectedTalent(TALENT_NAME_FLIGHT));
     }
 
-    let skillImprovements = NpcTypes.disciplinePoints(NpcType.Minor);
-    let skills = DepartmentsHelper.instance.getDepartments();
-    for (let i = 0; i < skillImprovements.length; i++) {
+    let skillImprovements = 3;
+    let skills = [Department.Security, Department.Security, Department.Command];
+    for (let i = 0; i < skillImprovements; i++) {
         let index = Math.floor(Math.random() * skills.length);
-        let skill = skills.splice(index, 1)[0];
+        let skill = skills[index];
 
-        result.departments[skill] = skillImprovements[i];
+        result.departments[skill] += 1;
+    }
+
+    if (result.diet.id === DietType.Carnivore) {
+        result.departments[Department.Security] += 1;
+    }
+
+    let attributeImprovementBySize = [ 28, 28, 30, 30, 32, 34];
+    let attributeImprovement = attributeImprovementBySize[result.size.id];
+    let attributes = [
+        Attribute.Control,
+        Attribute.Control,
+        Attribute.Daring,
+        Attribute.Daring,
+        Attribute.Daring,
+        Attribute.Daring,
+        Attribute.Fitness,
+        Attribute.Fitness,
+        Attribute.Fitness,
+        Attribute.Fitness,
+        Attribute.Insight,
+        Attribute.Insight,
+        Attribute.Presence,
+        Attribute.Presence,
+        Attribute.Presence,
+        Attribute.Reason
+    ];
+    for (let i = 0; i < attributeImprovement; i++) {
+        let index = Math.floor(Math.random() * attributes.length);
+        let attribute = attributes[index];
+
+        result.attributes[attribute] += 1;
+        if (result.attributes[attribute] >= 11) {
+            attributes = attributes.filter(a => a !== attribute);
+        }
+    }
+
+    if (result.diet.id === DietType.Carnivore) {
+        result.attributes[Attribute.Daring] += 1;
+        result.attributes[Attribute.Fitness] += 1;
+        result.attributes[Attribute.Presence] += 1;
+    } else if (result.diet.id === DietType.Omnivore) {
+        result.attributes[Attribute.Fitness] += 1;
+    } else if (result.diet.id === DietType.Herbivore) {
+        result.attributes[Attribute.Insight] += 1;
     }
 
     addAllTalentSelection(result, generateRandomBasicCreatureTalent());

@@ -248,8 +248,8 @@ export class TorpedoLoadTypeModel {
 
     get effectAndQualities() {
         let result = [];
-        this._weaponEffects.forEach(e => result.push(e.localizedDescription));
-        this._weaponQualities.forEach(q => result.push(q.localizedDescription));
+        this._weaponEffects.forEach(e => result.push(e));
+        this._weaponQualities.forEach(q => result.push(q));
         return result;
     }
 }
@@ -549,7 +549,7 @@ export class Weapon {
 
     get effectsAndQualities(): WeaponQuality[] {
         if (this.usageCategory === UsageCategory.Character) {
-            return [...this.weaponQualities.map(q => q.localizedDescription)];
+            return [...this.weaponQualities];
         } else {
             let result = [];
             if (this.loadType != null && this.loadType instanceof EnergyLoadTypeModel) {
@@ -570,7 +570,7 @@ export class Weapon {
     }
 
     get effectsAndQualitiesAsString() {
-        return this.effectsAndQualities.map(q => q.localizedDescription).join(", ");
+        return this.effectsAndQualities.map(q => q.localizedDescription.trim()).join(", ");
     }
 
     get isTractorOrGrappler() {

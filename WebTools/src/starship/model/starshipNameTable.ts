@@ -339,6 +339,7 @@ const starshipTngEraNames = [
     "Campbell",
     "de Leve",
     "Pearl",
+    "DiFranco",
     "Spader"
 ]
 
@@ -397,6 +398,8 @@ const spaceframeNames: {[id: number ]: string[]} = {
         "Nightengale",
         "Salk",
         "Farmer",
+        "Bethune",
+        "Phlox",
         "Brangman",
         "Johnson-Brown",
         "Barton",
@@ -415,6 +418,8 @@ const spaceframeNames: {[id: number ]: string[]} = {
         "Nightengale",
         "Salk",
         "Farmer",
+        "Bethune",
+        "Phlox",
         "Brangman",
         "Johnson-Brown",
         "Barton",

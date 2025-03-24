@@ -54,7 +54,8 @@ class Marshaller {
             "era": Era[creature.era],
             "name": creature.name,
             "version": creature.version,
-            "departments": this.toDepartmentObject(creature.departments)
+            "departments": this.toDepartmentObject(creature.departments),
+            "attributes": this.toAttributeObject(creature.attributes),
         };
 
         if (creature.description?.length) {
@@ -1064,6 +1065,12 @@ class Marshaller {
         if (json.departments) {
             DepartmentsHelper.instance.getDepartments().forEach(s =>
                 result.departments[s] = json.departments[Department[s]]
+            );
+        }
+
+        if (json.attributes) {
+            AttributesHelper.getAllAttributes().forEach(s =>
+                result.attributes[s] = json.attributes[Attribute[s]]
             );
         }
 

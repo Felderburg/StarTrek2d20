@@ -22,15 +22,12 @@ export class Creature extends Construct {
     additionalTalents: SelectedTalent[] = [];
     additionalTraits: string[] = [];
     form?: string;
+    attributes: number[] = [1, 1, 1, 1, 1, 0];
     departments: number[] = [0, 0, 0, 0, 0, 0];
 
     constructor() {
         super(Stereotype.Creature);
         this.type = CharacterType.Creature;
-    }
-
-    get attributes() {
-        return [5, 5, 5, 5, 5, 5];
     }
 
     get talents() {
