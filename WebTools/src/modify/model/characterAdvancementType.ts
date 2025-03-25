@@ -2,7 +2,7 @@ import i18next from "i18next";
 import { makeKey } from "../../common/translationKey";
 
 export enum CharacterAdvancementType {
-    Normal,
+    Adjustment,
     Milestone,
     CharacterArc,
 }
@@ -18,7 +18,7 @@ export class CharacterAdvancementModel {
     }
 
     get localizedName() {
-        return i18next.t(makeKey('MilestoneType.name.', CharacterAdvancementType[this.type]));
+        return i18next.t(makeKey('CharacterAdvancementType.', CharacterAdvancementType[this.type]));
     }
 }
 
@@ -26,7 +26,7 @@ class CharacterAdvancements {
     static _instance:CharacterAdvancements;
 
     private items: CharacterAdvancementModel[] = [
-        new CharacterAdvancementModel(CharacterAdvancementType.Normal, "Normal"),
+        new CharacterAdvancementModel(CharacterAdvancementType.Adjustment, "Adjustment"),
         new CharacterAdvancementModel(CharacterAdvancementType.Milestone, "Milestone"),
         new CharacterAdvancementModel(CharacterAdvancementType.CharacterArc, "Character Arc"),
     ];

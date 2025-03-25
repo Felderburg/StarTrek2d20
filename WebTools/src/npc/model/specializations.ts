@@ -21,6 +21,14 @@ export class Specialty {
     specialties(category: string) {
         return this.focuses[category];
     }
+
+    includes(focus: string) {
+        let result = false;
+        Object.values(this.focuses).forEach(f => {
+            result = result || f.includes(focus);
+        });
+        return result;
+    }
 }
 
 export class Value {

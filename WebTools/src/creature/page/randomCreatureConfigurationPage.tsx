@@ -8,7 +8,6 @@ import InstructionText from "../../components/instructionText";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { Habitat, HabitatHelper } from "../model/habitat";
 import { useEffect, useState } from "react";
-import Button from "react-bootstrap/Button";
 import { CreatureGenerator } from "../model/creatureGenerator";
 import { connect } from "react-redux";
 import { Era } from "../../helpers/eras";
@@ -58,7 +57,7 @@ const RandomCreatureConfigurationPage: React.FC<IRandomCreatureConfigurationProp
 
     const createCreature = async () => {
         setLoading(true);
-        let creature = await CreatureGenerator(era, habitat, creatureType);
+        let creature = await CreatureGenerator(era, habitat, creatureType, includeDescription);
 
         const value = marshaller.encodeCreature(creature);
         window.open('/view?s=' + value, "_blank");

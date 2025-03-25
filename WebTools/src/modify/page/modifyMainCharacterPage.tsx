@@ -24,7 +24,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     const { t } = useTranslation();
     const [carouselIndex, setCarouselIndex] = useState(0);
     const [modificationType, setModificationType] = useState<string|ModificationType>(ModificationType.Promotion);
-    const [milestoneType, setMilestoneType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Normal);
+    const [milestoneType, setMilestoneType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Adjustment);
     const navigate = useNavigate();
 
     const dropDownItems = () => {
@@ -32,13 +32,13 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         if (character?.rank != null) {
             result.push(new DropDownElement(ModificationType.Promotion, t('ModificationType.name.promotion')))
         }
-//        result.push(new DropDownElement(ModificationType.Milestone, t('ModificationType.name.milestone')))
+//        result.push(new DropDownElement(ModificationType.CharacterAdvancement, t('ModificationType.name.characterAdvancement')))
         return result;
     }
 
     const milestoneTypesDropDownItems = () => {
         let result = [];
-        result.push(new DropDownElement(CharacterAdvancementType.Normal, t('MilestoneType.name.normalMilestone')))
+        result.push(new DropDownElement(CharacterAdvancementType.Adjustment, t('MilestoneType.name.normalMilestone')))
         return result;
     }
 

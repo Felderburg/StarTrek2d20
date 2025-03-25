@@ -178,6 +178,40 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
 
     switch (type) {
 
+        case CreatureType.Bird:
+            switch (D20.roll()) {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                    return [];
+                case 9:
+                case 10:
+                    return [ toSelection(TalentsHelper.getTalent("Initiative X (Special Rule, Creature)")) ];
+                case 11:
+                case 12:
+                    return [ toSelection(TalentsHelper.getTalent("Ambush Hunter (Special Rule, Creature)")) ];
+                case 13:
+                case 14:
+                case 15:
+                    return [ toSelection(TalentsHelper.getTalent("Night Vision (Special Rule, Creature)")) ];
+                case 16:
+                case 17:
+                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X (Special Rule, Creature)"), "Blood Lust", 2, Attribute.Daring) ];
+                case 18:
+                case 19:
+                    return [ toSelection(TalentsHelper.getTalent("Mimicry (Special Rule, Creature)"), "Sounds") ];
+                case 20:
+                    let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
+                    result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
+                    return result;
+            }
+            break;
+
         case CreatureType.Invertebrate:
             switch (D20.roll()) {
                 case 1:

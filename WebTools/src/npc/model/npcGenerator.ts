@@ -565,6 +565,8 @@ export class NpcGenerator {
             data["specialty"] = character.npcGenerationStep.focuses[0];
         }
 
+        data["focuses"] = character.focuses.filter(f => specialization.primaryFocuses.includes(f));
+
         let textEncoder = new TextEncoder();
         let body = textEncoder.encode(JSON.stringify(data));
 

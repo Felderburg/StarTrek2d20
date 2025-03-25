@@ -263,12 +263,16 @@ async function main(key, inputData) {
         subjectPronoun = subjectPronoun.substring(0, subjectPronoun.indexOf('/'));
     }
     let possessivePronoun = "";
+    let possessivePronounCapitalized = "";
     if (subjectPronoun === "she") {
         possessivePronoun = "her";
+        possessivePronounCapitalized = "Her";
     } else if (subjectPronoun === "he") {
         possessivePronoun = "his";
+        possessivePronounCapitalized = "His";
     } else if (subjectPronoun === "they") {
         possessivePronoun = "their";
+        possessivePronounCapitalized = "Their";
     }
 
     prompt += speciesAndGender(inputJson, subjectPronoun);
@@ -279,6 +283,12 @@ async function main(key, inputData) {
             + inputJson.aspects.map(s => "\"" + s + "\"").join(", ");
         prompt += " ";
     }
+
+    if (inputJson.focuses?.length) {
+        prompt += possessivePronounCapitalized + " key job skills include: "
+                + inputJson.focuses.map(f => "\"" + f + "\"").join(", ") + ". ";
+    }
+
     prompt += "Include a description and personality.  Also include other interesting aspects of " + possessivePronoun + " character. ";
     prompt += "Use the metric system for any measurements, including character heights. "
 

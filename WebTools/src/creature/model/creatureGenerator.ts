@@ -6,7 +6,7 @@ import { TALENT_NAME_FLIGHT, TALENT_NAME_WEB } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { Creature } from "./creature";
 import { creatureNameGenerator } from "./creatureNameGenerator";
-import { CreatureSize, CreatureSizeHelper, CreatureSizeModel, generateRandomCreatureSize } from "./creatureSize";
+import { CreatureSize, CreatureSizeHelper, generateRandomCreatureSize } from "./creatureSize";
 import { generateRandomBasicCreatureTalent, generateRandomCreatureDietTalent, generateRandomCreatureTypeTalent } from "./creatureTalents";
 import { createRandomCreatureType, CreatureType, CreatureTypeHelper, habitatsByCreatureType } from "./creatureType";
 import { createRandomDiet, DietType, DietTypeHelper } from "./diet";
@@ -15,7 +15,9 @@ import { generateRandomLocomotionType } from "./locomotion";
 import { generateRandomNaturalAttacks } from "./naturalAttacks";
 import { Attribute } from "../../helpers/attributes";
 
-export const CreatureGenerator = async (era: Era, habitat?: Habitat, creatureType?: CreatureType) => {
+export const CreatureGenerator = async (era: Era, habitat?: Habitat, creatureType?: CreatureType,
+        includeDescription: boolean = true) => {
+
     const result = new Creature();
     result.version = isSecondEdition() ? 2 : 1;
     result.era = era;
@@ -111,7 +113,6 @@ export const CreatureGenerator = async (era: Era, habitat?: Habitat, creatureTyp
     result.form = deriveForm(result);
     result.name = creatureNameGenerator();
 
-    const includeDescription = true;
     if (includeDescription) {
         result.description = await generateCreatureDescription(result);
     }
@@ -420,10 +421,12 @@ const deriveForm = (creature: Creature) => {
                     } else if (creature.isFourOrMoreLegged) {
                         if (roll < 4) {
                             result = "Mammoth";
-                        } else if (roll < 10) {
+                        } else if (roll < 8) {
                             result = "Elephant";
-                        } else if (roll < 14) {
+                        } else if (roll < 12) {
                             result = "Rhinoceros";
+                        } else if (roll < 16) {
+                            result = "Land Whale";
                         } else {
                             result = "Hippopotamus";
                         }
@@ -491,6 +494,8 @@ const deriveForm = (creature: Creature) => {
                     }
                 } else if (creature.isLegged) {
                     result = "Mantis";
+                } else if (roll < 10) {
+                    result = "Crawling Carpet";
                 } else {
                     result = "Gasbag";
                 }
@@ -525,7 +530,7 @@ const deriveForm = (creature: Creature) => {
                 const roll = D20.roll();
                     if (creature.habitat?.id === Habitat.Ocean
                             || creature.habitat?.id === Habitat.River) {
-                        if (roll < 12) {
+                        if (roll < 8) {
                             result = "Algae";
                         } else if (roll < 12) {
                             result = "Seaweed";
