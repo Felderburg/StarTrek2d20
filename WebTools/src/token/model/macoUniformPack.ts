@@ -369,6 +369,10 @@ export class MacoUniformPack extends BaseNeckProvider implements IUniformPack {
         return MacoUniforms.insignia;
     }
 
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
+
     static decorateSwatch(svg: string, rankIndicator: Rank, token: Token) {
         return `<svg viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g transform="translate(14, -265)">`

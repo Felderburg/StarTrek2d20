@@ -1,8 +1,10 @@
 import { Rank } from "../../helpers/ranks";
+import { Species } from "../../helpers/speciesEnum";
 import { BaseNeckProvider } from "./baseNeckProvider";
 import { BodyType } from "./bodyTypeEnum";
 import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
+import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";
 import { Token } from "./token";
 import UniformCatalog from "./uniformCatalog";
@@ -368,6 +370,13 @@ const FerengiBody = `<g>
 
 const FerengiLogo = `<path style="fill:#0aaa71;fill-opacity:1;stroke:#000000;stroke-width:1.2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-dasharray:none" d="m 327.27318,348.87628 h 4.06984 c 3.0146,5.40136 4.537,9.25724 14.31977,13.5661 l 9.94849,-17.33447 h 20.65063 l -26.98149,27.43369 c -11.71551,-3.15871 -19.18049,-11.06487 -22.00724,-23.66532 z m -5.08004,-3.76837 h -54.76157 c 0,25.02193 23.81605,48.38579 47.02917,48.38579 h 49.89313 l 25.17268,-43.56228 h -5.27572 l -28.63955,28.7903 c -19.54525,-0.20099 -32.82052,-16.66301 -33.41814,-33.61381 z m 5.08004,-6.33618 h 4.06984 c 3.0146,-5.40136 4.537,-9.25725 14.31977,-13.56611 l 9.94849,17.33447 h 20.65063 L 349.28043,315.1064 c -11.71551,3.15871 -19.1805,11.06487 -22.00725,23.66533 z m -5.08004,3.76836 h -54.76157 c 0,-25.02193 23.81605,-48.38579 47.02917,-48.38579 h 49.89314 l 25.17267,43.56229 h -5.27571 l -28.63956,-28.79031 c -19.54525,0.20098 -32.82051,16.66301 -33.41814,33.61381 z m 28.17324,1.28391 a 7.4915067,7.4915067 0 0 1 -7.4915,7.49151 7.4915067,7.4915067 0 0 1 -7.49151,-7.49151 7.4915067,7.4915067 0 0 1 7.49151,-7.49151 7.4915067,7.4915067 0 0 1 7.4915,7.49151 z"/>`;
 
+const FerengiRankTattoo = {
+    daiMon: `<path style="fill:#0aaa71;fill-opacity:0.4;stroke:none;stroke-width:0.99013px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 256.99399,54.7801 -4.2653,8.101699 4.2653,8.363043 h 1.3329 l -3.86572,-8.363043 4.39889,-8.101699 z m 2.68615,0 -4.2653,8.101699 4.2653,8.363043 h 1.3329 l -3.86572,-8.363043 4.39889,-8.101699 z m 10.34785,9.0668 h 0.67217 c 0.49789,0.892083 0.74933,1.528916 2.36504,2.240563 l 1.64308,-2.862943 h 3.41064 l -4.45624,4.530919 c -1.93492,-0.52169 -3.16783,-1.827463 -3.63469,-3.908539 z m -0.83901,-0.62238 h -9.04437 c 0,4.132596 3.93344,7.991348 7.76729,7.991348 h 8.2403 l 4.15749,-7.194702 h -0.87133 l -4.73008,4.754976 c -3.22807,-0.0332 -5.4206,-2.752046 -5.5193,-5.551622 z m 0.83901,-1.046477 h 0.67217 c 0.49789,-0.892083 0.74933,-1.528918 2.36504,-2.240565 l 1.64308,2.862943 h 3.41064 l -4.45623,-4.53092 c -1.93493,0.52169 -3.16784,1.827463 -3.6347,3.908542 z m -0.83901,0.622378 h -9.04437 c 0,-4.132596 3.93344,-7.991347 7.76729,-7.991347 h 8.2403 l 4.15749,7.194702 h -0.87133 l -4.73008,-4.754978 c -3.22807,0.03319 -5.4206,2.752046 -5.5193,5.551623 z m 4.65306,0.212049 a 1.2372895,1.2372895 0 0 1 -1.23729,1.23729 1.2372895,1.2372895 0 0 1 -1.23729,-1.237289 1.2372895,1.2372895 0 0 1 1.23729,-1.23729 1.2372895,1.2372895 0 0 1 1.23729,1.237289 z"/>`,
+    salesman: `<path style="fill:#0aaa71;fill-opacity:0.4;stroke:none;stroke-width:0.99013px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 259.68014,54.7801 -4.2653,8.101699 4.2653,8.363043 h 1.3329 l -3.86572,-8.363043 4.39889,-8.101699 z m 10.34785,9.0668 h 0.67217 c 0.49789,0.892083 0.74933,1.528916 2.36504,2.240563 l 1.64308,-2.862943 h 3.41064 l -4.45624,4.530919 c -1.93492,-0.52169 -3.16783,-1.827463 -3.63469,-3.908539 z m -0.83901,-0.62238 h -9.04437 c 0,4.132596 3.93344,7.991348 7.76729,7.991348 h 8.2403 l 4.15749,-7.194702 h -0.87133 l -4.73008,4.754976 c -3.22807,-0.0332 -5.4206,-2.752046 -5.5193,-5.551622 z m 0.83901,-1.046477 h 0.67217 c 0.49789,-0.892083 0.74933,-1.528918 2.36504,-2.240565 l 1.64308,2.862943 h 3.41064 l -4.45623,-4.53092 c -1.93493,0.52169 -3.16784,1.827463 -3.6347,3.908542 z m -0.83901,0.622378 h -9.04437 c 0,-4.132596 3.93344,-7.991347 7.76729,-7.991347 h 8.2403 l 4.15749,7.194702 h -0.87133 l -4.73008,-4.754978 c -3.22807,0.03319 -5.4206,2.752046 -5.5193,5.551623 z m 4.65306,0.212049 c 0,0.683337 -0.55395,1.23729 -1.23729,1.23729 -0.68334,0 -1.23729,-0.553953 -1.23729,-1.237289 0,-0.683337 0.55395,-1.23729 1.23729,-1.23729 0.68334,0 1.23729,0.553953 1.23729,1.237289 z"/>`,
+    associate: `<path style="fill:#0aaa71;fill-opacity:0.4;stroke:none;stroke-width:0.99013px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 270.02799,63.8469 h 0.67217 c 0.49789,0.892083 0.74933,1.528916 2.36504,2.240563 l 1.64308,-2.862943 h 3.41064 l -4.45624,4.530919 c -1.93492,-0.52169 -3.16783,-1.827463 -3.63469,-3.908539 z m -0.83901,-0.62238 h -9.04437 c 0,4.132596 3.93344,7.991348 7.76729,7.991348 h 8.2403 l 4.15749,-7.194702 h -0.87133 l -4.73008,4.754976 c -3.22807,-0.0332 -5.4206,-2.752046 -5.5193,-5.551622 z m 0.83901,-1.046477 h 0.67217 c 0.49789,-0.892083 0.74933,-1.528918 2.36504,-2.240565 l 1.64308,2.862943 h 3.41064 l -4.45623,-4.53092 c -1.93493,0.52169 -3.16784,1.827463 -3.6347,3.908542 z m -0.83901,0.622378 h -9.04437 c 0,-4.132596 3.93344,-7.991347 7.76729,-7.991347 h 8.2403 l 4.15749,7.194702 h -0.87133 l -4.73008,-4.754978 c -3.22807,0.03319 -5.4206,2.752046 -5.5193,5.551623 z m 4.65306,0.212049 c 0,0.683337 -0.55395,1.23729 -1.23729,1.23729 -0.68334,0 -1.23729,-0.553953 -1.23729,-1.237289 0,-0.683337 0.55395,-1.23729 1.23729,-1.23729 0.68334,0 1.23729,0.553953 1.23729,1.237289 z"/>`
+}
+
+
 export class FerengiUniformPack extends BaseNeckProvider implements IUniformPack {
 
     getUniformSwatches() {
@@ -378,7 +387,11 @@ export class FerengiUniformPack extends BaseNeckProvider implements IUniformPack
 
     getRankSwatches() {
         return [
-            new Swatch(Rank.None, "None", (token) => RankIndicatorCatalog.decorateSwatch("", Rank.None, token), "Rank.none.name"),
+            new Swatch(Rank.None, "None", (token) => FerengiUniformPack.decorateSwatch("", Rank.None, token), "Rank.none.name"),
+            new Swatch(Rank.Menial, "Menial", (token) => FerengiUniformPack.decorateSwatch("", Rank.Menial, token), "Rank.menial.name"),
+            new Swatch(Rank.Associate, "Associate", (token) => FerengiUniformPack.decorateSwatch(FerengiRankTattoo.associate, Rank.Associate, token), "Rank.associate.name"),
+            new Swatch(Rank.Salesman, "Salesman", (token) => FerengiUniformPack.decorateSwatch(FerengiRankTattoo.salesman, Rank.Salesman, token), "Rank.salesman.name"),
+            new Swatch(Rank.DaiMon, "DaiMon", (token) => FerengiUniformPack.decorateSwatch(FerengiRankTattoo.daiMon, Rank.DaiMon, token), "Rank.daiMon.name"),
         ];
     }
 
@@ -414,5 +427,30 @@ export class FerengiUniformPack extends BaseNeckProvider implements IUniformPack
         let result = FerengiBody;
         let neck = this.getNeck(BodyType.AverageFemale, token.skinColor, token.species, UniformEra.Ferengi);
         return neck.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor) + result;
+    }
+
+    getRankIndicatorExtra(token: Token): string {
+        if (token.species !== Species.Ferengi) {
+            return "";
+        } else {
+            switch (token.rankIndicator) {
+            case Rank.DaiMon:
+                return svgTranslationHelper(FerengiRankTattoo.daiMon);
+            case Rank.Salesman:
+                return svgTranslationHelper(FerengiRankTattoo.salesman);
+            case Rank.Associate:
+                return svgTranslationHelper(FerengiRankTattoo.associate);
+            default:
+                return "";
+            }
+        }
+    }
+
+    static decorateSwatch(svg: string, rankIndicator: Rank, token: Token) {
+        return `<svg viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g transform="translate(-248, -43)">`
+                    + svg
+                    + `</g>
+                </svg>`;
     }
 }

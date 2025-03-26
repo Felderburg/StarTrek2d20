@@ -452,5 +452,9 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
     isDivisionColorSupported(token: Token): boolean {
         return true;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }
 

@@ -685,4 +685,8 @@ export class CivilianOutfitUniformPack extends BaseNeckProvider implements IUnif
     isDivisionColorSupported(token: Token): boolean {
         return false;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

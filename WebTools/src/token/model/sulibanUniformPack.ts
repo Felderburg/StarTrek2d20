@@ -440,4 +440,8 @@ export class SulibanUniformPack extends BaseNeckProvider implements IUniformPack
     isDivisionColorSupported(token: Token): boolean {
         return false;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

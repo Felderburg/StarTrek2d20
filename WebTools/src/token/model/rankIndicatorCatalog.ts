@@ -19,6 +19,10 @@ class RankIndicatorCatalog {
         return this.getUniformPack(token.uniformEra).getRankIndicator(token);
     }
 
+    getRankExtra(token: Token) {
+        return this.getUniformPack(token.uniformEra).getRankIndicatorExtra(token);
+    }
+
     getBorderRankDefinitions(token: Token, bordered: boolean) {
         return this.getUniformPack(token.uniformEra).getRankBorderDefinitions(token, bordered);
     }

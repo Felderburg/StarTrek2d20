@@ -228,4 +228,8 @@ export class TzenkethiArmourUniformPack implements IUniformPack {
     getUniformAndVariantBody(token: Token) {
         return TzenkethiBody.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

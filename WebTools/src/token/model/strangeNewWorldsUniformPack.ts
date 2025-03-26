@@ -484,5 +484,9 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
     isDivisionColorSupported(token: Token): boolean {
         return true;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }
 

@@ -982,4 +982,8 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
     isDivisionColorSupported(token: Token): boolean {
         return true;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

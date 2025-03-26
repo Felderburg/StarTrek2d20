@@ -102,4 +102,7 @@ export abstract class BaseKlingonUniformPack extends BaseNeckProvider {
         return false;
     }
 
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

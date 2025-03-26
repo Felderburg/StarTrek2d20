@@ -114,4 +114,8 @@ export class BaseRomulanUniformPack extends BaseNeckProvider {
     getRankBorderDefinitions(token: Token, bordered: boolean) {
         return "";
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

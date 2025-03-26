@@ -258,4 +258,8 @@ export class CardassianUniformPack extends BaseNeckProvider implements IUniformP
                 + CardassianUniform.female.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
         }
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

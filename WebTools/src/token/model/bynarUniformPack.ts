@@ -76,4 +76,8 @@ export class BynarUniformPack extends BaseNeckProvider implements IUniformPack {
         let neck = this.getNeck(BodyType.AverageFemale, token.skinColor, token.species, UniformEra.Bynar);
         return neck.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor) + result;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

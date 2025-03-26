@@ -645,4 +645,8 @@ export class EnterpriseUniformPack extends BaseNeckProvider implements IUniformP
     isDivisionColorSupported(token: Token): boolean {
         return true;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

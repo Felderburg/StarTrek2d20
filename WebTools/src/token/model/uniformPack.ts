@@ -9,6 +9,7 @@ export interface IUniformPack {
 
     getRankSwatches(): Swatch[];
     getRankIndicator(token: Token): string;
+    getRankIndicatorExtra(token: Token): string;
     getBorderColor(token: Token): string;
     getRankBorderDefinitions(token: Token, bordered: boolean): string;
     getRankBorderIndicator(token: Token): string;

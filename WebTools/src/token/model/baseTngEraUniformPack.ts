@@ -432,4 +432,8 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
     isDivisionColorSupported(token: Token): boolean {
         return true;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

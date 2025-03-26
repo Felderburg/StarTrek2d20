@@ -192,4 +192,8 @@ export class JemHadarUniformPack extends BaseNeckProvider implements IUniformPac
     isDivisionColorSupported(token: Token): boolean {
         return false;
     }
+
+    getRankIndicatorExtra(token: Token): string {
+        return "";
+    }
 }

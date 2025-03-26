@@ -65,6 +65,7 @@ export class TokenSvgBuilder {
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Headwear, true) +
                             EarCatalog.instance.getEar(token) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Face) +
+                            RankIndicatorCatalog.instance.getRankExtra(token) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Ear) +
                             HairCatalog.instance.getHair(token, HairElement.CoveringEars) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Headwear) +
