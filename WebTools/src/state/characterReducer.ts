@@ -761,23 +761,28 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
             }
             if (action.payload.type === CharacterAdvancementChoice.Value) {
                 let improvement = new CharacterAdvancementStep();
+                improvement.choice = action.payload.type;
                 improvement.value = action.payload.value;
                 temp.improvements.push(improvement);
             } else if (action.payload.type === CharacterAdvancementChoice.Focus) {
                 let improvement = new CharacterAdvancementStep();
-                improvement.focus = action.payload.value;
+                improvement.choice = action.payload.type;
+                improvement.value = action.payload.value;
                 temp.improvements.push(improvement);
             } else if (action.payload.type === CharacterAdvancementChoice.Attribute) {
                 let improvement = new CharacterAdvancementStep();
-                improvement.attribute = action.payload.value;
+                improvement.choice = action.payload.type;
+                improvement.value = action.payload.value;
                 temp.improvements.push(improvement);
             } else if (action.payload.type === CharacterAdvancementChoice.Department) {
                 let improvement = new CharacterAdvancementStep();
-                improvement.discipline = action.payload.value;
+                improvement.choice = action.payload.type;
+                improvement.value = action.payload.value;
                 temp.improvements.push(improvement);
             } else if (action.payload.type === CharacterAdvancementChoice.Talent) {
                 let improvement = new CharacterAdvancementStep();
-                improvement.talent = new SelectedTalent(action.payload.value);
+                improvement.choice = action.payload.type;
+                improvement.value = new SelectedTalent(action.payload.value);
                 temp.improvements.push(improvement);
             }
             return {

@@ -66,15 +66,15 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const existingImprovementCountByType = () => {
         switch (modificationType) {
         case SupportingCharacterModificationType.AdditionalAttribute:
-            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.attribute != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Attribute)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalDepartment:
-            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.discipline != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Department)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalFocus:
-            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.focus != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Focus)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalValue:
-            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.value != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Value)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalTalent:
-            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.talent != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Talent)?.length ?? 0
         case SupportingCharacterModificationType.Promotion:
             return character.improvements?.filter(i => i instanceof Promotion)?.length ?? 0
         }

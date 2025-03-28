@@ -22,7 +22,6 @@ import Governments, { Polity } from "../../helpers/governments";
 import { Era } from "../../helpers/eras";
 import AgeHelper from "../../helpers/age";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
-import { CharacterSerializer } from "../../common/characterSerializer";
 
 const recreationSkills: { [type: number ]: string[] } = {
 

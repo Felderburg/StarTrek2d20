@@ -1,5 +1,4 @@
 import { D20 } from "../../common/die";
-import { DietType } from "./diet";
 import { Habitat, HabitatHelper } from "./habitat";
 
 export enum CreatureType {

@@ -1,5 +1,5 @@
 import { D20 } from "../common/die";
-import { ISpecies, NameModel } from "../helpers/species";
+import { ISpecies } from "../helpers/species";
 import { Species } from "../helpers/speciesEnum";
 
 const names = [

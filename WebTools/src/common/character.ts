@@ -19,13 +19,13 @@ import i18next from 'i18next';
 import { Role, RolesHelper } from '../helpers/roles';
 import { BorgImplantType, BorgImplants, Implant } from '../helpers/borgImplant';
 import { Specialization } from './specializationEnum';
-import { CharacterAdvancementType } from '../modify/model/characterAdvancementType';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from '../helpers/equipment';
 import { Era } from '../helpers/eras';
 import { SpeciesAbility, SpeciesAbilityList } from '../helpers/speciesAbility';
 import { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';
 import { SelectedTalent } from './selectedTalent';
+import { CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
 
 export enum Division {
     Command,
@@ -140,19 +140,13 @@ export class SupportingStep {
 }
 
 export class CharacterAdvancementStep {
-    value: string;
-    attribute: Attribute;
-    discipline: Department;
-    focus: string;
-    talent: SelectedTalent;
+    choice: CharacterAdvancementChoice;
+    value: string|Attribute|Department|SelectedTalent;
 
     copy() {
         let result = new CharacterAdvancementStep();
+        result.choice = this.choice;
         result.value = this.value;
-        result.attribute = this.attribute;
-        result.discipline = this.discipline;
-        result.focus = this.focus;
-        result.talent = this.talent?.copy();
         return result;
     }
 }
@@ -171,30 +165,6 @@ export class CareerStep {
         careerStep.value = this.value;
         careerStep.talent = this.talent == null ? null : this.talent.copy();
         return careerStep;
-    }
-}
-
-export class MilestoneTalentChange {
-    removed: string;
-    added: string;
-}
-
-export class MilestoneFocusChange {
-    removed: string;
-    added: string;
-}
-
-export class MilestoneAttributeChange {
-    removed: Attribute;
-    added: Attribute;
-}
-
-export class CharacterAdvancement {
-    readonly type: CharacterAdvancementType;
-    change?: MilestoneTalentChange|MilestoneFocusChange|MilestoneAttributeChange;
-
-    constructor(type: CharacterAdvancementType) {
-        this.type = type;
     }
 }
 
@@ -511,8 +481,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
         } else if (this.stereotype === Stereotype.SupportingCharacter) {
             return this.improvements
                 ?.filter(s => s instanceof CharacterAdvancementStep)
-                .filter(s => (s as CharacterAdvancementStep).talent != null)
-                ?.map(s => (s as CharacterAdvancementStep).talent) ?? [];
+                .filter(s => (s as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Talent)
+                ?.map(s => (s as CharacterAdvancementStep).value as SelectedTalent) ?? [];
         } else {
             let result = [];
             if (this.speciesStep?.talent != null) {
@@ -573,8 +543,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 return values[index] + speciesBonus - speciesminuses;
             });
             this.improvements?.forEach(i => {
-                    if (i instanceof CharacterAdvancementStep && i.attribute != null) {
-                        result[i.attribute] += 1;
+                    if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Attribute) {
+                        result[i.value as Attribute] += 1;
                     }
                 });
             return result;
@@ -620,8 +590,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 return values[index];
             });
             this.improvements?.forEach(i => {
-                    if (i instanceof CharacterAdvancementStep && i.discipline != null) {
-                        result[i.discipline] += 1;
+                    if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Department) {
+                        result[i.value as Department] += 1;
                     }
                 })
             return result;
@@ -859,7 +829,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
 
         this.improvements?.forEach(i => {
-                if (i instanceof CharacterAdvancementStep && i.value != null) {
+                if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Value) {
                     result.push(i.value);
                 }
             })
@@ -1235,8 +1205,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
 
         this.improvements?.filter(i => i instanceof CharacterAdvancementStep)
-            .filter(i => (i as CharacterAdvancementStep).focus)
-            .forEach(i => allFocuses.push((i as CharacterAdvancementStep).focus));
+            .filter(i => (i as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Focus)
+            .forEach(i => allFocuses.push((i as CharacterAdvancementStep).value as string));
         return allFocuses;
     }
 

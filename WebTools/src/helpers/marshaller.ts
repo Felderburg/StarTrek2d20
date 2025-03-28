@@ -44,6 +44,7 @@ import { CreatureSize, CreatureSizeHelper } from '../creature/model/creatureSize
 import { NaturalAttacks, NaturalAttacksHelper } from '../creature/model/naturalAttacks';
 import { SelectedTalent } from '../common/selectedTalent';
 import { LocomotionModel, LocomotionType, LocomotionTypeHelper } from '../creature/model/locomotion';
+import { allCharacterAdvancementChoices, CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
 
 class Marshaller {
 
@@ -275,17 +276,16 @@ class Marshaller {
         if (character.improvements?.length) {
             let json = character.improvements?.map(i => {
                 if (i instanceof CharacterAdvancementStep) {
-                    let result = { type: "supporting" };
-                    if (i.value != null) {
-                        result["value"] = i.value;
-                    } else if (i.focus != null) {
-                        result["focus"] = i.focus;
-                    } else if (i.attribute != null) {
-                        result["attribute"] = Attribute[i.attribute];
-                    } else if (i.discipline != null) {
-                        result["discipline"] = Department[i.discipline];
-                    } else if (i.talent != null) {
-                        result["talent"] = this.talentToJson(i.talent);
+                    let result = { type: "advancement" };
+                    result["choice"] = CharacterAdvancementChoice[i.choice];
+                    if (i.choice === CharacterAdvancementChoice.Focus || i.choice === CharacterAdvancementChoice.Value) {
+                        result["value"] = i.value as string;
+                    } else if (i.choice === CharacterAdvancementChoice.Attribute) {
+                        result["value"] = Attribute[i.value as Attribute];
+                    } else if (i.choice === CharacterAdvancementChoice.Department) {
+                        result["value"] = Department[i.value as Department];
+                    } else if (i.choice === CharacterAdvancementChoice.Talent) {
+                        result["value"] = this.talentToJson(i.value as SelectedTalent);
                     }
                     return result;
                 } else if (i instanceof Promotion) {
@@ -295,6 +295,8 @@ class Marshaller {
                         id: i.rank.id
                     }
                     return result;
+                } else {
+                    return undefined;
                 }
             });
             return json;
@@ -1548,18 +1550,42 @@ class Marshaller {
     decodeImprovements(json: any) {
         if (json) {
             return Object.values(json).map(j => {
-                if (j["type"] === "supporting") {
+                if (j["type"] === "supporting") { // backward compatibility
                     let improvement = new CharacterAdvancementStep();
                     if (j["value"] != null) {
                         improvement.value = j["value"];
+                        improvement.choice = CharacterAdvancementChoice.Value;
                     } else if (j["focus"] != null) {
-                        improvement.focus = j["focus"];
+                        improvement.value = j["focus"];
+                        improvement.choice = CharacterAdvancementChoice.Focus;
                     } else if (j["attribute"] != null) {
-                        improvement.attribute = AttributesHelper.getAttributeByName(j["attribute"]);
+                        improvement.value = AttributesHelper.getAttributeByName(j["attribute"]);
+                        improvement.choice = CharacterAdvancementChoice.Attribute;
                     } else if (j["discipline"] != null) {
-                        improvement.discipline = DepartmentsHelper.instance.getDepartmentByName(j["discipline"]);
+                        improvement.value = DepartmentsHelper.instance.getDepartmentByName(j["discipline"]);
+                        improvement.choice = CharacterAdvancementChoice.Department;
                     } else if (j["talent"] != null) {
-                        improvement.talent = this.hydrateTalent(j["talent"]);
+                        improvement.value = this.hydrateTalent(j["talent"]);
+                        improvement.choice = CharacterAdvancementChoice.Talent;
+                    }
+                    return improvement;
+                } else if (j["type"] === "advancement") {
+                    let improvement = new CharacterAdvancementStep();
+                    allCharacterAdvancementChoices().forEach(c => {
+                        if (CharacterAdvancementChoice[c] === j["choice"]) {
+                            improvement.choice = c;
+                        }
+                    });
+                    if (improvement.choice === CharacterAdvancementChoice.Value) {
+                        improvement.value = j["value"];
+                    } else if (improvement.choice === CharacterAdvancementChoice.Focus) {
+                        improvement.value = j["value"];
+                    } else if (improvement.choice === CharacterAdvancementChoice.Attribute) {
+                        improvement.value = AttributesHelper.getAttributeByName(j["value"]);
+                    } else if (improvement.choice === CharacterAdvancementChoice.Department) {
+                        improvement.value = DepartmentsHelper.instance.getDepartmentByName(j["value"]);
+                    } else if (improvement.choice === CharacterAdvancementChoice.Talent) {
+                        improvement.value = this.hydrateTalent(j["value"]);
                     }
                     return improvement;
                 } else if (j["type"] === "promotion") {
