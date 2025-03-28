@@ -632,6 +632,8 @@
     "CareerType.solo.veteran.name": "Veteran",
     "CareerType.solo.veteran.description": "Der Charakter blickt auf eine jahrzehntelange Erfahrung zurück und hat bereits auf vielen Schiffen und Sternenbasen gedient. Urteilsvermögen und Meinungen werden von Untergebenen, Gleichrangigen und selbst Vorgesetzten hoch geschätzt.",
 
+    "CharacterAdvancementType.milestone": "Meilenstein",
+
     "CharacterType.name.starfleet": "Sternenflotte",
     "CharacterType.name.klingonWarrior": "Klingonische Verteidigungsstreitmacht",
     "CharacterType.name.civilian": "Zivilisten",

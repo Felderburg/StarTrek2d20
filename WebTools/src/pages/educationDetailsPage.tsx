@@ -191,7 +191,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
         } else if (character.educationStep?.focuses?.filter(f => !!f).length < 3) {
             Dialog.show(t("SoloEducationDetailsPage.errorFocuses"));
         } else if (!character.educationStep?.value) {
-            Dialog.show(t("SoloEducationDetailsPage.errorValue"));
+            Dialog.show(t("Common.error.value"));
         } else if (!character.educationStep?.talent == null) {
             Dialog.show(t("SoloEducationDetailsPage.errorTalent"));
         } else {

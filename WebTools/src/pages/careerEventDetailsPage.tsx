@@ -55,7 +55,7 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({charac
         } else if (careerEventStep.discipline == null) {
             Dialog.show(t('CareerEventDetails.errorDiscipline'));
         } else if (!careerEventStep.focus) {
-            Dialog.show(t('CareerEventDetails.errorFocus'));
+            Dialog.show(t('Common.error.focus'));
         } else {
             if (context === StepContext.CareerEvent2 || character.type === CharacterType.Cadet) {
                 store.dispatch(setCharacterFinishingTouches());

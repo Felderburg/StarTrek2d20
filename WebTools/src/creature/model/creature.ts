@@ -1,7 +1,7 @@
 import { CharacterType } from "../../common/characterType";
 import { Construct, Stereotype } from "../../common/construct";
 import { SelectedTalent } from "../../common/selectedTalent";
-import { TALENT_NAME_AMPHIBIOUS, TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT, TALENT_NAME_CORROSIVE_SPIT, TALENT_NAME_ENERGY_BASED, TALENT_NAME_FLIGHT, TALENT_NAME_IMMUNE_TO_COLD, TALENT_NAME_IMMUNE_TO_VACUUM, TALENT_NAME_INCORPOREAL, TALENT_NAME_MASSIVE, TALENT_NAME_SPIKED_TAIL } from "../../helpers/talents";
+import { TALENT_NAME_AMPHIBIOUS, TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT, TALENT_NAME_CORROSIVE_SPIT, TALENT_NAME_ENERGY_BASED, TALENT_NAME_FLIGHT, TALENT_NAME_IMMUNE_TO_COLD, TALENT_NAME_IMMUNE_TO_VACUUM, TALENT_NAME_INCORPOREAL, TALENT_NAME_MASSIVE, TALENT_NAME_SPIKED_TAIL, TALENT_NAME_WHIP_LIKE_TAIL } from "../../helpers/talents";
 import { Weapon } from "../../helpers/weapons";
 import { CreatureSize, CreatureSizeModel } from "./creatureSize";
 import { CreatureType, CreatureTypeModel } from "./creatureType";
@@ -103,6 +103,9 @@ export class Creature extends Construct {
         }
         if (this.hasTalent(TALENT_NAME_SPIKED_TAIL)) {
             result.push(NaturalAttacksHelper.instance.getSpikedTailAttack());
+        }
+        if (this.hasTalent(TALENT_NAME_WHIP_LIKE_TAIL)) {
+            result.push(NaturalAttacksHelper.instance.getWhipLikeTailAttack());
         }
         if (this.hasTalent(TALENT_NAME_CORROSIVE_SPIT)) {
             result.push(NaturalAttacksHelper.instance.getCorrosiveSpit());

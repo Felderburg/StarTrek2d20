@@ -2,7 +2,6 @@ import { Rank } from "../../helpers/ranks";
 import { Species } from "../../helpers/speciesEnum";
 import { BaseNeckProvider } from "./baseNeckProvider";
 import { BodyType } from "./bodyTypeEnum";
-import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";

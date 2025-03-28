@@ -1,4 +1,4 @@
-import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, Promotion, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from "../common/character";
+import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep } from "../common/character";
 import { CharacterType } from "../common/characterType";
 import { Stereotype } from "../common/construct";
 import { SelectedTalent } from "../common/selectedTalent";
@@ -8,10 +8,10 @@ import { SpeciesAbilityList } from "../helpers/speciesAbility";
 import { Species } from "../helpers/speciesEnum";
 import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_UNTAPPED_POTENTIAL } from "../helpers/talents";
 import { Track } from "../helpers/trackEnum";
-import { SupportingCharacterModificationType } from "../supportingcharacters/modify/supportingCharacterModificationType";
+import { CharacterAdvancementChoice } from "../modify/model/characterAdvancementChoice";
 import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_CAREER_EVENT, ADD_CHARACTER_SPECIES_ABILITY_FOCUS, ADD_CHARACTER_TALENT, ADD_CHARACTER_TALENT_FOCUS,
-    ADD_CHARACTER_TALENT_VALUE, ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE, APPLY_NORMAL_MILESTONE_DISCIPLINE, APPLY_NORMAL_MILESTONE_FOCUS, MODIFY_CHARACTER_ATTRIBUTE,
-    MODIFY_CHARACTER_DISCIPLINE, MODIFY_CHARACTER_RANK, MODIFY_CHARACTER_REPUTATION, MODIFY_SUPPORTING_CHARACTER_ADD_IMPROVEMENT, REMOVE_CHARACTER_BORG_IMPLANT,
+    ADD_CHARACTER_TALENT_VALUE, ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE, MODIFY_CHARACTER_ADD_ADVANCEMENT, MODIFY_CHARACTER_ATTRIBUTE,
+    MODIFY_CHARACTER_DISCIPLINE, MODIFY_CHARACTER_RANK, MODIFY_CHARACTER_REPUTATION, REMOVE_CHARACTER_BORG_IMPLANT,
     SET_CHARACTER, SET_CHARACTER_ADDITIONAL_TRAITS, SET_CHARACTER_AGE, SET_CHARACTER_ASSIGNED_SHIP,
     SET_CHARACTER_CAREER_EVENT_TRAIT, SET_CHARACTER_CAREER_LENGTH, SET_CHARACTER_EARLY_OUTLOOK, SET_CHARACTER_EDUCATION,
     SET_CHARACTER_ENVIRONMENT, SET_CHARACTER_FINISHING_TOUCHES, SET_CHARACTER_FOCUS, SET_CHARACTER_HOUSE,
@@ -754,54 +754,29 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 isModified: true
             }
         }
-        case APPLY_NORMAL_MILESTONE_DISCIPLINE: {
-            let temp = state.currentCharacter.copy();
-            /*
-            temp.skills[action.payload.decrease] = new CharacterDepartment(action.payload.decrease, temp.skills[action.payload.decrease].expertise - 1);
-            temp.skills[action.payload.increase] = new CharacterDepartment(action.payload.decrease, temp.skills[action.payload.increase].expertise + 1);
-            */
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case APPLY_NORMAL_MILESTONE_FOCUS: {
-            let temp = state.currentCharacter.copy();
-            let index = temp.focuses.indexOf(action.payload.removeFocus);
-            if (index >= 0) {
-                temp.focuses.splice(index, 1);
-            }
-            temp.focuses.push(action.payload.addFocus);
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case MODIFY_SUPPORTING_CHARACTER_ADD_IMPROVEMENT: {
+        case MODIFY_CHARACTER_ADD_ADVANCEMENT: {
             let temp = state.currentCharacter.copy();
             if (temp.improvements == null) {
                 temp.improvements = [];
             }
-            if (action.payload.type === SupportingCharacterModificationType.AdditionalValue) {
-                let improvement = new SupportingImrovementStep();
+            if (action.payload.type === CharacterAdvancementChoice.Value) {
+                let improvement = new CharacterAdvancementStep();
                 improvement.value = action.payload.value;
                 temp.improvements.push(improvement);
-            } else if (action.payload.type === SupportingCharacterModificationType.AdditionalFocus) {
-                let improvement = new SupportingImrovementStep();
+            } else if (action.payload.type === CharacterAdvancementChoice.Focus) {
+                let improvement = new CharacterAdvancementStep();
                 improvement.focus = action.payload.value;
                 temp.improvements.push(improvement);
-            } else if (action.payload.type === SupportingCharacterModificationType.AdditionalAttribute) {
-                let improvement = new SupportingImrovementStep();
+            } else if (action.payload.type === CharacterAdvancementChoice.Attribute) {
+                let improvement = new CharacterAdvancementStep();
                 improvement.attribute = action.payload.value;
                 temp.improvements.push(improvement);
-            } else if (action.payload.type === SupportingCharacterModificationType.AdditionalDepartment) {
-                let improvement = new SupportingImrovementStep();
+            } else if (action.payload.type === CharacterAdvancementChoice.Department) {
+                let improvement = new CharacterAdvancementStep();
                 improvement.discipline = action.payload.value;
                 temp.improvements.push(improvement);
-            } else if (action.payload.type === SupportingCharacterModificationType.AdditionalTalent) {
-                let improvement = new SupportingImrovementStep();
+            } else if (action.payload.type === CharacterAdvancementChoice.Talent) {
+                let improvement = new CharacterAdvancementStep();
                 improvement.talent = new SelectedTalent(action.payload.value);
                 temp.improvements.push(improvement);
             }

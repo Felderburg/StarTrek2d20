@@ -1,6 +1,6 @@
 import { Base64 } from 'js-base64';
 import pako from 'pako';
-import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, SupportingImrovementStep, SupportingStep, UpbringingStep } from '../common/character';
+import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, ShipTalentDetailSelection, SimpleStats, Starship } from '../common/starship';
@@ -274,7 +274,7 @@ class Marshaller {
     encodeImprovements(character: Character) {
         if (character.improvements?.length) {
             let json = character.improvements?.map(i => {
-                if (i instanceof SupportingImrovementStep) {
+                if (i instanceof CharacterAdvancementStep) {
                     let result = { type: "supporting" };
                     if (i.value != null) {
                         result["value"] = i.value;
@@ -1549,7 +1549,7 @@ class Marshaller {
         if (json) {
             return Object.values(json).map(j => {
                 if (j["type"] === "supporting") {
-                    let improvement = new SupportingImrovementStep();
+                    let improvement = new CharacterAdvancementStep();
                     if (j["value"] != null) {
                         improvement.value = j["value"];
                     } else if (j["focus"] != null) {

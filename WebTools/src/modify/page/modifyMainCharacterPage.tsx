@@ -17,6 +17,7 @@ import { marshaller } from "../../helpers/marshaller";
 import { useNavigate } from "react-router";
 import { CharacterAdvancementType } from "../model/characterAdvancementType";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
+import { CharacterAdvancementTypeView } from "./characterAdvancementTypeView";
 
 
 const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) => {
@@ -24,7 +25,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     const { t } = useTranslation();
     const [carouselIndex, setCarouselIndex] = useState(0);
     const [modificationType, setModificationType] = useState<string|ModificationType>(ModificationType.Promotion);
-    const [milestoneType, setMilestoneType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Adjustment);
+    const [advancementType, setAdvancementType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Adjustment);
     const navigate = useNavigate();
 
     const dropDownItems = () => {
@@ -32,13 +33,15 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         if (character?.rank != null) {
             result.push(new DropDownElement(ModificationType.Promotion, t('ModificationType.name.promotion')))
         }
-//        result.push(new DropDownElement(ModificationType.CharacterAdvancement, t('ModificationType.name.characterAdvancement')))
+        result.push(new DropDownElement(ModificationType.CharacterAdvancement, t('ModificationType.name.characterAdvancement')))
         return result;
     }
 
     const milestoneTypesDropDownItems = () => {
         let result = [];
-        result.push(new DropDownElement(CharacterAdvancementType.Adjustment, t('MilestoneType.name.normalMilestone')))
+        result.push(new DropDownElement(CharacterAdvancementType.Adjustment, t('CharacterAdvancementType.adjustment')))
+        result.push(new DropDownElement(CharacterAdvancementType.Milestone, t('CharacterAdvancementType.milestone')))
+        result.push(new DropDownElement(CharacterAdvancementType.CharacterArc, t('CharacterAdvancementType.characterArc')))
         return result;
     }
 
@@ -60,8 +63,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         }
     }
 
-    const createModifcationTypeView = () => {
-        return (<><div className="row">
+    const createCharacterAdvancementTypeView = () => {
+        return (<><div className="row mt-4">
             <div className="col-12 col-md-6">
 
                 <Header level={2}>{t('Page.title.modificationTypeSelection')}</Header>
@@ -72,7 +75,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
 
                 {modificationType === ModificationType.CharacterAdvancement
                     ? (<div className="mt-4">
-                        <DropDownSelect items={milestoneTypesDropDownItems()} onChange={(v) => setMilestoneType(v as CharacterAdvancementType)} defaultValue={milestoneType} />
+                        <DropDownSelect items={milestoneTypesDropDownItems()}
+                                onChange={(v) => setAdvancementType(v as CharacterAdvancementType)} defaultValue={advancementType} />
                     </div>)
                     : undefined}
 
@@ -87,6 +91,9 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     const createModifcationDataStepView = () => {
         if (modificationType === ModificationType.Promotion) {
             return (<PromotionView character={character} onNextStep={nextStep} onPreviousStep={previousStep} />);
+        } else if (modificationType === ModificationType.CharacterAdvancement) {
+            return (<CharacterAdvancementTypeView character={character} onNextStep={nextStep}
+                onPreviousStep={previousStep} type={advancementType} />);
         } else {
             return undefined;
         }
@@ -123,11 +130,10 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                 <ModifyBreadcrumb />
 
                 <Header>{t('Page.title.modificationTypeSelection')}</Header>
-                <Markdown>{t('ModificationTypeSelectionPage.instruction')}</Markdown>
 
                 <Carousel controls={false} interval={null} activeIndex={carouselIndex} indicators={false}>
                     <Carousel.Item>
-                        {createModifcationTypeView()}
+                        {createCharacterAdvancementTypeView()}
                     </Carousel.Item>
 
                     <Carousel.Item>

@@ -964,6 +964,10 @@
     "CareerType.solo.veteran.name": "Veteran",
     "CareerType.solo.veteran.description": "Your character has decades of experience and has served on many ships and starbases. Their judgement and opinions are highly regarded by subordinates, peers, and even superiors.",
 
+    "CharacterAdvancementType.adjustment": "Adjustment",
+    "CharacterAdvancementType.milestone": "Milestone",
+    "CharacterAdvancementType.characterArc": "Character Arc",
+
     "CharacterType.name.starfleet": "Starfleet",
     "CharacterType.name.klingonWarrior": "Klingon Defense Force",
     "CharacterType.name.civilian": "Civilian",

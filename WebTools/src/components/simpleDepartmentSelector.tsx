@@ -9,15 +9,16 @@ interface ISimpleDepartmentSelectorProperties extends ICharacterPageProperties {
 
     isChecked: (department: Department) => boolean;
     onSelectDepartment: (department: Department) => void;
+    isUpdateable?: (department: Department, character: Character) => boolean;
 }
 
 export const SimpleDepartmentSelector: React.FC<ISimpleDepartmentSelectorProperties> =
-    ({onSelectDepartment, isChecked, character}) => {
+    ({onSelectDepartment, isChecked, character, isUpdateable}) => {
 
     const { t } = useTranslation();
 
     const isIncrementable = (s: Department, departments: number[]) => {
-        if (departments[s] !== Character.maxDepartment(character)) {
+        if (departments[s] === Character.maxDepartment(character)) {
             return false;
         } else if (character.hasMaxedDepartment() && departments[s] === (Character.ABSOLUTE_MAX_DEPARTMENT - 1)) {
             return false;
@@ -27,16 +28,20 @@ export const SimpleDepartmentSelector: React.FC<ISimpleDepartmentSelectorPropert
     }
 
     const departments = character.departments;
+    if (isUpdateable == null) {
+        isUpdateable = (d, character) => { return isIncrementable(d, character.departments); };
+    }
+
     return (<table className="selection-list">
         <tbody>
-            {DepartmentsHelper.instance.getDepartments().map((s, i) => {
+            {DepartmentsHelper.instance.getDepartments().map((d, i) => {
                 return (<tr key={i}>
-                    <td className="selection-header-small">{t(makeKey("Construct.discipline.", Department[s]))}</td>
-                    <td className="text-end">
-                        <span>{departments[s]}</span>
-                        <CheckBox text="" value={s} isChecked={isChecked(s)}
-                            onChanged={(val) => onSelectDepartment(s)}
-                            disabled={!isIncrementable(s, departments)} />
+                    <td className="selection-header-small">{t(makeKey("Construct.discipline.", Department[d]))}</td>
+                    <td className="d-flex align-items-center justify-content-end">
+                        <div className="me-2">{departments[d]}</div>
+                        <CheckBox text="" value={d} isChecked={isChecked(d)}
+                            onChanged={(val) => onSelectDepartment(d)}
+                            disabled={!isUpdateable(d, character)} />
                     </td>
                 </tr>);
             })}

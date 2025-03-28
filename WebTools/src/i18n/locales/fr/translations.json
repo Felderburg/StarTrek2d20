@@ -712,6 +712,8 @@
     "CareerType.solo.veteran.name": "Vétéran",
     "CareerType.solo.veteran.description": "Votrepersonnage a des déceniies d'experience et a servit sur bien des vaisseaux et bases stellaires. Ses avis et opinions sont estimés âr ses subordonnés, ses pairs et même ses superieurs. ",
 
+    "CharacterAdvancementType.milestone": "Jalon d'Expérience",
+
     "CharacterType.name.starfleet": "Starfleet",
     "CharacterType.name.klingonWarrior": "Forces de Défense Klingones",
     "CharacterType.name.civilian": "Civil",

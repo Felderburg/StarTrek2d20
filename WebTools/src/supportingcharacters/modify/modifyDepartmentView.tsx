@@ -7,9 +7,9 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Dialog } from "../../components/dialog";
 import store from "../../state/store";
-import { modifySupportingCharacterAddImprovement } from "../../state/characterActions";
-import { SupportingCharacterModificationType } from "./supportingCharacterModificationType";
+import { modifyCharacterAddAdvancement } from "../../state/characterActions";
 import { Department } from "../../helpers/department";
+import { CharacterAdvancementChoice } from "../../modify/model/characterAdvancementChoice";
 
 interface IModifyDepartmentViewProperties extends ICharacterPageProperties {
     onNextStep: () => void;
@@ -25,7 +25,7 @@ export const ModifyDepartmentView: React.FC<IModifyDepartmentViewProperties> = (
         if (departmentSelection == null) {
             Dialog.show("Please select a department");
         } else {
-            store.dispatch(modifySupportingCharacterAddImprovement(SupportingCharacterModificationType.AdditionalDepartment, departmentSelection));
+            store.dispatch(modifyCharacterAddAdvancement(CharacterAdvancementChoice.Department, departmentSelection));
             onNextStep();
         }
     }

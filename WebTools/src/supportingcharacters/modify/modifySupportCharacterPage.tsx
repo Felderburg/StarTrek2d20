@@ -17,7 +17,7 @@ import { Dialog } from "../../components/dialog";
 import { ValueRandomTable } from "../../solo/table/valueRandomTable";
 import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
-import { modifySupportingCharacterAddImprovement } from "../../state/characterActions";
+import { modifyCharacterAddAdvancement } from "../../state/characterActions";
 import { Attribute } from "../../helpers/attributes";
 import { SimpleAttributeSelector } from "../../components/simpleAttributeSelector";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
@@ -27,10 +27,11 @@ import { TalentsHelper } from "../../helpers/talents";
 import { TalentDescription } from "../../components/talentDescription";
 import { ModalControl } from "../../components/modal";
 import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
-import { Promotion, SupportingImrovementStep } from "../../common/character";
+import { Promotion, CharacterAdvancementStep } from "../../common/character";
 import { PromotionView } from "../../modify/page/promotionView";
 import { ModifyDepartmentView } from "./modifyDepartmentView";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
+import { CharacterAdvancementChoice } from "../../modify/model/characterAdvancementChoice";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -65,17 +66,33 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const existingImprovementCountByType = () => {
         switch (modificationType) {
         case SupportingCharacterModificationType.AdditionalAttribute:
-            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.attribute != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.attribute != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalDepartment:
-            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.discipline != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.discipline != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalFocus:
-            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.focus != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.focus != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalValue:
-            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.value != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.value != null)?.length ?? 0
         case SupportingCharacterModificationType.AdditionalTalent:
-            return character.improvements?.filter(i => i instanceof SupportingImrovementStep && i.talent != null)?.length ?? 0
+            return character.improvements?.filter(i => i instanceof CharacterAdvancementStep && i.talent != null)?.length ?? 0
         case SupportingCharacterModificationType.Promotion:
             return character.improvements?.filter(i => i instanceof Promotion)?.length ?? 0
+        }
+    }
+
+    const toChoice = (modificationType: SupportingCharacterModificationType) => {
+        switch (modificationType) {
+            case SupportingCharacterModificationType.AdditionalAttribute:
+                return CharacterAdvancementChoice.Attribute;
+            case SupportingCharacterModificationType.AdditionalDepartment:
+                return CharacterAdvancementChoice.Department;
+            case SupportingCharacterModificationType.AdditionalFocus:
+                return CharacterAdvancementChoice.Focus;
+            case SupportingCharacterModificationType.AdditionalValue:
+                return CharacterAdvancementChoice.Value;
+            case SupportingCharacterModificationType.AdditionalTalent:
+            default:
+                return CharacterAdvancementChoice.Talent;
         }
     }
 
@@ -84,28 +101,28 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
             if (!valueSelection?.length) {
                 Dialog.show("Please select a value");
             } else {
-                store.dispatch(modifySupportingCharacterAddImprovement(modificationType, valueSelection));
+                store.dispatch(modifyCharacterAddAdvancement(toChoice(modificationType), valueSelection));
                 onNextPage();
             }
         } else if (modificationType === SupportingCharacterModificationType.AdditionalFocus) {
             if (!focusSelection?.length) {
                 Dialog.show("Please select a focus");
             } else {
-                store.dispatch(modifySupportingCharacterAddImprovement(modificationType, focusSelection));
+                store.dispatch(modifyCharacterAddAdvancement(toChoice(modificationType), focusSelection));
                 onNextPage();
             }
         } else if (modificationType === SupportingCharacterModificationType.AdditionalAttribute) {
             if (attriubteSelection == null) {
                 Dialog.show("Please select an attribute");
             } else {
-                store.dispatch(modifySupportingCharacterAddImprovement(modificationType, attriubteSelection));
+                store.dispatch(modifyCharacterAddAdvancement(toChoice(modificationType), attriubteSelection));
                 onNextPage();
             }
         } else if (modificationType === SupportingCharacterModificationType.AdditionalTalent) {
             if (talentSelection == null) {
                 Dialog.show(t("ModifySupportingCharacter.error.talent"));
             } else {
-                store.dispatch(modifySupportingCharacterAddImprovement(modificationType, talentSelection));
+                store.dispatch(modifyCharacterAddAdvancement(toChoice(modificationType), talentSelection));
                 onNextPage();
             }
         }
@@ -217,7 +234,10 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                 <div className="col-12 col-md-6">
                     <Header level={2} className="my-4">{t('Construct.other.attribute')}</Header>
                     <Markdown>{t('ModifySupportingCharacter.attribute.instruction')}</Markdown>
-                    <SimpleAttributeSelector onSelectAttribute={(a) => setAttributeSelection(a)} isChecked={(a) => attriubteSelection === a} />
+                    <SimpleAttributeSelector
+                        onSelectAttribute={(a) => setAttributeSelection(a)}
+                        character={character}
+                        isChecked={(a) => attriubteSelection === a} />
                 </div>
             </div>);
         } else if (modificationType === SupportingCharacterModificationType.AdditionalTalent) {

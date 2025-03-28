@@ -876,6 +876,8 @@
     "CareerType.solo.veteran.name": "Veterano",
     "CareerType.solo.veteran.description": "Tu personaje tiene décadas de experiencia y ha servido en muchas naves y bases estelares. Sus juicios y opiniones son muy apreciados por subordinados, pares e incluso superiores.",
 
+    "CharacterAdvancementType.milestone": "Hito",
+
     "CharacterType.name.starfleet": "Flota Estelar",
     "CharacterType.name.klingonWarrior": "Fuerza de Defensa Klingon",
     "CharacterType.name.civilian": "Civil",

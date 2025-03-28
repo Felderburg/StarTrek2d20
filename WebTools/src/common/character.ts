@@ -139,7 +139,7 @@ export class SupportingStep {
     }
 }
 
-export class SupportingImrovementStep {
+export class CharacterAdvancementStep {
     value: string;
     attribute: Attribute;
     discipline: Department;
@@ -147,7 +147,7 @@ export class SupportingImrovementStep {
     talent: SelectedTalent;
 
     copy() {
-        let result = new SupportingImrovementStep();
+        let result = new CharacterAdvancementStep();
         result.value = this.value;
         result.attribute = this.attribute;
         result.discipline = this.discipline;
@@ -408,7 +408,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     public npcGenerationStep?: NpcGenerationStep;
     public supportingStep?: SupportingStep;
 
-    public improvements: (SupportingImrovementStep|Promotion)[];
+    public improvements: (CharacterAdvancementStep|Promotion)[];
 
     public description?: string;
     public legacyMode: boolean;
@@ -510,9 +510,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
             return this.npcGenerationStep ? [...this.npcGenerationStep.talents] : [];
         } else if (this.stereotype === Stereotype.SupportingCharacter) {
             return this.improvements
-                ?.filter(s => s instanceof SupportingImrovementStep)
-                .filter(s => (s as SupportingImrovementStep).talent != null)
-                ?.map(s => (s as SupportingImrovementStep).talent) ?? [];
+                ?.filter(s => s instanceof CharacterAdvancementStep)
+                .filter(s => (s as CharacterAdvancementStep).talent != null)
+                ?.map(s => (s as CharacterAdvancementStep).talent) ?? [];
         } else {
             let result = [];
             if (this.speciesStep?.talent != null) {
@@ -573,7 +573,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 return values[index] + speciesBonus - speciesminuses;
             });
             this.improvements?.forEach(i => {
-                    if (i instanceof SupportingImrovementStep && i.attribute != null) {
+                    if (i instanceof CharacterAdvancementStep && i.attribute != null) {
                         result[i.attribute] += 1;
                     }
                 });
@@ -620,7 +620,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 return values[index];
             });
             this.improvements?.forEach(i => {
-                    if (i instanceof SupportingImrovementStep && i.discipline != null) {
+                    if (i instanceof CharacterAdvancementStep && i.discipline != null) {
                         result[i.discipline] += 1;
                     }
                 })
@@ -859,7 +859,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
 
         this.improvements?.forEach(i => {
-                if (i instanceof SupportingImrovementStep && i.value != null) {
+                if (i instanceof CharacterAdvancementStep && i.value != null) {
                     result.push(i.value);
                 }
             })
@@ -1206,17 +1206,18 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get focuses() {
+        let allFocuses = [];
         if (this.stereotype === Stereotype.SoloCharacter) {
-            return this.getFocusesFromSteps();
+            allFocuses = this.getFocusesFromSteps();
         } else if (this.stereotype === Stereotype.MainCharacter) {
             let result = this.getFocusesFromSteps();
             if (result.length < this._focuses.length || this.legacyMode) {
-                return this._focuses;
+                result = [...this._focuses];
             } else {
                 this.talents.forEach(t => {
                     t.focuses.filter(f => f != null && f.trim() !== "").forEach(f => result.push(f));
                 });
-                return result;
+                allFocuses = result;
             }
         } else if (this.stereotype === Stereotype.SupportingCharacter) {
             let result = [];
@@ -1226,15 +1227,17 @@ export class Character extends Construct implements IWeaponDiceProvider {
             if (this.supportingStep?.focuses?.length) {
                 result.push(...this.supportingStep?.focuses?.filter(f => f.trim().length));
             }
-            this.improvements?.filter(i => i instanceof SupportingImrovementStep)
-                .filter(i => (i as SupportingImrovementStep).focus)
-                .forEach(i => result.push((i as SupportingImrovementStep).focus));
-            return result;
+            allFocuses = result;
         } else if (this.stereotype === Stereotype.Npc) {
-            return [...(this.npcGenerationStep?.focuses ?? [])];
+            allFocuses = [...(this.npcGenerationStep?.focuses ?? [])];
         } else {
-            return this._focuses;
+            allFocuses = [...this._focuses];
         }
+
+        this.improvements?.filter(i => i instanceof CharacterAdvancementStep)
+            .filter(i => (i as CharacterAdvancementStep).focus)
+            .forEach(i => allFocuses.push((i as CharacterAdvancementStep).focus));
+        return allFocuses;
     }
 
     isEngineer() {

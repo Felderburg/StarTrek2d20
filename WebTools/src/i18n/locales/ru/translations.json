@@ -568,6 +568,8 @@
     "CareerType.core.veteran.description": "Персонаж десятилетиями служит в Звёздном флоте, служил\nна многих кораблях и звёздных базах. Суждения и мне-\nния персонажа высоко ценятся подчинёнными, коллегами и даже начальством.",
     "CareerType.core.veteran.valueInstruction": "Персонаж получает Ценность, которая должна отражать его многолетний опыт и убеждения, сформированные за время долгой службы.",
 
+    "CharacterAdvancementType.milestone": "Веха",
+
     "CharacterType.name.starfleet": "Звездный флот",
 
     "EarlyOutlook.MilitaryOrExploration": "Звездный флот",

@@ -144,7 +144,7 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({character}) => 
         } else if (character.environmentStep.discipline == null) {
             Dialog.show(t('SoloEnvironmentDetailsPage.errorDiscipline'));
         } else if (character.environmentStep?.value == null) {
-            Dialog.show(t('SoloEnvironmentDetailsPage.errorValue'));
+            Dialog.show(t('Common.error.value'));
         } else {
             if (character.stereotype === Stereotype.SoloCharacter) {
                 Navigation.navigateToPage(PageIdentity.SoloEarlyOutlook);

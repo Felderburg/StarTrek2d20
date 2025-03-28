@@ -12,12 +12,11 @@ import { Species } from "../helpers/speciesEnum";
 import { ITalent } from "../helpers/italent";
 import { Track } from "../helpers/trackEnum";
 import { EarlyOutlookModel } from "../helpers/upbringings";
-import { SupportingCharacterModificationType } from "../supportingcharacters/modify/supportingCharacterModificationType";
+import { CharacterAdvancementChoice } from "../modify/model/characterAdvancementChoice";
+
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
 export const MODIFY_CHARACTER_RANK = 'MODIFY_CHARACTER_RANK';
-export const APPLY_NORMAL_MILESTONE_DISCIPLINE = 'APPLY_NORMAL_MILESTONE_DISCIPLINE';
-export const APPLY_NORMAL_MILESTONE_FOCUS = 'APPLY_NORMAL_MILESTONE_FOCUS';
 export const SET_CHARACTER_SPECIES = 'SET_CHARACTER_SPECIES';
 export const SET_CHARACTER_FOCUS = 'SET_CHARACTER_FOCUS';
 export const SET_CHARACTER_VALUE = 'SET_CHARACTER_VALUE';
@@ -51,7 +50,7 @@ export const SET_SUPPORTING_CHARACTER_DISCIPLINES = "SET_SUPPORTING_CHARACTER_DI
 export const SET_SUPPORTING_CHARACTER_ATTRIBUTES = "SET_SUPPORTING_CHARACTER_ATTRIBUTES";
 export const SET_SUPPORTING_CHARACTER_SUPERVISORY = "SET_SUPPORTING_CHARACTER_SUPERVISORY";
 export const ADD_CHARACTER_SPECIES_ABILITY_FOCUS = "ADD_CHARACTER_SPECIES_ABILITY_FOCUS";
-export const MODIFY_SUPPORTING_CHARACTER_ADD_IMPROVEMENT = "MODIFY_SUPPORTING_CHARACTER_ADD_IMPROVEMENT";
+export const MODIFY_CHARACTER_ADD_ADVANCEMENT = "MODIFY_CHARACTER_ADD_ADVANCEMENT";
 
 export enum StepContext {
     Species,
@@ -358,26 +357,10 @@ export function modifyCharacterRank(rank: CharacterRank) {
     }
 }
 
-export function modifySupportingCharacterAddImprovement(type: SupportingCharacterModificationType, value: string|Attribute|Department) {
+export function modifyCharacterAddAdvancement(type: CharacterAdvancementChoice, value: string|Attribute|Department) {
     let payload = { type: type, value: value };
     return {
-       type: MODIFY_SUPPORTING_CHARACTER_ADD_IMPROVEMENT,
-       payload: payload
-    }
-}
-
-export function applyNormalMilestoneDiscipline(decrease: Department, increase: Department) {
-    let payload = { decrease: decrease, increase: increase };
-    return {
-       type: APPLY_NORMAL_MILESTONE_DISCIPLINE,
-       payload: payload
-    }
-}
-
-export function applyNormalMilestoneFocus(removeFocus: string, addFocus: string) {
-    let payload = { removeFocus: removeFocus, addFocus: addFocus };
-    return {
-       type: APPLY_NORMAL_MILESTONE_FOCUS,
+       type: MODIFY_CHARACTER_ADD_ADVANCEMENT,
        payload: payload
     }
 }
