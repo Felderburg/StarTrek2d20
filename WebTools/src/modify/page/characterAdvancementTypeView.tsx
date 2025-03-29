@@ -26,6 +26,35 @@ import SingleTalentSelectionList from "../../components/singleTalentSelectionLis
 import { SelectedTalentDescriptionView } from "../../components/selectedTalentDescriptionView";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { SimpleStringSelector } from "./simpleStringSelector";
+import { Character } from "../../common/character";
+import { CheckBox } from "../../components/checkBox";
+
+interface ITalentSelectorProperties {
+
+    values: SelectedTalent[];
+    isChecked: (t: SelectedTalent, i: number) => boolean;
+    onSelect: (t: SelectedTalent, i: number) => void;
+}
+
+export const TalentSelector: React.FC<ITalentSelectorProperties> =
+    ({onSelect, values, isChecked}) => {
+
+    const { t } = useTranslation();
+    return (<table className="selection-list">
+        <tbody>
+            {values.map((s, i) => {
+                return (<tr key={i}>
+                    <td className="selection-header-small">{s.talentModel.localizedName}</td>
+                    <td className="text-end">
+                        <CheckBox text="" value={s} isChecked={isChecked(s, i)}
+                            onChanged={(val) => onSelect(s, i)} />
+                    </td>
+                </tr>);
+            })}
+        </tbody>
+    </table>);
+}
+
 
 interface ICharacterAdvancementTypeViewProperties extends ICharacterProperties {
     onNextStep: () => void;
@@ -45,7 +74,7 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
     const [ removeFocusSelection, setRemoveFocusSelection ] = useState<string|undefined>(undefined);
     const [ valueSelection, setValueSelection ] = useState<string|undefined>(undefined);
     const [ talentSelection, setTalentSelection] = useState<SelectedTalent|undefined>(undefined);
-    const [ removeTalentSelection, setRemoveTalentSelection] = useState<SelectedTalent|undefined>(undefined);
+    const [ removeTalentSelectionIndex, setRemoveTalentSelectionIndex] = useState<number|undefined>(undefined);
 
     useEffect(() => setChoice(undefined), [type]);
 
@@ -139,8 +168,8 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
             }
         } else if (choice === CharacterAdvancementChoice.Talent) {
             if (type === CharacterAdvancementType.Adjustment) {
-                if (talentSelection != null && removeTalentSelection != null) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection, removeTalentSelection));
+                if (talentSelection != null && removeTalentSelectionIndex != null) {
+                    store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection, character.talents[removeTalentSelectionIndex]));
                     onNextStep();
                 } else {
                     Dialog.show(t('CharacterAdvancementTypeView.error.twoFocuses'));
@@ -163,33 +192,139 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
         }
     }
 
+    const isAttributeDecrementable = (a: Attribute, c: Character) => {
+        return c.attributes[a] > 7;
+    }
+
+    const isAttributeIncrementable = (a: Attribute, c: Character) => {
+        let value = c.attributes[a];
+        if (a === removeAttributeSelection && type === CharacterAdvancementType.Adjustment) {
+            return false;
+        } else if (value >= Character.maxAttribute(character)) {
+            return false;
+        } else if (type !== CharacterAdvancementType.CharacterArc && value >= (Character.ABSOLUTE_MAX_ATTRIBUTE - 1)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    const isDepartmentDecrementable = (d: Department, c: Character) => {
+        return c.departments[d] > 1;
+    }
+
+    const isDepartmentIncrementable = (d: Department, c: Character) => {
+        let value = c.departments[d];
+        if (d === removeDepartmentSelection && type === CharacterAdvancementType.Adjustment) {
+            return false;
+        } else if (value >= Character.maxDepartment(character)) {
+            return false;
+        } else if (type !== CharacterAdvancementType.CharacterArc && value >= (Character.ABSOLUTE_MAX_DEPARTMENT - 1)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     const renderChoiceOption = () => {
         if (choice === CharacterAdvancementChoice.Attribute) {
-            return (<>
-                <div className="col-12 col-md-6 mt-4">
-                    <Header level={2}>{t('Construct.other.attribute')}</Header>
-                    <Markdown className="mt-4">
-                        {t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.attribute'))}
-                    </Markdown>
-                    <SimpleAttributeSelector
-                        character={character}
-                        isChecked={(a) => attributeSelection === a}
-                        onSelectAttribute={(a) => setAttributeSelection(a)} />
-                </div>
-            </>);
+            if (type === CharacterAdvancementType.Adjustment) {
+                return (<div className="row">
+                    <div className="col-12">
+                        <Header level={2} className="my-4">{t('Construct.other.attribute')}</Header>
+                        <Markdown>{t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.attribute'))}</Markdown>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <Header level={2} className="my-4">{t('Common.text.remove')}</Header>
+                        <SimpleAttributeSelector
+                            character={character}
+                            isChecked={(a) => removeAttributeSelection === a}
+                            onSelectAttribute={(a) => {
+                                setRemoveAttributeSelection(a);
+                                if (a === attributeSelection) {
+                                    setAttributeSelection(undefined);
+                                }
+                            }}
+                            isUpdateable={isAttributeDecrementable}/>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <Header level={2} className="my-4">{t('Common.text.new')}</Header>
+                        <SimpleAttributeSelector
+                            character={character}
+                            isChecked={(a) => attributeSelection === a}
+                            onSelectAttribute={(a) => {
+                                setAttributeSelection(a);
+                                if (a === removeAttributeSelection) {
+                                    setRemoveAttributeSelection(undefined);
+                                }
+                            }}
+                            isUpdateable={isAttributeIncrementable}/>
+                    </div>
+                </div>);
+            } else {
+                return (<>
+                    <div className="col-12 col-md-6 mt-4">
+                        <Header level={2}>{t('Construct.other.attribute')}</Header>
+                        <Markdown className="mt-4">
+                            {t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.attribute'))}
+                        </Markdown>
+                        <SimpleAttributeSelector
+                            character={character}
+                            isChecked={(a) => attributeSelection === a}
+                            onSelectAttribute={(a) => setAttributeSelection(a)}
+                            isUpdateable={isAttributeIncrementable}/>
+                    </div>
+                </>);
+            }
         } else if (choice === CharacterAdvancementChoice.Department) {
-            return (<>
-                <div className="col-12 col-md-6 mt-4">
-                    <Header level={2}>{t('Construct.other.department')}</Header>
-                    <Markdown className="mt-4">
-                        {t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.department'))}
-                    </Markdown>
-                    <SimpleDepartmentSelector
-                        character={character}
-                        isChecked={(d) => departmentSelection === d}
-                        onSelectDepartment={(d) => setDepartmentSelection(d)} />
-                </div>
-            </>);
+            if (type === CharacterAdvancementType.Adjustment) {
+                return (<div className="row">
+                    <div className="col-12">
+                        <Header level={2} className="my-4">{t('Construct.other.department')}</Header>
+                        <Markdown>{t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.department'))}</Markdown>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <Header level={2} className="my-4">{t('Common.text.remove')}</Header>
+                        <SimpleDepartmentSelector
+                            character={character}
+                            isChecked={(d) => removeDepartmentSelection === d}
+                            onSelectDepartment={(d) => {
+                                setRemoveDepartmentSelection(d);
+                                if (d === departmentSelection) {
+                                    setDepartmentSelection(undefined);
+                                }
+                            }}
+                            isUpdateable={isDepartmentDecrementable}/>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <Header level={2} className="my-4">{t('Common.text.new')}</Header>
+                        <SimpleDepartmentSelector
+                            character={character}
+                            isChecked={(a) => departmentSelection === a}
+                            onSelectDepartment={(a) => {
+                                setDepartmentSelection(a);
+                                if (a === removeDepartmentSelection) {
+                                    setRemoveDepartmentSelection(undefined);
+                                }
+                            }}
+                            isUpdateable={isDepartmentIncrementable}/>
+                    </div>
+                </div>);
+            } else {
+                return (<>
+                    <div className="col-12 col-md-6 mt-4">
+                        <Header level={2}>{t('Construct.other.department')}</Header>
+                        <Markdown className="mt-4">
+                            {t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.department'))}
+                        </Markdown>
+                        <SimpleDepartmentSelector
+                            character={character}
+                            isChecked={(d) => departmentSelection === d}
+                            onSelectDepartment={(d) => setDepartmentSelection(d)}
+                            isUpdateable={isDepartmentIncrementable}/>
+                    </div>
+                </>);
+            }
         } else if (choice === CharacterAdvancementChoice.Focus) {
             if (type === CharacterAdvancementType.Adjustment) {
                 return (<div className="row">
@@ -240,18 +375,42 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                 </div>
             </div>);
         } else if (choice === CharacterAdvancementChoice.Talent) {
-            return (<div className="row">
-                <div className="col-12 col-md-6">
-                    <Header level={2} className="my-4">{t('Construct.other.talent')}</Header>
-                    <Markdown>{t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.talent'))}</Markdown>
-                    <div className="text-end">
-                        <Button size="sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
+            if (type === CharacterAdvancementType.Adjustment) {
+                return (<div className="row">
+                    <div className="col-12">
+                        <Header level={2} className="my-4">{t('Construct.other.focus')}</Header>
+                        <Markdown>{t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.focus'))}</Markdown>
                     </div>
-                    {talentSelection == null
-                    ? (<p>No talent selected.</p>)
-                    :  <SelectedTalentDescriptionView talent={talentSelection} version={character.version} />}
-                </div>
-            </div>);
+                    <div className="col-12 col-md-6">
+                        <Header level={2} className="my-4">{t('Common.text.remove')}</Header>
+                        <TalentSelector values={character.talents}
+                            onSelect={(s,i) => setRemoveTalentSelectionIndex(i)}
+                            isChecked={(s,i) => i === removeTalentSelectionIndex}/>
+                    </div>
+                    <div className="col-12 col-md-6">
+                        <Header level={2} className="my-4">{t('Common.text.new')}</Header>
+                        <div className="text-end">
+                            <Button size="sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
+                        </div>
+                        {talentSelection == null
+                        ? (<p>No talent selected.</p>)
+                        :  <SelectedTalentDescriptionView talent={talentSelection} version={character.version} />}
+                    </div>
+                </div>);
+            } else {
+                return (<div className="row">
+                    <div className="col-12 col-md-6">
+                        <Header level={2} className="my-4">{t('Construct.other.talent')}</Header>
+                        <Markdown>{t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.talent'))}</Markdown>
+                        <div className="text-end">
+                            <Button size="sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
+                        </div>
+                        {talentSelection == null
+                        ? (<p>No talent selected.</p>)
+                        :  <SelectedTalentDescriptionView talent={talentSelection} version={character.version} />}
+                    </div>
+                </div>);
+            }
         } else {
             return undefined;
         }

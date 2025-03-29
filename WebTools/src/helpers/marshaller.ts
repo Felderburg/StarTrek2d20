@@ -1096,7 +1096,6 @@ class Marshaller {
     }
 
     decodeCharacter(json: any) {
-        console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;

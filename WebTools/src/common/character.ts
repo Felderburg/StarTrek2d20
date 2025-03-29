@@ -507,17 +507,31 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
         }
 
-        result.push(...this.improvements
-            ?.filter(s => s instanceof CharacterAdvancementStep)
+        this.improvements?.filter(s => s instanceof CharacterAdvancementStep)
             .filter(s => (s as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Talent)
-            ?.map(s => (s as CharacterAdvancementStep).value as SelectedTalent) ?? []);
+            ?.map(s => {
+                let step = (s as CharacterAdvancementStep);
+                if (step.removeValue != null) {
+                    let index = -1;
+                    result.forEach((t, i) => {
+                        if (t.talent === (step.removeValue as SelectedTalent).talent && index === -1) {
+                            index = i
+                        }
+                    });
+                    if (index >= 0) {
+                        result.splice(index, 1);
+                    }
+                }
+                result.push(step.value as SelectedTalent);
+            });
         return result;
 
     }
 
     get attributes(): number[] {
+        let result = [];
         if (this.stereotype === Stereotype.SoloCharacter || (this.stereotype === Stereotype.MainCharacter && !this.legacyMode)) {
-            let result = [7, 7, 7, 7, 7, 7];
+            result = [7, 7, 7, 7, 7, 7];
             this.speciesStep?.attributes?.forEach(a => result[a] = result[a] + 1);
             this.speciesStep?.decrementAttributes?.forEach(a => result[a] = result[a] - 1);
             if (this.environmentStep?.attribute != null) {
@@ -541,27 +555,32 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
             AttributesHelper.getAllAttributes().forEach(a => result[a] = Math.min(Character.maxAttribute(this), result[a]));
 
-            return result;
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = this.age.attributes;
             if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {
                 values = [10, 10, 9, 9, 8, 8];
             }
-            let result = AttributesHelper.getAllAttributes().map(a => {
+            result = AttributesHelper.getAllAttributes().map(a => {
                 let index = this.supportingStep?.attributes?.indexOf(a);
                 let speciesBonus = this.speciesStep?.attributes?.filter(att => att === a).length;
                 let speciesminuses = this.speciesStep?.decrementAttributes?.filter(att => att === a).length;
                 return values[index] + speciesBonus - speciesminuses;
             });
-            this.improvements?.forEach(i => {
-                    if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Attribute) {
-                        result[i.value as Attribute] += 1;
-                    }
-                });
             return result;
         } else {
-            return [...this._attributes];
+            result = [...this._attributes];
         }
+
+        this.improvements?.forEach(i => {
+            if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Attribute) {
+                if (i.removeValue != null) {
+                    result[i.removeValue as Attribute] -= 1;
+                }
+                result[i.value as Attribute] += 1;
+            }
+        });
+
+        return result;
     }
 
     get attributeTotal() {
@@ -571,8 +590,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get departments(): number[] {
+        let result = [];
         if (this.stereotype === Stereotype.SoloCharacter || (this.stereotype === Stereotype.MainCharacter && !this.legacyMode)) {
-            let result = [1, 1, 1, 1, 1, 1];
+            result = [1, 1, 1, 1, 1, 1];
             if (this.environmentStep?.discipline != null) {
                 result[this.environmentStep.discipline] += 1;
             }
@@ -590,29 +610,33 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
             DepartmentsHelper.instance.getDepartments().forEach(s => result[s] = Math.min(Character.maxDepartment(this), result[s]));
 
-            return result;
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = [...this.age.disciplines];
             if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {
                 values = [4, 4, 3, 2, 2, 1];
             }
-            let result = DepartmentsHelper.instance.getDepartments().map(s => {
+            result = DepartmentsHelper.instance.getDepartments().map(s => {
                 let index = this.supportingStep?.disciplines?.indexOf(s);
                 return values[index];
             });
-            this.improvements?.forEach(i => {
-                    if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Department) {
-                        result[i.value as Department] += 1;
-                    }
-                })
-            return result;
         } else {
-            let result = this.stereotype === Stereotype.Npc ? [...this.npcGenerationStep?.departments] : [...this._skills];
+            result = this.stereotype === Stereotype.Npc ? [...this.npcGenerationStep?.departments] : [...this._skills];
             if (this.hasTalent("Intensive Training (Special Rule)")) {
                 result = result.map(d => d === 0 ? 1 :d);
             }
             return result;
         }
+
+        this.improvements?.forEach(i => {
+            if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Department) {
+                if (i.removeValue != null) {
+                    result[i.removeValue as Department] -= 1;
+                }
+                result[i.value as Department] += 1;
+            }
+        })
+
+        return result;
     }
 
     get skillTotal() {
