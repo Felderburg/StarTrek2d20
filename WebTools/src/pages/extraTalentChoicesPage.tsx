@@ -123,8 +123,8 @@ const ExtraTalentChoicesPage : React.FC<ICharacterProperties> = ({character}) =>
         if (character.hasTalent(TALENT_NAME_WISDOM_OF_YEARS)) {
             let talent = character.getTalentByName(TALENT_NAME_WISDOM_OF_YEARS);
             return (<div className="mt-4 col-lg-6">
-                    <Header level={2}>Visit Every Star</Header>
-                    <p>Characters with the talent "Visit Every Star" may choose 1 additional focus.</p>
+                    <Header level={2}>Wisdom of Years</Header>
+                    <p>Characters with the talent "Wisdom of Years" may choose 1 additional focus.</p>
                     <div className="d-flex justify-content-between align-items-center flex-wrap">
                         <InputFieldAndLabel id="wisdom-focus1" labelName={t('Construct.other.focus')}
                             value={talent?.focuses[0] || ""} className="mt-1"

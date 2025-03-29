@@ -759,30 +759,19 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
             if (temp.improvements == null) {
                 temp.improvements = [];
             }
-            if (action.payload.type === CharacterAdvancementChoice.Value) {
-                let improvement = new CharacterAdvancementStep();
-                improvement.choice = action.payload.type;
-                improvement.value = action.payload.value;
+            let improvement = new CharacterAdvancementStep();
+            improvement.choice = action.payload.type;
+            if (action.payload.type === CharacterAdvancementChoice.Talent) {
+                improvement.value = (action.payload.value as SelectedTalent).copy();
+                if (action.payload.remove != null) {
+                    improvement.removeValue = (action.payload.remove as SelectedTalent).copy();
+                }
                 temp.improvements.push(improvement);
-            } else if (action.payload.type === CharacterAdvancementChoice.Focus) {
-                let improvement = new CharacterAdvancementStep();
-                improvement.choice = action.payload.type;
+            } else {
                 improvement.value = action.payload.value;
-                temp.improvements.push(improvement);
-            } else if (action.payload.type === CharacterAdvancementChoice.Attribute) {
-                let improvement = new CharacterAdvancementStep();
-                improvement.choice = action.payload.type;
-                improvement.value = action.payload.value;
-                temp.improvements.push(improvement);
-            } else if (action.payload.type === CharacterAdvancementChoice.Department) {
-                let improvement = new CharacterAdvancementStep();
-                improvement.choice = action.payload.type;
-                improvement.value = action.payload.value;
-                temp.improvements.push(improvement);
-            } else if (action.payload.type === CharacterAdvancementChoice.Talent) {
-                let improvement = new CharacterAdvancementStep();
-                improvement.choice = action.payload.type;
-                improvement.value = new SelectedTalent(action.payload.value);
+                if (action.payload.remove != null) {
+                    improvement.removeValue = action.payload.remove;
+                }
                 temp.improvements.push(improvement);
             }
             return {
@@ -791,7 +780,6 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 isModified: true
             }
         }
-
 
         default:
             return state;

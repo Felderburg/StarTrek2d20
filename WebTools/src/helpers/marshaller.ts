@@ -280,12 +280,24 @@ class Marshaller {
                     result["choice"] = CharacterAdvancementChoice[i.choice];
                     if (i.choice === CharacterAdvancementChoice.Focus || i.choice === CharacterAdvancementChoice.Value) {
                         result["value"] = i.value as string;
+                        if (i.removeValue != null) {
+                            result["remove"] = i.removeValue as string;
+                        }
                     } else if (i.choice === CharacterAdvancementChoice.Attribute) {
                         result["value"] = Attribute[i.value as Attribute];
+                        if (i.removeValue != null) {
+                            result["remove"] = Attribute[i.removeValue as Attribute];
+                        }
                     } else if (i.choice === CharacterAdvancementChoice.Department) {
                         result["value"] = Department[i.value as Department];
+                        if (i.removeValue != null) {
+                            result["remove"] = Department[i.removeValue as Department];
+                        }
                     } else if (i.choice === CharacterAdvancementChoice.Talent) {
                         result["value"] = this.talentToJson(i.value as SelectedTalent);
+                        if (i.removeValue != null) {
+                            result["remove"] = this.talentToJson(i.removeValue as SelectedTalent);
+                        }
                     }
                     return result;
                 } else if (i instanceof Promotion) {
@@ -1084,6 +1096,7 @@ class Marshaller {
     }
 
     decodeCharacter(json: any) {
+        console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;
@@ -1578,14 +1591,29 @@ class Marshaller {
                     });
                     if (improvement.choice === CharacterAdvancementChoice.Value) {
                         improvement.value = j["value"];
+                        if (j["remove"] != null) {
+                            improvement.removeValue = j["remove"];
+                        }
                     } else if (improvement.choice === CharacterAdvancementChoice.Focus) {
                         improvement.value = j["value"];
+                        if (j["remove"] != null) {
+                            improvement.removeValue = j["remove"];
+                        }
                     } else if (improvement.choice === CharacterAdvancementChoice.Attribute) {
                         improvement.value = AttributesHelper.getAttributeByName(j["value"]);
+                        if (j["remove"] != null) {
+                            improvement.removeValue = AttributesHelper.getAttributeByName(j["remove"]);
+                        }
                     } else if (improvement.choice === CharacterAdvancementChoice.Department) {
                         improvement.value = DepartmentsHelper.instance.getDepartmentByName(j["value"]);
+                        if (j["remove"] != null) {
+                            improvement.removeValue = DepartmentsHelper.instance.getDepartmentByName(j["remove"]);
+                        }
                     } else if (improvement.choice === CharacterAdvancementChoice.Talent) {
                         improvement.value = this.hydrateTalent(j["value"]);
+                        if (j["remove"] != null) {
+                            improvement.removeValue = this.hydrateTalent(j["remove"]);
+                        }
                     }
                     return improvement;
                 } else if (j["type"] === "promotion") {

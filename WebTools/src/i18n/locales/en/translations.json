@@ -122,6 +122,27 @@
     "CustomSpeciesDetails.speciesTrait": "Each species gets a species-specific trait that may provide additional benefits in special circumstances.",
     "CustomSpeciesDetails.speciesNameWarning": "Please provide a name for this species.",
 
+    "CharacterAdvancementType.choice.instruction": "At the end of the adventure, create a log entry to record that the character has received a milestone. Once you’ve written the log entry, you may make a change to your character. The change can be any one of the following:",
+
+    "CharacterAdvancementTypeView.adjustment.attribute": "educe one attribute by 1 and increase another attribute by 1. You may not increase an attribute to above 11, nor may you reduce an attribute to below 7.",
+    "CharacterAdvancementTypeView.adjustment.department": "Reduce one department by 1 and increase another by 1. You can’t increase any department to more than 4 in this way, nor reduce a department below 1.",
+    "CharacterAdvancementTypeView.adjustment.focus": "Choose one of your focuses and replace it with a different focus.",
+    "CharacterAdvancementTypeView.adjustment.talent": "Replace one of your talents with a different one for which you meet the prerequisites.",
+
+    "CharacterAdvancementTypeView.milestone.attribute": "Choose a single attribute and increase it by 1. You may not increase an attribute above 11, and you may only increase each attribute once using a milestone.",
+    "CharacterAdvancementTypeView.milestone.department": "Choose a single department and increase it by 1. You may not increase a department above 4, and you may only increase each department once using a milestone.",
+    "CharacterAdvancementTypeView.milestone.focus": "Gain one additional focus.",
+    "CharacterAdvancementTypeView.milestone.talent": "Gain one additional talent.",
+
+    "CharacterAdvancementTypeView.characterArc.attribute": "Choose a single attribute and increase it by 1. You may not increase an attribute above 12.",
+    "CharacterAdvancementTypeView.characterArc.department": "Choose a single department and increase it by 1. You may not increase a department above 5.",
+    "CharacterAdvancementTypeView.characterArc.value": "You may create one additional value for the character.",
+
+    "CharacterAdvancementTypeView.error.twoAttributes": "Please select both an attribute to remove and a new attribute",
+    "CharacterAdvancementTypeView.error.twoDepartments": "Please select both a department to remove and a new department",
+    "CharacterAdvancementTypeView.error.twoFocuses": "Please select both a focus to remove, and a new focus.",
+    "CharacterAdvancementTypeView.error.twoTalents": "Please select both a talent to remove and a new talent.",
+
     "CharacterTypePage.whatType": "What type of character is this?",
     "CharacterTypePage.whatGovernment": "What government does this character represent?",
     "CharacterTypePage.otherGovernmentName": "What's the name of this government?",
@@ -313,14 +334,12 @@
     "SoloEarlyOutlookPage.aspirations": "Aspirations",
 
     "SoloEarlyOutlookDetailsPage.errorDiscipline": "Please select a discipline.",
-    "SoloEarlyOutlookDetailsPage.errorFocus": "Please select a focus.",
 
     "SoloEducationDetailsPage.selectThree": "(Select three)",
     "SoloEducationDetailsPage.primaryDiscipline": "Primary Discipline",
     "SoloEducationDetailsPage.secondaryDiscipline": "Secondary Disciplines",
     "SoloEducationDetailsPage.errorDisciplines": "Please select one primary and two secondary disciplines.",
     "SoloEducationDetailsPage.errorAttributes": "Please select three attributes.",
-    "SoloEducationDetailsPage.errorValue": "Please select a value.",
     "SoloEducationDetailsPage.errorFocuses": "Please select your focuses.",
 
     "SoloEducationPage.instruction.alliedMilitary": "You have chosen to commit your life to your government's military. You have undergone necessary training to prepare for your military role, whether that be formal officer education, or much more informal guerilla training.",
@@ -483,6 +502,12 @@
     "Common.button.share": "Share",
     "Common.button.view": "View",
 
+    "Common.error.focus": "Please select a focus.",
+    "Common.error.value": "Please select a value.",
+    "Common.error.department": "Please select a department.",
+    "Common.error.attribute": "Please select an attribute.",
+    "Common.error.talent": "Please select a talent.",
+
     "Common.text.description": "Description",
     "Common.text.none": "None",
     "Common.text.copiedToClipboard": "Copied to clipboard",
@@ -493,8 +518,10 @@
     "Common.text.total": "Total",
     "Common.text.yes": "Yes",
     "Common.text.modify": "Modify",
+    "Common.text.new": "New",
     "Common.text.no": "No",
     "Common.text.other": "Other",
+    "Common.text.remove": "Remove",
 
     "Common.select.choose": "Choose...",
 

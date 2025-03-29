@@ -213,14 +213,12 @@
     "SoloEarlyOutlookPage.aspirations": "Ziele",
 
     "SoloEarlyOutlookDetailsPage.errorDiscipline": "Bitte wähle eine Disziplin.",
-    "SoloEarlyOutlookDetailsPage.errorFocus": "Bitte wähle einen Fokus.",
 
     "SoloEducationDetailsPage.selectThree": "(Drei auswählen)",
     "SoloEducationDetailsPage.primaryDiscipline": "Primäre Disziplin",
     "SoloEducationDetailsPage.secondaryDiscipline": "Sekundäre Disziplin",
     "SoloEducationDetailsPage.errorDisciplines": "Bitte wähle eine primäre und zwei sekundäre Disziplinen.",
     "SoloEducationDetailsPage.errorAttributes": "Bitte wähle drei Attribute.",
-    "SoloEducationDetailsPage.errorValue": "Bitte wähle eine Überzeugung.",
     "SoloEducationDetailsPage.errorFocuses": "Bitte wähle deine Fokusse.",
 
     "SoloEducationPage.type.starfleet": "Sternenflottenakademie",
@@ -359,6 +357,10 @@
     "Common.button.modify": "Anpassen",
     "Common.button.next": "Weiter",
     "Common.button.view": "Anzeigen",
+
+    "Common.error.focus": "Bitte wähle einen Fokus.",
+    "Common.error.value": "Bitte wähle eine Überzeugung.",
+    "Common.error.attribute": "Bitte wähle ein Attribut.",
 
     "Common.text.description": "Beschreibung",
     "Common.text.none": "Keine Auswahl",

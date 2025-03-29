@@ -196,14 +196,12 @@
     "SoloEarlyOutlookPage.upbringings": "Воспитание",
 
     "SoloEarlyOutlookDetailsPage.errorDiscipline": "Пожалуйста выберите Знание",
-    "SoloEarlyOutlookDetailsPage.errorFocus": "Пожалуйста выберите Специализацию",
 
     "SoloEducationDetailsPage.selectThree": "(выберите три)",
     "SoloEducationDetailsPage.primaryDiscipline": "Основное Знание",
     "SoloEducationDetailsPage.secondaryDiscipline": "Вторичное Знание",
     "SoloEducationDetailsPage.errorDisciplines": "Пожалуйста выберите одно основне и два вторичных знания.",
     "SoloEducationDetailsPage.errorAttributes": "Пожалуйста выберите три качества.",
-    "SoloEducationDetailsPage.errorValue": "Пожалуйста выберите значение.",
     "SoloEducationDetailsPage.errorFocuses": "Пожалуйста выберите свои специализации.",
 
     "SoloEducationPage.instruction.starfleet": "Годы, проведённые в Академии Звёздного флота, являются одними из самых запоминающихся и важных в жизни офицера и определяют направление его карьеры. Те, кто сдали изнурительные вступительные экзамены, учатся в Академии четыре года, занимаясь интенсивной физподготовкой, учат теорию и практику. Большая часть обучения проходит на территории главного кампуса Академии Звёздного флота в Сан-Франциско на Земле, но так как отделения и кампусы Академии существуют по всей территории Федерации, курсант может пройти учёбу в любом из них.\n\nВы так же можете выбрать путь рядового. Но стоит заметить, это не более чем история и не влияет на игру кроме того, что персонаж не сможет выбрать Командный путь развития. Иначе выбирайте Академию.",
@@ -305,6 +303,10 @@
     "Common.button.modify": "Изменить",
     "Common.button.next": "Дальше",
     "Common.button.view": "Показать",
+
+    "Common.error.focus": "Пожалуйста выберите Специализацию",
+    "Common.error.value": "Пожалуйста выберите значение.",
+    "Common.error.attribute": "Пожалуйста выберите качество",
 
     "Common.text.description": "Описание",
     "Common.text.none": "Пусто",

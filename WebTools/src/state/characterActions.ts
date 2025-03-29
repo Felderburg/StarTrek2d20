@@ -13,6 +13,7 @@ import { ITalent } from "../helpers/italent";
 import { Track } from "../helpers/trackEnum";
 import { EarlyOutlookModel } from "../helpers/upbringings";
 import { CharacterAdvancementChoice } from "../modify/model/characterAdvancementChoice";
+import { SelectedTalent } from "../common/selectedTalent";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -357,8 +358,11 @@ export function modifyCharacterRank(rank: CharacterRank) {
     }
 }
 
-export function modifyCharacterAddAdvancement(type: CharacterAdvancementChoice, value: string|Attribute|Department) {
+export function modifyCharacterAddAdvancement(type: CharacterAdvancementChoice, value: string|Attribute|Department|SelectedTalent, removeValue?: string|Attribute|Department|SelectedTalent) {
     let payload = { type: type, value: value };
+    if (removeValue != null) {
+        payload["remove"] = removeValue;
+    }
     return {
        type: MODIFY_CHARACTER_ADD_ADVANCEMENT,
        payload: payload

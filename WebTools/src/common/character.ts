@@ -142,11 +142,21 @@ export class SupportingStep {
 export class CharacterAdvancementStep {
     choice: CharacterAdvancementChoice;
     value: string|Attribute|Department|SelectedTalent;
+    removeValue: string|Attribute|Department|SelectedTalent;
 
     copy() {
         let result = new CharacterAdvancementStep();
         result.choice = this.choice;
-        result.value = this.value;
+        if (this.value instanceof SelectedTalent) {
+            result.value = (this.value as SelectedTalent).copy();
+        } else {
+            result.value = this.value;
+        }
+        if (this.removeValue instanceof SelectedTalent) {
+            result.removeValue = (this.removeValue as SelectedTalent).copy();
+        } else {
+            result.removeValue = this.removeValue;
+        }
         return result;
     }
 }
@@ -476,15 +486,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get talents(): SelectedTalent[] {
+        let result = []
         if (this.stereotype === Stereotype.Npc) {
             return this.npcGenerationStep ? [...this.npcGenerationStep.talents] : [];
-        } else if (this.stereotype === Stereotype.SupportingCharacter) {
-            return this.improvements
-                ?.filter(s => s instanceof CharacterAdvancementStep)
-                .filter(s => (s as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Talent)
-                ?.map(s => (s as CharacterAdvancementStep).value as SelectedTalent) ?? [];
-        } else {
-            let result = [];
+        } else if (this.stereotype === Stereotype.MainCharacter) {
             if (this.speciesStep?.talent != null) {
                 result.push(this.speciesStep.talent);
             }
@@ -500,8 +505,14 @@ export class Character extends Construct implements IWeaponDiceProvider {
             if (this.finishingStep?.talent != null) {
                 result.push(this.finishingStep.talent);
             }
-            return result;
         }
+
+        result.push(...this.improvements
+            ?.filter(s => s instanceof CharacterAdvancementStep)
+            .filter(s => (s as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Talent)
+            ?.map(s => (s as CharacterAdvancementStep).value as SelectedTalent) ?? []);
+        return result;
+
     }
 
     get attributes(): number[] {
@@ -810,29 +821,22 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 result.push(this.finishingStep.value);
             }
 
-            if (this.speciesStep?.talent?.value) {
-                result.push(this.speciesStep.talent.value);
-            }
-            if (this.upbringingStep?.talent?.value) {
-                result.push(this.upbringingStep.talent.value);
-            }
-            if (this.educationStep?.talent?.value) {
-                result.push(this.educationStep.talent.value);
-            }
-            if (this.careerStep?.talent?.value) {
-                result.push(this.careerStep.talent.value);
-            }
-            if (this.finishingStep?.talent?.value) {
-                result.push(this.finishingStep.talent?.value);
-            }
-
+            this.talents.forEach(t => {
+                if (t.value) {
+                    result.push(t.value);
+                }
+            });
         }
 
         this.improvements?.forEach(i => {
-                if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Value) {
-                    result.push(i.value);
+            if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Value) {
+                if (i.removeValue != null && result.includes(i.removeValue as string)) {
+                    let remove = i.removeValue as string;
+                    result.splice(result.indexOf(remove), 1);
                 }
-            })
+                result.push(i.value);
+            }
+        });
 
         return result;
     }
@@ -1206,7 +1210,13 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
         this.improvements?.filter(i => i instanceof CharacterAdvancementStep)
             .filter(i => (i as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Focus)
-            .forEach(i => allFocuses.push((i as CharacterAdvancementStep).value as string));
+            .forEach(i => {
+                let a = (i as CharacterAdvancementStep);
+                if (a.removeValue != null && allFocuses.includes(a.removeValue)) {
+                    allFocuses.splice(allFocuses.indexOf(a.removeValue), 1);
+                }
+                allFocuses.push(a.value as string);
+            });
         return allFocuses;
     }
 

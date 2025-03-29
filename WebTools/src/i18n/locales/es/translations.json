@@ -297,14 +297,12 @@
     "SoloEarlyOutlookPage.aspirations": "Aspiraciones",
 
     "SoloEarlyOutlookDetailsPage.errorDiscipline": "Selecciona una disciplina, por favor.",
-    "SoloEarlyOutlookDetailsPage.errorFocus": "Selecciona una especialidad, por favor.",
 
     "SoloEducationDetailsPage.selectThree": "(Selecciona tres)",
     "SoloEducationDetailsPage.primaryDiscipline": "Disciplina Principal",
     "SoloEducationDetailsPage.secondaryDiscipline": "Disciplinas Secundarias",
     "SoloEducationDetailsPage.errorDisciplines": "Selecciona 1 disciplina principal y 2 secundarias, por favor.",
     "SoloEducationDetailsPage.errorAttributes": "Selecciona tres Atributos, por favor.",
-    "SoloEducationDetailsPage.errorValue": "Selecciona un Valor, por favor.",
     "SoloEducationDetailsPage.errorFocuses": "Selecciona tus Especialidades, por favor.",
 
     "SoloEducationPage.instruction.alliedMilitary": "Ha elegido comprometer su vida con el ejército de su gobierno. Ha recibido el entrenamiento necesario para prepararse para su rol militar, ya sea educación formal para oficiales o entrenamiento de guerrilla mucho más informal.",
@@ -461,6 +459,11 @@
     "Common.button.next": "Siguiente",
     "Common.button.previous": "Anterior",
     "Common.button.view": "Visualizar",
+
+    "Common.error.focus": "Selecciona una especialidad, por favor.",
+    "Common.error.value": "Selecciona un Valor, por favor.",
+    "Common.error.attribute": "Por favor, seleciona un atributo.",
+    "Common.error.talent": "Por favor selecciona un talento antes de continuar",
 
     "Common.text.description": "Descripción",
     "Common.text.none": "Ninguno",

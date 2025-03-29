@@ -1,6 +1,7 @@
 import { Attribute } from "../helpers/attributes";
 import { BorgImplantType } from "../helpers/borgImplant";
 import { TalentsHelper } from "../helpers/talents";
+import { SpecialWeapon } from "./specialWeapon";
 
 export class SelectedTalent {
 
@@ -11,6 +12,7 @@ export class SelectedTalent {
     value: string;
     attribute?: Attribute;
     x?: number;
+    selection?: string|SpecialWeapon;
 
     constructor(talent: string) {
         this.talent = talent;
@@ -26,6 +28,7 @@ export class SelectedTalent {
         result.attribute = this.attribute;
         result.x = this.x;
         result.additionalInformation = this.additionalInformation;
+        result.selection = this.selection;
         return result;
     }
 

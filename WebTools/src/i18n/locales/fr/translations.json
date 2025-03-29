@@ -240,14 +240,12 @@
     "SoloEarlyOutlookPage.aspirations": "Aspirations",
 
     "SoloEarlyOutlookDetailsPage.errorDiscipline": "Choisissez une Discipline SVP.",
-    "SoloEarlyOutlookDetailsPage.errorFocus": "Choisissez une Spécialité SVP",
 
     "SoloEducationDetailsPage.selectThree": "(Choisir trois)",
     "SoloEducationDetailsPage.primaryDiscipline": "Discipline Principale",
     "SoloEducationDetailsPage.secondaryDiscipline": "Discipline Secondaires",
     "SoloEducationDetailsPage.errorDisciplines": "Sélectionnez 1 discipline principale et 2 secondaires SVP",
     "SoloEducationDetailsPage.errorAttributes": "Sélectionnez 3 attributs SVP.",
-    "SoloEducationDetailsPage.errorValue": "Sélectionnez une Valeur SVP.",
     "SoloEducationDetailsPage.errorFocuses": "Sélectionnez vos spécialités SVP.",
 
     "SoloEducationPage.instruction.starfleet": "Les années passées à Starfleet Academy sont les plus mémorables et les plus importantes de la vie d’un officier, et elles sont les bases de sa carrière. Ceux qui réussissent les difficiles examens d’entrée y passent quatre ans et partagent leur temps entre un entraînement physique intense, des études théoriques et des expériences pratiques. Leurs études se passent la plupart du temps au sein du campus de l’Académie de Starfleet à San Francisco, sur Terre. D’autres campus et annexes existent dans toute la Fédération (comme à Marseille), et un cadet peut passer du temps dans n’importe lequel d’entre eux avant sa remise de diplôme. Après avoir réussi ses examens, il reçoit un engagement d’officier de Starfleet et le rang d’enseigne. Il doit ensuite attendre plusieurs semaines, voire plusieurs mois, avant sa première affectation. Certains cadets, en particulier ceux qui poursuivent un doctorat, choisissent une voie qui demande une ou deux années d’entraînement et d’étude supplémentaires, et reçoivent le grade de sous-lieutenant. En termes de jeu, le temps passé par le personnage à l’Académie de Starfleet a un impact certain sur lui. Les progrès qu’il y fait sont expliqués en détail plus loin. Le joueur choisit la carrière de son personnage au sein de l’Académie, ou le détermine au dé",
@@ -388,6 +386,10 @@
     "Common.button.modify": "Modifier",
     "Common.button.next": "Prochain",
     "Common.button.view": "Vue",
+
+    "Common.error.focus": "Choisissez une Spécialité SVP",
+    "Common.error.value": "Sélectionnez une Valeur SVP.",
+    "Common.error.attribute": "Selectionez un Attribut SVP",
 
     "Common.text.description": "Description",
     "Common.text.none": "Aucun",
