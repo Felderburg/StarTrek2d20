@@ -39,7 +39,6 @@ interface ITalentSelectorProperties {
 export const TalentSelector: React.FC<ITalentSelectorProperties> =
     ({onSelect, values, isChecked}) => {
 
-    const { t } = useTranslation();
     return (<table className="selection-list">
         <tbody>
             {values.map((s, i) => {
@@ -453,7 +452,7 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
 
             <div className="mt-5 d-flex justify-content-between">
                 <Button size="sm" onClick={() => onPreviousStep()}>{t('Common.button.previous')}</Button>
-                <Button size="sm" disabled={choice == undefined} onClick={() => applyModification()}>{t('Common.button.finish')}</Button>
+                <Button size="sm" disabled={choice === undefined} onClick={() => applyModification()}>{t('Common.button.finish')}</Button>
             </div>
 
         </div>

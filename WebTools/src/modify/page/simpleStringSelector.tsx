@@ -1,5 +1,4 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { CheckBox } from "../../components/checkBox";
 
 interface ISimpleStringSelectorProperties {
@@ -11,8 +10,6 @@ interface ISimpleStringSelectorProperties {
 
 export const SimpleStringSelector: React.FC<ISimpleStringSelectorProperties> =
     ({onSelect, values, isChecked}) => {
-
-    const { t } = useTranslation();
 
     return (<table className="selection-list">
         <tbody>

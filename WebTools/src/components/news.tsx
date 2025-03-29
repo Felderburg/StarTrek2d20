@@ -14,6 +14,15 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250329</b>
+            <ul>
+                <li>
+                    Minor tweaks to Ferengi tokens
+                </li>
+                <li>
+                    Preliminary support for character advancement (for 2nd edition characters).
+                </li>
+            </ul>
             <b>v1.250324</b>
             <ul>
                 <li>
