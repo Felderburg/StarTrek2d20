@@ -20,7 +20,6 @@ import { FontSpecification } from "./fontSpecification";
 import { ReadableTalentModel, TalentWriter } from "./talentWriter";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { RoleModel } from "../helpers/roles";
-import { TalentsHelper } from "../helpers/talents";
 import { bullet2EWriter } from "./bullet2eWriter";
 
 export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
@@ -103,13 +102,16 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
         paragraph?.write();
 
         paragraph = paragraph?.nextParagraph();
+        paragraph?.append(i18next.t("Construct.creature.locomotion").toLocaleUpperCase() + ": ", new FontSpecification(this.boldFont, 9), tealColour2e);
+        paragraph?.append(creature.locomotion.map(l => l.description).join(", "), new FontSpecification(this.textFont, 9));
+        paragraph?.write();
+
+        paragraph = paragraph?.nextParagraph();
         paragraph?.append(i18next.t("Construct.other.traits").toLocaleUpperCase() + ": ", new FontSpecification(this.boldFont, 9), tealColour2e);
         paragraph?.append(creature.getAllTraits(), new FontSpecification(this.textFont, 9));
         paragraph?.write();
 
-        let bottom = paragraph?.bottom;
-        column = paragraph?.endColumn;
-        return column?.bottomAfter(bottom.y - column.start.y);
+        return paragraph?.nextColumn();
     }
 
     writeStatBoxes(page: PDFPage, column: Column, creature: Creature) {
@@ -283,6 +285,7 @@ export const assembleCreatureTalents = (creature: Creature) => {
         const talent = t.talentModel;
         if (talent) {
             const readableTalent = new ReadableTalentModel(creature.type, talent);
+            readableTalent.x = t.x;
             result.push(readableTalent);
         }
     });

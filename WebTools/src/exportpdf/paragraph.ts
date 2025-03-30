@@ -211,6 +211,13 @@ export class Paragraph {
         });
     }
 
+    // Provide the remaining column area "underneath" the paragraph.
+    nextColumn() {
+        let bottom = this.bottom;
+        let column = this.endColumn;
+        return column?.bottomAfter(bottom.y - column.start.y);
+    }
+
     nextParagraph(blankLine: number = 0.5) {
         let result = new Paragraph(this.endPage, this.endColumn, this.fontLibrary);
         if (this.lines.length > 0) {

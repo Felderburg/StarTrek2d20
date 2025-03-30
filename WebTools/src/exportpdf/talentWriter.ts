@@ -21,6 +21,7 @@ export class ReadableTalentModel {
     implants: Implant[];
     attribute: Attribute;
     missionPod: MissionPodModel;
+    x: number;
 
     constructor(characterType: CharacterType, talent: TalentModel) {
         this.characterType = characterType;
@@ -86,6 +87,12 @@ export class TalentWriter {
                     if (talent && talent.talent.maxRank > 1) {
                         let rank = talent.rank;
                         talentName = i18next.t("Talent.text.rank", {talentName: talentName, rank: rank});
+                    }
+                    if (talent.talent.isXQualified) {
+                        if (talent.x != null) {
+                            let xLocation = talentName.lastIndexOf(" X");
+                            talentName = talentName.substring(0, xLocation + 1) + talent.x + talentName.substring(xLocation + 2)
+                        }
                     }
                     paragraph?.append(talentName + ": ", new FontOptions(nameFontSize, FontType.Bold), this.headingColour);
                     let description = this.version === 1 ? talent.talent.localizedDescription : talent.talent.localizedDescription2e;

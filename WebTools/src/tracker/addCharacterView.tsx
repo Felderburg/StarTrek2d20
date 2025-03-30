@@ -31,7 +31,7 @@ class AddCharacterView extends React.Component<IAddCharacterProperties, IAddChar
                 <p>{t('AddCharacterView.instruction')}</p>
 
                 <div>
-                    <textarea name="url" className="form-control w-100" style={{minHeight: "10rem"}}
+                    <textarea name="url" className="form-control w-100 text-dark" style={{minHeight: "10rem"}}
                         onChange={(e) => this.parseCharacter(e.target.value)}>
                     </textarea>
                 </div>
