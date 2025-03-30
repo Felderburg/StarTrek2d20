@@ -280,42 +280,7 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                     Tweaks to the Fantasy Grounds exporter. Someone mentioned wanting NPC exports handled as NPCs.
                 </li>
             </ul>
-            <b>v1.240929</b>
-            <ul>
-                <li>
-                    A number of cosmetic changes and internal improvements.
-                </li>
-            </ul>
-            <b>v1.240928</b>
-            <ul>
-                <li>
-                    Tweaks and bug fixes.
-                </li>
-            </ul>
-            <b>v1.240922</b>
-            <ul>
-                <li>
-                    More bug fixes and tweaks.
-                </li>
-            </ul>
-            <b>v1.240921</b>
-            <ul>
-                <li>
-                    My awkward truth is that I just like tinkering with character sheets. So, I made a new one.
-                </li>
-            </ul>
-            <b>v1.240920</b>
-            <ul>
-                <li>
-                    More bug fixes.
-                </li>
-            </ul>
-            <b>v1.240918</b>
-            <ul>
-                <li>
-                    A handful of bug fixes.
-                </li>
-            </ul>
+
 
             <div className="text-center">
                 <Button size="sm" onClick={ () => onClose() }>{t('Common.button.ok')}</Button>

@@ -5,15 +5,20 @@ import WeaponBlockView from "../../view/weaponBlockView";
 import TalentsBlockView from "../../view/talentsBlockView";
 import CreatureStatBlock from "./creatureStatBlock";
 import Markdown from "react-markdown";
+import { LoadingButton } from "../../common/loadingButton";
+import { useState } from "react";
+import { PDFDocument } from "@cantoo/pdf-lib";
+
+declare function download(bytes: any, fileName: any, contentType: any): any;
 
 export interface ICreatureViewProperties {
     creature: Creature;
 }
 
-
 const CreatureView:React.FC<ICreatureViewProperties> = ({creature}) => {
 
     const { t } = useTranslation();
+    const [loadingExport, setLoadingExport] = useState(false);
 
     const renderTopFields = () => {
         return (<>
@@ -50,6 +55,27 @@ const CreatureView:React.FC<ICreatureViewProperties> = ({creature}) => {
 
     }
 
+    const exportPdf = async () => {
+        setLoadingExport(true);
+        import(/* webpackChunkName: 'export' */ '../../helpers/sheets').then(({CharacterSheetRegistry}) => {
+            setLoadingExport(false);
+
+            const populateAndDownload = async () => {
+
+                let sheet = CharacterSheetRegistry.getCreatureSheet();
+
+                const existingPdfBytes = await fetch(sheet.getPdfUrl()).then(res => res.arrayBuffer())
+                const pdfDoc = await PDFDocument.load(existingPdfBytes)
+                await sheet.populate(pdfDoc, creature);
+
+                const pdfBytes = await pdfDoc.save();
+
+                // Trigger the browser to download the PDF document
+                download(pdfBytes, sheet.createFileName("creature", creature), "application/pdf");
+            }
+            populateAndDownload();
+        });
+    }
 
     return (<>
         <Header className="mb-4">{(creature.name ? creature.name : t('Construct.other.unnamedCreature'))}</Header>
@@ -59,7 +85,6 @@ const CreatureView:React.FC<ICreatureViewProperties> = ({creature}) => {
             : undefined}
 
         {renderTopFields()}
-
 
         <div className="row">
 
@@ -71,6 +96,10 @@ const CreatureView:React.FC<ICreatureViewProperties> = ({creature}) => {
             <div className="col-xl-6">
                 <WeaponBlockView construct={creature} />
             </div>
+        </div>
+
+        <div className="button-container mt-5 mb-3">
+            <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => exportPdf() }>{t('Common.button.exportPdf')}</LoadingButton>
         </div>
     </>)
 

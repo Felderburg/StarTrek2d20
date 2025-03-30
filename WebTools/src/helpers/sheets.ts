@@ -33,6 +33,7 @@ import { WeaponDescriber } from '../exportpdf/weaponDescriber';
 import { Landscape2eCharacterSheet } from '../exportpdf/landscape2eCharacterSheet';
 import { Standard2eStarshipSheet } from '../exportpdf/standard2eStarshipSheet';
 import { BasicGeneratedTentCardCharacterSheet } from '../exportpdf/generated2eTentCard';
+import { Landscape2eCreatureSheet } from '../exportpdf/landscape2eCreatureSheet';
 
 
 abstract class BasicSheet implements ICharacterSheet {
@@ -1197,6 +1198,10 @@ class CharacterSheets {
         } else {
             return [ new StandardTosStarshipSheet(), new Generated2eStarshipSheet(), new Standard2eStarshipSheet(), new StandardTngStarshipSheet(), new StandardKlingonStarshipSheet() ];
         }
+    }
+
+    public getCreatureSheet(): ICharacterSheet {
+        return new Landscape2eCreatureSheet();
     }
 }
 
