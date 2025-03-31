@@ -511,7 +511,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
         this.improvements?.filter(s => s instanceof CharacterAdvancementStep)
             .filter(s => (s as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Talent)
-            ?.map(s => {
+            ?.forEach(s => {
                 let step = (s as CharacterAdvancementStep);
                 if (step.removeValue != null) {
                     let index = -1;
