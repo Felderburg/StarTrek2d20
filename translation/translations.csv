@@ -692,6 +692,7 @@ Construct.other.unnamedCreature,Unnamed Creature,,,,,,
 Construct.other.upbringing,Upbringing,,Erziehung,Educación,Education,Воспитание,Educação
 Construct.other.value,Value,,Überzeugung,Valor,Valeur,Ценность,Valor
 Construct.other.values,Values,,Überzeugungen,Valores,Valeurs,Ценности,Valores
+Construct.other.weapon,Weapon,,,,,,
 Construct.other.weapons,Weapons,,Waffen,Armas,Armes,Оружие,Armas
 Construct.other.yearsOfService_one,{{count}} year of service,,,{{count}} año de servicio,{{count}} année de service,,{{count}} ano de serviço
 Construct.other.yearsOfService_other,{{count}} years of service,,,{{count}} años de servicio,{{count}} années de service,,{{count}} anos de serviço
@@ -2206,6 +2207,8 @@ Traduzido com a versão gratuita do tradutor - DeepL.com"
 Spaceframe.sydney,Sydney Class,,Sydney-Klasse,Clase Sydney,Classe Sydney,,Classe Sydney
 Spaceframe.tKalat,T'Kalat Class,,T'Kalat-Klasse,Clase T'Kalat,Classe T'Kalat,,Classe T'Kalat
 Spaceframe.walker,Walker Class,,Walker-Klasse,Clase Walker,Classe Walker,,Classe Walker
+SpecialWeapon.batLeth,Bat'Leth,,,,,,
+SpecialWeapon.mekLeth,Mek'Leth,,,,,,
 Specialization.admiral,Admiral,,,Almirante,Amiral,Адмирал,Almirante
 Specialization.admin,Yeoman,,,Terrateniente,Yeoman,Специалист,Assistente
 Specialization.bodyguard,Bodyguard,,,Guardaespaldas,,,Guarda-costas
@@ -3646,6 +3649,7 @@ Weapon.personal.batleth.name,Bat'leth,,Bat'leth,Bat'leth,Bat'leth,Бат'лет,
 Weapon.personal.dktahg.name,d’k tahg dagger,,D'k tahg Dolch,Daga d’k tahg,Dague d’k tahg,,Adaga d’k tahg 
 Weapon.personal.ushaantor.name,Ushaan-tor,,Ushaan-tor,Ushaan-tor,Ushaan-tor,Ушаан-тор,Ushaan-tor
 Weapon.personal.disruptor.name,Disruptor Pistol,,Disruptorpistole,Pistola Disruptora,Pistolet Disrupteur,Дизрапторный пистолет,Pistola Disruptora
+Weapon.personal.mekleth.name,Mek'leth,,,,,,
 Weapon.personal.particleRifle.name,Particle Rifle,,Partikelgewehr,Rifle de Partículas,Fusil à particules,,Rifle de Partícula
 Weapon.personal.sonaPlasmaDisruptorShotgun.name,Son'a Plasma Disruptor Shotgun,,Son'a Plasma-Disruptor-Schrotflinte,Disruptora de plasma Son'a,Disrupteur à plasma Son'a,,Espingarda de Plasma Disruptora Son'a
 Weapon.personal.tzenkethiHeavyBlade.name,Tzenkethi Grade-AA Heavy Blade,,,Hoja pesada Tzenkethi,Lame Lourde Tzenkethi ,,Lâmina Pesada Tzenkethi Grade-AA

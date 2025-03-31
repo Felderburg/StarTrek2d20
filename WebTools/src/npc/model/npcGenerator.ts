@@ -7,7 +7,7 @@ import { RanksHelper, Rank } from "../../helpers/ranks";
 import { Department, DepartmentsHelper } from "../../helpers/department";
 import { Species } from "../../helpers/speciesEnum";
 import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
-import { TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
 import { NameGenerator } from "../nameGenerator";
 import { NpcType, NpcTypes } from "./npcType";
 import { SpecializationModel, Specializations, Specialty, Value } from "./specializations";
@@ -22,6 +22,8 @@ import Governments, { Polity } from "../../helpers/governments";
 import { Era } from "../../helpers/eras";
 import AgeHelper from "../../helpers/age";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
+import { SelectedTalent } from "../../common/selectedTalent";
+import { SpecialWeapon } from "../../common/specialWeapon";
 
 const recreationSkills: { [type: number ]: string[] } = {
 
@@ -709,8 +711,12 @@ export class NpcGenerator {
 
                     if (talentList.length) {
                         let talent = talentList[Math.floor(Math.random() * talentList.length)];
+                        let selectedTalent = new SelectedTalent(talent.name);
+                        if (talent.name === TALENT_NAME_WARRIORS_SPIRIT) {
+                            selectedTalent.selection = D20.roll() <= 10 ? SpecialWeapon.BatLeth : SpecialWeapon.MekLeth;
+                        }
                         if (!character.hasTalent(talent.name) || talent.hasRank) {
-                            character.addTalent(talent);
+                            character.addTalent(selectedTalent);
                             done = true;
                         }
                     }

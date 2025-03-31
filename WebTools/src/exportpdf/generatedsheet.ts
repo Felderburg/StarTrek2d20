@@ -6,7 +6,7 @@ import { ReadableTalentModel } from "./talentWriter";
 import { RoleModel, RolesHelper } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Character } from "../common/character";
-import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../helpers/talents";
 import { BorgImplants } from "../helpers/borgImplant";
 import { Starship } from "../common/starship";
 
@@ -102,14 +102,16 @@ export const assembleWritableItems = (character: Character) => {
         result.push(character.speciesStep.ability);
     }
 
-    for (let t of character.getDistinctTalentNameList()) {
+    let handledTalents = [];
+    character.talents.forEach(t => {
 
-        const talent = TalentsHelper.getTalent(t);
-        if (talent) {
+        const talent = t.talentModel;
+        if (talent && !handledTalents.includes[t.talent]) {
+            handledTalents.push(t.talent);
             const readableTalent = new ReadableTalentModel(character.type, talent);
 
             if (talent.maxRank > 1) {
-                readableTalent.rank = character.getRankForTalent(t);
+                readableTalent.rank = character.getRankForTalent(t.talent);
             }
 
             if (talent.name === TALENT_NAME_BORG_IMPLANTS) {
@@ -118,10 +120,12 @@ export const assembleWritableItems = (character: Character) => {
                 );
             } else if (talent.name === TALENT_NAME_UNTAPPED_POTENTIAL && character.version > 1) {
                 readableTalent.attribute = character.careerStep?.talent?.attribute;
+            } else if (talent.name === TALENT_NAME_WARRIORS_SPIRIT && t.selection != null) {
+                readableTalent.selection = t.selection;
             }
             result.push(readableTalent);
         }
-    }
+    });
 
     return result;
 }

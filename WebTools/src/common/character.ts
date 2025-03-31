@@ -26,6 +26,8 @@ import { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';
 import { SelectedTalent } from './selectedTalent';
 import { CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
+import { TALENT_NAME_WARRIORS_SPIRIT } from '../helpers/talents';
+import { SpecialWeapon } from './specialWeapon';
 
 export enum Division {
     Command,
@@ -944,8 +946,13 @@ export class Character extends Construct implements IWeaponDiceProvider {
             result.push(PersonalWeapons.instance(this.version).ushaanTor);
         }
 
-        if (this.hasTalent("Warrior's Spirit")) {
-            result.push(PersonalWeapons.instance(this.version).batLeth);
+        if (this.hasTalent(TALENT_NAME_WARRIORS_SPIRIT)) {
+            let talent = this.talents.filter(t => t.talent === TALENT_NAME_WARRIORS_SPIRIT)[0];
+            if (talent.selection === SpecialWeapon.MekLeth) {
+                result.push(PersonalWeapons.instance(this.version).mekLeth);
+            } else {
+                result.push(PersonalWeapons.instance(this.version).batLeth);
+            }
         }
 
         if (this.type === CharacterType.Starfleet) {

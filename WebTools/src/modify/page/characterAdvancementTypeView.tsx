@@ -21,13 +21,14 @@ import { Dialog } from "../../components/dialog";
 import { ValueRandomTable } from "../../solo/table/valueRandomTable";
 import ValueInput from "../../components/valueInputWithRandomOption";
 import { ModalControl } from "../../components/modal";
-import { TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
 import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
-import { SelectedTalentDescriptionView } from "../../components/selectedTalentDescriptionView";
+import { SelectedTalentDescriptionView, WarriorsSpiritSelectionView } from "../../components/selectedTalentDescriptionView";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { SimpleStringSelector } from "./simpleStringSelector";
 import { Character } from "../../common/character";
 import { CheckBox } from "../../components/checkBox";
+import { SpecialWeapon } from "../../common/specialWeapon";
 
 interface ITalentSelectorProperties {
 
@@ -167,27 +168,35 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
             }
         } else if (choice === CharacterAdvancementChoice.Talent) {
             if (type === CharacterAdvancementType.Adjustment) {
-                if (talentSelection != null && removeTalentSelectionIndex != null) {
+                if (talentSelection == null || removeTalentSelectionIndex == null) {
+                    Dialog.show(t('CharacterAdvancementTypeView.error.twoFocuses'));
+                } else if (talentAdditionalDetailsSelected()) {
                     store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection, character.talents[removeTalentSelectionIndex]));
                     onNextStep();
-                } else {
-                    Dialog.show(t('CharacterAdvancementTypeView.error.twoFocuses'));
                 }
             } else {
-                if (talentSelection != null) {
+                if (talentSelection == null) {
+                    Dialog.show(t('Common.error.value'));
+                } else {
                     store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection));
                     onNextStep();
-                } else {
-                    Dialog.show(t('Common.error.value'));
                 }
             }
         } else if (choice === CharacterAdvancementChoice.Value) {
             if (valueSelection?.length) {
                 store.dispatch(modifyCharacterAddAdvancement(choice, valueSelection));
                 onNextStep();
-            } else {
+            } else if (talentAdditionalDetailsSelected()) {
                 Dialog.show(t('Common.error.value'));
             }
+        }
+    }
+
+    const talentAdditionalDetailsSelected = () => {
+        if (talentSelection?.talent === TALENT_NAME_WARRIORS_SPIRIT && talentSelection.selection == null) {
+            Dialog.show("Please select a weapon type");
+        } else {
+            return true;
         }
     }
 
@@ -222,6 +231,20 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
             return false;
         } else {
             return true;
+        }
+    }
+
+    const handleAdditionalTalentSelections = () => {
+        if (talentSelection?.talent === TALENT_NAME_WARRIORS_SPIRIT) {
+            return (<div className="col-12 col-md-6">
+                    <WarriorsSpiritSelectionView onSelection={(selection) => {
+                        let temp = talentSelection.copy();
+                        temp.selection = selection as SpecialWeapon;
+                        setTalentSelection(temp);
+                    }} />
+                </div>);
+        } else {
+            return undefined;
         }
     }
 
@@ -395,6 +418,7 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                         ? (<p>No talent selected.</p>)
                         :  <SelectedTalentDescriptionView talent={talentSelection} version={character.version} />}
                     </div>
+                    {handleAdditionalTalentSelections()}
                 </div>);
             } else {
                 return (<div className="row">
@@ -408,6 +432,7 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                         ? (<p>No talent selected.</p>)
                         :  <SelectedTalentDescriptionView talent={talentSelection} version={character.version} />}
                     </div>
+                    {handleAdditionalTalentSelections()}
                 </div>);
             }
         } else {

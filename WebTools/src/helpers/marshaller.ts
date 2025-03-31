@@ -19,7 +19,7 @@ import { SpaceframeHelper } from './spaceframes';
 import { SpeciesHelper } from './species';
 import { Species } from './speciesEnum';
 import { allSystems, System, systemByName } from './systems';
-import { TALENT_NAME_BORG_IMPLANTS, TalentsHelper } from './talents';
+import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { TalentSelection } from './talentSelection';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
@@ -45,6 +45,7 @@ import { NaturalAttacks, NaturalAttacksHelper } from '../creature/model/naturalA
 import { SelectedTalent } from '../common/selectedTalent';
 import { LocomotionModel, LocomotionType, LocomotionTypeHelper } from '../creature/model/locomotion';
 import { allCharacterAdvancementChoices, CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
+import { SpecialWeapon } from '../common/specialWeapon';
 
 class Marshaller {
 
@@ -602,6 +603,13 @@ class Marshaller {
         }
         if (t.x != null) {
             talent["x"] = t.x;
+        }
+        if (t.selection != null) {
+            if (t.talent === TALENT_NAME_WARRIORS_SPIRIT) {
+                talent["selection"] = SpecialWeapon[t.selection];
+            } else {
+                talent["selection"] = t.x;
+            }
         }
         if (t.additionalInformation != null) {
             talent["additionalInformation"] = t.additionalInformation;
@@ -1646,6 +1654,15 @@ class Marshaller {
             }
             if (t["x"] != null) {
                 selectedTalent.x = t["x"];
+            }
+            if (t["selection"] != null) {
+                if (talent.name === TALENT_NAME_WARRIORS_SPIRIT) {
+                    const selection = t["selection"];
+                    selectedTalent.selection = selection === SpecialWeapon[SpecialWeapon.MekLeth]
+                        ? SpecialWeapon.MekLeth : SpecialWeapon.BatLeth;
+                } else {
+                    selectedTalent.selection = t["selection"];
+                }
             }
 
             if (t["additionalInformation"] != null) {

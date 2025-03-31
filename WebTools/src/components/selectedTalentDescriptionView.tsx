@@ -1,14 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import Markdown from 'react-markdown';
 import { Header } from './header';
 import { SelectedTalent } from '../common/selectedTalent';
+import { SpecialWeapon } from '../common/specialWeapon';
+import { useTranslation } from 'react-i18next';
+import { DropDownElement, DropDownSelect } from './dropDownInput';
 
 interface ISelectedTalentDescriptionProperties {
     version: number;
     talent: SelectedTalent;
 }
+
+interface ITalentAdditionalSelectionProperties {
+    onSelection: (selection: string[]|SpecialWeapon|undefined) => void;
+}
+
+export const WarriorsSpiritSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection}) => {
+
+    const { t } = useTranslation();
+    const [ selection, setSelection ] = useState<SpecialWeapon|undefined>(undefined);
+
+    const options = () => {
+        let result = [];
+        result.push(new DropDownElement("", t('Common.select.choose')));
+        result.push(new DropDownElement(SpecialWeapon.BatLeth, "Bat'leth"));
+        result.push(new DropDownElement(SpecialWeapon.MekLeth, "Mek'leth"));
+        return result;
+    }
+
+    return (
+        <div>
+            <Header level={2} className="my-4">{t('Talent.warriorsSpirit')}</Header>
+            <DropDownSelect items={options()}
+                defaultValue={selection ?? ""}
+                onChange={(value) => {
+                    if (value === "") {
+                        onSelection(undefined);
+                        setSelection(undefined);
+                    } else {
+                        onSelection(value as SpecialWeapon);
+                        setSelection(value as SpecialWeapon);
+                    }
+                }} />
+        </div>
+    );
+}
+
 
 export const SelectedTalentDescriptionView: React.FC<ISelectedTalentDescriptionProperties> = ({version, talent}) => {
     if (talent == null) {

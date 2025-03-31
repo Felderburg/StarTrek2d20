@@ -1,7 +1,7 @@
 import { PDFPage } from "@cantoo/pdf-lib";
 import { FontLibrary, FontType } from "./fontLibrary";
 import { SimpleColor } from "../common/colour";
-import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TalentModel } from "../helpers/talents";
+import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
 import { RoleModel } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Column } from "./column";
@@ -13,6 +13,7 @@ import { FontOptions } from "./fontOptions";
 import { Paragraph } from "./paragraph";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
+import { SpecialWeapon } from "../common/specialWeapon";
 
 export class ReadableTalentModel {
     characterType: CharacterType;
@@ -22,6 +23,7 @@ export class ReadableTalentModel {
     attribute: Attribute;
     missionPod: MissionPodModel;
     x: number;
+    selection: string|SpecialWeapon;
 
     constructor(characterType: CharacterType, talent: TalentModel) {
         this.characterType = characterType;
@@ -135,6 +137,14 @@ export class TalentWriter {
                             paragraph.indent(indent + 10);
                             paragraph.append(i18next.t("Construct.other.missionPod") + ": ", new FontOptions(fontSize, FontType.Bold));
                             paragraph.append(talent.missionPod.localizedName, new FontOptions(fontSize));
+                        }
+                    } else if (talent.talent.name === TALENT_NAME_WARRIORS_SPIRIT && talent.selection != null) {
+                        paragraph = paragraph?.nextParagraph(0);
+                        if (paragraph) {
+                            paragraphs.push(paragraph);
+                            paragraph.indent(indent + 10);
+                            paragraph.append(i18next.t("Construct.other.weapon") + ": ", new FontOptions(fontSize, FontType.Bold));
+                            paragraph.append(i18next.t(makeKey('SpecialWeapon.', SpecialWeapon[talent.selection as SpecialWeapon])), new FontOptions(fontSize));
                         }
                     }
 

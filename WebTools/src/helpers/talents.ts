@@ -45,6 +45,7 @@ export const TALENT_NAME_IMPROVED_HULL_INTEGRITY = "Improved Hull Integrity";
 export const TALENT_NAME_ABUNDANT_PERSONNEL = "Abundant Personnel";
 export const TALENT_NAME_WHIP_LIKE_TAIL = "Whip-like Tail (Special Rule, Creature)";
 export const TALENT_NAME_WEB = "Web (Special Rule, Creature)";
+export const TALENT_NAME_WARRIORS_SPIRIT = "Warrior’s Spirit";
 
 enum TalentCategory {
     General,
@@ -1628,7 +1629,7 @@ export class Talents {
                 1,
                 "Klingon"),
             new TalentModel(
-                "Warrior’s Spirit",
+                TALENT_NAME_WARRIORS_SPIRIT,
                 "You are an exemplar of what it means to be a Klingon warrior, and you will not hesitate to demonstrate your prowess to any who challenge you. When you make a melee attack, or are targeted by a melee attack, and you buy one or more d20s by adding to Threat, you may re-roll the dice pool for the task. Further, you own either a mek’leth or a bat’leth, at your discretion, and do not have to pay an Opportunity Cost to acquire it.",
                 [new AnySpeciesPrerequisite(true, Species.Klingon, Species.KlingonQuchHa), new SourcePrerequisite(Source.KlingonCore, Source.Core2ndEdition)],
                 1,

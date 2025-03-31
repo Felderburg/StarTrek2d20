@@ -623,6 +623,7 @@
     "Construct.other.upbringing": "Upbringing",
     "Construct.other.value": "Value",
     "Construct.other.values": "Values",
+    "Construct.other.weapon": "Weapon",
     "Construct.other.weapons": "Weapons",
     "Construct.other.yearsOfService_one": "{{count}} year of service",
     "Construct.other.yearsOfService_other": "{{count}} years of service",
@@ -1982,6 +1983,9 @@
     "Spaceframe.sydney": "Sydney Class",
     "Spaceframe.tKalat": "T'Kalat Class",
     "Spaceframe.walker": "Walker Class",
+
+    "SpecialWeapon.batLeth": "Bat'Leth",
+    "SpecialWeapon.mekLeth": "Mek'Leth",
 
     "Specialization.admiral": "Admiral",
     "Specialization.admin": "Yeoman",
@@ -3973,6 +3977,8 @@
     "Weapon.personal.ushaantor.name": "Ushaan-tor",
 
     "Weapon.personal.disruptor.name": "Disruptor Pistol",
+
+    "Weapon.personal.mekleth.name": "Mek'leth",
 
     "Weapon.personal.particleRifle.name": "Particle Rifle",
 

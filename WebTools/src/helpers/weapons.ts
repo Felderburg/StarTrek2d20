@@ -776,6 +776,10 @@ export class PersonalWeapons {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.ushaantor.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE);
     }
 
+    get mekLeth() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.mekleth.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE, 1);
+    }
+
     get batLeth() {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.batleth.name'), InjuryType.Deadly, 3, [new WeaponQuality(Quality.Intense)], [], WeaponType.MELEE, 2);
     }
@@ -874,6 +878,10 @@ class PersonalWeaponsVersion1 extends PersonalWeapons {
 
     get particleRifle() {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.particleRifle.name'), InjuryType.StunOrDeadly, 3, [], [new WeaponQuality(Quality.Accurate)], WeaponType.ENERGY, 2);
+    }
+
+    get mekLeth() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.mekleth.name'), InjuryType.Deadly, 2, [new WeaponQuality(Quality.Vicious, 1)], [], WeaponType.MELEE, 1);
     }
 
     get batLeth() {
