@@ -12,23 +12,21 @@ import { makeKey } from "../../common/translationKey";
 import { SimpleAttributeSelector } from "../../components/simpleAttributeSelector";
 import { Department } from "../../helpers/department";
 import { SimpleDepartmentSelector } from "../../components/simpleDepartmentSelector";
-import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
-import D20IconButton from "../../solo/component/d20IconButton";
-import { FocusRandomTable } from "../../solo/table/focusRandomTable";
 import store from "../../state/store";
 import { modifyCharacterAddAdvancement } from "../../state/characterActions";
 import { Dialog } from "../../components/dialog";
 import { ValueRandomTable } from "../../solo/table/valueRandomTable";
 import ValueInput from "../../components/valueInputWithRandomOption";
 import { ModalControl } from "../../components/modal";
-import { TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
-import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
-import { SelectedTalentDescriptionView, WarriorsSpiritSelectionView } from "../../components/selectedTalentDescriptionView";
+import { TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
+import { SelectedTalentDescriptionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView } from "../../components/selectedTalentDescriptionView";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { SimpleStringSelector } from "./simpleStringSelector";
 import { Character } from "../../common/character";
 import { CheckBox } from "../../components/checkBox";
 import { SpecialWeapon } from "../../common/specialWeapon";
+import SimpleTalentSelectionList from "../simpleTalentSelectionList";
+import { FocusSelectionView } from "../../components/focusSelectionView";
 
 interface ITalentSelectorProperties {
 
@@ -77,17 +75,6 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
     const [ removeTalentSelectionIndex, setRemoveTalentSelectionIndex] = useState<number|undefined>(undefined);
 
     useEffect(() => setChoice(undefined), [type]);
-
-    const randomFocus = () => {
-        let done = false;
-        while (!done) {
-            let f = FocusRandomTable();
-            if (!character?.focuses?.includes(f)) {
-                done = true;
-                setFocusSelection(f);
-            }
-        }
-    }
 
     const randomValue = () => {
         let done = false;
@@ -169,15 +156,15 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
         } else if (choice === CharacterAdvancementChoice.Talent) {
             if (type === CharacterAdvancementType.Adjustment) {
                 if (talentSelection == null || removeTalentSelectionIndex == null) {
-                    Dialog.show(t('CharacterAdvancementTypeView.error.twoFocuses'));
+                    Dialog.show(t('CharacterAdvancementTypeView.error.twoTalents'));
                 } else if (talentAdditionalDetailsSelected()) {
                     store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection, character.talents[removeTalentSelectionIndex]));
                     onNextStep();
                 }
             } else {
                 if (talentSelection == null) {
-                    Dialog.show(t('Common.error.value'));
-                } else {
+                    Dialog.show(t('Common.error.talent'));
+                } else if (talentAdditionalDetailsSelected()) {
                     store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection));
                     onNextStep();
                 }
@@ -195,6 +182,10 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
     const talentAdditionalDetailsSelected = () => {
         if (talentSelection?.talent === TALENT_NAME_WARRIORS_SPIRIT && talentSelection.selection == null) {
             Dialog.show("Please select a weapon type");
+            return false;
+        } else if (talentSelection?.talent === TALENT_NAME_VISIT_EVERY_STAR && !talentSelection.focuses?.length) {
+            Dialog.show("Common.error.focus");
+            return false;
         } else {
             return true;
         }
@@ -241,7 +232,15 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                         let temp = talentSelection.copy();
                         temp.selection = selection as SpecialWeapon;
                         setTalentSelection(temp);
-                    }} />
+                    }} character={character} />
+                </div>);
+        } else if (talentSelection?.talent === TALENT_NAME_VISIT_EVERY_STAR) {
+            return (<div className="col-12 col-md-6">
+                    <VisitEveryStarSelectionView onSelection={(selection) => {
+                        let temp = talentSelection.copy();
+                        temp.focuses = selection == null ? [] : (selection as string[]);
+                        setTalentSelection(temp);
+                    }} character={character} />
                 </div>);
         } else {
             return undefined;
@@ -362,13 +361,8 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                     </div>
                     <div className="col-12 col-md-6">
                         <Header level={2} className="my-4">{t('Common.text.new')}</Header>
-                        <div className="d-flex justify-content-between align-items-center flex-wrap mb-2">
-                            <InputFieldAndLabel labelName={t('Construct.other.focus')} value={focusSelection}
-                                    id="focus" onChange={(value) => setFocusSelection(value)} />
-                            <div style={{ flexShrink: 0 }} className="mt-1">
-                                <D20IconButton onClick={() => randomFocus()}/>
-                            </div>
-                        </div>
+                        <FocusSelectionView addFocus={(f) => setFocusSelection(f)}
+                            value={focusSelection} character={character} />
                     </div>
                 </div>);
             } else {
@@ -376,13 +370,8 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                     <div className="col-12 col-md-6">
                         <Header level={2} className="my-4">{t('Construct.other.focus')}</Header>
                         <Markdown>{t(makeKey('CharacterAdvancementTypeView.', CharacterAdvancementType[type], '.focus'))}</Markdown>
-                        <div className="d-flex justify-content-between align-items-center flex-wrap mb-2">
-                            <InputFieldAndLabel labelName={t('Construct.other.focus')} value={focusSelection}
-                                    id="focus" onChange={(value) => setFocusSelection(value)} />
-                            <div style={{ flexShrink: 0 }} className="mt-1">
-                                <D20IconButton onClick={() => randomFocus()}/>
-                            </div>
-                        </div>
+                        <FocusSelectionView addFocus={(f) => setFocusSelection(f)}
+                            value={focusSelection} character={character} />
                     </div>
                 </div>);
             }
@@ -450,9 +439,7 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
         ModalControl.show("xl", () => closeModal(),
 
             (<div>
-                <SingleTalentSelectionList construct={character} talents={talents} onSelection={(t) => setTalentSelection(t == null ? undefined : new SelectedTalent(t.name))}
-                    initialSelection={talentSelection == null ? null : TalentsHelper.getTalent(talentSelection.talent)} />
-
+                <SimpleTalentSelectionList construct={character} talents={talents} onSelection={(t) => setTalentSelection(t == null ? undefined : t)} />
                 <div className="text-center mt-4">
                     <Button size="sm" onClick={() => closeModal()}>{t('Common.button.ok')}</Button>
                 </div>

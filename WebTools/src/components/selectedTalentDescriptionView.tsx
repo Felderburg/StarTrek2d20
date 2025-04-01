@@ -7,6 +7,8 @@ import { SelectedTalent } from '../common/selectedTalent';
 import { SpecialWeapon } from '../common/specialWeapon';
 import { useTranslation } from 'react-i18next';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
+import { FocusSelectionView } from './focusSelectionView';
+import { Character } from '../common/character';
 
 interface ISelectedTalentDescriptionProperties {
     version: number;
@@ -14,6 +16,7 @@ interface ISelectedTalentDescriptionProperties {
 }
 
 interface ITalentAdditionalSelectionProperties {
+    character: Character;
     onSelection: (selection: string[]|SpecialWeapon|undefined) => void;
 }
 
@@ -48,6 +51,23 @@ export const WarriorsSpiritSelectionView: React.FC<ITalentAdditionalSelectionPro
     );
 }
 
+export const VisitEveryStarSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character}) => {
+
+    const { t } = useTranslation();
+    const [ selection, setSelection ] = useState<string|undefined>(undefined);
+
+    return (
+        <div>
+            <Header level={2} className="my-4">{t('Talent.visitEveryStar')}</Header>
+            <FocusSelectionView addFocus={(f) => {
+                setSelection(f);
+                onSelection(f == null ? undefined : [ f ])
+            }} value={selection ?? ""} character={character} />
+        </div>
+    );
+
+
+}
 
 export const SelectedTalentDescriptionView: React.FC<ISelectedTalentDescriptionProperties> = ({version, talent}) => {
     if (talent == null) {

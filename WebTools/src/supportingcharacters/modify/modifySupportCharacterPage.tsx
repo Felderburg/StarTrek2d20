@@ -26,12 +26,12 @@ import { FocusRandomTable } from "../../solo/table/focusRandomTable";
 import { TalentsHelper } from "../../helpers/talents";
 import { TalentDescription } from "../../components/talentDescription";
 import { ModalControl } from "../../components/modal";
-import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
 import { Promotion, CharacterAdvancementStep } from "../../common/character";
 import { PromotionView } from "../../modify/page/promotionView";
 import { ModifyDepartmentView } from "./modifyDepartmentView";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { CharacterAdvancementChoice } from "../../modify/model/characterAdvancementChoice";
+import SimpleTalentSelectionList from "../../modify/simpleTalentSelectionList";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -193,9 +193,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
         ModalControl.show("xl", () => closeModal(),
 
             (<div>
-                <SingleTalentSelectionList construct={character} talents={talents} onSelection={(t) => setTalentSelection(t?.name)}
-                    initialSelection={talentSelection == null ? null : TalentsHelper.getTalent(talentSelection)} />
-
+                <SimpleTalentSelectionList construct={character} talents={talents} onSelection={(t) => setTalentSelection(t?.talent)} />
                 <div className="text-center mt-4">
                     <Button size="sm" onClick={() => closeModal()}>{t('Common.button.ok')}</Button>
                 </div>

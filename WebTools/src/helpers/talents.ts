@@ -1019,7 +1019,7 @@ export class Talents {
                 "Your piloting style delves deeply into the technical aspects of a ship’s propulsion systems, and you spend much of your time in Engineering, fine-tuning power flows, subspace field geometries, and inertial stabilizers to ensure that the ship flies exactly the way you want it to. When you perform one of the Impulse, Warp, Evasive Action, or Attack Pattern tasks, the ship may treat its assistance die as if it had rolled a 1. However, when anyone else pilots the ship, they increase their complication range by 1, as your adjustments don’t suit everyone.",
                 [new DisciplinePrerequisite(Department.Conn, 3), new DisciplinePrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)]),
             new TalentModel(
-                "Visit Every Star",
+                TALENT_NAME_VISIT_EVERY_STAR,
                 "Your expertise in navigation and stellar cartography come from a deep and enduring fascination with space; as a child, you dreamed of the stars you’d visit and the stellar phenomena you’d see up close, and you memorized every fact you could about them. You gain an additional focus, and one of your focuses (either the one gained from this talent, or an existing one) must relate to Astronavigation, Stellar Cartography, or a similar field of space science. Further, when you succeed at a navigation-related task, you gain 1 bonus Momentum due to your knowledge and familiarity. Bonus Momentum cannot be saved.",
                 [new DisciplinePrerequisite(Department.Conn, 3), new DisciplinePrerequisite(Department.Science, 2), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)]),
             new TalentModel(

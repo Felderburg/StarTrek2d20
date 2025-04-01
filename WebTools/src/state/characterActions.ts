@@ -204,8 +204,8 @@ export function addCharacterTalentValue(value: string, talent: string|ITalent) {
     }
 }
 
-export function addCharacterTalent(talent: ITalent, context: StepContext) {
-    let payload = { talent: talent == null ? undefined : talent.name, context: context };
+export function addCharacterTalent(talent: ITalent|SelectedTalent, context: StepContext) {
+    let payload = { talent: talent, context: context };
     return {
        type: ADD_CHARACTER_TALENT,
        payload: payload

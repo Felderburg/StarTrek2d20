@@ -4,6 +4,7 @@ import { Stereotype } from "../common/construct";
 import { SelectedTalent } from "../common/selectedTalent";
 import AgeHelper from "../helpers/age";
 import { Department } from "../helpers/department";
+import { ITalent } from "../helpers/italent";
 import { SpeciesAbilityList } from "../helpers/speciesAbility";
 import { Species } from "../helpers/speciesEnum";
 import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_UNTAPPED_POTENTIAL } from "../helpers/talents";
@@ -461,7 +462,13 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
         }
         case ADD_CHARACTER_TALENT: {
             let temp = state.currentCharacter.copy();
-            let talent = action.payload.talent != null ? new SelectedTalent(action.payload.talent) : undefined;
+            let t = action.payload.talent;
+            let talent = undefined;
+            if (t != null && t instanceof SelectedTalent) {
+                talent = (t as SelectedTalent).copy();
+            } else if (t != null) {
+                talent = new SelectedTalent((t as ITalent).name);
+            }
             if (action.payload.context === StepContext.Species) {
                 temp.speciesStep.talent = talent;
             } else if (action.payload.context === StepContext.EarlyOutlook) {
