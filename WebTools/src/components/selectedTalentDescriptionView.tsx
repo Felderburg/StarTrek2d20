@@ -62,7 +62,10 @@ export const VisitEveryStarSelectionView: React.FC<ITalentAdditionalSelectionPro
             <FocusSelectionView addFocus={(f) => {
                 setSelection(f);
                 onSelection(f == null ? undefined : [ f ])
-            }} value={selection ?? ""} character={character} />
+            }} value={selection ?? ""} character={character}
+            hints={["Astronagivation", "Stellar Cartography", "Warp Field Theory", "Astronomy",
+                "Heliophysics", "Cosmology", "Astrometry", "Planetology"]}
+            suggestions="Astronavigation, Stellar Cartography, or a similar field of space science." />
         </div>
     );
 

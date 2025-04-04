@@ -24,6 +24,7 @@ export class ReadableTalentModel {
     missionPod: MissionPodModel;
     x: number;
     selection: string|SpecialWeapon;
+    additionalInformation: string;
 
     constructor(characterType: CharacterType, talent: TalentModel) {
         this.characterType = characterType;
@@ -95,6 +96,9 @@ export class TalentWriter {
                             let xLocation = talentName.lastIndexOf(" X");
                             talentName = talentName.substring(0, xLocation + 1) + talent.x + talentName.substring(xLocation + 2)
                         }
+                    }
+                    if (talent.additionalInformation?.length) {
+                        talentName += (" [" + talent.additionalInformation + "]");
                     }
                     paragraph?.append(talentName + ": ", new FontOptions(nameFontSize, FontType.Bold), this.headingColour);
                     let description = this.version === 1 ? talent.talent.localizedDescription : talent.talent.localizedDescription2e;

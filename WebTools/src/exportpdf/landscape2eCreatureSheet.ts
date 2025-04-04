@@ -286,6 +286,7 @@ export const assembleCreatureTalents = (creature: Creature) => {
         if (talent) {
             const readableTalent = new ReadableTalentModel(creature.type, talent);
             readableTalent.x = t.x;
+            readableTalent.additionalInformation = t.additionalInformation;
             result.push(readableTalent);
         }
     });
