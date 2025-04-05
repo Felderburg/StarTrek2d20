@@ -581,9 +581,9 @@ Common.button.share,Share,,,,,,
 Common.button.view,View,,Anzeigen,Visualizar,Vue,Показать,Visualizar
 Common.error.focus,Please select a focus.,,Bitte wähle einen Fokus.,"Selecciona una especialidad, por favor.",Choisissez une Spécialité SVP,Пожалуйста выберите Специализацию,"Por favor, selecione um foco."
 Common.error.value,Please select a value.,,Bitte wähle eine Überzeugung.,"Selecciona un Valor, por favor.",Sélectionnez une Valeur SVP.,Пожалуйста выберите значение.,"Por favor, selecione um valor."
-Common.error.department,Please select a department.,,,,,,
+Common.error.department,Please select a department.,,,,,Пожалуйста выберите отдел,
 Common.error.attribute,Please select an attribute.,,Bitte wähle ein Attribut.,"Por favor, seleciona un atributo.",Selectionez un Attribut SVP,Пожалуйста выберите качество,"Por favor, selecione um atributo."
-Common.error.talent,Please select a talent.,,,Por favor selecciona un talento antes de continuar,,,
+Common.error.talent,Please select a talent.,,,Por favor selecciona un talento antes de continuar,,Пожалуйста выберите талант,
 Common.text.description,Description,,Beschreibung,Descripción,Description,Описание,Descrição
 Common.text.none,None,,Keine Auswahl,Ninguno,Aucun,Пусто,Nenhum
 Common.text.copiedToClipboard,Copied to clipboard,,In die Zwischenablage kopiert,Copiado al portapapeles,Copié dans le presse papier !,Скопировано в буфер,Copiado para a área de transferência
@@ -594,10 +594,10 @@ Common.text.suggestions,Suggestions,,Vorschläge,Sugerencias,Suggestions,Пре�
 Common.text.total,Total,,Insgesamt,Total,Total,Всего,Total
 Common.text.yes,Yes,,Ja,Si,Oui,Да,Sim
 Common.text.modify,Modify,,Anpassen,Modificar,Modifier,Изменить,Modificar
-Common.text.new,New,,,,,,
+Common.text.new,New,,,,,Новый,
 Common.text.no,No,,Nein,No,Non,Нет,Não
 Common.text.other,Other,,Andere,Otro,Autre,Другое,Outro
-Common.text.remove,Remove,,,,,,
+Common.text.remove,Remove,,,,,Удалить,
 Common.select.choose,Choose...,,Wählen Sie aus ...,Elegir...,Choisir,Выберите ...,Escolha...
 Construct.creature.creatureType,Creature Type,,,,,,
 Construct.creature.dietType,Diet Type,,,,,,
@@ -2850,7 +2850,7 @@ Talent.cautiousConn.description,"Whenever you attempt a Task with Conn, and you 
 Talent.cautiousEngineering,Cautious: Engineering,,Vorsichtig: Technik,Prudente: Ingeniería,Prudent : Ingénierie,Предусмотрительный: Инженерия,Cauteloso: Engenharia
 Talent.cautiousEngineering.description,"Whenever you attempt a Task with Engineering, and you buy one or more d20s by spending Momentum, you may re-roll a single d20.",,"Immer, wenn Sie eine Aufgabe mit Technik versuchen und einen oder mehrere zusätzliche W20 mit Momentum erwerben, können Sie einen W20 neu würfeln.","Cuando emprendas una Tarea con Ingeniería y adquieras 1 o más d20 gastando Inercia, puedes repetir un único d20. ","À chaque fois que vous effectuez une Tâche avec Ingénierie et que vous achetez au moins un d20 en dépensant des points d’Impulsion, vous pouvez relancer un d20. ","Если при выполнении Задачи с применением этого Инженерии приобретается 1 бонусный d20 или больше, за жетон Импульса можно заново бросить 1 использованный для этой Задачи d20.","Sempre que fizer uma Tarefa com Engenharia e comprar um ou mais d20s ao gastar Ímpeto, você pode rejogar um único d20."
 Talent.cautiousMedicine,Cautious: Medicine,,Vorsichtig: Medizin,Prudente: Medicina,Prudent : Médecine,Предусмотрительный: Медицина,Cauteloso: Medicina
-Talent.cautiousMedicine.description,"Whenever you attempt a Task with Medicine, and you buy one or more d20s by spending Momentum, you may re-roll a single d20.",,"Immer, wenn Sie eine Aufgabe mit Medizin versuchen und einen oder mehrere zusätzliche W20 mit Momentum erwerben, können Sie einen W20 neu würfeln.","Cuando emprendas una Tarea con Medicina y adquieras 1 o más d20 gastando Inercia, puedes repetir un único d20. ","À chaque fois que vous effectuez une Tâche avec Médecine et que vous achetez au moins un d20 en dépensant des points d’Impulsion, vous pouvez relancer un d20. ","Если при выполнении Задачи с применением этого Медицины приобретается 1 бонусный d20 или больше, за жетон Импульса можно заново бросить 1 использованный для этой Задачи d20.","Sempre que fizer uma Tarefa com Medicna e comprar um ou mais d20s ao gastar Ímpeto, você pode rejogar um único d20."
+Talent.cautiousMedicine.description,"Whenever you attempt a Task with Medicine, and you buy one or more d20s by spending Momentum, you may re-roll a single d20.",,"Immer, wenn Sie eine Aufgabe mit Medizin versuchen und einen oder mehrere zusätzliche W20 mit Momentum erwerben, können Sie einen W20 neu würfeln.","Cuando emprendas una Tarea con Medicina y adquieras 1 o más d20 gastando Inercia, puedes repetir un único d20. ","À chaque fois que vous effectuez une Tâche avec Médecine et que vous achetez au moins un d20 en dépensant des points d’Impulsion, vous pouvez relancer un d20. ","Если при выполнении Задачи с применением Медицины приобретается 1 бонусный d20 или больше, за жетон Импульса можно заново бросить 1 использованный для этой Задачи d20.","Sempre que fizer uma Tarefa com Medicna e comprar um ou mais d20s ao gastar Ímpeto, você pode rejogar um único d20."
 Talent.cautiousScience,Cautious: Science,,Vorsichtig: Wissenschaft,Prudente: Ciencia,Prudent : Sciences,Предусмотрительный: Наука,Cauteloso: Ciência
 Talent.cautiousScience.description,"Whenever you attempt a Task with Science, and you buy one or more d20s by spending Momentum, you may re-roll a single d20.",,"Immer, wenn Sie eine Aufgabe mit Wissenschaft versuchen und einen oder mehrere zusätzliche W20 mit Momentum erwerben, können Sie einen W20 neu würfeln.","Cuando emprendas una Tarea con Ciencia y adquieras 1 o más d20 gastando Inercia, puedes repetir un único d20. ","À chaque fois que vous effectuez une Tâche avec Sciences et que vous achetez au moins un d20 en dépensant des points d’Impulsion, vous pouvez relancer un d20. ","Если при выполнении Задачи с применением этого Науки приобретается 1 бонусный d20 или больше, за жетон Импульса можно заново бросить 1 использованный для этой Задачи d20.","Sempre que fizer uma Tarefa com Ciência e comprar um ou mais d20s ao gastar Ímpeto, você pode rejogar um único d20."
 Talent.cautiousSecurity,Cautious: Security,,Vorsichtig: Sicherheit,Prudente: Seguridad,Prudent : Sécurité,Предусмотрительный: Безопасность,Cauteloso: Segurança

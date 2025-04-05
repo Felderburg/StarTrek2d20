@@ -306,7 +306,9 @@
 
     "Common.error.focus": "Пожалуйста выберите Специализацию",
     "Common.error.value": "Пожалуйста выберите значение.",
+    "Common.error.department": "Пожалуйста выберите отдел",
     "Common.error.attribute": "Пожалуйста выберите качество",
+    "Common.error.talent": "Пожалуйста выберите талант",
 
     "Common.text.description": "Описание",
     "Common.text.none": "Пусто",
@@ -318,8 +320,10 @@
     "Common.text.total": "Всего",
     "Common.text.yes": "Да",
     "Common.text.modify": "Изменить",
+    "Common.text.new": "Новый",
     "Common.text.no": "Нет",
     "Common.text.other": "Другое",
+    "Common.text.remove": "Удалить",
 
     "Common.select.choose": "Выберите ...",
 
@@ -1166,7 +1170,7 @@
 
     "Talent.cautiousMedicine": "Предусмотрительный: Медицина",
 
-    "Talent.cautiousMedicine.description": "Если при выполнении Задачи с применением этого Медицины приобретается 1 бонусный d20 или больше, за жетон Импульса можно заново бросить 1 использованный для этой Задачи d20.",
+    "Talent.cautiousMedicine.description": "Если при выполнении Задачи с применением Медицины приобретается 1 бонусный d20 или больше, за жетон Импульса можно заново бросить 1 использованный для этой Задачи d20.",
 
     "Talent.cautiousScience": "Предусмотрительный: Наука",
 

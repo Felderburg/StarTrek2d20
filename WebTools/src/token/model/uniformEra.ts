@@ -26,6 +26,7 @@ export enum UniformEra {
     StarTrekOnline,
     RomulanNemesis,
     Tzenkethi,
+    Picard25,
 }
 
 export const allUniformEras = (): UniformEra[] => {
