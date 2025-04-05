@@ -131,6 +131,11 @@ export default class UniformPackCollection {
                     this.uniformPacks[era] = new TzenkethiArmourUniformPack();
                     completion();
                 }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
+            } else if (era === UniformEra.Picard25) {
+                import(/* webpackChunkName: 'picard25' */ './picard25thCenturyUniformPack').then(({Picard25thCenturyUniformPack}) => {
+                    this.uniformPacks[era] = new Picard25thCenturyUniformPack();
+                    completion();
+                }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
             } else {
                 this.createUniformPack(era);
                 completion();

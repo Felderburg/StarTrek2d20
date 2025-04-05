@@ -119,6 +119,7 @@ export abstract class BaseNeckProvider {
             || uniformEra === UniformEra.NextGeneration
             || uniformEra === UniformEra.VoyagerDS9
             || uniformEra === UniformEra.LowerDecks
+            || uniformEra === UniformEra.Picard25
             || uniformEra === UniformEra.StarTrekOnline
             || uniformEra === UniformEra.Klingon
             || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant5)

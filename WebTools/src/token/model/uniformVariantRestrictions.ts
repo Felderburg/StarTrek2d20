@@ -83,6 +83,7 @@ export default class UniformVariantRestrictions {
                     Rank.ViceAdmiral, Rank.RearAdmiral
                 ].indexOf(rankIndicator) >= 0;
 
+            case UniformEra.Picard25:
             case UniformEra.LowerDecks:
                 return [
                     Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
