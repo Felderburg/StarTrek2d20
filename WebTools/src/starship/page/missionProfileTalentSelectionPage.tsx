@@ -5,7 +5,6 @@ import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
 import { TalentsHelper, TalentViewModel, ToViewModel } from "../../helpers/talents";
 import { nextStarshipWorkflowStep, setStarshipMissionProfile, setStarshipMissionProfileTalent } from "../../state/starshipActions";
 import store from "../../state/store";
@@ -13,13 +12,14 @@ import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
-import { ITalent } from "../../helpers/italent";
 import { StatView } from "../../components/StatView";
 import { makeKey } from "../../common/translationKey";
 import { Department } from "../../helpers/department";
 import { AttributeView } from "../../components/attribute";
 import { allSystems, System } from "../../helpers/systems";
 import { CheckBox } from "../../components/checkBox";
+import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
+import { SelectedTalent } from "../../common/selectedTalent";
 
 interface IMissionProfileTalentSelectionPageProperties {
     starship: Starship;
@@ -29,9 +29,9 @@ interface IMissionProfileTalentSelectionPageProperties {
 const MissionProfileTalentSelectionPage: React.FC<IMissionProfileTalentSelectionPageProperties> = ({starship, workflow}) => {
     const { t } = useTranslation();
 
-    const saveTalent = (talent: ITalent) => {
+    const saveTalent = (talent: SelectedTalent) => {
         if (talent) {
-            let talentModel = TalentsHelper.getTalent(talent.name);
+            let talentModel = TalentsHelper.getTalent(talent.talent);
             store.dispatch(setStarshipMissionProfileTalent(talentModel));
         } else {
             store.dispatch(setStarshipMissionProfileTalent(undefined));
@@ -131,9 +131,9 @@ const MissionProfileTalentSelectionPage: React.FC<IMissionProfileTalentSelection
         </>)}
 
         <ReactMarkdown>{t('MissionProfileTalentSelection.instruction')}</ReactMarkdown>
-        <SingleTalentSelectionList
+        <SimpleTalentSelectionList
             talents={getTalents()}
-            initialSelection={starship.missionProfileStep?.talent}
+            initialSelection={starship.missionProfileStep?.talent?.name}
             construct={starship}
             onSelection={(talent) => saveTalent(talent)} />
         <div className="text-end mt-4">

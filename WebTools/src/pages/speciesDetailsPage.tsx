@@ -2,7 +2,7 @@
 import { Navigation } from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import { SpeciesHelper, SpeciesModel } from '../helpers/species';
-import { TalentsHelper, TalentViewModel, ToViewModel } from '../helpers/talents';
+import { TalentsHelper, ToViewModel } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
 import { Dialog } from '../components/dialog';
@@ -24,6 +24,7 @@ import { Stereotype } from '../common/construct';
 import { CharacterType } from '../common/characterType';
 import ReactMarkdown from 'react-markdown';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
+import { SelectedTalent } from '../common/selectedTalent';
 
 interface ISpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -157,7 +158,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
             }} />);
     }
 
-    const onTalentSelected = (talent: TalentViewModel) => {
+    const onTalentSelected = (talent?: SelectedTalent) => {
         store.dispatch(addCharacterTalent(talent, StepContext.Species));
     }
 

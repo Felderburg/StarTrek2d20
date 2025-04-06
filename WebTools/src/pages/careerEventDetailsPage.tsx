@@ -24,6 +24,7 @@ import { CareerEventAttributeController, CareerEventDisciplineController } from 
 import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import D20IconButton from '../solo/component/d20IconButton';
 import { localizedFocus } from '../components/focusHelper';
+import { FocusSelectionView } from '../components/focusSelectionView';
 
 interface ICareerEventDetailsProperties extends ICharacterProperties{
     context: StepContext;
@@ -95,15 +96,14 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({charac
                     </div>
                     <div className="col-lg-6 my-3">
                         <Header level={2} className="mb-3">{t('Construct.other.focus')}</Header>
-                        <div className="d-flex justify-content-between align-items-center flex-wrap">
-                            <InputFieldAndLabel id="focus" labelName={t('Construct.other.focus')}
-                                value={careerEventStep?.focus || ""} className="mt-1"
-                                onChange={(v) => store.dispatch(setCharacterFocus(v, context))} />
-                            <div style={{ flexShrink: 0 }} className="mt-1">
-                                <D20IconButton onClick={() => selectRandomFocus()}/>
-                            </div>
-                        </div>
-                        <div className="mt-3 text-white"><b>{t('Common.text.suggestions')}:</b> {careerEvent.localizedFocusSuggestion}</div>
+                        <FocusSelectionView
+                            value={careerEventStep?.focus || ""}
+                            addFocus={(v) => store.dispatch(setCharacterFocus(v, context))}
+                            suggestions={careerEvent.localizedFocusSuggestion}
+                            randomFocusDepartment={careerEventStep.discipline}
+                            hints={careerEvent.focuses}
+                            character={character}
+                        />
                     </div>
                     {careerEvent.traitDescription !== null
                         ? (

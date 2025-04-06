@@ -7,7 +7,7 @@ import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import ValueInput from '../components/valueInputWithRandomOption';
 import DepartmentView from '../components/skill';
-import { TalentsHelper, TalentViewModel } from '../helpers/talents';
+import { TalentsHelper } from '../helpers/talents';
 import { Header } from '../components/header';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
@@ -29,6 +29,7 @@ import { Stereotype } from '../common/construct';
 import D20IconButton from '../solo/component/d20IconButton';
 import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { localizedFocus } from '../components/focusHelper';
+import { SelectedTalent } from '../common/selectedTalent';
 
 const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -173,7 +174,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
             t => !character.hasTalent(t.name) || (character.educationStep?.talent != null && t.name === character.educationStep?.talent?.talent) || t.rank > 1);
     }
 
-    const onTalentSelected = (talent?: TalentViewModel) => {
+    const onTalentSelected = (talent?: SelectedTalent) => {
         if (talent) {
             store.dispatch(addCharacterTalent(talent, StepContext.Education));
         } else {

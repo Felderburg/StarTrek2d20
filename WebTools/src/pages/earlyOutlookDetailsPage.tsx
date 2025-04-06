@@ -5,28 +5,26 @@ import {AttributeView} from '../components/attribute';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {CheckBox} from '../components/checkBox';
-import { TALENT_NAME_BRAK_LUL, TalentsHelper, TalentViewModel, ToViewModel } from '../helpers/talents';
+import { TALENT_NAME_BRAK_LUL, TalentsHelper, ToViewModel } from '../helpers/talents';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import InstructionText from '../components/instructionText';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
-import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { addCharacterTalent, setCharacterEarlyOutlook, setCharacterFocus, StepContext } from '../state/characterActions';
 import store from '../state/store';
 import { PageIdentity } from './pageIdentity';
-import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { connect } from 'react-redux';
-import D20IconButton from '../solo/component/d20IconButton';
 import { EarlyOutlookDiscplineController } from '../components/earlyOutlookControllers';
 import DisciplineListComponent from '../components/disciplineListComponent';
 import { CharacterType } from '../common/characterType';
 import { Species } from '../helpers/speciesEnum';
-import { localizedFocus } from '../components/focusHelper';
 import { makeKey } from '../common/translationKey';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import TalentSettingsView from '../components/talentSettingsView';
+import { SelectedTalent } from '../common/selectedTalent';
+import { FocusSelectionView } from '../components/focusSelectionView';
 
 const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -55,18 +53,7 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
         }
     }
 
-    const selectRandomFocus = () => {
-        let done = false;
-        while (!done) {
-            let focus = localizedFocus(FocusRandomTableWithHints(character.upbringingStep?.discipline, earlyOutlook.focusSuggestions));
-            if (character.focuses.indexOf(focus) < 0) {
-                done = true;
-                store.dispatch(setCharacterFocus(focus, StepContext.EarlyOutlook));
-            }
-        }
-    }
-
-    const onTalentSelected = (talent: TalentViewModel) => {
+    const onTalentSelected = (talent: SelectedTalent) => {
         store.dispatch(addCharacterTalent(talent, StepContext.EarlyOutlook));
     }
 
@@ -122,15 +109,13 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
                 <div className="my-3 col-lg-6">
                     <Header level={2}>{t('Construct.other.focus')}</Header>
                     <p>{earlyOutlook.localizedFocusDescription}</p>
-                    <div className="d-flex justify-content-between align-items-center flex-wrap">
-                        <InputFieldAndLabel id="focus" labelName={t('Construct.other.focus')}
-                            value={character.upbringingStep?.focus || ""} className="mt-1"
-                            onChange={(v) => store.dispatch(setCharacterFocus(v, StepContext.EarlyOutlook))} />
-                        <div style={{ flexShrink: 0 }} className="mt-1">
-                            <D20IconButton onClick={() => selectRandomFocus()}/>
-                        </div>
-                    </div>
-                    <div className="py-1 text-white"><b>{t('Common.text.suggestions')}:</b> {earlyOutlook.focusSuggestions.map(f => localizedFocus(f)).join(", ")}</div>
+                    <FocusSelectionView
+                        value={character.upbringingStep?.focus || ""}
+                        character={character}
+                        randomFocusDepartment={character.upbringingStep?.discipline}
+                        addFocus={(v) => store.dispatch(setCharacterFocus(v, StepContext.EarlyOutlook))}
+                        hints={earlyOutlook.focusSuggestions}
+                    />
                 </div>
             </div>
             <div>

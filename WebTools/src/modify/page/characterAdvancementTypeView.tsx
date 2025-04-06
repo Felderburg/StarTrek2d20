@@ -25,7 +25,7 @@ import { SimpleStringSelector } from "./simpleStringSelector";
 import { Character } from "../../common/character";
 import { CheckBox } from "../../components/checkBox";
 import { SpecialWeapon } from "../../common/specialWeapon";
-import SimpleTalentSelectionList from "../simpleTalentSelectionList";
+import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { FocusSelectionView } from "../../components/focusSelectionView";
 
 interface ITalentSelectorProperties {

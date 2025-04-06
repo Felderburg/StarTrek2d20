@@ -22,6 +22,7 @@ import { CharacterType } from '../common/characterType';
 import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { addCharacterTalent, setCharacterSpecies, StepContext } from '../state/characterActions';
 import { CustomSpeciesAttributeController } from '../components/speciesController';
+import { SelectedTalent } from '../common/selectedTalent';
 
 interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -74,7 +75,7 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
             }} />);
     }
 
-    const onTalentSelected = (talent: TalentViewModel) => {
+    const onTalentSelected = (talent: SelectedTalent) => {
         store.dispatch(addCharacterTalent(talent, StepContext.Species));
     }
 

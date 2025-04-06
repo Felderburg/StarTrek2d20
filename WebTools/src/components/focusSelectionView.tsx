@@ -38,6 +38,10 @@ export const FocusSelectionView: React.FC<IFocusSelectionProperties> = ({charact
         label = t('Construct.other.focus');
     }
 
+    if (suggestions == null && hints?.length) {
+        suggestions = hints.join(", ");
+    }
+
     return (<>
         <div className="d-flex justify-content-between align-items-center flex-wrap">
             <InputFieldAndLabel id="focus" labelName={label}

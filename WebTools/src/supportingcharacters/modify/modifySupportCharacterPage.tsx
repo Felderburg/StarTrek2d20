@@ -31,7 +31,7 @@ import { PromotionView } from "../../modify/page/promotionView";
 import { ModifyDepartmentView } from "./modifyDepartmentView";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { CharacterAdvancementChoice } from "../../modify/model/characterAdvancementChoice";
-import SimpleTalentSelectionList from "../../modify/simpleTalentSelectionList";
+import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 

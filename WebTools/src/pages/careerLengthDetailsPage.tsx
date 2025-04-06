@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {TalentDescription} from '../components/talentDescription';
 import ValueInput from '../components/valueInputWithRandomOption';
-import { TalentsHelper, TalentViewModel } from '../helpers/talents';
+import { TalentsHelper } from '../helpers/talents';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
@@ -17,6 +17,7 @@ import store from '../state/store';
 import { StepContext, addCharacterTalent, setCharacterValue } from '../state/characterActions';
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
+import { SelectedTalent } from '../common/selectedTalent';
 
 const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) => {
 
@@ -89,8 +90,8 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
             t => !character.hasTalent(t.name) || (character.careerStep?.talent != null && t.name === character.careerStep?.talent?.talent) || t.rank > 1);
     }
 
-    const onTalentSelected = (talent: TalentViewModel) => {
-        setTalentName(talent.name);
+    const onTalentSelected = (talent: SelectedTalent) => {
+        setTalentName(talent?.talent);
         store.dispatch(addCharacterTalent(talent, StepContext.Career));
     }
 

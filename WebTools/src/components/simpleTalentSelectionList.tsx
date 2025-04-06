@@ -1,5 +1,5 @@
 ﻿import React, { useEffect, useState } from 'react';
-import {CheckBox} from '../components/checkBox';
+import {CheckBox} from './checkBox';
 import {TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { Construct } from '../common/construct';
@@ -8,12 +8,13 @@ import { SelectedTalent } from '../common/selectedTalent';
 interface ISimpleTalentSelectionProperties {
     talents: TalentViewModel[]
     construct: Construct;
+    initialSelection?: string;
     onSelection: (talent?: SelectedTalent) => void;
 }
 
-const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({talents, onSelection}) => {
+const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({talents, onSelection, initialSelection}) => {
 
-    const [ selection, setSelection] = useState<string|undefined>()
+    const [ selection, setSelection] = useState<string|undefined>(initialSelection);
 
     useEffect(() => {
         if (selection == null) {

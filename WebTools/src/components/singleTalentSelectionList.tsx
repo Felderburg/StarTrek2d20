@@ -5,13 +5,13 @@ import replaceDiceWithArrowhead from '../common/arrowhead';
 import { Construct } from '../common/construct';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
-import { SpecialWeapon } from '../common/specialWeapon';
+import { SelectedTalent } from '../common/selectedTalent';
 
 interface ISingleTalentSelectionProperties extends WithTranslation {
     talents: TalentViewModel[]
     construct: Construct;
     initialSelection?: ITalent;
-    onSelection: (talent?: TalentViewModel, selection?: string[]|SpecialWeapon) => void;
+    onSelection: (talent?: SelectedTalent) => void;
 }
 
 interface ISingleTalentSelectionState {
@@ -107,7 +107,7 @@ class SingleTalentSelectionList extends React.Component<ISingleTalentSelectionPr
             this.props.onSelection(undefined);
         } else {
             selection = talent.name;
-            this.props.onSelection(talent);
+            this.props.onSelection(new SelectedTalent(talent.name));
         }
 
         this.setState((state) => ({
