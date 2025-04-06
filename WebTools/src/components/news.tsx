@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250405</b>
+            <ul>
+                <li>
+                    Minor tweaks to the tokens.
+                </li>
+            </ul>
             <b>v1.250404</b>
             <ul>
                 <li>
@@ -285,20 +291,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                     Additional minor improvements.
                 </li>
             </ul>
-            <b>v1.241005</b>
-            <ul>
-                <li>
-                    Various bug fixes and internal structure improvements.
-                </li>
-                <li>
-                    Improvements to the handling of Supporting Characters. That lead to some structural changes to some
-                    sheets -- especially the half-page sheet.
-                </li>
-                <li>
-                    Tweaks to the Fantasy Grounds exporter. Someone mentioned wanting NPC exports handled as NPCs.
-                </li>
-            </ul>
-
 
             <div className="text-center">
                 <Button size="sm" onClick={ () => onClose() }>{t('Common.button.ok')}</Button>
