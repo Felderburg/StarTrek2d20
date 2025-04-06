@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Header } from "../../components/header";
 import { useTranslation } from "react-i18next";
 import { PageIdentity } from "../../pages/pageIdentity";
@@ -9,10 +9,9 @@ import { SafetyEvaluation, SafetyEvaluationType } from "../model/safetyEvaluatio
 import { connect } from "react-redux";
 import store from "../../state/store";
 import { setSafetyEvaluation } from "../../state/safetyActions";
-import { SafetyChecklistPdf } from "../export/safetyPdf";
-import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router";
 import { preventDefaultAnchorEvent } from "../../common/navigator";
+import { LoadingButton } from "../../common/loadingButton";
 
 interface ISafetySectionViewProperties extends ISafetyChecklistPageProperties {
     section: SafetySection;
@@ -70,19 +69,19 @@ const SafetyChecklistPage: React.FC<ISafetyChecklistPageProperties> = ({evaluati
 
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const [loadingExport, setLoadingExport] = useState<boolean>(false);
 
     const exportPdf = async () => {
 
-//        setLoadingExport(true);
+        setLoadingExport(true);
         import(/* webpackChunkName: 'export' */ '../../exportpdf/generatedSafetypChecklistSheet').then(({GeneratedSafetyChecklistSheet}) => {
-//            setLoadingExport(false);
+            setLoadingExport(false);
 
             const populateAndDownload = async () => {
                 new GeneratedSafetyChecklistSheet().export(evaluation);
             }
             populateAndDownload();
         });
-//        new SafetyChecklistPdf().export(evaluation);
     }
 
     const goToHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -111,7 +110,7 @@ const SafetyChecklistPage: React.FC<ISafetyChecklistPageProperties> = ({evaluati
                     </div>
 
                     <div className="mt-4 text-end">
-                        <Button className='btn-xs mw-100' onClick={() => exportPdf()}>{t('Common.button.export')}</Button>
+                        <LoadingButton loading={loadingExport} className='btn-xs mw-100' onClick={() => exportPdf()}>{t('Common.button.export')}</LoadingButton>
                     </div>
 
                 </div>
