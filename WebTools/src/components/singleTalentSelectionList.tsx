@@ -1,17 +1,19 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_WARRIORS_SPIRIT, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
-import { Construct } from '../common/construct';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
 import { SelectedTalent } from '../common/selectedTalent';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
 import { SpecialWeapon } from '../common/specialWeapon';
+import { FocusSelectionView } from './focusSelectionView';
+import { Character } from '../common/character';
+import { Department } from '../helpers/department';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
-    construct: Construct;
+    construct: Character;
     initialSelection?: ITalent;
     onSelection: (talent?: SelectedTalent) => void;
 }
@@ -51,6 +53,53 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             onSelection(temp);
         }
     }
+
+    const renderExpandedProgramSelection = () => {
+        return (<>
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <FocusSelectionView
+                        label={t('Construct.other.focus1')}
+                        value={selection.focuses[0] ?? ""}
+                        addFocus={(f) => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                if (temp.focuses?.length) {
+                                    temp.focuses[0] = f;
+                                } else {
+                                    temp.focuses = [ f ];
+                                }
+                            }
+                            setSelection(temp);
+                            onSelection(temp);
+                        }}
+                        character={construct}
+                    />
+                    <FocusSelectionView
+                        label={t('Construct.other.focus2')}
+                        value={selection.focuses[1] ?? ""}
+                        addFocus={(f) => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                if (!temp.focuses?.length) {
+                                    temp.focuses = ["", f];
+                                } else if (temp.focuses?.length === 1) {
+                                    temp.focuses.push(f);
+                                } else {
+                                    temp.focuses[1] = f;
+                                }
+                            }
+                            setSelection(temp);
+                            onSelection(temp);
+                        }}
+                        suggestions="Holonovel writing, Opera, Holo-photography, or anything else"
+                        character={construct}
+                    />
+                </div>
+            </div>
+        </>);
+    }
+
 
     talents = talents.sort((t1, t2) => {
         return t1.localizedName.localeCompare(t2.localizedName);
@@ -108,7 +157,42 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                 </tr>)
                 : undefined
             }
-
+            {selection?.talent === t.name && t.name === TALENT_NAME_VISIT_EVERY_STAR
+                ? (<tr>
+                    <td></td>
+                    <td rowSpan={2}>
+                        <div className="row">
+                            <div className="col-12 col-md-6">
+                                <FocusSelectionView
+                                    character={construct}
+                                    addFocus={(f) => {
+                                        let temp = selection?.copy();
+                                        if (temp) {
+                                            temp.focuses = [ f ];
+                                        }
+                                        setSelection(temp);
+                                        onSelection(temp);
+                                    }}
+                                    value={selection.focuses?.length ? selection.focuses[0] : undefined}
+                                    hints={["Astronagivation", "Stellar Cartography", "Warp Field Theory", "Astronomy",
+                                        "Heliophysics", "Cosmology", "Astrometry", "Planetology"]}
+                                    suggestions="Astronavigation, Stellar Cartography, or a similar field of space science."
+                                    randomFocusDepartment={Department.Conn}
+                                />
+                            </div>
+                        </div>
+                    </td>
+                </tr>)
+                : undefined
+            }
+            {selection?.talent === t.name && t.name === TALENT_NAME_EXPANDED_PROGRAM
+                ? (<tr>
+                    <td></td>
+                    <td rowSpan={2}>
+                        {renderExpandedProgramSelection()}
+                    </td>
+                </tr>)
+                : undefined}
             </tbody>);
     });
 

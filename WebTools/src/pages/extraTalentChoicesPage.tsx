@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { CheckBox } from '../components/checkBox';
 import Button from 'react-bootstrap/Button';
 import { PageIdentity } from './pageIdentity';
@@ -12,7 +12,7 @@ import { BorgImplants, Implant } from '../helpers/borgImplant';
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WISDOM_OF_YEARS } from '../helpers/talents';
+import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_WISDOM_OF_YEARS } from '../helpers/talents';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import D20IconButton from '../solo/component/d20IconButton';
 import { ValueRandomTable } from '../solo/table/valueRandomTable';
@@ -99,26 +99,6 @@ const ExtraTalentChoicesPage : React.FC<ICharacterProperties> = ({character}) =>
         store.dispatch(addCharacterTalentFocus(focus, talentName, index));
     }
 
-    const renderVisitEveryStar = () => {
-        if (character.hasTalent(TALENT_NAME_VISIT_EVERY_STAR)) {
-            let talent = character.getTalentByName(TALENT_NAME_VISIT_EVERY_STAR);
-            return (<div className="mt-4 col-lg-6">
-                    <Header level={2}>Visit Every Star</Header>
-                    <p>Characters with the talent "Visit Every Star" may choose 1 additional focus.</p>
-                    <InputFieldAndLabel id={'focus-star'}
-                        labelName={t('Construct.other.focus')}
-                        onChange={(value) => addFocus(value, TALENT_NAME_VISIT_EVERY_STAR, 0)}
-                        value={talent.focuses[0] ?? ""}
-                        key={'additionalFocus-star'} />
-                    <div><small className="text-white">
-                        <b>Suggestions: </b> {' '}  Astronavigation, Stellar Cartography, or a similar field of space science.
-                    </small></div>
-                </div>);
-        } else {
-            return undefined;
-        }
-    }
-
     const renderWisdomOfYears = () => {
         if (character.hasTalent(TALENT_NAME_WISDOM_OF_YEARS)) {
             let talent = character.getTalentByName(TALENT_NAME_WISDOM_OF_YEARS);
@@ -152,30 +132,6 @@ const ExtraTalentChoicesPage : React.FC<ICharacterProperties> = ({character}) =>
             return undefined;
         }
     }
-    const renderExpandedProgram = () => {
-        if (character.hasTalent(TALENT_NAME_EXPANDED_PROGRAM)) {
-            let talent = character.getTalentByName(TALENT_NAME_EXPANDED_PROGRAM);
-            return (<div className="mt-4 col-lg-6">
-                    <Header level={2}>Expanded Program</Header>
-                    <p>Characters with the talent "Expanded Program" may choose 2 additional focuses.</p>
-                    <InputFieldAndLabel id={'focus-exp-1'}
-                        labelName={t('Construct.other.focus1')}
-                        onChange={(value) => addFocus(value, TALENT_NAME_EXPANDED_PROGRAM, 0)}
-                        value={talent.focuses[0] ?? ""}
-                        key={'additionalFocus-exp-1'} />
-                    <InputFieldAndLabel id={'focus-exp-2'}
-                        labelName={t('Construct.other.focus2')}
-                        onChange={(value) => addFocus(value, TALENT_NAME_EXPANDED_PROGRAM, 1)}
-                        value={talent.focuses[1] ?? ""}
-                        key={'additionalFocus-exp-2'} />
-                    <div><small className="text-white">
-                        <b>Suggestions: </b> {' '} Holonovel writing, Opera, Holo-photography, or anything else
-                    </small></div>
-                </div>);
-        } else {
-            return undefined;
-        }
-    }
 
     return (<div className="page container ms-0">
             <CharacterCreationBreadcrumbs />
@@ -186,8 +142,6 @@ const ExtraTalentChoicesPage : React.FC<ICharacterProperties> = ({character}) =>
 
                 <div className="row">
                     {renderImplants()}
-                    {renderVisitEveryStar()}
-                    {renderExpandedProgram()}
                     {renderWisdomOfYears()}
                 </div>
 

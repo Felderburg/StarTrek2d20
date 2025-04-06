@@ -59,8 +59,6 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
         } else if (isTalentSelectionNeeded() && determineSelectedTalentExtraErrors(character.finishingStep.talent) != null) {
             Dialog.show(determineSelectedTalentExtraErrors(character.finishingStep.talent));
         } else if (character.hasTalent(TALENT_NAME_BORG_IMPLANTS) ||
-            character.hasTalent(TALENT_NAME_EXPANDED_PROGRAM) ||
-            character.hasTalent(TALENT_NAME_VISIT_EVERY_STAR) ||
             character.hasTalent(TALENT_NAME_WISDOM_OF_YEARS)) {
             Navigation.navigateToPage(PageIdentity.ExtraTalentDetails);
         } else {

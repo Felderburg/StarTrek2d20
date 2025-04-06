@@ -18,8 +18,8 @@ import { Dialog } from "../../components/dialog";
 import { ValueRandomTable } from "../../solo/table/valueRandomTable";
 import ValueInput from "../../components/valueInputWithRandomOption";
 import { ModalControl } from "../../components/modal";
-import { TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
-import { SelectedTalentDescriptionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView } from "../../components/selectedTalentDescriptionView";
+import { TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
+import { ExpandedProgramSelectionView, SelectedTalentDescriptionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView } from "../../components/selectedTalentDescriptionView";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { SimpleStringSelector } from "./simpleStringSelector";
 import { Character } from "../../common/character";
@@ -238,6 +238,14 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
         } else if (talentSelection?.talent === TALENT_NAME_VISIT_EVERY_STAR) {
             return (<div className="col-12 col-md-6">
                     <VisitEveryStarSelectionView onSelection={(selection) => {
+                        let temp = talentSelection.copy();
+                        temp.focuses = selection == null ? [] : (selection as string[]);
+                        setTalentSelection(temp);
+                    }} character={character} />
+                </div>);
+        } else if (talentSelection?.talent === TALENT_NAME_EXPANDED_PROGRAM) {
+            return (<div className="col-12 col-md-6">
+                    <ExpandedProgramSelectionView onSelection={(selection) => {
                         let temp = talentSelection.copy();
                         temp.focuses = selection == null ? [] : (selection as string[]);
                         setTalentSelection(temp);

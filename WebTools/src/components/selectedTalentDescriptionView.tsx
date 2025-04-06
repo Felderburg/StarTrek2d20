@@ -68,8 +68,54 @@ export const VisitEveryStarSelectionView: React.FC<ITalentAdditionalSelectionPro
             suggestions="Astronavigation, Stellar Cartography, or a similar field of space science." />
         </div>
     );
+}
 
 
+export const ExpandedProgramSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character}) => {
+
+    const { t } = useTranslation();
+    const [ selection, setSelection ] = useState<string[]>([]);
+
+    return (
+        <div>
+            <Header level={2} className="my-4">{t('Talent.expandedProgram')}</Header>
+            <FocusSelectionView
+                label={t('Construct.other.focus1')}
+                value={selection[0] ?? ""}
+                addFocus={(f) => {
+                    let temp = [...selection];
+                    if (temp?.length) {
+                        temp[0] = f;
+                    } else {
+                        temp.push(f);
+                    }
+                    setSelection(temp);
+                    onSelection(temp);
+                }}
+                character={character}
+            />
+            <FocusSelectionView
+                label={t('Construct.other.focus2')}
+                value={selection[1] ?? ""}
+                addFocus={(f) => {
+                    let temp = [...selection];
+                    if (temp) {
+                        if (!temp.length) {
+                            temp = ["", f];
+                        } else if (temp?.length === 1) {
+                            temp.push(f);
+                        } else {
+                            temp[1] = f;
+                        }
+                    }
+                    setSelection(temp);
+                    onSelection(temp);
+                }}
+                suggestions="Holonovel writing, Opera, Holo-photography, or anything else"
+                character={character}
+            />
+        </div>
+    );
 }
 
 export const SelectedTalentDescriptionView: React.FC<ISelectedTalentDescriptionProperties> = ({version, talent}) => {
