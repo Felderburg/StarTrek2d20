@@ -71,8 +71,18 @@ const SafetyChecklistPage: React.FC<ISafetyChecklistPageProperties> = ({evaluati
     const { t } = useTranslation();
     const navigate = useNavigate();
 
-    const exportPdf = () => {
-        new SafetyChecklistPdf().export(evaluation);
+    const exportPdf = async () => {
+
+//        setLoadingExport(true);
+        import(/* webpackChunkName: 'export' */ '../../exportpdf/generatedSafetypChecklistSheet').then(({GeneratedSafetyChecklistSheet}) => {
+//            setLoadingExport(false);
+
+            const populateAndDownload = async () => {
+                new GeneratedSafetyChecklistSheet().export(evaluation);
+            }
+            populateAndDownload();
+        });
+//        new SafetyChecklistPdf().export(evaluation);
     }
 
     const goToHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
