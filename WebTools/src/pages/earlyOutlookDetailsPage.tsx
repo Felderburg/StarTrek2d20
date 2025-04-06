@@ -25,6 +25,7 @@ import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import TalentSettingsView from '../components/talentSettingsView';
 import { SelectedTalent } from '../common/selectedTalent';
 import { FocusSelectionView } from '../components/focusSelectionView';
+import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 
 const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -44,8 +45,10 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
         } else if (character.upbringingStep?.talent == null) {
             Dialog.show(t('UpbringingDetailPage.error.talent'));
         } else {
-
-            if (character.type === CharacterType.Child) {
+            const error = determineSelectedTalentExtraErrors(character.upbringingStep?.talent);
+            if (error?.length) {
+                Dialog.show(error);
+            } else if (character.type === CharacterType.Child) {
                 Navigation.navigateToPage(PageIdentity.ChildEducationPage);
             } else {
                 Navigation.navigateToPage(PageIdentity.Career);

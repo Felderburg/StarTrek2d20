@@ -30,6 +30,7 @@ import D20IconButton from '../solo/component/d20IconButton';
 import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { localizedFocus } from '../components/focusHelper';
 import { SelectedTalent } from '../common/selectedTalent';
+import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 
 const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -196,7 +197,10 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
         } else if (!character.educationStep?.talent == null) {
             Dialog.show(t("SoloEducationDetailsPage.errorTalent"));
         } else {
-            if (character.age.isChild) {
+            const error = determineSelectedTalentExtraErrors(character.educationStep?.talent);
+            if (error?.length) {
+                Dialog.show(error);
+            } else if (character.age.isChild) {
                 Navigation.navigateToPage(PageIdentity.ChildCareer);
             } else if (character.type === CharacterType.Cadet) {
                 Navigation.navigateToPage(PageIdentity.NoviceOrCadetExperience);

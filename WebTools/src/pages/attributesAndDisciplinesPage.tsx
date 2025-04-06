@@ -20,6 +20,8 @@ import AttributeListComponent from '../components/attributeListComponent';
 import DisciplineListComponent from '../components/disciplineListComponent';
 import store from '../state/store';
 import { addCharacterTalent, setCharacterFinishingTouches, setCharacterValue, StepContext } from '../state/characterActions';
+import { isSecondEdition } from '../state/contextFunctions';
+import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 
 const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character})  => {
 
@@ -41,6 +43,10 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
             t => !character.hasTalent(t.name) || (character?.finishingStep?.talent != null && t.name === character?.finishingStep?.talent?.talent) || t.rank > 1);
     }
 
+    const isTalentSelectionNeeded = () => {
+        return isSecondEdition() || character.type === CharacterType.KlingonWarrior;
+    }
+
     const navigateToNextPage = () => {
         if (character.finishingStep?.attributes.length !== attributeCount) {
             Dialog.show(t('SoloFinishingTouchesPage.errorAttributes', { count: attributeCount}));
@@ -48,8 +54,10 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
             Dialog.show(t('SoloFinishingTouchesPage.errorDisciplines', { count: disciplineCount}));
         } else if (!character.finishingStep?.value == null) {
             Dialog.show(t('SoloFinishingTouchesPage.errorValue'));
-        } else if (character.type === CharacterType.KlingonWarrior && character?.finishingStep?.talent == null) {
+        } else if (isTalentSelectionNeeded() && character?.finishingStep?.talent == null) {
             Dialog.show(t('SoloFinishingTouchesPage.errorTalent'));
+        } else if (isTalentSelectionNeeded() && determineSelectedTalentExtraErrors(character.finishingStep.talent) != null) {
+            Dialog.show(determineSelectedTalentExtraErrors(character.finishingStep.talent));
         } else if (character.hasTalent(TALENT_NAME_BORG_IMPLANTS) ||
             character.hasTalent(TALENT_NAME_EXPANDED_PROGRAM) ||
             character.hasTalent(TALENT_NAME_VISIT_EVERY_STAR) ||

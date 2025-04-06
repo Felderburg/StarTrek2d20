@@ -25,6 +25,7 @@ import { CharacterType } from '../common/characterType';
 import ReactMarkdown from 'react-markdown';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
 import { SelectedTalent } from '../common/selectedTalent';
+import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 
 interface ISpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -165,15 +166,13 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     const onNext = () => {
         if (character.speciesStep?.attributes?.length !== 3) {
             Dialog.show("You have not distributed all Attribute points.");
-            return;
-        }
-
-        if (isTalentSelectionRequired() && character.speciesStep?.talent == null) {
+        } else if (isTalentSelectionRequired() && character.speciesStep?.talent == null) {
             Dialog.show("You have not selected a talent.");
-            return;
+        } else if (isTalentSelectionRequired() && determineSelectedTalentExtraErrors(character.speciesStep?.talent) != null) {
+            Dialog.show(determineSelectedTalentExtraErrors(character.speciesStep?.talent));
+        } else {
+            Navigation.navigateToPage(PageIdentity.Environment);
         }
-
-        Navigation.navigateToPage(PageIdentity.Environment);
     }
 
     return (

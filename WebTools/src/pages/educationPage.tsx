@@ -37,7 +37,7 @@ const EducationPage: React.FC<ICharacterProperties> = ({character}) => {
     }
 
     const selectTrack = (track: TrackModel) => {
-        const enlisted = (tab === StarfleetTrackTab.Enlisted || track.id === Track.Enlisted);
+        const enlisted = tab === StarfleetTrackTab.Enlisted || track.id === Track.Enlisted || track.enlisted;
         store.dispatch(setCharacterEducation(track.id, enlisted));
         Navigation.navigateToPage(PageIdentity.CareerDetails);
     }

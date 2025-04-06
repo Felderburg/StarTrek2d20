@@ -27,6 +27,7 @@ import { CheckBox } from "../../components/checkBox";
 import { SpecialWeapon } from "../../common/specialWeapon";
 import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { FocusSelectionView } from "../../components/focusSelectionView";
+import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 
 interface ITalentSelectorProperties {
 
@@ -180,8 +181,8 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
     }
 
     const talentAdditionalDetailsSelected = () => {
-        if (talentSelection?.talent === TALENT_NAME_WARRIORS_SPIRIT && talentSelection.selection == null) {
-            Dialog.show("Please select a weapon type");
+        if (determineSelectedTalentExtraErrors(talentSelection) != null) {
+            Dialog.show(determineSelectedTalentExtraErrors(talentSelection));
             return false;
         } else if (talentSelection?.talent === TALENT_NAME_VISIT_EVERY_STAR && !talentSelection.focuses?.length) {
             Dialog.show("Common.error.focus");

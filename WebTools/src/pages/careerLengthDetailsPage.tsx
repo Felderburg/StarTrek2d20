@@ -18,6 +18,7 @@ import { StepContext, addCharacterTalent, setCharacterValue } from '../state/cha
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { SelectedTalent } from '../common/selectedTalent';
+import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 
 const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) => {
 
@@ -98,6 +99,8 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
     const onNext = () => {
         if (!talentName) {
             Dialog.show("You must select a Talent before proceeding.");
+        } else if (determineSelectedTalentExtraErrors(character.careerStep?.talent) != null) {
+            Dialog.show(determineSelectedTalentExtraErrors(character.careerStep?.talent));
         } else {
             Navigation.navigateToPage(PageIdentity.CareerEvent1);
         }

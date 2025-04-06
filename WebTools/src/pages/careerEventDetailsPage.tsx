@@ -21,9 +21,6 @@ import store from '../state/store';
 import { connect } from 'react-redux';
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { CareerEventAttributeController, CareerEventDisciplineController } from '../components/careerEventDetailsControllers';
-import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
-import D20IconButton from '../solo/component/d20IconButton';
-import { localizedFocus } from '../components/focusHelper';
 import { FocusSelectionView } from '../components/focusSelectionView';
 
 interface ICareerEventDetailsProperties extends ICharacterProperties{
@@ -38,17 +35,6 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({charac
         : character.careerEvents[1];
 
     const careerEvent = CareerEventsHelper.getCareerEvent(careerEventStep?.id, character.type);
-
-    const selectRandomFocus = () => {
-        let done = false;
-        while (!done) {
-            let focus = localizedFocus(FocusRandomTableWithHints(careerEventStep.discipline, careerEvent.focuses));
-            if (character.focuses.indexOf(focus) < 0) {
-                done = true;
-                store.dispatch(setCharacterFocus(focus, context));
-            }
-        }
-    }
 
     const navigateToNextStep = () => {
         if (careerEventStep.attribute == null) {

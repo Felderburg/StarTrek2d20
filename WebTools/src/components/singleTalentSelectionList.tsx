@@ -1,120 +1,122 @@
-﻿import React from 'react';
+﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_WARRIORS_SPIRIT, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { Construct } from '../common/construct';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
 import { SelectedTalent } from '../common/selectedTalent';
+import { DropDownElement, DropDownSelect } from './dropDownInput';
+import { SpecialWeapon } from '../common/specialWeapon';
 
-interface ISingleTalentSelectionProperties extends WithTranslation {
+interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
     construct: Construct;
     initialSelection?: ITalent;
     onSelection: (talent?: SelectedTalent) => void;
 }
 
-interface ISingleTalentSelectionState {
-    selection?: string
-}
+const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({talents, construct, initialSelection, onSelection}) => {
 
-class SingleTalentSelectionList extends React.Component<ISingleTalentSelectionProperties, ISingleTalentSelectionState> {
+    const [selection, setSelection]  = useState<SelectedTalent|undefined>(initialSelection == null ? undefined : new SelectedTalent(initialSelection.name));
+    const { t } = useTranslation();
 
-    constructor(props: ISingleTalentSelectionProperties) {
-        super(props);
+    useEffect(() => {
+        if (selection == null) {
+            // do nothing
+        } else if (talents.filter(t => t.name === selection.talent)?.length) {
+            // do nothing
+        } else {
+            setSelection(undefined);
+            onSelection(undefined);
+        }
 
-        this.state = {
-            selection: (this.props.initialSelection ? this.props.initialSelection.name : undefined)
-        };
+    }, [talents]);
+
+    const specialWeaponOptions = () => {
+        let result = [];
+        result.push(new DropDownElement("", t('Common.select.choose')));
+        result.push(new DropDownElement(SpecialWeapon.BatLeth, "Bat'leth"));
+        result.push(new DropDownElement(SpecialWeapon.MekLeth, "Mek'leth"));
+        return result;
     }
 
-    componentDidUpdate(prevProps: Readonly<ISingleTalentSelectionProperties>, prevState: Readonly<ISingleTalentSelectionState>, snapshot?: any): void {
-        let temp = this.state.selection;
-        let selection = undefined;
-        this.props.talents.forEach(t => {
-            if (temp === t.name) {
-                selection = temp;
-            }
-        });
-        // did something get unselected?
-        if (selection == null && temp != null) {
-            this.setState((state) => ({
-                ...state,
-                selection: undefined
-            }));
-            this.props.onSelection(undefined);
+    const selectTalent = (talent: TalentViewModel) => {
+        if (selection?.talent === talent?.name) {
+            setSelection(undefined);
+            onSelection(undefined);
+        } else {
+            let temp = new SelectedTalent(talent.name);
+            setSelection(temp);
+            onSelection(temp);
         }
     }
 
-    render() {
-        let { talents } = this.props;
+    talents = talents.sort((t1, t2) => {
+        return t1.localizedName.localeCompare(t2.localizedName);
+    })
 
-        talents = talents.sort((t1, t2) => {
-            return t1.localizedName.localeCompare(t2.localizedName);
+    const talentList = talents.map((t, i) => {
+        let prerequisites = undefined;
+        t.prerequisites.forEach((p) => {
+            let desc = p.describe();
+            if (desc) {
+                if (prerequisites == null) {
+                    prerequisites = desc;
+                } else {
+                    prerequisites += (", " + desc);
+                }
+            }
+        });
+        if (prerequisites) {
+            prerequisites = (<div style={{ fontWeight: "bold" }}>{prerequisites}</div>);
+        }
+
+        let lines = t.description.split('\n').map((l, i) => {
+            return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
         })
 
-        const talentList = talents.map((t, i) => {
-            let prerequisites = undefined;
-            t.prerequisites.forEach((p) => {
-                let desc = p.describe();
-                if (desc) {
-                    if (prerequisites == null) {
-                        prerequisites = desc;
-                    } else {
-                        prerequisites += (", " + desc);
-                    }
-                }
-            });
-            if (prerequisites) {
-                prerequisites = (<div style={{ fontWeight: "bold" }}>{prerequisites}</div>);
+        return (<tbody key={i}>
+            <tr>
+                <td className="selection-header-small">{t.localizedName}</td>
+                <td>{lines} {prerequisites}</td>
+                <td>
+                    <CheckBox
+                        text=""
+                        value={t.name}
+                        isChecked={selection?.talent === t.name}
+                        onChanged={() => {
+                            selectTalent(t);
+                        } }/>
+                </td>
+            </tr>
+            {selection?.talent === t.name && t.name === TALENT_NAME_WARRIORS_SPIRIT
+                ? (<tr>
+                    <td></td>
+                    <td rowSpan={2}>
+                        <DropDownSelect items={specialWeaponOptions()}
+                            defaultValue={selection?.selection ?? ""}
+                            onChange={(value) => {
+                                let temp = selection?.copy();
+                                if (temp) {
+                                    temp.selection = (value as SpecialWeapon);
+                                }
+                                setSelection(temp);
+                                onSelection(temp);
+                            }} />
+                    </td>
+                </tr>)
+                : undefined
             }
 
-            let lines = t.description.split('\n').map((l, i) => {
-                return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
-            })
+            </tbody>);
+    });
 
-            return (
-                <tr key={i}>
-                    <td className="selection-header-small">{t.localizedName}</td>
-                    <td>{lines} {prerequisites}</td>
-                    <td>
-                        <CheckBox
-                            text=""
-                            value={t.name}
-                            isChecked={this.state.selection === t.name}
-                            onChanged={() => {
-                                this.selectTalent(t);
-                            } }/>
-                    </td>
-                </tr>
-            );
-        });
-
-        return (
-            <table className="selection-list">
-                <tbody>
-                    {talentList}
-                </tbody>
-            </table>
-        );
-    }
-
-    private selectTalent(talent: TalentViewModel) {
-        let selection = this.state.selection;
-
-        if (selection === talent.name) {
-            selection = undefined;
-            this.props.onSelection(undefined);
-        } else {
-            selection = talent.name;
-            this.props.onSelection(new SelectedTalent(talent.name));
-        }
-
-        this.setState((state) => ({
-            ...state,
-            selection: selection
-        }));
-    }
+    return (
+        <table className="selection-list">
+            {talentList}
+        </table>
+    );
 }
 
-export default withTranslation()(SingleTalentSelectionList);
+export default SingleTalentSelectionList;
