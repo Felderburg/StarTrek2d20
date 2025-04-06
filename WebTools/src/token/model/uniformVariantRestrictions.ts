@@ -133,4 +133,12 @@ export default class UniformVariantRestrictions {
                     ].indexOf(rankIndicator) >= 0;
         }
     }
+
+    static getSupportedBodyTypes(uniformEra: UniformEra) {
+        if (uniformEra === UniformEra.DominionWar) {
+            return [ BodyType.AverageMale, BodyType.AverageFemale, BodyType.AverageNonBinary ];
+        } else {
+            return [ BodyType.AverageMale, BodyType.AverageFemale ];
+        }
+    }
 }

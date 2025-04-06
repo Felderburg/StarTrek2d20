@@ -151,8 +151,12 @@ const token = (state: Token = initialState, action) => {
         if (!UniformVariantRestrictions.isRankSupported(rank, action.payload.era)) {
             rank = Rank.None;
         }
+        let bodyType = state.bodyType;
+        if (!UniformVariantRestrictions.getSupportedBodyTypes(action.payload.era).includes(bodyType)) {
+            bodyType = UniformVariantRestrictions.getSupportedBodyTypes(action.payload.era)[0];
+        }
         let variant = state.variant;
-        let variants = UniformVariantRestrictions.getAvailableVariants(action.payload.era, state.bodyType, state.species, colour, rank);
+        let variants = UniformVariantRestrictions.getAvailableVariants(action.payload.era, bodyType, state.species, colour, rank);
         if (variants.indexOf(variant) < 0) {
             variant = UniformVariantType.Base;
         }
@@ -164,6 +168,7 @@ const token = (state: Token = initialState, action) => {
             divisionColor: colour,
             uniformEra: action.payload.era,
             variant: variant,
+            bodyType: bodyType,
             extras: extras
         }
     }
