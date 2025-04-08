@@ -2731,7 +2731,7 @@ export class Talents {
                 1,
                 "Bynar"),
             new TalentModel(
-                "The Long View",
+                "The Long View (El-Aurian)",
                 "Due to their extremely long lifespans, El-Aurians come to understand and gain knowledge more extensively that most other individuals. When a character with this Talent uses a Milestone to exchange a Focus, they may do so twice instead of once.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.ElAurian, true)],
                 1,

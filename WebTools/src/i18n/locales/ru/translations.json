@@ -4,6 +4,7 @@
     "LanguageNotice.useEnglish": "Пожалуйста используйте Английский вариант",
 
     "Lcars.copyright": "STAR TREK и сопутствующие обозначения и логотипы являются товарными знаками CBS Studios. Все права защищены.",
+    "Lcars.credits": "Благодарности",
     "Lcars.feedback": "Обратная связь",
     "Lcars.history": "История",
     "Lcars.news": "Новости",
@@ -56,6 +57,7 @@
 
     "TokenCreator.section.mouth.shape": "Рот",
     "TokenCreator.section.mouth.colour": "Цвет помады",
+    "TokenCreator.section.mouth.shadow": "Тень",
     "TokenCreator.section.mouth.moustache": "Усы",
     "TokenCreator.section.mouth.beard": "Борода",
 
@@ -76,6 +78,7 @@
     "TokenCreator.section.extras.forehead": "Лоб",
     "TokenCreator.section.extras.headwear": "Головной убор",
 
+    "ViewPage.viewCreature": "Просмотр Существа",
     "ViewPage.viewSupportingCharacter": "Просмотр Персонажей Поддержки",
     "ViewPage.viewNpc": "Просмотр НИП",
     "ViewPage.viewMainCharacter": "Просмотр Игрового Персонажа",
@@ -87,10 +90,13 @@
     "CareerEvents.instruction": "Ваша карьера, это смесь событий и опыта, но только некоторые из них являются поворотными моментами вашей жизни. Определите, какие из них важны в ретроспективе, и то, что казалось решающим для 20 летнего энсина, может оказаться несущественным для того же офицера десятилетия спустя.",
     "CareerEvents.standard": "Стандартное",
     "CareerEvents.standardAndUnofficial": "Стардартное и Неофициальное",
+    "CareerEvents.unofficialNote": "Этот список включает в себя неофициальные предметы из [Продолжающихся Миссий] (https://continuingmissionsta.com/2018/05/09/replicator-resource-expeded-career-events-write-ups/). Убедитесь, что ваш Мастер готов разрешить использование этих предметов.",
 
     "CareerEventDetails.errorAttribute": "Пожалуйста выберите качество",
     "CareerEventDetails.errorDiscipline": "Пожалуйста выберите знание",
     "CareerEventDetails.errorFocus": "Выберите специализацию",
+
+    "ChildSelectionPage.instruction": "Естественно, ребенок не посещал Академию Звездного Флота (или какое-либо паралельное учреждение), а так же институт или другое высшее заведение. Он еще на ранних стадиях своего обучения.\n\nВыберите возраст для своего персонажа.",
 
     "GMTracker.addCharacterModalTitle": "Добавьте персонажа",
 
@@ -230,10 +236,10 @@
     "SoloSpeciesPage.errorAttributes": "Пожалуйста выберите 3 качества.",
     "SoloSpeciesPage.instruction": "Выберите расу для своего персонажа или назначьте рандомально.",
 
-    "SpaceframeOptionPage.text": "Вы хотите обычную рамку или нестандартную?",
+    "SpaceframeOptionPage.text": "Вы хотите стандартный каркас или кастомный?",
 
-    "SpaceframeOptionPage.button.standardSpaceframe": "Стандартная рамка",
-    "SpaceframeOptionPage.button.customSpaceframe": "Нестандартная рамка",
+    "SpaceframeOptionPage.button.standardSpaceframe": "Стандартный каркас",
+    "SpaceframeOptionPage.button.customSpaceframe": "Нестандартный каркас",
 
     "SpeciesDetails.selectThree": "(выберите три)",
     "SpeciesDetails.allowCrossSpecies": "Позволить таланты других рас (Решение Мастера)",
@@ -255,6 +261,24 @@
 
     "SpeciesPage.textNoRoll": "К какой расе Вы относитесь? Вы также можете создать персонажа смешанной расы, получая выгоду от обеих.",
     "SpeciesPage.mixedSpeciesNote": "Выберите две расы. Вы получите Черты обеих и сможете выбирать Таланты с обеих сторон. Но только первичная раса даёт бонусы к Качествам.",
+
+    "StarshipTalentSelection.instruction_one": "Пожалуйста выберите {{count}} талант.",
+    "StarshipTalentSelection.instruction_other": "Пожалуйста выберите {{count}} таланта.",
+
+    "StarshipToolSelection.instruction": "Выберите опцию",
+    "StarshipToolSelection.standardBuild": "Стандартная сборка",
+    "StarshipToolSelection.simplifiedBuild": "Упрощенная сборка",
+
+    "StarshipTypeSelection.campaignYear": "Год кампейна",
+    "StarshipTypeSelection.year": "Год",
+    "StarshipTypeSelection.shipPolity": "Тип звездолета",
+    "StarshipTypeSelection.whatShipPolity": "Какой модели данный звездолет?",
+    "StarshipTypeSelection.shipBuildType": "Размер звездолета",
+    "StarshipTypeSelection.whatShipBuildType": "Размер транспортного средства?",
+
+    "StarshipPage.whatScale": "Размер звездолета?",
+    "StarshipPage.whatClass": "Название класса звездолета?",
+    "StarshipPage.whatYear": "В каком году ",
 
     "UpbringingDetailPage.text": "Персонаж принял или воспротивился своему окружению?",
 
@@ -284,6 +308,8 @@
     "ToolSelection.starship": "Звездолет",
     "ToolSelection.spaceSector": "Звездный сектор",
     "ToolSelection.randomNpc": "Рандомный второстепенный персонаж",
+    "ToolSelection.randomStarship": "Рандомный звездолет",
+    "ToolSelection.randomCreature": "Рамдомное существо",
 
     "Common.button.random": "Случайный выбор",
     "Common.button.select": "Выбрать",
@@ -421,6 +447,8 @@
     "Construct.system.weapons": "Вооружение",
 
     "Page.title.attributesAndDisciplines": "Заключительные штрихи",
+    "Page.title.career": "Карьера",
+    "Page.title.careerDetails": "Детали карьеры",
     "Page.title.careerEvent": "Cобытие карьеры",
     "Page.title.careerEvent1": "Первое событие карьеры",
     "Page.title.careerEvent2": "Второе событие карьеры",

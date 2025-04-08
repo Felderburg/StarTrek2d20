@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
@@ -10,6 +10,8 @@ import { SpecialWeapon } from '../common/specialWeapon';
 import { FocusSelectionView } from './focusSelectionView';
 import { Character } from '../common/character';
 import { Department } from '../helpers/department';
+import ValueInput from './valueInputWithRandomOption';
+import { ValueRandomTable } from '../solo/table/valueRandomTable';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
@@ -52,6 +54,51 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             setSelection(temp);
             onSelection(temp);
         }
+    }
+
+    const renderWisdomOfYearsSelection = () => {
+        return (<>
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <FocusSelectionView
+                        value={selection.focuses[0] ?? ""}
+                        addFocus={(f) => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                if (temp.focuses?.length) {
+                                    temp.focuses[0] = f;
+                                } else {
+                                    temp.focuses = [ f ];
+                                }
+                            }
+                            setSelection(temp);
+                            onSelection(temp);
+                        }}
+                        character={construct}
+                    />
+                    <ValueInput
+                        value={selection.value ?? ""}
+                        onValueChanged={(v) => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.value = v;
+                            }
+                            setSelection(temp);
+                            onSelection(temp);
+                        }}
+                        onRandomClicked={() => {
+                            let value = ValueRandomTable(construct.speciesStep?.species, construct.educationStep?.primaryDiscipline);
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.value = value;
+                            }
+                            setSelection(temp);
+                            onSelection(temp);
+                        }}
+                    />
+                </div>
+            </div>
+        </>);
     }
 
     const renderExpandedProgramSelection = () => {
@@ -142,7 +189,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             {selection?.talent === t.name && t.name === TALENT_NAME_WARRIORS_SPIRIT
                 ? (<tr>
                     <td></td>
-                    <td rowSpan={2}>
+                    <td colSpan={2}>
                         <DropDownSelect items={specialWeaponOptions()}
                             defaultValue={selection?.selection ?? ""}
                             onChange={(value) => {
@@ -160,7 +207,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             {selection?.talent === t.name && t.name === TALENT_NAME_VISIT_EVERY_STAR
                 ? (<tr>
                     <td></td>
-                    <td rowSpan={2}>
+                    <td colSpan={2}>
                         <div className="row">
                             <div className="col-12 col-md-6">
                                 <FocusSelectionView
@@ -188,8 +235,16 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             {selection?.talent === t.name && t.name === TALENT_NAME_EXPANDED_PROGRAM
                 ? (<tr>
                     <td></td>
-                    <td rowSpan={2}>
+                    <td colSpan={2}>
                         {renderExpandedProgramSelection()}
+                    </td>
+                </tr>)
+                : undefined}
+            {selection?.talent === t.name && t.name === TALENT_NAME_WISDOM_OF_YEARS
+                ? (<tr>
+                    <td></td>
+                    <td colSpan={2}>
+                        {renderWisdomOfYearsSelection()}
                     </td>
                 </tr>)
                 : undefined}

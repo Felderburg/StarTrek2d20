@@ -1882,7 +1882,7 @@ class _Species {
             "El-Aurian",
             "",
             "",
-            [TalentsHelper.getTalent("Listener"), TalentsHelper.getTalent("Wisdom of Years"), TalentsHelper.getTalent("The Long View"), TalentsHelper.getTalent("Temporal Awareness"), TalentsHelper.getTalent("Cultural Flexibility")],
+            [TalentsHelper.getTalent("Listener"), TalentsHelper.getTalent("Wisdom of Years"), TalentsHelper.getTalent("The Long View (El-Aurian)"), TalentsHelper.getTalent("Temporal Awareness"), TalentsHelper.getTalent("Cultural Flexibility")],
             "",
             []),
         [Species.Yridian]: new SpeciesModel(

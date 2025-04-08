@@ -9,6 +9,8 @@ import { useTranslation } from 'react-i18next';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
 import { FocusSelectionView } from './focusSelectionView';
 import { Character } from '../common/character';
+import ValueInput from './valueInputWithRandomOption';
+import { ValueRandomTable } from '../solo/table/valueRandomTable';
 
 interface ISelectedTalentDescriptionProperties {
     version: number;
@@ -19,6 +21,13 @@ interface ITalentAdditionalSelectionProperties {
     character: Character;
     onSelection: (selection: string[]|SpecialWeapon|undefined) => void;
 }
+
+interface ITalentAdditionalFocusAndValueSelectionProperties {
+    character: Character;
+    onFocusSelection: (selection: string|undefined) => void;
+    onValueSelection: (selection: string|undefined) => void;
+}
+
 
 export const WarriorsSpiritSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection}) => {
 
@@ -70,6 +79,42 @@ export const VisitEveryStarSelectionView: React.FC<ITalentAdditionalSelectionPro
     );
 }
 
+const randomValue = (character: Character) => {
+    let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+    while (character.values.includes(value)) {
+        value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+    }
+    return value;
+}
+
+export const WisdomOfYearsSelectionView: React.FC<ITalentAdditionalFocusAndValueSelectionProperties> = ({onFocusSelection, onValueSelection, character}) => {
+
+    const { t } = useTranslation();
+    const [ focusSelection, setFocusSelection ] = useState<string|undefined>(undefined);
+    const [ valueSelection, setValueSelection ] = useState<string|undefined>(undefined);
+
+    return (
+        <div>
+            <Header level={2} className="my-4">{t('Talent.wisdomOfYears')}</Header>
+            <FocusSelectionView addFocus={(f) => {
+                    setFocusSelection(f);
+                    onFocusSelection(f)
+                }} value={focusSelection ?? ""} character={character}
+            />
+
+            <ValueInput onValueChanged={(v) => {
+                    setValueSelection(v);
+                    onValueSelection(v);
+                }} value={valueSelection ?? ""}
+                onRandomClicked={() => {
+                    let value = randomValue(character);
+                    setValueSelection(value);
+                    onValueSelection(value);
+                }}
+            />
+        </div>
+    );
+}
 
 export const ExpandedProgramSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character}) => {
 

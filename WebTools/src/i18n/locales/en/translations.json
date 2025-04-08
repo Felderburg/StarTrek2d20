@@ -2878,6 +2878,7 @@
 
     "Talent.expandedMunitions.description2e": "The ship may add one weapon to its profile: either an energy weapon (choose an energy type and a delivery mechanism) or a torpedo type. This talent is often taken by Starfleet vessels to add Quantum Torpedoes to a ship’s arsenal.\n\nThis talent may be taken multiple times, adding a different weapon each time.",
 
+    "Talent.expandedProgram": "Expanded Program",
     "Talent.expansiveDepartment": "Expansive Department",
 
     "Talent.expansiveDepartment.description2e": "When you select this talent, select a single department on the ship with a score of 5. Whenever a ship assists a task roll using the chosen department, you may ignore a complication by spending 1 Momentum (Immediate, Repeatable).",
@@ -3756,6 +3757,7 @@
 
     "Talent.theEndsJustifyTheMeans.description2e": "When you spend Determination because of a Directive, you may select two of the benefits for spending Determination, rather than one.",
 
+    "Talent.theLongViewElAurian": "The Long View",
     "Talent.theUshaan": "The Ushaan",
 
     "Talent.theUshaan.description": "You are experienced in the tradition of honor-dueling known as the Ushaan, having spilt much blood upon the ice. When you make a melee Attack, or are targeted by a melee Attack, and buy one or more d20s by adding to Threat, you may re-roll the dice pool for the Task. Further, you own an Ushaan-tor, a razor-sharp ice-miner’s tool used in these duels.",
@@ -3859,6 +3861,7 @@
 
     "Talent.whipLikeTailSpecialRuleCreature.description2e": "The creature can attack with a whip-like tail.",
 
+    "Talent.wisdomOfYears": "Wisdom of Years",
     "Talent.wormholeRelaySystem": "Wormhole Relay System",
 
     "Talent.wormholeRelaySystem.description2e": "The ship has an additional sensor system outfitted with high-energy transceivers, verteron sensors, and neutrino sensors. These sensors, combined with field-generation devices, allow the ship to send and receive data streams through wormholes. The Difficulty of all Science tasks to send or receive data through a wormhole is reduced by 2, to a minimum of 0.",
