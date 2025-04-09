@@ -124,7 +124,9 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
             <div>
                 <Header level={2}>{t('Construct.other.talent')}</Header>
                 {character.version > 1 ? <TalentSettingsView /> : undefined}
-                <SingleTalentSelectionList talents={talents} onSelection={(talent) => { onTalentSelected(talent) } } construct={character}/>
+                <SingleTalentSelectionList talents={talents}
+                    initialSelection={character.upbringingStep?.talent}
+                    onSelection={(talent) => { onTalentSelected(talent) } } construct={character}/>
             </div>
             <div className="text-end">
                 <Button className="mt-4" onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>

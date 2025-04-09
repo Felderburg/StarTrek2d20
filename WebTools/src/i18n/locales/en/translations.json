@@ -2592,6 +2592,11 @@
 
     "Talent.bolster.description2e": "When you succeed at any task using your Command during an action scene, you may spend Momentum to recover Stress suffered by your allies. When you spend 1 Momentum (Repeatable), one ally who can see and hear you recovers 1 Stress. You may affect multiple allies, but each ally affected may only recover 1 Stress in this way each time this talent is used.",
 
+    "Talent.borgImplants": "Borg Implants",
+
+    "Talent.borgImplants.description": "A Liberated Borg character must select this Talent during character creation. When this Talent is chosen, pick one, two, or three Borg Implants. The character gains the benefits of those implants, but the Difficulty of Medicine Tasks performed on them increases by the number of implants they have. The character also increases the Complication range of all social interaction Tasks by the number of implants they have. An ordinary milestone may be used to remove one implant at a time, not the whole Talent; once all implants have been removed, this Talent can be swapped for another.",
+    "Talent.borgImplants.error": "The selected talent requires you to select at least one implant.",
+
     "Talent.callOutTargets": "Call Out Targets",
 
     "Talent.callOutTargets.description2e": "When you Assist a character in an Attack, the assisted character generates 2 bonus Momentum if their Attack succeeds. Bonus Momentum cannot be saved.",

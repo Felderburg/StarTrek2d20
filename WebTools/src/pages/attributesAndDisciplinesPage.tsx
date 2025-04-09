@@ -58,8 +58,6 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
             Dialog.show(t('SoloFinishingTouchesPage.errorTalent'));
         } else if (isTalentSelectionNeeded() && determineSelectedTalentExtraErrors(character.finishingStep.talent) != null) {
             Dialog.show(determineSelectedTalentExtraErrors(character.finishingStep.talent));
-        } else if (character.hasTalent(TALENT_NAME_BORG_IMPLANTS)) {
-            Navigation.navigateToPage(PageIdentity.ExtraTalentDetails);
         } else {
             Navigation.navigateToPage(PageIdentity.Finish);
         }

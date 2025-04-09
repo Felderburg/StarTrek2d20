@@ -99,12 +99,11 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
             talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character));
         }
 
-        let initial = character.speciesStep?.talent ? TalentsHelper.getTalent(character.speciesStep?.talent?.talent) : undefined;
         if (talents.length > 0 && isTalentSelectionRequired()) {
             return (<div>
                 <Header level={2}>{t('Construct.other.talents')}</Header>
                 <SingleTalentSelectionList talents={talents} construct={character}
-                    initialSelection={initial}
+                    initialSelection={character.speciesStep?.talent}
                     onSelection={talent => onTalentSelected(talent)} />
             </div>);
         } else {
@@ -115,8 +114,6 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     const renderVersion1TalentsSection = () => {
         let talents = [];
         talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character));
-
-        let initial = character.speciesStep?.talent ? TalentsHelper.getTalent(character.speciesStep?.talent?.talent) : undefined;
 
         const esotericTalentOption = (hasSource(Source.PlayersGuide)) ? (<div>
                 <CheckBox
@@ -134,7 +131,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
                 </div>
                 {esotericTalentOption}
                 <SingleTalentSelectionList talents={talents} construct={character}
-                    initialSelection={initial}
+                    initialSelection={character.speciesStep?.talent}
                     onSelection={talent => onTalentSelected(talent)} />
             </div>);
         } else {

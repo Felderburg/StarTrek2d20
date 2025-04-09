@@ -11,6 +11,8 @@ import { FocusSelectionView } from './focusSelectionView';
 import { Character } from '../common/character';
 import ValueInput from './valueInputWithRandomOption';
 import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { BorgImplants, BorgImplantType } from '../helpers/borgImplant';
+import { CheckBox } from './checkBox';
 
 interface ISelectedTalentDescriptionProperties {
     version: number;
@@ -26,6 +28,11 @@ interface ITalentAdditionalFocusAndValueSelectionProperties {
     character: Character;
     onFocusSelection: (selection: string|undefined) => void;
     onValueSelection: (selection: string|undefined) => void;
+}
+
+interface ISelectedTalentBorgImplantProperties {
+    character: Character;
+    onSelection: (selection: BorgImplantType[]) => void;
 }
 
 
@@ -115,6 +122,51 @@ export const WisdomOfYearsSelectionView: React.FC<ITalentAdditionalFocusAndValue
         </div>
     );
 }
+
+export const BorgImplantsSelectionView: React.FC<ISelectedTalentBorgImplantProperties> = ({character, onSelection}) => {
+    const { t } = useTranslation();
+    const [ implantSelections, setImplantSelections ] = useState<BorgImplantType[]>([]);
+
+    const implants = BorgImplants.instance.implants.map(implant => {
+        return (
+            <tr key={'implant-' + implant.type}>
+                <td>
+                    <CheckBox
+                        isChecked={implantSelections.includes(implant.type)}
+                        onChanged={(val) => {
+                            let temp = [...implantSelections];
+                            if (temp.includes(implant.type)) {
+                                temp.splice(temp.indexOf(implant.type), 1);
+                            } else {
+                                temp.push(implant.type);
+                            }
+                            if (temp.length > 3) {
+                                temp.splice(0, temp.length-3);
+                            }
+                            onSelection(temp);
+                            setImplantSelections(temp);
+                        }}
+                        value={implant.name} />
+                </td>
+                <td>
+                    <div className="selection-header-small"><strong>{implant.name}</strong></div>
+                    <div>{replaceDiceWithArrowhead(implant.description)}</div></td>
+            </tr>
+        );
+    });
+
+    return (
+        <div>
+            <Header level={2} className="my-4">Borg Implants</Header>
+            <table className="selection-list">
+                <tbody>
+                    {implants}
+                </tbody>
+            </table>
+        </div>
+    )
+}
+
 
 export const ExpandedProgramSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character}) => {
 
