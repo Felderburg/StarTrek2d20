@@ -12,10 +12,11 @@ import { Character } from '../common/character';
 import { Department } from '../helpers/department';
 import ValueInput from './valueInputWithRandomOption';
 import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { Construct } from '../common/construct';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
-    construct: Character;
+    construct: Construct;
     initialSelection?: ITalent;
     onSelection: (talent?: SelectedTalent) => void;
 }
@@ -74,7 +75,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             setSelection(temp);
                             onSelection(temp);
                         }}
-                        character={construct}
+                        character={construct as Character}
                     />
                     <ValueInput
                         value={selection.value ?? ""}
@@ -87,7 +88,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             onSelection(temp);
                         }}
                         onRandomClicked={() => {
-                            let value = ValueRandomTable(construct.speciesStep?.species, construct.educationStep?.primaryDiscipline);
+                            let value = ValueRandomTable((construct as Character).speciesStep?.species, (construct as Character).educationStep?.primaryDiscipline);
                             let temp = selection?.copy();
                             if (temp) {
                                 temp.value = value;
@@ -120,7 +121,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             setSelection(temp);
                             onSelection(temp);
                         }}
-                        character={construct}
+                        character={construct as Character}
                     />
                     <FocusSelectionView
                         label={t('Construct.other.focus2')}
@@ -140,7 +141,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             onSelection(temp);
                         }}
                         suggestions="Holonovel writing, Opera, Holo-photography, or anything else"
-                        character={construct}
+                        character={construct as Character}
                     />
                 </div>
             </div>
@@ -211,7 +212,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                         <div className="row">
                             <div className="col-12 col-md-6">
                                 <FocusSelectionView
-                                    character={construct}
+                                    character={construct as Character}
                                     addFocus={(f) => {
                                         let temp = selection?.copy();
                                         if (temp) {

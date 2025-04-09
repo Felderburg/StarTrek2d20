@@ -13,6 +13,7 @@ import { randomStarshipEvent } from "./randomStarshipEvent";
 import { RandomStarshipCharacterType } from "./randomStarshipCharacterTypes";
 import { ServiceRecord, ServiceRecordList } from "./serviceRecord";
 import { StarshipRandomNameTable } from "./starshipNameTable";
+import { SelectedTalent } from "../../common/selectedTalent";
 
 export interface IStarshipConfiguration {
     era: Era;
@@ -68,7 +69,8 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
         const missionProfileTalents = result.missionProfileStep?.type?.talents?.filter(
             t => result.spaceframeModel == null || result.spaceframeModel.talents.map(t => t.name).indexOf(t.name) < 0);
         if (missionProfileTalents?.length) {
-            result.missionProfileStep.talent = missionProfileTalents[Math.floor(Math.random() * missionProfileTalents.length)];
+            let talent = missionProfileTalents[Math.floor(Math.random() * missionProfileTalents.length)];
+            result.missionProfileStep.talent = new SelectedTalent(talent.name);
         }
     }
 

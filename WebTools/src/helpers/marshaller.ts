@@ -702,7 +702,7 @@ class Marshaller {
                 temp["system"] = System[starship.missionProfileStep.system];
             }
             if (starship.missionProfileStep?.talent) {
-                temp['talent'] = { "name": starship.missionProfileStep.talent.name }
+                temp['talent'] = this.talentToJson(starship.missionProfileStep.talent)
             }
             sheet['missionProfile'] = temp;
         }
@@ -901,7 +901,7 @@ class Marshaller {
             }
 
             if (json.missionProfile.talent) {
-                let talent = TalentsHelper.getTalent(json.missionProfile.talent.name);
+                let talent = this.hydrateTalent(json.missionProfile.talent);
                 if (talent) {
                     result.missionProfileStep.talent = talent;
                 }

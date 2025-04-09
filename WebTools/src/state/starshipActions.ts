@@ -1,4 +1,5 @@
 import { CharacterType } from "../common/characterType";
+import { SelectedTalent } from "../common/selectedTalent";
 import { ShipBuildType, ShipTalentDetailSelection, SimpleStats, Starship } from "../common/starship";
 import { Department } from "../helpers/department";
 import { Era } from "../helpers/eras";
@@ -140,7 +141,7 @@ export function setStarshipMissionProfile(missionProfile: MissionProfileModel, s
     }
 }
 
-export function setStarshipMissionProfileTalent(talent: TalentModel) {
+export function setStarshipMissionProfileTalent(talent: SelectedTalent) {
     let payload = { talent: talent };
     return {
        type: SET_STARSHIP_MISSION_PROFILE_TALENT,

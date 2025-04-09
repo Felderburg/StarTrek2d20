@@ -14,6 +14,7 @@ import { Era } from "../helpers/eras";
 import { IWeaponDiceProvider } from "./iWeaponDiceProvider";
 import { ServiceRecord, ServiceRecordModel } from "../starship/model/serviceRecord";
 import { DepartmentsHelper } from "../helpers/department";
+import { SelectedTalent } from "./selectedTalent";
 
 export class SimpleStats {
     departments: number[];
@@ -56,7 +57,7 @@ export const refitCalculator = (starship: Starship) => {
 export class MissionProfileStep {
     readonly type: MissionProfileModel;
     system: System;
-    talent?: TalentModel;
+    talent?: SelectedTalent;
 
     constructor(type: MissionProfileModel) {
         this.type = type;
@@ -65,7 +66,7 @@ export class MissionProfileStep {
     copy() {
         let result = new MissionProfileStep(this.type);
         result.system = this.system;
-        result.talent = this.talent;
+        result.talent = this.talent?.copy();
         return result;
     }
 }
@@ -417,7 +418,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         }
 
         if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
-            talents.push(this.missionProfileStep?.talent.name);
+            talents.push(this.missionProfileStep?.talent.talent);
         }
         this.additionalTalents.forEach(t => {
             talents.push(t.name);
@@ -433,7 +434,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     getNonSpaceframeTalentSelectionList() {
         let talents: Map<string, TalentSelection> = new Map();
         if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
-            this.addTalent(new TalentSelection(TalentsHelper.getTalent(this.missionProfileStep?.talent?.name)), talents);
+            this.addTalent(new TalentSelection(TalentsHelper.getTalent(this.missionProfileStep?.talent?.talent)), talents);
         }
 
         this.additionalTalents.forEach(t => {
@@ -459,7 +460,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         }
 
         if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
-            this.addTalent(new TalentSelection(TalentsHelper.getTalent(this.missionProfileStep?.talent.name)), talents);
+            this.addTalent(new TalentSelection(TalentsHelper.getTalent(this.missionProfileStep?.talent.talent)), talents);
         }
 
         if (this.serviceRecordStep?.specialRule) {

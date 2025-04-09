@@ -5,7 +5,7 @@ import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import { TalentsHelper, TalentViewModel, ToViewModel } from "../../helpers/talents";
+import { TalentViewModel, ToViewModel } from "../../helpers/talents";
 import { nextStarshipWorkflowStep, setStarshipMissionProfile, setStarshipMissionProfileTalent } from "../../state/starshipActions";
 import store from "../../state/store";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
@@ -18,8 +18,8 @@ import { Department } from "../../helpers/department";
 import { AttributeView } from "../../components/attribute";
 import { allSystems, System } from "../../helpers/systems";
 import { CheckBox } from "../../components/checkBox";
-import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { SelectedTalent } from "../../common/selectedTalent";
+import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
 
 interface IMissionProfileTalentSelectionPageProperties {
     starship: Starship;
@@ -31,8 +31,7 @@ const MissionProfileTalentSelectionPage: React.FC<IMissionProfileTalentSelection
 
     const saveTalent = (talent: SelectedTalent) => {
         if (talent) {
-            let talentModel = TalentsHelper.getTalent(talent.talent);
-            store.dispatch(setStarshipMissionProfileTalent(talentModel));
+            store.dispatch(setStarshipMissionProfileTalent(talent));
         } else {
             store.dispatch(setStarshipMissionProfileTalent(undefined));
         }
@@ -131,9 +130,9 @@ const MissionProfileTalentSelectionPage: React.FC<IMissionProfileTalentSelection
         </>)}
 
         <ReactMarkdown>{t('MissionProfileTalentSelection.instruction')}</ReactMarkdown>
-        <SimpleTalentSelectionList
+        <SingleTalentSelectionList
             talents={getTalents()}
-            initialSelection={starship.missionProfileStep?.talent?.name}
+            initialSelection={starship.missionProfileStep?.talent?.talentModel}
             construct={starship}
             onSelection={(talent) => saveTalent(talent)} />
         <div className="text-end mt-4">

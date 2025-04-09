@@ -51,7 +51,7 @@ class AddWeaponView extends React.Component<IAddWeaponViewProperties, IAddWeapon
     }
 
     getEnergyLoadTypes() {
-        if (this.props.serviceYear) {
+        if (this.props.serviceYear && this.props.version === 1) {
             return EnergyLoadTypeModel.allTypesByYear(this.props.serviceYear, this.props.version);
         } else {
             return EnergyLoadTypeModel.allTypes(this.props.version);
@@ -59,7 +59,7 @@ class AddWeaponView extends React.Component<IAddWeaponViewProperties, IAddWeapon
     }
 
     getTorpedoLoadTypes() {
-        if (this.props.serviceYear) {
+        if (this.props.serviceYear && this.props.version === 1) {
             return TorpedoLoadTypeModel.allTypesByYear(this.props.serviceYear, this.props.version);
         } else {
             return TorpedoLoadTypeModel.allTypes(this.props.version);
@@ -67,7 +67,7 @@ class AddWeaponView extends React.Component<IAddWeaponViewProperties, IAddWeapon
     }
 
     getMineTypes() {
-        if (this.props.serviceYear) {
+        if (this.props.serviceYear && this.props.version === 1) {
             return MineTypeModel.allTypesByYear(this.props.serviceYear);
         } else {
             return MineTypeModel.allTypes();
@@ -84,7 +84,7 @@ class AddWeaponView extends React.Component<IAddWeaponViewProperties, IAddWeapon
     }
 
     getDeliverySystems() {
-        if (this.props.serviceYear) {
+        if (this.props.serviceYear && this.props.version === 1) {
             return DeliverySystemModel.allTypesByYear(this.props.serviceYear);
         } else {
             return DeliverySystemModel.allTypes();
