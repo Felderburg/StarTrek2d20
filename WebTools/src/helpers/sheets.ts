@@ -8,7 +8,6 @@ import { CharacterSerializer } from '../common/characterSerializer';
 import { Era } from './eras';
 import { System } from './systems';
 import { Weapon } from './weapons';
-import { TalentsHelper } from './talents';
 import { CareerEventsHelper } from './careerEvents';
 import { Construct, Stereotype } from '../common/construct';
 import { Starship } from '../common/starship';

@@ -61,7 +61,7 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({const
             </div>);
         } else if (vttType === VttType.Foundry) {
             return (<div className="mt-4">
-                <p>Do you use the Foundry STA Compendia?</p>
+                <p>Which version of the Star Trek Adventures Game System do you use?</p>
                 <DropDownSelect defaultValue={foundryPluginType}
                     items={getFoundryPluginOptions()}
                     onChange={(val) => {

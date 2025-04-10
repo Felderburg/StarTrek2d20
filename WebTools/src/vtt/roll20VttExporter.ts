@@ -12,6 +12,8 @@ import { TalentsHelper } from "../helpers/talents";
 import { Weapon, WeaponRange, WeaponType, WeaponTypeModel } from "../helpers/weapons";
 import { System, allSystems } from "../helpers/systems";
 import { makeKey } from "../common/translationKey";
+import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
+import { SelectedTalent } from "../common/selectedTalent";
 
 interface IRoll20Attribute {
     name: string,
@@ -511,9 +513,15 @@ export class Roll20VttExporter {
             Array.prototype.push.apply(result.character.attribs, this.convertEquipment(character, implant, id));
         });
 
-        character.getDistinctTalentNameList().forEach(t =>
-            Array.prototype.push.apply(result.character.attribs, this.convertTalent(character, t, id))
-        );
+        let handledTalents = [];
+        character.talents.forEach(t => {
+            if (!handledTalents.includes(t.talent)) {
+                result.character.attribs.push(...this.convertTalent(character, t, id));
+            }
+            if (!isMultiSelectionTalent(t.talentModel)) {
+                handledTalents.push(t.talent);
+            }
+        });
 
         let traits = [...character.baseTraits];
         character.additionalTraits.split(",").map(t => t.trim()).filter(t => t?.length).forEach(t => traits.push(t));
@@ -856,16 +864,18 @@ export class Roll20VttExporter {
     }
 
 
-    convertTalent(character: Character, talentName: string, id: IdHelper) {
+    convertTalent(character: Character, selectedTalent: SelectedTalent, id: IdHelper) {
         const rowId = id.nextId();
 
-        let talent = TalentsHelper.getTalent(talentName);
+        let talent = selectedTalent.talentModel;
         let category = talent.category;
         if (category === "") {
             category = "General";
         }
 
-        let name = talent.maxRank > 1 ? (talent.localizedDisplayName + character.getRankForTalent(talentName)) : talent.localizedDisplayName;
+        let name = talent.maxRank > 1
+            ? (selectedTalent.displayName + " [x" + character.getRankForTalent(selectedTalent.talent)) + "]"
+            : selectedTalent.displayName;
 
         return [{
             "name": "repeating_talents_" + rowId + "_talent_name",

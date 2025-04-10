@@ -6,7 +6,6 @@ import { Character } from "../common/character";
 import { SimpleColor } from "../common/colour";
 import i18next from "i18next";
 import { CharacterSerializer } from "../common/characterSerializer";
-import { TalentsHelper } from "../helpers/talents";
 import { Column } from "./column";
 import { Construct } from "../common/construct";
 import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
