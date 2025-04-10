@@ -9,6 +9,7 @@ import { CharacterSerializer } from "../common/characterSerializer";
 import { TalentsHelper } from "../helpers/talents";
 import { Column } from "./column";
 import { Construct } from "../common/construct";
+import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
 
 export class GeneratedTngPortraitA4CharacterSheet extends BaseTNGGeneratedCharacterSheet {
 
@@ -192,15 +193,22 @@ export class GeneratedTngPortraitA4CharacterSheet extends BaseTNGGeneratedCharac
 
     fillTalents(form: PDFForm, character: Character) {
         let i = 1;
-        for (var t of character.getDistinctTalentNameList()) {
-            let talent = TalentsHelper.getTalent(t);
-            if (talent && talent.maxRank > 1) {
-                this.fillField(form, 'Talent ' + i, talent.localizedDisplayName + " [Rank " + character.getRankForTalent(t) + "]");
+        let handledTalents = [];
+        character.talents.forEach(t => {
+            let talent = t.talentModel;
+            if (handledTalents.includes(talent.name)) {
+                // skip it
+            } else if (talent && talent.maxRank > 1) {
+                this.fillField(form, 'Talent ' + i, talent.localizedDisplayName + " [Rank " + character.getRankForTalent(t.talent) + "]");
             } else {
-                this.fillField(form, 'Talent ' + i, talent.localizedDisplayName);
+                this.fillField(form, 'Talent ' + i, t.displayName);
             }
+            if (!isMultiSelectionTalent(talent)) {
+                handledTalents.push(talent.name);
+            }
+
             i++;
-        }
+        })
     }
 
     fillName(form: PDFForm, character: Character) {

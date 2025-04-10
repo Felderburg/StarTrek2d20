@@ -7,7 +7,7 @@ import { RanksHelper, Rank } from "../../helpers/ranks";
 import { Department, DepartmentsHelper } from "../../helpers/department";
 import { Species } from "../../helpers/speciesEnum";
 import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
-import { TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
 import { NameGenerator } from "../nameGenerator";
 import { NpcType, NpcTypes } from "./npcType";
 import { SpecializationModel, Specializations, Specialty, Value } from "./specializations";
@@ -714,6 +714,12 @@ export class NpcGenerator {
                         let selectedTalent = new SelectedTalent(talent.name);
                         if (talent.name === TALENT_NAME_WARRIORS_SPIRIT) {
                             selectedTalent.selection = D20.roll() <= 10 ? SpecialWeapon.BatLeth : SpecialWeapon.MekLeth;
+                        } else if (talent.name === TALENT_NAME_AUGMENTED_ABILITY) {
+                            let attributes = AttributesHelper.getAllAttributes();
+                            if (D20.roll() <= 15 && specialization.primaryAttributes?.length > 0) {
+                                attributes = specialization.primaryAttributes;
+                            }
+                            selectedTalent.attribute = attributes[Math.floor(Math.random() * attributes.length)];
                         }
                         if (!character.hasTalent(talent.name) || talent.hasRank) {
                             character.addTalent(selectedTalent);

@@ -18,6 +18,8 @@ import { CharacterTypeModel } from "../common/characterType";
 import { TracksHelper } from "../helpers/tracks";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { markupToHtml } from "./markupToHtml";
+import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
+import { FoundryPluginType } from "./foundryPluginType";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";
@@ -33,7 +35,7 @@ export class FoundryVttExporter {
         return FoundryVttExporter._instance;
     }
 
-    exportStarship(starship: Starship) {
+    exportStarship(starship: Starship, type: FoundryPluginType) {
         let now = Date.now();
 
         let result = {
@@ -282,7 +284,7 @@ export class FoundryVttExporter {
     }
 
 
-    exportCharacter(character: Character) {
+    exportCharacter(character: Character, type: FoundryPluginType) {
         let now = Date.now();
         let result = {
             "name": character.name || "Unnamed Character",
@@ -496,12 +498,13 @@ export class FoundryVttExporter {
             }
         }
 
-        let talentNames = character.getDistinctTalentNameList();
-        talentNames.forEach(n => {
-            let talent = TalentsHelper.getTalent(n);
-            if (talent) {
+        let talents = character.talents;
+        let handledTalents = [];
+        talents.forEach(s => {
+            let talent = s.talentModel;
+            if (talent && !handledTalents.includes(talent.name)) {
                 result.items.push({
-                    "name": talent.localizedDisplayName + (talent.maxRank > 1 ? " [x" + character.getRankForTalent(talent.name) + "]" : ""),
+                    "name": s.displayName + (talent.maxRank > 1 ? " [x" + character.getRankForTalent(talent.name) + "]" : ""),
                     "type": "talent",
                     "img": this.determineTalentIcon(talent),
                     "system": {
@@ -531,6 +534,9 @@ export class FoundryVttExporter {
                 });
             }
 
+            if (!isMultiSelectionTalent(talent)) {
+                handledTalents.push(talent.name);
+            }
         });
 
         if (character.speciesStep?.ability) {
@@ -569,7 +575,9 @@ export class FoundryVttExporter {
         character.determineWeapons().forEach(w => {
             result.items.push({
                 "name": w.description,
-                "type": character.version === 1 ? "characterweapon" : "characterweapon2e",
+                "type": (character.version === 1 || type === FoundryPluginType.ELH)
+                    ? "characterweapon"
+                    : "characterweapon2e",
                 "img": this.determineWeaponIcon(w, character),
                 "effects": [],
                 "folder": null,

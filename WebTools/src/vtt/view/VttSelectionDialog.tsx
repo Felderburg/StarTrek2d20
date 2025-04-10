@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Character } from "../../common/character";
 import { Construct } from "../../common/construct";
 import { Starship } from "../../common/starship";
@@ -9,6 +9,7 @@ import { FoundryVttExporter } from "../foundryVttExporter";
 import { VttType, VttTypes } from "../vttType";
 import { FantasyGroupsVttExporter } from "../fantasyGroundsVttExport";
 import { Roll20VttExporter } from "../roll20VttExporter";
+import { FoundryPluginType } from "../foundryPluginType";
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -16,15 +17,17 @@ interface IVttSelectionModalProperties {
     construct: Construct;
 }
 
-interface IVttSelectionModalState {
-    vttType: VttType
+interface IVttSelectionState {
+    vttType: VttType,
+    foundryPluginType?: FoundryPluginType
 }
 
-class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IVttSelectionModalState> {
+export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({construct}) => {
 
-    constructor(props) {
-        super(props);
+    const [ vttType, setVttType ] = useState<VttType>(VttType.Foundry);
+    const [ foundryPluginType, setFoundryPluginType ] = useState<FoundryPluginType>(FoundryPluginType.Standard);
 
+    useEffect(() => {
         let dataJson = window.localStorage.getItem("settings.vttOptions");
         let data = {};
         try {
@@ -32,123 +35,149 @@ class VttSelectionModal extends React.Component<IVttSelectionModalProperties, IV
         } catch (e) {
             // ignore
         }
-        this.state = {
-            vttType: VttTypes.instance.getTypeByTypeName(data["vttType"])?.type ?? VttType.Foundry
+
+        let type = VttTypes.instance.getTypeByTypeName(data["vttType"])?.type;
+        if (type != null) {
+            setVttType(type);
         }
+        let pluginType = data["foundryPluginType"] ?? FoundryPluginType.Standard;
+        setFoundryPluginType(pluginType);
+    }, [])
+
+    const getFoundryPluginOptions = () =>  {
+        return [
+            new DropDownElement(FoundryPluginType.Standard, "Star Trek Adventure 2d20 1e&2e plugin"),
+            new DropDownElement(FoundryPluginType.ELH, "ELH's STA 2e plugin")
+        ];
     }
 
-    render() {
-        return (
-            <div>
-                <p>Select the Virtual Table Top implementation that you use.</p>
-                <p>Don't see the one you like? With luck, more will be added over time.</p>
-
-                <DropDownSelect defaultValue={this.state.vttType}
-                    items={VttTypes.instance.getTypes().map(t => new DropDownElement(t.type, t.name))}
-                    onChange={(t) => this.selectVttType(t as number)} />
-
-                {this.renderVttSpecificSettings()}
-
-                <div className="mt-5 text-center">
-                    <Button size="sm" onClick={() => this.export() }
-                        disabled={this.state.vttType === VttType.FantasyGrounds && !(this.props.construct instanceof Character)} >Export</Button>
-                </div>
-            </div>
-        );
-    }
-
-    renderVttSpecificSettings() {
-        if (this.state.vttType === VttType.Roll20) {
+    const renderVttSpecificSettings = () => {
+        if (vttType === VttType.Roll20) {
             return (<div className="mt-4">
                 <p>Roll20 doesn't have a standard way to import characters into STA games. This
                     exporter was designed to work with a browser plugin called the {' '}
                     <a href="https://justas-d.github.io/roll20-enhancement-suite/index.html"  target="_blank" rel="noreferrer">VTT Enhancement Suite</a>.
                 </p>
             </div>);
+        } else if (vttType === VttType.Foundry) {
+            return (<div className="mt-4">
+                <p>Do you use the Foundry STA Compendia?</p>
+                <DropDownSelect defaultValue={foundryPluginType}
+                    items={getFoundryPluginOptions()}
+                    onChange={(val) => {
+                        setFoundryPluginType(val as FoundryPluginType);
+                        selectVttType(vttType, val as FoundryPluginType);
+                    }} />
+            </div>)
         } else {
             return undefined;
         }
     }
 
-    selectVttType(t: VttType) {
-        this.setState((state) => {
-            let newState = {
-                ...state,
-                vttType: t
-            };
-            this.persistVtt(newState);
-            return newState;
-        });
+    const selectVttType = (t: VttType, p?: FoundryPluginType) => {
+        if (p == null) {
+            p = foundryPluginType;
+        }
+        let newState = {
+            vttType: t,
+            foundryPluginType: p
+        };
+        persistVtt(newState);
+        if (vttType !== t) {
+            setVttType(t);
+        }
+        return newState;
     }
 
-    export() {
-        if (this.props.construct instanceof Character) {
-            if (this.state.vttType === VttType.Foundry) {
-                this.exportCharacterToFoundryVtt(this.props.construct as Character);
-            } else if (this.state.vttType === VttType.FantasyGrounds) {
-                this.exportCharacterToFantasyGrounds(this.props.construct as Character);
-            } else if (this.state.vttType === VttType.Roll20) {
-                this.exportCharacterToRoll20(this.props.construct as Character);
+    const exportConstruct = () => {
+        if (construct instanceof Character) {
+            if (vttType === VttType.Foundry) {
+                exportCharacterToFoundryVtt(construct as Character);
+            } else if (vttType === VttType.FantasyGrounds) {
+                exportCharacterToFantasyGrounds(construct as Character);
+            } else if (vttType === VttType.Roll20) {
+                exportCharacterToRoll20(construct as Character);
             }
         }
-        if (this.props.construct instanceof Starship) {
-            if (this.state.vttType === VttType.Foundry) {
-                this.exportStarshipToFoundryVtt(this.props.construct as Starship);
-            } else if (this.state.vttType === VttType.Roll20) {
-                this.exportStarshipToRoll20(this.props.construct as Starship);
+        if (construct instanceof Starship) {
+            if (vttType === VttType.Foundry) {
+                exportStarshipToFoundryVtt(construct as Starship);
+            } else if (vttType === VttType.Roll20) {
+                exportStarshipToRoll20(construct as Starship);
             }
         }
         VttSelectionDialog.instance.hide();
     }
 
-    exportCharacterToFoundryVtt(character: Character) {
-        const json = FoundryVttExporter.instance.exportCharacter(character);
+    const exportCharacterToFoundryVtt = (character: Character) => {
+        const json = FoundryVttExporter.instance.exportCharacter(character, foundryPluginType);
         const jsonBytes = new TextEncoder().encode(JSON.stringify(json, null, 4));
 
-        const escaped = this.sanitizeName(character.name, "sta-character");
+        const escaped = sanitizeName(character.name, "sta-character");
         download(jsonBytes, escaped + "-foundry-vtt.json", "application/json");
     }
 
-    exportCharacterToRoll20(character: Character) {
+    const exportCharacterToRoll20 = (character: Character) => {
         const json = Roll20VttExporter.instance.exportCharacter(character);
         const jsonBytes = new TextEncoder().encode(JSON.stringify(json, null, 4));
 
-        const escaped = this.sanitizeName(character.name, "sta-character");
+        const escaped = sanitizeName(character.name, "sta-character");
         download(jsonBytes, escaped + "-roll20-vtt.json", "application/json");
     }
 
-    exportStarshipToRoll20(starship: Starship) {
+    const exportStarshipToRoll20 = (starship: Starship) => {
         const json = Roll20VttExporter.instance.exportStarship(starship);
         const jsonBytes = new TextEncoder().encode(JSON.stringify(json, null, 4));
 
-        const escaped = this.sanitizeName(starship.name, "sta-starship");
+        const escaped = sanitizeName(starship.name, "sta-starship");
         download(jsonBytes, escaped + "-roll20-vtt.json", "application/json");
     }
 
-    exportCharacterToFantasyGrounds(character: Character) {
+    const exportCharacterToFantasyGrounds = (character: Character) => {
         const xml = FantasyGroupsVttExporter.instance.exportCharacter(character);
-        const escaped = this.sanitizeName(character.name, "sta-character");
+        const escaped = sanitizeName(character.name, "sta-character");
         download(new TextEncoder().encode(xml), escaped + "-fantasy-grounds.xml", "application/xml");
     }
 
-    exportStarshipToFoundryVtt(starship: Starship) {
-        const json = FoundryVttExporter.instance.exportStarship(starship);
+    const exportStarshipToFoundryVtt = (starship: Starship) => {
+        const json = FoundryVttExporter.instance.exportStarship(starship, foundryPluginType);
         const jsonBytes = new TextEncoder().encode(JSON.stringify(json, null, 4));
 
-        const escaped = this.sanitizeName(starship.name, "sta-starship");
+        const escaped = sanitizeName(starship.name, "sta-starship");
         download(jsonBytes, escaped + "-foundry-vtt.json", "application/json");
     }
 
-    sanitizeName(name: string, defaultName: string) {
+    const sanitizeName = (name: string, defaultName: string) => {
         return name?.replace(/\\/g, '_').replace(/\//g, '_').replace(/\s/g, '_') || defaultName;
     }
 
-    persistVtt(state: IVttSelectionModalState) {
+    const persistVtt = (state: IVttSelectionState) => {
         let data = {
             vttType: VttType[state.vttType]
         }
+        if (state.foundryPluginType != null) {
+            data["foundryPlugin"] = FoundryPluginType[state.foundryPluginType];
+        }
         window.localStorage.setItem("settings.vttOptions", JSON.stringify(data));
     }
+
+    return (
+        <div>
+            <p>Select the Virtual Table Top implementation that you use.</p>
+            <p>Don't see the one you like? With luck, more will be added over time.</p>
+
+            <DropDownSelect defaultValue={vttType}
+                items={VttTypes.instance.getTypes().map(t => new DropDownElement(t.type, t.name))}
+                onChange={(t) => selectVttType(t as number)} />
+
+            {renderVttSpecificSettings()}
+
+            <div className="mt-5 text-center">
+                <Button size="sm" onClick={() => exportConstruct() }
+                    disabled={vttType === VttType.FantasyGrounds && !(construct instanceof Character)} >Export</Button>
+            </div>
+        </div>
+    );
 }
 
 export class VttSelectionDialog {

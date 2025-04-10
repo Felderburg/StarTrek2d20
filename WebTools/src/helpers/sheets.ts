@@ -34,6 +34,7 @@ import { Landscape2eCharacterSheet } from '../exportpdf/landscape2eCharacterShee
 import { Standard2eStarshipSheet } from '../exportpdf/standard2eStarshipSheet';
 import { BasicGeneratedTentCardCharacterSheet } from '../exportpdf/generated2eTentCard';
 import { Landscape2eCreatureSheet } from '../exportpdf/landscape2eCreatureSheet';
+import { isMultiSelectionTalent } from './isMultiSelectionTalent';
 
 
 abstract class BasicSheet implements ICharacterSheet {
@@ -581,15 +582,22 @@ abstract class BasicFullCharacterSheet extends BasicShortCharacterSheet {
 
     fillTalents(form: PDFForm, character: Character) {
         let i = 1;
-        for (var t of character.getDistinctTalentNameList()) {
-            let talent = TalentsHelper.getTalent(t);
-            if (talent && talent.maxRank > 1) {
-                this.fillField(form, 'Talent ' + i, talent.localizedDisplayName + " [Rank " + character.getRankForTalent(t) + "]");
+        let handledTalents = [];
+        character.talents.forEach(t => {
+            let talent = t.talentModel;
+            if (handledTalents.includes(talent.name)) {
+                // skip it
+            } else if (talent && talent.maxRank > 1) {
+                this.fillField(form, 'Talent ' + i, talent.localizedDisplayName + " [Rank " + character.getRankForTalent(t.talent) + "]");
             } else {
-                this.fillField(form, 'Talent ' + i, talent.localizedDisplayName);
+                this.fillField(form, 'Talent ' + i, t.displayName);
             }
+            if (!isMultiSelectionTalent(talent)) {
+                handledTalents.push(talent.name);
+            }
+
             i++;
-        }
+        })
     }
 
     fillEquipment(form: PDFForm, character: Character) {

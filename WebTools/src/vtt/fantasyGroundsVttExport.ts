@@ -15,6 +15,7 @@ import { EarlyOutlook } from "../helpers/upbringings";
 import { Stereotype } from "../common/construct";
 import { NpcType } from "../npc/model/npcType";
 import { textTokenizer } from "../exportpdf/textTokenizer";
+import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
 
 export class FantasyGroupsVttExporter {
 
@@ -1818,16 +1819,15 @@ export class FantasyGroupsVttExporter {
             "elements": []
         }
 
-        let talentNames = [];
+        let handledTalents = [];
         character.talents.forEach(selectedTalent => {
-            if (talentNames.indexOf(selectedTalent.talent) < 0) {
-                talentNames.push(selectedTalent.talent);
-            }
-        });
+            let talent = selectedTalent.talentModel;
+            if (talent && !handledTalents.includes(talent.name)) {
 
-        talentNames.forEach(n => {
-            let talent = TalentsHelper.getTalent(n);
-            if (talent) {
+                let name = selectedTalent.displayName;
+                if (talent.maxRank > 1) {
+                    name += " [x" + character.getRankForTalent(talent.name) + "]";
+                }
 
                 result.elements.push({
                     "name": this.createNumberedId(index++),
@@ -1846,12 +1846,16 @@ export class FantasyGroupsVttExporter {
                             "elements": [
                                 {
                                     "type": "text",
-                                    "text": talent.localizedDisplayName
+                                    "text": name
                                 }
                             ]
                         },
                     ]
                 });
+            }
+
+            if (!isMultiSelectionTalent(talent)) {
+                handledTalents.push(talent.name);
             }
         });
         return result;
