@@ -31,6 +31,7 @@ import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { localizedFocus } from '../components/focusHelper';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
+import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 
 const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -166,13 +167,17 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
         return (<div>
                 <Header level={2}>{t('Construct.other.talent')}</Header>
                 <SingleTalentSelectionList talents={filterTalentList()}
+                    initialSelection={character.educationStep?.talent}
                     construct={character} onSelection={(talent) => { onTalentSelected(talent) } }/>
             </div>);
     }
 
     const filterTalentList = () => {
         return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-            t => !character.hasTalent(t.name) || (character.educationStep?.talent != null && t.name === character.educationStep?.talent?.talent) || t.rank > 1);
+            t => !character.hasTalent(t.name)
+                || (character.educationStep?.talent?.talent === t.name)
+                || t.rank > 1
+                || isMultiSelectionTalent(t));
     }
 
     const onTalentSelected = (talent?: SelectedTalent) => {

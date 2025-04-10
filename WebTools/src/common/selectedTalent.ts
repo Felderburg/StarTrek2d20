@@ -1,7 +1,9 @@
+import i18next from "i18next";
 import { Attribute } from "../helpers/attributes";
 import { BorgImplantType } from "../helpers/borgImplant";
-import { TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TalentsHelper } from "../helpers/talents";
 import { SpecialWeapon } from "./specialWeapon";
+import { makeKey } from "./translationKey";
 
 export class SelectedTalent {
 
@@ -49,6 +51,11 @@ export class SelectedTalent {
         if (this.additionalInformation != null) {
             name += " [" + this.additionalInformation + "]";
         }
+
+        if (this.talent === TALENT_NAME_AUGMENTED_ABILITY && this.attribute != null) {
+            name += " (" + i18next.t(makeKey("Construct.attribute.", Attribute[this.attribute])) + ")";
+        }
+
         return name;
     }
 }

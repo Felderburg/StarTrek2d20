@@ -46,6 +46,7 @@ export const TALENT_NAME_ABUNDANT_PERSONNEL = "Abundant Personnel";
 export const TALENT_NAME_WHIP_LIKE_TAIL = "Whip-like Tail (Special Rule, Creature)";
 export const TALENT_NAME_WEB = "Web (Special Rule, Creature)";
 export const TALENT_NAME_WARRIORS_SPIRIT = "Warrior’s Spirit";
+export const TALENT_NAME_AUGMENTED_ABILITY = "Augmented Ability";
 
 enum TalentCategory {
     General,
@@ -2957,38 +2958,8 @@ export class Talents {
                 1,
                 "General"),
             new TalentModel(
-                "Augmented Ability (Control)",
-                "You gain the Extraordinary Attribute 1 special rule for the Control Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
-                1,
-                "Enhancement"),
-            new TalentModel(
-                "Augmented Ability (Daring)",
-                "You gain the Extraordinary Attribute 1 special rule for the Daring Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
-                1,
-                "Enhancement"),
-            new TalentModel(
-                "Augmented Ability (Fitness)",
-                "You gain the Extraordinary Attribute 1 special rule for the Fitness Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
-                1,
-                "Enhancement"),
-            new TalentModel(
-                "Augmented Ability (Insight)",
-                "You gain the Extraordinary Attribute 1 special rule for the Insight Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
-                1,
-                "Enhancement"),
-            new TalentModel(
-                "Augmented Ability (Presence)",
-                "You gain the Extraordinary Attribute 1 special rule for the Presence Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
-                1,
-                "Enhancement"),
-            new TalentModel(
-                "Augmented Ability (Reason)",
-                "You gain the Extraordinary Attribute 1 special rule for the Reason Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task.",
+                TALENT_NAME_AUGMENTED_ABILITY,
+                "You gain the Augment Trait. Choose a single Attribute when this Talent is selected. You gain the Extraordinary Attribute 1 special rule for the chosen Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task. This Talent may be selected multiple times, once for each Attribute.",
                 [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
                 1,
                 "Enhancement"),
@@ -4974,9 +4945,9 @@ export class Talents {
         } else {
             let result = this._talents.filter(t => t.isPrerequisiteFulfilled(character)).map(t => {
                 if (character.hasTalent(t.name)) {
-                    let temp = character.talents[t.name];
-                    if (temp != null && temp.rank < t.maxRank) {
-                        return ToViewModel(t, temp.rank + 1, character.type, character.version);
+                    let tempRank = character.getRankForTalent(t.name);
+                    if (tempRank != null && tempRank < t.maxRank) {
+                        return ToViewModel(t, tempRank + 1, character.type, character.version);
                     } else {
                         return ToViewModel(t, 1, character.type, character.version);
                     }

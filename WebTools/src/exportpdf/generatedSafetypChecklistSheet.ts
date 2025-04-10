@@ -128,7 +128,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
             this.writeLine(page, paragraph.bottom.x, paragraph.bottom.y + 6, column.width);
 
             paragraphColumn = paragraph.nextColumn();
-            if (paragraphColumn.width != columnWidth) {
+            if (paragraphColumn.width !== columnWidth) {
                 paragraphColumn = new Column(paragraphColumn.start.x, paragraphColumn.start.y, paragraphColumn.height,
                     columnWidth, paragraphColumn.nextColumnHelper);
             }

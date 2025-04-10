@@ -464,11 +464,13 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
             let temp = state.currentCharacter.copy();
             let t = action.payload.talent;
             let talent = undefined;
+            console.log("t", t)
             if (t != null && t instanceof SelectedTalent) {
                 talent = (t as SelectedTalent).copy();
             } else if (t != null) {
                 talent = new SelectedTalent((t as ITalent).name);
             }
+            console.log("talent", talent)
             if (action.payload.context === StepContext.Species) {
                 temp.speciesStep.talent = talent;
             } else if (action.payload.context === StepContext.EarlyOutlook) {
@@ -481,7 +483,7 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                     temp.careerStep = new CareerStep();
                 }
                 temp.careerStep.talent = talent;
-                if (original?.talent?.talent === talent.talent) {
+                if (original?.talent?.talent === talent?.talent && talent != null) {
                     temp.careerStep.talent.attribute = original?.talent?.attribute;
                 }
             } else if (action.payload.context === StepContext.FinishingTouches) {

@@ -26,6 +26,7 @@ import TalentSettingsView from '../components/talentSettingsView';
 import { SelectedTalent } from '../common/selectedTalent';
 import { FocusSelectionView } from '../components/focusSelectionView';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
+import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 
 const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -65,7 +66,10 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
             return [ ToViewModel( TalentsHelper.getTalent(TALENT_NAME_BRAK_LUL), 1, character.type, character.version ) ];
         } else {
             return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-                t => !character.hasTalent(t.name) || (character.upbringingStep.talent != null && t.name === character.upbringingStep.talent.talent) || t.rank > 1);
+                t => !character.hasTalent(t.name)
+                    || (character.upbringingStep?.talent?.talent === t.name)
+                    || t.rank > 1
+                    || isMultiSelectionTalent(t));
         }
 
     }

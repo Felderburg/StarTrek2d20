@@ -2534,6 +2534,12 @@
 
     "Talent.attackRun.description2e": "Whenever you succeed at the Attack Pattern major action, enemy Attacks against you do not reduce in Difficulty due to that action.",
 
+    "Talent.augmentedAbility": "Augmented Ability",
+
+    "Talent.augmentedAbility.description": "You gain the Augment Trait. Choose a single Attribute when this Talent is selected. You gain the Extraordinary Attribute 1 special rule for the chosen Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task. This Talent may be selected multiple times, once for each Attribute.",
+    "Talent.augmentedAbility.description2e": "Choose a single attribute when this talent is selected. You gain the Extraordinary Attribute 1 special rule for the chosen attribute, granting one automatic success on all tasks using that attribute. When you use this ability, increase the complication range by 2 for that task. This talent may be selected multiple times, choosing a different attribute each time.",
+    "Talent.augmentedAbility.error": "The selected talent requires you to choose an attribute.",
+
     "Talent.automatedDefenses": "Automated Defenses",
 
     "Talent.automatedDefenses.soloDescription": "The ship’s weapons systems can automatically lock on to a target and fire even if the crew is incapacitated or unavailable.",

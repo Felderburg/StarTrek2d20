@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
@@ -14,6 +14,7 @@ import ValueInput from './valueInputWithRandomOption';
 import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { Construct } from '../common/construct';
 import { BorgImplants } from '../helpers/borgImplant';
+import { SimpleAttributeSelector } from './simpleAttributeSelector';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
@@ -56,6 +57,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
     }
 
     const selectTalent = (talent: TalentViewModel) => {
+        console.log("Talent ===> ", talent);
         if (selection?.talent === talent?.name) {
             setSelection(undefined);
             onSelection(undefined);
@@ -64,6 +66,38 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             setSelection(temp);
             onSelection(temp);
         }
+    }
+
+
+    const renderAugmentedAbilitySelection = () => {
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <SimpleAttributeSelector
+                        character={construct as Character}
+                        isChecked={a => selection.attribute === a}
+                        onSelectAttribute={a => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.attribute = a;
+                            }
+                            setSelection(temp);
+                            onSelection(temp);
+                        }}
+                        isUpdateable={a => {
+                            if (a === selection.attribute) {
+                                return true;
+                            } else {
+                                let attributes = (construct as Character).talents
+                                    .filter(t => t.talent === TALENT_NAME_AUGMENTED_ABILITY && t.attribute != null)
+                                    .map(t => t.attribute);
+                                return !attributes.includes(a);
+                            }
+                        }}
+                    />
+                </div>
+            </div>
+        )
     }
 
     const renderBorgImplantsSelection = () => {
@@ -263,7 +297,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             {selection?.talent === t.name && t.name === TALENT_NAME_VISIT_EVERY_STAR
                 ? (<tr>
                     <td></td>
-                    <td colSpan={2}>
+                    <td>
                         <div className="row">
                             <div className="col-12 col-md-6">
                                 <FocusSelectionView
@@ -285,6 +319,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             </div>
                         </div>
                     </td>
+                    <td></td>
                 </tr>)
                 : undefined
             }
@@ -299,20 +334,31 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             {selection?.talent === t.name && t.name === TALENT_NAME_WISDOM_OF_YEARS
                 ? (<tr>
                     <td></td>
-                    <td colSpan={2}>
+                    <td>
                         {renderWisdomOfYearsSelection()}
                     </td>
+                    <td></td>
                 </tr>)
                 : undefined}
             {selection?.talent === t.name && t.name === TALENT_NAME_BORG_IMPLANTS
                 ? (<tr>
                     <td></td>
-                    <td colSpan={2}>
+                    <td>
                         {renderBorgImplantsSelection()}
                     </td>
+                    <td></td>
                 </tr>)
                 : undefined}
-            </tbody>);
+            {selection?.talent === t.name && t.name === TALENT_NAME_AUGMENTED_ABILITY
+                ? (<tr>
+                    <td></td>
+                    <td>
+                        {renderAugmentedAbilitySelection()}
+                    </td>
+                    <td></td>
+                </tr>)
+                : undefined}
+        </tbody>);
     });
 
     return (

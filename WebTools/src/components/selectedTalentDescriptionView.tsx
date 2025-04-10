@@ -13,10 +13,18 @@ import ValueInput from './valueInputWithRandomOption';
 import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { BorgImplants, BorgImplantType } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';
+import { Attribute } from '../helpers/attributes';
+import { SimpleAttributeSelector } from './simpleAttributeSelector';
+import { TALENT_NAME_AUGMENTED_ABILITY } from '../helpers/talents';
 
 interface ISelectedTalentDescriptionProperties {
     version: number;
     talent: SelectedTalent;
+}
+
+interface ITalentAttributeSelectionProperties {
+    character: Character;
+    onAttributeSelection: (a: Attribute) => void;
 }
 
 interface ITalentAdditionalSelectionProperties {
@@ -123,8 +131,30 @@ export const WisdomOfYearsSelectionView: React.FC<ITalentAdditionalFocusAndValue
     );
 }
 
-export const BorgImplantsSelectionView: React.FC<ISelectedTalentBorgImplantProperties> = ({character, onSelection}) => {
+export const AugmentedAbilitySelectionView: React.FC<ITalentAttributeSelectionProperties> = ({onAttributeSelection, character}) => {
+
     const { t } = useTranslation();
+    const [ attributeSelection, setAttributeSelection ] = useState<Attribute|undefined>(undefined);
+
+    let selectedAttributes = character.talents.filter(t => t.talent === TALENT_NAME_AUGMENTED_ABILITY).map(t => t.attribute);
+
+    return (
+        <div>
+            <Header level={2} className="my-4">{t('Talent.augmentedAbility')}</Header>
+            <SimpleAttributeSelector
+                character={character}
+                isChecked={(a) => attributeSelection === a}
+                onSelectAttribute={(a) => {
+                    setAttributeSelection(a);
+                    onAttributeSelection(a);
+                }}
+                isUpdateable={(a) => !selectedAttributes.includes(a)}
+            />
+        </div>
+    );
+}
+
+export const BorgImplantsSelectionView: React.FC<ISelectedTalentBorgImplantProperties> = ({character, onSelection}) => {
     const [ implantSelections, setImplantSelections ] = useState<BorgImplantType[]>([]);
 
     const implants = BorgImplants.instance.implants.map(implant => {

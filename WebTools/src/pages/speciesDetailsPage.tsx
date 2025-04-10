@@ -26,6 +26,7 @@ import ReactMarkdown from 'react-markdown';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
+import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 
 interface ISpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -74,6 +75,14 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
             </div>);
     }
 
+    const filterTalentList = () => {
+        return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
+            t => !character.hasTalent(t.name)
+                || (character.speciesStep?.talent?.talent === t.name)
+                || t.rank > 1
+                || isMultiSelectionTalent(t));
+    }
+
     const renderTalentsSection = () => {
         if (character.version === 1) {
             return renderVersion1TalentsSection();
@@ -96,7 +105,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
         }
 
         if (talents.length === 0) {
-            talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character));
+            talents = filterTalentList();
         }
 
         if (talents.length > 0 && isTalentSelectionRequired()) {

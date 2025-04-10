@@ -2,7 +2,7 @@
 import {Character} from '../common/character';
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
-import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WISDOM_OF_YEARS, TalentsHelper } from '../helpers/talents';
+import { TalentsHelper } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import ValueInput from '../components/valueInputWithRandomOption';
@@ -22,6 +22,7 @@ import store from '../state/store';
 import { addCharacterTalent, setCharacterFinishingTouches, setCharacterValue, StepContext } from '../state/characterActions';
 import { isSecondEdition } from '../state/contextFunctions';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
+import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 
 const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character})  => {
 
@@ -40,7 +41,10 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
 
     const filterTalentList = () => {
         return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-            t => !character.hasTalent(t.name) || (character?.finishingStep?.talent != null && t.name === character?.finishingStep?.talent?.talent) || t.rank > 1);
+            t => !character.hasTalent(t.name)
+                || (character.finishingStep?.talent?.talent === t.name)
+                || t.rank > 1
+                || isMultiSelectionTalent(t));
     }
 
     const isTalentSelectionNeeded = () => {
@@ -83,6 +87,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
         ? (<div className="my-4">
             <Header level={2}>{t('Construct.other.talents')}</Header>
             <SingleTalentSelectionList talents={talents} construct={character}
+                initialSelection={character.finishingStep?.talent}
                 onSelection={talent => {
                     store.dispatch(addCharacterTalent(talent, StepContext.FinishingTouches));
                 } } />

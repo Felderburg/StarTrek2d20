@@ -22,12 +22,13 @@ export const SimpleAttributeSelector: React.FC<ISimpleAttributeSelectorPropertie
     return (<table className="selection-list">
         <tbody>
             {AttributesHelper.getAllAttributes().map((a, i) => {
+                const disabled = !isUpdateable(a, character);
                 return (<tr key={i}>
-                    <td className="selection-header-small">{t(makeKey("Construct.attribute.", Attribute[a]))}</td>
+                    <td className={"selection-header-small" + (disabled ? " text-grey" : "")}>{t(makeKey("Construct.attribute.", Attribute[a]))}</td>
                     <td className="d-flex align-items-center justify-content-end">
-                        <div className="me-2">{attributes[a]}</div>
+                        <div className={"me-2" + (disabled ? " text-grey" : "")}>{attributes[a]}</div>
                         <CheckBox text="" value={a} isChecked={isChecked(a)}
-                            disabled={!isUpdateable(a, character)}
+                            disabled={disabled}
                             onChanged={(val) => onSelectAttribute(a)}/>
                     </td>
                 </tr>);

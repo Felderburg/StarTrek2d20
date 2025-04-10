@@ -19,6 +19,7 @@ import { ICharacterProperties, characterMapStateToProperties } from '../solo/pag
 import { connect } from 'react-redux';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
+import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 
 const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) => {
 
@@ -88,7 +89,10 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
 
     const filterTalentList = () => {
         return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-            t => !character.hasTalent(t.name) || (character.careerStep?.talent != null && t.name === character.careerStep?.talent?.talent) || t.rank > 1);
+            t => !character.hasTalent(t.name)
+                || (character.careerStep?.talent?.talent === t.name)
+                || t.rank > 1
+                || isMultiSelectionTalent(t));
     }
 
     const onTalentSelected = (talent: SelectedTalent) => {

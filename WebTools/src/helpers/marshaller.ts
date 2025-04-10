@@ -19,7 +19,7 @@ import { SpaceframeHelper } from './spaceframes';
 import { SpeciesHelper } from './species';
 import { Species } from './speciesEnum';
 import { allSystems, System, systemByName } from './systems';
-import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { TalentSelection } from './talentSelection';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
@@ -1637,9 +1637,34 @@ class Marshaller {
     }
 
     hydrateTalent(t) {
-        let talent = TalentsHelper.getTalentViewModel(t.name);
+        let talentName = t.name;
+        if (talentName === "Augmented Ability (Control)" ||
+            talentName === "Augmented Ability (Daring)" ||
+            talentName === "Augmented Ability (Fitness)" ||
+            talentName === "Augmented Ability (Insight)" ||
+            talentName === "Augmented Ability (Presence)" ||
+            talentName === "Augmented Ability (Reason)") {
+
+            talentName = TALENT_NAME_AUGMENTED_ABILITY;
+        }
+        let talent = TalentsHelper.getTalentViewModel(talentName);
         if (talent) {
             let selectedTalent = new SelectedTalent(talent.name);
+
+            if (t.name === "Augmented Ability (Control)") {
+                selectedTalent.attribute = Attribute.Control;
+            } else if (t.name === "Augmented Ability (Daring)") {
+                selectedTalent.attribute = Attribute.Daring;
+            } else if (t.name === "Augmented Ability (Fitness)") {
+                selectedTalent.attribute = Attribute.Fitness;
+            } else if (t.name === "Augmented Ability (Insight)") {
+                selectedTalent.attribute = Attribute.Insight;
+            } else if (t.name === "Augmented Ability (Presence)") {
+                selectedTalent.attribute = Attribute.Presence;
+            } else if (t.name === "Augmented Ability (Reason)") {
+                selectedTalent.attribute = Attribute.Reason;
+            }
+
             if (t["focuses"]) {
                 selectedTalent.focuses = [...t["focuses"]];
             }

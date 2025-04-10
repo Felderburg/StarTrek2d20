@@ -26,7 +26,7 @@ import { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';
 import { SelectedTalent } from './selectedTalent';
 import { CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
-import { TALENT_NAME_WARRIORS_SPIRIT } from '../helpers/talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_WARRIORS_SPIRIT } from '../helpers/talents';
 import { SpecialWeapon } from './specialWeapon';
 
 export enum Division {
@@ -516,8 +516,15 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 if (step.removeValue != null) {
                     let index = -1;
                     result.forEach((t, i) => {
-                        if (t.talent === (step.removeValue as SelectedTalent).talent && index === -1) {
-                            index = i
+                        const removeTalent = step.removeValue as SelectedTalent;
+                        if (t.talent === TALENT_NAME_AUGMENTED_ABILITY) {
+                            if (t.talent === removeTalent.talent && t.attribute === removeTalent.attribute && index === -1) {
+                                index = i
+                            }
+                        } else {
+                            if (t.talent === removeTalent.talent && index === -1) {
+                                index = i
+                            }
                         }
                     });
                     if (index >= 0) {

@@ -1,7 +1,7 @@
 import { PDFPage } from "@cantoo/pdf-lib";
 import { FontLibrary, FontType } from "./fontLibrary";
 import { SimpleColor } from "../common/colour";
-import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
 import { RoleModel } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Column } from "./column";
@@ -20,7 +20,7 @@ export class ReadableTalentModel {
     rank: number;
     talent: TalentModel;
     implants: Implant[];
-    attribute: Attribute;
+    attributes: Attribute[];
     missionPod: MissionPodModel;
     x: number;
     selection: string|SpecialWeapon;
@@ -126,13 +126,14 @@ export class TalentWriter {
                                 paragraph.append(implant.description, new FontOptions(fontSize));
                             }
                         });
-                    } else if (talent.talent.name === TALENT_NAME_UNTAPPED_POTENTIAL && talent.attribute != null) {
+                    } else if (talent.talent.name === TALENT_NAME_UNTAPPED_POTENTIAL && talent.attributes?.length) {
                         paragraph = paragraph?.nextParagraph(0);
                         if (paragraph) {
                             paragraphs.push(paragraph);
                             paragraph.indent(indent + 10);
                             paragraph.append(i18next.t("Construct.other.attribute") + ": ", new FontOptions(fontSize, FontType.Bold));
-                            paragraph.append(i18next.t(makeKey("Construct.attribute.", Attribute[talent.attribute])), new FontOptions(fontSize));
+                            paragraph.append(talent.attributes.map(a =>
+                                i18next.t(makeKey("Construct.attribute.", Attribute[a]))).join(", "), new FontOptions(fontSize));
                         }
                     } else if (talent.talent.name === TALENT_NAME_MISSION_POD && talent.missionPod != null) {
                         paragraph = paragraph?.nextParagraph(0);
@@ -149,6 +150,15 @@ export class TalentWriter {
                             paragraph.indent(indent + 10);
                             paragraph.append(i18next.t("Construct.other.weapon") + ": ", new FontOptions(fontSize, FontType.Bold));
                             paragraph.append(i18next.t(makeKey('SpecialWeapon.', SpecialWeapon[talent.selection as SpecialWeapon])), new FontOptions(fontSize));
+                        }
+                    } else if (talent.talent.name === TALENT_NAME_AUGMENTED_ABILITY && talent.attributes?.length) {
+                        paragraph = paragraph?.nextParagraph(0);
+                        if (paragraph) {
+                            paragraphs.push(paragraph);
+                            paragraph.indent(indent + 10);
+                            paragraph.append(i18next.t("Construct.other.attribute") + ": ", new FontOptions(fontSize, FontType.Bold));
+                            paragraph.append(talent.attributes.map(a =>
+                                i18next.t(makeKey("Construct.attribute.", Attribute[a]))).join(", "), new FontOptions(fontSize));
                         }
                     }
 

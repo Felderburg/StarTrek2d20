@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigation } from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
-import { TalentsHelper, TalentViewModel } from '../helpers/talents';
+import { TalentsHelper } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
 import { Dialog } from '../components/dialog';
@@ -54,6 +54,7 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
                 </div>
                 {esotericTalentOption}
                 <SingleTalentSelectionList talents={talents} construct={character}
+                    initialSelection={character.speciesStep?.talent}
                     onSelection={talent => onTalentSelected(talent)} />
             </div>)
             : (<div>
