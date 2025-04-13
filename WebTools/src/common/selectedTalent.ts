@@ -1,13 +1,14 @@
 import i18next from "i18next";
 import { Attribute } from "../helpers/attributes";
 import { BorgImplantType } from "../helpers/borgImplant";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../helpers/talents";
 import { SpecialWeapon } from "./specialWeapon";
 import { makeKey } from "./translationKey";
 import { AttackType } from "./attackType";
 import { Department } from "../helpers/department";
+import { ITalent } from "../helpers/italent";
 
-export class SelectedTalent {
+export class SelectedTalent implements ITalent {
 
     readonly talent: string;
     additionalInformation: string;
@@ -18,11 +19,16 @@ export class SelectedTalent {
     department?: Department;
     x?: number;
     selection?: string|SpecialWeapon|AttackType;
+    multiple?: number;
 
     constructor(talent: string) {
         this.talent = talent;
         this.implants = [];
         this.focuses = [];
+    }
+
+    get name() {
+        return this.talent;
     }
 
     copy() {
@@ -35,6 +41,25 @@ export class SelectedTalent {
         result.x = this.x;
         result.additionalInformation = this.additionalInformation;
         result.selection = this.selection;
+        result.multiple = this.multiple;
+        return result;
+    }
+
+    static createWithDepartment(talentName: string, department: Department) {
+        let result = new SelectedTalent(talentName);
+        result.department = department;
+        return result;
+    }
+
+    static createWithMultiple(talentName: string, multiple: number) {
+        let result = new SelectedTalent(talentName);
+        result.multiple = multiple;
+        return result;
+    }
+
+    static createWithSelection(talentName: string, selection: string) {
+        let result = new SelectedTalent(talentName);
+        result.selection = selection;
         return result;
     }
 
@@ -64,11 +89,27 @@ export class SelectedTalent {
             name += " (" + i18next.t(makeKey("Construct.discipline.", Department[this.department])) + ")";
         }
 
+        if (this.talent === TALENT_NAME_DEDICATED_PERSONNEL && this.department != null) {
+            name += " (" + i18next.t(makeKey("Construct.department.", Department[this.department])) + ")";
+        }
+
         if (this.talent === TALENT_NAME_DEFENSIVE_TRAINING && this.selection != null) {
             const choice = this.selection === AttackType.Melee ? i18next.t("Weapon.common.melee") : i18next.t("Weapon.common.ranged");
             name += " (" + choice + ")";
         }
 
+        if (this.talent === TALENT_NAME_REDUNDANT_SYSTEMS && this.selection != null) {
+            name += " (" + this.selection + ")";
+        }
+
         return name;
+    }
+
+    get displayNameWithMultiple() {
+        let result = this.displayName;
+        if (this.multiple != null) {
+            result += " [x" + this.multiple + "]";
+        }
+        return result;
     }
 }

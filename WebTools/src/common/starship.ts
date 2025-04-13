@@ -4,7 +4,7 @@ import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
-import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper, TalentViewModel } from "../helpers/talents";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, Talents, TalentsHelper, TalentViewModel } from "../helpers/talents";
 import { TalentSelection } from "../helpers/talentSelection";
 import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
@@ -15,6 +15,7 @@ import { IWeaponDiceProvider } from "./iWeaponDiceProvider";
 import { ServiceRecord, ServiceRecordModel } from "../starship/model/serviceRecord";
 import { DepartmentsHelper } from "../helpers/department";
 import { SelectedTalent } from "./selectedTalent";
+import { Spaceframe } from "../helpers/spaceframeEnum";
 
 export class SimpleStats {
     departments: number[];
@@ -68,6 +69,14 @@ export class MissionProfileStep {
         result.system = this.system;
         result.talent = this.talent?.copy();
         return result;
+    }
+}
+
+export class SpaceframeStep {
+    readonly model: SpaceframeModel;
+
+    constructor(model: SpaceframeModel) {
+        this.model = model;
     }
 }
 
@@ -297,7 +306,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             if (this.spaceframeModel !== undefined) {
                 numTalents = 1; // count the mission profile talent
 
-                this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => numTalents += (t.talent.specialRule ? 0 : t.rank));
+                this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => numTalents += (t.talentModel.specialRule ? 0 : t.multiple));
 
                 if (this.spaceframeModel.isMissionPodAvailable) {
                     numTalents += 2; // think about this in the context of the Fleet Carrier pod, which seems to have 3 talents
@@ -414,7 +423,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         let talents = [];
 
         if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
-            talents = [...this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).map(t => { return t.description; })];
+            talents = [...this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).map(t => { return t.name; })];
         }
 
         if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
@@ -455,7 +464,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         let talents: Map<string, TalentSelection> = new Map();
         if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
             this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => {
-                this.addTalent(t, talents);
+                this.addTalent(new TalentSelection(t.talentModel), talents);
             });
         }
 

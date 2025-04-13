@@ -54,8 +54,8 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({serviceY
                 console.log(f.name);
             }
 
-            return t.talent.isAvailableForServiceYear(starship) ? (
-                <div key={ti} style={{ padding: "2px" }}>{t.talent.localizedDisplayName}</div>
+            return t.talentModel.isAvailableForServiceYear(starship) ? (
+                <div key={ti} style={{ padding: "2px" }}>{t.displayNameWithMultiple}</div>
             ) : undefined;
         });
 

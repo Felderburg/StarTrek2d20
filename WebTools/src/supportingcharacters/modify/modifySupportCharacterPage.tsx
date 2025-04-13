@@ -23,7 +23,7 @@ import { SimpleAttributeSelector } from "../../components/simpleAttributeSelecto
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import D20IconButton from "../../solo/component/d20IconButton";
 import { FocusRandomTable } from "../../solo/table/focusRandomTable";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentsHelper } from "../../helpers/talents";
 import { TalentDescription } from "../../components/talentDescription";
 import { ModalControl } from "../../components/modal";
 import { Promotion, CharacterAdvancementStep } from "../../common/character";
@@ -33,7 +33,7 @@ import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { CharacterAdvancementChoice } from "../../modify/model/characterAdvancementChoice";
 import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { SelectedTalent } from "../../common/selectedTalent";
-import { AugmentedAbilitySelectionView, CollaborationDepartmentSelectionView, ExpandedProgramSelectionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView } from "../../components/selectedTalentDescriptionView";
+import { AugmentedAbilitySelectionView, CollaborationDepartmentSelectionView, ExpandedProgramSelectionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView, WisdomOfYearsSelectionView } from "../../components/selectedTalentDescriptionView";
 import { SpecialWeapon } from "../../common/specialWeapon";
 import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 
@@ -154,6 +154,25 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                     }
                     setTalentSelection(temp);
                 }} character={character}
+                />
+            </div>);
+        } else if (talentSelection?.talent === TALENT_NAME_WISDOM_OF_YEARS) {
+            return (<div className="col-12 col-md-6">
+                <WisdomOfYearsSelectionView onFocusSelection={(f) => {
+                    let temp = talentSelection.copy();
+                    if (temp) {
+                        temp.focuses = [ f ];
+                    }
+                    setTalentSelection(temp);
+                }}
+                onValueSelection={v => {
+                    let temp = talentSelection.copy();
+                    if (temp) {
+                        temp.value = v;
+                    }
+                    setTalentSelection(temp);
+                }}
+                character={character}
                 />
             </div>);
         } else {

@@ -8,7 +8,8 @@ import { Spaceframe } from "./spaceframeEnum";
 import { SourcePrerequisite } from "./spaceframes";
 import { TalentSelection } from "./talentSelection";
 import { IServiceYearProvider } from "../common/serviceYearProvider";
-import { CenturyPrerequisite, MaxServiceYearPrerequisite } from "./talents";
+import { CenturyPrerequisite, MaxServiceYearPrerequisite, TalentModel } from "./talents";
+import { SelectedTalent } from "../common/selectedTalent";
 
 
 export class SoloSpaceframeStats {
@@ -31,7 +32,7 @@ export class SpaceframeModel implements IServiceYearProvider {
     departments: number[];
     scale: number;
     attacks: string[];
-    talents: TalentSelection[];
+    talents: SelectedTalent[];
     additionalTraits: string[];
     maxServiceYear: number;
     soloStats?: SoloSpaceframeStats;
@@ -39,7 +40,7 @@ export class SpaceframeModel implements IServiceYearProvider {
 
     constructor(id: Spaceframe|null, type: CharacterType, name: string, serviceYear: number,
         prerequisites: IConstructPrerequisite<Starship>[], systems: number[], departments: number[],
-        scale: number, attacks: string[], talents: TalentSelection[],
+        scale: number, attacks: string[], talents: (TalentModel|SelectedTalent)[],
         additionalTraits: string[] = [ "Federation Starship" ], maxServiceYear: number = 99999,
         soloStats?: SoloSpaceframeStats, errata: boolean = false) {
 
@@ -52,7 +53,7 @@ export class SpaceframeModel implements IServiceYearProvider {
         this.departments = departments;
         this.scale = scale;
         this.attacks = attacks;
-        this.talents = talents;
+        this.talents = talents.map(t => t instanceof SelectedTalent ? t as SelectedTalent : new SelectedTalent((t as TalentModel).name));
         this.additionalTraits = additionalTraits;
         this.maxServiceYear = maxServiceYear;
         this.soloStats = soloStats;
@@ -79,7 +80,8 @@ export class SpaceframeModel implements IServiceYearProvider {
         if (serviceYear != null) {
             return this.talents.filter(t => {
                 let result = true;
-                t.talent.prerequisites.forEach(p => {
+                let model = t instanceof SelectedTalent ? t.talentModel : t;
+                model.prerequisites.forEach(p => {
                     if (p instanceof MaxServiceYearPrerequisite) {
                         result = result && serviceYear <= (p as MaxServiceYearPrerequisite).year;
                     } else if (p instanceof CenturyPrerequisite) {
@@ -112,7 +114,7 @@ export class SpaceframeModel implements IServiceYearProvider {
     hasTalent(name: string) {
         let result = false;
         this.talents.forEach(t => {
-            result = result || (t.talent.name === name);
+            result = result || (t.name === name);
         });
         return result;
     }
@@ -169,7 +171,7 @@ export class SpaceframeModel implements IServiceYearProvider {
 
     static createStandardSpaceframe(id: Spaceframe, type: CharacterType, name: string,
         serviceYear: number, source: Source[], systems: number[], departments: number[],
-        scale: number, attacks: string[], talents: TalentSelection[], additionalTraits: string[] = [ "Federation Starship" ],
+        scale: number, attacks: string[], talents: (TalentModel|SelectedTalent)[], additionalTraits: string[] = [ "Federation Starship" ],
         maxServiceYear: number = 99999,
         soloStats?: SoloSpaceframeStats, errata: boolean = false) {
         let sourcePrerequisite = new SourcePrerequisite(...source);

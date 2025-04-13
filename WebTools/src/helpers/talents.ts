@@ -48,7 +48,9 @@ export const TALENT_NAME_WEB = "Web (Special Rule, Creature)";
 export const TALENT_NAME_WARRIORS_SPIRIT = "Warrior’s Spirit";
 export const TALENT_NAME_AUGMENTED_ABILITY = "Augmented Ability";
 export const TALENT_NAME_COLLABORATION = "Collaboration";
-export const TALENT_NAME_DEFENSIVE_TRAINING = "Defensive Training"
+export const TALENT_NAME_DEFENSIVE_TRAINING = "Defensive Training";
+export const TALENT_NAME_REDUNDANT_SYSTEMS = "Redundant Systems";
+export const TALENT_NAME_DEDICATED_PERSONNEL = "Dedicated Personnel";
 
 enum TalentCategory {
     General,

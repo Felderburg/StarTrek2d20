@@ -618,6 +618,9 @@ class Marshaller {
         if (t.additionalInformation != null) {
             talent["additionalInformation"] = t.additionalInformation;
         }
+        if (t.multiple != null) {
+            talent["multiple"] = t.multiple;
+        }
         return talent;
     }
 
@@ -689,7 +692,7 @@ class Marshaller {
                         "departments": this.toDepartmentObject(starship.spaceframeModel.departments),
                         "attacks": starship.spaceframeModel.attacks,
                         "scale": starship.spaceframeModel.scale,
-                        "talents": starship.spaceframeModel.talents ? starship.spaceframeModel.talents.map(t => t.description) : []
+                        "talents": starship.spaceframeModel.talents ? starship.spaceframeModel.talents.map(t => t.name) : []
                     }
                 }
             } else {
@@ -884,7 +887,7 @@ class Marshaller {
 
                 if (json.spaceframe.custom.talents) {
                     json.spaceframe.custom.talents.forEach(t => {
-                        let model = TalentSelection.selectTalent(t);
+                        let model = new SelectedTalent(t);
                         if (model) {
                             frame.talents.push(model);
                         }

@@ -1,12 +1,14 @@
 ﻿import { CharacterType } from '../common/characterType';
+import { SelectedTalent } from '../common/selectedTalent';
 import { Starship } from '../common/starship';
 import { hasAnySource } from '../state/contextFunctions';
+import { Department } from './department';
 import { Era } from './eras';
 import { IConstructPrerequisite, ServiceYearPrerequisite, StarshipTypePrerequisite } from './prerequisite';
 import {Source} from './sources';
 import { Spaceframe } from './spaceframeEnum';
 import { SoloSpaceframeStats, SpaceframeModel } from './spaceframeModel';
-import { TalentSelection } from './talentSelection';
+import { TalentsHelper } from './talents';
 
 export class SourcePrerequisite implements IConstructPrerequisite<Starship> {
     sources: Source[];
@@ -71,9 +73,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Rapid-Fire Torpedo Launcher")
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher")
             ],
             [ "Federation Starship" ],
             99999),
@@ -96,8 +98,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Extensive Shuttlebays")
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Extensive Shuttlebays")
             ],
             [ "Federation Starship" ],
             99999),
@@ -117,8 +119,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design"),
-                TalentSelection.selectTalent("Modular Laboratories")
+                TalentsHelper.getTalent("Rugged Design"),
+                TalentsHelper.getTalent("Modular Laboratories")
             ],
             [ "Federation Starship" ],
             2290),
@@ -143,8 +145,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Quantum Torpedoes")
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Quantum Torpedoes")
             ],
             [ "Federation Starship" ],
             99999),
@@ -167,8 +169,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Secondary Reactors")
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Secondary Reactors")
             ],
             [ "Federation Starship" ],
             99999),
@@ -190,9 +192,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 5)"
             ],
             [
-                TalentSelection.selectTalent("Saucer Separation"),
-                TalentSelection.selectTalent("Modular Laboratories"),
-                TalentSelection.selectTalent("Redundant Systems")
+                TalentsHelper.getTalent("Saucer Separation"),
+                TalentsHelper.getTalent("Modular Laboratories"),
+                TalentsHelper.getTalent("Redundant Systems")
             ],
             [ "Federation Starship" ],
             99999,
@@ -220,9 +222,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Emergency Medical Hologram")
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Emergency Medical Hologram")
             ],
             [ "Federation Starship" ],
             99999),
@@ -245,7 +247,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays")
+                TalentsHelper.getTalent("Extensive Shuttlebays")
             ],
             [ "Federation Starship" ],
             99999),
@@ -268,7 +270,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sensor Suites")
+                TalentsHelper.getTalent("Advanced Sensor Suites")
             ],
             [ "Federation Starship" ],
             99999,
@@ -292,9 +294,9 @@ export class SpaceframeHelper {
                 "Grappler Cable (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Polarized Hull Plating"),
-                TalentSelection.selectTalent("Grappler Cables"),
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Polarized Hull Plating"),
+                TalentsHelper.getTalent("Grappler Cables"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             2269),
@@ -318,8 +320,8 @@ export class SpaceframeHelper {
                 "Grappler Cable (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Polarized Hull Plating"),
-                TalentSelection.selectTalent("Grappler Cables"),
+                TalentsHelper.getTalent("Polarized Hull Plating"),
+                TalentsHelper.getTalent("Grappler Cables"),
             ],
             [ "Federation Starship" ],
             2170),
@@ -337,9 +339,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Reaction Control System"),
-                TalentSelection.selectTalent("Independent Phaser Supply"),
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Improved Reaction Control System"),
+                TalentsHelper.getTalent("Independent Phaser Supply"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             2290,
@@ -362,9 +364,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Reaction Control System"),
-                TalentSelection.selectTalent("Independent Phaser Supply"),
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Improved Reaction Control System"),
+                TalentsHelper.getTalent("Independent Phaser Supply"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             2290,
@@ -386,9 +388,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Reaction Control System"),
-                TalentSelection.selectTalent("Independent Phaser Supply"),
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Improved Reaction Control System"),
+                TalentsHelper.getTalent("Independent Phaser Supply"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             2290,
@@ -413,8 +415,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -431,8 +433,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -453,8 +455,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -474,8 +476,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -495,9 +497,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Saucer Separation"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Saucer Separation"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -519,7 +521,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Saucer Separation"),
+                TalentsHelper.getTalent("Saucer Separation"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -538,8 +540,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Modular Laboratories"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Modular Laboratories"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -562,9 +564,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sickbay"),
-                TalentSelection.selectTalent("Modular Laboratories"),
-                TalentSelection.selectTalent("Dedicated Personnel (Medicine)"),
+                TalentsHelper.getTalent("Advanced Sickbay"),
+                TalentsHelper.getTalent("Modular Laboratories"),
+                SelectedTalent.createWithDepartment(
+                    TalentsHelper.getTalent("Dedicated Personnel").name, Department.Medicine),
             ],
             [ "Federation Starship" ],
             99999),
@@ -584,8 +587,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -605,8 +608,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sickbay"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Advanced Sickbay"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -625,8 +628,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("High-Power Tractor Beam"),
-                TalentSelection.selectTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("High-Power Tractor Beam"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -651,10 +654,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 5)"
             ],
             [
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Quantum Torpedoes"),
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Quantum Torpedoes"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -677,9 +680,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Research Facilities"),
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Advanced Research Facilities"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -698,8 +701,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Improved Reaction Control System")
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Improved Reaction Control System")
             ],
             [ "Federation Starship" ],
             2290,
@@ -727,7 +730,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design")
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [ "Federation Starship" ],
             2265,
@@ -750,8 +753,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Rugged Design")
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [ "Federation Starship" ],
             2290,
@@ -773,8 +776,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Research Facilities"),
-                TalentSelection.selectTalent("Specialized Crew (Science)")
+                TalentsHelper.getTalent("Advanced Research Facilities"),
+                TalentsHelper.getTalent("Specialized Crew (Science)")
             ],
             [ "Federation Starship" ],
             2290,
@@ -798,8 +801,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Redundant Systems [Warp Enginges]")
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Warp Enginges")
             ],
             [ "Federation Starship" ],
             2290,
@@ -822,7 +826,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays")
+                TalentsHelper.getTalent("Extensive Shuttlebays")
             ],
             [ "Federation Starship" ],
             2290,
@@ -845,8 +849,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Fast Targeting Systems"),
-                TalentSelection.selectTalent("Rapid-Fire Torpedo Launcher"),
+                TalentsHelper.getTalent("Fast Targeting Systems"),
+                TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher"),
             ],
             [ "Federation Starship" ],
             2290,
@@ -869,8 +873,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
             ],
             [ "Federation Starship" ],
             2290,
@@ -894,9 +898,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
             ],
             [ "Federation Starship" ],
             2290,
@@ -923,9 +927,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
             ],
             [ "Federation Starship" ],
             2290,
@@ -947,8 +951,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sickbay"),
-                TalentSelection.selectTalent("Redundant Systems [Life Support]"),
+                TalentsHelper.getTalent("Advanced Sickbay"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Life Support")
+
             ],
             [ "Federation Starship" ],
             2290,
@@ -971,8 +977,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Electronic Warfare Systems"),
-                TalentSelection.selectTalent("Stealth Systems"),
+                TalentsHelper.getTalent("Electronic Warfare Systems"),
+                TalentsHelper.getTalent("Stealth Systems"),
             ],
             [ "Federation Starship", "Section 31 Starship" ],
             2350),
@@ -991,8 +997,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Electronic Warfare Systems"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Electronic Warfare Systems"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship", "Section 31 Starship" ],
             2299),
@@ -1011,8 +1017,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Electronic Warfare Systems"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Electronic Warfare Systems"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship", "Section 31 Starship" ],
             2260),
@@ -1031,9 +1037,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Electronic Warfare Systems"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Electronic Warfare Systems"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
             ],
             [ "Federation Starship", "Section 31 Starship" ],
             2299),
@@ -1052,7 +1058,7 @@ export class SpaceframeHelper {
                 "Phase Cannons"
             ],
             [
-                TalentSelection.selectTalent("Polarized Hull Plating")
+                TalentsHelper.getTalent("Polarized Hull Plating")
             ],
             [ "UESPA Civilian Starship" ],
             2399,
@@ -1075,8 +1081,8 @@ export class SpaceframeHelper {
                 "Grappler Cables"
             ],
             [
-                TalentSelection.selectTalent("Grappler Cables"),
-                TalentSelection.selectTalent("Polarized Hull Plating")
+                TalentsHelper.getTalent("Grappler Cables"),
+                TalentsHelper.getTalent("Polarized Hull Plating")
             ],
             [ "UESPA Starship" ],
             2190,
@@ -1099,8 +1105,8 @@ export class SpaceframeHelper {
                 "Grappler Cables"
             ],
             [
-                TalentSelection.selectTalent("Grappler Cables"),
-                TalentSelection.selectTalent("Polarized Hull Plating")
+                TalentsHelper.getTalent("Grappler Cables"),
+                TalentsHelper.getTalent("Polarized Hull Plating")
             ],
             [ "UESPA Starship" ],
             2190,
@@ -1122,7 +1128,7 @@ export class SpaceframeHelper {
                 "Tractor Beam"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design")
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [ "Federation Starship" ],
             2315,
@@ -1145,8 +1151,8 @@ export class SpaceframeHelper {
                 "Tractor Beam"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Rugged Design")
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [ "Federation Starship" ],
             2419,
@@ -1167,7 +1173,7 @@ export class SpaceframeHelper {
                 "Phaser Banks"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sensor Suites")
+                TalentsHelper.getTalent("Advanced Sensor Suites")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1190,8 +1196,8 @@ export class SpaceframeHelper {
                 "Tractor Beam",
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Improved Warp Drive")
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Improved Warp Drive")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1215,9 +1221,9 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Improved Reaction Control System"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Secondary Reactors")
+                TalentsHelper.getTalent("Improved Reaction Control System"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Secondary Reactors")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1241,8 +1247,9 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Redundant Systems [Sensors]")
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Sensors")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1267,8 +1274,8 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Secondary Reactors")
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Secondary Reactors")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1292,8 +1299,9 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Multi-Vector Assault Mode"),
-                TalentSelection.selectTalent("Redundant Systems [Engines]")
+                TalentsHelper.getTalent("Multi-Vector Assault Mode"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Engines")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1318,10 +1326,11 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Advanced Shields"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Secondary Reactors"),
-                TalentSelection.selectTalent("Additional Propulsion System [Burst Drive]")
+                TalentsHelper.getTalent("Advanced Shields"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Secondary Reactors"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Additional Propulsion System").name, "Burst Drive")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1345,10 +1354,10 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Diplomatic Suites"),
-                TalentSelection.selectTalent("Saucer Separation"),
-                TalentSelection.selectTalent("Secondary Reactors"),
-                TalentSelection.selectTalent("EXEO Holographic Core")
+                TalentsHelper.getTalent("Diplomatic Suites"),
+                TalentsHelper.getTalent("Saucer Separation"),
+                TalentsHelper.getTalent("Secondary Reactors"),
+                TalentsHelper.getTalent("EXEO Holographic Core")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1373,9 +1382,9 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Improved Power Systems"),
-                TalentSelection.selectTalent("Improved Warp Drive")
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Improved Power Systems"),
+                TalentsHelper.getTalent("Improved Warp Drive")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1399,9 +1408,10 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Redundant Systems"),
-                TalentSelection.selectTalent("Additional Propulsion System [Quantum Slipstream Burst Drive]")
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Redundant Systems"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Additional Propulsion System").name, "Quantum Slipstream Burst Drive")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1425,8 +1435,8 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Saucer Separation"),
-                TalentSelection.selectTalent("Mission Pod"),
+                TalentsHelper.getTalent("Saucer Separation"),
+                TalentsHelper.getTalent("Mission Pod"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -1451,9 +1461,9 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Improved Damage Control"),
-                TalentSelection.selectTalent("Redundant Systems"),
-                TalentSelection.selectTalent("Refracting Energy Shunt")
+                TalentsHelper.getTalent("Improved Damage Control"),
+                TalentsHelper.getTalent("Redundant Systems"),
+                TalentsHelper.getTalent("Refracting Energy Shunt")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1481,11 +1491,13 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Redundant Systems [Engines]"),
-                TalentSelection.selectTalent("Saucer Separation"),
-                TalentSelection.selectTalent("Additional Propulsion System [Quantum Slipstream Burst Drive]"),
-                TalentSelection.selectTalent("Aquarius Escort"),
+                TalentsHelper.getTalent("Command Ship"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Engines"),
+                TalentsHelper.getTalent("Saucer Separation"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Additional Propulsion System").name, "Quantum Slipstream Burst Drive"),
+                TalentsHelper.getTalent("Aquarius Escort"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -1509,8 +1521,8 @@ export class SpaceframeHelper {
 
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Modular Mission Bay")
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Modular Mission Bay")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1538,9 +1550,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Rapid-Fire Torpedo Launcher")
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1563,9 +1575,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Saucer Separation"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Saucer Separation"),
             ],
             [ "Federation Starship" ],
             2369,
@@ -1588,8 +1600,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -1612,9 +1624,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Four-Nacelle Stability"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Four-Nacelle Stability"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -1637,9 +1649,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design"),
-                TalentSelection.selectTalent("Modular Laboratories"),
-                TalentSelection.selectTalent("Constitution Saucer Separation")
+                TalentsHelper.getTalent("Rugged Design"),
+                TalentsHelper.getTalent("Modular Laboratories"),
+                TalentsHelper.getTalent("Constitution Saucer Separation")
             ],
             [ "Federation Starship" ],
             2290,
@@ -1662,10 +1674,10 @@ export class SpaceframeHelper {
                 "Grappler Cable (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Polarized Hull Plating"),
-                TalentSelection.selectTalent("Grappler Cables"),
-                TalentSelection.selectTalent("Rugged Design"),
-                TalentSelection.selectTalent("Efficiency"),
+                TalentsHelper.getTalent("Polarized Hull Plating"),
+                TalentsHelper.getTalent("Grappler Cables"),
+                TalentsHelper.getTalent("Rugged Design"),
+                TalentsHelper.getTalent("Efficiency"),
             ],
             [ "Federation Starship" ],
             2269,
@@ -1693,9 +1705,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Defiant Class Cloaking Device")
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Defiant Class Cloaking Device")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1722,9 +1734,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Secondary Reactors"),
-                TalentSelection.selectTalent("Excelsior Saucer Separation")
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Secondary Reactors"),
+                TalentsHelper.getTalent("Excelsior Saucer Separation")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1750,9 +1762,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Emergency Medical Hologram")
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Emergency Medical Hologram")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1779,10 +1791,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Research Facilities"),
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
-                TalentSelection.selectTalent("Mission Pod"),
+                TalentsHelper.getTalent("Advanced Research Facilities"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Mission Pod"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -1809,7 +1821,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays")
+                TalentsHelper.getTalent("Extensive Shuttlebays")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1836,8 +1848,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Saucer Separation"),
-                TalentSelection.selectTalent("Mission Pod"),
+                TalentsHelper.getTalent("Saucer Separation"),
+                TalentsHelper.getTalent("Mission Pod"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -1860,9 +1872,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sickbay"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
-                TalentSelection.selectTalent("Backpacking"),
+                TalentsHelper.getTalent("Advanced Sickbay"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Backpacking"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -1885,8 +1897,8 @@ export class SpaceframeHelper {
                 "Grappler Cable (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Polarized Hull Plating"),
-                TalentSelection.selectTalent("Grappler Cables"),
+                TalentsHelper.getTalent("Polarized Hull Plating"),
+                TalentsHelper.getTalent("Grappler Cables"),
             ],
             [ "Federation Starship" ],
             2170,
@@ -1912,8 +1924,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -1935,10 +1947,11 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sickbay"),
-                TalentSelection.selectTalent("Modular Laboratories"),
-                TalentSelection.selectTalent("Dedicated Personnel (Medicine)"),
-                TalentSelection.selectTalent("Do No Harm"),
+                TalentsHelper.getTalent("Advanced Sickbay"),
+                TalentsHelper.getTalent("Modular Laboratories"),
+                SelectedTalent.createWithDepartment(
+                    TalentsHelper.getTalent("Dedicated Personnel").name, Department.Medicine),
+                TalentsHelper.getTalent("Do No Harm"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -1961,9 +1974,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 5)"
             ],
             [
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
-                TalentSelection.selectTalent("Improved Warp Drive")
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Improved Warp Drive")
             ],
             [ "Federation Starship" ],
             99999,
@@ -1987,8 +2000,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Secondary Reactors"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Secondary Reactors"),
             ],
             [ "Federation Starship" ],
             2310,
@@ -2011,9 +2024,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Steamrunner Separation"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Steamrunner Separation"),
             ],
             [ "Federation Starship" ],
             99999,
@@ -2036,8 +2049,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Dedicated Personnel"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Dedicated Personnel"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -2056,8 +2069,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Slim Sensor Silhouette"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Slim Sensor Silhouette"),
             ],
             [ "Federation Starship", "Andorian Starship" ],
             99999),
@@ -2076,9 +2089,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Secondary Reactors"),
-                TalentSelection.selectTalent("Additional Propulsion System [Quantum Slipstream Burst Drive]"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Secondary Reactors"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Additional Propulsion System").name, "Quantum Slipstream Burst Drive")
             ],
             [ "Federation Starship" ],
             99999),
@@ -2097,9 +2111,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Improved Hull Integrity"),
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Secondary Reactors"),
+                TalentsHelper.getTalent("Improved Hull Integrity"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Secondary Reactors"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -2118,10 +2132,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 5)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Research Facilities"),
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Advanced Sickbay"),
-                TalentSelection.selectTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Advanced Research Facilities"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Advanced Sickbay"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -2141,9 +2155,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Expanded Munitions [Phaser Cannons]"),
-                TalentSelection.selectTalent("Improved Hull Integrity"),
-                TalentSelection.selectTalent("Improved Power Systems")
+                TalentsHelper.getTalent("Expanded Munitions [Phaser Cannons]"),
+                TalentsHelper.getTalent("Improved Hull Integrity"),
+                TalentsHelper.getTalent("Improved Power Systems")
             ],
             [ "Federation Starship" ],
             99999),
@@ -2164,8 +2178,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Rapid-Fire Torpedo Launcher"),
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             2297),
@@ -2184,8 +2198,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Reaction Control System"),
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Improved Reaction Control System"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             2309),
@@ -2205,8 +2219,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Fast Targeting Systems"),
-                TalentSelection.selectTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Fast Targeting Systems"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
             ],
             [ "Federation Starship" ],
             2280),
@@ -2229,8 +2243,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Hull Integrity"),
-                TalentSelection.selectTalent("Improved Power Systems"),
+                TalentsHelper.getTalent("Improved Hull Integrity"),
+                TalentsHelper.getTalent("Improved Power Systems"),
             ],
             [ "Federation Starship" ],
             2280),
@@ -2249,8 +2263,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Hull Integrity"),
-                TalentSelection.selectTalent("Improved Power Systems"),
+                TalentsHelper.getTalent("Improved Hull Integrity"),
+                TalentsHelper.getTalent("Improved Power Systems"),
             ],
             [ "Federation Starship" ],
             2280),
@@ -2269,8 +2283,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             2300),
@@ -2294,8 +2308,8 @@ export class SpaceframeHelper {
                 "Photon Torpedoes"
             ],
             [
-                TalentSelection.selectTalent("Improved Hull Integrity"),
-                TalentSelection.selectTalent("Improved Warp Drive")
+                TalentsHelper.getTalent("Improved Hull Integrity"),
+                TalentsHelper.getTalent("Improved Warp Drive")
             ],
             [
                 "Klingon Starship"
@@ -2315,8 +2329,8 @@ export class SpaceframeHelper {
                 "Photon Torpedoes"
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Improved Reaction Control System")
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Improved Reaction Control System")
             ],
             [
                 "Klingon Starship",
@@ -2338,8 +2352,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Reaction Control System"),
-                TalentSelection.selectTalent("Redundant Systems [Warp Drive]"),
+                TalentsHelper.getTalent("Improved Reaction Control System"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Warp Drive")
             ],
             [
                 "Klingon Starship",
@@ -2359,7 +2374,7 @@ export class SpaceframeHelper {
                 "Disruptor Cannons"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design")
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [
                 "Klingon Starship"
@@ -2380,8 +2395,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Improved Power Systems")
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Improved Power Systems")
             ],
             [
                 "Klingon Starship",
@@ -2407,8 +2422,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Rugged Design")
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [
                 "Klingon Starship",
@@ -2433,8 +2448,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Fast Targeting Systems")
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Fast Targeting Systems")
             ],
             [
                 "Klingon Starship",
@@ -2456,9 +2471,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Medical Ward"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Redundant Systems [Engines]")
+                TalentsHelper.getTalent("Advanced Medical Ward"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Engines")
             ],
             [
                 "Klingon Starship"
@@ -2476,7 +2492,7 @@ export class SpaceframeHelper {
                 "Disruptor Cannons"
             ],
             [
-                TalentSelection.selectTalent("Improved Hull Integrity")
+                TalentsHelper.getTalent("Improved Hull Integrity")
             ],
             [
                 "Klingon Starship"
@@ -2496,8 +2512,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Rapid-Fire Torpedo Launcher")
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher")
             ],
             [
                 "Klingon Starship",
@@ -2519,9 +2535,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Backup EPS Conduits"),
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Rugged Design")
+                TalentsHelper.getTalent("Backup EPS Conduits"),
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [
                 "Klingon Starship",
@@ -2543,8 +2559,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Redundant Systems [Life Support / Structure]"),
-                TalentSelection.selectTalent("Rugged Design")
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Life Support / Structure"),
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [
                 "Klingon Starship",
@@ -2567,9 +2584,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Improved Reaction Control System")
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Improved Reaction Control System")
             ],
             [
                 "Klingon Starship",
@@ -2593,9 +2610,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Modular Cargo Pods"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Secondary Reactors")
+                TalentsHelper.getTalent("Modular Cargo Pods"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Secondary Reactors")
             ],
             [
                 "Klingon Starship",
@@ -2616,7 +2633,7 @@ export class SpaceframeHelper {
                 "Photon Torpedo"
             ],
             [
-                TalentSelection.selectTalent("Improved Reaction Control System")
+                TalentsHelper.getTalent("Improved Reaction Control System")
             ],
             [
                 "Klingon Ship",
@@ -2638,9 +2655,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Improved Hull Integrity")
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Improved Hull Integrity")
             ],
             [
                 "Klingon Starship"
@@ -2662,10 +2679,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 5)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Fast Targeting Systems"),
-                TalentSelection.selectTalent("Secondary Reactors")
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Fast Targeting Systems"),
+                TalentsHelper.getTalent("Secondary Reactors")
             ],
             [
                 "Klingon Starship"
@@ -2686,8 +2703,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Monopole Warp Field"),
-                TalentSelection.selectTalent("Stealth Systems")
+                TalentsHelper.getTalent("Monopole Warp Field"),
+                TalentsHelper.getTalent("Stealth Systems")
             ],
             [
                 "Klingon Starship", "Bird-Of-Prey"
@@ -2708,8 +2725,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Secondary Reactors"),
-                TalentSelection.selectTalent("Stealth Systems")  // NOTE: pre-2245 ships are meant to have Extensive Shuttlebays
+                TalentsHelper.getTalent("Secondary Reactors"),
+                TalentsHelper.getTalent("Stealth Systems")  // NOTE: pre-2245 ships are meant to have Extensive Shuttlebays
             ],
             [
                 "Klingon Starship", "Hur'q Starship"
@@ -2731,8 +2748,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Monopole Warp Field"),
-                TalentSelection.selectTalent("Stealth Systems")
+                TalentsHelper.getTalent("Monopole Warp Field"),
+                TalentsHelper.getTalent("Stealth Systems")
             ],
             [
                 "Klingon Starship", "Hur'q Starship", "Targ Pit"
@@ -2754,9 +2771,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Stealth Systems")
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Stealth Systems")
             ],
             [
                 "Klingon Starship", "Hur'q Starship"
@@ -2777,9 +2794,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Stealth Systems"),
-                TalentSelection.selectTalent("Fast Targeting Systems")
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Stealth Systems"),
+                TalentsHelper.getTalent("Fast Targeting Systems")
             ],
             [
                 "Klingon Starship"
@@ -2800,9 +2817,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Stealth Systems"),
-                TalentSelection.selectTalent("Redundant Systems [Computers]"),
-                TalentSelection.selectTalent("Fast Targeting Systems")
+                TalentsHelper.getTalent("Stealth Systems"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Computers"),
+                TalentsHelper.getTalent("Fast Targeting Systems")
             ],
             [
                 "Klingon Starship"
@@ -2822,9 +2840,9 @@ export class SpaceframeHelper {
                 "Disruptor Cannons"
             ],
             [
-                TalentSelection.selectTalent("Stealth Systems"),
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Improved Hull Integrity", 2)
+                TalentsHelper.getTalent("Stealth Systems"),
+                TalentsHelper.getTalent("Ablative Armor"),
+                SelectedTalent.createWithMultiple(TalentsHelper.getTalent("Improved Hull Integrity").name, 2)
             ],
             [
                 "Klingon Starship", "Doomed"
@@ -2845,9 +2863,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Medical Ward"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Improved Hull Integrity")
+                TalentsHelper.getTalent("Advanced Medical Ward"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Improved Hull Integrity")
             ],
             [
                 "Klingon Starship"
@@ -2869,9 +2887,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Stealth Systems"),
-                TalentSelection.selectTalent("Fast Targeting Systems"),
-                TalentSelection.selectTalent("Improved Reaction Control System")
+                TalentsHelper.getTalent("Stealth Systems"),
+                TalentsHelper.getTalent("Fast Targeting Systems"),
+                TalentsHelper.getTalent("Improved Reaction Control System")
             ],
             [
                 "Klingon Starship", "Hur'q Starship"
@@ -2892,8 +2910,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Stealth Systems"),
-                TalentSelection.selectTalent("Improved Warp Drive")
+                TalentsHelper.getTalent("Stealth Systems"),
+                TalentsHelper.getTalent("Improved Warp Drive")
             ],
             [
                 "Klingon Starship"
@@ -3028,9 +3046,9 @@ export class SpaceframeHelper {
                 "Grappler Cable (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Polarized Hull Plating (Special Rule)"),
-                TalentSelection.selectTalent("Grappler Cable (Special Rule)"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Polarized Hull Plating (Special Rule)"),
+                TalentsHelper.getTalent("Grappler Cable (Special Rule)"),
             ],
             [ "Federation Starship" ],
             2170,
@@ -3050,9 +3068,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design"),
-                TalentSelection.selectTalent("Modular Laboratories"),
-                TalentSelection.selectTalent("Saucer Separation (2nd Edition)")
+                TalentsHelper.getTalent("Rugged Design"),
+                TalentsHelper.getTalent("Modular Laboratories"),
+                TalentsHelper.getTalent("Saucer Separation (2nd Edition)")
             ],
             [ "Federation Starship" ],
             2290),
@@ -3071,9 +3089,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Secondary Reactors"),
-                TalentSelection.selectTalent("Saucer Separation (2nd Edition)")
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Secondary Reactors"),
+                TalentsHelper.getTalent("Saucer Separation (2nd Edition)")
             ],
             [ "Federation Starship" ],
             99999),
@@ -3092,9 +3110,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Saucer Separation (2nd Edition)"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Saucer Separation (2nd Edition)"),
             ],
             [ "Federation Starship" ],
             2369),
@@ -3113,10 +3131,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 5)"
             ],
             [
-                TalentSelection.selectTalent("Abundant Personnel"),
-                TalentSelection.selectTalent("Saucer Separation and Reconnect"),
-                TalentSelection.selectTalent("Modular Laboratories"),
-                TalentSelection.selectTalent("Redundant Systems")
+                TalentsHelper.getTalent("Abundant Personnel"),
+                TalentsHelper.getTalent("Saucer Separation and Reconnect"),
+                TalentsHelper.getTalent("Modular Laboratories"),
+                TalentsHelper.getTalent("Redundant Systems")
             ],
             [ "Federation Starship" ],
             99999),
@@ -3135,10 +3153,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
-                TalentSelection.selectTalent("Landing Gear")
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Landing Gear")
             ],
             [ "Federation Starship" ],
             99999),
@@ -3158,10 +3176,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 5)"
             ],
             [
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Saucer Separation (2nd Edition)")
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Saucer Separation (2nd Edition)")
             ],
             [ "Federation Starship" ],
             99999),
@@ -3181,8 +3199,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Improved Impulse Drive"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship", "Legacy Components" ],
             99999),
@@ -3201,8 +3219,8 @@ export class SpaceframeHelper {
                 "Grappler Cables (Strength 1)"
             ],
             [
-                TalentSelection.selectTalent("Compact Vessel"),
-                TalentSelection.selectTalent("Polarized Hull Plating"),
+                TalentsHelper.getTalent("Compact Vessel"),
+                TalentsHelper.getTalent("Polarized Hull Plating"),
             ],
             [ "United Earth Starship", "Compact Size", "No Personnel Transporter" ],
             2200, undefined, true),
@@ -3222,7 +3240,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -3241,7 +3259,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design"),
+                TalentsHelper.getTalent("Rugged Design"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -3260,10 +3278,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Modular Laboratories"),
-                TalentSelection.selectTalent("Classified Design"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Modular Laboratories"),
+                TalentsHelper.getTalent("Classified Design"),
             ],
             [ "Federation Starship", "Experimental" ],
             99999),
@@ -3282,7 +3300,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
             ],
             [ "Federation Starship", "Long-serving" ],
             99999),
@@ -3300,8 +3318,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("High-Resolution Sensors"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -3320,8 +3338,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Preferential Targeting"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Preferential Targeting"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -3340,9 +3358,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Four-Nacelle Stability"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Four-Nacelle Stability"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -3361,8 +3379,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Mission Pod"),
-                TalentSelection.selectTalent("Saucer Separation and Reconnect"),
+                TalentsHelper.getTalent("Mission Pod"),
+                TalentsHelper.getTalent("Saucer Separation and Reconnect"),
             ],
             [ "Federation Starship", "Adaptable" ],
             99999),
@@ -3381,10 +3399,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Extensive Shuttlebays"),
-                TalentSelection.selectTalent("Rapid-Fire Torpedo Launcher"),
-                TalentSelection.selectTalent("Specialized Shuttlebay"),
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher"),
+                TalentsHelper.getTalent("Specialized Shuttlebay"),
             ],
             [ "Federation Starship", "Extensive Tactival Systems" ],
             99999),
@@ -3403,7 +3421,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
             ],
             [ "Federation Starship", "Efficient but Austere" ],
             99999),
@@ -3424,9 +3442,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Ablative Armor"),
-                TalentSelection.selectTalent("Pulse Phaser Cannons"),
-                TalentSelection.selectTalent("Landing Gear"),
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Pulse Phaser Cannons"),
+                TalentsHelper.getTalent("Landing Gear"),
             ],
             [ "Federation Starship", "Warship" ],
             99999),
@@ -3446,10 +3464,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Research Facilities"),
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Emergency Medical Hologram"),
-                TalentSelection.selectTalent("Mission Pod"),
+                TalentsHelper.getTalent("Advanced Research Facilities"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Emergency Medical Hologram"),
+                TalentsHelper.getTalent("Mission Pod"),
             ],
             [ "Federation Starship" ],
             99999),
@@ -3468,10 +3486,10 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Advanced Sensor Suites"),
-                TalentSelection.selectTalent("Advanced Shields"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Four-Nacelle Stability"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Advanced Shields"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("Four-Nacelle Stability"),
             ],
             [ "Federation Starship", "Borg Technology" ],
             99999),
@@ -3491,12 +3509,13 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 6)"
             ],
             [
-                TalentSelection.selectTalent("Command Ship"),
-                TalentSelection.selectTalent("Improved Warp Drive"),
-                TalentSelection.selectTalent("Redundant Systems [Engines]"),
-                TalentSelection.selectTalent("Aquarius Escort"),
-                TalentSelection.selectTalent("Quantum Slipstream Burst Drive"),
-                TalentSelection.selectTalent("Saucer Separation and Reconnect"),
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                SelectedTalent.createWithSelection(
+                    TalentsHelper.getTalent("Redundant Systems").name, "Engines"),
+                TalentsHelper.getTalent("Aquarius Escort"),
+                TalentsHelper.getTalent("Quantum Slipstream Burst Drive"),
+                TalentsHelper.getTalent("Saucer Separation and Reconnect"),
             ],
             [ "Federation Starship", "Borg Technology" ],
             99999),
@@ -3516,7 +3535,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Rugged Design")
+                TalentsHelper.getTalent("Rugged Design")
             ],
             [
                 "Klingon Starship",
@@ -3538,9 +3557,9 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Fast Targeting Systems"),
-                TalentSelection.selectTalent("Landing Gear")
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Fast Targeting Systems"),
+                TalentsHelper.getTalent("Landing Gear")
             ],
             [
                 "Klingon Starship",
@@ -3563,8 +3582,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 3)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Prototype Cloaking Device"),
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Prototype Cloaking Device"),
             ],
             [ "Romulan Starship", "Bird of Prey", "Experimental" ],
             99999),
@@ -3583,8 +3602,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 5)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Abundant Personnel"),
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Abundant Personnel"),
             ],
             [ "Romulan Starship", "Imposing" ],
             99999, undefined, true),
@@ -3643,8 +3662,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
-                TalentSelection.selectTalent("Fast Targeting Systems")
+                TalentsHelper.getTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Fast Targeting Systems")
             ],
             [
                 "Klingon Starship", "Formidable Reputation"
@@ -3666,7 +3685,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentSelection.selectTalent("Cloaking Device"),
+                TalentsHelper.getTalent("Cloaking Device"),
             ],
             [ "Romulan Starship", "Warbird" ],
             99999),
@@ -3702,7 +3721,7 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 2)"
             ],
             [
-                TalentSelection.selectTalent("Improved Warp Drive")
+                TalentsHelper.getTalent("Improved Warp Drive")
             ],
             [ "Civilian Starship" ]),
         //[Spaceframe.]: SpaceframeModel.createStandardSpaceframe(
