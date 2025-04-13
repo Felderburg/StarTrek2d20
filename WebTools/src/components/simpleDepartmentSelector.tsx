@@ -35,13 +35,14 @@ export const SimpleDepartmentSelector: React.FC<ISimpleDepartmentSelectorPropert
     return (<table className="selection-list">
         <tbody>
             {DepartmentsHelper.instance.getDepartments().map((d, i) => {
+                const disabled = !isUpdateable(d, character);
                 return (<tr key={i}>
-                    <td className="selection-header-small">{t(makeKey("Construct.discipline.", Department[d]))}</td>
+                    <td className={"selection-header-small" + (disabled ? " text-grey" : "")}>{t(makeKey("Construct.discipline.", Department[d]))}</td>
                     <td className="d-flex align-items-center justify-content-end">
-                        <div className="me-2">{departments[d]}</div>
+                        <div className={"me-2" + (disabled ? " text-grey" : "")}>{departments[d]}</div>
                         <CheckBox text="" value={d} isChecked={isChecked(d)}
                             onChanged={(val) => onSelectDepartment(d)}
-                            disabled={!isUpdateable(d, character)} />
+                            disabled={disabled} />
                     </td>
                 </tr>);
             })}

@@ -535,6 +535,7 @@
     "Construct.other.assetType": "Asset Type",
     "Construct.other.assignment": "Assignment",
     "Construct.other.attacks": "Attacks",
+    "Construct.other.attackType": "Attack Type",
     "Construct.other.attribute": "Attribute",
     "Construct.other.attributes": "Attributes",
     "Construct.other.breaches": "Breaches",
@@ -2681,6 +2682,11 @@
     "Talent.coldReading": "Cold Reading",
 
     "Talent.coldReading.description2e": "When you succeed at a task during social conflict, you generate 1 bonus Momentum which must be used for the Obtain Information Momentum spend to gain knowledge about one of the people you’re interacting with. If the  social conflict with that person involves an extended task, you may ignore any Resistance the extended task has.",
+
+    "Talent.collaboration": "Collaboration",
+
+    "Talent.collaboration.description": "You must choose a single Discipline when you select this Talent. Whenever an ally attempts a Task using that Discipline, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
+    "Talent.collaboration.description2e": "Choose a single department when you select this talent. Whenever an ally attempts a task using that department, you may spend 1 Momentum (Immediate) to allow them to use your rating for that department and one of your relevant focuses.",
 
     "Talent.collaborationCommand": "Collaboration: Command",
 

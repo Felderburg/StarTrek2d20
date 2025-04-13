@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import i18n from 'i18next';
 import {Character} from '../common/character';
-import {Attribute, AttributesHelper} from '../helpers/attributes';
+import {Attribute} from '../helpers/attributes';
 import {Department} from '../helpers/department';
 import {EnvironmentsHelper, Environment} from '../helpers/environments';
 import {TracksHelper} from '../helpers/tracks';
@@ -14,8 +14,6 @@ import { connect } from 'react-redux';
 import { CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { CharacterSerializer } from '../common/characterSerializer';
-import { TALENT_NAME_AUGMENTED_ABILITY, TalentsHelper } from '../helpers/talents';
-import { makeKey } from '../common/translationKey';
 
 class SectionContent {
     name: string;

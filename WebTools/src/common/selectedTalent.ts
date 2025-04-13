@@ -1,9 +1,11 @@
 import i18next from "i18next";
 import { Attribute } from "../helpers/attributes";
 import { BorgImplantType } from "../helpers/borgImplant";
-import { TALENT_NAME_AUGMENTED_ABILITY, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TalentsHelper } from "../helpers/talents";
 import { SpecialWeapon } from "./specialWeapon";
 import { makeKey } from "./translationKey";
+import { AttackType } from "./attackType";
+import { Department } from "../helpers/department";
 
 export class SelectedTalent {
 
@@ -13,8 +15,9 @@ export class SelectedTalent {
     focuses: string[];
     value: string;
     attribute?: Attribute;
+    department?: Department;
     x?: number;
-    selection?: string|SpecialWeapon;
+    selection?: string|SpecialWeapon|AttackType;
 
     constructor(talent: string) {
         this.talent = talent;
@@ -28,6 +31,7 @@ export class SelectedTalent {
         result.focuses = [...this.focuses];
         result.value = this.value;
         result.attribute = this.attribute;
+        result.department = this.department;
         result.x = this.x;
         result.additionalInformation = this.additionalInformation;
         result.selection = this.selection;
@@ -54,6 +58,15 @@ export class SelectedTalent {
 
         if (this.talent === TALENT_NAME_AUGMENTED_ABILITY && this.attribute != null) {
             name += " (" + i18next.t(makeKey("Construct.attribute.", Attribute[this.attribute])) + ")";
+        }
+
+        if (this.talent === TALENT_NAME_COLLABORATION && this.department != null) {
+            name += " (" + i18next.t(makeKey("Construct.discipline.", Department[this.department])) + ")";
+        }
+
+        if (this.talent === TALENT_NAME_DEFENSIVE_TRAINING && this.selection != null) {
+            const choice = this.selection === AttackType.Melee ? i18next.t("Weapon.common.melee") : i18next.t("Weapon.common.ranged");
+            name += " (" + choice + ")";
         }
 
         return name;

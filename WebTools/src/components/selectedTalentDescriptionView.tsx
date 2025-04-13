@@ -15,7 +15,10 @@ import { BorgImplants, BorgImplantType } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';
 import { Attribute } from '../helpers/attributes';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
-import { TALENT_NAME_AUGMENTED_ABILITY } from '../helpers/talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION } from '../helpers/talents';
+import { SimpleDepartmentSelector } from './simpleDepartmentSelector';
+import { Department } from '../helpers/department';
+import { AttackType } from '../common/attackType';
 
 interface ISelectedTalentDescriptionProperties {
     version: number;
@@ -27,9 +30,14 @@ interface ITalentAttributeSelectionProperties {
     onAttributeSelection: (a: Attribute) => void;
 }
 
+interface ITalentDepartmentSelectionProperties {
+    character: Character;
+    onDepartmentSelection: (d: Department) => void;
+}
+
 interface ITalentAdditionalSelectionProperties {
     character: Character;
-    onSelection: (selection: string[]|SpecialWeapon|undefined) => void;
+    onSelection: (selection: string[]|SpecialWeapon|AttackType|undefined) => void;
 }
 
 interface ITalentAdditionalFocusAndValueSelectionProperties {
@@ -149,6 +157,59 @@ export const AugmentedAbilitySelectionView: React.FC<ITalentAttributeSelectionPr
                     onAttributeSelection(a);
                 }}
                 isUpdateable={(a) => !selectedAttributes.includes(a)}
+            />
+        </div>
+    );
+}
+
+export const DefensiveTrainingAttackTypeSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character}) => {
+
+    const { t } = useTranslation();
+    const [ attackTypeSelection, setAttackTypeSelection ] = useState<AttackType|undefined>(undefined);
+    const options = () => {
+        let result = [];
+        result.push(new DropDownElement("", t('Common.select.choose')));
+        result.push(new DropDownElement(AttackType.Melee, t("Weapon.common.melee")));
+        result.push(new DropDownElement(AttackType.Ranged, t("Weapon.common.ranged")));
+        return result;
+    }
+
+    return (
+        <div>
+            <Header level={2} className="my-4">{t('Talent.defensiveTraining')}</Header>
+            <DropDownSelect items={options()}
+                defaultValue={attackTypeSelection ?? ""}
+                onChange={(value) => {
+                    if (value === "") {
+                        onSelection(undefined);
+                        setAttackTypeSelection(undefined);
+                    } else {
+                        onSelection(value as AttackType);
+                        setAttackTypeSelection(value as AttackType);
+                    }
+                }} />
+        </div>
+    );
+}
+
+export const CollaborationDepartmentSelectionView: React.FC<ITalentDepartmentSelectionProperties> = ({onDepartmentSelection, character}) => {
+
+    const { t } = useTranslation();
+    const [ departmentSelection, setDepartmentSelection ] = useState<Department|undefined>(undefined);
+
+    let selectedDepartments = character.talents.filter(t => t.talent === TALENT_NAME_COLLABORATION).map(t => t.department);
+
+    return (
+        <div>
+            <Header level={2} className="my-4">{t('Talent.collaboration')}</Header>
+            <SimpleDepartmentSelector
+                character={character}
+                isChecked={(a) => departmentSelection === a}
+                onSelectDepartment={(a) => {
+                    setDepartmentSelection(a);
+                    onDepartmentSelection(a);
+                }}
+                isUpdateable={d => !selectedDepartments.includes(d)}
             />
         </div>
     );

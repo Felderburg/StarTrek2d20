@@ -1688,6 +1688,7 @@
 
     "Talent.closeProtection.description": "Quand vous réussissez une attaque, vous pouvez dépenser 1 point d’Impulsion pour protéger un et un seul allié situé à portée Courte. La difficulté de la prochaine attaque qui le prendra pour cible avant le début de votre prochain tour augmente de +1.",
 
+    "Talent.collaboration": "Collaboration",
     "Talent.collaborationCommand": "Collaboration : Commandement",
 
     "Talent.collaborationCommand.description": "À chaque fois qu’un allié effectue une Tâche avec Commandement, vous pouvez dépenser 1 point d’Impulsion (immédiat), ce qui lui permettra d’utiliser votre score dans la Discipline, ainsi que l’une de vos Spécialisations.",

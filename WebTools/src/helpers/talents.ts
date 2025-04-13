@@ -47,6 +47,8 @@ export const TALENT_NAME_WHIP_LIKE_TAIL = "Whip-like Tail (Special Rule, Creatur
 export const TALENT_NAME_WEB = "Web (Special Rule, Creature)";
 export const TALENT_NAME_WARRIORS_SPIRIT = "Warrior’s Spirit";
 export const TALENT_NAME_AUGMENTED_ABILITY = "Augmented Ability";
+export const TALENT_NAME_COLLABORATION = "Collaboration";
+export const TALENT_NAME_DEFENSIVE_TRAINING = "Defensive Training"
 
 enum TalentCategory {
     General,
@@ -673,14 +675,16 @@ export class TalentModel implements ITalent {
 
         this.prerequisites.forEach(p => {
             if (p instanceof SourcePrerequisite) {
-                Array.prototype.push.apply(src, (this.prerequisites.filter(p => p instanceof SourcePrerequisite)[0] as SourcePrerequisite).getSources());
+                src.push(...(this.prerequisites.filter(p => p instanceof SourcePrerequisite)[0] as SourcePrerequisite).getSources());
             } else if (p instanceof AnyOfPrerequisite || p instanceof AllOfPrerequisite) {
-                Array.prototype.push.apply(src, this.sourcesFromPrerequsite(p));
+                src.push(...this.sourcesFromPrerequsite(p));
             }
         });
 
         if (src.length === 0) {
             src = [ Source.Core ];
+        } else {
+            src = src.filter((item, i) => src.indexOf(item) === i );
         }
 
         return src;
@@ -1110,7 +1114,14 @@ export class Talents {
             new TalentModel(
                 "Defensive Training",
                 "You’re especially good at avoiding harm. Select either melee attacks or ranged attacks when you acquire this talent. Attacks against you of the chosen type increase in Difficulty by 1.",
-                [new DisciplinePrerequisite(Department.Security, 2), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)]),
+                [
+                    new DisciplinePrerequisite(Department.Security, 2),
+                    new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition),
+                    new AnyOfPrerequisite(
+                        new SourcePrerequisite(Source.Core2ndEdition),
+                        new NotSourcePrerequisite(Source.FederationKlingonWar)
+                    )
+                ]),
             new TalentModel(
                 "Precision Salvo",
                 "You’ve spent countless hours running combat simulations and fine-tuning targeting subroutines, and you can now place a torpedo salvo exactly where it will have the most decisive effect. When you make a torpedo attack, you may spend 1 Momentum (Immediate) to add the Piercing 1 weapon effect.",
@@ -2886,38 +2897,8 @@ export class Talents {
                 1,
                 "General"),
             new TalentModel(
-                "Collaboration: Command",
-                "Whenever an ally attempts a Task using Command, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
-                [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1,
-                "General"),
-            new TalentModel(
-                "Collaboration: Conn",
-                "Whenever an ally attempts a Task using Conn, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
-                [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1,
-                "General"),
-            new TalentModel(
-                "Collaboration: Engineering",
-                "Whenever an ally attempts a Task using Engineering, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
-                [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1,
-                "General"),
-            new TalentModel(
-                "Collaboration: Security",
-                "Whenever an ally attempts a Task using Security, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
-                [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1,
-                "General"),
-            new TalentModel(
-                "Collaboration: Science",
-                "Whenever an ally attempts a Task using Science, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
-                [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1,
-                "General"),
-            new TalentModel(
-                "Collaboration: Medicine",
-                "Whenever an ally attempts a Task using Medicine, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
+                TALENT_NAME_COLLABORATION,
+                "",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 "General"),
@@ -3122,13 +3103,19 @@ export class Talents {
             new TalentModel(
                 "Defensive Training: Melee",
                 "You are adept at staying out of harm’s way during a skirmish. Melee attacks that target you have their Difficulty increased by 1.",
-                [new SourcePrerequisite(Source.FederationKlingonWar)],
+                [
+                    new SourcePrerequisite(Source.FederationKlingonWar),
+                    new NotSourcePrerequisite(Source.Core2ndEdition)
+                ],
                 1,
                 "General"),
             new TalentModel(
                 "Defensive Training: Ranged",
                 "You are adept at staying out of harm’s way during a skirmish. Ranged attacks that target you have their Difficulty increased by 1.",
-                [new SourcePrerequisite(Source.FederationKlingonWar)],
+                [
+                    new SourcePrerequisite(Source.FederationKlingonWar),
+                    new NotSourcePrerequisite(Source.Core2ndEdition)
+                ],
                 1,
                 "General"),
             new TalentModel(

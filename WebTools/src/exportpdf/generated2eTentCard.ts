@@ -3,8 +3,8 @@ import { BaseNonForm2eSheet } from "./generated2eBaseSheet";
 import { SheetTag } from "./icharactersheet";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
-import { AttributesHelper } from "../helpers/attributes";
-import { DepartmentsHelper } from "../helpers/department";
+import { Attribute, AttributesHelper } from "../helpers/attributes";
+import { Department, DepartmentsHelper } from "../helpers/department";
 import { Character, Division } from "../common/character";
 import { Construct } from "../common/construct";
 import { Column } from "./column";
@@ -24,6 +24,7 @@ import { SimpleColor } from "../common/colour";
 import { determineIdealFontWidth } from "./fontWidthDeterminer";
 import { CharacterType } from "../common/characterType";
 import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolArrowHeadOperations, politySymbolArrowHeadScience, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle } from "./politySymbols";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION } from "../helpers/talents";
 
 export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
 
@@ -156,6 +157,17 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
                 paragraph = paragraph?.nextParagraph();
 
                 let talentName = talent.talent.localizedDisplayName;
+                if ([TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION].includes(talent.talent.name)) {
+                    if (talent.attributes?.length) {
+                        talentName += " (" + talent.attributes.map(a =>
+                            i18next.t(makeKey("Construct.attribute.", Attribute[a]))).join(", ") + ")";
+                    }
+                    if (talent.departments?.length) {
+                        talentName += " (" + talent.departments.map(d =>
+                            i18next.t(makeKey("Construct.discipline.", Department[d]))).join(", ") + ")";
+                    }
+                }
+
                 if (talent && talent.talent.maxRank > 1) {
                     let rank = talent.rank;
                     talentName = i18next.t("Talent.text.rank", {talentName: talentName, rank: rank});

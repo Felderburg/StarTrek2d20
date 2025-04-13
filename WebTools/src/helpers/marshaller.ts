@@ -19,7 +19,7 @@ import { SpaceframeHelper } from './spaceframes';
 import { SpeciesHelper } from './species';
 import { Species } from './speciesEnum';
 import { allSystems, System, systemByName } from './systems';
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { TalentSelection } from './talentSelection';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
@@ -46,6 +46,7 @@ import { SelectedTalent } from '../common/selectedTalent';
 import { LocomotionModel, LocomotionType, LocomotionTypeHelper } from '../creature/model/locomotion';
 import { allCharacterAdvancementChoices, CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
 import { SpecialWeapon } from '../common/specialWeapon';
+import { AttackType } from '../common/attackType';
 
 class Marshaller {
 
@@ -600,6 +601,9 @@ class Marshaller {
         }
         if (t.attribute != null) {
             talent["attribute"] = Attribute[t.attribute];
+        }
+        if (t.department != null) {
+            talent["department"] = Department[t.department];
         }
         if (t.x != null) {
             talent["x"] = t.x;
@@ -1646,6 +1650,14 @@ class Marshaller {
             talentName === "Augmented Ability (Reason)") {
 
             talentName = TALENT_NAME_AUGMENTED_ABILITY;
+        } else if (talentName === "Collaboration: Command" ||
+            talentName === "Collaboration: Conn" ||
+            talentName === "Collaboration: Engineering" ||
+            talentName === "Collaboration: Security" ||
+            talentName === "Collaboration: Medicine" ||
+            talentName === "Collaboration: Science") {
+
+            talentName = TALENT_NAME_COLLABORATION;
         }
         let talent = TalentsHelper.getTalentViewModel(talentName);
         if (talent) {
@@ -1663,6 +1675,18 @@ class Marshaller {
                 selectedTalent.attribute = Attribute.Presence;
             } else if (t.name === "Augmented Ability (Reason)") {
                 selectedTalent.attribute = Attribute.Reason;
+            } else if (t.name === "Collaboration: Command") {
+                selectedTalent.department = Department.Command;
+            } else if (t.name === "Collaboration: Conn") {
+                selectedTalent.department = Department.Conn;
+            } else if (t.name === "Collaboration: Engineering") {
+                selectedTalent.department = Department.Engineering;
+            } else if (t.name === "Collaboration: Security") {
+                selectedTalent.department = Department.Security;
+            } else if (t.name === "Collaboration: Medicine") {
+                selectedTalent.department = Department.Medicine;
+            } else if (t.name === "Collaboration: Science") {
+                selectedTalent.department = Department.Science;
             }
 
             if (t["focuses"]) {
@@ -1677,6 +1701,9 @@ class Marshaller {
             if (t["attribute"] != null) {
                 selectedTalent.attribute = AttributesHelper.getAttributeByName(t["attribute"]);
             }
+            if (t["department"] != null) {
+                selectedTalent.department = DepartmentsHelper.instance.getDepartmentByName(t["department"]);
+            }
             if (t["x"] != null) {
                 selectedTalent.x = t["x"];
             }
@@ -1685,6 +1712,10 @@ class Marshaller {
                     const selection = t["selection"];
                     selectedTalent.selection = selection === SpecialWeapon[SpecialWeapon.MekLeth]
                         ? SpecialWeapon.MekLeth : SpecialWeapon.BatLeth;
+                } else if (talent.name === TALENT_NAME_DEFENSIVE_TRAINING) {
+                    const selection = t["selection"];
+                    selectedTalent.selection = selection === AttackType[AttackType.Melee]
+                        ? AttackType.Melee : AttackType.Ranged;
                 } else {
                     selectedTalent.selection = t["selection"];
                 }

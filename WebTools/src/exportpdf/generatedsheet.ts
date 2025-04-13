@@ -6,7 +6,7 @@ import { ReadableTalentModel } from "./talentWriter";
 import { RoleModel, RolesHelper } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Character } from "../common/character";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../helpers/talents";
 import { BorgImplants } from "../helpers/borgImplant";
 import { Starship } from "../common/starship";
 import { Column } from "./column";
@@ -168,6 +168,10 @@ export const assembleWritableItems = (character: Character) => {
                 readableTalent.attributes = character.talents
                     .filter(s => s.talent === TALENT_NAME_AUGMENTED_ABILITY && s.attribute != null)
                     .map(s => s.attribute);
+            } else if (talent.name === TALENT_NAME_COLLABORATION) {
+                readableTalent.departments = character.talents
+                    .filter(s => s.talent === TALENT_NAME_COLLABORATION && s.department != null)
+                    .map(s => s.department);
             }
             result.push(readableTalent);
         }

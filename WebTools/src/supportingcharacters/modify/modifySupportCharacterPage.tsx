@@ -23,7 +23,7 @@ import { SimpleAttributeSelector } from "../../components/simpleAttributeSelecto
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import D20IconButton from "../../solo/component/d20IconButton";
 import { FocusRandomTable } from "../../solo/table/focusRandomTable";
-import { TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
 import { TalentDescription } from "../../components/talentDescription";
 import { ModalControl } from "../../components/modal";
 import { Promotion, CharacterAdvancementStep } from "../../common/character";
@@ -32,6 +32,10 @@ import { ModifyDepartmentView } from "./modifyDepartmentView";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { CharacterAdvancementChoice } from "../../modify/model/characterAdvancementChoice";
 import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
+import { SelectedTalent } from "../../common/selectedTalent";
+import { AugmentedAbilitySelectionView, CollaborationDepartmentSelectionView, ExpandedProgramSelectionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView } from "../../components/selectedTalentDescriptionView";
+import { SpecialWeapon } from "../../common/specialWeapon";
+import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -43,7 +47,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     const [valueSelection, setValueSelection] = useState<string>("");
     const [attriubteSelection, setAttributeSelection] = useState<Attribute>();
     const [focusSelection, setFocusSelection] = useState<string>("");
-    const [talentSelection, setTalentSelection] = useState<string>(null);
+    const [talentSelection, setTalentSelection] = useState<SelectedTalent|undefined>(undefined);
     const navigate = useNavigate();
 
     const onNextPage = () => {
@@ -96,6 +100,67 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
         }
     }
 
+    const renderAdditionalTalentInfo = () => {
+        if (talentSelection?.talent === TALENT_NAME_COLLABORATION) {
+            return (<div className="col-12 col-md-6">
+                <CollaborationDepartmentSelectionView onDepartmentSelection={(d) => {
+                    let temp = talentSelection.copy();
+                    if (temp) {
+                        temp.department = d;
+                    }
+                    setTalentSelection(temp);
+                }} character={character}
+                />
+            </div>);
+        } else if (talentSelection?.talent === TALENT_NAME_AUGMENTED_ABILITY) {
+            return (<div className="col-12 col-md-6">
+                <AugmentedAbilitySelectionView onAttributeSelection={(a) => {
+                    let temp = talentSelection.copy();
+                    if (temp) {
+                        temp.attribute = a;
+                    }
+                    setTalentSelection(temp);
+                }} character={character}
+                />
+            </div>);
+        } else if (talentSelection?.talent === TALENT_NAME_VISIT_EVERY_STAR) {
+            return (<div className="col-12 col-md-6">
+                <VisitEveryStarSelectionView onSelection={(f) => {
+                    let temp = talentSelection.copy();
+                    if (temp) {
+                        temp.focuses = f as string[];
+                    }
+                    setTalentSelection(temp);
+                }} character={character}
+                />
+            </div>);
+        } else if (talentSelection?.talent === TALENT_NAME_EXPANDED_PROGRAM) {
+            return (<div className="col-12 col-md-6">
+                <ExpandedProgramSelectionView onSelection={(f) => {
+                    let temp = talentSelection.copy();
+                    if (temp) {
+                        temp.focuses = f as string[];
+                    }
+                    setTalentSelection(temp);
+                }} character={character}
+                />
+            </div>);
+        } else if (talentSelection?.talent === TALENT_NAME_WARRIORS_SPIRIT) {
+            return (<div className="col-12 col-md-6">
+                <WarriorsSpiritSelectionView onSelection={(w) => {
+                    let temp = talentSelection.copy();
+                    if (temp) {
+                        temp.selection = w as SpecialWeapon;
+                    }
+                    setTalentSelection(temp);
+                }} character={character}
+                />
+            </div>);
+        } else {
+            return undefined;
+        }
+    }
+
     const applyModification = () => {
         if (modificationType === SupportingCharacterModificationType.AdditionalValue) {
             if (!valueSelection?.length) {
@@ -121,6 +186,8 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
         } else if (modificationType === SupportingCharacterModificationType.AdditionalTalent) {
             if (talentSelection == null) {
                 Dialog.show(t("ModifySupportingCharacter.error.talent"));
+            } else if (determineSelectedTalentExtraErrors(talentSelection) != null) {
+                Dialog.show(determineSelectedTalentExtraErrors(talentSelection));
             } else {
                 store.dispatch(modifyCharacterAddAdvancement(toChoice(modificationType), talentSelection));
                 onNextPage();
@@ -193,7 +260,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
         ModalControl.show("xl", () => closeModal(),
 
             (<div>
-                <SimpleTalentSelectionList construct={character} talents={talents} onSelection={(t) => setTalentSelection(t?.talent)} />
+                <SimpleTalentSelectionList construct={character} talents={talents} onSelection={(t) => setTalentSelection(t)} />
                 <div className="text-center mt-4">
                     <Button size="sm" onClick={() => closeModal()}>{t('Common.button.ok')}</Button>
                 </div>
@@ -239,7 +306,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                 </div>
             </div>);
         } else if (modificationType === SupportingCharacterModificationType.AdditionalTalent) {
-            const talent = talentSelection == null ? null : TalentsHelper.getTalent(talentSelection);
+            const talent = talentSelection?.talentModel;
             return (<div className="row">
                 <div className="col-12 col-md-6">
                     <Header level={2} className="my-4">{t('Construct.other.talent')}</Header>
@@ -252,6 +319,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
                     :  <TalentDescription name={talent.localizedDisplayName}
                             description={character.version > 1 ? talent.localizedDescription2e : talent.localizedDescription} />}
                 </div>
+                {renderAdditionalTalentInfo()}
             </div>);
         } else if (modificationType === SupportingCharacterModificationType.AdditionalDepartment) {
             return (<div className="mt-4">

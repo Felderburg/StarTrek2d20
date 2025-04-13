@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
@@ -15,6 +15,8 @@ import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { Construct } from '../common/construct';
 import { BorgImplants } from '../helpers/borgImplant';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
+import { SimpleDepartmentSelector } from './simpleDepartmentSelector';
+import { AttackType } from '../common/attackType';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
@@ -97,6 +99,57 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                     />
                 </div>
             </div>
+        )
+    }
+
+    const renderCollaborationSelection = () => {
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <SimpleDepartmentSelector
+                        character={construct as Character}
+                        isChecked={d => selection.department === d}
+                        onSelectDepartment={d => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.department = d;
+                            }
+                            setSelection(temp);
+                            onSelection(temp);
+                        }}
+                        isUpdateable={d => {
+                            if (d === selection.department) {
+                                return true;
+                            } else {
+                                let departments = (construct as Character).talents
+                                    .filter(t => t.talent === TALENT_NAME_COLLABORATION && t.department != null)
+                                    .map(t => t.department);
+                                return !departments.includes(d);
+                            }
+                        }}
+                    />
+                </div>
+            </div>
+        )
+    }
+
+
+    const renderDefensiveTrainingSelection = () => {
+        let options = [];
+        options.push(new DropDownElement("", t('Common.select.choose')));
+        options.push(new DropDownElement(AttackType.Melee, t('Weapon.common.melee')));
+        options.push(new DropDownElement(AttackType.Ranged, t('Weapon.common.ranged')));
+        return (
+            <DropDownSelect items={options}
+                defaultValue={selection?.selection ?? ""}
+                onChange={(value) => {
+                    let temp = selection?.copy();
+                    if (temp) {
+                        temp.selection = (value as AttackType);
+                    }
+                    setSelection(temp);
+                    onSelection(temp);
+                }} />
         )
     }
 
@@ -354,6 +407,24 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                     <td></td>
                     <td>
                         {renderAugmentedAbilitySelection()}
+                    </td>
+                    <td></td>
+                </tr>)
+                : undefined}
+            {selection?.talent === t.name && t.name === TALENT_NAME_COLLABORATION
+                ? (<tr>
+                    <td></td>
+                    <td>
+                        {renderCollaborationSelection()}
+                    </td>
+                    <td></td>
+                </tr>)
+                : undefined}
+            {selection?.talent === t.name && t.name === TALENT_NAME_DEFENSIVE_TRAINING
+                ? (<tr>
+                    <td></td>
+                    <td>
+                        {renderDefensiveTrainingSelection()}
                     </td>
                     <td></td>
                 </tr>)

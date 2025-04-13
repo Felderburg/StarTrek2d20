@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Header } from "../components/header";
-import { TALENT_NAME_AUGMENTED_ABILITY, TalentModel, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TalentModel, TalentsHelper } from "../helpers/talents";
 import replaceDiceWithArrowhead from "../common/arrowhead";
 import { Stereotype } from "../common/construct";
 import { Starship } from "../common/starship";
@@ -10,6 +10,7 @@ import ReactMarkdown from "react-markdown";
 import { Creature } from "../creature/model/creature";
 import { makeKey } from "../common/translationKey";
 import { Attribute } from "../helpers/attributes";
+import { Department } from "../helpers/department";
 
 interface IConstructPageProperties {
     construct: Character|Starship|Creature;
@@ -49,10 +50,18 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
         if (talent.name === TALENT_NAME_AUGMENTED_ABILITY) {
             let character = construct as Character;
             let selectedAttributes = character.talents
-                .filter(s => s.talent === TALENT_NAME_AUGMENTED_ABILITY)
+                .filter(s => s.talent === TALENT_NAME_AUGMENTED_ABILITY && s.attribute != null)
                 .map(s => t(makeKey("Construct.attribute.", Attribute[s.attribute])))
                 .join(", ");
             return (<div className="text-sm px-4"><b>{t("Construct.other.attribute") + ": "}</b>
+                {selectedAttributes}</div>);
+        } else if (talent.name === TALENT_NAME_COLLABORATION) {
+            let character = construct as Character;
+            let selectedAttributes = character.talents
+                .filter(s => s.talent === TALENT_NAME_COLLABORATION && s.department != null)
+                .map(s => t(makeKey("Construct.discipline.", Department[s.department])))
+                .join(", ");
+            return (<div className="text-sm px-4"><b>{t("Construct.other.department") + ": "}</b>
                 {selectedAttributes}</div>);
         } else {
             return undefined;

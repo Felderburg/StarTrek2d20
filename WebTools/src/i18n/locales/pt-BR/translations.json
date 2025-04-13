@@ -2529,6 +2529,7 @@
 
     "Talent.coldReading.description2e": "Quando for bem-sucedido em uma tarefa durante um conflito social, você gera 1 Ímpeto adicional que deve ser usado para o gasto de Ímpeto para Obter Informações para obter conhecimento sobre uma das pessoas com quem está interagindo. Se o conflito social com essa pessoa envolver uma tarefa estendida, você poderá ignorar qualquer Resistência que a tarefa estendida tenha.",
 
+    "Talent.collaboration": "Colaboração",
     "Talent.collaborationCommand": "Colaboração: Comando",
 
     "Talent.collaborationCommand.description": "Sempre que um aliado fizer uma Tarefa usando Comando, você pode gastar um ponto de Ímpeto (Imediato) para permitir que ele use o valor de sua Disciplina e um de seus Focos.",

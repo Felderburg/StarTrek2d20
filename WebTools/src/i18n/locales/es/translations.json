@@ -2257,6 +2257,7 @@
 
     "Talent.coldReading.description2e": "Cuando tienes éxito en una tarea durante un conflicto social, generas 1 punto de Inercia adicional que debes utilizar para el gasto de Inercia \"Obtener información\" para conocer a una de las personas con las que estás interactuando. Si el Conflicto Social con esa persona implica una tarea extendida, puedes ignorar cualquier Resistencia que tenga la tarea extendida.",
 
+    "Talent.collaboration": "Colaboración",
     "Talent.collaborationCommand": "Colaboración: Mando",
 
     "Talent.collaborationCommand.description": "Siempre que un aliado emprenda una Tarea usando Mando, puedes gastar un punto de Inercia (Inmediato) para permitirle usar tu valor en la Disciplina en cuestión y una de tus Especialidades.",

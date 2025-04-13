@@ -1,7 +1,7 @@
 import { PDFPage } from "@cantoo/pdf-lib";
 import { FontLibrary, FontType } from "./fontLibrary";
 import { SimpleColor } from "../common/colour";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_MISSION_POD, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
 import { RoleModel } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Column } from "./column";
@@ -14,6 +14,8 @@ import { Paragraph } from "./paragraph";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
 import { SpecialWeapon } from "../common/specialWeapon";
+import { AttackType } from "../common/attackType";
+import { Department } from "../helpers/department";
 
 export class ReadableTalentModel {
     characterType: CharacterType;
@@ -21,9 +23,10 @@ export class ReadableTalentModel {
     talent: TalentModel;
     implants: Implant[];
     attributes: Attribute[];
+    departments: Department[];
     missionPod: MissionPodModel;
     x: number;
-    selection: string|SpecialWeapon;
+    selection: string|SpecialWeapon|AttackType;
     additionalInformation: string;
 
     constructor(characterType: CharacterType, talent: TalentModel) {
@@ -159,6 +162,23 @@ export class TalentWriter {
                             paragraph.append(i18next.t("Construct.other.attribute") + ": ", new FontOptions(fontSize, FontType.Bold));
                             paragraph.append(talent.attributes.map(a =>
                                 i18next.t(makeKey("Construct.attribute.", Attribute[a]))).join(", "), new FontOptions(fontSize));
+                        }
+                    } else if (talent.talent.name === TALENT_NAME_DEFENSIVE_TRAINING && talent.selection != null) {
+                        paragraph = paragraph?.nextParagraph(0);
+                        if (paragraph) {
+                            paragraphs.push(paragraph);
+                            paragraph.indent(indent + 10);
+                            paragraph.append(i18next.t("Construct.other.attackType") + ": ", new FontOptions(fontSize, FontType.Bold));
+                            paragraph.append(i18next.t(makeKey('Weapon.common.', AttackType[talent.selection as AttackType])), new FontOptions(fontSize));
+                        }
+                    } else if (talent.talent.name === TALENT_NAME_COLLABORATION && talent.departments?.length) {
+                        paragraph = paragraph?.nextParagraph(0);
+                        if (paragraph) {
+                            paragraphs.push(paragraph);
+                            paragraph.indent(indent + 10);
+                            paragraph.append(i18next.t("Construct.other.department") + ": ", new FontOptions(fontSize, FontType.Bold));
+                            paragraph.append(talent.departments.map(d =>
+                                i18next.t(makeKey('Construct.discipline.', Department[d]))).join(", "), new FontOptions(fontSize));
                         }
                     }
 

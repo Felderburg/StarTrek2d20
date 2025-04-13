@@ -1,5 +1,5 @@
 import { ITalent } from "./italent"
-import { TALENT_NAME_AUGMENTED_ABILITY } from "./talents"
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION } from "./talents"
 
 /**
  * A multi-selection talent is a talent that can be selected multiple times, but
@@ -8,6 +8,8 @@ import { TALENT_NAME_AUGMENTED_ABILITY } from "./talents"
  */
 export const isMultiSelectionTalent = (talent: ITalent) => {
     if (talent.name === TALENT_NAME_AUGMENTED_ABILITY) {
+        return true;
+    } else if (talent.name === TALENT_NAME_COLLABORATION) {
         return true;
     } else {
         return false;

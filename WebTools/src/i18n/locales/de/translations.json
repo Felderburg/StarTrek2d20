@@ -1235,6 +1235,7 @@
 
     "Talent.closeProtection.description": "Bei einem erfolgreichen Angriff können Sie einen Punkt Momentum ausgeben, um einen einzelnen Verbündeten in Kurzer Reichweite zu beschützen. Der nächste Angriff gegen diesen Verbündeten, der vor Ihrem nächsten Zug stattfindet, hat eine um 1 erhöhte Schwierigkeit.",
 
+    "Talent.collaboration": "Zusammenarbeit",
     "Talent.collaborationCommand": "Zusammenarbeit: Kommando",
 
     "Talent.collaborationCommand.description": "Immer, wenn ein Verbündeter eine Aufgabe mit Kommando versucht, können Sie einen Punkt Sofortiges Momentum einsetzen, damit der Verbündete Ihren Wert in der besagten Disziplin einsetzen kann, sowie einen Ihrer Fokusse.",
