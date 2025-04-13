@@ -1737,6 +1737,7 @@
 
     "Talent.dauntless.description": "Quand vous voulez résister à l’intimidation ou à la menace, vous ajoutez un d20 bonus à votre réserve de dés.",
 
+    "Talent.defensiveTraining": "Entrainement défensif",
     "Talent.defensiveTrainingMelee": "Entrainement défensif : Combat rapproché",
 
     "Talent.defensiveTrainingMelee.description": "Vous savez rester hors de portée des coups lors d'une escarmouche. Les attaques de mélée vous visant voient leur Difficulté augmentée de 1.",
