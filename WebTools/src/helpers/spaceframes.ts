@@ -2155,7 +2155,8 @@ export class SpaceframeHelper {
                 "Tractor Beam (Strength 4)"
             ],
             [
-                TalentsHelper.getTalent("Expanded Munitions [Phaser Cannons]"),
+                SelectedTalent.createWithWeapon(
+                    TalentsHelper.getTalent("Expanded Munitions").name, "Phaser Cannons"),
                 TalentsHelper.getTalent("Improved Hull Integrity"),
                 TalentsHelper.getTalent("Improved Power Systems")
             ],

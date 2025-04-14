@@ -7,6 +7,7 @@ import { makeKey } from "./translationKey";
 import { AttackType } from "./attackType";
 import { Department } from "../helpers/department";
 import { ITalent } from "../helpers/italent";
+import { Weapon } from "../helpers/weapons";
 
 export class SelectedTalent implements ITalent {
 
@@ -20,6 +21,7 @@ export class SelectedTalent implements ITalent {
     x?: number;
     selection?: string|SpecialWeapon|AttackType;
     multiple?: number;
+    weapon?: string|Weapon;
 
     constructor(talent: string) {
         this.talent = talent;
@@ -60,6 +62,12 @@ export class SelectedTalent implements ITalent {
     static createWithSelection(talentName: string, selection: string) {
         let result = new SelectedTalent(talentName);
         result.selection = selection;
+        return result;
+    }
+
+    static createWithWeapon(talentName: string, weapon: string) {
+        let result = new SelectedTalent(talentName);
+        result.weapon = weapon;
         return result;
     }
 

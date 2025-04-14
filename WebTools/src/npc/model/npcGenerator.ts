@@ -121,33 +121,33 @@ const careerSkills: { [type: number ]: string[] } = {
     ]
 }
 
-const typeSpecificValues: { [type : number ]: string[]} = {
+const typeSpecificValues: { [type : number ]: (string|Value)[]} = {
     [ NpcCharacterType.Starfleet ] : [
         "I am so close to promotion, I can taste it.",
-        "Risk is our business!",
+        new Value("Risk is our business!", "accepts risk"),
         "The Prime Directive is our highest law.",
-        "I saw things in the war... horrible, horrible things",
+        new Value("I saw things in the war... horrible, horrible things", "haunted by war"),
         "The crew is my family.",
-        "Loyal to my commanding officer",
-        "I have my orders.",
+        new Value("Loyal to my commanding officer", "loyal"),
+        new Value("I have my orders.", "bound to orders"),
         "The chain of command is essential",
-        "Starfleet rules are rigid, but necessary",
+        new Value("Starfleet rules are rigid, but necessary", "rule-follower"),
         "Seek out new life and new civilizations",
-        "Infinite Diversity in Infinite Combinations",
+        new Value("Infinite Diversity in Infinite Combinations", "values diversity"),
         "It's the Prime Directive, not the Only Directive",
-        "Please. Let us help you.",
+        new Value("Please. Let us help you.", "eager to help"),
         "Starfleet is the only family I've ever needed.",
         "My team has my back",
-        "Work the problem",
+        new Value("Work the problem", "scientifically-minded"),
         "I've got faith of the heart"
     ],
     [ NpcCharacterType.KlingonDefenseForces ] : [
-        "My honour is in protecting the Empire",
+        new Value("My honour is in protecting the Empire", "Jingoistic"),
         "If I must choose between personal dishonour and failing the Empire, I choose the former.",
         "If my crew dies, it will be honourably!",
-        "A Klingon without honour is as good as dead",
+        new Value("A Klingon without honour is as good as dead", "honourbound"),
         "Klingons do not take prisoners. But I offer you a blade, so that you may take your own life.",
-        "It is foolish to give my word to a foe with no honour.",
+        new Value("It is foolish to give my word to a foe with no honour.", "dismissive"),
         "I do not seek to lead, but will take that role if honour demands it.",
         "I see you have forgotten the first time we met. I assure you that I have not forgotten.",
         "Experience bIj!"
@@ -157,20 +157,20 @@ const typeSpecificValues: { [type : number ]: string[]} = {
     [ NpcCharacterType.RomulanEmpire ] : [
     ],
     [ NpcCharacterType.RogueRuffianMercenary ] : [
-        "To live outside the law, you must be honest.",
+        new Value("To live outside the law, you must be honest.", "honourable"),
         "I know what I bring to the table so trust me when I say that I am not afraid to eat alone.",
         "You're only as good as your last envelope.",
         "Suffice it to say that if you ever tell anyone about our arrangement, we'll never work together again.",
         "No questions. No answers. That's the business we're in. You just accept it and move on.",
-        "I never walk into a place I don't know how to walk out of.",
+        new Value("I never walk into a place I don't know how to walk out of.", "cautious"),
         "If it's going to be a amateur night, the price goes up, and I want it upfront.",
-        "Don't let yourself get attached to anything you are not willing to walk out on in 30 seconds flat if you feel the heat around the corner.",
+        new Value("Don't let yourself get attached to anything you are not willing to walk out on in 30 seconds flat if you feel the heat around the corner.", "free of attachments"),
         "We Just Got Made.",
-        "Trust your gut. Something doesn't feel right, it's not right.",
+        new Value("Trust your gut. Something doesn't feel right, it's not right.", "instinctive"),
         "I say what I mean, and I do what I say.",
         "He knew the risks, he didn't have to be there. It rains... you get wet.",
         "All I am is what I'm going after.",
-        "If you're good at something, never do it for free.",
+        new Value("If you're good at something, never do it for free.", "mercenary"),
         "Let me ask you something. If the rule you followed brought you to this, of what use was the rule?"
     ]
 }
@@ -229,7 +229,7 @@ const typeSpecificGeneralValues: { [type : number ]: (string|Value)[]} = {
         "Strength Through Unity",
         "Information is Power",
         "Adaptation is Survival",
-        new Value("Discipline Breeds Excellence", "disciplines"),
+        new Value("Discipline Breeds Excellence", "disciplined"),
         "Sacrifice for the Greater Good",
         "Loyalty Commands Respect",
         new Value("Patriotism as Virtue", "patriotic"),
@@ -287,7 +287,7 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
     [ Species.Tellarite ] : [
         "If it cannot stand up to scrutiny, it should be torn down",
         new Value("Enough with the flowery words; say what you really mean!", "plain-spoken"),
-        "Speak plainly!",
+        new Value("Speak plainly!", "plain-spoken and direct"),
         new Value("We're not a patient people.", "impatient"),
         "I'm told this ship is the pride of Starfleet. I find it small and unimpressive.",
         "Let's consider all sides of this argument",
@@ -295,37 +295,37 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
         new Value("You're being seduced by wishful thinking! Practicality, not hope, is what we need!", "pragmatic")
     ],
     [ Species.Bajoran ] : [
-        "Walk with the Prophets",
-        "The Prophets teach patience",
+        new Value("Walk with the Prophets", "spiritual"),
+        new Value("The Prophets teach patience", "patient"),
         "You have a strong pagh",
-        "I was a soldier, trying to free my world!",
-        "That's the thing about faith. If you don't have it, you can't understand it. And if you do, no explanation is necessary.",
-        "I'll probably never fully forgive the Cardassians",
+        new Value("I was a soldier, trying to free my world!", "freedom fighter"),
+        new Value("That's the thing about faith. If you don't have it, you can't understand it. And if you do, no explanation is necessary.", "person of faith"),
+        new Value("I'll probably never fully forgive the Cardassians", "resents the Cardassians"),
         "The Bajorans were a peaceful people before the Cardassians came.",
-        "I did things. Things that had to be done. I'm not going to beat myself up over that."
+        new Value("I did things. Things that had to be done. I'm not going to beat myself up over that.", "traumatized by war")
     ],
     [ Species.Denobulan ] : [
-        "I think it all sounds rather exciting, don't you?",
+        new Value("I think it all sounds rather exciting, don't you?", "enthusiastic"),
         "I'm excited to tell you that my significant other finds you very attractive",
         "Family relations can be extremely complicated",
-        "If you're going to try to embrace new worlds, you must try to embrace new ideas",
+        new Value("If you're going to try to embrace new worlds, you must try to embrace new ideas", "open-minded"),
         "Ah. A new species. Delightful music and wonderful food.",
         "Are you going to finish eating that...?",
-        "Communication is the foundation of understanding",
+        new Value("Communication is the foundation of understanding", "values communication"),
         "Infinite patience yields immediate results",
         "The health of the individual is the health of the community",
-        "Curiosity is the spark of progress"
+        new Value("Curiosity is the spark of progress", "curious")
     ],
     [ Species.Trill ] : [
         "The protection of the symbionts is essential to the protection of Trill culture",
         "Those who join with the symbionts are performing our society's most sacred duty",
-        "Even if we aren't joined, we should embody the highest standards of behaviour",
+        new Value("Even if we aren't joined, we should embody the highest standards of behaviour", "principled"),
         "If you want to know who you are, it's important to know who you've been",
         "The past is never truly gone",
         "Individuality is strengthened by unity",
         "The pursuit of knowledge is a lifelong journey",
         "Balance is key",
-        "Trust is earned, not given"
+        new Value("Trust is earned, not given", "untrusting")
     ],
     [ Species.Betazoid ] : [
         "To know oneself is to know others",
@@ -372,10 +372,10 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
     ],
     [ Species.Ferengi ] : [
         "Once you have their money, you never give it back.",
-        "Never spend more for an acquisition than you have to.",
+        new Value("Never spend more for an acquisition than you have to.", "thrifty"),
         "Never allow family to stand in the way of opportunity.",
         "Keep your ears open.",
-        "Opportunity plus instinct equals profit.",
+        new Value("Opportunity plus instinct equals profit.", "opportunistic"),
         "Greed is eternal.",
         "A deal is a deal.",
         "A contract is a contract is a contract... but only between Ferengi.",
@@ -384,7 +384,7 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
         "A wise person can hear profit in the wind.",
         "Nothing is more important than your health... except for your money.",
         "Never make fun of a Ferengi's mother.",
-        "It never hurts to suck up to the boss.",
+        new Value("It never hurts to suck up to the boss.", "suck-up"),
         "War is good for business.",
         "Peace is good for business.",
         "Expand or die.",
@@ -404,18 +404,18 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
         "One Day the Reman People Will Rise, and Take the Throne of Romulus Itself!"
     ],
     [Species.Cardassian] : [
-        "Family is all"
+        new Value("Family is all", "family-oriented")
     ],
     [Species.Nausicaan] : [
         "Pain is Pleasure"
     ],
     [Species.Pakled] : [
         "We are smart",
-        "We look for things. Things that make us go!",
+        new Value("We look for things. Things that make us go!", "scrounger"),
         "Pakleds are Strong!",
         "Big Boomers Make Big Boom",
         "It is broken!",
-        "You think we're stupid, but we're smart!",
+        new Value("You think we're stupid, but we're smart!", "dim-witted"),
         "We want to be nothing if not persistent.",
         "We want them.",
         "You underestimate me! Because you are not smart!",
@@ -425,6 +425,35 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
     ]
 
 }
+
+const personality = [
+    "intense",
+    "reserved",
+    "gregarious",
+    "sarcastic",
+    "bookish",
+    "outgoing",
+    "goal-oriented",
+    "driven",
+    "meticulous",
+    "instinctive",
+    "aggressive",
+    "jokester",
+    "dry-humoured",
+    "naive",
+    "trusting",
+    "distrusting",
+    "over-eager",
+    "suspicious",
+    "cautious",
+    "analytical",
+    "dour",
+    "perky",
+    "upbeat",
+    "hot-headed",
+    "rule-follower"
+]
+
 
 
 export class NpcGenerator {
@@ -515,7 +544,11 @@ export class NpcGenerator {
             NpcGenerator.assignRank(character, specialization);
         }
         NpcGenerator.assignFocuses(npcType, character, specialization);
-        aspects.push(...NpcGenerator.assignValues(npcType, character, specialization));
+        const aspectsFromValues = NpcGenerator.assignValues(npcType, character, specialization);
+        aspects.push(...aspectsFromValues);
+        if (aspectsFromValues.length === 0) {
+            aspects.push(personality[Math.floor(Math.random() * personality.length)]);
+        }
         NpcGenerator.assignTalents(npcType, character, species, specialization);
 
         if (npcType !== NpcType.Minor && includeDescription) {
