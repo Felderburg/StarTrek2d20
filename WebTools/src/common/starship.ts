@@ -406,8 +406,14 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     }
 
     getRankForTalent(talentName: string) {
-        let shortenedList = this.getTalentSelectionList().filter(t => t.talent.name === talentName);
-        return shortenedList.length > 0 ? shortenedList[0].rank : 0;
+        let rank = 0;
+        this.talents
+            .filter(t => t.talent === talentName)
+            .forEach(t => {
+                if (t.multiple != null)
+                rank += t.multiple;
+            });
+        return rank;
     }
 
     getQualifierForTalent(talentName: string) {
@@ -440,7 +446,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         return talents;
     }
 
-    get talents() {
+    get talents(): SelectedTalent[] {
         let result = [];
         if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
             this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => {

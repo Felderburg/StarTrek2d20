@@ -24,7 +24,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
 
     const { t } = useTranslation();
     const [carouselIndex, setCarouselIndex] = useState(0);
-    const [modificationType, setModificationType] = useState<string|ModificationType>(ModificationType.Promotion);
+    const [modificationType, setModificationType] = useState<string|ModificationType>(character?.rank != null ? ModificationType.Promotion : ModificationType.CharacterAdvancement);
     const [advancementType, setAdvancementType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Adjustment);
     const navigate = useNavigate();
 
