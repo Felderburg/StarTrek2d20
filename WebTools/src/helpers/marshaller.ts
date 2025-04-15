@@ -19,7 +19,7 @@ import { SpaceframeHelper } from './spaceframes';
 import { SpeciesHelper } from './species';
 import { Species } from './speciesEnum';
 import { allSystems, System, systemByName } from './systems';
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { TalentSelection } from './talentSelection';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
@@ -1661,6 +1661,10 @@ class Marshaller {
             talentName === "Collaboration: Science") {
 
             talentName = TALENT_NAME_COLLABORATION;
+        } else if (talentName === "Defensive Training: Melee" ||
+            talentName === "Defensive Training: Ranged") {
+
+            talentName = TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR;
         }
         let talent = TalentsHelper.getTalentViewModel(talentName);
         if (talent) {
@@ -1690,6 +1694,10 @@ class Marshaller {
                 selectedTalent.department = Department.Medicine;
             } else if (t.name === "Collaboration: Science") {
                 selectedTalent.department = Department.Science;
+            } else if (t.name === "Defensive Training: Melee") {
+                selectedTalent.selection = AttackType.Melee;
+            } else if (t.name === "Defensive Training: Ranged") {
+                selectedTalent.selection = AttackType.Ranged;
             }
 
             if (t["focuses"]) {

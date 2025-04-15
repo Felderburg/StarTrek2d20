@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
@@ -420,7 +420,8 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                     <td></td>
                 </tr>)
                 : undefined}
-            {selection?.talent === t.name && t.name === TALENT_NAME_DEFENSIVE_TRAINING
+            {selection?.talent === t.name &&
+                [TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR].includes(t.name)
                 ? (<tr>
                     <td></td>
                     <td>

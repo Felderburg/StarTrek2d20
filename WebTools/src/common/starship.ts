@@ -440,6 +440,31 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         return talents;
     }
 
+    get talents() {
+        let result = [];
+        if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
+            this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => {
+                result.push(t);
+            });
+        }
+
+        if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
+            result.push(this.missionProfileStep.talent);
+        }
+
+        if (this.missionPodModel && this.stereotype !== Stereotype.SoloStarship) {
+            this.missionPodModel.talents.forEach(t => {
+                result.push(new SelectedTalent(t.name));
+            });
+        }
+
+        this.additionalTalents.forEach(t => {
+            result.push(new SelectedTalent(t.name));
+        });
+
+        return result;
+    }
+
     getNonSpaceframeTalentSelectionList() {
         let talents: Map<string, TalentSelection> = new Map();
         if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {

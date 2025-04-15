@@ -49,6 +49,7 @@ export const TALENT_NAME_WARRIORS_SPIRIT = "Warrior’s Spirit";
 export const TALENT_NAME_AUGMENTED_ABILITY = "Augmented Ability";
 export const TALENT_NAME_COLLABORATION = "Collaboration";
 export const TALENT_NAME_DEFENSIVE_TRAINING = "Defensive Training";
+export const TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR = "Defensive Training (Federation-Klingon War)";
 export const TALENT_NAME_REDUNDANT_SYSTEMS = "Redundant Systems";
 export const TALENT_NAME_DEDICATED_PERSONNEL = "Dedicated Personnel";
 
@@ -3103,17 +3104,8 @@ export class Talents {
                 1,
                 "General"),
             new TalentModel(
-                "Defensive Training: Melee",
+                TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR,
                 "You are adept at staying out of harm’s way during a skirmish. Melee attacks that target you have their Difficulty increased by 1.",
-                [
-                    new SourcePrerequisite(Source.FederationKlingonWar),
-                    new NotSourcePrerequisite(Source.Core2ndEdition)
-                ],
-                1,
-                "General"),
-            new TalentModel(
-                "Defensive Training: Ranged",
-                "You are adept at staying out of harm’s way during a skirmish. Ranged attacks that target you have their Difficulty increased by 1.",
                 [
                     new SourcePrerequisite(Source.FederationKlingonWar),
                     new NotSourcePrerequisite(Source.Core2ndEdition)

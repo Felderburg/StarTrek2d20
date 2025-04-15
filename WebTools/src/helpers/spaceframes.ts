@@ -3405,7 +3405,7 @@ export class SpaceframeHelper {
                 TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher"),
                 TalentsHelper.getTalent("Specialized Shuttlebay"),
             ],
-            [ "Federation Starship", "Extensive Tactival Systems" ],
+            [ "Federation Starship", "Extensive Tactical Systems" ],
             99999),
         [Spaceframe.Nova_2E]: new SpaceframeModel(
             Spaceframe.Nova_2E,
