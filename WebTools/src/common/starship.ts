@@ -4,7 +4,7 @@ import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
-import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, Talents, TalentsHelper, TalentViewModel } from "../helpers/talents";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper, TalentViewModel } from "../helpers/talents";
 import { TalentSelection } from "../helpers/talentSelection";
 import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
@@ -15,7 +15,6 @@ import { IWeaponDiceProvider } from "./iWeaponDiceProvider";
 import { ServiceRecord, ServiceRecordModel } from "../starship/model/serviceRecord";
 import { DepartmentsHelper } from "../helpers/department";
 import { SelectedTalent } from "./selectedTalent";
-import { Spaceframe } from "../helpers/spaceframeEnum";
 
 export class SimpleStats {
     departments: number[];
@@ -151,7 +150,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     registry: string = "";
     traits: string = "";
     serviceYear?: number;
-    private _spaceframe?: SpaceframeModel = undefined;
+    spaceframeStep?: SpaceframeStep;
     missionPodModel?: MissionPodModel;
     missionProfileStep?: MissionProfileStep;
     additionalTalents: TalentViewModel[] = [];
@@ -183,11 +182,11 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     }
 
     get spaceframeModel() {
-        return this._spaceframe;
+        return this.spaceframeStep?.model;
     }
 
     set spaceframeModel(spaceframe: SpaceframeModel) {
-        this._spaceframe = spaceframe;
+        this.spaceframeStep = new SpaceframeStep(spaceframe);
         if (!spaceframe?.isMissionPodAvailable) {
             this.missionPodModel = undefined;
         }

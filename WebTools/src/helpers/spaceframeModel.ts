@@ -6,7 +6,6 @@ import { IConstructPrerequisite, NeverPrerequisite, ServiceYearPrerequisite, Sta
 import { Source } from "./sources";
 import { Spaceframe } from "./spaceframeEnum";
 import { SourcePrerequisite } from "./spaceframes";
-import { TalentSelection } from "./talentSelection";
 import { IServiceYearProvider } from "../common/serviceYearProvider";
 import { CenturyPrerequisite, MaxServiceYearPrerequisite, TalentModel } from "./talents";
 import { SelectedTalent } from "../common/selectedTalent";

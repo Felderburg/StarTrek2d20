@@ -29,7 +29,7 @@ import CustomSpeciesDetailsPage from './customSpeciesDetailsPage';
 import SourceSelectionPage from './sourceSelectionPage';
 import { StepContext } from '../state/characterActions';
 import toast from 'react-hot-toast';
-import ExtraTalentChoicesPage from './extraTalentChoicesPage';
+import ExtraTalentChoicesPage from '../starship/page/extraStarshipTalentChoicesPage';
 import NoviceOrCadetExperiencePage from './noviceOrCadetExperiencePage';
 
 export interface IPageFactoryRegistry {
