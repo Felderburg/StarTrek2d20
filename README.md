@@ -1,18 +1,14 @@
 # StarTrek2d20
 
-This branch contains the code that supports the Star Trek Adventures character creator version found at
-https://sta.bcholmes.org . This is an alternative (and possibly temporary) version of [the original character
-generator app](https://sta.modiphiusapps.hostinguk.org/).
+This branch contains the code that supports the Star Trek Adventures character creator
+version found at https://sta.bcholmes.org . This application is based on an original
+codebase created by GitHub user azjerei, who could not longer maintain the app due to
+changes in time constraints.
 
-Why does an alternative version exist? I wanted to make some additional features available a bit faster
-than it was taking to get pull requests processed (and deployed) on the original codebase.
-
-Over two years have passed since any of my pull requests have been accepted into azjerei's
-[original codebase](https://github.com/azjerei/StarTrek2d20), and this copy is now more than
-700 commits ahead of the original. So I think it's
-time to accept that the original repo has been abandoned, and that this version
-is now the primary one. I've now severed the "fork" relationship between my repo and the
-original. Mainly because I want to count the commit activity on my GitHub profile.
+At this point, it's clear that the original repo has been abandoned (and, in fact, is no
+longer visible), and that this version is now the primary one. I've had the "fork"
+relationship between my repo and the original severed, mainly because I want to count
+the commit activity on my GitHub profile.
 
 ## Prerequisites
 
@@ -42,9 +38,9 @@ reflected there.
 
 ## Building the Production Version
 
-1. If you're building a new version to deploy to a server, you should open up the package.json file and
-   manually update the version number. I keep the version number in sync with
-   the current date. You should probably also update the news.tsx, provding some text description of
+1. If you're building a new version to deploy to a server, you should open up the `package.json`
+   file and manually update the version number. I keep the version number in sync with
+   the current date. You should probably also update the `news.tsx`, provding some text description of
    what's changed since the last version. If you're just trying things out, you can skip this step.
 2. Open a command prompt in the WebTools/ folder and type ```npm install``` to install node modules.
 3. Build the assets using the ```npm run build``` command

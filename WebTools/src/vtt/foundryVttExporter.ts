@@ -20,6 +20,7 @@ import { SpeciesAbility } from "../helpers/speciesAbility";
 import { markupToHtml } from "./markupToHtml";
 import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
 import { FoundryPluginType } from "./foundryPluginType";
+import { marshaller } from "../helpers/marshaller";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";
@@ -629,18 +630,21 @@ export class FoundryVttExporter {
     }
 
     convertCharacterDescription(character: Character) {
+        let result = "";
         if (character.description?.length) {
             let paragraphs = character.description.split("\n").filter(s => s?.length);
-            let result = "";
             paragraphs.forEach(p => {
                 result += "<p>";
                 result += p;
                 result += "</p>";
             });
-            return result;
-        } else {
-            return "";
         }
+
+        result += "<p><a href=\""
+            + "https://sta.bcholmes.org/view?s="
+            + marshaller.encodeCharacter(character)
+            + "\">Original sheet.</a></p>";
+        return result;
     }
 
     convertCareerPath(character: Character) {
