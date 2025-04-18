@@ -2575,6 +2575,7 @@
 
     "Talent.bold.description": "You must choose a single Discipline when you select this Talent. Whenever you attempt a Task with that Discipline, and you buy one or more d20s by adding to Threat, you may re-roll a single d20. You may select this Talent multiple times, once for each Discipline. You may not select this Talent  for any Discipline for which you already have the Cautious Talent.",
     "Talent.bold.description2e": "Choose a department when you select this talent. Whenever you attempt a task from that department, and you buy one or more d20s by adding Threat, you may re-roll a single d20. You may select this talent multiple times, once for each department. You may not select this talent for any department for which you have the **Cautious** talent.",
+    "Talent.bold.error": "The selected talent (Bold) requires you to choose a department.",
 
     "Talent.boldCommand": "Bold: Command",
 
@@ -2634,6 +2635,7 @@
 
     "Talent.cautious.description": "You must choose a single Discipline when you select this Talent. Whenever you attempt a Task with that Discipline, and you buy one or more d20s by spending Momentum, you may re-roll a single d20. You may select this Talent multiple times, once for each Discipline. You may not select this Talent for any Discipline for which you already have the Bold Talent.",
     "Talent.cautious.description2e": "Choose a department when you select this talent. Whenever you attempt a task with that department, and you buy one or more d20s by spending Momentum, you may re-roll a single d20. You may select this talent multiple times, once for each department. You may not select this talent for any department for which you have the **Bold** talent.",
+    "Talent.cautious.error": "The selected talent (Cautious) requires you to choose a department.",
 
     "Talent.cautiousCommand": "Cautious: Command",
 
@@ -2697,7 +2699,7 @@
 
     "Talent.collaboration.description": "You must choose a single Discipline when you select this Talent. Whenever an ally attempts a Task using that Discipline, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
     "Talent.collaboration.description2e": "Choose a single department when you select this talent. Whenever an ally attempts a task using that department, you may spend 1 Momentum (Immediate) to allow them to use your rating for that department and one of your relevant focuses.",
-    "Talent.collaboration.error": "The selected talent requires you to select a department.",
+    "Talent.collaboration.error": "The selected talent (Collaboration) requires you to choose a department.",
 
     "Talent.collaborationCommand": "Collaboration: Command",
 

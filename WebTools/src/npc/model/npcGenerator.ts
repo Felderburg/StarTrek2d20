@@ -7,7 +7,7 @@ import { RanksHelper, Rank } from "../../helpers/ranks";
 import { Department, DepartmentsHelper } from "../../helpers/department";
 import { Species } from "../../helpers/speciesEnum";
 import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
 import { NameGenerator } from "../nameGenerator";
 import { NpcType, NpcTypes } from "./npcType";
 import { SpecializationModel, Specializations, Specialty, Value } from "./specializations";
@@ -521,7 +521,7 @@ export class NpcGenerator {
             careers = [ Career.Veteran ];
         } else if (specialization.id === Specialization.FerengiDaiMon || specialization.id === Specialization.KlingonShipCaptain
                 || specialization.id === Specialization.CardassianGul || specialization.id === Specialization.SonaCommandOfficer
-                || specialization.id === Specialization.Captain) {
+                || specialization.id === Specialization.Captain || specialization.id === Specialization.StationCommander) {
             careers = [ Career.Experienced, Career.Experienced, Career.Experienced, Career.Veteran ];
         }
 
@@ -733,9 +733,11 @@ export class NpcGenerator {
                         talentList = talentList.filter(t => t.category === specializationSkill);
                     } else {
                         talentList = talentList.filter(t => {
-                            if (t.name.indexOf("Bold:") === 0 || t.name.indexOf("Cautious:") === 0
-                                || t.name.indexOf("Collaboration:") === 0) {
-                                return t.name.indexOf(specializationSkill) >= 0;
+                            if (t.name === TALENT_NAME_BOLD || t.name === TALENT_NAME_CAUTIOUS
+                                || t.name === TALENT_NAME_COLLABORATION) {
+                                return !character.hasTalent(TALENT_NAME_BOLD)
+                                    && !character.hasTalent(TALENT_NAME_CAUTIOUS)
+                                    && !character.hasTalent(TALENT_NAME_COLLABORATION);
                             } else {
                                 return t.category === "" || t.category === "General";
                             }
@@ -753,12 +755,13 @@ export class NpcGenerator {
                                 attributes = specialization.primaryAttributes;
                             }
                             selectedTalent.attribute = attributes[Math.floor(Math.random() * attributes.length)];
-                        } else if (talent.name === TALENT_NAME_COLLABORATION) {
-                            let departments = DepartmentsHelper.instance.getDepartments();
-                            if (D20.roll() <= 10 && specialization.primaryDiscipline != null) {
-                                departments = [ specialization.primaryDiscipline ];
+                        } else if ([TALENT_NAME_COLLABORATION, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(talent.name)) {
+                            if (specialization.primaryDiscipline != null) {
+                                selectedTalent.department = specialization.primaryDiscipline;
+                            } else {
+                                let departments = DepartmentsHelper.instance.getDepartments();
+                                selectedTalent.department = departments[Math.floor(Math.random() * departments.length)];
                             }
-                            selectedTalent.department = departments[Math.floor(Math.random() * departments.length)];
                         }
 
                         if (!character.hasTalent(talent.name) || talent.hasRank) {

@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS } from "../helpers/talents";
 import { SelectedTalent } from "./selectedTalent";
 
 export const determineSelectedTalentExtraErrors = (talent: SelectedTalent) => {
@@ -8,6 +8,10 @@ export const determineSelectedTalentExtraErrors = (talent: SelectedTalent) => {
         return "The selected talent requires a weapon selection.";
     } else if (talent?.talent === TALENT_NAME_DEFENSIVE_TRAINING && talent.selection == null) {
         return "The selected talent requires an attack type selection.";
+    } else if (talent?.talent === TALENT_NAME_BOLD && talent.department == null) {
+        return i18next.t("Talent.bold.error");
+    } else if (talent?.talent === TALENT_NAME_CAUTIOUS && talent.department == null) {
+        return i18next.t("Talent.cautious.error");
     } else if (talent?.talent === TALENT_NAME_COLLABORATION && talent.department == null) {
         return i18next.t("Talent.collaboration.error");
     } else if (talent?.talent === TALENT_NAME_VISIT_EVERY_STAR && talent.focuses?.length !== 1) {
