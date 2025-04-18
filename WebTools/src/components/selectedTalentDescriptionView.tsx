@@ -15,7 +15,7 @@ import { BorgImplants, BorgImplantType } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';
 import { Attribute } from '../helpers/attributes';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION } from '../helpers/talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TalentModel } from '../helpers/talents';
 import { SimpleDepartmentSelector } from './simpleDepartmentSelector';
 import { Department } from '../helpers/department';
 import { AttackType } from '../common/attackType';
@@ -33,6 +33,10 @@ interface ITalentAttributeSelectionProperties {
 interface ITalentDepartmentSelectionProperties {
     character: Character;
     onDepartmentSelection: (d: Department) => void;
+}
+
+interface IBoldOrCautiousTalentDepartmentSelectionProperties extends ITalentDepartmentSelectionProperties {
+    talent: TalentModel;
 }
 
 interface ITalentAdditionalSelectionProperties {
@@ -202,6 +206,27 @@ export const CollaborationDepartmentSelectionView: React.FC<ITalentDepartmentSel
     return (
         <div>
             <Header level={2} className="my-4">{t('Talent.collaboration')}</Header>
+            <SimpleDepartmentSelector
+                character={character}
+                isChecked={(a) => departmentSelection === a}
+                onSelectDepartment={(a) => {
+                    setDepartmentSelection(a);
+                    onDepartmentSelection(a);
+                }}
+                isUpdateable={d => !selectedDepartments.includes(d)}
+            />
+        </div>
+    );
+}
+
+export const BoldOrCautiousDepartmentSelectionView: React.FC<IBoldOrCautiousTalentDepartmentSelectionProperties> = ({onDepartmentSelection, character, talent}) => {
+
+    const [ departmentSelection, setDepartmentSelection ] = useState<Department|undefined>(undefined);
+    let selectedDepartments = character.talents.filter(t => [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(t.talent)).map(t => t.department);
+
+    return (
+        <div>
+            <Header level={2} className="my-4">{talent.localizedDisplayName}</Header>
             <SimpleDepartmentSelector
                 character={character}
                 isChecked={(a) => departmentSelection === a}

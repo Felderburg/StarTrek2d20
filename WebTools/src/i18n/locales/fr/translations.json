@@ -1624,6 +1624,7 @@
 
     "Talent.backupEpsConduits.soloDescription": "Le vaisseau est équipé de conduits d’alimentation supplémentaires, qui peuvent être activés pour permettre de détourner de l’énergie plus facilement en cas d’urgence. Cela évite par exemple une fuite d’énergie si l’appareil est endommagé. Le cas échéant, lancez un par point d’Énergie qui pourrait être perdu. Chaque Effet obtenu empêche la perte de ce point.",
 
+    "Talent.bold": "Audacieux",
     "Talent.boldCommand": "Audacieux : Commandement",
 
     "Talent.boldCommand.description": "Quand vous effectuez une Tâche avec Commandement et que vous achetez au moins un d20 en ajoutant de la Menace, vous pouvez relancer un d20.",
@@ -1652,6 +1653,7 @@
 
     "Talent.captainsYacht.soloDescription": "Le vaisseau possède une navette supplémentaire unique, généralement montée sous la soucoupe. Plus spacieuses que la plupart des navettes, elle est souvent utilisée pour les missions diplomatiques et les excursions spéciales de l'officier de commandement et est généralement connue sous le nom de \"yacht du capitaine\"",
 
+    "Talent.cautious": "Prudent",
     "Talent.cautiousCommand": "Prudent : Commandement",
 
     "Talent.cautiousCommand.description": "À chaque fois que vous effectuez une Tâche avec Commandement et que vous achetez au moins un d20 en dépensant des points d’Impulsion, vous pouvez relancer un d20. ",

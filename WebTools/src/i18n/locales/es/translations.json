@@ -2168,6 +2168,7 @@
 
     "Talent.bedsideManner.description2e": "Cuando tienes éxito en una tarea de Medicina para tratar una Herida, puedes eliminar inmediatamente un rasgo negativo del paciente, incluso si ese rasgo no estaba relacionado con la Herida tratada. Además, cuando intentes un Tirada de Reputación, añade una influencia positiva adicional.",
 
+    "Talent.bold": "Audaz",
     "Talent.boldCommand": "Audaz: Mando",
 
     "Talent.boldCommand.description": "Cuando emprendas una Tarea con Mando y adquieras 1 o más d20 aumentando la Amenaza, puedes repetir un único d20.",
@@ -2209,6 +2210,7 @@
     "Talent.calmAndLogical.description2e": "Cuando obtienes un rasgo que representa un estado de ánimo o emocional, puedes suprimir ese rasgo (ignorando su efecto) durante la duración de una única tarea o un único turno en combate sufriendo 1 punto de Estrés.",
 
     "Talent.captainsYacht": "Yate del Capitán",
+    "Talent.cautious": "Prudente",
     "Talent.cautiousCommand": "Prudente: Mando",
 
     "Talent.cautiousCommand.description": "Cuando emprendas una Tarea con Mando y adquieras 1 o más d20 gastando Inercia, puedes repetir un único d20. ",

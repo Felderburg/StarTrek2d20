@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Header } from "../components/header";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION, TalentModel, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TalentModel, TalentsHelper } from "../helpers/talents";
 import replaceDiceWithArrowhead from "../common/arrowhead";
 import { Stereotype } from "../common/construct";
 import { Starship } from "../common/starship";
@@ -55,10 +55,10 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 .join(", ");
             return (<div className="text-sm px-4"><b>{t("Construct.other.attribute") + ": "}</b>
                 {selectedAttributes}</div>);
-        } else if (talent.name === TALENT_NAME_COLLABORATION) {
+        } else if ([TALENT_NAME_COLLABORATION, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(talent.name)) {
             let character = construct as Character;
             let selectedAttributes = character.talents
-                .filter(s => s.talent === TALENT_NAME_COLLABORATION && s.department != null)
+                .filter(s => s.talent === talent.name && s.department != null)
                 .map(s => t(makeKey("Construct.discipline.", Department[s.department])))
                 .join(", ");
             return (<div className="text-sm px-4"><b>{t("Construct.other.department") + ": "}</b>

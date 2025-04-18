@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
@@ -17,6 +17,8 @@ import { BorgImplants } from '../helpers/borgImplant';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
 import { SimpleDepartmentSelector } from './simpleDepartmentSelector';
 import { AttackType } from '../common/attackType';
+import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
+import Markdown from 'react-markdown';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
@@ -49,6 +51,11 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
         }
 
     }, [talents]);
+
+    const updateSelection = (selection: SelectedTalent) => {
+        setSelection(selection);
+        onSelection(selection);
+    }
 
     const specialWeaponOptions = () => {
         let result = [];
@@ -132,6 +139,35 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
         )
     }
 
+    const renderBoldOrCautiousSelection = () => {
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <SimpleDepartmentSelector
+                        character={construct as Character}
+                        isChecked={d => selection.department === d}
+                        onSelectDepartment={d => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.department = d;
+                            }
+                            updateSelection(temp);
+                        }}
+                        isUpdateable={d => {
+                            if (d === selection.department) {
+                                return true;
+                            } else {
+                                let departments = (construct as Character).talents
+                                    .filter(t => [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(t.talent) && t.department != null)
+                                    .map(t => t.department);
+                                return !departments.includes(d);
+                            }
+                        }}
+                    />
+                </div>
+            </div>
+        )
+    }
 
     const renderDefensiveTrainingSelection = () => {
         let options = [];
@@ -294,6 +330,17 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
         return t1.localizedName.localeCompare(t2.localizedName);
     })
 
+    const talentDescription = (t: TalentViewModel) => {
+        if (t.description.includes(CHALLENGE_DICE_NOTATION)) {
+            return t.description.split('\n').map((l, i) => {
+                return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
+            })
+        } else {
+            return (<Markdown className="markdown-sm">{t.description}</Markdown>);
+        }
+    }
+
+
     const talentList = talents.map((t, i) => {
         let prerequisites = undefined;
         t.prerequisites.forEach((p) => {
@@ -310,14 +357,10 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             prerequisites = (<div style={{ fontWeight: "bold" }}>{prerequisites}</div>);
         }
 
-        let lines = t.description.split('\n').map((l, i) => {
-            return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
-        })
-
         return (<tbody key={i}>
             <tr>
                 <td className="selection-header-small">{t.localizedName}</td>
-                <td>{lines} {prerequisites}</td>
+                <td>{talentDescription(t)} {prerequisites}</td>
                 <td>
                     <CheckBox
                         text=""
@@ -415,6 +458,16 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                     <td></td>
                     <td>
                         {renderCollaborationSelection()}
+                    </td>
+                    <td></td>
+                </tr>)
+                : undefined}
+            {selection?.talent === t.name &&
+                [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(t.name)
+                ? (<tr>
+                    <td></td>
+                    <td>
+                        {renderBoldOrCautiousSelection()}
                     </td>
                     <td></td>
                 </tr>)

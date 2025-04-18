@@ -2426,6 +2426,7 @@
 
     "Talent.bedsideManner.description2e": "Quando for bem-sucedido em uma tarefa de Medicina para curar um ferimento, você poderá remover imediatamente uma característica negativa do paciente, mesmo que essa característica não esteja relacionada ao ferimento que está sendo tratado. Além disso, quando você tentar fazer uma Verificação de Reputação, acrescente uma influência positiva adicional.",
 
+    "Talent.bold": "Audaz",
     "Talent.boldCommand": "Audaz: Comando",
 
     "Talent.boldCommand.description": "Sempre que fizer uma Tarefa com Comando e comprar um ou mais d20s ao gerar Ameaça, você pode rejogar um único d20",
@@ -2471,6 +2472,7 @@
     "Talent.captainsYacht.soloDescription": "A nave tem uma única embarcação de apoio adicional, normalmente montada em uma porta dedicada sob a seção do pires da nave. Essa nave, maior\ndo que a maioria das naves auxiliares, são frequentemente usadas para missões diplomáticas e excursões especiais pelo oficial comandante e são conhecidas como o Iate do Capitão.",
     "Talent.captainsYacht.description2e": "A nave possui um único veículo de apoio adicional, normalmente montada em um porto dedicado sob o disco da nave. Esses veículos, maiores do que a maioria dos transportes, são frequentemente utilizadas para missões diplomáticas e excursões especiais.\n\nA nave tem uma transportador pequeno adicional, que não conta contra a capacidade de naves pequenas da nave e não é lançada do hangar de transportes.",
 
+    "Talent.cautious": "Cauteloso",
     "Talent.cautiousCommand": "Cauteloso: Comando",
 
     "Talent.cautiousCommand.description": "Sempre que fizer uma Tarefa com Comando e comprar um ou mais d20s ao gastar Ímpeto, você pode rejogar um único d20.",

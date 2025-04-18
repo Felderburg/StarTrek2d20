@@ -2571,6 +2571,11 @@
 
     "Talent.bedsideManner.description2e": "When you succeed at a Medicine task to heal an Injury, you may immediately remove a negative trait from the patient, even if that trait was unrelated to the Injury being treated. In addition, when you attempt a Reputation Check, add one additional positive influence.",
 
+    "Talent.bold": "Bold",
+
+    "Talent.bold.description": "You must choose a single Discipline when you select this Talent. Whenever you attempt a Task with that Discipline, and you buy one or more d20s by adding to Threat, you may re-roll a single d20. You may select this Talent multiple times, once for each Discipline. You may not select this Talent  for any Discipline for which you already have the Cautious Talent.",
+    "Talent.bold.description2e": "Choose a department when you select this talent. Whenever you attempt a task from that department, and you buy one or more d20s by adding Threat, you may re-roll a single d20. You may select this talent multiple times, once for each department. You may not select this talent for any department for which you have the **Cautious** talent.",
+
     "Talent.boldCommand": "Bold: Command",
 
     "Talent.boldCommand.description": "Whenever you attempt a Task with Command, and you buy one or more d20s by adding to Threat, you may re-roll a single d20.",
@@ -2624,6 +2629,11 @@
 
     "Talent.captainsYacht.soloDescription": "The vessel has a single additional support craft, normally mounted in a dedicated port under the saucer section of the ship. These craft, larger\nthan most shuttles, are often used for diplomatic missions and special excursions by the commanding officer and are often known as the Captain’s Yacht.",
     "Talent.captainsYacht.description2e": "The vessel has a single additional support craft, normally mounted in a dedicated port under the saucer of the ship. These craft, larger than most shuttles, are often used for diplomatic missions and special excursions.\n\nThe ship has one additional small craft, which does not count against the ship’s small craft capacity and does not launch from the shuttlebay.",
+
+    "Talent.cautious": "Cautious",
+
+    "Talent.cautious.description": "You must choose a single Discipline when you select this Talent. Whenever you attempt a Task with that Discipline, and you buy one or more d20s by spending Momentum, you may re-roll a single d20. You may select this Talent multiple times, once for each Discipline. You may not select this Talent for any Discipline for which you already have the Bold Talent.",
+    "Talent.cautious.description2e": "Choose a department when you select this talent. Whenever you attempt a task with that department, and you buy one or more d20s by spending Momentum, you may re-roll a single d20. You may select this talent multiple times, once for each department. You may not select this talent for any department for which you have the **Bold** talent.",
 
     "Talent.cautiousCommand": "Cautious: Command",
 
@@ -2801,6 +2811,10 @@
 
     "Talent.defensiveTrainingRanged.description": "You are adept at staying out of harm’s way during a skirmish. Ranged attacks that target you have their Difficulty increased by 1.",
     "Talent.defensiveTrainingRanged.description2e": "Ranged Attacks against you increase in Difficulty by 1.",
+
+    "Talent.defensiveTrainingFederationKlingonWar": "Defensive Training",
+
+    "Talent.defensiveTrainingFederationKlingonWar.description": "You are adept at staying out of harm’s way during a skirmish. Choose one of the following: melee attacks or ranged attacks. Those types of attacks that target you have their Difficulty increased by 1. This talent may be taken twice, once for each type of attack.",
 
     "Talent.defuseTheTension": "Defuse the Tension",
 

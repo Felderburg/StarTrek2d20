@@ -19,7 +19,7 @@ import { SpaceframeHelper } from './spaceframes';
 import { SpeciesHelper } from './species';
 import { Species } from './speciesEnum';
 import { allSystems, System, systemByName } from './systems';
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
 import { CaptureType, CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadType, EnergyLoadTypeModel, MineType, MineTypeModel, TorpedoLoadType, TorpedoLoadTypeModel, UsageCategory, Weapon, WeaponType } from './weapons';
@@ -1660,6 +1660,22 @@ class Marshaller {
             talentName === "Collaboration: Science") {
 
             talentName = TALENT_NAME_COLLABORATION;
+        } else if (talentName === "Bold: Command" ||
+            talentName === "Bold: Conn" ||
+            talentName === "Bold: Engineering" ||
+            talentName === "Bold: Security" ||
+            talentName === "Bold: Medicine" ||
+            talentName === "Bold: Science") {
+
+            talentName = TALENT_NAME_BOLD;
+        } else if (talentName === "Cautious: Command" ||
+            talentName === "Cautious: Conn" ||
+            talentName === "Cautious: Engineering" ||
+            talentName === "Cautious: Security" ||
+            talentName === "Cautious: Medicine" ||
+            talentName === "Cautious: Science") {
+
+            talentName = TALENT_NAME_CAUTIOUS;
         } else if (talentName === "Defensive Training: Melee" ||
             talentName === "Defensive Training: Ranged") {
 
@@ -1681,17 +1697,17 @@ class Marshaller {
                 selectedTalent.attribute = Attribute.Presence;
             } else if (t.name === "Augmented Ability (Reason)") {
                 selectedTalent.attribute = Attribute.Reason;
-            } else if (t.name === "Collaboration: Command") {
+            } else if (["Collaboration: Command", "Bold: Command", "Cautious: Command"].includes(t.name)) {
                 selectedTalent.department = Department.Command;
-            } else if (t.name === "Collaboration: Conn") {
+            } else if (["Collaboration: Conn", "Bold: Conn", "Cautious: Conn"].includes(t.name)) {
                 selectedTalent.department = Department.Conn;
-            } else if (t.name === "Collaboration: Engineering") {
+            } else if (["Collaboration: Engineering", "Bold: Engineering", "Cautious: Engineering"].includes(t.name)) {
                 selectedTalent.department = Department.Engineering;
-            } else if (t.name === "Collaboration: Security") {
+            } else if (["Collaboration: Security", "Bold: Security", "Cautious: Security"].includes(t.name)) {
                 selectedTalent.department = Department.Security;
-            } else if (t.name === "Collaboration: Medicine") {
+            } else if (["Collaboration: Medicine", "Bold: Medicine", "Cautious: Medicine"].includes(t.name)) {
                 selectedTalent.department = Department.Medicine;
-            } else if (t.name === "Collaboration: Science") {
+            } else if (["Collaboration: Science", "Bold: Science", "Cautious: Science"].includes(t.name)) {
                 selectedTalent.department = Department.Science;
             } else if (t.name === "Defensive Training: Melee") {
                 selectedTalent.selection = AttackType.Melee;
