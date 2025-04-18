@@ -59,7 +59,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
     }
 
     const selectTalent = (talent: TalentViewModel) => {
-        console.log("Talent ===> ", talent);
         if (selection?.talent === talent?.name) {
             setSelection(undefined);
             onSelection(undefined);
