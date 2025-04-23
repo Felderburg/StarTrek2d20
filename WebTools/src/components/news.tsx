@@ -14,6 +14,19 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250423</b>
+            <ul>
+                <li>
+                    I've recently been tweaking the handling of some talents: increasingly,
+                    talents are requiring selections of things, and I've decided to revise
+                    the way I handle that. Some of the types of talents that this affects
+                    includes old stand-bys like Bold and Cautious. Sadly my revision probably
+                    impacts some of the translations to other languages.
+                </li>
+                <li>
+                    Other bug fixes.
+                </li>
+            </ul>
             <b>v1.250417</b>
             <ul>
                 <li>

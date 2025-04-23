@@ -111574,14 +111574,7 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Scottish"
-        ]
-    },
-    {
-        "name": "Scott",
-        "type": "LastName",
-        "gender": "Unisex",
-        "tags": [
+            "Scottish",
             "British",
             "Irish",
             "African-American"
