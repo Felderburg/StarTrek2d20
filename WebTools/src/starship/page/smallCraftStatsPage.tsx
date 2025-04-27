@@ -7,6 +7,11 @@ import { BuildPoints } from "../model/buildPoints";
 import { BaseSimpleStarshipPage } from "./simpleStarshipPage";
 import { withTranslation } from 'react-i18next';
 import { DepartmentsHelper } from "../../helpers/department";
+import { nextStarshipWorkflowStep } from "../../state/starshipActions";
+import store from "../../state/store";
+import { Navigation } from "../../common/navigator";
+import { ShipBuildType } from "../../common/starship";
+import { PageIdentity } from "../../pages/pageIdentity";
 
 
 class SmallCraftStatsPage extends BaseSimpleStarshipPage {
@@ -66,7 +71,13 @@ class SmallCraftStatsPage extends BaseSimpleStarshipPage {
         } else if (this.sumTotalDepartments() < this.getDepartmentPoints()) {
             Dialog.show("You have not distributed all the Department Points");
         } else {
-            return super.nextPage();
+            let { starship } = this.props;
+            store.dispatch(nextStarshipWorkflowStep());
+            if (starship.buildType === ShipBuildType.Pod) {
+                Navigation.navigateToPage(PageIdentity.StarshipWeaponsSelection);
+            } else {
+                Navigation.navigateToPage(PageIdentity.StarshipTalentSelection);
+            }
         }
     }
 }

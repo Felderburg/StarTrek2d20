@@ -12,7 +12,8 @@ export function hasSource(s: Source) {
 export function hasAnySource(sources: Source[]) {
     var result: boolean = false;
     for (var s of sources) {
-        result = result || hasSource(s) || s === Source.Core;
+        result = result || hasSource(s) ||
+            (isSecondEdition() ? s === Source.Core2ndEdition : s === Source.Core);
     }
     return result;
 }
