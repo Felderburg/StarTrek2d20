@@ -29,6 +29,8 @@ class SpeciesRestrictions {
     static getUniformTypes(species: Species) {
         if (species === Species.Cetacean) {
             return [ UniformEra.DominionWar, UniformEra.LowerDecks ];
+        } else if (species === Species.Edosian) {
+            return [ UniformEra.DominionWar ];
         } else if (species === Species.Tzenkethi) {
             return [ UniformEra.None, UniformEra.Tzenkethi ];
         } else {
@@ -51,6 +53,8 @@ class SpeciesRestrictions {
             return ["#dcd5d0", "#c4bab1", "#b4a8a8", "#998679", "#a88872" ];
         } else if (species === Species.Bolian) {
             return ["#97c3f2", "#87acda", "#5883a6", "#5772b7", "#0665b3", "#385f8d"]; // "#597986",
+        } else if (species === Species.Edosian) {
+            return ["#d18352"];
         } else if (species === Species.Ferengi) {
             return ["#d18352"];
         } else if (species === Species.Caitian) {

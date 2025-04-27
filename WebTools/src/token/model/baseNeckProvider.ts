@@ -107,6 +107,13 @@ const TrillNeckAddOn = `<g>
 </g>`;
 
 
+const EdosianNeck = `<g>
+    <path d="m 213.40757,151.53709 c 0,0 1.58555,49.18734 -0.75846,53.58201 -2.344,4.39601 -15.7951,20.90756 -15.7951,20.90756 0,0 -0.19092,10.94375 8.89309,19.14775 9.08267,8.20534 28.70946,23.10269 55.6034,-1.81068 l 4.20563,-28.07481 1.22377,-29.65904 -4.15155,-33.08226 -47.48721,-18.98962 z" style="clip-rule:evenodd;fill:#cd976d;fill-rule:nonzero;stroke-width:1.33333;stroke-linejoin:round;stroke-miterlimit:2" id="path63" />
+    <path d="m 213.40757,151.53709 c 0,0 2.97928,49.65192 0.63527,54.04659 -2.344,4.39601 -17.18883,20.44298 -17.18883,20.44298 0,0 -0.19092,10.94375 8.89309,19.14775 9.08267,8.20534 28.70946,23.10269 55.6034,-1.81068 l 4.20563,-28.07481 1.22377,-29.65904 -4.15155,-33.08226 -47.48721,-18.98962 z" style="clip-rule:evenodd;fill:#000000;fill-opacity:0.2;fill-rule:nonzero;stroke-width:1.33333;stroke-linejoin:round;stroke-miterlimit:2" id="path67" />
+    <path id="path66" style="clip-rule:evenodd;fill-rule:nonzero;stroke-width:1.33333;stroke-linejoin:round;stroke-miterlimit:2;fill:#000000;" d="m 195.46598,224.37067 c 0,0 10.61511,-5.56471 15.2626,-19.77812 4.68757,-14.33597 3.40351,-37.44702 2.3731,-67.02147 l 4.39601,5.27467 c 0,0 0.6743,57.11504 -3.13504,64.44171 -3.80933,7.32534 -17.68734,22.01522 -17.68734,22.01522 z m 66.86614,17.10269 c 2.344,-7.032 4.01282,-12.44773 5.77149,-18.60107 1.75733,-6.15333 0.28476,-49.57928 0.28476,-49.57928 l -5.55654,-3.88531 c 0,0 5.98329,26.78381 1.76552,50.63722 -0.92234,5.2162 -3.10468,11.32499 -4.98844,16.40175 -6.62267,22.48002 2.72321,5.02669 2.72321,5.02669" />
+</g>`;
+
+
 export abstract class BaseNeckProvider {
 
     private isLowerShoulders(uniformEra: UniformEra, uniformVariant: UniformVariantType) {
@@ -131,6 +138,8 @@ export abstract class BaseNeckProvider {
 
         if (species === Species.Cetacean) {
             return CetaceanNeck;
+        } else if (species === Species.Edosian) {
+            return EdosianNeck.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, skinColor);
         } else if (species === Species.Tzenkethi) {
             return "";
         } else  if (body === BodyType.AverageMale) {
