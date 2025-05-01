@@ -3317,7 +3317,12 @@ export class Talents {
             new TalentModel(
                 "Improved Reaction Control System",
                 "The ship’s maneuvering thrusters operate with greater precision, allowing the ship to adjust its course more carefully. Whenever a Task to move or maneuver the ship would increase in Difficulty because of obstacles or hazards, reduce the Difficulty by 1 (to a minimum of the Task’s normal Difficulty).",
-                [new StarshipPrerequisite(), new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipPrerequisite(),
+                    new AnyOfPrerequisite(
+                        new DepartmentPrerequisite(Department.Conn, 3),
+                        new SourcePrerequisite(Source.Core2ndEdition)
+                    ),
+                    new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(

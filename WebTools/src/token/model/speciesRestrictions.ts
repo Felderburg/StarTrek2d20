@@ -31,6 +31,8 @@ class SpeciesRestrictions {
             return [ UniformEra.DominionWar, UniformEra.LowerDecks ];
         } else if (species === Species.Edosian) {
             return [ UniformEra.DominionWar ];
+        } else if (species === Species.Tholian) {
+            return [ UniformEra.None ];
         } else if (species === Species.Tzenkethi) {
             return [ UniformEra.None, UniformEra.Tzenkethi ];
         } else {
@@ -218,7 +220,9 @@ class SpeciesRestrictions {
         } else if (extra === ExtraType.SecurityHelmet) {
             return uniformEra === UniformEra.MonsterMaroon && !SpeciesRestrictions.isRubberHeaded(species);
         } else if (extra === ExtraType.Visor) {
-            return species !== Species.Cetacean && species !== Species.Tzenkethi;
+            return species !== Species.Cetacean
+                && species !== Species.Tholian
+                && species !== Species.Tzenkethi;
         } else {
             return true;
         }
@@ -255,6 +259,7 @@ class SpeciesRestrictions {
             || species === Species.Jelna
             || species === Species.JemHadar || species === Species.Kelpien || species === Species.Reman
             || species === Species.Saurian || species === Species.Suliban
+            || species === Species.Tholian
             || species === Species.Tzenkethi
             || species === Species.XindiArboreal
             || species === Species.XindiReptilian
