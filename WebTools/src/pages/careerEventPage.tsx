@@ -66,15 +66,15 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
         if (includeUnofficial) {
             return Math.floor(Math.random() * 50) + 1;
         } else {
-            return CareerEventsHelper.generateEvent(character.type).roll;
+            return CareerEventsHelper.generateEvent(character.type, character.version).roll;
         }
     }
 
     const renderStandardTab = () => {
 
         const events = randomEvent != null
-            ? toTableRow(CareerEventsHelper.getCareerEvent(randomEvent, character.type) , 0)
-            : CareerEventsHelper.getCareerEvents(character.type).map((c, i) => toTableRow(c, i));
+            ? toTableRow(CareerEventsHelper.getCareerEvent(randomEvent, character.type, character.version) , 0)
+            : CareerEventsHelper.getCareerEvents(character.type, character.version).map((c, i) => toTableRow(c, i));
 
         return (<>
             <div className="my-4">
@@ -95,8 +95,8 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
     const renderStandardAndUnofficialTab = () => {
 
         const events = randomEventWithUnofficial != null
-            ? toTableRow(CareerEventsHelper.getCareerEvent(randomEventWithUnofficial, character.type) , 0)
-            : CareerEventsHelper.getCareerEventsIncludingUnofficial(character.type).map((c, i) => toTableRow(c, i));
+            ? toTableRow(CareerEventsHelper.getCareerEvent(randomEventWithUnofficial, character.type, character.version) , 0)
+            : CareerEventsHelper.getCareerEventsIncludingUnofficial(character.type, character.version).map((c, i) => toTableRow(c, i));
 
         return (<>
             <div className="mt-4">

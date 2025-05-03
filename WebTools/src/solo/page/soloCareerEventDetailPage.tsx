@@ -35,7 +35,7 @@ const SoloCareerEventDetailsPage: React.FC<ISoloCareerEventProperties> = ({chara
         ? character.careerEvents[0]
         : character.careerEvents[1];
 
-    const careerEvent = CareerEventsHelper.getCareerEvent(careerEventStep?.id, CharacterType.Starfleet);
+    const careerEvent = CareerEventsHelper.getCareerEvent(careerEventStep?.id, CharacterType.Starfleet, character.version);
 
     const navigateToNextStep = () => {
         if (careerEventStep.attribute == null) {

@@ -1123,6 +1123,16 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 || this.hasTalent("Augmented Ability")) {
             traits.push("Augment");
         }
+        if (this.hasTalent("Synthetic Physiology") && this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
+            traits.push("Cyborg");
+        }
+        if (this.hasTalent("Analytical Recall") && !(traits.includes("Augment") || traits.includes("Cyborg"))) {
+            if (this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
+                traits.push("Augment");
+            } else {
+                traits.push("Cyborg");
+            }
+        }
         if (this.hasTalent("Joined")) {
             traits.push("Symbiont");
         }

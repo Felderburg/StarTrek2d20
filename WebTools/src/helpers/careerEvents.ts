@@ -1092,26 +1092,26 @@ class CareerEvents {
         return result;
     }
 
-    getCareerEvents(type: CharacterType) {
-        let list = type === CharacterType.KlingonWarrior ? this._klingonEvents : this._events;
+    getCareerEvents(type: CharacterType, version: number) {
+        let list = (type === CharacterType.KlingonWarrior && version === 1) ? this._klingonEvents : this._events;
         list = list.filter(e => e.source == null || hasSource(e.source));
         return [...list].sort((e1, e2) => {
             return e1.localizedName.localeCompare(e2.localizedName);
         })
     }
 
-    getCareerEventsIncludingUnofficial(type: CharacterType) {
-        let list = this.getCareerEvents(type);
+    getCareerEventsIncludingUnofficial(type: CharacterType, version: number) {
+        let list = this.getCareerEvents(type, version);
         this._unofficialEvents.forEach(e => list.push(e));
         return list.sort((e1, e2) => {
             return e1.localizedName.localeCompare(e2.localizedName);
         })
     }
 
-    getCareerEvent(id: number, type: CharacterType): CareerEventModel {
+    getCareerEvent(id: number, type: CharacterType, version: number): CareerEventModel {
         let event = undefined;
 
-        let list = type === CharacterType.KlingonWarrior ? this._klingonEvents : this._events;
+        let list = (type === CharacterType.KlingonWarrior && version === 1) ? this._klingonEvents : this._events;
         list.forEach(ev => {
             if (ev.roll === id) {
                 event = ev;
@@ -1128,19 +1128,24 @@ class CareerEvents {
         return event;
     }
 
-    generateEvent(type: CharacterType): CareerEventModel {
-        var roll = Math.floor(Math.random() * 20) + 1;
-        let event = undefined;
+    generateEvent(type: CharacterType, version: number): CareerEventModel {
+        if (version === 1 || type === CharacterType.KlingonWarrior) {
+            let roll = Math.floor(Math.random() * 20) + 1;
+            let event = undefined;
 
-        let list = type === CharacterType.KlingonWarrior ? this._klingonEvents : this._events;
-        list.forEach(ev => {
-            if (ev.roll === roll) {
-                event = ev;
-                return;
-            }
-        });
-
-        return event;
+            let list = type === CharacterType.KlingonWarrior ? this._klingonEvents : this._events;
+            list.forEach(ev => {
+                if (ev.roll === roll) {
+                    event = ev;
+                    return;
+                }
+            });
+            return event;
+        } else {
+            let events = this.getCareerEvents(type, version);
+            let roll = Math.floor(Math.random() * events.length);
+            return events[roll];
+        }
     }
 }
 

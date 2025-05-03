@@ -128,7 +128,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
         }
 
         let careerEvents = c.careerEvents.map((e, i) => {
-            return (<div key={i}>{CareerEventsHelper.getCareerEvent(e.id, c.type).localizedName}</div>)
+            return (<div key={i}>{CareerEventsHelper.getCareerEvent(e.id, c.type, c.version).localizedName}</div>)
         });
 
         let containerClass = this.props.showProfile ? "sheet-container sheet-container-visible pe-3" :  "sheet-container sheet-container-hidden pe-3";

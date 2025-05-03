@@ -2531,6 +2531,11 @@
 
     "Talent.amphibiousSpecialRuleCreature.description": "This creature can move on the ground or through the water with ease. Complications normally suffered by a creature moving through an environment in which it is not native are ignored. This special rule can apply to any two environments, such as vacuum and magma, or aquatic and air.",
 
+    "Talent.analyticalRecall": "Analytical Recall",
+
+    "Talent.analyticalRecall.description": "Some Cybernetically Enhanced find themselves able to recall information faster than they used to and are able to process crucial details to a greater degree. Three times per session, a Cybernetically Enhanced individual may ask the gamemaster for more information regarding data they have recorded or situations they have personally seen, as if they had spent a point of Momentum to Obtain Information.",
+    "Talent.analyticalRecall.description2e": "You record everything you perceive, and can recall it with such clarity you can analyze every detail later. You may spend 1 Momentum (and a major action if in combat) to attempt a **Reason + Science** task with a Difficulty of 0 to replay old memories; Momentum spent may be used to _Obtain Information_ as you analyze details you might have missed before.",
+
     "Talent.anAnswerForEverything": "An Answer for Everything",
 
     "Talent.anAnswerForEverything.description": "You relish intense debate, where you can see your opponent’s argument unfold, then turn it back against them. When you succeed at a task as part of an extended task in a social conflict, you may reroll a number of [D] up to your Command score.",
@@ -2765,6 +2770,10 @@
 
     "Talent.combatMedic.description2a": "When attempting a Medicine task during combat, you may pick one trait which increases the Difficulty of the task and ignore it.",
 
+    "Talent.commandAndControl": "Command & Control",
+
+    "Talent.commandAndControl.description": "You’re well-versed in the ways technology can keep you in contact with your officers and allow you to aid them from afar. During combat, when you create a trait for an ally that represents a plan, strategy, or some valuable information, you may spend 1 Momentum to duplicate that trait and give a copy to a different ally. You must be able to communicate with both allies receiving these traits. If you use this talent while aboard ship, you may be assisted by the ship’s **Communications + Command**.",
+
     "Talent.commandShip": "Command Ship",
 
     "Talent.commandShip.soloDescription": "The ship has command and control systems allowing it to coordinate easily with allies during a crisis.",
@@ -2808,6 +2817,10 @@
 
     "Talent.culturalFlexibility.description": "Your people are friendly, patient, and inquisitive, and you exemplify these traits. You are at ease when meeting new cultures, and adapt to unfamiliar social structures easily. When you attempt a Task to learn about an unfamiliar culture, or to act in an appropriate manner when interacting with members of such a culture, you reduce the Difficulty by 1.",
     "Talent.culturalFlexibility.description2e": "You are at ease when meeting new cultures, and you adapt to unfamiliar social structures easily. When you attempt a task to learn about an unfamiliar culture, or to act in an appropriate manner when interacting with members of such a culture, you may re-roll 1d20.",
+
+    "Talent.customTools": "Custom Tools",
+
+    "Talent.customTools.description": "You’ve supplemented your normal toolkits with custom devices of your own design. You gain the Custom Tools equipment trait, which is added to your standard issue equipment. This stacks with the effects of your standard engineer’s toolkit, and adds 1 to your Impact on extended tasks related to technology. You cannot transfer this trait to other characters—they don’t know how to use your tools—and if this trait is lost, you may regain it for free at the start of any scene where you’re near a replicator.",
 
     "Talent.cuttingEdgeMedicine": "Cutting Edge Medicine",
 
@@ -2868,6 +2881,7 @@
     "Talent.demolitionist": "Demolitionist",
 
     "Talent.demolitionist.description": "You are skilled in making, setting, and defusing explosive devices. Whenever you attempt an Engineering task to create, set, or to defuse an explosive device or whenever you make an attack with a weapon with the Grenade weapon quality, the first d20 you purchase is free. In addition, you can ignore the first complication on an Engineering task involving explosives once per scene.",
+    "Talent.demolitionist.description2e": "When you attempt an **Engineering** task to create, set, or defuse an explosive device, you may reroll one d20, and you can ignore the first complication on an **Engineering** task involving explosives in each scene. In addition, whenever you make an attack with a weapon with the **Grenade** weapon quality, it gains the **Accurate** quality.",
 
     "Talent.diagnosticExpertise": "Diagnostic Expertise",
 
@@ -3021,6 +3035,11 @@
     "Talent.firstResponse": "First Response",
 
     "Talent.firstResponse.description": "Whenever you attempt the First Aid Task during combat, you gain a bonus d20. Further, you may always Succeed at a Cost, with each Complication you suffer adding +1 to the Difficulty of healing the patient’s Injury subsequently.",
+
+    "Talent.fixEmAndFlyEm": "Fix 'Em and Fly 'Em",
+
+    "Talent.fixEmAndFlyEm.description": "You may reroll one d20 on any **Engineering** task to perform repairs or any ship or small craft you have piloted. You may reroll one d20 on any **Conn** task to pilot any ship or small craft you have repaired.",
+
     "Talent.firstResponse.description2e": "When you attempt the First Aid task during combat, the first die you purchase is free. Further, you may always Succeed at Cost, with each complication you suffer adding 1 to the Difficulty of healing the patient’s Injury subsequently.",
 
     "Talent.flightSpecialRuleCreature": "Flight",
@@ -3102,6 +3121,10 @@
     "Talent.highResolutionSensors": "High-Resolution Sensors",
 
     "Talent.highResolutionSensors.description2e": "The vessel’s sensors can gain large amounts of accurate data, though they are extremely sensitive. While the vessel is not in combat, any successful task assisted by the ship’s Sensors gains 1 bonus Momentum. Bonus Momentum may not be saved.",
+
+    "Talent.hotRodShuttle": "Hot Rod Shuttle",
+
+    "Talent.hotRodShuttle.description": "You have customized one of the ship’s small craft as a personal project. You have a number of points equal to your Conn score, which you may spend to improve the small craft: each point spent adds 1 to one of its systems or departments. Additionally, select one starship talent of your choice for use on the small craft.",
 
     "Talent.hyperAgileSpecialRuleCreature": "Hyper-Agile",
 
@@ -3526,6 +3549,10 @@
 
     "Talent.proceduralCompliance.description2e": "When you attempt an Engineering task, you may remove one d20 from your dice pool before rolling. If you do so, you gain one automatic success on your task.",
 
+    "Talent.projectManager": "Project Manager",
+
+    "Talent.projectManager.description": "You are used to overseeing engineering teams in technical projects. When you begin a technical project (typically a challenge or extended task), you may nominate a number of other characters up to your **Command** rating to be part of your team. While they are working on that project, they ignore the normal Momentum or Threat cost for assisting, and increase their Impact by 1 when working on an extended task.",
+
     "Talent.prototypeCloakingDevice": "Prototype",
 
     "Talent.prototypeCloakingDevice.description": "The cloaking device employed on this vessel has some notable limitations. The vessel cannot travel at warp while cloaked, and the difficulty of the task roll to activate the cloak increases to 3.",
@@ -3790,6 +3817,10 @@
 
     "Talent.surverySavant.description2e": "When attempting a Medicine task during an extended task relating to surgery, your Impact is increased by 1.",
 
+    "Talent.syntheticPhysiology": "Synthetic Physiology",
+
+    "Talent.syntheticPhysiology.description": "Much of your body has been reconstructed with cybernetics. You have Protection 1, which increases by 1 against Stun attacks. Further, when you attempt a task using **Fitness**, you may suffer 1 Stress to reroll a single d20. Tasks to heal your Injuries use **Engineering** instead of **Medicine**.",
+
     "Talent.tachyonDetectionField": "Tachyon Detection Field",
 
     "Talent.tachyonDetectionField.description2e": "The ship is equipped with a field generator that projects a cloud of tachyons around it. When a character at sensor operations succeeds at a _Reveal_ major action, all cloaked or hidden vessels within Long range are revealed, rather than only one.",
@@ -3934,6 +3965,10 @@
     "Talent.whipLikeTailSpecialRuleCreature.description2e": "The creature can attack with a whip-like tail.",
 
     "Talent.wisdomOfYears": "Wisdom of Years",
+    "Talent.wroteTheBook": "Wrote the Book",
+
+    "Talent.wroteTheBook.description": "You know starships so well that you might as well have written the technical manuals yourself. In fact, you probably did write some of them. When you spend Determination on an **Engineering** task, if the task succeeds, double any Momentum you generate.\n\nIn addition, during Step 5 of lifepath character creation, if you select the Veteran option, you may select this talent instead of the Veteran talent.",
+
     "Talent.wormholeRelaySystem": "Wormhole Relay System",
 
     "Talent.wormholeRelaySystem.description2e": "The ship has an additional sensor system outfitted with high-energy transceivers, verteron sensors, and neutrino sensors. These sensors, combined with field-generation devices, allow the ship to send and receive data streams through wormholes. The Difficulty of all Science tasks to send or receive data through a wormhole is reduced by 2, to a minimum of 0.",

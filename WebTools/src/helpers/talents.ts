@@ -14,7 +14,7 @@ import { Spaceframe } from './spaceframeEnum';
 import { CareersPrerequisite, CharacterStereotypePrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, OfficerPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite } from './prerequisite';
 import { NotSourcePrerequisite } from './spaceframes';
 import { Career } from './careerEnum';
-import { hasAnySource } from '../state/contextFunctions';
+import { hasAnySource, isSecondEdition } from '../state/contextFunctions';
 import i18next from 'i18next';
 import { toCamelCase } from '../common/camelCaseUtil';
 import { Specialization } from '../common/specializationEnum';
@@ -80,6 +80,44 @@ class AttributePrerequisite implements IConstructPrerequisite<Character> {
         return "Requires " + Attribute[this.attribute] + " " + this.value + "+";
     }
 };
+
+
+class VersionConstrainedPrerequisite implements IConstructPrerequisite<Construct> {
+
+    private version: number;
+    private prerequisite: IConstructPrerequisite<Construct>;
+
+    constructor(version: number, prerequisite: IConstructPrerequisite<Construct>) {
+        this.version = version;
+        this.prerequisite = prerequisite;
+    }
+
+    isPrerequisiteFulfilled(construct: Construct) {
+        if (this.version === 1) {
+            if (construct.version === 1) {
+                return this.prerequisite.isPrerequisiteFulfilled(construct);
+            } else {
+                return true;
+            }
+        } else {
+            if (construct.version > 1) {
+                return this.prerequisite.isPrerequisiteFulfilled(construct);
+            } else {
+                return true;
+            }
+        }
+    }
+
+    describe(): string {
+        if (this.version > 1 && isSecondEdition()) {
+            return this.prerequisite.describe();
+        } else if (this.version === 1 && !isSecondEdition()) {
+            return this.prerequisite.describe();
+        } else {
+            return "";
+        }
+    }
+}
 
 class DisciplinePrerequisite implements IConstructPrerequisite<Character> {
     discipline: Department;
@@ -522,7 +560,7 @@ class DepartmentPrerequisite implements IConstructPrerequisite<Starship> {
         return starship != null && starship.departments[this.department] >= this.value;
     }
     describe(): string {
-        return "";
+        return "Requires " + Department[this.department] + " " + this.value + "+";
     }
 }
 
@@ -2404,13 +2442,21 @@ export class Talents {
             new TalentModel(
                 "Synthetic Physiology",
                 "Some injuries suffered by organic beings require extensive augmentations and improvements of an individual’s body. Some of these improvements leave the Cybernetically Enhanced possessing physical abilities superior to their original capabilities, and allow them to achieve feats well beyond what they once could. The Cybernetically Enhanced increases their Resistance by 1 against non-lethal attacks. The Cybernetically Enhanced may also spend 2 Momentum (Immediate) to re-roll a single die for any task involving Fitness.",
-                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.CyberneticallyEnhanced, true)],
+                [new SourcePrerequisite(Source.DiscoveryCampaign, Source.TechnicalManual),
+                    new AnyOfPrerequisite(
+                        new SpeciesPrerequisite(Species.CyberneticallyEnhanced, true),
+                        new SourcePrerequisite(Source.TechnicalManual))
+                ],
                 1,
                 "Cybernetically Enhanced"),
             new TalentModel(
                 "Analytical Recall",
                 "Some Cybernetically Enhanced find themselves able to recall information faster than they used to and are able to process crucial details to a greater degree. Three times per session, a Cybernetically Enhanced individual may ask the gamemaster for more information regarding data they have recorded or situations they have personally seen, as if they had spent a point of Momentum to Obtain Information.",
-                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.CyberneticallyEnhanced, true)],
+                [new SourcePrerequisite(Source.DiscoveryCampaign, Source.TechnicalManual),
+                    new AnyOfPrerequisite(
+                        new SpeciesPrerequisite(Species.CyberneticallyEnhanced, true),
+                        new SourcePrerequisite(Source.TechnicalManual))
+                ],
                 1,
                 "Cybernetically Enhanced"),
             new TalentModel(
@@ -3057,7 +3103,10 @@ export class Talents {
             new TalentModel(
                 "Demolitionist",
                 "You are skilled in making, setting, and defusing explosive devices. Whenever you attempt an Engineering task to create, set, or to defuse an explosive device or whenever you make an attack with a weapon with the Grenade weapon quality, the first d20 you purchase is free. In addition, you can ignore the first complication on an Engineering task involving explosives once per scene.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Engineering, 5), new DisciplinePrerequisite(Department.Security, 3)],
+                [new SourcePrerequisite(Source.FederationKlingonWar),
+                    new VersionConstrainedPrerequisite(1, new DisciplinePrerequisite(Department.Engineering, 5)),
+                    new VersionConstrainedPrerequisite(2, new DisciplinePrerequisite(Department.Engineering, 4)),
+                    new DisciplinePrerequisite(Department.Security, 3)],
                 1,
                 "General"),
             new TalentModel(
@@ -3191,6 +3240,42 @@ export class Talents {
                 1,
                 "Medicine"),
             new TalentModel(
+                "Command and Control",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Command, 4), new DisciplinePrerequisite(Department.Engineering, 2)],
+                1,
+                "Command"),
+            new TalentModel(
+                "Project Manager",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Command, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
+                1,
+                "Command"),
+            new TalentModel(
+                "Fix 'Em and Fly 'Em",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Conn, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
+                1,
+                "Conn"),
+            new TalentModel(
+                "Hot Rod Shuttle",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Conn, 4), new DisciplinePrerequisite(Department.Engineering, 4)],
+                1,
+                "Conn"),
+            new TalentModel(
+                "Custom Tools",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Engineering, 4)],
+                1,
+                "Engineering"),
+            new TalentModel(
+                "Wrote the Book",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Engineering, 4), new CareersPrerequisite(Career.Veteran)],
+                1,
+                "Engineering"),
+            new TalentModel(
                 "Engineering/Science Affinity (Unofficial)",
                 "",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Napean, false)],
@@ -3318,10 +3403,7 @@ export class Talents {
                 "Improved Reaction Control System",
                 "The ship’s maneuvering thrusters operate with greater precision, allowing the ship to adjust its course more carefully. Whenever a Task to move or maneuver the ship would increase in Difficulty because of obstacles or hazards, reduce the Difficulty by 1 (to a minimum of the Task’s normal Difficulty).",
                 [new StarshipPrerequisite(),
-                    new AnyOfPrerequisite(
-                        new DepartmentPrerequisite(Department.Conn, 3),
-                        new SourcePrerequisite(Source.Core2ndEdition)
-                    ),
+                    new VersionConstrainedPrerequisite(1, new DepartmentPrerequisite(Department.Conn, 3)),
                     new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),

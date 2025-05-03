@@ -34,7 +34,7 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({charac
         ? character.careerEvents[0]
         : character.careerEvents[1];
 
-    const careerEvent = CareerEventsHelper.getCareerEvent(careerEventStep?.id, character.type);
+    const careerEvent = CareerEventsHelper.getCareerEvent(careerEventStep?.id, character.type, character.version);
 
     const navigateToNextStep = () => {
         if (careerEventStep.attribute == null) {

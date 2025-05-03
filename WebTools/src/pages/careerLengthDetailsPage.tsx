@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {TalentDescription} from '../components/talentDescription';
 import ValueInput from '../components/valueInputWithRandomOption';
-import { TalentsHelper } from '../helpers/talents';
+import { TalentsHelper, ToViewModel } from '../helpers/talents';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
@@ -20,15 +20,21 @@ import { connect } from 'react-redux';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { hasSource, isSecondEdition } from '../state/contextFunctions';
+import { Source } from '../helpers/sources';
 
 const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) => {
 
     const { t } = useTranslation();
     const [ talentName, setTalentName ] = useState(null);
     const career = CareersHelper.instance.getCareer(character.careerStep?.career, character);
+    let wroteTheBook = career.id === Career.Veteran ? TalentsHelper.getTalent("Wrote the Book") : undefined;
+    if (!isSecondEdition() || !hasSource(Source.TechnicalManual) || !(wroteTheBook?.isPrerequisiteFulfilled(character))) {
+        wroteTheBook = undefined;
+    }
 
     useEffect(() => {
-        if (career.talent != null) {
+        if (career.talent != null && wroteTheBook === undefined) {
                 store.dispatch(addCharacterTalent(career.talent, StepContext.Career));
                 setTalentName(career.talent.name);
             }
@@ -53,7 +59,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
             textDescription = t('Value.careerLength.veteran.text');
         }
 
-        if (career.talent != null) {
+        if (career.talent != null && wroteTheBook === undefined) {
             return (<div className="row">
                 <div className="col-md-6 my-3">
                     <Header level={2}>{t('Construct.other.value')}</Header>
@@ -81,6 +87,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
             <div className="my-3">
                 <Header level={2}>{t('Construct.other.talent')}</Header>
                 <SingleTalentSelectionList talents={filterTalentList()}
+                    initialSelection={character.careerStep?.talent}
                     construct={character} onSelection={(talent) => { onTalentSelected(talent) } }/>
                 </div>
             </>);
@@ -88,11 +95,22 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
     }
 
     const filterTalentList = () => {
-        return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-            t => !character.hasTalent(t.name)
-                || (character.careerStep?.talent?.talent === t.name)
-                || t.rank > 1
-                || isMultiSelectionTalent(t));
+        if (career.id === Career.Veteran && wroteTheBook !== undefined) {
+            return [
+                ToViewModel(TalentsHelper.getTalent("Veteran"), 1, character.type, character.version),
+                ToViewModel(wroteTheBook, 1, character.type, character.version),
+            ];
+        } else if (career.id === Career.Veteran) {
+            return [
+                ToViewModel(TalentsHelper.getTalent("Veteran"), 1, character.type, character.version),
+            ];
+        } else {
+            return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
+                t => !character.hasTalent(t.name)
+                    || (character.careerStep?.talent?.talent === t.name)
+                    || t.rank > 1
+                    || isMultiSelectionTalent(t));
+        }
     }
 
     const onTalentSelected = (talent: SelectedTalent) => {

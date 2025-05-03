@@ -298,7 +298,7 @@ export class FoundryVttExporter {
                 },
                 "careerevents": character
                     .careerEvents
-                    .map(e => CareerEventsHelper.getCareerEvent(e.id, character.type)?.localizedName)
+                    .map(e => CareerEventsHelper.getCareerEvent(e.id, character.type, character.version)?.localizedName)
                     .filter(e => e?.length)
                     .join(", "),
                 "characterrole": character.assignmentWithoutShip,
