@@ -45,7 +45,7 @@ const SoloCareerEventPage: React.FC<ISoloCareerEventProperties> = ({character, c
         return (
             <tr key={i}
                 onClick={() => { if (Window.isCompact()) careerEventSelected(careerEvent); } }>
-                <td className="selection-header">{careerEvent.name}</td>
+                <td className="selection-header">{careerEvent.localizedName}</td>
                 <td>{attributes}</td>
                 <td>{disciplines}</td>
                 <td className="text-end"><Button size="sm" onClick={() => { careerEventSelected(careerEvent) } }>{t('Common.text.select')}</Button></td>

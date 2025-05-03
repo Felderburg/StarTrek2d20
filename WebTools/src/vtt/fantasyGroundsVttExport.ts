@@ -1487,7 +1487,7 @@ export class FantasyGroupsVttExporter {
                                     }
                                 ]
                             },
-                            this.convertToFormattedText("desc", null, event.description),
+                            this.convertToFormattedText("desc", null, event.localizedDescription),
                             {
                                 "name": "disciplines",
                                 "type": "element",
@@ -1566,7 +1566,7 @@ export class FantasyGroupsVttExporter {
                                 },
                                 "elements": [{
                                     "type": "text",
-                                    "text": event.name
+                                    "text": event.localizedName
                                 }]
                             },
                             {
@@ -1577,7 +1577,7 @@ export class FantasyGroupsVttExporter {
                                 },
                                 "elements": [{
                                     "type": "text",
-                                    "text": event.traitDescription ? "1" : "0"
+                                    "text": event.localizedTraitDescription ? "1" : "0"
                                 }]
                             },
                             {

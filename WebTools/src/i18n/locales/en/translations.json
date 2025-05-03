@@ -946,6 +946,38 @@
     "CareerEvent.unofficial.50.description": "The character's assignment was to a medical facility or ship.\n\n- Where was the medical facility? Did it specialize in a particular kind of medicine?\n- What department was the character assigned to at the medical facility? Who were the patients?",
     "CareerEvent.unofficial.50.focusDescription": "The character gains a focus, reflecting something they picked up while surrounded by medical staff. Examples include: Comparative Humanoid Anatomy, Surgery, or Virology.",
 
+    "CareerEvent.common.57.name": "Encountered a Rogue AI",
+    "CareerEvent.common.57.description": "Ancient civilizations, cutting-edge science, and even accidental creation can all result in true artificial intelligence (AI), and encounters with these AIs are often eventful and unpredictable situations. The character encountered one such AI, perhaps discovering it ruling over a primitive society, or attempting to override the ship’s computer, or just carrying out its programming in a strange or dangerous manner.",
+
+    "CareerEvent.common.58.name": "Encountered a Spacial Anomaly",
+    "CareerEvent.common.58.description": "The term ‘spatial anomaly’ describes any unusual disruption in the normal fabric of space-time, ranging from gravitational irregularities, locations where the laws of physics are altered, or even wormholes across space.",
+
+    "CareerEvent.common.59.name": "Encountered a Temporal Anomaly",
+    "CareerEvent.common.59.description": "The character experienced events or phenomena outside the natural passage of time. Perhaps they were trapped in a temporal loop, experiencing the same events over and over until they escaped. Perhaps they crossed paths with a time traveler, or travelled to the past or future. Perhaps they grew up in a different era or a different timeline, and found themselves stranded in our own.",
+    "CareerEvent.common.59.traitDescription": "The character may take a trait to reflect the lasting effect of their experiences, such as Seen the Future, Trans-temporal Awareness, or Time-Displaced.",
+
+    "CareerEvent.common.60.name": "Experienced an Alternate Dimension",
+    "CareerEvent.common.60.description": "The universe is far more than what can normally be seen or experienced, and there are many layers of reality rarely interacted with, such as fluidic space, the Q Continuum, and innumerable subspace domains, as well as parallel universes such as the Terran Universe. The character has encountered or experienced some phenomena originating in another dimension, or even visited an alternate dimension personally.",
+
+    "CareerEvent.common.61.name": "Fellowship at an Elite Institution",
+    "CareerEvent.common.61.description": "There are countless prestigious scientific and academic institutions across the Galaxy, such as the Daystrom Institute in Okinawa on Earth, or the Vulcan Science Academy in ShiKahr on Vulcan. The character studied at one such institution for several months or even a few years, carrying out important research and making a name for themselves within the scientific community.",
+    "CareerEvent.common.61.traitDescription": "The character may select a trait representing the prestige and accomplishment that comes with such a time of study, such as Daystrom Fellow or Studied at the Vulcan Science Academy. Name the trait according to the institution.",
+
+    "CareerEvent.common.62.name": "Studied Archaeotechnology",
+    "CareerEvent.common.62.description": "Archaeotechnology is the study of technology used in the past, both in the histories of modern cultures and in civilizations that no longer exist. The character has spent time—either professionally, or for their own enjoyment—studying historical technologies, whether the crude pre-warp devices of  their own culture or the forgotten science of advanced civilizations long past.",
+
+    "CareerEvent.common.63.name": "Studied a New Power Source",
+    "CareerEvent.common.63.description": "While much of the Galaxy relies on fusion and dilithium-moderated matter/antimatter reactors for power, there are always theories and experiments pursuing the possibility of new sources of energy, or refinements of existing ones. The character has spent time and effort researching these possibilities.",
+
+    "CareerEvent.common.64.name": "Technological Catastrophe",
+    "CareerEvent.common.64.description": "Technological advancement is often messy, with false starts, unforeseen consequences, and sometimes even costly disasters. The character was present during an especially serious failure; perhaps they helped contain the consequences, or saved others from it, or perhaps they feel it was their mistake that led to the catastrophe.",
+
+    "CareerEvent.common.65.name": "Tested Transporter Improvements",
+    "CareerEvent.common.65.description": "For all that it seems miraculous, there are serious limitations to transporter technology, and each generation of new engineers pushes those limits and finds ways to expand the capabilities of the technology. The character was involved in such developments, having worked in situations that pushed the limits of transporters or employed them in an unconventional manner.",
+
+    "CareerEvent.common.66.name": "Worked on a Transwarp Project",
+    "CareerEvent.common.66.description": "‘Transwarp’ is a catch-all term for a variety of faster-than-warp propulsion technologies and projects. The character was involved in one of these projects, whether studying new propulsion theories or developing new technologies for testing.",
+
     "CareerEvent.common.99.name": "Recruited to Starfleet Intelligence",
 
     "CareerType.core.young.name": "Young Officer",

@@ -6,26 +6,26 @@ import { hasSource } from '../state/contextFunctions';
 import { Source } from './sources';
 
 export class CareerEventModel {
-    name: string;
-    description: string;
+    private name: string;
+    private description: string;
     attributes: Attribute[];
     disciplines: Department[];
     focusSuggestions: string;
-    traitDescription: string;
+    private traitDescription: string;
     roll: number;
     special?: string;
-    prefix: string;
+    private prefix: string;
     focuses: string[];
     source?: Source;
 
     constructor(name: string, description: string, attributes: Attribute[], disciplines: Department[], focusSuggestions: string,
-        traitDescription: string, roll: number, onApply: () => void, special: string = undefined, prefix: string = "common.",
+        traitDescription: string, roll: number, special: string = undefined, prefix: string = "common.",
         focuses: string[] = [], source?: Source) {
         this.name = name;
         this.description = description;
         this.attributes = attributes;
         this.disciplines = disciplines;
-        this.focusSuggestions = focusSuggestions;
+        this.focusSuggestions = focusSuggestions?.length ? focusSuggestions : focuses.join(", ");
         this.traitDescription = traitDescription;
         this.roll = roll;
         this.special = special;
@@ -69,10 +69,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experiences. Examples include: Extra Vehicular Operations, Small Craft, or Survival.",
             null,
             1,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "common.",
             ["Extra Vehicular Operations", "Small Craft", "Survival"]
@@ -85,10 +81,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experiences. Examples include: Counselling, but it may also represent a skill or pursuit the character takes up in their fallen friend’s memory or to prevent the same thing happening in the future.",
             null,
             2,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Medicine);
-            },
             undefined,
             "common.",
             ["Counselling", "Cultural Grief Practices"]
@@ -101,10 +93,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experience with that culture. A Focus of X Culture, replacing the X with the name of that culture, is a good example, as would any that represent skills or techniques specific to that culture.",
             "The character may gain a Trait, which should reflect this event. A good example might be Friend to the X, replacing the X with the name of the culture. This reflects the character’s renown amongst that culture, and the benefits and problems such status brings.",
             3,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "common.",
             ["X Culture"]
@@ -117,10 +105,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experience with the negotiations. Examples include: Diplomacy, Negotiation, or Galactic Politics.",
             null,
             4,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "common.",
             ["Diplomacy", "Negotiation", "Galactic Politics"]
@@ -133,10 +117,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experiences during the crisis. Examples include: Lead by Example, Inspiration, or Composure.",
             null,
             5,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "common.",
             ["Lead by Example", "Inspiration", "Composure"]
@@ -149,10 +129,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experiences with the entity. Examples include: Empathy, Philosophy, Xenobiology.",
             null,
             6,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "common.",
             ["Empathy", "Philosophy", "Xenobiology"]
@@ -165,10 +141,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the circumstances of the character’s injury, something that helped them through recovery, or something they took up after recovering. Examples include: Athletics, Art, or Philosophy.",
             "The character may gain a Trait, which should reflect some lasting effect of the character’s injury or the way they recovered. Examples include: Prosthetic Implant, or some form of disability.",
             7,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.improveDiscipline(Department.Medicine);
-            },
             undefined,
             "common.",
             ["Athletics", "Art", "Philosophy"]
@@ -181,10 +153,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect skills they honed during the fighting. Examples include: Hand Phasers, Hand-to-Hand Combat, or Shipboard Tactical Systems.",
             null,
             8,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "common.",
             ["Hand Phasers", "Hand-to-Hand Combat", "Shipboard Tactical Systems"]
@@ -197,9 +165,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the lessons learned. Examples include: Composure or Etiquette, though any Focus reflecting the officer’s specialities would be fitting.",
             null,
             9,
-            () => {
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "common.",
             ["Composure", "Etiquette"]
@@ -212,10 +177,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect something they learned either because of the accident, or in the aftermath. Examples include: Transporters & Replicators, Small Craft, or Quantum Mechanics.",
             null,
             10,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "common.",
             ["Transporters & Replicators", "Small Craft", "Quantum Mechanics"]
@@ -228,10 +189,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect how they helped during the crisis. Examples include: Infectious Diseases, Emergency Medicine, or Triage.",
             null,
             11,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Medicine);
-            },
             undefined,
             "common.",
             ["Infectious Diseases", "Emergency Medicine", "Triage"]
@@ -244,10 +201,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the event and its aftermath. Examples include: Persuasion, Inspiration, Investigation.",
             null,
             12,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "common.",
             ["Persuasion", "Inspiration", "Investigation"]
@@ -260,10 +213,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the event and its aftermath. Examples include: Uniform Code of Justice, History, or Starfleet Protocol.",
             null,
             13,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "common.",
             ["Uniform Code of Justice", "History", "Starfleet Protocol"]
@@ -276,10 +225,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting their decisive battlefield leadership. Examples include: Combat Tactics, Hazard Awareness, or Lead by Example.",
             null,
             14,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "common.",
             ["Combat Tactics", "Hazard Awareness", "Lead by Example"]
@@ -292,10 +237,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting what the character learned from the event. Examples include: Linguistics, Cultural Studies, or Negotiations.",
             null,
             15,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "common.",
             ["Linguistics", "Cultural Studies", "Negotiation"]
@@ -308,10 +249,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the event and its aftermath. Examples include: Ancient Technology, Computers, Reverse Engineering.",
             null,
             16,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "common.",
             ["Ancient Technology", "Computers", "Reverse Engineering"]
@@ -324,9 +261,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the event and its aftermath. Examples include: Athletics, Survival, or Emergency Medicine.",
             null,
             17,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-            },
             undefined,
             "common.",
             ["Athletics", "Survival", "Emergency Medicine"]
@@ -339,10 +273,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the technology involved in the event. Examples include: Electro-Plasma Power Systems, Fusion Reactors, or Warp Engines.",
             null,
             18,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "common.",
             ["Electro-Plasma Power Systems", "Fusion Reactors", "Warp Engines"]
@@ -355,9 +285,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the character’s achievement. Examples include: Experimental Technology, Invention, or Improvisation.",
             null,
             19,
-            () => {
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "common.",
             ["Experimental Technology", "Invention", "Improvisation"]
@@ -370,9 +297,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the nature of the mission. Examples include: Cultural Studies, Diplomacy, or Infiltration.",
             null,
             20,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-            },
             undefined,
             "common.",
             ["Cultural Studies", "Diplomacy", "Infiltration"]
@@ -386,8 +310,6 @@ class CareerEvents {
             "",
             null,
             51,
-            () => {
-            },
             undefined,
             "common.",
             [],
@@ -401,8 +323,6 @@ class CareerEvents {
             "",
             null,
             52,
-            () => {
-            },
             undefined,
             "common.",
             [],
@@ -416,8 +336,6 @@ class CareerEvents {
             "",
             null,
             53,
-            () => {
-            },
             undefined,
             "common.",
             [],
@@ -431,8 +349,6 @@ class CareerEvents {
             "",
             null,
             54,
-            () => {
-            },
             undefined,
             "common.",
             [],
@@ -446,8 +362,6 @@ class CareerEvents {
             "",
             null,
             55,
-            () => {
-            },
             undefined,
             "common.",
             [],
@@ -461,12 +375,141 @@ class CareerEvents {
             "",
             null,
             56,
-            () => {
-            },
             undefined,
             "common.",
             [],
             Source.FederationKlingonWar
+        ),
+        // Technical Manual
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Control, Attribute.Reason],
+            [Department.Command, Department.Science],
+            "",
+            null,
+            57,
+            undefined,
+            "common.",
+            ["Computing", "Cybernetics", "Holo-Programming"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Daring, Attribute.Control],
+            [Department.Conn, Department.Science],
+            "",
+            null,
+            58,
+            undefined,
+            "common.",
+            ["Anomalous Physics", "Quantum Mechanics", "Subspace Dynamics"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Daring, Attribute.Control],
+            [Department.Science, Department.Engineering],
+            "",
+            null,
+            59,
+            undefined,
+            "common.",
+            ["Archaeotechnology", "History", "Temporal Mechanics"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Reason, Attribute.Fitness],
+            [Department.Science, Department.Security],
+            "",
+            null,
+            60,
+            undefined,
+            "common.",
+            ["Alternate Histories", "Multi-Dimensional Physics", "Subspace Dynamics"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Presence, Attribute.Reason],
+            [Department.Science, Department.Medicine],
+            "",
+            null,
+            61,
+            undefined,
+            "common.",
+            ["Archaeological Medicine", "Cybernetics", "Theoretical Physics"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Control, Attribute.Reason],
+            [Department.Engineering, Department.Medicine],
+            "",
+            null,
+            62,
+            undefined,
+            "common.",
+            ["Archaeotechnology", "Electronics", "History"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Control, Attribute.Reason],
+            [Department.Engineering, Department.Science],
+            "",
+            null,
+            63,
+            undefined,
+            "common.",
+            ["EPS Power Systems", "Matter/Antimatter Reactors", "Plasma Physics"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Daring, Attribute.Fitness],
+            [Department.Command, Department.Medicine],
+            "",
+            null,
+            64,
+            undefined,
+            "common.",
+            ["Damage Control", "Procedures", "First Aid", "Nuclear Physics"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Control, Attribute.Reason],
+            [Department.Engineering, Department.Medicine],
+            "",
+            null,
+            65,
+            undefined,
+            "common.",
+            ["Molecular Synthesis", "Sensor Operations", "Transporters & Replicators"],
+            Source.TechnicalManual
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Reason, Attribute.Insight],
+            [Department.Conn, Department.Engineering],
+            "",
+            null,
+            66,
+            undefined,
+            "common.",
+            ["Astromycology, Quantum", "Mechanics", "Subspace Theory"],
+            Source.TechnicalManual
         ),
 
         // Operations
@@ -478,10 +521,6 @@ class CareerEvents {
             "Depending on the mission the character might have learned covert skills. Examples include: Composure, Infiltration  or Persuasion.",
             null,
             99,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "common.",
             ["Composure", "Infiltration", "Persuasion"],
@@ -498,10 +537,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experiences. Examples include: Extra Vehicular Operations, Small Craft, or Survival.",
             null,
             1,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "klingon."
         ),
@@ -513,10 +548,6 @@ class CareerEvents {
             "The character gains a focus, which should reflect the character’s experiences. Examples include: Counselling, but it may also represent a skill or pursuit the character takes up in their fallen friend’s memory or to prevent the same thing happening in the future.",
             null,
             2,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Medicine);
-            },
             undefined,
             "klingon."
         ),
@@ -528,10 +559,6 @@ class CareerEvents {
             "The character gains a focus, which should reflect the character’s experience with that culture. A focus of X Culture, replacing the X with the name of that culture, is a good example (e.g., Pakled Culture)",
             "The character may gain a Trait, which should reflect this event. A good example might be Friend to the X, replacing the X with the name of the culture. This reflects the character’s renown amongst that culture, and the benefits and problems such status brings.",
             3,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "klingon."
         ),
@@ -543,10 +570,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experience with the negotiations. Examples include: Diplomacy, Negotiation, or Galactic Politics.",
             null,
             4,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "klingon."
         ),
@@ -558,10 +581,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experiences during the crisis. Examples include: Lead by Example, Inspiration, or Composure.",
             null,
             5,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "klingon."
         ),
@@ -574,10 +593,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the character’s experiences during the crisis. Examples include: Lead by Example, Inspiration, or Composure.",
             null,
             6,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "klingon."
         ),
@@ -589,10 +604,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect the circumstances of the character’s injury, something that helped them through recovery, or something they took up after recovering. Examples include: Athletics, Art, or Philosophy.",
             "The character may gain a Trait, which should reflect some lasting effect of the character’s injury or the way they recovered. Examples include: Prosthetic Implant, or some form of disability.",
             7,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.improveDiscipline(Department.Medicine);
-            },
             undefined,
             "klingon."
         ),
@@ -604,10 +615,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect skills they honed during the fighting. Examples include: Hand Phasers, Hand-to-Hand Combat, or Shipboard Tactical Systems.",
             null,
             8,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "klingon."
         ),
@@ -620,10 +627,6 @@ class CareerEvents {
             "TThe character gains a focus, reflecting the event and its aftermath. Examples include: Persuasion, Inspiration, or Investigation.",
             null,
             9,
-            () => {
-                this.improveDiscipline(Department.Conn);
-                this.fieldCommission();
-            },
             "If your character was an Enlisted Warrior or Laborer, you gain a field commission and become an officer."
         ),
         new CareerEventModel(
@@ -634,10 +637,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect something they learned either because of the accident, or in the aftermath. Examples include: Transporters & Replicators, Small Craft, or Quantum Mechanics.",
             null,
             10,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "klingon."
         ),
@@ -649,10 +648,6 @@ class CareerEvents {
             "The character gains a Focus, which should reflect how they helped during the crisis. Examples include: Infectious Diseases, Emergency Medicine, or Triage.",
             null,
             11,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Medicine);
-            }
         ),
         new CareerEventModel(
             "Dishonored Self for a Superior",
@@ -662,10 +657,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the event and its aftermath. Examples include: Persuasion, Inspiration, Investigation.",
             null,
             12,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "klingon."
         ),
@@ -677,10 +668,6 @@ class CareerEvents {
             "The character gains a focus, reflecting the event and its aftermath. Examples include: Law and Justice, Hand-to-Hand Combat, or Blades.",
             null,
             13,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "klingon."
         ),
@@ -692,10 +679,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting their decisive battlefield leadership. Examples include: Combat Tactics, Hazard Awareness, or Lead by Example.",
             null,
             14,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "klingon."
         ),
@@ -707,10 +690,6 @@ class CareerEvents {
             "The character gains a focus, reflecting what the character learned from the event. Examples include: Toxicology, Stealth, or Deception.",
             null,
             15,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "klingon."
         ),
@@ -722,10 +701,6 @@ class CareerEvents {
             "The character gains a focus, reflecting the event and its aftermath. Examples include: Ancient Technology, Reverse Engineering, Computers.",
             null,
             16,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "klingon."
         ),
@@ -737,10 +712,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the event and its aftermath. Examples include: Athletics, Survival, or Emergency Medicine.",
             null,
             17,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.fieldCommission();
-            },
             "If your character was an Enlisted Warrior or Laborer, you gain a field commission and become an officer.",
             "klingon."
         ),
@@ -752,10 +723,6 @@ class CareerEvents {
             "The character gains a focus, reflecting the technology involved in the event. Examples include: Electro-Plasma Power Systems, Cloaking Devices, or Warp Engines.",
             null,
             18,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "klingon."
         ),
@@ -767,9 +734,6 @@ class CareerEvents {
             "The character gains a Focus, reflecting the character’s achievement. Examples include: Experimental Technology, Invention, or Improvisation.",
             null,
             19,
-            () => {
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "klingon."
         ),
@@ -781,9 +745,6 @@ class CareerEvents {
             "The character gains a focus, reflecting the nature of the mission. Examples include: Strategy, Tactics, or Infiltration.",
             null,
             20,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-            },
             undefined,
             "klingon."
         ),
@@ -798,10 +759,6 @@ class CareerEvents {
             "The character gains a focus, which should reflect the special training they received. Examples include: Guerilla Tactics, Strategic Defense, or Combat Maneuvers.",
             null,
             21,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "unofficial."
         ),
@@ -813,10 +770,6 @@ class CareerEvents {
             "",
             null,
             22,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "unofficial."
         ),
@@ -828,10 +781,6 @@ class CareerEvents {
             "",
             null,
             23,
-            () => {
-                this.improveAttribute(Attribute.Control);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "unofficial."
         ),
@@ -843,9 +792,6 @@ class CareerEvents {
             "",
             null,
             24,
-            () => {
-                this.improveAttribute(Attribute.Control);
-            },
             undefined,
             "unofficial."
         ),
@@ -857,10 +803,6 @@ class CareerEvents {
             "",
             null,
             25,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "unofficial."
         ),
@@ -872,10 +814,6 @@ class CareerEvents {
             "",
             null,
             26,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "unofficial."
         ),
@@ -887,10 +825,6 @@ class CareerEvents {
             "",
             null,
             27,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "unofficial."
         ),
@@ -902,10 +836,6 @@ class CareerEvents {
             "",
             null,
             28,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-                this.improveDiscipline(Department.Medicine);
-            },
             undefined,
             "unofficial."
         ),
@@ -917,9 +847,6 @@ class CareerEvents {
             "",
             null,
             29,
-            () => {
-                this.improveAttribute(Attribute.Daring);
-            },
             undefined,
             "unofficial."
         ),
@@ -931,10 +858,6 @@ class CareerEvents {
             "",
             null,
             30,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "unofficial."
         ),
@@ -946,10 +869,6 @@ class CareerEvents {
             "",
             null,
             31,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "unofficial."
         ),
@@ -961,10 +880,6 @@ class CareerEvents {
             "",
             null,
             32,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "unofficial."
         ),
@@ -976,10 +891,6 @@ class CareerEvents {
             "",
             null,
             33,
-            () => {
-                this.improveAttribute(Attribute.Fitness);
-                this.improveDiscipline(Department.Science);
-            },
             undefined,
             "unofficial."
         ),
@@ -991,10 +902,6 @@ class CareerEvents {
             "",
             null,
             34,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "unofficial."
         ),
@@ -1006,10 +913,6 @@ class CareerEvents {
             "",
             null,
             35,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "unofficial."
         ),
@@ -1021,10 +924,6 @@ class CareerEvents {
             "",
             null,
             36,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "unofficial."
         ),
@@ -1036,10 +935,6 @@ class CareerEvents {
             "",
             null,
             37,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "unofficial."
         ),
@@ -1051,9 +946,6 @@ class CareerEvents {
             "",
             null,
             38,
-            () => {
-                this.improveAttribute(Attribute.Insight);
-            },
             undefined,
             "unofficial."
         ),
@@ -1065,10 +957,6 @@ class CareerEvents {
             "",
             null,
             39,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-                this.improveDiscipline(Department.Conn);
-            },
             undefined,
             "unofficial."
         ),
@@ -1080,10 +968,6 @@ class CareerEvents {
             "",
             null,
             40,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "unofficial."
         ),
@@ -1095,10 +979,6 @@ class CareerEvents {
             "",
             null,
             41,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-                this.improveDiscipline(Department.Engineering);
-            },
             undefined,
             "unofficial."
         ),
@@ -1110,10 +990,6 @@ class CareerEvents {
             "",
             null,
             42,
-            () => {
-                this.improveAttribute(Attribute.Presence);
-                this.improveDiscipline(Department.Medicine);
-            },
             undefined,
             "unofficial."
         ),
@@ -1125,10 +1001,6 @@ class CareerEvents {
             "",
             null,
             43,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "unofficial."
         ),
@@ -1140,10 +1012,6 @@ class CareerEvents {
             "",
             null,
             44,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "unofficial."
         ),
@@ -1155,10 +1023,6 @@ class CareerEvents {
             "",
             null,
             45,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-                this.improveDiscipline(Department.Medicine);
-            },
             undefined,
             "unofficial."
         ),
@@ -1170,9 +1034,6 @@ class CareerEvents {
             "",
             null,
             46,
-            () => {
-                this.improveAttribute(Attribute.Reason);
-            },
             undefined,
             "unofficial."
         ),
@@ -1184,9 +1045,6 @@ class CareerEvents {
             "",
             null,
             47,
-            () => {
-                this.improveDiscipline(Department.Command);
-            },
             undefined,
             "unofficial."
         ),
@@ -1198,9 +1056,6 @@ class CareerEvents {
             "",
             null,
             48,
-            () => {
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "unofficial."
         ),
@@ -1212,9 +1067,6 @@ class CareerEvents {
             "",
             null,
             49,
-            () => {
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "unofficial."
         ),
@@ -1226,9 +1078,6 @@ class CareerEvents {
             "",
             null,
             50,
-            () => {
-                this.improveDiscipline(Department.Security);
-            },
             undefined,
             "unofficial."
         ),
@@ -1293,16 +1142,6 @@ class CareerEvents {
 
         return event;
     }
-
-    private improveAttribute(attribute: Attribute) {
-    }
-
-    private improveDiscipline(discipline: Department) {
-    }
-
-    private fieldCommission() {
-    }
-
 }
 
 export const CareerEventsHelper = new CareerEvents();

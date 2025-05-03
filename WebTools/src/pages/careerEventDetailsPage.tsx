@@ -91,7 +91,7 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({charac
                             character={character}
                         />
                     </div>
-                    {careerEvent.traitDescription !== null
+                    {careerEvent.localizedTraitDescription?.length
                         ? (
                             <div className="col-lg-6 my-3">
                                 <Header level={2} className="mb-3">{t('Construct.other.trait')}</Header>
