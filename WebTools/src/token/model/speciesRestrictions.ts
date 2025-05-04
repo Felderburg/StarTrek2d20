@@ -45,6 +45,8 @@ class SpeciesRestrictions {
             return ["#a2b152", "#8e932f", "#8f8f0b", "#838218", "#7a863a", "#6f7f36", "#6b764c", "#697543", "#5d6937", "#5a6135", "#4c4c1a", "#414b26"];
         } else if (species === Species.Andorian) {
             return ["#bbb6c7", "#b0c2cc", "#a9d8f4", "#7ca9e0", "#919bd5", "#6e87bf", "#3e8fb8", "#0068a5"];
+        } else if (species === Species.Ariolo) {
+            return ["#7c6a61", "#626163", "#603f31"];
         } else if (species === Species.Aurelian) {
             return ["#fbebb7", "#f7d66f", "#e0c167", "#b7d562", "#b6b456", "#b49249", "#87622a"];
         } else if (species === Species.Benzite) {
@@ -213,6 +215,10 @@ class SpeciesRestrictions {
             return species === Species.Ferengi;
         } else if (extra === ExtraType.FerengiRankTattoo) {
             return species === Species.Ferengi && uniformEra === UniformEra.Ferengi;
+        } else if (extra === ExtraType.OrionPiece1
+                || extra === ExtraType.OrionPiece2
+                || extra === ExtraType.OrionPiece3) {
+            return species === Species.Orion;
         } else if (extra === ExtraType.VulcanHeaddress) {
             return species === Species.Vulcan && uniformEra === UniformEra.Civilian;
         } else if (extra === ExtraType.ZaraniteMask) {
@@ -250,7 +256,9 @@ class SpeciesRestrictions {
     }
 
     static isRubberHeaded(species: Species) {
-        return species === Species.Aurelian || species === Species.Bynar
+        return species === Species.Ariolo
+            || species === Species.Aurelian
+            || species === Species.Bynar
             || species === Species.Benzite
             || species === Species.Caitian
             || species === Species.Cetacean

@@ -6,7 +6,7 @@ export enum ExtraType {
 
     SmallBindi, RisanSymbol, InuitTattoo,
 
-    ZaraniteMask, Visor,
+    ZaraniteMask, Visor, OrionPiece1, OrionPiece2, OrionPiece3,
 
     FerengiHeadFlap, SecurityHelmet, BynarHeadpiece1, BynarHeadpiece2, VulcanHeaddress,
 
@@ -34,6 +34,9 @@ export const getExtraCategory = (extraType: ExtraType) => {
 
         case ExtraType.Visor:
         case ExtraType.ZaraniteMask:
+        case ExtraType.OrionPiece1:
+        case ExtraType.OrionPiece2:
+        case ExtraType.OrionPiece3:
             return ExtraCategory.Face;
 
         case ExtraType.SmallBindi:
