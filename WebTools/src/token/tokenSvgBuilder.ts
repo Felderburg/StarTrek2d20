@@ -61,10 +61,11 @@ export class TokenSvgBuilder {
                             NoseCatalog.instance.getNose(token) +
                             EyeBrowCatalog.instance.getEyeBrows(token) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Forehead) +
+                            ExtrasCatalog.instance.getExtras(token, ExtraCategory.Face, true, token.hairType) +
                             HairCatalog.instance.getHair(token, HairElement.BehindEars) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Headwear, true) +
                             EarCatalog.instance.getEar(token) +
-                            ExtrasCatalog.instance.getExtras(token, ExtraCategory.Face) +
+                            ExtrasCatalog.instance.getExtras(token, ExtraCategory.Face, false, token.hairType) +
                             RankIndicatorCatalog.instance.getRankExtra(token) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Ear) +
                             HairCatalog.instance.getHair(token, HairElement.CoveringEars) +

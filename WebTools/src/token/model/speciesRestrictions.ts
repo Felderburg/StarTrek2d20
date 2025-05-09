@@ -194,6 +194,21 @@ class SpeciesRestrictions {
         return !this.isBald(species) && !this.isRubberHeaded(species);
     }
 
+    static isHairCoveringForehead(hair: HairType) {
+        switch (hair) {
+            case HairType.BowlCutHair:
+            case HairType.TousledSidePart:
+            case HairType.MediumLengthFemaleSidePart:
+            case HairType.ShoulderLengthBob:
+            case HairType.ShortTeasedOverEyeStyle:
+            case HairType.FeminineDreadStyle:
+            case HairType.RomulanPeakedHair:
+                return true;
+            default:
+                return false;
+        }
+    }
+
     static isOptionsSupportedFor(species: Species) {
         return this.getSpeciesOptions(species).length > 1;
     }

@@ -5,6 +5,7 @@ import EarCatalog from "./earCatalog";
 import { ExtraCategory, ExtraType } from "./extrasTypeEnum";
 import { Eye2StandardBrows } from "./eyeBrowCatalog";
 import { Eye2 } from "./eyeCatalog";
+import { HairType } from "./hairTypeEnum";
 import { FerengiForehead, ReferenceHead } from "./headCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
@@ -358,10 +359,23 @@ class ExtrasCatalog {
         return ExtrasCatalog._instance;
     }
 
-    getExtras(token: Token, category: ExtraCategory, back: boolean = false) {
+    getExtras(token: Token, category: ExtraCategory, back: boolean = false, detail?: HairType) {
         return this.items
             .filter(i => i.category === category && token.extras.indexOf(i.id) >= 0)
             .filter(i => (i.id !== ExtraType.FerengiHeadFlap && i.id !== ExtraType.VulcanHeaddress) || back)
+            .filter(i => {
+                if ([ExtraType.OrionPiece1, ExtraType.OrionPiece2, ExtraType.OrionPiece3].includes(i.id)) {
+                    if (detail != null && SpeciesRestrictions.isHairCoveringForehead(detail)) {
+                        return back;
+                    } else {
+                        return !back;
+                    };
+                } else if (category === ExtraCategory.Face) {
+                    return !back;
+                } else {
+                    return true;
+                }
+            })
             .map(i => {if (i.id === ExtraType.FerengiHeadFlap) {
                 if (token.uniformEra === UniformEra.DominionWar) {
                     return FerengiHeadFlap.dominionWar;

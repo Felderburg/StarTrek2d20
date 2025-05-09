@@ -21,7 +21,7 @@ export const determineSelectedTalentExtraErrors = (talent: SelectedTalent) => {
     } else if (talent?.talent === TALENT_NAME_WISDOM_OF_YEARS && (talent.focuses?.length !== 1
         || talent.value == null)) {
         return "The selected talent requires you to select a focus and a value.";
-    } else if (talent?.talent === TALENT_NAME_BORG_IMPLANTS && talent.implants?.length !== 2) {
+    } else if (talent?.talent === TALENT_NAME_BORG_IMPLANTS && !talent.implants?.length) {
         return i18next.t("Talent.borgImplants.error");
     } else if (talent?.talent === TALENT_NAME_AUGMENTED_ABILITY && talent.attribute == null) {
         return i18next.t("Talent.augmentedAbility.error");
