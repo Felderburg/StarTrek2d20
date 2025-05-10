@@ -130,7 +130,8 @@ export abstract class BaseNeckProvider {
             || uniformEra === UniformEra.StarTrekOnline
             || uniformEra === UniformEra.Klingon
             || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant5)
-            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant6);
+            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant6)
+            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant7);
     }
 
 
