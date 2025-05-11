@@ -10,13 +10,15 @@ import { Dialog } from "../../components/dialog";
 import store from "../../state/store";
 import { modifyCharacterRank } from "../../state/characterActions";
 import { CharacterRank } from "../../common/character";
+import { ModificationType } from "../model/modificationType";
 
 interface IPromotionViewProperties extends ICharacterProperties {
     onNextStep: () => void;
     onPreviousStep: () => void;
+    type: ModificationType.Promotion|ModificationType.Demotion;
 }
 
-export const PromotionView: React.FC<IPromotionViewProperties> = ({character, onNextStep, onPreviousStep}) => {
+export const PromotionView: React.FC<IPromotionViewProperties> = ({character, onNextStep, onPreviousStep, type}) => {
 
     const { t } = useTranslation();
     const [ rank, setRank ] = useState<Rank|undefined>(undefined);
@@ -24,9 +26,15 @@ export const PromotionView: React.FC<IPromotionViewProperties> = ({character, on
 
     const getRanks = () => {
         let result = [ new DropDownElement("", "")];
-        result.push(...RanksHelper.instance()
-            .getPromotionRanks(character)
-            .map(r => new DropDownElement(r.id, r.localizedName)));
+        if (type === ModificationType.Demotion) {
+            result.push(...RanksHelper.instance()
+                .getDemotionRanks(character)
+                .map(r => new DropDownElement(r.id, r.localizedName)));
+        } else {
+            result.push(...RanksHelper.instance()
+                .getPromotionRanks(character)
+                .map(r => new DropDownElement(r.id, r.localizedName)));
+        }
         return result;
     }
 
@@ -35,16 +43,16 @@ export const PromotionView: React.FC<IPromotionViewProperties> = ({character, on
         if (rank === undefined || rankName === undefined) {
             Dialog.show("Please select a new rank");
         } else {
-            store.dispatch(modifyCharacterRank(new CharacterRank(rankName, rank)));
+            store.dispatch(modifyCharacterRank(new CharacterRank(rankName, rank), type));
             onNextStep();
         }
     }
 
     return (<>
         <div className="row">
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-md-6 mt-4">
 
-                <Header level={2}>{t('ModificationType.name.promotion')}</Header>
+                <Header level={2}>{type === ModificationType.Demotion ? t('ModificationType.name.demotion') : t('ModificationType.name.promotion')}</Header>
                 <Markdown className="mt-4">{t('PromotionPage.instruction')}</Markdown>
 
                 <DropDownSelect items={getRanks()} onChange={(id) => {

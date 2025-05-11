@@ -28,6 +28,7 @@ import { SelectedTalent } from './selectedTalent';
 import { CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
 import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_WARRIORS_SPIRIT } from '../helpers/talents';
 import { SpecialWeapon } from './specialWeapon';
+import { ModificationType } from '../modify/model/modificationType';
 
 export enum Division {
     Command,
@@ -106,14 +107,16 @@ export class CharacterRank {
 }
 
 export class Promotion {
-    rank: CharacterRank;
+    readonly rank: CharacterRank;
+    readonly type: ModificationType.Promotion|ModificationType.Demotion;
 
-    constructor(rank: CharacterRank) {
+    constructor(rank: CharacterRank, type: ModificationType.Promotion|ModificationType.Demotion = ModificationType.Promotion) {
         this.rank = rank;
+        this.type = type;
     }
 
     copy() {
-        return new Promotion(this.rank);
+        return new Promotion(this.rank, this.type);
     }
 }
 

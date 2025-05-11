@@ -1042,8 +1042,8 @@
     "GovernmentType.name.vulcan": "Vulcain",
     "GovernmentType.name.other": "Autre",
 
-    "ModificationType.name.reputation": "Réputation",
     "ModificationType.name.promotion": "Promotion",
+    "ModificationType.name.reputation": "Réputation",
     "ModificationType.name.milestone": "Jalon d'Expérience",
 
     "MilestoneType.name.normalMilestone": "Jalon Normal",

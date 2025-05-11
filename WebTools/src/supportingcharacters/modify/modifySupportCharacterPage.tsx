@@ -36,6 +36,7 @@ import { SelectedTalent } from "../../common/selectedTalent";
 import { AugmentedAbilitySelectionView, CollaborationDepartmentSelectionView, ExpandedProgramSelectionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView, WisdomOfYearsSelectionView } from "../../components/selectedTalentDescriptionView";
 import { SpecialWeapon } from "../../common/specialWeapon";
 import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
+import { ModificationType } from "../../modify/model/modificationType";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -348,7 +349,7 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
         } else if (modificationType === SupportingCharacterModificationType.Promotion) {
             return (<div className="mt-4">
                 <PromotionView character={character} onNextStep={onNextPage}
-                onPreviousStep={() => setIndex(index-1)} />
+                onPreviousStep={() => setIndex(index-1)} type={ModificationType.Promotion} />
             </div>);
         }
     }

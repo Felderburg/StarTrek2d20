@@ -14,6 +14,7 @@ import { Track } from "../helpers/trackEnum";
 import { EarlyOutlookModel } from "../helpers/upbringings";
 import { CharacterAdvancementChoice } from "../modify/model/characterAdvancementChoice";
 import { SelectedTalent } from "../common/selectedTalent";
+import { ModificationType } from "../modify/model/modificationType";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -350,7 +351,7 @@ export function modifyCharacterReputation(delta: number) {
     }
 }
 
-export function modifyCharacterRank(rank: CharacterRank) {
+export function modifyCharacterRank(rank: CharacterRank, type: ModificationType.Promotion|ModificationType.Demotion) {
     let payload = { rank: rank };
     return {
        type: MODIFY_CHARACTER_RANK,

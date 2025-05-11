@@ -4,7 +4,8 @@ import { makeKey } from "../../common/translationKey";
 export enum ModificationType {
     Reputation,
     CharacterAdvancement,
-    Promotion
+    Promotion,
+    Demotion
 }
 
 export class ModificationModel {
@@ -29,6 +30,7 @@ class Modifications {
         new ModificationModel(ModificationType.Reputation, "Reputation"),
         new ModificationModel(ModificationType.CharacterAdvancement, "Character Advancement"),
         new ModificationModel(ModificationType.Promotion, "Promotion"),
+        new ModificationModel(ModificationType.Demotion, "Demotion"),
     ];
 
     static get instance() {

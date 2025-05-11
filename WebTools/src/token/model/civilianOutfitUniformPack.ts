@@ -1094,11 +1094,15 @@ export class CivilianOutfitUniformPack extends BaseNeckProvider implements IUnif
     }
 
     getUniformAndVariantBody(token: Token) {
-        let result = "";
-        let neck = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.Civilian, token.variant);
-        switch (token.bodyType) {
+        return this.getUniformAndVariantByBodyType(token, token.variant, token.bodyType);
+    }
+
+    getUniformAndVariantByBodyType(token: Token, variant: UniformVariantType, bodyType: BodyType) {
+    let result = "";
+    let neck = this.getNeck(bodyType, token.skinColor, token.species, UniformEra.Civilian, token.variant);
+        switch (bodyType) {
             case BodyType.AverageMale:
-                switch (token.variant) {
+                switch (variant) {
                     case UniformVariantType.Variant1:
                         result = CivilianOutfits.maleTosCaptainGarthJacket;
                         break;
@@ -1129,34 +1133,34 @@ export class CivilianOutfitUniformPack extends BaseNeckProvider implements IUnif
                 break;
             case BodyType.AverageFemale:
             default:
-                switch (token.variant) {
+                switch (variant) {
                     case UniformVariantType.Variant1:
                         result = CivilianOutfits.femaleLeahBrahmsTealDress;
                         break;
                     case UniformVariantType.Variant2:
-                        result = CivilianOutfits.femaleGillianTaylorFutureOutfit;
+                        result = CivilianOutfits.femaleVashBusinessSuit;
                         break;
                     case UniformVariantType.Variant3:
-                        result = CivilianOutfits.femaleDeannaTroiJumpsuit;
+                        result = CivilianOutfits.femaleGillianTaylorFutureOutfit;
                         break;
                     case UniformVariantType.Variant4:
-                        result = CivilianOutfits.femaleTPanVulcanDress;
+                        result = CivilianOutfits.femaleDeannaTroiJumpsuit;
                         break;
                     case UniformVariantType.Variant5:
-                        result = CivilianOutfits.femaleVulcanPriestessRobes;
+                        result = CivilianOutfits.femaleTPanVulcanDress;
                         break;
                     case UniformVariantType.Variant6:
+                        result = CivilianOutfits.femaleVulcanPriestessRobes;
+                        break;
+                    case UniformVariantType.Variant7:
                         result = CivilianOutfits.petraAberdeenJacketFront;
                         neck = CivilianOutfits.petraAberdeenJacketBack + neck;
                         break;
-                    case UniformVariantType.Variant7:
+                    case UniformVariantType.Variant8:
                         result = CivilianOutfits.dErikaOrionOutfit;
                         break;
-                    case UniformVariantType.Variant8:
-                        result = CivilianOutfits.leahBrahmsPurpleOutfit;
-                        break;
                     case UniformVariantType.Variant9:
-                        result = CivilianOutfits.femaleVashBusinessSuit;
+                        result = CivilianOutfits.leahBrahmsPurpleOutfit;
                         break;
                     default:
                         result = CivilianOutfits.femaleRaffiLongSleeveWithCover;
@@ -1184,19 +1188,17 @@ export class CivilianOutfitUniformPack extends BaseNeckProvider implements IUnif
             swatches.push(new Swatch(UniformVariantType.Variant8, "Pakled Space Trader", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.Civilian, UniformVariantType.Variant8) + CivilianOutfits.malePakledUniform, 1000 + UniformVariantType.Variant8, token)));
             return swatches;
         } else {
-            swatches.push(new Swatch(UniformVariantType.Base, "Default Outfit", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.femaleRaffiLongSleeveWithCover, 1000 + UniformVariantType.Base, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant1, "Business Outfit", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.femaleLeahBrahmsTealDress, 1000 + UniformVariantType.Variant1, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant9, "Business Outfit 2", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.femaleVashBusinessSuit, 1000 + UniformVariantType.Variant9, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant2, "Science Outfit", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.femaleGillianTaylorFutureOutfit, 1000 + UniformVariantType.Variant2, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant3, "Jumpsuit", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.femaleDeannaTroiJumpsuit, 1000 + UniformVariantType.Variant3, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant4, "Vulcan Dress", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.femaleTPanVulcanDress, 1000 + UniformVariantType.Variant4, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant5, "Vulcan Priestess Robes", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.femaleVulcanPriestessRobes, 1000 + UniformVariantType.Variant5, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant6, "Casual Jacket",
-                (token) => UniformCatalog.decorateSwatch(CivilianOutfits.petraAberdeenJacketBack.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor)
-                    + this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian)
-                    + CivilianOutfits.petraAberdeenJacketFront, 1000 + UniformVariantType.Variant6, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant7, "Pirate Outfit", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.dErikaOrionOutfit, 1000 + UniformVariantType.Variant7, token)));
-            swatches.push(new Swatch(UniformVariantType.Variant8, "Fancy Dress", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.leahBrahmsPurpleOutfit, 1000 + UniformVariantType.Variant8, token)));
+            swatches.push(new Swatch(UniformVariantType.Base, "Default Outfit", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Base, BodyType.AverageFemale), 1000 + UniformVariantType.Base, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant1, "Business Outfit", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant1, BodyType.AverageFemale), 1000 + UniformVariantType.Variant1, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant2, "Business Outfit 2", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant2, BodyType.AverageFemale), 1000 + UniformVariantType.Variant2, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant3, "Science Outfit", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant3, BodyType.AverageFemale), 1000 + UniformVariantType.Variant3, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant4, "Jumpsuit", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant4, BodyType.AverageFemale), 1000 + UniformVariantType.Variant4, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant5, "Vulcan Dress", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant5, BodyType.AverageFemale), 1000 + UniformVariantType.Variant5, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant6, "Vulcan Priestess Robes", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant6, BodyType.AverageFemale), 1000 + UniformVariantType.Variant6, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant7, "Casual Jacket",
+                (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant7, BodyType.AverageFemale), 1000 + UniformVariantType.Variant7, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant8, "Pirate Outfit", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant8, BodyType.AverageFemale), 1000 + UniformVariantType.Variant8, token)));
+            swatches.push(new Swatch(UniformVariantType.Variant9, "Fancy Dress", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant9, BodyType.AverageFemale), 1000 + UniformVariantType.Variant9, token)));
             return swatches;
         }
     }

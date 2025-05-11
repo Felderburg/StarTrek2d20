@@ -821,8 +821,8 @@
     "HeadType.pillShaped": "Pillenförmig, Gewichtig",
     "HeadType.roundedHeavy": "Abgerundet, Gewichtig",
 
-    "ModificationType.name.reputation": "Ansehen",
     "ModificationType.name.promotion": "Beförderung",
+    "ModificationType.name.reputation": "Ansehen",
     "ModificationType.name.milestone": "Meilenstein",
 
     "MilestoneType.name.normalMilestone": "Regulärer Meilenstein",

@@ -754,8 +754,8 @@
     "HairType.bald": "Лысый",
     "HairType.bowlCutHair": "Под горшой",
 
-    "ModificationType.name.reputation": "Репутация",
     "ModificationType.name.promotion": "Повышение",
+    "ModificationType.name.reputation": "Репутация",
     "ModificationType.name.milestone": "Веха",
 
     "MilestoneType.name.normalMilestone": "Обычная веха",

@@ -1292,8 +1292,8 @@
     "HeadType.pillShaped": "Em Forma de Pílula, Pesado",
     "HeadType.roundedHeavy": "Arredondado, Pesado",
 
-    "ModificationType.name.reputation": "Reputação",
     "ModificationType.name.promotion": "Promoção",
+    "ModificationType.name.reputation": "Reputação",
     "ModificationType.name.milestone": "Marco de História",
 
     "MilestoneType.name.normalMilestone": "Marco de História Normal",

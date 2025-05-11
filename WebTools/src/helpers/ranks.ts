@@ -1159,6 +1159,35 @@ export class RanksHelper {
         }
     }
 
+    getDemotionRanks(character: Character) {
+        if (character.rank) {
+
+            let ranks = this.getRanksByType(character.type, character.version);
+
+            let currentRank = ranks.filter(r => r.id === character.rank?.id);
+            if (currentRank.length === 0) {
+                currentRank = [ this.getRank(character.rank?.id)];
+            }
+
+            if (isCadetRank(character.rank?.id)) {
+                ranks = ranks.filter(r => isCadetRank(r.id))
+                    .filter(r => r.levelValue < currentRank[0].levelValue);
+                return ranks.reverse();
+            } else {
+                ranks = ranks.filter(r => !isCadetRank(r.id))
+                    .filter(r =>
+                        ((isEnlistedRank(character.rank?.id) && isEnlistedRank(r.id)) ||
+                        !isEnlistedRank(character.rank?.id)))
+                    .filter(r =>
+                        (r.levelValue < currentRank[0].levelValue) ||
+                        (!isEnlistedRank(character.rank?.id) && isEnlistedRank(r.id)));
+                return ranks.reverse();
+            }
+        } else {
+            return [];
+        }
+    }
+
     getSortedRanks(character: Character, ignorePrerequisites?: boolean) {
         let result = this.getRanks(character, ignorePrerequisites);
 

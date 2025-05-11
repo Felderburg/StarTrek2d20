@@ -1394,8 +1394,9 @@
     "HeadType.pillShaped": "Pill-Shaped, Heavy",
     "HeadType.roundedHeavy": "Rounded, Heavy",
 
-    "ModificationType.name.reputation": "Reputation",
+    "ModificationType.name.demotion": "Demotion",
     "ModificationType.name.promotion": "Promotion",
+    "ModificationType.name.reputation": "Reputation",
     "ModificationType.name.milestone": "Milestone",
     "ModificationType.name.characterAdvancement": "Character Advancement",
 

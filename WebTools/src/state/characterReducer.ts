@@ -756,7 +756,7 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 temp.improvements = [];
             }
             console.log(action.payload.rank);
-            temp.improvements.push(new Promotion(action.payload.rank));
+            temp.improvements.push(new Promotion(action.payload.rank, action.payload.type));
             return {
                 ...state,
                 currentCharacter: temp,

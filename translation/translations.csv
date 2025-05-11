@@ -1758,8 +1758,9 @@ HeadType.rectangular,Rectangular with Pointed Jaw,,Rechteckig mit spitzem Kiefer
 HeadType.elfin,"Elfin, Petite Jaw",,"Elfisch, kleiner Kiefer","Duendecillo, Mandíbula Pequeña",,,"Rosto Élfico, Mandíbula Pequena"
 HeadType.pillShaped,"Pill-Shaped, Heavy",,"Pillenförmig, Gewichtig","En Forma de Píldora, Pesada",,,"Em Forma de Pílula, Pesado"
 HeadType.roundedHeavy,"Rounded, Heavy",,"Abgerundet, Gewichtig","Redondeada, Pesada",,,"Arredondado, Pesado"
-ModificationType.name.reputation,Reputation,,Ansehen,Reputación,Réputation,Репутация,Reputação
+ModificationType.name.demotion,Demotion,,,,,,
 ModificationType.name.promotion,Promotion,,Beförderung,Promoción,Promotion,Повышение,Promoção
+ModificationType.name.reputation,Reputation,,Ansehen,Reputación,Réputation,Репутация,Reputação
 ModificationType.name.milestone,Milestone,,Meilenstein,Hito,Jalon d'Expérience,Веха,Marco de História
 ModificationType.name.characterAdvancement,Character Advancement,,,,,,
 MilestoneType.name.normalMilestone,Normal Milestone,,Regulärer Meilenstein,Hito Normal,Jalon Normal,Обычная веха,Marco de História Normal

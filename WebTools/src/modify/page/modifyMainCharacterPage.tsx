@@ -34,6 +34,9 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
             result.push(new DropDownElement(ModificationType.Promotion, t('ModificationType.name.promotion')))
         }
         result.push(new DropDownElement(ModificationType.CharacterAdvancement, t('ModificationType.name.characterAdvancement')))
+        if (character?.rank != null) {
+            result.push(new DropDownElement(ModificationType.Demotion, t('ModificationType.name.demotion')))
+        }
         return result;
     }
 
@@ -90,7 +93,9 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
 
     const createModifcationDataStepView = () => {
         if (modificationType === ModificationType.Promotion) {
-            return (<PromotionView character={character} onNextStep={nextStep} onPreviousStep={previousStep} />);
+            return (<PromotionView character={character} onNextStep={nextStep} onPreviousStep={previousStep} type={ModificationType.Promotion} />);
+        } else if (modificationType === ModificationType.Demotion) {
+            return (<PromotionView character={character} onNextStep={nextStep} onPreviousStep={previousStep} type={ModificationType.Demotion} />);
         } else if (modificationType === ModificationType.CharacterAdvancement) {
             return (<CharacterAdvancementTypeView character={character} onNextStep={nextStep}
                 onPreviousStep={previousStep} type={advancementType} />);
