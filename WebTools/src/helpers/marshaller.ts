@@ -46,6 +46,7 @@ import { LocomotionModel, LocomotionType, LocomotionTypeHelper } from '../creatu
 import { allCharacterAdvancementChoices, CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
 import { SpecialWeapon } from '../common/specialWeapon';
 import { AttackType } from '../common/attackType';
+import { ModificationType } from '../modify/model/modificationType';
 
 class Marshaller {
 
@@ -307,6 +308,7 @@ class Marshaller {
                         name: i.rank.name,
                         id: i.rank.id
                     }
+                    result["modificationType"] = ModificationType[i.type];
                     return result;
                 } else {
                     return undefined;
@@ -1632,7 +1634,9 @@ class Marshaller {
                 } else if (j["type"] === "promotion") {
                     const jsonRank = j["rank"];
                     const rank = new CharacterRank(jsonRank["name"], jsonRank["id"]);
-                    return new Promotion(rank);
+                    const type = j["modificationType"] === ModificationType[ModificationType.Demotion] ? ModificationType.Demotion : ModificationType.Promotion;
+
+                    return new Promotion(rank, type);
                 } else {
                     return undefined;
                 }
