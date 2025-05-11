@@ -53,7 +53,7 @@ const EducationPage: React.FC<ICharacterProperties> = ({character}) => {
 
     const getTracks = () => {
         if (character.type !== CharacterType.Starfleet) {
-            return TracksHelper.instance.getTracks(character.type);
+            return TracksHelper.instance.getTracks(character.type, character.version);
         } else if (character.version > 1) {
             return TracksHelper.instance.getVersion2StarfleetTracks();
         } else if (tab === StarfleetTrackTab.Other) {

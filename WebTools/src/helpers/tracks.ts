@@ -456,7 +456,7 @@ export class TracksHelper {
         ),
     ];
 
-    private chooseList(type: CharacterType) {
+    private chooseList(type: CharacterType, version: number) {
         if (type === CharacterType.AlliedMilitary) {
             return this._alliedMilitaryTracks;
         } else if (type === CharacterType.AmbassadorDiplomat) {
@@ -465,16 +465,18 @@ export class TracksHelper {
             return this._civilianTracks;
         } else if (type === CharacterType.KlingonWarrior) {
             return this._klingonTracks;
-        } else if (type === CharacterType.Cadet) {
+        } else if (type === CharacterType.Cadet && version === 1) {
             return [ this._tracks[0], this._tracks[1], this._tracks[2] ];
+        } else if (type === CharacterType.Cadet) {
+            return [ this._version2Tracks[0], this._version2Tracks[1], this._version2Tracks[2] ];
         } else {
             return this._tracks;
         }
     }
 
-    getTracks(type: CharacterType) {
+    getTracks(type: CharacterType, version: number) {
         var tracks: TrackModel[] = [];
-        var list = this.chooseList(type);
+        var list = this.chooseList(type, version);
         for (let model of list) {
             if (hasSource(model.source)) {
                 if (model.id === Track.EnlistedSecurityTraining) {
@@ -509,7 +511,7 @@ export class TracksHelper {
     }
 
     getTrack(track: Track, type: CharacterType, version: number): TrackModel {
-        let list = (type === CharacterType.Starfleet && version > 1) ? this._version2Tracks : this.chooseList(type);
+        let list = (type === CharacterType.Starfleet && version > 1) ? this._version2Tracks : this.chooseList(type, version);
         let result = null;
         for (let t of list) {
             if (t.id === track) {
@@ -560,7 +562,7 @@ export class TracksHelper {
             let roll = Math.floor(Math.random() * list.length);
             return list[roll].id;
         } else {
-            let list = this.chooseList(characterType);
+            let list = this.chooseList(characterType, version);
             let roll = Math.floor(Math.random() * list.length);
             return list[roll].id;
         }
