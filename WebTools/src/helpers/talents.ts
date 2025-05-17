@@ -3276,6 +3276,48 @@ export class Talents {
                 1,
                 "Engineering"),
             new TalentModel(
+                "Calibrated Munitions",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 4), new DisciplinePrerequisite(Department.Engineering, 3)],
+                1,
+                "Security"),
+            new TalentModel(
+                "Well-Maintained Arsenal",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Engineering, 2)],
+                1,
+                "Security"),
+            new TalentModel(
+                "Tactical Countermeasures",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
+                1,
+                "Security"),
+            new TalentModel(
+                "On the Shoulders of Giants",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Science, 3)],
+                1,
+                "Science"),
+            new TalentModel(
+                "The Power of Math",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Science, 3)],
+                1,
+                "Science"),
+            new TalentModel(
+                "Combat Stimulants",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Medicine, 3)],
+                1,
+                "Medicine"),
+            new TalentModel(
+                "Transformative Treatments",
+                "",
+                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Medicine, 3)],
+                1,
+                "Medicine"),
+            new TalentModel(
                 "Engineering/Science Affinity (Unofficial)",
                 "",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Napean, false)],

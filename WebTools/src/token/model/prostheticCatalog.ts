@@ -339,6 +339,7 @@ class ProstheticCatalog {
                         case HairType.FeminineDreadStyle:
                         case HairType.ShoulderLengthBob:
                         case HairType.ChinLengthCombBack:
+                        case HairType.CurlyShoulderLength:
                             return AndorianAntenna.frontCoveredMore.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
                         default:
                             return AndorianAntenna.front.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);

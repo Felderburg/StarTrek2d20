@@ -174,7 +174,7 @@ export abstract class BaseNeckProvider {
             } else if (species === Species.Cardassian) {
                 if (uniformEra === UniformEra.Cardassian || uniformEra === UniformEra.OriginalSeriesKlingon) {
                     result = CardassianNeck.female.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, skinColor);
-                } else if (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant3) {
+                } else if (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant4) {
                     result = CardassianNeck.female.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, skinColor);
                 }
             } else if (species === Species.Suliban) {
