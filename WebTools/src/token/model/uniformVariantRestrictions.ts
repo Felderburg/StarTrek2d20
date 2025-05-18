@@ -52,6 +52,7 @@ export default class UniformVariantRestrictions {
             result.push(UniformVariantType.Variant7);
             result.push(UniformVariantType.Variant8);
             result.push(UniformVariantType.Variant9);
+            result.push(UniformVariantType.Variant10);
             if (bodyType === BodyType.AverageFemale) {
             }
         } else if (uniformEra === UniformEra.OriginalSeries) {
