@@ -1724,7 +1724,7 @@
    inkscape:window-width="1920"
    inkscape:window-height="1080"
    inkscape:window-x="2537"
-   inkscape:window-y="69"
+   inkscape:window-y="41"
    inkscape:window-maximized="0"
    inkscape:current-layer="layer8" />
     <g
@@ -2694,6 +2694,6 @@
      x="265.19324"
      y="384.66898" /><path
      id="path11"
-     style="clip-rule:nonzero;stroke-linecap:butt;stroke-miterlimit:20"
+     style="clip-rule:nonzero;stroke-linecap:butt;stroke-miterlimit:20;fill:#000000;fill-opacity:1"
      d="m 265.27344,380.71484 a 0.90008998,0.90008998 0 0 0 -0.90039,0.89844 V 400 h 1.80078 v -17.48633 h 22.82226 V 400 h 1.79883 v -18.38672 a 0.90008998,0.90008998 0 0 0 -0.90039,-0.89844 z" /></g>
 </svg>

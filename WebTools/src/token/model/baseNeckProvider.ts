@@ -129,9 +129,11 @@ export abstract class BaseNeckProvider {
             || uniformEra === UniformEra.Picard25
             || uniformEra === UniformEra.StarTrekOnline
             || uniformEra === UniformEra.Klingon
-            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant5)
-            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant6)
-            || (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant7);
+            || (uniformEra === UniformEra.Civilian && [
+                UniformVariantType.Variant5,
+                UniformVariantType.Variant6,
+                UniformVariantType.Variant7,
+                UniformVariantType.Variant9].includes( uniformVariant));
     }
 
 
