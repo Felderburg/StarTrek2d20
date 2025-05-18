@@ -2648,6 +2648,10 @@
     "Talent.borgImplants.description": "A Liberated Borg character must select this Talent during character creation. When this Talent is chosen, pick one, two, or three Borg Implants. The character gains the benefits of those implants, but the Difficulty of Medicine Tasks performed on them increases by the number of implants they have. The character also increases the Complication range of all social interaction Tasks by the number of implants they have. An ordinary milestone may be used to remove one implant at a time, not the whole Talent; once all implants have been removed, this Talent can be swapped for another.",
     "Talent.borgImplants.error": "The selected talent requires you to select at least one implant.",
 
+    "Talent.calibratedMunitions": "Calibrated Munitions",
+
+    "Talent.calibratedMunitions.description": "You’ve spent many duty hours carefully tuning and refining the ship’s weapon systems. When you use the Calibrate Weapons minor action (page 305 of the core rulebook), the weapon’s damage on your next attack increases by 2 instead of 1. In addition, when you fire a weapon with the **Calibration** quality, increase its damage by 1.",
+
     "Talent.callOutTargets": "Call Out Targets",
 
     "Talent.callOutTargets.description2e": "When you Assist a character in an Attack, the assisted character generates 2 bonus Momentum if their Attack succeeds. Bonus Momentum cannot be saved.",
@@ -2770,6 +2774,10 @@
     "Talent.combatMedic": "Combat Medic",
 
     "Talent.combatMedic.description2a": "When attempting a Medicine task during combat, you may pick one trait which increases the Difficulty of the task and ignore it.",
+
+    "Talent.combatStimulants": "Combat Stimulants",
+
+    "Talent.combatStimulants.description": "You carry, and can formulate, a potent cocktail of stimulants, adrenaline, and pain inhibitors which can increase the recipient’s aggression, physical ability, and resistance to pain for a short time. You can administer a dose of stimulants to yourself or another character in Reach as a minor action. When administered, the recipient immediately recovers Stress equal to twice your Medicine score, and gains the **Combat Stimulants** trait for the rest of the current scene. While they have this trait, they gain +1 Protection, and may reroll one d20 on any task using **Daring**. However, at the end of  the scene, the character suffers enough Stress to become **Fatigued**.",
 
     "Talent.commandAndControl": "Command & Control",
 
@@ -3453,6 +3461,10 @@
 
     "Talent.onceMoreUntoTheBreach.description": "The first time the Rally action (Command major action) is used aboard the ship in a scene, you may re-roll one d20.",
 
+    "Talent.onTheShouldersOfGiants": "On the Shoulders of Giants",
+
+    "Talent.onTheShouldersOfGiants.description": "Science is a collaborative process, built upon the foundations laid by others. Whenever you attempt a Science task and you can benefit from a trait created by another character, you may reroll one d20. If the trait is a piece of specialized equipment or an applicable scientific theory, then you also generate 1 bonus Momentum if the task succeeds. Bonus Momentum cannot be saved.",
+
     "Talent.openBook": "Open Book",
 
     "Talent.openBook.description": "When a character enters a scene, you may spend 1 Momentum (Immediate) to immediately ask the gamemaster one question about that character’s current emotions or surface thoughts. You cannot do this for characters immune to telepathy.",
@@ -3827,6 +3839,10 @@
     "Talent.tachyonDetectionField.description2e": "The ship is equipped with a field generator that projects a cloud of tachyons around it. When a character at sensor operations succeeds at a _Reveal_ major action, all cloaked or hidden vessels within Long range are revealed, rather than only one.",
     "Talent.tachyonDetectionField.soloDescription": "The ship is equipped with a field generator that projects a cloud of tachyons around it. While the field is active, the ship is notified of any cloaked vessels that are within or pass into close range.",
 
+    "Talent.tacticalCountermeasures": "Tactical Countermeasures",
+
+    "Talent.tacticalCountermeasures.description": "You have studied the weapon systems commonly used across the Galaxy, and you know the best ways to counter them. When you take the Modulate Shields major action during starship combat, you increase the ship’s Resistance by an amount equal to your Security rating.\n\nDuring personal combat, if you create a trait that represents creating or modifying a force field, energy field, or dampening field, then all allies protected by that field gain +1 Protection against a single type of energy weapons (phasers, disruptors, plasma weapons, etc.).",
+
     "Talent.teacher": "Teacher",
 
     "Talent.teacher.description2e": "When you create a trait for an ally that represents your guidance or advice, that ally may re-roll one d20 on a single task they attempt which benefits from that trait.",
@@ -3862,6 +3878,10 @@
     "Talent.theEndsJustifyTheMeans.description2e": "When you spend Determination because of a Directive, you may select two of the benefits for spending Determination, rather than one.",
 
     "Talent.theLongViewElAurian": "The Long View",
+    "Talent.thePowerOfMath": "The Power of Math",
+
+    "Talent.thePowerOfMath.description": "You can perform complex math equations quickly in your head, and even your rough estimates are startlingly precise. Whenever you attempt a task which requires precise calculations, you do not suffer any Difficulty increase for lacking tools, and the first d20 you purchase is free.",
+
     "Talent.theUshaan": "The Ushaan",
 
     "Talent.theUshaan.description": "You are experienced in the tradition of honor-dueling known as the Ushaan, having spilt much blood upon the ice. When you make a melee Attack, or are targeted by a melee Attack, and buy one or more d20s by adding to Threat, you may re-roll the dice pool for the Task. Further, you own an Ushaan-tor, a razor-sharp ice-miner’s tool used in these duels.",
@@ -3895,6 +3915,10 @@
     "Talent.tracker": "Tracker",
 
     "Talent.tracker.description": "You can follow even the faintest of tracks. When you attempt a task to track animals, people, or ground vehicles, the first d20 you buy is free. If the tracking was done as part of an extended task then the roll gains Progression 1.",
+
+    "Talent.transformativeTreatments": "Transformative Treatments",
+
+    "Talent.transformativeTreatments.description": "You are especially talented when it comes to disguising a person as a member of another species, whether using targeted epigenetic treatments, plastic surgery, or other methods. When you succeed at a **Medicine** task to disguise a character as a member of a different species (creating a trait), you may spend 1 Momentum to increase the potency of that trait by 1.",
 
     "Talent.transporterChief": "Transporter Chief",
 
@@ -3960,6 +3984,10 @@
     "Talent.wellInformed": "Well-Informed",
 
     "Talent.wellInformed.description2e": "You have contacts everywhere and you listen to news and rumors from far and wide. At the start of a scene, you may add 1 Threat to ask the gamemaster two questions about the situation or location, as if you had spent Momentum on the Obtain Information spend. The answers you receive will be knowledge you’ve gained from your contacts and the news and rumors you’ve heard.",
+
+    "Talent.wellMaintainedArsenal": "Well-Maintained Arsenal",
+
+    "Talent.wellMaintainedArsenal.description": "One of your duties is to maintain the weapons used by the ship’s personnel, and you take that duty very seriously. Each scene, any character using a weapon from the ship’s weapons lockers may ignore the first complication rolled when making an attack or attempting another task using that weapon. Further, when you attempt a task to create a trait that represents modifying, calibrating, or modulating a weapon, reduce the Difficulty by 1.\n\nThis covers any standard issue weapons, or any obtained by paying the Opportunity Cost aboard ship, excluding those gained from other talents.",
 
     "Talent.whipLikeTailSpecialRuleCreature": "Whip-like Tail",
 
