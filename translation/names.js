@@ -5,7 +5,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const tag = "Korean";
+const tag = "Nigerian";
 
 const convertDataToNames = async (data) => {
     let directory = __dirname.substring(0, __dirname.lastIndexOf('/'));
@@ -21,7 +21,7 @@ const convertDataToNames = async (data) => {
             if (name.indexOf('(') >= 0) {
                 name = name.substring(0, name.indexOf('(')).trim();
             }
-            let gender = row[1];
+            let gender = row[1]?.trim();
             const type = "FirstName";
 
             if (gender.toLowerCase() === "girl") {
