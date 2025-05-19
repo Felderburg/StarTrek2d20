@@ -567,6 +567,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
             AttributesHelper.getAllAttributes().forEach(a => result[a] = Math.min(Character.maxAttribute(this), result[a]));
 
+        } else if (this.stereotype === Stereotype.Npc && !this.legacyMode) {
+            result = [7, 7, 7, 7, 7, 7];
+            this.speciesStep?.attributes?.forEach(a => result[a] = result[a] + 1);
+            this.npcGenerationStep?.attributes?.forEach((v,a) => result[a] += v);
+
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = this.age.attributes;
             if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {

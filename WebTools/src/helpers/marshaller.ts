@@ -185,7 +185,7 @@ class Marshaller {
 
         sheet["typeDetails"] = this.encodeTypeDetails(character);
 
-        if (character.stereotype === Stereotype.Npc || character.legacyMode) {
+        if (character.legacyMode) {
             sheet["attributes"] = this.toAttributeObject(character._attributes);
         }
 
@@ -1528,6 +1528,11 @@ class Marshaller {
             if (json.npc.departments) {
                 DepartmentsHelper.instance.getDepartments().forEach(d =>
                     result.npcGenerationStep.departments[d] = json.npc.departments[Department[d]]
+                );
+            }
+            if (json.npc.attributes) {
+                AttributesHelper.getAllAttributes().forEach(a =>
+                    result.npcGenerationStep.attributes[a] = json.npc.attributes[Attribute[a]]
                 );
             }
         }

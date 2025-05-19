@@ -477,6 +477,18 @@ export class NpcGenerator {
             character.speciesStep.ability = SpeciesAbilityList.instance.getBySpecies(species.id);
         }
 
+        if (species.attributes?.length <= 3) {
+            character.speciesStep.attributes = [...species.attributes];
+        } else {
+            character.speciesStep.attributes = [];
+        }
+        while (character.speciesStep.attributes.length < 3) {
+            let all = AttributesHelper.getAllAttributes();
+            let attribute =  all[Math.floor(all.length * Math.random())];
+            if (!character.speciesStep.attributes.includes(attribute)) {
+                character.speciesStep.attributes.push(attribute);
+            }
+        }
 
         let nameSpecies = species;
         if (character.speciesStep?.originalSpecies != null) {
@@ -496,10 +508,9 @@ export class NpcGenerator {
         character.name = name;
         character.pronouns = pronouns;
 
-        NpcGenerator.assignAttributes(npcType, character, species, specialization);
-
         character.npcGenerationStep = new NpcGenerationStep(npcType);
         character.npcGenerationStep.specialization = specialization.id;
+        NpcGenerator.assignAttributes(npcType, character, species, specialization);
 
         let disciplines = DepartmentsHelper.instance.getDepartments();
         let disciplinePoints = NpcTypes.disciplinePoints(npcType);
@@ -783,6 +794,7 @@ export class NpcGenerator {
         let attributePoints = NpcTypes.attributePoints(npcType);
         let chances = [20, 14, 8];
 
+        character.npcGenerationStep.attributes = [0, 0, 0, 0, 0, 0];
         for (let i = 0; i < attributePoints.length; i++) {
             let a = attributes[Math.floor(Math.random() * attributes.length)];
             if (i < specialization.primaryAttributes.length && i < chances.length && D20.roll() <= chances[i]) {
@@ -791,44 +803,16 @@ export class NpcGenerator {
                     a = temp;
                 }
             }
-            character._attributes[a] = attributePoints[i];
-            attributes.splice(attributes.indexOf(a), 1);
-        }
-
-        let hasMax = character.hasMaxedAttribute();
-        let speciesAttributes = [];
-        if (!species.isAttributeSelectionRequired) {
-            for (let i = 0; i < species.attributes.length; i++) {
-                let attr = species.attributes[i];
-                if (character.attributes[attr] < 12 &&
-                    (!hasMax || character.attributes[attr] < 11)) {
-
-                    speciesAttributes.push(attr);
+            if (attributePoints[i] === Character.ABSOLUTE_MAX_ATTRIBUTE && character.speciesStep?.attributes.includes(a)) {
+                // need to move a point
+                if (i < attributePoints.length-1) {
+                    attributePoints[i] -= 1;
+                    attributePoints[attributePoints.length - 2] += 1;
                 }
             }
-        }
-
-        // when adding species attributes, we need to worry about
-        // major NPCs who can have a lot of points already allocated;
-        // if a species attribute would raise an attribute above the
-        // maximums, treat it as if one of the original point
-        // spend was in another attribute and the species point
-        // can be applied.
-        let allAttributes = AttributesHelper.getAllAttributes();
-        while (speciesAttributes.length < 3) {
-
-            let attr = allAttributes[Math.floor(Math.random() * allAttributes.length)];
-            if (speciesAttributes.indexOf(attr) >= 0) {
-                // already have this one. skip it.
-            } else if (character.attributes[attr] < 12 &&
-                (!hasMax || character.attributes[attr] < 11)) {
-
-                speciesAttributes.push(attr);
-            }
-        }
-
-        for (let i = 0; i < speciesAttributes.length; i++) {
-            character._attributes[speciesAttributes[i]] += 1;
+            character.npcGenerationStep.attributes[a] = attributePoints[i] - 7;
+            character._attributes[a] = attributePoints[i];
+            attributes.splice(attributes.indexOf(a), 1);
         }
     }
 
