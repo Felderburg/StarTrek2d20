@@ -5,7 +5,7 @@ import { makeKey } from '../common/translationKey';
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import store from '../state/store';
-import { setSupportingCharacterDisciplines } from '../state/characterActions';
+import { setSupportingCharacterDepartments } from '../state/characterActions';
 
 interface IValueProperties {
     index: number;
@@ -66,7 +66,7 @@ const SupportingCharacterDisciplines: React.FC<ICharacterProperties> = ({charact
     }
 
     const updateCharacterDisciplines = (disciplines: Department[]) => {
-        store.dispatch(setSupportingCharacterDisciplines(disciplines));
+        store.dispatch(setSupportingCharacterDepartments(disciplines));
     }
 
     const disciplines = DepartmentsHelper.instance.getDepartments().map((s, i) => {

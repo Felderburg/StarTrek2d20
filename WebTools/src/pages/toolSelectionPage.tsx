@@ -71,6 +71,10 @@ const ToolSelectionPage = () => {
     }
 
     const loadNpcAndGoToPage = () => {
+        navigate("/npc");
+    }
+
+    const loadRandomNpcAndGoToPage = () => {
         setLoadingNpc(true);
         PageFactory.instance.loadNpcFactory(() => {
             setLoadingNpc(false);
@@ -121,11 +125,14 @@ const ToolSelectionPage = () => {
                         <div className="col-md-6 button-column">
                             <Button className="mt-4" onClick={() => { startCharacterCreation(); } } >{t('ToolSelection.mainCharacter')}</Button>
                             <Button className="mt-4" onClick={() => { goToPage(PageIdentity.SupportingCharacter); } } >{t('ToolSelection.supportingCharacter')}</Button>
+                            {isSecondEdition()
+                                ? (<Button className="mt-4" onClick={() => { loadNpcAndGoToPage(); } }>{t('ToolSelection.npc')}</Button>)
+                                : undefined}
                             <LoadingButton className="mt-4" onClick={() => { loadStarshipAndGoToPage(); } } loading={loadingStarship}>{t('ToolSelection.starship')}</LoadingButton>
                             {renderSystemGenerationButton()}
                         </div>
                         <div className="col-md-6 button-column">
-                            <LoadingButton className="mt-4" onClick={() => { loadNpcAndGoToPage(); } } loading={loadingNpc}>{t('ToolSelection.randomNpc')}</LoadingButton>
+                            <LoadingButton className="mt-4" onClick={() => { loadRandomNpcAndGoToPage(); } } loading={loadingNpc}>{t('ToolSelection.randomNpc')}</LoadingButton>
                             <LoadingButton className="mt-4" onClick={() => { loadRandomStarshipAndGoToPage(); } } loading={loadingRandomStarship}>{t('ToolSelection.randomStarship')}</LoadingButton>
                             {isSecondEdition()
                                 ? (<Button className="mt-4" onClick={() => { goToPage(PageIdentity.RandomCreature); } }>{t('ToolSelection.randomCreature')}</Button>)

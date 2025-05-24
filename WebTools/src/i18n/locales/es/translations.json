@@ -435,6 +435,7 @@
     "ToolSelection.instruction": "¿Qué quieres crear?",
     "ToolSelection.mainCharacter": "Personaje principal",
     "ToolSelection.supportingCharacter": "Personaje de Apoyo",
+    "ToolSelection.npc": "PNJ",
     "ToolSelection.starship": "Nave estelar",
     "ToolSelection.spaceSector": "Sector espacial",
     "ToolSelection.randomNpc": "PNJ Aleatorio",

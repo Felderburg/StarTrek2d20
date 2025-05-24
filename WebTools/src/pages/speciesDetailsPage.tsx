@@ -27,6 +27,7 @@ import { SpeciesAbilityView } from '../components/speciesAbilityView';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { useNavigate } from 'react-router';
 
 interface ISpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -36,13 +37,14 @@ interface ISpeciesDetailsProperties extends ICharacterProperties {
 const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, allowCrossSpeciesTalents, allowEsotericTalents}) => {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
     let species = SpeciesHelper.getSpeciesByType(character.speciesStep?.species);
     const controller = SpeciesAttributeController.create(character, species);
 
     const selectDesc = species.attributes.length > 3 ? t('SpeciesDetails.selectThree') : "";
 
     const isTalentSelectionRequired = () => {
-        if (character.stereotype === Stereotype.SoloCharacter) {
+        if (character.stereotype === Stereotype.SoloCharacter || character.stereotype === Stereotype.Npc) {
             return false;
         } else if (character.version === 1 && character.type !== CharacterType.KlingonWarrior) {
             return true;
@@ -176,6 +178,8 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
             Dialog.show("You have not selected a talent.");
         } else if (isTalentSelectionRequired() && determineSelectedTalentExtraErrors(character.speciesStep?.talent) != null) {
             Dialog.show(determineSelectedTalentExtraErrors(character.speciesStep?.talent));
+        } else if (character.stereotype === Stereotype.Npc) {
+            navigate("/npc/stats");
         } else {
             Navigation.navigateToPage(PageIdentity.Environment);
         }

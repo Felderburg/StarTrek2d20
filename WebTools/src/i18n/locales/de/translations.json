@@ -335,6 +335,7 @@
     "ToolSelection.instruction": "Was soll erschaffen werden?",
     "ToolSelection.mainCharacter": "Hauptfigur",
     "ToolSelection.supportingCharacter": "Nebencharakter",
+    "ToolSelection.npc": "NSC",
     "ToolSelection.starship": "Raumschiff",
     "ToolSelection.spaceSector": "Raumsektor",
     "ToolSelection.randomNpc": "Zufälliger NSC",

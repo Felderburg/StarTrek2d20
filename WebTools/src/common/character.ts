@@ -1524,11 +1524,14 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return result;
     }
 
-    public static createNpcCharacter(era: Era, version: 1|2 = 1) {
+    public static createNpcCharacter(era: Era, version: 1|2 = 1, npcType?: NpcType) {
         let result = new Character();
         result.stereotype = Stereotype.Npc;
         result.era = era;
         result.version = version;
+        if (npcType !== undefined) {
+            result.npcGenerationStep = new NpcGenerationStep(npcType);
+        }
         return result;
     }
 

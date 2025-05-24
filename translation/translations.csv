@@ -306,6 +306,7 @@ Vous pouvez vouloir sauvegarder l'URL pour le personnage modifié","Персон
 Talvez você queira salvar a URL da personagem revisada."
 ModificationTypeSelectionPage.instruction,Please select the modification that you want to apply to this character:,,Wählen Sie die gewünschte Änderung an Ihrem Charakter aus,Selecciona la modificación que quieres aplicar a este personaje.,Selectionnez la modification que vous voulez appliquer à ce personnage,Пожалуйста выберите тип измененния который вы хотите применить для данного персонажа:,Selecione a modificação que você deseja aplicar a esta personagem:
 ModificationTypeSelectionPage.whatMilestoneType,What kind of milestone is being applied?,,Welche Art Meilenstein wird angewandt?,¿Qué tipo de hito se está aplicando?,Quel genre de jalon d'expérience est appliqué?,Какой тип вехи был применен?,Que tipo de marco de história está sendo aplicado?
+NpcBuilderPage.text,"First, select an NPC type.",,,,,,
 NpcConfigurationPage.option.anyMajorSpecies,Any Major Species,,Jede bedeutende Spezies,Cualquier Especie Principal,N'importe quelle Espèces Majeure,Любая основная раса,Qualquer Espécie Principal
 NpcConfigurationPage.option.anySpecialization,Any Specialization,,Jede Spezialisierung,Cualquier Especialización,N'importe quelle Spécialisation,Любая Специализация,Qualquer Especialização
 NpcConfigurationPage.npcType,NPC Type,,NPC Typ,Tipo de PNJ,Type de PNJ,Тип ВП,Tipo de PdM
@@ -554,6 +555,7 @@ TacticalAssetsPage.assets,Asset List,,,Lista de Recursos,,,Lista de Recursos
 ToolSelection.instruction,What do you want to create?,,Was soll erschaffen werden?,¿Qué quieres crear?,Que voulez vous créer?,Что вы хотите сгенерировать?,O que você deseja criar?
 ToolSelection.mainCharacter,Main Character,,Hauptfigur,Personaje principal,Personnage principal,Главный персонаж,Personagem Principal
 ToolSelection.supportingCharacter,Supporting Character,,Nebencharakter,Personaje de Apoyo,Personnage secondaire,Персонаж поддержки,Personagem Coadjuvante
+ToolSelection.npc,NPC,,NSC,PNJ,PNJ,,PdM
 ToolSelection.starship,Starship,,Raumschiff,Nave estelar,Vaisseau spatial,Звездолет,Nave Estelar
 ToolSelection.spaceSector,Space Sector,,Raumsektor,Sector espacial,Secteur spatial,Звездный сектор,Setor Espacial
 ToolSelection.randomNpc,Random NPC,,Zufälliger NSC,PNJ Aleatorio,PNJ aléatoire,Рандомный второстепенный персонаж,PdM Aleatório
@@ -661,6 +663,7 @@ Construct.other.purpose,Purpose,,Zweck,Proposito,Rôle,Роль,Propósito
 Construct.other.rank,Rank,,Rang,Rango,Grade,Ранг,Patente
 Construct.other.refits,Refits,,Nachrüstungen,Modificaciones,Mises à jour,,Reajustes
 Construct.other.registry,Registry,,Registriernummer,Registro,Immatriculation,,Registro
+Construct.other.role,Role,,,,,,
 Construct.other.resistance,Resistance,,Widerstand,Resistencia,Résistance,Сопротивление,Resistência
 Construct.other.reprimands,Reprimands,,Verwarnungen,Reprimendas,Réprimandes,Выговоры,Reprimendas
 Construct.other.reputation,Reputation,,Ansehen,Reputación,Réputation,Репутация,Reputação
@@ -799,7 +802,9 @@ Page.title.normalMilestone,Normal Milestone,,Regulärer Meilenstein,Hito Normal,
 Page.title.modificationComplete,Modification Completed,,Änderung abgeschlossen,Modificación Completada,Modification Effectuée,Изменения завершены,Modificação Concluída
 Page.title.modifySupportingCharacter,Modify Supporting Character,,,,,,
 Page.title.modifyMainCharacter,Modify Main Character,,,,,,
+Page.title.npcBuilder,NPC Builder,,,,,,
 Page.title.npcConfiguration,Random NPC Configuration,,Anpassung zufälliger NSCs,Configuración Aleatoria de PNJ,Configuration des PNJ Aléatoires,Конфигурация рандомного ВП,Configuração de PdM Aleatórios
+Page.title.npcStats,NPC Stats,,,,,,
 Page.title.tokenCreationPage,Token Creation,,Tokenerschaffung,Creación de Token,Création de Jeton,Создание токена,Criação de Token
 Page.title.upbringing,Early Outlook,,Erziehung,Perspectiva Temprana,Experience initiale,Детали воспитания,Experiência Inicial
 Page.title.upbringingDetails,Early Outlook Details,,Erziehungsdetails,Detalles de Perspectiva Temprana,Détails de l'expérience initiale,Направление образование,Detalhes da Experiência Inicial
@@ -1851,8 +1856,11 @@ NoseType.hawk,Hawk,,,De Halcón,,,Aquilino
 NoseType.broadFlat,"Broad, Flat, Pronounced Nostrils",,,"Fosas nasales anchas, planas y pronunciadas",,,"Narinas Largas, Planas e Acentuadas"
 NpcCharacterType.minorPolity,Minor Polity,,Kleinere Partei,Político Menor,Groupe Mineur,,Político Menor
 NpcCharacterType.rogueRuffianMercenary,"Rogues, Ruffians, and Mercenaries",,"Schurken, Raufbolde und Söldner","Pícaros, rufianes y mercenarios","Voleurs, Ruffians et Mercenaires",,"Vigaristas, Malfeitores e Mercenários"
+NpcType.minor.description,"Minor NPCs form the rank-and-file members of an organization. They are the nameless extras in missions, as groups to face in an encounter, or as guards for a Notable or Major NPC. If encountered alone, they shouldn’t hold up the player characters for long.",,,,,,
 NpcType.minor.name,Minor NPC,,Einfacher NSC,PNJ Menor,PNJ Mineur,Обычный второстепенный персонаж,PdM Menor
+NpcType.notable.description,"Notable NPCs are more capable than Minor NPCs, and are often lieutenants to Major NPCs. They are comparable to supporting characters, and, if encountered as a group or with several Minor NPCs, can form a more formidable obstacle and drain the player characters’ resources, forcing them to spend Determination or add Threat to overcome them.",,,,,,
 NpcType.notable.name,Notable NPC,,Bedeutender NSC,PNJ Notable,PNJ Notable,Значимый второстепенный персонаж,PdM Notável
+NpcType.major.description,"Major NPCs are the gamemaster’s equivalent of a player character. More thought and creativity should be put into creating a Major NPC, giving  them names, backgrounds, and qualities comparable to player characters.",,,,,,
 NpcType.major.name,Major NPC,,Herausragender NSC,PNJ Mayor,PNJ Majeur,Ключевой второстепенный персонаж,PdM Maior
 Rank.admiral.name,Admiral,,,Almirante,Amiral,Адмирал,Almirante
 Rank.admiral.abbrev,Adm.,,,Alm.,Amir.,Адм.,Alm.

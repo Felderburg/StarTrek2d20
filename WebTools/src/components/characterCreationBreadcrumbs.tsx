@@ -7,12 +7,37 @@ import { navigateTo } from "../common/navigator";
 import { CharacterType } from "../common/characterType";
 import { setCharacterFinishingTouches } from "../state/characterActions";
 import store from "../state/store";
+import { Stereotype } from "../common/construct";
+import { Link } from "react-router-dom";
 
 interface ICharacterBreadcrumbProperties extends ICharacterProperties {
     pageIdentity?: PageIdentity;
 }
 
-const CharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties> = ({character, pageIdentity}) => {
+const NpcCharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties> = ({character, pageIdentity}) => {
+    const { t } = useTranslation();
+
+    const renderSpecies = () => {
+        if ((character?.environmentStep && pageIdentity === PageIdentity.SpeciesDetails) || pageIdentity === PageIdentity.Species) {
+            return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.species')}</li>);
+        } else if (character?.speciesStep) {
+            return (<li className="breadcrumb-item"><Link to="/npc/species">{t('Page.title.species')}</Link></li>);
+        } else {
+            return undefined;
+        }
+    }
+
+    return (<nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+            <li className="breadcrumb-item"><Link to="/index.html">{t('Page.title.home')}</Link></li>
+            <li className="breadcrumb-item"><Link to="/npc">{t('Page.title.npcBuilder')}</Link></li>
+            {renderSpecies()}
+        </ol>
+    </nav>);
+}
+
+
+const StandardCharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties> = ({character, pageIdentity}) => {
 
     const { t } = useTranslation();
 
@@ -129,5 +154,14 @@ const CharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties> = 
                 </ol>
             </nav>);
 }
+
+const CharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties> = ({character, pageIdentity}) => {
+    if (character.stereotype === Stereotype.Npc) {
+        return (<NpcCharacterCreationBreadcrumbs character={character} pageIdentity={pageIdentity} />);
+    } else {
+        return (<StandardCharacterCreationBreadcrumbs character={character} pageIdentity={pageIdentity} />);
+    }
+}
+
 
 export default connect(characterMapStateToProperties)(CharacterCreationBreadcrumbs)

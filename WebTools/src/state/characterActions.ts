@@ -49,6 +49,7 @@ export const ADD_CHARACTER_TALENT = "ADD_CHARACTER_TALENT";
 export const ADD_CHARACTER_TALENT_FOCUS = "ADD_CHARACTER_TALENT_FOCUS";
 export const ADD_CHARACTER_TALENT_VALUE = "ADD_CHARACTER_TALENT_VALUE";
 export const SET_SUPPORTING_CHARACTER_DISCIPLINES = "SET_SUPPORTING_CHARACTER_DISCIPLINES";
+export const SET_NPC_CHARACTER_DEPARTMENTS = "SET_NPC_CHARACTER_DEPARTMENTS";
 export const SET_SUPPORTING_CHARACTER_ATTRIBUTES = "SET_SUPPORTING_CHARACTER_ATTRIBUTES";
 export const SET_SUPPORTING_CHARACTER_SUPERVISORY = "SET_SUPPORTING_CHARACTER_SUPERVISORY";
 export const ADD_CHARACTER_SPECIES_ABILITY_FOCUS = "ADD_CHARACTER_SPECIES_ABILITY_FOCUS";
@@ -107,7 +108,7 @@ export function setCharacterSpecies(species: Species, attributes: Attribute[] = 
     }
 }
 
-export function setSupportingCharacterSupervisorty(supervisory: boolean) {
+export function setSupportingCharacterSupervisory(supervisory: boolean) {
     let payload = { supervisory: supervisory };
     return {
        type: SET_SUPPORTING_CHARACTER_SUPERVISORY,
@@ -115,10 +116,18 @@ export function setSupportingCharacterSupervisorty(supervisory: boolean) {
     }
 }
 
-export function setSupportingCharacterDisciplines(disciplines: Department[]) {
+export function setSupportingCharacterDepartments(disciplines: Department[]) {
     let payload = { disciplines: disciplines };
     return {
        type: SET_SUPPORTING_CHARACTER_DISCIPLINES,
+       payload: payload
+    }
+}
+
+export function setNpcCharacterDepartments(departments: number[]) {
+    let payload = { departments: departments };
+    return {
+       type: SET_NPC_CHARACTER_DEPARTMENTS,
        payload: payload
     }
 }

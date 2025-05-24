@@ -20,6 +20,10 @@ export class NpcTypeModel {
     get localizedName() {
         return i18next.t(makeKey('NpcType.', NpcType[this.type], ".name"));
     }
+
+    get localizedDescription() {
+        return i18next.t(makeKey('NpcType.', NpcType[this.type], ".description"));
+    }
 }
 
 export class NpcTypes {

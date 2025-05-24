@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { connect } from 'react-redux';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
-import { StepContext, setCharacter, setCharacterAge, setCharacterAssignment, setCharacterFocus, setCharacterName, setCharacterPronouns, setCharacterRank, setCharacterSpecies, setCharacterType, setCharacterValue, setSupportingCharacterSupervisorty } from '../state/characterActions';
+import { StepContext, setCharacter, setCharacterAge, setCharacterAssignment, setCharacterFocus, setCharacterName, setCharacterPronouns, setCharacterRank, setCharacterSpecies, setCharacterType, setCharacterValue, setSupportingCharacterSupervisory } from '../state/characterActions';
 import { localizedFocus } from '../components/focusHelper';
 import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import D20IconButton from '../solo/component/d20IconButton';
@@ -172,7 +172,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
     }
 
     const onSupervisoryChange = (value: boolean) => {
-        store.dispatch(setSupportingCharacterSupervisorty(value));
+        store.dispatch(setSupportingCharacterSupervisory(value));
     }
 
     const renderValues = () => {

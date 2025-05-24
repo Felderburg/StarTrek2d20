@@ -34,7 +34,10 @@ const RandomCreaturePage = React.lazy(() => import(/* webpackChunkName: 'npc' */
 const TacticalAssetsPage = React.lazy(() => import(/* webpackChunkName: 'statc' */ './asset/page/tacticalAssetsPage'));
 const ModifySupportCharacterPage = React.lazy(() => import(/* webpackChunkName: 'modify' */ './supportingcharacters/modify/modifySupportCharacterPage'));
 const ModifyCharacterPage = React.lazy(() => import(/* webpackChunkName: 'modify' */ './modify/page/modifyMainCharacterPage'));
-
+const NpcBuilderPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcBuilderPage'));
+const NpcSpeciesSelectionPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesSelectionPage'));
+const NpcSpeciesDetailsPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesDetailsPage'));
+const NpcStatsPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcStatsPage'));
 
 let root = createRoot(document.getElementById("mainBody"));
 root.render(
@@ -47,6 +50,10 @@ root.render(
                     <Route path="/talents" element={<TalentsOverviewMainPage />} />
                     <Route path="/view" element={<ViewSheetPage />} />
                     <Route path="/credits" element={<CreditsPage />} />
+                    <Route path="/npc" element={<NpcBuilderPage />} />
+                    <Route path="/npc/species" element={<NpcSpeciesSelectionPage />} />
+                    <Route path="/npc/species/details" element={<NpcSpeciesDetailsPage />} />
+                    <Route path="/npc/stats" element={<NpcStatsPage />} />
                     <Route path="/systemGenerator" element={<SectorContainerPage activePage={PageIdentity.SystemGeneration} />} />
                     <Route path="/sectorDetails" element={<SectorContainerPage activePage={PageIdentity.SectorDetails} />} />
                     <Route path="/starSystemDetails" element={<StarSystemDetailsPage />} />

@@ -14,6 +14,8 @@ import { setCharacterSpecies } from '../state/characterActions';
 import store from '../state/store';
 import { Navigation } from '../common/navigator';
 import Button from 'react-bootstrap/Button';
+import { Stereotype } from '../common/construct';
+import { useNavigate } from 'react-router';
 
 enum SpeciesTab {
     Standard,
@@ -24,6 +26,7 @@ enum SpeciesTab {
 const SpeciesPage: React.FC<ICharacterProperties> = ({character}) => {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
 
     const chooseInitialTab = () => {
         if (character?.speciesStep?.species === Species.Custom) {
@@ -77,7 +80,9 @@ const SpeciesPage: React.FC<ICharacterProperties> = ({character}) => {
             store.dispatch(setCharacterSpecies(speciesModel.id, speciesModel.attributes, undefined, undefined, undefined, speciesModel.decrementAttributes));
         }
 
-        if (species === Species.Kobali) {
+        if (character.stereotype === Stereotype.Npc) {
+            navigate("/npc/species/details");
+        } else if (species === Species.Kobali) {
             Navigation.navigateToPage(PageIdentity.KobaliExtraSpeciesDetails);
         } else if (species === Species.Borg) {
             Navigation.navigateToPage(PageIdentity.BorgSpeciesExtraDetails);
