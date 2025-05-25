@@ -6,31 +6,8 @@ import store from '../../state/store';
 import { setNpcCharacterDepartments } from '../../state/characterActions';
 import { makeKey } from '../../common/translationKey';
 import { connect } from 'react-redux';
-import { NpcType, NpcTypes } from '../model/npcType';
-
-interface IValueProperties {
-    index: number;
-    value: number;
-    isSelected: boolean;
-    onSelect: (index: number) => void;
-}
-
-const ValueView: React.FC<IValueProperties> = ({index, value, isSelected, onSelect}) => {
-
-    const toggleSelection = () => {
-        onSelect(isSelected ? -1 : index);
-    }
-
-    const className = isSelected ? "die die-selected" : "die";
-
-    return (
-        <div className={className} onClick={() => toggleSelection() }>
-            <div className="die-value">
-                {value}
-            </div>
-        </div>
-    );
-}
+import { NpcTypes } from '../model/npcType';
+import { ValueView } from '../../components/valueView';
 
 const NpcDepartmentView: React.FC<ICharacterProperties> = ({character}) => {
 

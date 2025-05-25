@@ -1154,6 +1154,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
             } else {
                 traits.push("Ambassador");
             }
+        } else if (this.stereotype === Stereotype.Npc && this.assignmentWithoutShip?.length) {
+            traits.push(this.assignmentWithoutShip);
         }
         return traits.filter(t => t?.length);
     }

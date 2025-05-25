@@ -15,59 +15,6 @@ import { CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { CharacterSerializer } from '../common/characterSerializer';
 
-class SectionContent {
-    name: string;
-    value: any;
-
-    constructor(name: string, value: any) {
-        this.name = name;
-        this.value = value;
-    }
-}
-
-class CharacterProfileData {
-
-    readonly character: Character;
-    private _data: SectionContent[];
-
-
-    constructor(character: Character) {
-        this.character = character;
-        this._data = [
-            new SectionContent(i18n.t('Construct.other.species'), this.getSpeciesString()),
-            new SectionContent(i18n.t('Construct.other.environment'), this.getEnvironmentString()),
-            new SectionContent(i18n.t('Construct.other.upbringing'), this.character.upbringingStep ? this.character.upbringingStep?.localizedDescription : i18n.t('Common.text.none')),
-            new SectionContent(i18n.t('Construct.other.training'), this.character.educationStep?.track != null
-                ? TracksHelper.instance.getTrack(this.character.educationStep?.track, character.type, character.version)?.localizedName
-                : i18n.t('Common.text.none')),
-            new SectionContent(i18n.t('Construct.other.career'), this.character.careerStep?.career != null
-                ? (this.character.stereotype === Stereotype.SoloCharacter
-                    ? CareersHelper.instance.getSoloCareerLength(this.character.careerStep?.career).localizedName
-                    : CareersHelper.instance.getCareer(this.character.careerStep?.career, this.character).localizedName)
-                : i18n.t('Common.text.none')),
-            new SectionContent(i18n.t('Construct.other.traits'), this.character.getAllTraits())
-        ];
-    }
-
-    get dataSection() {
-        return this._data;
-    }
-
-    private getSpeciesString() {
-        return this.character.localizedSpeciesName || i18n.t('Common.text.none');
-    }
-
-    private getEnvironmentString() {
-        let env = this.character.environmentStep ? EnvironmentsHelper.getEnvironment(this.character.environmentStep.environment, this.character.type).localizedName : i18n.t('Common.text.none');
-
-        if (this.character.environmentStep?.environment === Environment.AnotherSpeciesWorld && this.character.environmentStep?.otherSpecies != null) {
-            env = CharacterSerializer.serializeEnvironment(this.character.environmentStep.environment, this.character.environmentStep.otherSpecies, this.character.type);
-        }
-
-        return env;
-    }
-}
-
 interface ICharacterSheetProperties extends WithTranslation {
     era?: Era;
     showProfile: boolean;
@@ -76,7 +23,6 @@ interface ICharacterSheetProperties extends WithTranslation {
 }
 
 class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
-    private _sheetData: CharacterProfileData;
 
     render() {
         const { t } = this.props;
@@ -85,16 +31,15 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
             c = store.getState().character.currentCharacter;
         }
 
-        this._sheetData = new CharacterProfileData(c);
+        const getEnvironmentString = () => {
+            let env = c.environmentStep ? EnvironmentsHelper.getEnvironment(c.environmentStep.environment, c.type).localizedName : i18n.t('Common.text.none');
 
-        const data = this._sheetData.dataSection.map((s, i) => {
-            return (
-                <div className="sheet-panel d-flex" key={'data-' + i}>
-                    <div className="sheet-label-purple text-uppercase">{s.name}</div>
-                    <div className="sheet-data">{s.value}</div>
-                </div>
-            )
-        });
+            if (c.environmentStep?.environment === Environment.AnotherSpeciesWorld && c.environmentStep?.otherSpecies != null) {
+                env = CharacterSerializer.serializeEnvironment(c.environmentStep.environment, c.environmentStep.otherSpecies, c.type);
+            }
+
+            return env;
+        }
 
         const characterValues = c.values;
 
@@ -199,7 +144,59 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                             </div>
 
                             <div className="col-md-6 mb-2">
-                                {data}
+                                <div className="sheet-panel d-flex">
+                                    <div className="sheet-label-purple text-uppercase">{t('Construct.other.species')}</div>
+                                    <div className="sheet-data">
+                                        {c.localizedSpeciesName ?? i18n.t('Common.text.none')}
+                                    </div>
+                                </div>
+                                {c.stereotype === Stereotype.Npc
+                                    ? undefined
+                                    : (<>
+                                        <div className="sheet-panel d-flex">
+                                            <div className="sheet-label-purple text-uppercase">{t('Construct.other.environment')}</div>
+                                            <div className="sheet-data">
+                                                { getEnvironmentString() ?? i18n.t('Common.text.none')}
+                                            </div>
+                                        </div>
+                                        <div className="sheet-panel d-flex">
+                                            <div className="sheet-label-purple text-uppercase">{t('Construct.other.training')}</div>
+                                            <div className="sheet-data">
+                                                {c.educationStep?.track != null
+                                                    ? TracksHelper.instance.getTrack(c.educationStep?.track, c.type, c.version)?.localizedName
+                                                    : i18n.t('Common.text.none')}
+                                            </div>
+                                        </div>
+                                    </>)}
+                            </div>
+
+                            <div className="col-md-6 mb-2">
+                                <div className="sheet-panel d-flex">
+                                    <div className="sheet-label-purple text-uppercase">{t('Construct.other.traits')}</div>
+                                    <div className="sheet-data">
+                                        {c.getAllTraits()}
+                                    </div>
+                                </div>
+                                {c.stereotype === Stereotype.Npc
+                                    ? undefined
+                                    : (<>
+                                        <div className="sheet-panel d-flex">
+                                            <div className="sheet-label-purple text-uppercase">{t('Construct.other.upbringing')}</div>
+                                            <div className="sheet-data">
+                                                { c.upbringingStep?.localizedDescription ?? i18n.t('Common.text.none')}
+                                            </div>
+                                        </div>
+                                        <div className="sheet-panel d-flex">
+                                            <div className="sheet-label-purple text-uppercase">{t('Construct.other.career')}</div>
+                                            <div className="sheet-data">
+                                                { c.careerStep?.career != null
+                                                    ? (c.stereotype === Stereotype.SoloCharacter
+                                                        ? CareersHelper.instance.getSoloCareerLength(c.careerStep?.career).localizedName
+                                                        : CareersHelper.instance.getCareer(c.careerStep?.career, c).localizedName)
+                                                    : i18n.t('Common.text.none')}
+                                            </div>
+                                        </div>
+                                    </>)}
                             </div>
 
                             <div className="col-md-6 mb-2">
@@ -258,7 +255,11 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
+                            <div className="col-md-6 mb-2">
+                                <div className="row">
                                     <div className="col-md-6">
                                         <div className="sheet-panel d-flex mw-100">
                                             <div className="sheet-label-orange text-uppercase">{t('Construct.discipline.command')}</div>

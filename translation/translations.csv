@@ -314,10 +314,15 @@ NpcConfigurationPage.specialization,Specialization,,Spezialisierung,Especializac
 NpcConfigurationPage.text,Specify what kind of NPC you're trying to create.,,"Lege fest, welche Art NPC du erstellen möchtest.",Especifíca qué tipo de PNJ estás creando.,Spécifiez quel type de PNJ vous voulez créer,Определите тип ВП которого вы пытаетесь создать.,Especifique o tipo de PdM que você está tentando criar.
 NpcConfigurationPage.includeDescription,Include description,,,,,,
 NpcStatsPage.instruction,Provide the various NPC stats for this character.,,,,,,
+NpcStatsPage.instruction.attribute,Assign the character's attributes. The highest value should be assigned to the NPC's most imporant attribute. Select two different values to swap them.,,,,,,
+NpcStatsPage.instruction.attribute.major,Assign the character's Departments. The highest value should match up with the role of the character.,,,,,,
 NpcStatsPage.instruction.department,Assign the character's Departments. The highest value should match up with the role of the character. Select two different values to swap them.,,,,,,
 NpcStatsPage.instruction.department.major,Assign the character's Departments. The highest value should match up with the role of the character.,,,,,,
 NpcStatsPage.instruction.focus.notable,Select two or three focuses,,,,,,
 NpcStatsPage.instruction.focus.major,Select up to six focuses,,,,,,
+NpcStatsPage.instruction.role.minor,Select a role that describes the NPC's job.,,,,,,
+NpcStatsPage.instruction.role.notable,Select a role that describes the NPC's job.,,,,,,
+NpcStatsPage.instruction.role.major,"Think about the NPC's role in their organization as well as their rank. The Major NPC should command some authority, even if it isn't recognized by an official body.",,,,,,
 NpcStatsPage.instruction.value.notable,Select a value that describes the NPC's most deeply-held belief or their motivation,,,,,,
 NpcStatsPage.instruction.value.major,Select two to four values.,,,,,,
 NoviceOrCadetExperiencePage.attribute.instruction,Choose 1 attribute to use with this talent.,,,Elige 1 atributo para utilizar con este talento.,,,Escolha 1 atributo para usar com esse talento.

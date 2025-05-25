@@ -6,31 +6,7 @@ import { ICharacterProperties, characterMapStateToProperties } from '../solo/pag
 import { connect } from 'react-redux';
 import store from '../state/store';
 import { setSupportingCharacterDepartments } from '../state/characterActions';
-
-interface IValueProperties {
-    index: number;
-    value: number;
-    isSelected: boolean;
-    onSelect: (index: number) => void;
-}
-
-class Value extends React.Component<IValueProperties, {}> {
-    render() {
-        const className = this.props.isSelected ? "die die-selected" : "die";
-
-        return (
-            <div className={className} onClick={() => this.toggleSelection() }>
-                <div className="die-value">
-                    {this.props.value}
-                </div>
-            </div>
-        );
-    }
-
-    private toggleSelection() {
-        this.props.onSelect(this.props.isSelected ? -1 : this.props.index);
-    }
-}
+import { ValueView } from '../components/valueView';
 
 const SupportingCharacterDisciplines: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -74,7 +50,7 @@ const SupportingCharacterDisciplines: React.FC<ICharacterProperties> = ({charact
             <tr key={i}>
                 <td className="selection-header">{t(makeKey('Construct.discipline.', Department[s]))}</td>
                 <td>
-                    <Value
+                    <ValueView
                         index={s}
                         value={character.departments[s]}
                         onSelect={(index) => selectValue(s) }

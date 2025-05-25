@@ -54,6 +54,8 @@ export const SET_SUPPORTING_CHARACTER_ATTRIBUTES = "SET_SUPPORTING_CHARACTER_ATT
 export const SET_SUPPORTING_CHARACTER_SUPERVISORY = "SET_SUPPORTING_CHARACTER_SUPERVISORY";
 export const ADD_CHARACTER_SPECIES_ABILITY_FOCUS = "ADD_CHARACTER_SPECIES_ABILITY_FOCUS";
 export const MODIFY_CHARACTER_ADD_ADVANCEMENT = "MODIFY_CHARACTER_ADD_ADVANCEMENT";
+export const ADD_NPC_CHARACTER_VALUE = "SET_NPC_CHARACTER_VALUE";
+export const SET_NPC_CHARACTER_ATTRIBUTES = "SET_NPC_CHARACTER_ATTRIBUTES";
 
 export enum StepContext {
     Species,
@@ -128,6 +130,14 @@ export function setNpcCharacterDepartments(departments: number[]) {
     let payload = { departments: departments };
     return {
        type: SET_NPC_CHARACTER_DEPARTMENTS,
+       payload: payload
+    }
+}
+
+export function setNpcCharacterAttributes(attributes: number[]) {
+    let payload = { attributes: attributes };
+    return {
+       type: SET_NPC_CHARACTER_ATTRIBUTES,
        payload: payload
     }
 }
@@ -226,6 +236,14 @@ export function setCharacterValue(value: string, context: StepContext) {
     let payload = { value: value, context: context };
     return {
        type: SET_CHARACTER_VALUE,
+       payload: payload
+    }
+}
+
+export function addNpcCharacterValue(value: string, index: number) {
+    let payload = { value: value, index: index };
+    return {
+       type: ADD_NPC_CHARACTER_VALUE,
        payload: payload
     }
 }

@@ -76,6 +76,8 @@ export enum PageIdentity {
     NpcSpeciesSelection,
     NpcSpeciesSelectionDetails,
     NpcStats,
+    NpcTalents,
+    NpcFinal,
     TokenCreationPage,
 
     SoloConstructType,

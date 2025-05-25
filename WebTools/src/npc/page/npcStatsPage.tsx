@@ -10,13 +10,15 @@ import { useTranslation } from "react-i18next";
 import NpcDepartmentView from "../view/npcDepartmentView";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import store from "../../state/store";
-import { setCharacterAssignment, setCharacterFocus, StepContext } from "../../state/characterActions";
+import { addNpcCharacterValue, setCharacterAssignment, setCharacterFocus, StepContext } from "../../state/characterActions";
 import Markdown from "react-markdown";
 import { NpcType } from "../model/npcType";
 import { FocusSelectionView } from "../../components/focusSelectionView";
 import { DepartmentsHelper } from "../../helpers/department";
 import { makeKey } from "../../common/translationKey";
-import ValueInput from "../../components/valueInput";
+import ValueInputWithRandom from "../../components/valueInputWithRandomOption";
+import { NpcAttributesView } from "../view/npcAttributesView";
+import { Button } from "react-bootstrap";
 
 const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -33,26 +35,56 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
         if (character.npcGenerationStep?.type === NpcType.Minor) {
             return undefined;
         } else {
+            let department = primaryDepartment()
             return (<div className="col-12 col-md-6 mt-4">
-                <Header level={2} className="my-3">{t('Construct.other.focuses')}</Header>
-                <Markdown>{t(makeKey('NpcStatsPage.instruction.focus.', NpcType[character.npcGenerationStep?.type]))}</Markdown>
+                <Header level={2} className="my-3">{t('Construct.other.values')}</Header>
+                <Markdown>{t(makeKey('NpcStatsPage.instruction.value.', NpcType[character.npcGenerationStep?.type]))}</Markdown>
+                <ValueInputWithRandom character={character}
+                    id="value1"
+                    value={character.npcGenerationStep?.values[0]}
+                    onValueChanged={(v) => store.dispatch(addNpcCharacterValue(v, 0))}
+                    department={department} />
+                {character.npcGenerationStep?.type === NpcType.Major
+                    ? <>
+                        <ValueInputWithRandom character={character}
+                            id="value2"
+                            value={character.npcGenerationStep?.values[1]}
+                            onValueChanged={(v) => store.dispatch(addNpcCharacterValue(v, 1))}
+                            department={department} />
+                        <ValueInputWithRandom character={character}
+                            id="value3"
+                            value={character.npcGenerationStep?.values[2]}
+                            onValueChanged={(v) => store.dispatch(addNpcCharacterValue(v, 2))}
+                            department={department} />
+                        <ValueInputWithRandom character={character}
+                            id="value4"
+                            value={character.npcGenerationStep?.values[3]}
+                            onValueChanged={(v) => store.dispatch(addNpcCharacterValue(v, 3))}
+                            department={department} />
+                    </>
+                    : undefined}
             </div>)
         }
+    }
+
+    const primaryDepartment = () => {
+        let department = undefined;
+        let departments = character.npcGenerationStep?.departments;
+        DepartmentsHelper.instance.getDepartments().forEach(d => {
+            if (department === undefined) {
+                department = d;
+            } else if (departments[d] > departments[department]) {
+                department = d;
+            }
+        });
+        return department;
     }
 
     const renderFocuses = () => {
         if (character.npcGenerationStep?.type === NpcType.Minor) {
             return undefined;
         } else {
-            let department = undefined;
-            let departments = character.npcGenerationStep?.departments;
-            DepartmentsHelper.instance.getDepartments().forEach(d => {
-                if (department === undefined) {
-                    department = d;
-                } else if (departments[d] > departments[department]) {
-                    department = d;
-                }
-            })
+            let department = primaryDepartment()
 
             return (<div className="col-12 col-md-6 mt-4">
                 <Header level={2} className="my-3">{t('Construct.other.focuses')}</Header>
@@ -108,6 +140,9 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
         }
     }
 
+    const onNext = () => {
+        navigate("/npc/final");
+    }
 
     return character
         ? (<LcarsFrame activePage={PageIdentity.NpcStats}>
@@ -121,6 +156,15 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
 
                         <div className="row">
                             <div className="col-12 col-md-6 mt-4">
+                                <Header level={2} className="my-3">{t('Construct.other.attributes')}</Header>
+                                <Markdown>
+                                    {character.npcGenerationStep?.type === NpcType.Major
+                                    ? t('NpcStatsPage.instruction.attribute.major')
+                                    : t('NpcStatsPage.instruction.attribute')}
+                                </Markdown>
+                                <NpcAttributesView character={character} />
+                            </div>
+                            <div className="col-12 col-md-6 mt-4">
                                 <Header level={2} className="my-3">{t('Construct.other.departments')}</Header>
                                 <Markdown>
                                     {character.npcGenerationStep?.type === NpcType.Major
@@ -132,7 +176,7 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
 
                             <div className="col-12 col-md-6 mt-4">
                                 <Header level={2} className="my-3">{t('Construct.other.role')}</Header>
-                                <Markdown>{t('NpcStatsPage.instruction.role')}</Markdown>
+                                <Markdown>{t(makeKey('NpcStatsPage.instruction.role.', NpcType[character.npcGenerationStep?.type]))}</Markdown>
                                 <InputFieldAndLabel id="role"
                                     labelName={t('Construct.other.role')}
                                     value={character.jobAssignment}
@@ -141,6 +185,12 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
                             </div>
 
                             {renderFocuses()}
+                            {renderValues()}
+                        </div>
+
+
+                        <div className="mt-4 text-end">
+                            <Button className="mt-4" onClick={() => { onNext(); } } >{t('Common.button.next')}</Button>
                         </div>
                     </main>
                 </div>

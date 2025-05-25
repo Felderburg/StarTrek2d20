@@ -21,7 +21,9 @@ const ValueInput: React.FC<IValueInput> = ({textDescription, id, value, onValueC
                 <D20IconButton onClick={() => onRandomClicked() }/>
             </div>
         </div>
-        <div className="py-1 text-white">{textDescription}</div>
+        {textDescription == null
+            ? undefined
+            : (<div className="py-1 text-white">{textDescription}</div>)}
     </>)
 }
 
