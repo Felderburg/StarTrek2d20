@@ -15,11 +15,14 @@ interface IFocusSelectionProperties {
     suggestions?: string;
     hints?: string[];
     label?: string;
+    id?: string;
 }
 
-export const FocusSelectionView: React.FC<IFocusSelectionProperties> = ({character, addFocus, randomFocusDepartment, suggestions, hints, label, value}) => {
+export const FocusSelectionView: React.FC<IFocusSelectionProperties> = ({character, addFocus, randomFocusDepartment, suggestions, hints, label, value, id}) => {
 
     const { t } = useTranslation();
+
+    id = id ?? "focus";
 
     const selectRandomFocus = () => {
         let done = false;
@@ -44,7 +47,7 @@ export const FocusSelectionView: React.FC<IFocusSelectionProperties> = ({charact
 
     return (<>
         <div className="d-flex justify-content-between align-items-center flex-wrap">
-            <InputFieldAndLabel id="focus" labelName={label}
+            <InputFieldAndLabel id={id} labelName={label}
                 value={value || ""} className="mt-1"
                 onChange={(v) => addFocus(v?.length ? v : undefined)} />
             <div style={{ flexShrink: 0 }} className="mt-1">

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../components/header';
-import ValueInput from '../components/valueInputWithRandomOption';
+import ValueInput from '../components/valueInput';
 import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';

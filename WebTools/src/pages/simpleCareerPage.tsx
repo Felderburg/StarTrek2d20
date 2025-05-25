@@ -2,7 +2,7 @@
 import {Navigation} from '../common/navigator';
 import Button from 'react-bootstrap/Button';
 import {TalentDescription} from '../components/talentDescription';
-import ValueInput from '../components/valueInputWithRandomOption';
+import ValueInput from '../components/valueInput';
 import { TalentsHelper } from '../helpers/talents';
 import InstructionText from '../components/instructionText';
 import { Header } from '../components/header';

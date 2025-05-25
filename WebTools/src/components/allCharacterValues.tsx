@@ -6,7 +6,7 @@ import { Header } from "./header";
 import { StepContext, setCharacterValue } from "../state/characterActions";
 import { ValueRandomTable } from "../solo/table/valueRandomTable";
 import store from "../state/store";
-import ValueInput from "./valueInputWithRandomOption";
+import ValueInput from "./valueInput";
 import { makeKey } from "../common/translationKey";
 import { Career } from "../helpers/careerEnum";
 import InstructionText from "./instructionText";

@@ -1,6 +1,7 @@
 import { D20 } from "../../common/die";
 import i18next from 'i18next';
 import { makeKey } from '../../common/translationKey';
+import { Character } from "../../common/character";
 
 export enum NpcType {
     Minor,

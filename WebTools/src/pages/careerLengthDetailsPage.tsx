@@ -5,7 +5,7 @@ import {CareerModel, CareersHelper} from '../helpers/careers';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {TalentDescription} from '../components/talentDescription';
-import ValueInput from '../components/valueInputWithRandomOption';
+import ValueInput from '../components/valueInput';
 import { TalentsHelper, ToViewModel } from '../helpers/talents';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';

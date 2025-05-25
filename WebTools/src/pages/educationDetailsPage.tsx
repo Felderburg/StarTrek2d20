@@ -5,7 +5,7 @@ import {TrackModel, TracksHelper} from '../helpers/tracks';
 import {Department} from '../helpers/department';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
-import ValueInput from '../components/valueInputWithRandomOption';
+import ValueInput from '../components/valueInput';
 import DepartmentView from '../components/skill';
 import { TalentsHelper } from '../helpers/talents';
 import { Header } from '../components/header';

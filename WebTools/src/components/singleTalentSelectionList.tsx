@@ -10,7 +10,7 @@ import { SpecialWeapon } from '../common/specialWeapon';
 import { FocusSelectionView } from './focusSelectionView';
 import { Character } from '../common/character';
 import { Department } from '../helpers/department';
-import ValueInput from './valueInputWithRandomOption';
+import ValueInput from './valueInput';
 import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { Construct } from '../common/construct';
 import { BorgImplants } from '../helpers/borgImplant';

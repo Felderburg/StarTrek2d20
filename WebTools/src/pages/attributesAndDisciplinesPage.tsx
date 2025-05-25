@@ -5,7 +5,7 @@ import {PageIdentity} from './pageIdentity';
 import { TalentsHelper } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
-import ValueInput from '../components/valueInputWithRandomOption';
+import ValueInput from '../components/valueInput';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { CharacterType } from '../common/characterType';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';

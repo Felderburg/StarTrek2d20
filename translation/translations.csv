@@ -313,6 +313,13 @@ NpcConfigurationPage.npcType,NPC Type,,NPC Typ,Tipo de PNJ,Type de PNJ,Тип В
 NpcConfigurationPage.specialization,Specialization,,Spezialisierung,Especialización,Spécialisation,Специализация,Especialização
 NpcConfigurationPage.text,Specify what kind of NPC you're trying to create.,,"Lege fest, welche Art NPC du erstellen möchtest.",Especifíca qué tipo de PNJ estás creando.,Spécifiez quel type de PNJ vous voulez créer,Определите тип ВП которого вы пытаетесь создать.,Especifique o tipo de PdM que você está tentando criar.
 NpcConfigurationPage.includeDescription,Include description,,,,,,
+NpcStatsPage.instruction,Provide the various NPC stats for this character.,,,,,,
+NpcStatsPage.instruction.department,Assign the character's Departments. The highest value should match up with the role of the character. Select two different values to swap them.,,,,,,
+NpcStatsPage.instruction.department.major,Assign the character's Departments. The highest value should match up with the role of the character.,,,,,,
+NpcStatsPage.instruction.focus.notable,Select two or three focuses,,,,,,
+NpcStatsPage.instruction.focus.major,Select up to six focuses,,,,,,
+NpcStatsPage.instruction.value.notable,Select a value that describes the NPC's most deeply-held belief or their motivation,,,,,,
+NpcStatsPage.instruction.value.major,Select two to four values.,,,,,,
 NoviceOrCadetExperiencePage.attribute.instruction,Choose 1 attribute to use with this talent.,,,Elige 1 atributo para utilizar con este talento.,,,Escolha 1 atributo para usar com esse talento.
 NoviceOrCadetExperiencePage.attribute.error,Please choose an attribute.,,,"Por favor, elige un atributo.",,,"Por favor, escolha um atributo."
 OtherToolsPage.instruction,This section contains a number of miscellaneous additional tools that might be used in your STA game.,,,Esta sección contiene una serie de herramientas adicionales diversas que pueden utilizarse en tu partida de STA.,Cette section contient divers outils additionnels à utiliser lors de vos parties de STA,Эта категория содержит несколько дополнительных инструментов которые могут быть использованы в вашей игре.,Esta seção contém várias ferramentas adicionais diversas que podem ser usadas no seu jogo STA.
@@ -643,6 +650,8 @@ Construct.other.focus1,Focus 1,,Fokus 1,Especialidad 1,Spécialité 1,Специ
 Construct.other.focus2,Focus 2,,Fokus 2,Especialidad 2,Spécialité 2,Специализация 2,Foco 2
 Construct.other.focus3,Focus 3,,Fokus 3,Especialidad 3,Spécialité 3,Специализация 3,Foco 3
 Construct.other.focus4,Focus 4,,Fokus 4,Especialidad 4,Spécialité 4,Специализация 4,Foco 4
+Construct.other.focus5,Focus 5,,Fokus 5,Especialidad 5,Spécialité 5,Специализация 5,Foco 5
+Construct.other.focus6,Focus 6,,Fokus 6,Especialidad 6,Spécialité 6,Специализация 6,Foco 6
 Construct.other.focuses,Focuses,,Fokusse,Especialidades,Spécialités,Специализации,Focos
 Construct.other.house,House,,,Casa,,,Casa
 Construct.other.injuries,Injuries,,,Heridas,Blessures,Ранения,Ferimentos

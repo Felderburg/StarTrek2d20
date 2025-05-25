@@ -643,6 +643,15 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                     temp.supportingStep.focuses.push("");
                 }
                 temp.supportingStep.focuses[index] = action.payload.focus;
+            } else if (temp.stereotype === Stereotype.Npc) {
+                if (temp.npcGenerationStep == null) {
+                    temp.npcGenerationStep = new NpcGenerationStep();
+                }
+                let index = action.payload.index ?? 0;
+                for (let i = temp.npcGenerationStep.focuses.length; i <= index; i++) {
+                    temp.npcGenerationStep.focuses.push("");
+                }
+                temp.npcGenerationStep.focuses[index] = action.payload.focus;
             } else if (action.payload.context === StepContext.EarlyOutlook && temp.upbringingStep) {
                 temp.upbringingStep.focus = action.payload.focus;
             } else if (action.payload.context === StepContext.Education && temp.educationStep && action.payload.index <= 2) {

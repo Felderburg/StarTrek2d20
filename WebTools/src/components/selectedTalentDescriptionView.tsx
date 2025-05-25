@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
 import { FocusSelectionView } from './focusSelectionView';
 import { Character } from '../common/character';
-import ValueInput from './valueInputWithRandomOption';
+import ValueInput from './valueInput';
 import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { BorgImplants, BorgImplantType } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';

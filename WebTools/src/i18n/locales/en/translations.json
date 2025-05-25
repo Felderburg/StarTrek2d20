@@ -294,6 +294,18 @@
     "NpcConfigurationPage.text": "Specify what kind of NPC you're trying to create.",
     "NpcConfigurationPage.includeDescription": "Include description",
 
+    "NpcStatsPage.instruction": "Provide the various NPC stats for this character.",
+
+    "NpcStatsPage.instruction.department": "Assign the character's Departments. The highest value should match up with the role of the character. Select two different values to swap them.",
+
+    "NpcStatsPage.instruction.department.major": "Assign the character's Departments. The highest value should match up with the role of the character.",
+
+    "NpcStatsPage.instruction.focus.notable": "Select two or three focuses",
+    "NpcStatsPage.instruction.focus.major": "Select up to six focuses",
+
+    "NpcStatsPage.instruction.value.notable": "Select a value that describes the NPC's most deeply-held belief or their motivation",
+    "NpcStatsPage.instruction.value.major": "Select two to four values.",
+
     "NoviceOrCadetExperiencePage.attribute.instruction": "Choose 1 attribute to use with this talent.",
     "NoviceOrCadetExperiencePage.attribute.error": "Please choose an attribute.",
 
@@ -573,6 +585,8 @@
     "Construct.other.focus2": "Focus 2",
     "Construct.other.focus3": "Focus 3",
     "Construct.other.focus4": "Focus 4",
+    "Construct.other.focus5": "Focus 5",
+    "Construct.other.focus6": "Focus 6",
     "Construct.other.focuses": "Focuses",
     "Construct.other.house": "House",
     "Construct.other.injuries": "Injuries",

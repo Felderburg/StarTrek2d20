@@ -11,7 +11,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { SupportingCharacterModificationType } from "./supportingCharacterModificationType";
-import ValueInput from "../../components/valueInputWithRandomOption";
+import ValueInput from "../../components/valueInput";
 import { useNavigate } from "react-router";
 import { Dialog } from "../../components/dialog";
 import { ValueRandomTable } from "../../solo/table/valueRandomTable";
