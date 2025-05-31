@@ -124,7 +124,7 @@ export function setStarshipSpaceframe(spaceframe: SpaceframeModel) {
     }
 }
 
-export function setStarshipServiceRecord(serviceRecord: ServiceRecordModel, talent: TalentModel, selection?: string) {
+export function setStarshipServiceRecord(serviceRecord: ServiceRecordModel, talent: TalentModel, selection?: string|System) {
     let payload = { serviceRecord: serviceRecord, talent: talent, selection: selection };
     return {
        type: SET_STARSHIP_SERVICE_RECORD,

@@ -64,7 +64,7 @@ const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({character}
     function showExportDialog() {
         setLoadingExport(true);
         import(/* webpackChunkName: 'export' */ '../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
-            import(/* webpackChunkName: 'export' */ '../helpers/sheets').then(({CharacterSheetRegistry}) => {
+            import(/* webpackChunkName: 'export' */ '../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
                 setLoadingExport(false);
                 CharacterSheetDialog.show(CharacterSheetRegistry.getSupportingCharacterSheet(character), "sta-character", character);
             });

@@ -51,7 +51,7 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
                 <div className="col-md-2 view-field-label pb-2">{t('Construct.other.pronouns')}:</div>
                 <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{character.pronouns ? character.pronouns  : undefined}</div></div>
 
-                <div className="col-md-2 view-field-label pb-2">{t('NpcConfigurationPage.specialization')}:</div>
+                <div className="col-md-2 view-field-label pb-2">{character.npcGenerationStep?.specialization != null ? t('NpcConfigurationPage.specialization') : t('Construct.other.characterRole')}:</div>
                 <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{character.role == null ? character.jobAssignment : character.role}</div></div>
 
                 {character.rank ? (<>
@@ -73,7 +73,7 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
     function showExportDialog() {
         setLoadingExport(true);
         import(/* webpackChunkName: 'export' */ '../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
-            import(/* webpackChunkName: 'export' */ '../helpers/sheets').then(({CharacterSheetRegistry}) => {
+            import(/* webpackChunkName: 'export' */ '../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
                 setLoadingExport(false);
                 CharacterSheetDialog.show(CharacterSheetRegistry.getCharacterSheets(character), "sta-npc", character);
             });

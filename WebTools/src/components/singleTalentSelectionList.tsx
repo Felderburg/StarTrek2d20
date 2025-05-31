@@ -27,6 +27,37 @@ interface ISingleTalentSelectionProperties {
     onSelection: (talent?: SelectedTalent) => void;
 }
 
+interface ISelectedTalentChoiceProperties {
+    talentNames?: string[];
+    construct: Construct;
+    selection: SelectedTalent;
+    setSelection: (SelectedTalent) => void;
+}
+
+export const DepartmentSelectedTalentChoice: React.FC<ISelectedTalentChoiceProperties> = ({construct, talentNames, selection, setSelection}) => {
+    return (<SimpleDepartmentSelector
+        character={construct as Character}
+        isChecked={d => selection.department === d}
+        onSelectDepartment={d => {
+            let temp = selection?.copy();
+            if (temp) {
+                temp.department = d;
+            }
+            setSelection(temp);
+        }}
+        isUpdateable={d => {
+            if (d === selection.department) {
+                return true;
+            } else {
+                let departments = (construct as Character).talents
+                    .filter(t => talentNames?.includes(t.talent) && t.department != null)
+                    .map(t => t.department);
+                return !departments.includes(d);
+            }
+        }}
+    />);
+}
+
 const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({talents, construct, initialSelection, onSelection}) => {
 
     let original = null;
@@ -112,28 +143,11 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
         return (
             <div className="row">
                 <div className="col-12 col-md-6">
-                    <SimpleDepartmentSelector
-                        character={construct as Character}
-                        isChecked={d => selection.department === d}
-                        onSelectDepartment={d => {
-                            let temp = selection?.copy();
-                            if (temp) {
-                                temp.department = d;
-                            }
-                            setSelection(temp);
-                            onSelection(temp);
-                        }}
-                        isUpdateable={d => {
-                            if (d === selection.department) {
-                                return true;
-                            } else {
-                                let departments = (construct as Character).talents
-                                    .filter(t => t.talent === TALENT_NAME_COLLABORATION && t.department != null)
-                                    .map(t => t.department);
-                                return !departments.includes(d);
-                            }
-                        }}
-                    />
+                    <DepartmentSelectedTalentChoice
+                        construct={construct}
+                        selection={selection}
+                        setSelection={setSelection}
+                        talentNames={[TALENT_NAME_COLLABORATION]} />
                 </div>
             </div>
         )

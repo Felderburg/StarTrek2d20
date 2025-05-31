@@ -380,15 +380,6 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         }
     }
 
-    fillCareerPath(form: PDFForm, character: Character): void {
-        let path = CharacterTypeModel.getByType(character.type)?.localizedName ?? "";
-        if (character.educationStep?.track != null) {
-            path += " / " + TracksHelper.instance.getTrack(character.educationStep?.track, character.type, character.version).localizedName;
-        }
-
-        this.fillField(form, "Career Path", path);
-    }
-
     fillEquipment(form: PDFForm, character: Character): void {
         const equipment = character.equipment.join(", ");
         this.fillField(form, "Equipment", equipment);

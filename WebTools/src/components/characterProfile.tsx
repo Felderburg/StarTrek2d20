@@ -11,7 +11,7 @@ import {Era, ErasHelper} from '../helpers/eras';
 import store from '../state/store';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { CharacterTypeModel } from '../common/characterType';
+import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { CharacterSerializer } from '../common/characterSerializer';
 
@@ -111,7 +111,10 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                 <div className="sheet-panel d-flex">
                                     <div className="sheet-label-purple text-uppercase">{t('Construct.other.characterType')}</div>
                                     <div className="sheet-data">
-                                        {CharacterTypeModel.getByType(c.type)?.localizedName}
+                                        {
+                                            c.type === CharacterType.Other
+                                            ? c.typeDetails?.name
+                                            : CharacterTypeModel.getByType(c.type)?.localizedName}
                                     </div>
                                 </div>
                             </div>

@@ -4102,6 +4102,36 @@ export class Talents {
             1,
             "Starship", true),
         new TalentModel(
+            "Encounter the Strange (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "The Last Generation (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Far from Home (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Upgraded Systems (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+            1,
+            "Starship", true),
+        new TalentModel(
+            "Peak Performance (Service Record)",
+            "",
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+            1,
+            "Starship", true),
+        new TalentModel(
             "Any Knowledge of Your Actions",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.ContinuingMissions), new CharacterTypePrerequisite(CharacterType.Romulan)],

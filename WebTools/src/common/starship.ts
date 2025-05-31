@@ -83,6 +83,7 @@ export class ServiceRecordStep {
     readonly type: ServiceRecordModel;
     specialRule?: TalentModel;
     selection: string;
+    system?: System;
 
     constructor(type: ServiceRecordModel) {
         this.type = type;
@@ -102,6 +103,7 @@ export class ServiceRecordStep {
         let result = new ServiceRecordStep(this.type);
         result.specialRule = this.specialRule;
         result.selection = this.selection;
+        result.system = this.system;
         return result;
     }
 }

@@ -52,31 +52,41 @@ export class OtherDetails {
 export class AlliedMilitaryDetails {
 
     readonly alliedMilitary: AlliedMilitary;
-    readonly name: string;
+    readonly _name: string;
 
     constructor(alliedMilitary: AlliedMilitary, name: string) {
         this.alliedMilitary = alliedMilitary;
-        this.name = name;
+        this._name = name;
     }
 
     get type() {
         return this.alliedMilitary.type;
+    }
+
+    get name() {
+        if (this.alliedMilitary && this.alliedMilitary.type === AlliedMilitaryType.Other && this._name) {
+            return this._name;
+        } else if (this.alliedMilitary) {
+            return this.alliedMilitary.name;
+        } else {
+            return "";
+        }
     }
 }
 
 export class GovernmentDetails {
 
     readonly government: Government;
-    readonly name: string;
+    readonly _name: string;
 
     constructor(government: Government, name: string) {
         this.government = government;
-        this.name = name;
+        this._name = name;
     }
 
-    getName() {
-        if (this.government && this.government.type === Polity.Other && this.name) {
-            return this.name;
+    get name() {
+        if (this.government && this.government.type === Polity.Other && this._name) {
+            return this._name;
         } else if (this.government) {
             return this.government.name;
         } else {
@@ -1163,7 +1173,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         if (this.role === Role.Ambassador) {
             if (this.type === CharacterType.AmbassadorDiplomat && this.typeDetails) {
                 let details = this.typeDetails as GovernmentDetails;
-                traits.push(details.getName() ? details.getName() + " Ambassador" : "Ambassador");
+                traits.push(details.name ? details.name + " Ambassador" : "Ambassador");
             } else {
                 traits.push("Ambassador");
             }

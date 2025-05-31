@@ -733,6 +733,9 @@ class Marshaller {
             if (starship.serviceRecordStep.selection?.length) {
                 sheet["serviceRecord"]["selection"] = starship.serviceRecordStep.selection;
             }
+            if (starship.serviceRecordStep.system != null) {
+                sheet["serviceRecord"]["system"] = System[starship.serviceRecordStep.system];
+            }
         }
         if (starship.refits != null) {
             starship.refits.forEach(s => sheet.refits.push(System[s]));
@@ -933,6 +936,9 @@ class Marshaller {
                 result.serviceRecordStep.specialRule = TalentsHelper.getTalent(serviceRecord.specialRule);
                 if (json.serviceRecord.selection) {
                     result.serviceRecordStep.selection = json.serviceRecord.selection;
+                }
+                if (json.serviceRecord.system) {
+                    result.serviceRecordStep.system = systemByName(json.serviceRecord.system);
                 }
             }
         }

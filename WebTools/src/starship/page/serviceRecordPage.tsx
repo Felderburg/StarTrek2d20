@@ -14,6 +14,9 @@ import { CheckBox } from "../../components/checkBox";
 import { connect } from "react-redux";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { hasSource } from "../../state/contextFunctions";
+import { SimpleSystemSelector } from "../../components/simpleSystemSelector";
+import { System } from "../../helpers/systems";
+import { PageIdentity } from "../../pages/pageIdentity";
 
 
 interface IServiceRecordPageProperties {
@@ -25,12 +28,11 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
     const { t } = useTranslation();
 
     const nextPage = () => {
-        let step = workflow.peekNextStep();
         store.dispatch(nextStarshipWorkflowStep());
-        Navigation.navigateToPage(step.page);
+        Navigation.navigateToPage(PageIdentity.StarshipRefits);
     }
 
-    const onExtraDetailChange = (selection?: string) => {
+    const onExtraDetailChange = (selection?: string|System) => {
         if (starship.serviceRecordStep) {
             store.dispatch(setStarshipServiceRecord(starship.serviceRecordStep.type,
                 starship.serviceRecordStep.specialRule, selection));
@@ -76,12 +78,51 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
                 r.type === ServiceRecord.SurvivorOfX
                     ? (<tr>
                         <td></td>
-                        <td rowSpan={4}><InputFieldAndLabel
+                        <td rowSpan={3}><InputFieldAndLabel
                             id="selection"
                             value={starship.serviceRecordStep?.selection ?? ""}
                             labelName={t('ServiceRecordPage.survivorOfX.selection')}
                             onChange={(v) => onExtraDetailChange(v)}
                         /></td>
+                    </tr>)
+                    : undefined
+                }
+                {starship.serviceRecordStep?.type?.type === ServiceRecord.BroughtOutOfMothballs &&
+                r.type === ServiceRecord.BroughtOutOfMothballs
+                    ? (<tr>
+                        <td></td>
+                        <td rowSpan={2}><SimpleSystemSelector
+                            starship={starship}
+                            isChecked={(s) => starship.serviceRecordStep.system === s}
+                            onSelectSystem={(v) => onExtraDetailChange(v)}
+                        /></td>
+                        <td></td>
+                    </tr>)
+                    : undefined
+                }
+                {starship.serviceRecordStep?.type?.type === ServiceRecord.MajorRefit &&
+                r.type === ServiceRecord.MajorRefit
+                    ? (<tr>
+                        <td></td>
+                        <td rowSpan={2}><SimpleSystemSelector
+                            starship={starship}
+                            isChecked={(s) => starship.serviceRecordStep.system === s}
+                            onSelectSystem={(v) => onExtraDetailChange(v)}
+                        /></td>
+                        <td></td>
+                    </tr>)
+                    : undefined
+                }
+                {starship.serviceRecordStep?.type?.type === ServiceRecord.StateOfTheArt &&
+                r.type === ServiceRecord.StateOfTheArt
+                    ? (<tr>
+                        <td></td>
+                        <td rowSpan={2}><SimpleSystemSelector
+                            starship={starship}
+                            isChecked={(s) => starship.serviceRecordStep.system === s}
+                            onSelectSystem={(v) => onExtraDetailChange(v)}
+                        /></td>
+                        <td></td>
                     </tr>)
                     : undefined
                 }

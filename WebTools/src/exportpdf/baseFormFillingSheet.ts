@@ -11,6 +11,8 @@ import i18next from "i18next";
 import { SimpleColor } from "../common/colour";
 import { TextAlign } from "./textAlign";
 import { WeaponDescriber } from "./weaponDescriber";
+import { CharacterType, CharacterTypeModel } from "../common/characterType";
+import { TracksHelper } from "../helpers/tracks";
 
 export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
 
@@ -162,6 +164,19 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
     }
     formatNameWithoutPronouns(character: Character) {
         return CharacterSerializer.serializeName(character);
+    }
+
+    fillCareerPath(form: PDFForm, character: Character): void {
+        let path = CharacterTypeModel.getByType(character.type)?.localizedName ?? "";
+        if ([CharacterType.Other, CharacterType.AlliedMilitary, CharacterType.AmbassadorDiplomat].includes(character.type)
+            && character.typeDetails != null) {
+            path = character.typeDetails.name;
+        }
+        if (character.educationStep?.track != null) {
+            path += " / " + TracksHelper.instance.getTrack(character.educationStep?.track, character.type, character.version).localizedName;
+        }
+
+        this.fillField(form, "Career Path", path);
     }
 
     get statLocations(): {[key: string]: Column} {

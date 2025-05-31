@@ -33,7 +33,7 @@ const SoloStarshipFinalPage: React.FC<ISoloStarshipFinalProperties> = ({starship
     const showDialog = () => {
         setLoadingExport(true);
         import(/* webpackChunkName: 'export' */ '../../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
-            import(/* webpackChunkName: 'export' */ '../../helpers/sheets').then(({CharacterSheetRegistry}) => {
+            import(/* webpackChunkName: 'export' */ '../../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
                 setLoadingExport(false);
 
                 setTimeout(() => {

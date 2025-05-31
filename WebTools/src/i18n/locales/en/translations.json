@@ -762,6 +762,7 @@
     "Page.title.modifyMainCharacter": "Modify Main Character",
     "Page.title.npcBuilder": "NPC Builder",
     "Page.title.npcConfiguration": "Random NPC Configuration",
+    "Page.title.npcFinal": "Finishing Touches",
     "Page.title.npcStats": "NPC Stats",
     "Page.title.tokenCreationPage": "Token Creation",
     "Page.title.upbringing": "Early Outlook",
@@ -1808,6 +1809,14 @@
 
     "ServiceRecord.agingRelic.description": "The ship has been in service for decades, and has been home to many crews. Only the longest-serving crew are likely to remember when it was new.",
 
+    "ServiceRecord.anomalyMagnet": "Anomaly Magnet",
+
+    "ServiceRecord.anomalyMagnet.description": "There are many strange things out in the depths of space, but some ships seem to encounter these bizarre phenomena more often than others. This ship has encountered more than its fair share of spatial anomalies, temporal paradoxes, interdimensional travel, and aliens claiming to be gods.",
+
+    "ServiceRecord.broughtOutOfMothballs": "Brought Out of Mothballs",
+
+    "ServiceRecord.broughtOutOfMothballs.description": "The ship is old, and had been partly or fully decommissioned previously, sitting dormant for long stretches of time as part of the reserve fleet. These ships can be brought back into service quickly during times of emergency.\n\nThis service record is intended to be used with a ship that is several decades old.",
+
     "ServiceRecord.dependableWorkhorse": "Dependable Workhorse",
 
     "ServiceRecord.dependableWorkhorse.description": "The ship is dependable, with a solid record of successful missions and accomplishments. While overshadowed by more famous ships, this vessel is nevertheless a mainstay of the fleet, with a competent, dedicated crew.",
@@ -1836,6 +1845,10 @@
 
     "ServiceRecord.legendary.description": "This ship is famous, having been at the center of one or more major events that shaped the history and politics of one or more civilizations. This comes with great prestige for those involved.",
 
+    "ServiceRecord.longTermMission": "Long-Term Mission",
+
+    "ServiceRecord.longTermMission.description": "The ship has carried out one or more extended missions, spending years out on the frontier, with minimal support from command and minimal oversight. The crew needs to be resourceful and disciplined to thrive.",
+
     "ServiceRecord.loyalist": "Loyalist",
 
     "ServiceRecord.loyalist.description": "The ship is lauded as a vessel whose crew exemplifies unwavering loyalty to its government and doctrine.",
@@ -1844,9 +1857,17 @@
 
     "ServiceRecord.luckyShip.description": "She's regarded as a lucky ship, a talisman of the fleet. Somehow the ship keeps coming up trumps, even in the stickiest of situations. Her crew has an unshakeable belief in her.",
 
+    "ServiceRecord.majorRefit": "Major Refit",
+
+    "ServiceRecord.majorRefit.description": "The ship recently underwent extensive refits, essentially rebuilding the ship from the spaceframe up. It may as well be a brand-new ship.",
+
     "ServiceRecord.prototype": "Prototype",
 
     "ServiceRecord.prototype.description": "The ship is brand new, first of her class, and laden with the newest technologies, assembled to be tested and studied. There are potentially a whole host of unknown problems and challenges to face, as novel systems clash or malfunction as they interact in unexpected ways.",
+
+    "ServiceRecord.stateOfTheArt": "State of the Art",
+
+    "ServiceRecord.stateOfTheArt.description": "The ship represents a combination of the best technologies available to its creators at the time. Rather than being a prototype, this is no testbed for experimental technology, but rather a step beyond that: advanced technology that has been tested and refined.\n\nThis service record is intended to be used with a recently-launched ship of a new class.",
 
     "ServiceRecord.survivorOfX": "Survivor of X",
 
@@ -2984,6 +3005,10 @@
 
     "Talent.empathy2e.description": "You can sense the emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom you are extremely familiar. You cannot choose not to sense the emotions of those nearby, except for those who are resistant to telepathy. It may require effort and a task to pick out the emotions of a specific individual in a crowd, or to block out the emotions of those nearby. Increase the Difficulty of this task if the situation is stressful, if there are a lot of beings present, if the target has resist- ance to telepathy, and other relevant factors.",
 
+    "Talent.encounterTheStrangeServiceRecord": "Encounter the Strange",
+
+    "Talent.encounterTheStrangeServiceRecord.description": "Each adventure, the gamemaster begins with +2 Threat. In addition, the ship always has an additional Directive for each mission: **Understand the Inexplicable**.",
+
     "Talent.energyBasedSpecialRuleCreature": "Energy-Based",
 
     "Talent.energyBasedSpecialRuleCreature.description2e": "The creature’s body is made of coherent energy or radiation. They may also emit energy from their skin. This creature’s Protection is increased by 2 against energy similar to what it is made of. Additionally, any time another creature makes physical contact with the energy-based creature, it inflicts a Deadly Injury with a Severity of 1.",
@@ -3045,6 +3070,10 @@
     "Talent.extraSensoryPerception": "Extrasensory Perception",
 
     "Talent.extraSensoryPerception.description2e": "You have an ability to perceive things beyond the normal limits of humanoid senses, allowing you to gain knowledge of people, places, and objects beyond your ability to sense them conventionally. This is known as extra- sensory perception, or ESP. It is not directly under your control but instead tends to come in the form of accurate guesses, strong feelings, or flashes of insight. Such sensitivity often leaves you vulnerable to psychic dangers as well. At any point during play, you may ask the gamemaster for hints or insights about the current situation, and the gamemaster may similarly offer you information about the current situation that you would not normally be able to determine. Each hint adds 1 Threat, and you may always refuse to accept the hints offered.",
+
+    "Talent.farFromHomeServiceRecord": "Far from Home",
+
+    "Talent.farFromHomeServiceRecord.description": "The ship’s Crew Support and Small Craft Capacity are each reduced by 1. New supporting characters created may increase one of their departments by 1, and all the ship’s small craft increase one system by 1 (chosen when the small craft is prepared for launch).",
 
     "Talent.fastRecoverySpecialRuleCreature": "Fast Recovery",
 
@@ -3518,6 +3547,7 @@
 
     "Talent.pathfinder.description2e": "Whenever you attempt a task to plot a course through unknown territory, reduce the Difficulty of the task by 1, 2, or 3, to a minimum of 1. For each point by which you reduce the Difficulty, increase the complication range of that task.",
 
+    "Talent.peakPerformanceServiceRecord": "Peak Performance",
     "Talent.percussiveMaintenance": "Percussive Maintenance",
 
     "Talent.percussiveMaintenance.description2e": "When you attempt a **Control + Engineering** task, you may add 1 Threat to use your Daring instead of your Control. If you do this, and the task succeeds, then you may reduce the time taken by 1 interval without spending Momentum.",
@@ -3908,6 +3938,10 @@
 
     "Talent.theEndsJustifyTheMeans.description2e": "When you spend Determination because of a Directive, you may select two of the benefits for spending Determination, rather than one.",
 
+    "Talent.theLastGenerationServiceRecord": "The Last Generation",
+
+    "Talent.theLastGenerationServiceRecord.description": "Select one of the ship’s systems. When you attempt a task assisted by that system, if the Difficulty is 2 or lower, you may reroll the ship’s assist die; If the Difficulty is 3 or higher, increase the task’s complication range by 1.",
+
     "Talent.theLongViewElAurian": "The Long View",
     "Talent.thePowerOfMath": "The Power of Math",
 
@@ -3968,6 +4002,10 @@
 
     "Talent.untappedPotential.description": "The character is inexperienced, but talented and with a bright future in Starfleet. The character may not have or increase any Attribute above 11, or any Discipline above 4 while they have this Talent (and may have to adjust Attributes and Disciplines accordingly at the end of character creation). Whenever the character succeeds at a Task for which they bought one or more additional dice with either Momentum or Threat, they may roll 1[D]. The character receives bonus Momentum equal to the roll, and adds one point to Threat if an Effect is rolled. The character cannot gain any higher rank than lieutenant (junior grade) while they possess this Talent.",
     "Talent.untappedPotential.description2e": "Select one of your attributes when you receive this talent. You’re inexperienced, but talented and with a bright future. You may not have or increase any attribute to above 11, or any department to above 4 while you have this talent (and may have to adjust attributes and departments accordingly at the end of character creation).\n\nWhenever you succeed at a task for which you bought one or more additional dice (by any means), roll a d20 after the roll. If you roll equal to or less than the chosen attribute, gain 1 bonus Momentum; if you roll higher, add 1 Threat instead. While you possess this talent, you cannot gain any higher rank than Lieutenant (junior grade), or a higher enlisted rate than Petty Officer.",
+
+    "Talent.upgradedSystemsServiceRecord": "Upgraded Systems",
+
+    "Talent.upgradedSystemsServiceRecord.description": "When the ship is created, you may select one ship talent granted by the ship’s spaceframe and replace it with a different talent. In addition, select one system: that system may be increased up to three times by refits rather than only twice.",
 
     "Talent.variableGeometryWarpField": "Variable Geometry Warp Field",
 

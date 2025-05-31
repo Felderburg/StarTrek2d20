@@ -51,7 +51,7 @@ const FinalStarshipDetailsPage: React.FC<IFinalStarshipDetailsPageProperties> = 
     const showExportDialog = () => {
         setLoadingExport(true);
         import(/* webpackChunkName: 'export' */ '../../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
-            import(/* webpackChunkName: 'export' */ '../../helpers/sheets').then(({CharacterSheetRegistry}) => {
+            import(/* webpackChunkName: 'export' */ '../../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
                 setLoadingExport(false);
                 store.dispatch(saveStarshipToLocalStorage(starship));
                 CharacterSheetDialog.show(CharacterSheetRegistry.getStarshipSheets(starship), "starship", starship);

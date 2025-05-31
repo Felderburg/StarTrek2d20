@@ -2243,9 +2243,10 @@ class _Species {
         if (hasSource(Source.Core2ndEdition)) {
             if (species === Species.FerengiAlpha) { // supercede by Ferengi
                 return true;
+            } else if (species === Species.CyberneticallyEnhanced) { // indicated by a talent, now
+                return true;
             }
         }
-
         if (hasSource(Source.GammaQuadrant)) {
             if (species === Species.Changeling) {
                 return true;

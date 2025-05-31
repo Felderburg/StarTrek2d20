@@ -10,12 +10,13 @@ import { DropDownElement, DropDownSelect } from "../../components/dropDownInput"
 import { NpcType, NpcTypes } from "../model/npcType";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { Character } from "../../common/character";
+import { Character, OtherDetails } from "../../common/character";
 import { isSecondEdition } from "../../state/contextFunctions";
 import store from "../../state/store";
 import { setCharacter } from "../../state/characterActions";
 import { CharacterType, CharacterTypeModel } from "../../common/characterType";
 import { Source } from "../../helpers/sources";
+import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 
 interface INpcConfigurationPageProperties {
     era: Era;
@@ -28,10 +29,14 @@ const NpcBuilderPage: React.FC<INpcConfigurationPageProperties> = ({era, sources
     const navigate = useNavigate();
     const [ selectedCharacterType, setSelectedCharacterType ] = useState<CharacterType>(CharacterType.Starfleet);
     const [ selectedNpcType, setSelectedNpcType ] = useState<NpcType>(NpcType.Notable);
+    const [ selectedOtherText, setSelectedOtherText ] = useState<string>("");
 
     const createCharacterAndNext = () => {
-        const character = Character.createNpcCharacter(era, isSecondEdition() ? 2 : 1, selectedNpcType);
-        character.type = selectedCharacterType;
+        const character = Character.createNpcCharacter(era, isSecondEdition() ? 2 : 1,
+            selectedNpcType, selectedCharacterType);
+        if (selectedCharacterType === CharacterType.Other && selectedOtherText?.length) {
+            character.typeDetails = new OtherDetails(selectedOtherText);
+        }
         store.dispatch(setCharacter(character));
         navigate("/npc/species");
     }
@@ -77,6 +82,16 @@ const NpcBuilderPage: React.FC<INpcConfigurationPageProperties> = ({era, sources
                                         .map(t => new DropDownElement(t.type, t.localizedName)) }
                                     defaultValue={ selectedCharacterType }
                                     onChange={(type) => setSelectedCharacterType(type as CharacterType) }/>
+
+                                {selectedCharacterType === CharacterType.Other
+                                    ? <div className="mt-3">
+                                        <InputFieldAndLabel labelName={t('Common.text.other')}
+                                        id="other"
+                                        value={selectedOtherText}
+                                        onChange={(v) => setSelectedOtherText(v)}
+                                        />
+                                    </div>
+                                    : undefined}
                             </div>
                         </div>
                     </div>

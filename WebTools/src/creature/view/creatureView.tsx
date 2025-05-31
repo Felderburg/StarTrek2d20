@@ -57,7 +57,7 @@ const CreatureView:React.FC<ICreatureViewProperties> = ({creature}) => {
 
     const exportPdf = async () => {
         setLoadingExport(true);
-        import(/* webpackChunkName: 'export' */ '../../helpers/sheets').then(({CharacterSheetRegistry}) => {
+        import(/* webpackChunkName: 'export' */ '../../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
             setLoadingExport(false);
 
             const populateAndDownload = async () => {
