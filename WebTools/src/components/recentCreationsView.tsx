@@ -22,7 +22,7 @@ const RecentCreationsView: React.FC<IRecentCreationsProperties> = ({records}) =>
             {records.map(r =>
                 (<li className="m-0" key={"record-" + r.hash}>
                     <Link to={"/view?s=" + r.marshalled} target="_blank" rel="noopener noreferrer">
-                        {r.name}
+                        {r.name?.length ? r.name : t("Construct.other.unnamedCharacter")}
                     </Link>
                 </li>))}
             </ul>

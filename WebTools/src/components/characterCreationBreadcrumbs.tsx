@@ -18,10 +18,20 @@ const NpcCharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties>
     const { t } = useTranslation();
 
     const renderSpecies = () => {
-        if ((character?.environmentStep && pageIdentity === PageIdentity.SpeciesDetails) || pageIdentity === PageIdentity.Species) {
+        if ((character?.jobAssignment && pageIdentity === PageIdentity.SpeciesDetails) || pageIdentity === PageIdentity.Species) {
             return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.species')}</li>);
         } else if (character?.speciesStep) {
             return (<li className="breadcrumb-item"><Link to="/npc/species">{t('Page.title.species')}</Link></li>);
+        } else {
+            return undefined;
+        }
+    }
+
+    const renderStats = () => {
+        if (pageIdentity === PageIdentity.NpcStats) {
+            return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.npcStats')}</li>);
+        } else if (character?.name) {
+            return (<li className="breadcrumb-item"><Link to="/npc/stats">{t('Page.title.npcStats')}</Link></li>);
         } else {
             return undefined;
         }
@@ -32,6 +42,7 @@ const NpcCharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties>
             <li className="breadcrumb-item"><Link to="/index.html">{t('Page.title.home')}</Link></li>
             <li className="breadcrumb-item"><Link to="/npc">{t('Page.title.npcBuilder')}</Link></li>
             {renderSpecies()}
+            {renderStats()}
         </ol>
     </nav>);
 }

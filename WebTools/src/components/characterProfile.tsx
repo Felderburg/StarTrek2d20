@@ -150,6 +150,15 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                         {c.localizedSpeciesName ?? i18n.t('Common.text.none')}
                                     </div>
                                 </div>
+
+                            {c.version > 1 ?
+                            (<div className="sheet-panel d-flex">
+                                <div className="sheet-label-purple text-uppercase">{t('Construct.other.speciesAbility')}</div>
+                                <div className="sheet-data">
+                                    {c.speciesStep?.ability?.name}
+                                </div>
+                            </div>)
+                            : undefined}
                                 {c.stereotype === Stereotype.Npc
                                     ? undefined
                                     : (<>
@@ -318,28 +327,6 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                 </div>
                             </div>
 
-                            {c.version > 1 ?
-                            (<>
-                                <div className="col-md-6 mb-2">
-                                    <div className="sheet-panel d-flex">
-                                        <div className="sheet-label-purple text-uppercase">{t('Construct.other.speciesAbility')}</div>
-                                        <div className="sheet-data">
-                                            {c.speciesStep?.ability?.name}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="col-md-6 mb-2">
-                                    <div className="sheet-panel d-flex">
-                                        <div className="sheet-label-purple text-uppercase">{t('Construct.other.pastimes')}</div>
-                                        <div className="sheet-data">
-                                            {c.pastime?.join(", ") ?? ""}
-                                        </div>
-                                    </div>
-                                </div>
-                            </>)
-                            : undefined}
-
                             <div className="col-md-6 mb-2">
                                 <div className="sheet-panel d-flex">
                                     <div className="sheet-label-purple text-uppercase">{t('Construct.other.values')}</div>
@@ -356,6 +343,15 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                         {focuses}
                                     </div>
                                 </div>
+
+                            {(c.version > 1 && c.stereotype !== Stereotype.Npc) ?
+                                (<div className="sheet-panel d-flex">
+                                    <div className="sheet-label-purple text-uppercase">{t('Construct.other.pastimes')}</div>
+                                    <div className="sheet-data">
+                                        {c.pastime?.join(", ") ?? ""}
+                                    </div>
+                                </div>)
+                                : undefined}
                             </div>
 
                             {c.stereotype === Stereotype.SoloCharacter ? undefined :
@@ -377,14 +373,16 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                 </div>
                             </div>
 
-                            <div className="col-md-6 mb-2">
+                            {c.stereotype !== Stereotype.Npc
+                            ? (<div className="col-md-6 mb-2">
                                 <div className="sheet-panel d-flex">
                                     <div className="sheet-label-purple text-uppercase">{t('Construct.other.careerEvents')}</div>
                                     <div className="sheet-data">
                                         {careerEvents}
                                     </div>
                                 </div>
-                            </div>
+                            </div>)
+                            : undefined}
 
                         </div>
                     </div>

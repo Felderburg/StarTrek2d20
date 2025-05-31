@@ -14,19 +14,24 @@ import { Character } from "../../common/character";
 import { isSecondEdition } from "../../state/contextFunctions";
 import store from "../../state/store";
 import { setCharacter } from "../../state/characterActions";
+import { CharacterType, CharacterTypeModel } from "../../common/characterType";
+import { Source } from "../../helpers/sources";
 
 interface INpcConfigurationPageProperties {
     era: Era;
+    sources: Source[];
 }
 
-const NpcBuilderPage: React.FC<INpcConfigurationPageProperties> = ({era}) => {
+const NpcBuilderPage: React.FC<INpcConfigurationPageProperties> = ({era, sources}) => {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const [ selectedCharacterType, setSelectedCharacterType ] = useState<CharacterType>(CharacterType.Starfleet);
     const [ selectedNpcType, setSelectedNpcType ] = useState<NpcType>(NpcType.Notable);
 
     const createCharacterAndNext = () => {
         const character = Character.createNpcCharacter(era, isSecondEdition() ? 2 : 1, selectedNpcType);
+        character.type = selectedCharacterType;
         store.dispatch(setCharacter(character));
         navigate("/npc/species");
     }
@@ -55,11 +60,23 @@ const NpcBuilderPage: React.FC<INpcConfigurationPageProperties> = ({era}) => {
                                 <DropDownSelect
                                     items={ NpcTypes.getNpcTypes().map(t => new DropDownElement(t.type, t.localizedName)) }
                                     defaultValue={ selectedNpcType }
-                                    onChange={(type) => setSelectedNpcType(type as number) }/>
+                                    onChange={(type) => setSelectedNpcType(type as NpcType) }/>
 
                                 <div className="mt-3">
                                     <InstructionText text={NpcTypes.getNpcTypes()[selectedNpcType].localizedDescription} />
                                 </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md-6 mt-4">
+                            <Header level={2}>{t('Construct.other.characterType')}</Header>
+
+                            <div className="my-4">
+                                <DropDownSelect
+                                    items={ CharacterTypeModel.getNpcTypes(sources)
+                                        .map(t => new DropDownElement(t.type, t.localizedName)) }
+                                    defaultValue={ selectedCharacterType }
+                                    onChange={(type) => setSelectedCharacterType(type as CharacterType) }/>
                             </div>
                         </div>
                     </div>
@@ -75,7 +92,8 @@ const NpcBuilderPage: React.FC<INpcConfigurationPageProperties> = ({era}) => {
 
 function mapStateToProps(state, ownProps) {
     return {
-        era: state.context.era
+        era: state.context.era,
+        sources: state.context.sources
     };
 }
 

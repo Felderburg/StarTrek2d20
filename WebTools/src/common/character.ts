@@ -36,10 +36,23 @@ export enum Division {
     Operations
 }
 
+export class OtherDetails {
+
+    readonly name: string;
+
+    constructor(name: string) {
+        this.name = name;
+    }
+
+    get type() {
+        return undefined;
+    }
+}
+
 export class AlliedMilitaryDetails {
 
-    alliedMilitary: AlliedMilitary;
-    name: string;
+    readonly alliedMilitary: AlliedMilitary;
+    readonly name: string;
 
     constructor(alliedMilitary: AlliedMilitary, name: string) {
         this.alliedMilitary = alliedMilitary;
@@ -53,8 +66,8 @@ export class AlliedMilitaryDetails {
 
 export class GovernmentDetails {
 
-    government: Government;
-    name: string;
+    readonly government: Government;
+    readonly name: string;
 
     constructor(government: Government, name: string) {
         this.government = government;
@@ -379,7 +392,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     public assignedShip?: string;
     public secondaryRole?: Role;
     public _focuses: string[];
-    public typeDetails: AlliedMilitaryDetails|GovernmentDetails;
+    public typeDetails: AlliedMilitaryDetails|GovernmentDetails|OtherDetails;
     public pronouns: string = '';
     public pastime: string[];
 
@@ -1526,10 +1539,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return result;
     }
 
-    public static createNpcCharacter(era: Era, version: 1|2 = 1, npcType?: NpcType) {
+    public static createNpcCharacter(era: Era, version: 1|2 = 1, npcType?: NpcType, type: CharacterType = CharacterType.Starfleet) {
         let result = new Character();
         result.stereotype = Stereotype.Npc;
         result.era = era;
+        result.type = type;
         result.version = version;
         if (npcType !== undefined) {
             result.npcGenerationStep = new NpcGenerationStep(npcType);

@@ -3664,7 +3664,10 @@ export class Talents {
             new TalentModel(
                 "Cloaked Mines",
                 "The ship’s mines are equipped with state-of-the-art cloaking technology, making them almost impossible to detect. Mines that the ship places have the Hidden 2 Weapon Quality.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog), new DepartmentPrerequisite(Department.Security, 3)],
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.TechnicalManual),
+                    new VersionConstrainedPrerequisite(1, new DepartmentPrerequisite(Department.Security, 3)),
+                    new VersionConstrainedPrerequisite(2, new DepartmentPrerequisite(Department.Security, 4)),
+                ],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3732,7 +3735,7 @@ export class Talents {
             new TalentModel(
                 "Self-Replicating Mines",
                 "The ship carries mines that are capable of replicating themselves over time, allowing for a more thorough spread filling the area they’re deployed in. The Difficulty of any task made to avoid the mines does not reduce when mines are detonated.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog), new ServiceYearPrerequisite(2371), new DepartmentPrerequisite(Department.Security, 4)],
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.TechnicalManual), new ServiceYearPrerequisite(2371), new DepartmentPrerequisite(Department.Security, 4)],
                 1,
                 "Starship"),
             new TalentModel(

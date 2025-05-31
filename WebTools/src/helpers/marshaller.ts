@@ -1,6 +1,6 @@
 import { Base64 } from 'js-base64';
 import pako from 'pako';
-import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep } from '../common/character';
+import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, ShipTalentDetailSelection, SimpleStats, Starship } from '../common/starship';
@@ -344,6 +344,13 @@ class Marshaller {
             let details = {
                 type: Polity[typeDetails.government.type],
                 typeName: typeDetails.government.name,
+                name: typeDetails.name
+            }
+            return details;
+        } else if (character.type === CharacterType.Other && character.typeDetails != null
+            && character.typeDetails instanceof OtherDetails) {
+            let typeDetails = character.typeDetails as OtherDetails;
+            let details = {
                 name: typeDetails.name
             }
             return details;
@@ -1164,8 +1171,10 @@ class Marshaller {
                     government = new Government(typeName, type);
                 }
                 result.typeDetails = new GovernmentDetails(government, name);
+            } else if (result.type === CharacterType.Other) {
+                const name = json.typeDetails.name;
+                result.typeDetails = new OtherDetails(name);
             }
-
         }
 
         if (json.role != null) {

@@ -11,10 +11,19 @@ import { marshaller } from "../../helpers/marshaller";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { setCharacterName, setCharacterPronouns } from "../../state/characterActions";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (character == null) {
+            navigate("/npc");
+        }
+    }, [character]);
 
     const showViewPage = () => {
         setTimeout(() => {
@@ -25,7 +34,7 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
         }, 200);
     }
 
-    return (<LcarsFrame activePage={PageIdentity.NpcFinal}>
+    return character ? (<LcarsFrame activePage={PageIdentity.NpcFinal}>
         <div id="app">
             <div className="page container ms-0">
                 <CharacterCreationBreadcrumbs character={character}
@@ -55,7 +64,8 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
                 </main>
             </div>
         </div>
-    </LcarsFrame>);
+    </LcarsFrame>)
+    : undefined;
 }
 
 export default connect(characterMapStateToProperties)(NpcFinalPage);

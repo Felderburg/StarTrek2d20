@@ -66,7 +66,11 @@ export class CharacterTypeModel {
 
 
     public static getCharacterTypesForCharacter(sources: Source[]) {
-        return this.TYPES_EXCEPT_OTHER.filter(t => {
+        return this.filterBySources(this.TYPES_EXCEPT_OTHER, sources);
+    }
+
+    private static filterBySources(types: CharacterTypeModel[], sources: Source[]) {
+        return types.filter(t => {
             if (t.type === CharacterType.KlingonWarrior) {
                 return sources.indexOf(Source.KlingonCore) >= 0;
             } else if (t.type === CharacterType.Starfleet) {
@@ -92,8 +96,8 @@ export class CharacterTypeModel {
         return CharacterTypeModel.TYPES_EXCEPT_OTHER;
     }
 
-    public static getNpcCharacterTypes() {
-        return [ CharacterTypeModel.TYPES[0] ];
+    public static getNpcTypes(sources: Source[]) {
+        return CharacterTypeModel.TYPES.filter(t => ![CharacterType.Tribble, CharacterType.AmbassadorDiplomat, CharacterType.AlliedMilitary].includes(t.type));
     }
 
     public static getSoloCharacterTypes() {
