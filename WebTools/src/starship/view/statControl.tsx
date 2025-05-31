@@ -14,11 +14,11 @@ export class StatControl extends React.Component<IStatControlProperties, {}> {
         const {statName, value, showDecrease, showIncrease} = this.props;
 
         const dec = showDecrease
-            ? (<img style={{ float: "left" }} height="20" src="static/img/dec.png" onClick={ () => { this.props.onDecrease() } } alt="-"/>)
+            ? (<img style={{ float: "left" }} height="20" src="/static/img/dec.png" onClick={ () => { this.props.onDecrease() } } alt="-"/>)
             : undefined;
 
         const inc = showIncrease
-            ? (<img style={{ float: "right" }} height="20" src="static/img/inc.png" onClick={ () => { this.props.onIncrease() } } alt="+"/>)
+            ? (<img style={{ float: "right" }} height="20" src="/static/img/inc.png" onClick={ () => { this.props.onIncrease() } } alt="+"/>)
             : undefined;
 
         return (

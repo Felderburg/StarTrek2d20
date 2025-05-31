@@ -513,7 +513,7 @@ export class NpcGenerator {
         NpcGenerator.assignAttributes(npcType, character, species, specialization);
 
         let disciplines = DepartmentsHelper.instance.getDepartments();
-        let disciplinePoints = NpcTypes.disciplinePoints(npcType);
+        let disciplinePoints = NpcTypes.departmentPoints(npcType);
 
         for (let i = 0; i < disciplinePoints.length; i++) {
             let a = disciplines[Math.floor(Math.random() * disciplines.length)];

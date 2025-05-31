@@ -35,11 +35,13 @@ export class NpcTypes {
             new NpcTypeModel(NpcType.Major, "Major NPC")];
     }
 
-    static attributePoints(type: NpcType) {
+    static attributePoints(type: NpcType, simple: boolean = false) {
         if (type === NpcType.Minor) {
             return [9, 9, 8, 8, 7, 7];
         } else if (type === NpcType.Notable) {
             return [10, 9, 9, 8, 8, 7];
+        } else if (simple) {
+            return [10, 10, 9, 9, 9, 9];
         } else {
             let result = [7, 7, 7, 7, 7, 7];
             for (let i = 0; i < 14; i++) {
@@ -57,11 +59,25 @@ export class NpcTypes {
         }
     }
 
-    static disciplinePoints(type: NpcType) {
+    static departmentPointCount(type: NpcType) {
+        let result = 0;
+        this.departmentPoints(type).forEach(n => result += n);
+        return result;
+    }
+
+    static attributePointCount(type: NpcType) {
+        let result = 0;
+        this.attributePoints(type).forEach(n => result += (n - 7));
+        return result;
+    }
+
+    static departmentPoints(type: NpcType, simple: boolean = false) {
         if (type === NpcType.Minor) {
             return [2, 2, 1, 1, 0, 0];
         } else if (type === NpcType.Notable) {
             return [3, 2, 2, 1, 1, 0];
+        } else if (simple) {
+            return [3, 3, 3, 3, 2, 2];
         } else {
             let result = [1, 1, 1, 1, 1, 1];
             for (let i = 0; i < 10; i++) {

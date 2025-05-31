@@ -19,6 +19,8 @@ import { makeKey } from "../../common/translationKey";
 import ValueInputWithRandom from "../../components/valueInputWithRandomOption";
 import { NpcAttributesView } from "../view/npcAttributesView";
 import { Button } from "react-bootstrap";
+import MajorNpcDepartmentView from "../view/majorNpcDepartmentView";
+import MajorNpcAttributeView from "../view/majorNpcAttributeView";
 
 const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -155,24 +157,36 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
                         <Markdown>{t('NpcStatsPage.instruction')}</Markdown>
 
                         <div className="row">
-                            <div className="col-12 col-md-6 mt-4">
+                        {character.npcGenerationStep?.type === NpcType.Major
+                            ? (<div className="col-12 mt-4">
                                 <Header level={2} className="my-3">{t('Construct.other.attributes')}</Header>
                                 <Markdown>
-                                    {character.npcGenerationStep?.type === NpcType.Major
-                                    ? t('NpcStatsPage.instruction.attribute.major')
-                                    : t('NpcStatsPage.instruction.attribute')}
+                                    {t('NpcStatsPage.instruction.attribute.major')}
+                                </Markdown>
+                                <MajorNpcAttributeView />
+                            </div>)
+                            : (<div className="col-12 col-md-6 mt-4">
+                                <Header level={2} className="my-3">{t('Construct.other.attributes')}</Header>
+                                <Markdown>
+                                    {t('NpcStatsPage.instruction.attribute')}
                                 </Markdown>
                                 <NpcAttributesView character={character} />
-                            </div>
-                            <div className="col-12 col-md-6 mt-4">
-                                <Header level={2} className="my-3">{t('Construct.other.departments')}</Header>
-                                <Markdown>
-                                    {character.npcGenerationStep?.type === NpcType.Major
-                                    ? t('NpcStatsPage.instruction.department.major')
-                                    : t('NpcStatsPage.instruction.department')}
-                                </Markdown>
-                                <NpcDepartmentView />
-                            </div>
+                            </div>)}
+                            {character.npcGenerationStep?.type === NpcType.Major
+                                ? (<div className="col-12 mt-4">
+                                    <Header level={2} className="my-3">{t('Construct.other.departments')}</Header>
+                                    <Markdown>
+                                        {t('NpcStatsPage.instruction.department.major')}
+                                    </Markdown>
+                                    <MajorNpcDepartmentView />
+                                </div>)
+                                : <div className="col-12 col-md-6 mt-4">
+                                    <Header level={2} className="my-3">{t('Construct.other.departments')}</Header>
+                                    <Markdown>
+                                        {t('NpcStatsPage.instruction.department')}
+                                    </Markdown>
+                                    <NpcDepartmentView />
+                                </div>}
 
                             <div className="col-12 col-md-6 mt-4">
                                 <Header level={2} className="my-3">{t('Construct.other.role')}</Header>

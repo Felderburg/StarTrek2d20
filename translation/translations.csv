@@ -315,7 +315,7 @@ NpcConfigurationPage.text,Specify what kind of NPC you're trying to create.,,"Le
 NpcConfigurationPage.includeDescription,Include description,,,,,,
 NpcStatsPage.instruction,Provide the various NPC stats for this character.,,,,,,
 NpcStatsPage.instruction.attribute,Assign the character's attributes. The highest value should be assigned to the NPC's most imporant attribute. Select two different values to swap them.,,,,,,
-NpcStatsPage.instruction.attribute.major,Assign the character's Departments. The highest value should match up with the role of the character.,,,,,,
+NpcStatsPage.instruction.attribute.major,Assign the character's attributes. The highest value should be assigned to the NPC's most imporant attribute.,,,,,,
 NpcStatsPage.instruction.department,Assign the character's Departments. The highest value should match up with the role of the character. Select two different values to swap them.,,,,,,
 NpcStatsPage.instruction.department.major,Assign the character's Departments. The highest value should match up with the role of the character.,,,,,,
 NpcStatsPage.instruction.focus.notable,Select two or three focuses,,,,,,

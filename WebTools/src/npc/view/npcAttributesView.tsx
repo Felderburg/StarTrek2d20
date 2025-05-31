@@ -18,7 +18,7 @@ export const NpcAttributesView: React.FC<ICharacterProperties> = ({character}) =
             const initialAttributes = NpcTypes.attributePoints(character.npcGenerationStep?.type).map(a => a - 7);
             store.dispatch(setNpcCharacterAttributes(initialAttributes));
         }
-    }, [character])
+    }, [])
 
     const selectAttributeValue = (index: Attribute) => {
         if (index > -1) {
@@ -44,7 +44,7 @@ export const NpcAttributesView: React.FC<ICharacterProperties> = ({character}) =
     }
 
     const attributes = AttributesHelper.getAllAttributes().map((a, i) => {
-        let val = character?.npcGenerationStep?.attributes[a] + 7;
+        let val = (character?.npcGenerationStep?.attributes[a] ?? 0) + 7;
         const isChecked = character.speciesStep?.attributes?.includes(a);
 
         return (
