@@ -10,9 +10,13 @@ import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
-import { setCharacterName, setCharacterPronouns } from "../../state/characterActions";
+import { addNpcCharacterEquipment, setCharacterName, setCharacterPronouns } from "../../state/characterActions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import { ANY_NAMES, SpeciesHelper } from "../../helpers/species";
+import { IconButton } from "../../components/iconButton";
+import { ModalControl } from "../../components/modal";
+import { NpcAddEquipmentView } from "../view/npcAddEquipmentView";
 
 const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -34,6 +38,44 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
         }, 200);
     }
 
+    const renderEquipment = () => {
+        const automaticEquipment = character.baseEquipmentModels.map(e => e.type);
+        const result = character.equipmentModels.map(e => (<tr>
+            {automaticEquipment.includes(e.type)
+            ? (<td colSpan={2} className="py-2"><p className="mb-0">{e.localizedName}</p></td>)
+            : (<><td>
+                <p className="mb-0">{e.localizedName}</p>
+            </td>
+            <td className="text-end"><IconButton icon="trash" variant="danger" onClick={() => {}} /></td>
+            </>)}
+        </tr>));
+        return (<table className="selection-list">
+            <tbody>
+                {result}
+            </tbody>
+        </table>)
+    }
+
+    const closeModal = () => {
+        ModalControl.hide();
+    }
+
+    const showEquipmentModal = () => {
+        ModalControl.show("lg", () => closeModal(),
+            (<NpcAddEquipmentView character={character} onClose={closeModal}
+                addEquipment={e => store.dispatch(addNpcCharacterEquipment(e))}
+            />),
+            "Add Equipment");
+    }
+
+    const species = SpeciesHelper.getSpeciesByType(character?.speciesStep?.species);
+    const nameSuggestions = species?.nameSuggestions ?? ANY_NAMES;
+
+    const suggestions = nameSuggestions?.map(n => `${n.type}: ${n.suggestions}`).map((n, i) => {
+        return (<div key={'name-' + i}>{`${n}`}</div>);
+    });
+
+
     return character ? (<LcarsFrame activePage={PageIdentity.NpcFinal}>
         <div id="app">
             <div className="page container ms-0">
@@ -45,9 +87,12 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
                     <div className="row">
                         <div className="col-lg-6 my-5">
                             <Header level={2}>{t('Construct.other.name')}</Header>
-                            <InputFieldAndLabel labelName={t('Construct.other.name')} id="name"
-                                onChange={(value) => store.dispatch(setCharacterName(value))}
-                                value={character.name ?? ""} />
+                            <div className="mt-4">
+                                <InputFieldAndLabel labelName={t('Construct.other.name')} id="name"
+                                    onChange={(value) => store.dispatch(setCharacterName(value))}
+                                    value={character.name ?? ""} />
+                                <div className="text-white mt-1"><small><b>{t('Common.text.suggestions')}: </b> <i>{suggestions}</i></small></div>
+                            </div>
 
                             <div className="mt-3">
                                 <InputFieldAndLabel labelName={t('Construct.other.pronouns')} id="pronouns"
@@ -55,6 +100,15 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
                                     value={character.pronouns ?? ""} />
                                 <div className="text-white mt-1"><small><b>{t('Common.text.suggestions')}: </b> <i>she/her, they/them, etc.</i></small></div>
                             </div>
+                        </div>
+
+                        <div className="col-lg-6 my-5">
+                            <Header level={2}>{t('Construct.other.equipment')}</Header>
+                            <div className="text-end">
+                                <IconButton className="mt-0" onClick={() => showEquipmentModal()} icon="plus-circle" title="Add" />
+                            </div>
+
+                            {renderEquipment()}
                         </div>
                     </div>
 

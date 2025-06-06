@@ -14,6 +14,7 @@ EditTablePage.header.createTable,Create Table,,Tabelle erstellen,Crear tabla,Cr�
 EditTablePage.header.modifyTable,Modify Table,,Tabelle bearbeiten,Modificar tabla,Modifier la table,Изменить таблицу,Modificar Tabela
 EraSelectionPage.eraInstruction,Select which Era to play in. Ask your GM which Era to choose.,,"Wählen Sie aus, in welcher Ära gespielt wird. Fragen Sie, wenn nötig, Ihre Spielleitung, welche Ära Sie wählen sollen.",Selecciona en qué Época jugar. Pregúntale a tu DJ qué Época elegir.,Sélectionnez l'ère dans laquelle jouer. Demandez à votre MJ quelle ère choisir.,Выберите в какой Эре вы планируете играть. Спросите Мастера какую Эру выбрать.,Selecione a Era em que deseja jogar. Pergunte ao seu MJ qual Era escolher.
 Lcars.noHistory,No history,,Kein Verlauf,Sin historial,Aucun historique,История пуста,Sem Histórico
+SourceSelectionPage.editionInstruction,Which edition of the rules are you using?,,,,,,
 SourceSelectionPage.sourceInstruction,Select sources. Ask your GM which are available.,,"Wählen Sie die verfügbaren Quellen aus. Fragen Sie, wenn nötig, Ihre Spielleitung, welche zur Verfügung stehen.",Selecciona las fuentes. Pregunta a tu DJ cuáles están disponibles.,Sélectionnez les sources. Demandez à votre MJ lesquels sont disponibles.,Выберите источники. Уточните с Мастером если возможно.,Selecione as fontes. Pergunte ao seu MJ as que estão disponíveis.
 SourceSelectionPage.gameTypeInstruction,What type of game are you playing?,,Welche Art von Spiel spielst du?,¿Qué tipo de juego estás jugando?,A quel type de jeu jouez vous?,В какой вид игры вы играете?,Que tipo de jogo você está jogando?
 SourceSelectionPage.sourceNote,Some sources are not yet implemented; check back soon!,,Einige Quellen sind noch nicht verfügbar - schauen Sie bald wieder vorbei!,Algunas fuentes aún no se han implementado. ¡Vuelve a comprobarlo más adelante !,Certaines sources ne sont pas encore mises en œuvre; Revenez bientôt!,Некоторые источники еще не доступны; скоро добавим!,Algumas fontes ainda não foram implementadas; retorne em breve!
@@ -313,6 +314,9 @@ NpcConfigurationPage.npcType,NPC Type,,NPC Typ,Tipo de PNJ,Type de PNJ,Тип В
 NpcConfigurationPage.specialization,Specialization,,Spezialisierung,Especialización,Spécialisation,Специализация,Especialização
 NpcConfigurationPage.text,Specify what kind of NPC you're trying to create.,,"Lege fest, welche Art NPC du erstellen möchtest.",Especifíca qué tipo de PNJ estás creando.,Spécifiez quel type de PNJ vous voulez créer,Определите тип ВП которого вы пытаетесь создать.,Especifique o tipo de PdM que você está tentando criar.
 NpcConfigurationPage.includeDescription,Include description,,,,,,
+NpcStatsPage.attributes.error,Please distribute all attributes.,,,,,,
+NpcStatsPage.departments.error,Please distribute all departments.,,,,,,
+NpcStatsPage.focuses.error,Please specify more focuses.,,,,,,
 NpcStatsPage.instruction,Provide the various NPC stats for this character.,,,,,,
 NpcStatsPage.instruction.attribute,Assign the character's attributes. The highest value should be assigned to the NPC's most imporant attribute. Select two different values to swap them.,,,,,,
 NpcStatsPage.instruction.attribute.major,Assign the character's attributes. The highest value should be assigned to the NPC's most imporant attribute.,,,,,,
@@ -325,6 +329,8 @@ NpcStatsPage.instruction.role.notable,Select a role that describes the NPC's job
 NpcStatsPage.instruction.role.major,"Think about the NPC's role in their organization as well as their rank. The Major NPC should command some authority, even if it isn't recognized by an official body.",,,,,,
 NpcStatsPage.instruction.value.notable,Select a value that describes the NPC's most deeply-held belief or their motivation,,,,,,
 NpcStatsPage.instruction.value.major,Select two to four values.,,,,,,
+NpcStatsPage.role.error,Please assign a role.,,,,,,
+NpcStatsPage.values.error,Please specify more values.,,,,,,
 NoviceOrCadetExperiencePage.attribute.instruction,Choose 1 attribute to use with this talent.,,,Elige 1 atributo para utilizar con este talento.,,,Escolha 1 atributo para usar com esse talento.
 NoviceOrCadetExperiencePage.attribute.error,Please choose an attribute.,,,"Por favor, elige un atributo.",,,"Por favor, escolha um atributo."
 OtherToolsPage.instruction,This section contains a number of miscellaneous additional tools that might be used in your STA game.,,,Esta sección contiene una serie de herramientas adicionales diversas que pueden utilizarse en tu partida de STA.,Cette section contient divers outils additionnels à utiliser lors de vos parties de STA,Эта категория содержит несколько дополнительных инструментов которые могут быть использованы в вашей игре.,Esta seção contém várias ferramentas adicionais diversas que podem ser usadas no seu jogo STA.
@@ -595,6 +601,8 @@ Common.button.previous,Previous,,,Anterior,,,Anterior
 Common.button.save,Save,,,,,,
 Common.button.share,Share,,,,,,
 Common.button.view,View,,Anzeigen,Visualizar,Vue,Показать,Visualizar
+Common.edition.1,1st Edition,,,,,,
+Common.edition.2,2nd Edition,,,,,,
 Common.error.focus,Please select a focus.,,Bitte wähle einen Fokus.,"Selecciona una especialidad, por favor.",Choisissez une Spécialité SVP,Пожалуйста выберите Специализацию,"Por favor, selecione um foco."
 Common.error.value,Please select a value.,,Bitte wähle eine Überzeugung.,"Selecciona un Valor, por favor.",Sélectionnez une Valeur SVP.,Пожалуйста выберите значение.,"Por favor, selecione um valor."
 Common.error.department,Please select a department.,,,,,Пожалуйста выберите отдел,
@@ -1548,7 +1556,10 @@ Division.tmp.security,Security,,Sicherheit,Seguridad,Sécurité,,Segurança
 Division.tmp.engineering,Engineering,,Technik,Ingeniería,Ingénierie,,Engenharia
 Equipment.uniform,Uniform,,Uniform,Uniforme,Uniforme,Униформа,Uniforme
 Equipment.clothing,Clothing,,Kleidung,Vestimenta,Vêtement,Одежда,Vestuário
-Equipment.armor,Armour,,Rüstung,Armadura,Armure,Броня,Armadura
+Equipment.armouredVest,Armoured Vest,Armored Vest,Rüstung,Armadura,Armure,Броня,Armadura
+Equipment.bodyArmour,Body Armour,Body Armor,,,,,
+Equipment.environmentSuit,Environment Suit,,,,,,
+Equipment.personalForceField,Personal Force Field,,,,,,
 Equipment.communicator,Communicator,,Kommunikator,Comunicador,Communicateur,Коммуникатор,Comunicador
 Equipment.tricorder,Tricorder,,Trikorder,Tricorder,Tricorder,Трикодер,Tricorder
 Equipment.medKit,MedKit,,Medkit,Botiquín,Medkit,Медицинский набор,Kit Médico

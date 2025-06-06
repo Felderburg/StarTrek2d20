@@ -38,6 +38,7 @@ const NpcBuilderPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './
 const NpcSpeciesSelectionPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesSelectionPage'));
 const NpcSpeciesDetailsPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesDetailsPage'));
 const NpcStatsPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcStatsPage'));
+const NpcSpecialRulesPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpecialRulesPage'));
 const NpcFinalPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcFinalPage'));
 
 let root = createRoot(document.getElementById("mainBody"));
@@ -55,6 +56,7 @@ root.render(
                     <Route path="/npc/species" element={<NpcSpeciesSelectionPage />} />
                     <Route path="/npc/species/details" element={<NpcSpeciesDetailsPage />} />
                     <Route path="/npc/stats" element={<NpcStatsPage />} />
+                    <Route path="/npc/specialrules" element={<NpcSpecialRulesPage />} />
                     <Route path="/npc/final" element={<NpcFinalPage />} />
                     <Route path="/systemGenerator" element={<SectorContainerPage activePage={PageIdentity.SystemGeneration} />} />
                     <Route path="/sectorDetails" element={<SectorContainerPage activePage={PageIdentity.SectorDetails} />} />

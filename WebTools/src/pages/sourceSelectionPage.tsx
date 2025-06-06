@@ -12,8 +12,10 @@ import { PageFactory } from './pageFactory';
 import { LoadingButton } from '../common/loadingButton';
 import { setCharacter } from '../state/characterActions';
 import { Header } from '../components/header';
-import toast from 'react-hot-toast';
 import Button from 'react-bootstrap/Button';
+import Markdown from 'react-markdown';
+import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
+import { isSecondEdition } from '../state/contextFunctions';
 
 interface ISourceSelectionPageProperties extends WithTranslation {
     sources: Source[]
@@ -37,8 +39,24 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
         }
     }
 
-    private secondEditionMessage = () => {
-        toast("Selecting the 2nd Edition turns on the 2nd edition character creation rules.", { "className": "bg-info" })
+    setEdition(edition: number) {
+        if (edition === 1) {
+            store.dispatch(addSource(Source.Core));
+        } else {
+            store.dispatch(addSource(Source.Core2ndEdition));
+        }
+    }
+
+    renderEdition() {
+        const {t} = this.props;
+        return (<div className="my-3">
+            <Markdown>{t('SourceSelectionPage.editionInstruction')}</Markdown>
+            <DropDownSelect items={[
+                new DropDownElement(1, t('Common.edition.1')),
+                new DropDownElement(2, t('Common.edition.2'))
+            ]} defaultValue={this.props.sources.includes(Source.Core) ? 1 : 2}
+            onChange={(v) => this.setEdition(v as number)} />
+        </div>);
     }
 
     renderSources() {
@@ -46,7 +64,7 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
         let hasUnavailableSources = false;
 
         const sources = SourcesHelper.getTypes().map(t => {
-            const list = SourcesHelper.getSourcesByType(t.type).map((s, i) => {
+            const list = SourcesHelper.getSourcesByType(t.type).filter(s => ![Source.Core, Source.Core2ndEdition].includes(s.id)).map((s, i) => {
                 hasUnavailableSources = hasUnavailableSources || !s.available;
                 const className = s.available ? (this.hasSource(s.id) ? "source source-selected" : "source") : "source unavailable";
                 return (
@@ -61,7 +79,7 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
 
         const note = hasUnavailableSources ? (<p>{t('SourceSelectionPage.sourceNote')}</p>)  : undefined;
 
-        return (<div>
+        return (<div className="mt-5">
             <p>
                 {t('SourceSelectionPage.sourceInstruction')}
             </p>
@@ -90,6 +108,7 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
                 </nav>
                 <main>
                     <Header className="mb-4">{t('Page.title.sourceSelection')}</Header>
+                    {this.renderEdition()}
                     {this.renderSources()}
                     <p className="mt-5">
                         {t('SourceSelectionPage.gameTypeInstruction')}
@@ -138,20 +157,25 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
         } else if (this.hasSource(source)) {
             store.dispatch(removeSource(source));
         } else {
-            if (source === Source.Core2ndEdition) {
-                this.secondEditionMessage();
-            }
-
             store.dispatch(addSource(source));
         }
     }
 
     private toggleSources(selectAll: boolean) {
         if (selectAll) {
-            let sources = SourcesHelper.getSources().filter(s => s.available).map(s => s.id);
-            if (sources.filter(s => s === Source.Core2ndEdition).length && !this.hasSource(Source.Core2ndEdition)) {
-                this.secondEditionMessage();
-            }
+            let version = isSecondEdition() ? 2 : 1;
+            let sources = SourcesHelper.getSources()
+                .filter(s => s.available)
+                .filter(s => {
+                    if (s.id === Source.Core) {
+                        return version === 1;
+                    } else if (s.id === Source.Core2ndEdition) {
+                        return version === 2;
+                    } else {
+                        return true;
+                    }
+                })
+                .map(s => s.id);
             store.dispatch(setSources(sources));
         } else {
             if (this.props.sources.indexOf(Source.Core2ndEdition) >= 0) {

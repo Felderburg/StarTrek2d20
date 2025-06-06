@@ -432,7 +432,7 @@ export class FoundryVttExporter {
         character.equipmentAndImplants?.forEach(e => {
             let item = {
                 "name": e.name,
-                "type": e.type === EquipmentType.Armor ? "armor" : "item",
+                "type": e.type === EquipmentType.ArmouredVest ? "armor" : "item",
                 "img": this.determineItemIcon(e.name),
                 "system": {
                   "description": "",

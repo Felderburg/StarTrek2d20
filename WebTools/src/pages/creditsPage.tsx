@@ -129,7 +129,6 @@ const CreditsPage = () => {
                             <li>Nathaniel Johnson</li>
                             <li>Patrick Patterson</li>
                             <li>Ricardo Gonzales</li>
-                            <li>Sirssa</li>
                         </ul>
 
                     </div>

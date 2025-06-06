@@ -4,7 +4,10 @@ import { makeKey } from "../common/translationKey";
 export enum EquipmentType {
     Uniform,
     Clothing,
-    Armor,
+    ArmouredVest,
+    BodyArmour,
+    EnvironmentSuit,
+    PersonalForceField,
 
     Communicator,
     Tricorder,
@@ -13,23 +16,37 @@ export enum EquipmentType {
     OrionMultiKey,
 
     UshaanTor,
+
+
+
+    Other
 }
 
 export class EquipmentModel {
-    type: EquipmentType;
-    name: string;
-    description?: string;
+    readonly type: EquipmentType;
+    readonly name: string;
+    readonly description?: string;
+    readonly protection?: number;
 
-    constructor(type: EquipmentType, name: string, description?: string) {
+    constructor(type: EquipmentType, name: string, description?: string, protection?: number) {
         this.type = type;
         this.name = name;
         this.description = description;
+        this.protection = protection;
     }
 
     get localizedName() {
-        let key = makeKey("Equipment.", EquipmentType[this.type]);
-        let result = i18next.t(key);
-        return result === key ? this.name : result;
+        if (this.type === EquipmentType.Other) {
+            return this.name;
+        } else {
+            let key = makeKey("Equipment.", EquipmentType[this.type]);
+            let result = i18next.t(key);
+            return result === key ? this.name : result;
+        }
+    }
+
+    get isArmour() {
+        return [EquipmentType.ArmouredVest, EquipmentType.BodyArmour, EquipmentType.PersonalForceField, EquipmentType.EnvironmentSuit].includes(this.type);
     }
 }
 
@@ -46,7 +63,10 @@ export class EquipmentHelper {
     public items = [
         new EquipmentModel(EquipmentType.Uniform, "Uniform"),
         new EquipmentModel(EquipmentType.Clothing, "Clothing"),
-        new EquipmentModel(EquipmentType.Armor, "Armor"),
+        new EquipmentModel(EquipmentType.ArmouredVest, "Armoured Vest", undefined, 1),
+        new EquipmentModel(EquipmentType.BodyArmour, "Body Armour", undefined, 2),
+        new EquipmentModel(EquipmentType.EnvironmentSuit, "Environment Suit", undefined, 1),
+        new EquipmentModel(EquipmentType.PersonalForceField, "Personal Force Field", undefined, 3),
         new EquipmentModel(EquipmentType.Communicator, "Communicator", "A communicator is a communications device used by many species for person-to-person, inter-ship communications."),
         new EquipmentModel(EquipmentType.Tricorder, "Tricorder", "A tricorder is an advanced multi-function hand held computing and scanning device used to gather, analyze, and record data, with many specialized abilities which made it an asset to crews aboard starships and space stations as well as on away missions."),
         new EquipmentModel(EquipmentType.MedKit, "MedKit",

@@ -47,6 +47,7 @@ import { allCharacterAdvancementChoices, CharacterAdvancementChoice } from '../m
 import { SpecialWeapon } from '../common/specialWeapon';
 import { AttackType } from '../common/attackType';
 import { ModificationType } from '../modify/model/modificationType';
+import { EquipmentModel, EquipmentType } from './equipment';
 
 class Marshaller {
 
@@ -264,6 +265,19 @@ class Marshaller {
 
                 if (character.npcGenerationStep.departments?.length) {
                     block["departments"] = this.getDepartmentByNameObject(character.npcGenerationStep?.departments)
+                }
+
+                if (character.npcGenerationStep.equipment?.length) {
+                    block["equipment"] = character.npcGenerationStep.equipment.map(e => {
+                        if (e instanceof EquipmentModel) {
+                            return {
+                                type: EquipmentType[e.type],
+                                name: e.name
+                            }
+                        } else {
+                            return EquipmentType[e as EquipmentType];
+                        }
+                    })
                 }
 
                 sheet["npc"] = block;

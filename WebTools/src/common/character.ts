@@ -360,6 +360,7 @@ export class NpcGenerationStep {
     public attributes: number[] = [];
     public departments: number[] = [];
     public focuses: string[] = [];
+    public equipment: (EquipmentType|EquipmentModel)[] = [];
 
     constructor(type?: NpcType) {
         this.type = type;
@@ -375,6 +376,7 @@ export class NpcGenerationStep {
         result.attributes = [...this.attributes];
         result.departments = [...this.departments];
         result.focuses = [...this.focuses];
+        result.equipment = [...this.equipment];
         return result;
     }
 }
@@ -807,13 +809,25 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get equipmentModels(): EquipmentModel[] {
+        let base = this.baseEquipmentModels;
+        this.npcGenerationStep?.equipment?.forEach(e => {
+            if (e instanceof EquipmentModel) {
+                base.push(e);
+            } else {
+                base.push(EquipmentHelper.instance.findByType(e as EquipmentType));
+            }
+        })
+        return base;
+    }
+
+    get baseEquipmentModels(): EquipmentModel[] {
         let result = [];
         if (this.age.isChild) {
             result.push(EquipmentHelper.instance.findByType(EquipmentType.Clothing));
         } else if (this.isCivilian()) {
             result.push(EquipmentHelper.instance.findByType(EquipmentType.Clothing));
         } else if (this.type === CharacterType.KlingonWarrior) {
-            result.push(EquipmentHelper.instance.findByType(EquipmentType.Armor));
+            result.push(EquipmentHelper.instance.findByType(EquipmentType.ArmouredVest));
             result.push(EquipmentHelper.instance.findByType(EquipmentType.Communicator));
             result.push(EquipmentHelper.instance.findByType(EquipmentType.Tricorder));
         } else {

@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { CharacterSerializer } from '../common/characterSerializer';
+import { isSecondEdition } from '../state/contextFunctions';
 
 interface ICharacterSheetProperties extends WithTranslation {
     era?: Era;
@@ -26,7 +27,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
 
     render() {
         const { t } = this.props;
-        let c = new Character();
+        let c = Character.createMainCharacter(CharacterType.Starfleet, Era.NextGeneration, isSecondEdition() ? 2 : 1);
         if (store.getState().character.currentCharacter) {
             c = store.getState().character.currentCharacter;
         }

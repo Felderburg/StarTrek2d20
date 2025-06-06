@@ -15,6 +15,7 @@ import { EarlyOutlookModel } from "../helpers/upbringings";
 import { CharacterAdvancementChoice } from "../modify/model/characterAdvancementChoice";
 import { SelectedTalent } from "../common/selectedTalent";
 import { ModificationType } from "../modify/model/modificationType";
+import { EquipmentModel, EquipmentType } from "../helpers/equipment";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -56,6 +57,7 @@ export const ADD_CHARACTER_SPECIES_ABILITY_FOCUS = "ADD_CHARACTER_SPECIES_ABILIT
 export const MODIFY_CHARACTER_ADD_ADVANCEMENT = "MODIFY_CHARACTER_ADD_ADVANCEMENT";
 export const ADD_NPC_CHARACTER_VALUE = "SET_NPC_CHARACTER_VALUE";
 export const SET_NPC_CHARACTER_ATTRIBUTES = "SET_NPC_CHARACTER_ATTRIBUTES";
+export const ADD_NPC_CHARACTER_EQUIPMENT = "ADD_NPC_CHARACTER_EQUIPMENT";
 
 export enum StepContext {
     Species,
@@ -138,6 +140,14 @@ export function setNpcCharacterAttributes(attributes: number[]) {
     let payload = { attributes: attributes };
     return {
        type: SET_NPC_CHARACTER_ATTRIBUTES,
+       payload: payload
+    }
+}
+
+export function addNpcCharacterEquipment(equipment: EquipmentType|EquipmentModel) {
+    let payload = { equipment: equipment };
+    return {
+       type: ADD_NPC_CHARACTER_EQUIPMENT,
        payload: payload
     }
 }

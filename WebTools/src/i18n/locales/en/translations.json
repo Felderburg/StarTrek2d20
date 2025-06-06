@@ -19,6 +19,7 @@
 
     "Lcars.noHistory": "No history",
 
+    "SourceSelectionPage.editionInstruction": "Which edition of the rules are you using?",
     "SourceSelectionPage.sourceInstruction": "Select sources. Ask your GM which are available.",
     "SourceSelectionPage.gameTypeInstruction": "What type of game are you playing?",
     "SourceSelectionPage.sourceNote": "Some sources are not yet implemented; check back soon!",
@@ -294,6 +295,12 @@
     "NpcConfigurationPage.text": "Specify what kind of NPC you're trying to create.",
     "NpcConfigurationPage.includeDescription": "Include description",
 
+    "NpcStatsPage.attributes.error": "Please distribute all attributes.",
+
+    "NpcStatsPage.departments.error": "Please distribute all departments.",
+
+    "NpcStatsPage.focuses.error": "Please specify more focuses.",
+
     "NpcStatsPage.instruction": "Provide the various NPC stats for this character.",
 
     "NpcStatsPage.instruction.attribute": "Assign the character's attributes. The highest value should be assigned to the NPC's most imporant attribute. Select two different values to swap them.",
@@ -313,6 +320,10 @@
 
     "NpcStatsPage.instruction.value.notable": "Select a value that describes the NPC's most deeply-held belief or their motivation",
     "NpcStatsPage.instruction.value.major": "Select two to four values.",
+
+    "NpcStatsPage.role.error": "Please assign a role.",
+
+    "NpcStatsPage.values.error": "Please specify more values.",
 
     "NoviceOrCadetExperiencePage.attribute.instruction": "Choose 1 attribute to use with this talent.",
     "NoviceOrCadetExperiencePage.attribute.error": "Please choose an attribute.",
@@ -524,6 +535,9 @@
     "Common.button.save": "Save",
     "Common.button.share": "Share",
     "Common.button.view": "View",
+
+    "Common.edition.1": "1st Edition",
+    "Common.edition.2": "2nd Edition",
 
     "Common.error.focus": "Please select a focus.",
     "Common.error.value": "Please select a value.",
@@ -1186,7 +1200,10 @@
 
     "Equipment.uniform": "Uniform",
     "Equipment.clothing": "Clothing",
-    "Equipment.armor": "Armour",
+    "Equipment.armouredVest": "Armoured Vest",
+    "Equipment.bodyArmour": "Body Armour",
+    "Equipment.environmentSuit": "Environment Suit",
+    "Equipment.personalForceField": "Personal Force Field",
     "Equipment.communicator": "Communicator",
     "Equipment.tricorder": "Tricorder",
     "Equipment.medKit": "MedKit",

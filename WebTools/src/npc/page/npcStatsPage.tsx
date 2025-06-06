@@ -12,7 +12,7 @@ import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import store from "../../state/store";
 import { addNpcCharacterValue, setCharacterAssignment, setCharacterFocus, StepContext } from "../../state/characterActions";
 import Markdown from "react-markdown";
-import { NpcType } from "../model/npcType";
+import { NpcType, NpcTypes } from "../model/npcType";
 import { FocusSelectionView } from "../../components/focusSelectionView";
 import { DepartmentsHelper } from "../../helpers/department";
 import { makeKey } from "../../common/translationKey";
@@ -21,6 +21,7 @@ import { NpcAttributesView } from "../view/npcAttributesView";
 import { Button } from "react-bootstrap";
 import MajorNpcDepartmentView from "../view/majorNpcDepartmentView";
 import MajorNpcAttributeView from "../view/majorNpcAttributeView";
+import { Dialog } from "../../components/dialog";
 
 const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -142,8 +143,38 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
         }
     }
 
+    const totalAttriubtePoints = () => {
+        return character.npcGenerationStep?.attributes?.reduce((p, n) => p+n, 0) ?? 0;
+    }
+
+    const totalDepartmentPoints = () => {
+        return character.npcGenerationStep?.departments?.reduce((p, n) => p+n, 0) ?? 0;
+    }
+
+    const minimumValueCount = () => {
+        const counts = [0, 1, 2];
+        return counts[character.npcGenerationStep?.type];
+    }
+
+    const minimumFocusCount = () => {
+        const counts = [0, 2, 0];
+        return counts[character.npcGenerationStep?.type];
+    }
+
     const onNext = () => {
-        navigate("/npc/final");
+        if (totalAttriubtePoints() < NpcTypes.attributePointCount(character.npcGenerationStep?.type)) {
+            Dialog.show(t("NpcStatsPage.attributes.error"));
+        } else if (totalDepartmentPoints() < NpcTypes.departmentPointCount(character.npcGenerationStep?.type)) {
+            Dialog.show(t("NpcStatsPage.departments.error"));
+        } else if (!(character.jobAssignment?.length)) {
+            Dialog.show(t("NpcStatsPage.role.error"));
+        } else if ((character.focuses?.length ?? 0) < minimumFocusCount()) {
+            Dialog.show(t("NpcStatsPage.focuses.error"));
+        } else if ((character.values?.length ?? 0) < minimumValueCount()) {
+            Dialog.show(t("NpcStatsPage.values.error"));
+        } else {
+            navigate("/npc/specialrules");
+        }
     }
 
     return character
