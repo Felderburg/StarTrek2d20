@@ -325,6 +325,10 @@
 
     "NpcStatsPage.values.error": "Please specify more values.",
 
+    "NpcSpecialRulesPage.instruction.minor": "Add one or two special rules.",
+    "NpcSpecialRulesPage.instruction.notable": "Add two or three special rules.",
+    "NpcSpecialRulesPage.instruction.major": "Choose four talents or special rules.",
+
     "NoviceOrCadetExperiencePage.attribute.instruction": "Choose 1 attribute to use with this talent.",
     "NoviceOrCadetExperiencePage.attribute.error": "Please choose an attribute.",
 
@@ -778,6 +782,7 @@
     "Page.title.npcConfiguration": "Random NPC Configuration",
     "Page.title.npcFinal": "Finishing Touches",
     "Page.title.npcStats": "NPC Stats",
+    "Page.title.npcTalents": "Talent Selection",
     "Page.title.tokenCreationPage": "Token Creation",
     "Page.title.upbringing": "Early Outlook",
     "Page.title.upbringingDetails": "Early Outlook Details",

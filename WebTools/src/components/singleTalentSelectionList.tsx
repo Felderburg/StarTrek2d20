@@ -19,11 +19,20 @@ import { SimpleDepartmentSelector } from './simpleDepartmentSelector';
 import { AttackType } from '../common/attackType';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import Markdown from 'react-markdown';
+import { t } from 'i18next';
+import { RankedTalent } from '../helpers/rankedTalent';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
     construct: Construct;
     initialSelection?: ITalent|SelectedTalent;
+    onSelection: (talent?: SelectedTalent) => void;
+}
+
+interface ITalentSelectionRowProperties {
+    talent: RankedTalent
+    construct: Construct;
+    selection: SelectedTalent;
     onSelection: (talent?: SelectedTalent) => void;
 }
 
@@ -58,34 +67,29 @@ export const DepartmentSelectedTalentChoice: React.FC<ISelectedTalentChoicePrope
     />);
 }
 
-const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({talents, construct, initialSelection, onSelection}) => {
 
-    let original = null;
-    if (initialSelection == null) {
-        // do nothing
-    } else if (initialSelection instanceof SelectedTalent) {
-        original = (initialSelection as SelectedTalent).copy();
-    } else {
-        original = new SelectedTalent(initialSelection.name);
-    }
-    const [selection, setSelection]  = useState<SelectedTalent|undefined>(original);
-    const { t } = useTranslation();
-
-    useEffect(() => {
-        if (selection == null) {
-            // do nothing
-        } else if (talents.filter(t => t.name === selection.talent)?.length) {
-            // do nothing
-        } else {
-            setSelection(undefined);
-            onSelection(undefined);
+export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({talent, construct, selection, onSelection}) => {
+    let prerequisites = undefined;
+    talent.talent.prerequisites.forEach((p) => {
+        let desc = p.describe();
+        if (desc) {
+            if (prerequisites == null) {
+                prerequisites = desc;
+            } else {
+                prerequisites += (", " + desc);
+            }
         }
+    });
+    if (prerequisites) {
+        prerequisites = (<div style={{ fontWeight: "bold" }}>{prerequisites}</div>);
+    }
 
-    }, [talents]);
-
-    const updateSelection = (selection: SelectedTalent) => {
-        setSelection(selection);
-        onSelection(selection);
+    const selectTalent = (talent: RankedTalent) => {
+        if (selection?.talent === talent.name) {
+            onSelection(undefined);
+        } else {
+            onSelection(new SelectedTalent(talent.name));
+        }
     }
 
     const specialWeaponOptions = () => {
@@ -96,17 +100,16 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
         return result;
     }
 
-    const selectTalent = (talent: TalentViewModel) => {
-        if (selection?.talent === talent?.name) {
-            setSelection(undefined);
-            onSelection(undefined);
+    const talentDescription = (t: RankedTalent) => {
+        const description = construct.version === 1 ? t.talent.localizedDescription : t.talent.localizedDescription2e;
+        if (description.includes(CHALLENGE_DICE_NOTATION)) {
+            return description.split('\n').map((l, i) => {
+                return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
+            })
         } else {
-            let temp = new SelectedTalent(talent.name);
-            setSelection(temp);
-            onSelection(temp);
+            return (<Markdown className="markdown-sm">{description}</Markdown>);
         }
     }
-
 
     const renderAugmentedAbilitySelection = () => {
         return (
@@ -120,7 +123,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             if (temp) {
                                 temp.attribute = a;
                             }
-                            setSelection(temp);
                             onSelection(temp);
                         }}
                         isUpdateable={a => {
@@ -146,7 +148,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                     <DepartmentSelectedTalentChoice
                         construct={construct}
                         selection={selection}
-                        setSelection={setSelection}
+                        setSelection={onSelection}
                         talentNames={[TALENT_NAME_COLLABORATION]} />
                 </div>
             </div>
@@ -165,7 +167,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             if (temp) {
                                 temp.department = d;
                             }
-                            updateSelection(temp);
+                            onSelection(temp);
                         }}
                         isUpdateable={d => {
                             if (d === selection.department) {
@@ -196,7 +198,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                     if (temp) {
                         temp.selection = (value as AttackType);
                     }
-                    setSelection(temp);
                     onSelection(temp);
                 }} />
         )
@@ -223,7 +224,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                                 if (temp.implants.length > 3) {
                                     temp.implants.splice(0, temp.implants.length-3);
                                 }
-                                setSelection(temp);
                                 onSelection(temp);
                             }}
                             value={implant.name} />
@@ -263,7 +263,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                                     temp.focuses = [ f ];
                                 }
                             }
-                            setSelection(temp);
                             onSelection(temp);
                         }}
                         character={construct as Character}
@@ -275,7 +274,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             if (temp) {
                                 temp.value = v;
                             }
-                            setSelection(temp);
                             onSelection(temp);
                         }}
                         onRandomClicked={() => {
@@ -284,7 +282,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                             if (temp) {
                                 temp.value = value;
                             }
-                            setSelection(temp);
                             onSelection(temp);
                         }}
                     />
@@ -309,7 +306,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                                     temp.focuses = [ f ];
                                 }
                             }
-                            setSelection(temp);
                             onSelection(temp);
                         }}
                         character={construct as Character}
@@ -328,7 +324,6 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
                                     temp.focuses[1] = f;
                                 }
                             }
-                            setSelection(temp);
                             onSelection(temp);
                         }}
                         suggestions="Holonovel writing, Opera, Holo-photography, or anything else"
@@ -339,164 +334,183 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
         </>);
     }
 
+    let name = talent.talent.localizedName;
+    if (talent.talent.maxRank > 1) {
+        name = t('Talent.text.rank', {
+            talentName: talent.talent.localizedName,
+            rank: talent.rank
+        })
+    }
+
+    return (<tbody>
+        <tr>
+            <td className="selection-header-small">{name}</td>
+            <td>{talentDescription(talent)} {prerequisites}</td>
+            <td>
+                <CheckBox
+                    text=""
+                    value={talent.name}
+                    isChecked={selection?.talent === talent.name}
+                    onChanged={() => {
+                        selectTalent(talent)
+                    } }/>
+            </td>
+        </tr>
+        {selection?.talent === t.name && t.name === TALENT_NAME_WARRIORS_SPIRIT
+            ? (<tr>
+                <td></td>
+                <td colSpan={2}>
+                    <DropDownSelect items={specialWeaponOptions()}
+                        defaultValue={selection?.selection ?? ""}
+                        onChange={(value) => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.selection = (value as SpecialWeapon);
+                            }
+                            onSelection(temp);
+                        }} />
+                </td>
+            </tr>)
+            : undefined
+        }
+        {selection?.talent === talent.name && talent.name === TALENT_NAME_VISIT_EVERY_STAR
+            ? (<tr>
+                <td></td>
+                <td>
+                    <div className="row">
+                        <div className="col-12 col-md-6">
+                            <FocusSelectionView
+                                character={construct as Character}
+                                addFocus={(f) => {
+                                    let temp = selection?.copy();
+                                    if (temp) {
+                                        temp.focuses = [ f ];
+                                    }
+                                    onSelection(temp);
+                                }}
+                                value={selection.focuses?.length ? selection.focuses[0] : undefined}
+                                hints={["Astronagivation", "Stellar Cartography", "Warp Field Theory", "Astronomy",
+                                    "Heliophysics", "Cosmology", "Astrometry", "Planetology"]}
+                                suggestions="Astronavigation, Stellar Cartography, or a similar field of space science."
+                                randomFocusDepartment={Department.Conn}
+                            />
+                        </div>
+                    </div>
+                </td>
+                <td></td>
+            </tr>)
+            : undefined
+        }
+        {selection?.talent === talent.name && talent.name === TALENT_NAME_EXPANDED_PROGRAM
+            ? (<tr>
+                <td></td>
+                <td colSpan={2}>
+                    {renderExpandedProgramSelection()}
+                </td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name && talent.name === TALENT_NAME_WISDOM_OF_YEARS
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderWisdomOfYearsSelection()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name && talent.name === TALENT_NAME_BORG_IMPLANTS
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderBorgImplantsSelection()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name && talent.name === TALENT_NAME_AUGMENTED_ABILITY
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderAugmentedAbilitySelection()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name && talent.name === TALENT_NAME_COLLABORATION
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderCollaborationSelection()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(talent.name)
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderBoldOrCautiousSelection()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            [TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR].includes(talent.name)
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderDefensiveTrainingSelection()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+    </tbody>);
+}
+
+const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({talents, construct, initialSelection, onSelection}) => {
+
+    let original = null;
+    if (initialSelection == null) {
+        // do nothing
+    } else if (initialSelection instanceof SelectedTalent) {
+        original = (initialSelection as SelectedTalent).copy();
+    } else {
+        original = new SelectedTalent(initialSelection.name);
+    }
+    const [selection, setSelection]  = useState<SelectedTalent|undefined>(original);
+    const { t } = useTranslation();
+
+    useEffect(() => {
+        if (selection == null) {
+            // do nothing
+        } else if (talents.filter(t => t.name === selection.talent)?.length) {
+            // do nothing
+        } else {
+            setSelection(undefined);
+            onSelection(undefined);
+        }
+
+    }, [talents]);
+
+    const updateSelection = (selection: SelectedTalent) => {
+        setSelection(selection);
+        onSelection(selection);
+    }
 
     talents = talents.sort((t1, t2) => {
         return t1.localizedName.localeCompare(t2.localizedName);
     })
 
-    const talentDescription = (t: TalentViewModel) => {
-        if (t.description.includes(CHALLENGE_DICE_NOTATION)) {
-            return t.description.split('\n').map((l, i) => {
-                return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
-            })
-        } else {
-            return (<Markdown className="markdown-sm">{t.description}</Markdown>);
-        }
-    }
-
-
     const talentList = talents.map((t, i) => {
-        let prerequisites = undefined;
-        t.prerequisites.forEach((p) => {
-            let desc = p.describe();
-            if (desc) {
-                if (prerequisites == null) {
-                    prerequisites = desc;
-                } else {
-                    prerequisites += (", " + desc);
-                }
-            }
-        });
-        if (prerequisites) {
-            prerequisites = (<div style={{ fontWeight: "bold" }}>{prerequisites}</div>);
-        }
-
-        return (<tbody key={i}>
-            <tr>
-                <td className="selection-header-small">{t.localizedName}</td>
-                <td>{talentDescription(t)} {prerequisites}</td>
-                <td>
-                    <CheckBox
-                        text=""
-                        value={t.name}
-                        isChecked={selection?.talent === t.name}
-                        onChanged={() => {
-                            selectTalent(t);
-                        } }/>
-                </td>
-            </tr>
-            {selection?.talent === t.name && t.name === TALENT_NAME_WARRIORS_SPIRIT
-                ? (<tr>
-                    <td></td>
-                    <td colSpan={2}>
-                        <DropDownSelect items={specialWeaponOptions()}
-                            defaultValue={selection?.selection ?? ""}
-                            onChange={(value) => {
-                                let temp = selection?.copy();
-                                if (temp) {
-                                    temp.selection = (value as SpecialWeapon);
-                                }
-                                setSelection(temp);
-                                onSelection(temp);
-                            }} />
-                    </td>
-                </tr>)
-                : undefined
-            }
-            {selection?.talent === t.name && t.name === TALENT_NAME_VISIT_EVERY_STAR
-                ? (<tr>
-                    <td></td>
-                    <td>
-                        <div className="row">
-                            <div className="col-12 col-md-6">
-                                <FocusSelectionView
-                                    character={construct as Character}
-                                    addFocus={(f) => {
-                                        let temp = selection?.copy();
-                                        if (temp) {
-                                            temp.focuses = [ f ];
-                                        }
-                                        setSelection(temp);
-                                        onSelection(temp);
-                                    }}
-                                    value={selection.focuses?.length ? selection.focuses[0] : undefined}
-                                    hints={["Astronagivation", "Stellar Cartography", "Warp Field Theory", "Astronomy",
-                                        "Heliophysics", "Cosmology", "Astrometry", "Planetology"]}
-                                    suggestions="Astronavigation, Stellar Cartography, or a similar field of space science."
-                                    randomFocusDepartment={Department.Conn}
-                                />
-                            </div>
-                        </div>
-                    </td>
-                    <td></td>
-                </tr>)
-                : undefined
-            }
-            {selection?.talent === t.name && t.name === TALENT_NAME_EXPANDED_PROGRAM
-                ? (<tr>
-                    <td></td>
-                    <td colSpan={2}>
-                        {renderExpandedProgramSelection()}
-                    </td>
-                </tr>)
-                : undefined}
-            {selection?.talent === t.name && t.name === TALENT_NAME_WISDOM_OF_YEARS
-                ? (<tr>
-                    <td></td>
-                    <td>
-                        {renderWisdomOfYearsSelection()}
-                    </td>
-                    <td></td>
-                </tr>)
-                : undefined}
-            {selection?.talent === t.name && t.name === TALENT_NAME_BORG_IMPLANTS
-                ? (<tr>
-                    <td></td>
-                    <td>
-                        {renderBorgImplantsSelection()}
-                    </td>
-                    <td></td>
-                </tr>)
-                : undefined}
-            {selection?.talent === t.name && t.name === TALENT_NAME_AUGMENTED_ABILITY
-                ? (<tr>
-                    <td></td>
-                    <td>
-                        {renderAugmentedAbilitySelection()}
-                    </td>
-                    <td></td>
-                </tr>)
-                : undefined}
-            {selection?.talent === t.name && t.name === TALENT_NAME_COLLABORATION
-                ? (<tr>
-                    <td></td>
-                    <td>
-                        {renderCollaborationSelection()}
-                    </td>
-                    <td></td>
-                </tr>)
-                : undefined}
-            {selection?.talent === t.name &&
-                [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(t.name)
-                ? (<tr>
-                    <td></td>
-                    <td>
-                        {renderBoldOrCautiousSelection()}
-                    </td>
-                    <td></td>
-                </tr>)
-                : undefined}
-            {selection?.talent === t.name &&
-                [TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR].includes(t.name)
-                ? (<tr>
-                    <td></td>
-                    <td>
-                        {renderDefensiveTrainingSelection()}
-                    </td>
-                    <td></td>
-                </tr>)
-                : undefined}
-        </tbody>);
+        const talent = t.talent;
+        const rank = t.hasRank ? t.rank : undefined;
+        const rankedTalent = new RankedTalent(talent, rank);
+        return (<TalentSelectionRow talent={rankedTalent}
+            construct={construct}
+            onSelection={updateSelection}
+            selection={selection}
+            key={"talent-" + i} />);
     });
 
     return (

@@ -47,7 +47,7 @@ import { allCharacterAdvancementChoices, CharacterAdvancementChoice } from '../m
 import { SpecialWeapon } from '../common/specialWeapon';
 import { AttackType } from '../common/attackType';
 import { ModificationType } from '../modify/model/modificationType';
-import { EquipmentModel, EquipmentType } from './equipment';
+import { EquipmentHelper, EquipmentModel, EquipmentType } from './equipment';
 
 class Marshaller {
 
@@ -1563,6 +1563,17 @@ class Marshaller {
                 AttributesHelper.getAllAttributes().forEach(a =>
                     result.npcGenerationStep.attributes[a] = json.npc.attributes[Attribute[a]]
                 );
+            }
+            if (json.npc.equipment) {
+                result.npcGenerationStep.equipment = json.npc.equipment.map(e => {
+                    if (typeof e === 'string') {
+                        const result = EquipmentHelper.instance.findByTypeName(e);
+                        return result?.type;
+                    } else {
+                        const name = e.name;
+                        return new EquipmentModel(EquipmentType.Other, name);
+                    }
+                });
             }
         }
         if (json.supporting && result.stereotype === Stereotype.SupportingCharacter) {

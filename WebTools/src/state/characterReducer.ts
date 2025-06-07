@@ -4,6 +4,7 @@ import { Stereotype } from "../common/construct";
 import { SelectedTalent } from "../common/selectedTalent";
 import AgeHelper from "../helpers/age";
 import { Department } from "../helpers/department";
+import { EquipmentModel } from "../helpers/equipment";
 import { ITalent } from "../helpers/italent";
 import { SpeciesAbilityList } from "../helpers/speciesAbility";
 import { Species } from "../helpers/speciesEnum";
@@ -13,11 +14,12 @@ import { CharacterAdvancementChoice } from "../modify/model/characterAdvancement
 import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_CAREER_EVENT, ADD_CHARACTER_SPECIES_ABILITY_FOCUS, ADD_CHARACTER_TALENT, ADD_CHARACTER_TALENT_FOCUS,
     ADD_CHARACTER_TALENT_VALUE, ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE, ADD_NPC_CHARACTER_EQUIPMENT, ADD_NPC_CHARACTER_VALUE, MODIFY_CHARACTER_ADD_ADVANCEMENT, MODIFY_CHARACTER_ATTRIBUTE,
     MODIFY_CHARACTER_DISCIPLINE, MODIFY_CHARACTER_RANK, MODIFY_CHARACTER_REPUTATION, REMOVE_CHARACTER_BORG_IMPLANT,
+    REMOVE_NPC_CHARACTER_EQUIPMENT,
     SET_CHARACTER, SET_CHARACTER_ADDITIONAL_TRAITS, SET_CHARACTER_AGE, SET_CHARACTER_ASSIGNED_SHIP,
     SET_CHARACTER_CAREER_EVENT_TRAIT, SET_CHARACTER_CAREER_LENGTH, SET_CHARACTER_EARLY_OUTLOOK, SET_CHARACTER_EDUCATION,
     SET_CHARACTER_ENVIRONMENT, SET_CHARACTER_FINISHING_TOUCHES, SET_CHARACTER_FOCUS, SET_CHARACTER_HOUSE,
     SET_CHARACTER_LINEAGE, SET_CHARACTER_NAME, SET_CHARACTER_PASTIME, SET_CHARACTER_PRONOUNS, SET_CHARACTER_RANK,
-    SET_CHARACTER_ROLE, SET_CHARACTER_SPECIES, SET_CHARACTER_TYPE, SET_CHARACTER_VALUE, SET_NPC_CHARACTER_ATTRIBUTES, SET_NPC_CHARACTER_DEPARTMENTS, SET_SUPPORTING_CHARACTER_ATTRIBUTES,
+    SET_CHARACTER_ROLE, SET_CHARACTER_SPECIES, SET_CHARACTER_TYPE, SET_CHARACTER_VALUE, SET_NPC_CHARACTER_ATTRIBUTES, SET_NPC_CHARACTER_DEPARTMENTS, SET_NPC_CHARACTER_TALENTS, SET_SUPPORTING_CHARACTER_ATTRIBUTES,
     SET_SUPPORTING_CHARACTER_DISCIPLINES, SET_SUPPORTING_CHARACTER_SUPERVISORY, StepContext } from "./characterActions";
 
 interface CharacterState {
@@ -323,12 +325,47 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 isModified: true
             }
         }
+        case SET_NPC_CHARACTER_TALENTS: {
+            let temp = state.currentCharacter.copy();
+            if (temp.npcGenerationStep == null) {
+                temp.npcGenerationStep = new NpcGenerationStep();
+            }
+            temp.npcGenerationStep.talents = [...action.payload.talents.map(t => t.copy())];
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
         case ADD_NPC_CHARACTER_EQUIPMENT: {
             let temp = state.currentCharacter.copy();
             if (temp.npcGenerationStep == null) {
                 temp.npcGenerationStep = new NpcGenerationStep();
             }
+            console.log("Add: " + action.payload.equipment);
+
             temp.npcGenerationStep.equipment.push(action.payload.equipment);
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case REMOVE_NPC_CHARACTER_EQUIPMENT: {
+            let temp = state.currentCharacter.copy();
+            let equipment = action.payload.equipment;
+            if (temp.npcGenerationStep?.equipment != null) {
+                temp.npcGenerationStep.equipment = temp.npcGenerationStep.equipment
+                    .filter(e => {
+                        if (e instanceof EquipmentModel && equipment instanceof EquipmentModel) {
+                            return !(e.type === equipment.type
+                                && e.name === equipment.name
+                                && e.protection === equipment.protection);
+                        } else {
+                            return e !== equipment;
+                        }
+                    });
+            }
             return {
                 ...state,
                 currentCharacter: temp,

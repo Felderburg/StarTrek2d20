@@ -846,6 +846,7 @@ export class TalentModel implements ITalent {
 }
 
 export class TalentViewModel {
+    talent: TalentModel;
     id: string;
     name: string;
     rank: number;
@@ -857,8 +858,8 @@ export class TalentViewModel {
     specialRule: boolean;
     localizedName:string;
 
-    constructor(name: string, localizedName:string, rank: number, showRank: boolean, description: string, skill: Department, category: string, prerequities: IConstructPrerequisite<Character>[], specialRule: boolean) {
-        this.id = name;
+    constructor(talent: TalentModel, name: string, localizedName:string, rank: number, showRank: boolean, description: string, skill: Department, category: string, prerequities: IConstructPrerequisite<Character>[], specialRule: boolean) {
+        this.talent = talent;
         this.description = description;
         this.rank = rank;
         this.hasRank = showRank;
@@ -869,7 +870,6 @@ export class TalentViewModel {
         this.specialRule = specialRule;
         this.localizedName = localizedName;
     }
-
 
     private constructDisplayName(name: string, localizedName: string, rank: number, showRank: boolean, skill: Department, category: string) {
         let displayName = localizedName + ((showRank && category !== "Starship" && category !== "Starbase") ? " [Rank: " + rank + "]" : "");
@@ -888,7 +888,7 @@ export function ToViewModel(talent: TalentModel, rank: number = 1, type: Charact
     if (type === CharacterType.KlingonWarrior) {
         name = talent.nameForSource(Source.KlingonCore);
     }
-    return new TalentViewModel(name, talent.localizedName, rank, talent.maxRank > 1,
+    return new TalentViewModel(talent, name, talent.localizedName, rank, talent.maxRank > 1,
         version === 1 ? talent.localizedDescription : talent.localizedDescription2e,
         undefined, talent.category, talent.prerequisites, talent.specialRule);
 }

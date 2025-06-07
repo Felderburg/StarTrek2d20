@@ -331,6 +331,9 @@ NpcStatsPage.instruction.value.notable,Select a value that describes the NPC's m
 NpcStatsPage.instruction.value.major,Select two to four values.,,,,,,
 NpcStatsPage.role.error,Please assign a role.,,,,,,
 NpcStatsPage.values.error,Please specify more values.,,,,,,
+NpcSpecialRulesPage.instruction.minor,Add one or two special rules.,,,,,,
+NpcSpecialRulesPage.instruction.notable,Add two or three special rules.,,,,,,
+NpcSpecialRulesPage.instruction.major,Choose four talents or special rules.,,,,,,
 NoviceOrCadetExperiencePage.attribute.instruction,Choose 1 attribute to use with this talent.,,,Elige 1 atributo para utilizar con este talento.,,,Escolha 1 atributo para usar com esse talento.
 NoviceOrCadetExperiencePage.attribute.error,Please choose an attribute.,,,"Por favor, elige un atributo.",,,"Por favor, escolha um atributo."
 OtherToolsPage.instruction,This section contains a number of miscellaneous additional tools that might be used in your STA game.,,,Esta sección contiene una serie de herramientas adicionales diversas que pueden utilizarse en tu partida de STA.,Cette section contient divers outils additionnels à utiliser lors de vos parties de STA,Эта категория содержит несколько дополнительных инструментов которые могут быть использованы в вашей игре.,Esta seção contém várias ferramentas adicionais diversas que podem ser usadas no seu jogo STA.
@@ -828,6 +831,7 @@ Page.title.npcBuilder,NPC Builder,,,,,,
 Page.title.npcConfiguration,Random NPC Configuration,,Anpassung zufälliger NSCs,Configuración Aleatoria de PNJ,Configuration des PNJ Aléatoires,Конфигурация рандомного ВП,Configuração de PdM Aleatórios
 Page.title.npcFinal,Finishing Touches,,Feinschliff,Retoques Finales,Touches Finales,Заключительные штрихи,Toques Finais
 Page.title.npcStats,NPC Stats,,,,,,
+Page.title.npcTalents,Talent Selection,,,,,,
 Page.title.tokenCreationPage,Token Creation,,Tokenerschaffung,Creación de Token,Création de Jeton,Создание токена,Criação de Token
 Page.title.upbringing,Early Outlook,,Erziehung,Perspectiva Temprana,Experience initiale,Детали воспитания,Experiência Inicial
 Page.title.upbringingDetails,Early Outlook Details,,Erziehungsdetails,Detalles de Perspectiva Temprana,Détails de l'expérience initiale,Направление образование,Detalhes da Experiência Inicial

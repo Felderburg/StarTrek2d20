@@ -58,6 +58,8 @@ export const MODIFY_CHARACTER_ADD_ADVANCEMENT = "MODIFY_CHARACTER_ADD_ADVANCEMEN
 export const ADD_NPC_CHARACTER_VALUE = "SET_NPC_CHARACTER_VALUE";
 export const SET_NPC_CHARACTER_ATTRIBUTES = "SET_NPC_CHARACTER_ATTRIBUTES";
 export const ADD_NPC_CHARACTER_EQUIPMENT = "ADD_NPC_CHARACTER_EQUIPMENT";
+export const REMOVE_NPC_CHARACTER_EQUIPMENT = "REMOVE_NPC_CHARACTER_EQUIPMENT";
+export const SET_NPC_CHARACTER_TALENTS = "SET_NPC_CHARACTER_TALENTS";
 
 export enum StepContext {
     Species,
@@ -144,10 +146,26 @@ export function setNpcCharacterAttributes(attributes: number[]) {
     }
 }
 
+export function setNpcCharacterTalents(talents: SelectedTalent[]) {
+    let payload = { talents: talents };
+    return {
+       type: SET_NPC_CHARACTER_TALENTS,
+       payload: payload
+    }
+}
+
 export function addNpcCharacterEquipment(equipment: EquipmentType|EquipmentModel) {
     let payload = { equipment: equipment };
     return {
        type: ADD_NPC_CHARACTER_EQUIPMENT,
+       payload: payload
+    }
+}
+
+export function removeNpcCharacterEquipment(equipment: EquipmentType|EquipmentModel) {
+    let payload = { equipment: equipment };
+    return {
+       type: REMOVE_NPC_CHARACTER_EQUIPMENT,
        payload: payload
     }
 }

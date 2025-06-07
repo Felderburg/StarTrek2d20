@@ -82,4 +82,9 @@ export class EquipmentHelper {
         let results = this.items.filter(e => e.type === type);
         return results.length > 0 ? results[0] : undefined;
     }
+
+    public findByTypeName(type: string): EquipmentModel|undefined {
+        let results = this.items.filter(e => EquipmentType[e.type] === type);
+        return results.length > 0 ? results[0] : undefined;
+    }
 }

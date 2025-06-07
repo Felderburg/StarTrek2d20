@@ -10,13 +10,14 @@ import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
-import { addNpcCharacterEquipment, setCharacterName, setCharacterPronouns } from "../../state/characterActions";
+import { addNpcCharacterEquipment, removeNpcCharacterEquipment, setCharacterName, setCharacterPronouns } from "../../state/characterActions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { ANY_NAMES, SpeciesHelper } from "../../helpers/species";
 import { IconButton } from "../../components/iconButton";
 import { ModalControl } from "../../components/modal";
 import { NpcAddEquipmentView } from "../view/npcAddEquipmentView";
+import { EquipmentModel, EquipmentType } from "../../helpers/equipment";
 
 const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -38,15 +39,19 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
         }, 200);
     }
 
+    const removeEquipment = (equipment: EquipmentModel) => {
+        store.dispatch(removeNpcCharacterEquipment(equipment.type === EquipmentType.Other ? equipment : equipment.type));
+    }
+
     const renderEquipment = () => {
         const automaticEquipment = character.baseEquipmentModels.map(e => e.type);
-        const result = character.equipmentModels.map(e => (<tr>
+        const result = character.equipmentModels.map((e,i) => (<tr key={"equip-" + i}>
             {automaticEquipment.includes(e.type)
             ? (<td colSpan={2} className="py-2"><p className="mb-0">{e.localizedName}</p></td>)
             : (<><td>
                 <p className="mb-0">{e.localizedName}</p>
             </td>
-            <td className="text-end"><IconButton icon="trash" variant="danger" onClick={() => {}} /></td>
+            <td className="text-end"><IconButton icon="trash" variant="danger" onClick={() => removeEquipment(e)} /></td>
             </>)}
         </tr>));
         return (<table className="selection-list">
@@ -74,7 +79,6 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
     const suggestions = nameSuggestions?.map(n => `${n.type}: ${n.suggestions}`).map((n, i) => {
         return (<div key={'name-' + i}>{`${n}`}</div>);
     });
-
 
     return character ? (<LcarsFrame activePage={PageIdentity.NpcFinal}>
         <div id="app">
