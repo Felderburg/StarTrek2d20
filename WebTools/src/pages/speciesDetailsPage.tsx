@@ -17,7 +17,7 @@ import { Header } from '../components/header';
 import AttributeListComponent from '../components/attributeListComponent';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
-import { StepContext, addCharacterTalent } from '../state/characterActions';
+import { StepContext, addCharacterTalent, setCharacterSpecies } from '../state/characterActions';
 import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { SpeciesAttributeController } from '../components/speciesController';
 import { Stereotype } from '../common/construct';
@@ -28,6 +28,11 @@ import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 import { useNavigate } from 'react-router';
+import { Species } from '../helpers/speciesEnum';
+import Markdown from 'react-markdown';
+import { makeKey } from '../common/translationKey';
+import { ModalControl } from '../components/modal';
+import { SimpleSpeciesSelection } from '../components/simpleSpeciesSelection';
 
 interface ISpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -156,6 +161,52 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
         }
     }
 
+    const closeModal = () => {
+        ModalControl.hide();
+    }
+
+    const selectOriginalSpecies = (speciesModel: SpeciesModel) => {
+        const species = character.speciesStep?.species;
+        if (species === Species.CyberneticallyEnhanced) {
+            store.dispatch(setCharacterSpecies(character.speciesStep?.species, character.speciesStep?.attributes, speciesModel.id));
+        } else if (species === Species.Kobali) {
+            store.dispatch(setCharacterSpecies(character.speciesStep?.species, speciesModel.attributes, undefined, speciesModel.id));
+        } else {
+            store.dispatch(setCharacterSpecies(character.speciesStep?.species, character.speciesStep?.attributes, undefined, speciesModel.id));
+        }
+        closeModal();
+    }
+
+    const showOriginalSpeciesModal = () => {
+        ModalControl.show("xl", () => closeModal(),
+            (<SimpleSpeciesSelection onSelection={(species) => selectOriginalSpecies(species)}
+                character={character}
+                species={SpeciesHelper.getPrimarySpecies(character.type, true, character)} />),
+            t('SpeciesDetails.originalSpecies'));
+    }
+
+
+    const isSpecialSpecies = () => {
+        return [Species.Kobali, Species.Borg, Species.LiberatedBorg, Species.CyberneticallyEnhanced].includes(character.speciesStep?.species);
+    }
+
+    const renderExtraSpeciesDetails = () => {
+        if (character.stereotype === Stereotype.Npc && isSpecialSpecies()) {
+            return (<div className="col-12 col-lg-6 my-4">
+                <Header level={2}>{t('SpeciesDetails.originalSpecies')}</Header>
+                <Markdown>{t(makeKey('SpeciesDetails.originalSpecies.instruction.', Species[character.speciesStep?.species]))}</Markdown>
+
+                <div className='d-flex flex-row-reverse justify-content-between align-items-center'>
+                    <Button size="sm" onClick={() => showOriginalSpeciesModal()}>{t('Common.button.select')}</Button>
+                    {character.speciesStep?.originalSpecies != null
+                    ? (<p className="my-0"><b>{SpeciesHelper.getSpeciesByType(character.speciesStep?.originalSpecies).localizedName}</b></p>)
+                    : undefined}
+                </div>
+            </div>);
+        } else {
+            return undefined;
+        }
+    }
 
     const renderCrossSpeciesCheckbox = () => {
         return (<CheckBox
@@ -172,10 +223,12 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     }
 
     const onNext = () => {
-        if (character.speciesStep?.attributes?.length !== 3) {
-            Dialog.show("You have not distributed all Attribute points.");
+        if (character.stereotype === Stereotype.Npc && isSpecialSpecies() && character.speciesStep.originalSpecies == null) {
+            Dialog.show(t('SpeciesDetails.error.originalSpecies'));
+        } else if (character.speciesStep?.attributes?.length !== 3) {
+            Dialog.show(t('SpeciesDetails.error.attributes'));
         } else if (isTalentSelectionRequired() && character.speciesStep?.talent == null) {
-            Dialog.show("You have not selected a talent.");
+            Dialog.show(t('Common.error.talent'));
         } else if (isTalentSelectionRequired() && determineSelectedTalentExtraErrors(character.speciesStep?.talent) != null) {
             Dialog.show(determineSelectedTalentExtraErrors(character.speciesStep?.talent));
         } else if (character.stereotype === Stereotype.Npc) {
@@ -194,6 +247,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
                     <ReactMarkdown>{(character.version === 2) ? species.localizedDescription2e : species.localizedDescription}</ReactMarkdown>
 
                     <div className="row">
+                        {renderExtraSpeciesDetails()}
                         <div className="col-12 col-lg-6 my-4">
                             <Header level={2}><>{t('Construct.other.attributes')} {selectDesc}</></Header>
                             <AttributeListComponent controller={controller} />

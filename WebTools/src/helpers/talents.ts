@@ -21,6 +21,7 @@ import { Specialization } from '../common/specializationEnum';
 import { ITalent } from './italent';
 import { System } from './systems';
 import { Creature } from '../creature/model/creature';
+import { NpcType } from '../npc/model/npcType';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -5087,6 +5088,16 @@ export class Talents {
         talents.sort((a, b) => a.name.localeCompare(b.name));
 
         return talents;
+    }
+
+    getAllAvailableTalentsForNpc(character: Character): TalentModel[] {
+        if (character.npcGenerationStep?.type === NpcType.Major) {
+            return this.getAllAvailableTalentsForCharacter(character).map(t => t.talent);
+        } else {
+            let rules = this._specialRules
+                .filter(t => t.isPrerequisiteFulfilled(character));
+            return rules;
+        }
     }
 
     getSourceForTalent(name: string) {

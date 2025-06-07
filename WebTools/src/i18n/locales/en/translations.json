@@ -428,6 +428,16 @@
 
     "SpeciesAbilityView.instruction": "Each species provides a talent in the form of a Species Ability, which reflects some unique aspect of their physiology, psychology, or culture. You automatically receive this talent. Species abilities cannot be selected after character creation. These are distinct from talents which have a particular species as a requirement, which are always optional.",
 
+    "SpeciesDetails.originalSpecies": "Original Species Type",
+
+    "SpeciesDetails.error.originalSpecies": "Please select an original species for this character.",
+    "SpeciesDetails.error.attributes": "You have not distributed all Attribute points.",
+
+    "SpeciesDetails.originalSpecies.instruction.kobali": "The Kobali collect the corpses of other species and use an advanced from of genetic engineering to modify these deceased individuals, converting them into Kobali.",
+    "SpeciesDetails.originalSpecies.instruction.borg": "Before being assimilated by the Borg, the Borg drone was a member of another species. That species can be selected below.",
+    "SpeciesDetails.originalSpecies.instruction.liberatedBorg": "Before being assimilated by the Borg, the Borg drone was a member of another species. That species can be selected below.",
+    "SpeciesDetails.originalSpecies.instruction.cyberneticallyEnhanced": "Before being cybernetically enhanced, this individual was a member of another species. Please select that species, below.",
+
     "SpeciesDetails.options": "Species Options",
     "SpeciesDetails.selectThree": "(Select three)",
     "SpeciesDetails.allowCrossSpecies": "Allow cross-species talents (GM's decision)",

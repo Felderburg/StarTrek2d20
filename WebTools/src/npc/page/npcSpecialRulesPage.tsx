@@ -43,6 +43,9 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({character}) => {
     }, [character]);
 
     const onNext = () => {
+        const numberOfTalents = ranges[character.npcGenerationStep?.type ?? 0];
+
+
         navigate("/npc/final");
     }
 
@@ -82,7 +85,7 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({character}) => {
     }
 
     let talents = character
-        ? TalentsHelper.getAllAvailableTalentsForCharacter(character).map(t => new RankedTalent(t.talent))
+        ? TalentsHelper.getAllAvailableTalentsForNpc(character).map(t => new RankedTalent(t))
         : [];
 
     return character ? (<LcarsFrame activePage={PageIdentity.NpcTalents}>
