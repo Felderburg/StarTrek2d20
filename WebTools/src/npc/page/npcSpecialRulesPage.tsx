@@ -19,6 +19,7 @@ import store from "../../state/store";
 import { setNpcCharacterTalents } from "../../state/characterActions";
 import { Dialog } from "../../components/dialog";
 import { isMultiSelectionTalent } from "../../helpers/isMultiSelectionTalent";
+import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 
 class Range {
     readonly min: number;
@@ -49,7 +50,16 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({character}) => {
         if (numberOfTalents.min > (character.npcGenerationStep?.talents?.length ?? 0)) {
             Dialog.show(t('NpcSpecialRulesPage.error.talents', { count: numberOfTalents.min }));
         } else {
-            navigate("/npc/final");
+            let message = undefined;
+            for (let i = 0; i < character.npcGenerationStep?.talents?.length && message == null; i++) {
+                message = determineSelectedTalentExtraErrors(character.npcGenerationStep.talents[i]);
+            }
+
+            if (message) {
+                Dialog.show(message);
+            } else {
+                navigate("/npc/final");
+            }
         }
     }
 
