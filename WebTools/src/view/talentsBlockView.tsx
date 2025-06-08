@@ -29,6 +29,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
             if (description.includes(" X ")) {
                 description = description.replace(" X ", " " + x + " ");
             }
+
+            talentName = talentName.substring(0, talentName.lastIndexOf(" X")) + " " + x;
         }
 
         if (description.indexOf(CHALLENGE_DICE_NOTATION) >= 0) {
@@ -95,7 +97,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
 
         const specialRules = construct?.getDistinctTalentNameList().map((tName, i) => {
             let t = TalentsHelper.getTalent(tName);
-            let name = t.localizedDisplayName;
+            let name = t.localizedName;
             let starship = construct as Starship;
             let qualifier = starship.getQualifierForTalent(tName);
             if (qualifier?.length) {
@@ -140,13 +142,18 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
         return (<>
             <Header level={2} className="mt-4">{construct.stereotype === Stereotype.Npc ? t('Construct.other.specialRules') : t('Construct.other.talents')}</Header>
             {construct?.getDistinctTalentNameList().map((tName, i) => {
+                let x = undefined;
+                const temp = construct.talents.filter(t => t.talent === tName);
                 let t = TalentsHelper.getTalent(tName);
-                let talentName = t.localizedDisplayName;
+                if (t.isXQualified && temp.length === 1) {
+                    x = temp[0].x;
+                }
+                let talentName = t.localizedName;
                 if (t.maxRank > 1 && t.name !== TALENT_NAME_AUGMENTED_ABILITY) {
                     talentName += " [x" + construct.getRankForTalent(t.name) + "]";
                 }
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
-                    {renderDescription(talentName, t)}
+                    {renderDescription(talentName, t, x)}
                 </div>);
             })}
         </>);

@@ -13,8 +13,8 @@ interface IMultiTalentSelectionProperties {
 const MultiTalentSelectionView: React.FC<IMultiTalentSelectionProperties> = ({talents, onSelection, selections, construct}) => {
 
     const findSelection = (talent: RankedTalent) => {
-        const temp = selections.filter(s => s.name === talent.name);
-        return temp[talent.rank ?? 0];
+        const temp = selections.filter(s => s.talent === talent.name);
+        return talent.rank === undefined ? temp[0] : temp[talent.rank-1];
     }
 
     return (<table className="selection-list">

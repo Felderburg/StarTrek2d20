@@ -1,7 +1,7 @@
 import { PDFPage } from "@cantoo/pdf-lib";
 import { FontLibrary, FontType } from "./fontLibrary";
 import { SimpleColor } from "../common/colour";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
 import { RoleModel } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Column } from "./column";
@@ -86,7 +86,8 @@ export class TalentWriter {
                     }
                 } else {
 
-                    let talentName = talent.talent.localizedDisplayName;
+                    let talentName = talent.talent.localizedName;
+                    let description = this.version === 1 ? talent.talent.localizedDescription : talent.talent.localizedDescription2e;
                     if (this.capitalizeName) {
                         talentName = talentName.toLocaleUpperCase();
                     }
@@ -98,13 +99,15 @@ export class TalentWriter {
                         if (talent.x != null) {
                             let xLocation = talentName.lastIndexOf(" X");
                             talentName = talentName.substring(0, xLocation + 1) + talent.x + talentName.substring(xLocation + 2)
+                            description = description.replace(/ X /g, " " + talent.x + " ")
+                            description = description.replace(/ X\./g, " " + talent.x + ".")
                         }
+
                     }
                     if (talent.additionalInformation?.length) {
                         talentName += (" [" + talent.additionalInformation + "]");
                     }
                     paragraph?.append(talentName + ": ", new FontOptions(nameFontSize, FontType.Bold), this.headingColour);
-                    let description = this.version === 1 ? talent.talent.localizedDescription : talent.talent.localizedDescription2e;
 
                     let descriptionParagraphs = description.split('\n');
                     descriptionParagraphs.forEach((p, i) => {
@@ -154,7 +157,7 @@ export class TalentWriter {
                             paragraph.append(i18next.t("Construct.other.weapon") + ": ", new FontOptions(fontSize, FontType.Bold));
                             paragraph.append(i18next.t(makeKey('SpecialWeapon.', SpecialWeapon[talent.selection as SpecialWeapon])), new FontOptions(fontSize));
                         }
-                    } else if (talent.talent.name === TALENT_NAME_AUGMENTED_ABILITY && talent.attributes?.length) {
+                    } else if ([TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X].includes(talent.talent.name) && talent.attributes?.length) {
                         paragraph = paragraph?.nextParagraph(0);
                         if (paragraph) {
                             paragraphs.push(paragraph);

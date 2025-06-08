@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
@@ -41,6 +41,54 @@ interface ISelectedTalentChoiceProperties {
     construct: Construct;
     selection: SelectedTalent;
     setSelection: (SelectedTalent) => void;
+}
+
+interface IXSelectedTalentChoiceProperties extends ISelectedTalentChoiceProperties {
+    min?: number;
+    max?: number;
+}
+
+interface INumberToggleButtonProperties {
+    label: number;
+    selected: boolean;
+    onClick: () => void;
+}
+
+const NumberToggleButton: React.FC<INumberToggleButtonProperties> = ({selected, label, onClick}) => {
+
+    if (selected) {
+        return (<div className="mx-1 p-3 bg-primary text-black rounded-circle text-center"
+            style={{height: "3rem", width: "3rem"}}
+            role="button" onClick={onClick}>{label}</div>);
+    } else {
+        return (<div className="mx-1 p-3 bg-black text-primary border border-primary border-2 rounded-circle text-center"
+            style={{height: "3rem", width: "3rem"}}
+            role="button" onClick={onClick}>{label}</div>);
+    }
+}
+
+const XSelectionView: React.FC<IXSelectedTalentChoiceProperties> = ({construct, selection, min, max, setSelection}) => {
+
+    const [ x, setX ] = useState<number|undefined>(selection.x);
+
+    const assignX = (x: number) => {
+        let temp = selection?.copy();
+        if (temp) {
+            temp.x = x;
+        }
+        setX(x);
+        setSelection(temp);
+    }
+
+    const options = [];
+    for (let i = (min ?? 1); i <= (max ?? 6); i++) {
+        options.push(i);
+    }
+
+    return (<div className="d-flex justify-content-center">
+        <div className="text-white py-3 pe-2"><big><b>X:</b></big></div>
+        {options.map(i => (<NumberToggleButton label={i} selected={x === i} onClick={() => assignX(i)} />))}
+    </div>);
 }
 
 export const DepartmentSelectedTalentChoice: React.FC<ISelectedTalentChoiceProperties> = ({construct, talentNames, selection, setSelection}) => {
@@ -136,6 +184,40 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                             }
                         }}
                     />
+                </div>
+            </div>
+        )
+    }
+
+    const renderXSelection = (min?: number, max?: number) => {
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <XSelectionView
+                        construct={construct}
+                        selection={selection}
+                        setSelection={onSelection}
+                        min={min} max={max} />
+                </div>
+            </div>
+        )
+    }
+
+    const renderExtraOrdinaryAttributeXSelection = () => {
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                <SimpleAttributeSelector
+                    character={construct as Character}
+                    isChecked={a => selection.attribute === a}
+                    onSelectAttribute={a => {
+                        let temp = selection?.copy();
+                        if (temp) {
+                            temp.attribute = a;
+                        }
+                        onSelection(temp);
+                    }}
+                    isUpdateable={a => true} />
                 </div>
             </div>
         )
@@ -464,6 +546,63 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                 </td>
                 <td></td>
             </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_CAMOUFLAGED_X === talent.name
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderXSelection(1, 3)}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_INITIATIVE_X === talent.name
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderXSelection(2, 6)}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_MENACING_X === talent.name
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderXSelection(1, 6)}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_NATURAL_PROTECTION_X === talent.name
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderXSelection(1, 6)}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X === talent.name
+            ? (<>
+                <tr>
+                    <td rowSpan={2}></td>
+                    <td>
+                        {renderExtraOrdinaryAttributeXSelection()}
+                    </td>
+                    <td rowSpan={2}></td>
+                </tr>
+                <tr>
+                    <td>
+                        {renderXSelection(1, 6)}
+                    </td>
+                </tr>
+            </>)
             : undefined}
     </tbody>);
 }

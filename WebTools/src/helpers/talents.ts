@@ -11,7 +11,7 @@ import { Starship } from '../common/starship';
 import store from '../state/store';
 import { centuryToYear } from './weapons';
 import { Spaceframe } from './spaceframeEnum';
-import { CareersPrerequisite, CharacterStereotypePrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, OfficerPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite } from './prerequisite';
+import { CareersPrerequisite, CharacterStereotypePrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, NotPrerequisite, OfficerPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite } from './prerequisite';
 import { NotSourcePrerequisite } from './spaceframes';
 import { Career } from './careerEnum';
 import { hasAnySource, isSecondEdition } from '../state/contextFunctions';
@@ -31,21 +31,21 @@ export const TALENT_NAME_WISDOM_OF_YEARS = "Wisdom of Years";
 export const TALENT_NAME_BRAK_LUL = "Brak’lul";
 export const TALENT_NAME_MISSION_POD = "Mission Pod";
 export const TALENT_NAME_UNTAPPED_POTENTIAL = "Untapped Potential";
-export const TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT = "Aquatic / Liquid Environment (Special Rule, Creature)";
+export const TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT = "Aquatic / Liquid Environment";
 export const TALENT_NAME_ABLATIVE_ARMOUR = "Ablative Armor";
-export const TALENT_NAME_AMPHIBIOUS = "Amphibious (Special Rule, Creature)";
-export const TALENT_NAME_ENERGY_BASED = "Energy Based (Special Rule, Creature)"
-export const TALENT_NAME_INCORPOREAL = "Incorporeal (Special Rule, Creature)"
-export const TALENT_NAME_FLIGHT = "Flight (Special Rule, Creature)"
-export const TALENT_NAME_IMMUNE_TO_VACUUM = "Immune to Vacuum (Special Rule, Creature)";
-export const TALENT_NAME_IMMUNE_TO_COLD = "Immune to Cold (Special Rule, Creature)";
-export const TALENT_NAME_MASSIVE = "Massive (Special Rule, Creature)";
-export const TALENT_NAME_SPIKED_TAIL = "Spiked Tail (Special Rule, Creature)";
-export const TALENT_NAME_CORROSIVE_SPIT = "Corrosive Spit (Special Rule, Creature)";
+export const TALENT_NAME_AMPHIBIOUS = "Amphibious";
+export const TALENT_NAME_ENERGY_BASED = "Energy Based"
+export const TALENT_NAME_INCORPOREAL = "Incorporeal"
+export const TALENT_NAME_FLIGHT = "Flight"
+export const TALENT_NAME_IMMUNE_TO_VACUUM = "Immune to Vacuum";
+export const TALENT_NAME_IMMUNE_TO_COLD = "Immune to Cold";
+export const TALENT_NAME_MASSIVE = "Massive";
+export const TALENT_NAME_SPIKED_TAIL = "Spiked Tail";
+export const TALENT_NAME_CORROSIVE_SPIT = "Corrosive Spit";
 export const TALENT_NAME_IMPROVED_HULL_INTEGRITY = "Improved Hull Integrity";
 export const TALENT_NAME_ABUNDANT_PERSONNEL = "Abundant Personnel";
-export const TALENT_NAME_WHIP_LIKE_TAIL = "Whip-like Tail (Special Rule, Creature)";
-export const TALENT_NAME_WEB = "Web (Special Rule, Creature)";
+export const TALENT_NAME_WHIP_LIKE_TAIL = "Whip-like Tail";
+export const TALENT_NAME_WEB = "Web";
 export const TALENT_NAME_WARRIORS_SPIRIT = "Warrior’s Spirit";
 export const TALENT_NAME_AUGMENTED_ABILITY = "Augmented Ability";
 export const TALENT_NAME_BOLD = "Bold";
@@ -55,6 +55,11 @@ export const TALENT_NAME_DEFENSIVE_TRAINING = "Defensive Training";
 export const TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR = "Defensive Training (Federation-Klingon War)";
 export const TALENT_NAME_REDUNDANT_SYSTEMS = "Redundant Systems";
 export const TALENT_NAME_DEDICATED_PERSONNEL = "Dedicated Personnel";
+export const TALENT_NAME_CAMOUFLAGED_X = "Camouflaged X";
+export const TALENT_NAME_INITIATIVE_X = "Initiative X";
+export const TALENT_NAME_MENACING_X = "Menacing X";
+export const TALENT_NAME_NATURAL_PROTECTION_X = "Natural Protection X";
+export const TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X = "Extraordinary Attribute X";
 
 enum TalentCategory {
     General,
@@ -173,6 +178,17 @@ class VariableDisciplinePrerequisite implements IConstructPrerequisite<Character
             + Department[this.discipline2] + " " + this.value + "+";
     }
 };
+
+class RandomNpcPrerequisite implements IConstructPrerequisite<Character> {
+
+    isPrerequisiteFulfilled(c: Character) {
+        return c.npcGenerationStep?.specialization != null;
+    }
+
+    describe(): string {
+        return "";
+    }
+}
 
 class Version1Prerequisite implements IConstructPrerequisite<Character> {
     isPrerequisiteFulfilled(c: Character) {
@@ -4660,13 +4676,7 @@ export class Talents {
 
 
         new TalentModel(
-            TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT,
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Ambush Hunter (Special Rule, Creature)",
+            "Ambush Hunter",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
@@ -4674,257 +4684,263 @@ export class Talents {
         new TalentModel(
             TALENT_NAME_AMPHIBIOUS,
             "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Camouflaged X (Special Rule, Creature)",
+            TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT,
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Camouflaged X",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Coordination",
+            "",
+            [new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Corrosive Spit",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Coordination (Special Rule, Creature)",
+            "Energy Based",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Entangling Vines",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Corrosive Spit (Special Rule, Creature)",
+            TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X,
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Fast Recovery",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Flight",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Formless",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Hyper Agile",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Immune to Cold",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Immune to Disease",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Immune to Fear",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Immune to Heat",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Immune to Pain",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Immune to Poison",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Immune to Vacuum",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Incorporeal",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Instinctive Dodge",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Energy Based (Special Rule, Creature)",
+            "Initiative X",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Machine",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Menacing X",
+            "",
+            [new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Massive",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Entangling Vines (Special Rule, Creature)",
+            "Mimicry",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Multi-Limbed",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Multidimensional",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Natural Climber",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Extraordinary Attribute X (Special Rule, Creature)",
+            "Natural Protection X",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Night Vision",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Pheromones (Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Fast Recovery (Special Rule, Creature)",
+            "Ram",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Resilient",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Sense Spectrum",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Spiked Tail",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Flight (Special Rule, Creature)",
+            "Spore Attack",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Formless (Special Rule, Creature)",
+            "Stealthy",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Hyper Agile (Special Rule, Creature)",
+            "Sturdy (Special Rule)",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Threat Gesture",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Tool User",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Toxic, Poisonous or Venomous",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            "Special Rule", true),
+        new TalentModel(
+            "Stink Attack",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
             "Special Rule", true),
         new TalentModel(
-            "Immune to Cold (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Immune to Disease (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Immune to Fear (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Immune to Heat (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Immune to Pain (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Immune to Poison (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Immune to Vacuum (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Incorporeal (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Instinctive Dodge (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Initiative X (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Machine (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Menacing X (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Massive (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Mimicry (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Multi-Limbed (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Multidimensional (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Natural Climber (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Natural Protection X (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Night Vision (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Pheromones (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Ram (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Resilient (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Sense Spectrum (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Spiked Tail (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Spore Attack (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Stealthy (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Sturdy (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Threat Gesture (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Tool User (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Toxic, Poisonous or Venomous (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Stink Attack (Special Rule, Creature)",
-            "",
-            [new CreaturePrerequisite(), new Version2Prerequisite()],
-            1,
-            "Special Rule", true),
-        new TalentModel(
-            "Wall Climber (Special Rule, Creature)",
+            "Wall Climber",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
@@ -4936,7 +4952,7 @@ export class Talents {
             1,
             "Special Rule", true),
         new TalentModel(
-            "Attach (Special Rule, Creature)",
+            "Attach",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
@@ -5092,7 +5108,9 @@ export class Talents {
 
     getAllAvailableTalentsForNpc(character: Character): TalentModel[] {
         if (character.npcGenerationStep?.type === NpcType.Major) {
-            return this.getAllAvailableTalentsForCharacter(character).map(t => t.talent);
+            let result = this._talents.filter(t => t.isPrerequisiteFulfilled(character));
+            result.push(...(this._specialRules.filter(t => t.isPrerequisiteFulfilled(character))));
+            return result;
         } else {
             let rules = this._specialRules
                 .filter(t => t.isPrerequisiteFulfilled(character));

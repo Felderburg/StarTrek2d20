@@ -14,31 +14,31 @@ export const generateRandomBasicCreatureTalent = () => {
         case 3:
             return [];
         case 4:
-            return [ toSelection(TalentsHelper.getTalent("Spiked Tail (Special Rule, Creature)")) ];
+            return [ toSelection(TalentsHelper.getTalent("Spiked Tail")) ];
         case 5:
-            return [toSelection(TalentsHelper.getTalent("Camouflaged X (Special Rule, Creature)")) ];
+            return [toSelection(TalentsHelper.getTalent("Camouflaged X")) ];
         case 6:
         case 7:
-            return [ toSelection(TalentsHelper.getTalent("Sense Spectrum (Special Rule, Creature)")) ];
+            return [ toSelection(TalentsHelper.getTalent("Sense Spectrum")) ];
         case 8:
         case 9:
-            return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+            return [ toSelection(TalentsHelper.getTalent("Hyper Agile")) ];
         case 10:
-            return [ toSelection(TalentsHelper.getTalent("Night Vision (Special Rule, Creature)")) ];
+            return [ toSelection(TalentsHelper.getTalent("Night Vision")) ];
         case 11:
         case 12:
             return [ toSelection(TalentsHelper.getTalent("Constantly Watching")) ];
         case 13:
         case 14:
-            return [ toSelection(TalentsHelper.getTalent("Fast Recovery (Special Rule, Creature)")) ];
+            return [ toSelection(TalentsHelper.getTalent("Fast Recovery")) ];
         case 15:
         case 16:
-            return [ toSelection(TalentsHelper.getTalent("Immune to Cold (Special Rule, Creature)")) ];
+            return [ toSelection(TalentsHelper.getTalent("Immune to Cold")) ];
         case 17:
-            return [ toSelection(TalentsHelper.getTalent("Resilient (Special Rule, Creature)")) ];
+            return [ toSelection(TalentsHelper.getTalent("Resilient")) ];
         case 18:
         case 19:
-            return [ toSelection(TalentsHelper.getTalent("Sturdy (Special Rule, Creature)")) ];
+            return [ toSelection(TalentsHelper.getTalent("Sturdy (Special Rule)")) ];
         case 20:
             let result = appendWithNoDuplicates([], generateRandomBasicCreatureTalent());
             result = appendWithNoDuplicates(result, generateRandomBasicCreatureTalent());
@@ -61,28 +61,28 @@ export const generateRandomCreatureDietTalent = (diet: DietType) => {
                     return [];
                 case 4:
                 case 5:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X")) ];
                 case 6:
                 case 7:
-                    return [ toSelection(TalentsHelper.getTalent("Resilient (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Resilient")) ];
                 case 8:
                 case 9:
-                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile")) ];
                 case 10:
                 case 11:
                 case 12:
                     return [ toSelection(TalentsHelper.getTalent("Constantly Watching")) ];
                 case 13:
                 case 14:
-                    return [ toSelection(TalentsHelper.getTalent("Threat Gesture (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Threat Gesture")) ];
                 case 15:
                 case 16:
-                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold")) ];
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Ram (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Ram")) ];
                 case 18:
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Sturdy (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Sturdy (Special Rule)")) ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureDietTalent(diet));
                     result = appendWithNoDuplicates(result, generateRandomCreatureDietTalent(diet));
@@ -98,29 +98,29 @@ export const generateRandomCreatureDietTalent = (diet: DietType) => {
                     return [];
                 case 4:
                 case 5:
-                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile")) ];
                 case 6:
                 case 7:
-                    return [ toSelection(TalentsHelper.getTalent("Resilient (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Resilient")) ];
                 case 8:
                 case 9:
-                    return [ toSelection(TalentsHelper.getTalent("Initiative X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Initiative X")) ];
                 case 10:
                 case 11:
-                    return [ toSelection(TalentsHelper.getTalent("Menacing X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Menacing X")) ];
                 case 12:
                 case 13:
-                    return [ toSelection(TalentsHelper.getTalent("Threat Gesture (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Threat Gesture")) ];
                 case 14:
                 case 15:
-                    return [ toSelection(TalentsHelper.getTalent("Immune to Pain (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Immune to Pain")) ];
                 case 16:
-                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold")) ];
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Ram (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Ram")) ];
                 case 18:
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Stealthy (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Stealthy")) ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureDietTalent(diet));
                     result = appendWithNoDuplicates(result, generateRandomCreatureDietTalent(diet));
@@ -136,32 +136,32 @@ export const generateRandomCreatureDietTalent = (diet: DietType) => {
                 case 3:
                     return [];
                 case 4:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Climber (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Climber")) ];
                 case 5:
-                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile")) ];
                 case 6:
                 case 7:
-                    return [ toSelection(TalentsHelper.getTalent("Resilient (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Resilient")) ];
                 case 8:
-                    return [ toSelection(TalentsHelper.getTalent("Ambush Hunter (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Ambush Hunter")) ];
                 case 9:
                 case 10:
                     return [ toSelection(TalentsHelper.getTalent("Constantly Watching")) ];
                 case 11:
-                    return [ toSelection(TalentsHelper.getTalent("Menacing X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Menacing X")) ];
                 case 12:
-                    return [ toSelection(TalentsHelper.getTalent("Instinctive Dodge (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Instinctive Dodge")) ];
                 case 13:
-                    return [ toSelection(TalentsHelper.getTalent("Threat Gesture (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Threat Gesture")) ];
                 case 14:
                 case 15:
-                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold")) ];
                 case 16:
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Ram (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Ram")) ];
                 case 18:
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Stealthy (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Stealthy")) ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureDietTalent(diet));
                     result = appendWithNoDuplicates(result, generateRandomCreatureDietTalent(diet));
@@ -191,20 +191,20 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
                     return [];
                 case 9:
                 case 10:
-                    return [ toSelection(TalentsHelper.getTalent("Initiative X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Initiative X")) ];
                 case 11:
                 case 12:
-                    return [ toSelection(TalentsHelper.getTalent("Ambush Hunter (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Ambush Hunter")) ];
                 case 13:
                 case 14:
                 case 15:
-                    return [ toSelection(TalentsHelper.getTalent("Night Vision (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Night Vision")) ];
                 case 16:
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X (Special Rule, Creature)"), "Blood Lust", 2, Attribute.Daring) ];
+                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X"), "Blood Lust", 2, Attribute.Daring) ];
                 case 18:
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Mimicry (Special Rule, Creature)"), "Sounds") ];
+                    return [ toSelection(TalentsHelper.getTalent("Mimicry"), "Sounds") ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
                     result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
@@ -220,31 +220,31 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
                     return [];
                 case 4:
                 case 5:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Chitinous Shell", 2) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X"), "Chitinous Shell", 2) ];
                 case 6:
                 case 7:
-                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous (Special Rule, Creature)"), "Poisonous") ];
+                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous"), "Poisonous") ];
                 case 8:
-                    return [ toSelection(TalentsHelper.getTalent("Flight (Special Rule, Creature)"), "Insect-like Wings") ];
+                    return [ toSelection(TalentsHelper.getTalent("Flight"), "Insect-like Wings") ];
                 case 9:
                 case 10:
-                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous (Special Rule, Creature)"), "Venemous") ];
+                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous"), "Venemous") ];
                 case 11:
                 case 12:
-                    return [ toSelection(TalentsHelper.getTalent("Wall Climber (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Wall Climber")) ];
                 case 13:
-                    return [ toSelection(TalentsHelper.getTalent("Web (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Web")) ];
                 case 14:
                 case 15:
-                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile")) ];
                 case 16:
-                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X (Special Rule, Creature)"), "Precise", 1, Attribute.Control) ];
+                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X"), "Precise", 1, Attribute.Control) ];
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum (Special Rule, Creature)"), "360-degree Vision") ];
+                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum"), "360-degree Vision") ];
                 case 18:
-                    return [ toSelection(TalentsHelper.getTalent("Attach (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Attach")) ];
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Whip-like Tail (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Whip-like Tail")) ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
                     result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
@@ -260,32 +260,32 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
                     return [];
                 case 4:
                 case 5:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Thick Fur", 1) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X"), "Thick Fur", 1) ];
                 case 6:
-                    return [ toSelection(TalentsHelper.getTalent("Tool User (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Tool User")) ];
                 case 7:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Bony Plates", 2) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X"), "Bony Plates", 2) ];
                 case 8:
-                    return [toSelection(TalentsHelper.getTalent("Camouflaged X (Special Rule, Creature)"), "Patterned Fur", 1) ];
+                    return [toSelection(TalentsHelper.getTalent("Camouflaged X"), "Patterned Fur", 1) ];
                 case 9:
                 case 10:
-                    return [ toSelection(TalentsHelper.getTalent("Flight (Special Rule, Creature)"), "Leathery Wings") ];
+                    return [ toSelection(TalentsHelper.getTalent("Flight"), "Leathery Wings") ];
                 case 11:
                 case 12:
-                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum (Special Rule, Creature)"), "Excellent Hearing") ];
+                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum"), "Excellent Hearing") ];
                 case 13:
-                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum (Special Rule, Creature)"), "Excellent Sense of Smell") ];
+                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum"), "Excellent Sense of Smell") ];
                 case 14:
                 case 15:
-                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile")) ];
                 case 16:
-                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X (Special Rule, Creature)"), "Rage", 2, Attribute.Daring) ];
+                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X"), "Rage", 2, Attribute.Daring) ];
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Menacing X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Menacing X")) ];
                 case 18:
-                    return [ toSelection(TalentsHelper.getTalent("Multi-Limbed (Special Rule, Creature)"), "Prehensile Trunk") ];
+                    return [ toSelection(TalentsHelper.getTalent("Multi-Limbed"), "Prehensile Trunk") ];
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Stink Attack (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Stink Attack")) ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
                     result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
@@ -301,30 +301,30 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
                     return [];
                 case 4:
                 case 5:
-                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous")) ];
                 case 6:
                 case 7:
-                    return [ toSelection(TalentsHelper.getTalent("Menacing X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Menacing X")) ];
                 case 8:
-                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Sense Spectrum")) ];
                 case 9:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X")) ];
                 case 10:
-                    return [ toSelection(TalentsHelper.getTalent("Coordination (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Coordination")) ];
                 case 11:
-                    return [ toSelection(TalentsHelper.getTalent("Resilient (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Resilient")) ];
                 case 12:
                 case 13:
-                    return [ toSelection(TalentsHelper.getTalent("Menacing X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Menacing X")) ];
                 case 14:
                 case 15:
-                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold")) ];
                 case 16:
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Immune to Poison (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Immune to Poison")) ];
                 case 18:
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Stealthy (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Stealthy")) ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
                     result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
@@ -340,27 +340,27 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
                 case 4:
                 case 5:
                 case 6:
-                    return [ toSelection(TalentsHelper.getTalent("Sturdy (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Sturdy (Special Rule)")) ];
                 case 7:
                 case 8:
-                    return [ toSelection(TalentsHelper.getTalent("Camouflaged X (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Camouflaged X")) ];
                 case 9:
                 case 10:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Thorny stem and roots") ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X"), "Thorny stem and roots") ];
                 case 11:
                 case 12:
-                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous (Special Rule, Creature)"), "Poisonous") ];
+                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous"), "Poisonous") ];
                 case 13:
                 case 14:
-                    return [ toSelection(TalentsHelper.getTalent("Entangling Vines (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Entangling Vines")) ];
                 case 15:
                 case 16:
-                    return [ toSelection(TalentsHelper.getTalent("Spore Attack (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Spore Attack")) ];
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Resilient (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Resilient")) ];
                 case 18:
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Pheromones (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Pheromones (Creature)")) ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
                     result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));
@@ -375,30 +375,30 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
                     return [];
                 case 4:
                 case 5:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Scaly Hide", 1) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X"), "Scaly Hide", 1) ];
                 case 6:
                 case 7:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Hardened Shell", 3) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X"), "Hardened Shell", 3) ];
                 case 8:
                 case 9:
-                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X (Special Rule, Creature)"), "Bone Plates", 2) ];
+                    return [ toSelection(TalentsHelper.getTalent("Natural Protection X"), "Bone Plates", 2) ];
                 case 10:
                 case 11:
-                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous (Special Rule, Creature)"), "Poisonous") ];
+                    return [ toSelection(TalentsHelper.getTalent("Toxic, Poisonous or Venomous"), "Poisonous") ];
                 case 12:
                 case 13:
-                    return [ toSelection(TalentsHelper.getTalent("Flight (Special Rule, Creature)"), "Leathery Wings") ];
+                    return [ toSelection(TalentsHelper.getTalent("Flight"), "Leathery Wings") ];
                 case 14:
                 case 15:
-                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Hyper Agile")) ];
                 case 16:
-                    return [ toSelection(TalentsHelper.getTalent("Fast Recovery (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Fast Recovery")) ];
                 case 17:
-                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Immune to Cold")) ];
                 case 18:
-                    return [ toSelection(TalentsHelper.getTalent("Corrosive Spit (Special Rule, Creature)")) ];
+                    return [ toSelection(TalentsHelper.getTalent("Corrosive Spit")) ];
                 case 19:
-                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X (Special Rule, Creature)"), undefined, 1, Attribute.Control) ];
+                    return [ toSelection(TalentsHelper.getTalent("Enhanced Attribute X"), undefined, 1, Attribute.Control) ];
                 case 20:
                     let result = appendWithNoDuplicates([], generateRandomCreatureTypeTalent(type));
                     result = appendWithNoDuplicates(result, generateRandomCreatureTypeTalent(type));

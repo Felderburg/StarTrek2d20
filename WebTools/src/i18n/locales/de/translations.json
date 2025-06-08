@@ -1492,6 +1492,7 @@
 
     "Talent.sturdy.description": "Sie verfügen über große körperliche Widerstandsfähigkeit und mentale Stärke und sind nur schwer unterzukriegen. Sie reduzieren die Kosten, um von dem Schadenseffekt Niederwerfen nicht niedergeworfen zu werden, um 1, bis zueinem Minimum von 0, und erhalten +1 Widerstand gegen alle nicht-tödlichen Angriffe.",
 
+    "Talent.sturdySpecialRule": "Unbeugsam",
     "Talent.supervisor": "Abteilungsleiter",
 
     "Talent.supervisor.description": "Die Verfügbare Crew Ihres Schiffes steigt um 1. Dieser Anstieg ist kumulativ, wenn mehrere Hauptfiguren der Gruppe dieses Talent wählen. Jede Hauptfigur kann es jedoch nur einmal wählen.",

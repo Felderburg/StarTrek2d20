@@ -6,7 +6,7 @@ import { ReadableTalentModel } from "./talentWriter";
 import { RoleModel, RolesHelper } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Character } from "../common/character";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT } from "../helpers/talents";
 import { BorgImplants } from "../helpers/borgImplant";
 import { Starship } from "../common/starship";
 import { Column } from "./column";
@@ -172,6 +172,21 @@ export const assembleWritableItems = (character: Character) => {
                 readableTalent.departments = character.talents
                     .filter(s => s.talent === talent.name && s.department != null)
                     .map(s => s.department);
+            } else if (talent.name === TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X) {
+                readableTalent.attributes = character.talents
+                    .filter(s => s.talent === talent.name && s.attribute != null)
+                    .map(s => s.attribute);
+                let temp =character.talents
+                    .filter(s => s.talent === talent.name && s.x != null)
+                if (temp.length) {
+                    readableTalent.x = temp[0].x;
+                }
+            } else if (talent.isXQualified) {
+                let temp =character.talents
+                    .filter(s => s.talent === talent.name && s.x != null)
+                if (temp.length) {
+                    readableTalent.x = temp[0].x;
+                }
             }
             result.push(readableTalent);
         }
