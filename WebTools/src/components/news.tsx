@@ -14,6 +14,13 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250608</b>
+            <ul>
+                <li>
+                    The latest update implements a feature voted on over at my Patreon:
+                    support for NPC creation.
+                </li>
+            </ul>
             <b>v1.250518</b>
             <ul>
                 <li>
@@ -275,93 +282,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                 </li>
                 <li>
                     An additional token uniform.
-                </li>
-            </ul>
-            <b>v1.241207</b>
-            <ul>
-                <li>
-                    Add civilian starship options (for 2nd edition).
-                </li>
-            </ul>
-            <b>v1.241201</b>
-            <ul>
-                <li>
-                    Some attention to some esoteric species.
-                </li>
-            </ul>
-            <b>v1.241124</b>
-            <ul>
-                <li>
-                    Very minor tweaks and bug fixes.
-                </li>
-            </ul>
-            <b>v1.241122</b>
-            <ul>
-                <li>
-                    Minor text changes.
-                </li>
-            </ul>
-            <b>v1.241116</b>
-            <ul>
-                <li>
-                    A few tweaks to tokens, and some typo fixes.
-                </li>
-            </ul>
-            <b>v1.241115</b>
-            <ul>
-                <li>
-                    More bug fixes. It's never-ending!
-                </li>
-            </ul>
-            <b>v1.241111</b>
-            <ul>
-                <li>
-                    Minor improvements and bug fixes, again.
-                </li>
-            </ul>
-            <b>v1.241107</b>
-            <ul>
-                <li>
-                    Minor bug fixes and clean-up.
-                </li>
-            </ul>
-            <b>v1.241103</b>
-            <ul>
-                <li>
-                    Minor starship updates.
-                </li>
-                <li>
-                    Some additional support for the <cite>Federation-Klingon War</cite> book.
-                </li>
-            </ul>
-            <b>v1.241027</b>
-            <ul>
-                <li>
-                    A few minor improvements involving random starships.
-                </li>
-            </ul>
-            <b>v1.241021</b>
-            <ul>
-                <li>
-                    Quick bug fixes.
-                </li>
-            </ul>
-            <b>v1.241019</b>
-            <ul>
-                <li>
-                    Some bug fixes and starship sheet updates.
-                </li>
-            </ul>
-            <b>v1.241017</b>
-            <ul>
-                <li>
-                    Minor bug fix.
-                </li>
-            </ul>
-            <b>v1.241013</b>
-            <ul>
-                <li>
-                    Additional minor improvements.
                 </li>
             </ul>
 

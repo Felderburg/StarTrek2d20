@@ -22,7 +22,7 @@ import { allSystems, System, systemByName } from './systems';
 import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
-import { CaptureType, CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadType, EnergyLoadTypeModel, MineType, MineTypeModel, TorpedoLoadType, TorpedoLoadTypeModel, UsageCategory, Weapon, WeaponType } from './weapons';
+import { CaptureType, CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadType, EnergyLoadTypeModel, MineType, MineTypeModel, PersonalWeapons, PersonalWeaponType, TorpedoLoadType, TorpedoLoadTypeModel, UsageCategory, Weapon, WeaponType } from './weapons';
 import { Role, RolesHelper } from './roles';
 import { BorgImplantType, BorgImplants } from './borgImplant';
 import { Specialization, allSpecializations } from '../common/specializationEnum';
@@ -279,7 +279,10 @@ class Marshaller {
                         }
                     })
                 }
-
+                if (character.npcGenerationStep.weapons?.length) {
+                    block["weapons"] = character.npcGenerationStep.weapons
+                        .map(w => PersonalWeaponType[w]);
+                }
                 sheet["npc"] = block;
             }
         }
@@ -1575,6 +1578,14 @@ class Marshaller {
                     }
                 });
             }
+            if (json.npc.weapons) {
+                PersonalWeapons.instance(result.version).allTypes().forEach(w => {
+                    if (json.npc.weapons.includes(PersonalWeaponType[w])) {
+                        result.npcGenerationStep.weapons.push(w);
+                    }
+                });
+            }
+
         }
         if (json.supporting && result.stereotype === Stereotype.SupportingCharacter) {
             if (result.supportingStep == null) {

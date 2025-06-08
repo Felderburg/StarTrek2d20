@@ -5,15 +5,13 @@ import { ICharacterProperties } from "../../solo/page/soloCharacterProperties";
 import { useState } from "react";
 import { CheckBox } from "../../components/checkBox";
 import { Button } from "react-bootstrap";
-import store from "../../state/store";
-import { addNpcCharacterEquipment } from "../../state/characterActions";
 
-interface IAddWeaponViewProperties extends ICharacterProperties {
+interface IAddEquipmentViewProperties extends ICharacterProperties {
     onClose: () => void;
     addEquipment: (equipment: EquipmentType|EquipmentModel) => void;
 }
 
-export const NpcAddEquipmentView: React.FC<IAddWeaponViewProperties> = ({character, onClose, addEquipment}) => {
+export const NpcAddEquipmentView: React.FC<IAddEquipmentViewProperties> = ({character, onClose, addEquipment}) => {
 
     const { t } = useTranslation();
     const [ selectedType, setSelectedType ] = useState<EquipmentType|undefined>();

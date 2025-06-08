@@ -5029,6 +5029,10 @@ export class Talents {
             talent = this.getTalent("Advanced Emergency Crew Holograms");
         } else if (talent === null && name === "High Resolution Sensors") {
             talent = this.getTalent("High-Resolution Sensors");
+        } else if (talent === null && name === "Pheromones (Special Rule, Creature)") {
+            talent = this.getTalent("Pheromones (Creature)");
+        } else if (talent === null && name.endsWith(" (Special Rule, Creature)")) {
+            talent = this.getTalent(name.replace(" (Special Rule, Creature)", ""));
         }
 
         if (talent === null) {

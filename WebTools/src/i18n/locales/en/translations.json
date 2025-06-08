@@ -2755,6 +2755,7 @@
     "Talent.camouflagedX": "Camouflaged X",
 
     "Talent.camouflagedX.description2e": "The Difficulty of any task to locate the being is increased\nby X.",
+    "Talent.camouflagedX.error": "Please select a value for X.",
 
     "Talent.captainsYacht": "Captain's Yacht",
 
@@ -3102,6 +3103,7 @@
     "Talent.extraordinaryAttributeX": "Extraordinary Attribute X",
 
     "Talent.extraordinaryAttributeX.description2e": "One or more of the creature’s attributes are far beyond the normal range for humanoids. This is indicated by a number, which is added as automatic successes on tasks using that attribute. For example, a creature with Extraordinary Reason 1 gains one success on all tasks using Reason. ",
+    "Talent.extraordinaryAttributeX.error": "The talent \"Extraordinary Attribute X\" requires you to select both an attribute and a value for X.",
 
     "Talent.extraSensoryPerception": "Extrasensory Perception",
 
@@ -3339,6 +3341,7 @@
     "Talent.initiativeX": "Initiative X",
 
     "Talent.initiativeX.description2e": "The creature is fast enough to act more than once per round. Unless otherwise noted, creatures have Initiative 1; this creature may take X turns each round.",
+    "Talent.initiativeX.error": "Please select a value for X.",
 
     "Talent.insightfulGuidance": "Insightful Guidance",
 
@@ -3440,6 +3443,7 @@
     "Talent.menacingX": "Menacing X",
 
     "Talent.menacingX.description2e": "When a creature with this rule enters a scene, immediately add X Threat. This applies whether the NPC is an adversary or an ally.",
+    "Talent.menacingX.error": "Please select a value for X.",
 
     "Talent.mentalRepository": "Mental Repository",
 
@@ -3510,6 +3514,7 @@
     "Talent.naturalProtectionX": "Natural Protection X",
 
     "Talent.naturalProtectionX.description2e": "The creature has X Protection.",
+    "Talent.naturalProtectionX.error": "Please select a value for X.",
 
     "Talent.nervePinch": "Nerve Pinch",
 

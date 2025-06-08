@@ -10,7 +10,7 @@ import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
-import { addNpcCharacterEquipment, removeNpcCharacterEquipment, setCharacterName, setCharacterPronouns } from "../../state/characterActions";
+import { addNpcCharacterEquipment, addNpcCharacterWeapon, removeNpcCharacterEquipment, setCharacterName, setCharacterPronouns } from "../../state/characterActions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { ANY_NAMES, SpeciesHelper } from "../../helpers/species";
@@ -18,6 +18,8 @@ import { IconButton } from "../../components/iconButton";
 import { ModalControl } from "../../components/modal";
 import { NpcAddEquipmentView } from "../view/npcAddEquipmentView";
 import { EquipmentModel, EquipmentType } from "../../helpers/equipment";
+import { PersonalWeaponType } from "../../helpers/weapons";
+import { NpcAddWeaponView } from "../view/npcAddWeaponView";
 
 const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -43,6 +45,9 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
         store.dispatch(removeNpcCharacterEquipment(equipment.type === EquipmentType.Other ? equipment : equipment.type));
     }
 
+    const removeWeapon = (weapon: PersonalWeaponType) => {
+    }
+
     const renderEquipment = () => {
         const automaticEquipment = character.baseEquipmentModels.map(e => e.type);
         const result = character.equipmentModels.map((e,i) => (<tr key={"equip-" + i}>
@@ -61,8 +66,32 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
         </table>)
     }
 
+    const renderWeapons = () => {
+        const result = character.determineWeapons().map((w,i) => (<tr key={"weapon-" + i}>
+            {!character.npcGenerationStep?.weapons?.includes(w.personalWeaponType)
+            ? (<td colSpan={2} className="py-2"><p className="mb-0">{w.name}</p></td>)
+            : (<><td>
+                <p className="mb-0">{w.name}</p>
+            </td>
+            <td className="text-end"><IconButton icon="trash" variant="danger" onClick={() => removeWeapon(w.personalWeaponType)} /></td>
+            </>)}
+        </tr>));
+        return (<table className="selection-list">
+            <tbody>
+                {result}
+            </tbody>
+        </table>)
+    }
+
     const closeModal = () => {
         ModalControl.hide();
+    }
+
+    const showWeaponModal = () => {
+        ModalControl.show("lg", () => closeModal(),
+            <NpcAddWeaponView character={character} onClose={() => closeModal()}
+            addWeapon={w => store.dispatch(addNpcCharacterWeapon(w)) } />,
+            t("Construct.system.weapons"));
     }
 
     const showEquipmentModal = () => {
@@ -114,7 +143,17 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
 
                             {renderEquipment()}
                         </div>
+
+                        <div className="col-lg-6 my-5">
+                            <Header level={2}>{t('Construct.other.weapons')}</Header>
+                            <div className="text-end">
+                                <IconButton className="mt-0" onClick={() => showWeaponModal()} icon="plus-circle" title="Add" />
+                            </div>
+
+                            {renderWeapons()}
+                        </div>
                     </div>
+
 
                     <div className="button-container mt-4">
                         <Button size="sm" className="me-2 mb-2" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>

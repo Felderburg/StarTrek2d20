@@ -10,7 +10,7 @@ import {CharacterType} from './characterType';
 import { AlliedMilitary, AlliedMilitaryType } from '../helpers/alliedMilitary';
 import { Government, Polity } from '../helpers/governments';
 import AgeHelper, { Age } from '../helpers/age';
-import { Weapon, PersonalWeapons } from '../helpers/weapons';
+import { Weapon, PersonalWeapons, PersonalWeaponType } from '../helpers/weapons';
 import { Construct, Stereotype } from './construct';
 import { SpeciesHelper } from '../helpers/species';
 import { Rank, RanksHelper } from '../helpers/ranks';
@@ -361,6 +361,7 @@ export class NpcGenerationStep {
     public departments: number[] = [];
     public focuses: string[] = [];
     public equipment: (EquipmentType|EquipmentModel)[] = [];
+    public weapons: PersonalWeaponType[] = [];
 
     constructor(type?: NpcType) {
         this.type = type;
@@ -377,6 +378,7 @@ export class NpcGenerationStep {
         result.departments = [...this.departments];
         result.focuses = [...this.focuses];
         result.equipment = [...this.equipment];
+        result.weapons = [...this.weapons];
         return result;
     }
 }
@@ -1039,10 +1041,19 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 result.push(PersonalWeapons.instance(this.version).disruptorPistol);
                 result.push(PersonalWeapons.instance(this.version).dagger);
             } else if (this.type !== CharacterType.Child && this.type !== CharacterType.Civilian
-                    && this.type !== CharacterType.AmbassadorDiplomat) {
+                    && this.type !== CharacterType.AmbassadorDiplomat
+                    && (this.stereotype !== Stereotype.Npc || this.npcGenerationStep?.specialization !== null)) {
                 result.push(PersonalWeapons.instance(this.version).disruptorPistol);
             }
         }
+
+        this.npcGenerationStep?.weapons?.forEach(t => {
+            let weapon = PersonalWeapons.instance(this.version).getWeaponByType(t);
+            if (weapon) {
+                result.push(weapon);
+            }
+        });
+
         return result;
     }
 
@@ -1298,7 +1309,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
             allFocuses = result;
         } else if (this.stereotype === Stereotype.Npc) {
-            allFocuses = [...(this.npcGenerationStep?.focuses ?? [])];
+            allFocuses.push(...this.speciesStep.abilityOptions.focuses);
+            allFocuses.push(...(this.npcGenerationStep?.focuses ?? []));
         } else {
             allFocuses = [...this._focuses];
         }

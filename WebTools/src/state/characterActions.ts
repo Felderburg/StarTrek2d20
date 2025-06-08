@@ -16,6 +16,7 @@ import { CharacterAdvancementChoice } from "../modify/model/characterAdvancement
 import { SelectedTalent } from "../common/selectedTalent";
 import { ModificationType } from "../modify/model/modificationType";
 import { EquipmentModel, EquipmentType } from "../helpers/equipment";
+import { PersonalWeaponType } from "../helpers/weapons";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -59,6 +60,7 @@ export const ADD_NPC_CHARACTER_VALUE = "SET_NPC_CHARACTER_VALUE";
 export const SET_NPC_CHARACTER_ATTRIBUTES = "SET_NPC_CHARACTER_ATTRIBUTES";
 export const ADD_NPC_CHARACTER_EQUIPMENT = "ADD_NPC_CHARACTER_EQUIPMENT";
 export const REMOVE_NPC_CHARACTER_EQUIPMENT = "REMOVE_NPC_CHARACTER_EQUIPMENT";
+export const ADD_NPC_CHARACTER_WEAPON = "ADD_NPC_CHARACTER_WEAPON";
 export const SET_NPC_CHARACTER_TALENTS = "SET_NPC_CHARACTER_TALENTS";
 
 export enum StepContext {
@@ -158,6 +160,14 @@ export function addNpcCharacterEquipment(equipment: EquipmentType|EquipmentModel
     let payload = { equipment: equipment };
     return {
        type: ADD_NPC_CHARACTER_EQUIPMENT,
+       payload: payload
+    }
+}
+
+export function addNpcCharacterWeapon(weapon: PersonalWeaponType) {
+    let payload = { weapon: weapon };
+    return {
+       type: ADD_NPC_CHARACTER_WEAPON,
        payload: payload
     }
 }

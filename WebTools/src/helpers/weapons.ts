@@ -384,6 +384,7 @@ export class Weapon {
     _effects: WeaponQuality[];
     hands?: number;
     injuryType?: InjuryType;
+    personalWeaponType?: PersonalWeaponType;
 
     constructor(usage: UsageCategory, name: string, dice: number, type: WeaponType,
             loadType?: EnergyLoadTypeModel|CaptureTypeModel|TorpedoLoadTypeModel|MineTypeModel,
@@ -577,12 +578,15 @@ export class Weapon {
         return this.type === WeaponType.CAPTURE;
     }
 
-    static createCharacterWeapon(name: string, injuryType: InjuryType, dice: number, effects: WeaponQuality[], qualities: WeaponQuality[], type: WeaponType, hands: number = 1) {
+    static createCharacterWeapon(name: string, injuryType: InjuryType, dice: number,
+            effects: WeaponQuality[], qualities: WeaponQuality[], type: WeaponType,
+            hands: number = 1, personalWeaponType?: PersonalWeaponType) {
         let result = new Weapon(UsageCategory.Character, name, dice, type);
         result._qualities = qualities;
         result._effects = effects;
         result.hands = hands;
         result.injuryType = injuryType;
+        result.personalWeaponType = personalWeaponType;
         return result;
     }
 
@@ -741,10 +745,37 @@ const StarshipWeaponRegistry = new StarshipWeaponList();
 
 export default StarshipWeaponRegistry;
 
+
+export enum PersonalWeaponType {
+    Phaser1,
+    Phaser2,
+    PhaserRifle,
+    UshaanTor,
+    MekLeth,
+    BatLeth,
+    TzenkethiHeavyBlade,
+    ParticleRifle,
+    PulseGrenade,
+    DisruptorPistol,
+    DisruptorRifle,
+    DkTagh,
+    SonaPlasmaDisruptorShotgun,
+    JemHadarPlasmaPistol,
+    JemHadarPlasmaRifle,
+    EnergyWhip,
+    Dagger,
+}
+
 export class PersonalWeapons {
 
     private static _instanceVersion1: PersonalWeaponsVersion1;
     private static _instance: PersonalWeapons;
+
+    allTypes(): PersonalWeaponType[] {
+        return Object.keys(PersonalWeaponType).filter((item) => {
+            return !isNaN(Number(item));
+        }).map(item => Number(item));
+    }
 
     get unarmedStrike() {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.strike.name'), InjuryType.Stun, 2,
@@ -765,53 +796,86 @@ export class PersonalWeapons {
     }
 
     get phaser1() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.phaser1.name'), InjuryType.StunOrDeadly, 3, [], [new WeaponQuality(Quality.Charge), new WeaponQuality(Quality.Hidden, 1)], WeaponType.ENERGY);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.phaser1.name'), InjuryType.StunOrDeadly, 3, [], [new WeaponQuality(Quality.Charge), new WeaponQuality(Quality.Hidden, 1)], WeaponType.ENERGY, 1, PersonalWeaponType.Phaser1);
     }
 
     get phaser2() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.phaser2.name'), InjuryType.StunOrDeadly, 4, [], [new WeaponQuality(Quality.Charge)], WeaponType.ENERGY);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.phaser2.name'), InjuryType.StunOrDeadly, 4, [], [new WeaponQuality(Quality.Charge)], WeaponType.ENERGY, 1, PersonalWeaponType.Phaser2);
     }
 
     get ushaanTor() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.ushaantor.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.ushaantor.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE, 1, PersonalWeaponType.UshaanTor);
     }
 
     get mekLeth() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.mekleth.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE, 1);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.mekleth.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE, 1, PersonalWeaponType.MekLeth);
     }
 
     get batLeth() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.batleth.name'), InjuryType.Deadly, 3, [new WeaponQuality(Quality.Intense)], [], WeaponType.MELEE, 2);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.batleth.name'), InjuryType.Deadly, 3, [new WeaponQuality(Quality.Intense)], [], WeaponType.MELEE, 2, PersonalWeaponType.BatLeth);
     }
 
     get tzenkethiHeavyBlade() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.tzenkethiHeavyBlade.name'), InjuryType.Deadly, 3, [new WeaponQuality(Quality.Intense)], [], WeaponType.MELEE, 2);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.tzenkethiHeavyBlade.name'), InjuryType.Deadly, 3, [new WeaponQuality(Quality.Intense)], [], WeaponType.MELEE, 2, PersonalWeaponType.TzenkethiHeavyBlade);
     }
 
     get particleRifle() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.particleRifle.name'), InjuryType.StunOrDeadly, 4, [], [new WeaponQuality(Quality.Accurate)], WeaponType.ENERGY, 2);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.particleRifle.name'), InjuryType.StunOrDeadly, 4, [], [new WeaponQuality(Quality.Accurate)], WeaponType.ENERGY, 2, PersonalWeaponType.ParticleRifle);
     }
 
     get dkTagh() {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.dktahg.name'), InjuryType.Deadly, 2,
             [], [new WeaponQuality(Quality.Hidden, 1)],
-            WeaponType.MELEE);
+            WeaponType.MELEE, 1, PersonalWeaponType.DkTagh);
     }
 
     get disruptorPistol() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.disruptor.name'), InjuryType.Deadly, 4, [new WeaponQuality(Quality.Intense)], [], WeaponType.ENERGY);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.disruptor.name'), InjuryType.Deadly, 4, [new WeaponQuality(Quality.Intense)], [], WeaponType.ENERGY, 1, PersonalWeaponType.DisruptorPistol);
     }
 
     get sonaPlasmaDisruptorShotgun() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.sonaPlasmaDisruptorShotgun.name'), InjuryType.Deadly, 5, [new WeaponQuality(Quality.Intense), new WeaponQuality(Quality.Debilitating), new WeaponQuality(Quality.Piercing, 1)], [], WeaponType.ENERGY);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.sonaPlasmaDisruptorShotgun.name'), InjuryType.Deadly, 5, [new WeaponQuality(Quality.Intense), new WeaponQuality(Quality.Debilitating), new WeaponQuality(Quality.Piercing, 1)], [], WeaponType.ENERGY, 2, PersonalWeaponType.SonaPlasmaDisruptorShotgun);
     }
 
     get energyWhip() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.energyWhip.name'), InjuryType.Stun, 4, [new WeaponQuality(Quality.Intense)], [], WeaponType.ENERGY);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.energyWhip.name'), InjuryType.Stun, 4, [new WeaponQuality(Quality.Intense)], [], WeaponType.ENERGY, 1, PersonalWeaponType.EnergyWhip);
     }
 
     get dagger() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.dagger.name'), InjuryType.Deadly, 2, [], [new WeaponQuality(Quality.Hidden, 1)], WeaponType.MELEE);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.dagger.name'), InjuryType.Deadly, 2, [], [new WeaponQuality(Quality.Hidden, 1)], WeaponType.MELEE, 1, PersonalWeaponType.Dagger);
+    }
+
+    getWeaponByType(type: PersonalWeaponType) {
+        switch (type) {
+        case PersonalWeaponType.Phaser1:
+            return this.phaser1;
+        case PersonalWeaponType.Phaser2:
+            return this.phaser2;
+        case PersonalWeaponType.UshaanTor:
+            return this.ushaanTor;
+        case PersonalWeaponType.MekLeth:
+            return this.mekLeth;
+        case PersonalWeaponType.BatLeth:
+            return this.batLeth;
+        case PersonalWeaponType.TzenkethiHeavyBlade:
+            return this.tzenkethiHeavyBlade;
+        case PersonalWeaponType.ParticleRifle:
+            return this.particleRifle;
+        case PersonalWeaponType.DisruptorPistol:
+            return this.disruptorPistol;
+        case PersonalWeaponType.TzenkethiHeavyBlade:
+            return this.tzenkethiHeavyBlade;
+        case PersonalWeaponType.DkTagh:
+            return this.tzenkethiHeavyBlade;
+        case PersonalWeaponType.SonaPlasmaDisruptorShotgun:
+            return this.sonaPlasmaDisruptorShotgun;
+        case PersonalWeaponType.Dagger:
+            return this.dagger;
+        case PersonalWeaponType.EnergyWhip:
+            return this.energyWhip;
+        default:
+            return undefined;
+        }
     }
 
     static instance(version: number) {

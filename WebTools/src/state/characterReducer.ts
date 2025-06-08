@@ -12,7 +12,7 @@ import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_UNTAPPED_POTENTIAL } from "../he
 import { Track } from "../helpers/trackEnum";
 import { CharacterAdvancementChoice } from "../modify/model/characterAdvancementChoice";
 import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_CAREER_EVENT, ADD_CHARACTER_SPECIES_ABILITY_FOCUS, ADD_CHARACTER_TALENT, ADD_CHARACTER_TALENT_FOCUS,
-    ADD_CHARACTER_TALENT_VALUE, ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE, ADD_NPC_CHARACTER_EQUIPMENT, ADD_NPC_CHARACTER_VALUE, MODIFY_CHARACTER_ADD_ADVANCEMENT, MODIFY_CHARACTER_ATTRIBUTE,
+    ADD_CHARACTER_TALENT_VALUE, ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE, ADD_NPC_CHARACTER_EQUIPMENT, ADD_NPC_CHARACTER_VALUE, ADD_NPC_CHARACTER_WEAPON, MODIFY_CHARACTER_ADD_ADVANCEMENT, MODIFY_CHARACTER_ATTRIBUTE,
     MODIFY_CHARACTER_DISCIPLINE, MODIFY_CHARACTER_RANK, MODIFY_CHARACTER_REPUTATION, REMOVE_CHARACTER_BORG_IMPLANT,
     REMOVE_NPC_CHARACTER_EQUIPMENT,
     SET_CHARACTER, SET_CHARACTER_ADDITIONAL_TRAITS, SET_CHARACTER_AGE, SET_CHARACTER_ASSIGNED_SHIP,
@@ -342,9 +342,21 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
             if (temp.npcGenerationStep == null) {
                 temp.npcGenerationStep = new NpcGenerationStep();
             }
-            console.log("Add: " + action.payload.equipment);
 
             temp.npcGenerationStep.equipment.push(action.payload.equipment);
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case ADD_NPC_CHARACTER_WEAPON: {
+            let temp = state.currentCharacter.copy();
+            if (temp.npcGenerationStep == null) {
+                temp.npcGenerationStep = new NpcGenerationStep();
+            }
+
+            temp.npcGenerationStep.weapons.push(action.payload.weapon);
             return {
                 ...state,
                 currentCharacter: temp,
