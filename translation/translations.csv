@@ -3809,13 +3809,19 @@ Weapon.common.severity,Severity,,,,,,
 Weapon.common.size,Size {{hands}}H,,,Tamaño {{hands}} manos,Taile {{hands}} Mains,,Tamanho {{hands}}H
 Weapon.personal.dagger.name,Dagger,,Dolch,Daga,Dague,Клинок,Adaga
 Weapon.personal.energyWhip.name,Energy Whip,,Energiepeitsche,Látigo energético,Fouet énérgétique,Энергитический хлыст,Chicote de Energia
+Weapon.personal.phasePistol.name,Phase Pistol,,,,,,
 Weapon.personal.phaser1.name,Phaser type-1,,"Phaser, Typ 1",Fáser tipo-1,Phaser type-1,Фазер первого типа,Fêiser Tipo-1
 Weapon.personal.phaser2.name,Phaser type-2,,"Phaser, Typ 2",Fáser tipo-2,Phaser type-2,Фазер второго типа,Fêiser Tipo-2
+Weapon.personal.phaserRifle.name,Phaser Rifle,,,,,,
+Weapon.personal.pulseGrenade.name,Pulse Grenade,,,,,,
+Weapon.personal.blade.name,Blade,,,,,,
+Weapon.personal.heavyBlade.name,Heavy Blade,,,,,,
 Weapon.personal.strike.name,Unarmed Strike,,Unbewaffneter Angriff,Ataque Desarmado,Frappe à mains nues,Рукопашная атака,Golpe Desarmado
 Weapon.personal.batleth.name,Bat'leth,,Bat'leth,Bat'leth,Bat'leth,Бат'лет,Bat'leth
 Weapon.personal.dktahg.name,d’k tahg dagger,,D'k tahg Dolch,Daga d’k tahg,Dague d’k tahg,,Adaga d’k tahg 
 Weapon.personal.ushaantor.name,Ushaan-tor,,Ushaan-tor,Ushaan-tor,Ushaan-tor,Ушаан-тор,Ushaan-tor
 Weapon.personal.disruptor.name,Disruptor Pistol,,Disruptorpistole,Pistola Disruptora,Pistolet Disrupteur,Дизрапторный пистолет,Pistola Disruptora
+Weapon.personal.disruptorRifle.name,Disruptor Rifle,,,,,,
 Weapon.personal.mekleth.name,Mek'leth,,,,,,
 Weapon.personal.particleRifle.name,Particle Rifle,,Partikelgewehr,Rifle de Partículas,Fusil à particules,,Rifle de Partícula
 Weapon.personal.sonaPlasmaDisruptorShotgun.name,Son'a Plasma Disruptor Shotgun,,Son'a Plasma-Disruptor-Schrotflinte,Disruptora de plasma Son'a,Disrupteur à plasma Son'a,,Espingarda de Plasma Disruptora Son'a

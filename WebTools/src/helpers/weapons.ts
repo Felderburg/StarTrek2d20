@@ -750,6 +750,9 @@ export enum PersonalWeaponType {
     Phaser1,
     Phaser2,
     PhaserRifle,
+    PhasePistol,
+    Blade,
+    HeavyBlade,
     UshaanTor,
     MekLeth,
     BatLeth,
@@ -795,6 +798,10 @@ export class PersonalWeapons {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.strike.name'), InjuryType.Stun, 2, [new WeaponQuality(Quality.Debilitating)], [], WeaponType.MELEE);
     }
 
+    get phasePistol() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.phasePistol.name'), InjuryType.StunOrDeadly, 3, [], [], WeaponType.ENERGY, 1, PersonalWeaponType.PhasePistol);
+    }
+
     get phaser1() {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.phaser1.name'), InjuryType.StunOrDeadly, 3, [], [new WeaponQuality(Quality.Charge), new WeaponQuality(Quality.Hidden, 1)], WeaponType.ENERGY, 1, PersonalWeaponType.Phaser1);
     }
@@ -803,12 +810,28 @@ export class PersonalWeapons {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.phaser2.name'), InjuryType.StunOrDeadly, 4, [], [new WeaponQuality(Quality.Charge)], WeaponType.ENERGY, 1, PersonalWeaponType.Phaser2);
     }
 
+    get phaserRifle() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.phaserRifle.name'), InjuryType.StunOrDeadly, 5, [], [new WeaponQuality(Quality.Accurate), new WeaponQuality(Quality.Charge)], WeaponType.ENERGY, 2, PersonalWeaponType.PhaserRifle);
+    }
+
+    get pulseGrenade() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.pulseGrenade.name'), InjuryType.StunOrDeadly, 5, [], [new WeaponQuality(Quality.Grenade), new WeaponQuality(Quality.Area)], WeaponType.ENERGY, 1, PersonalWeaponType.PulseGrenade);
+    }
+
     get ushaanTor() {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.ushaantor.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE, 1, PersonalWeaponType.UshaanTor);
     }
 
+    get blade() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.blade.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE, 1, PersonalWeaponType.Blade);
+    }
+
     get mekLeth() {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.mekleth.name'), InjuryType.Deadly, 3, [], [], WeaponType.MELEE, 1, PersonalWeaponType.MekLeth);
+    }
+
+    get heavyBlade() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.heavyBlade.name'), InjuryType.Deadly, 3, [new WeaponQuality(Quality.Intense)], [], WeaponType.MELEE, 2, PersonalWeaponType.HeavyBlade);
     }
 
     get batLeth() {
@@ -833,6 +856,10 @@ export class PersonalWeapons {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.disruptor.name'), InjuryType.Deadly, 4, [new WeaponQuality(Quality.Intense)], [], WeaponType.ENERGY, 1, PersonalWeaponType.DisruptorPistol);
     }
 
+    get disruptorRifle() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.disruptorRifle.name'), InjuryType.Deadly, 4, [new WeaponQuality(Quality.Accurate), new WeaponQuality(Quality.Intense)], [], WeaponType.ENERGY, 1, PersonalWeaponType.DisruptorRifle);
+    }
+
     get sonaPlasmaDisruptorShotgun() {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.sonaPlasmaDisruptorShotgun.name'), InjuryType.Deadly, 5, [new WeaponQuality(Quality.Intense), new WeaponQuality(Quality.Debilitating), new WeaponQuality(Quality.Piercing, 1)], [], WeaponType.ENERGY, 2, PersonalWeaponType.SonaPlasmaDisruptorShotgun);
     }
@@ -847,12 +874,22 @@ export class PersonalWeapons {
 
     getWeaponByType(type: PersonalWeaponType) {
         switch (type) {
+        case PersonalWeaponType.PhasePistol:
+            return this.phasePistol;
         case PersonalWeaponType.Phaser1:
             return this.phaser1;
         case PersonalWeaponType.Phaser2:
             return this.phaser2;
+        case PersonalWeaponType.PhaserRifle:
+            return this.phaserRifle;
+        case PersonalWeaponType.PulseGrenade:
+            return this.pulseGrenade;
         case PersonalWeaponType.UshaanTor:
             return this.ushaanTor;
+        case PersonalWeaponType.HeavyBlade:
+            return this.heavyBlade;
+        case PersonalWeaponType.Blade:
+            return this.blade;
         case PersonalWeaponType.MekLeth:
             return this.mekLeth;
         case PersonalWeaponType.BatLeth:
@@ -863,6 +900,8 @@ export class PersonalWeapons {
             return this.particleRifle;
         case PersonalWeaponType.DisruptorPistol:
             return this.disruptorPistol;
+        case PersonalWeaponType.DisruptorRifle:
+            return this.disruptorRifle;
         case PersonalWeaponType.TzenkethiHeavyBlade:
             return this.tzenkethiHeavyBlade;
         case PersonalWeaponType.DkTagh:

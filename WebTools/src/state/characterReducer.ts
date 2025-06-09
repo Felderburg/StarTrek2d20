@@ -15,6 +15,7 @@ import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_CAREER_EVENT, ADD_CHARACTER_S
     ADD_CHARACTER_TALENT_VALUE, ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE, ADD_NPC_CHARACTER_EQUIPMENT, ADD_NPC_CHARACTER_VALUE, ADD_NPC_CHARACTER_WEAPON, MODIFY_CHARACTER_ADD_ADVANCEMENT, MODIFY_CHARACTER_ATTRIBUTE,
     MODIFY_CHARACTER_DISCIPLINE, MODIFY_CHARACTER_RANK, MODIFY_CHARACTER_REPUTATION, REMOVE_CHARACTER_BORG_IMPLANT,
     REMOVE_NPC_CHARACTER_EQUIPMENT,
+    REMOVE_NPC_CHARACTER_WEAPON,
     SET_CHARACTER, SET_CHARACTER_ADDITIONAL_TRAITS, SET_CHARACTER_AGE, SET_CHARACTER_ASSIGNED_SHIP,
     SET_CHARACTER_CAREER_EVENT_TRAIT, SET_CHARACTER_CAREER_LENGTH, SET_CHARACTER_EARLY_OUTLOOK, SET_CHARACTER_EDUCATION,
     SET_CHARACTER_ENVIRONMENT, SET_CHARACTER_FINISHING_TOUCHES, SET_CHARACTER_FOCUS, SET_CHARACTER_HOUSE,
@@ -377,6 +378,19 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                             return e !== equipment;
                         }
                     });
+            }
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case REMOVE_NPC_CHARACTER_WEAPON: {
+            let temp = state.currentCharacter.copy();
+            let weapon = action.payload.weapon;
+            if (temp.npcGenerationStep?.weapons != null) {
+                temp.npcGenerationStep.weapons = temp.npcGenerationStep.weapons
+                    .filter(e => e !== weapon );
             }
             return {
                 ...state,

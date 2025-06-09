@@ -10,7 +10,7 @@ import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
-import { addNpcCharacterEquipment, addNpcCharacterWeapon, removeNpcCharacterEquipment, setCharacterName, setCharacterPronouns } from "../../state/characterActions";
+import { addNpcCharacterEquipment, addNpcCharacterWeapon, removeNpcCharacterEquipment, removeNpcCharacterWeapon, setCharacterName, setCharacterPronouns } from "../../state/characterActions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { ANY_NAMES, SpeciesHelper } from "../../helpers/species";
@@ -46,6 +46,7 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
     }
 
     const removeWeapon = (weapon: PersonalWeaponType) => {
+        store.dispatch(removeNpcCharacterWeapon(weapon));
     }
 
     const renderEquipment = () => {

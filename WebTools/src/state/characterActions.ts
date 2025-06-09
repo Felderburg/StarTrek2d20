@@ -60,6 +60,7 @@ export const ADD_NPC_CHARACTER_VALUE = "SET_NPC_CHARACTER_VALUE";
 export const SET_NPC_CHARACTER_ATTRIBUTES = "SET_NPC_CHARACTER_ATTRIBUTES";
 export const ADD_NPC_CHARACTER_EQUIPMENT = "ADD_NPC_CHARACTER_EQUIPMENT";
 export const REMOVE_NPC_CHARACTER_EQUIPMENT = "REMOVE_NPC_CHARACTER_EQUIPMENT";
+export const REMOVE_NPC_CHARACTER_WEAPON = "REMOVE_NPC_CHARACTER_WEAPON";
 export const ADD_NPC_CHARACTER_WEAPON = "ADD_NPC_CHARACTER_WEAPON";
 export const SET_NPC_CHARACTER_TALENTS = "SET_NPC_CHARACTER_TALENTS";
 
@@ -179,6 +180,15 @@ export function removeNpcCharacterEquipment(equipment: EquipmentType|EquipmentMo
        payload: payload
     }
 }
+
+export function removeNpcCharacterWeapon(weapon: PersonalWeaponType) {
+    let payload = { weapon: weapon };
+    return {
+       type: REMOVE_NPC_CHARACTER_WEAPON,
+       payload: payload
+    }
+}
+
 
 export function setSupportingCharacterAttributes(attributes: Attribute[]) {
     let payload = { attributes: attributes };

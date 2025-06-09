@@ -4213,9 +4213,19 @@
 
     "Weapon.personal.energyWhip.name": "Energy Whip",
 
+    "Weapon.personal.phasePistol.name": "Phase Pistol",
+
     "Weapon.personal.phaser1.name": "Phaser type-1",
 
     "Weapon.personal.phaser2.name": "Phaser type-2",
+
+    "Weapon.personal.phaserRifle.name": "Phaser Rifle",
+
+    "Weapon.personal.pulseGrenade.name": "Pulse Grenade",
+
+    "Weapon.personal.blade.name": "Blade",
+
+    "Weapon.personal.heavyBlade.name": "Heavy Blade",
 
     "Weapon.personal.strike.name": "Unarmed Strike",
 
@@ -4226,6 +4236,8 @@
     "Weapon.personal.ushaantor.name": "Ushaan-tor",
 
     "Weapon.personal.disruptor.name": "Disruptor Pistol",
+
+    "Weapon.personal.disruptorRifle.name": "Disruptor Rifle",
 
     "Weapon.personal.mekleth.name": "Mek'leth",
 

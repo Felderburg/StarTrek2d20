@@ -26,7 +26,7 @@ import { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';
 import { SelectedTalent } from './selectedTalent';
 import { CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_WARRIORS_SPIRIT } from '../helpers/talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_WARRIORS_SPIRIT } from '../helpers/talents';
 import { SpecialWeapon } from './specialWeapon';
 import { ModificationType } from '../modify/model/modificationType';
 
@@ -1010,7 +1010,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
 
         if (this.type === CharacterType.Starfleet) {
-            if (this.isSecurityOrSeniorOfficer()) {
+            if (this.era === Era.Enterprise && this.version > 1) {
+                result.push(PersonalWeapons.instance(this.version).phasePistol);
+            } else if (this.isSecurityOrSeniorOfficer()) {
                 result.push(PersonalWeapons.instance(this.version).phaser2);
             } else {
                 result.push(PersonalWeapons.instance(this.version).phaser1);
@@ -1079,9 +1081,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     private calculateProtection() {
         let result = 0;
-        if (this.isKlingonWarrior()) {
-            result += 1; // Klingon standard-issue armour
-        }
+        this.equipmentModels.filter(e => e.isArmour).forEach(e => result += e.protection);
         if (this.speciesStep?.species === Species.Klingon && this.version !== 1) {
             result += 1; // Brak'lul species ability
         }
@@ -1102,6 +1102,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
         if (this.hasTalent("Carnivorous Reptilian Physiology")) {
             result += 2;
+        }
+        if (this.hasTalent(TALENT_NAME_NATURAL_PROTECTION_X)) {
+            this.talents.filter(t => TALENT_NAME_NATURAL_PROTECTION_X === t.name)
+                .forEach(t => result += t.x);
         }
         if (this.implants.indexOf(BorgImplantType.ExoPlating) >= 0) {
             result += 2;
@@ -1309,7 +1313,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
             allFocuses = result;
         } else if (this.stereotype === Stereotype.Npc) {
-            allFocuses.push(...this.speciesStep.abilityOptions.focuses);
+            if (this.speciesStep?.abilityOptions?.focuses?.length) {
+                allFocuses.push(...this.speciesStep.abilityOptions.focuses);
+            }
             allFocuses.push(...(this.npcGenerationStep?.focuses ?? []));
         } else {
             allFocuses = [...this._focuses];
