@@ -81,6 +81,24 @@ export class NameGenerator {
         return NameGenerator._instance;
     }
 
+    isSupported(species: ISpecies) {
+        let result = false;
+        for (let name of names) {
+            if (name.species === species.name) {
+                result = true;
+                break;
+            }
+        }
+
+        if (!result) {
+            if (species.nameSuggestions?.length) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
     createName(species: ISpecies, gender: "Male"|"Female"|"Unisex" = undefined) {
 
         let result = { name: "", pronouns: "", nameOrigin: undefined };

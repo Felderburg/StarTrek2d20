@@ -704,9 +704,9 @@ class Marshaller {
             "traits": this.parseTraits(starship.traits)
         };
 
-        starship.additionalTalents.forEach(t =>  {
-            sheet.talents.push({ "name": t.name });
-        });
+        if (starship.additionalTalents?.length) {
+            sheet.talents = this.toTalentList(starship.additionalTalents);
+        }
         if (starship.spaceframeModel) {
             if (starship.spaceframeModel.isCustom) {
                 sheet['spaceframe'] = {
@@ -974,9 +974,9 @@ class Marshaller {
 
         if (json.talents) {
             json.talents.forEach(t => {
-                let talent = TalentsHelper.getTalentViewModel(t.name);
+                let talent = TalentsHelper.getTalent(t.name);
                 if (talent) {
-                    result.additionalTalents.push(talent);
+                    result.additionalTalents.push(new SelectedTalent(talent.name));
                 }
             });
         }
@@ -1741,7 +1741,7 @@ class Marshaller {
 
             talentName = TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR;
         }
-        let talent = TalentsHelper.getTalentViewModel(talentName);
+        let talent = TalentsHelper.getTalent(talentName);
         if (talent) {
             let selectedTalent = new SelectedTalent(talent.name);
 

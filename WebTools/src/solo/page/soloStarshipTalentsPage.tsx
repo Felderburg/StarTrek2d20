@@ -8,16 +8,16 @@ import SoloStarshipBreadcrumbs from "../component/soloStarshipBreadcrumbs";
 import Button from "react-bootstrap/Button";
 import replaceDiceWithArrowhead from "../../common/arrowhead";
 import { CheckBox } from "../../components/checkBox";
-import { CenturyPrerequisite, TalentModel, TalentsHelper, ToViewModel } from "../../helpers/talents";
+import { CenturyPrerequisite, TalentModel, TalentsHelper } from "../../helpers/talents";
 import { Source } from "../../helpers/sources";
 import { ServiceYearPrerequisite } from "../../helpers/prerequisite";
 import store from "../../state/store";
 import { setAdditionalTalents } from "../../state/starshipActions";
-import { CharacterType } from "../../common/characterType";
 import { Dialog } from "../../components/dialog";
 import { Navigation } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { StarshipRandomTalentTable } from "../table/starshipRandomTalentTable";
+import { SelectedTalent } from "../../common/selectedTalent";
 
 interface ISoloStarshipTalentsProperties {
     starship: Starship;
@@ -46,8 +46,8 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({star
             }
         }
 
-        let talentViewModels = talents.map(n => ToViewModel(TalentsHelper.getTalent(n), 1, CharacterType.Starfleet, starship.version));
-        store.dispatch(setAdditionalTalents(talentViewModels));
+        let selectedTalents = talents.map(n => new SelectedTalent(n));
+        store.dispatch(setAdditionalTalents(selectedTalents));
     }
 
     const navigateToNextPage = () => {
@@ -63,7 +63,7 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({star
         if (starship.hasTalent(talent.name)) {
             talents = talents.filter(t => t.name !== talent.name);
         } else {
-            talents.push(ToViewModel(talent, 1, CharacterType.Starfleet, starship.version));
+            talents.push(new SelectedTalent(talent.name));
             while (talents.length > starship.scale) {
                 talents.splice(0, 1);
             }

@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";
 import SpeciesPage from "../../pages/speciesPage";
@@ -10,7 +9,6 @@ import { useNavigate } from "react-router";
 
 const NpcSpeciesSelectionPage: React.FC<ICharacterProperties> = ({character}) => {
 
-    const { t } = useTranslation();
     const navigate = useNavigate();
 
     useEffect(() => {

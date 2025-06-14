@@ -20,6 +20,8 @@ import { NpcAddEquipmentView } from "../view/npcAddEquipmentView";
 import { EquipmentModel, EquipmentType } from "../../helpers/equipment";
 import { PersonalWeaponType } from "../../helpers/weapons";
 import { NpcAddWeaponView } from "../view/npcAddWeaponView";
+import D20IconButton from "../../solo/component/d20IconButton";
+import { NameGenerator } from "../nameGenerator";
 
 const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -110,6 +112,13 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
         return (<div key={'name-' + i}>{`${n}`}</div>);
     });
 
+
+    const randomName = () => {
+        let { name, pronouns } = NameGenerator.instance.createName(species);
+        store.dispatch(setCharacterName(name));
+        store.dispatch(setCharacterPronouns(pronouns));
+    }
+
     return character ? (<LcarsFrame activePage={PageIdentity.NpcFinal}>
         <div id="app">
             <div className="page container ms-0">
@@ -122,9 +131,16 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
                         <div className="col-lg-6 my-5">
                             <Header level={2}>{t('Construct.other.name')}</Header>
                             <div className="mt-4">
-                                <InputFieldAndLabel labelName={t('Construct.other.name')} id="name"
-                                    onChange={(value) => store.dispatch(setCharacterName(value))}
-                                    value={character.name ?? ""} />
+                                <div className="d-flex justify-content-between align-items-center flex-wrap">
+                                    <InputFieldAndLabel labelName={t('Construct.other.name')} id="name"
+                                        onChange={(value) => store.dispatch(setCharacterName(value))}
+                                        value={character.name ?? ""} />
+                                    {NameGenerator.instance.isSupported(species)
+                                    ? (<div style={{ flexShrink: 0 }} className="mt-1">
+                                        <D20IconButton onClick={() => randomName()}/>
+                                    </div>)
+                                : undefined}
+                                </div>
                                 <div className="text-white mt-1"><small><b>{t('Common.text.suggestions')}: </b> <i>{suggestions}</i></small></div>
                             </div>
 

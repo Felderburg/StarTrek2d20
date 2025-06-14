@@ -7,6 +7,7 @@ import { Career } from './careerEnum';
 import { Era } from './eras';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
+import { NotSourcePrerequisite } from './spaceframes';
 
 export enum Role {
     // Core
@@ -366,6 +367,7 @@ export class RolesHelper {
             Department.Security,
             "Once per mission, an intelligence officer may create an Advantage without requiring a Task or spending any resources. This Advantage reflects some detail or insight the officer learned in an intelligence report.",
             new SourcePrerequisite(Source.CommandDivision),
+            new NotPrerequisite(new SourcePrerequisite(Source.Core2ndEdition)),
             new NotKlingonPrerequisite(),
             new CharacterTypePrerequisite(CharacterType.Starfleet),
             new NotTalentPrerequisite("Advanced Team Dynamics"),

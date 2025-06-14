@@ -37,12 +37,34 @@ const NpcCharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties>
         }
     }
 
+    const renderTalents = () => {
+        if (pageIdentity === PageIdentity.NpcSpecialRules) {
+            return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.npcSpecialRules')}</li>);
+        } else if (character?.npcGenerationStep?.talents?.length) {
+            return (<li className="breadcrumb-item"><Link to="/npc/specialrules">{t('Page.title.npcSpecialRules')}</Link></li>);
+        } else {
+            return undefined;
+        }
+    }
+
+    const renderFinal = () => {
+        if (pageIdentity === PageIdentity.NpcFinal) {
+            return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.npcFinal')}</li>);
+        } else if (character?.name?.length || character?.npcGenerationStep?.equipment?.length || character?.npcGenerationStep?.weapons?.length) {
+            return (<li className="breadcrumb-item"><Link to="/npc/final">{t('Page.title.npcFinal')}</Link></li>);
+        } else {
+            return undefined;
+        }
+    }
+
     return (<nav aria-label="breadcrumb">
         <ol className="breadcrumb">
             <li className="breadcrumb-item"><Link to="/index.html">{t('Page.title.home')}</Link></li>
             <li className="breadcrumb-item"><Link to="/npc">{t('Page.title.npcBuilder')}</Link></li>
             {renderSpecies()}
             {renderStats()}
+            {renderTalents()}
+            {renderFinal()}
         </ol>
     </nav>);
 }

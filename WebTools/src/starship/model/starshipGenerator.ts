@@ -90,7 +90,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
         const talents = TalentsHelper.getStarshipTalents(result);
         if (talents?.length) {
             let viewModel = talents[Math.floor(Math.random() * talents.length)];
-            result.additionalTalents.push(viewModel);
+            result.additionalTalents.push(new SelectedTalent(viewModel.name));
         }
     }
 

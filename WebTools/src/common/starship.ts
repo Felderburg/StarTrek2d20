@@ -4,7 +4,7 @@ import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
-import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper, TalentViewModel } from "../helpers/talents";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper } from "../helpers/talents";
 import { TalentSelection } from "../helpers/talentSelection";
 import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
@@ -73,9 +73,16 @@ export class MissionProfileStep {
 
 export class SpaceframeStep {
     readonly model: SpaceframeModel;
+    talents: SelectedTalent[] = [];
 
     constructor(model: SpaceframeModel) {
         this.model = model;
+    }
+
+    copy() {
+        const result = new SpaceframeStep(this.model);
+        result.talents = this.talents.map(t => t.copy());
+        return result;
     }
 }
 
@@ -155,7 +162,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     spaceframeStep?: SpaceframeStep;
     missionPodModel?: MissionPodModel;
     missionProfileStep?: MissionProfileStep;
-    additionalTalents: TalentViewModel[] = [];
+    additionalTalents: SelectedTalent[] = [];
     refits: System[] = [];
     simpleStats: SimpleStats;
     additionalWeapons: Weapon[] = [];
@@ -448,7 +455,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     }
 
     get talents(): SelectedTalent[] {
-        let result = [];
+        let result: SelectedTalent[] = [];
         if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
             this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => {
                 result.push(t);
@@ -466,7 +473,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         }
 
         this.additionalTalents.forEach(t => {
-            result.push(new SelectedTalent(t.name));
+            result.push(t);
         });
 
         return result;
@@ -758,7 +765,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         result.registry = this.registry;
         result.traits = this.traits;
         result.serviceYear = this.serviceYear;
-        result.spaceframeModel = this.spaceframeModel;
+        result.spaceframeStep = this.spaceframeStep?.copy();
         result.missionPodModel = this.missionPodModel;
         result.missionProfileStep = this.missionProfileStep?.copy();
         result.additionalTalents = [...this.additionalTalents];

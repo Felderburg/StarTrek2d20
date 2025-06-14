@@ -7,7 +7,7 @@ import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { System } from "../helpers/systems";
-import { TalentModel, TalentViewModel } from "../helpers/talents";
+import { TalentModel } from "../helpers/talents";
 import { Weapon } from "../helpers/weapons";
 import { ServiceRecordModel } from "../starship/model/serviceRecord";
 import { ShipBuildWorkflow } from "../starship/model/shipBuildWorkflow";
@@ -212,7 +212,7 @@ export function setStarshipTraits(traits: string) {
     }
 }
 
-export function setAdditionalTalents(talents: TalentViewModel[]) {
+export function setAdditionalTalents(talents: SelectedTalent[]) {
     let payload = { talents: talents };
     return {
        type: SET_ADDITIONAL_TALENTS,

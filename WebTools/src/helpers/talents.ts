@@ -11,7 +11,7 @@ import { Starship } from '../common/starship';
 import store from '../state/store';
 import { centuryToYear } from './weapons';
 import { Spaceframe } from './spaceframeEnum';
-import { CareersPrerequisite, CharacterStereotypePrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, NotPrerequisite, OfficerPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite } from './prerequisite';
+import { CareersPrerequisite, CharacterStereotypePrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, NotPrerequisite, OfficerPrerequisite, RolePrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite } from './prerequisite';
 import { NotSourcePrerequisite } from './spaceframes';
 import { Career } from './careerEnum';
 import { hasAnySource, isSecondEdition } from '../state/contextFunctions';
@@ -22,6 +22,7 @@ import { ITalent } from './italent';
 import { System } from './systems';
 import { Creature } from '../creature/model/creature';
 import { NpcType } from '../npc/model/npcType';
+import { Role } from './roles';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -1035,6 +1036,11 @@ export class Talents {
                 "Efficient Evasion",
                 "Attempting an Evasive Action Task for the second or subsequent time in a row during a scene reduces the Power Requirement for Evasive Action to 0.",
                 [new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                1),
+            new TalentModel(
+                "Flight Controller",
+                "",
+                [new SourcePrerequisite(Source.CommandDivision), new RolePrerequisite(Role.FlightController)],
                 1),
             new TalentModel(
                 "Glancing Impact",
@@ -4972,8 +4978,8 @@ export class Talents {
         return result;
     }
 
-
-    getTalentViewModel(name: string, character?: Character) {
+    // let's stop using this...
+    private getTalentViewModel(name: string, character?: Character) {
         let talent = this.getTalent(name);
 
         if (talent) {

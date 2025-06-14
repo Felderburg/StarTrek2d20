@@ -21,7 +21,7 @@ interface ISpaceframeSelectionProperties {
     onSelection: (s: SpaceframeModel) => void;
 }
 
-const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({serviceYear, starship, type, initialSelection, onSelection}) => {
+const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({starship, initialSelection, onSelection}) => {
 
     const { t } = useTranslation();
     const [ allowAllFrames, setAllowAllFrames ] = useState<boolean>(false);

@@ -7,6 +7,7 @@ import { Starship } from "../common/starship";
 import store from "../state/store";
 import { Career } from "./careerEnum";
 import { Era } from "./eras";
+import { Role } from "./roles";
 import { Source } from "./sources";
 import { Track } from "./trackEnum";
 
@@ -32,6 +33,33 @@ export class CadetPrerequisite implements IConstructPrerequisite<Character> {
 export class OfficerPrerequisite implements IConstructPrerequisite<Character> {
     isPrerequisiteFulfilled(character: Character) {
         return !character.enlisted && !character.isCivilian();
+    }
+
+    describe(): string {
+        return "";
+    }
+}
+
+export class RolePrerequisite implements IConstructPrerequisite<Character> {
+
+    readonly role: Role;
+
+    constructor(role: Role) {
+        this.role = role;
+    }
+
+    isPrerequisiteFulfilled(character: Character) {
+        if (character.role != null) {
+            return character.role === this.role || character.secondaryRole === this.role;
+        } else if (character.stereotype === Stereotype.MainCharacter) {
+            let roles = character.talents.map(t => t.talentModel.prerequisites)
+                .flat()
+                .filter(p => p instanceof RolePrerequisite)
+                .filter(p => (p as RolePrerequisite).role !== this.role);
+            return !(roles?.length)
+        } else {
+            return false;
+        }
     }
 
     describe(): string {

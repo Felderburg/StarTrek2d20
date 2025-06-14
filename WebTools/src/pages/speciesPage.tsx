@@ -82,14 +82,6 @@ const SpeciesPage: React.FC<ICharacterProperties> = ({character}) => {
 
         if (character.stereotype === Stereotype.Npc) {
             navigate("/npc/species/details");
-        } else if (species === Species.Kobali) {
-            Navigation.navigateToPage(PageIdentity.KobaliExtraSpeciesDetails);
-        } else if (species === Species.Borg) {
-            Navigation.navigateToPage(PageIdentity.BorgSpeciesExtraDetails);
-        } else if (species === Species.LiberatedBorg) {
-            Navigation.navigateToPage(PageIdentity.LiberatedBorgSpeciesExtraDetails);
-        } else if (species === Species.CyberneticallyEnhanced) {
-            Navigation.navigateToPage(PageIdentity.CyberneticallyEnhancedSpeciesExtraDetails);
         } else {
             Navigation.navigateToPage(PageIdentity.SpeciesDetails);
         }

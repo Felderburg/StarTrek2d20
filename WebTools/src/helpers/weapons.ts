@@ -902,10 +902,8 @@ export class PersonalWeapons {
             return this.disruptorPistol;
         case PersonalWeaponType.DisruptorRifle:
             return this.disruptorRifle;
-        case PersonalWeaponType.TzenkethiHeavyBlade:
-            return this.tzenkethiHeavyBlade;
         case PersonalWeaponType.DkTagh:
-            return this.tzenkethiHeavyBlade;
+            return this.dkTagh;
         case PersonalWeaponType.SonaPlasmaDisruptorShotgun:
             return this.sonaPlasmaDisruptorShotgun;
         case PersonalWeaponType.Dagger:

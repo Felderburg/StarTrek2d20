@@ -56,10 +56,6 @@ export const getPageTitle = (t, page) => {
         return "Character Type";
     } else if (page === PageIdentity.Species
             || page === PageIdentity.SpeciesDetails
-            || page === PageIdentity.KobaliExtraSpeciesDetails
-            || page === PageIdentity.LiberatedBorgSpeciesExtraDetails
-            || page === PageIdentity.BorgSpeciesExtraDetails
-            || page === PageIdentity.CyberneticallyEnhancedSpeciesExtraDetails
             || page === PageIdentity.ExtraTalentDetails
             || page === PageIdentity.Environment
             || page === PageIdentity.EnvironmentDetails

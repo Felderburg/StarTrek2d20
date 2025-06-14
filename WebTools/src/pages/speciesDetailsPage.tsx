@@ -191,7 +191,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     }
 
     const renderExtraSpeciesDetails = () => {
-        if (character.stereotype === Stereotype.Npc && isSpecialSpecies()) {
+        if (isSpecialSpecies()) {
             return (<div className="col-12 col-lg-6 my-4">
                 <Header level={2}>{t('SpeciesDetails.originalSpecies')}</Header>
                 <Markdown>{t(makeKey('SpeciesDetails.originalSpecies.instruction.', Species[character.speciesStep?.species]))}</Markdown>
@@ -223,7 +223,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     }
 
     const onNext = () => {
-        if (character.stereotype === Stereotype.Npc && isSpecialSpecies() && character.speciesStep.originalSpecies == null) {
+        if (isSpecialSpecies() && character.speciesStep.originalSpecies == null) {
             Dialog.show(t('SpeciesDetails.error.originalSpecies'));
         } else if (character.speciesStep?.attributes?.length !== 3) {
             Dialog.show(t('SpeciesDetails.error.attributes'));
@@ -250,9 +250,13 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
                         {renderExtraSpeciesDetails()}
                         <div className="col-12 col-lg-6 my-4">
                             <Header level={2}><>{t('Construct.other.attributes')} {selectDesc}</></Header>
-                            <AttributeListComponent controller={controller} />
+                            {character.speciesStep?.species === Species.Kobali && character.speciesStep?.originalSpecies == null
+                            ? (<p>{t('SpeciesDetails.attributes.instruction.kobali')}</p>)
+                            : (<>
+                                <AttributeListComponent controller={controller} />
+                                <InstructionText text={controller.instructions} />
+                            </>)}
 
-                            <InstructionText text={controller.instructions} />
                             {character.speciesStep?.ability
                                 ? (<div className="mt-5 mt-4">
                                     <SpeciesAbilityView character={character}/>

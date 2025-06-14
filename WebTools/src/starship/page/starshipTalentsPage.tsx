@@ -14,6 +14,7 @@ import { StarshipTalentSelectionList } from "../view/starshipTalentSelection";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
+import { SelectedTalent } from "../../common/selectedTalent";
 
 interface ISimpleStarshipPageProperties {
     starship: Starship;
@@ -50,7 +51,7 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({starship,
                 points={starship.freeTalentSlots}
                 talents={TalentsHelper.getStarshipTalents(starship)}
                 construct={starship}
-                onSelection={(talents) => store.dispatch(setAdditionalTalents(talents))} />)
+                onSelection={(talents) => store.dispatch(setAdditionalTalents(talents.map(t => new SelectedTalent(t.name))))} />)
             : null}
         <div className="text-end mt-3">
             <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>
