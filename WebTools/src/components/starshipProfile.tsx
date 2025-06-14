@@ -23,8 +23,17 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({showProfile, era
     let containerClass = showProfile ? "sheet-container sheet-container-visible pe-3" :  "sheet-container sheet-container-hidden pe-3";
     const eraModel = era != null ? ErasHelper.getEra(era) : null;
 
-    const talents = starship?.getTalentSelectionList().map((t, i) => {
-        let name = starship?.stereotype === Stereotype.SoloStarship ? t.talent.localizedNameForSource(Source.CaptainsLog) : t.talent.localizedDisplayName;
+    const talents = starship?.talents.filter(t => !t.talentModel.specialRule).map((t, i) => {
+        let name = starship?.stereotype === Stereotype.SoloStarship
+            ? t.talentModel.localizedNameForSource(Source.CaptainsLog)
+            : t.displayName;
+        return (<div key={'talent-' + i}>{name}</div>)
+    });
+
+    const specialRules = starship?.talents.filter(t => t.talentModel.specialRule).map((t, i) => {
+        let name = starship?.stereotype === Stereotype.SoloStarship
+            ? t.talentModel.localizedNameForSource(Source.CaptainsLog)
+            : t.displayName;
         return (<div key={'talent-' + i}>{name}</div>)
     });
 
@@ -216,11 +225,20 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({showProfile, era
                                 </div>
                             </div>
 
-                        <div className="col-md-6 mb-2">
+                        <div className="col-12 col-md-6 mb-2">
                             <div className="sheet-panel d-flex">
                                 <div className="sheet-label-purple text-uppercase">{t('Construct.other.talents')}</div>
                                 <div className="sheet-data">
                                 {talents}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-12 col-md-6 mb-2">
+                            <div className="sheet-panel d-flex">
+                                <div className="sheet-label-purple text-uppercase">{t('Construct.other.specialRules')}</div>
+                                <div className="sheet-data">
+                                {specialRules}
                                 </div>
                             </div>
                         </div>

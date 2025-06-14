@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { PageFactory } from '../../pages/pageFactory';
 import { PageIdentity } from '../../pages/pageIdentity';
 import LcarsFrame from '../../components/lcarsFrame';

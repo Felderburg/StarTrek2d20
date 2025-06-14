@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Header } from "../components/header";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TalentModel, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TalentModel, TalentsHelper } from "../helpers/talents";
 import replaceDiceWithArrowhead from "../common/arrowhead";
 import { Stereotype } from "../common/construct";
 import { Starship } from "../common/starship";
@@ -65,6 +65,14 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 .join(", ");
             return (<div className="text-sm px-4"><b>{t("Construct.other.department") + ": "}</b>
                 {selectedAttributes}</div>);
+        } else if ([TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT].includes(talent.name)) {
+            let starship = construct as Starship;
+            let selectedAttributes = starship.talents
+                .filter(s => s.talent === talent.name && s.department != null)
+                .map(s => t(makeKey("Construct.department.", Department[s.department])))
+                .join(", ");
+            return (<div className="text-sm px-4"><b>{t("Construct.other.department") + ": "}</b>
+                {selectedAttributes}</div>);
         } else {
             return undefined;
         }
@@ -87,10 +95,12 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
                     <strong>{t.localizedDisplayName + (t.maxRank > 1 ? " [x" + construct.getRankForTalent(t.name) + "]" : "")}:</strong> {' '}
                     {replaceDiceWithArrowhead(t.localizedSoloDescription)}
+                    {renderExtraDetails(t)}
                 </div>);
             } else {
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
                     {renderDescription(talentName, t)}
+                    {renderExtraDetails(t)}
                 </div>);
             }
         });

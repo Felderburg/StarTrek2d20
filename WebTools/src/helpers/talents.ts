@@ -23,6 +23,7 @@ import { System } from './systems';
 import { Creature } from '../creature/model/creature';
 import { NpcType } from '../npc/model/npcType';
 import { Role } from './roles';
+import { RankedTalent } from './rankedTalent';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -56,6 +57,7 @@ export const TALENT_NAME_DEFENSIVE_TRAINING = "Defensive Training";
 export const TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR = "Defensive Training (Federation-Klingon War)";
 export const TALENT_NAME_REDUNDANT_SYSTEMS = "Redundant Systems";
 export const TALENT_NAME_DEDICATED_PERSONNEL = "Dedicated Personnel";
+export const TALENT_NAME_EXPANSIVE_DEPARTMENT = "Expansive Department";
 export const TALENT_NAME_CAMOUFLAGED_X = "Camouflaged X";
 export const TALENT_NAME_INITIATIVE_X = "Initiative X";
 export const TALENT_NAME_MENACING_X = "Menacing X";
@@ -3538,42 +3540,6 @@ export class Talents {
                 1,
                 "Starship"),
             new TalentModel(
-                "Dedicated Personnel (Command)",
-                "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters who are part of the Command department.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
-                1,
-                "Starship"),
-            new TalentModel(
-                "Dedicated Personnel (Conn)",
-                "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters who are part of the Conn department.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
-                1,
-                "Starship"),
-            new TalentModel(
-                "Dedicated Personnel (Security)",
-                "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters who are part of the Security department.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
-                1,
-                "Starship"),
-            new TalentModel(
-                "Dedicated Personnel (Engineering)",
-                "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters who are part of the Engineering department.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
-                1,
-                "Starship"),
-            new TalentModel(
-                "Dedicated Personnel (Science)",
-                "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters who are part of the Science department.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
-                1,
-                "Starship"),
-            new TalentModel(
-                "Dedicated Personnel (Medicine)",
-                "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters who are part of the Medicine department.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
-                1,
-                "Starship"),
-            new TalentModel(
                 "Dedicated Personnel",
                 "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
@@ -5078,14 +5044,8 @@ export class Talents {
         }
     }
 
-    getStarshipTalentModels(starship: Starship) {
-        let talents = this._starshipTalents.filter(t => t.isPrerequisiteFulfilled(starship));
-        return talents.sort((a, b) => a.localizedName.localeCompare(b.name));
-    }
-
     getStarshipTalents(starship: Starship) {
-        let talents: TalentViewModel[] = [];
-
+        const talents: TalentModel[] = [];
         for (let i = 0; i < this._starshipTalents.length; i++) {
             let talent = this._starshipTalents[i];
             let include = talent.category === "Starship";
@@ -5098,20 +5058,12 @@ export class Talents {
                 });
 
                 if (include) {
-                    let rank =  1;
-                    if (talent.maxRank > 1) {
-                        let selections = starship.getTalentSelectionList().filter(t => t.talent.name === talent.name);
-                        if (selections.length > 0) {
-                            rank = selections[0].rank + 1;
-                        }
-                    }
-
-                    talents.push(ToViewModel(talent, rank, starship.type, starship.version));
+                    talents.push(talent);
                 }
             }
         }
 
-        talents.sort((a, b) => a.name.localeCompare(b.name));
+        talents.sort((a, b) => a.localizedName.localeCompare(b.localizedName));
 
         return talents;
     }

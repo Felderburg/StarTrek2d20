@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {AlliedMilitaryDetails, Character, GovernmentDetails} from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import {Navigation} from '../common/navigator';

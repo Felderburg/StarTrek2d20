@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Source, SourcesHelper} from '../helpers/sources';
 import {Character} from '../common/character';
 import {Navigation, navigateTo} from '../common/navigator';

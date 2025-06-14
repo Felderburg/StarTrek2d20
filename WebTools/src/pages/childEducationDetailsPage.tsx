@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../components/header';
 import ValueInput from '../components/valueInput';

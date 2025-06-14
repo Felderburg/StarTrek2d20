@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import formatAsDelta from '../../common/formatAsDelta';
 import {Department} from '../../helpers/department';
 import { MissionPodModel } from '../../helpers/missionPods';

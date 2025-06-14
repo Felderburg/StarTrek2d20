@@ -228,9 +228,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         if (this.buildType !== ShipBuildType.Starship) {
             power = Math.ceil(power / 2);
         }
-        let bonus = this.getTalentSelectionList().filter(t => t.talent.name === "Secondary Reactors");
+        let bonus = this.talents.filter(t => t.name === "Secondary Reactors");
         if (power != null && bonus.length > 0) {
-            power += (5 * bonus[0].rank);
+            power += (5 * bonus.length);
         }
         return power;
     }
@@ -405,9 +405,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
     getDistinctTalentNameList() {
         let result = [];
-        this.getTalentSelectionList().forEach(t => {
-            if (result.indexOf(t.talent.name) < 0) {
-                result.push(t.talent.name);
+        this.talents.forEach(t => {
+            if (result.indexOf(t.name) < 0) {
+                result.push(t.name);
             }
         });
         return result
@@ -416,10 +416,13 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     getRankForTalent(talentName: string) {
         let rank = 0;
         this.talents
-            .filter(t => t.talent === talentName)
+            .filter(t => t.name === talentName)
             .forEach(t => {
-                if (t.multiple != null)
-                rank += t.multiple;
+                if (t.multiple != null) {
+                    rank += t.multiple;
+                } else {
+                    rank += 1;
+                }
             });
         return rank;
     }
@@ -428,8 +431,8 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         if (talentName === TALENT_NAME_MISSION_POD && this.missionPodModel != null) {
             return this.missionPodModel.localizedName;
         } else {
-            let shortenedList = this.getTalentSelectionList().filter(t => t.talent.name === talentName);
-            return shortenedList.length > 0 ? shortenedList[0].qualifier : undefined;
+            let shortenedList = this.talents.filter(t => t.name === talentName);
+            return shortenedList.length > 0 ? shortenedList[0].additionalInformation : undefined;
         }
     }
 
@@ -454,7 +457,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         return talents;
     }
 
-    get talents(): SelectedTalent[] {
+    get talentsWithoutAdditional() {
         let result: SelectedTalent[] = [];
         if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
             this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => {
@@ -471,11 +474,14 @@ export class Starship extends Construct implements IWeaponDiceProvider {
                 result.push(new SelectedTalent(t.name));
             });
         }
+        return result;
+    }
 
+    get talents(): SelectedTalent[] {
+        let result = this.talentsWithoutAdditional;
         this.additionalTalents.forEach(t => {
             result.push(t);
         });
-
         return result;
     }
 
@@ -535,7 +541,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     }
 
     hasTalent(talentName: string) {
-        let talents = this.getTalentSelectionList().filter(t => t.talent.name === talentName);
+        let talents = this.talents.filter(t => t.name === talentName);
         return talents.length > 0;
     }
 
@@ -557,9 +563,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             if (this.buildType !== ShipBuildType.Starship) {
                 base = this.power;
             }
-            let advanced = this.getTalentSelectionList().filter(t => t.talent.name === "Advanced Shields");
+            let advanced = this.talents.filter(t => t.name === "Advanced Shields");
             if (advanced.length > 0) {
-                base += (5 * advanced[0].rank);
+                base += (5 * advanced.length);
             }
             return base;
         } else {

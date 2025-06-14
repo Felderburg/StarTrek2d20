@@ -1740,6 +1740,14 @@ class Marshaller {
             talentName === "Defensive Training: Ranged") {
 
             talentName = TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR;
+        } else if (talentName === "Dedicated Personnel (Command)" ||
+            talentName === "Dedicated Personnel (Conn)" ||
+            talentName === "Dedicated Personnel (Engineering)" ||
+            talentName === "Dedicated Personnel (Security)" ||
+            talentName === "Dedicated Personnel (Medicine)" ||
+            talentName === "Dedicated Personnel (Science)") {
+
+            talentName = "Dedicated Personnel";
         }
         let talent = TalentsHelper.getTalent(talentName);
         if (talent) {
@@ -1757,17 +1765,17 @@ class Marshaller {
                 selectedTalent.attribute = Attribute.Presence;
             } else if (t.name === "Augmented Ability (Reason)") {
                 selectedTalent.attribute = Attribute.Reason;
-            } else if (["Collaboration: Command", "Bold: Command", "Cautious: Command"].includes(t.name)) {
+            } else if (["Collaboration: Command", "Bold: Command", "Cautious: Command", "Dedicated Personnel (Command)"].includes(t.name)) {
                 selectedTalent.department = Department.Command;
-            } else if (["Collaboration: Conn", "Bold: Conn", "Cautious: Conn"].includes(t.name)) {
+            } else if (["Collaboration: Conn", "Bold: Conn", "Cautious: Conn", "Dedicated Personnel (Conn)"].includes(t.name)) {
                 selectedTalent.department = Department.Conn;
-            } else if (["Collaboration: Engineering", "Bold: Engineering", "Cautious: Engineering"].includes(t.name)) {
+            } else if (["Collaboration: Engineering", "Bold: Engineering", "Cautious: Engineering", "Dedicated Personnel (Engineering)"].includes(t.name)) {
                 selectedTalent.department = Department.Engineering;
-            } else if (["Collaboration: Security", "Bold: Security", "Cautious: Security"].includes(t.name)) {
+            } else if (["Collaboration: Security", "Bold: Security", "Cautious: Security", "Dedicated Personnel (Security)"].includes(t.name)) {
                 selectedTalent.department = Department.Security;
-            } else if (["Collaboration: Medicine", "Bold: Medicine", "Cautious: Medicine"].includes(t.name)) {
+            } else if (["Collaboration: Medicine", "Bold: Medicine", "Cautious: Medicine", "Dedicated Personnel (Medicine)"].includes(t.name)) {
                 selectedTalent.department = Department.Medicine;
-            } else if (["Collaboration: Science", "Bold: Science", "Cautious: Science"].includes(t.name)) {
+            } else if (["Collaboration: Science", "Bold: Science", "Cautious: Science", "Dedicated Personnel (Science)"].includes(t.name)) {
                 selectedTalent.department = Department.Science;
             } else if (t.name === "Defensive Training: Melee") {
                 selectedTalent.selection = AttackType.Melee;

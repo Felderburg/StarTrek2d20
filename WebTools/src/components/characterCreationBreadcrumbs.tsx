@@ -39,9 +39,9 @@ const NpcCharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties>
 
     const renderTalents = () => {
         if (pageIdentity === PageIdentity.NpcSpecialRules) {
-            return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.npcSpecialRules')}</li>);
+            return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.npcTalents')}</li>);
         } else if (character?.npcGenerationStep?.talents?.length) {
-            return (<li className="breadcrumb-item"><Link to="/npc/specialrules">{t('Page.title.npcSpecialRules')}</Link></li>);
+            return (<li className="breadcrumb-item"><Link to="/npc/specialrules">{t('Page.title.npcTalents')}</Link></li>);
         } else {
             return undefined;
         }

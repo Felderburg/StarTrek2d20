@@ -6,7 +6,7 @@ import { TalentSelectionRow } from "./singleTalentSelectionList";
 interface IMultiTalentSelectionProperties {
     talents: RankedTalent[]
     construct: Construct;
-    selections?: (SelectedTalent)[];
+    selections: (SelectedTalent)[];
     onSelection: (rankedTalent: RankedTalent, talent?: SelectedTalent) => void;
 }
 
@@ -18,14 +18,12 @@ const MultiTalentSelectionView: React.FC<IMultiTalentSelectionProperties> = ({ta
     }
 
     return (<table className="selection-list">
-        <tbody>
-            {talents.map((t,i) =>
-                <TalentSelectionRow talent={t}
-                    onSelection={(selection) => onSelection(t, selection)}
-                    selection={findSelection(t)}
-                    construct={construct}
-                    key={"talent-" + i} />)}
-        </tbody>
+        {talents.map((t,i) =>
+            <TalentSelectionRow talent={t}
+                onSelection={(selection) => onSelection(t, selection)}
+                selection={findSelection(t)}
+                construct={construct}
+                key={"talent-" + i} />)}
     </table>);
 }
 

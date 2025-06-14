@@ -228,7 +228,7 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         }
         case SET_ADDITIONAL_TALENTS: {
             let s = state.starship.copy();
-            s.additionalTalents = [...action.payload.talents];
+            s.additionalTalents = action.payload.talents?.map(t => t.copy()) ?? [];
             return {
                 ...state,
                 starship: s

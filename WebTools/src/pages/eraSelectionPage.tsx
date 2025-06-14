@@ -1,4 +1,4 @@
-﻿import * as React from 'react';
+﻿import React from 'react';
 import {Era, ErasHelper} from '../helpers/eras';
 import {navigateTo, Navigation} from '../common/navigator';
 import {Window} from '../common/window';

@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
@@ -15,12 +15,13 @@ import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { Construct } from '../common/construct';
 import { BorgImplants } from '../helpers/borgImplant';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
-import { SimpleDepartmentSelector } from './simpleDepartmentSelector';
+import { SimpleDepartmentSelector, StarshipDepartmentSelector } from './simpleDepartmentSelector';
 import { AttackType } from '../common/attackType';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import Markdown from 'react-markdown';
 import { t } from 'i18next';
 import { RankedTalent } from '../helpers/rankedTalent';
+import { Starship } from '../common/starship';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
@@ -237,6 +238,48 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
         )
     }
 
+    const renderDedicatedPersonnel = () => {
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <StarshipDepartmentSelector
+                        starship={construct as Starship}
+                        isChecked={d => selection.department === d}
+                        onSelectDepartment={d => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.department = d;
+                            }
+                            onSelection(temp);
+                        }}
+                    />
+                </div>
+            </div>
+        );
+    }
+
+    const renderExpansiveDepartment = () => {
+        const starship = construct as Starship;
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <StarshipDepartmentSelector
+                        starship={starship}
+                        isChecked={d => selection.department === d}
+                        onSelectDepartment={d => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.department = d;
+                            }
+                            onSelection(temp);
+                        }}
+                        isUpdateable={d => starship.departments[d] === 5}
+                    />
+                </div>
+            </div>
+        );
+    }
+
     const renderBoldOrCautiousSelection = () => {
         return (
             <div className="row">
@@ -264,7 +307,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                     />
                 </div>
             </div>
-        )
+        );
     }
 
     const renderDefensiveTrainingSelection = () => {
@@ -583,6 +626,26 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                 <td></td>
                 <td>
                     {renderXSelection(1, 6)}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_DEDICATED_PERSONNEL === talent.name
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderDedicatedPersonnel()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_EXPANSIVE_DEPARTMENT === talent.name
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderExpansiveDepartment()}
                 </td>
                 <td></td>
             </tr>)

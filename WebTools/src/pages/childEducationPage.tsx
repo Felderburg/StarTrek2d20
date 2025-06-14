@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Navigation } from '../common/navigator';
 import { Window } from '../common/window';
 import Button from 'react-bootstrap/Button';

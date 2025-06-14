@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 import { Starship } from '../../common/starship';
 import { CheckBox } from '../../components/checkBox';
