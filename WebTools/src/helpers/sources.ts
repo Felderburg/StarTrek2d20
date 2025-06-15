@@ -67,12 +67,14 @@ class SourceViewModel {
     type: SourceType;
     name: string;
     available: boolean;
+    version: 1|2;
 
-    constructor(id: Source, type: SourceType, name: string, available: boolean = true) {
+    constructor(id: Source, type: SourceType, name: string, version: 1|2 = 1, available: boolean = true) {
         this.id = id;
         this.type = type;
         this.name = name;
         this.available = available;
+        this.version = version;
     }
 
     get localizedName() {
@@ -97,7 +99,7 @@ class Sources {
 
     private _sources: { [id: number]: SourceViewModel } = {
         [Source.Core]: new SourceViewModel(Source.Core, SourceType.CoreBook, "Core"),
-        [Source.Core2ndEdition]: new SourceViewModel(Source.Core2ndEdition, SourceType.CoreBook, "Core (2nd Ed.)", true),
+        [Source.Core2ndEdition]: new SourceViewModel(Source.Core2ndEdition, SourceType.CoreBook, "Core (2nd Ed.)", 2),
         [Source.AlphaQuadrant]: new SourceViewModel(Source.AlphaQuadrant, SourceType.QuadrantBook, "Alpha Quadrant"),
         [Source.BetaQuadrant]: new SourceViewModel(Source.BetaQuadrant, SourceType.QuadrantBook, "Beta Quadrant"),
         [Source.GammaQuadrant]: new SourceViewModel(Source.GammaQuadrant, SourceType.QuadrantBook, "Gamma Quadrant"),
@@ -124,8 +126,8 @@ class Sources {
         [Source.ContinuingMissions]: new SourceViewModel(Source.ContinuingMissions, SourceType.Unofficial, "Continuing Mission"),
         [Source.AnimatedSeries]: new SourceViewModel(Source.AnimatedSeries, SourceType.Expansion, "Animated Series"),
         [Source.FederationKlingonWar]: new SourceViewModel(Source.FederationKlingonWar, SourceType.Expansion, "Federation-Klingon War"),
-        [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion, "GM Toolkit 2e"),
-        [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion, "Technical Manual", false),
+        [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion, "GM Toolkit 2e", 2),
+        [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion, "Technical Manual", 2, false),
     };
 
     getSources() {

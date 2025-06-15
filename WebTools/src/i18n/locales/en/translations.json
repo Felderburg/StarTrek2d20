@@ -435,6 +435,9 @@
     "SpeciesDetails.originalSpecies": "Original Species Type",
 
     "SpeciesDetails.error.originalSpecies": "Please select an original species for this character.",
+
+    "SpeciesDetails.attributes.instruction.kobali": "Please select an original species before selecting attributes.",
+
     "SpeciesDetails.error.attributes": "You have not distributed all Attribute points.",
 
     "SpeciesDetails.originalSpecies.instruction.kobali": "The Kobali collect the corpses of other species and use an advanced from of genetic engineering to modify these deceased individuals, converting them into Kobali.",
@@ -2561,6 +2564,10 @@
 
     "Talent.adaptiveShieldModulator.description": "When the Modulate Shields action is taken, the ship’s Resistance is increased by a further +1 by that action. Further, the ship may have its shields raised when operating in silent running.",
 
+    "Talent.additionalPropulsionSystemTalent": "Additional Propulsion System",
+
+    "Talent.additionalPropulsionSystemTalent.description": "The ship has been fitted with an additional propulsion system alongside its impulse and warp engines. The ship is equipped with that system.",
+
     "Talent.advancedEmergencyCrewHolograms": "Advanced Emergency Crew Holograms",
 
     "Talent.advancedEmergencyCrewHolograms.soloDescription": "The starship has the entirety of its interior spaces and some critical areas on its exterior outfitted with holoemitters, allowing the computer to project simulated personnel during emergencies. They cannot operate away from the ship.",
@@ -2754,7 +2761,7 @@
 
     "Talent.camouflagedX": "Camouflaged X",
 
-    "Talent.camouflagedX.description2e": "The Difficulty of any task to locate the being is increased\nby X.",
+    "Talent.camouflagedX.description2e": "The Difficulty of any task to locate the being is increased by X.",
     "Talent.camouflagedX.error": "Please select a value for X.",
 
     "Talent.captainsYacht": "Captain's Yacht",
@@ -2821,6 +2828,10 @@
 
     "Talent.closeProtection.description": "When you make a successful Attack, you may spend one Momentum to protect a single ally within Close range. The next Attack against that ally before the start of your next turn increases in Difficulty by 1.",
     "Talent.closeProtection.description2e": "When you make a successful Attack, you may spend 1 Momentum to protect a single ally within Close range. The next Attack against that ally before the start of your next turn increases in Difficulty by 1.",
+
+    "Talent.clusterTorpedoes": "Cluster Torpedoes",
+
+    "Talent.clusterTorpedoes.description": "The ship uses a modified torpedo system, where each casing splits into several smaller projectiles with separate payloads. When the ship fires a torpedo salvo, the attack gains the Versatile 2 quality.",
 
     "Talent.coldReading": "Cold Reading",
 
@@ -2966,6 +2977,10 @@
     "Talent.defuseTheTension.description": "Whenever you attempt a Task to persuade someone not to resort to violence, you may add a bonus d20 to your dice pool.",
     "Talent.defuseTheTension.description2e": "Whenever you attempt a task to persuade someone not to resort to violence, the first d20 you purchase for that task is free.",
 
+    "Talent.dedicatedPersonnel": "Dedicated Personnel",
+
+    "Talent.dedicatedPersonnel.description2e": "Choose a single department. The ship gains 2 additional Crew Support, which may only be used to establish supporting characters who are part of that department.",
+
     "Talent.dedicatedSubspaceTransceiverArray": "Dedicated Subspace Tranceiver Array",
 
     "Talent.dedicatedSubspaceTransceiverArray.soloDescription": "A starship with this talent has a section of its hull that slides away where a long, tether-like subspace transceiver array can be deployed to enhance the vessel’s communication range and clarity, even at warp.",
@@ -3079,6 +3094,10 @@
 
     "Talent.experimentalVessel.description": "When the ship is created, apply two additional refits to the ship. In addition, whenever the ship assists a task attempt, the ship’s die increases its complication range by 2 (to 18–20). A milestone refit can remove this complication range increase, representing the ship’s crew working out the problems in the prototype design.",
 
+    "Talent.extendedSensorRange": "Extended Sensor Range",
+
+    "Talent.extendedSensorRange.description": "The ship’s sensors have been refined to be more effective at longer ranges.\n\nWhen you attempt a task assisted by the ship’s Sensors, if there is any increase in Difficulty due to range, then reduce that Difficulty increase by 2. This effect is lost if the Sensors suffer one or more breaches.",
+
     "Talent.exploitWeakness": "Exploit Weakness",
 
     "Talent.exploitWeakness.description": "You are trained in surprising your opponent and taking advantage of any weaknesses they have. When you attempt an attack against an unaware enemy, or an enemy suffering from a trait that represents weakness or vulnerability, the attack gains the Piercing 2 effect.",
@@ -3148,6 +3167,15 @@
     "Talent.fixEmAndFlyEm.description": "You may reroll one d20 on any **Engineering** task to perform repairs or any ship or small craft you have piloted. You may reroll one d20 on any **Conn** task to pilot any ship or small craft you have repaired.",
 
     "Talent.firstResponse.description2e": "When you attempt the First Aid task during combat, the first die you purchase is free. Further, you may always Succeed at Cost, with each complication you suffer adding 1 to the Difficulty of healing the patient’s Injury subsequently.",
+
+    "Talent.fleetCommander": "Fleet Commander",
+
+    "Talent.fleetCommander.description2e": "You are skilled at commanding multiple ships at once. Commanding a vessel during a fleet action allows you to re-roll 1d20 on any task to grant a bonus to your vessel or group. In addition, your flagship may use your **Command** rating instead of its own.",
+
+    "Talent.flightController": "Flight Controller",
+
+    "Talent.flightController.description": "Whenever the character assists an NPC in a Conn Task, one d20 re-roll may be done. The second result must be used.",
+    "Talent.flightController.description2e": "When you take the Assist action while at the helm of the ship, you or the ally you assist may re-roll 1d20.",
 
     "Talent.flight": "Flight",
 
@@ -3330,9 +3358,14 @@
 
     "Talent.indefatigable.description2e": "When you fail a task, and attempt that task again during the same scene, reduce the Difficulty of the second attempt (and any subsequent attempts if you still fail) by 1.",
 
-    "Talent.independentPhaserSupply": "Independent Phaser Supply",
+    "Talent.independentPhaserSupply": "Independent Weapon Power",
 
     "Talent.independentPhaserSupply.soloDescription": "The ship’s phasers use an independent power supply, rather than drawing directly from the ship’s other power sources.",
+    "Talent.independentPhaserSupply.description2e": "The ship’s directed energy weapons are powered from an independent reactor rather than tied to the ship’s main engines. \n\nIncrease the Damage rating of the ship’s energy weapons by 1. Further, when you fire one of the ship’s energy weapons, ignore one breach currently affecting the ship’s Weapons system. However, Reserve Power cannot be redirected to the ship’s Weapons.",
+
+    "Talent.industrialReplicators": "Industrial Replicators",
+
+    "Talent.industrialReplicators.description": "The ship is equipped with high-power, high-capacity replicators which can produce large-scale objects, components for prefabricated buildings, colonial infrastructure, or even vehicles. Tied into the ship’s cargo transporters, they can deposit their output directly onto a planet’s surface from orbit: a valuable ability during crisis relief missions.\n\nThe ship has the trait **Industrial Replicators**, and the ship’s Small Craft Capacity is increased by 2 (if the ship also has Extensive Shuttlebays, apply this bonus afterwards). In addition, characters on the ship may replicate large objects, structures, and vehicles during a mission; these have **opportunity cost 3**.",
 
     "Talent.inertia": "Inertia",
 
@@ -3466,6 +3499,10 @@
     "Talent.mindMeld.description": "You have undergone training in telepathic techniques that allow the melding of minds through physical contact. This will always require a Task with a Difficulty of at least 1, which can be opposed by an unwilling participant. If successful, you link minds with the participant, sharing thoughts and memories; Momentum may be spent to gain more information, or perform deeper telepathic exchanges. This link goes both ways, and it is a tiring and potentially hazardous process for you. Complications can result in pain, disorientation, or lingering emotional or behavioral difficulties.",
     "Talent.mindMeld.description2e": "You’ve undergone training in telepathic techniques that allow the melding of minds through physical contact. This always requires a task (normally **Control + Sciences**) with a Difficulty of at least 1, which can be opposed by an unwilling participant. If successful, you link minds with the participant, sharing thoughts and memories. Momentum may be spent to gain more information or perform deeper telepathic exchanges. This link goes both ways, and it is a tiring and potentially hazardous process. Complications can result in taking Stress, pain, disorientation, or lingering emotional or behavioral difficulties.",
 
+    "Talent.minelayer": "Minelayer",
+
+    "Talent.minelayer.description": "The ship has been refitted to deploy mines in addition to its existing armaments. Choose a single type of mine for the ship to carry. The **Expanded Munitions** talent allows the ship to select additional mine types.",
+
     "Talent.miracleWorker": "Miracle Worker",
 
     "Talent.miracleWorker.description2e": "Whenever you succeed at an Engineering task to overcome an extended task, you may increase your Impact by 1 by spending 1 Momentum instead of 2.",
@@ -3477,6 +3514,10 @@
     "Talent.missionPod": "Mission Pod",
 
     "Talent.missionPod.description2e": "All vessels of this class are fitted with a mission pod, which provides two talents as well as adjustments to the ship’s system and department ratings. The mission pod can be changed as if it were a single talent; replacing it takes 12–24 hours at a starbase or other facility.",
+
+    "Talent.modularCargoBays": "Modular Cargo Bays",
+
+    "Talent.modularCargoBays.description": "The ship’s cargo bays are large, but they’re also fitted with additional equipment, movable partitions, force field generators, and other stowable furnishings that make it easier to refit the cargo bay for other purposes, When you convert a cargo bay to serve another purpose, it only costs 1 Momentum (Immediate) rather than 2, and the new trait gains +1 Potency.",
 
     "Talent.modularLaboratories": "Modular Laboratories",
 
@@ -3834,6 +3875,7 @@
     "Talent.selfReplicatingMines": "Self-Replicating Mines",
 
     "Talent.selfReplicatingMines.soloDescription": "The ship carries mines that are capable of replicating themselves over time, allowing for a more thorough spread filling the area they’re deployed in. Note that Starfleet does not normally utilize mines.",
+    "Talent.selfReplicatingMines.description2e": "The ship carries mines which are capable of self-replicating themselves over time, allowing them to replenish detonated mines. This reduces the mines’ Damage rating by 1, and cannot be done with Cumbersome mines, but the Difficulty of the task made to avoid the mines is not reduced when mines are detonated.",
 
     "Talent.senseSpectrum": "Sense Spectrum",
 
@@ -3955,7 +3997,7 @@
 
     "Talent.telepathicProjection": "Telepathic Projection",
 
-    "": "Your telepathic ability is more potent than most, and you are accustomed to projecting your thoughts into other minds. You can send your thoughts into the minds of other creatures—other than those immune to telepathy—even if those creatures are not telepathic themselves. You can ‘hear’ their responses by reading their minds. You are also capable of using this ability offensively, overwhelming a target’s mind with pain-inducing psychic noise. This requires a Presence + Security task with a Difficulty of 2 (increasing by 1 for each range category beyond Close); success inflicts a Stun or Deadly Injury with Severity 3 and the Piercing effect.",
+    "Talent.telepathicProjection.description2e": "Your telepathic ability is more potent than most, and you are accustomed to projecting your thoughts into other minds. You can send your thoughts into the minds of other creatures—other than those immune to telepathy—even if those creatures are not telepathic themselves. You can ‘hear’ their responses by reading their minds. You are also capable of using this ability offensively, overwhelming a target’s mind with pain-inducing psychic noise. This requires a Presence + Security task with a Difficulty of 2 (increasing by 1 for each range category beyond Close); success inflicts a Stun or Deadly Injury with Severity 3 and the Piercing effect.",
 
     "Talent.telepathy2e": "Telepathy",
 
@@ -4017,6 +4059,10 @@
     "Talent.toxicPoisonousOrVenomous": "Toxic, Poisonous or Venomous",
 
     "Talent.toxicPoisonousOrVenomous.description2e": "Creatures that by their inherent nature can cause harm to other creatures through toxins they naturally produce or via microorganisms they symbiotically exist with are **Toxic** or **Poisonous**. Creatures that have venom sacks like snakes, or creatures that deliver toxins with an attack, are considered **Venomous**. Regardless of this distinction, a gamemaster can determine what is toxic or venomous about a creature. Any attack against, or by, the creature can have this as an additional trait.",
+
+    "Talent.traceablePayloadSystem": "Traceable Payload System",
+
+    "Talent.traceablePayloadSystem.description": "The ship’s armaments have been modified to leave a distinctive radioisotope signature on anything they strike. This signature is difficult to detect unless it has been specifically looked for, but the firing ship can detect it up to five light-years away.\n\nWhenever this ship succeeds at an attack, you may spend 1 Momentum to apply the trait **Radioisotope Trace** to the target. This trait remains for approximately a day. If a target with that trait is within five lightyears, you may attempt a **Reason + Science** task with a Difficulty of 2, assisted by the ship’s **Sensors + Security** to detect the target’s approximate location (the closer you are, the more precise a location you can get). If the target is outside of this range, the task immediately fails.",
 
     "Talent.tracker": "Tracker",
 

@@ -3089,7 +3089,10 @@ export class Talents {
             new TalentModel(
                 "Telepathic Projection",
                 "Your telepathic ability is more potent than most, and you are quite accustomed to projecting your thoughts into other minds. You can send your thoughts into the minds of other creatures – other than those immune to telepathy – even if those creatures are not telepathic themselves. You can “hear” their responses by reading their minds as normal. You are also capable of using this ability offensively, overwhelming a target’s mind with pain-inducing psychic noise. This requires a Presence + Security task with a Difficulty of 2 (increasing by 1 for each range category beyond Close), and inflicting [D] Stress equal to your Presence, with the Intense effect.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new TalentPrerequisite("Telepath", "Telepath (Ocampa)", "Telepathy (Anabaj)"),  new GMsDiscretionPrerequisite()],
+                [
+                    new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition),
+                    new TalentPrerequisite("Telepathy2e", "Telepath", "Telepath (Ocampa)", "Telepathy (Anabaj)"),  new GMsDiscretionPrerequisite()
+                ],
                 1,
                 "Esoteric"),
             new TalentModel(
@@ -3554,9 +3557,11 @@ export class Talents {
             new TalentModel(
                 "Independent Phaser Supply",
                 "The ship’s phasers use an independent power supply, rather than drawing directly from the ship’s other power sources. Attacking with the ship’s phasers no longer has a Power Requirement. However, the ship may not spend additional Power to boost the effectiveness of an attack with the phasers.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.DiscoveryCampaign, Source.UtopiaPlanitia, Source.CaptainsLog)],
+                [
+                    new StarshipPrerequisite(),
+                    new SourcePrerequisite(Source.CommandDivision, Source.DiscoveryCampaign, Source.UtopiaPlanitia, Source.CaptainsLog)],
                 1,
-                "Starship"),
+                "Starship", false, new AliasModel("Independent Phaser Supply", Source.CommandDivision), new AliasModel("Independent Phaser Supply", Source.DiscoveryCampaign), new AliasModel("Independent Phaser Supply", Source.UtopiaPlanitia), new AliasModel("Independent Phaser Supply", Source.CaptainsLog)),
             new TalentModel(
                 "Polarized Hull Plating",
                 "The ship does not have deflector shielding, but rather is equipped with layers of hull plating that can be polarized to resist attack. This functions in the same way as Shields do, with one difference: the ship suffers a Breach if four or more damage is suffered after deductions for Resistance.",
@@ -3656,6 +3661,7 @@ export class Talents {
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.TechnicalManual),
                     new VersionConstrainedPrerequisite(1, new DepartmentPrerequisite(Department.Security, 3)),
                     new VersionConstrainedPrerequisite(2, new DepartmentPrerequisite(Department.Security, 4)),
+                    new VersionConstrainedPrerequisite(2, new TalentPrerequisite("Minelayer"))
                 ],
                 1,
                 "Starship"),
@@ -3724,7 +3730,11 @@ export class Talents {
             new TalentModel(
                 "Self-Replicating Mines",
                 "The ship carries mines that are capable of replicating themselves over time, allowing for a more thorough spread filling the area they’re deployed in. The Difficulty of any task made to avoid the mines does not reduce when mines are detonated.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.TechnicalManual), new ServiceYearPrerequisite(2371), new DepartmentPrerequisite(Department.Security, 4)],
+                [new StarshipPrerequisite(),
+                    new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.TechnicalManual), new ServiceYearPrerequisite(2371),
+                    new DepartmentPrerequisite(Department.Security, 4),
+                    new VersionConstrainedPrerequisite(2, new TalentPrerequisite("Minelayer")),
+                    new VersionConstrainedPrerequisite(2, new ServiceYearPrerequisite(2371))],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3813,6 +3823,48 @@ export class Talents {
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
                 "Starship"),
+            new TalentModel(
+                "Additional Propulsion System (Talent)",
+                "",
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                1,
+                "Starship"),
+            new TalentModel(
+                "Cluster Torpedoes",
+                "",
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                1,
+                "Starship"),
+            new TalentModel(
+                "Extended Sensor Range",
+                "",
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                1,
+                "Starship"),
+            new TalentModel(
+                "Industrial Replicators",
+                "",
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                1,
+                "Starship"),
+            new TalentModel(
+                "Minelayer",
+                "",
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                1,
+                "Starship"),
+            new TalentModel(
+                "Modular Cargo Bays",
+                "",
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                1,
+                "Starship"),
+            new TalentModel(
+                "Traceable Payload System",
+                "",
+                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual), new CenturyPrerequisite(25)],
+                1,
+                "Starship"),
 
 
 
@@ -3865,7 +3917,7 @@ export class Talents {
         new TalentModel(
             "Additional Propulsion System",
             "The vessel includes an additional, non-standard form of propulsion, such as Transwarp or Quantum Slipstream Drive.",
-            [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
+            [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia), new Version1Prerequisite()],
             1,
             "Starship", true),
         new TalentModel(

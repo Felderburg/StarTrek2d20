@@ -3268,7 +3268,7 @@
 
     "Talent.telepathicProjection": "Projeção Telepática",
 
-    "": "Sua habilidade telepática é mais potente do que a maioria, e você está acostumado a projetar seus pensamentos em outras mentes. Você pode enviar seus pensamentos para as mentes de outras criaturas - exceto aquelas imunes à telepatia - mesmo que essas criaturas não sejam telepáticas. Você pode “ouvir” as respostas delas ao ler suas mentes. Você também é capaz de usar essa habilidade ofensivamente, sobrecarregando a mente de um alvo com ruído psíquico indutor de dor. Isso requer uma tarefa de Presença + Segurança com Dificuldade 2 (aumentando em 1 para cada categoria de alcance além de Perto); o sucesso inflige um Atordoamento ou Ferimento Mortal com Gravidade 3 e efeito Perfurante.",
+    "Talent.telepathicProjection.description2e": "Sua habilidade telepática é mais potente do que a maioria, e você está acostumado a projetar seus pensamentos em outras mentes. Você pode enviar seus pensamentos para as mentes de outras criaturas - exceto aquelas imunes à telepatia - mesmo que essas criaturas não sejam telepáticas. Você pode “ouvir” as respostas delas ao ler suas mentes. Você também é capaz de usar essa habilidade ofensivamente, sobrecarregando a mente de um alvo com ruído psíquico indutor de dor. Isso requer uma tarefa de Presença + Segurança com Dificuldade 2 (aumentando em 1 para cada categoria de alcance além de Perto); o sucesso inflige um Atordoamento ou Ferimento Mortal com Gravidade 3 e efeito Perfurante.",
 
     "Talent.telepathy2e": "Telepatia",
 
