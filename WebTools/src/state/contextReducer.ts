@@ -68,6 +68,11 @@ const contextReducer = (state = getInitialData(), action) => {
                     existing.splice(existing.indexOf(Source.Core), 1);
                 } else if (newSource === Source.Core && existing.indexOf(Source.Core2ndEdition) >= 0) {
                     existing.splice(existing.indexOf(Source.Core2ndEdition), 1);
+                    SourcesHelper.getSources().forEach(s => {
+                        if (s.version === 2 && existing.includes(s.id)) {
+                            existing.splice(existing.indexOf(s.id), 1);
+                        }
+                    });
                 }
                 existing.push(newSource);
                 persistContext(existing);

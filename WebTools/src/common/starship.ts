@@ -4,7 +4,7 @@ import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
-import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MINELAYER, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper } from "../helpers/talents";
 import { TalentSelection } from "../helpers/talentSelection";
 import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
@@ -295,6 +295,10 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             this.missionProfileStep.type.traits.split(", ").forEach(t => trait.push(t.trim()));
         }
         return trait;
+    }
+
+    get isMineLayer() {
+        return this.version === 1 || this.hasTalent(TALENT_NAME_MINELAYER);
     }
 
     get numberOfTalents() {

@@ -9,7 +9,7 @@ import { Weapon } from "../../helpers/weapons";
 import { addStarshipWeapon, deleteStarshipWeapon, nextStarshipWorkflowStep } from "../../state/starshipActions";
 import store from "../../state/store";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
-import AddWeaponView from "../view/addWeaponView";
+import AddWeaponView, { AddWeaponMode } from "../view/addWeaponView";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { IconButton } from "../../components/iconButton";
 import { useTranslation } from "react-i18next";
@@ -62,7 +62,9 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = 
 
     const modalContents = () => {
         return (<AddWeaponView onClose={() => closeModal()} serviceYear={starship.serviceYear}
-            addWeapon={(weapon) => store.dispatch(addStarshipWeapon(weapon))} version={starship.version} />)
+            addWeapon={(weapon) => store.dispatch(addStarshipWeapon(weapon))}
+            version={starship.version}
+            mode={starship.isMineLayer ? AddWeaponMode.IncludeMines : AddWeaponMode.NoMines} />)
     }
 
     const confirmationContents = (w: Weapon) => {

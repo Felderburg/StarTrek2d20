@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import NpcDepartmentView from "../view/npcDepartmentView";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import store from "../../state/store";
-import { addNpcCharacterValue, setCharacterAssignment, setCharacterFocus, StepContext } from "../../state/characterActions";
+import { addNpcCharacterValue, setCharacterAssignment, setCharacterFocus, setCharacterRank, StepContext } from "../../state/characterActions";
 import Markdown from "react-markdown";
 import { NpcType, NpcTypes } from "../model/npcType";
 import { FocusSelectionView } from "../../components/focusSelectionView";
@@ -22,6 +22,9 @@ import { Button } from "react-bootstrap";
 import MajorNpcDepartmentView from "../view/majorNpcDepartmentView";
 import MajorNpcAttributeView from "../view/majorNpcAttributeView";
 import { Dialog } from "../../components/dialog";
+import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
+import { CharacterType } from "../../common/characterType";
+import { Rank, RanksHelper } from "../../helpers/ranks";
 
 const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -161,6 +164,27 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
         return counts[character.npcGenerationStep?.type];
     }
 
+    const isRankApplicable = () => {
+        return [CharacterType.Starfleet, CharacterType.KlingonWarrior,
+            CharacterType.Cardassian, CharacterType.Ferengi,
+            CharacterType.Romulan].includes(character.type);
+    }
+
+    const getRanks = () => {
+        let ranks = [new DropDownElement("", "")];
+        ranks.push(...RanksHelper.instance().getRanksByType(character.type, character.version).map(r => new DropDownElement(r.id, r.localizedName)));
+        return ranks;
+    }
+
+    const selectRank = (rank: string|Rank) => {
+        if (rank === "") {
+            store.dispatch(setCharacterRank(""));
+        } else {
+            let model = RanksHelper.instance().getRank(rank as Rank);
+            store.dispatch(setCharacterRank(model?.localizedName ?? "", rank as Rank));
+        }
+    }
+
     const onNext = () => {
         if (totalAttriubtePoints() < NpcTypes.attributePointCount(character.npcGenerationStep?.type)) {
             Dialog.show(t("NpcStatsPage.attributes.error"));
@@ -227,6 +251,15 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
                                     value={character.jobAssignment}
                                     onChange={(v) => store.dispatch(setCharacterAssignment(v))}
                                 />
+
+                                <Header level={2} className="mt-4">{t('Construct.other.rank')}</Header>
+                                { isRankApplicable()
+                                    ? (<div className="mt-3">
+                                        <DropDownSelect items={getRanks()} defaultValue={character.rank?.id || ""}
+                                            onChange={selectRank} />
+                                    </div>)
+                                    : undefined}
+
                             </div>
 
                             {renderFocuses()}

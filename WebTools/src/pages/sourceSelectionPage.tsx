@@ -66,7 +66,7 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
         const sources = SourcesHelper.getTypes().map(t => {
             const list = SourcesHelper.getSourcesByType(t.type).filter(s => ![Source.Core, Source.Core2ndEdition].includes(s.id)).map((s, i) => {
                 hasUnavailableSources = hasUnavailableSources || !s.available;
-                const className = s.available ? (this.hasSource(s.id) ? "source source-selected" : "source") : "source unavailable";
+                const className = (s.available && (s.version === 1 || isSecondEdition())) ? (this.hasSource(s.id) ? "source source-selected" : "source") : "source unavailable";
                 return (
                     <div key={s.id} className={className} onClick={() => { if (s.available) { this.sourceChanged(s.id); } } } title={s.localizedName} role="button">{s.localizedName}</div>
                 );
@@ -165,7 +165,7 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
         if (selectAll) {
             let version = isSecondEdition() ? 2 : 1;
             let sources = SourcesHelper.getSources()
-                .filter(s => s.available)
+                .filter(s => s.available && (s.version === 1 || version === 2))
                 .filter(s => {
                     if (s.id === Source.Core) {
                         return version === 1;

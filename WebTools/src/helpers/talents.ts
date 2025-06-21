@@ -63,6 +63,7 @@ export const TALENT_NAME_INITIATIVE_X = "Initiative X";
 export const TALENT_NAME_MENACING_X = "Menacing X";
 export const TALENT_NAME_NATURAL_PROTECTION_X = "Natural Protection X";
 export const TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X = "Extraordinary Attribute X";
+export const TALENT_NAME_MINELAYER = "Minelayer";
 
 enum TalentCategory {
     General,
