@@ -19,7 +19,7 @@ import { SpaceframeHelper } from './spaceframes';
 import { SpeciesHelper } from './species';
 import { Species } from './speciesEnum';
 import { allSystems, System, systemByName } from './systems';
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
 import { CaptureType, CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadType, EnergyLoadTypeModel, MineType, MineTypeModel, PersonalWeapons, PersonalWeaponType, TorpedoLoadType, TorpedoLoadTypeModel, UsageCategory, Weapon, WeaponType } from './weapons';
@@ -41,13 +41,14 @@ import { CreatureType, CreatureTypeHelper } from '../creature/model/creatureType
 import { DietType, DietTypeHelper } from '../creature/model/diet';
 import { CreatureSize, CreatureSizeHelper } from '../creature/model/creatureSize';
 import { NaturalAttacks, NaturalAttacksHelper } from '../creature/model/naturalAttacks';
-import { SelectedTalent } from '../common/selectedTalent';
+import { OtherSelection, SelectedTalent } from '../common/selectedTalent';
 import { LocomotionModel, LocomotionType, LocomotionTypeHelper } from '../creature/model/locomotion';
 import { allCharacterAdvancementChoices, CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
 import { SpecialWeapon } from '../common/specialWeapon';
 import { AttackType } from '../common/attackType';
 import { ModificationType } from '../modify/model/modificationType';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from './equipment';
+import { PropulsionSystemType } from './propulsionSystem';
 
 class Marshaller {
 
@@ -635,13 +636,29 @@ class Marshaller {
         }
         if (t.selection != null) {
             if (t.talent === TALENT_NAME_WARRIORS_SPIRIT) {
-                talent["selection"] = SpecialWeapon[t.selection];
-            } else {
-                talent["selection"] = t.x;
+                talent["selection"] = SpecialWeapon[t.selection as SpecialWeapon];
+            } else if (t.talent === TALENT_NAME_DEFENSIVE_TRAINING || t.talent === TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR) {
+                talent["selection"] = AttackType[t.selection as AttackType];
+            } else if (t.talent === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {
+                if (t.selection instanceof OtherSelection) {
+                    talent["selection"] = {
+                        type: "Other",
+                        name: t.selection?.name
+                    }
+                } else {
+                    talent["selection"] = PropulsionSystemType[t.selection as PropulsionSystemType];
+                }
             }
         }
         if (t.additionalInformation != null) {
             talent["additionalInformation"] = t.additionalInformation;
+        }
+        if (t.weapon != null) {
+            if (t.weapon instanceof Weapon) {
+                talent["weapon"] = this.encodeWeapon(t.weapon as Weapon);
+            } else {
+                talent["weapon"] = t.weapon;
+            }
         }
         if (t.multiple != null) {
             talent["multiple"] = t.multiple;
@@ -936,7 +953,7 @@ class Marshaller {
             }
 
             if (json.missionProfile.talent) {
-                let talent = this.hydrateTalent(json.missionProfile.talent);
+                let talent = this.hydrateTalent(json.missionProfile.talent, result.version);
                 if (talent) {
                     result.missionProfileStep.talent = talent;
                 }
@@ -974,10 +991,7 @@ class Marshaller {
 
         if (json.talents) {
             json.talents.forEach(t => {
-                let talent = TalentsHelper.getTalent(t.name);
-                if (talent) {
-                    result.additionalTalents.push(new SelectedTalent(talent.name));
-                }
+                result.additionalTalents.push(this.hydrateTalent(t, result.version));
             });
         }
 
@@ -1111,7 +1125,7 @@ class Marshaller {
 
         if (json.talents) {
             json.talents.forEach(t => {
-                let talent = this.hydrateTalent(t);
+                let talent = this.hydrateTalent(t, result.version);
                 if (talent != null) {
                     result.additionalTalents.push(talent);
                 }
@@ -1334,7 +1348,7 @@ class Marshaller {
                         result.speciesStep.decrementAttributes = speciesBlock.decrementStats.map(s => AttributesHelper.getAttributeByName(s));
                     }
                     if (speciesBlock.talent != null) {
-                        result.speciesStep.talent = this.hydrateTalent(speciesBlock.talent);
+                        result.speciesStep.talent = this.hydrateTalent(speciesBlock.talent, result.version);
                     }
 
                     if (speciesBlock.abilityOptions != null) {
@@ -1373,7 +1387,7 @@ class Marshaller {
                     result.careerStep.value = temp.value;
                 }
                 if (temp.talent != null) {
-                    result.careerStep.talent = this.hydrateTalent(temp.talent);
+                    result.careerStep.talent = this.hydrateTalent(temp.talent, result.version);
                 }
             }
 
@@ -1408,7 +1422,7 @@ class Marshaller {
                 result.educationStep.value = json.training.value;
             }
             if (json.training.talent != null) {
-                let talent = this.hydrateTalent(json.training.talent);
+                let talent = this.hydrateTalent(json.training.talent, result.version);
                 if (talent != null) {
                     result.educationStep.talent = talent;
                 }
@@ -1502,7 +1516,7 @@ class Marshaller {
                 result.upbringingStep.discipline = DepartmentsHelper.instance.getDepartmentByName(json.upbringing.discipline);
             }
             if (json.upbringing.talent != null) {
-                result.upbringingStep.talent = this.hydrateTalent(json.upbringing.talent);
+                result.upbringingStep.talent = this.hydrateTalent(json.upbringing.talent, result.version);
             }
         }
 
@@ -1518,13 +1532,13 @@ class Marshaller {
                 result.finishingStep.value = json.finish.value;
             }
             if (json.finish.talent != null) {
-                result.finishingStep.talent = this.hydrateTalent(json.finish.talent);
+                result.finishingStep.talent = this.hydrateTalent(json.finish.talent, result.version);
             }
         }
 
         if (json.talents) {
             json.talents.forEach(t => {
-                let talent = this.hydrateTalent(t);
+                let talent = this.hydrateTalent(t, result.version);
                 if (talent != null) {
                     result.addTalent(talent);
                 }
@@ -1538,7 +1552,7 @@ class Marshaller {
                 result.npcGenerationStep.values = [...json.npc.values];
             }
             if (json.npc.talents) {
-                result.npcGenerationStep.talents = json.npc.talents.map(t => this.hydrateTalent(t));
+                result.npcGenerationStep.talents = json.npc.talents.map(t => this.hydrateTalent(t, result.version));
             }
             if (json.npc.specialization) {
                 if (json.npc.specialization === "OrionPirate") {
@@ -1621,7 +1635,7 @@ class Marshaller {
         }
 
         if (json.improvements?.length) {
-            result.improvements = this.decodeImprovements(json.improvements);
+            result.improvements = this.decodeImprovements(json.improvements, result.version);
         }
 
         if (json.description?.length) {
@@ -1631,7 +1645,7 @@ class Marshaller {
         return result;
     }
 
-    decodeImprovements(json: any) {
+    decodeImprovements(json: any, version: number) {
         if (json) {
             return Object.values(json).map(j => {
                 if (j["type"] === "supporting") { // backward compatibility
@@ -1649,7 +1663,7 @@ class Marshaller {
                         improvement.value = DepartmentsHelper.instance.getDepartmentByName(j["discipline"]);
                         improvement.choice = CharacterAdvancementChoice.Department;
                     } else if (j["talent"] != null) {
-                        improvement.value = this.hydrateTalent(j["talent"]);
+                        improvement.value = this.hydrateTalent(j["talent"], version);
                         improvement.choice = CharacterAdvancementChoice.Talent;
                     }
                     return improvement;
@@ -1681,9 +1695,9 @@ class Marshaller {
                             improvement.removeValue = DepartmentsHelper.instance.getDepartmentByName(j["remove"]);
                         }
                     } else if (improvement.choice === CharacterAdvancementChoice.Talent) {
-                        improvement.value = this.hydrateTalent(j["value"]);
+                        improvement.value = this.hydrateTalent(j["value"], version);
                         if (j["remove"] != null) {
-                            improvement.removeValue = this.hydrateTalent(j["remove"]);
+                            improvement.removeValue = this.hydrateTalent(j["remove"], version);
                         }
                     }
                     return improvement;
@@ -1702,7 +1716,7 @@ class Marshaller {
         }
     }
 
-    hydrateTalent(t) {
+    hydrateTalent(t, version: number) {
         let talentName = t.name;
         if (talentName === "Augmented Ability (Control)" ||
             talentName === "Augmented Ability (Daring)" ||
@@ -1817,6 +1831,14 @@ class Marshaller {
 
             if (t["additionalInformation"] != null) {
                 selectedTalent.additionalInformation = t["additionalInformation"];
+            }
+
+            if (t["weapon"] != null) {
+                if (typeof t["weapon"] === 'string') {
+                    selectedTalent.weapon = t["weapon"] as string;
+                } else {
+                    selectedTalent.weapon = this.decodeWeapon(t["weapon"], version);
+                }
             }
 
             return selectedTalent;

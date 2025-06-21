@@ -1604,6 +1604,11 @@
     "NpcType.major.description": "Major NPCs are the gamemaster’s equivalent of a player character. More thought and creativity should be put into creating a Major NPC, giving  them names, backgrounds, and qualities comparable to player characters.",
     "NpcType.major.name": "Major NPC",
 
+    "PropulsionSystemType.displacementActivatedSporeHubDrive": "Displacement-Activated Spore Hub Drive",
+    "PropulsionSystemType.protostarDrive": "Protostar Drive",
+    "PropulsionSystemType.quantumSlipstreamDrive": "Quantum Slipstream Drive",
+    "PropulsionSystemType.transwarp": "Transwarp",
+
     "Rank.admiral.name": "Admiral",
     "Rank.admiral.abbrev": "Adm.",
 

@@ -17,6 +17,7 @@ import { SelectedTalent } from "../../common/selectedTalent";
 import MultiTalentSelectionView from "../../components/multiTalentSelectionView";
 import { RankedTalent } from "../../helpers/rankedTalent";
 import { isMultiSelectionTalent } from "../../helpers/isMultiSelectionTalent";
+import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 
 interface ISimpleStarshipPageProperties {
     starship: Starship;
@@ -28,10 +29,15 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({starship,
     const { t } = useTranslation();
 
     const nextPage = () => {
+        let message = undefined;
+        for (let i = 0; i < starship.additionalTalents?.length && message == null; i++) {
+            message = determineSelectedTalentExtraErrors(starship.additionalTalents[i], starship);
+        }
+
         if (starship.freeTalentSlots > starship.additionalTalents.length) {
             Dialog.show("Please select " + starship.freeTalentSlots + ((starship.freeTalentSlots === 1) ? ' talent ' : ' talents ') + " before proceeding.");
-        } else if (isExpandedMunitionsPresent()) {
-            Navigation.navigateToPage(PageIdentity.ExpandedMunitionsWeaponsSelection);
+        } else if (message) {
+            Dialog.show(message);
         } else {
             store.dispatch(removeAllStarshipTalentDetailSelection());
             let step = workflow.peekNextStep();

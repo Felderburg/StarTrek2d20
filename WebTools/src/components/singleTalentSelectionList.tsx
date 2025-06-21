@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_MINELAYER, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { useTranslation } from 'react-i18next';
 import { ITalent } from '../helpers/italent';
@@ -22,6 +22,11 @@ import Markdown from 'react-markdown';
 import { t } from 'i18next';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { Starship } from '../common/starship';
+import { PropulsionSystemModel, PropulsionSystemType } from '../helpers/propulsionSystem';
+import { Weapon } from '../helpers/weapons';
+import { Button } from 'react-bootstrap';
+import { ModalControl } from './modal';
+import AddWeaponView, { AddWeaponMode } from '../starship/view/addWeaponView';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
@@ -279,6 +284,86 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
             </div>
         );
     }
+
+    const renderAdditionalPropulsionSystem = () => {
+
+        const getItems = () => {
+            let result = [new DropDownElement("", "")];
+            result.push(...PropulsionSystemModel.types.map(t => new DropDownElement(t.type, t.localizedName)));
+            return result;
+        }
+
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <DropDownSelect
+                        items={getItems()}
+                        defaultValue={selection.selection as PropulsionSystemType}
+                        onChange={(s) => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                if (s === "") {
+                                    temp.selection = undefined;
+                                } else {
+                                    temp.selection = s as PropulsionSystemType;
+                                }
+                                onSelection(temp);
+                            }
+                        }}
+                    />
+                </div>
+            </div>
+        );
+    }
+
+    const renderWeaponSelection = () => {
+        let weaponName = "";
+        if (selection?.weapon) {
+            if (selection.weapon instanceof Weapon) {
+                weaponName = selection.weapon.name;
+            } else {
+                weaponName = selection.weapon as string;
+            }
+        }
+
+        const closeModal = () => {
+            ModalControl.hide();
+        }
+
+        const showModal = () => {
+            let starship = construct as Starship;
+            let mode = starship.version === 1 ? AddWeaponMode.IncludeMines : AddWeaponMode.NoMines;
+            if (talent.name === TALENT_NAME_MINELAYER) {
+                mode = AddWeaponMode.MinesOnly;
+            } else if (starship.isMineLayer) {
+                mode = AddWeaponMode.IncludeMines;
+            }
+            ModalControl.show("lg", () => closeModal(),
+            <AddWeaponView onClose={() => closeModal()}
+                version={construct.version}
+                addWeapon={(w) => {
+                    let temp = selection?.copy();
+                    if (temp) {
+                        temp.weapon = w;
+                        onSelection(temp);
+                    }
+                }} mode={mode} />,
+            "Add Weapon");
+        }
+
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <div className="d-flex justify-content-between align-items-baseline">
+                        <p className="mb-0">{weaponName}</p>
+                        <Button size="sm"
+                            onClick={() => showModal()}>{t('Common.button.select')}</Button>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
 
     const renderBoldOrCautiousSelection = () => {
         return (
@@ -666,6 +751,26 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                     </td>
                 </tr>
             </>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM === talent.name
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderAdditionalPropulsionSystem()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            [TALENT_NAME_MINELAYER, TALENT_NAME_EXPANDED_MUNITIONS].includes(talent.name)
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderWeaponSelection()}
+                </td>
+                <td></td>
+            </tr>)
             : undefined}
     </tbody>);
 }

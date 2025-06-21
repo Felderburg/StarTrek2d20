@@ -1,8 +1,11 @@
 import i18next from "i18next";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS } from "../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_MINELAYER, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS } from "../helpers/talents";
 import { SelectedTalent } from "./selectedTalent";
+import { Construct } from "./construct";
+import { Starship } from "./starship";
+import { Weapon, WeaponType } from "../helpers/weapons";
 
-export const determineSelectedTalentExtraErrors = (talent: SelectedTalent) => {
+export const determineSelectedTalentExtraErrors = (talent: SelectedTalent, construct?: Construct) => {
 
     if (talent?.talent === TALENT_NAME_WARRIORS_SPIRIT && talent.selection == null) {
         return "The selected talent requires a weapon selection.";
@@ -35,6 +38,17 @@ export const determineSelectedTalentExtraErrors = (talent: SelectedTalent) => {
         return i18next.t("Talent.menacingX.error");
     } else if (talent?.talent === TALENT_NAME_NATURAL_PROTECTION_X && talent.x == null) {
         return i18next.t("Talent.naturalProtectionX.error");
+    } else if (talent?.talent === TALENT_NAME_MINELAYER && talent.weapon == null) {
+        return i18next.t("Talent.minelayer.error");
+    } else if (talent?.talent === TALENT_NAME_EXPANDED_MUNITIONS && talent.weapon == null) {
+        return i18next.t("Talent.expandedMunitions.error");
+    } else if (talent?.talent === TALENT_NAME_EXPANDED_MUNITIONS) {
+        const minelayer = (construct as Starship).isMineLayer;
+        if (!minelayer && talent.weapon instanceof Weapon && (talent.weapon as Weapon).type === WeaponType.MINE) {
+            return i18next.t("Talent.expandedMunitions.errorMines");
+        } else {
+            return undefined;
+        }
     } else {
         return undefined;
     }

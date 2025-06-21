@@ -16,6 +16,8 @@ import { makeKey } from "../common/translationKey";
 import { SpecialWeapon } from "../common/specialWeapon";
 import { AttackType } from "../common/attackType";
 import { Department } from "../helpers/department";
+import { PropulsionSystemType } from "../helpers/propulsionSystem";
+import { OtherSelection } from "../common/selectedTalent";
 
 export class ReadableTalentModel {
     characterType: CharacterType;
@@ -26,7 +28,7 @@ export class ReadableTalentModel {
     departments: Department[];
     missionPod: MissionPodModel;
     x: number;
-    selection: string|SpecialWeapon|AttackType;
+    selection: string|SpecialWeapon|AttackType|PropulsionSystemType|OtherSelection;
     additionalInformation: string;
 
     constructor(characterType: CharacterType, talent: TalentModel) {

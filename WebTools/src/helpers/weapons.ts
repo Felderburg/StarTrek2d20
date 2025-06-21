@@ -373,7 +373,7 @@ export class DeliverySystemModel {
 
 export class Weapon {
     usageCategory: UsageCategory;
-    name: string;
+    _name: string;
     readonly baseDice: number;
     type: WeaponType;
     eras: Era[][];
@@ -392,13 +392,24 @@ export class Weapon {
             eras: Era[][] = [[ Era.Enterprise, Era.OriginalSeries, Era.NextGeneration ],[ Era.Enterprise, Era.OriginalSeries, Era.NextGeneration ]],
             requiresTalent: boolean = false) {
         this.usageCategory = usage;
-        this.name = name;
+        this._name = name;
         this.baseDice = dice;
         this.type = type;
         this.eras = eras;
         this.requiresTalent = requiresTalent;
         this.loadType = loadType;
         this.deliveryType = deliveryType;
+    }
+
+    copy() {
+        let result = new Weapon(this.usageCategory, this._name, this.baseDice, this.type,
+            this.loadType, this.deliveryType, this.eras, this.requiresTalent);
+        result._qualities = this._qualities;
+        result._effects = this._effects;
+        result.hands = this.hands;
+        result.injuryType = this.injuryType;
+        result.personalWeaponType = this.personalWeaponType;
+        return result;
     }
 
     get range() {
@@ -481,8 +492,11 @@ export class Weapon {
     }
 
     get description() {
-        if (this.name?.length) {
-            return this.name;
+        return this.name;
+    }
+    get name() {
+        if (this._name?.length) {
+            return this._name;
         } else if (this.deliveryType != null) {
             return this.loadType.description + " " + this.deliveryType.description;
         } else if (this.type === WeaponType.TORPEDO) {
@@ -738,6 +752,12 @@ class StarshipWeaponList {
                 return erasForType.indexOf(era) >= 0;
             });
         }
+    }
+
+    getWeaponByName(name: string, version: number) {
+        let list  = version === 1 ? this.list : this.list2e;
+        let filteredList = list.filter(w => w.name === name);
+        return filteredList?.length ? filteredList[0] : undefined;
     }
 }
 

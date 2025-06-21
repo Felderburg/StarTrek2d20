@@ -1902,6 +1902,10 @@ NpcType.notable.description,"Notable NPCs are more capable than Minor NPCs, and 
 NpcType.notable.name,Notable NPC,,Bedeutender NSC,PNJ Notable,PNJ Notable,Значимый второстепенный персонаж,PdM Notável
 NpcType.major.description,"Major NPCs are the gamemaster’s equivalent of a player character. More thought and creativity should be put into creating a Major NPC, giving  them names, backgrounds, and qualities comparable to player characters.",,,,,,
 NpcType.major.name,Major NPC,,Herausragender NSC,PNJ Mayor,PNJ Majeur,Ключевой второстепенный персонаж,PdM Maior
+PropulsionSystemType.displacementActivatedSporeHubDrive,Displacement-Activated Spore Hub Drive,,,,,,
+PropulsionSystemType.protostarDrive,Protostar Drive,,,,,,
+PropulsionSystemType.quantumSlipstreamDrive,Quantum Slipstream Drive,,,,,,
+PropulsionSystemType.transwarp,Transwarp,,,,,,
 Rank.admiral.name,Admiral,,,Almirante,Amiral,Адмирал,Almirante
 Rank.admiral.abbrev,Adm.,,,Alm.,Amir.,Адм.,Alm.
 Rank.viceAdmiral.name,Vice Admiral,,,Vicealmirante,Vice-Amiral ,Вице-адмирал,Vice Almirante

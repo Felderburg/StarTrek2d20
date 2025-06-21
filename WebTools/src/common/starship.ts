@@ -613,29 +613,32 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
     determineWeapons(): Weapon[] {
         let result = [];
-        const talents = this.getTalentNameList();
         const spaceframe = this.spaceframeModel;
-        if (spaceframe) {
-            let secondary = [];
-            for (var attack of spaceframe.attacks) {
+        const weaponNames = this.additionalTalents.filter(t => t.weapon != null && typeof t.weapon === 'string')
+            .map(t => t.weapon);
 
+        let secondary = [];
+        if (spaceframe) {
+            for (var attack of spaceframe.attacks) {
                 for (let weapon of (this.version === 1 ? StarshipWeaponRegistry.list : StarshipWeaponRegistry.list2e)) {
-                    if (weapon.description === 'Spatial Torpedoes' && talents.indexOf('Nuclear Warheads') >= 0) {
+                    if (weapon.name === 'Spatial Torpedoes' && this.hasTalent('Nuclear Warheads')) {
                         // skip it
+                    } else if (weaponNames.includes(weapon.description)) {
+                        result.push(weapon);
                     } else if (attack === weapon.description) {
                         result.push(weapon);
                     } else if (attack.indexOf(weapon.description) >= 0) { // Tractor or Grappler
                         secondary.push(weapon);
-                    } else if (talents.indexOf(weapon.description) >= 0) {
+                    } else if (this.hasTalent(weapon.description)) {
                         result.push(weapon);
                     }
                 }
             }
-            secondary.forEach(w => {
-                result.push(w);
-            });
-
         }
+
+        result.push(...this.additionalTalents
+            .filter(t => t.weapon != null && t.weapon instanceof Weapon)
+            .map(t => t.weapon));
 
         if (this.additionalWeapons.length > 0) {
             this.additionalWeapons.forEach(w => result.push(w));
@@ -646,6 +649,8 @@ export class Starship extends Construct implements IWeaponDiceProvider {
                 result.push(s.weapon)
             }
         });
+
+        result.push(...secondary);
 
         let names = [];
         let weapons = [];
