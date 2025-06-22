@@ -308,7 +308,7 @@ export class Roll20VttExporter {
             result += "<p><strong>" + i18next.t("Construct.other.attacks") + "</strong></p>\n<ul>\n";
 
             weapons.forEach(w => {
-                result += "<li><p>" + w.description + " ("
+                result += "<li><p>" + w.name + " ("
                     + (w.isTractorOrGrappler ? "" : (WeaponTypeModel.TYPES[w.type].description + ", "))
                     + (w.range != null ? "Range " + WeaponRange[w.range] + ", " : "")
                     + (w.isTractorOrGrappler ? "Strength " + starship.getDiceForWeaponForRoll20(w) : (starship.getDiceForWeaponForRoll20(w) + delta)) + " "
@@ -917,7 +917,7 @@ export class Roll20VttExporter {
         const rowId = id.nextId();
         return [{
             "name": "repeating_weapons_" + rowId + "_weapon_name",
-            "current": weapon.description,
+            "current": weapon.name,
             "max": "",
             "id": id.nextId()
         },{
@@ -956,7 +956,7 @@ export class Roll20VttExporter {
         const rowId = id.nextId();
         return [{
             "name": "repeating_ship_" + rowId + "_weapon_name",
-            "current": weapon.description,
+            "current": weapon.name,
             "max": "",
             "id": id.nextId()
         },{

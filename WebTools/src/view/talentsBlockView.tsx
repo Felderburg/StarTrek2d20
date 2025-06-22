@@ -11,6 +11,7 @@ import { Creature } from "../creature/model/creature";
 import { makeKey } from "../common/translationKey";
 import { Attribute } from "../helpers/attributes";
 import { Department } from "../helpers/department";
+import { System } from "../helpers/systems";
 
 interface IConstructPageProperties {
     construct: Character|Starship|Creature;
@@ -72,6 +73,14 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 .map(s => t(makeKey("Construct.department.", Department[s.department])))
                 .join(", ");
             return (<div className="text-sm px-4"><b>{t("Construct.other.department") + ": "}</b>
+                {selectedAttributes}</div>);
+        } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)"].includes(talent.name)) {
+            let starship = construct as Starship;
+            let selectedAttributes = starship.talents
+                .filter(s => s.talent === talent.name && s.system != null)
+                .map(s => t(makeKey("Construct.system.", System[s.system])))
+                .join(", ");
+            return (<div className="text-sm px-4"><b>{t("Construct.other.systems") + ": "}</b>
                 {selectedAttributes}</div>);
         } else {
             return undefined;

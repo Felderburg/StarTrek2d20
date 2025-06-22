@@ -47,7 +47,6 @@ export enum PageIdentity {
     StarshipTypeSelection,
     StarshipTalentSelection,
     StarshipWeaponsSelection,
-    ExpandedMunitionsWeaponsSelection,
     FinalStarshipDetails,
     SupportingCharacter,
     TalentsOverview,

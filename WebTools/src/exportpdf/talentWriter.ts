@@ -18,6 +18,7 @@ import { AttackType } from "../common/attackType";
 import { Department } from "../helpers/department";
 import { PropulsionSystemType } from "../helpers/propulsionSystem";
 import { OtherSelection } from "../common/selectedTalent";
+import { System } from "../helpers/systems";
 
 export class ReadableTalentModel {
     characterType: CharacterType;
@@ -27,9 +28,10 @@ export class ReadableTalentModel {
     attributes: Attribute[];
     departments: Department[];
     missionPod: MissionPodModel;
-    x: number;
-    selection: string|SpecialWeapon|AttackType|PropulsionSystemType|OtherSelection;
-    additionalInformation: string;
+    x?: number;
+    selection?: string|SpecialWeapon|AttackType|PropulsionSystemType|OtherSelection;
+    additionalInformation?: string;
+    system?: System;
 
     constructor(characterType: CharacterType, talent: TalentModel) {
         this.characterType = characterType;
@@ -201,6 +203,16 @@ export class TalentWriter {
                             paragraph.indent(indent + 10);
                             paragraph.append("Selection: ", new FontOptions(fontSize, FontType.Bold));
                             paragraph.append(talent.selection as string, new FontOptions(fontSize));
+                        }
+                    } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)"].includes(talent.talent.name)) {
+                        if (talent.system != null) {
+                            paragraph = paragraph?.nextParagraph(0);
+                            if (paragraph) {
+                                paragraphs.push(paragraph);
+                                paragraph.indent(indent + 10);
+                                paragraph.append(i18next.t("Construct.other.systems") + ": ", new FontOptions(fontSize, FontType.Bold));
+                                paragraph.append(i18next.t(makeKey('Construct.system.', System[talent.system])), new FontOptions(fontSize));
+                            }
                         }
                     }
 

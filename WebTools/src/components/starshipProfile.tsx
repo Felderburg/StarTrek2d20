@@ -37,6 +37,9 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({showProfile, era
         return (<div key={'talent-' + i}>{name}</div>)
     });
 
+    const weapons = starship?.determineWeapons()?.map((w, i) =>
+        (<div key={'weapon-' + i}>{w.name}</div>));
+
     return (
         <div id="character-sheet">
             <div id="character-sheet" className={showProfile ? 'sheet-visible' : 'sheet-hidden'}>
@@ -239,6 +242,15 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({showProfile, era
                                 <div className="sheet-label-purple text-uppercase">{t('Construct.other.specialRules')}</div>
                                 <div className="sheet-data">
                                 {specialRules}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-12 col-md-6 mb-2">
+                            <div className="sheet-panel d-flex">
+                                <div className="sheet-label-purple text-uppercase">{t('Construct.other.weapons')}</div>
+                                <div className="sheet-data">
+                                {weapons}
                                 </div>
                             </div>
                         </div>

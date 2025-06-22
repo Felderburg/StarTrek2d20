@@ -31,7 +31,7 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = 
         } else {
             return (<tbody>
                 {starship.weapons.map((w, i) => (<tr key={'weapon-' + i}>
-                    <td className="selection-header">{w.description}</td>
+                    <td className="selection-header">{w.name}</td>
                     <td><p className="m-0">{w.dice}</p></td>
                     <td><p className="m-0">{w.effectsAndQualitiesAsString}</p></td>
                     <td className="text-end">

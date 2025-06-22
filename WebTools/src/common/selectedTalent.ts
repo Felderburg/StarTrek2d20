@@ -9,6 +9,7 @@ import { Department } from "../helpers/department";
 import { ITalent } from "../helpers/italent";
 import { Weapon } from "../helpers/weapons";
 import { PropulsionSystemType } from "../helpers/propulsionSystem";
+import { System } from "../helpers/systems";
 
 export class OtherSelection {
     readonly name: string;
@@ -31,6 +32,7 @@ export class SelectedTalent implements ITalent {
     selection?: string|SpecialWeapon|AttackType|PropulsionSystemType|OtherSelection;
     multiple?: number;
     weapon?: string|Weapon;
+    system?: System;
 
     constructor(talent: string) {
         this.talent = talent;

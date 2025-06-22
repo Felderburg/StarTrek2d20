@@ -85,16 +85,16 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
 
     const getMineTypes = () => {
         if (serviceYear && version === 1) {
-            return MineTypeModel.allTypesByYear(serviceYear);
+            return MineTypeModel.allTypesByYear(version, serviceYear);
         } else if (mode !== AddWeaponMode.NoMines) {
-            return MineTypeModel.allTypes();
+            return MineTypeModel.allTypes(version);
         } else {
             return [];
         }
     }
 
     const getMineTypeById = (type: MineType) => {
-        let types = MineTypeModel.allTypes().filter(t => t.type === type);
+        let types = MineTypeModel.allTypes(version).filter(t => t.type === type);
         return types?.length ? types[0] : null;
     }
 

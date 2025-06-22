@@ -218,6 +218,12 @@ export const assembleStarshipTalents = (starship: Starship, includeSpecialRules:
                 readableTalent.departments = starship.talents
                     .filter(s => s.talent === talent.name && s.department != null)
                     .map(s => s.department);
+            } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)"].includes(talent.name)) {
+                let temp = starship.talents
+                    .filter(s => s.talent === talent.name && s.system != null)
+                if (temp.length) {
+                    readableTalent.system = temp[0].system;
+                }
             }
             if (talent.specialRule) {
                 specialRules.push(readableTalent);
@@ -228,8 +234,8 @@ export const assembleStarshipTalents = (starship: Starship, includeSpecialRules:
     });
 
     if (includeSpecialRules) {
-        specialRules.forEach(t => result.push(t));
+        return specialRules;
+    } else {
+        return result;
     }
-
-    return result;
 }

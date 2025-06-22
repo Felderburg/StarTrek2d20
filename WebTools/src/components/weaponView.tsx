@@ -22,7 +22,7 @@ const WeaponView: React.FC<IWeaponViewProperties> = ({weapon, dice, version}) =>
         return (<div className="row mt-3">
                 <div className="col-xl-9 mb-2">
                     <div className="pill-left">{t('Weapon.common.name') + ':'}</div>
-                    <div className="pill-right">{weapon.description}</div>
+                    <div className="pill-right">{weapon.name}</div>
                 </div>
                 <div className="col-xl-3 mb-2">
                     <div className="d-flex align-items-start">

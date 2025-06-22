@@ -11,16 +11,17 @@ import { FontSpecification } from "./fontSpecification";
 import { SimpleColor } from "../common/colour";
 import { System } from "../helpers/systems";
 import { Department } from "../helpers/department";
-import { TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
+import { TalentsHelper } from "../helpers/talents";
 import { Column } from "./column";
 import { FontOptions } from "./fontOptions";
 import { FontType } from "./fontLibrary";
 import { cardassianBrownColour2e, ferengiOrangeColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, romulanGreenColour2e, tealColour2e } from "./colourProvider2e";
 import { CharacterType } from "../common/characterType";
 import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird } from "./politySymbols";
-import { ReadableTalentModel, TalentWriter } from "./talentWriter";
+import { TalentWriter } from "./talentWriter";
 import { bullet2EWriter } from "./bullet2eWriter";
 import { PortraitSheetDecorations } from "./portraitSheetDecorations";
+import { assembleStarshipTalents } from "./generatedsheet";
 
 export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
 
@@ -448,57 +449,14 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     }
 
     async writeTalents(page: PDFPage, starship: Starship, column: Column, colour: SimpleColor) {
-        let talents = [];
-
-        let paragraph = new Paragraph(page, column, this.fonts);
-        for (let t of starship.getDistinctTalentNameList()) {
-
-            if (paragraph) {
-                paragraph.indent(15);
-                const talent = TalentsHelper.getTalent(t);
-                if (!talent.specialRule) {
-                    let readableTalent = new ReadableTalentModel(starship.type, talent);
-                    talents.push(readableTalent);
-                    if (talent && talent.maxRank > 1) {
-                        let rank = starship.getRankForTalent(t);
-                        readableTalent.rank = rank;
-                    }
-
-                    if (talent.name === TALENT_NAME_MISSION_POD && starship.missionPodModel) {
-                        readableTalent.missionPod = starship.missionPodModel;
-                    }
-                }
-            }
-        };
-
+        let talents = assembleStarshipTalents(starship, false);
         let writer = new TalentWriter(page, this.fonts, starship.version, colour, true);
         return await writer.writeTalents(talents, column, 9, 9, 15,
             (p) => bullet2EWriter(p.page, p, colour));
     }
 
     async writeSpecialRules(page: PDFPage, starship: Starship, column: Column, colour: SimpleColor) {
-        let talents = [];
-        let paragraph = new Paragraph(page, column, this.fonts);
-        for (let t of starship.getDistinctTalentNameList()) {
-
-            if (paragraph) {
-                paragraph.indent(15);
-                const talent = TalentsHelper.getTalent(t);
-                if (talent.specialRule) {
-                    let readableTalent = new ReadableTalentModel(starship.type, talent);
-                    talents.push(readableTalent);
-                    if (talent && talent.maxRank > 1) {
-                        let rank = starship.getRankForTalent(t);
-                        readableTalent.rank = rank;
-                    }
-
-                    if (talent.name === TALENT_NAME_MISSION_POD && starship.missionPodModel) {
-                        readableTalent.missionPod = starship.missionPodModel;
-                    }
-                }
-            }
-        };
-
+        let talents = assembleStarshipTalents(starship, true);
         let writer = new TalentWriter(page, this.fonts, starship.version, colour, true);
         return await writer.writeTalents(talents, column, 9, 9, 15,
             (p) => bullet2EWriter(p.page, p, colour));

@@ -278,7 +278,7 @@ abstract class BasicStarshipSheet extends BasicSheet {
 
     fillWeapon(form: PDFForm, weapon: Weapon, index: number, construct: Construct) {
 
-        this.fillField(form, 'Weapon ' + index + ' name', weapon.description);
+        this.fillField(form, 'Weapon ' + index + ' name', weapon.name);
         this.fillField(form, 'Weapon ' + index + ' dice', "" + construct.getDiceForWeapon(weapon));
         this.fillField(form, 'Weapon ' + index + ' qualities', weapon.effectsAndQualitiesAsString);
     }

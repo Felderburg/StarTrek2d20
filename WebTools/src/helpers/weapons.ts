@@ -53,7 +53,8 @@ export class WeaponQuality {
         if (this.rank != null) {
             return i18next.t(makeKey("Weapon.quality.", Quality[this.quality], ".name"), {rank: this.rank});
         } else {
-            return i18next.t(makeKey("Weapon.quality.", Quality[this.quality], ".name"), {rank: ""}).trim();
+            let key = makeKey("Weapon.quality.", Quality[this.quality], ".name");
+            return i18next.t(key, {rank: ""}) === key ? Quality[this.quality] : i18next.t(key, {rank: ""});
         }
     }
 }
@@ -267,7 +268,8 @@ export enum MineType {
     Polaron,
     Positron,
     Quantum,
-    Tetryonic
+    Tetryonic,
+    Transphasic
 }
 
 export class MineTypeModel {
@@ -295,6 +297,23 @@ export class MineTypeModel {
         new MineTypeModel(MineType.Tetryonic,   "Tetryonic",   1, [ new WeaponQuality(Quality.Depleting) ], [ new WeaponQuality(Quality.HighYield) ],  24),
     ];
 
+    static readonly TYPES_2E = [
+        new MineTypeModel(MineType.Blackout,    "Blackout",    2, [], [ new WeaponQuality(Quality.Jamming) ],             23),
+        new MineTypeModel(MineType.Blade,       "Blade",       3, [ new WeaponQuality(Quality.Piercing) ], [],                                       22),
+        new MineTypeModel(MineType.Chroniton,   "Chroniton",   4, [], [ new WeaponQuality(Quality.Slowing) ],             25),
+        new MineTypeModel(MineType.Gravimetric, "Gravimetric", 6, [ new WeaponQuality(Quality.Cumbersome) ], [ new WeaponQuality(Quality.HighYield), new WeaponQuality(Quality.Piercing) ], 24),
+        new MineTypeModel(MineType.Neutronic,   "Neutronic",   5, [ new WeaponQuality(Quality.Dampening) ], [],                                        25),
+        new MineTypeModel(MineType.Nuclear,     "Nuclear",     4, [ new WeaponQuality(Quality.Intense) ], [],                                        20),
+        new MineTypeModel(MineType.Photon,      "Photon",      4, [], [ new WeaponQuality(Quality.HighYield) ],           23),
+        new MineTypeModel(MineType.Photonic,    "Photonic",    3, [], [ new WeaponQuality(Quality.HighYield) ],           22),
+        new MineTypeModel(MineType.Plasma,      "Plasma",      6, [ new WeaponQuality(Quality.Cumbersome), new WeaponQuality(Quality.PersistentX) ], [],                                     23),
+        new MineTypeModel(MineType.Polaron,     "Polaron",     4, [ new WeaponQuality(Quality.Piercing) ], [],                                       24),
+        new MineTypeModel(MineType.Positron,    "Positron",    6, [ new WeaponQuality(Quality.Cumbersome), new WeaponQuality(Quality.Dampening) ], [],                                        24),
+        new MineTypeModel(MineType.Quantum,     "Quantum",     5, [ new WeaponQuality(Quality.Intense) ], [ new WeaponQuality(Quality.HighYield) ],  24),
+        new MineTypeModel(MineType.Tetryonic,   "Tetryonic",   3, [ new WeaponQuality(Quality.Depleting) ], [ new WeaponQuality(Quality.HighYield) ],  24),
+        new MineTypeModel(MineType.Transphasic,   "Transphasic",   3, [ new WeaponQuality(Quality.Devastating) ], [ new WeaponQuality(Quality.Piercing) ],  24),
+    ];
+
     constructor(type: MineType, description: string, dice: number, effect:  WeaponQuality[], quality: WeaponQuality[], century: number) {
         this.type = type;
         this.description = description;
@@ -304,16 +323,23 @@ export class MineTypeModel {
         this.century = century;
     }
 
-    static allTypes() {
-        return MineTypeModel.TYPES;
+    static allTypes(version: number) {
+        return version === 1 ? MineTypeModel.TYPES : MineTypeModel.TYPES_2E;
     }
 
-    static allTypesByYear(year: number) {
-        return this.allTypes().filter(l => year > centuryToYear(l.century));
+    static allTypesByYear(version: number, year: number) {
+        return this.allTypes(version).filter(l => year > centuryToYear(l.century));
     }
 
     get effectAndQualities(): WeaponQuality[] {
         let result = [];
+        result.push(...this._weaponEffects);
+        result.push(...this._weaponQualities);
+        return result;
+    }
+
+    get effectAndQualitiesAsString(): string {
+        let result: string[] = [];
         if (this.effect) {
             result.push(this.effect);
         }
@@ -321,7 +347,7 @@ export class MineTypeModel {
         if (qualities) {
             result.push(qualities);
         }
-        return result;
+        return result.join(", ");
     }
 
     get effect() {
@@ -486,16 +512,16 @@ export class Weapon {
             return this.deliveryType.diceBonus;
         } else if (this.type === WeaponType.TORPEDO) {
             return (this.loadType as TorpedoLoadTypeModel).dice;
+        } else if (this.type === WeaponType.MINE) {
+            return (this.loadType as MineTypeModel).dice;
         } else {
             return 0;
         }
     }
 
-    get description() {
-        return this.name;
-    }
+
     get name() {
-        if (this._name?.length) {
+        if (this.usageCategory === UsageCategory.Character && this._name?.length) {
             return this._name;
         } else if (this.deliveryType != null) {
             return this.loadType.description + " " + this.deliveryType.description;
@@ -585,7 +611,7 @@ export class Weapon {
     }
 
     get effectsAndQualitiesAsString() {
-        return this.effectsAndQualities.map(q => q.localizedDescription.trim()).join(", ");
+        return this.effectsAndQualities.filter(q => q  != null).map(q => q.localizedDescription?.trim()).join(", ");
     }
 
     get isTractorOrGrappler() {

@@ -347,6 +347,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             if (this.hasTalent(TALENT_NAME_ABUNDANT_PERSONNEL)) {
                 result *= 2;
             }
+            if (this.hasTalent("Far from Home (Service Record)")) {
+                result -= 1;
+            }
 
             return result;
         } else {
@@ -358,6 +361,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         let result = this.scale - 1;
         if (this.hasTalent("Extensive Shuttlebays")) {
             result += (this.scale - 1);
+        }
+        if (this.hasTalent("Far from Home (Service Record)")) {
+            result -= 1;
         }
         return result;
     }
@@ -477,6 +483,15 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             this.missionPodModel.talents.forEach(t => {
                 result.push(new SelectedTalent(t.name));
             });
+        }
+
+        if (this.serviceRecordStep?.specialRule) {
+            let talent = new SelectedTalent(this.serviceRecordStep?.specialRule.name);
+            if (this.serviceRecordStep?.system != null) {
+                talent.system = this.serviceRecordStep?.system;
+            }
+            result.push(talent);
+
         }
         return result;
     }
@@ -623,13 +638,13 @@ export class Starship extends Construct implements IWeaponDiceProvider {
                 for (let weapon of (this.version === 1 ? StarshipWeaponRegistry.list : StarshipWeaponRegistry.list2e)) {
                     if (weapon.name === 'Spatial Torpedoes' && this.hasTalent('Nuclear Warheads')) {
                         // skip it
-                    } else if (weaponNames.includes(weapon.description)) {
+                    } else if (attack === weapon.name) {
                         result.push(weapon);
-                    } else if (attack === weapon.description) {
+                    } else if (weaponNames.includes(weapon.name)) {
                         result.push(weapon);
-                    } else if (attack.indexOf(weapon.description) >= 0) { // Tractor or Grappler
+                    } else if (attack.indexOf(weapon.name) >= 0) { // Tractor or Grappler
                         secondary.push(weapon);
-                    } else if (this.hasTalent(weapon.description)) {
+                    } else if (this.hasTalent(weapon.name)) {
                         result.push(weapon);
                     }
                 }
@@ -655,10 +670,10 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         let names = [];
         let weapons = [];
         result.forEach(w => {
-            if (names.indexOf(w.description) >= 0) {
+            if (names.indexOf(w.name) >= 0) {
                 // skip it
             } else {
-                names.push(w.description);
+                names.push(w.name);
                 weapons.push(w);
             }
         });

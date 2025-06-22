@@ -104,11 +104,11 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
                 r.type === ServiceRecord.MajorRefit
                     ? (<tr>
                         <td></td>
-                        <td rowSpan={2}><SimpleSystemSelector
-                            starship={starship}
-                            isChecked={(s) => starship.serviceRecordStep.system === s}
-                            onSelectSystem={(v) => onExtraDetailChange(v)}
-                        /></td>
+                        <td rowSpan={2}>
+
+
+
+                        </td>
                         <td></td>
                     </tr>)
                     : undefined

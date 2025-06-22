@@ -12,8 +12,6 @@ import { TalentsHelper } from "../helpers/talents";
 import { XYLocation } from "../common/xyLocation";
 import { WeaponDescriber } from "./weaponDescriber";
 import { IWeaponDiceProvider } from "../common/iWeaponDiceProvider";
-import { CharacterTypeModel } from "../common/characterType";
-import { TracksHelper } from "../helpers/tracks";
 import { CareersHelper } from "../helpers/careers";
 import { CheckMarkMaker } from "./checkMarkMaker";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";

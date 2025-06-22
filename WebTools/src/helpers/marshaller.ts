@@ -794,14 +794,24 @@ class Marshaller {
     }
 
     private encodeWeapon(w: Weapon) {
-        return {
-            "usageCategory": w.usageCategory == null ? null : UsageCategory[w.usageCategory],
-            "type": w.type == null ? null : WeaponType[w.type],
-            "name": w.name,
-            "baseDice": w.baseDice,
-            "loadType": this.convertLoadType(w.loadType),
-            "deliverySystem": w.deliveryType == null ? null : DeliverySystem[w.deliveryType.type]
-        };
+        if (w.usageCategory === UsageCategory.Character) {
+            return {
+                "usageCategory": w.usageCategory == null ? null : UsageCategory[w.usageCategory],
+                "type": w.type == null ? null : WeaponType[w.type],
+                "name": w.name,
+                "baseDice": w.baseDice,
+                "loadType": this.convertLoadType(w.loadType),
+                "deliverySystem": w.deliveryType == null ? null : DeliverySystem[w.deliveryType.type]
+            }
+        } else {
+            return {
+                "usageCategory": w.usageCategory == null ? null : UsageCategory[w.usageCategory],
+                "type": w.type == null ? null : WeaponType[w.type],
+                "baseDice": w.baseDice,
+                "loadType": this.convertLoadType(w.loadType),
+                "deliverySystem": w.deliveryType == null ? null : DeliverySystem[w.deliveryType.type]
+            }
+        }
     }
 
     private convertLoadType(loadType: EnergyLoadTypeModel|TorpedoLoadTypeModel|CaptureTypeModel|MineTypeModel) {
@@ -1059,7 +1069,7 @@ class Marshaller {
                 }
             });
         } else if (weaponType === WeaponType.MINE) {
-            MineTypeModel.allTypes().forEach(l => {
+            MineTypeModel.allTypes(version).forEach(l => {
                 if (MineType[l.type] === json["loadType"]) {
                     loadType = l;
                 }

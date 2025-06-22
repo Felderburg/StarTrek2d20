@@ -237,7 +237,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
                 if (paragraph != null) {
 
                     paragraph?.indent(15);
-                    paragraph?.append(w.description + ": ", bold);
+                    paragraph?.append(w.name + ": ", bold);
                     paragraph?.append(text, standard);
                     paragraph?.write();
 

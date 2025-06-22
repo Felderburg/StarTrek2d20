@@ -10,7 +10,6 @@ import { nextStarshipWorkflowStep, removeAllStarshipTalentDetailSelection, setAd
 import store from "../../state/store";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
-import { PageIdentity } from "../../pages/pageIdentity";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import { SelectedTalent } from "../../common/selectedTalent";

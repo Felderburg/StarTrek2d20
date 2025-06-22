@@ -340,7 +340,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
             const text = new WeaponDescriber(construct.version, false).describeFully(w, construct);
             paragraph = paragraph == null ? new Paragraph(page, column, this.fonts) : paragraph.nextParagraph(0);
             paragraph?.indent(15);
-            paragraph?.append(w.description + ": ", bold);
+            paragraph?.append(w.name + ": ", bold);
             paragraph?.append(text, standard);
             paragraph?.write();
 

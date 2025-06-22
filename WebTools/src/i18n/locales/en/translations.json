@@ -3085,6 +3085,8 @@
     "Talent.expandedMunitions": "Expanded Munitions",
 
     "Talent.expandedMunitions.description2e": "The ship may add one weapon to its profile: either an energy weapon (choose an energy type and a delivery mechanism) or a torpedo type. This talent is often taken by Starfleet vessels to add Quantum Torpedoes to a ship’s arsenal.\n\nThis talent may be taken multiple times, adding a different weapon each time.",
+    "Talent.expandedMunitions.error": "The talent \"Expanded Munitions\" requires you to select a weapon.",
+    "Talent.expandedMunitions.errorMines": "You cannot select a mine weapon if your starship is not a mine layer.",
 
     "Talent.expandedProgram": "Expanded Program",
     "Talent.expansiveDepartment": "Expansive Department",
@@ -3507,6 +3509,7 @@
     "Talent.minelayer": "Minelayer",
 
     "Talent.minelayer.description": "The ship has been refitted to deploy mines in addition to its existing armaments. Choose a single type of mine for the ship to carry. The **Expanded Munitions** talent allows the ship to select additional mine types.",
+    "Talent.minelayer.error": "The talent \"Minelayer\" requires you to select a mine type.",
 
     "Talent.miracleWorker": "Miracle Worker",
 
@@ -3635,6 +3638,9 @@
     "Talent.pathfinder.description2e": "Whenever you attempt a task to plot a course through unknown territory, reduce the Difficulty of the task by 1, 2, or 3, to a minimum of 1. For each point by which you reduce the Difficulty, increase the complication range of that task.",
 
     "Talent.peakPerformanceServiceRecord": "Peak Performance",
+
+    "Talent.peakPerformanceServiceRecord.description": "Select one of the ship’s systems. Whenever a task assisted by this system succeeds, the ship scores 1 bonus Momentum. Bonus Momentum cannot be saved.",
+
     "Talent.percussiveMaintenance": "Percussive Maintenance",
 
     "Talent.percussiveMaintenance.description2e": "When you attempt a **Control + Engineering** task, you may add 1 Threat to use your Daring instead of your Control. If you do this, and the task succeeds, then you may reduce the time taken by 1 interval without spending Momentum.",
