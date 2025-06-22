@@ -118,10 +118,6 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({starship,
         return rankedTalents;
     }
 
-    const isExpandedMunitionsPresent = () => {
-        return starship.hasNonSpaceframeTalent("Expanded Munitions");
-    }
-
     return (<div className="page container ms-0">
         <ShipBuildingBreadcrumbs />
         <Header>{t('Page.title.starshipTalentSelection')}</Header>

@@ -8,6 +8,10 @@ const names = [
         "names": require('./names-bynar.json')
     },
     {
+        "species": "Cardassian",
+        "names": require('./names-cardassian.json')
+    },
+    {
         "species": "Human",
         "names": require('./names-human.json')
     },

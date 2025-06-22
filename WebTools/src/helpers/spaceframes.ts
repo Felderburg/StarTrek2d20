@@ -1,4 +1,5 @@
 ﻿import { CharacterType } from '../common/characterType';
+import { Stereotype } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';
 import { Starship } from '../common/starship';
 import { hasAnySource } from '../state/contextFunctions';
@@ -9,6 +10,54 @@ import {Source} from './sources';
 import { Spaceframe } from './spaceframeEnum';
 import { SoloSpaceframeStats, SpaceframeModel } from './spaceframeModel';
 import { TalentsHelper } from './talents';
+
+class Version2Prerequisite implements IConstructPrerequisite<Starship> {
+    isPrerequisiteFulfilled(c: Starship) {
+        return c.version === 2;
+    }
+
+    describe(): string {
+        return "";
+    }
+}
+
+export class AnyOfStarshipPrerequisite implements IConstructPrerequisite<Starship> {
+    private _prequisites: IConstructPrerequisite<Starship>[];
+
+    constructor(...prequisites: IConstructPrerequisite<Starship>[]) {
+        this._prequisites = prequisites;
+    }
+
+    isPrerequisiteFulfilled(character: Starship) {
+        if (this._prequisites.length === 0) {
+            return true;
+        } else {
+            var result = false;
+            this._prequisites.forEach(req => {
+                result = result || req.isPrerequisiteFulfilled(character);
+            });
+            return result;
+        }
+    }
+    describe(): string {
+        return "";
+    }
+}
+
+export class StarshipStereotypePrerequisite implements IConstructPrerequisite<Starship> {
+    private types: Stereotype[];
+
+    constructor(...type: Stereotype[]) {
+        this.types = type;
+    }
+
+    isPrerequisiteFulfilled(character: Starship) {
+        return character instanceof Starship && this.types.indexOf(character.stereotype) >= 0;
+    }
+    describe(): string {
+        return "";
+    }
+}
 
 export class SourcePrerequisite implements IConstructPrerequisite<Starship> {
     sources: Source[];
@@ -325,12 +374,15 @@ export class SpaceframeHelper {
             ],
             [ "Federation Starship" ],
             2170),
-        [Spaceframe.Hermes]: SpaceframeModel.createStandardSpaceframe(
+        [Spaceframe.Hermes]: new SpaceframeModel(
             Spaceframe.Hermes,
             CharacterType.Starfleet,
             "Hermes Class",
             2242,
-            [ Source.CommandDivision, Source.UtopiaPlanitia ],
+            [
+                new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia),
+                new NotSourcePrerequisite(Source.Core2ndEdition)
+            ],
             [7, 6, 9, 8, 8, 6],
             [0, 2, 0, 0, 1, 0],
             4,
@@ -374,12 +426,18 @@ export class SpaceframeHelper {
                 [7, 9, 9, 10, 8, 6],
                 [2, 4, 1, 3, 4, 2]
             )),
-        [Spaceframe.ScoutType]: SpaceframeModel.createStandardSpaceframe(
+        [Spaceframe.ScoutType]: new SpaceframeModel(
             Spaceframe.ScoutType,
             CharacterType.Starfleet,
             "Scout Type",
             2242,
-            [ Source.CaptainsLog ],
+            [
+                new SourcePrerequisite(Source.CaptainsLog, Source.CommandDivision),
+                new AnyOfStarshipPrerequisite(
+                    new StarshipStereotypePrerequisite(Stereotype.SoloCharacter),
+                    new Version2Prerequisite()
+                )
+             ],
             [7, 6, 9, 8, 8, 6],
             [0, 2, 0, 0, 1, 0],
             4,
