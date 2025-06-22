@@ -23,7 +23,7 @@ import { System } from './systems';
 import { Creature } from '../creature/model/creature';
 import { NpcType } from '../npc/model/npcType';
 import { Role } from './roles';
-import { RankedTalent } from './rankedTalent';
+import { isFlagRank } from '../token/model/rankHelper';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -189,6 +189,30 @@ class RandomNpcPrerequisite implements IConstructPrerequisite<Character> {
 
     isPrerequisiteFulfilled(c: Character) {
         return c.npcGenerationStep?.specialization != null;
+    }
+
+    describe(): string {
+        return "";
+    }
+}
+
+class ScientistPrerequisite implements IConstructPrerequisite<Character> {
+
+    isPrerequisiteFulfilled(c: Character) {
+        let science = c.departments[Department.Science];
+        let temp = c.departments.filter(d => d > science);
+        return temp.length === 0;
+    }
+
+    describe(): string {
+        return "";
+    }
+}
+
+class FlagOfficerPrerequisite implements IConstructPrerequisite<Character> {
+
+    isPrerequisiteFulfilled(c: Character) {
+        return c.rank != null && isFlagRank(c.rank?.id);
     }
 
     describe(): string {
@@ -4507,58 +4531,58 @@ export class Talents {
         new TalentModel(
             "Accomplished Strategist",
             "The character is a skilled commander who learned the arts of warfare commanding ships in battle. Whenever they attempt a Task to formulate, execute, or explain a strategy, they may spend 1 Threat to re-roll his dice pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Admiral)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new FlagOfficerPrerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Counter Ploy",
             "Whenever an enemy attempts a Task to create an Advantage representing some manner of strategy or tactic, the character may spend 1 Threat to increase the Difficulty by 1. Further, if this Task then fails, the character may immediately spend one additional Threat to create an Advantage of their own, representing their own stratagem.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Admiral)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new FlagOfficerPrerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Sector Specialist",
             "The character is an expert in a specific sector of space. All Tasks involving the mapping of that sector, location of bodies, navigational hazards, etc. have their Difficulty reduced by 1. But this reliance on their own knowledge makes anything that is different from what they know often go unnoticed as they assume they know better, and the Complication range of these Tasks is increased by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Scientist, Specialization.StarfleetScientist),
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Astrometrics", "Stellar Cartography")],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Exploring Life",
             "A character that chooses this has an interest in Biology and Medicine, but no formal medical training. However, they have a great deal of knowledge about plant and animal species and how they may help or hinder a humanoid. Taking this increases the explorer’s Medicine Discipline by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Scientist, Specialization.StarfleetScientist),
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Biology", "Xenobiology", "Evolutionary Biology")],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Trailblazer",
             "The character has a wanderlust that drives them to be the first to see a new world, or be the first to explore a new sector of space. This can bring notoriety when they discover a new civilization or the remains of an ancient one, but the dangers of being on your own in the unknown mean many scientists risk their lives. A scientist with this choice may increase their Conn or Security Discipline by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Scientist, Specialization.StarfleetScientist)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Academic Explorer",
             "These scientists have been more formerly trained to accurately chart the unknown. Choosing this allows a Focus of one of the following: Stellar Cartography, Planetary Geography, or Geomorphology.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Scientist, Specialization.StarfleetScientist)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Hard Science",
             "The scientist gains a Focus based on a single scientific field of study, e.g. Astrophysics, Subspace Theory, Quantum Mechanics.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Scientist, Specialization.StarfleetScientist),
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Astrophysics", "Subspace Theory", "Physics", "Geology", "Quantum Mechanics", "Particle Physics", "Warp Theory"), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Research Lead",
             "The scientist has a broad background in the sciences and have honed their people skills to be able to lead other researchers in their projects. The professor does not gain a Focus; rather their Command Discipline is increased by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Scientist, Specialization.StarfleetScientist), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Social Scientist",
             "A social scientist is trained in how intelligent beings interact with the world around them in fields such as Anthropology, Geography, and Linguistics. Like the Hard Science choice above, the choices in Focus should also have a specific world or culture attached to them, e.g. History of Andor, Vulcan Linguistics, or Tellarite Law.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Scientist, Specialization.StarfleetScientist),
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Anthropology", "Geography", "Linguistics", "Sociology", "History"), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
             1,
             "General", true),
@@ -4583,13 +4607,13 @@ export class Talents {
         new TalentModel(
             "Endure the Pain",
             "Reduce non-lethal damage against the Talarian by 2. This is unaffected by Piercing.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.TalarianWarrior, Specialization.TalarianOfficer)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Talarian, false)],
             1,
             "Talarian", true),
         new TalentModel(
             "Sharing Victory",
             "When a Talarian succeeds in a Task, the next Talarian in the initiative order, if performing a Task, may re-roll a d20 in their pool at no cost.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.TalarianWarrior, Specialization.TalarianOfficer)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Talarian, false)],
             1,
             "Talarian", true),
         new TalentModel(
