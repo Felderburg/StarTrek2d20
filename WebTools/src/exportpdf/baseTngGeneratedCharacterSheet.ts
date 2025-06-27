@@ -166,9 +166,15 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
     writeStress(pdf: PDFDocument, page: PDFPage, character: Character, colour: SimpleColor = BaseTNGGeneratedCharacterSheet.purpleColour) {
         let form = pdf.getForm();
         let { height, width } = this.pillSize;
+        let amount = character.stress;
+
+        if (character.stereotype === Stereotype.Npc && character.version !== 1) {
+            amount = character.personalThreat;
+        }
+
         this.stressPillLocations.forEach((pill, i) => {
 
-            if (i >= character.stress) {
+            if (i >= amount) {
                 page.moveTo(pill.x, page.getHeight() - pill.y);
                 page.drawSvgPath(this.stressPill, {
                     color: colour.asPdfRbg(),
@@ -200,6 +206,8 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
                 key = "disciplines";
             } else if (key === "talents" && character.stereotype === Stereotype.Npc) {
                 key = "specialRules";
+            } else if (key === "stress" && character.stereotype === Stereotype.Npc && character.version !== 1) {
+                key = "personalThreat";
             }
 
             const originalText = i18next.t("Construct.other." + key).toLocaleUpperCase();

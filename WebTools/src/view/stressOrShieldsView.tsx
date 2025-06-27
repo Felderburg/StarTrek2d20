@@ -1,13 +1,14 @@
 
 interface IStressOrShieldsViewProperties {
     value: number;
+    rows?: number;
 }
 
-const StressOrShieldsView: React.FC<IStressOrShieldsViewProperties> = ({value}) => {
+const StressOrShieldsView: React.FC<IStressOrShieldsViewProperties> = ({value, rows = 4}) => {
 
     if (value) {
         let iterator = [];
-        for (let i = 1; i <= Math.max(20, Math.ceil(value / 5) * 5); i++) {
+        for (let i = 1; i <= Math.max(rows * 5, Math.ceil(value / 5) * 5); i++) {
             iterator.push(i);
         }
 

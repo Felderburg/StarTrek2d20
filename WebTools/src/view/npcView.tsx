@@ -105,14 +105,22 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
 
             <div className="row">
 
-                {character.isStressTrackPresent
+                {character.isStressTrackPresent || character.isPersonalThreatTrackPresent
                     ?
                     (<>
-                    <div className="col-xl-6 mt-4">
+                    {character.isStressTrackPresent
+                    ? (<div className="col-xl-6 mt-4">
                         <Header level={2}>{t('Construct.other.stress')}</Header>
                         <StressOrShieldsView value={character.stress} />
-                    </div>
+                    </div>)
+                    : undefined}
 
+                    {character.isPersonalThreatTrackPresent
+                    ? (<div className="col-xl-6 mt-4">
+                        <Header level={2}>{t('Construct.other.personalThreat')}</Header>
+                        <StressOrShieldsView value={character.personalThreat} rows={1} />
+                    </div>)
+                    : undefined}
                     <div className="col-xl-6 mt-4">
                         <Header level={2}>{t('Construct.other.focuses')}</Header>
                         <FocusBlockView character={character} />

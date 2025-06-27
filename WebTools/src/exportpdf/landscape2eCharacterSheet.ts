@@ -23,6 +23,7 @@ import { determineIdealFontWidth } from "./fontWidthDeterminer";
 import { Paragraph } from "./paragraph";
 import { FontOptions } from "./fontOptions";
 import { LandscapeSheetDecorations } from "./landscapeSheetDecorations";
+import { FontSpecification } from "./fontSpecification";
 
 export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
@@ -111,7 +112,9 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         this.writeLabels(page, construct as Character);
         await this.writeRoleAndTalents(page, construct as Character, this.firstColumn(secondPage, pdf));
 
-        this.createDeterminationBoxes(page, pdf);
+        if (construct.stereotype !== Stereotype.Npc) {
+            this.createDeterminationBoxes(page, pdf);
+        }
         this.createStressBoxes(page, pdf, construct as Character);
 
         this.drawArrowHead(page, construct as Character, colour);
@@ -376,11 +379,25 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         }, construct.version,
         this.headingFont, 5, tealColour2e);
 
-        labelWriter(page, {
-                "Construct.other.determination": new Column(564.1, 77.8, 6, 70),
-                "Construct.other.stress": new Column(421.2, 224.6, 6, 36.4),
-            }, construct.version,
-            this.headingFont, 5, Landscape2eCharacterSheet.greyColour, TextAlign.Left);
+        if (construct.stereotype === Stereotype.Npc && construct.version !== 1) {
+            let paragraph = new Paragraph(page, new Column(411.2, 220.6, 12, 41.4), this.fonts);
+            paragraph.textAlignment = TextAlign.Centre;
+            paragraph.append(i18next.t("Construct.other.personalThreat").toLocaleUpperCase(), new FontSpecification(this.headingFont, 5), Landscape2eCharacterSheet.greyColour);
+            paragraph.write();
+        } else if ((construct as Character).isStressTrackPresent) {
+            if (construct.stereotype !== Stereotype.Npc) {
+                labelWriter(page, {
+                    "Construct.other.determination": new Column(564.1, 77.8, 6, 70),
+                    "Construct.other.stress": new Column(421.2, 224.6, 6, 36.4),
+                }, construct.version,
+                this.headingFont, 5, Landscape2eCharacterSheet.greyColour, TextAlign.Left);
+            } else {
+                labelWriter(page, {
+                    "Construct.other.stress": new Column(421.2, 224.6, 6, 36.4),
+                }, construct.version,
+                this.headingFont, 5, Landscape2eCharacterSheet.greyColour, TextAlign.Left);
+            }
+        }
 
         labelWriter(page, {
                 "Construct.other.protection": new Column(506.8, 305, 6, 46.5)
@@ -458,13 +475,13 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     createStressBoxes(page: PDFPage, pdf: PDFDocument, character: Character) {
-        if (character.isStressTrackPresent) {
-            let columns = [];
-            let startX = 464.9;
-            let startY = 221.3;
-            let gap = 478.8 - startX;
+        let columns = [];
+        let startX = 464.9;
+        let startY = 221.3;
+        let gap = 478.8 - startX;
 
-            let availableVerticalSpace = 4 * gap;
+        let availableVerticalSpace = 4 * gap;
+        if (character.isStressTrackPresent) {
             let numberOfLines = Math.ceil(character.stress / 5);
 
             let verticalOffset = (availableVerticalSpace - numberOfLines * gap) / 2;
@@ -476,6 +493,18 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
             }
 
             new CheckMarkMaker(page, pdf).createCheckMarksAndBoxes(columns, "Stress ",
+                Landscape2eCharacterSheet.greyColour);
+        } else if (character.stereotype === Stereotype.Npc && character.version !== 1) {
+            let numberOfLines = Math.ceil(character.personalThreat / 5);
+
+            let verticalOffset = (availableVerticalSpace - numberOfLines * gap) / 2;
+                for (let i = 0; i < character.personalThreat; i++) {
+                let x = startX + (gap * (i % 5));
+                let y = startY + (gap * Math.floor(i / 5)) + verticalOffset;
+                columns.push(new Column(x, y, 9.5, 9.5));
+            }
+
+            new CheckMarkMaker(page, pdf).createCheckMarksAndBoxes(columns, "Threat ",
                 Landscape2eCharacterSheet.greyColour);
         }
     }
@@ -572,6 +601,8 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     fillStressBox(form: PDFForm, character: Character): void {
         if (character.isStressTrackPresent) {
             this.fillField(form, "Stress", "" + character.stress);
+        } else if (character.isPersonalThreatTrackPresent) {
+            this.fillField(form, "Stress", "" + character.personalThreat);
         } else {
             this.fillField(form, "Stress", "-");
         }

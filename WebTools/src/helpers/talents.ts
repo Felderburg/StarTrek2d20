@@ -24,6 +24,7 @@ import { Creature } from '../creature/model/creature';
 import { NpcType } from '../npc/model/npcType';
 import { Role } from './roles';
 import { isFlagRank } from '../token/model/rankHelper';
+import { localizedFocus } from '../components/focusHelper';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -74,6 +75,21 @@ enum TalentCategory {
     Starship,
     Starbase,
     Esoteric
+}
+
+class NpcTypePrerequisite implements IConstructPrerequisite<Character> {
+    type: NpcType;
+
+    constructor(type: NpcType) {
+        this.type = type;
+    }
+
+    isPrerequisiteFulfilled(c: Character) {
+        return c.npcGenerationStep?.type === this.type;
+    }
+    describe(): string {
+        return "";
+    }
 }
 
 class AttributePrerequisite implements IConstructPrerequisite<Character> {
@@ -201,6 +217,19 @@ class ScientistPrerequisite implements IConstructPrerequisite<Character> {
     isPrerequisiteFulfilled(c: Character) {
         let science = c.departments[Department.Science];
         let temp = c.departments.filter(d => d > science);
+        return temp.length === 0;
+    }
+
+    describe(): string {
+        return "";
+    }
+}
+
+class CommandPrerequisite implements IConstructPrerequisite<Character> {
+
+    isPrerequisiteFulfilled(c: Character) {
+        let command = c.departments[Department.Command];
+        let temp = c.departments.filter(d => d > command);
         return temp.length === 0;
     }
 
@@ -406,7 +435,10 @@ class FocusPrerequisite implements IConstructPrerequisite<Character> {
     }
 
     isPrerequisiteFulfilled(c: Character) {
-        return c.focuses.filter(f => this.focuses.indexOf(f) >= 0).length > 0;
+        let localizedFocuses = this.focuses.map(f => localizedFocus(f));
+        return c.focuses
+            .filter(f => this.focuses.includes(f) || localizedFocuses.includes(f))
+            .length > 0;
     }
     describe(): string {
         if (this.focuses.length === 1) {
@@ -4576,7 +4608,12 @@ export class Talents {
         new TalentModel(
             "Specialist Subject: Research Lead",
             "The scientist has a broad background in the sciences and have honed their people skills to be able to lead other researchers in their projects. The professor does not gain a Focus; rather their Command Discipline is increased by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
+            [
+                new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
+                new AnyOfPrerequisite(
+                    new CareersPrerequisite(Career.Experienced, Career.Veteran),
+                    new NpcTypePrerequisite(NpcType.Major))
+            ],
             1,
             "General", true),
         new TalentModel(
@@ -4643,31 +4680,44 @@ export class Talents {
         new TalentModel(
             "Jurisprudence",
             "The JAG Officer is extremely well-versed in the theory and philosophy of law, and may re-roll one d20 on a Task that uses the character’s Reason and their Law Focus.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Jag)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc),
+                new AnyOfPrerequisite(
+                    new SpecializationPrerequisite(Specialization.Jag),
+                    new AllOfPrerequisite(
+                        new FocusPrerequisite("Law", "Federation Laws", "Legal Procedures"),
+                        new CommandPrerequisite()
+                    )
+            )],
             1,
             "General", true),
         new TalentModel(
             "Proficiency: Courtroom Arguments",
             "When engaged in courtroom Tasks such as making a legal argument or cross-examining a witness the JAG officer may add one bonus d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Jag)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnyOfPrerequisite(
+                new SpecializationPrerequisite(Specialization.Jag),
+                new AllOfPrerequisite(
+                    new FocusPrerequisite("Law", "Federation Laws", "Legal Procedures"),
+                    new CommandPrerequisite()
+                )
+            )],
             1,
             "General", true),
         new TalentModel(
             "Threatening 1",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 1 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 2"), new NotTalentPrerequisite("Threatening 3")],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 2"), new NotTalentPrerequisite("Threatening 3"), new Version1Prerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Threatening 2",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 2 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 3")],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 3"), new Version1Prerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Threatening 3",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 3 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Jag, Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 2")],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Jag, Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 2"), new Version1Prerequisite()],
             1,
             "General", true),
         new TalentModel(

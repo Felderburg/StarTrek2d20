@@ -7,7 +7,6 @@ import { Career } from './careerEnum';
 import { Era } from './eras';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
-import { NotSourcePrerequisite } from './spaceframes';
 
 export enum Role {
     // Core

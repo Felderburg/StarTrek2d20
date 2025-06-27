@@ -689,6 +689,24 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return total;
     }
 
+    get isPersonalThreatTrackPresent() {
+        return this.version !== 1 && this.stereotype === Stereotype.Npc && this.npcGenerationStep?.type !== NpcType.Minor;
+    }
+
+    get personalThreat() {
+        if (this.isPersonalThreatTrackPresent) {
+            if (this.npcGenerationStep?.type === NpcType.Major) {
+                return 6 + this.values.length;
+            } else if (this.npcGenerationStep?.type === NpcType.Notable) {
+                return 3;
+            } else {
+                return 0;
+            }
+        } else {
+            return 0;
+        }
+    }
+
     get isStressTrackPresent() {
         if (this.version === 1) {
             return true;
