@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Navigation } from "../../common/navigator";
-import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
@@ -9,17 +8,13 @@ import Refits from "../../components/refits";
 import { System } from "../../helpers/systems";
 import { addStarshipRefit, deleteStarshipRefit, nextStarshipWorkflowStep } from "../../state/starshipActions";
 import store from "../../state/store";
-import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
+import { PageIdentity } from "../../pages/pageIdentity";
+import { IStarshipProperties } from "../iStarshipProperties";
 
-interface IRefitPageProperties {
-    starship: Starship;
-    workflow: ShipBuildWorkflow;
-}
-
-const RefitPage: React.FC<IRefitPageProperties> = ({starship, workflow}) => {
+const RefitPage: React.FC<IStarshipProperties> = ({starship}) => {
 
     const { t } = useTranslation();
     const refitCount = starship.numberOfRefits;
@@ -36,9 +31,8 @@ const RefitPage: React.FC<IRefitPageProperties> = ({starship, workflow}) => {
         if (starship.refits.length !== starship.numberOfRefits) {
             Dialog.show("Please choose all refits.");
         } else {
-            let step = workflow.peekNextStep();
             store.dispatch(nextStarshipWorkflowStep());
-            Navigation.navigateToPage(step.page);
+            Navigation.navigateToPage(PageIdentity.FinalStarshipDetails);
         }
     }
 
@@ -60,8 +54,7 @@ const RefitPage: React.FC<IRefitPageProperties> = ({starship, workflow}) => {
 
 function mapStateToProps(state, ownProps) {
     return {
-        starship: state.starship.starship,
-        workflow: state.starship.workflow
+        starship: state.starship.starship
     };
 }
 

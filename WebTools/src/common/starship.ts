@@ -471,7 +471,13 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         let result: SelectedTalent[] = [];
         if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
             this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => {
-                result.push(t);
+                let overrides = this.spaceframeStep.talents.filter(st => st.name === t.name);
+                if (overrides?.length) {
+                    result.push(overrides[0]);
+                } else {
+                    result.push(t);
+                }
+
             });
         }
 

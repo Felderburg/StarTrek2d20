@@ -15,6 +15,7 @@ import StarshipTalentsPage from "./starshipTalentsPage";
 import StarshipTypeSelectionPage from "./starshipTypeSelectionPage";
 import StarshipWeaponsPage from "./starshipWeaponsPage";
 import ServiceRecordPage from "./serviceRecordPage";
+import ExtraStarshipTalentChoicesPage from "./extraStarshipTalentChoicesPage";
 
 export class StarshipPageFactory implements IPageFactoryRegistry {
 
@@ -33,6 +34,7 @@ export class StarshipPageFactory implements IPageFactoryRegistry {
         this.factories = {};
 
         this.factories[PageIdentity.CustomSpaceframe] = () => <CustomSpaceframePage/>;
+        this.factories[PageIdentity.ExtraStarshipTalentChoice] = () => <ExtraStarshipTalentChoicesPage />;
         this.factories[PageIdentity.MissionPodSelection] = () => <MissionPodSelectionPage/>;
         this.factories[PageIdentity.MissionProfileSelection] = () => <MissionProfileSelectionPage/>;
         this.factories[PageIdentity.MissionProfileTalentSelection] = () => <MissionProfileTalentSelectionPage/>;

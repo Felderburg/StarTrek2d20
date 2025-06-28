@@ -42,6 +42,7 @@ export const REMOVE_ALL_STARSHIP_TALENT_SELECTION = "REMOVE_ALL_STARSHIP_TALENT_
 export const DELETE_STARSHIP_REFIT = "DELETE_STARSHIP_REFIT";
 export const SET_STARSHIP_SERVICE_YEAR = "SET_STARSHIP_SERVICE_YEAR";
 export const SET_STARSHIP_SERVICE_RECORD = "SET_STARSHIP_SERVICE_RECORD";
+export const SET_STARSHIP_SPACEFRAME_TALENTS = "SET_STARSHIP_SPACEFRAME_TALENTS";
 
 export function createStarship(starship: Starship) {
     let payload = { starship: starship }
@@ -120,6 +121,14 @@ export function setStarshipSpaceframe(spaceframe: SpaceframeModel) {
     let payload = { spaceframe: spaceframe };
     return {
        type: SET_STARSHIP_SPACEFRAME,
+       payload: payload
+    }
+}
+
+export function setStarshipSpaceframeTalents(talents: SelectedTalent[]) {
+    let payload = { talents: talents };
+    return {
+       type: SET_STARSHIP_SPACEFRAME_TALENTS,
        payload: payload
     }
 }

@@ -26,9 +26,9 @@ export const getPageTitle = (t, page) => {
         return t('Page.title.environment');
     } else if (page === PageIdentity.EnvironmentDetails) {
         return t('Page.title.environmentDetails');
-    } else if (page === PageIdentity.SoloSpecies) {
+    } else if (page === PageIdentity.SoloSpecies || page === PageIdentity.NpcSpeciesSelection) {
         return t('Page.title.species');
-    } else if (page === PageIdentity.SoloSpeciesDetails) {
+    } else if (page === PageIdentity.SoloSpeciesDetails || page === PageIdentity.NpcSpeciesSelectionDetails) {
         return t('Page.title.speciesDetails');
     } else if (page === PageIdentity.SupportingCharacter) {
         return "Supporting Character";

@@ -1,25 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Navigation } from "../../common/navigator";
-import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { ModalControl } from "../../components/modal";
 import { Weapon } from "../../helpers/weapons";
 import { addStarshipWeapon, deleteStarshipWeapon, nextStarshipWorkflowStep } from "../../state/starshipActions";
 import store from "../../state/store";
-import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import AddWeaponView, { AddWeaponMode } from "../view/addWeaponView";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { IconButton } from "../../components/iconButton";
 import { useTranslation } from "react-i18next";
+import { PageIdentity } from "../../pages/pageIdentity";
+import { IStarshipProperties } from "../iStarshipProperties";
 
-interface IStarshipWeaponsPageProperties {
-    starship: Starship;
-    workflow: ShipBuildWorkflow;
-}
-
-const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = ({starship, workflow}) => {
+const StarshipWeaponsPageProperties: React.FC<IStarshipProperties> = ({starship}) => {
 
     const { t } = useTranslation();
 
@@ -43,9 +38,8 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = 
     }
 
     const nextPage = () => {
-        let step = workflow.peekNextStep();
         store.dispatch(nextStarshipWorkflowStep());
-        Navigation.navigateToPage(step.page);
+        Navigation.navigateToPage(PageIdentity.FinalStarshipDetails);
     }
 
     const closeModal = () => {
@@ -112,8 +106,7 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipWeaponsPageProperties> = 
 
 function mapStateToProps(state, ownProps) {
     return {
-        starship: state.starship.starship,
-        workflow: state.starship.workflow
+        starship: state.starship.starship
     };
 }
 

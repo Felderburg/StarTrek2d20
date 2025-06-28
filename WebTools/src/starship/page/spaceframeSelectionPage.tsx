@@ -11,44 +11,53 @@ import store from "../../state/store";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import SpaceframeSelection from "../view/spaceframeSelection";
-import { withTranslation, WithTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import InstructionText from "../../components/instructionText";
+import { TALENT_NAME_DEDICATED_PERSONNEL } from "../../helpers/talents";
 
-interface ISpaceframeSelectionPageProperties extends WithTranslation {
+interface ISpaceframeSelectionPageProperties {
     starship: Starship;
     workflow: ShipBuildWorkflow;
 }
 
-class SpaceframeSelectionPage extends React.Component<ISpaceframeSelectionPageProperties, {}> {
-    render() {
-        const { t } = this.props;
-        return (<div className="page container ms-0">
-            <ShipBuildingBreadcrumbs />
-            <Header>{t('Page.title.spaceframeSelection')}</Header>
-            <InstructionText text={t('SpaceframeSelectionPage.text')} />
-            <SpaceframeSelection
-                initialSelection={this.props.starship.spaceframeModel}
-                starship={this.props.starship}
-                serviceYear={this.props.starship.serviceYear}
-                type={this.props.starship.type}
-                onSelection={(spaceframe) => store.dispatch(setStarshipSpaceframe(spaceframe))} />
-            <div className="text-end">
-                <Button className="mt-4" onClick={() => this.nextPage()}>{t('Common.button.next')}</Button>
-            </div>
-        </div>);
+const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({starship, workflow}) => {
+
+    const { t } = useTranslation();
+
+    const requiresDedicatedPersonnelSelection = () => {
+        const talents = starship.spaceframeModel.talents
+            .filter(t => t.name === TALENT_NAME_DEDICATED_PERSONNEL && t.department == null);
+        return talents?.length;
     }
 
-    nextPage() {
-        if (this.props.starship.spaceframeModel == null) {
+    const nextPage = () => {
+        if (starship.spaceframeModel == null) {
             Dialog.show("Please select a spaceframe before proceeding.");
-        } else if (this.props.starship.spaceframeModel.isMissionPodAvailable) {
+        } else if (requiresDedicatedPersonnelSelection()) {
+            Navigation.navigateToPage(PageIdentity.ExtraStarshipTalentChoice);
+        } else if (starship.spaceframeModel.isMissionPodAvailable) {
             Navigation.navigateToPage(PageIdentity.MissionPodSelection);
         } else {
-            let step = this.props.workflow.peekNextStep();
+            let step = workflow.peekNextStep();
             store.dispatch(nextStarshipWorkflowStep());
             Navigation.navigateToPage(step.page);
         }
     }
+
+    return (<div className="page container ms-0">
+        <ShipBuildingBreadcrumbs />
+        <Header>{t('Page.title.spaceframeSelection')}</Header>
+        <InstructionText text={t('SpaceframeSelectionPage.text')} />
+        <SpaceframeSelection
+            initialSelection={starship.spaceframeModel}
+            starship={starship}
+            serviceYear={starship.serviceYear}
+            type={starship.type}
+            onSelection={(spaceframe) => store.dispatch(setStarshipSpaceframe(spaceframe))} />
+        <div className="text-end">
+            <Button className="mt-4" onClick={() => nextPage()}>{t('Common.button.next')}</Button>
+        </div>
+    </div>);
 }
 
 function mapStateToProps(state, ownProps) {
@@ -58,4 +67,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default withTranslation()(connect(mapStateToProps)(SpaceframeSelectionPage));
+export default connect(mapStateToProps)(SpaceframeSelectionPage);

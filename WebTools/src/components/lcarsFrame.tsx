@@ -36,6 +36,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
 
     const isStarshipPage = () => {
         if (activePage === PageIdentity.SmallCraftStats ||
+            activePage === PageIdentity.ExtraStarshipTalentChoice ||
             activePage === PageIdentity.MissionPodSelection ||
             activePage === PageIdentity.MissionProfileSelection ||
             activePage === PageIdentity.MissionProfileTalentSelection ||

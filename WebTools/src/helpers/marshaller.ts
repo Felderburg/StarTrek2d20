@@ -3,7 +3,7 @@ import pako from 'pako';
 import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
-import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, ShipTalentDetailSelection, SimpleStats, Starship } from '../common/starship';
+import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, ShipTalentDetailSelection, SimpleStats, SpaceframeStep, Starship } from '../common/starship';
 import AgeHelper from './age';
 import { Attribute, AttributesHelper } from './attributes';
 import { Career } from './careerEnum';
@@ -741,6 +741,9 @@ class Marshaller {
                 sheet['spaceframe'] = {
                     "name": Spaceframe[starship.spaceframeModel.id]
                 }
+                if (starship.spaceframeStep.talents?.length) {
+                    sheet['spaceframe']['talents'] = this.toTalentList(starship.spaceframeStep.talents);
+                }
             }
         }
         if (starship.missionProfileStep?.type) {
@@ -950,7 +953,16 @@ class Marshaller {
                 }
                 result.spaceframeModel = frame;
             } else {
-                result.spaceframeModel = SpaceframeHelper.instance().getSpaceframeByName(json.spaceframe.name);
+                result.spaceframeStep = new SpaceframeStep(
+                    SpaceframeHelper.instance().getSpaceframeByName(json.spaceframe.name));
+                if (json.spaceframe.talents) {
+                    json.spaceframe.talents.forEach(t => {
+                        let talent = this.hydrateTalent(t, result.version);
+                        if (talent != null) {
+                            result.spaceframeStep.talents.push(talent);
+                        }
+                    });
+                }
             }
         }
         if (json.missionProfile && result.type != null) {
