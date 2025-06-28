@@ -26,4 +26,14 @@ export class PropulsionSystemModel {
         new PropulsionSystemModel(PropulsionSystemType.QuantumSlipstreamDrive),
         new PropulsionSystemModel(PropulsionSystemType.Transwarp)
     ];
+
+    static getByType(type: PropulsionSystemType) {
+        let result = this.types.filter(t => t.type === type);
+        return result.length ? result[0] : undefined;
+    }
+
+    static getByTypeName(type: string) {
+        let result = this.types.filter(t => PropulsionSystemType[t.type] === type);
+        return result.length ? result[0] : undefined;
+    }
 }

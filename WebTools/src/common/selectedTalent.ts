@@ -1,14 +1,14 @@
 import i18next from "i18next";
 import { Attribute } from "../helpers/attributes";
 import { BorgImplantType } from "../helpers/borgImplant";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../helpers/talents";
 import { SpecialWeapon } from "./specialWeapon";
 import { makeKey } from "./translationKey";
 import { AttackType } from "./attackType";
 import { Department } from "../helpers/department";
 import { ITalent } from "../helpers/italent";
 import { Weapon } from "../helpers/weapons";
-import { PropulsionSystemType } from "../helpers/propulsionSystem";
+import { PropulsionSystemModel, PropulsionSystemType } from "../helpers/propulsionSystem";
 import { System } from "../helpers/systems";
 
 export class OtherSelection {
@@ -120,6 +120,10 @@ export class SelectedTalent implements ITalent {
         if ([TALENT_NAME_MINELAYER, TALENT_NAME_EXPANDED_MUNITIONS].includes(this.talent) && this.weapon != null) {
             const weaponName = (this.weapon instanceof Weapon) ? (this.weapon as Weapon).name : (this.weapon as string);
             name += " (" + i18next.t("Construct.other.weapon") + ":" + weaponName + ")";
+        }
+
+        if (TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM === this.talent && this.selection != null) {
+            name += " (" + (PropulsionSystemModel.getByType(this.selection as PropulsionSystemType)?.localizedName ?? "") + ")";
         }
 
         if ([TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR].includes(this.talent) && this.selection != null) {

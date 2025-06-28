@@ -115,14 +115,6 @@ export class ServiceRecordStep {
     }
 }
 
-export class ShipTalentDetailSelection {
-    readonly weapon: Weapon;
-
-    constructor(weapon: Weapon) {
-        this.weapon = weapon;
-    }
-}
-
 export class ShipBuildTypeModel {
     readonly name: string;
     readonly type: ShipBuildType;
@@ -166,7 +158,6 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     refits: System[] = [];
     simpleStats: SimpleStats;
     additionalWeapons: Weapon[] = [];
-    talentDetailSelections: ShipTalentDetailSelection[] = [];
     serviceRecordStep?: ServiceRecordStep;
 
     constructor() {
@@ -665,12 +656,6 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             this.additionalWeapons.forEach(w => result.push(w));
         }
 
-        this.talentDetailSelections?.forEach(s => {
-            if (s.weapon) {
-                result.push(s.weapon)
-            }
-        });
-
         result.push(...secondary);
 
         let names = [];
@@ -814,7 +799,6 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             result.simpleStats.systems = [...this.simpleStats.systems];
             result.simpleStats.scale = this.simpleStats.scale;
         }
-        result.talentDetailSelections = [...this.talentDetailSelections];
         result.serviceRecordStep = this.serviceRecordStep?.copy();
         return result;
     }

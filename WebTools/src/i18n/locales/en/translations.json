@@ -208,6 +208,8 @@
 
     "EnvironmentPage.alliedMilitary.instruction": "Regardless of their species, military officers and ratings come from many places, across many types of worlds.",
 
+    "ExtraStarshipTalentChoice.instruction": "This spaceframe requires you to make selections for some of the standard spaceframe talents.",
+
     "FinalStarshipDetails.instruction": "Your ship is almost complete. It just needs a few final touches.",
 
     "FinalStarshipDetails.name.instruction": "Every Starship needs a name. There is no universal convention for the naming of ships, often naming them after locations, important historical persons (normally only the person’s surname), ancient ships, mythical figures, or even more abstract ideals, virtues, or concepts. In many cases, these vague naming conventions overlap — a ship may be named after an ancient ship that was itself named after a location, for example — but this shouldn’t cause any issues.\n\nThe name should ideally be a single word or, more rarely, two.",

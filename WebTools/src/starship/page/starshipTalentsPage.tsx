@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
 import { TalentsHelper } from "../../helpers/talents";
-import { nextStarshipWorkflowStep, removeAllStarshipTalentDetailSelection, setAdditionalTalents } from "../../state/starshipActions";
+import { nextStarshipWorkflowStep, setAdditionalTalents } from "../../state/starshipActions";
 import store from "../../state/store";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
@@ -38,7 +38,6 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({starship,
         } else if (message) {
             Dialog.show(message);
         } else {
-            store.dispatch(removeAllStarshipTalentDetailSelection());
             let step = workflow.peekNextStep();
             store.dispatch(nextStarshipWorkflowStep());
             Navigation.navigateToPage(step.page);

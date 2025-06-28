@@ -3,7 +3,7 @@ import pako from 'pako';
 import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
-import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, ShipTalentDetailSelection, SimpleStats, SpaceframeStep, Starship } from '../common/starship';
+import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, SimpleStats, SpaceframeStep, Starship } from '../common/starship';
 import AgeHelper from './age';
 import { Attribute, AttributesHelper } from './attributes';
 import { Career } from './careerEnum';
@@ -19,7 +19,7 @@ import { SpaceframeHelper } from './spaceframes';
 import { SpeciesHelper } from './species';
 import { Species } from './speciesEnum';
 import { allSystems, System, systemByName } from './systems';
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
 import { CaptureType, CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadType, EnergyLoadTypeModel, MineType, MineTypeModel, PersonalWeapons, PersonalWeaponType, TorpedoLoadType, TorpedoLoadTypeModel, UsageCategory, Weapon, WeaponType } from './weapons';
@@ -48,7 +48,7 @@ import { SpecialWeapon } from '../common/specialWeapon';
 import { AttackType } from '../common/attackType';
 import { ModificationType } from '../modify/model/modificationType';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from './equipment';
-import { PropulsionSystemType } from './propulsionSystem';
+import { PropulsionSystemModel, PropulsionSystemType } from './propulsionSystem';
 
 class Marshaller {
 
@@ -788,11 +788,6 @@ class Marshaller {
         if (starship.additionalWeapons.length > 0) {
             sheet['additionalWeapons'] = starship.additionalWeapons.map(w => this.encodeWeapon(w));
         }
-        if (starship.talentDetailSelections) {
-            sheet['talentDetails'] = starship.talentDetailSelections.map(s => ({
-                weapon: this.encodeWeapon(s.weapon)
-            }));
-        }
         return this.encode(sheet);
     }
 
@@ -1030,9 +1025,14 @@ class Marshaller {
         }
 
         if (json.talentDetails) {
-            result.talentDetailSelections = json.talentDetails.map(detail => {
+            json.talentDetails.forEach(detail => {
                 let w = detail.weapon;
-                return new ShipTalentDetailSelection(this.decodeWeapon(w, result.version));
+                let weapon = this.decodeWeapon(w, result.version);
+
+                let talent = result.additionalTalents.filter(t => t.name === TALENT_NAME_EXPANDED_MUNITIONS && t.weapon == null);
+                if (talent?.length) {
+                    talent[0].weapon = weapon;
+                }
             });
         }
 
@@ -1846,6 +1846,8 @@ class Marshaller {
                     const selection = t["selection"];
                     selectedTalent.selection = selection === AttackType[AttackType.Melee]
                         ? AttackType.Melee : AttackType.Ranged;
+                } else if (talent.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {
+                    selectedTalent.selection = PropulsionSystemModel.getByTypeName(t["selection"])?.type
                 } else {
                     selectedTalent.selection = t["selection"];
                 }

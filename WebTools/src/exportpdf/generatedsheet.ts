@@ -6,7 +6,7 @@ import { ReadableTalentModel } from "./talentWriter";
 import { RoleModel, RolesHelper } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Character } from "../common/character";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT } from "../helpers/talents";
 import { BorgImplants } from "../helpers/borgImplant";
 import { Starship } from "../common/starship";
 import { Column } from "./column";
@@ -213,6 +213,8 @@ export const assembleStarshipTalents = (starship: Starship, includeSpecialRules:
             if (talent.name === TALENT_NAME_MISSION_POD) {
                 readableTalent.missionPod = starship.missionPodModel;
             } else if (talent.name === TALENT_NAME_REDUNDANT_SYSTEMS) {
+                readableTalent.selection = t.selection;
+            } else if (talent.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {
                 readableTalent.selection = t.selection;
             } else if ([TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT].includes(talent.name)) {
                 readableTalent.departments = starship.talents

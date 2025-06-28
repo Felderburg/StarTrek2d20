@@ -94,6 +94,8 @@ export const getPageTitle = (t, page) => {
         return "Starship Refits";
     } else if (page === PageIdentity.StarSystemDetails) {
         return "Star System Details";
+    } else if (page === PageIdentity.ExtraStarshipTalentChoice) {
+        return t('Page.title.extraTalentDetails');
     } else {
         return "";
     }

@@ -12,7 +12,8 @@ import { nextStarshipWorkflowStep, setStarshipSpaceframeTalents } from '../../st
 import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
 import { StarshipDepartmentSelector } from '../../components/simpleDepartmentSelector';
 import { SelectedTalent } from '../../common/selectedTalent';
-import { TALENT_NAME_DEDICATED_PERSONNEL } from '../../helpers/talents';
+import { TALENT_NAME_DEDICATED_PERSONNEL, TalentsHelper } from '../../helpers/talents';
+import Markdown from 'react-markdown';
 
 interface IExtraStarshipTalentChoicesProperties extends IStarshipProperties {
     workflow: ShipBuildWorkflow;
@@ -35,8 +36,10 @@ const ExtraStarshipTalentChoicesPage : React.FC<IExtraStarshipTalentChoicesPrope
     }
 
     const renderDedicatedPersonnnel = () => {
+        const talent = TalentsHelper.getTalent(TALENT_NAME_DEDICATED_PERSONNEL);
         return (<div className="row">
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-md-6 mt-4">
+                <Header level={2}>{talent.localizedName}</Header>
                 <StarshipDepartmentSelector
                     starship={starship}
                     isChecked={d => selection.department === d}
@@ -56,9 +59,9 @@ const ExtraStarshipTalentChoicesPage : React.FC<IExtraStarshipTalentChoicesPrope
     return (<div className="page container ms-0">
             <ShipBuildingBreadcrumbs />
             <main>
-                <Header>Additional Talent Details</Header>
+                <Header>{t('Page.title.extraTalentDetails')}</Header>
 
-                <p>Some of your talents require a few extra decisions.</p>
+                <Markdown>{t('ExtraStarshipTalentChoice.instruction')}</Markdown>
 
                 <div className="row">
                     {renderDedicatedPersonnnel()}
