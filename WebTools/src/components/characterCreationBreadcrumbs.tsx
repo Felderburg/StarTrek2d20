@@ -189,7 +189,7 @@ const StandardCharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProper
 }
 
 const CharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties> = ({character, pageIdentity}) => {
-    if (character.stereotype === Stereotype.Npc) {
+    if (character?.stereotype === Stereotype.Npc) {
         return (<NpcCharacterCreationBreadcrumbs character={character} pageIdentity={pageIdentity} />);
     } else {
         return (<StandardCharacterCreationBreadcrumbs character={character} pageIdentity={pageIdentity} />);

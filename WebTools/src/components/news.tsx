@@ -14,6 +14,16 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250628</b>
+            <ul>
+                <li>
+                    A few additional tweaks to the Starship creation process, particularly around
+                    talent handling.
+                </li>
+                <li>
+                    A few tweaks to the NPC generation, and (particularly) handling of Personal Threat.
+                </li>
+            </ul>
             <b>v1.250622</b>
             <ul>
                 <li>
@@ -284,24 +294,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                 </li>
                 <li>
                     Initial version of random tables now available.
-                </li>
-            </ul>
-            <b>v1.241227</b>
-            <ul>
-                <li>
-                    Yet more bug fixes.
-                </li>
-                <li>
-                    Minor Token tweaks.
-                </li>
-            </ul>
-            <b>v1.241220</b>
-            <ul>
-                <li>
-                    Some additional bug fixes.
-                </li>
-                <li>
-                    An additional token uniform.
                 </li>
             </ul>
 

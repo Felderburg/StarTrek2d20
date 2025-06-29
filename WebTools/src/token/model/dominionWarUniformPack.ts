@@ -218,7 +218,7 @@ export class DominionWarUniformPack extends BaseTngEraUniformPack implements IUn
     getRankIndicator(token: Token) {
         let result = super.getRankIndicator(token);
         if (token.species === Species.Cetacean) {
-            result = `<g transform="rotate(-30.844376,363.69668,233.57248)">` + result + `</g>`;
+            result = `<g transform="rotate(-21.492033,417.22301,211.31432)">` + result + `</g>`;
         } else if (token.species === Species.Edosian) {
             result = `<g transform="translate(-2, 2)">` + result + `</g>`;
         } else {
