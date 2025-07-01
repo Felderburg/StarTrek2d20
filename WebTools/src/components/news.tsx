@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250101</b>
+            <ul>
+                <li>
+                    Quick bug fix.
+                </li>
+            </ul>
             <b>v1.250628</b>
             <ul>
                 <li>
@@ -282,18 +288,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
             <ul>
                 <li>
                     New character sheet.
-                </li>
-            </ul>
-            <b>v1.250101</b>
-            <ul>
-                <li>
-                    Update the copyright year.
-                </li>
-                <li>
-                    More bug fixes.
-                </li>
-                <li>
-                    Initial version of random tables now available.
                 </li>
             </ul>
 

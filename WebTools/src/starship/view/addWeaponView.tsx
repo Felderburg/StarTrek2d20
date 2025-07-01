@@ -51,19 +51,21 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
     const [ loadType, setLoadType ] = useState<EnergyLoadTypeModel|CaptureTypeModel|TorpedoLoadTypeModel|MineTypeModel>(getEnergyLoadTypes()[0]);
     const [ deliverySystem, setDeliverySystem ] = useState<DeliverySystemModel>(getDeliverySystems()[0]);
 
-    const selectWeaponType = (type: WeaponTypeModel) => {
+    const selectWeaponType = (type?: WeaponType) => {
         let load = loadType;
-        if (type.type === WeaponType.ENERGY && !(load instanceof EnergyLoadTypeModel)) {
+        if (type === WeaponType.ENERGY && !(load instanceof EnergyLoadTypeModel)) {
             load = getEnergyLoadTypes()[0];
-        } else if (type.type === WeaponType.TORPEDO && !(load instanceof TorpedoLoadTypeModel)) {
+        } else if (type === WeaponType.TORPEDO && !(load instanceof TorpedoLoadTypeModel)) {
             load = getTorpedoLoadTypes()[0];
-        } else if (type.type === WeaponType.CAPTURE && !(load instanceof CaptureTypeModel)) {
+        } else if (type === WeaponType.CAPTURE && !(load instanceof CaptureTypeModel)) {
             load = getCaptureTypes()[0];
-        } else if (type.type === WeaponType.MINE && !(load instanceof MineTypeModel)) {
+        } else if (type === WeaponType.MINE && !(load instanceof MineTypeModel)) {
             load = getMineTypes()[0];
         }
 
-        setWeaponType(type);
+        let types = getWeaponTypes().filter(t => t.type === type);
+
+        setWeaponType(types[0]);
         setLoadType(load);
     }
 
@@ -143,7 +145,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             <p>What type of technology is used as the mine's load?</p>
             <DropDownSelect
                 items={ getMineTypes().map(t => new DropDownElement(t.type, t.description)) }
-                defaultValue={ loadType.type }
+                defaultValue={ loadType?.type }
                 onChange={(type) => selectLoadType(getMineTypeById(type as MineType) ) }/>
         </div>);
     }
@@ -161,10 +163,11 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
 
     return (<div>
         <p>What kind of weapon is this?</p>
-        <DropDownInput
-            items={ getWeaponTypes().map((t, i) => t.description) }
+        <DropDownSelect
+            items={ getWeaponTypes()
+                .map((t, i) => new DropDownElement(t.type, t.description)) }
             defaultValue={ weaponType.description }
-            onChange={(index) => selectWeaponType(WeaponTypeModel.allStarshipTypes()[index] ) }/>
+            onChange={(index) => selectWeaponType(index === "" ? undefined : (index as WeaponType) ) }/>
         {load}
         {deliveryType}
         <div className="text-center mt-4">
