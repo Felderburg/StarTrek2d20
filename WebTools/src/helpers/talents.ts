@@ -4377,7 +4377,11 @@ export class Talents {
         new TalentModel(
             "Supreme Authority (Cardassian)",
             "Whenever a Cardassian currently under the character's command attempts a Task to resist persuasion or intimidation, the character may spend 1 Threat to allow that Cardassian to re-roll, even if they are not present in that scene.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian), new OfficerPrerequisite(),
+                new AnyOfPrerequisite(
+                    new CareersPrerequisite(Career.Veteran),
+                    new NpcTypePrerequisite(NpcType.Major)
+                )],
             1,
             "Cardassian", true),
         new TalentModel(
@@ -4395,19 +4399,36 @@ export class Talents {
         new TalentModel(
             "Romulan Military Efficiency",
             "The character grants all Romulan NPCs under their command an additional Task each turn.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran, Career.Experienced)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite(),
+                new AnyOfPrerequisite(
+                    new CareersPrerequisite(Career.Veteran, Career.Experienced),
+                    new NpcTypePrerequisite(NpcType.Major)
+            )],
             1,
             "Romulan", true),
         new TalentModel(
             "Manipulation is Second Nature",
             "The character may attempt to Negotiate or Intimidate as an additional Task on their turn.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran, Career.Experienced)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman),
+                new OfficerPrerequisite(),
+                new AnyOfPrerequisite(
+                    new CareersPrerequisite(Career.Veteran, Career.Experienced),
+                    new NpcTypePrerequisite(NpcType.Major)
+                )
+            ],
             1,
             "Romulan", true),
         new TalentModel(
             "I Anticipated Your Move",
             "Unless a Player Character has a higher Daring than the Romulan officer, the Romulan always acts before the first Player Character.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran, Career.Experienced), new AttributePrerequisite(Attribute.Daring, 9)],
+            [
+                new CharacterStereotypePrerequisite(Stereotype.Npc),
+                new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman),
+                new OfficerPrerequisite(),
+                new AnyOfPrerequisite(
+                    new CareersPrerequisite(Career.Veteran, Career.Experienced),
+                    new NpcTypePrerequisite(NpcType.Major)),
+                new AttributePrerequisite(Attribute.Daring, 9)],
             1,
             "Romulan", true),
         new TalentModel(
@@ -4431,7 +4452,11 @@ export class Talents {
         new TalentModel(
             "Ruthless",
             "A Cardassian Officer may re-roll any d20s in their dice pool when making an attack against an enemy that was not aware of or prepared for an attack, or against an enemy that is defenseless.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran, Career.Experienced)],
+            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian), new OfficerPrerequisite(),
+                new AnyOfPrerequisite(
+                    new CareersPrerequisite(Career.Veteran, Career.Experienced),
+                    new NpcTypePrerequisite(NpcType.Major))
+            ],
             1,
             "Cardassian", true),
         new TalentModel(

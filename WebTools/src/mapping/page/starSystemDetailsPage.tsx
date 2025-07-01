@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { preventDefaultAnchorEvent } from '../../common/navigator';
 import Button from 'react-bootstrap/Button';
@@ -44,12 +44,17 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
         }
     }
 
-    const exportPdf = async () => {
+    const [loadingExport, setLoadingExport] = useState(false);
 
-        let pdfDoc = await new PdfExporter().createStarSystemPdf(starSystem);
+    const exportPdf = () => {
+        setLoadingExport(true);
+        import(/* webpackChunkName: 'export' */ '../export/pdfExporter').then(async ({PdfExporter}) => {
 
-        const pdfBytes = await pdfDoc.save();
-        download(pdfBytes, "System-" + starSystem.name + ".pdf", "application/pdf");
+            let pdfDoc = await new PdfExporter().createStarSystemPdf(starSystem);
+
+            const pdfBytes = await pdfDoc.save();
+            download(pdfBytes, "System-" + starSystem.name + ".pdf", "application/pdf");
+        });
     }
 
     if (!starSystem) {

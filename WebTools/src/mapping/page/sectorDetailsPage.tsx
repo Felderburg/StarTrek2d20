@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { preventDefaultAnchorEvent } from "../../common/navigator";
 import { Header } from "../../components/header";
@@ -9,13 +9,12 @@ import LcarsDecorationLeftView from "../view/lcarsDecorationLeft";
 import LcarsDecorationRightView from "../view/lcarsDecorationRight";
 import SectorMapView from "../view/sectorMapView";
 import SystemView from "../view/systemView";
-import Button from "react-bootstrap/Button";
 import { Sector } from "../table/sector";
 import { StarSystem } from "../table/starSystem";
 import { PDFDocument } from "@cantoo/pdf-lib";
-import { PdfExporter } from "../export/pdfExporter";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
+import { LoadingButton } from "../../common/loadingButton";
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -25,14 +24,21 @@ interface ISectorDetailsPageProperties {
 
 const SectorDetailsPage: React.FC<ISectorDetailsPageProperties> = ({sector}) => {
 
-    const exportPdf = async () => {
-        const existingPdfBytes = await fetch("/static/pdf/TNG_Sector_Map.pdf").then(res => res.arrayBuffer())
-        const pdfDoc = await PDFDocument.load(existingPdfBytes)
+    const [loadingExport, setLoadingExport] = useState(false);
 
-        await new PdfExporter().populate(pdfDoc, sector);
+    const exportPdf = () => {
+        setLoadingExport(true);
+        import(/* webpackChunkName: 'export' */ '../export/pdfExporter').then(async ({PdfExporter}) => {
 
-        const pdfBytes = await pdfDoc.save();
-        download(pdfBytes, "Sector-" + sector.name + ".pdf", "application/pdf");
+            const existingPdfBytes = await fetch("/static/pdf/TNG_Sector_Map.pdf").then(res => res.arrayBuffer())
+            const pdfDoc = await PDFDocument.load(existingPdfBytes)
+
+            await new PdfExporter().populate(pdfDoc, sector);
+
+            const pdfBytes = await pdfDoc.save();
+            download(pdfBytes, "Sector-" + sector.name + ".pdf", "application/pdf");
+            setLoadingExport(false);
+        });
     }
 
     const showSystem = (system: StarSystem) => {
@@ -85,7 +91,7 @@ const SectorDetailsPage: React.FC<ISectorDetailsPageProperties> = ({sector}) => 
                 </table>
             </div>
             <div className="mt-3">
-                <Button size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</Button>
+                <LoadingButton loading={loadingExport} size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</LoadingButton>
             </div>
         </div>)
     : null;

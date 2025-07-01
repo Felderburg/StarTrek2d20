@@ -13,6 +13,7 @@ import { IconButton } from "../../components/iconButton";
 import { useTranslation } from "react-i18next";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { IStarshipProperties } from "../iStarshipProperties";
+import { Stereotype } from "../../common/construct";
 
 const StarshipWeaponsPageProperties: React.FC<IStarshipProperties> = ({starship}) => {
 
@@ -39,7 +40,11 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipProperties> = ({starship}
 
     const nextPage = () => {
         store.dispatch(nextStarshipWorkflowStep());
-        Navigation.navigateToPage(PageIdentity.FinalStarshipDetails);
+        if (starship.stereotype === Stereotype.SimpleStarship || starship.isSmallCraft) {
+            Navigation.navigateToPage(PageIdentity.FinalStarshipDetails);
+        } else {
+            Navigation.navigateToPage(PageIdentity.MissionProfileSelection);
+        }
     }
 
     const closeModal = () => {

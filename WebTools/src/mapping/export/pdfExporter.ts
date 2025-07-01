@@ -1,4 +1,4 @@
-import { PDFDocument, PDFFont, PDFPage, RGB, rgb } from "@cantoo/pdf-lib";
+import { PDFDocument, PDFFont, PDFPage, RGB, rgb, TextAlignment } from "@cantoo/pdf-lib";
 import fontkit from '@pdf-lib/fontkit'
 import { Sector } from "../table/sector";
 import { SimpleColor } from "../../common/colour";
@@ -9,12 +9,6 @@ import i18next from "i18next";
 import { WorldClass } from "../table/worldClass";
 
 const BULLET = '\u2022';
-
-enum TextAlignment {
-    Left,
-    Center,
-    Right
-}
 
 class TextBlock {
     text: string[];
