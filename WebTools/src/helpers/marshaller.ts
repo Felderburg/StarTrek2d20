@@ -1716,7 +1716,13 @@ console.log(json)
                         if (j["remove"] != null) {
                             improvement.removeValue = DepartmentsHelper.instance.getDepartmentByName(j["remove"]);
                         }
+                    } else if (improvement.choice === StarshipAdvancementChoice.System) {
+                        improvement.value = systemByName(j["value"]);
+                        if (j["remove"] != null) {
+                            improvement.removeValue = systemByName(j["remove"]);
+                        }
                     }
+
                     return improvement;
                 } else {
                     return undefined;

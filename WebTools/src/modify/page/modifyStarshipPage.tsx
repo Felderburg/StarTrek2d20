@@ -23,6 +23,7 @@ import { System } from "../../helpers/systems";
 import { makeKey } from "../../common/translationKey";
 import { modifyStarshipAddAdvancement } from "../../state/starshipActions";
 import { Dialog } from "../../components/dialog";
+import { SimpleSystemSelector } from "../../components/simpleSystemSelector";
 
 const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
 
@@ -35,6 +36,7 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
     const [ selectedDepartment, setSelectedDepartment ] = useState<Department|undefined>(undefined)
     const [ removedDepartment, setRemovedDepartment ] = useState<Department|undefined>(undefined)
     const [ selectedSystem, setSelectedSystem ] = useState<System|undefined>(undefined)
+    const [ removedSystem, setRemovedSystem ] = useState<System|undefined>(undefined)
 
 
     useEffect(() => {
@@ -77,6 +79,22 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
                     Dialog.show(t('Common.error.department'));
                 }
             }
+        } else if (choice === StarshipAdvancementChoice.System) {
+            if (advancementType === CharacterAdvancementType.Milestone) {
+                if (selectedSystem != null && removedSystem != null) {
+                    store.dispatch(modifyStarshipAddAdvancement(choice, selectedSystem, removedSystem));
+                    nextStep();
+                } else {
+                    Dialog.show(t('ModifyStarshipPage.error.twoSystems'));
+                }
+            } else {
+                if (selectedSystem != null) {
+                    store.dispatch(modifyStarshipAddAdvancement(choice, selectedSystem));
+                    nextStep();
+                } else {
+                    Dialog.show(t('Common.error.system'));
+                }
+            }
         }
     }
 
@@ -117,31 +135,102 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
     const createDepartmentModification = () => {
         return (<>
             <div className="col-12">
-                <Header level={2} className="my-4">{t('Construct.other.department')}</Header>
+                <Header level={2} className="my-4">{t('Construct.other.departments')}</Header>
                 <Markdown>{t(makeKey('ModifyStarshipPage.', CharacterAdvancementType[advancementType], '.department.instruction'))}</Markdown>
             </div>
 
             {advancementType === CharacterAdvancementType.Milestone
-            ? (<div className="col-12 col-md-6 mt-5">
-                <Header level={2}>{t('Common.text.remove')}</Header>
-                <StarshipDepartmentSelector
-                    starship={starship}
-                    isChecked={(d) => removedDepartment === d}
-                    onSelectDepartment={(d) => setRemovedDepartment(d)}
-                    isUpdateable={(d) => starship.departments[d] > 1}
-                />
-            </div>)
-            : undefined}
-            <div className="col-12 col-md-6 mt-5">
+            ? (<>
+                <div className="col-12 col-md-6 mt-5">
+                    <Header level={2}>{t('Common.text.remove')}</Header>
+                    <StarshipDepartmentSelector
+                        starship={starship}
+                        isChecked={(d) => removedDepartment === d}
+                        onSelectDepartment={(d) => {
+                            setRemovedDepartment(d);
+                            if (d === selectedDepartment) {
+                                setSelectedDepartment(undefined);
+                            }
+                        }}
+                        isUpdateable={(d) => starship.departments[d] > 1}
+                    />
+                </div>
+                <div className="col-12 col-md-6 mt-5">
+                    <Header level={2}>{t('Common.text.new')}</Header>
+                    <StarshipDepartmentSelector
+                        starship={starship}
+                        isChecked={(d) => selectedDepartment === d}
+                        onSelectDepartment={(d) => setSelectedDepartment(d)}
+                        isUpdateable={(d) =>
+                            starship.departments[d] < 4 && d !== removedDepartment}
+                    />
+                </div>
+            </>)
+            : (<div className="col-12 col-md-6 mt-5">
                 <Header level={2}>{t('Common.text.new')}</Header>
                 <StarshipDepartmentSelector
                     starship={starship}
                     isChecked={(d) => selectedDepartment === d}
                     onSelectDepartment={(d) => setSelectedDepartment(d)}
                     isUpdateable={(d) =>
-                        starship.departments[d] < (advancementType === CharacterAdvancementType.Milestone ? 4 : 5)}
+                        starship.departments[d] < 5 &&
+                        !(starship.advancementSteps
+                            .filter(s => s.choice === StarshipAdvancementChoice.Department
+                                && s.removeValue == null
+                                && s.value === d)?.length)}
                 />
+            </div>)}
+        </>)
+    }
+
+    const createSystemModification = () => {
+        return (<>
+            <div className="col-12">
+                <Header level={2} className="my-4">{t('Construct.other.systems')}</Header>
+                <Markdown>{t(makeKey('ModifyStarshipPage.', CharacterAdvancementType[advancementType], '.system.instruction'))}</Markdown>
             </div>
+
+            {advancementType === CharacterAdvancementType.Milestone
+            ? (<>
+                <div className="col-12 col-md-6 mt-5">
+                    <Header level={2}>{t('Common.text.remove')}</Header>
+                    <SimpleSystemSelector
+                        starship={starship}
+                        isChecked={(d) => removedSystem === d}
+                        onSelectSystem={(s) => {
+                            setRemovedSystem(s);
+                            if (s === selectedSystem) {
+                                setSelectedSystem(undefined);
+                            }
+                        }}
+                        isUpdateable={(d) => starship.systems[d] > 6}
+                    />
+                </div>
+                <div className="col-12 col-md-6 mt-5">
+                    <Header level={2}>{t('Common.text.new')}</Header>
+                    <SimpleSystemSelector
+                        starship={starship}
+                        isChecked={(d) => selectedSystem === d}
+                        onSelectSystem={(s) => setSelectedSystem(s)}
+                        isUpdateable={(s) =>
+                            starship.systems[s] < 11 && s !== removedSystem}
+                    />
+                </div>
+            </>)
+            : (<div className="col-12 col-md-6 mt-5">
+                <Header level={2}>{t('Common.text.new')}</Header>
+                <SimpleSystemSelector
+                    starship={starship}
+                    isChecked={(d) => selectedSystem === d}
+                    onSelectSystem={(d) => setSelectedSystem(d)}
+                    isUpdateable={(d) =>
+                        starship.systems[d] < 12 &&
+                        !(starship.advancementSteps
+                            .filter(s => s.choice === StarshipAdvancementChoice.System
+                                && s.removeValue == null
+                                && s.value === d)?.length)}
+                />
+            </div>)}
         </>)
     }
 
@@ -149,6 +238,8 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
         let option = undefined;
         if (choice === StarshipAdvancementChoice.Department) {
             option = createDepartmentModification()
+        } else if (choice === StarshipAdvancementChoice.System) {
+            option = createSystemModification();
         }
 
         return (<div className="row">

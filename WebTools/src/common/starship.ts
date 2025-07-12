@@ -427,9 +427,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         return result;
     }
     getSystemValue(system: System) {
-        let base = this.getBaseSystem(system);
-        this.refits.forEach(r => { if (r === system) base++});
-        return base;
+        return this.systems[system];
     }
 
     getDistinctTalentNameList() {
@@ -710,7 +708,22 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
     get systems() {
         let result = [0, 0, 0, 0, 0, 0];
-        allSystems().forEach(s => result[s] = this.getSystemValue(s));
+
+        allSystems().forEach(system => {
+            let base = this.getBaseSystem(system);
+            this.refits.forEach(r => { if (r === system) base++});
+            result[system] = base;
+        });
+
+        this.advancementSteps
+            .filter(s => s.choice === StarshipAdvancementChoice.System && s.value != null)
+            .forEach(s => {
+                result[s.value as System] += 1;
+                if (s.removeValue != null) {
+                    result[s.removeValue as System] -= 1;
+                }
+            });
+
         return result;
     }
 
@@ -748,7 +761,12 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
         this.advancementSteps
             .filter(s => s.choice === StarshipAdvancementChoice.Department && s.value != null)
-            .forEach(s => result[s.value as Department] += 1);
+            .forEach(s => {
+                result[s.value as Department] += 1;
+                if (s.removeValue != null) {
+                    result[s.removeValue as Department] -= 1;
+                }
+            });
 
         return result;
     }
