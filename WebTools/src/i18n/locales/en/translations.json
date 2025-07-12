@@ -1985,7 +1985,8 @@
     "Source.type.quadrantBook": "Quadrant Books",
     "Source.type.crewBook": "Crew Books",
     "Source.type.campaignBook": "Campaign Books",
-    "Source.type.expansion": "Major Expansion Books",
+    "Source.type.expansion": "Expansion Books",
+    "Source.type.expansion2e": "Expansion Books for 2E",
     "Source.type.misc": "Misc/Other Books",
     "Source.type.unofficial": "Unofficial Sources",
 
@@ -2001,6 +2002,7 @@
     "Source.book.tng": "TNG",
     "Source.book.ds9": "DS9",
     "Source.book.voyager": "Voyager",
+    "Source.book.explorationGuide": "Exploration Guide",
     "Source.book.theseAreTheVoyages": "These are the Voy",
     "Source.book.tribblePlayerCharacter": "Tribble Player Char",
     "Source.book.klingonCore": "Klingon Core",

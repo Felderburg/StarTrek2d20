@@ -2179,7 +2179,8 @@ Source.type.divisionBook,Division Books,,Abteilungs-Bände,Libros de Divisiones,
 Source.type.quadrantBook,Quadrant Books,,Quadranten-Bände,Libros de Cuadrantes,Livres des Quadrants,,Suplementos de Quadrantes
 Source.type.crewBook,Crew Books,,Spielercharakter-Spielhilfen,Libros de Tripulaciones,Livres d'Equipages,,Suplementos de Tripulação
 Source.type.campaignBook,Campaign Books,,Kampagnenbände,Libros de Campaña,Livres de Campagne,,Suplementos de Campanhas
-Source.type.expansion,Major Expansion Books,,Wichtige Erweiterungsbände,Libros de Expansión,Livres d'Extensions,,Livros de Expansão Principais
+Source.type.expansion,Expansion Books,,Wichtige Erweiterungsbände,Libros de Expansión,Livres d'Extensions,,Livros de Expansão Principais
+Source.type.expansion2e,Expansion Books for 2E,,,,,,
 Source.type.misc,Misc/Other Books,,Sonstige Bände,Varios/Otros Libros,Divers/Autres,,Misc/Outros Livros
 Source.type.unofficial,Unofficial Sources,,Inoffizielle Quellen,Fuentes No Oficiales,Sources non officielles,Неофициальные ресурсы,Fontes Não-Oficiais
 Source.book.core,Core,,Grundregelwerk,Reglas Básicas,Règles de Base,Основная книга,Básico
@@ -2194,6 +2195,7 @@ Source.book.sciencesDivision,Sciences Division,,Wissenschafts-Abteilung,Divisió
 Source.book.tng,TNG,,Das Nächste Jahrhundert,TNG,TNG,Новое поколение,TNG
 Source.book.ds9,DS9,,Deep Space Nine,DS9,DS9,Далекий космос 9,DS9
 Source.book.voyager,Voyager,,Voyager,Voyager,Voyager,Вояджер,Voyager
+Source.book.explorationGuide,Exploration Guide,,,,,,
 Source.book.theseAreTheVoyages,These are the Voy,,Dies sind die Abenteuer,Estos son los Viajes de...,These are the Voy,,Essas são as viagens
 Source.book.tribblePlayerCharacter,Tribble Player Char,,(NOT YET TRANSLATED),Tribble PDF,Tribule PDF,,Personagem Jogador Tribble
 Source.book.klingonCore,Klingon Core,,Klingonisches Grundregelwerk,Klingon,Klingon,Клингоны основная,Klingon Livro Básico

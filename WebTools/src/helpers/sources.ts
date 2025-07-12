@@ -31,6 +31,7 @@ export enum Source {
     FederationKlingonWar,
     GmToolkit2e,
     TechnicalManual,
+    ExplorationGuide,
 
     ContinuingMissions,
 
@@ -44,6 +45,7 @@ export enum SourceType {
     CrewBook,
     CampaignBook,
     Expansion,
+    Expansion2e,
     Misc,
     Unofficial
 }
@@ -92,7 +94,8 @@ class Sources {
         new SourceTypeModel(SourceType.QuadrantBook, "Quadrant Books"),
         new SourceTypeModel(SourceType.DivisionBook, "Division Books"),
         new SourceTypeModel(SourceType.CampaignBook, "Campaign Books"),
-        new SourceTypeModel(SourceType.Expansion, "Major Expansion Books"),
+        new SourceTypeModel(SourceType.Expansion, "Expansion Books"),
+        new SourceTypeModel(SourceType.Expansion2e, "Expansion Books for 2E"),
         new SourceTypeModel(SourceType.Misc, "Misc/Other Books"),
         new SourceTypeModel(SourceType.Unofficial, "Unofficial Books"),
     ];
@@ -126,8 +129,9 @@ class Sources {
         [Source.ContinuingMissions]: new SourceViewModel(Source.ContinuingMissions, SourceType.Unofficial, "Continuing Mission"),
         [Source.AnimatedSeries]: new SourceViewModel(Source.AnimatedSeries, SourceType.Expansion, "Animated Series"),
         [Source.FederationKlingonWar]: new SourceViewModel(Source.FederationKlingonWar, SourceType.Expansion, "Federation-Klingon War"),
-        [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion, "GM Toolkit 2e", 2),
-        [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion, "Technical Manual", 2),
+        [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion2e, "GM Toolkit 2e", 2),
+        [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion2e, "Technical Manual", 2),
+        [Source.ExplorationGuide]: new SourceViewModel(Source.ExplorationGuide, SourceType.Expansion2e, "Exploration Guide", 2, false),
     };
 
     getSources() {
