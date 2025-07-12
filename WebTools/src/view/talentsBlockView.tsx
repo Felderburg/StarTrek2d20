@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Header } from "../components/header";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TalentModel, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TalentModel, TalentsHelper } from "../helpers/talents";
 import replaceDiceWithArrowhead from "../common/arrowhead";
 import { Stereotype } from "../common/construct";
 import { Starship } from "../common/starship";
@@ -13,6 +13,7 @@ import { Attribute } from "../helpers/attributes";
 import { Department } from "../helpers/department";
 import { System } from "../helpers/systems";
 import { PropulsionSystemModel, PropulsionSystemType } from "../helpers/propulsionSystem";
+import { Weapon } from "../helpers/weapons";
 
 interface IConstructPageProperties {
     construct: Character|Starship|Creature;
@@ -74,6 +75,14 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 .map(s => PropulsionSystemModel.getByType(s.selection as PropulsionSystemType)?.localizedName)
                 .join(", ");
                 return (<div className="text-sm px-4">
+                    {propulsion}</div>);
+        } else if ([TALENT_NAME_EXPANDED_MUNITIONS].includes(talent.name)) {
+            let starship = construct as Starship;
+            let propulsion = starship.talents
+                .filter(s => s.talent === talent.name && s.weapon != null)
+                .map(s => s.weapon instanceof Weapon ? (s.weapon as Weapon).name : s.weapon as string)
+                .join(", ");
+                return (<div className="text-sm px-4"><b>{t("Construct.other.weapons") + ": "}</b>
                     {propulsion}</div>);
         } else if ([TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT].includes(talent.name)) {
             let starship = construct as Starship;
@@ -200,7 +209,6 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 } else {
                     return undefined;
                 }
-
             })}
         </>);
     }

@@ -109,4 +109,5 @@ export enum PageIdentity {
 
     ModifySupportingCharacter,
     ModifyMainCharacter,
+    ModifyStarship
 }

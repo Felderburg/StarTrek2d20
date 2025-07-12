@@ -15,6 +15,7 @@ import { IWeaponDiceProvider } from "./iWeaponDiceProvider";
 import { ServiceRecord, ServiceRecordModel } from "../starship/model/serviceRecord";
 import { DepartmentsHelper } from "../helpers/department";
 import { SelectedTalent } from "./selectedTalent";
+import { StarshipAdvancementChoice } from "./starshipAdvancementChoice";
 
 export class SimpleStats {
     departments: number[];
@@ -91,6 +92,8 @@ export class ServiceRecordStep {
     specialRule?: TalentModel;
     selection: string;
     system?: System;
+    removedTalent?: string;
+    selectedTalent?: SelectedTalent;
 
     constructor(type: ServiceRecordModel) {
         this.type = type;
@@ -111,6 +114,8 @@ export class ServiceRecordStep {
         result.specialRule = this.specialRule;
         result.selection = this.selection;
         result.system = this.system;
+        result.removedTalent = this.removedTalent;
+        result.selectedTalent = this.selectedTalent?.copy();
         return result;
     }
 }
@@ -145,6 +150,28 @@ export class ShipBuildTypeModel {
     }
 }
 
+export class StarshipAdvancementStep {
+    choice: StarshipAdvancementChoice;
+    value: System|Department|SelectedTalent;
+    removeValue: System|Department|SelectedTalent;
+
+    copy() {
+        let result = new StarshipAdvancementStep();
+        result.choice = this.choice;
+        if (this.value instanceof SelectedTalent) {
+            result.value = (this.value as SelectedTalent).copy();
+        } else {
+            result.value = this.value;
+        }
+        if (this.removeValue instanceof SelectedTalent) {
+            result.removeValue = (this.removeValue as SelectedTalent).copy();
+        } else {
+            result.removeValue = this.removeValue;
+        }
+        return result;
+    }
+}
+
 export class Starship extends Construct implements IWeaponDiceProvider {
     stereotype: Stereotype = Stereotype.Starship;
     buildType: ShipBuildType = ShipBuildType.Starship;
@@ -159,6 +186,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     simpleStats: SimpleStats;
     additionalWeapons: Weapon[] = [];
     serviceRecordStep?: ServiceRecordStep;
+    advancementSteps: StarshipAdvancementStep[] = [];
 
     constructor() {
         super(Stereotype.Starship);
@@ -472,6 +500,11 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             });
         }
 
+        if (this.serviceRecordStep?.removedTalent != null) {
+            // we should think about multiples
+            result = result.filter(t => t.name !== this.serviceRecordStep?.removedTalent);
+        }
+
         if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
             result.push(this.missionProfileStep.talent);
         }
@@ -489,6 +522,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             }
             result.push(talent);
 
+            if (this.serviceRecordStep?.selectedTalent != null) {
+                result.push(this.serviceRecordStep.selectedTalent);
+            }
         }
         return result;
     }
@@ -800,6 +836,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             result.simpleStats.scale = this.simpleStats.scale;
         }
         result.serviceRecordStep = this.serviceRecordStep?.copy();
+        result.advancementSteps = this.advancementSteps.map(s => s.copy());
         return result;
     }
 }

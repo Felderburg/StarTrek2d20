@@ -287,6 +287,8 @@
     "ModificationTypeSelectionPage.instruction": "Please select the modification that you want to apply to this character:",
     "ModificationTypeSelectionPage.whatMilestoneType": "What kind of milestone is being applied?",
 
+    "ModifyStarship.type.instruction": "Starships are modified when a character uses their advancement to improve the ship. Specify the character advancement type.",
+
     "NpcBuilderPage.text": "First, select an NPC type.",
 
     "NpcConfigurationPage.option.anyMajorSpecies": "Any Major Species",
@@ -752,6 +754,7 @@
     "Page.title.gamemasterTrackerPage": "Tracking",
     "Page.title.home": "Home",
     "Page.title.modifySupportingCharacter": "Modify Supporting Character",
+    "Page.title.modifyStarship": "Modify Starship",
     "Page.title.missionPodSelection": "Mission Pod Selection",
     "Page.title.missionProfileSelection": "Mission Profile Selection",
     "Page.title.missionProfileTalentSelection": "Mission Profile Talent",

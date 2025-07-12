@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
-import { DropDownElement, DropDownInput, DropDownSelect } from "../../components/dropDownInput";
-import { CaptureTypeModel, DeliverySystemModel, EnergyLoadTypeModel, MineType, MineTypeModel, TorpedoLoadTypeModel, Weapon, WeaponType, WeaponTypeModel } from "../../helpers/weapons";
+import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
+import { CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadTypeModel, MineType, MineTypeModel, TorpedoLoadTypeModel, Weapon, WeaponType, WeaponTypeModel } from "../../helpers/weapons";
 import { useTranslation } from "react-i18next";
 
 export enum AddWeaponMode {
@@ -119,25 +119,25 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
     if (weaponType?.type === WeaponType.ENERGY) {
         load = (<div className="mt-4">
             <p>What kind of energy does the beam weapon discharge?</p>
-            <DropDownInput
-                items={ getEnergyLoadTypes().map(t => t.description) }
-                defaultValue={ loadType.description }
+            <DropDownSelect
+                items={ getEnergyLoadTypes().map(t => new DropDownElement(t.type, t.description)) }
+                defaultValue={ loadType?.type }
                 onChange={(index) => selectLoadType(getEnergyLoadTypes()[index] ) }/>
         </div>);
     } else if (weaponType?.type === WeaponType.TORPEDO) {
         load = (<div className="mt-4">
             <p>What type of charge does the torpedo carry?</p>
-            <DropDownInput
-                items={ getTorpedoLoadTypes().map(t => t.description) }
-                defaultValue={ loadType.description }
+            <DropDownSelect
+                items={ getTorpedoLoadTypes().map(t => new DropDownElement(t.type, t.description)) }
+                defaultValue={ loadType?.type }
                 onChange={(index) => selectLoadType(getTorpedoLoadTypes()[index] ) }/>
         </div>);
     } else if (weaponType?.type === WeaponType.CAPTURE) {
         load = (<div className="mt-4">
             <p>What type of technology is used to capture/ensnare other vessels?</p>
-            <DropDownInput
-                items={ getCaptureTypes().map(t => t.description) }
-                defaultValue={ loadType.description }
+            <DropDownSelect
+                items={ getCaptureTypes().map(t => new DropDownElement(t.type, t.description)) }
+                defaultValue={ loadType?.description }
                 onChange={(index) => selectLoadType(getCaptureTypes()[index] ) }/>
         </div>);
     } else if (weaponType?.type === WeaponType.MINE) {
@@ -154,10 +154,10 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
     if (weaponType != null && weaponType.type === WeaponType.ENERGY) {
         deliveryType = (<div className="mt-4">
             <p>What kind of delivery system is used for this energy weapon?</p>
-            <DropDownInput
-                items={ getDeliverySystems().map(t => t.description) }
-                defaultValue={ deliverySystem.description }
-                onChange={(index) => selectDeliverySystem(getDeliverySystems()[index] ) }/>
+            <DropDownSelect
+                items={ getDeliverySystems().map(t => new DropDownElement(t.type, t.description)) }
+                defaultValue={ deliverySystem?.type }
+                onChange={(index) => selectDeliverySystem(getDeliverySystems()[index as DeliverySystem] ) }/>
         </div>);
     }
 

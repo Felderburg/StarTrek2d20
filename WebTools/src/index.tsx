@@ -34,6 +34,7 @@ const RandomCreaturePage = React.lazy(() => import(/* webpackChunkName: 'npc' */
 const TacticalAssetsPage = React.lazy(() => import(/* webpackChunkName: 'statc' */ './asset/page/tacticalAssetsPage'));
 const ModifySupportCharacterPage = React.lazy(() => import(/* webpackChunkName: 'modify' */ './supportingcharacters/modify/modifySupportCharacterPage'));
 const ModifyCharacterPage = React.lazy(() => import(/* webpackChunkName: 'modify' */ './modify/page/modifyMainCharacterPage'));
+const ModifyStarshipPage = React.lazy(() => import(/* webpackChunkName: 'modify' */ './modify/page/modifyStarshipPage'));
 const NpcBuilderPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcBuilderPage'));
 const NpcSpeciesSelectionPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesSelectionPage'));
 const NpcSpeciesDetailsPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesDetailsPage'));
@@ -48,6 +49,7 @@ root.render(
             <Suspense fallback={<LoadingPage />}>
                 <Routes>
                     <Route path="/modify/main" element={<ModifyCharacterPage />} />
+                    <Route path="/modify/starship" element={<ModifyStarshipPage />} />
                     <Route path="/modify/supporting" element={<ModifySupportCharacterPage />} />
                     <Route path="/talents" element={<TalentsOverviewMainPage />} />
                     <Route path="/view" element={<ViewSheetPage />} />

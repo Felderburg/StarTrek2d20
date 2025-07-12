@@ -308,6 +308,7 @@ Vous pouvez vouloir sauvegarder l'URL pour le personnage modifié","Персон
 Talvez você queira salvar a URL da personagem revisada."
 ModificationTypeSelectionPage.instruction,Please select the modification that you want to apply to this character:,,Wählen Sie die gewünschte Änderung an Ihrem Charakter aus,Selecciona la modificación que quieres aplicar a este personaje.,Selectionnez la modification que vous voulez appliquer à ce personnage,Пожалуйста выберите тип измененния который вы хотите применить для данного персонажа:,Selecione a modificação que você deseja aplicar a esta personagem:
 ModificationTypeSelectionPage.whatMilestoneType,What kind of milestone is being applied?,,Welche Art Meilenstein wird angewandt?,¿Qué tipo de hito se está aplicando?,Quel genre de jalon d'expérience est appliqué?,Какой тип вехи был применен?,Que tipo de marco de história está sendo aplicado?
+ModifyStarship.type.instruction,Starships are modified when a character uses their advancement to improve the ship. Specify the character advancement type.,,,,,,
 NpcBuilderPage.text,"First, select an NPC type.",,,,,,
 NpcConfigurationPage.option.anyMajorSpecies,Any Major Species,,Jede bedeutende Spezies,Cualquier Especie Principal,N'importe quelle Espèces Majeure,Любая основная раса,Qualquer Espécie Principal
 NpcConfigurationPage.option.anySpecialization,Any Specialization,,Jede Spezialisierung,Cualquier Especialización,N'importe quelle Spécialisation,Любая Специализация,Qualquer Especialização
@@ -793,6 +794,7 @@ Page.title.finish,Finishing Touches,,Feinschliff,Retoques Finales,Touches Finale
 Page.title.gamemasterTrackerPage,Tracking,,NSC-Verwaltung,Seguimiento,Suivi,,Acompanhamento
 Page.title.home,Home,,Startseite,Página principal,Page d'accueil,Домашняя,Principal
 Page.title.modifySupportingCharacter,Modify Supporting Character,,,Modificar personaje de apoyo,,,Modificar Personagem Coadjuvante
+Page.title.modifyStarship,Modify Starship,,,,,,
 Page.title.missionPodSelection,Mission Pod Selection,,Auswahl Missionsmodul,Selección de Módulo de Misión,Selection des Nacelles de Mission,,Seleção do Módulo de Missão
 Page.title.missionProfileSelection,Mission Profile Selection,,Auswahl Missionsprofil,Selección de Perfil de Misión,Selection du Profil de Mission,,Seleção do Perfil da Missão
 Page.title.missionProfileTalentSelection,Mission Profile Talent,,Auswahl Missionsprofil-Talent,Talento de Perfil de Misión,Talent du Profil de mission,,Talento do Perfil da Missão
