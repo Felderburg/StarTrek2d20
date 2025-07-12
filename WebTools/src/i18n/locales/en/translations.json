@@ -289,6 +289,22 @@
 
     "ModifyStarship.type.instruction": "Starships are modified when a character uses their advancement to improve the ship. Specify the character advancement type.",
 
+    "ModifyStarship.advancementChoice.instruction": "Choose a capability of your starship to modify.",
+
+    "ModifyStarship.complete.instruction": "The starship has been modified. You can view the revised starship, or make another modification.\n\nYou might want to save the URL for the revised starship.",
+
+    "ModifyStarshipPage.milestone.department.instruction": "Reduce one department by 1 and increase another by 1. You can’t increase any department to more than 4 in this way, nor can you reduce a department below 1.",
+
+    "ModifyStarshipPage.milestone.system.instruction": "Adjust one of the ship’s systems. Reduce one system by 1 and increase another system by 1. You may not increase a system to above 11, nor reduce a system to below 6.",
+
+    "ModifyStarshipPage.milestone.talent.instruction": "Swap one of the ship’s talents, with the ship removing some specialized systems to make way for others. Choose one of the ship’s talents and replace it with a new one.",
+
+    "ModifyStarshipPage.characterArc.department.instruction": "Choose one of the ship’s departments, and increase it by 1, to a maximum of 5. Each department may only be increased by 1 in this way.",
+
+    "ModifyStarshipPage.characterArc.system.instruction": "Choose one of the ship’s systems and increase it by 1. Each system may only be increased by 1 by any character using a milestone.",
+
+    "ModifyStarshipPage.characterArc.talent.instruction": "Select one additional talent for the ship, which may ignore the normal maximum number of talents a ship may possess.",
+
     "NpcBuilderPage.text": "First, select an NPC type.",
 
     "NpcConfigurationPage.option.anyMajorSpecies": "Any Major Species",

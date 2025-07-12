@@ -3,7 +3,7 @@ import pako from 'pako';
 import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
-import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, SimpleStats, SpaceframeStep, Starship } from '../common/starship';
+import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, SimpleStats, SpaceframeStep, Starship, StarshipAdvancementStep } from '../common/starship';
 import AgeHelper from './age';
 import { Attribute, AttributesHelper } from './attributes';
 import { Career } from './careerEnum';
@@ -49,6 +49,7 @@ import { AttackType } from '../common/attackType';
 import { ModificationType } from '../modify/model/modificationType';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from './equipment';
 import { PropulsionSystemModel, PropulsionSystemType } from './propulsionSystem';
+import { allStarshipAdvancementChoices, StarshipAdvancementChoice } from '../common/starshipAdvancementChoice';
 
 class Marshaller {
 
@@ -290,6 +291,32 @@ class Marshaller {
 
         sheet["improvements"] = this.encodeImprovements(character);
         return sheet;
+    }
+
+    encodeStarshipImprovements(starship: Starship) {
+        if (starship.advancementSteps?.length) {
+
+            let json = starship.advancementSteps?.map(i => {
+                let result = { type: "advancement" };
+                result["choice"] = StarshipAdvancementChoice[i.choice];
+                if (i.choice === StarshipAdvancementChoice.Department) {
+                    result["value"] = Department[i.value as Department];
+                    if (i.removeValue != null) {
+                        result["remove"] = Department[i.removeValue as Department];
+                    }
+                } else if (i.choice === StarshipAdvancementChoice.System) {
+                    result["value"] = System[i.value as System];
+                    if (i.removeValue != null) {
+                        result["remove"] = System[i.removeValue as System];
+                    }
+                }
+
+                return result;
+            });
+            return json;
+        } else {
+            return undefined;
+        }
     }
 
     encodeImprovements(character: Character) {
@@ -788,6 +815,9 @@ class Marshaller {
         if (starship.additionalWeapons.length > 0) {
             sheet['additionalWeapons'] = starship.additionalWeapons.map(w => this.encodeWeapon(w));
         }
+
+        sheet["improvements"] = this.encodeStarshipImprovements(starship);
+
         return this.encode(sheet);
     }
 
@@ -899,6 +929,7 @@ class Marshaller {
 
     decodeStarship(s: string) {
         let json = this.decode(s);
+console.log(json)
         let result = new Starship();
         if (json.version) {
             result.version = json.version;
@@ -1034,6 +1065,9 @@ class Marshaller {
                     talent[0].weapon = weapon;
                 }
             });
+        }
+        if (json.improvements?.length) {
+            result.advancementSteps = this.decodeStarshipImprovement(json.improvements, result.version) ?? [];
         }
 
         return result;
@@ -1665,6 +1699,32 @@ class Marshaller {
         }
 
         return result;
+    }
+
+    decodeStarshipImprovement(json: any, version: number) {
+        if (json) {
+            return Object.values(json).map(j => {
+                if (j["type"] === "advancement") {
+                    let improvement = new StarshipAdvancementStep();
+                    allStarshipAdvancementChoices().forEach(c => {
+                        if (StarshipAdvancementChoice[c] === j["choice"]) {
+                            improvement.choice = c;
+                        }
+                    });
+                    if (improvement.choice === StarshipAdvancementChoice.Department) {
+                        improvement.value = DepartmentsHelper.instance.getDepartmentByName(j["value"]);
+                        if (j["remove"] != null) {
+                            improvement.removeValue = DepartmentsHelper.instance.getDepartmentByName(j["remove"]);
+                        }
+                    }
+                    return improvement;
+                } else {
+                    return undefined;
+                }
+            }).filter(i => i != null);
+        } else {
+            return undefined;
+        }
     }
 
     decodeImprovements(json: any, version: number) {

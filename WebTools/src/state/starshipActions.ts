@@ -1,6 +1,7 @@
 import { CharacterType } from "../common/characterType";
 import { SelectedTalent } from "../common/selectedTalent";
 import { ShipBuildType, SimpleStats, Starship } from "../common/starship";
+import { StarshipAdvancementChoice } from "../common/starshipAdvancementChoice";
 import { Department } from "../helpers/department";
 import { Era } from "../helpers/eras";
 import { MissionPodModel } from "../helpers/missionPods";
@@ -40,9 +41,10 @@ export const DELETE_STARSHIP_REFIT = "DELETE_STARSHIP_REFIT";
 export const SET_STARSHIP_SERVICE_YEAR = "SET_STARSHIP_SERVICE_YEAR";
 export const SET_STARSHIP_SERVICE_RECORD = "SET_STARSHIP_SERVICE_RECORD";
 export const SET_STARSHIP_SPACEFRAME_TALENTS = "SET_STARSHIP_SPACEFRAME_TALENTS";
+export const MODIFY_STARSHIP_ADD_ADVANCEMENT = "MODIFY_STARSHIP_ADD_ADVANCEMENT";
 
-export function createStarship(starship: Starship) {
-    let payload = { starship: starship }
+export function createStarship(starship: Starship, hash?: number) {
+    let payload = { starship: starship, hash: hash }
     return {
         type: CREATE_STARSHIP,
         payload: payload
@@ -263,6 +265,17 @@ export function deleteStarshipWeapon(weapon: Weapon) {
     let payload = { weapon: weapon };
     return {
        type: DELETE_STARSHIP_WEAPON,
+       payload: payload
+    }
+}
+
+export function modifyStarshipAddAdvancement(type: StarshipAdvancementChoice, value: System|Department|SelectedTalent, removeValue?: System|Department|SelectedTalent) {
+    let payload = { type: type, value: value };
+    if (removeValue != null) {
+        payload["remove"] = removeValue;
+    }
+    return {
+       type: MODIFY_STARSHIP_ADD_ADVANCEMENT,
        payload: payload
     }
 }

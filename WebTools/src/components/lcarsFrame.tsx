@@ -50,6 +50,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
             activePage === PageIdentity.StarshipTalentSelection ||
             activePage === PageIdentity.FinalStarshipDetails ||
             activePage === PageIdentity.SimpleStarship ||
+            activePage === PageIdentity.ModifyStarship ||
             isSoloStarshipPage()) {
             return true;
         } else {

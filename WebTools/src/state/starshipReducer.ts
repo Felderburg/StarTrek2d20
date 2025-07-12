@@ -1,23 +1,52 @@
 import { Stereotype } from "../common/construct";
-import { MissionProfileStep, ServiceRecordStep, SimpleStats, Starship } from "../common/starship";
+import { SelectedTalent } from "../common/selectedTalent";
+import { MissionProfileStep, ServiceRecordStep, SimpleStats, Starship, StarshipAdvancementStep } from "../common/starship";
+import { StarshipAdvancementChoice } from "../common/starshipAdvancementChoice";
 import { System } from "../helpers/systems";
 import { ShipBuildWorkflow } from "../starship/model/shipBuildWorkflow";
-import { ADD_STARSHIP_REFIT, ADD_STARSHIP_WEAPON, CHANGE_STARSHIP_SCALE, CHANGE_STARSHIP_SIMPLE_CLASS_NAME, CHANGE_STARSHIP_SIMPLE_DEPARTMENT, CHANGE_STARSHIP_SIMPLE_SYSTEM, CHANGE_STARSHIP_SPACEFRAME_CLASS_NAME, CHANGE_STARSHIP_SPACEFRAME_DEPARTMENT, CHANGE_STARSHIP_SPACEFRAME_SCALE, CHANGE_STARSHIP_SPACEFRAME_SERVICE_YEAR, CHANGE_STARSHIP_SPACEFRAME_SYSTEM, CREATE_NEW_STARSHIP, CREATE_STARSHIP, DELETE_STARSHIP_REFIT, DELETE_STARSHIP_WEAPON, NEXT_STARSHIP_WORKFLOW_STEP, REWIND_TO_STARSHIP_WORKFLOW_STEP, SET_ADDITIONAL_TALENTS, SET_STARSHIP_MISSION_POD, SET_STARSHIP_MISSION_PROFILE, SET_STARSHIP_MISSION_PROFILE_TALENT, SET_STARSHIP_NAME, SET_STARSHIP_REGISTRY, SET_STARSHIP_SERVICE_RECORD, SET_STARSHIP_SERVICE_YEAR, SET_STARSHIP_SPACEFRAME, SET_STARSHIP_SPACEFRAME_TALENTS, SET_STARSHIP_TRAITS } from "./starshipActions";
+import { ADD_STARSHIP_REFIT, ADD_STARSHIP_WEAPON, CHANGE_STARSHIP_SCALE, CHANGE_STARSHIP_SIMPLE_CLASS_NAME, CHANGE_STARSHIP_SIMPLE_DEPARTMENT, CHANGE_STARSHIP_SIMPLE_SYSTEM, CHANGE_STARSHIP_SPACEFRAME_CLASS_NAME, CHANGE_STARSHIP_SPACEFRAME_DEPARTMENT, CHANGE_STARSHIP_SPACEFRAME_SCALE, CHANGE_STARSHIP_SPACEFRAME_SERVICE_YEAR, CHANGE_STARSHIP_SPACEFRAME_SYSTEM, CREATE_NEW_STARSHIP, CREATE_STARSHIP, DELETE_STARSHIP_REFIT, DELETE_STARSHIP_WEAPON, MODIFY_STARSHIP_ADD_ADVANCEMENT, NEXT_STARSHIP_WORKFLOW_STEP, REWIND_TO_STARSHIP_WORKFLOW_STEP, SET_ADDITIONAL_TALENTS, SET_STARSHIP_MISSION_POD, SET_STARSHIP_MISSION_PROFILE, SET_STARSHIP_MISSION_PROFILE_TALENT, SET_STARSHIP_NAME, SET_STARSHIP_REGISTRY, SET_STARSHIP_SERVICE_RECORD, SET_STARSHIP_SERVICE_YEAR, SET_STARSHIP_SPACEFRAME, SET_STARSHIP_SPACEFRAME_TALENTS, SET_STARSHIP_TRAITS } from "./starshipActions";
 
 interface StarshipState {
     starship?: Starship;
     workflow?: ShipBuildWorkflow;
+    hash?: number;
 }
 
-const starshipReducer = (state: StarshipState = { starship: undefined, workflow: undefined }, action) => {
+const starshipReducer = (state: StarshipState = { starship: undefined, workflow: undefined, hash: undefined }, action) => {
     switch (action.type) {
         case CREATE_STARSHIP: {
             let s = action.payload.starship;
+            let hash = action.payload.hash;
             return {
                 ...state,
-                starship: s
+                starship: s.copy(),
+                hash: hash
             }
         }
+
+        case MODIFY_STARSHIP_ADD_ADVANCEMENT: {
+            let temp = state.starship.copy();
+            let improvement = new StarshipAdvancementStep();
+            improvement.choice = action.payload.type;
+            if (action.payload.type === StarshipAdvancementChoice.Talent) {
+                improvement.value = (action.payload.value as SelectedTalent).copy();
+                if (action.payload.remove != null) {
+                    improvement.removeValue = (action.payload.remove as SelectedTalent).copy();
+                }
+                temp.advancementSteps.push(improvement);
+            } else {
+                improvement.value = action.payload.value;
+                if (action.payload.remove != null) {
+                    improvement.removeValue = action.payload.remove;
+                }
+                temp.advancementSteps.push(improvement);
+            }
+            return {
+                ...state,
+                starship: temp
+            }
+        }
+
         case CREATE_NEW_STARSHIP: {
             let s = Starship.createStandardStarship(action.payload.era, action.payload.type, action.payload.version);
             s.serviceYear = action.payload.serviceYear;
@@ -35,7 +64,8 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
             return {
                 ...state,
                 starship: s,
-                workflow: action.payload.workflow
+                workflow: action.payload.workflow,
+                hash: undefined
             }
         }
         case CHANGE_STARSHIP_SCALE: {

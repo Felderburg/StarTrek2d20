@@ -12,6 +12,11 @@ import { VttSelectionDialog } from "../vtt/view/VttSelectionDialog";
 import TalentsBlockView from "./talentsBlockView";
 import WeaponBlockView from "./weaponBlockView";
 import { LoadingButton } from "../common/loadingButton";
+import { cyrb53 } from "../common/cyrb53";
+import { originalEncodedSheet } from "./originalEncodedSheet";
+import { createStarship } from "../state/starshipActions";
+import store from "../state/store";
+import { useNavigate } from "react-router";
 
 const OutlineImage = lazy(() => import(/* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'));
 
@@ -25,6 +30,7 @@ interface IStarshipViewProperties {
 const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
 
     const [loadingExport, setLoadingExport] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (starship.name) {
@@ -85,6 +91,12 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
 
     const showVttExportDialog = () => {
         VttSelectionDialog.instance.show(starship);
+    }
+
+    function navigateToModification() {
+        const hash = cyrb53(originalEncodedSheet());
+        store.dispatch(createStarship(starship, hash));
+        navigate("/modify/starship");
     }
 
     const { t } = useTranslation();
@@ -183,10 +195,18 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
             </div>
         </div>
 
-        <div className="button-container mt-5 mb-3">
-            <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
-            <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
-        </div>
+        (<div className="d-flex justify-content-between">
+            <div className="button-container mt-5 mb-3">
+                <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+                <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
+            </div>
+
+            {starship.version === 1 ? undefined :
+            (<div className="mt-5 mb-3">
+                <Button size="sm" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>
+            </div>)}
+        </div>)
+
     </main>);
 
 }

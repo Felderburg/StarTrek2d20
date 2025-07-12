@@ -745,6 +745,11 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         } else if (this.simpleStats != null) {
             DepartmentsHelper.instance.getDepartments().forEach(d => result[d] = this.simpleStats.departments[d]);
         }
+
+        this.advancementSteps
+            .filter(s => s.choice === StarshipAdvancementChoice.Department && s.value != null)
+            .forEach(s => result[s.value as Department] += 1);
+
         return result;
     }
 
