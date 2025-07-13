@@ -1,18 +1,19 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TalentViewModel} from '../helpers/talents';
+import {TalentModel, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { Construct } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';
+import { ITalent } from '../helpers/italent';
 
 interface ISimpleTalentSelectionProperties {
-    talents: TalentViewModel[]
+    talents: (TalentViewModel|TalentModel)[]
     construct: Construct;
     initialSelection?: string;
     onSelection: (talent?: SelectedTalent) => void;
 }
 
-const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({talents, onSelection, initialSelection}) => {
+const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({talents, construct, onSelection, initialSelection}) => {
 
     const [ selection, setSelection] = useState<string|undefined>(initialSelection);
 
@@ -32,7 +33,7 @@ const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
         return t1.localizedName.localeCompare(t2.localizedName);
     })
 
-    const selectTalent = (talent: TalentViewModel) => {
+    const selectTalent = (talent: ITalent) => {
         if (selection === talent.name) {
             setSelection(undefined);
             onSelection(undefined);
@@ -58,7 +59,14 @@ const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
             prerequisites = (<div style={{ fontWeight: "bold" }}>{prerequisites}</div>);
         }
 
-        let lines = t.description.split('\n').map((l, i) => {
+        let description = "";
+        if (t instanceof TalentModel) {
+            description = construct.version === 1 ? (t as TalentModel).localizedDescription : (t as TalentModel).localizedDescription2e;
+        } else if (t instanceof TalentViewModel) {
+            description = t.description;
+        }
+
+        let lines = description.split('\n').map((l, i) => {
             return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
         })
 

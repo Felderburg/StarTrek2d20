@@ -313,6 +313,9 @@ ModifyStarship.advancementChoice.instruction,Choose a capability of your starshi
 ModifyStarship.complete.instruction,"The starship has been modified. You can view the revised starship, or make another modification.
 
 You might want to save the URL for the revised starship.",,,,,,
+ModifyStarshipPage.error.twoDepartments,Please select two departments (one to remove and one replacement),,,,,,
+ModifyStarshipPage.error.twoSystems,Please select two systems (one to remove and one replacement).,,,,,,
+ModifyStarshipPage.error.twoTalents,Please select two talents (one to remove and one replacement),,,,,,
 ModifyStarshipPage.milestone.department.instruction,"Reduce one department by 1 and increase another by 1. You can’t increase any department to more than 4 in this way, nor can you reduce a department below 1.",,,,,,
 ModifyStarshipPage.milestone.system.instruction,"Adjust one of the ship’s systems. Reduce one system by 1 and increase another system by 1. You may not increase a system to above 11, nor reduce a system to below 6.",,,,,,
 ModifyStarshipPage.milestone.talent.instruction,"Swap one of the ship’s talents, with the ship removing some specialized systems to make way for others. Choose one of the ship’s talents and replace it with a new one.",,,,,,
@@ -632,6 +635,7 @@ Common.error.focus,Please select a focus.,,Bitte wähle einen Fokus.,"Selecciona
 Common.error.value,Please select a value.,,Bitte wähle eine Überzeugung.,"Selecciona un Valor, por favor.",Sélectionnez une Valeur SVP.,Пожалуйста выберите значение.,"Por favor, selecione um valor."
 Common.error.department,Please select a department.,,,,,Пожалуйста выберите отдел,
 Common.error.attribute,Please select an attribute.,,Bitte wähle ein Attribut.,"Por favor, seleciona un atributo.",Selectionez un Attribut SVP,Пожалуйста выберите качество,"Por favor, selecione um atributo."
+Common.error.system,Please select a system.,,,,,,
 Common.error.talent,Please select a talent.,,,Por favor selecciona un talento antes de continuar,,Пожалуйста выберите талант,
 Common.text.description,Description,,Beschreibung,Descripción,Description,Описание,Descrição
 Common.text.none,None,,Keine Auswahl,Ninguno,Aucun,Пусто,Nenhum

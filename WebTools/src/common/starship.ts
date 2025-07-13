@@ -463,27 +463,6 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         }
     }
 
-    getTalentNameList() {
-        let talents = [];
-
-        if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
-            talents = [...this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).map(t => { return t.name; })];
-        }
-
-        if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
-            talents.push(this.missionProfileStep?.talent.talent);
-        }
-        this.additionalTalents.forEach(t => {
-            talents.push(t.name);
-        });
-        if (this.missionPodModel && this.stereotype !== Stereotype.SoloStarship) {
-            this.missionPodModel.talents.forEach(t => {
-                talents.push(t.name);
-            });
-        }
-        return talents;
-    }
-
     get talentsWithoutAdditional() {
         let result: SelectedTalent[] = [];
         if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
@@ -532,7 +511,33 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         this.additionalTalents.forEach(t => {
             result.push(t);
         });
+
+        this.advancementSteps
+            .filter(s => s.choice === StarshipAdvancementChoice.Talent && s.value != null)
+            .forEach(s => {
+                if (s.removeValue != null) {
+                    let removedTalent = s.removeValue as SelectedTalent;
+                    let index = -1;
+                    result.forEach((t, i) => {
+                        if (index === -1 &&
+                            t.name === removedTalent.name &&
+                            t.displayName === removedTalent.displayName) {
+                            index = i;
+                        }
+                    });
+                    if (index >= 0) {
+                        result.splice(index, 1);
+                        result.push(s.value as SelectedTalent);
+                    }
+                } else {
+                    result.push(s.value as SelectedTalent);
+                }
+            });
         return result;
+    }
+
+    get talentsWithoutSpecialRules(): SelectedTalent[] {
+        return this.talents?.filter(t => !t.talentModel.specialRule) ?? [];
     }
 
     getNonSpaceframeTalentSelectionList() {
@@ -682,7 +687,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             }
         }
 
-        result.push(...this.additionalTalents
+        result.push(...this.talents
             .filter(t => t.weapon != null && t.weapon instanceof Weapon)
             .map(t => t.weapon));
 

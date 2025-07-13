@@ -309,6 +309,11 @@ class Marshaller {
                     if (i.removeValue != null) {
                         result["remove"] = System[i.removeValue as System];
                     }
+                } else if (i.choice === StarshipAdvancementChoice.Talent) {
+                    result["value"] = this.talentToJson(i.value as SelectedTalent);
+                    if (i.removeValue != null) {
+                        result["remove"] = this.talentToJson(i.removeValue as SelectedTalent);
+                    }
                 }
 
                 return result;
@@ -1720,6 +1725,11 @@ console.log(json)
                         improvement.value = systemByName(j["value"]);
                         if (j["remove"] != null) {
                             improvement.removeValue = systemByName(j["remove"]);
+                        }
+                    } else if (improvement.choice === StarshipAdvancementChoice.Talent) {
+                        improvement.value = this.hydrateTalent(j["value"], version);
+                        if (j["remove"] != null) {
+                            improvement.removeValue = this.hydrateTalent(j["remove"], version);
                         }
                     }
 

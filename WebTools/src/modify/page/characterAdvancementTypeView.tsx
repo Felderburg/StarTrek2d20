@@ -23,37 +23,13 @@ import { AugmentedAbilitySelectionView, BoldOrCautiousDepartmentSelectionView, B
 import { SelectedTalent } from "../../common/selectedTalent";
 import { SimpleStringSelector } from "./simpleStringSelector";
 import { Character } from "../../common/character";
-import { CheckBox } from "../../components/checkBox";
 import { SpecialWeapon } from "../../common/specialWeapon";
 import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { FocusSelectionView } from "../../components/focusSelectionView";
 import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 import { AttackType } from "../../common/attackType";
+import { TalentSelector } from "./talentSelector";
 
-interface ITalentSelectorProperties {
-
-    values: SelectedTalent[];
-    isChecked: (t: SelectedTalent, i: number) => boolean;
-    onSelect: (t: SelectedTalent, i: number) => void;
-}
-
-export const TalentSelector: React.FC<ITalentSelectorProperties> =
-    ({onSelect, values, isChecked}) => {
-
-    return (<table className="selection-list">
-        <tbody>
-            {values.map((s, i) => {
-                return (<tr key={i}>
-                    <td className="selection-header-small">{s.displayName}</td>
-                    <td className="text-end">
-                        <CheckBox text="" value={s} isChecked={isChecked(s, i)}
-                            onChanged={(val) => onSelect(s, i)} />
-                    </td>
-                </tr>);
-            })}
-        </tbody>
-    </table>);
-}
 
 
 interface ICharacterAdvancementTypeViewProperties extends ICharacterProperties {

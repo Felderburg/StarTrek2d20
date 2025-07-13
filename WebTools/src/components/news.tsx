@@ -14,6 +14,18 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250113</b>
+            <ul>
+                <li>
+                    Implemented process for starship advancement (for version 2 starships).
+                </li>
+                <li>
+                    Minor bug fixes.
+                </li>
+                <li>
+                    Very preliminary prep for the new <cite>Exploration Guide</cite>.
+                </li>
+            </ul>
             <b>v1.250101</b>
             <ul>
                 <li>
@@ -282,12 +294,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                     Some new token assets. (I just snagged a bunch
                     of <a href="https://www.patreon.com/posts/new-art-assets-120027524"  target="_blank" rel="noreferrer">new
                     items from my artist</a>, and you should see new options show up over the couple of weeks).
-                </li>
-            </ul>
-            <b>v1.250102</b>
-            <ul>
-                <li>
-                    New character sheet.
                 </li>
             </ul>
 

@@ -66,20 +66,39 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
         let shield = starship.shields;
         if (shield) {
             let iterator = [];
-            for (let i = 1; i <= Math.max(25, Math.ceil(shield / 5) * 5); i++) {
-                iterator.push(i);
+            let iterator2 = [];
+            for (let i = 1; i <= Math.max(30, Math.ceil(shield / 10) * 10); i++) {
+                if (i % 10 > 5 || i % 10 === 0) {
+                    iterator2.push(i);
+                } else {
+                    iterator.push(i);
+                }
             }
 
-            const pills = iterator.map(i => {
+            const pills1 = iterator.map(i => {
                 if (i <= shield) {
                     return (<div className="empty-pill mb-2" key={'shield-' + i}></div>);
                 } else {
                     return (<div className="empty-pill solid mb-2" key={'shield-' + i}></div>);
                 }
             });
-            return (<div className="d-flex flex-wrap mt-3 mb-2">
-                    {pills}
-                </div>);
+
+            const pills2 = iterator2.map(i => {
+                if (i <= shield) {
+                    return (<div className="empty-pill mb-2" key={'shield-' + i}></div>);
+                } else {
+                    return (<div className="empty-pill solid mb-2" key={'shield-' + i}></div>);
+                }
+            });
+
+            return (<div className="row row-cols-2">
+                <div className="d-flex flex-wrap mt-3 mb-2">
+                    {pills1}
+                </div>
+                <div className="d-flex flex-wrap mt-3 mb-2">
+                    {pills2}
+                </div>
+            </div>);
         } else {
             return undefined;
         }
@@ -170,28 +189,18 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
                     <div className="row row-cols-1 row-cols-xl-3 mb-2">
                         <StatView showZero={true} name={t('Construct.other.resistance')} value={starship.resistance} className="col mb-2" colourClass="red" />
                         <StatView showZero={true} name={t('Construct.other.scale')} value={starship.scale} className="col mb-2" colourClass="red" />
-                    </div>
-                </div>
-                {renderTalentNames()}
+                        <StatView showZero={true} name={t('Construct.other.crew')} value={starship.crewSupport} className="col mb-2" colourClass="red" />
 
-            </div>
-            <div className="col-xl-6 mt-4">
-                <div className="row">
-                    <div className="col-xl-6">
-                        <Header level={2}>{t('Construct.other.shields')}</Header>
-                        {renderShields()}
-                    </div>
-                    <div className="col-xl-6">
-                        <Header level={2}><>{t('Construct.other.power')} / {t('Construct.other.crew')}</></Header>
-                        <div className="row row-cols-1 row-cols-1 mb-1 mt-3">
-                            <StatView showZero={true} name={t('Construct.other.power')} value={starship.power} className="col" />
-                        </div>
-                        <div className="row row-cols-1 row-cols-1 mb-2">
-                            <StatView showZero={true} name={t('Construct.other.crew')} value={starship.crewSupport} className="col" />
-                        </div>
+                        {starship.version === 1 ? (<StatView showZero={true} name={t('Construct.other.power')} value={starship.power} className="col mb-2" colourClass="red" />) : undefined}
                     </div>
                 </div>
                 {renderWeapons()}
+
+            </div>
+            <div className="col-xl-6 mt-4">
+                <Header level={2}>{t('Construct.other.shields')}</Header>
+                {renderShields()}
+                {renderTalentNames()}
             </div>
         </div>
 

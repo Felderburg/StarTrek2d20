@@ -293,6 +293,10 @@
 
     "ModifyStarship.complete.instruction": "The starship has been modified. You can view the revised starship, or make another modification.\n\nYou might want to save the URL for the revised starship.",
 
+    "ModifyStarshipPage.error.twoDepartments": "Please select two departments (one to remove and one replacement)",
+    "ModifyStarshipPage.error.twoSystems": "Please select two systems (one to remove and one replacement).",
+    "ModifyStarshipPage.error.twoTalents": "Please select two talents (one to remove and one replacement)",
+
     "ModifyStarshipPage.milestone.department.instruction": "Reduce one department by 1 and increase another by 1. You can’t increase any department to more than 4 in this way, nor can you reduce a department below 1.",
 
     "ModifyStarshipPage.milestone.system.instruction": "Adjust one of the ship’s systems. Reduce one system by 1 and increase another system by 1. You may not increase a system to above 11, nor reduce a system to below 6.",
@@ -584,6 +588,7 @@
     "Common.error.value": "Please select a value.",
     "Common.error.department": "Please select a department.",
     "Common.error.attribute": "Please select an attribute.",
+    "Common.error.system": "Please select a system.",
     "Common.error.talent": "Please select a talent.",
 
     "Common.text.description": "Description",

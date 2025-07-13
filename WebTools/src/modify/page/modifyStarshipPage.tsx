@@ -24,6 +24,17 @@ import { makeKey } from "../../common/translationKey";
 import { modifyStarshipAddAdvancement } from "../../state/starshipActions";
 import { Dialog } from "../../components/dialog";
 import { SimpleSystemSelector } from "../../components/simpleSystemSelector";
+import { SelectedTalent } from "../../common/selectedTalent";
+import { TalentSelector } from "./talentSelector";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TalentsHelper } from "../../helpers/talents";
+import { ModalControl } from "../../components/modal";
+import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
+import { SelectedTalentDescriptionView } from "../../components/selectedTalentDescriptionView";
+import { PropulsionSystemModel, PropulsionSystemType } from "../../helpers/propulsionSystem";
+import { Weapon } from "../../helpers/weapons";
+import AddWeaponView, { AddWeaponMode } from "../../starship/view/addWeaponView";
+import { isMultiSelectionTalent } from "../../helpers/isMultiSelectionTalent";
+import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 
 const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
 
@@ -37,6 +48,8 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
     const [ removedDepartment, setRemovedDepartment ] = useState<Department|undefined>(undefined)
     const [ selectedSystem, setSelectedSystem ] = useState<System|undefined>(undefined)
     const [ removedSystem, setRemovedSystem ] = useState<System|undefined>(undefined)
+    const [ selectedTalent, setSelectedTalent ] = useState<SelectedTalent|undefined>(undefined)
+    const [ removedTalentIndex, setRemovedTalentIndex ] = useState<number|undefined>(undefined)
 
 
     useEffect(() => {
@@ -95,7 +108,44 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
                     Dialog.show(t('Common.error.system'));
                 }
             }
+        } else if (choice === StarshipAdvancementChoice.Talent) {
+            if (advancementType === CharacterAdvancementType.Milestone) {
+                if (selectedTalent == null || removedTalentIndex == null) {
+                    Dialog.show(t('ModifyStarshipPage.error.twoTalents'));
+                } else if (determineSelectedTalentExtraErrors(selectedTalent) != null) {
+                    Dialog.show(determineSelectedTalentExtraErrors(selectedTalent, starship));
+                } else {
+                    store.dispatch(modifyStarshipAddAdvancement(choice, selectedTalent, starship.talentsWithoutSpecialRules[removedTalentIndex]));
+                    nextStep();
+                }
+            } else {
+                if (selectedTalent == null) {
+                    Dialog.show(t('Common.error.talent'));
+                } else if (determineSelectedTalentExtraErrors(selectedTalent, starship) != null) {
+                    Dialog.show(determineSelectedTalentExtraErrors(selectedTalent, starship));
+                } else {
+                    store.dispatch(modifyStarshipAddAdvancement(choice, selectedTalent));
+                    nextStep();
+                }
+            }
         }
+    }
+
+    const showTalentSelectionModal = () => {
+        const talents = TalentsHelper.getStarshipTalents(starship)
+            .filter(t => !starship.hasTalent(t.name)
+            || t.maxRank > 1
+            || isMultiSelectionTalent(t));
+        ModalControl.show("xl", () => ModalControl.hide(),
+
+            (<div>
+                <SimpleTalentSelectionList construct={starship} talents={talents} onSelection={(t) => setSelectedTalent(t == null ? undefined : t)} />
+                <div className="text-center mt-4">
+                    <Button size="sm" onClick={() => ModalControl.hide()}>{t('Common.button.ok')}</Button>
+                </div>
+            </div>),
+
+            t("ModifySupportingCharacter.talentModal.title"));
     }
 
     const dropDownAdvancementChoices = () => {
@@ -234,12 +284,155 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
         </>)
     }
 
+    const createTalentModification = () => {
+        return (<>
+            <div className="col-12 mt-4">
+                <Header level={2} className="mb-4">{t('Construct.other.talent')}</Header>
+                <Markdown>{t(makeKey('ModifyStarshipPage.', CharacterAdvancementType[advancementType], '.talent.instruction'))}</Markdown>
+            </div>
+
+            {advancementType === CharacterAdvancementType.Milestone
+                ? (<>
+                    <div className="col-12 col-md-6 mt-4">
+                        <Header level={2}>{t('Common.text.remove')}</Header>
+                        <TalentSelector values={starship.talentsWithoutSpecialRules}
+                            onSelect={(s,i) => setRemovedTalentIndex(i)}
+                            isChecked={(s,i) => i === removedTalentIndex}/>
+                    </div>
+                    <div className="col-12 col-md-6 mt-4">
+                        <Header level={2} className="mb-4">{t('Common.text.new')}</Header>
+                        <div className="text-end mb-4">
+                            <Button size="sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
+                        </div>
+                        {selectedTalent == null
+                            ? (<p>No talent selected.</p>)
+                            :  <SelectedTalentDescriptionView talent={selectedTalent} version={starship.version} />}
+                    {handleAdditionalTalentSelections()}
+                </div>
+                </>)
+                : (<div className="col-12 col-md-6 mt-4">
+                    <Header level={2} className="mb-4">{t('Common.text.new')}</Header>
+                    <div className="text-end mb-4">
+                        <Button size="sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
+                    </div>
+                    {selectedTalent == null
+                        ? (<p>No talent selected.</p>)
+                        :  <SelectedTalentDescriptionView talent={selectedTalent} version={starship.version} />}
+                    {handleAdditionalTalentSelections()}
+                </div>)}
+
+        </>);
+    }
+
+    const handleAdditionalTalentSelections = () => {
+        if (selectedTalent?.name === TALENT_NAME_DEDICATED_PERSONNEL) {
+            return (<div className="my-3">
+                <StarshipDepartmentSelector
+                    starship={starship}
+                    isChecked={d => selectedTalent.department === d}
+                    onSelectDepartment={d => {
+                        let temp = selectedTalent?.copy();
+                        if (temp) {
+                            temp.department = d;
+                        }
+                        setSelectedTalent(temp);
+                    }}
+                />
+            </div>)
+        } else if (selectedTalent?.name === TALENT_NAME_EXPANSIVE_DEPARTMENT) {
+            return (<div className="my-3">
+                <StarshipDepartmentSelector
+                    starship={starship}
+                    isChecked={d => selectedTalent.department === d}
+                    onSelectDepartment={d => {
+                        let temp = selectedTalent?.copy();
+                        if (temp) {
+                            temp.department = d;
+                        }
+                        setSelectedTalent(temp);
+                    }}
+                    isUpdateable={d => starship.departments[d] === 5}
+                />
+            </div>)
+        } else if (selectedTalent?.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {
+            const getItems = () => {
+                let result = [new DropDownElement("", "")];
+                result.push(...PropulsionSystemModel.types.map(t => new DropDownElement(t.type, t.localizedName)));
+                return result;
+            }
+
+            return (<div className="my-3">
+                <DropDownSelect
+                    items={getItems()}
+                    defaultValue={selectedTalent.selection as PropulsionSystemType}
+                    onChange={(s) => {
+                        let temp = selectedTalent?.copy();
+                        if (temp) {
+                            if (s === "") {
+                                temp.selection = undefined;
+                            } else {
+                                temp.selection = s as PropulsionSystemType;
+                            }
+                            setSelectedTalent(temp);
+                        }
+                    }}
+                />
+            </div>)
+        } else if ([TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_MINELAYER].includes(selectedTalent?.name)) {
+            let weaponName = "";
+            if (selectedTalent?.weapon) {
+                if (selectedTalent.weapon instanceof Weapon) {
+                    weaponName = selectedTalent.weapon.name;
+                } else {
+                    weaponName = selectedTalent.weapon as string;
+                }
+            }
+
+            const closeModal = () => {
+                ModalControl.hide();
+            }
+
+            const showModal = () => {
+                let mode = starship.version === 1 ? AddWeaponMode.IncludeMines : AddWeaponMode.NoMines;
+                if (selectedTalent.name === TALENT_NAME_MINELAYER) {
+                    mode = AddWeaponMode.MinesOnly;
+                } else if (starship.isMineLayer) {
+                    mode = AddWeaponMode.IncludeMines;
+                }
+                ModalControl.show("lg", () => closeModal(),
+                <AddWeaponView onClose={() => closeModal()}
+                    version={starship.version}
+                    addWeapon={(w) => {
+                        let temp = selectedTalent?.copy();
+                        if (temp) {
+                            temp.weapon = w;
+                            setSelectedTalent(temp);
+                        }
+                    }} mode={mode} />,
+                "Add Weapon");
+            }
+
+            return (
+                <div className="d-flex justify-content-between align-items-baseline my-3">
+                    <p className="mb-0">{weaponName}</p>
+                    <Button size="sm"
+                        onClick={() => showModal()}>{t('Common.button.select')}</Button>
+                </div>
+            );
+        } else {
+            return undefined;
+        }
+    }
+
+
     const createModificationOptionsView = () => {
         let option = undefined;
         if (choice === StarshipAdvancementChoice.Department) {
             option = createDepartmentModification()
         } else if (choice === StarshipAdvancementChoice.System) {
             option = createSystemModification();
+        } else if (choice === StarshipAdvancementChoice.Talent) {
+            option = createTalentModification();
         }
 
         return (<div className="row">
