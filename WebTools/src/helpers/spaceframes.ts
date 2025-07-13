@@ -3514,7 +3514,7 @@ export class SpaceframeHelper {
             2372,
             [ new SourcePrerequisite(Source.GmToolkit2e), new ServiceYearPrerequisite(2372) ],
             [10, 10, 10, 10, 8, 8],
-            [0, 0, 0, 1, 0, 1],
+            [0, 0, 0, 1, 1, 0],
             5,
             [
                 "Phaser Arrays",
