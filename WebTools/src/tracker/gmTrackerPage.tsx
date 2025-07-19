@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Header } from "../components/header";
 import LcarsFrame from "../components/lcarsFrame";
@@ -11,6 +11,7 @@ import { CharacterWithTracking } from "./model/characterWithTracking";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { IconButton } from "../components/iconButton";
+import { LoadingButton } from "../common/loadingButton";
 
 interface IGMTrackerPageProperties {
     characters: CharacterWithTracking[];
@@ -20,6 +21,7 @@ const GMTrackerPage: React.FC<IGMTrackerPageProperties> = ({characters}) => {
 
     const navigate = useNavigate();
     const { t } = useTranslation();
+    const [loadingExport, setLoadingExport] = useState<boolean>(false);
 
     const goToHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
@@ -38,6 +40,13 @@ const GMTrackerPage: React.FC<IGMTrackerPageProperties> = ({characters}) => {
         ModalControl.hide();
     }
 
+    function exportPdf() {
+        setLoadingExport(true);
+        import(/* webpackChunkName: 'export' */ '../exportpdf/gmTrackerSheet').then(async ({GmTrackerPdfSheet}) => {
+            setLoadingExport(false);
+            await new GmTrackerPdfSheet().export(characters.map(c => c.character));
+        });
+    }
 
     return (<LcarsFrame activePage={PageIdentity.GamemasterTrackerPage}>
             <div id="app">
@@ -50,15 +59,21 @@ const GMTrackerPage: React.FC<IGMTrackerPageProperties> = ({characters}) => {
                             <li className="breadcrumb-item active" aria-current="page">{t('Page.title.gamemasterTrackerPage')}</li>
                         </ol>
                     </nav>
-                    <Header>{t('GMTracker.title')}</Header>
-                    <p>{t('GMTracker.instruction')}</p>
+                    <main>
+                        <Header>{t('GMTracker.title')}</Header>
+                        <p>{t('GMTracker.instruction')}</p>
 
-                    <div className="text-end">
-                        <IconButton onClick={() => showAddModal()} icon="plus-circle" />
-                    </div>
+                        <div className="text-end">
+                            <IconButton onClick={() => showAddModal()} icon="plus-circle" />
+                        </div>
 
-                    {characters.map((c, i) => <GmCharacterView tracking={c} key={'character-' + c.id}/>)}
+                        {characters.map((c, i) => <GmCharacterView tracking={c} key={'character-' + c.id}/>)}
 
+                        <div className="mt-5">
+                            <LoadingButton loading={loadingExport} size="sm" onClick={exportPdf}>{t('Common.button.exportPdf')}</LoadingButton>
+                        </div>
+
+                    </main>
                 </div>
             </div>
         </LcarsFrame>);

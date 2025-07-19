@@ -5,7 +5,7 @@ import {navigateTo, Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import Button from 'react-bootstrap/Button';
 import {Source} from '../helpers/sources';
-import { hasSource, isSecondEdition } from '../state/contextFunctions';
+import { hasAnySource, hasSource, isSecondEdition } from '../state/contextFunctions';
 import { useTranslation } from 'react-i18next';
 import InstructionText from '../components/instructionText';
 import { PageFactory } from './pageFactory';
@@ -25,7 +25,7 @@ const ToolSelectionPage = () => {
     const navigate = useNavigate();
 
     const renderSystemGenerationButton = () => {
-        if (hasSource(Source.ShackletonExpanse)) {
+        if (hasAnySource([Source.ShackletonExpanse, Source.ExplorationGuide])) {
             return (<LoadingButton onClick={() => { loadSystemAndGoToPage(); } } loading={loadingSystem}>{t('ToolSelection.spaceSector')}</LoadingButton>);
         } else {
             return undefined;

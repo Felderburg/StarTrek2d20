@@ -4,6 +4,8 @@ import { SystemGenerationTable } from '../table/systemGenerator';
 import { SpaceRegion, SpaceRegionModel, SpecialSectors, SpecialSectorTypeModel } from '../table/star';
 import { DropDownElement, DropDownSelect } from '../../components/dropDownInput';
 import { useNavigate } from 'react-router';
+import { hasSource } from '../../state/contextFunctions';
+import { Source } from '../../helpers/sources';
 
 export const SystemGenerationPage = () => {
 
@@ -31,7 +33,10 @@ export const SystemGenerationPage = () => {
     }
 
     const regionOptions = () => {
-        return SpaceRegionModel.allRegions().map(r => { return new DropDownElement(r.id, r.name) });
+        return SpaceRegionModel
+            .allRegions()
+            .filter(r => r.id !== SpaceRegion.ShackletonExpanse || hasSource(Source.ShackletonExpanse))
+            .map(r => { return new DropDownElement(r.id, r.name) });
     }
 
     const generateSystem = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import { Header } from "../../components/header";
 import { IPageProperties } from "../../pages/iPageProperties";
-import { NotableSpatialPhenomenonModel } from "../table/star";
+import { NotableSpatialPhenomenonModel } from "../table/notableSpacialPhenomena";
 
 interface INotablePhenomenonViewProperties extends IPageProperties {
     phenomenon?: NotableSpatialPhenomenonModel;

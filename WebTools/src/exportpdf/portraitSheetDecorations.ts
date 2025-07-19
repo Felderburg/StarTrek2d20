@@ -1,5 +1,8 @@
-import { PDFPage } from "@cantoo/pdf-lib";
+import { PDFFont, PDFPage } from "@cantoo/pdf-lib";
 import { SimpleColor } from "../common/colour";
+import { TextBlock } from "./textBlock";
+import { FontSpecification } from "./fontSpecification";
+import { Column } from "./column";
 
 export class PortraitSheetDecorations {
 
@@ -38,5 +41,42 @@ export class PortraitSheetDecorations {
             borderColor: colour.asPdfRbg(),
             borderWidth: 1
         });
+    }
+
+    writeName(page: PDFPage, name: string, colour: SimpleColor, headingFont: PDFFont, nameColumn: Column) {
+        if (name?.length) {
+            const textBlock = TextBlock.create(name.toLocaleUpperCase(), new FontSpecification(headingFont, 10), false);
+            let y = nameColumn.end.y - 3 - ((nameColumn.height - textBlock.height) / 2);
+            let x = nameColumn.start.x;
+
+            const triangle = "M 59.14167,59.12397 V 49.110298 l 8.671875,5.009766 z m 0.580078,-1.001953 6.9375,-4.001953 -6.9375,-4.007813 z";
+
+            let width = textBlock.width;
+            let widthOfTab = Math.max(120, width + 50);
+            let startOffset = 42.537;
+
+            let farthestEdge = widthOfTab + startOffset;
+            let circle1 = farthestEdge - (226.5918 - 221.51591);
+            let circle2 = farthestEdge - (226.5918 - 215.25391);
+
+            let curvePath = "M 53.876953 44.523438 C 47.614953 44.523438 42.537109 49.601281 42.537109 55.863281 L 42.537109 83.523438 L 42.958984 83.523438 L 42.958984 74.53125 C 42.958984 68.55425 47.821828 63.693359 53.798828 63.693359 "
+                + "L " + farthestEdge + " 63.693359 L " + farthestEdge + " 55.863281 C "
+                + farthestEdge + " 49.601281 " + circle1 + " 44.523438 " + circle2 + " 44.523438 L 53.876953 44.523438 z";
+
+            page.moveTo(0, page.getHeight());
+            page.drawSvgPath(curvePath, {
+                color: colour.asPdfRbg(),
+                borderWidth: 0
+            });
+
+
+            page.drawSvgPath(triangle, {
+                borderColor: SimpleColor.from("#000000").asPdfRbg(),
+                color: SimpleColor.from("#ffffff").asPdfRbg(),
+                borderWidth: 0
+            });
+
+            textBlock.writeToPage(x, page.getHeight() - y, page, SimpleColor.from("#ffffff"));
+        }
     }
 }

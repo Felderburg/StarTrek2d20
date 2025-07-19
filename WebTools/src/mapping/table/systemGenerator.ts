@@ -1,4 +1,6 @@
 import { D20, D6 } from "../../common/die";
+import { Source } from "../../helpers/sources";
+import { hasSource } from "../../state/contextFunctions";
 import { setSector, setStar } from "../../state/starActions";
 import store from "../../state/store";
 import AlienNameGenerator from "../util/alienNameGenerator";
@@ -6,13 +8,15 @@ import { atmosphereTable } from "./atmosphereTable";
 import { LuminosityTable } from "./luminosityTable";
 import { numberOfMoonsTable } from "./moonsAndSatellitesTable";
 import { addNoiseToValue } from "./noise";
+import { NotableSpatialPhenomenon, NotableSpatialPhenomenonModel } from "./notableSpacialPhenomena";
+import { notableSpatialPhenomenaTable } from "./notableSpacialPhenomenaTable";
 import { notableSystemTable } from "./notableSystemTable";
 import { Orbit, Orbits } from "./orbit";
 import { planetaryFeaturesOfInterest } from "./planetaryFeature";
 import { isolatedColonyFeaturesOfInterest } from "./planetaryFeaturesTable";
 import { Sector, SectorCoordinates } from "./sector";
 import { SpectralClass, SpectralClassModel, SpectralClassRegistry } from "./spectralClass";
-import { LuminosityClass, LuminosityClassModel, Star, SpaceRegionModel, SpecialSectors, NotableSpatialPhenomenonModel, NotableSpatialPhenomenon, SpaceRegion } from "./star";
+import { LuminosityClass, LuminosityClassModel, Star, SpaceRegionModel, SpecialSectors, SpaceRegion } from "./star";
 import { CompanionType, StarSystem } from "./starSystem";
 import { AsteroidBeltDetails, GasGiantDetails, StandardWorldDetails, World, WorldCoreType } from "./world";
 import { WorldClassModel, WorldClass, worldClasses } from "./worldClass";
@@ -171,124 +175,6 @@ class SystemGeneration {
         22: (gasGiant: World) => { gasGiant.worldDetails = GasGiantDetails.createBasicDistributionOfMoonsWithEcosphere(gasGiant) },
         23: (gasGiant: World) => { gasGiant.worldDetails = GasGiantDetails.createBasicDistributionOfMoonsWithEcosphere(gasGiant) }
     }
-
-    private notablePhenomenonTable: { [roll: number]: NotableSpatialPhenomenonModel[]}[] = [
-        {
-            1: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            2: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            3: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            4: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass2] ],
-            5: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass2] ],
-            6: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass2] ],
-            7: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass2] ],
-            8: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass2] ],
-            9: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            10: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            11: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            12: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            13: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            14: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass2] ],
-            15: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass2] ],
-            16: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass2] ],
-            17: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass2] ],
-            18: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass3] ],
-            19: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass3] ],
-            20: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass3] ],
-        },
-        {
-            1: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RoguePlanet] ],
-            2: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RoguePlanet] ],
-            3: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RoguePlanet] ],
-            4: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            5: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            6: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            7: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            8: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            9: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            10: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            11: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            12: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            13: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            14: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass3],
-                    NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass4],
-                    NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass5],],
-            15: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass3],
-                    NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass4],
-                    NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass5]],
-            16: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass3],
-                    NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass4],
-                    NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass5]],
-            17: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass3],
-                    NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass4],
-                    NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass5]],
-            18: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NeutronStar] ],
-            19: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NeutronStar] ],
-            20: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NeutronStar] ],
-        },{
-            1: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass1] ],
-            2: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass1] ],
-            3: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass1] ],
-            4: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            5: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            6: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            7: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            8: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            9: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            10: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            11: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            12: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            13: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            14: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            15: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            16: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            17: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.EmberStar] ],
-            18: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass2] ],
-            19: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass2] ],
-            20: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass2] ],
-        },{
-            1: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass2] ],
-            2: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass2] ],
-            3: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass2] ],
-            4: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass3] ],
-            5: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass3] ],
-            6: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass3] ],
-            7: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass3] ],
-            8: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass3] ],
-            9: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass4] ],
-            10: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass4] ],
-            11: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass4] ],
-            12: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass4] ],
-            13: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass4] ],
-            14: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass1] ],
-            15: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass1] ],
-            16: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass1] ],
-            17: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass1] ],
-            18: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.TTauriStar] ],
-            19: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.TTauriStar] ],
-            20: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.TTauriStar] ],
-        },{
-            1: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass1] ],
-            2: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass1] ],
-            3: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass1] ],
-            4: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            5: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            6: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            7: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            8: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass1] ],
-            9: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            10: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            11: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            12: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            13: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NebulaClass1] ],
-            14: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass2] ],
-            15: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass2] ],
-            16: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass2] ],
-            17: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass2] ],
-            18: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass2] ],
-            19: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass2] ],
-            20: [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass2] ],
-        }
-    ];
 
     private numberOfPlanetsModifiers: { (starSystem: StarSystem): number; }[] = [
         ( (starSystem) => starSystem.star.spectralClass.id === SpectralClass.M ? -3 : 0 ),
@@ -764,15 +650,17 @@ class SystemGeneration {
         let star = this.generateStar();
         let phenomenon = undefined;
 
-        if (star == null && sectorType != null) { // roll of 20
-            phenomenon = this.generateSpatialPhenomenon(sectorType);
-
-            while (phenomenon.id !== NotableSpatialPhenomenon.RoguePlanet && star == null) {
+        if (star == null && (sectorType != null || hasSource(Source.ExplorationGuide))) { // roll of 20
+            while (star == null) {
                 star = this.generateStar();
-                if (phenomenon.id === NotableSpatialPhenomenon.TTauriStar && star != null
-                    && [SpectralClass.F, SpectralClass.G, SpectralClass.K, SpectralClass.M].indexOf(star.spectralClass.id) >= 0) {
+            }
 
-                    star = undefined;
+            phenomenon = notableSpatialPhenomenaTable(star?.spectralClass?.id, sectorType);
+            if (phenomenon.id === NotableSpatialPhenomenon.RoguePlanet) {
+                star = undefined;
+            } else if (phenomenon.id === NotableSpatialPhenomenon.TTauriStar) {
+                while ([SpectralClass.F, SpectralClass.G, SpectralClass.K, SpectralClass.M].includes(star.spectralClass.id)) {
+                    star = this.generateStar();
                 }
             }
         }
@@ -805,18 +693,6 @@ class SystemGeneration {
             return starSystem;
         } else {
             return undefined;
-        }
-    }
-
-    generateSpatialPhenomenon(sectorType: SpecialSectors) {
-        let roll = D20.roll();
-        let table = this.notablePhenomenonTable[sectorType];
-        let candidates = table[roll];
-        if (candidates.length === 1) {
-            return candidates[0];
-        } else {
-            let r = Math.floor(Math.random() * candidates.length);
-            return candidates[r];
         }
     }
 
