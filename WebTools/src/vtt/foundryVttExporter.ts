@@ -113,36 +113,41 @@ export class FoundryVttExporter {
             };
         });
 
-        Object.values(starship.getTalentSelectionList()).forEach(t => {
-            result.items.push({
-                "name": t.talent.displayName + ((t.talent.maxRank > 1 && t.rank > 1) ? " [x" + t.rank + "]" : ""),
-                "type": "talent",
-                "img": this.determineTalentIcon(t.talent),
-                "system": {
-                    "description": this.convertDescription(t.talent, starship),
-                    "talenttype": {
-                        "typeenum": "general",
-                        "description": "",
-                        "minimum": 0
+        let handledTalents = [];
+        Object.values(starship.talents).forEach(t => {
+            let rank = starship.getRankForTalent(t.name);
+            if (t.talentModel.maxRank === 1 || !handledTalents.includes(t.name)) {
+                result.items.push({
+                    "name": t.displayName + ((t.talentModel.maxRank > 1 && rank > 1) ? " [x" + rank + "]" : ""),
+                    "type": "talent",
+                    "img": this.determineTalentIcon(t.talentModel),
+                    "system": {
+                        "description": this.convertDescription(t.talentModel, starship),
+                        "talenttype": {
+                            "typeenum": "general",
+                            "description": "",
+                            "minimum": 0
+                        }
+                    },
+                    "effects": [],
+                    "flags": {},
+                    "_stats": {
+                        "systemId": "sta",
+                        "systemVersion": "1.1.9",
+                        "coreVersion": "10.291",
+                        "createdTime": now,
+                        "modifiedTime": now,
+                        "lastModifiedBy": "xuN9JpdcyRd60ZEJ"
+                    },
+                    "folder": null,
+                    "sort": 0,
+                    "ownership": {
+                        "default": 0,
+                        "xuN9JpdcyRd60ZEJ": 3
                     }
-                },
-                "effects": [],
-                "flags": {},
-                "_stats": {
-                    "systemId": "sta",
-                    "systemVersion": "1.1.9",
-                    "coreVersion": "10.291",
-                    "createdTime": now,
-                    "modifiedTime": now,
-                    "lastModifiedBy": "xuN9JpdcyRd60ZEJ"
-                },
-                "folder": null,
-                "sort": 0,
-                "ownership": {
-                    "default": 0,
-                    "xuN9JpdcyRd60ZEJ": 3
-                }
-            });
+                });
+            }
+            handledTalents.push(t.name);
         });
 
         starship.determineWeapons().forEach(w => {

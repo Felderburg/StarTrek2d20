@@ -6,6 +6,7 @@ import { atmosphereTable } from "./atmosphereTable";
 import { LuminosityTable } from "./luminosityTable";
 import { numberOfMoonsTable } from "./moonsAndSatellitesTable";
 import { addNoiseToValue } from "./noise";
+import { notableSystemTable } from "./notableSystemTable";
 import { Orbit, Orbits } from "./orbit";
 import { planetaryFeaturesOfInterest } from "./planetaryFeature";
 import { isolatedColonyFeaturesOfInterest } from "./planetaryFeaturesTable";
@@ -416,29 +417,6 @@ class SystemGeneration {
         20: [ worldClasses[WorldClass.O], worldClasses[WorldClass.P] ], // O or P
     }
 
-    private notableSystemsTable: { [roll: number] : number } = {
-        1: 3,
-        2: 3,
-        3: 3,
-        4: 5,
-        5: 5,
-        6: 5,
-        7: 5,
-        8: 5,
-        9: 7,
-        10: 7,
-        11: 7,
-        12: 7,
-        13: 7,
-        14: 7,
-        15: 7,
-        16: 9,
-        17: 9,
-        18: 9,
-        19: 9,
-        20: 11,
-    }
-
     private asteroidSizeTable: { [roll: number] : number } = {
         1: 1,
         2: 5,
@@ -755,7 +733,7 @@ class SystemGeneration {
     ]
 
     generateSector(region: SpaceRegionModel, sectorType?: SpecialSectors) {
-        let count = this.notableSystemsTable[D20.roll()];
+        let count = notableSystemTable();
         let sector = new Sector(region.prefix);
         for (let i = 0; i < count; i++) {
             let system = this.generateStarSystem(region, sectorType);

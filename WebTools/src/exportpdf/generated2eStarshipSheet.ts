@@ -15,7 +15,7 @@ import { TalentsHelper } from "../helpers/talents";
 import { Column } from "./column";
 import { FontOptions } from "./fontOptions";
 import { FontType } from "./fontLibrary";
-import { cardassianBrownColour2e, ferengiOrangeColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, romulanGreenColour2e, tealColour2e } from "./colourProvider2e";
+import { cardassianBrownColour2e, ferengiOrangeColour2e, goldColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, redColour2e, romulanGreenColour2e, tealColour2e } from "./colourProvider2e";
 import { CharacterType } from "../common/characterType";
 import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird } from "./politySymbols";
 import { TalentWriter } from "./talentWriter";
@@ -418,12 +418,26 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
 
         let x = column.translatedStart(page).x;
         let y = column.translatedStart(page).y;
+
+        const halfShields = Math.ceil((starship.shields + 1) / 2);
+        const quarterShields = Math.ceil(3 * (starship.shields + 1) / 4);
+
         for (let i = 0; i < starship.shields; i++) {
+
+            let borderColor = SimpleColor.from("#000000");
+            let borderWidth = 0.5;
+            if ((i+1) === halfShields) {
+                borderColor = goldColour2e.blend(borderColor, 0.25);
+                borderWidth = 1;
+            } else if ((i+1) === quarterShields) {
+                borderColor = redColour2e.blend(borderColor, 0.25);
+                borderWidth = 1;
+            }
 
             page.moveTo(x, y);
             page.drawSvgPath(stressBox, {
-                borderColor: SimpleColor.from("#000000").asPdfRbg(),
-                borderWidth: 0.5
+                borderColor: borderColor.asPdfRbg(),
+                borderWidth: borderWidth
             });
 
             let checkbox = form.createCheckBox("Shield " + (i+1));

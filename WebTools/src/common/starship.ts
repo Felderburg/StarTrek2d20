@@ -562,28 +562,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
     getTalentSelectionList() {
         let talents: Map<string, TalentSelection> = new Map();
-        if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
-            this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => {
-                this.addTalent(new TalentSelection(t.talentModel), talents);
-            });
-        }
-
-        if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
-            this.addTalent(new TalentSelection(TalentsHelper.getTalent(this.missionProfileStep?.talent.talent)), talents);
-        }
-
-        if (this.serviceRecordStep?.specialRule) {
-            this.addTalent(new TalentSelection(this.serviceRecordStep?.specialRule), talents);
-        }
-
-        this.additionalTalents.forEach(t => {
-            this.addTalent(new TalentSelection(TalentsHelper.getTalent(t.name)), talents);
+        this.talents.forEach(t => {
+            this.addTalent(new TalentSelection(t.talentModel, t.multiple ?? 1), talents);
         });
-        if (this.missionPodModel && this.stereotype !== Stereotype.SoloStarship) {
-            this.missionPodModel.talents.forEach(t => {
-                this.addTalent(new TalentSelection(t), talents);
-            });
-        }
 
         let result: TalentSelection[] = [];
         talents.forEach((value: TalentSelection) => result.push(value));

@@ -2951,6 +2951,10 @@
 
     "Talent.corrosiveSpit.description2e": "The creature can spit a corrosive fluid (Severity 3) as a ranged attack.",
 
+    "Talent.criminalMinds": "Criminal Minds",
+
+    "Talent.criminalMinds.description2e": "By imagining you are a suspect, and thinking in the same way, you gain insight into a criminal’s thought processes or actions. Whenever you succeed at a Reason task roll to interpret evidence about a crime, you generate 1 bonus Momentum, which may only be used to Obtain Information. Bonus Momentum cannot be saved.",
+
     "Talent.crisisManagement": "Crisis Management",
 
     "Talent.crisisManagement.description2e": "The Momentum cost to use the Direct major action is removed.",
@@ -2976,6 +2980,10 @@
 
     "Talent.dauntless.description": "Whenever you attempt a Task to resist being intimidated or threatened, you may add a bonus d20 to your dice pool.",
     "Talent.dauntless.description2e": "Whenever another character attempts to intimidate or threaten you, you may suffer 2 Stress to ignore their attempt.",
+
+    "Talent.deadeyeMarksman": "Deadeye Marksman",
+
+    "Talent.deadeyeMarksman.description2e": "You’ve spent time at the target range every day, working on your aim. When you take the Aim minor action, you reduce the Difficulty of your next attack by 1, in addition to the normal effects of the Aim minor action.",
 
     "Talent.decisiveLeadership": "Decisive Leadership",
 
@@ -3125,6 +3133,10 @@
 
     "Talent.expeditionExpert.description2e": "Prior to participating in an away team mission, you may make additional preparations by spending 2 Momentum (Immediate). During the expedition, any member of the away team may re-roll a single d20 on any task to navigate the terrain or circumvent a hazard or obstacle. The away team may re-roll a total number of dice in this way equal to your Science rating.",
 
+    "Talent.experimentalDevice": "Experimental Device",
+
+    "Talent.experimentalDevice.description2e": "You have designed and constructed a new piece of equipment that is either a brand-new invention or is heavily modified from its original to the point of being barely recognizable. In either case, the device performs a function that you determine when you select this talent, which you must agree with the gamemaster. You gain an equipment trait to represent the item and the uses which you can turn it to; if it is a modified version of an existing piece of technology, it counts as that device, but the equipment trait’s Potency is increased by 1. If the device has an Escalation cost normally,  increase that cost by 1. Whenever you attempt a task using the device, the complication range is increased by 2. This talent may be selected multiple times, creating a different experimental device for each selection.",
+
     "Talent.experimentalVessel": "Experimental Vessel",
 
     "Talent.experimentalVessel.description": "When the ship is created, apply two additional refits to the ship. In addition, whenever the ship assists a task attempt, the ship’s die increases its complication range by 2 (to 18–20). A milestone refit can remove this complication range increase, representing the ship’s crew working out the problems in the prototype design.",
@@ -3132,6 +3144,10 @@
     "Talent.extendedSensorRange": "Extended Sensor Range",
 
     "Talent.extendedSensorRange.description": "The ship’s sensors have been refined to be more effective at longer ranges.\n\nWhen you attempt a task assisted by the ship’s Sensors, if there is any increase in Difficulty due to range, then reduce that Difficulty increase by 2. This effect is lost if the Sensors suffer one or more breaches.",
+
+    "Talent.exploitEngineeringFlaw": "Exploit Engineering Flaw",
+
+    "Talent.exploitEngineeringFlaw.description2e": "When an ally succeeds at the task roll for a Scan for Weakness major action, you may add 1 Threat to highlight an identified engineering flaw in the opponent’s ship, as long as you’re able to communicate with both the ally taking the Scan for Weakness action and the ally making the attack. You immediately create a trait which represents an engineering flaw in the target ship.",
 
     "Talent.exploitWeakness": "Exploit Weakness",
 
@@ -3243,6 +3259,10 @@
 
     "Talent.fourNacelleStability.description": "The vessel’s configuration of four warp nacelles can be used to produce a stable and long-lasting warp field. The Difficulty of any task attempted to go to warp, or to maintain warp speed despite hazards, damage, or anomalies, is reduced by 1, to a minimum of 1.",
 
+    "Talent.fullSpreadMaximumYield": "Full Spread — Maximum Yield!",
+
+    "Talent.fullSpreadMaximumYield.description2e": "You’re skilled in setting up torpedo attacks. When you make an attack with torpedoes, and declare that it is a salvo, you gain 2 bonus Momentum, which may only be used to pay extra targets hit by the Area quality, or for the Devastating Attack Momentum spend when using the Spread quality.",
+
     "Talent.getDown": "Get Down!",
 
     "Talent.getDown.description": "You and any allies within Close range gain +1 Protection while in Cover.",
@@ -3295,6 +3315,10 @@
     "Talent.hotRodShuttle": "Hot Rod Shuttle",
 
     "Talent.hotRodShuttle.description": "You have customized one of the ship’s small craft as a personal project. You have a number of points equal to your Conn score, which you may spend to improve the small craft: each point spent adds 1 to one of its systems or departments. Additionally, select one starship talent of your choice for use on the small craft.",
+
+    "Talent.hunkerDown": "Hunker Down",
+
+    "Talent.hunkerDown.description2e": "Making good use of your surroundings for protection is one of the hallmarks of a skilled soldier. Whenever you take cover, you may count the Potency of any location trait that represents that cover by +1.",
 
     "Talent.hyperAgile": "Hyper-Agile",
 
@@ -3864,6 +3888,10 @@
     "Talent.rightToolForTheRightJob": "Right Tool for the Right Job",
 
     "Talent.rightToolForTheRightJob.description2e": "Whenever you acquire an engineering tool with an Opportunity Cost, that equipment trait of that tool gains +1 Potency (typically this will result in Potency 2). If the tool is used in an extended task, whoever is using that tool increases their Impact by 1.",
+
+    "Talent.rocksIntoReplicators": "Rocks into Replicators",
+
+    "Talent.rocksIntoReplicators.description2e": "Starfleet engineers are famed for being able to build or create nearly anything needed from the most basic of available components. Once per mission, you may take one or more pieces of equipment you possess and destroy them to jury-rig another device, which must have an equal or lower Opportunity Cost than the total cost of all the items destroyed (Standard Issue items are counted as having an Opportunity Cost of 1 for this purpose). Any task roll using this newly created piece of technology increase their complication range by 2, and any complication suffered will render the device useless. The gamemaster has the final say on what can be created using this talent.",
 
     "Talent.rockyExteriorUnofficial": "Rocky Exterior",
 
