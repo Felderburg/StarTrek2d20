@@ -274,7 +274,6 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
                     isChecked={(d) => selectedSystem === d}
                     onSelectSystem={(d) => setSelectedSystem(d)}
                     isUpdateable={(d) =>
-                        starship.systems[d] < 12 &&
                         !(starship.advancementSteps
                             .filter(s => s.choice === StarshipAdvancementChoice.System
                                 && s.removeValue == null
