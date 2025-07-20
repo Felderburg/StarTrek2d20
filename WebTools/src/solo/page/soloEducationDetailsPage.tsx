@@ -116,7 +116,7 @@ const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({character}) =
                             <D20IconButton onClick={() => selectRandomFocus(2)}/>
                         </div>
                     </div>
-                    <div className="mt-3 text-white"><b>{t('Common.text.suggestions')}:</b> {track.focusSuggestions.join(", ")}</div>
+                    <div className="mt-3 text-white"><b>{t('Common.text.suggestions')}:</b> {track.focuses.focusSuggestions.join(", ")}</div>
                 </div>
                 <div className="my-3 col-lg-6">
                     <Header level={2}>{t('Construct.other.value')}</Header>

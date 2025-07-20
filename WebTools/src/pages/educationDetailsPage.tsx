@@ -52,7 +52,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
     const selectRandomFocus = (index: number) => {
         let done = false;
         while (!done) {
-            let focus = localizedFocus(FocusRandomTableWithHints(character.educationStep?.primaryDiscipline, track.focusSuggestions));
+            let focus = localizedFocus(FocusRandomTableWithHints(character.educationStep?.primaryDiscipline, track.focuses.focusSuggestions));
             if (character.focuses.indexOf(focus) < 0) {
                 done = true;
                 store.dispatch(setCharacterFocus(focus, StepContext.Education, index));
@@ -108,7 +108,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
                     </div>)}
             </div>
 
-            <div className="text-white mt-2"><b>Suggestions: </b> {track.focusSuggestions.map(f => localizedFocus(f)).join(", ")}</div>
+            <div className="text-white mt-2"><b>Suggestions: </b> {track.focuses.focusSuggestions.map(f => localizedFocus(f)).join(", ")}</div>
         </div>);
     }
 

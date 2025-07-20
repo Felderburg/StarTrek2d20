@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import GmCharacterView from "./gmCharacterView";
 import { CharacterWithTracking } from "./model/characterWithTracking";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
 import { IconButton } from "../components/iconButton";
 import { LoadingButton } from "../common/loadingButton";
 import { Link } from "react-router-dom";
@@ -20,16 +19,8 @@ interface IGMTrackerPageProperties {
 
 const GMTrackerPage: React.FC<IGMTrackerPageProperties> = ({characters}) => {
 
-    const navigate = useNavigate();
     const { t } = useTranslation();
     const [loadingExport, setLoadingExport] = useState<boolean>(false);
-
-    const goToHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        navigate("/");
-    }
 
     const showAddModal = () => {
         ModalControl.show("lg", () => closeModal(),

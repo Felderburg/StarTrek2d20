@@ -34,7 +34,7 @@ export class GmTrackerPdfSheet {
 
 
     getPdfUrl(): string {
-        return "/static/pdf/STA_2e_Starship_Sheet.pdf";
+        return "/static/pdf/STA_2e_Portrait_Blank.pdf";
     }
 
     fonts: FontLibrary = new FontLibrary();

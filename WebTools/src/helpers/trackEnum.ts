@@ -38,6 +38,10 @@ export enum Track {
 
     // Core 2nd Edition
     Enlisted,
+
+    // Exploration Guide
+    IndependentArchaeologist,
+    OutpostScientist,
 }
 
 export const getAllTracks = (): Track[] => {

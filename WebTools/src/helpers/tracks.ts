@@ -55,6 +55,16 @@ export class DepartmentImprovementRule {
     }
 }
 
+export class TrackFocuses {
+
+    readonly requiredFocuses: string[];
+    readonly focusSuggestions: string[];
+
+    constructor(focusSuggestions: string[], requiredFocuses: string[] = []) {
+        this.requiredFocuses = requiredFocuses;
+        this.focusSuggestions = focusSuggestions;
+    }
+}
 
 export class TrackModel {
     id: Track;
@@ -63,20 +73,20 @@ export class TrackModel {
     description: string;
     majorDisciplines: Department[];
     otherDisciplines: Department[];
-    focusSuggestions: string[];
+    focuses: TrackFocuses;
     attributesRule?: AttributeImprovementRule;
     skillsRule?: DepartmentImprovementRule;
     enlisted: boolean;
     prefix?: string;
 
-    constructor(id: Track, name: string, source: Source, description: string, majorDisciplines: Department[], otherDisciplines: Department[], focusSuggestions: string[], attributes?: AttributeImprovementRule, skillsRule?: DepartmentImprovementRule, enlisted: boolean = false, prefix?: string) {
+    constructor(id: Track, name: string, source: Source, description: string, majorDisciplines: Department[], otherDisciplines: Department[], focuses: string[]|TrackFocuses, attributes?: AttributeImprovementRule, skillsRule?: DepartmentImprovementRule, enlisted: boolean = false, prefix?: string) {
         this.id = id;
         this.name = name;
         this.source = source;
         this.description = description;
         this.majorDisciplines = majorDisciplines;
         this.otherDisciplines = otherDisciplines;
-        this.focusSuggestions = focusSuggestions;
+        this.focuses = focuses instanceof TrackFocuses ? focuses as TrackFocuses : new TrackFocuses(focuses as string[]);
         this.attributesRule = attributes;
         this.skillsRule = skillsRule;
         this.enlisted = enlisted;
@@ -453,6 +463,17 @@ export class TracksHelper {
             ["Art", "Cooking", "Psychology", "Economics", "Logistics", "Persuasion", "Tailoring", "Disruptors"],
             new AttributeImprovementRule(ImprovementRuleType.AT_LEAST_ONE, Attribute.Insight, Attribute.Presence),
             new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE)
+        ),
+        new TrackModel(
+            Track.IndependentArchaeologist,
+            "Independent Archaeologist",
+            Source.ExplorationGuide,
+            "The Galaxy is full of ancient cultures and the remnants left behind by millennia of advanced civilizations. You’re an archaeologist, studying these remnants and piecing together the Galaxy’s history. Independent archaeology as a profession has a mixed reputation, with many archaeologists regarded as little more than thieves and scoundrels. Others, however, seek to restore lost artifacts to their original owners, or ensure they’re preserved and studied for the common good.",
+            [Department.Science, Department.Conn],
+            [Department.Command, Department.Conn, Department.Security, Department.Medicine],
+            new TrackFocuses(["Astronavigation", "History", "Archaeotechnology", "First Aid", "Forensics", "Hazardous Environments", "Survival Training", "Geology", "Rapid Analysis", "Research"], ["Archaeology"]),
+            undefined,
+            undefined
         ),
     ];
 
