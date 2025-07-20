@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import CharacterCreationApp from "./app";
-import GMTrackerPage from './tracker/gmTrackerPage';
 import { Provider } from "react-redux";
 import store from './state/store';
 import './i18n/config';
@@ -41,6 +40,7 @@ const NpcSpeciesDetailsPage = React.lazy(() => import(/* webpackChunkName: 'npc'
 const NpcStatsPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcStatsPage'));
 const NpcSpecialRulesPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpecialRulesPage'));
 const NpcFinalPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcFinalPage'));
+const GMTrackerPage = React.lazy(() => import(/* webpackChunkName: 'tracker' */ './tracker/gmTrackerPage'));
 
 let root = createRoot(document.getElementById("mainBody"));
 root.render(

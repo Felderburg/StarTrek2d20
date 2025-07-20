@@ -63,9 +63,11 @@ export class Column {
         }
     }
 
-    bottomAfter(deltaY: number) {
+    bottomAfter(deltaY: number, page?: PDFPage) {
         if (deltaY <= this.height) {
             return new Column(this.start.x, this.start.y + deltaY, this.height - deltaY, this.width, this.nextColumnHelper);
+        } else if (page != null) {
+            return this.advanceToNextColumn(page)?.column;
         } else {
             return null;
         }

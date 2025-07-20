@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router";
 import { IconButton } from "../components/iconButton";
 import { LoadingButton } from "../common/loadingButton";
+import { Link } from "react-router-dom";
 
 interface IGMTrackerPageProperties {
     characters: CharacterWithTracking[];
@@ -54,7 +55,10 @@ const GMTrackerPage: React.FC<IGMTrackerPageProperties> = ({characters}) => {
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item">
-                                <a href="/index.html" onClick={(e) => goToHome(e) }>{t('Page.title.home')}</a>
+                                <Link to="/index.html">{t('Page.title.home')}</Link>
+                            </li>
+                            <li className="breadcrumb-item">
+                                <Link to="/tools">{t('Page.title.otherTools')}</Link>
                             </li>
                             <li className="breadcrumb-item active" aria-current="page">{t('Page.title.gamemasterTrackerPage')}</li>
                         </ol>

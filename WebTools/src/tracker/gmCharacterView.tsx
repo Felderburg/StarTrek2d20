@@ -11,7 +11,6 @@ import { removeGMTrackedCharacter, setGMTrackedCharacterNotes, setGMTrackedChara
 import store from "../state/store";
 import { CharacterWithTracking } from "./model/characterWithTracking";
 import { IconButton } from "../components/iconButton";
-import { Character } from "../common/character";
 
 interface IGMCharacterViewProperties {
 
@@ -104,7 +103,7 @@ const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({tracking}) => {
     return (<div className="mb-2">
         <Header level={2}>{getNameAndShortRankOf(character)}</Header>
         <div className="text-white">{character.speciesName}{renderJob()}</div>
-        <div className="d-lg-flex justify-content-between">
+        <div className="d-lg-flex justify-content-start " style={{gap: "1rem"}}>
             <div className="mb-2" style={{width: "380px"}}>
                 <div className="row row-cols-1 row-cols-md-3 mt-1">
                     <StatView name={t(makeKey('Construct.attribute.', Attribute[Attribute.Control]))} value={character.attributes ? character.attributes[Attribute.Control] : undefined} className="col mb-1" size="sm" showZero={true}/>
@@ -129,9 +128,6 @@ const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({tracking}) => {
                 {renderStress()}
             </div>
 
-            <div className="mb-2" style={{width: "300px"}}>
-                <textarea className="w-100 h-100" placeholder="Notes..." onChange={(e) => changeNotes(e.target.value)} value={tracking.notes}></textarea>
-            </div>
         </div>
         <div className="row mt-2">
             <div className="col-lg-9">

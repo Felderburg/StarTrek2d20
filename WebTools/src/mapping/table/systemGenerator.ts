@@ -8,7 +8,7 @@ import { atmosphereTable } from "./atmosphereTable";
 import { LuminosityTable } from "./luminosityTable";
 import { numberOfMoonsTable } from "./moonsAndSatellitesTable";
 import { addNoiseToValue } from "./noise";
-import { NotableSpatialPhenomenon, NotableSpatialPhenomenonModel } from "./notableSpacialPhenomena";
+import { NotableSpatialPhenomenon } from "./notableSpacialPhenomena";
 import { notableSpatialPhenomenaTable } from "./notableSpacialPhenomenaTable";
 import { notableSystemTable } from "./notableSystemTable";
 import { Orbit, Orbits } from "./orbit";

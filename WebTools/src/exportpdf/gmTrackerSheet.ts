@@ -105,13 +105,12 @@ export class GmTrackerPdfSheet {
             }
             this.writeSubTitle(page, name, headerColumn);
             let column1 = column.bottomAfter(13);
-            let column2 = new Column(column1.start.x + column1.width - 230, column1.start.y, column1.height, 230);
-            column1 = new Column(column1.start.x, column1.start.y, column1.height, 230, column2);
+            let column2 = new Column(column1.start.x + column1.width - 220, column1.start.y, column1.height, 220);
+            column1 = new Column(column1.start.x, column1.start.y, column1.height, 220, column2);
 
             let descriptionParagraph = new Paragraph(page, column1, this.fonts);
-            descriptionParagraph.append(c.speciesName, new FontOptions(9))
+            descriptionParagraph.append(c.speciesName + (c.assignment?.length ? "," : ""), new FontOptions(9))
             if (c.assignment?.length) {
-                descriptionParagraph.append(", ", new FontOptions(9))
                 descriptionParagraph.append(c.assignment, new FontOptions(9));
             }
             descriptionParagraph.write();
@@ -126,7 +125,7 @@ export class GmTrackerPdfSheet {
                 heading.write();
                 column1 = heading.nextColumn().bottomAfter(5);
                 column1 = this.writeStressBoxes(page, pdf.getForm(), c.stress, i, column1);
-                column1 = column1.bottomAfter(8);
+                column1 = column1.bottomAfter(8, page);
             } else if (c.isPersonalThreatTrackPresent) {
                 let heading = new Paragraph(page, column1, this.fonts);
                 heading.append(i18next.t('Construct.other.personalThreat').toLocaleUpperCase() + ":",
@@ -134,7 +133,7 @@ export class GmTrackerPdfSheet {
                 heading.write();
                 column1 = heading.nextColumn().bottomAfter(5);
                 column1 = this.writeStressBoxes(page, pdf.getForm(), c.personalThreat, i, column1);
-                column1 = column1.bottomAfter(8);
+                column1 = column1.bottomAfter(8, page);
             }
 
             column1 = column1.columnWithAtLeast(20, page)?.column;
@@ -143,36 +142,39 @@ export class GmTrackerPdfSheet {
                 new FontOptions(9, FontType.Bold), tealColour2e);
             heading.write();
             column1 = heading.nextColumn().bottomAfter(5);
-
-            column1 = this.writeAttacks(page, c, column1)?.bottomAfter(9);
+            column1 = this.writeAttacks(page, c, column1)?.bottomAfter(9, page);
             column1 = column1.columnWithAtLeast(20, page)?.column;
 
-            if (c.focuses?.length) {
+            if (column1 != null) {
                 let paragraph = new Paragraph(page, column1, this.fonts);
-                paragraph.append(i18next.t('Construct.other.focuses').toLocaleUpperCase() + ": ",
-                    new FontOptions(9, FontType.Bold), tealColour2e);
-                paragraph.append(c.focuses.join(", "), new FontOptions(9));
-                paragraph.write();
-                column1 = paragraph.nextColumn().bottomAfter(5);
-                column1 = column1.columnWithAtLeast(20, page)?.column;
-            }
-            if (c.talents?.length) {
-                let paragraph = new Paragraph(page, column1, this.fonts);
-                paragraph.append(i18next.t('Construct.other.talents').toLocaleUpperCase() + ": ",
-                    new FontOptions(9, FontType.Bold), tealColour2e);
-                paragraph.append(c.talents.map(t => t.displayName).join(", "), new FontOptions(9));
-                paragraph.write();
-                column1 = paragraph.nextColumn().bottomAfter(5);
-                column1 = column1.columnWithAtLeast(20, page)?.column;
-            }
-            if (c.values?.length) {
-                let paragraph = new Paragraph(page, column1, this.fonts);
-                paragraph.append(i18next.t('Construct.other.values').toLocaleUpperCase() + ": ",
-                    new FontOptions(9, FontType.Bold), tealColour2e);
-                paragraph.append(c.values.join(", "), new FontOptions(9));
-                paragraph.write();
-                column1 = paragraph.nextColumn().bottomAfter(5);
-                column1 = column1.columnWithAtLeast(20, page)?.column;
+                if (c.focuses?.length) {
+                    paragraph.append(i18next.t('Construct.other.focuses').toLocaleUpperCase() + ": ",
+                        new FontOptions(9, FontType.Bold), tealColour2e);
+                    paragraph.append(c.focuses.join(", "), new FontOptions(9));
+                    paragraph.write();
+                    paragraph = paragraph?.nextParagraph();
+                }
+                if (c.talents?.length) {
+                    paragraph?.append(i18next.t('Construct.other.talents').toLocaleUpperCase() + ": ",
+                        new FontOptions(9, FontType.Bold), tealColour2e);
+                    paragraph?.append(c.talents.map(t => t.displayName).join(", "), new FontOptions(9));
+                    paragraph?.write();
+                    paragraph = paragraph?.nextParagraph();
+                }
+
+                if (c.values?.length) {
+                    paragraph?.append(i18next.t("Construct.other.values").toLocaleUpperCase() + ":", new FontOptions(9, FontType.Bold), tealColour2e);
+                    paragraph?.write();
+
+                    c.values.forEach((v, i) => {
+                        paragraph = paragraph?.nextParagraph(0.2);
+                        paragraph?.indent(15);
+                        paragraph?.append(v, new FontOptions(9));
+                        paragraph?.write();
+
+                        bullet2EWriter(page, paragraph, tealColour2e);
+                    })
+                }
             }
         }
     }

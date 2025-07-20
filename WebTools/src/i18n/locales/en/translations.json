@@ -366,6 +366,8 @@
 
     "OtherToolsPage.tables.instruction": "Create and use random roll tables to help guide some dice-driven outcomes for your campaigns.",
 
+    "OtherToolsPage.tracker.instruction": "The Tracker allows you to collect a number of characters together in one reference list, and print out a simple summary list. It's intended to help GMs prepare for a game by keeping a group of characters together.",
+
     "PromotionPage.instruction": "Select a new rank for this character.",
 
     "RandomCreatureConfiguration.text": "Choose the options to create a random creature.",
@@ -2953,7 +2955,7 @@
 
     "Talent.criminalMinds": "Criminal Minds",
 
-    "Talent.criminalMinds.description2e": "By imagining you are a suspect, and thinking in the same way, you gain insight into a criminal’s thought processes or actions. Whenever you succeed at a Reason task roll to interpret evidence about a crime, you generate 1 bonus Momentum, which may only be used to Obtain Information. Bonus Momentum cannot be saved.",
+    "Talent.criminalMinds.description2e": "By imagining you are a suspect, and thinking in the same way, you gain insight into a criminal’s thought processes or actions. Whenever you succeed at a Reason task roll to interpret evidence about a crime, you generate 1 bonus Momentum, which may only be used to _Obtain Information_. Bonus Momentum cannot be saved.",
 
     "Talent.crisisManagement": "Crisis Management",
 
