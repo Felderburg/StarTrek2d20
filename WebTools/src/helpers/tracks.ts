@@ -2,7 +2,7 @@
 import {CharacterType } from '../common/characterType';
 import {Source} from './sources';
 import { Attribute } from './attributes';
-import { hasSource } from '../state/contextFunctions';
+import { hasAnySource, hasSource } from '../state/contextFunctions';
 import { Track } from './trackEnum';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
@@ -69,7 +69,7 @@ export class TrackFocuses {
 export class TrackModel {
     id: Track;
     name: string;
-    source: Source;
+    sources: Source[];
     description: string;
     majorDisciplines: Department[];
     otherDisciplines: Department[];
@@ -79,10 +79,10 @@ export class TrackModel {
     enlisted: boolean;
     prefix?: string;
 
-    constructor(id: Track, name: string, source: Source, description: string, majorDisciplines: Department[], otherDisciplines: Department[], focuses: string[]|TrackFocuses, attributes?: AttributeImprovementRule, skillsRule?: DepartmentImprovementRule, enlisted: boolean = false, prefix?: string) {
+    constructor(id: Track, name: string, source: Source|Source[], description: string, majorDisciplines: Department[], otherDisciplines: Department[], focuses: string[]|TrackFocuses, attributes?: AttributeImprovementRule, skillsRule?: DepartmentImprovementRule, enlisted: boolean = false, prefix?: string) {
         this.id = id;
         this.name = name;
-        this.source = source;
+        this.sources = Array.isArray(source) ? source as Source[] : [ source as Source];
         this.description = description;
         this.majorDisciplines = majorDisciplines;
         this.otherDisciplines = otherDisciplines;
@@ -97,6 +97,12 @@ export class TrackModel {
         let key = makeKey(this.prefix, Track[this.id]);
         let result = i18next.t(key);
         return result === key ? this.name : result;
+    }
+
+    get localizedName2e() {
+        let key = makeKey(this.prefix, Track[this.id], ".2e");
+        let result = i18next.t(key);
+        return result === key ? this.localizedName : result;
     }
 
     get localizedDescription() {
@@ -378,7 +384,7 @@ export class TracksHelper {
         new TrackModel(
             Track.DiplomaticCorps,
             "Diplomatic Corps",
-            Source.PlayersGuide,
+            [ Source.PlayersGuide, Source.Core2ndEdition ],
             "You pursued diplomacy as a vocation early in life, and you have spent years or more rising from the staff of senior diplomats to your own postings in later life. You might serve within the Federation Diplomatic Corps, or as a representative on behalf of a specific world (typically your own homeworld). Either way, your role is a respected one, and you have considerable professional and personal influence.",
             [Department.Command],
             [Department.Conn, Department.Engineering, Department.Security, Department.Medicine, Department.Science],
@@ -406,7 +412,9 @@ export class TracksHelper {
             [Department.Command, Department.Security, Department.Medicine, Department.Science],
             ["Astronavigation", "Helm Operations", "Logistics", "Bureaucracy", "Small Craft", "Extra-Vehicular Activity", "Starship Recognition", "Propulsion Systems", "Emergency Repairs", "Transporters & Replicators"],
             undefined,
-            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE)
+            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE),
+            false,
+            "Track.civilian."
         ),
         new TrackModel(
             Track.LawEnforcement,
@@ -417,52 +425,62 @@ export class TracksHelper {
             [Department.Conn, Department.Engineering, Department.Medicine, Department.Science],
             ["Law", "Hand-to-Hand Combat", "Phasers", "Interrogation", "Intimidation", "Small Craft"],
             undefined,
-            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE)
+            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE),
+            false,
+            "Track.civilian."
         ),
         new TrackModel(
             Track.Physician,
             "Physician",
-            Source.PlayersGuide,
+            [ Source.PlayersGuide, Source.Core2ndEdition ],
             "You’ve devoted your life to healing others. You may be trained as a doctor, a paramedic, a counselor, or you may be a medical researcher rather than a practicing physician, but either way, the goal is to help people who are hurt in some way. Your skills are in demand across explored space, and even civilian-trained physicians can find themselves aboard Starfleet and military ships.",
             [Department.Medicine],
             [Department.Command, Department.Conn, Department.Security, Department.Engineering, Department.Science],
             ["Emergency Medicine", "Surgery", "Psychiatry", "Virology", "Cybernetics", "Genetics", "Xenobiology"],
             undefined,
-            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE)
+            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE),
+            false,
+            "Track.civilian."
         ),
         new TrackModel(
             Track.PoliticianOrBureaucrat,
             "Politician or Bureaucrat",
-            Source.PlayersGuide,
+            [ Source.PlayersGuide, Source.Core2ndEdition ],
             "You are a civil servant, operating within the structure of a civilization to ensure that if continues to function smoothly and to the benefit of its people. Your role may be narrowly focused upon a specific area of government, or you may be responsible for overseeing large departments or ministries, your decisions impacting millions or even billions of lives. Either way, your role is important, and you take pride in the necessary work you carry out.",
             [Department.Command],
             [Department.Conn, Department.Security, Department.Engineering, Department.Medicine, Department.Science],
             ["Bureaucracy", "Diplomacy", "Politics", "Linguistics", "History", "Philosophy", "or something related to your role in public service"],
             new AttributeImprovementRule(ImprovementRuleType.AT_LEAST_ONE, Attribute.Insight, Attribute.Presence),
-            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE)
+            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE),
+            false,
+            "Track.civilian."
 
         ),
         new TrackModel(
             Track.ScientificOrTechnicalExpert,
             "Scientific or Technical Expert",
-            Source.PlayersGuide,
+            [ Source.PlayersGuide, Source.Core2ndEdition ],
             "You pursue scientific truth or technological progress, seeking to become your generation’s Zefram Cochrane, Emory Erickson, Leah Brahms, or Richard Daystrom. You probably specialize in a single field of scientific study or technical expertise, or a small number of related fields. You may end up working with Starfleet or a military, but this is more because they are interested in your work, rather than you serving their goals.",
             [Department.Science, Department.Engineering],
             [Department.Command, Department.Conn, Department.Security, Department.Medicine],
             ["Astrophysics", "Botany", "Cybernetics", "Exo-Tectonics", "Genetics", "Quantum Mechanics", "Subspace Mechanics", "Temporal Mechanics", "Transporters and Replicators", "Warp Field Dynamics"],
             new AttributeImprovementRule(ImprovementRuleType.AT_LEAST_ONE, Attribute.Reason),
-            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE)
+            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE),
+            false,
+            "Track.civilian."
         ),
         new TrackModel(
             Track.TraderOrMerchant,
             "Trader or Merchant",
-            Source.PlayersGuide,
+            [ Source.PlayersGuide, Source.Core2ndEdition ],
             "You exchange money for goods or services. Within the Federation, the actual transactions are a trivial matter, but other civilizations still make more overt use of money, with gold-pressed latinum serving as a common economic standard, easily exchanged for the Cardassian lek, Bajoran lita, or Klingon darsek. You’re a part of the galactic economy, providing a service or trading in valuable goods (or both) in exchange for latinum, currency, or other goods or services.",
             [Department.Command],
             [Department.Conn, Department.Security, Department.Engineering, Department.Medicine, Department.Science],
             ["Art", "Cooking", "Psychology", "Economics", "Logistics", "Persuasion", "Tailoring", "Disruptors"],
             new AttributeImprovementRule(ImprovementRuleType.AT_LEAST_ONE, Attribute.Insight, Attribute.Presence),
-            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE)
+            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE),
+            false,
+            "Track.civilian."
         ),
         new TrackModel(
             Track.IndependentArchaeologist,
@@ -470,10 +488,25 @@ export class TracksHelper {
             Source.ExplorationGuide,
             "The Galaxy is full of ancient cultures and the remnants left behind by millennia of advanced civilizations. You’re an archaeologist, studying these remnants and piecing together the Galaxy’s history. Independent archaeology as a profession has a mixed reputation, with many archaeologists regarded as little more than thieves and scoundrels. Others, however, seek to restore lost artifacts to their original owners, or ensure they’re preserved and studied for the common good.",
             [Department.Science, Department.Conn],
-            [Department.Command, Department.Conn, Department.Security, Department.Medicine],
+            [Department.Command, Department.Engineering, Department.Security, Department.Medicine],
             new TrackFocuses(["Astronavigation", "History", "Archaeotechnology", "First Aid", "Forensics", "Hazardous Environments", "Survival Training", "Geology", "Rapid Analysis", "Research"], ["Archaeology"]),
             undefined,
-            undefined
+            undefined,
+            false,
+            "Track.civilian."
+        ),
+        new TrackModel(
+            Track.OutpostScientist,
+            "Outpost Scientist",
+            Source.ExplorationGuide,
+            "You have dedicated your career to advanced, specialized scientific research, and you carry this out in distant locations, on remote space stations, or isolated planetary outposts (though you might travel aboard a private starship instead). This allows you to carry on your research in peace, away from any outside interference, potentially for years at a time. Outpost scientists have a reputation for being eccentric recluses, narrowly-focused obsessives, or just ‘weird’.",
+            [Department.Science, Department.Engineering, Department.Medicine],
+            [Department.Command, Department.Conn, Department.Security],
+            ["Anthropology", "Biochemistry", "Ecology", "Esoteric Power Sources", "Experimental Device", "Genetics", "Geology", "Quantum Mechanics", "Xenobiology", "Xenobotany"],
+            undefined,
+            undefined,
+            false,
+            "Track.civilian."
         ),
     ];
 
@@ -499,7 +532,7 @@ export class TracksHelper {
         var tracks: TrackModel[] = [];
         var list = this.chooseList(type, version);
         for (let model of list) {
-            if (hasSource(model.source)) {
+            if (hasAnySource(model.sources)) {
                 if (model.id === Track.EnlistedSecurityTraining) {
                     continue;
                 }
@@ -564,13 +597,13 @@ export class TracksHelper {
         return this._tracks
                 .filter(t => t.id !== Track.UniversityAlumni && t.id !== Track.ResearchInternship
                     && t.id !== Track.EnlistedSecurityTraining)
-                .filter(t => hasSource(t.source));
+                .filter(t => hasAnySource(t.sources));
     }
 
     getEnlistedStarfleetTracks() {
         return this._tracks
             .filter(t => t.id !== Track.UniversityAlumni && t.id !== Track.ResearchInternship)
-            .filter(t => hasSource(t.source));
+            .filter(t => hasAnySource(t.sources));
     }
 
     generateTrack(characterType: CharacterType, version: number): Track {

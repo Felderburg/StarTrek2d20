@@ -173,7 +173,8 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
             path = character.typeDetails.name;
         }
         if (character.educationStep?.track != null) {
-            path += " / " + TracksHelper.instance.getTrack(character.educationStep?.track, character.type, character.version).localizedName;
+            const track = TracksHelper.instance.getTrack(character.educationStep?.track, character.type, character.version);
+            path += " / " + (character.version === 1 ? track.localizedName : track.localizedName2e);
         }
 
         this.fillField(form, "Career Path", path);

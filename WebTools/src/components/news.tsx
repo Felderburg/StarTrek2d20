@@ -14,7 +14,13 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
-            <b>v1.250119</b>
+            <b>v1.250719</b>
+            <ul>
+                <li>
+                    Correct version misnumbering.
+                </li>
+            </ul>
+            <b>v1.250719</b>
             <ul>
                 <li>
                     More bug fixes.
@@ -23,13 +29,13 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                     Initial version of tracker.
                 </li>
             </ul>
-            <b>v1.250118</b>
+            <b>v1.250718</b>
             <ul>
                 <li>
                     Minor bug fixes.
                 </li>
             </ul>
-            <b>v1.250113</b>
+            <b>v1.250713</b>
             <ul>
                 <li>
                     Implemented process for starship advancement (for version 2 starships).
@@ -41,7 +47,7 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                     Very preliminary prep for the new <cite>Exploration Guide</cite>.
                 </li>
             </ul>
-            <b>v1.250101</b>
+            <b>v1.250701</b>
             <ul>
                 <li>
                     Quick bug fix.

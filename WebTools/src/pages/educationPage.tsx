@@ -45,7 +45,7 @@ const EducationPage: React.FC<ICharacterProperties> = ({character}) => {
     const toTableRow = (track: TrackModel, i: number) => {
         return (
             <tr key={i} onClick={() => { if (Window.isCompact()) selectTrack(track); }}>
-                <td className="selection-header">{track.localizedName}</td>
+                <td className="selection-header">{character.version === 1 ? track.localizedName : track.localizedName2e}</td>
                 <td className="text-end"><Button size="sm" onClick={() => { selectTrack(track) }}>{t('Common.button.select')}</Button></td>
             </tr>
         );
