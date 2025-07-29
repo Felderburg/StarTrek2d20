@@ -97,4 +97,14 @@ export class Picard25thCenturyUniformPack extends BaseTngEraUniformPack implemen
     getBorderLogo(token: Token): string {
         return Picard25thCenturyUniforms.insignia;
     }
+
+    getRankIndicator(token: Token): string {
+        let result = super.getRankIndicator(token);
+        return result.replace(/#fbb03b/g, "#fddfb1");
+    }
+
+    getRankBorderIndicator(token: Token): string {
+        let result = super.getRankBorderIndicator(token);
+        return result.replace(/#fbb03b/g, "#fddfb1");
+    }
 }
