@@ -225,6 +225,19 @@ class ScientistPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
+class SecurityPrerequisite implements IConstructPrerequisite<Character> {
+
+    isPrerequisiteFulfilled(c: Character) {
+        let security = c.departments[Department.Security];
+        let temp = c.departments.filter(d => d > security);
+        return temp.length === 0;
+    }
+
+    describe(): string {
+        return "";
+    }
+}
+
 class CommandPrerequisite implements IConstructPrerequisite<Character> {
 
     isPrerequisiteFulfilled(c: Character) {
@@ -362,7 +375,7 @@ class OnlyAtCharacterCreationPrerequisite implements IConstructPrerequisite<Char
 class SupportingCharacterPrerequisite implements IConstructPrerequisite<Character> {
 
     isPrerequisiteFulfilled(c: Character) {
-        return false; // at the moment, only Main characters can have talents, so I think this is always false
+        return c.stereotype === Stereotype.SupportingCharacter;
     }
     describe(): string {
         return "Supporting Character only, must have at least two values and at least two other talents";
@@ -4700,6 +4713,30 @@ export class Talents {
             "Diplomatic Expertise",
             "Whenever the ambassador attempts a Task within a Social Conflict and buys one or more additional dice, they may re-roll their dice pool.",
             [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
+            1,
+            "General", true),
+        new TalentModel(
+            "Adaptable",
+            "An Intelligence Operative may spend 2 Threat to gain a single focus for the remainder of the scene.",
+            [new CharacterStereotypePrerequisite(Stereotype.Npc),
+                new AnyOfPrerequisite(
+                    new SpecializationPrerequisite(Specialization.IntelligenceOfficer),
+                    new AllOfPrerequisite(
+                        new FocusPrerequisite("Espionage", "Infiltration"),
+                        new SecurityPrerequisite())
+            )],
+            1,
+            "General", true),
+        new TalentModel(
+            "Covert",
+            "Whenever required to attempt  task to conceal their activities for an Intelligence Operative—including to maintain their cover identity—they may roll an additional d20.",
+            [new CharacterStereotypePrerequisite(Stereotype.Npc),
+                new AnyOfPrerequisite(
+                    new SpecializationPrerequisite(Specialization.IntelligenceOfficer),
+                    new AllOfPrerequisite(
+                        new FocusPrerequisite("Espionage", "Infiltration"),
+                        new SecurityPrerequisite())
+            )],
             1,
             "General", true),
         new TalentModel(
