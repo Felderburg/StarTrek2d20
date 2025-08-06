@@ -9,6 +9,7 @@ import { IConstructPrerequisite, ServiceYearPrerequisite, StarshipTypePrerequisi
 import {Source} from './sources';
 import { Spaceframe } from './spaceframeEnum';
 import { SoloSpaceframeStats, SpaceframeModel } from './spaceframeModel';
+import { System } from './systems';
 import { TalentsHelper } from './talents';
 
 class Version2Prerequisite implements IConstructPrerequisite<Starship> {
@@ -1306,8 +1307,8 @@ export class SpaceframeHelper {
             ],
             [
                 TalentsHelper.getTalent("Improved Warp Drive"),
-                SelectedTalent.createWithSelection(
-                    TalentsHelper.getTalent("Redundant Systems").name, "Sensors")
+                SelectedTalent.createWithSystem(
+                    TalentsHelper.getTalent("Redundant Systems").name, System.Sensors)
             ],
             [ "Federation Starship" ],
             99999,
@@ -1358,8 +1359,8 @@ export class SpaceframeHelper {
             ],
             [
                 TalentsHelper.getTalent("Multi-Vector Assault Mode"),
-                SelectedTalent.createWithSelection(
-                    TalentsHelper.getTalent("Redundant Systems").name, "Engines")
+                SelectedTalent.createWithSystem(
+                    TalentsHelper.getTalent("Redundant Systems").name, System.Engines)
             ],
             [ "Federation Starship" ],
             99999,
@@ -1550,8 +1551,8 @@ export class SpaceframeHelper {
             ],
             [
                 TalentsHelper.getTalent("Command Ship"),
-                SelectedTalent.createWithSelection(
-                    TalentsHelper.getTalent("Redundant Systems").name, "Engines"),
+                SelectedTalent.createWithSystem(
+                    TalentsHelper.getTalent("Redundant Systems").name, System.Engines),
                 TalentsHelper.getTalent("Saucer Separation"),
                 SelectedTalent.createWithSelection(
                     TalentsHelper.getTalent("Additional Propulsion System").name, "Quantum Slipstream Burst Drive"),
@@ -2532,8 +2533,8 @@ export class SpaceframeHelper {
             [
                 TalentsHelper.getTalent("Advanced Medical Ward"),
                 TalentsHelper.getTalent("Extensive Shuttlebays"),
-                SelectedTalent.createWithSelection(
-                    TalentsHelper.getTalent("Redundant Systems").name, "Engines")
+                SelectedTalent.createWithSystem(
+                    TalentsHelper.getTalent("Redundant Systems").name, System.Engines)
             ],
             [
                 "Klingon Starship"
@@ -2877,8 +2878,8 @@ export class SpaceframeHelper {
             ],
             [
                 TalentsHelper.getTalent("Stealth Systems"),
-                SelectedTalent.createWithSelection(
-                    TalentsHelper.getTalent("Redundant Systems").name, "Computers"),
+                SelectedTalent.createWithSystem(
+                    TalentsHelper.getTalent("Redundant Systems").name, System.Computer),
                 TalentsHelper.getTalent("Fast Targeting Systems")
             ],
             [
@@ -3570,8 +3571,8 @@ export class SpaceframeHelper {
             [
                 TalentsHelper.getTalent("Command Ship"),
                 TalentsHelper.getTalent("Improved Warp Drive"),
-                SelectedTalent.createWithSelection(
-                    TalentsHelper.getTalent("Redundant Systems").name, "Engines"),
+                SelectedTalent.createWithSystem(
+                    TalentsHelper.getTalent("Redundant Systems").name, System.Engines),
                 TalentsHelper.getTalent("Aquarius Escort"),
                 TalentsHelper.getTalent("Quantum Slipstream Burst Drive"),
                 TalentsHelper.getTalent("Saucer Separation and Reconnect"),

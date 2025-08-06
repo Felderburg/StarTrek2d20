@@ -6,6 +6,7 @@ import { Source } from './sources';
 import {TalentsHelper, TalentModel} from './talents';
 import { makeKey } from '../common/translationKey';
 import { allSystems, System } from './systems';
+import { SelectedTalent } from '../common/selectedTalent';
 
 export enum MissionProfile {
     StrategicAndDiplomatic,
@@ -35,14 +36,14 @@ export class MissionProfileModel {
     private name: string;
     departments: number[];
     systems: System[];
-    talents: TalentModel[];
+    talents: (SelectedTalent|TalentModel)[];
     traits: string;
     notes: string;
     prerequisites: IConstructPrerequisite<Starship>[];
     type: CharacterType;
 
     constructor(id: MissionProfile, name: string, departments: number[],
-        talents: TalentModel[], type?: CharacterType, systems: System[] = [],
+        talents: (SelectedTalent|TalentModel)[], type?: CharacterType, systems: System[] = [],
         traits: string = "", notes: string = "",
         ...prerequisites: IConstructPrerequisite<Starship>[]) {
         this.id = id;

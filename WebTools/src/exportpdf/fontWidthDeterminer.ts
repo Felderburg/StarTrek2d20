@@ -1,5 +1,4 @@
 import { PDFFont } from "@cantoo/pdf-lib";
-import { Column } from "./column";
 
 
 export const determineIdealFontWidth = (text: string[], maxWidth: number, idealFontSize: number, minimumFontSize: number, font: PDFFont) => {

@@ -241,6 +241,7 @@
     "Home.talentsButton": "Talents Overview",
     "Home.tokenCreator": "Tokens",
     "Home.otherTools": "Other Tools",
+    "Home.disclaimer": "The character creator is a community-created tool for Star Trek Adventures, and has no official affiliation with Modiphius.",
 
     "ModifySupportingCharacter.instruction": "Whenever a supporting character is introduced to an adventure, and this is _not_ the first time they have been introduced (i.e., they have been introduced before), they receive an improvement. ",
     "ModifySupportingCharacter.improvementType": "Improvement Type",
@@ -1070,6 +1071,36 @@
 
     "CareerEvent.common.66.name": "Worked on a Transwarp Project",
     "CareerEvent.common.66.description": "‘Transwarp’ is a catch-all term for a variety of faster-than-warp propulsion technologies and projects. The character was involved in one of these projects, whether studying new propulsion theories or developing new technologies for testing.",
+
+    "CareerEvent.common.67.name": "Charting Unexplored Space",
+    "CareerEvent.common.67.description": "You served on a vessel which was assigned to chart a region of space which your culture has never previously explored. You may have charted habitable—or even inhabited—worlds, resource-bearing planets and asteroid fields, unusual spatial phenomena, stable passages through space, and more.",
+
+    "CareerEvent.common.68.name": "Cultural Exchange Program",
+    "CareerEvent.common.68.description": "You spent some time serving among a different culture and a different service. Starfleet routinely carries out these programs with their allies to develop a better understanding of methods, practices, and culture. These postings can also occur due to liaison programs where multiple fleets are cooperating, which was common during the Dominion War.",
+
+    "CareerEvent.common.69.name": "Encountered a New Species",
+    "CareerEvent.common.69.description": "Strictly speaking, any encounter with a new species is a **first contact**, but there’s a difference between a formal first contact made with preparation and planning, and simply crossing paths with a previously-unencountered species aboard a ship in deep space. Such impromptu encounters are a common way to meet other spacefaring civilizations, especially for ships out on the frontiers of explored space. Such encounters can end  peacefully, but they can also end in violence that may take years or longer to resolve.",
+
+    "CareerEvent.common.70.name": "Encountered a Spaceborne Organism",
+    "CareerEvent.common.70.description": "Spaceborne organisms, also commonly referred to as **cosmozoans**, are living creatures adapted to exist in the vacuum of space, outside of planetary environments or atmospheres. While some of these are recognizable animals—such as gormaganders, also known as ‘space whales’, verugament, and macroscopic tardigrades—others may take many forms, from masses of interstellar plasma, clouds of gas, or incorporeal energy beings. These creatures are uncommon, but not so rare as to be unknown, and they are common subjects of study.",
+
+    "CareerEvent.common.71.name": "Galactic Mystery",
+    "CareerEvent.common.71.description": "The Galaxy is full of phenomena that have not yet been explained, and great mysteries that have not yet been answered. You encountered such a mystery, and while you may not have the answers, you have a few theories.",
+
+    "CareerEvent.common.72.name": "Historical Exploration",
+    "CareerEvent.common.72.description": "While rare, there are instances of deliberate time travel missions made to covertly study historical events. Starfleet engages in a small number of these missions periodically, under strict orders to maintain secrecy and avoid interference in historical events. Some of these missions are even organized or coordinated by future versions of Starfleet for which time travel is a routine operation.",
+
+    "CareerEvent.common.73.name": "Invited to Witness Cultural Event",
+    "CareerEvent.common.73.description": "You were asked to bear witness to a major event from another culture: some festival, ceremony, or cultural ritual with great significance. This could be a solemn event or a joyous one, and it may be a grand event with thousands or millions of participants, or a private affair seen only by a few.",
+
+    "CareerEvent.common.74.name": "Long-Term Deep Space Mission",
+    "CareerEvent.common.74.description": "You were assigned to a lengthy mission aboard a ship or remote station, conducting long-term research or exploration. The most famous of these are the five-year missions conducted by Constitution-class starships in the mid-23rd century. These can be difficult, dangerous, and highly stressful missions due to operating for years without direct support, but they’ve also proven to have been some of the most important and impactful missions Starfleet has ever undertaken. Personnel with these experiences often go on to accomplish great things.",
+
+    "CareerEvent.common.75.name": "Planetary Survey",
+    "CareerEvent.common.75.description": "You participated in an extensive survey of an uninhabited planet. This normally involves Class-M planets to determine their suitability for colonization, or other types of planet to determine the presence of valuable resources or the viability of terraforming efforts.",
+
+    "CareerEvent.common.76.name": "Studied a Pre-Warp Culture",
+    "CareerEvent.common.76.description": "You participated in a study of an inhabited planet and its Indigenous pre-warp society. This may be done from afar, with orbital scans, or up-close observation from concealed ‘duck blind’ outposts and disguised personnel. Starfleet routinely conducts these operations to study primitive societies to gain insight into Federation cultures’ history, and to evaluate the development and technological progress of civilizations that are close to developing spaceflight and who may become warp-capable within a few generations.",
 
     "CareerEvent.common.99.name": "Recruited to Starfleet Intelligence",
 
@@ -4238,6 +4269,21 @@
     "TalentCategory.starship": "Starship",
     "TalentCategory.starbase": "Starbase",
     "TalentCategory.esoteric": "Esoteric",
+
+    "Track.civilian.freightAndTransport": "Freight and Transport",
+    "Track.civilian.lawEnforcement": "Law Enforcement",
+    "Track.civilian.physician": "Physician",
+    "Track.civilian.politicianOrBureaucrat": "Politician or Bureaucrat",
+
+    "Track.civilian.politicianOrBureaucrat.2e": "Official",
+
+    "Track.civilian.scientificOrTechnicalExpert": "Scientific or Technical Expert",
+
+    "Track.civilian.scientificOrTechnicalExpert.2e": "Scientist",
+
+    "Track.civilian.traderOrMerchant": "Trader or Merchant",
+
+    "Track.civilian.traderOrMerchant.2e": "Trader",
 
     "Track.starfleet.command": "Command Track",
 

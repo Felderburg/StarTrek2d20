@@ -6,6 +6,8 @@ import { Department } from '../../helpers/department';
 import { MissionProfileHelper, MissionProfileModel } from '../../helpers/missionProfiles';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { StatView } from '../../components/StatView';
+import { SelectedTalent } from '../../common/selectedTalent';
+import { TalentModel } from '../../helpers/talents';
 
 interface IMissionProfileSelectionProperties extends WithTranslation {
     initialSelection?: MissionProfileModel;
@@ -20,7 +22,8 @@ class MissionProfileSelection extends React.Component<IMissionProfileSelectionPr
 
         const starship = this.props.starship;
         const missionProfiles = MissionProfileHelper.getMissionProfiles(this.props.starship).map((m, i) => {
-            const talents = m.talents.map((t, ti) => {
+            const talents = m.talents.map((talent, ti) => {
+                let t = (talent instanceof SelectedTalent) ? (talent as SelectedTalent).talentModel : (talent as TalentModel);
                 if (t.isSourcePrerequisiteFulfilled(starship)) {
                     return (<div key={ti} style={{ padding: "2px"}}>{t.localizedDisplayName}</div>);
                 } else {

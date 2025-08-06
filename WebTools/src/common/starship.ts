@@ -488,7 +488,11 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
         if (this.missionPodModel && this.stereotype !== Stereotype.SoloStarship) {
             this.missionPodModel.talents.forEach(t => {
-                result.push(new SelectedTalent(t.name));
+                if (t instanceof SelectedTalent) {
+                    result.push(t as SelectedTalent);
+                } else {
+                    result.push(new SelectedTalent(t.name));
+                }
             });
         }
 

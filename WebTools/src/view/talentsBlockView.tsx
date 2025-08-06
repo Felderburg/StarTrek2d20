@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Header } from "../components/header";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TalentModel, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_REDUNDANT_SYSTEMS, TalentModel, TalentsHelper } from "../helpers/talents";
 import replaceDiceWithArrowhead from "../common/arrowhead";
 import { Stereotype } from "../common/construct";
 import { Starship } from "../common/starship";
@@ -91,6 +91,14 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 .map(s => t(makeKey("Construct.department.", Department[s.department])))
                 .join(", ");
             return (<div className="text-sm px-4"><b>{t("Construct.other.department") + ": "}</b>
+                {selectedAttributes}</div>);
+        } else if ([TALENT_NAME_REDUNDANT_SYSTEMS].includes(talent.name)) {
+            let starship = construct as Starship;
+            let selectedAttributes = starship.talents
+                .filter(s => s.talent === talent.name && s.system != null)
+                .map(s => t(makeKey("Construct.system.", System[s.system])))
+                .join(", ");
+            return (<div className="text-sm px-4"><b>{t("Construct.other.systems") + ": "}</b>
                 {selectedAttributes}</div>);
         } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)"].includes(talent.name)) {
             let starship = construct as Starship;

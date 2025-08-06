@@ -212,6 +212,14 @@ export class TalentWriter {
                             paragraph.append("Selection: ", new FontOptions(fontSize, FontType.Bold));
                             paragraph.append(talent.selection as string, new FontOptions(fontSize));
                         }
+                    } else if (talent.talent.name === TALENT_NAME_REDUNDANT_SYSTEMS && talent.system != null) {
+                        paragraph = paragraph?.nextParagraph(0);
+                        if (paragraph) {
+                            paragraphs.push(paragraph);
+                            paragraph.indent(indent + 10);
+                            paragraph.append("Selection: ", new FontOptions(fontSize, FontType.Bold));
+                            paragraph.append(i18next.t(makeKey('Construct.system.', System[talent.system])), new FontOptions(fontSize));
+                        }
                     } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)"].includes(talent.talent.name)) {
                         if (talent.system != null) {
                             paragraph = paragraph?.nextParagraph(0);

@@ -214,6 +214,7 @@ export const assembleStarshipTalents = (starship: Starship, includeSpecialRules:
                 readableTalent.missionPod = starship.missionPodModel;
             } else if (talent.name === TALENT_NAME_REDUNDANT_SYSTEMS) {
                 readableTalent.selection = t.selection;
+                readableTalent.system = t.system;
             } else if (talent.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {
                 readableTalent.selection = t.selection;
             } else if ([TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT].includes(talent.name)) {

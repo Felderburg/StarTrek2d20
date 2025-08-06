@@ -11,7 +11,7 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
     if (sector === null) {
         switch (spectralClass) {
             case SpectralClass.G:
-            case SpectralClass.K: {
+            case SpectralClass.K:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -51,9 +51,8 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                             NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass1]
                         ];
                 }
-            }
             break;
-            case SpectralClass.F: {
+            case SpectralClass.F:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -93,9 +92,8 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                             NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.RadiationStormClass3]
                         ];
                 }
-            }
             break;
-            case SpectralClass.A: {
+            case SpectralClass.A:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -135,10 +133,9 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                             NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass3]
                         ];
                 }
-            }
             break;
             case SpectralClass.B:
-            case SpectralClass.O: {
+            case SpectralClass.O:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -182,9 +179,8 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                             NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass4]
                         ];
                 }
-            }
             break;
-            default: {
+            default:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -225,13 +221,12 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                             NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass3]
                         ];
                 }
-            }
         }
 
 
     } else {
         switch (sector) {
-            case SpecialSectors.PinwheelSector: {
+            case SpecialSectors.PinwheelSector:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -264,9 +259,8 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                         result = [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.GravittionalWavesClass3] ];
                         break;
                 }
-            }
             break;
-            case SpecialSectors.EnduranceDivide: {
+            case SpecialSectors.EnduranceDivide:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -303,9 +297,8 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                         result = [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.NeutronStar] ];
                         break;
                 }
-            }
             break;
-            case SpecialSectors.EmberSector: {
+            case SpecialSectors.EmberSector:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -340,9 +333,8 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                         result = [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.StellarFlareClass2] ];
                         break;
                 }
-            }
             break;
-            case SpecialSectors.TKalNursery: {
+            case SpecialSectors.TKalNursery:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -377,10 +369,9 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                         result = [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.TTauriStar] ];
                         break;
                 }
-            }
             break;
             case SpecialSectors.GeneralExpanse:
-            default: {
+            default:
                 switch (roll) {
                     case 1:
                     case 2:
@@ -415,7 +406,6 @@ export const notableSpatialPhenomenaTable  = (spectralClass: SpectralClass, sect
                         result = [ NotableSpatialPhenomenonModel.allNotableSpatialPhenomenon()[NotableSpatialPhenomenon.IonStormClass2] ];
                         break;
                 }
-            }
             break;
         }
     }

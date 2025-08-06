@@ -55,6 +55,7 @@ export class SelectedTalent implements ITalent {
         result.additionalInformation = this.additionalInformation;
         result.selection = this.selection;
         result.multiple = this.multiple;
+        result.system = this.system;
         if (this.weapon != null || this.weapon instanceof Weapon) {
             result.weapon = (this.weapon as Weapon).copy();
         } else {
@@ -66,6 +67,12 @@ export class SelectedTalent implements ITalent {
     static createWithDepartment(talentName: string, department: Department) {
         let result = new SelectedTalent(talentName);
         result.department = department;
+        return result;
+    }
+
+    static createWithSystem(talentName: string, system: System) {
+        let result = new SelectedTalent(talentName);
+        result.system = system;
         return result;
     }
 
@@ -133,7 +140,10 @@ export class SelectedTalent implements ITalent {
 
         if (this.talent === TALENT_NAME_REDUNDANT_SYSTEMS && this.selection != null) {
             name += " (" + this.selection + ")";
+        } else if (this.talent === TALENT_NAME_REDUNDANT_SYSTEMS && this.system != null) {
+            name += " (" + i18next.t(makeKey("Construct.system.", System[this.system])) + ")";
         }
+
 
         return name;
     }

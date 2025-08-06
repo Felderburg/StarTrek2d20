@@ -663,6 +663,9 @@ class Marshaller {
         if (t.department != null) {
             talent["department"] = Department[t.department];
         }
+        if (t.system != null) {
+            talent["system"] = System[t.system];
+        }
         if (t.x != null) {
             talent["x"] = t.x;
         }
@@ -1909,6 +1912,9 @@ console.log(json)
             }
             if (t["department"] != null) {
                 selectedTalent.department = DepartmentsHelper.instance.getDepartmentByName(t["department"]);
+            }
+            if (t["system"] != null) {
+                selectedTalent.system = systemByName(t["system"]);
             }
             if (t["x"] != null) {
                 selectedTalent.x = t["x"];

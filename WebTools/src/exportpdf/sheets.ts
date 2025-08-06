@@ -1197,7 +1197,7 @@ class CharacterSheets {
         if (starship.stereotype === Stereotype.SoloStarship) {
             return [ new CaptainsLogStarshipSheet() ];
         } else if (starship.type === CharacterType.KlingonWarrior) {
-            return [ new StandardKlingonStarshipSheet(), new StandardTngStarshipSheet(), new Generated2eStarshipSheet(), new StandardTosStarshipSheet() ];
+            return [ new StandardKlingonStarshipSheet(), new StandardTngStarshipSheet(), new Generated2eStarshipSheet(), new Standard2eStarshipSheet(), new StandardTosStarshipSheet() ];
         } else if (starship.version > 1) {
             return [ new Standard2eStarshipSheet(), new Generated2eStarshipSheet(), new StandardTngStarshipSheet(), new StandardTosStarshipSheet(), new StandardKlingonStarshipSheet() ];
         } else if (starship.era === Era.NextGeneration) {

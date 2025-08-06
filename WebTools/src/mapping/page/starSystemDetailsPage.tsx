@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { setStarSystemName } from '../../state/starActions';
 import store from '../../state/store';
-import { PdfExporter } from '../export/pdfExporter';
 import { StarSystem } from '../table/starSystem';
 import { EditableHeader } from '../view/editableHeader';
 import NotablePhenomenonView from '../view/notablePhenomenonView';
@@ -17,6 +16,7 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
+import { LoadingButton } from '../../common/loadingButton';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -49,6 +49,7 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
     const exportPdf = () => {
         setLoadingExport(true);
         import(/* webpackChunkName: 'export' */ '../export/pdfExporter').then(async ({PdfExporter}) => {
+            setLoadingExport(false);
 
             let pdfDoc = await new PdfExporter().createStarSystemPdf(starSystem);
 
@@ -108,7 +109,7 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
 
                         <div>
                             <Button size="sm" className="me-2" onClick={() => navigate("/sectorDetails") }>Back to Sector</Button>
-                            <Button size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</Button>
+                            <LoadingButton loading={loadingExport} size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</LoadingButton>
                         </div>
                     </div>
                 </div>

@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_MINELAYER, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_MINELAYER, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { ITalent } from '../helpers/italent';
 import { SelectedTalent } from '../common/selectedTalent';
@@ -26,6 +26,7 @@ import { Weapon } from '../helpers/weapons';
 import { Button } from 'react-bootstrap';
 import { ModalControl } from './modal';
 import AddWeaponView, { AddWeaponMode } from '../starship/view/addWeaponView';
+import { SimpleSystemSelector } from './simpleSystemSelector';
 
 interface ISingleTalentSelectionProperties {
     talents: TalentViewModel[]
@@ -284,6 +285,26 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
         );
     }
 
+    const renderRedundantSystems = () => {
+        const starship = construct as Starship;
+        return (
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <SimpleSystemSelector
+                        starship={starship}
+                        isChecked={s => selection.system === s}
+                        onSelectSystem={s => {
+                            let temp = selection?.copy();
+                            if (temp) {
+                                temp.system = s;
+                            }
+                            onSelection(temp);
+                        }}
+                    />
+                </div>
+            </div>
+        );
+    }
     const renderAdditionalPropulsionSystem = () => {
 
         const getItems = () => {
@@ -730,6 +751,16 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                 <td></td>
                 <td>
                     {renderExpansiveDepartment()}
+                </td>
+                <td></td>
+            </tr>)
+            : undefined}
+        {selection?.talent === talent.name &&
+            TALENT_NAME_REDUNDANT_SYSTEMS === talent.name
+            ? (<tr>
+                <td></td>
+                <td>
+                    {renderRedundantSystems()}
                 </td>
                 <td></td>
             </tr>)

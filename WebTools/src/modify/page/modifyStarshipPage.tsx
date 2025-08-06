@@ -26,7 +26,7 @@ import { Dialog } from "../../components/dialog";
 import { SimpleSystemSelector } from "../../components/simpleSystemSelector";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { TalentSelector } from "./talentSelector";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../../helpers/talents";
 import { ModalControl } from "../../components/modal";
 import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { SelectedTalentDescriptionView } from "../../components/selectedTalentDescriptionView";
@@ -351,6 +351,20 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
                         setSelectedTalent(temp);
                     }}
                     isUpdateable={d => starship.departments[d] === 5}
+                />
+            </div>)
+        } else if (selectedTalent?.name === TALENT_NAME_REDUNDANT_SYSTEMS) {
+            return (<div className="my-3">
+                <SimpleSystemSelector
+                    starship={starship}
+                    isChecked={d => selectedTalent.system === d}
+                    onSelectSystem={s => {
+                        let temp = selectedTalent?.copy();
+                        if (temp) {
+                            temp.system = s;
+                        }
+                        setSelectedTalent(temp);
+                    }}
                 />
             </div>)
         } else if (selectedTalent?.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {

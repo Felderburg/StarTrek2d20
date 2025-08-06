@@ -43,7 +43,8 @@ const SelectionPage = () => {
     }
 
     return (
-        <div className="page container ms-0">
+        <div className="page container ms-0 d-flex flex-column justify-content-between" style={{minHeight: "100%"}}>
+            <div>
             <nav aria-label="breadcrumb">
                 <ol className="breadcrumb">
                     <li className="breadcrumb-item active" aria-current="page">{t('Page.title.home')}</li>
@@ -72,6 +73,10 @@ const SelectionPage = () => {
                     <RecentCreationsView />
                 </section>
             </main>
+            </div>
+            <div className="mt-5">
+                <p className="mb-1 small text-primary">{t('Home.disclaimer')}</p>
+            </div>
         </div>
     );
 }

@@ -948,10 +948,14 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get nameAndAbbreviatedRank() {
-        if (this.rank) {
-            return this.rank.localizedAbbreviation + " " + this.name;
+        if (this.name?.length) {
+            if (this.rank) {
+                return this.rank.localizedAbbreviation + " " + this.name;
+            } else {
+                return this.name;
+            }
         } else {
-            return this.name;
+            return i18next.t("Construct.other.unnamedCharacter");
         }
     }
 

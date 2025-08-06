@@ -5,7 +5,7 @@ import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import { TalentViewModel, ToViewModel } from "../../helpers/talents";
+import { TalentModel, TalentViewModel, ToViewModel } from "../../helpers/talents";
 import { nextStarshipWorkflowStep, setStarshipMissionProfile, setStarshipMissionProfileTalent } from "../../state/starshipActions";
 import store from "../../state/store";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
@@ -40,12 +40,13 @@ const MissionProfileTalentSelectionPage: React.FC<IMissionProfileTalentSelection
     const getTalents = () => {
         let talents: TalentViewModel[] = [];
         starship?.missionProfileStep?.type?.talents?.forEach(t => {
-            if (!t.isSourcePrerequisiteFulfilled(starship)) {
+            let talent = t instanceof SelectedTalent ? (t as SelectedTalent).talentModel : (t as TalentModel);
+            if (!talent.isSourcePrerequisiteFulfilled(starship)) {
                 // skip it
             } else if (!starship.spaceframeModel?.hasTalent(t.name)) {
-                talents.push(ToViewModel(t, 1, starship?.type, starship?.version));
-            } else if (t.maxRank > 1) {
-                talents.push(ToViewModel(t, 2, starship?.type, starship?.version));
+                talents.push(ToViewModel(talent, 1, starship?.type, starship?.version));
+            } else if (talent.maxRank > 1) {
+                talents.push(ToViewModel(talent, 2, starship?.type, starship?.version));
             }
         });
         return talents;

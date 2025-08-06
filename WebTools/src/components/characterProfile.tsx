@@ -176,7 +176,9 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                                             <div className="sheet-label-purple text-uppercase">{t('Construct.other.training')}</div>
                                             <div className="sheet-data">
                                                 {c.educationStep?.track != null
-                                                    ? TracksHelper.instance.getTrack(c.educationStep?.track, c.type, c.version)?.localizedName
+                                                    ? (c.version === 1
+                                                        ? TracksHelper.instance.getTrack(c.educationStep?.track, c.type, c.version)?.localizedName
+                                                        : TracksHelper.instance.getTrack(c.educationStep?.track, c.type, c.version)?.localizedName2e)
                                                     : i18n.t('Common.text.none')}
                                             </div>
                                         </div>
