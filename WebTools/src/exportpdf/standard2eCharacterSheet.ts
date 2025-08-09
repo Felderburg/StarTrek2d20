@@ -356,12 +356,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     fillTalents(form: PDFForm, character: Character): void {
-        const talents = character.getDistinctTalentNameList()
-            .map(t => TalentsHelper.getTalent(t))
-            .map(t => t.maxRank > 1
-                ? t.localizedDisplayName + "[x" + character.getRankForTalent(t.name) + "]"
-                : t.localizedDisplayName)
-            .join("\n");
+        const talents = character.rankedTalents.map(t => t.displayNameWithMultiple).join("\n");
         this.fillField(form, "Talents", talents);
     }
 

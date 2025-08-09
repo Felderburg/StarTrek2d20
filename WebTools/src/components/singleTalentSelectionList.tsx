@@ -839,7 +839,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
     })
 
     const talentList = talents.map((t, i) => {
-        const talent = t.talent;
+        const talent = t.talentModel;
         const rank = t.hasRank ? t.rank : undefined;
         const rankedTalent = new RankedTalent(talent, rank);
         return (<TalentSelectionRow talent={rankedTalent}

@@ -867,15 +867,6 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 isModified: true
             }
         }
-        case MODIFY_CHARACTER_REPUTATION: {
-            let temp = state.currentCharacter.copy();
-            temp.reputation += action.payload.delta;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
         case MODIFY_CHARACTER_RANK: {
             let temp = state.currentCharacter.copy();
             if (temp.improvements == null) {

@@ -33,7 +33,6 @@ import { Landscape2eCharacterSheet } from './landscape2eCharacterSheet';
 import { Standard2eStarshipSheet } from './standard2eStarshipSheet';
 import { BasicGeneratedTentCardCharacterSheet } from './generated2eTentCard';
 import { Landscape2eCreatureSheet } from './landscape2eCreatureSheet';
-import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 
 
 abstract class BasicSheet implements ICharacterSheet {
@@ -581,18 +580,12 @@ abstract class BasicFullCharacterSheet extends BasicShortCharacterSheet {
 
     fillTalents(form: PDFForm, character: Character) {
         let i = 1;
-        let handledTalents = [];
-        character.talents.forEach(t => {
+        character.rankedTalents.forEach(t => {
             let talent = t.talentModel;
-            if (handledTalents.includes(talent.name)) {
-                // skip it
-            } else if (talent && talent.maxRank > 1) {
-                this.fillField(form, 'Talent ' + i, talent.localizedDisplayName + " [Rank " + character.getRankForTalent(t.talent) + "]");
+            if (talent && talent.maxRank > 1) {
+                this.fillField(form, 'Talent ' + i, t.displayNameWithMultiple);
             } else {
                 this.fillField(form, 'Talent ' + i, t.displayName);
-            }
-            if (!isMultiSelectionTalent(talent)) {
-                handledTalents.push(talent.name);
             }
 
             i++;

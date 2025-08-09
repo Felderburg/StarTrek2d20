@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import { Attribute } from "../helpers/attributes";
 import { BorgImplantType } from "../helpers/borgImplant";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../helpers/talents";
 import { SpecialWeapon } from "./specialWeapon";
 import { makeKey } from "./translationKey";
 import { AttackType } from "./attackType";
@@ -33,6 +33,8 @@ export class SelectedTalent implements ITalent {
     multiple?: number;
     weapon?: string|Weapon;
     system?: System;
+    customTalentName?: string;
+    customTalentDescription?: string;
 
     constructor(talent: string) {
         this.talent = talent;
@@ -98,54 +100,61 @@ export class SelectedTalent implements ITalent {
         return TalentsHelper.getTalent(this.talent);
     }
 
+    get isCustom() {
+        return this.talent === TALENT_NAME_CUSTOM_TALENT;
+    }
+
     get displayName() {
-        const talentModel = this.talentModel;
-        let name = talentModel.localizedDisplayName;
+        if (this.isCustom && this.customTalentName?.length) {
+            return this.customTalentName;
+        } else {
+            const talentModel = this.talentModel;
+            let name = talentModel.localizedDisplayName;
 
-        if (talentModel.isXQualified) {
-            if (this.x != null) {
-                let xLocation = name.lastIndexOf(" X");
-                name = name.substring(0, xLocation + 1) + this.x + name.substring(xLocation + 2)
+            if (talentModel.isXQualified) {
+                if (this.x != null) {
+                    let xLocation = name.lastIndexOf(" X");
+                    name = name.substring(0, xLocation + 1) + this.x + name.substring(xLocation + 2)
+                }
             }
-        }
-        if (this.additionalInformation != null) {
-            name += " [" + this.additionalInformation + "]";
-        }
+            if (this.additionalInformation != null) {
+                name += " [" + this.additionalInformation + "]";
+            }
 
-        if (this.talent === TALENT_NAME_AUGMENTED_ABILITY && this.attribute != null) {
-            name += " (" + i18next.t(makeKey("Construct.attribute.", Attribute[this.attribute])) + ")";
+            if (this.talent === TALENT_NAME_AUGMENTED_ABILITY && this.attribute != null) {
+                name += " (" + i18next.t(makeKey("Construct.attribute.", Attribute[this.attribute])) + ")";
+            }
+
+            if ([TALENT_NAME_COLLABORATION, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(this.talent) && this.department != null) {
+                name += " (" + i18next.t(makeKey("Construct.discipline.", Department[this.department])) + ")";
+            }
+
+            if ([TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT].includes(this.talent) && this.department != null) {
+                name += " (" + i18next.t(makeKey("Construct.department.", Department[this.department])) + ")";
+            }
+
+            if ([TALENT_NAME_MINELAYER, TALENT_NAME_EXPANDED_MUNITIONS].includes(this.talent) && this.weapon != null) {
+                const weaponName = (this.weapon instanceof Weapon) ? (this.weapon as Weapon).name : (this.weapon as string);
+                name += " (" + i18next.t("Construct.other.weapon") + ":" + weaponName + ")";
+            }
+
+            if (TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM === this.talent && this.selection != null) {
+                name += " (" + (PropulsionSystemModel.getByType(this.selection as PropulsionSystemType)?.localizedName ?? "") + ")";
+            }
+
+            if ([TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR].includes(this.talent) && this.selection != null) {
+                const choice = this.selection === AttackType.Melee ? i18next.t("Weapon.common.melee") : i18next.t("Weapon.common.ranged");
+                name += " (" + choice + ")";
+            }
+
+            if (this.talent === TALENT_NAME_REDUNDANT_SYSTEMS && this.selection != null) {
+                name += " (" + this.selection + ")";
+            } else if (this.talent === TALENT_NAME_REDUNDANT_SYSTEMS && this.system != null) {
+                name += " (" + i18next.t(makeKey("Construct.system.", System[this.system])) + ")";
+            }
+
+            return name;
         }
-
-        if ([TALENT_NAME_COLLABORATION, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(this.talent) && this.department != null) {
-            name += " (" + i18next.t(makeKey("Construct.discipline.", Department[this.department])) + ")";
-        }
-
-        if ([TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT].includes(this.talent) && this.department != null) {
-            name += " (" + i18next.t(makeKey("Construct.department.", Department[this.department])) + ")";
-        }
-
-        if ([TALENT_NAME_MINELAYER, TALENT_NAME_EXPANDED_MUNITIONS].includes(this.talent) && this.weapon != null) {
-            const weaponName = (this.weapon instanceof Weapon) ? (this.weapon as Weapon).name : (this.weapon as string);
-            name += " (" + i18next.t("Construct.other.weapon") + ":" + weaponName + ")";
-        }
-
-        if (TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM === this.talent && this.selection != null) {
-            name += " (" + (PropulsionSystemModel.getByType(this.selection as PropulsionSystemType)?.localizedName ?? "") + ")";
-        }
-
-        if ([TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR].includes(this.talent) && this.selection != null) {
-            const choice = this.selection === AttackType.Melee ? i18next.t("Weapon.common.melee") : i18next.t("Weapon.common.ranged");
-            name += " (" + choice + ")";
-        }
-
-        if (this.talent === TALENT_NAME_REDUNDANT_SYSTEMS && this.selection != null) {
-            name += " (" + this.selection + ")";
-        } else if (this.talent === TALENT_NAME_REDUNDANT_SYSTEMS && this.system != null) {
-            name += " (" + i18next.t(makeKey("Construct.system.", System[this.system])) + ")";
-        }
-
-
-        return name;
     }
 
     get displayNameWithMultiple() {

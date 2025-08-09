@@ -441,17 +441,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get reputation() {
-        if (this._reputation != null) {
-            return this._reputation;
-        } else if (this.version === 1) {
+        if (this.version === 1) {
             return 10;
         } else {
             return 3;
         }
-    }
-
-    set reputation(reputation: number) {
-        this._reputation = reputation;
     }
 
     get enlisted() {
@@ -564,7 +558,23 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 result.push(step.value as SelectedTalent);
             });
         return result;
+    }
 
+    get rankedTalents(): SelectedTalent[] {
+        let talents = this.talents;
+        let duplicates = [];
+        let result = [];
+        talents.forEach(t => {
+            if (t.talentModel.maxRank > 1 && !duplicates.includes(t.name)) {
+                let temp = t.copy();
+                temp.multiple = this.getRankForTalent(t.name);
+                duplicates.push(t.name);
+                result.push(temp);
+            } else if (t.talentModel.maxRank === 1) {
+                result.push(t);
+            }
+        });
+        return result;
     }
 
     get attributes(): number[] {

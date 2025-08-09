@@ -23,8 +23,10 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
 
     const { t } = useTranslation();
 
-    const renderDescription = (talentName: string, talent: TalentModel, x?: number) => {
-        let description = construct.version === 1 ? talent.localizedDescription : talent.localizedDescription2e;
+    const renderDescription = (talentName: string, talent: TalentModel, x?: number, description?: string) => {
+        if (description == undefined) {
+            description = construct.version === 1 ? talent.localizedDescription : talent.localizedDescription2e;
+        }
         if (talent.isXQualified && x !== undefined) {
             if (description.includes(" X.")) {
                 description = description.replace(" X.", " " + x + ".");
@@ -184,19 +186,21 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
     const renderCharacterTalents = () => {
         return (<>
             <Header level={2} className="mt-4">{construct.stereotype === Stereotype.Npc ? t('Construct.other.specialRules') : t('Construct.other.talents')}</Header>
-            {construct?.getDistinctTalentNameList().map((tName, i) => {
+            {(construct as Character)?.rankedTalents.map((s, i) => {
                 let x = undefined;
-                const temp = construct.talents.filter(t => t.talent === tName);
-                let t = TalentsHelper.getTalent(tName);
-                if (t.isXQualified && temp.length === 1) {
-                    x = temp[0].x;
+                let t = s.talentModel;
+                if (t.isXQualified) {
+                    x = s.x;
                 }
                 let talentName = t.localizedName;
-                if (t.maxRank > 1 && t.name !== TALENT_NAME_AUGMENTED_ABILITY) {
-                    talentName += " [x" + construct.getRankForTalent(t.name) + "]";
+                if (s.isCustom) {
+                    talentName = s.displayName;
+                }
+                if (t.maxRank > 1) {
+                    talentName += " [x" + s.multiple + "]";
                 }
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
-                    {renderDescription(talentName, t, x)}
+                    {renderDescription(talentName, t, x, s.isCustom ? s.customTalentDescription : undefined)}
                 </div>);
             })}
         </>);

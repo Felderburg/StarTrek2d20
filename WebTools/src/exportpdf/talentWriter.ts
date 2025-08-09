@@ -1,7 +1,7 @@
 import { PDFPage } from "@cantoo/pdf-lib";
 import { FontLibrary, FontType } from "./fontLibrary";
 import { SimpleColor } from "../common/colour";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT, TalentModel } from "../helpers/talents";
 import { RoleModel } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Column } from "./column";
@@ -32,6 +32,8 @@ export class ReadableTalentModel {
     selection?: string|SpecialWeapon|AttackType|PropulsionSystemType|OtherSelection;
     additionalInformation?: string;
     system?: System;
+    customTalentName?: string;
+    customTalentDescription?: string;
 
     constructor(characterType: CharacterType, talent: TalentModel) {
         this.characterType = characterType;
@@ -92,6 +94,10 @@ export class TalentWriter {
 
                     let talentName = talent.talent.localizedName;
                     let description = this.version === 1 ? talent.talent.localizedDescription : talent.talent.localizedDescription2e;
+                    if (talentName === TALENT_NAME_CUSTOM_TALENT) {
+                        talentName = talent.customTalentName;
+                        description = talent.customTalentDescription;
+                    }
                     if (this.capitalizeName) {
                         talentName = talentName.toLocaleUpperCase();
                     }

@@ -68,6 +68,9 @@ export const TALENT_NAME_MINELAYER = "Minelayer";
 export const TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM = "Additional Propulsion System (Talent)";
 export const TALENT_NAME_EXPANDED_MUNITIONS = "Expanded Munitions";
 
+export const TALENT_NAME_CUSTOM_TALENT = "Custom Talent";
+
+
 enum TalentCategory {
     General,
     Career,
@@ -938,7 +941,7 @@ export class TalentModel implements ITalent {
 }
 
 export class TalentViewModel {
-    talent: TalentModel;
+    talentModel: TalentModel;
     id: string;
     name: string;
     rank: number;
@@ -951,7 +954,7 @@ export class TalentViewModel {
     localizedName:string;
 
     constructor(talent: TalentModel, name: string, localizedName:string, rank: number, showRank: boolean, description: string, skill: Department, category: string, prerequities: IConstructPrerequisite<Character>[], specialRule: boolean) {
-        this.talent = talent;
+        this.talentModel = talent;
         this.description = description;
         this.rank = rank;
         this.hasRank = showRank;
@@ -3580,7 +3583,7 @@ export class Talents {
                 1,
                 "Starship"),
             new TalentModel(
-                "Redundant Systems",
+                TALENT_NAME_REDUNDANT_SYSTEMS,
                 "The ship has multiple additional redundancies that allow it to withstand severe damage more easily. Nominate a single System. When that system becomes Damaged or Disabled, the crew may choose to activate the backups as a Minor Action; if the System was Damaged, it is no longer Damaged. If it was Disabled, it becomes Damaged instead. A System’s backups may only be activated once per adventure, so subsequent damage will have the normal effect.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
@@ -5127,6 +5130,14 @@ export class Talents {
             1,
             "Special Rule", true),
     ];
+
+    customTalent = new TalentModel(
+            TALENT_NAME_CUSTOM_TALENT,
+            "",
+            [],
+            1,
+            "", true);
+
 
     getTalents() {
         let result = [];

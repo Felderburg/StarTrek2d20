@@ -427,7 +427,7 @@ export function modifyCharacterReputation(delta: number) {
 }
 
 export function modifyCharacterRank(rank: CharacterRank, type: ModificationType.Promotion|ModificationType.Demotion) {
-    let payload = { rank: rank };
+    let payload = { rank: rank, type: type };
     return {
        type: MODIFY_CHARACTER_RANK,
        payload: payload

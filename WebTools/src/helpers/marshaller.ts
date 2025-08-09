@@ -493,10 +493,6 @@ class Marshaller {
             }
         }
 
-        if (character.reputation != null && character.reputation !== 10) {
-            sheet["reputation"] = character.reputation;
-        }
-
         if (character.speciesStep) {
             sheet["species"] = this.toSpeciesJson(character);
         }
@@ -648,6 +644,12 @@ class Marshaller {
 
     talentToJson(t: SelectedTalent) {
         let talent = { "name": t.talent };
+
+        if (t.isCustom) {
+            talent["customTalentName"] = t.customTalentName;
+            talent["customTalentDescription"] = t.customTalentDescription;
+        }
+
         if (t.implants?.length > 0) {
             talent["implants"] = t.implants.map(i => BorgImplantType[i]);
         }
@@ -1455,9 +1457,6 @@ console.log(json)
                 }
             }
 
-        }
-        if (json.reputation != null) {
-            result.reputation = json.reputation;
         }
         if (json.training != null) {
             let trackAsString = json.training.track;

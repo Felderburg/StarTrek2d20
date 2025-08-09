@@ -149,14 +149,19 @@ export const assembleWritableItems = (character: Character) => {
 
         const talent = t.talentModel;
         if (talent && !handledTalents.includes(t.talent)) {
-            handledTalents.push(t.talent);
+            if (!t.isCustom) {
+                handledTalents.push(t.talent);
+            }
             const readableTalent = new ReadableTalentModel(character.type, talent);
 
             if (talent.maxRank > 1) {
                 readableTalent.rank = character.getRankForTalent(t.talent);
             }
 
-            if (talent.name === TALENT_NAME_BORG_IMPLANTS) {
+            if (t.isCustom) {
+                readableTalent.customTalentName = t.customTalentName;
+                readableTalent.customTalentDescription = t.customTalentDescription;
+            } else if (talent.name === TALENT_NAME_BORG_IMPLANTS) {
                 readableTalent.implants = character.implants.map(implantType =>
                     BorgImplants.instance.getImplantByType(implantType)
                 );
