@@ -1,4 +1,5 @@
 import { D20, D6 } from "../../common/die";
+import { TableRoll } from "../../common/tableRoll";
 import { Source } from "../../helpers/sources";
 import { hasSource } from "../../state/contextFunctions";
 import { setSector, setStar } from "../../state/starActions";
@@ -20,6 +21,7 @@ import { LuminosityClass, LuminosityClassModel, Star, SpaceRegionModel, SpecialS
 import { CompanionType, StarSystem } from "./starSystem";
 import { AsteroidBeltDetails, GasGiantDetails, StandardWorldDetails, World, WorldCoreType } from "./world";
 import { WorldClassModel, WorldClass, worldClasses } from "./worldClass";
+import { innerWorldShackletonExpanseTable, outerWorldExplorationGuideTable, outerWorldShackletonExpanseTable, primaryWorldExplorationGuideTable, primaryWorldShackletonExpanseTable } from "./worldClassTable";
 
 enum AsteroidBeltZone {
     Nickel, Mixed, CarbonaceousOrIce
@@ -232,75 +234,6 @@ class SystemGeneration {
         38: new GeneralPlanetaryType(worldClasses[WorldClass.J]),
         39: new GeneralPlanetaryType(worldClasses[WorldClass.J]),
         40: new GeneralPlanetaryType(worldClasses[WorldClass.T]),
-    }
-
-    private innerWorldTable: { [roll: number]: WorldClassModel[] } = {
-        1: [ worldClasses[WorldClass.Y] ], // Y
-        2: [ worldClasses[WorldClass.B] ], // B
-        3: [ worldClasses[WorldClass.B] ], // B
-        4: [ worldClasses[WorldClass.N] ], // N
-        5: [ worldClasses[WorldClass.N] ], // N
-        6: [ worldClasses[WorldClass.N] ], // N
-        7: [ worldClasses[WorldClass.J] ], // J
-        8: [ worldClasses[WorldClass.J] ], // J
-        9: [ worldClasses[WorldClass.J] ], // J
-        10: [ worldClasses[WorldClass.J] ], // J
-        11: [ worldClasses[WorldClass.J] ], // J
-        12: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        13: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        14: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        15: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        16: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        17: [ worldClasses[WorldClass.H] ], // H
-        18: [ worldClasses[WorldClass.H] ], // H
-        19: [ worldClasses[WorldClass.H] ], // H
-        20: [ worldClasses[WorldClass.L], worldClasses[WorldClass.K], worldClasses[WorldClass.M] ], // L, K, or M
-    }
-
-    private outerWorldTable: { [roll: number]: WorldClassModel[] } = {
-        1: [ worldClasses[WorldClass.L] ], // L
-        2: [ worldClasses[WorldClass.C] ], // C
-        3: [ worldClasses[WorldClass.C] ], // C
-        4: [ worldClasses[WorldClass.C] ], // C
-        5: [ worldClasses[WorldClass.C] ], // C
-        6: [ worldClasses[WorldClass.J] ], // J
-        7: [ worldClasses[WorldClass.J] ], // J
-        8: [ worldClasses[WorldClass.J] ], // J
-        9: [ worldClasses[WorldClass.J] ], // J
-        10: [ worldClasses[WorldClass.J] ], // J
-        11: [ worldClasses[WorldClass.J] ], // J
-        12: [ worldClasses[WorldClass.J] ], // J
-        13: [ worldClasses[WorldClass.J] ], // J
-        14: [ worldClasses[WorldClass.J] ], // J
-        15: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        16: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        17: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        18: [ worldClasses[WorldClass.D], worldClasses[WorldClass.AsteroidBelt] ], // D or Asteroid
-        19: [ worldClasses[WorldClass.I] ], // I
-        20: [ worldClasses[WorldClass.P] ], // P
-    }
-
-    private primaryWorldTable: { [roll: number]: WorldClassModel[] } = {
-        1: [ worldClasses[WorldClass.L], worldClasses[WorldClass.E] ], // L or E
-        2: [ worldClasses[WorldClass.L], worldClasses[WorldClass.E] ], // L or E
-        3: [ worldClasses[WorldClass.L], worldClasses[WorldClass.E] ], // L or E
-        4: [ worldClasses[WorldClass.L], worldClasses[WorldClass.E] ], // L or E
-        5: [ worldClasses[WorldClass.L], worldClasses[WorldClass.E] ], // L or E
-        6: [ worldClasses[WorldClass.M] ], // M
-        7: [ worldClasses[WorldClass.M] ], // M
-        8: [ worldClasses[WorldClass.M] ], // M
-        9: [ worldClasses[WorldClass.M] ], // M
-        10: [ worldClasses[WorldClass.M] ], // M
-        11: [ worldClasses[WorldClass.M] ], // M
-        12: [ worldClasses[WorldClass.M] ], // M
-        13: [ worldClasses[WorldClass.K] ], // K
-        14: [ worldClasses[WorldClass.K] ], // K
-        15: [ worldClasses[WorldClass.K] ], // K
-        16: [ worldClasses[WorldClass.K] ], // K
-        17: [ worldClasses[WorldClass.K] ], // K
-        18: [ worldClasses[WorldClass.K] ], // K
-        19: [ worldClasses[WorldClass.O], worldClasses[WorldClass.P] ], // O or P
-        20: [ worldClasses[WorldClass.O], worldClasses[WorldClass.P] ], // O or P
     }
 
     private asteroidSizeTable: { [roll: number] : number } = {
@@ -767,14 +700,9 @@ class SystemGeneration {
         return new SectorCoordinates(x, y, z);
     }
 
-    rollWorldType(table: { [roll: number]: WorldClassModel[] }) {
-        let worldRoll = D20.roll();
-        let worldTypes = table[worldRoll];
-        let worldType = worldTypes[0];
-        if (worldTypes.length > 1) {
-            worldType = worldTypes[Math.floor(Math.random() * worldTypes.length)];
-        }
-        return worldType;
+    rollWorldType(table: TableRoll<WorldClass>) {
+        let worldType = table();
+        return worldClasses[worldType];
     }
 
     createWorldFeatures(world: World) {
@@ -817,13 +745,24 @@ class SystemGeneration {
             return world;
         } else {
 
-            let table = this.innerWorldTable;
-            if (isPrimaryWorld) {
-                table = this.primaryWorldTable;
-            } else if (orbit.radius > starSystem.gardenZoneOuterRadius) {
-                table = this.outerWorldTable;
-            } else if (orbit.radius >= starSystem.gardenZoneInnerRadius) {
-                table = this.primaryWorldTable;
+            let table = innerWorldShackletonExpanseTable;
+            if (hasSource(Source.ExplorationGuide) && region.id !== SpaceRegion.ShackletonExpanse) {
+                table = innerWorldShackletonExpanseTable;
+                if (isPrimaryWorld) {
+                    table = primaryWorldExplorationGuideTable;
+                } else if (orbit.radius > starSystem.gardenZoneOuterRadius) {
+                    table = outerWorldExplorationGuideTable;
+                } else if (orbit.radius >= starSystem.gardenZoneInnerRadius) {
+                    table = primaryWorldExplorationGuideTable;
+                }
+            } else {
+                if (isPrimaryWorld) {
+                    table = primaryWorldShackletonExpanseTable;
+                } else if (orbit.radius > starSystem.gardenZoneOuterRadius) {
+                    table = outerWorldShackletonExpanseTable;
+                } else if (orbit.radius >= starSystem.gardenZoneInnerRadius) {
+                    table = primaryWorldShackletonExpanseTable;
+                }
             }
 
             let worldType = this.rollWorldType(table);

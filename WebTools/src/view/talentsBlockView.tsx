@@ -24,7 +24,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
     const { t } = useTranslation();
 
     const renderDescription = (talentName: string, talent: TalentModel, x?: number, description?: string) => {
-        if (description == undefined) {
+        if (description === undefined) {
             description = construct.version === 1 ? talent.localizedDescription : talent.localizedDescription2e;
         }
         if (talent.isXQualified && x !== undefined) {
