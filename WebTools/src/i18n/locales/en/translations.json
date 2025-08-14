@@ -604,6 +604,7 @@
     "Common.text.total": "Total",
     "Common.text.yes": "Yes",
     "Common.text.modify": "Modify",
+    "Common.text.talentName": "Name",
     "Common.text.new": "New",
     "Common.text.no": "No",
     "Common.text.other": "Other",
@@ -1077,6 +1078,7 @@
 
     "CareerEvent.common.68.name": "Cultural Exchange Program",
     "CareerEvent.common.68.description": "You spent some time serving among a different culture and a different service. Starfleet routinely carries out these programs with their allies to develop a better understanding of methods, practices, and culture. These postings can also occur due to liaison programs where multiple fleets are cooperating, which was common during the Dominion War.",
+    "CareerEvent.common.68.focusDescription": "Choose or create a focus that relates to the culture you served with.",
 
     "CareerEvent.common.69.name": "Encountered a New Species",
     "CareerEvent.common.69.description": "Strictly speaking, any encounter with a new species is a **first contact**, but there’s a difference between a formal first contact made with preparation and planning, and simply crossing paths with a previously-unencountered species aboard a ship in deep space. Such impromptu encounters are a common way to meet other spacefaring civilizations, especially for ships out on the frontiers of explored space. Such encounters can end  peacefully, but they can also end in violence that may take years or longer to resolve.",
@@ -2997,6 +2999,11 @@
     "Talent.culturalFlexibility.description": "Your people are friendly, patient, and inquisitive, and you exemplify these traits. You are at ease when meeting new cultures, and adapt to unfamiliar social structures easily. When you attempt a Task to learn about an unfamiliar culture, or to act in an appropriate manner when interacting with members of such a culture, you reduce the Difficulty by 1.",
     "Talent.culturalFlexibility.description2e": "You are at ease when meeting new cultures, and you adapt to unfamiliar social structures easily. When you attempt a task to learn about an unfamiliar culture, or to act in an appropriate manner when interacting with members of such a culture, you may re-roll 1d20.",
 
+    "Talent.customTalent": "Custom Talent",
+
+    "Talent.customTalent.description": "Choose a custom ability.",
+    "Talent.customTalent.error": "Custom talents require both a name and description.",
+
     "Talent.customTools": "Custom Tools",
 
     "Talent.customTools.description": "You’ve supplemented your normal toolkits with custom devices of your own design. You gain the Custom Tools equipment trait, which is added to your standard issue equipment. This stacks with the effects of your standard engineer’s toolkit, and adds 1 to your Impact on extended tasks related to technology. You cannot transfer this trait to other characters—they don’t know how to use your tools—and if this trait is lost, you may regain it for free at the start of any scene where you’re near a replicator.",
@@ -3328,6 +3335,14 @@
 
     "Talent.hardenedBiologyUnofficial.description": "Your cilia act independently and can continue to move even if you have been severely hurt. When you have only 1 injury, you can continue to take the Movement Minor Action.",
 
+    "Talent.healingHands": "Healing Hands",
+
+    "Talent.healingHands.description2e": "Whenever you attempt a task to remove any injury complications, you may re-roll 1d20.",
+
+    "Talent.heartBodyAndMind": "Heart, Body and Mind",
+
+    "Talent.heartBodyAndMind.description2e": "Whenever you succeed at a Medicine task, and you spend Momentum to recover an ally’s Stress, it costs you only 1 Momentum per Stress recovered. If you have any other talents which let you recover an ally’s Stress, any affected ally recovers one more Stress than they would otherwise.",
+
     "Talent.highIntensityEnergyWeapons": "High-Intensity Energy Weapons",
 
     "Talent.highIntensityEnergyWeapons.description": "If Reserve Power is rerouted to Weapons, the next attack using one of the ship’s energy weapons increases Damage by 2.",
@@ -3361,6 +3376,10 @@
 
     "Talent.iKnowMyShip.description": "Whenever you attempt a Task to determine the source of a technical problem with your ship, add one bonus d20.",
     "Talent.iKnowMyShip.description2e": "Whenever you attempt a task to determine the source of a technical problem with your ship, the first bonus d20 you purchase is free.",
+
+    "Talent.imADoctorNotA": "I'm a Doctor, Not a...",
+
+    "Talent.imADoctorNotA.description2e": "When you select this talent, choose one of your departments, with which you have a score of 1. When you attempt a task using the selected department, and you spend a point of Determination on that task, you may use your Medicine score instead of that department. The normal limits of spending Determination apply.",
 
     "Talent.imGivingItAllShesGot": "I'm Giving It All She's Got!",
 
@@ -3887,6 +3906,7 @@
 
     "Talent.redundantSystems.description": "The ship has multiple additional redundancies that allow it to withstand severe damage more easily. Nominate a single System. When that system becomes Damaged or Disabled, the crew may choose to activate the backups as a Minor Action; if the System was Damaged, it is no longer Damaged. If it was Disabled, it becomes Damaged instead. A System’s backups may only be activated once per adventure, so subsequent damage will have the normal effect.",
     "Talent.redundantSystems.description2e": "Select a single system when this talent is chosen. When that system suffers a breach, the crew may choose to activate this talent in response; doing so immediately patches the breach inflicted. These redundant systems may only be activated once per adventure.",
+    "Talent.redundantSystems.error": "Redundant Systems require the selection of a specific system.",
 
     "Talent.refusesToDieServiceRecord": "Refuses to Die",
 
@@ -4108,6 +4128,10 @@
     "Talent.technicalExpertise.description": "Whenever you attempt a Task assisted by the ship’s Computers or Sensors, you may re-roll one d20 (which may be the ship’s die).",
     "Talent.technicalExpertise.description2e": "Whenever you attempt a task assisted by the ship’s Computers or Sensors, you may re-roll one d20 in your pool, or you may allow the ship to re-roll its d20.",
 
+    "Talent.temporalMechanic": "Temporal Mechanic",
+
+    "Talent.temporalMechanic.description2e": "Long study into the facets of temporal mechanics has given you an intuitive understanding of the space-time continuum and the various phenomena that can distort it. Once per scene, when confronted with an anomaly that affects the flow of time and space, you may select one d20 in your dice pool before attempting a Task roll relating to the phenomenon. When you make that task roll, if the die rolls an odd number, you generate one bonus Momentum if you succeed (bonus Momentum may not be saved). If you roll an even number on that die, you add 1 Threat instead.",
+
     "Talent.testingATheory": "Testing a Theory",
 
     "Talent.testingATheory.description": "When you attempt a Task using Engineering or Science, you may roll one additional d20, so long as you succeeded at a previous Task covering the same scientific or technological field earlier in the same adventure.",
@@ -4184,6 +4208,10 @@
 
     "Talent.triage.description": "When you attempt a Task to identify specific injuries or illnesses, or to determine the severity of a patient’s condition, you may spend one Momentum (Repeatable) to diagnose one additional patient.",
     "Talent.triage.description2e": "When you attempt a task to identify specific Injuries or illnesses, or to determine the severity of a patient’s condition, you may spend 1 Momentum (Repeatable) to diagnose one additional patient.",
+
+    "Talent.unconventionalThinking": "Unconventional Thinking",
+
+    "Talent.unconventionalThinking.description2e": "During any Challenge or Extended Task to adapt technology or study an unfamiliar phenomenon, you may propose an “Outside the Box” hypothesis—some strange, seemingly bizarre suggestion—and add 2 Threat to create a trait related to that hypothesis. Each time this trait is used to benefit you or your allies, add 1 Momentum to the group pool.",
 
     "Talent.untappedPotential": "Untapped Potential",
 

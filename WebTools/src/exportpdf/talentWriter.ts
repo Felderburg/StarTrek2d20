@@ -96,7 +96,7 @@ export class TalentWriter {
                     let description = this.version === 1 ? talent.talent.localizedDescription : talent.talent.localizedDescription2e;
                     if (talentName === TALENT_NAME_CUSTOM_TALENT) {
                         talentName = talent.customTalentName;
-                        description = talent.customTalentDescription;
+                        description = talent.customTalentDescription ?? "";
                     }
                     if (this.capitalizeName) {
                         talentName = talentName.toLocaleUpperCase();

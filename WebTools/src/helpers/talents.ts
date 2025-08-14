@@ -5163,11 +5163,17 @@ export class Talents {
     getTalent(name: string) {
         let talent: TalentModel = null;
 
-        for (let i = 0; i < this._talents.length; i++) {
-            let t = this._talents[i];
-            if (t.matches(name)) {
-                talent = t;
-                break;
+        if (name === TALENT_NAME_CUSTOM_TALENT) {
+            talent = this.customTalent;
+        }
+
+        if (talent == null) {
+            for (let i = 0; i < this._talents.length; i++) {
+                let t = this._talents[i];
+                if (t.matches(name)) {
+                    talent = t;
+                    break;
+                }
             }
         }
 
@@ -5274,10 +5280,12 @@ export class Talents {
         if (character.npcGenerationStep?.type === NpcType.Major) {
             let result = this._talents.filter(t => t.isPrerequisiteFulfilled(character));
             result.push(...(this._specialRules.filter(t => t.isPrerequisiteFulfilled(character))));
+            result.push(this.customTalent);
             return result;
         } else {
             let rules = this._specialRules
                 .filter(t => t.isPrerequisiteFulfilled(character));
+            rules.push(this.customTalent);
             return rules;
         }
     }

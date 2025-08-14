@@ -12,7 +12,7 @@ import MultiTalentSelectionView from "../../components/multiTalentSelectionView"
 import Markdown from "react-markdown";
 import { makeKey } from "../../common/translationKey";
 import { NpcType } from "../model/npcType";
-import { TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_CUSTOM_TALENT, TalentsHelper } from "../../helpers/talents";
 import { RankedTalent } from "../../helpers/rankedTalent";
 import { SelectedTalent } from "../../common/selectedTalent";
 import store from "../../state/store";
@@ -118,9 +118,12 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({character}) => {
 
             let count = character.npcGenerationStep?.talents?.filter(s => s.talent === t.name)?.length ?? 0;
             for (let i = 0; i < count+1; i++) {
-                rankedTalents.push(new RankedTalent(t, i + 1));
+                if (t.maxRank > 1) {
+                    rankedTalents.push(new RankedTalent(t, i + 1));
+                } else {
+                    rankedTalents.push(new RankedTalent(t, i));
+                }
             }
-
         } else {
             rankedTalents.push(new RankedTalent(t));
         }
@@ -130,6 +133,10 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({character}) => {
     rankedTalents.sort((t1, t2) => {
         if (t1.name === t2.name) {
             return (t2.rank ?? 0) - (t1.rank ?? 0);
+        } else if (t1.name === TALENT_NAME_CUSTOM_TALENT) {
+            return 1;
+        } else if (t2.name === TALENT_NAME_CUSTOM_TALENT) {
+            return -1;
         } else {
             return t2.name > t1.name ? -1 : 1;
         }

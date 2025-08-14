@@ -939,7 +939,6 @@ class Marshaller {
 
     decodeStarship(s: string) {
         let json = this.decode(s);
-console.log(json)
         let result = new Starship();
         if (json.version) {
             result.version = json.version;
@@ -1222,6 +1221,7 @@ console.log(json)
     }
 
     decodeCharacter(json: any) {
+        console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;
@@ -1918,6 +1918,13 @@ console.log(json)
             if (t["x"] != null) {
                 selectedTalent.x = t["x"];
             }
+            if (t["customTalentName"] != null) {
+                selectedTalent.customTalentName = t["customTalentName"];
+            }
+            if (t["customTalentDescription"] != null) {
+                selectedTalent.customTalentDescription = t["customTalentDescription"];
+            }
+
             if (t["selection"] != null) {
                 if (talent.name === TALENT_NAME_WARRIORS_SPIRIT) {
                     const selection = t["selection"];
