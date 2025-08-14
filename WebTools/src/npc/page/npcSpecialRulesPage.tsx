@@ -115,14 +115,9 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({character}) => {
     let rankedTalents = [];
     talents.forEach(t => {
         if (t.maxRank > 1 || isMultiSelectionTalent(t)) {
-
             let count = character.npcGenerationStep?.talents?.filter(s => s.talent === t.name)?.length ?? 0;
             for (let i = 0; i < count+1; i++) {
-                if (t.maxRank > 1) {
-                    rankedTalents.push(new RankedTalent(t, i + 1));
-                } else {
-                    rankedTalents.push(new RankedTalent(t, i));
-                }
+                rankedTalents.push(new RankedTalent(t, i + 1));
             }
         } else {
             rankedTalents.push(new RankedTalent(t));
@@ -132,7 +127,7 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({character}) => {
 
     rankedTalents.sort((t1, t2) => {
         if (t1.name === t2.name) {
-            return (t2.rank ?? 0) - (t1.rank ?? 0);
+            return (t1.rank ?? 0) - (t2.rank ?? 0);
         } else if (t1.name === TALENT_NAME_CUSTOM_TALENT) {
             return 1;
         } else if (t2.name === TALENT_NAME_CUSTOM_TALENT) {
