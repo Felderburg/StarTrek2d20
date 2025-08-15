@@ -2085,7 +2085,7 @@ class _Species {
         return undefined;
     }
 
-    getSpeciesTypeByName(name: string) {
+    getSpeciesTypeByName(name: string): Species {
         let result = undefined;
         for (let species in this._species) {
             if (name === Species[species]) {

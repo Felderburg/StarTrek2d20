@@ -86,12 +86,12 @@ abstract class BasicSheet implements ICharacterSheet {
     populateForm(form: PDFForm, construct: Construct) {
     }
 
-    fillField(form: PDFForm, name: string, value: string) {
+    fillField(form: PDFForm, name: string, value: string|number) {
         if (value != null) {
             try {
                 const field = form.getTextField(name)
                 if (field) {
-                    field.setText(value)
+                    field.setText("" + value)
                 }
             } catch (e) {
                 // ignore it
@@ -155,8 +155,6 @@ abstract class BasicStarshipSheet extends BasicSheet {
             this.fillField(form, 'Designation', starship.registry);
         }
 
-        const talents = starship.getTalentSelectionList().map(t => t.description);
-
         this.fillField(form, 'Space Frame', starship.localizedClassName);
         if (starship.scale) {
             this.fillField(form, 'Scale', starship.scale.toString());
@@ -172,8 +170,8 @@ abstract class BasicStarshipSheet extends BasicSheet {
             this.fillField(form, "Power Total", starship.power == null ? "" : power.toString());
         }
         if (starship.scale) {
-            this.fillField(form, "Resistance",  this.calculateResistance(starship.scale, talents));
-            this.fillField(form, "Crew Total",  this.calculateCrewSupport(starship.crewSupport));
+            this.fillField(form, "Resistance",  starship.resistance);
+            this.fillField(form, "Crew Total",  starship.crewSupport);
         }
 
         if (starship.shields != null) {
@@ -191,24 +189,6 @@ abstract class BasicStarshipSheet extends BasicSheet {
         this.fillField(form, "Refit", starship.refitsAsString());
     }
 
-    calculateCrewSupport(crew: number) {
-        return crew.toString();
-    }
-
-    calculateResistance(scale: number, talents: string[]) {
-        var resistance = scale;
-
-        if (talents.indexOf("Ablative Armor") > -1) {
-            resistance += 2;
-        }
-
-        if (talents.indexOf("Improved Hull Integrity") > -1) {
-            resistance++;
-        }
-
-        return resistance.toString();
-    }
-
     isSpecialRuleSectionAvailable(form: PDFForm) {
         try {
             form.getTextField("Special Rule 1");
@@ -219,11 +199,11 @@ abstract class BasicStarshipSheet extends BasicSheet {
     }
 
     fillTalents(form: PDFForm, starship: Starship) {
-        let talents = starship.getTalentSelectionList().map(t => t.description);
+        let talents = starship.rankedTalents.map(t => t.displayNameWithMultiple);
         let specialRules = [];
         if (this.isSpecialRuleSectionAvailable(form)) {
-            talents = starship.getTalentSelectionList().filter(t => !t.talent.specialRule).map(t => t.description);
-            specialRules = starship.getTalentSelectionList().filter(t => t.talent.specialRule).map(t => t.description);
+            talents = starship.rankedTalents.filter(t => !t.talentModel.specialRule).map(t => t.displayNameWithMultiple);
+            specialRules = starship.rankedTalents.filter(t => t.talentModel.specialRule).map(t => t.displayNameWithMultiple);
         }
 
         let i = 1;

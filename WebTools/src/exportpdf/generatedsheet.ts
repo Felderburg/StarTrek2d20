@@ -215,7 +215,10 @@ export const assembleStarshipTalents = (starship: Starship, includeSpecialRules:
                 readableTalent.rank = starship.getRankForTalent(t.name);
             }
 
-            if (talent.name === TALENT_NAME_MISSION_POD) {
+            if (t.isCustom) {
+                readableTalent.customTalentName = t.customTalentName;
+                readableTalent.customTalentDescription = t.customTalentDescription;
+            } else if (talent.name === TALENT_NAME_MISSION_POD) {
                 readableTalent.missionPod = starship.missionPodModel;
             } else if (talent.name === TALENT_NAME_REDUNDANT_SYSTEMS) {
                 readableTalent.selection = t.selection;

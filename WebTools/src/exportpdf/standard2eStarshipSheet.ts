@@ -16,7 +16,7 @@ import { FontOptions } from "./fontOptions";
 import { WeaponDescriber } from "./weaponDescriber";
 import { Paragraph } from "./paragraph";
 import { bullet2EWriter } from "./bullet2eWriter";
-import { TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
 import { ReadableTalentModel, TalentWriter } from "./talentWriter";
 import { FontSpecification } from "./fontSpecification";
 import { System } from "../helpers/systems";
@@ -278,21 +278,24 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
         let talents = [];
 
         let paragraph = new Paragraph(page, column, this.fonts);
-        for (let t of starship.getDistinctTalentNameList()) {
+        for (let selectedTalent of starship.rankedTalents) {
 
             if (paragraph) {
                 paragraph.indent(15);
-                const talent = TalentsHelper.getTalent(t);
+                const talent = selectedTalent.talentModel;
                 if (!talent.specialRule) {
                     let readableTalent = new ReadableTalentModel(starship.type, talent);
                     talents.push(readableTalent);
                     if (talent && talent.maxRank > 1) {
-                        let rank = starship.getRankForTalent(t);
+                        let rank = selectedTalent.multiple;
                         readableTalent.rank = rank;
                     }
 
                     if (talent.name === TALENT_NAME_MISSION_POD && starship.missionPodModel) {
                         readableTalent.missionPod = starship.missionPodModel;
+                    } else if (selectedTalent.isCustom) {
+                        readableTalent.customTalentName = selectedTalent.customTalentName;
+                        readableTalent.customTalentDescription = selectedTalent.customTalentDescription;
                     }
                 }
             }

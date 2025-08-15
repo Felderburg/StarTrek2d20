@@ -5134,9 +5134,7 @@ export class Talents {
     customTalent = new TalentModel(
             TALENT_NAME_CUSTOM_TALENT,
             "",
-            [],
-            1,
-            "", true);
+            []);
 
 
     getTalents() {
@@ -5252,7 +5250,7 @@ export class Talents {
         }
     }
 
-    getStarshipTalents(starship: Starship) {
+    getStarshipTalents(starship: Starship, includeCustom: boolean = false) {
         const talents: TalentModel[] = [];
         for (let i = 0; i < this._starshipTalents.length; i++) {
             let talent = this._starshipTalents[i];
@@ -5272,6 +5270,10 @@ export class Talents {
         }
 
         talents.sort((a, b) => a.localizedName.localeCompare(b.localizedName));
+
+        if (includeCustom) {
+            talents.push(this.customTalent);
+        }
 
         return talents;
     }

@@ -117,15 +117,13 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
 
     const renderStarshipTalents = () => {
 
-        const talents = construct?.getDistinctTalentNameList().map((tName, i) => {
-            let t = TalentsHelper.getTalent(tName);
-            let name = t.localizedDisplayName;
-            let starship = construct as Starship;
-            let qualifier = starship.getQualifierForTalent(tName);
-            if (qualifier?.length) {
-                name += " [" + qualifier + "]";
+        const talents = (construct as Starship)?.rankedTalents.map((selectedTalent, i) => {
+            let t = selectedTalent.talentModel;
+            let name = selectedTalent.displayNameWithMultiple;
+            let description = undefined;
+            if (selectedTalent.isCustom) {
+                description = selectedTalent.customTalentDescription;
             }
-            let talentName = name + (t.maxRank > 1 ? " [x" + construct.getRankForTalent(t.name) + "]" : "");
             if (t.specialRule) {
                 return null;
             } else if (construct.stereotype === Stereotype.SoloStarship) {
@@ -135,7 +133,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 </div>);
             } else {
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
-                    {renderDescription(talentName, t)}
+                    {renderDescription(name, t, undefined, description)}
                 </div>);
             }
         });

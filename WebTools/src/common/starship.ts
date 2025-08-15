@@ -540,6 +540,24 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         return result;
     }
 
+    get rankedTalents(): SelectedTalent[] {
+        let talents = this.talents;
+        let duplicates = [];
+        let result = [];
+        talents.forEach(t => {
+            if (t.talentModel.maxRank > 1 && !duplicates.includes(t.name)) {
+                let temp = t.copy();
+                temp.multiple = this.getRankForTalent(t.name);
+                duplicates.push(t.name);
+                result.push(temp);
+            } else if (t.talentModel.maxRank === 1) {
+                result.push(t);
+            }
+        });
+        return result;
+    }
+
+
     get talentsWithoutSpecialRules(): SelectedTalent[] {
         return this.talents?.filter(t => !t.talentModel.specialRule) ?? [];
     }

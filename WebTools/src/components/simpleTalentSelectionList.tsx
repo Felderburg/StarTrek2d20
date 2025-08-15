@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TalentModel, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_CUSTOM_TALENT, TalentModel, TalentViewModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { Construct } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';
@@ -30,7 +30,13 @@ const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
     }, [talents]);
 
     talents = talents.sort((t1, t2) => {
-        return t1.localizedName.localeCompare(t2.localizedName);
+        if (t1.name === TALENT_NAME_CUSTOM_TALENT) {
+            return 1;
+        } else if (t2.name === TALENT_NAME_CUSTOM_TALENT) {
+            return -1;
+        } else {
+            return t1.localizedName.localeCompare(t2.localizedName);
+        }
     })
 
     const selectTalent = (talent: ITalent) => {

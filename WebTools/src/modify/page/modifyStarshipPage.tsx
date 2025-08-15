@@ -26,7 +26,7 @@ import { Dialog } from "../../components/dialog";
 import { SimpleSystemSelector } from "../../components/simpleSystemSelector";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { TalentSelector } from "./talentSelector";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../../helpers/talents";
 import { ModalControl } from "../../components/modal";
 import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { SelectedTalentDescriptionView } from "../../components/selectedTalentDescriptionView";
@@ -35,6 +35,7 @@ import { Weapon } from "../../helpers/weapons";
 import AddWeaponView, { AddWeaponMode } from "../../starship/view/addWeaponView";
 import { isMultiSelectionTalent } from "../../helpers/isMultiSelectionTalent";
 import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
+import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 
 const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
 
@@ -132,7 +133,7 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
     }
 
     const showTalentSelectionModal = () => {
-        const talents = TalentsHelper.getStarshipTalents(starship)
+        const talents = TalentsHelper.getStarshipTalents(starship, true)
             .filter(t => !starship.hasTalent(t.name)
             || t.maxRank > 1
             || isMultiSelectionTalent(t));
@@ -337,6 +338,35 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
                         setSelectedTalent(temp);
                     }}
                 />
+            </div>)
+        } else if (selectedTalent?.name === TALENT_NAME_CUSTOM_TALENT) {
+            return (<div className="my-3">
+                <div>
+                    <InputFieldAndLabel labelName={t('Common.text.talentName')}
+                        id="customName"
+                        value={selectedTalent.customTalentName}
+                        onChange={(n) => {
+                            let temp = selectedTalent?.copy();
+                            if (temp) {
+                                temp.customTalentName = n;
+                            }
+                            setSelectedTalent(temp);
+                        }
+                    } />
+                    </div>
+                    <div>
+                        <textarea className="w-100 mt-3"
+                            value={selectedTalent.customTalentDescription}
+                            placeholder={t('Common.text.description')}
+                            onChange={(e) => {
+                                let description = e.target.value;
+                                let temp = selectedTalent?.copy();
+                                if (temp) {
+                                    temp.customTalentDescription = description;
+                                }
+                                setSelectedTalent(temp);
+                            }} />
+                    </div>
             </div>)
         } else if (selectedTalent?.name === TALENT_NAME_EXPANSIVE_DEPARTMENT) {
             return (<div className="my-3">
