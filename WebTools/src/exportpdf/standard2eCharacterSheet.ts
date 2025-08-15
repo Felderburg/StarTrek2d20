@@ -8,7 +8,6 @@ import { Construct } from "../common/construct";
 import { Character } from "../common/character";
 import { TextAlign } from "./textAlign";
 import { staTextFieldAppearanceProvider } from "../helpers/pdfTextFieldAppearance";
-import { TalentsHelper } from "../helpers/talents";
 import { XYLocation } from "../common/xyLocation";
 import { WeaponDescriber } from "./weaponDescriber";
 import { IWeaponDiceProvider } from "../common/iWeaponDiceProvider";

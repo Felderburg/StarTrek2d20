@@ -16,7 +16,7 @@ import { FontOptions } from "./fontOptions";
 import { WeaponDescriber } from "./weaponDescriber";
 import { Paragraph } from "./paragraph";
 import { bullet2EWriter } from "./bullet2eWriter";
-import { TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
 import { ReadableTalentModel, TalentWriter } from "./talentWriter";
 import { FontSpecification } from "./fontSpecification";
 import { System } from "../helpers/systems";

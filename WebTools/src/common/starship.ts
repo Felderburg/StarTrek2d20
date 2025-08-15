@@ -582,17 +582,6 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         return result;
     }
 
-    getTalentSelectionList() {
-        let talents: Map<string, TalentSelection> = new Map();
-        this.talents.forEach(t => {
-            this.addTalent(new TalentSelection(t.talentModel, t.multiple ?? 1), talents);
-        });
-
-        let result: TalentSelection[] = [];
-        talents.forEach((value: TalentSelection) => result.push(value));
-        return result;
-    }
-
     hasNonSpaceframeTalent(talentName: string) {
         let talents = this.getNonSpaceframeTalentSelectionList().filter(t => t.talent.name === talentName);
         return talents.length > 0;
