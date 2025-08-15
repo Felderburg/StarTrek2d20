@@ -94,7 +94,7 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({starship,
 
     const talentList = () => {
         let talents = starship
-            ? TalentsHelper.getStarshipTalents(starship)
+            ? TalentsHelper.getStarshipTalents(starship, true)
             : [];
 
         let rankedTalents = [];
