@@ -3,7 +3,6 @@ import convert from "xml-js";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { DepartmentsHelper, Department } from "../helpers/department";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
-import { TalentsHelper } from "../helpers/talents";
 import { CareersHelper } from "../helpers/careers";
 import { CharacterType } from "../common/characterType";
 import { Rank, RanksHelper } from "../helpers/ranks";
@@ -15,7 +14,6 @@ import { EarlyOutlook } from "../helpers/upbringings";
 import { Stereotype } from "../common/construct";
 import { NpcType } from "../npc/model/npcType";
 import { textTokenizer } from "../exportpdf/textTokenizer";
-import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
 
 export class FantasyGroupsVttExporter {
 
@@ -1819,10 +1817,9 @@ export class FantasyGroupsVttExporter {
             "elements": []
         }
 
-        let handledTalents = [];
-        character.talents.forEach(selectedTalent => {
+        character.rankedTalents.forEach(selectedTalent => {
             let talent = selectedTalent.talentModel;
-            if (talent && !handledTalents.includes(talent.name)) {
+            if (talent) {
 
                 let name = selectedTalent.displayName;
                 if (talent.maxRank > 1) {
@@ -1834,9 +1831,11 @@ export class FantasyGroupsVttExporter {
                     "type": "element",
                     "elements": [
                         this.convertToFormattedText("desc", null,
-                            character.version === 1
+                            selectedTalent.isCustom
+                            ? selectedTalent.customTalentDescription
+                            : (character.version === 1
                                 ? talent.localizedDescription.replace(CHALLENGE_DICE_NOTATION, "CD")
-                                : talent.localizedDescription2e.replace(CHALLENGE_DICE_NOTATION, "CD")),
+                                : talent.localizedDescription2e.replace(CHALLENGE_DICE_NOTATION, "CD"))),
                         {
                             "name": "name",
                             "type": "element",
@@ -1853,10 +1852,6 @@ export class FantasyGroupsVttExporter {
                     ]
                 });
             }
-
-            if (!isMultiSelectionTalent(talent)) {
-                handledTalents.push(talent.name);
-            }
         });
         return result;
     }
@@ -1869,15 +1864,8 @@ export class FantasyGroupsVttExporter {
             "elements": []
         }
 
-        let talentNames = [];
-        character.talents.forEach(selectedTalent => {
-            if (talentNames.indexOf(selectedTalent.talent) < 0) {
-                talentNames.push(selectedTalent.talent);
-            }
-        });
-
-        talentNames.forEach(n => {
-            let talent = TalentsHelper.getTalent(n);
+        character.rankedTalents.forEach(s => {
+            let talent = s.talentModel;
             if (talent) {
 
                 result.elements.push({
@@ -1885,9 +1873,11 @@ export class FantasyGroupsVttExporter {
                     "type": "element",
                     "elements": [
                         this.convertToFormattedText("desc", null,
-                            character.version === 1
+                            s.isCustom
+                            ? s.customTalentDescription
+                            : (character.version === 1
                                 ? talent.localizedDescription.replace(CHALLENGE_DICE_NOTATION, "CD")
-                                : talent.localizedDescription2e.replace(CHALLENGE_DICE_NOTATION, "CD")),
+                                : talent.localizedDescription2e.replace(CHALLENGE_DICE_NOTATION, "CD"))),
                         {
                             "name": "locked",
                             "type": "element",
@@ -1923,7 +1913,7 @@ export class FantasyGroupsVttExporter {
                             "elements": [
                                 {
                                     "type": "text",
-                                    "text": talent.localizedDisplayName
+                                    "text": s.displayName
                                 }
                             ]
                         },

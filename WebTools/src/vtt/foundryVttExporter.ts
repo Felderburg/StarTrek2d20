@@ -18,9 +18,9 @@ import { CharacterTypeModel } from "../common/characterType";
 import { TracksHelper } from "../helpers/tracks";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { markupToHtml } from "./markupToHtml";
-import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
 import { FoundryPluginType } from "./foundryPluginType";
 import { marshaller } from "../helpers/marshaller";
+import { SelectedTalent } from "../common/selectedTalent";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";
@@ -122,7 +122,7 @@ export class FoundryVttExporter {
                     "type": "talent",
                     "img": this.determineTalentIcon(t.talentModel),
                     "system": {
-                        "description": this.convertDescription(t.talentModel, starship),
+                        "description": this.convertDescription(t, starship),
                         "talenttype": {
                             "typeenum": "general",
                             "description": "",
@@ -504,17 +504,16 @@ export class FoundryVttExporter {
             }
         }
 
-        let talents = character.talents;
-        let handledTalents = [];
+        let talents = character.rankedTalents;
         talents.forEach(s => {
             let talent = s.talentModel;
-            if (talent && !handledTalents.includes(talent.name)) {
+            if (talent) {
                 result.items.push({
-                    "name": s.displayName + (talent.maxRank > 1 ? " [x" + character.getRankForTalent(talent.name) + "]" : ""),
+                    "name": s.displayNameWithMultiple,
                     "type": "talent",
                     "img": this.determineTalentIcon(talent),
                     "system": {
-                        "description": this.convertDescription(talent, character),
+                        "description": this.convertDescription(s, character),
                         "talenttype": {
                             "typeenum": this.determineTalentType(talent),
                             "description": this.determineTalentRequirement(talent),
@@ -538,10 +537,6 @@ export class FoundryVttExporter {
                         "xuN9JpdcyRd60ZEJ": 3
                     }
                 });
-            }
-
-            if (!isMultiSelectionTalent(talent)) {
-                handledTalents.push(talent.name);
             }
         });
 
@@ -831,14 +826,16 @@ export class FoundryVttExporter {
         }
     }
 
-    convertDescription(talent: TalentModel|SpeciesAbility, construct: Construct) {
+    convertDescription(talent: SelectedTalent|SpeciesAbility, construct: Construct) {
         let description = "";
         if (talent instanceof SpeciesAbility) {
             description = (talent as SpeciesAbility).description;
+        } else if (talent.isCustom) {
+            description = talent.customTalentDescription;
         } else {
             description = construct.version === 1
-                ? talent.localizedDescription.replace(CHALLENGE_DICE_NOTATION, "CD")
-                : talent.localizedDescription2e.replace(CHALLENGE_DICE_NOTATION, "CD");
+                ? talent.talentModel.localizedDescription.replace(CHALLENGE_DICE_NOTATION, "CD")
+                : talent.talentModel.localizedDescription2e.replace(CHALLENGE_DICE_NOTATION, "CD");
         }
 
         let prerequisites = (talent instanceof TalentModel) ? talent.requirement : "";

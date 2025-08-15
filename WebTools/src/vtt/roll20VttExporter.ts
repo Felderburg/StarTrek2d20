@@ -12,7 +12,6 @@ import { TalentsHelper } from "../helpers/talents";
 import { Weapon, WeaponRange, WeaponType, WeaponTypeModel } from "../helpers/weapons";
 import { System, allSystems } from "../helpers/systems";
 import { makeKey } from "../common/translationKey";
-import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
 import { SelectedTalent } from "../common/selectedTalent";
 
 interface IRoll20Attribute {
@@ -513,14 +512,8 @@ export class Roll20VttExporter {
             Array.prototype.push.apply(result.character.attribs, this.convertEquipment(character, implant, id));
         });
 
-        let handledTalents = [];
-        character.talents.forEach(t => {
-            if (!handledTalents.includes(t.talent)) {
-                result.character.attribs.push(...this.convertTalent(character, t, id));
-            }
-            if (!isMultiSelectionTalent(t.talentModel)) {
-                handledTalents.push(t.talent);
-            }
+        character.rankedTalents.forEach(t => {
+            result.character.attribs.push(...this.convertTalent(character, t, id));
         });
 
         let traits = [...character.baseTraits];
@@ -873,9 +866,7 @@ export class Roll20VttExporter {
             category = "General";
         }
 
-        let name = talent.maxRank > 1
-            ? (selectedTalent.displayName + " [x" + character.getRankForTalent(selectedTalent.talent)) + "]"
-            : selectedTalent.displayName;
+        let name = selectedTalent.displayNameWithMultiple;
 
         return [{
             "name": "repeating_talents_" + rowId + "_talent_name",
@@ -885,7 +876,12 @@ export class Roll20VttExporter {
         },
         {
             "name": "repeating_talents_" + rowId + "_talent_description",
-            "current": talent.localizedDescription,
+            "current": selectedTalent.isCustom
+                ? selectedTalent.customTalentDescription
+                : (character.version === 1
+                    ? talent.localizedDescription
+                    : talent.localizedDescription2e
+                ),
             "max": "",
             "id": id.nextId()
         },
