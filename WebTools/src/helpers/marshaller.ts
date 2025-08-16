@@ -19,7 +19,7 @@ import { SpaceframeHelper } from './spaceframes';
 import { SpeciesHelper } from './species';
 import { Species } from './speciesEnum';
 import { allSystems, System, systemByName } from './systems';
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from './talents';
 import { getAllTracks, Track } from './trackEnum';
 import { EarlyOutlook, UpbringingsHelper } from './upbringings';
 import { CaptureType, CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadType, EnergyLoadTypeModel, MineType, MineTypeModel, PersonalWeapons, PersonalWeaponType, TorpedoLoadType, TorpedoLoadTypeModel, UsageCategory, Weapon, WeaponType } from './weapons';
@@ -1850,6 +1850,13 @@ class Marshaller {
             talentName === "Cautious: Science") {
 
             talentName = TALENT_NAME_CAUTIOUS;
+        } else if (talentName === "I’m a Doctor, Not a Starship Captain!" ||
+            talentName === "I’m a Doctor, Not a Damn Pilot!" ||
+            talentName === "I’m a Doctor, Not an Engineer!" ||
+            talentName === "I’m a Doctor, Not a Scientist!" ||
+            talentName === "I’m a Doctor, Not the Chief of Security!") {
+
+            talentName = TALENT_NAME_IM_A_DOCTOR_NOT_A;
         } else if (talentName === "Defensive Training: Melee" ||
             talentName === "Defensive Training: Ranged") {
 
@@ -1879,17 +1886,17 @@ class Marshaller {
                 selectedTalent.attribute = Attribute.Presence;
             } else if (t.name === "Augmented Ability (Reason)") {
                 selectedTalent.attribute = Attribute.Reason;
-            } else if (["Collaboration: Command", "Bold: Command", "Cautious: Command", "Dedicated Personnel (Command)"].includes(t.name)) {
+            } else if (["Collaboration: Command", "Bold: Command", "Cautious: Command", "Dedicated Personnel (Command)", "I’m a Doctor, Not a Starship Captain!"].includes(t.name)) {
                 selectedTalent.department = Department.Command;
-            } else if (["Collaboration: Conn", "Bold: Conn", "Cautious: Conn", "Dedicated Personnel (Conn)"].includes(t.name)) {
+            } else if (["Collaboration: Conn", "Bold: Conn", "Cautious: Conn", "Dedicated Personnel (Conn)", "I’m a Doctor, Not a Damn Pilot!"].includes(t.name)) {
                 selectedTalent.department = Department.Conn;
-            } else if (["Collaboration: Engineering", "Bold: Engineering", "Cautious: Engineering", "Dedicated Personnel (Engineering)"].includes(t.name)) {
+            } else if (["Collaboration: Engineering", "Bold: Engineering", "Cautious: Engineering", "Dedicated Personnel (Engineering)", "I’m a Doctor, Not an Engineer!"].includes(t.name)) {
                 selectedTalent.department = Department.Engineering;
-            } else if (["Collaboration: Security", "Bold: Security", "Cautious: Security", "Dedicated Personnel (Security)"].includes(t.name)) {
+            } else if (["Collaboration: Security", "Bold: Security", "Cautious: Security", "Dedicated Personnel (Security)", "I’m a Doctor, Not the Chief of Security!"].includes(t.name)) {
                 selectedTalent.department = Department.Security;
             } else if (["Collaboration: Medicine", "Bold: Medicine", "Cautious: Medicine", "Dedicated Personnel (Medicine)"].includes(t.name)) {
                 selectedTalent.department = Department.Medicine;
-            } else if (["Collaboration: Science", "Bold: Science", "Cautious: Science", "Dedicated Personnel (Science)"].includes(t.name)) {
+            } else if (["Collaboration: Science", "Bold: Science", "Cautious: Science", "Dedicated Personnel (Science)", "I’m a Doctor, Not a Scientist!"].includes(t.name)) {
                 selectedTalent.department = Department.Science;
             } else if (t.name === "Defensive Training: Melee") {
                 selectedTalent.selection = AttackType.Melee;

@@ -67,6 +67,7 @@ export const TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X = "Extraordinary Attribute X"
 export const TALENT_NAME_MINELAYER = "Minelayer";
 export const TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM = "Additional Propulsion System (Talent)";
 export const TALENT_NAME_EXPANDED_MUNITIONS = "Expanded Munitions";
+export const TALENT_NAME_IM_A_DOCTOR_NOT_A = "I’m a Doctor, Not a...";
 
 export const TALENT_NAME_CUSTOM_TALENT = "Custom Talent";
 
@@ -165,6 +166,16 @@ class DisciplinePrerequisite implements IConstructPrerequisite<Character> {
 
     describe(): string {
         return "Requires " + Department[this.discipline] + " " + this.value + "+";
+    }
+};
+
+class HasUntrainedDisciplinePrerequisite implements IConstructPrerequisite<Character> {
+
+    isPrerequisiteFulfilled(c: Character): boolean {
+        return c.departments.filter(d => d === 1).length > 0;
+    }
+    describe(): string {
+        return "";
     }
 };
 
@@ -1530,6 +1541,12 @@ export class Talents {
                 [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Medicine, 3), new DisciplinePrerequisite(Department.Command, 2)],
                 1),
             new TalentModel(
+                "I’m a Doctor, Not a...",
+                "When this Talent is purchased, select a Discipline with a score of 1. Once per scene, before attempting a Task using the selected Discipline, a point of Determination may be spent to substitute the character’s Medicine Score in place of that Discipline. This does not have to be linked to a Value.",
+                [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Medicine, 3), new HasUntrainedDisciplinePrerequisite()],
+                1),
+            /*
+            new TalentModel(
                 "I’m a Doctor, Not a Starship Captain!",
                 "Once per scene, before attempting a Task using Command, a point of Determination may be spent to substitute the character’s Medicine Score in place of Command. This does not have to be linked to a Value.",
                 [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Medicine, 3), new UntrainedDisciplinePrerequisite(Department.Command)],
@@ -1554,6 +1571,7 @@ export class Talents {
                 "Once per scene, before attempting a Task using Security, a point of Determination may be spent to substitute the character’s Medicine Score in place of Security. This does not have to be linked to a Value.",
                 [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Medicine, 3), new UntrainedDisciplinePrerequisite(Department.Security)],
                 1),
+            */
             new TalentModel(
                 "Insightful Guidance",
                 "Whenever you Assist a character, who is in a Social Conflict, using your knowledge of psychology or emotional states, that character is considered to have an Advantage in addition to the normal benefits provided by your Assist. ",

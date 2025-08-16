@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import { Attribute } from "../helpers/attributes";
 import { BorgImplantType } from "../helpers/borgImplant";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../helpers/talents";
 import { SpecialWeapon } from "./specialWeapon";
 import { makeKey } from "./translationKey";
 import { AttackType } from "./attackType";
@@ -127,7 +127,7 @@ export class SelectedTalent implements ITalent {
                 name += " (" + i18next.t(makeKey("Construct.attribute.", Attribute[this.attribute])) + ")";
             }
 
-            if ([TALENT_NAME_COLLABORATION, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(this.talent) && this.department != null) {
+            if ([TALENT_NAME_COLLABORATION, TALENT_NAME_BOLD, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_CAUTIOUS].includes(this.talent) && this.department != null) {
                 name += " (" + i18next.t(makeKey("Construct.discipline.", Department[this.department])) + ")";
             }
 

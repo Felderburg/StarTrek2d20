@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Header } from "../components/header";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_REDUNDANT_SYSTEMS, TalentModel, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_REDUNDANT_SYSTEMS, TalentModel, TalentsHelper } from "../helpers/talents";
 import replaceDiceWithArrowhead from "../common/arrowhead";
 import { Stereotype } from "../common/construct";
 import { Starship } from "../common/starship";
@@ -62,7 +62,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 .join(", ");
             return (<div className="text-sm px-4"><b>{t("Construct.other.attribute") + ": "}</b>
                 {selectedAttributes}</div>);
-        } else if ([TALENT_NAME_COLLABORATION, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(talent.name)) {
+        } else if ([TALENT_NAME_COLLABORATION, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_IM_A_DOCTOR_NOT_A].includes(talent.name)) {
             let character = construct as Character;
             let selectedAttributes = character.talents
                 .filter(s => s.talent === talent.name && s.department != null)

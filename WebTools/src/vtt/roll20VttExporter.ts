@@ -223,7 +223,7 @@ export class Roll20VttExporter {
             result.character.attribs.push(this.convertSystem(starship, s, id))
         );
 
-        starship.getDistinctTalentNameList().forEach(t =>
+        starship.rankedTalents.forEach(t =>
             Array.prototype.push.apply(result.character.attribs, this.convertStarshipTalent(starship, t, id))
         );
 
@@ -808,16 +808,16 @@ export class Roll20VttExporter {
         return result;
     }
 
-    convertStarshipTalent(starship: Starship, talentName: string, id: IdHelper) {
+    convertStarshipTalent(starship: Starship, selectedTalent: SelectedTalent, id: IdHelper) {
         const rowId = id.nextId();
 
-        let talent = TalentsHelper.getTalent(talentName);
+        let talent = selectedTalent.talentModel;
         let category = talent.category;
         if (category === "") {
             category = "General";
         }
 
-        let name = talent.maxRank > 1 ? (talent.localizedDisplayName + " [x" + starship.getRankForTalent(talentName) + "]") : talent.localizedDisplayName;
+        let name = selectedTalent.displayNameWithMultiple;
 
         let qualifier = starship.getQualifierForTalent(talent.name);
         if (qualifier?.length) {
@@ -832,7 +832,11 @@ export class Roll20VttExporter {
         },
         {
             "name": "repeating_stalents_" + rowId + "_stalent_description",
-            "current": talent.localizedDescription,
+            "current": selectedTalent.isCustom
+                ? selectedTalent.customTalentDescription
+                : (starship.version === 1
+                    ? talent.localizedDescription
+                    : talent.localizedDescription2e),
             "max": "",
             "id": id.nextId()
         },

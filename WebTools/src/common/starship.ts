@@ -5,7 +5,6 @@ import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
 import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MINELAYER, TALENT_NAME_MISSION_POD, TalentModel, TalentsHelper } from "../helpers/talents";
-import { TalentSelection } from "../helpers/talentSelection";
 import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
@@ -562,28 +561,28 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         return this.talents?.filter(t => !t.talentModel.specialRule) ?? [];
     }
 
-    getNonSpaceframeTalentSelectionList() {
-        let talents: Map<string, TalentSelection> = new Map();
+    private getNonSpaceframeTalentSelectionList() {
+        let talents: Map<string, SelectedTalent> = new Map();
         if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
-            this.addTalent(new TalentSelection(TalentsHelper.getTalent(this.missionProfileStep?.talent?.talent)), talents);
+            this.addTalent(new SelectedTalent(this.missionProfileStep?.talent?.talent), talents);
         }
 
         this.additionalTalents.forEach(t => {
-            this.addTalent(new TalentSelection(TalentsHelper.getTalent(t.name)), talents);
+            this.addTalent(new SelectedTalent(t.name), talents);
         });
         if (this.missionPodModel && this.stereotype !== Stereotype.SoloStarship) {
             this.missionPodModel.talents.forEach(t => {
-                this.addTalent(new TalentSelection(t), talents);
+                this.addTalent(new SelectedTalent(t.name), talents);
             });
         }
 
-        let result: TalentSelection[] = [];
-        talents.forEach((value: TalentSelection) => result.push(value));
+        let result: SelectedTalent[] = [];
+        talents.forEach((value: SelectedTalent) => result.push(value));
         return result;
     }
 
     hasNonSpaceframeTalent(talentName: string) {
-        let talents = this.getNonSpaceframeTalentSelectionList().filter(t => t.talent.name === talentName);
+        let talents = this.getNonSpaceframeTalentSelectionList().filter(t => t.name === talentName);
         return talents.length > 0;
     }
 
@@ -592,12 +591,12 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         return talents.length > 0;
     }
 
-    private addTalent(t: TalentSelection, talents: Map<string, TalentSelection>) {
-        if (talents.get(t.nameWithoutRank) != null) {
-            let temp = talents.get(t.nameWithoutRank);
-            talents.set(t.nameWithoutRank, new TalentSelection(temp.talent, temp.rank + t.rank, temp.qualifier));
+    private addTalent(t: SelectedTalent, talents: Map<string, SelectedTalent>) {
+        if (talents.get(t.name) != null) {
+            let temp = talents.get(t.name);
+            talents.set(t.name, new SelectedTalent(temp.talent));
         } else {
-            talents.set(t.nameWithoutRank, t);
+            talents.set(t.name, t);
         }
     }
 
