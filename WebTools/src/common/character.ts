@@ -167,6 +167,18 @@ export class SupportingStep {
     }
 }
 
+export class ReputationChangeStep {
+    readonly reputation: number;
+
+    constructor(reputation: number) {
+        this.reputation = reputation;
+    }
+
+    copy() {
+        return new ReputationChangeStep(this.reputation);
+    }
+}
+
 export class CharacterAdvancementStep {
     choice: CharacterAdvancementChoice;
     value: string|Attribute|Department|SelectedTalent;
@@ -230,6 +242,24 @@ export class SpeciesStep {
     constructor(species: Species) {
         this.species = species;
         this.attributes = [];
+    }
+
+    get localizedName() {
+        if (this.species === Species.Custom) {
+            return this.customSpeciesName || "";
+        } else {
+            let species = SpeciesHelper.getSpeciesByType(this.species);
+            let result = species.name;
+            if (this.mixedSpecies != null) {
+                let mixedSpecies = SpeciesHelper.getSpeciesByType(this.mixedSpecies);
+                result += (" / " + mixedSpecies.name);
+            }
+            if (this.originalSpecies != null) {
+                let orginalSpecies = SpeciesHelper.getSpeciesByType(this.originalSpecies);
+                result += (" (originally " + orginalSpecies.name + ")");
+            }
+            return result;
+        }
     }
 
     copy() {
@@ -420,7 +450,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     public npcGenerationStep?: NpcGenerationStep;
     public supportingStep?: SupportingStep;
 
-    public improvements: (CharacterAdvancementStep|Promotion)[];
+    public improvements: (CharacterAdvancementStep|Promotion|ReputationChangeStep)[];
 
     public description?: string;
     public legacyMode: boolean;
@@ -1146,23 +1176,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get speciesName() {
-        if (this.speciesStep == null) {
-            return "";
-        } else if (this.speciesStep.species === Species.Custom) {
-            return this.speciesStep.customSpeciesName || "";
-        } else {
-            let species = SpeciesHelper.getSpeciesByType(this.speciesStep.species);
-            let result = species.name;
-            if (this.speciesStep.mixedSpecies != null) {
-                let mixedSpecies = SpeciesHelper.getSpeciesByType(this.speciesStep.mixedSpecies);
-                result += (" / " + mixedSpecies.name);
-            }
-            if (this.speciesStep.originalSpecies != null) {
-                let orginalSpecies = SpeciesHelper.getSpeciesByType(this.speciesStep.originalSpecies);
-                result += (" (originally " + orginalSpecies.name + ")");
-            }
-            return result;
-        }
+        return this.speciesStep?.localizedName ?? "";
     }
 
     get localizedSpeciesName() {
@@ -1187,16 +1201,12 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get baseTraits() {
         let traits = [ ...this.traits ];
-        if (this.speciesStep?.species === Species.Custom && this.speciesStep?.customSpeciesName) {
-            traits.push(this.speciesStep.customSpeciesName);
-        } else if (this.speciesStep) {
+        if (this.speciesStep != null) {
             let species = SpeciesHelper.getSpeciesByType(this.speciesStep?.species);
-            if (species && traits.indexOf(species.localizedName) < 0) {
-                if (traits.indexOf(species.name) >= 0) {
-                    traits.splice(traits.indexOf(species.name), 1);
-                }
-                traits.push(species.localizedName);
+            if (traits.indexOf(species.name) >= 0) {
+                traits.splice(traits.indexOf(species.name), 1);
             }
+            traits.push(this.localizedSpeciesName);
         }
         if (this.enlisted) {
             traits.push("Enlisted Crewman");

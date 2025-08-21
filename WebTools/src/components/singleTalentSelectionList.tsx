@@ -170,26 +170,26 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
         return (
             <div className="row">
                 <div className="col-12 col-md-6">
-                    <SimpleAttributeSelector
+                    <SimpleDepartmentSelector
                         character={construct as Character}
-                        isChecked={a => selection.attribute === a}
-                        onSelectAttribute={a => {
+                        isChecked={a => selection.department === a}
+                        onSelectDepartment={d => {
                             let temp = selection?.copy();
                             if (temp) {
-                                temp.attribute = a;
+                                temp.department = d;
                             }
                             onSelection(temp);
                         }}
-                        isUpdateable={a => {
-                            if ((construct as Character).departments[a] > 1) {
+                        isUpdateable={d => {
+                            if ((construct as Character).departments[d] > 1) {
                                 return false;
-                            } else if (a === selection.attribute) {
+                            } else if (d === selection.department) {
                                 return true;
                             } else {
-                                let attributes = (construct as Character).talents
-                                    .filter(t => t.talent === TALENT_NAME_IM_A_DOCTOR_NOT_A && t.attribute != null)
-                                    .map(t => t.attribute);
-                                return !attributes.includes(a);
+                                let departments = (construct as Character).talents
+                                    .filter(t => t.talent === TALENT_NAME_IM_A_DOCTOR_NOT_A && t.department != null)
+                                    .map(t => t.department);
+                                return !departments.includes(d);
                             }
                         }}
                     />

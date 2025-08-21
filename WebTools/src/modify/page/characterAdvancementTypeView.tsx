@@ -18,7 +18,7 @@ import { Dialog } from "../../components/dialog";
 import { ValueRandomTable } from "../../solo/table/valueRandomTable";
 import ValueInput from "../../components/valueInput";
 import { ModalControl } from "../../components/modal";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentsHelper } from "../../helpers/talents";
 import { AugmentedAbilitySelectionView, BoldOrCautiousDepartmentSelectionView, BorgImplantsSelectionView, CollaborationDepartmentSelectionView, DefensiveTrainingAttackTypeSelectionView, ExpandedProgramSelectionView, SelectedTalentDescriptionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView, WisdomOfYearsSelectionView } from "../../components/selectedTalentDescriptionView";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { SimpleStringSelector } from "./simpleStringSelector";
@@ -29,6 +29,7 @@ import { FocusSelectionView } from "../../components/focusSelectionView";
 import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 import { AttackType } from "../../common/attackType";
 import { TalentSelector } from "./talentSelector";
+import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 
 
 
@@ -220,6 +221,35 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                         setTalentSelection(temp);
                     }} character={character} />
                 </div>);
+        } else if (talentSelection?.name === TALENT_NAME_CUSTOM_TALENT) {
+            return (<div className="my-3">
+                <div>
+                    <InputFieldAndLabel labelName={t('Common.text.talentName')}
+                        id="customName"
+                        value={talentSelection.customTalentName}
+                        onChange={(n) => {
+                            let temp = talentSelection?.copy();
+                            if (temp) {
+                                temp.customTalentName = n;
+                            }
+                            setTalentSelection(temp);
+                        }
+                    } />
+                </div>
+                <div>
+                    <textarea className="w-100 mt-3"
+                        value={talentSelection.customTalentDescription}
+                        placeholder={t('Common.text.description')}
+                        onChange={(e) => {
+                            let description = e.target.value;
+                            let temp = talentSelection?.copy();
+                            if (temp) {
+                                temp.customTalentDescription = description;
+                            }
+                            setTalentSelection(temp);
+                        }} />
+                </div>
+            </div>);
         } else if (talentSelection?.talent === TALENT_NAME_EXPANDED_PROGRAM) {
             return (<div className="col-12 col-md-6">
                     <ExpandedProgramSelectionView onSelection={(selection) => {
@@ -251,6 +281,32 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                         temp.department = d;
                         setTalentSelection(temp);
                     }} character={character} />
+                </div>);
+        } else if ([TALENT_NAME_IM_A_DOCTOR_NOT_A].includes(talentSelection?.talent)) {
+            return (<div className="col-12 col-md-6">
+                <SimpleDepartmentSelector
+                    character={character}
+                    isChecked={d => talentSelection.department === d}
+                    onSelectDepartment={d => {
+                        let temp = talentSelection?.copy();
+                        if (temp) {
+                            temp.department = d;
+                        }
+                        setTalentSelection(temp);
+                    }}
+                    isUpdateable={d => {
+                        if (character.departments[d] > 1) {
+                            return false;
+                        } else if (d === talentSelection.department) {
+                            return true;
+                        } else {
+                            let departments = character.talents
+                                .filter(t => t.talent === TALENT_NAME_IM_A_DOCTOR_NOT_A && t.department != null)
+                                .map(t => t.department);
+                            return !departments.includes(d);
+                        }
+                    }}
+                />
                 </div>);
         } else if ([TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(talentSelection?.talent)) {
             return (<div className="col-12 col-md-6">
