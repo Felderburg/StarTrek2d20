@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import { BasicGeneratedSheet } from "./generatedsheet";
+import { assembleStarshipTalents, BasicGeneratedSheet } from "./generatedsheet";
 import { makeKey } from "../common/translationKey";
 import { SheetTag } from "./icharactersheet";
 import { PDFDocument, PDFFont, PDFForm, PDFPage, PDFTextField } from "@cantoo/pdf-lib";
@@ -16,7 +16,7 @@ import { FontOptions } from "./fontOptions";
 import { WeaponDescriber } from "./weaponDescriber";
 import { Paragraph } from "./paragraph";
 import { bullet2EWriter } from "./bullet2eWriter";
-import { TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
 import { ReadableTalentModel, TalentWriter } from "./talentWriter";
 import { FontSpecification } from "./fontSpecification";
 import { System } from "../helpers/systems";
@@ -275,32 +275,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
     }
 
     async writeTalents(page: PDFPage, starship: Starship, column: Column, colour: SimpleColor) {
-        let talents = [];
-
-        let paragraph = new Paragraph(page, column, this.fonts);
-        for (let selectedTalent of starship.rankedTalents) {
-
-            if (paragraph) {
-                paragraph.indent(15);
-                const talent = selectedTalent.talentModel;
-                if (!talent.specialRule) {
-                    let readableTalent = new ReadableTalentModel(starship.type, talent);
-                    talents.push(readableTalent);
-                    if (talent && talent.maxRank > 1) {
-                        let rank = selectedTalent.multiple;
-                        readableTalent.rank = rank;
-                    }
-
-                    if (talent.name === TALENT_NAME_MISSION_POD && starship.missionPodModel) {
-                        readableTalent.missionPod = starship.missionPodModel;
-                    } else if (selectedTalent.isCustom) {
-                        readableTalent.customTalentName = selectedTalent.customTalentName;
-                        readableTalent.customTalentDescription = selectedTalent.customTalentDescription;
-                    }
-                }
-            }
-        };
-
+        let talents = assembleStarshipTalents(starship, false);
         let writer = new TalentWriter(page, this.fonts, starship.version, colour, true);
         return await writer.writeTalents(talents, column, 8, 8);
     }
