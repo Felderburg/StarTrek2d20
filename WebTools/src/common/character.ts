@@ -420,7 +420,6 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     private _attributeInitialValue: number = 7;
 
-    public _reputation = undefined;
     public reprimands = 0;
     public _attributes: number[] = [];
     public _skills: number[] = [];
@@ -474,7 +473,14 @@ export class Character extends Construct implements IWeaponDiceProvider {
         if (this.version === 1) {
             return 10;
         } else {
-            return 3;
+            let improvements = this.improvements
+                .filter(i => i instanceof ReputationChangeStep)
+                .map(i => i as ReputationChangeStep);
+            if (improvements.length) {
+                return improvements[improvements.length-1].reputation;
+            } else {
+                return 3;
+            }
         }
     }
 
@@ -1521,7 +1527,6 @@ export class Character extends Construct implements IWeaponDiceProvider {
         character.type = this.type;
         character.stereotype = this.stereotype;
         character.typeDetails = this.typeDetails;
-        character._reputation = this._reputation;
         character.version = this.version;
         character._attributes = [...this._attributes];
         character._skills = [...this._skills];

@@ -1,6 +1,6 @@
 import { Base64 } from 'js-base64';
 import pako from 'pako';
-import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails } from '../common/character';
+import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails, ReputationChangeStep } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, SimpleStats, SpaceframeStep, Starship, StarshipAdvancementStep } from '../common/starship';
@@ -359,6 +359,10 @@ class Marshaller {
                         id: i.rank.id
                     }
                     result["modificationType"] = ModificationType[i.type];
+                    return result;
+                } else if (i instanceof ReputationChangeStep) {
+                    let result = { type: "reputation" };
+                    result["reputation"] = i.reputation;
                     return result;
                 } else {
                     return undefined;
@@ -1807,6 +1811,9 @@ class Marshaller {
                     const type = j["modificationType"] === ModificationType[ModificationType.Demotion] ? ModificationType.Demotion : ModificationType.Promotion;
 
                     return new Promotion(rank, type);
+                } else if (j["type"] === "reputation") {
+                    const reputation = j["reputation"];
+                    return new ReputationChangeStep(reputation);
                 } else {
                     return undefined;
                 }
