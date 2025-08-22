@@ -474,9 +474,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
             return 10;
         } else {
             let improvements = this.improvements
-                .filter(i => i instanceof ReputationChangeStep)
-                .map(i => i as ReputationChangeStep);
-            if (improvements.length) {
+                ?.filter(i => i instanceof ReputationChangeStep)
+                ?.map(i => i as ReputationChangeStep);
+            if (improvements?.length) {
                 return improvements[improvements.length-1].reputation;
             } else {
                 return 3;
