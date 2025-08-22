@@ -79,6 +79,7 @@ export class ServiceRecordList {
         new ServiceRecordModel(ServiceRecord.AnomalyMagnet, "Encounter the Strange (Service Record)", Source.TechnicalManual),
         new ServiceRecordModel(ServiceRecord.BroughtOutOfMothballs, "The Last Generation (Service Record)", Source.TechnicalManual),
         new ServiceRecordModel(ServiceRecord.LongTermMission, "Far from Home (Service Record)", Source.TechnicalManual),
+        new ServiceRecordModel(ServiceRecord.MajorRefit, "Upgraded Systems (Service Record)", Source.TechnicalManual),
         new ServiceRecordModel(ServiceRecord.StateOfTheArt, "Peak Performance (Service Record)", Source.TechnicalManual),
 
         new ServiceRecordModel(ServiceRecord.GarbageScow, "Jury-Rigged (Service Record)", Source.ContinuingMissions),

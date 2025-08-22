@@ -30,7 +30,7 @@ import { SimpleSystemSelector } from './simpleSystemSelector';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 
 interface ISingleTalentSelectionProperties {
-    talents: TalentViewModel[]
+    talents: (TalentViewModel|RankedTalent)[]
     construct: Construct;
     initialSelection?: ITalent|SelectedTalent;
     onSelection: (talent?: SelectedTalent) => void;
@@ -125,7 +125,7 @@ export const DepartmentSelectedTalentChoice: React.FC<ISelectedTalentChoicePrope
 
 export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({talent, construct, selection, onSelection}) => {
     let prerequisites = undefined;
-    talent.talent.prerequisites.forEach((p) => {
+    talent.talentModel.prerequisites.forEach((p) => {
         let desc = p.describe();
         if (desc) {
             if (prerequisites == null) {
@@ -156,7 +156,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
     }
 
     const talentDescription = (t: RankedTalent) => {
-        const description = construct.version === 1 ? t.talent.localizedDescription : t.talent.localizedDescription2e;
+        const description = construct.version === 1 ? t.talentModel.localizedDescription : t.talentModel.localizedDescription2e;
         if (description.includes(CHALLENGE_DICE_NOTATION)) {
             return description.split('\n').map((l, i) => {
                 return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
@@ -634,10 +634,10 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
         </>);
     }
 
-    let name = talent.talent.localizedName;
-    if (talent.talent.maxRank > 1) {
+    let name = talent.talentModel.localizedName;
+    if (talent.talentModel.maxRank > 1) {
         name = t('Talent.text.rank', {
-            talentName: talent.talent.localizedName,
+            talentName: talent.talentModel.localizedName,
             rank: talent.rank
         })
     }
@@ -923,13 +923,13 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
     }
 
     talents = talents.sort((t1, t2) => {
-        return t1.localizedName.localeCompare(t2.localizedName);
+        return t1.talentModel.localizedName.localeCompare(t2.talentModel.localizedName);
     })
 
     const talentList = talents.map((t, i) => {
         const talent = t.talentModel;
-        const rank = t.hasRank ? t.rank : undefined;
-        const rankedTalent = new RankedTalent(talent, rank);
+        const rank = talent.maxRank > 1 ? t.rank : undefined;
+        const rankedTalent = t instanceof RankedTalent ? t as RankedTalent : new RankedTalent(talent, rank);
         return (<TalentSelectionRow talent={rankedTalent}
             construct={construct}
             onSelection={updateSelection}

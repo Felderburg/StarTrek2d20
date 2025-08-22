@@ -17,6 +17,12 @@ import { hasSource } from "../../state/contextFunctions";
 import { SimpleSystemSelector } from "../../components/simpleSystemSelector";
 import { System } from "../../helpers/systems";
 import { PageIdentity } from "../../pages/pageIdentity";
+import { SimpleStringSelector } from "../../modify/page/simpleStringSelector";
+import Markdown from "react-markdown";
+import { StarshipFreeformTalentSelectionView } from "../../components/starshipFreeformTalentSelectionView";
+import { SelectedTalent } from "../../common/selectedTalent";
+import { Dialog } from "../../components/dialog";
+import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 
 
 interface IServiceRecordPageProperties {
@@ -28,14 +34,49 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
     const { t } = useTranslation();
 
     const nextPage = () => {
-        store.dispatch(nextStarshipWorkflowStep());
-        Navigation.navigateToPage(PageIdentity.StarshipRefits);
+        let ok = true;
+        if (starship.serviceRecordStep?.type?.type === ServiceRecord.MajorRefit) {
+            if (starship.serviceRecordStep?.selection == null) {
+                ok = false;
+                Dialog.show(t('Common.error.system'));
+            } else if (starship.serviceRecordStep?.removedTalent == null
+                    || starship.serviceRecordStep?.selectedTalent == null) {
+                ok = false;
+                Dialog.show(t('ServiceRecordPage.error.talents'));
+            } else if (determineSelectedTalentExtraErrors(starship.serviceRecordStep?.selectedTalent) != null) {
+                ok = false;
+                Dialog.show(determineSelectedTalentExtraErrors(starship.serviceRecordStep?.selectedTalent));
+            }
+        }
+
+        if (ok) {
+            store.dispatch(nextStarshipWorkflowStep());
+            Navigation.navigateToPage(PageIdentity.StarshipRefits);
+        }
     }
 
     const onExtraDetailChange = (selection?: string|System) => {
         if (starship.serviceRecordStep) {
             store.dispatch(setStarshipServiceRecord(starship.serviceRecordStep.type,
-                starship.serviceRecordStep.specialRule, selection));
+                starship.serviceRecordStep.specialRule, selection,
+                starship.serviceRecordStep.removedTalent,
+                starship.serviceRecordStep.selectedTalent));
+        }
+    }
+
+    const onRemovedTalentChange = (selection?: string) => {
+        if (starship.serviceRecordStep) {
+            store.dispatch(setStarshipServiceRecord(starship.serviceRecordStep.type,
+                starship.serviceRecordStep.specialRule, undefined, selection));
+        }
+    }
+
+    const onSelectedTalentChange = (selection?: SelectedTalent) => {
+        if (starship.serviceRecordStep) {
+            store.dispatch(setStarshipServiceRecord(starship.serviceRecordStep.type,
+                starship.serviceRecordStep.specialRule, undefined,
+                starship.serviceRecordStep?.removedTalent,
+                selection));
         }
     }
 
@@ -46,6 +87,12 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
             const talent = TalentsHelper.getTalent(serviceRecord.specialRule);
             store.dispatch(setStarshipServiceRecord(serviceRecord, talent));
         }
+    }
+
+    const getSpaceframeTalents = () => {
+        return starship.spaceframeStep?.model?.talents
+            ?.filter(t => !t.talentModel.specialRule)
+            ?.map(t => t.name) ?? [];
     }
 
     let serviceRecords = ServiceRecordList.instance.records
@@ -74,11 +121,23 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
                             value={r.type}
                             onChanged={() => { onServiceRecordSelection(r); } }/></td>
                 </tr>
+                {starship.serviceRecordStep?.type?.type === r.type
+                    ? (<tr>
+                        <td></td>
+                        <td>
+                            <div className="markdown-sm">
+                                <p><strong>{starship.serviceRecordStep.specialRule.localizedName}</strong></p>
+                            </div>
+                            <Markdown className="markdown-sm">{starship.serviceRecordStep.specialRule.localizedDescription2e}</Markdown>
+                        </td>
+                        <td></td>
+                    </tr>)
+                    : undefined}
                 {starship.serviceRecordStep?.type?.type === ServiceRecord.SurvivorOfX &&
                 r.type === ServiceRecord.SurvivorOfX
                     ? (<tr>
                         <td></td>
-                        <td rowSpan={3}><InputFieldAndLabel
+                        <td colSpan={3}><InputFieldAndLabel
                             id="selection"
                             value={starship.serviceRecordStep?.selection ?? ""}
                             labelName={t('ServiceRecordPage.survivorOfX.selection')}
@@ -91,23 +150,14 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
                 r.type === ServiceRecord.BroughtOutOfMothballs
                     ? (<tr>
                         <td></td>
-                        <td rowSpan={2}><SimpleSystemSelector
-                            starship={starship}
-                            isChecked={(s) => starship.serviceRecordStep.system === s}
-                            onSelectSystem={(v) => onExtraDetailChange(v)}
-                        /></td>
-                        <td></td>
-                    </tr>)
-                    : undefined
-                }
-                {starship.serviceRecordStep?.type?.type === ServiceRecord.MajorRefit &&
-                r.type === ServiceRecord.MajorRefit
-                    ? (<tr>
-                        <td></td>
-                        <td rowSpan={2}>
-
-
-
+                        <td colSpan={2}>
+                            <div className="row"><div className="col-12 col-md-6">
+                                <SimpleSystemSelector
+                                starship={starship}
+                                isChecked={(s) => starship.serviceRecordStep.system === s}
+                                onSelectSystem={(v) => onExtraDetailChange(v)}
+                                />
+                            </div></div>
                         </td>
                         <td></td>
                     </tr>)
@@ -117,13 +167,58 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
                 r.type === ServiceRecord.StateOfTheArt
                     ? (<tr>
                         <td></td>
-                        <td rowSpan={2}><SimpleSystemSelector
-                            starship={starship}
-                            isChecked={(s) => starship.serviceRecordStep.system === s}
-                            onSelectSystem={(v) => onExtraDetailChange(v)}
-                        /></td>
+                        <td colSpan={2}>
+                            <div className="row"><div className="col-12 col-md-6">
+                                <SimpleSystemSelector
+                                    starship={starship}
+                                    isChecked={(s) => starship.serviceRecordStep.system === s}
+                                    onSelectSystem={(v) => onExtraDetailChange(v)} />
+                            </div></div>
+                        </td>
                         <td></td>
                     </tr>)
+                    : undefined
+                }
+                {starship.serviceRecordStep?.type?.type === ServiceRecord.MajorRefit &&
+                r.type === ServiceRecord.MajorRefit
+                    ? (<>
+                        <tr>
+                        <td></td>
+                            <td colSpan={2}>
+                                <div className="row"><div className="col-12 col-md-6">
+                                    <p>{t('Construct.other.systems')}</p>
+                                    <SimpleSystemSelector
+                                        starship={starship}
+                                        isChecked={(s) => starship.serviceRecordStep.system === s}
+                                        onSelectSystem={(v) => onExtraDetailChange(v)}
+                                        />
+                                    </div></div>
+                                </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colSpan={2}>
+                                <div className="row">
+                                    <div className="col-12 col-md-6">
+                                        <p>{t('ServiceRecordPage.removeTalent')}</p>
+                                        <SimpleStringSelector
+                                            values={getSpaceframeTalents()}
+                                            isChecked={(v) => v === starship.serviceRecordStep?.removedTalent}
+                                            onSelect={(v) => onRemovedTalentChange(v)} />
+                                    </div>
+                                    <div className="col-12 col-md-6">
+                                        <p>{t('ServiceRecordPage.replacedTalent')}</p>
+                                        <StarshipFreeformTalentSelectionView
+                                            starship={starship}
+                                            selectedTalent={starship.serviceRecordStep?.selectedTalent}
+                                            setSelectedTalent={(s) => onSelectedTalentChange(s)} />
+                                    </div>
+                                </div>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </>)
                     : undefined
                 }
             </tbody>);

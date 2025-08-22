@@ -102,7 +102,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 .join(", ");
             return (<div className="text-sm px-4"><b>{t("Construct.other.systems") + ": "}</b>
                 {selectedAttributes}</div>);
-        } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)"].includes(talent.name)) {
+        } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)", "Upgraded Systems (Service Record)"].includes(talent.name)) {
             let starship = construct as Starship;
             let selectedAttributes = starship.talents
                 .filter(s => s.talent === talent.name && s.system != null)

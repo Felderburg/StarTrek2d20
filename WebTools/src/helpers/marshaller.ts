@@ -814,6 +814,9 @@ class Marshaller {
             if (starship.serviceRecordStep.system != null) {
                 sheet["serviceRecord"]["system"] = System[starship.serviceRecordStep.system];
             }
+            if (starship.serviceRecordStep.removedTalent != null) {
+                sheet["serviceRecord"]["removedTalent"] = starship.serviceRecordStep.removedTalent;
+            }
         }
         if (starship.refits != null) {
             starship.refits.forEach(s => sheet.refits.push(System[s]));
@@ -1225,7 +1228,6 @@ class Marshaller {
     }
 
     decodeCharacter(json: any) {
-        console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;

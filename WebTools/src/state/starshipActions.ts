@@ -132,8 +132,10 @@ export function setStarshipSpaceframeTalents(talents: SelectedTalent[]) {
     }
 }
 
-export function setStarshipServiceRecord(serviceRecord: ServiceRecordModel, talent: TalentModel, selection?: string|System) {
-    let payload = { serviceRecord: serviceRecord, talent: talent, selection: selection };
+export function setStarshipServiceRecord(serviceRecord: ServiceRecordModel, talent: TalentModel, selection?: string|System,
+    removedTalent?: string, replacedTalent?: SelectedTalent) {
+    let payload = { serviceRecord: serviceRecord, talent: talent, selection: selection,
+        removedTalent: removedTalent, replacedTalent: replacedTalent };
     return {
        type: SET_STARSHIP_SERVICE_RECORD,
        payload: payload

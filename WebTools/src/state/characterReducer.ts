@@ -563,13 +563,11 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
             let temp = state.currentCharacter.copy();
             let t = action.payload.talent;
             let talent = undefined;
-            console.log("t", t)
             if (t != null && t instanceof SelectedTalent) {
                 talent = (t as SelectedTalent).copy();
             } else if (t != null) {
                 talent = new SelectedTalent((t as ITalent).name);
             }
-            console.log("talent", talent)
             if (action.payload.context === StepContext.Species) {
                 temp.speciesStep.talent = talent;
             } else if (action.payload.context === StepContext.EarlyOutlook) {
@@ -872,7 +870,6 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
             if (temp.improvements == null) {
                 temp.improvements = [];
             }
-            console.log(action.payload.rank);
             temp.improvements.push(new Promotion(action.payload.rank, action.payload.type));
             return {
                 ...state,

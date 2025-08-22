@@ -281,28 +281,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
     }
 
     async writeSpecialRules(page: PDFPage, starship: Starship, column: Column, colour: SimpleColor) {
-        let talents = [];
-        let paragraph = new Paragraph(page, column, this.fonts);
-        for (let t of starship.getDistinctTalentNameList()) {
-
-            if (paragraph) {
-                paragraph.indent(15);
-                const talent = TalentsHelper.getTalent(t);
-                if (talent.specialRule) {
-                    let readableTalent = new ReadableTalentModel(starship.type, talent);
-                    talents.push(readableTalent);
-                    if (talent && talent.maxRank > 1) {
-                        let rank = starship.getRankForTalent(t);
-                        readableTalent.rank = rank;
-                    }
-
-                    if (talent.name === TALENT_NAME_MISSION_POD && starship.missionPodModel) {
-                        readableTalent.missionPod = starship.missionPodModel;
-                    }
-                }
-            }
-        };
-
+        let talents = assembleStarshipTalents(starship, true);
         let writer = new TalentWriter(page, this.fonts, starship.version, colour, true);
         return await writer.writeTalents(talents, column, 8, 8);
     }

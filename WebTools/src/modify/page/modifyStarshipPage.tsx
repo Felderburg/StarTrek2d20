@@ -26,16 +26,8 @@ import { Dialog } from "../../components/dialog";
 import { SimpleSystemSelector } from "../../components/simpleSystemSelector";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { TalentSelector } from "./talentSelector";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_MINELAYER, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../../helpers/talents";
-import { ModalControl } from "../../components/modal";
-import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
-import { SelectedTalentDescriptionView } from "../../components/selectedTalentDescriptionView";
-import { PropulsionSystemModel, PropulsionSystemType } from "../../helpers/propulsionSystem";
-import { Weapon } from "../../helpers/weapons";
-import AddWeaponView, { AddWeaponMode } from "../../starship/view/addWeaponView";
-import { isMultiSelectionTalent } from "../../helpers/isMultiSelectionTalent";
 import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
-import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
+import { StarshipFreeformTalentSelectionView } from "../../components/starshipFreeformTalentSelectionView";
 
 const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
 
@@ -132,22 +124,6 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
         }
     }
 
-    const showTalentSelectionModal = () => {
-        const talents = TalentsHelper.getStarshipTalents(starship, true)
-            .filter(t => !starship.hasTalent(t.name)
-            || t.maxRank > 1
-            || isMultiSelectionTalent(t));
-        ModalControl.show("xl", () => ModalControl.hide(),
-
-            (<div>
-                <SimpleTalentSelectionList construct={starship} talents={talents} onSelection={(t) => setSelectedTalent(t == null ? undefined : t)} />
-                <div className="text-center mt-4">
-                    <Button size="sm" onClick={() => ModalControl.hide()}>{t('Common.button.ok')}</Button>
-                </div>
-            </div>),
-
-            t("ModifySupportingCharacter.talentModal.title"));
-    }
 
     const dropDownAdvancementChoices = () => {
         let result = [];
@@ -301,172 +277,22 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
                     </div>
                     <div className="col-12 col-md-6 mt-4">
                         <Header level={2} className="mb-4">{t('Common.text.new')}</Header>
-                        <div className="text-end mb-4">
-                            <Button size="sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
-                        </div>
-                        {selectedTalent == null
-                            ? (<p>No talent selected.</p>)
-                            :  <SelectedTalentDescriptionView talent={selectedTalent} version={starship.version} />}
-                    {handleAdditionalTalentSelections()}
+                        <StarshipFreeformTalentSelectionView
+                            starship={starship}
+                            selectedTalent={selectedTalent}
+                            setSelectedTalent={setSelectedTalent} />
                 </div>
                 </>)
                 : (<div className="col-12 col-md-6 mt-4">
                     <Header level={2} className="mb-4">{t('Common.text.new')}</Header>
-                    <div className="text-end mb-4">
-                        <Button size="sm" onClick={() => showTalentSelectionModal()}>{t('Common.text.select')}</Button>
-                    </div>
-                    {selectedTalent == null
-                        ? (<p>No talent selected.</p>)
-                        :  <SelectedTalentDescriptionView talent={selectedTalent} version={starship.version} />}
-                    {handleAdditionalTalentSelections()}
+                    <StarshipFreeformTalentSelectionView
+                        starship={starship}
+                        selectedTalent={selectedTalent}
+                        setSelectedTalent={setSelectedTalent} />
                 </div>)}
 
         </>);
     }
-
-    const handleAdditionalTalentSelections = () => {
-        if (selectedTalent?.name === TALENT_NAME_DEDICATED_PERSONNEL) {
-            return (<div className="my-3">
-                <StarshipDepartmentSelector
-                    starship={starship}
-                    isChecked={d => selectedTalent.department === d}
-                    onSelectDepartment={d => {
-                        let temp = selectedTalent?.copy();
-                        if (temp) {
-                            temp.department = d;
-                        }
-                        setSelectedTalent(temp);
-                    }}
-                />
-            </div>)
-        } else if (selectedTalent?.name === TALENT_NAME_CUSTOM_TALENT) {
-            return (<div className="my-3">
-                <div>
-                    <InputFieldAndLabel labelName={t('Common.text.talentName')}
-                        id="customName"
-                        value={selectedTalent.customTalentName}
-                        onChange={(n) => {
-                            let temp = selectedTalent?.copy();
-                            if (temp) {
-                                temp.customTalentName = n;
-                            }
-                            setSelectedTalent(temp);
-                        }
-                    } />
-                    </div>
-                    <div>
-                        <textarea className="w-100 mt-3"
-                            value={selectedTalent.customTalentDescription}
-                            placeholder={t('Common.text.description')}
-                            onChange={(e) => {
-                                let description = e.target.value;
-                                let temp = selectedTalent?.copy();
-                                if (temp) {
-                                    temp.customTalentDescription = description;
-                                }
-                                setSelectedTalent(temp);
-                            }} />
-                    </div>
-            </div>)
-        } else if (selectedTalent?.name === TALENT_NAME_EXPANSIVE_DEPARTMENT) {
-            return (<div className="my-3">
-                <StarshipDepartmentSelector
-                    starship={starship}
-                    isChecked={d => selectedTalent.department === d}
-                    onSelectDepartment={d => {
-                        let temp = selectedTalent?.copy();
-                        if (temp) {
-                            temp.department = d;
-                        }
-                        setSelectedTalent(temp);
-                    }}
-                    isUpdateable={d => starship.departments[d] === 5}
-                />
-            </div>)
-        } else if (selectedTalent?.name === TALENT_NAME_REDUNDANT_SYSTEMS) {
-            return (<div className="my-3">
-                <SimpleSystemSelector
-                    starship={starship}
-                    isChecked={d => selectedTalent.system === d}
-                    onSelectSystem={s => {
-                        let temp = selectedTalent?.copy();
-                        if (temp) {
-                            temp.system = s;
-                        }
-                        setSelectedTalent(temp);
-                    }}
-                />
-            </div>)
-        } else if (selectedTalent?.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {
-            const getItems = () => {
-                let result = [new DropDownElement("", "")];
-                result.push(...PropulsionSystemModel.types.map(t => new DropDownElement(t.type, t.localizedName)));
-                return result;
-            }
-
-            return (<div className="my-3">
-                <DropDownSelect
-                    items={getItems()}
-                    defaultValue={selectedTalent.selection as PropulsionSystemType}
-                    onChange={(s) => {
-                        let temp = selectedTalent?.copy();
-                        if (temp) {
-                            if (s === "") {
-                                temp.selection = undefined;
-                            } else {
-                                temp.selection = s as PropulsionSystemType;
-                            }
-                            setSelectedTalent(temp);
-                        }
-                    }}
-                />
-            </div>)
-        } else if ([TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_MINELAYER].includes(selectedTalent?.name)) {
-            let weaponName = "";
-            if (selectedTalent?.weapon) {
-                if (selectedTalent.weapon instanceof Weapon) {
-                    weaponName = selectedTalent.weapon.name;
-                } else {
-                    weaponName = selectedTalent.weapon as string;
-                }
-            }
-
-            const closeModal = () => {
-                ModalControl.hide();
-            }
-
-            const showModal = () => {
-                let mode = starship.version === 1 ? AddWeaponMode.IncludeMines : AddWeaponMode.NoMines;
-                if (selectedTalent.name === TALENT_NAME_MINELAYER) {
-                    mode = AddWeaponMode.MinesOnly;
-                } else if (starship.isMineLayer) {
-                    mode = AddWeaponMode.IncludeMines;
-                }
-                ModalControl.show("lg", () => closeModal(),
-                <AddWeaponView onClose={() => closeModal()}
-                    version={starship.version}
-                    addWeapon={(w) => {
-                        let temp = selectedTalent?.copy();
-                        if (temp) {
-                            temp.weapon = w;
-                            setSelectedTalent(temp);
-                        }
-                    }} mode={mode} />,
-                "Add Weapon");
-            }
-
-            return (
-                <div className="d-flex justify-content-between align-items-baseline my-3">
-                    <p className="mb-0">{weaponName}</p>
-                    <Button size="sm"
-                        onClick={() => showModal()}>{t('Common.button.select')}</Button>
-                </div>
-            );
-        } else {
-            return undefined;
-        }
-    }
-
 
     const createModificationOptionsView = () => {
         let option = undefined;

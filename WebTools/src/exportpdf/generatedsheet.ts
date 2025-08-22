@@ -229,7 +229,7 @@ export const assembleStarshipTalents = (starship: Starship, includeSpecialRules:
                 readableTalent.departments = starship.talents
                     .filter(s => s.talent === talent.name && s.department != null)
                     .map(s => s.department);
-            } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)"].includes(talent.name)) {
+            } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)", "Upgraded Systems (Service Record)"].includes(talent.name)) {
                 let temp = starship.talents
                     .filter(s => s.talent === talent.name && s.system != null)
                 if (temp.length) {

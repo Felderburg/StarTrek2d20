@@ -5,7 +5,7 @@ import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import { TalentModel, TalentViewModel, ToViewModel } from "../../helpers/talents";
+import { TalentModel } from "../../helpers/talents";
 import { nextStarshipWorkflowStep, setStarshipMissionProfile, setStarshipMissionProfileTalent } from "../../state/starshipActions";
 import store from "../../state/store";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
@@ -20,6 +20,7 @@ import { allSystems, System } from "../../helpers/systems";
 import { CheckBox } from "../../components/checkBox";
 import { SelectedTalent } from "../../common/selectedTalent";
 import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
+import { RankedTalent } from "../../helpers/rankedTalent";
 
 interface IMissionProfileTalentSelectionPageProperties {
     starship: Starship;
@@ -38,15 +39,15 @@ const MissionProfileTalentSelectionPage: React.FC<IMissionProfileTalentSelection
     }
 
     const getTalents = () => {
-        let talents: TalentViewModel[] = [];
+        let talents: RankedTalent[] = [];
         starship?.missionProfileStep?.type?.talents?.forEach(t => {
             let talent = t instanceof SelectedTalent ? (t as SelectedTalent).talentModel : (t as TalentModel);
             if (!talent.isSourcePrerequisiteFulfilled(starship)) {
                 // skip it
             } else if (!starship.spaceframeModel?.hasTalent(t.name)) {
-                talents.push(ToViewModel(talent, 1, starship?.type, starship?.version));
+                talents.push(new RankedTalent(talent, talent.maxRank > 1 ? 1 : undefined));
             } else if (talent.maxRank > 1) {
-                talents.push(ToViewModel(talent, 2, starship?.type, starship?.version));
+                talents.push(new RankedTalent(talent, starship.getRankForTalent(talent.name) + 1));
             }
         });
         return talents;

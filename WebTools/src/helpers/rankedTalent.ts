@@ -1,15 +1,15 @@
 import { TalentModel } from "./talents";
 
 export class RankedTalent {
-    readonly talent: TalentModel;
+    readonly talentModel: TalentModel;
     readonly rank?: number;
 
     constructor(talent: TalentModel, rank?: number) {
-        this.talent = talent;
+        this.talentModel = talent;
         this.rank = rank;
     }
 
     get name() {
-        return this.talent.name;
+        return this.talentModel.name;
     }
 }

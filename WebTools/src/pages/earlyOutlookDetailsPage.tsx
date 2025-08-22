@@ -5,7 +5,7 @@ import {AttributeView} from '../components/attribute';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {CheckBox} from '../components/checkBox';
-import { TALENT_NAME_BRAK_LUL, TalentsHelper, ToViewModel } from '../helpers/talents';
+import { TALENT_NAME_BRAK_LUL, TalentsHelper, TalentViewModel } from '../helpers/talents';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import InstructionText from '../components/instructionText';
@@ -27,6 +27,7 @@ import { SelectedTalent } from '../common/selectedTalent';
 import { FocusSelectionView } from '../components/focusSelectionView';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { RankedTalent } from '../helpers/rankedTalent';
 
 const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -61,9 +62,9 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
         store.dispatch(addCharacterTalent(talent, StepContext.EarlyOutlook));
     }
 
-    const filterTalentList = () => {
+    const filterTalentList = (): (RankedTalent|TalentViewModel)[] => {
         if (character.type === CharacterType.KlingonWarrior && character.speciesStep?.species === Species.Klingon && character.version === 1) {
-            return [ ToViewModel( TalentsHelper.getTalent(TALENT_NAME_BRAK_LUL), 1, character.type, character.version ) ];
+            return [ new RankedTalent( TalentsHelper.getTalent(TALENT_NAME_BRAK_LUL)) ];
         } else {
             return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
                 t => !character.hasTalent(t.name)

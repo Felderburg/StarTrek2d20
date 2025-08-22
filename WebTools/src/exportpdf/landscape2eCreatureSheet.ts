@@ -281,7 +281,6 @@ export const assembleCreatureTalents = (creature: Creature) => {
     let result: (ReadableTalentModel|RoleModel|SpeciesAbility)[] = [];
 
     creature.talents.forEach(t => {
-        console.log(t);
         const talent = t.talentModel;
         if (talent) {
             const readableTalent = new ReadableTalentModel(creature.type, talent);

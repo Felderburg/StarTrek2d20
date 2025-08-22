@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {TalentDescription} from '../components/talentDescription';
 import ValueInput from '../components/valueInput';
-import { TalentsHelper, ToViewModel } from '../helpers/talents';
+import { TalentsHelper, TalentViewModel } from '../helpers/talents';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
@@ -22,6 +22,7 @@ import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtr
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 import { hasSource, isSecondEdition } from '../state/contextFunctions';
 import { Source } from '../helpers/sources';
+import { RankedTalent } from '../helpers/rankedTalent';
 
 const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) => {
 
@@ -94,15 +95,15 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
         }
     }
 
-    const filterTalentList = () => {
+    const filterTalentList = (): (TalentViewModel|RankedTalent)[] => {
         if (career.id === Career.Veteran && wroteTheBook !== undefined) {
             return [
-                ToViewModel(TalentsHelper.getTalent("Veteran"), 1, character.type, character.version),
-                ToViewModel(wroteTheBook, 1, character.type, character.version),
+                new RankedTalent(TalentsHelper.getTalent("Veteran")),
+                new RankedTalent(wroteTheBook),
             ];
         } else if (career.id === Career.Veteran) {
             return [
-                ToViewModel(TalentsHelper.getTalent("Veteran"), 1, character.type, character.version),
+                new RankedTalent(TalentsHelper.getTalent("Veteran")),
             ];
         } else {
             return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(

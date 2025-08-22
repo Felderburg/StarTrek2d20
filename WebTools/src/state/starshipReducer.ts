@@ -163,6 +163,12 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
                         s.serviceRecordStep.system = action.payload.selection as System;
                     }
                 }
+                if (action.payload.removedTalent != null) {
+                    s.serviceRecordStep.removedTalent = action.payload.removedTalent;
+                }
+                if (action.payload.replacedTalent != null) {
+                    s.serviceRecordStep.selectedTalent = action.payload.replacedTalent.copy();
+                }
             }
             return {
                 ...state,

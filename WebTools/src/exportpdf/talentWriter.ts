@@ -226,7 +226,7 @@ export class TalentWriter {
                             paragraph.append("Selection: ", new FontOptions(fontSize, FontType.Bold));
                             paragraph.append(i18next.t(makeKey('Construct.system.', System[talent.system])), new FontOptions(fontSize));
                         }
-                    } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)"].includes(talent.talent.name)) {
+                    } else if (["Peak Performance (Service Record)", "The Last Generation (Service Record)", "Upgraded Systems (Service Record)"].includes(talent.talent.name)) {
                         if (talent.system != null) {
                             paragraph = paragraph?.nextParagraph(0);
                             if (paragraph) {
