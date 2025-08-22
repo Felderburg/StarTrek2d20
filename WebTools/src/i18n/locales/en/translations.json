@@ -390,6 +390,11 @@
 
     "ServiceRecordPage.survivorOfX.selection": "Battle or War",
 
+    "ServiceRecordPage.removeTalent": "Removed Talent",
+    "ServiceRecordPage.replacedTalent": "Replaced Talent",
+
+    "ServiceRecordPage.error.talents": "Please select two talents -- one to remove and a replacement.",
+
     "SoloCareerEvent.instruction": "Your character’s career is a tapestry of events and experiences, but a few will have been pivotal moments in the character’s life. A character defines which moments of their life are important in retrospect, and what seemed definitive to a young ensign may be inconsequential to that same officer decades later.\n\nYour character has two defining career events, chosen or determined randomly from the list below, and gains whatever benefits they provide.\n\nFor characters that chose Novice Career Length, assume that these career events took place during the character’s time at the Academy or equivalent, perhaps during a field training assignment aboard a starship.",
 
     "SoloConstructTypePage.character": "Character",
@@ -3379,6 +3384,7 @@
 
     "Talent.imADoctorNotA": "I'm a Doctor, Not a...",
 
+    "Talent.imADoctorNotA.description": "When this Talent is purchased, select a Discipline with a score of 1. Once per scene, before attempting a Task using the selected Discipline, a point of Determination may be spent to substitute the character’s Medicine Score in place of that Discipline. This does not have to be linked to a Value.",
     "Talent.imADoctorNotA.description2e": "When you select this talent, choose one of your departments, with which you have a score of 1. When you attempt a task using the selected department, and you spend a point of Determination on that task, you may use your Medicine score instead of that department. The normal limits of spending Determination apply.",
 
     "Talent.imGivingItAllShesGot": "I'm Giving It All She's Got!",

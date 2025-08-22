@@ -36,7 +36,7 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
     const nextPage = () => {
         let ok = true;
         if (starship.serviceRecordStep?.type?.type === ServiceRecord.MajorRefit) {
-            if (starship.serviceRecordStep?.selection == null) {
+            if (starship.serviceRecordStep?.system == null) {
                 ok = false;
                 Dialog.show(t('Common.error.system'));
             } else if (starship.serviceRecordStep?.removedTalent == null
@@ -46,6 +46,11 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
             } else if (determineSelectedTalentExtraErrors(starship.serviceRecordStep?.selectedTalent) != null) {
                 ok = false;
                 Dialog.show(determineSelectedTalentExtraErrors(starship.serviceRecordStep?.selectedTalent));
+            }
+        } else if ([ServiceRecord.BroughtOutOfMothballs, ServiceRecord.StateOfTheArt].includes(starship.serviceRecordStep?.type?.type)) {
+            if (starship.serviceRecordStep?.system == null) {
+                ok = false;
+                Dialog.show(t('Common.error.system'));
             }
         }
 

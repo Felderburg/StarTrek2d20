@@ -2,7 +2,7 @@
 import { Navigation } from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import { SpeciesHelper, SpeciesModel } from '../helpers/species';
-import { TalentsHelper, ToViewModel } from '../helpers/talents';
+import { TalentsHelper } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
 import { Dialog } from '../components/dialog';
@@ -33,6 +33,7 @@ import Markdown from 'react-markdown';
 import { makeKey } from '../common/translationKey';
 import { ModalControl } from '../components/modal';
 import { SimpleSpeciesSelection } from '../components/simpleSpeciesSelection';
+import { RankedTalent } from '../helpers/rankedTalent';
 
 interface ISpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -103,11 +104,11 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
         if (character.speciesStep?.ability == null) {
             let species = SpeciesHelper.getSpeciesByType(character.speciesStep?.species);
             species.talents
-                .map(t => ToViewModel(t, 1, character.type, character.version))
+                .map(t => new RankedTalent(t))
                 .forEach(t => talents.push(t));
         } else if (character.speciesStep?.ability?.talentNames?.length) {
             character.speciesStep.ability.talentNames
-                .map(t => ToViewModel(TalentsHelper.getTalent(t), 1, character.type, character.version))
+                .map(t => new RankedTalent(TalentsHelper.getTalent(t)))
                 .forEach(t => talents.push(t));
         }
 

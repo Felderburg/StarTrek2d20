@@ -989,7 +989,7 @@ export class TalentViewModel {
     }
 }
 
-export function ToViewModel(talent: TalentModel, rank: number = 1, type: CharacterType, version: number): TalentViewModel {
+function ToViewModel(talent: TalentModel, rank: number = 1, type: CharacterType, version: number): TalentViewModel {
     let name = talent.name;
     if (type === CharacterType.KlingonWarrior) {
         name = talent.nameForSource(Source.KlingonCore);
