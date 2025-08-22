@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {TalentDescription} from '../components/talentDescription';
 import ValueInput from '../components/valueInput';
-import { TalentsHelper, TalentViewModel } from '../helpers/talents';
+import { TalentsHelper } from '../helpers/talents';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
@@ -95,7 +95,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
         }
     }
 
-    const filterTalentList = (): (TalentViewModel|RankedTalent)[] => {
+    const filterTalentList = (): RankedTalent[] => {
         if (career.id === Career.Veteran && wroteTheBook !== undefined) {
             return [
                 new RankedTalent(TalentsHelper.getTalent("Veteran")),
@@ -106,11 +106,22 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
                 new RankedTalent(TalentsHelper.getTalent("Veteran")),
             ];
         } else {
-            return TalentsHelper.getAllAvailableTalentViewModelsForCharacter(character).filter(
+            return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
                 t => !character.hasTalent(t.name)
                     || (character.careerStep?.talent?.talent === t.name)
-                    || t.rank > 1
-                    || isMultiSelectionTalent(t));
+                    || t.maxRank > 1
+                    || isMultiSelectionTalent(t))
+                .map(t => {
+                    if (t.maxRank > 1) {
+                        if (character.careerStep?.talent?.talent === t.name) {
+                            return new RankedTalent(t, character.getRankForTalent(t.name));
+                        } else {
+                            return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
+                        }
+                    } else {
+                        return new RankedTalent(t);
+                    }
+                });
         }
     }
 

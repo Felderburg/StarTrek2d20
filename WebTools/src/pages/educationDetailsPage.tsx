@@ -32,6 +32,7 @@ import { localizedFocus } from '../components/focusHelper';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { RankedTalent } from '../helpers/rankedTalent';
 
 const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -172,12 +173,23 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
             </div>);
     }
 
-    const filterTalentList = () => {
-        return TalentsHelper.getAllAvailableTalentViewModelsForCharacter(character).filter(
+    const filterTalentList = (): RankedTalent[] => {
+        return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
             t => !character.hasTalent(t.name)
                 || (character.educationStep?.talent?.talent === t.name)
-                || t.rank > 1
-                || isMultiSelectionTalent(t));
+                || t.maxRank > 1
+                || isMultiSelectionTalent(t))
+            .map(t => {
+                if (t.maxRank > 1) {
+                    if (character.educationStep?.talent?.talent === t.name) {
+                        return new RankedTalent(t, character.getRankForTalent(t.name));
+                    } else {
+                        return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
+                    }
+                } else {
+                    return new RankedTalent(t);
+                }
+            });
     }
 
     const onTalentSelected = (talent?: SelectedTalent) => {

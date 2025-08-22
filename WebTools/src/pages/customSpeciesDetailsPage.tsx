@@ -150,12 +150,11 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
                     </div>
                 </div>
                 {renderTalentsSection()}
-                <div className="text-end">
+                <div className="text-end mt-5">
                     <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
                 </div>
             </div>
         </div>);
-
 }
 
 function mapStateToProps(state, ownProps) {

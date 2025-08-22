@@ -71,6 +71,17 @@ export const TALENT_NAME_IM_A_DOCTOR_NOT_A = "I’m a Doctor, Not a...";
 
 export const TALENT_NAME_CUSTOM_TALENT = "Custom Talent";
 
+export const talentNameCompare = (t1: TalentModel, t2: TalentModel) => {
+    if (t1.name === t2.name) {
+        return 0;
+    } else if (t1.name === TALENT_NAME_CUSTOM_TALENT) {
+        return 1;
+    } else if (t2.name === TALENT_NAME_CUSTOM_TALENT) {
+        return -1;
+    } else {
+        return t2.name > t1.name ? -1 : 1;
+    }
+}
 
 enum TalentCategory {
     General,
@@ -949,54 +960,6 @@ export class TalentModel implements ITalent {
             }
         }
     }
-}
-
-export class TalentViewModel {
-    talentModel: TalentModel;
-    id: string;
-    name: string;
-    rank: number;
-    hasRank: boolean;
-    description: string;
-    category: string;
-    prerequisites: IConstructPrerequisite<Construct>[];
-    displayName: string;
-    specialRule: boolean;
-    localizedName:string;
-
-    constructor(talent: TalentModel, name: string, localizedName:string, rank: number, showRank: boolean, description: string, skill: Department, category: string, prerequities: IConstructPrerequisite<Character>[], specialRule: boolean) {
-        this.talentModel = talent;
-        this.description = description;
-        this.rank = rank;
-        this.hasRank = showRank;
-        this.displayName = this.constructDisplayName(name, localizedName, rank, showRank, skill, category);
-        this.name = name;
-        this.prerequisites = prerequities;
-        this.category = category;
-        this.specialRule = specialRule;
-        this.localizedName = localizedName;
-    }
-
-    private constructDisplayName(name: string, localizedName: string, rank: number, showRank: boolean, skill: Department, category: string) {
-        let displayName = localizedName + ((showRank && category !== "Starship" && category !== "Starbase") ? " [Rank: " + rank + "]" : "");
-        let suffix = skill !== undefined
-            ? ` (${DepartmentsHelper.instance.getDepartmentName(skill)})`
-            : category.length > 0 ? ` (${category})` : "";
-        if (displayName.indexOf(suffix) < 0) {
-            displayName += suffix;
-        }
-        return displayName;
-    }
-}
-
-function ToViewModel(talent: TalentModel, rank: number = 1, type: CharacterType, version: number): TalentViewModel {
-    let name = talent.name;
-    if (type === CharacterType.KlingonWarrior) {
-        name = talent.nameForSource(Source.KlingonCore);
-    }
-    return new TalentViewModel(talent, name, talent.localizedName, rank, talent.maxRank > 1,
-        version === 1 ? talent.localizedDescription : talent.localizedDescription2e,
-        undefined, talent.category, talent.prerequisites, talent.specialRule);
 }
 
 export class Talents {
@@ -5162,20 +5125,6 @@ export class Talents {
         return result;
     }
 
-    // let's stop using this...
-    private getTalentViewModel(name: string, character?: Character) {
-        let talent = this.getTalent(name);
-
-        if (talent) {
-            let rank = character?.hasTalent(talent.name)
-                ? character?.talents[talent.name].rank + 1
-                : 1;
-            return ToViewModel(talent, rank, character?.type ?? CharacterType.Starfleet, character?.version ?? 1);
-        } else {
-            return null;
-        }
-    }
-
     getTalent(name: string) {
         let talent: TalentModel = null;
 
@@ -5250,39 +5199,11 @@ export class Talents {
             if (character.stereotype === Stereotype.Npc) {
                 let rules = this._specialRules.filter(t => t.isPrerequisiteFulfilled(character) && !character.hasTalent(t.name));
                 result.push(...rules);
+            } else if (character.stereotype === Stereotype.MainCharacter)  {
+                result.push(this.customTalent);
             }
 
-            result.sort((a, b) => a.name.localeCompare(b.name));
-            return result;
-        }
-    }
-
-    getAllAvailableTalentViewModelsForCharacter(character: Character) {
-        if (character.speciesStep?.species === Species.Klingon && !character.hasTalent("Brak’lul")
-                && hasAnySource([Source.KlingonCore, Source.BetaQuadrant]) && character.version === 1) {
-            return [this.getTalentViewModel("Brak’lul")];
-        } else if (character.speciesStep?.species === Species.Changeling && !character.hasTalent("Morphogenic Matrix")) {
-            return [this.getTalentViewModel("Morphogenic Matrix")];
-        } else {
-            let result = this._talents.filter(t => t.isPrerequisiteFulfilled(character)).map(t => {
-                if (character.hasTalent(t.name)) {
-                    let tempRank = character.getRankForTalent(t.name);
-                    if (tempRank != null && tempRank < t.maxRank) {
-                        return ToViewModel(t, tempRank + 1, character.type, character.version);
-                    } else {
-                        return ToViewModel(t, 1, character.type, character.version);
-                    }
-                } else {
-                    return ToViewModel(t, 1, character.type, character.version);
-                }
-            });
-
-            if (character.stereotype === Stereotype.Npc) {
-                let rules = this._specialRules.filter(t => t.isPrerequisiteFulfilled(character) && !character.hasTalent(t.name));
-                rules.forEach(t => result.push(ToViewModel(t, 1, character.type, character.version)));
-            }
-
-            result.sort((a, b) => a.name.localeCompare(b.name));
+            result.sort(talentNameCompare);
             return result;
         }
     }

@@ -23,6 +23,7 @@ import { addCharacterTalent, setCharacterFinishingTouches, setCharacterValue, St
 import { isSecondEdition } from '../state/contextFunctions';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { RankedTalent } from '../helpers/rankedTalent';
 
 const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character})  => {
 
@@ -40,11 +41,22 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
     }
 
     const filterTalentList = () => {
-        return TalentsHelper.getAllAvailableTalentViewModelsForCharacter(character).filter(
+        return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
             t => !character.hasTalent(t.name)
                 || (character.finishingStep?.talent?.talent === t.name)
-                || t.rank > 1
-                || isMultiSelectionTalent(t));
+                || t.maxRank > 1
+                || isMultiSelectionTalent(t))
+            .map(t => {
+                if (t.maxRank > 1) {
+                    if (character.finishingStep?.talent?.talent === t.name) {
+                        return new RankedTalent(t, character.getRankForTalent(t.name));
+                    } else {
+                        return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
+                    }
+                } else {
+                    return new RankedTalent(t);
+                }
+            });
     }
 
     const isTalentSelectionNeeded = () => {

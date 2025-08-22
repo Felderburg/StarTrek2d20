@@ -1,6 +1,6 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_MINELAYER, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAMOUFLAGED_X, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_INITIATIVE_X, TALENT_NAME_MENACING_X, TALENT_NAME_MINELAYER, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { ITalent } from '../helpers/italent';
 import { SelectedTalent } from '../common/selectedTalent';
@@ -19,7 +19,7 @@ import { AttackType } from '../common/attackType';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import Markdown from 'react-markdown';
 import { t } from 'i18next';
-import { RankedTalent } from '../helpers/rankedTalent';
+import { RankedTalent, rankedTalentNameCompare } from '../helpers/rankedTalent';
 import { Starship } from '../common/starship';
 import { PropulsionSystemModel, PropulsionSystemType } from '../helpers/propulsionSystem';
 import { Weapon } from '../helpers/weapons';
@@ -30,7 +30,7 @@ import { SimpleSystemSelector } from './simpleSystemSelector';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 
 interface ISingleTalentSelectionProperties {
-    talents: (TalentViewModel|RankedTalent)[]
+    talents: RankedTalent[]
     construct: Construct;
     initialSelection?: ITalent|SelectedTalent;
     onSelection: (talent?: SelectedTalent) => void;
@@ -922,15 +922,10 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
         onSelection(selection);
     }
 
-    talents = talents.sort((t1, t2) => {
-        return t1.talentModel.localizedName.localeCompare(t2.talentModel.localizedName);
-    })
+    talents = talents.sort(rankedTalentNameCompare);
 
     const talentList = talents.map((t, i) => {
-        const talent = t.talentModel;
-        const rank = talent.maxRank > 1 ? t.rank : undefined;
-        const rankedTalent = t instanceof RankedTalent ? t as RankedTalent : new RankedTalent(talent, rank);
-        return (<TalentSelectionRow talent={rankedTalent}
+        return (<TalentSelectionRow talent={t}
             construct={construct}
             onSelection={updateSelection}
             selection={selection}
