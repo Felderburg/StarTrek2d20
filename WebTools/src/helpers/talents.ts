@@ -5238,7 +5238,26 @@ export class Talents {
         return talent;
     }
 
-    getAllAvailableTalentsForCharacter(character: Character) {
+    getAllAvailableTalentsForCharacter(character: Character): TalentModel[] {
+        if (character.speciesStep?.species === Species.Klingon && !character.hasTalent("Brak’lul")
+                && hasAnySource([Source.KlingonCore, Source.BetaQuadrant]) && character.version === 1) {
+            return [this.getTalent("Brak’lul")];
+        } else if (character.speciesStep?.species === Species.Changeling && !character.hasTalent("Morphogenic Matrix")) {
+            return [this.getTalent("Morphogenic Matrix")];
+        } else {
+            let result = this._talents.filter(t => t.isPrerequisiteFulfilled(character));
+
+            if (character.stereotype === Stereotype.Npc) {
+                let rules = this._specialRules.filter(t => t.isPrerequisiteFulfilled(character) && !character.hasTalent(t.name));
+                result.push(...rules);
+            }
+
+            result.sort((a, b) => a.name.localeCompare(b.name));
+            return result;
+        }
+    }
+
+    getAllAvailableTalentViewModelsForCharacter(character: Character) {
         if (character.speciesStep?.species === Species.Klingon && !character.hasTalent("Brak’lul")
                 && hasAnySource([Source.KlingonCore, Source.BetaQuadrant]) && character.version === 1) {
             return [this.getTalentViewModel("Brak’lul")];

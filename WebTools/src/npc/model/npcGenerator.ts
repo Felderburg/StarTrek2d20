@@ -775,7 +775,7 @@ export class NpcGenerator {
                             }
                         }
 
-                        if (!character.hasTalent(talent.name) || talent.hasRank) {
+                        if (!character.hasTalent(talent.name) || talent.maxRank > 1) {
                             character.addTalent(selectedTalent);
                             done = true;
                         }

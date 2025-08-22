@@ -1209,7 +1209,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         let traits = [ ...this.traits ];
         if (this.speciesStep != null) {
             let species = SpeciesHelper.getSpeciesByType(this.speciesStep?.species);
-            if (traits.indexOf(species.name) >= 0) {
+            if (species != null && traits.indexOf(species.name) >= 0) {
                 traits.splice(traits.indexOf(species.name), 1);
             }
             traits.push(this.localizedSpeciesName);

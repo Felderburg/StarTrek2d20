@@ -84,11 +84,22 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     }
 
     const filterTalentList = () => {
-        return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-            t => !character.hasTalent(t.name)
+        return TalentsHelper.getAllAvailableTalentsForCharacter(character)
+            .filter(t => !character.hasTalent(t.name)
                 || (character.speciesStep?.talent?.talent === t.name)
-                || t.rank > 1
-                || isMultiSelectionTalent(t));
+                || t.maxRank > 1
+                || isMultiSelectionTalent(t))
+            .map(t => {
+                if (t.maxRank > 1) {
+                    if (character.speciesStep?.talent?.talent === t.name) {
+                        return new RankedTalent(t, character.getRankForTalent(t.name));
+                    } else {
+                        return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
+                    }
+                } else {
+                    return new RankedTalent(t);
+                }
+            });
     }
 
     const renderTalentsSection = () => {
@@ -129,8 +140,9 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     }
 
     const renderVersion1TalentsSection = () => {
-        let talents = [];
-        talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character));
+        let talents: RankedTalent[] = [];
+        talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character)
+            .map(t => new RankedTalent(t)));
 
         const esotericTalentOption = (hasSource(Source.PlayersGuide)) ? (<div>
                 <CheckBox

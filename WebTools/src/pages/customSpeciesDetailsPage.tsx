@@ -23,6 +23,8 @@ import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { addCharacterTalent, setCharacterSpecies, StepContext } from '../state/characterActions';
 import { CustomSpeciesAttributeController } from '../components/speciesController';
 import { SelectedTalent } from '../common/selectedTalent';
+import { RankedTalent } from '../helpers/rankedTalent';
+import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 
 interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -35,8 +37,23 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
     const controller = new CustomSpeciesAttributeController(character);
 
     const renderTalentsSection = () => {
-        let talents = [];
-        talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character));
+        let talents: RankedTalent[] = [];
+        talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character)
+            .filter(t => !character.hasTalent(t.name)
+                        || (character.speciesStep?.talent?.talent === t.name)
+                        || t.maxRank > 1
+                        || isMultiSelectionTalent(t))
+            .map(t => {
+                if (t.maxRank > 1) {
+                    if (character.speciesStep?.talent?.talent === t.name) {
+                        return new RankedTalent(t, character.getRankForTalent(t.name));
+                    } else {
+                        return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
+                    }
+                } else {
+                    return new RankedTalent(t);
+                }
+            }));
 
         const esotericTalentOption = (hasSource(Source.PlayersGuide)) ? (<div>
                 <CheckBox

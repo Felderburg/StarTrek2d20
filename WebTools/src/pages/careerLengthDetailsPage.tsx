@@ -106,7 +106,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
                 new RankedTalent(TalentsHelper.getTalent("Veteran")),
             ];
         } else {
-            return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
+            return TalentsHelper.getAllAvailableTalentViewModelsForCharacter(character).filter(
                 t => !character.hasTalent(t.name)
                     || (character.careerStep?.talent?.talent === t.name)
                     || t.rank > 1

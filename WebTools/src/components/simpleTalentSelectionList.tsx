@@ -1,13 +1,13 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_CUSTOM_TALENT, TalentModel, TalentViewModel} from '../helpers/talents';
+import {TALENT_NAME_CUSTOM_TALENT, TalentModel} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { Construct } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';
 import { ITalent } from '../helpers/italent';
 
 interface ISimpleTalentSelectionProperties {
-    talents: (TalentViewModel|TalentModel)[]
+    talents: TalentModel[]
     construct: Construct;
     initialSelection?: string;
     onSelection: (talent?: SelectedTalent) => void;
@@ -65,13 +65,7 @@ const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
             prerequisites = (<div style={{ fontWeight: "bold" }}>{prerequisites}</div>);
         }
 
-        let description = "";
-        if (t instanceof TalentModel) {
-            description = construct.version === 1 ? (t as TalentModel).localizedDescription : (t as TalentModel).localizedDescription2e;
-        } else if (t instanceof TalentViewModel) {
-            description = t.description;
-        }
-
+        let description = construct.version === 1 ? (t as TalentModel).localizedDescription : (t as TalentModel).localizedDescription2e;
         let lines = description.split('\n').map((l, i) => {
             return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
         })

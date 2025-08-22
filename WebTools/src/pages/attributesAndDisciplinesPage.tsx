@@ -40,7 +40,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
     }
 
     const filterTalentList = () => {
-        return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
+        return TalentsHelper.getAllAvailableTalentViewModelsForCharacter(character).filter(
             t => !character.hasTalent(t.name)
                 || (character.finishingStep?.talent?.talent === t.name)
                 || t.rank > 1
