@@ -190,21 +190,6 @@ class HasUntrainedDisciplinePrerequisite implements IConstructPrerequisite<Chara
     }
 };
 
-class UntrainedDisciplinePrerequisite implements IConstructPrerequisite<Character> {
-    private discipline: Department;
-
-    constructor(discipline: Department) {
-        this.discipline = discipline;
-    }
-
-    isPrerequisiteFulfilled(c: Character) {
-        return c.departments[this.discipline] <= 1;
-    }
-    describe(): string {
-        return "Requires " + Department[this.discipline] + " <= 1";
-    }
-};
-
 class VariableDisciplinePrerequisite implements IConstructPrerequisite<Character> {
     private discipline1: Department;
     private discipline2: Department;
