@@ -1,5 +1,7 @@
 import { D20 } from "../../common/die"
 import { TableRoll } from "../../common/tableRoll"
+import { Source } from "../../helpers/sources";
+import { hasSource } from "../../state/contextFunctions";
 
 export const numberOfMoonsTable: TableRoll<number> = () => {
 
@@ -30,7 +32,11 @@ export const numberOfMoonsTable: TableRoll<number> = () => {
             return 4;
         case 20:
         default:
-            return 5;
+            if (hasSource(Source.ExplorationGuide)) {
+                return 5 + (numberOfMoonsTable()-1);
+            } else {
+                return 5;
+            }
     }
 }
 

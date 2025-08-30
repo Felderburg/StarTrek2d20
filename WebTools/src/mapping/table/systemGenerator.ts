@@ -726,7 +726,7 @@ class SystemGeneration {
     }
 
 
-    createBasicWorld(isPrimaryWorld: boolean, orbit: Orbit, romanNumeral: number, region: SpaceRegionModel, starSystem: StarSystem, useCoreTable: boolean = false) {
+    createBasicWorld(isPrimaryWorld: boolean, orbit: Orbit, romanNumeral: number, region: SpaceRegionModel, starSystem: StarSystem, useCoreTable: boolean = false): World {
         if (region.id !== SpaceRegion.ShackletonExpanse && (isPrimaryWorld || useCoreTable || (orbit.radius < starSystem.gardenZoneOuterRadius && orbit.radius >= starSystem.gardenZoneInnerRadius))) {
 
             let roll = D20.roll() + D20.roll();
@@ -820,7 +820,15 @@ class SystemGeneration {
                     } else {
                         romanNumeralId++;
                         if (!world.worldClass.isGasGiant) {
-                            world.numberOfSatellites = numberOfMoonsTable();
+                            let moons = numberOfMoonsTable();
+                            let modifier = 0;
+                            if (starSystem.star?.spectralClass?.id === SpectralClass.M) {
+                                modifier += 1;
+                            }
+                            if (starSystem.isInGardenZone(world.orbitalRadius)) {
+                                modifier += 1;
+                            }
+                            world.numberOfSatellites = Math.max(moons + modifier, 0);
                         }
                     }
 

@@ -22,6 +22,7 @@ import { PageIdentity } from './pageIdentity';
 import DisciplineListComponent, { IDisciplineController } from '../components/disciplineListComponent';
 import { Department } from '../helpers/department';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 
 class ChildDecrementAttributeController implements IAttributeController {
 
@@ -289,7 +290,7 @@ const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({characte
 
             </div>
             <div className="col-lg-6 my-3">
-                <Header level={2}>{t('Construct.other.disciplines')}</Header>
+                <Header level={2}><DisciplinesOrDepartments character={character} /></Header>
                 <p className="my-2">
                     Decrease {decrementDisciplineController.count === 1 ? " 1 discipline " : (" " + decrementDisciplineController.count + " disciplines ")}
                     to reflect the young age of the character:

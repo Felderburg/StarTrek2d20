@@ -33,6 +33,7 @@ import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 import { RankedTalent } from '../helpers/rankedTalent';
+import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 
 const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -125,28 +126,28 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
     const renderDisciplines = (track: TrackModel) => {
         if (track.id === Track.EnlistedSecurityTraining) {
             return (<div className="col-lg-6 my-3">
-                    <Header level={2}>{t('Construct.other.disciplines')}</Header>
+                    <Header level={2}><DisciplinesOrDepartments character={character} /></Header>
                     <DepartmentView points={2} skill={Department.Security} character={character} />
                     <DepartmentView points={1} skill={Department.Conn}  character={character}/>
                     <DepartmentView points={1} skill={Department.Engineering}  character={character}/>
                 </div>);
         } else if (track.id === Track.ShipOperations) {
             return (<div className="col-lg-6 my-3">
-                    <Header level={2}>{t('Construct.other.disciplines')}</Header>
+                    <Header level={2}><DisciplinesOrDepartments character={character} /></Header>
                     <DepartmentView points={2} skill={Department.Conn}  character={character}/>
                     <DepartmentView points={1} skill={Department.Engineering}  character={character}/>
                     <DepartmentView points={1} skill={Department.Science}  character={character}/>
                 </div>);
         } else if (track.id === Track.UniversityAlumni) {
             return (<div className="col-lg-6 my-3">
-                    <Header level={2}>{t('Construct.other.disciplines')}</Header>
+                    <Header level={2}><DisciplinesOrDepartments character={character} /></Header>
                     <DepartmentView points={2} skill={Department.Science}  character={character}/>
                     <DepartmentView points={1} skill={Department.Engineering}  character={character}/>
                     <DepartmentView points={1} skill={Department.Command}  character={character}/>
                 </div>);
         } else if (track.id === Track.ResearchInternship) {
             return (<div className="col-lg-6 my-3">
-                    <Header level={2}>{t('Construct.other.disciplines')}</Header>
+                    <Header level={2}><DisciplinesOrDepartments character={character} /></Header>
                     <DepartmentView points={2} skill={Department.Science}  character={character}/>
                     <DepartmentView points={1} skill={Department.Engineering}  character={character}/>
                     <DepartmentView points={1} skill={Department.Medicine}  character={character}/>

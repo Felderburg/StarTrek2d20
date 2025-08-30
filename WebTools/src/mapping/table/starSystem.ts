@@ -43,6 +43,10 @@ export class StarSystem {
         }
     }
 
+    isInInnerZone(radius: number) {
+        return (this.gardenZoneInnerRadius < radius)
+    }
+
     isInGardenZone(radius: number) {
         return (this.gardenZoneInnerRadius >= radius && this.gardenZoneOuterRadius < radius)
     }
