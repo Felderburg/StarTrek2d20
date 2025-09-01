@@ -12,8 +12,10 @@ import { nextStarshipWorkflowStep, setStarshipSpaceframeTalents } from '../../st
 import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
 import { StarshipDepartmentSelector } from '../../components/simpleDepartmentSelector';
 import { SelectedTalent } from '../../common/selectedTalent';
-import { TALENT_NAME_DEDICATED_PERSONNEL, TalentsHelper } from '../../helpers/talents';
+import { TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from '../../helpers/talents';
 import Markdown from 'react-markdown';
+import { SimpleSystemSelector } from '../../components/simpleSystemSelector';
+import { Dialog } from '../../components/dialog';
 
 interface IExtraStarshipTalentChoicesProperties extends IStarshipProperties {
     workflow: ShipBuildWorkflow;
@@ -21,12 +23,23 @@ interface IExtraStarshipTalentChoicesProperties extends IStarshipProperties {
 
 const ExtraStarshipTalentChoicesPage : React.FC<IExtraStarshipTalentChoicesProperties> = ({starship, workflow}) => {
 
+    let defaultTalent = null;
+
+    if (starship.spaceframeStep.model.talents.filter(t => t.name === TALENT_NAME_DEDICATED_PERSONNEL)?.length) {
+        defaultTalent = new SelectedTalent(TALENT_NAME_DEDICATED_PERSONNEL);
+    } else if (starship.spaceframeStep.model.talents.filter(t => t.name === TALENT_NAME_REDUNDANT_SYSTEMS)?.length) {
+        defaultTalent = new SelectedTalent(TALENT_NAME_REDUNDANT_SYSTEMS);
+    }
+
     const { t } = useTranslation();
-    const [ selection, setSelection ] = useState(
-        starship.spaceframeStep.talents[0] ?? new SelectedTalent(TALENT_NAME_DEDICATED_PERSONNEL));
+    const [ selection, setSelection ] = useState(starship.spaceframeStep.talents[0] ?? defaultTalent);
 
     const onNext = () => {
-        if (starship.spaceframeModel.isMissionPodAvailable) {
+        if (selection.name === TALENT_NAME_REDUNDANT_SYSTEMS && selection.system == null) {
+            Dialog.show(t('Common.error.system'));
+        } else if (selection.name === TALENT_NAME_DEDICATED_PERSONNEL && selection.department == null) {
+            Dialog.show(t('Common.error.department'));
+        } else if (starship.spaceframeModel.isMissionPodAvailable) {
             Navigation.navigateToPage(PageIdentity.MissionPodSelection);
         } else {
             let step = workflow.peekNextStep();
@@ -56,6 +69,26 @@ const ExtraStarshipTalentChoicesPage : React.FC<IExtraStarshipTalentChoicesPrope
         </div>);
     }
 
+    const renderRedundantSystems = () => {
+        const talent = TalentsHelper.getTalent(TALENT_NAME_REDUNDANT_SYSTEMS);
+        return (<div className="row">
+            <div className="col-12 col-md-6 mt-4">
+                <Header level={2}>{talent.localizedName}</Header>
+                <SimpleSystemSelector
+                    starship={starship}
+                    isChecked={s => selection.system === s}
+                    onSelectSystem={s => {
+                        let temp = selection?.copy();
+                        if (temp) {
+                            temp.system = s;
+                        }
+                        setSelection(temp);
+                        store.dispatch(setStarshipSpaceframeTalents([ temp ]));
+                    }}
+                />
+            </div>
+        </div>);
+    }
     return (<div className="page container ms-0">
             <ShipBuildingBreadcrumbs />
             <main>
@@ -64,7 +97,8 @@ const ExtraStarshipTalentChoicesPage : React.FC<IExtraStarshipTalentChoicesPrope
                 <Markdown>{t('ExtraStarshipTalentChoice.instruction')}</Markdown>
 
                 <div className="row">
-                    {renderDedicatedPersonnnel()}
+                    {selection.name === TALENT_NAME_DEDICATED_PERSONNEL ? renderDedicatedPersonnnel() : undefined}
+                    {selection.name === TALENT_NAME_REDUNDANT_SYSTEMS ? renderRedundantSystems() : undefined}
                 </div>
 
                 <div className="text-end my-4">

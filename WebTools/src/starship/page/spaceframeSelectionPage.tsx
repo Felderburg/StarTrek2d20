@@ -13,7 +13,7 @@ import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import SpaceframeSelection from "../view/spaceframeSelection";
 import { useTranslation } from 'react-i18next';
 import InstructionText from "../../components/instructionText";
-import { TALENT_NAME_DEDICATED_PERSONNEL } from "../../helpers/talents";
+import { TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_REDUNDANT_SYSTEMS } from "../../helpers/talents";
 
 interface ISpaceframeSelectionPageProperties {
     starship: Starship;
@@ -30,10 +30,17 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
         return talents?.length;
     }
 
+    const requiresRedundantSystemsSelection = () => {
+        const talents = starship.spaceframeModel.talents
+            .filter(t => t.name === TALENT_NAME_REDUNDANT_SYSTEMS &&
+                (t.system == null && t.selection == null));
+        return talents?.length;
+    }
+
     const nextPage = () => {
         if (starship.spaceframeModel == null) {
             Dialog.show("Please select a spaceframe before proceeding.");
-        } else if (requiresDedicatedPersonnelSelection()) {
+        } else if (requiresDedicatedPersonnelSelection() || requiresRedundantSystemsSelection()) {
             Navigation.navigateToPage(PageIdentity.ExtraStarshipTalentChoice);
         } else if (starship.spaceframeModel.isMissionPodAvailable) {
             Navigation.navigateToPage(PageIdentity.MissionPodSelection);
