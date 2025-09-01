@@ -136,6 +136,11 @@ export default class UniformPackCollection {
                     this.uniformPacks[era] = new Picard25thCenturyUniformPack();
                     completion();
                 }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
+            } else if (era === UniformEra.Discovery23) {
+                import(/* webpackChunkName: 'discovery' */ './discovery23UniformPack').then(({Discovery23UniformPack}) => {
+                    this.uniformPacks[era] = new Discovery23UniformPack();
+                    completion();
+                }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
             } else {
                 this.createUniformPack(era);
                 completion();

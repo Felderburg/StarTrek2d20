@@ -23,6 +23,11 @@ export class DivisionColors {
             return [ new NamedColor(i18next.t("Division.command"), "#D5934C"),
                 new NamedColor(i18next.t("Division.science"), "#30787E"),
                 new NamedColor(i18next.t("Division.operations"), "#B12542")];
+        } else if (era === UniformEra.Discovery23) {
+            return [ new NamedColor(i18next.t("Division.command"), "#c7a24a"),
+                new NamedColor(i18next.t("Division.science"), "#aba7a8"),
+                new NamedColor(i18next.t("Division.operations"), "#d69771"),
+                new NamedColor(i18next.t("Division.discovery23.medical"), "#ffffff")];
         } else if (era === UniformEra.LowerDecks) {
             return [ new NamedColor(i18next.t("Division.command"), "#e23d41"),
                 new NamedColor(i18next.t("Division.science"), "#2d8ad7"),
@@ -80,6 +85,9 @@ export class DivisionColors {
             return null;
         } else if (era === UniformEra.MonsterMaroon) {
             let colours = ["Command", "Science", "HelmEngineering", "Medical", "Security", "Special Services", "Trainee"];
+            return index >= 0 ? colours[index] : null;
+        } else if (era === UniformEra.Discovery23) {
+            let colours = ["Command", "Science", "Operations", "Medical"];
             return index >= 0 ? colours[index] : null;
         } else if (era === UniformEra.StrangeNewWorlds) {
             let colours = ["Command", "Science", "Medical", "Nursing", "Operations"];
