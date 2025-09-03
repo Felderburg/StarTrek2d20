@@ -88,6 +88,10 @@ export class WeaponTypeModel {
         this.description = description;
     }
 
+    static getWeaponTypeModelByType(type: WeaponType): WeaponTypeModel {
+        return this.TYPES.filter(m => m.type === type)[0];
+    }
+
     static allStarshipTypes() {
         return [ WeaponTypeModel.TYPES[WeaponType.ENERGY],
             WeaponTypeModel.TYPES[WeaponType.TORPEDO],
@@ -116,6 +120,10 @@ export class CaptureTypeModel {
 
     static allTypes() {
         return CaptureTypeModel.TYPES;
+    }
+
+    static getCaptureTypeModelByType(type: CaptureType) {
+        return this.allTypes().filter(c => c.type === type)[0];
     }
 }
 
@@ -176,6 +184,11 @@ export class EnergyLoadTypeModel {
 
     get effectsAndQualities() {
         return [...this._qualities].concat(this.effects);
+    }
+
+    static getEnergyLoadTypeModelByType(type: EnergyLoadType, version: number) {
+        let result = this.allTypes(version).filter(e => e.type === type)[0];
+        return result;
     }
 }
 
@@ -251,6 +264,11 @@ export class TorpedoLoadTypeModel {
         let result = [];
         this._weaponEffects.forEach(e => result.push(e));
         this._weaponQualities.forEach(q => result.push(q));
+        return result;
+    }
+
+    static getTorpedoLoadTypeModelByType(type: TorpedoLoadType, version: number) {
+        let result = this.allTypes(version).filter(e => e.type === type)[0];
         return result;
     }
 }
@@ -358,6 +376,11 @@ export class MineTypeModel {
     get qualities() {
         let result = this._weaponQualities.map(q => q.localizedDescription);
         return result.join(", ");
+    }
+
+    static getMineTypeById(type: MineType, version: number) {
+        let types = MineTypeModel.allTypes(version).filter(t => t.type === type);
+        return types?.length ? types[0] : null;
     }
 }
 

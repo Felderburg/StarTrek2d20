@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
-import { CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadTypeModel, MineType, MineTypeModel, TorpedoLoadTypeModel, Weapon, WeaponType, WeaponTypeModel } from "../../helpers/weapons";
+import { CaptureType, CaptureTypeModel, DeliverySystem, DeliverySystemModel, EnergyLoadType, EnergyLoadTypeModel, MineType, MineTypeModel, TorpedoLoadType, TorpedoLoadTypeModel, Weapon, WeaponType, WeaponTypeModel } from "../../helpers/weapons";
 import { useTranslation } from "react-i18next";
 
 export enum AddWeaponMode {
@@ -45,10 +45,23 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             return WeaponTypeModel.allStarshipTypes().filter(t => t.type === WeaponType.MINE);
         }
     }
+    const chooseInitialLoadType = (weaponType: WeaponType) => {
+        if (weaponType === WeaponType.ENERGY) {
+            return getEnergyLoadTypes()[0];
+        } else if (weaponType === WeaponType.TORPEDO) {
+            return getTorpedoLoadTypes()[0];
+        } else if (weaponType === WeaponType.CAPTURE) {
+            return getCaptureTypes()[0];
+        } else if (weaponType === WeaponType.MINE) {
+            return getMineTypes()[0];
+        } else {
+            return undefined;
+        }
+    }
 
     const { t } = useTranslation();
     const [ weaponType, setWeaponType ] = useState<WeaponTypeModel>(getWeaponTypes()[0]);
-    const [ loadType, setLoadType ] = useState<EnergyLoadTypeModel|CaptureTypeModel|TorpedoLoadTypeModel|MineTypeModel>(getEnergyLoadTypes()[0]);
+    const [ loadType, setLoadType ] = useState<EnergyLoadTypeModel|CaptureTypeModel|TorpedoLoadTypeModel|MineTypeModel>(chooseInitialLoadType(getWeaponTypes()[0].type));
     const [ deliverySystem, setDeliverySystem ] = useState<DeliverySystemModel>(getDeliverySystems()[0]);
 
     const selectWeaponType = (type?: WeaponType) => {
@@ -63,9 +76,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             load = getMineTypes()[0];
         }
 
-        let types = getWeaponTypes().filter(t => t.type === type);
-
-        setWeaponType(types[0]);
+        setWeaponType(WeaponTypeModel.getWeaponTypeModelByType(type));
         setLoadType(load);
     }
 
@@ -95,11 +106,6 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
         }
     }
 
-    const getMineTypeById = (type: MineType) => {
-        let types = MineTypeModel.allTypes(version).filter(t => t.type === type);
-        return types?.length ? types[0] : null;
-    }
-
     const getCaptureTypes = () => {
         return CaptureTypeModel.allTypes();
     }
@@ -122,7 +128,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             <DropDownSelect
                 items={ getEnergyLoadTypes().map(t => new DropDownElement(t.type, t.description)) }
                 defaultValue={ loadType?.type }
-                onChange={(index) => selectLoadType(getEnergyLoadTypes()[index] ) }/>
+                onChange={(index) => selectLoadType(EnergyLoadTypeModel.getEnergyLoadTypeModelByType(index as EnergyLoadType, version)) }/>
         </div>);
     } else if (weaponType?.type === WeaponType.TORPEDO) {
         load = (<div className="mt-4">
@@ -130,7 +136,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             <DropDownSelect
                 items={ getTorpedoLoadTypes().map(t => new DropDownElement(t.type, t.description)) }
                 defaultValue={ loadType?.type }
-                onChange={(index) => selectLoadType(getTorpedoLoadTypes()[index] ) }/>
+                onChange={(index) => selectLoadType(TorpedoLoadTypeModel.getTorpedoLoadTypeModelByType(index as TorpedoLoadType, version)) }/>
         </div>);
     } else if (weaponType?.type === WeaponType.CAPTURE) {
         load = (<div className="mt-4">
@@ -138,7 +144,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             <DropDownSelect
                 items={ getCaptureTypes().map(t => new DropDownElement(t.type, t.description)) }
                 defaultValue={ loadType?.description }
-                onChange={(index) => selectLoadType(getCaptureTypes()[index] ) }/>
+                onChange={(index) => selectLoadType(CaptureTypeModel.getCaptureTypeModelByType(index as CaptureType)) }/>
         </div>);
     } else if (weaponType?.type === WeaponType.MINE) {
         load = (<div className="mt-4">
@@ -146,7 +152,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             <DropDownSelect
                 items={ getMineTypes().map(t => new DropDownElement(t.type, t.description)) }
                 defaultValue={ loadType?.type }
-                onChange={(type) => selectLoadType(getMineTypeById(type as MineType) ) }/>
+                onChange={(type) => selectLoadType(MineTypeModel.getMineTypeById(type as MineType, version) ) }/>
         </div>);
     }
 
@@ -157,7 +163,8 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             <DropDownSelect
                 items={ getDeliverySystems().map(t => new DropDownElement(t.type, t.description)) }
                 defaultValue={ deliverySystem?.type }
-                onChange={(index) => selectDeliverySystem(getDeliverySystems()[index as DeliverySystem] ) }/>
+                onChange={(index) => selectDeliverySystem(
+                    getDeliverySystems().filter(d => d.type === (index as DeliverySystem))[0] ) }/>
         </div>);
     }
 
@@ -166,7 +173,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
         <DropDownSelect
             items={ getWeaponTypes()
                 .map((t, i) => new DropDownElement(t.type, t.description)) }
-            defaultValue={ weaponType.description }
+            defaultValue={ weaponType.type }
             onChange={(index) => selectWeaponType(index === "" ? undefined : (index as WeaponType) ) }/>
         {load}
         {deliveryType}
