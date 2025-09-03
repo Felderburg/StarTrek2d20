@@ -791,7 +791,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
         }
 
-        if (this.hasTalent("Tough")) {
+        if (this.hasTalent("Tough") && this.version > 1) {
             stress += 2;
         }
         return stress;
