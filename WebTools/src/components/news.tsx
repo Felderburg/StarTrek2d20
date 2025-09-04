@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250904</b>
+            <ul>
+                <li>
+                    More bug fixes.
+                </li>
+            </ul>
             <b>v1.250830</b>
             <ul>
                 <li>
@@ -282,81 +288,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
             <ul>
                 <li>
                     A few new tweaks.
-                </li>
-            </ul>
-            <b>v1.250302</b>
-            <ul>
-                <li>
-                    A few more minor changes.
-                </li>
-            </ul>
-            <b>v1.250228</b>
-            <ul>
-                <li>
-                    Additional internal code improvements.
-                </li>
-                <li>
-                    Bug fixes.
-                </li>
-            </ul>
-            <b>v1.250218</b>
-            <ul>
-                <li>
-                    Minor fixes to the Foundry export option.
-                </li>
-                <li>
-                    Minor tokem adjustments.
-                </li>
-                <li>
-                    A few bug fixes.
-                </li>
-            </ul>
-            <b>v1.250209</b>
-            <ul>
-                <li>
-                    A few bug fixes and internal changes.
-                </li>
-            </ul>
-            <b>v1.250202</b>
-            <ul>
-                <li>
-                    A few more tweaks to the Foundry VTT exporter.
-                </li>
-            </ul>
-            <b>v1.250127</b>
-            <ul>
-                <li>
-                    A minor fix for VTT exports.
-                </li>
-            </ul>
-            <b>v1.250126</b>
-            <ul>
-                <li>
-                    A number of new token assets.
-                </li>
-            </ul>
-            <b>v1.250122</b>
-            <ul>
-                <li>
-                    Downgraded a PDF library after some folks reported issues with filled-out
-                    character sheets.
-                </li>
-            </ul>
-            <b>v1.250121</b>
-            <ul>
-                <li>
-                    A few more fixes and token stuff.
-                </li>
-            </ul>
-            <b>v1.250120</b>
-            <ul>
-                <li>
-                    A handful of bug fixes.
-                </li>
-                <li>
-                    Some new token assets. (I just snagged a bunch
-                    of <a href="https://www.patreon.com/posts/new-art-assets-120027524"  target="_blank" rel="noreferrer">new
-                    items from my artist</a>, and you should see new options show up over the couple of weeks).
                 </li>
             </ul>
 

@@ -49,7 +49,7 @@ The build process creates a series of files in the WebTools/build folder. Upload
 WebTools/build folder to a web server, and you're done.
 
 ## Contributing
-Contributions are welcome. Use a PR to get your changes into the master branch.
+Contributions are welcome. Use a [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to get your changes into the master branch.
 
 ### Translations
 I can especially use some help with translating text to support

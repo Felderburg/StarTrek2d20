@@ -3,6 +3,11 @@ import { TableRoll } from "../../common/tableRoll"
 import { Source } from "../../helpers/sources";
 import { hasSource } from "../../state/contextFunctions";
 
+/**
+ * There's a version of this table in the Explorer's guide and a
+ * version in
+ * @returns
+ */
 export const numberOfMoonsTable: TableRoll<number> = () => {
 
     switch (D20.roll()) {
