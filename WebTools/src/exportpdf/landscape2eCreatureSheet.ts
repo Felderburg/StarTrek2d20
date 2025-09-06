@@ -55,13 +55,13 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 
         new LandscapeSheetDecorations().drawSheetDecorations(page, tealColour2e);
         this.writeTitle(construct.name, page, tealColour2e);
-        let area = this.writeDescription(page, construct as Creature, Landscape2eCreatureSheet.column1);
+        let area = this.writeDescription(new PageArea(Landscape2eCreatureSheet.column1, page), construct as Creature);
 
-        area = this.writeDetails(page, construct as Creature, area.column);
+        area = this.writeDetails(area, construct as Creature);
         area = area.bottomAfter(16).areaWithAtLeast(120);
-        let column = this.writeStatBoxes(area.page, area.column, construct as Creature);
+        area = this.writeStatBoxes(area, construct as Creature);
 
-        column = column.columnWithAtLeast(40, page)?.column;
+        let column = area.areaWithAtLeast(40)?.column;
         this.writeSubTitle(page, i18next.t("Construct.other.attacks"), column.topBefore(13));
         column = column.bottomAfter(5 + 13);
         column = this.writeAttacks(page, construct, column);
@@ -76,11 +76,10 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
                 .writeTalents(assembleCreatureTalents(construct as Creature), column, 8, 9, 15,
                 (paragraph) => bullet2EWriter(page, paragraph, tealColour2e));
         }
-
     }
 
-    writeDetails(page: PDFPage, creature: Creature, column: Column) {
-        let paragraph = new Paragraph(page, column, this.fonts);
+    writeDetails(aera: PageArea, creature: Creature) {
+        let paragraph = new Paragraph(aera.page, aera.column, this.fonts);
         paragraph.append(i18next.t("Construct.creature.habitat").toLocaleUpperCase() + ": ", new FontSpecification(this.boldFont, 9), tealColour2e);
         paragraph.append(creature.habitat?.localizedName ?? "", new FontSpecification(this.textFont, 9));
         paragraph.write();
@@ -110,13 +109,13 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
         paragraph?.append(creature.getAllTraits(), new FontSpecification(this.textFont, 9));
         paragraph?.write();
 
-        return paragraph?.nextArea(page);
+        return paragraph?.nextArea(aera.page);
     }
 
-    writeStatBoxes(page: PDFPage, column: Column, creature: Creature) {
+    writeStatBoxes(area: PageArea, creature: Creature) {
 
-        this.writeSubTitle(page, i18next.t("Construct.other.attributes"), column.topBefore(13));
-        column = column.bottomAfter(5 + 13);
+        this.writeSubTitle(area.page, i18next.t("Construct.other.attributes"), area.column.topBefore(13));
+        let column = area.bottomAfter(5 + 13).column;
 
         let boxes = new XYLocation(column.start.x, column.start.y);
         const statFrame = "M 2.835,0 C 1.269,0 0,1.269 0,2.835 V 9 c 0,1.565 1.269,2.835 2.835,2.835 h 60.567 c 1.565,0 2.835,-1.27 2.835,-2.835 V 2.835 C 66.237,1.269 64.967,0 63.402,0 Z";
@@ -128,9 +127,9 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 
             let location = new XYLocation(boxes.x + i % 3 * width, boxes.y + Math.floor(i / 3) * rowHeight);
             let x = location.x;
-            const y = page.getHeight() - location.y;
-            page.moveTo(x, y);
-            page.drawSvgPath(statFrame, {
+            const y = area.page.getHeight() - location.y;
+            area.page.moveTo(x, y);
+            area.page.drawSvgPath(statFrame, {
                 borderColor: SimpleColor.from("#979696").asPdfRbg(),
                 borderWidth: 0.5
             });
@@ -139,15 +138,15 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
             const key = i18next.t(makeKey("Construct.attribute.", Attribute[a]));
             labels[key] = labelColumn;
 
-            this.writeLabel(page, "" + creature.attributes[a], this.valueBlock(labelColumn), new FontSpecification(this.boldFont, 9),
+            this.writeLabel(area.page, "" + creature.attributes[a], this.valueBlock(labelColumn), new FontSpecification(this.boldFont, 9),
                 tealColour2e);
         });
 
         column = column.bottomAfter(10 + 2 * rowHeight);
         if (creature.version > 1) {
-            this.writeSubTitle(page, i18next.t("Construct.other.departments"), column.topBefore(13));
+            this.writeSubTitle(area.page, i18next.t("Construct.other.departments"), column.topBefore(13));
         } else {
-            this.writeSubTitle(page, i18next.t("Construct.other.disciplines"), column.topBefore(13));
+            this.writeSubTitle(area.page, i18next.t("Construct.other.disciplines"), column.topBefore(13));
         }
         column = column.bottomAfter(5 + 13);
 
@@ -156,9 +155,9 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 
             let location = new XYLocation(boxes.x + i % 3 * width, boxes.y + Math.floor(i / 3) * rowHeight);
             let x = location.x;
-            const y = page.getHeight() - location.y;
-            page.moveTo(x, y);
-            page.drawSvgPath(statFrame, {
+            const y = area.page.getHeight() - location.y;
+            area.page.moveTo(x, y);
+            area.page.drawSvgPath(statFrame, {
                 borderColor: SimpleColor.from("#979696").asPdfRbg(),
                 borderWidth: 0.5
             });
@@ -167,21 +166,21 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
             const key = makeKey("Construct.discipline.", Department[s]);
             labels[key] = labelColumn;
 
-            this.writeLabel(page, "" + creature.departments[s], this.valueBlock(labelColumn), new FontSpecification(this.boldFont, 9),
+            this.writeLabel(area.page, "" + creature.departments[s], this.valueBlock(labelColumn), new FontSpecification(this.boldFont, 9),
                 labelColourProvider(creature.era, key));
         });
 
-        labelWriter(page, labels, creature.version, this.boldFont, 9, (key) => labelColourProvider(creature.era, key),
+        labelWriter(area.page, labels, creature.version, this.boldFont, 9, (key) => labelColourProvider(creature.era, key),
             TextAlign.Right, "", VerticalAlignment.Middle);
 
-        return column.bottomAfter(10 + 2 * rowHeight);
+        return new PageArea(column.bottomAfter(10 + 2 * rowHeight), area.page);
     }
 
-    writeDescription(page: PDFPage, creature: Creature, column: Column): PageArea {
+    writeDescription(area: PageArea, creature: Creature): PageArea {
 
         if (creature.description?.length) {
 
-            let paragraph = new Paragraph(page, column, this.fonts);
+            let paragraph = new Paragraph(area.page, area.column, this.fonts);
             let descriptionParagraphs = creature.description.split('\n');
             let paragraphs = [ paragraph ];
             descriptionParagraphs.forEach((p, i) => {
@@ -199,17 +198,12 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
             if (paragraphs.length) {
                 let last = paragraphs.filter(p => p.lines?.length).slice(-1)[0];
                 if (last) {
-                    let bottom = last.bottom;
-                    column = last.endColumn.bottomAfter(bottom.y - last.endColumn.start.y);
-
-                    if (column?.height > 10) {
-                        column = column.bottomAfter(10);
-                    }
+                    area = paragraph.nextArea(area.page).bottomAfter(10);
                 }
             }
         }
 
-        return new PageArea(column, page);
+        return area;
     }
 
     writeTitle(title: string, page: PDFPage, colour: SimpleColor) {

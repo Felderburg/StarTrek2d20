@@ -14,6 +14,14 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.250906</b>
+            <ul>
+                <li>
+                    Some costmetic and internal updates. Importantly, the option for
+                    choosing <cite>Captain's Log</cite> characters is selected in the
+                    "editions" drop down on the sources page.
+                </li>
+            </ul>
             <b>v1.250904</b>
             <ul>
                 <li>
