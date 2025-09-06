@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {Source, SourcesHelper} from '../helpers/sources';
 import {Character} from '../common/character';
 import {Navigation, navigateTo} from '../common/navigator';
@@ -6,8 +6,7 @@ import {PageIdentity} from './pageIdentity';
 import store from '../state/store';
 import { addSource, removeSource, setSources } from '../state/contextActions';
 import { connect } from 'react-redux';
-import { withTranslation, WithTranslation } from 'react-i18next';
-import { Window } from '../common/window';
+import { useTranslation } from 'react-i18next';
 import { PageFactory } from './pageFactory';
 import { LoadingButton } from '../common/loadingButton';
 import { setCharacter } from '../state/characterActions';
@@ -17,58 +16,61 @@ import Markdown from 'react-markdown';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
 import { isSecondEdition } from '../state/contextFunctions';
 
-interface ISourceSelectionPageProperties extends WithTranslation {
+interface ISourceSelectionPageProperties {
     sources: Source[]
 }
 
-interface ISourceSelectionPageState {
-    soloLoading: boolean;
-}
+const SourceSelectionPage: React.FC<ISourceSelectionPageProperties> = ({sources}) => {
 
-class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties, ISourceSelectionPageState> {
-    constructor(props: ISourceSelectionPageProperties) {
-        super(props);
-
-        const profileButton = document.getElementById("profile-button");
-        if (profileButton !== undefined) {
-            profileButton.style.display = "";
-        }
-
-        this.state = {
-            soloLoading: false
-        }
+    let initialValue = sources.includes(Source.Core) ? 1 : 2;
+    if (window.localStorage.getItem("rules.captainsLog") === "true") {
+        initialValue = 3;
     }
 
-    setEdition(edition: number) {
-        if (edition === 1) {
+    const [rulesType, setRulesType] = useState<number>(initialValue);
+    const [soloLoading, setSoloLoading] = useState<boolean>(false);
+    const { t } = useTranslation();
+
+    const setEdition = (edition: number) => {
+        if (edition === 3) {
+            setRulesType(3);
+            window.localStorage.setItem("rules.captainsLog", "true");
+            store.dispatch(addSource(Source.CaptainsLog));
+        } else if (edition === 1) {
+            setRulesType(1);
+            window.localStorage.setItem("rules.captainsLog", "false");
             store.dispatch(addSource(Source.Core));
+            store.dispatch(removeSource(Source.CaptainsLog));
         } else {
+            setRulesType(2);
+            window.localStorage.setItem("rules.captainsLog", "false");
             store.dispatch(addSource(Source.Core2ndEdition));
+            store.dispatch(removeSource(Source.CaptainsLog));
         }
     }
 
-    renderEdition() {
-        const {t} = this.props;
+    const renderEdition = () => {
         return (<div className="my-3">
             <Markdown>{t('SourceSelectionPage.editionInstruction')}</Markdown>
             <DropDownSelect items={[
                 new DropDownElement(1, t('Common.edition.1')),
-                new DropDownElement(2, t('Common.edition.2'))
-            ]} defaultValue={this.props.sources.includes(Source.Core) ? 1 : 2}
-            onChange={(v) => this.setEdition(v as number)} />
+                new DropDownElement(2, t('Common.edition.2')),
+                new DropDownElement(3, t('Source.book.captainsLog')),
+            ]}
+            defaultValue={rulesType}
+            onChange={(v) => setEdition(v as number)} />
         </div>);
     }
 
-    renderSources() {
-        const { t } = this.props;
+    const renderSources = () => {
         let hasUnavailableSources = false;
 
         const sources = SourcesHelper.getTypes().map(t => {
-            const list = SourcesHelper.getSourcesByType(t.type).filter(s => ![Source.Core, Source.Core2ndEdition].includes(s.id)).map((s, i) => {
+            const list = SourcesHelper.getSourcesByType(t.type).filter(s => ![Source.Core, Source.Core2ndEdition, Source.CaptainsLog].includes(s.id)).map((s, i) => {
                 hasUnavailableSources = hasUnavailableSources || !s.available;
-                const className = (s.available && (s.version === 1 || isSecondEdition())) ? (this.hasSource(s.id) ? "source source-selected" : "source") : "source unavailable";
+                const className = (s.available && (s.version === 1 || isSecondEdition())) ? (hasSource(s.id) ? "source source-selected" : "source") : "source unavailable";
                 return (
-                    <div key={s.id} className={className} onClick={() => { if (s.available) { this.sourceChanged(s.id); } } } title={s.localizedName} role="button">{s.localizedName}</div>
+                    <div key={s.id} className={className} onClick={() => { if (s.available) { sourceChanged(s.id); } } } title={s.localizedName} role="button">{s.localizedName}</div>
                 );
             });
             return (<div key={'source-type-' + t.type}>
@@ -85,8 +87,8 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
             </p>
             {note}
             <div className="d-flex flex-wrap">
-                <div className="source source-emphasis" onClick={() => { this.toggleSources(true); } } role="button">{t('Common.button.selectAll')}</div>
-                <div className="source source-emphasis" onClick={() => { this.toggleSources(false); } } role="button">{t('Common.button.selectNone')}</div>
+                <div className="source source-emphasis" onClick={() => { toggleSources(true); } } role="button">{t('Common.button.selectAll')}</div>
+                <div className="source source-emphasis" onClick={() => { toggleSources(false); } } role="button">{t('Common.button.selectNone')}</div>
             </div>
             <div className="d-flex flex-wrap mt-3 mb-3">
                 {sources}
@@ -94,74 +96,31 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
         </div>);
     }
 
-
-    render() {
-        const { t } = this.props;
-
-        return (
-            <div className="page container ms-0">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.Home)}>{t('Page.title.home')}</a></li>
-                        <li className="breadcrumb-item active" aria-current="page">{t('Page.title.sourceSelection')}</li>
-                    </ol>
-                </nav>
-                <main>
-                    <Header className="mb-4">{t('Page.title.sourceSelection')}</Header>
-                    {this.renderEdition()}
-                    {this.renderSources()}
-                    <p className="mt-5">
-                        {t('SourceSelectionPage.gameTypeInstruction')}
-                    </p>
-                    <table className="selection-list">
-                        <tbody>
-                            <tr onClick={() => { if (Window.isCompact()) this.selectStandardRules(); }}>
-                                <td className="selection-header">{t('SourceSelectionPage.standardGameType')}</td>
-                                <td className="text-end d-none d-sm-table-cell"><Button size="sm" onClick={() => { this.selectStandardRules() }}>{t('Common.button.select')}</Button></td>
-                            </tr>
-                            <tr onClick={() => {
-                                if (Window.isCompact() && this.hasSource(Source.CaptainsLog)) {
-                                    this.selectSoloRules();
-                                }
-                            }}>
-                                <td className="selection-header">{t('SourceSelectionPage.soloGameType')}</td>
-                                <td className="text-end d-none d-sm-table-cell">
-                                    <LoadingButton loading={this.state.soloLoading} className="btn-sm"  onClick={() => { this.selectSoloRules() }}
-                                        enabled={this.hasSource(Source.CaptainsLog)} >{t('Common.button.select')}</LoadingButton>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </main>
-            </div>
-        );
+    const next = () => {
+        if (rulesType !== 3) {
+            Navigation.navigateToPage(PageIdentity.Era);
+        } else {
+            setSoloLoading(true);
+            store.dispatch(setCharacter(Character.createSoloCharacter(store.getState().context.era)));
+            PageFactory.instance.loadCaptainsLogFactory(() => {
+                    setSoloLoading(false);
+                    Navigation.navigateToPage(PageIdentity.SoloConstructType);
+                }
+            )
+        }
     }
 
-    selectStandardRules() {
-        Navigation.navigateToPage(PageIdentity.Era);
-    }
-
-    selectSoloRules() {
-        this.setState((state) => ({...state, soloLoading: true}));
-        store.dispatch(setCharacter(Character.createSoloCharacter(store.getState().context.era)));
-        PageFactory.instance.loadCaptainsLogFactory(() => {
-                this.setState((state) => ({...state, soloLoading: false}));
-                Navigation.navigateToPage(PageIdentity.SoloConstructType);
-            }
-        )
-    }
-
-    private sourceChanged(source: Source) {
-        if (source === Source.Core && this.props.sources.indexOf(Source.Core2ndEdition) < 0) {
+    const sourceChanged = (source: Source) => {
+        if (source === Source.Core && sources.indexOf(Source.Core2ndEdition) < 0) {
             // do nothing
-        } else if (this.hasSource(source)) {
+        } else if (hasSource(source)) {
             store.dispatch(removeSource(source));
         } else {
             store.dispatch(addSource(source));
         }
     }
 
-    private toggleSources(selectAll: boolean) {
+    const toggleSources = (selectAll: boolean) => {
         if (selectAll) {
             let version = isSecondEdition() ? 2 : 1;
             let sources = SourcesHelper.getSources()
@@ -178,7 +137,7 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
                 .map(s => s.id);
             store.dispatch(setSources(sources));
         } else {
-            if (this.props.sources.indexOf(Source.Core2ndEdition) >= 0) {
+            if (sources.indexOf(Source.Core2ndEdition) >= 0) {
                 store.dispatch(setSources([ Source.Core2ndEdition ]));
             } else {
                 store.dispatch(setSources([ Source.Core ]));
@@ -186,9 +145,30 @@ class SourceSelectionPage extends React.Component<ISourceSelectionPageProperties
         }
     }
 
-    hasSource(source: Source) {
-        return this.props.sources.indexOf(source) > -1;
+    const hasSource = (source: Source) => {
+        return sources.indexOf(source) > -1;
     }
+
+
+    return (
+        <div className="page container ms-0">
+            <nav aria-label="breadcrumb">
+                <ol className="breadcrumb">
+                    <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.Home)}>{t('Page.title.home')}</a></li>
+                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.sourceSelection')}</li>
+                </ol>
+            </nav>
+            <main>
+                <Header className="mb-4">{t('Page.title.sourceSelection')}</Header>
+                {renderEdition()}
+                {renderSources()}
+                <div className="text-end mt-5">
+                    <LoadingButton loading={soloLoading} size="sm" onClick={() => { next() }}>{t('Common.button.next')}</LoadingButton>
+                </div>
+            </main>
+        </div>
+    );
+
 }
 
 function mapStateToProps(state, ownProps) {
@@ -197,4 +177,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(withTranslation()(SourceSelectionPage));
+export default connect(mapStateToProps)(SourceSelectionPage);

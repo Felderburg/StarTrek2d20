@@ -128,6 +128,10 @@ export default class UniformVariantRestrictions {
             case UniformEra.Tzenkethi:
                 return [ Rank.None ].indexOf(rankIndicator) >= 0;
 
+            case UniformEra.Discovery23:
+                return [
+                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain
+                ].indexOf(rankIndicator) >= 0;
             case UniformEra.StrangeNewWorlds:
             case UniformEra.OriginalSeries:
                 return [

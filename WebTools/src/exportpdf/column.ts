@@ -1,14 +1,14 @@
 import { PDFPage } from "@cantoo/pdf-lib";
 import { XYLocation } from "../common/xyLocation";
-import { IPageAndColumn } from "./pageAndColumn";
+import { PageArea } from "./pageAndColumn";
 
 export class Column {
     start: XYLocation;
     height: number;
     width: number;
-    nextColumnHelper?: Column|(() => IPageAndColumn);
+    nextColumnHelper?: Column|(() => PageArea);
 
-    constructor(x: number, y: number, height: number, width: number, nextColumn?: (Column|(() => IPageAndColumn))) {
+    constructor(x: number, y: number, height: number, width: number, nextColumn?: (Column|(() => PageArea))) {
         this.start = new XYLocation(x, y);
         this.height = height;
         this.width = width;
@@ -48,14 +48,13 @@ export class Column {
         return this.nextColumnHelper != null;
     }
 
-    advanceToNextColumn(currentPage: PDFPage): IPageAndColumn|undefined {
+    advanceToNextColumn(currentPage: PDFPage): PageArea|undefined {
         if (this.nextColumnHelper == null) {
             return undefined;
         } else if (this.nextColumnHelper instanceof Column) {
-            return {
-                page: currentPage,
-                column: this.nextColumnHelper as Column
-            }
+            return new PageArea(
+                this.nextColumnHelper as Column,
+                currentPage);
         } else if (typeof this.nextColumnHelper === 'function') {
             return this.nextColumnHelper();
         } else {
@@ -83,10 +82,7 @@ export class Column {
 
     columnWithAtLeast(height: number, currentPage: PDFPage) {
         if (this.height >= height) {
-            return {
-                page: currentPage,
-                column: this
-            }
+            return new PageArea(this, currentPage);
         } else {
             return this.advanceToNextColumn(currentPage);
         }
