@@ -9,6 +9,7 @@ import { FontLibrary, FontType } from "./fontLibrary";
 import { textTokenizer } from "./textTokenizer";
 import { FontOptions } from "./fontOptions";
 import { TextAlign } from "./textAlign";
+import { PageArea } from "./pageArea";
 
 // A line represents one line of text inside a paragrap and/or column of text. The line can
 // contain different text blocks (including some blocks that have different fonts or font weights),
@@ -216,6 +217,21 @@ export class Paragraph {
         let bottom = this.bottom;
         let column = this.endColumn;
         return column?.bottomAfter(bottom.y - column.start.y);
+    }
+
+    nextArea(currentPage: PDFPage, minimumHeight?: number) {
+        if (this.lines?.length) {
+            let column = this.nextColumn();
+            let page = this.lines[this.lines.length-1].page;
+
+            if (minimumHeight != null) {
+                return column.columnWithAtLeast(minimumHeight, page);
+            } else {
+                return new PageArea(column, page);
+            }
+        } else {
+            return new PageArea(this.column, currentPage);
+        }
     }
 
     nextParagraph(blankLine: number = 0.5) {

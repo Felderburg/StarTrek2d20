@@ -24,6 +24,7 @@ import { Paragraph } from "./paragraph";
 import { FontOptions } from "./fontOptions";
 import { LandscapeSheetDecorations } from "./landscapeSheetDecorations";
 import { FontSpecification } from "./fontSpecification";
+import { PageArea } from "./pageArea";
 
 export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
@@ -81,10 +82,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         let talentsColumn3 = new Column(390.6, 361, 200, 162,
             () => {
                 const page = pdf.addPage(additionalPage);
-                return {
-                    page: page,
-                    column: page2Column1
-                }
+                return new PageArea(page2Column1, page);
             });
         let talentsColumn2 = new Column(221.7, 361, 200, 162, talentsColumn3);
         let talentsColumn1 = new Column(51.5, 361, 200, 162, talentsColumn2);

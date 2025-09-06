@@ -21,6 +21,7 @@ import { ReadableTalentModel, TalentWriter } from "./talentWriter";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { RoleModel } from "../helpers/roles";
 import { bullet2EWriter } from "./bullet2eWriter";
+import { PageArea } from "./pageArea";
 
 export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 
@@ -54,13 +55,11 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 
         new LandscapeSheetDecorations().drawSheetDecorations(page, tealColour2e);
         this.writeTitle(construct.name, page, tealColour2e);
-        let column = this.writeDescription(page, construct as Creature, Landscape2eCreatureSheet.column1);
+        let area = this.writeDescription(page, construct as Creature, Landscape2eCreatureSheet.column1);
 
-        column = this.writeDetails(page, construct as Creature, column);
-        column = column.bottomAfter(16);
-
-        column = column.columnWithAtLeast(120, page)?.column;
-        column = this.writeStatBoxes(page, column, construct as Creature);
+        area = this.writeDetails(page, construct as Creature, area.column);
+        area = area.bottomAfter(16).areaWithAtLeast(120);
+        let column = this.writeStatBoxes(area.page, area.column, construct as Creature);
 
         column = column.columnWithAtLeast(40, page)?.column;
         this.writeSubTitle(page, i18next.t("Construct.other.attacks"), column.topBefore(13));
@@ -111,7 +110,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
         paragraph?.append(creature.getAllTraits(), new FontSpecification(this.textFont, 9));
         paragraph?.write();
 
-        return paragraph?.nextColumn();
+        return paragraph?.nextArea(page);
     }
 
     writeStatBoxes(page: PDFPage, column: Column, creature: Creature) {
@@ -178,7 +177,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
         return column.bottomAfter(10 + 2 * rowHeight);
     }
 
-    writeDescription(page: PDFPage, creature: Creature, column: Column) {
+    writeDescription(page: PDFPage, creature: Creature, column: Column): PageArea {
 
         if (creature.description?.length) {
 
@@ -210,7 +209,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
             }
         }
 
-        return column;
+        return new PageArea(column, page);
     }
 
     writeTitle(title: string, page: PDFPage, colour: SimpleColor) {

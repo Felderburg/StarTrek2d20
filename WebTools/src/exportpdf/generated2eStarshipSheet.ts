@@ -22,6 +22,7 @@ import { TalentWriter } from "./talentWriter";
 import { bullet2EWriter } from "./bullet2eWriter";
 import { PortraitSheetDecorations } from "./portraitSheetDecorations";
 import { assembleStarshipTalents } from "./generatedsheet";
+import { PageArea } from "./pageArea";
 
 export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
 
@@ -125,10 +126,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
         const column2 = new Column(538.5 - (284.7-56.7), 225, 715-225, 284.7-56.7,
             () => {
                 const page = pdf.addPage(additionalPage);
-                return {
-                    page: page,
-                    column: column3
-                }
+                return new PageArea(column3, page)
             });
         const column1 = new Column(56.7, 225, 715-225, 284.7-56.7, column2);
 

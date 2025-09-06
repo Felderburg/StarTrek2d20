@@ -10,4 +10,13 @@ export class PageArea {
         this.column = column;
         this.page = page;
     }
+
+    bottomAfter(deltaY: number) {
+        let column = this.column.bottomAfter(deltaY, this.page);
+        return new PageArea(column, this.page);
+    }
+
+    areaWithAtLeast(height: number) {
+        return this.column.columnWithAtLeast(height, this.page);
+    }
 }

@@ -1,6 +1,6 @@
 import { PDFPage } from "@cantoo/pdf-lib";
 import { XYLocation } from "../common/xyLocation";
-import { PageArea } from "./pageAndColumn";
+import { PageArea } from "./pageArea";
 
 export class Column {
     start: XYLocation;

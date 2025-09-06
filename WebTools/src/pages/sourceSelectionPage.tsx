@@ -11,7 +11,6 @@ import { PageFactory } from './pageFactory';
 import { LoadingButton } from '../common/loadingButton';
 import { setCharacter } from '../state/characterActions';
 import { Header } from '../components/header';
-import Button from 'react-bootstrap/Button';
 import Markdown from 'react-markdown';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
 import { isSecondEdition } from '../state/contextFunctions';
