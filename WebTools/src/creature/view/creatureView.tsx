@@ -64,7 +64,7 @@ const CreatureView:React.FC<ICreatureViewProperties> = ({creature}) => {
 
                 let sheet = CharacterSheetRegistry.getCreatureSheet();
 
-                const existingPdfBytes = await fetch(sheet.getPdfUrl()).then(res => res.arrayBuffer())
+                const existingPdfBytes = await fetch(sheet.getPdfUrl(creature.type)).then(res => res.arrayBuffer())
                 const pdfDoc = await PDFDocument.load(existingPdfBytes)
                 await sheet.populate(pdfDoc, creature);
 

@@ -13,6 +13,7 @@ import { Column } from "./column";
 import { SimpleColor } from "../common/colour";
 import { TextBlock } from "./textBlock";
 import { FontSpecification } from "./fontSpecification";
+import { CharacterType } from "../common/characterType";
 
 export abstract class BasicGeneratedSheet implements ICharacterSheet {
 
@@ -27,7 +28,7 @@ export abstract class BasicGeneratedSheet implements ICharacterSheet {
     getThumbnailUrl(): string {
         throw new Error('Method not implemented.');
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         throw new Error('Method not implemented.');
     }
 

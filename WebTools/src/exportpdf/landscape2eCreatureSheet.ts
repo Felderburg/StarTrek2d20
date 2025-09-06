@@ -22,6 +22,7 @@ import { SpeciesAbility } from "../helpers/speciesAbility";
 import { RoleModel } from "../helpers/roles";
 import { bullet2EWriter } from "./bullet2eWriter";
 import { PageArea } from "./pageArea";
+import { CharacterType } from "../common/characterType";
 
 export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 
@@ -40,7 +41,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
     getThumbnailUrl(): string {
         throw new Error('Method not implemented.');
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_2e_Landscape_Sheet_blank.pdf';
     }
 

@@ -125,6 +125,10 @@ export class Paragraph {
         this.fontLibrary = fontLibrary;
     }
 
+    static create(pageArea: PageArea, fontLibrary: FontLibrary) {
+        return new Paragraph(pageArea.page, pageArea.column, fontLibrary);
+    }
+
     get symbolFont() {
         return this.fontLibrary.fontByType(FontType.Symbol);
     }

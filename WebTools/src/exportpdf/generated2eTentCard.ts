@@ -45,7 +45,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_2e_TentCard.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return "/static/pdf/STA_2e_TentCard.pdf";
     }
 

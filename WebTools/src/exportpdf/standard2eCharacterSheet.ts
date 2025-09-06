@@ -18,6 +18,7 @@ import { determineIdealFontWidth } from "./fontWidthDeterminer";
 import { TextBlock } from "./textBlock";
 import { FontSpecification } from "./fontSpecification";
 import { blueColour2e, goldColour2e, redColour2e } from "./colourProvider2e";
+import { CharacterType } from "../common/characterType";
 
 
 export class Standard2eCharacterSheet extends BaseFormFillingSheet {
@@ -33,7 +34,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_2e_Standard_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_2e_Standard_Character_Sheet.pdf'
     }
 

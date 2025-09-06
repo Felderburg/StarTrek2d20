@@ -32,7 +32,7 @@ const _CharacterSheetDialog: React.FC<ICharacterSheetDialogProperties> = ({sheet
         const sheet: ICharacterSheet = selection;
         if (sheet) {
 
-            const existingPdfBytes = await fetch(sheet.getPdfUrl()).then(res => res.arrayBuffer())
+            const existingPdfBytes = await fetch(sheet.getPdfUrl(construct.type)).then(res => res.arrayBuffer())
             const pdfDoc = await PDFDocument.load(existingPdfBytes)
             await sheet.populate(pdfDoc, construct);
 

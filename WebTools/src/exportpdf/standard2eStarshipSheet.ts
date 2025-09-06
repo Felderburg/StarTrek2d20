@@ -23,6 +23,7 @@ import { Department } from "../helpers/department";
 import { staTextFieldAppearanceProvider } from "../helpers/pdfTextFieldAppearance";
 import { determineIdealFontWidth } from "./fontWidthDeterminer";
 import { TextBlock } from "./textBlock";
+import { CharacterType } from "../common/characterType";
 
 export class Standard2eStarshipSheet extends BasicGeneratedSheet {
 
@@ -42,7 +43,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_2e_Standard_Starship_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return "/static/pdf/STA_2e_Standard_Starship_Sheet.pdf";
     }
 

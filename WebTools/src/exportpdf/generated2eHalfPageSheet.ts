@@ -21,6 +21,7 @@ import { TextAlign } from "./textAlign";
 import { assembleWritableItems } from "./generatedsheet";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { TalentWriter } from "./talentWriter";
+import { CharacterType } from "../common/characterType";
 
 export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
 
@@ -34,7 +35,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_2e_Half_Page_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return "/static/pdf/STA_2e_Half_Page_Sheet.pdf";
     }
 

@@ -9,6 +9,7 @@ import { CharacterSerializer } from "../common/characterSerializer";
 import { Column } from "./column";
 import { Construct } from "../common/construct";
 import { isMultiSelectionTalent } from "../helpers/isMultiSelectionTalent";
+import { CharacterType } from "../common/characterType";
 
 export class GeneratedTngPortraitCharacterSheet extends BaseTNGGeneratedCharacterSheet {
 
@@ -20,7 +21,7 @@ export class GeneratedTngPortraitCharacterSheet extends BaseTNGGeneratedCharacte
     getThumbnailUrl(): string {
         return '/static/img/sheets/TNG_Standard_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TNG_Standard_Character_Sheet.pdf'
     }
 

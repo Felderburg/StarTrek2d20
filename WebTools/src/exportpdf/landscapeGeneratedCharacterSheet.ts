@@ -9,6 +9,7 @@ import { BaseTNGGeneratedCharacterSheet } from "./baseTngGeneratedCharacterSheet
 import { Column } from "./column";
 import { TalentWriter } from "./talentWriter";
 import { assembleWritableItems } from "./generatedsheet";
+import { CharacterType } from "../common/characterType";
 
 export class LandscapeGeneratedCharacterSheet extends BaseTNGGeneratedCharacterSheet {
 
@@ -119,7 +120,7 @@ export class LandscapeGeneratedCharacterSheet extends BaseTNGGeneratedCharacterS
     getThumbnailUrl(): string {
         return '/static/img/sheets/TNG_Landscape_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TNG_Landscape_Character_Sheet.pdf'
     }
 

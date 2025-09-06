@@ -48,7 +48,7 @@ abstract class BasicSheet implements ICharacterSheet {
     getThumbnailUrl(): string {
         throw new Error('Method not implemented.');
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         throw new Error('Method not implemented.');
     }
 
@@ -270,7 +270,7 @@ class CaptainsLogStarshipSheet extends BasicStarshipSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_Captain\'s_Log_Half-Page_Starship.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_Captain\'s_Log_Half-Page_Starship.pdf'
     }
 
@@ -290,7 +290,7 @@ class StandardTngStarshipSheet extends BasicStarshipSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/TNG_Standard_Starship_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TNG_Standard_Starship_Sheet_no_outline.pdf'
     }
 
@@ -314,7 +314,7 @@ class StandardTosStarshipSheet extends BasicStarshipSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/TOS_Standard_Starship_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_TOS_Starship_Sheet.pdf'
     }
 
@@ -338,7 +338,7 @@ class StandardKlingonStarshipSheet extends BasicStarshipSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_Klingon_Starship_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_Klingon_Starship_Sheet_revised.pdf'
     }
 
@@ -356,7 +356,7 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
     getThumbnailUrl(): string {
         throw new Error('Method not implemented.');
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         throw new Error('Method not implemented.');
     }
     async populate(pdf: PDFDocument, construct: Construct) {
@@ -610,7 +610,7 @@ class HalfPageSupportingCharacterSheet extends BasicShortCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/TNG_Supporting_Character_Half_Page.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TNG_Supporting_Character_Half_Page.pdf'
     }
     getTags(): SheetTag[] {
@@ -625,7 +625,7 @@ class RomulanCharacterSheet extends BasicFullCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/Romulan.Char.Sheet_v2_1.page_fillable.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/Romulan.Char.Sheet_v2_1.page_fillable.pdf'
     }
 
@@ -659,7 +659,7 @@ class StandardGermanCharacterSheet extends BasicFullCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/TNG_StarTrek_de_Charakter.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TNG_StarTrek_de_Charakter.pdf'
     }
 }
@@ -675,7 +675,7 @@ class StandardRussianCharacterSheet extends BasicFullCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/TNG_StarTrek_ru_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TNG_StarTrek_ru_Character_Sheet.pdf'
     }
 }
@@ -688,7 +688,7 @@ class StandardTosCharacterSheet extends BasicFullCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/TOS_Standard_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TOS_Standard_Character_Sheet.pdf'
     }
     getTags(): SheetTag[] {
@@ -704,7 +704,7 @@ class KlingonCharacterSheet extends BasicFullCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_Klingon_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_Klingon_Character_Sheet.pdf'
     }
 
@@ -766,7 +766,7 @@ class TwoPageTngCharacterSheet extends BaseTextCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/TNG_2_Page_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TNG_2_Page_Character_Sheet_new.pdf'
     }
 
@@ -856,7 +856,7 @@ class TwoPageTngLandscapeCharacterSheet extends BaseTextCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/TNG_Two_Page_Landscape_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/TNG_Two_Page_Landscape_Character_Sheet.pdf'
     }
 
@@ -958,7 +958,7 @@ class TwoPageKlingonCharacterSheet extends BaseTextCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_2_Page_Klingon_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_2_Page_Klingon_Character_Sheet.pdf'
     }
 
@@ -1064,7 +1064,7 @@ class CaptainsLogCharacterSheet extends BasicFullCharacterSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_Captain\'s_Log_Character_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_Captain\'s_Log_Character_Sheet.pdf'
     }
 

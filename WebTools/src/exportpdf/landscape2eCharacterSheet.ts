@@ -40,7 +40,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_2e_Landscape_Sheet_400.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_2e_Landscape_Sheet.pdf'
     }
 

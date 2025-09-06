@@ -35,7 +35,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     getThumbnailUrl(): string {
         return '/static/img/sheets/STA_2e_Starship_Sheet.png'
     }
-    getPdfUrl(): string {
+    getPdfUrl(type: CharacterType): string {
         return "/static/pdf/STA_2e_Starship_Sheet.pdf";
     }
 
