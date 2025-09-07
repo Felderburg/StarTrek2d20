@@ -14,7 +14,7 @@ import { EquipmentModel } from "../helpers/equipment";
 import { Construct } from "../common/construct";
 import { CareerEventsHelper } from "../helpers/careerEvents";
 import { CareersHelper } from "../helpers/careers";
-import { CharacterTypeModel } from "../common/characterType";
+import { CharacterType, CharacterTypeModel } from "../common/characterType";
 import { TracksHelper } from "../helpers/tracks";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { markupToHtml } from "./markupToHtml";
@@ -367,6 +367,11 @@ export class FoundryVttExporter {
             result.system["environment"] = "";
         }
         result.system["species"] = character.speciesName;
+        if (type === FoundryPluginType.Standard) {
+            if (character.type === CharacterType.KlingonWarrior && character.house?.length) {
+                result.system["house"] = character.house;
+            }
+        }
 
         if (character.upbringingStep) {
             result.system["upbringing"] = character.upbringingStep?.description;

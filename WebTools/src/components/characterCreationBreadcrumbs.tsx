@@ -30,7 +30,7 @@ const NpcCharacterCreationBreadcrumbs : React.FC<ICharacterBreadcrumbProperties>
     const renderStats = () => {
         if (pageIdentity === PageIdentity.NpcStats) {
             return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.npcStats')}</li>);
-        } else if (character?.name) {
+        } else if (character?.jobAssignment) {
             return (<li className="breadcrumb-item"><Link to="/npc/stats">{t('Page.title.npcStats')}</Link></li>);
         } else {
             return undefined;

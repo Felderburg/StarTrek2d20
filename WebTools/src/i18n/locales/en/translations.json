@@ -2008,6 +2008,12 @@
     "Sheet.text.title.starship": "Starship Registry Entry",
     "Sheet.text.title.alt": "Personnel File",
 
+    "Sheet.text.log.title": "Personal Log",
+    "Sheet.text.log.entryNumber": "Entry No.",
+    "Sheet.text.log.adventureTitle": "Adventure Title and Mission Description",
+    "Sheet.text.log.valuesOrDirectivesUsed": "Values or Directives Used",
+    "Sheet.text.log.notes": "Notes",
+
     "SheetTag.a4": "A4",
     "SheetTag.halfPage": "Half-Page",
     "SheetTag.landscape": "Landscape",

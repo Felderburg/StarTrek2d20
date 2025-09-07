@@ -27,6 +27,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     static greyColour: SimpleColor = SimpleColor.from("#656668");
 
     static readonly headingColumn = new Column(436.5, 49, 17.4, 142);
+    static readonly personalLogHeadingColumn = new Column(436.5, 53.2, 17.4, 142);
 
     getName(): string {
         return i18next.t("Sheet.standard2eCharacterSheet");
@@ -60,6 +61,16 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     async populate(pdf: PDFDocument, construct: Construct) {
         await super.populate(pdf, construct);
 
+        let page2 = null;
+        if ((construct as Character).improvements?.length) {
+            const pdfBytes = await fetch('/static/pdf/STA_2e_Standard_Log_Sheet.pdf').then(res => res.arrayBuffer())
+            const blankPdf = await PDFDocument.load(pdfBytes)
+
+            const [ secondPage ] = await pdf.copyPages(blankPdf, [0]);
+            page2 = secondPage;
+            this.writePage2Labels(page2);
+        }
+
         const page = pdf.getPage(0);
         this.writeSubTitles(page, construct);
         this.writeDetailLabels(page);
@@ -68,6 +79,10 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         this.writeStress(pdf, page, construct as Character);
 
         new CheckMarkMaker(page, pdf).createCheckMarks(this.determinationPills);
+
+        if (page2) {
+            pdf.addPage(page2);
+        }
     }
 
     get detailLabels() {
@@ -158,6 +173,10 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         ];
     }
 
+
+    writePage2Labels(page: PDFPage) {
+        this.writePersonalLogTitle(page);
+    }
 
     getStatLabelColour(key: String): SimpleColor {
         switch (key) {
@@ -259,6 +278,34 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
             let block = this.detailLabels[key];
             const originalText = i18next.t(key).toLocaleUpperCase();
             this.writeLabel(page, originalText, fontSize, block, colour);
+        });
+    }
+
+    writePersonalLogTitle(page: PDFPage) {
+        const originalText = i18next.t("Sheet.text.log.title").toLocaleUpperCase();
+        let text = originalText;
+        const fontSize = determineIdealFontWidth([ text ],
+            Standard2eCharacterSheet.personalLogHeadingColumn.width, 11, 8, this.headingFont);
+        const column = Standard2eCharacterSheet.personalLogHeadingColumn;
+        let width = this.headingFont.widthOfTextAtSize(text, fontSize);
+        while (width > column.width) {
+            text = text.substring(0, text.length-1);
+            width = this.headingFont.widthOfTextAtSize(text + "...", fontSize);
+        }
+
+        if (text !== originalText) {
+            text += "...";
+        }
+
+        let block = TextBlock.create(text, new FontSpecification(this.headingFont, fontSize), false);
+        let y = column.end.y - 1 - ((column.height - block.height) / 2)
+
+        page.drawText(text, {
+            x: column.start.x,
+            y: page.getHeight() - y,
+            color: SimpleColor.from("#ffffff").asPdfRbg(),
+            font: this.headingFont,
+            size: fontSize
         });
     }
 

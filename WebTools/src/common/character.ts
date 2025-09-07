@@ -29,6 +29,7 @@ import { CharacterAdvancementChoice } from '../modify/model/characterAdvancement
 import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_WARRIORS_SPIRIT } from '../helpers/talents';
 import { SpecialWeapon } from './specialWeapon';
 import { ModificationType } from '../modify/model/modificationType';
+import { LogEntry } from './logEntry';
 
 export enum Division {
     Command,
@@ -183,6 +184,7 @@ export class CharacterAdvancementStep {
     choice: CharacterAdvancementChoice;
     value: string|Attribute|Department|SelectedTalent;
     removeValue: string|Attribute|Department|SelectedTalent;
+    logEntry: LogEntry;
 
     copy() {
         let result = new CharacterAdvancementStep();

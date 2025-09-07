@@ -2192,6 +2192,11 @@ Sheet.standard2eCharacterSheet,Standard 2nd Ed. Character Sheet (US-Letter),,,Ho
 Sheet.text.title,Starfleet Personnel Record,,,Registro de personal de la Flota Estelar,Registre personnel de Starfleet,Бланк персонажа,Registro de pessoal da Frota Estelar
 Sheet.text.title.starship,Starship Registry Entry,,,Entrada de Registro de Nave,,,Entrada de Registro da Nave
 Sheet.text.title.alt,Personnel File,,,Archivo de Personal,,,Arquivo de Pessoal
+Sheet.text.log.title,Personal Log,,,,,,
+Sheet.text.log.entryNumber,Entry No.,,,,,,
+Sheet.text.log.adventureTitle,Adventure Title and Mission Description,,,,,,
+Sheet.text.log.valuesOrDirectivesUsed,Values or Directives Used,,,,,,
+Sheet.text.log.notes,Notes,,,,,,
 SheetTag.a4,A4,,,A4,A4,,A4
 SheetTag.halfPage,Half-Page,,,Media Página,Demi-page,Пол страницы,Meia página
 SheetTag.landscape,Landscape,,,Paisaje,Paysage,Альбомный,Paisagem
