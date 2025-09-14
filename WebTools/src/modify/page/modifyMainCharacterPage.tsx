@@ -18,18 +18,30 @@ import { useNavigate } from "react-router";
 import { CharacterAdvancementType } from "../model/characterAdvancementType";
 import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { CharacterAdvancementTypeView } from "./characterAdvancementTypeView";
+import { CharacterLogEntryView } from "./characterLogEntryView";
+import { LogEntry } from "../../common/logEntry";
+import { addCharacterLogEntry } from "../../state/characterActions";
+
+enum Step {
+    Initial,
+    LogEntry,
+    ModificationDetails,
+    Finish
+}
 
 
 const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) => {
 
     const { t } = useTranslation();
     const [carouselIndex, setCarouselIndex] = useState(0);
-    const [modificationType, setModificationType] = useState<string|ModificationType>(character?.rank != null ? ModificationType.Promotion : ModificationType.CharacterAdvancement);
+    const [modificationType, setModificationType] = useState<ModificationType>(character?.rank != null ? ModificationType.Promotion : ModificationType.CharacterAdvancement);
     const [advancementType, setAdvancementType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Adjustment);
+    const [logEntry, setLogEntry] = useState<LogEntry>(new LogEntry((character.logEntries?.length ?? 0) + 1));
     const navigate = useNavigate();
 
     const dropDownItems = () => {
         let result = [];
+        result.push(new DropDownElement(ModificationType.LogEntry, t('ModificationType.name.logEntry')))
         if (character?.rank != null) {
             result.push(new DropDownElement(ModificationType.Promotion, t('ModificationType.name.promotion')))
         }
@@ -49,19 +61,15 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     }
 
     const previousStep = () => {
-        if (carouselIndex === 1) {
+        if (carouselIndex < 3) {
             setCarouselIndex(carouselIndex-1);
         }
     }
 
     const nextStep = () => {
         if (carouselIndex === 0) {
-            if (modificationType === "") {
-                Dialog.show("Please choose a modification type");
-            } else {
-                setCarouselIndex(carouselIndex+1);
-            }
-        } else if (carouselIndex === 1) {
+            setCarouselIndex(carouselIndex+1);
+        } else {
             setCarouselIndex(carouselIndex+1);
         }
     }
@@ -73,7 +81,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                 <Header level={2}>{t('Page.title.modificationTypeSelection')}</Header>
                 <Markdown className="mt-4">{t('ModificationTypeSelectionPage.instruction')}</Markdown>
                 <div className="mt-4">
-                    <DropDownSelect items={dropDownItems()} onChange={(v) => setModificationType(v)} defaultValue={modificationType} />
+                    <DropDownSelect items={dropDownItems()} onChange={(v) => setModificationType(v as ModificationType)} defaultValue={modificationType} />
                 </div>
 
                 {modificationType === ModificationType.CharacterAdvancement
@@ -114,6 +122,11 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         }, 200);
     }
 
+    const createLogEntryView = () => {
+        return (<CharacterLogEntryView onNextStep={nextStep} onPreviousStep={previousStep}
+                character={character} saveLogEntry={(l) => store.dispatch(addCharacterLogEntry(l))} />);
+    }
+
     const createFinalView = () => {
         return (<>
             <div className="row">
@@ -129,6 +142,30 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         </>)
     }
 
+    const getSteps = (modificationType: ModificationType) => {
+        if (modificationType === ModificationType.LogEntry) {
+            return [ Step.Initial, Step.LogEntry, Step.Finish ];
+        } else {
+            return [ Step.Initial, Step.LogEntry, Step.ModificationDetails, Step.Finish ];
+        }
+    }
+
+    const showStep = (step: number) => {
+        let steps = getSteps(modificationType);
+        switch (steps[step]) {
+            case Step.Initial:
+                return createCharacterAdvancementTypeView();
+            case Step.LogEntry:
+                return createLogEntryView();
+            case Step.ModificationDetails:
+                return createModifcationDataStepView();
+            case Step.Finish:
+            default:
+                return createFinalView();
+        }
+
+    }
+
     return (<LcarsFrame activePage={PageIdentity.ModifyMainCharacter}>
         <div id="app">
             <div className="page container ms-0">
@@ -138,15 +175,19 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
 
                 <Carousel controls={false} interval={null} activeIndex={carouselIndex} indicators={false}>
                     <Carousel.Item>
-                        {createCharacterAdvancementTypeView()}
+                        {showStep(0)}
                     </Carousel.Item>
 
                     <Carousel.Item>
-                        {createModifcationDataStepView()}
+                        {showStep(1)}
                     </Carousel.Item>
 
                     <Carousel.Item>
-                        {createFinalView()}
+                        {showStep(2)}
+                    </Carousel.Item>
+
+                    <Carousel.Item>
+                        {showStep(3)}
                     </Carousel.Item>
                 </Carousel>
 

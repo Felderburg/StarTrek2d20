@@ -17,6 +17,7 @@ import { SelectedTalent } from "../common/selectedTalent";
 import { ModificationType } from "../modify/model/modificationType";
 import { EquipmentModel, EquipmentType } from "../helpers/equipment";
 import { PersonalWeaponType } from "../helpers/weapons";
+import { LogEntry } from "../common/logEntry";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -63,6 +64,7 @@ export const REMOVE_NPC_CHARACTER_EQUIPMENT = "REMOVE_NPC_CHARACTER_EQUIPMENT";
 export const REMOVE_NPC_CHARACTER_WEAPON = "REMOVE_NPC_CHARACTER_WEAPON";
 export const ADD_NPC_CHARACTER_WEAPON = "ADD_NPC_CHARACTER_WEAPON";
 export const SET_NPC_CHARACTER_TALENTS = "SET_NPC_CHARACTER_TALENTS";
+export const ADD_CHARACTER_LOG_ENTRY = "ADD_CHARACTER_LOG_ENTRY";
 
 export enum StepContext {
     Species,
@@ -257,6 +259,14 @@ export function setCharacterSpeciesAbilityFocus(focus: string, index: number = 0
     let payload = { focus: focus, index: index };
     return {
        type: ADD_CHARACTER_SPECIES_ABILITY_FOCUS,
+       payload: payload
+    }
+}
+
+export function addCharacterLogEntry(logEntry: LogEntry) {
+    let payload = { logEntry: logEntry };
+    return {
+       type: ADD_CHARACTER_LOG_ENTRY,
        payload: payload
     }
 }

@@ -5,7 +5,8 @@ export enum ModificationType {
     Reputation,
     CharacterAdvancement,
     Promotion,
-    Demotion
+    Demotion,
+    LogEntry
 }
 
 export class ModificationModel {
@@ -27,6 +28,7 @@ class Modifications {
     static _instance: Modifications;
 
     private items: ModificationModel[] = [
+        new ModificationModel(ModificationType.LogEntry, "Log Entry"),
         new ModificationModel(ModificationType.Reputation, "Reputation"),
         new ModificationModel(ModificationType.CharacterAdvancement, "Character Advancement"),
         new ModificationModel(ModificationType.Promotion, "Promotion"),

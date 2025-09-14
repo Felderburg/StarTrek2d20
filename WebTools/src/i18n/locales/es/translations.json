@@ -2410,15 +2410,15 @@
     "Talent.expeditionExpert.description2e": "Antes de participar en una misión del equipo de salida, puedes hacer preparativos adicionales gastando 2 puntos de Inercia (inmediato). Durante la expedición, cualquier miembro del equipo de salida puede repetir una tirada de dados en cualquier tarea para desplazarse por el terreno o sortear un peligro u obstáculo. El equipo de salida puede repetir un número total de dados igual a tu nivel de Ciencia.",
 
     "Talent.experimentalVessel": "Nave experimental",
-    "Talent.exploitWeakness": "Aprovechar debilidades",
-    "Talent.extensiveAutomation": "Automatismo ampliado",
+    "Talent.exploitWeakness": "Aprovechar Debilidades",
+    "Talent.extensiveAutomation": "Automatismo Ampliado",
     "Talent.extensiveMedicalLaboratories": "Laboratorios Médicos amplios",
-    "Talent.extensiveShuttlebays": "Hangares amplios",
-    "Talent.extraEffort": "Esfuerzo adicional",
+    "Talent.extensiveShuttlebays": "Hangares Amplios",
+    "Talent.extraEffort": "Esfuerzo Adicional",
 
     "Talent.extraEffort.description2e": "Cuando intentas una tarea, puedes reducir la Dificultad de la tarea en 1, hasta un mínimo de 0. Sin embargo, una vez completada la tarea, sufres inmediatamente puntos de Estrés iguales a la Dificultad original de la tarea.",
 
-    "Talent.extraSensoryPerception": "Percepción extrasensorial",
+    "Talent.extraSensoryPerception": "Percepción Extrasensorial",
 
     "Talent.extraSensoryPerception.description2e": "Tienes la capacidad de percibir cosas más allá de los límites normales de los sentidos humanoides, lo que te permite obtener conocimiento de personas, lugares y objetos más allá de tu capacidad para percibirlos de forma convencional. Esto se conoce como percepción extrasensorial o PES. No está directamente bajo su control, sino que suele presentarse en forma de suposiciones precisas, sensaciones fuertes o destellos de perspicacia. Esta sensibilidad a menudo te hace vulnerable a los peligros psíquicos. En cualquier momento durante el juego, puedes pedir al director de juego pistas o intuiciones sobre la situación actual, y el director de juego puede ofrecerte información sobre la situación actual que normalmente no serías capaz de determinar. Cada pista añade 1 punto de Amenaza, y siempre puedes negarte a aceptar las pistas ofrecidas.",
 
@@ -2695,7 +2695,7 @@
     "Talent.planOfAction.description2e": "Siempre que un aliado tenga éxito en una tarea que haya sido posible, o haya tenido una Dificultad reducida, gracias a un rasgo que hayas creado, y ese rasgo represente un plan, estrategia o curso de acción, genera 2 puntos de Inercía adicionales. Esta Inercia adicional no se puede guardar.",
 
     "Talent.pointDefenseSystem": "Sistema de Defensa de Puntos",
-    "Talent.polarizedHullPlatingSpecialRule": "Revestimiento del casco polarizado",
+    "Talent.polarizedHullPlatingSpecialRule": "Blindaje del Casco Polarizado",
     "Talent.positiveReinforcement": "Refuerzo positivo",
 
     "Talent.positiveReinforcement.description2e": "Una vez por misión, puedes intentar una tarea de Presencia + Medicina con una Dificultad de 3, mientras proporcionas tratamiento emocional o mental a otro personaje. El éxito crea un rasgo de carácter para tu paciente que dura hasta el final de la misión: Confianza Aumentada. Además de los efectos normales del rasgo, ese personaje puede volver a tirar su reserva de dados, como si hubiera gastado Determinación, una vez antes del final de la misión. Si la tarea en la que el personaje utilizó su repetición de tirada falla, pierde el rasgo creado por este talento.",
@@ -2805,7 +2805,7 @@
     "Talent.saucerSeparation": "Separador de disco",
     "Talent.saucerSeparation2ndEdition": "Separador de disco",
     "Talent.saucerSeparationAndReconnect": "Separador y reconector de disco",
-    "Talent.secondaryReactors": "Reactores secundarios",
+    "Talent.secondaryReactors": "Reactores Secundarios",
     "Talent.secondWind": "Tomar aliento",
 
     "Talent.secondWind.description2e": "Puedes gastar Determinación al comienzo de tu turno para eliminar el estado de Derrotado y recuperar hasta la mitad de tu Estrés máximo. Se siguen aplicando los requisitos normales para gastar un punto de Determinación.",

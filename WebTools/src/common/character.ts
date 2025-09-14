@@ -184,7 +184,6 @@ export class CharacterAdvancementStep {
     choice: CharacterAdvancementChoice;
     value: string|Attribute|Department|SelectedTalent;
     removeValue: string|Attribute|Department|SelectedTalent;
-    logEntry: LogEntry;
 
     copy() {
         let result = new CharacterAdvancementStep();
@@ -452,6 +451,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     public supportingStep?: SupportingStep;
 
     public improvements: (CharacterAdvancementStep|Promotion|ReputationChangeStep)[];
+    public logEntries: LogEntry[];
 
     public description?: string;
     public legacyMode: boolean;
@@ -1585,6 +1585,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             character._focuses.push(f);
         });
         character.improvements = this.improvements?.map(i => i.copy());
+        character.logEntries = this.logEntries?.map(l => l.copy());
         character.pronouns = this.pronouns;
         character.name = this.name;
         character.additionalTraits = this.additionalTraits;

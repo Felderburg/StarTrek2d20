@@ -19,6 +19,8 @@ import { TextBlock } from "./textBlock";
 import { FontSpecification } from "./fontSpecification";
 import { blueColour2e, goldColour2e, redColour2e } from "./colourProvider2e";
 import { CharacterType } from "../common/characterType";
+import { Paragraph } from "./paragraph";
+import { FontLibrary } from "./fontLibrary";
 
 
 export class Standard2eCharacterSheet extends BaseFormFillingSheet {
@@ -62,7 +64,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         await super.populate(pdf, construct);
 
         let page2 = null;
-        if ((construct as Character).improvements?.length) {
+        if ((construct as Character).logEntries?.length) {
             const pdfBytes = await fetch('/static/pdf/STA_2e_Standard_Log_Sheet.pdf').then(res => res.arrayBuffer())
             const blankPdf = await PDFDocument.load(pdfBytes)
 
@@ -175,6 +177,33 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
 
     writePage2Labels(page: PDFPage) {
+        const headerLabels = [
+            new Column(29.9, 74.3, 19.8, 78 - 29.9),
+            new Column(78, 74.3, 19.8, 260.8 - 78),
+            new Column(260.8, 74.3, 19.8, 360.6 - 260.8),
+            new Column(360.6, 78.3, 15.8, 552.1 + 29.9 - 360.6),
+        ];
+
+        let heading1 = new Paragraph(page, headerLabels[0], new FontLibrary());
+        heading1.textAlignment = TextAlign.Centre;
+        heading1.append(i18next.t('Sheet.text.log.entryNumber').toLocaleUpperCase(), new FontSpecification(this.headingFont, 6.25), SimpleColor.from("#ffffff"));
+        heading1.write();
+
+        let heading2 = new Paragraph(page, headerLabels[1], new FontLibrary());
+        heading2.textAlignment = TextAlign.Centre;
+        heading2.append(i18next.t('Sheet.text.log.adventureTitle').toLocaleUpperCase(), new FontSpecification(this.headingFont, 6.25), SimpleColor.from("#ffffff"));
+        heading2.write();
+
+        let heading3 = new Paragraph(page, headerLabels[2], new FontLibrary());
+        heading3.textAlignment = TextAlign.Centre;
+        heading3.append(i18next.t('Sheet.text.log.valuesOrDirectivesUsed').toLocaleUpperCase(), new FontSpecification(this.headingFont, 6.25), SimpleColor.from("#ffffff"));
+        heading3.write();
+
+        let heading4 = new Paragraph(page, headerLabels[3], new FontLibrary());
+        heading4.textAlignment = TextAlign.Centre;
+        heading4.append(i18next.t('Sheet.text.log.notes').toLocaleUpperCase(), new FontSpecification(this.headingFont, 6.25), SimpleColor.from("#ffffff"));
+        heading4.write();
+
         this.writePersonalLogTitle(page);
     }
 

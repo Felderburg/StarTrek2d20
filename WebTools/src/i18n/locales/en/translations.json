@@ -144,6 +144,14 @@
     "CharacterAdvancementTypeView.error.twoFocuses": "Please select both a focus to remove, and a new focus.",
     "CharacterAdvancementTypeView.error.twoTalents": "Please select both a talent to remove and a new talent.",
 
+    "CharacterLogEntry.instruction": "Please provide a brief description of the recent mission.",
+
+    "CharacterLogEntry.notes.instruction": "Record anything particularly noteworthy about this mission.",
+
+    "CharacterLogEntry.values.instruction": "Which values did the character use in this mission?",
+
+    "CharacterLogEntry.directives.instruction": "Which mission directives did the character use in this mission?",
+
     "CharacterTypePage.whatType": "What type of character is this?",
     "CharacterTypePage.whatGovernment": "What government does this character represent?",
     "CharacterTypePage.otherGovernmentName": "What's the name of this government?",
@@ -650,6 +658,7 @@
     "Construct.other.department": "Department",
     "Construct.other.departments": "Departments",
     "Construct.other.determination": "Determination",
+    "Construct.other.directive": "Directive",
     "Construct.other.discipline": "Discipline",
     "Construct.other.disciplines": "Disciplines",
     "Construct.other.education": "Education",
@@ -1532,6 +1541,7 @@
 
     "ModificationType.name.demotion": "Demotion",
     "ModificationType.name.promotion": "Promotion",
+    "ModificationType.name.logEntry": "Log Entry",
     "ModificationType.name.reputation": "Reputation",
     "ModificationType.name.milestone": "Milestone",
     "ModificationType.name.characterAdvancement": "Character Advancement",
