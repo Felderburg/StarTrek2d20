@@ -116,7 +116,7 @@ const CreditsPage = () => {
                         <Header className="my-4" level={2}>Patreon Supporters!</Header>
 
                         <p>
-                            This site benefits from the amazing backing of <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+                            This site benefits from the amazing backing of <a href="https://www.patreon.com/bcholmes"
                             target="_blank"  rel="noreferrer">Patreon supporters</a>.
                             In particular, I want to shout out to the Senior Staff:
                         </p>
@@ -285,7 +285,7 @@ const CreditsPage = () => {
 
                     <p>
                         I have one of those, now. {' '}
-                        <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"
+                        <a href="https://www.patreon.com/bcholmes"
                         target="_blank"  rel="noreferrer">Support me on Patreon.</a> Only if that's convenient for you. No pressure.
                         This is still a labour of love for me.</p>
                 </div>

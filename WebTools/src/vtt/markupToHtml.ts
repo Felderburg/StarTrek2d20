@@ -1,7 +1,7 @@
 import { textTokenizer } from "../exportpdf/textTokenizer";
 
 export const markupToHtml = (description: string) => {
-    return description.split("\n").map(d => {
+    return description == null ? "" : description.split("\n").map(d => {
         let parts = textTokenizer(d);
         let result = "<p>";
         let style = "";

@@ -163,7 +163,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
                     </div>
                     <div className=" d-flex justify-content-end pe-4">
                         <a href="https://bsky.app/profile/bcholmes.org"  target="_blank" rel="noreferrer"><img src="/static/img/bluesky_logo.svg" className="my-2 mx-1 social-media" alt="Bluesky Logo" title="Bluesky" /></a>
-                        <a href="https://patreon.com/bcholmes?utm_medium=unknown&utm_source=join_link&utm_campaign=creatorshare_creator&utm_content=copyLink"  target="_blank" rel="noreferrer"><img src="/static/img/patreon_logo.svg" className="my-2 mx-1 social-media" alt="Patreon Logo" title="Patreon" /></a>
+                        <a href="https://www.patreon.com/bcholmes"  target="_blank" rel="noreferrer"><img src="/static/img/patreon_logo.svg" className="my-2 mx-1 social-media" alt="Patreon Logo" title="Patreon" /></a>
                     </div>
                 </div>
                 <div className="lcar-content-round"></div>
