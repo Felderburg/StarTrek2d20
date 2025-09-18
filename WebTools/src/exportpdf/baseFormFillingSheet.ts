@@ -106,11 +106,11 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
         });
     }
 
-    fillField(form: PDFForm, name: string, value: string) {
+    fillField(form: PDFForm, name: string, value: string|number) {
         try {
             const field = form.getTextField(name)
             if (field) {
-                field.setText(value)
+                field.setText("" + (value ?? ""));
             }
         } catch (e) {
             // ignore it

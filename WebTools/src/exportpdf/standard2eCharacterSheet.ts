@@ -2,7 +2,7 @@ import i18next from "i18next";
 import { BaseFormFillingSheet } from "./baseFormFillingSheet";
 import { SheetTag } from "./icharactersheet";
 import { Column } from "./column";
-import { PDFDocument, PDFForm, PDFPage, PDFTextField } from "@cantoo/pdf-lib";
+import { PDFDocument, PDFForm, PDFPage, PDFTextField, TextAlignment } from "@cantoo/pdf-lib";
 import { SimpleColor } from "../common/colour";
 import { Construct } from "../common/construct";
 import { Character } from "../common/character";
@@ -21,6 +21,7 @@ import { blueColour2e, goldColour2e, redColour2e } from "./colourProvider2e";
 import { CharacterType } from "../common/characterType";
 import { Paragraph } from "./paragraph";
 import { FontLibrary } from "./fontLibrary";
+import { LogEntry } from "../common/logEntry";
 
 
 export class Standard2eCharacterSheet extends BaseFormFillingSheet {
@@ -63,28 +64,98 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     async populate(pdf: PDFDocument, construct: Construct) {
         await super.populate(pdf, construct);
 
+        let character = construct as Character;
         let page2 = null;
-        if ((construct as Character).logEntries?.length) {
+        if (character.logEntries?.length) {
             const pdfBytes = await fetch('/static/pdf/STA_2e_Standard_Log_Sheet.pdf').then(res => res.arrayBuffer())
             const blankPdf = await PDFDocument.load(pdfBytes)
 
             const [ secondPage ] = await pdf.copyPages(blankPdf, [0]);
             page2 = secondPage;
             this.writePage2Labels(page2);
+
+            if (page2) {
+                for (let i = 0; i < Math.ceil(character.logEntries?.length / 18); i++) {
+
+                    let tempPage = pdf.addPage(page2);
+                    const [ newPage ] = await pdf.copyPages(pdf, [ pdf.getPageCount()-1 ]);
+                    page2 = newPage;
+
+                    this.addLogFields(tempPage, pdf.getForm(), i);
+                }
+
+                character.logEntries?.forEach((l,i) => this.fillLogFields(l, pdf.getForm(), i));
+            }
+
         }
 
         const page = pdf.getPage(0);
         this.writeSubTitles(page, construct);
         this.writeDetailLabels(page);
-        this.writeStatLabels(page, construct as Character, TextAlign.Left, 5, 3.5);
+
+        this.writeStatLabels(page, character, TextAlign.Left, 5, 3.5);
         this.writeTitle(page);
-        this.writeStress(pdf, page, construct as Character);
+        this.writeStress(pdf, page, character);
 
         new CheckMarkMaker(page, pdf).createCheckMarks(this.determinationPills);
+    }
 
-        if (page2) {
-            pdf.addPage(page2);
+    addLogFields(page: PDFPage, form: PDFForm, index: number) {
+        for (let i = 0; i < 18; i++) {
+            let id = i * 18 + i + 1;
+
+            let height = 29.9;
+            let gap = 135.5 - 98.7 - height;
+
+            let y = 98.7 + (i * (height + gap));
+
+            let idField = form.createTextField("log-entry-id-" + id);
+            idField.enableMultiline();
+            idField.setAlignment(TextAlignment.Center);
+            idField.updateAppearances(this.formFont, staTextFieldAppearanceProvider(9));
+
+            idField.addToPage(page, {
+                x: 32.9,
+                y: page.getHeight() - y - height,
+                width: 43.1,
+                height: height,
+                textColor: SimpleColor.from("#000000").asPdfRbg(),
+                borderWidth: 0,
+                font: this.formFont
+            });
+            idField.setFontSize(9);
+
+            let titleField = form.createTextField("log-entry-title-" + id);
+            titleField.enableMultiline();
+            titleField.updateAppearances(this.formFont, staTextFieldAppearanceProvider(9));
+
+            titleField.addToPage(page, {
+                x: 81.4,
+                y: page.getHeight() - y - height,
+                width: 176,
+                height: height,
+                textColor: SimpleColor.from("#000000").asPdfRbg(),
+                borderWidth: 0,
+                font: this.formFont
+            });
+            titleField.setFontSize(9);
         }
+    }
+
+    fillLogFields(logEntry: LogEntry, form: PDFForm, index: number) {
+        this.fillField(form, "log-entry-id-" + (index + 1), logEntry.id);
+
+        let title = "";
+        if (logEntry.adventureTitle?.length) {
+            title = logEntry.adventureTitle;
+        }
+        if (logEntry.missionDescription?.length) {
+            if (title?.length) {
+                title += ": ";
+            }
+            title += logEntry.missionDescription;
+        }
+        this.fillField(form, "log-entry-title-" + (index + 1), title);
     }
 
     get detailLabels() {

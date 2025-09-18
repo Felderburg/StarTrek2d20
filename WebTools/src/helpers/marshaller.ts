@@ -325,6 +325,18 @@ class Marshaller {
         }
     }
 
+    decodeLogEntries(json: any[]): LogEntry[] {
+        return json.map(j => {
+            let id = j.id;
+
+            let entry = new LogEntry(id)
+            entry.adventureTitle = j.adventureTitle;
+            entry.missionDescription = j.missionDescription;
+            entry.notes = j.notes;
+            return entry;
+        });
+    }
+
     encodeLogEntry(logEntry: LogEntry) {
         return {
             id: logEntry.id,
@@ -1737,6 +1749,10 @@ class Marshaller {
 
         if (json.improvements?.length) {
             result.improvements = this.decodeImprovements(json.improvements, result.version);
+        }
+
+        if (json.logEntries?.length) {
+            result.logEntries = this.decodeLogEntries(json.logEntries);
         }
 
         if (json.description?.length) {
