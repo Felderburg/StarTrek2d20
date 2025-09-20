@@ -325,20 +325,19 @@ class Marshaller {
         }
     }
 
-    decodeLogEntries(json: any[]): LogEntry[] {
-        return json.map(j => {
-            let id = j.id;
+    decodeLogEntry(j: any): LogEntry {
+        let id = j.id;
 
-            let entry = new LogEntry(id)
-            entry.adventureTitle = j.adventureTitle;
-            entry.missionDescription = j.missionDescription;
-            entry.notes = j.notes;
-            return entry;
-        });
+        let entry = new LogEntry(id)
+        entry.adventureTitle = j.adventureTitle;
+        entry.missionDescription = j.missionDescription;
+        entry.notes = j.notes;
+        return entry;
     }
 
     encodeLogEntry(logEntry: LogEntry) {
         return {
+            type: "logEntry",
             id: logEntry.id,
             adventureTitle: logEntry.adventureTitle,
             missionDescription: logEntry.missionDescription,
@@ -394,6 +393,8 @@ class Marshaller {
                     let result = { type: "reputation" };
                     result["reputation"] = i.reputation;
                     return result;
+                } else if (i instanceof LogEntry) {
+                    return this.encodeLogEntry(i);
                 } else {
                     return undefined;
                 }
@@ -632,10 +633,6 @@ class Marshaller {
         }
 
         sheet["improvements"] = this.encodeImprovements(character);
-
-        if (character.logEntries?.length) {
-            sheet["logEntries"] = character.logEntries?.map(l => this.encodeLogEntry(l));
-        }
 
         return sheet;
     }
@@ -1751,10 +1748,6 @@ class Marshaller {
             result.improvements = this.decodeImprovements(json.improvements, result.version);
         }
 
-        if (json.logEntries?.length) {
-            result.logEntries = this.decodeLogEntries(json.logEntries);
-        }
-
         if (json.description?.length) {
             result.description = json.description;
         }
@@ -1864,6 +1857,8 @@ class Marshaller {
                 } else if (j["type"] === "reputation") {
                     const reputation = j["reputation"];
                     return new ReputationChangeStep(reputation);
+                } else if (j["type"] === "logEntry") {
+                    return this.decodeLogEntry(j);
                 } else {
                     return undefined;
                 }

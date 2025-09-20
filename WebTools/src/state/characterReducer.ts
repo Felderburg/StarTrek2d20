@@ -340,10 +340,10 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
         }
         case ADD_CHARACTER_LOG_ENTRY: {
             let temp = state.currentCharacter.copy();
-            if (temp.logEntries == null) {
-                temp.logEntries = [];
+            if (temp.improvements == null) {
+                temp.improvements = [];
             }
-            temp.logEntries.push(action.payload.logEntry);
+            temp.improvements.push(action.payload.logEntry);
             return {
                 ...state,
                 currentCharacter: temp,

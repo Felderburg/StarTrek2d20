@@ -5222,17 +5222,10 @@ export class Talents {
     }
 
     getAllAvailableTalentsForNpc(character: Character): TalentModel[] {
-        if (character.npcGenerationStep?.type === NpcType.Major) {
-            let result = this._talents.filter(t => t.isPrerequisiteFulfilled(character));
-            result.push(...(this._specialRules.filter(t => t.isPrerequisiteFulfilled(character))));
-            result.push(this.customTalent);
-            return result;
-        } else {
-            let rules = this._specialRules
-                .filter(t => t.isPrerequisiteFulfilled(character));
-            rules.push(this.customTalent);
-            return rules;
-        }
+        let result = this._talents.filter(t => t.isPrerequisiteFulfilled(character));
+        result.push(...(this._specialRules.filter(t => t.isPrerequisiteFulfilled(character))));
+        result.push(this.customTalent);
+        return result;
     }
 
     getSourceForTalent(name: string) {
