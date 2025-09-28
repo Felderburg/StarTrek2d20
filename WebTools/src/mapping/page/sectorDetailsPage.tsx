@@ -64,7 +64,7 @@ const SectorDetailsPage: React.FC<ISectorDetailsPageProperties> = ({sector}) => 
                 </ol>
             </nav>
 
-            <EditableHeader prefix="Sector" text={sector.name} onChange={setSectorNameHandler}/>
+            <EditableHeader prefix="Sector" separator=' • '  text={sector.name} onChange={setSectorNameHandler}/>
             <div className="d-flex justify-content-center">
                 <div className="d-md-block d-none">
                     <LcarsDecorationLeftView />

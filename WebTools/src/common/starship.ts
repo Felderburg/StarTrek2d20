@@ -15,6 +15,7 @@ import { ServiceRecord, ServiceRecordModel } from "../starship/model/serviceReco
 import { DepartmentsHelper } from "../helpers/department";
 import { SelectedTalent } from "./selectedTalent";
 import { StarshipAdvancementChoice } from "./starshipAdvancementChoice";
+import { SpaceframeVariant } from "../helpers/spaceframeVariant";
 
 export class SimpleStats {
     departments: number[];
@@ -74,6 +75,7 @@ export class MissionProfileStep {
 export class SpaceframeStep {
     readonly model: SpaceframeModel;
     talents: SelectedTalent[] = [];
+    variant?: SpaceframeVariant;
 
     constructor(model: SpaceframeModel) {
         this.model = model;
@@ -82,6 +84,7 @@ export class SpaceframeStep {
     copy() {
         const result = new SpaceframeStep(this.model);
         result.talents = this.talents.map(t => t.copy());
+        result.variant = this.variant;
         return result;
     }
 }

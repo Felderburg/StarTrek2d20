@@ -1,11 +1,23 @@
 import { useTranslation } from "react-i18next";
-import { LogEntry } from "../../common/logEntry";
+import { LogEntry, LogValueEntry } from "../../common/logEntry";
 import { ICharacterProperties } from "../../solo/page/soloCharacterProperties";
 import Markdown from "react-markdown";
 import { Button } from "react-bootstrap";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { useState } from "react";
 import { TextArea } from "../../common/textarea";
+import { LogEntryValueView } from "./logEntryValueView";
+import { Header } from "../../components/header";
+import { Dialog } from "../../components/dialog";
+
+class SelectedLogValueEntry {
+    logEntry: LogValueEntry;
+    selected: boolean;
+
+    constructor(logEntry: LogValueEntry) {
+        this.logEntry = logEntry;
+    }
+}
 
 interface ICharacterLogEntryViewProperties extends ICharacterProperties {
     onNextStep: () => void;
@@ -14,24 +26,68 @@ interface ICharacterLogEntryViewProperties extends ICharacterProperties {
 }
 
 export const CharacterLogEntryView: React.FC<ICharacterLogEntryViewProperties> = ({character, onNextStep, onPreviousStep, saveLogEntry}) => {
+    const initializeLogValueEntries = () => {
+        return character.values.map(v => {
+            let result = new SelectedLogValueEntry(new LogValueEntry(v));
+            result.selected = false;
+            return result;
+        });
+    }
+
     const { t } = useTranslation();
     const [ title, setTitle ] = useState<string>("");
     const [ details, setDetails ] = useState<string>("");
     const [ notes, setNotes ] = useState<string>("");
+    const [ values, setValues ] = useState<SelectedLogValueEntry[]>(initializeLogValueEntries());
+    const [ directives, setDirectives ] = useState<string[]>(["", "", ""]);
 
     const createLogEntryAndNext = () => {
-        let entry = new LogEntry((character.logEntries?.length ?? 0) + 1);
-        entry.adventureTitle = title;
-        entry.missionDescription = details;
-        entry.notes = notes;
-        saveLogEntry(entry);
-        onNextStep();
+        if (title.length === 0) {
+            Dialog.show("Please select a title");
+        } else if (details.length === 0) {
+            Dialog.show("Please provide some mission details");
+        } else {
+            let entry = new LogEntry((character.logEntries?.length ?? 0) + 1);
+            entry.adventureTitle = title;
+            entry.missionDescription = details;
+            entry.notes = notes;
+            entry.directivesUsed = directives.filter(d => d?.length);
+            saveLogEntry(entry);
+            onNextStep();
+        }
+    }
+
+    const modifyValue = (index: number, value?: LogValueEntry) => {
+        let temp = [...values];
+        let entry = new SelectedLogValueEntry(values[index].logEntry);
+        entry.selected = (value !== undefined);
+
+        temp[index] = entry;
+        setValues(temp);
+    }
+
+    const modifyDirective = (directive: string, index: number) => {
+        let temp = [...directives];
+        temp[index] = directive;
+        let last = 0;
+
+        temp.forEach((d,i) => {
+            if (d?.length) {
+                last = i;
+            }
+        });
+
+        last += 3;
+        for (let i = temp.length; i < last; i++) {
+            temp.push("");
+        }
+        setDirectives(temp);
     }
 
     return <>
         <div className="row">
 
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
                 <Markdown className="mt-4">{t('CharacterLogEntry.instruction')}</Markdown>
 
                 <div className="my-3">
@@ -51,7 +107,7 @@ export const CharacterLogEntryView: React.FC<ICharacterLogEntryViewProperties> =
                     />
                 </div>
             </div>
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
                 <Markdown className="mt-4">{t('CharacterLogEntry.notes.instruction')}</Markdown>
 
                 <div className="my-3">
@@ -63,14 +119,23 @@ export const CharacterLogEntryView: React.FC<ICharacterLogEntryViewProperties> =
                 </div>
             </div>
 
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
+                <Header level={2} className="mt-4">{t('Construct.other.values')}</Header>
                 <Markdown className="mt-4">{t('CharacterLogEntry.values.instruction')}</Markdown>
 
+                <table className="selection-list">
+                    {values.map((v, i) =>
+                        (<LogEntryValueView value={v.logEntry} selected={v.selected}
+                            onChange={(value) => modifyValue(i, value)} key={"value-" + i}/>))}
+                </table>
             </div>
 
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-lg-6">
+                <Header level={2} className="mt-4">{t('Common.text.directives')}</Header>
                 <Markdown className="mt-4">{t('CharacterLogEntry.directives.instruction')}</Markdown>
-
+                {directives.map((d,i) => <InputFieldAndLabel id={"directive-" + i}
+                    labelName={t('Common.text.directive')} className="mt-3"
+                    value={d} onChange={(directive) => modifyDirective(directive, i)}  key={"directive-" + i}/>) }
             </div>
         </div>
 

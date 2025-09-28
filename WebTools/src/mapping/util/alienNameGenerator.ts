@@ -22,12 +22,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
+import { D20 } from "../../common/die";
+
 // This class includes code originating with https://github.com/niksudan/alien-namegen
 // The alien-namegen codebase is distributed under the MIT license, and is
 // Copyright (c) 2023 Nik Sudan
 class AlienNameGenerator {
 
     static readonly commonSuffixes = ['Prime', 'Alpha', 'Beta', 'Gamma', 'Delta' ];
+    static readonly commonSectorPrefixes = ['Proxima', 'Meta', 'Gamma', 'Alpha', 'Neo', 'Sigma' ];
+    static readonly commonSectorSuffixes = ['Rift', 'Helion', 'Prime', 'Zeta', 'Cluster', 'Expanse', 'Sector' ];
 
     static readonly vowels = ['a', 'e', 'i', 'o', 'u'];
     static readonly fillers = [
@@ -92,6 +96,30 @@ class AlienNameGenerator {
             name += AlienNameGenerator.getRandom(AlienNameGenerator.fillers) + AlienNameGenerator.getRandom(AlienNameGenerator.vowels);
         }
         return `${name.charAt(0).toUpperCase()}${name.slice(1)}`;
+    };
+
+    static generateSectorName() {
+        let name = '';
+        const countFactor = D20.roll();
+        const maxNames = countFactor > 18 ? 3 : ((countFactor > 8) ? 2 : 1);
+        let hasPrefix = false;
+        for (let i = 0; i < maxNames; i++) {
+            if (maxNames > 1 && i === (maxNames-1) && (!hasPrefix || maxNames > 2) && Math.random() >= 0.75) {
+                name += AlienNameGenerator.commonSectorSuffixes[Math.floor(Math.random() * AlienNameGenerator.commonSectorSuffixes.length)];
+            } else if (i === 0 && maxNames > 1 && Math.random() >= 0.75) {
+                hasPrefix = true;
+                name += AlienNameGenerator.commonSectorPrefixes[Math.floor(Math.random() * AlienNameGenerator.commonSectorPrefixes.length)] + ' ';
+            } else {
+                name += AlienNameGenerator.getName();
+                if (Math.random() > 0.8) {
+                    name += '-' + AlienNameGenerator.getName();
+                }
+            }
+            if (i + 1 < maxNames) {
+                name += ' ';
+            }
+        }
+        return name;
     };
 
     static generatePlanetName() {

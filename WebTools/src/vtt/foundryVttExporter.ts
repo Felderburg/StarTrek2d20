@@ -321,7 +321,7 @@ export class FoundryVttExporter {
                     "value": character.stress,
                     "max": character.stress
                 },
-                "traits": character.getAllTraits()
+                "traits": type === FoundryPluginType.Standard ? "" : character.getAllTraits()
             },
             "items": [],
             "effects": [],
@@ -433,6 +433,40 @@ export class FoundryVttExporter {
                 }
               },)
         });
+
+        if (type === FoundryPluginType.Standard) {
+            character.traits?.forEach(t => {
+                result.items.push({
+                    "name":t,
+                    "type": "trait",
+                    "img": "systems/sta/assets/icons/VoyagerCombadgeIcon.png",
+                    "system": {
+                        "description": "",
+                        "quantity": 1
+                    },
+                    "effects": [],
+                    "folder": null,
+                    "sort": 0,
+                    "ownership": {
+                        "default": 0,
+                        "a6BIWTTe2ysAI7Jm": 3
+                    },
+                    "flags": {},
+                    "_stats": {
+                        "compendiumSource": null,
+                        "duplicateSource": null,
+                        "coreVersion": "13.336",
+                        "systemId": "sta",
+                        "systemVersion": "2.0.0",
+                        "createdTime": now,
+                        "modifiedTime": now,
+                        "lastModifiedBy": "a6BIWTTe2ysAI7Jm",
+                        "exportSource": null
+                    }
+                },)
+            });
+
+        }
 
         character.equipmentAndImplants?.forEach(e => {
             let item = {

@@ -32,13 +32,6 @@ enum Step {
 
 const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) => {
 
-    const { t } = useTranslation();
-    const [carouselIndex, setCarouselIndex] = useState(0);
-    const [modificationType, setModificationType] = useState<ModificationType>(character?.rank != null ? ModificationType.Promotion : ModificationType.CharacterAdvancement);
-    const [advancementType, setAdvancementType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Adjustment);
-    const [logEntry, setLogEntry] = useState<LogEntry>(new LogEntry((character.logEntries?.length ?? 0) + 1));
-    const navigate = useNavigate();
-
     const dropDownItems = () => {
         let result = [];
         result.push(new DropDownElement(ModificationType.LogEntry, t('ModificationType.name.logEntry')))
@@ -51,6 +44,13 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         }
         return result;
     }
+
+    const { t } = useTranslation();
+    const [carouselIndex, setCarouselIndex] = useState(0);
+    const [modificationType, setModificationType] = useState<ModificationType>(dropDownItems()[0].value as ModificationType);
+    const [advancementType, setAdvancementType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Adjustment);
+    const [logEntry, setLogEntry] = useState<LogEntry>(new LogEntry((character.logEntries?.length ?? 0) + 1));
+    const navigate = useNavigate();
 
     const milestoneTypesDropDownItems = () => {
         let result = [];

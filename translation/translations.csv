@@ -661,6 +661,8 @@ Common.text.new,New,,,,,Новый,
 Common.text.no,No,,Nein,No,Non,Нет,Não
 Common.text.other,Other,,Andere,Otro,Autre,Другое,Outro
 Common.text.remove,Remove,,,,,Удалить,
+Common.text.directive,Directive,,,,,,
+Common.text.directives,Directives,,,,,,
 Common.select.choose,Choose...,,Wählen Sie aus ...,Elegir...,Choisir,Выберите ...,Escolha...
 Construct.creature.creatureType,Creature Type,,,,,,
 Construct.creature.dietType,Diet Type,,,,,,
@@ -2838,6 +2840,8 @@ StarSystem.common.outerZone,Outer Zone,,Äußere Zone,Zona Externa,Zone Extérie
 StarSystem.common.worlds,Worlds,,Welten,Mundos,Mondes,,Mundos
 StarSystem.common.noWorlds,No worlds,,Keine Welten,Sin Mundos,Pas de mondes,,Sem mundos
 StarSystem.common.primaryStar,Primary Star,,Hauptstern,Estrella Primaria,Etoile Primaire,,Estrela Primária
+StarSystem.common.sector,Sector,,,,,,
+StarSystem.common.system,System,,,,,,
 StarSystem.common.companionStar,Companion Star,,Begleitstern,Estrella Compañera,Etoile Binaire,,Estrela Companheira
 SupportingCharacterModificationType.additionalAttribute,Additional attribute,,,Atributo adicional,,,
 SupportingCharacterModificationType.additionalDepartment,Additional department,,,Disciplina adicional,,,

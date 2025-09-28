@@ -574,6 +574,9 @@ class SystemGeneration {
             s.rootName = sector.simpleName;
         });
 
+        if (D20.roll() > 5) {
+            sector.simpleName = AlienNameGenerator.generateSectorName();
+        }
         store.dispatch(setSector(sector));
         store.dispatch(setStar(sector.systems[0]));
 

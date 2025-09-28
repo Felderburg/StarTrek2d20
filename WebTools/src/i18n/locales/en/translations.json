@@ -622,6 +622,8 @@
     "Common.text.no": "No",
     "Common.text.other": "Other",
     "Common.text.remove": "Remove",
+    "Common.text.directive": "Directive",
+    "Common.text.directives": "Directives",
 
     "Common.select.choose": "Choose...",
 
@@ -2605,6 +2607,8 @@
     "StarSystem.common.worlds": "Worlds",
     "StarSystem.common.noWorlds": "No worlds",
     "StarSystem.common.primaryStar": "Primary Star",
+    "StarSystem.common.sector": "Sector",
+    "StarSystem.common.system": "System",
     "StarSystem.common.companionStar": "Companion Star",
 
     "SupportingCharacterModificationType.additionalAttribute": "Additional attribute",

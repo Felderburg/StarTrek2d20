@@ -33,7 +33,7 @@ export class LogValueEntry {
     readonly useType: ValueUseType;
     readonly newValue?: string;
 
-    constructor(value: string, useType: ValueUseType, newValue?: string) {
+    constructor(value: string, useType: ValueUseType = ValueUseType.UsedPositively, newValue?: string) {
         this.value = value;
         this.useType = useType;
         this.newValue = newValue;
