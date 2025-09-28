@@ -26,6 +26,11 @@ export class ValueUseTypeModel {
     get name() {
         return i18next.t(makeKey('ValueUseType.', ValueUseType[this.type]));
     }
+
+    static findTypeByTypeName(typeName: string) {
+        let result = this.types.filter(t => ValueUseType[t.type] === typeName);
+        return result?.length ? result[0].type : undefined;
+    }
 }
 
 export class LogValueEntry {

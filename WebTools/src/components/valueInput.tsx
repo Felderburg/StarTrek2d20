@@ -8,14 +8,18 @@ export interface IValueInput {
     textDescription?: string;
     onValueChanged: (string) => void;
     onRandomClicked: () => void;
+    labelName?: string;
 }
 
-const ValueInput: React.FC<IValueInput> = ({textDescription, id, value, onValueChanged, onRandomClicked}) => {
+const ValueInput: React.FC<IValueInput> = ({textDescription, id, value, onValueChanged, onRandomClicked, labelName}) => {
     const { t } = useTranslation();
+    if (labelName === undefined || labelName?.length === 0) {
+        labelName = t('Construct.other.value');
+    }
 
     return (<>
         <div className="d-flex justify-content-between align-items-center flex-wrap">
-            <InputFieldAndLabel labelName={t('Construct.other.value')} id={id ?? "value"} value={value ?? ""}
+            <InputFieldAndLabel labelName={labelName} id={id ?? "value"} value={value ?? ""}
                 onChange={(value) => onValueChanged(value) } />
             <div style={{ flexShrink: 0 }} className="mt-2">
                 <D20IconButton onClick={() => onRandomClicked() }/>

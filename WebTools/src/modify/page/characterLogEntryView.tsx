@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { LogEntry, LogValueEntry } from "../../common/logEntry";
+import { LogEntry, LogValueEntry, ValueUseType } from "../../common/logEntry";
 import { ICharacterProperties } from "../../solo/page/soloCharacterProperties";
 import Markdown from "react-markdown";
 import { Button } from "react-bootstrap";
@@ -42,16 +42,20 @@ export const CharacterLogEntryView: React.FC<ICharacterLogEntryViewProperties> =
     const [ directives, setDirectives ] = useState<string[]>(["", "", ""]);
 
     const createLogEntryAndNext = () => {
+        let valuesUsed = values.filter(v => v.selected).map(v => v.logEntry);
         if (title.length === 0) {
             Dialog.show("Please select a title");
         } else if (details.length === 0) {
             Dialog.show("Please provide some mission details");
+        } else if (valuesUsed.filter(v => v.useType === ValueUseType.Challenged && !(v.newValue?.length)).length) {
+            Dialog.show("Please provide a new value for any challenged values.");
         } else {
             let entry = new LogEntry((character.logEntries?.length ?? 0) + 1);
             entry.adventureTitle = title;
             entry.missionDescription = details;
             entry.notes = notes;
             entry.directivesUsed = directives.filter(d => d?.length);
+            entry.valuesUsed = valuesUsed;
             saveLogEntry(entry);
             onNextStep();
         }
@@ -59,7 +63,7 @@ export const CharacterLogEntryView: React.FC<ICharacterLogEntryViewProperties> =
 
     const modifyValue = (index: number, value?: LogValueEntry) => {
         let temp = [...values];
-        let entry = new SelectedLogValueEntry(values[index].logEntry);
+        let entry = new SelectedLogValueEntry(value === undefined ? values[index].logEntry : value);
         entry.selected = (value !== undefined);
 
         temp[index] = entry;
@@ -119,13 +123,14 @@ export const CharacterLogEntryView: React.FC<ICharacterLogEntryViewProperties> =
                 </div>
             </div>
 
-            <div className="col-12 col-lg-6">
+            <div className="col-12">
                 <Header level={2} className="mt-4">{t('Construct.other.values')}</Header>
                 <Markdown className="mt-4">{t('CharacterLogEntry.values.instruction')}</Markdown>
 
                 <table className="selection-list">
                     {values.map((v, i) =>
                         (<LogEntryValueView value={v.logEntry} selected={v.selected}
+                            character={character}
                             onChange={(value) => modifyValue(i, value)} key={"value-" + i}/>))}
                 </table>
             </div>

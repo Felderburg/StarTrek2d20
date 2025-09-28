@@ -20,6 +20,7 @@ import SpeciesAbilityBlockView from "./speciesAbilityBlockView";
 import { LoadingButton } from "../common/loadingButton";
 import { originalEncodedSheet } from "./originalEncodedSheet";
 import { cyrb53 } from "../common/cyrb53";
+import Markdown from "react-markdown";
 
 export interface ICharacterViewProperties {
     character: Character;
@@ -196,6 +197,33 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
             </div>
         </div>
 
+        {character.logEntries?.length
+            ? (<div className="row align-items-stretch">
+                <Header level={2} className="mt-5">Log Entries</Header>
+                {character.logEntries?.map(l => (
+                    <div className="col-12 col-md-6 my-3">
+                        <div  className="pb-3 view-border-bottom h-100">
+                            <Header level={3}>{l.adventureTitle}</Header>
+                            <Markdown className="markdown-sm">{l.missionDescription}</Markdown>
+                            {l.notes?.length
+                                ? (<Markdown className="markdown-sm mt-2">{'**' + t('Common.text.notes') + ':** ' + l.notes}</Markdown>)
+                                : undefined}
+                            {l.valuesUsed?.length
+                                ? (<ul className="mt-2">
+                                    {l.valuesUsed?.map(v => (<li className="small">{v.value}</li>))}
+                                </ul>)
+                                : undefined}
+                            {l.directivesUsed?.length
+                                ? (<ul className="mt-2">
+                                    {l.directivesUsed?.map(d => (<li><small className="text-sm">{d}</small></li>))}
+                                </ul>)
+                                : undefined}
+                        </div>
+                    </div>
+                ))}
+            </div>)
+            : undefined
+        }
         {(showButtons == null || showButtons === true)
             ? (<div className="d-flex justify-content-between">
                     <div className="mt-5 mb-3">

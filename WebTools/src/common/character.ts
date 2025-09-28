@@ -29,7 +29,7 @@ import { CharacterAdvancementChoice } from '../modify/model/characterAdvancement
 import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_NATURAL_PROTECTION_X, TALENT_NAME_WARRIORS_SPIRIT } from '../helpers/talents';
 import { SpecialWeapon } from './specialWeapon';
 import { ModificationType } from '../modify/model/modificationType';
-import { LogEntry } from './logEntry';
+import { LogEntry, ValueUseType } from './logEntry';
 
 export enum Division {
     Command,
@@ -986,6 +986,16 @@ export class Character extends Construct implements IWeaponDiceProvider {
                     result.splice(result.indexOf(remove), 1);
                 }
                 result.push(i.value);
+            } else if (i instanceof LogEntry) {
+                i.valuesUsed?.forEach(v => {
+                    if (v.useType === ValueUseType.Challenged && v.newValue?.length) {
+                        let index = result.indexOf(v.value);
+                        if (index >= 0) {
+                            result.splice(index, 1);
+                        }
+                        result.push(v.newValue);
+                    }
+                })
             }
         });
 

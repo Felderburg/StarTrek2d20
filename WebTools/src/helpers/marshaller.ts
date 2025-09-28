@@ -50,7 +50,7 @@ import { ModificationType } from '../modify/model/modificationType';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from './equipment';
 import { PropulsionSystemModel, PropulsionSystemType } from './propulsionSystem';
 import { allStarshipAdvancementChoices, StarshipAdvancementChoice } from '../common/starshipAdvancementChoice';
-import { LogEntry, ValueUseType } from '../common/logEntry';
+import { LogEntry, LogValueEntry, ValueUseType, ValueUseTypeModel } from '../common/logEntry';
 
 class Marshaller {
 
@@ -332,6 +332,19 @@ class Marshaller {
         entry.adventureTitle = j.adventureTitle;
         entry.missionDescription = j.missionDescription;
         entry.notes = j.notes;
+
+        if (j.directivesUsed) {
+            entry.directivesUsed = [...j.directivesUsed];
+        }
+        if (j.valuesUsed) {
+            entry.valuesUsed = j.valuesUsed.map(json => {
+                let value = json.value;
+                let newValue = json.newValue;
+                let type = ValueUseTypeModel.findTypeByTypeName(json.useType);
+                return new LogValueEntry(value, type, newValue);
+            });
+        }
+
         return entry;
     }
 
@@ -1268,7 +1281,6 @@ class Marshaller {
     }
 
     decodeCharacter(json: any) {
-        console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;

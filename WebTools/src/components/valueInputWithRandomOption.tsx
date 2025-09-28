@@ -10,10 +10,11 @@ export interface IValueInputWithRandom {
     onValueChanged: (string) => void;
     character: Character;
     department?: Department;
+    labelName?: string;
 }
 
 
-const ValueInputWithRandom: React.FC<IValueInputWithRandom> = ({textDescription, id, value, onValueChanged, character, department}) => {
+const ValueInputWithRandom: React.FC<IValueInputWithRandom> = ({textDescription, id, value, onValueChanged, character, department, labelName}) => {
 
     const randomValue = () => {
         let done = false;
@@ -27,6 +28,7 @@ const ValueInputWithRandom: React.FC<IValueInputWithRandom> = ({textDescription,
     }
 
     return (<ValueInput value={value} id={id ?? "value"}
+        labelName={labelName}
         textDescription={textDescription ?? ""}
         onRandomClicked={randomValue}
         onValueChanged={onValueChanged}
