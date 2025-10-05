@@ -474,13 +474,18 @@ export class Character extends Construct implements IWeaponDiceProvider {
         if (this.version === 1) {
             return 10;
         } else {
+            let reputation = 3;
+            if (this.hasTalent("Presitgious Career")) {
+                reputation += 1;
+            }
+
             let improvements = this.improvements
                 ?.filter(i => i instanceof ReputationChangeStep)
                 ?.map(i => i as ReputationChangeStep);
             if (improvements?.length) {
                 return improvements[improvements.length-1].reputation;
             } else {
-                return 3;
+                return reputation;
             }
         }
     }

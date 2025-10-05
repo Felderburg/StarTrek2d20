@@ -131,7 +131,7 @@ class Sources {
         [Source.FederationKlingonWar]: new SourceViewModel(Source.FederationKlingonWar, SourceType.Expansion, "Federation-Klingon War"),
         [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion2e, "GM Toolkit 2e", 2),
         [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion2e, "Technical Manual", 2),
-        [Source.ExplorationGuide]: new SourceViewModel(Source.ExplorationGuide, SourceType.Expansion2e, "Exploration Guide", 2, false),
+        [Source.ExplorationGuide]: new SourceViewModel(Source.ExplorationGuide, SourceType.Expansion2e, "Exploration Guide", 2),
     };
 
     getSources() {

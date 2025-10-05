@@ -14,6 +14,20 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.251005</b>
+            <ul>
+                <li>
+                    Now that the <cite>Exploration Guide</cite> is fully launched, I've
+                    made that source selectable. Many (but not yet all) of the new rules
+                    are now available. Some outstanding work remains on things like secret
+                    values / focuses / etc. and some of the planetary rules such as biomes.
+                </li>
+                <li>
+                    Some initial work is ready for support of Log Entries. There's still
+                    more to do with respect to tying advancement with log entries; that
+                    part is still in progress.
+                </li>
+            </ul>
             <b>v1.250919</b>
             <ul>
                 <li>

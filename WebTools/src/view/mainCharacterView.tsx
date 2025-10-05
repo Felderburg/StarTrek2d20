@@ -200,8 +200,8 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
         {character.logEntries?.length
             ? (<div className="row align-items-stretch">
                 <Header level={2} className="mt-5">Log Entries</Header>
-                {character.logEntries?.map(l => (
-                    <div className="col-12 col-md-6 my-3">
+                {character.logEntries?.map((l,i) => (
+                    <div className="col-12 col-md-6 my-3" key={"entry-" + i}>
                         <div  className="pb-3 view-border-bottom h-100">
                             <Header level={3}>{l.adventureTitle}</Header>
                             <Markdown className="markdown-sm">{l.missionDescription}</Markdown>
@@ -210,12 +210,12 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
                                 : undefined}
                             {l.valuesUsed?.length
                                 ? (<ul className="mt-2">
-                                    {l.valuesUsed?.map(v => (<li className="small">{v.value}</li>))}
+                                    {l.valuesUsed?.map((v,i) => (<li  key={"entry-value-" + i} className="small">{v.value}</li>))}
                                 </ul>)
                                 : undefined}
                             {l.directivesUsed?.length
                                 ? (<ul className="mt-2">
-                                    {l.directivesUsed?.map(d => (<li><small className="text-sm">{d}</small></li>))}
+                                    {l.directivesUsed?.map((d,i) => (<li key={"entry-directive-" + i}><small className="text-sm">{d}</small></li>))}
                                 </ul>)
                                 : undefined}
                         </div>

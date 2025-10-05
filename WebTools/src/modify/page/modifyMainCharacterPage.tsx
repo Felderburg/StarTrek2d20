@@ -146,7 +146,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         if (modificationType === ModificationType.LogEntry) {
             return [ Step.Initial, Step.LogEntry, Step.Finish ];
         } else {
-            return [ Step.Initial, Step.LogEntry, Step.ModificationDetails, Step.Finish ];
+            return [ Step.Initial, Step.ModificationDetails, Step.Finish ];
         }
     }
 

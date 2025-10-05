@@ -20,8 +20,9 @@ import { FontSpecification } from "./fontSpecification";
 import { blueColour2e, goldColour2e, redColour2e } from "./colourProvider2e";
 import { CharacterType } from "../common/characterType";
 import { Paragraph } from "./paragraph";
-import { FontLibrary } from "./fontLibrary";
+import { FontLibrary, FontType } from "./fontLibrary";
 import { LogEntry } from "../common/logEntry";
+import { FontOptions } from "./fontOptions";
 
 
 export class Standard2eCharacterSheet extends BaseFormFillingSheet {
@@ -31,6 +32,8 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
     static readonly headingColumn = new Column(436.5, 49, 17.4, 142);
     static readonly personalLogHeadingColumn = new Column(436.5, 53.2, 17.4, 142);
+
+    fonts: FontLibrary = new FontLibrary();
 
     getName(): string {
         return i18next.t("Sheet.standard2eCharacterSheet");
@@ -55,6 +58,20 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
         const fontBytes = await fetch("/static/font/Michroma-Regular.ttf").then(res => res.arrayBuffer());
         this.headingFont = await pdf.embedFont(fontBytes);
+
+        this.fonts.addFont(FontType.Standard, this.formFont);
+
+        const boldFontBytes = await fetch("/static/font/OpenSansCondensed-Bold.ttf").then(res => res.arrayBuffer());
+        const boldFont = await pdf.embedFont(boldFontBytes);
+        this.fonts.addFont(FontType.Bold, boldFont);
+
+        const italicFontBytes = await fetch("/static/font/OpenSansCondensed-LightItalic.ttf").then(res => res.arrayBuffer());
+        const italicFont = await pdf.embedFont(italicFontBytes);
+        this.fonts.addFont(FontType.Italic, italicFont);
+
+        const symbolFontBytes = await fetch("/static/font/Trek_Arrowheads.ttf").then(res => res.arrayBuffer());
+        const symbolFont = await pdf.embedFont(symbolFontBytes);
+        this.fonts.addFont(FontType.Symbol, symbolFont);
     }
 
     get stressPill() {
@@ -81,12 +98,12 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
                     const [ newPage ] = await pdf.copyPages(pdf, [ pdf.getPageCount()-1 ]);
                     page2 = newPage;
 
-                    this.addLogFields(tempPage, pdf.getForm(), i);
+                    let logEntries = character.logEntries;
+                    for (let j = i * 18; j < ((i+1) * 18) && j < logEntries.length; j++) {
+                        this.fillLogFields(logEntries[j], tempPage, j % 18);
+                    }
                 }
-
-                character.logEntries?.forEach((l,i) => this.fillLogFields(l, pdf.getForm(), i));
             }
-
         }
 
         const page = pdf.getPage(0);
@@ -100,62 +117,64 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         new CheckMarkMaker(page, pdf).createCheckMarks(this.determinationPills);
     }
 
-    addLogFields(page: PDFPage, form: PDFForm, index: number) {
-        for (let i = 0; i < 18; i++) {
-            let id = i * 18 + i + 1;
+    fillLogFields(logEntry: LogEntry, page: PDFPage, index: number) {
 
-            let height = 29.9;
-            let gap = 135.5 - 98.7 - height;
+        let id = index + 1;
 
-            let y = 98.7 + (i * (height + gap));
+        let height = 31;
+        let gap = 134 - 97 - height;
 
-            let idField = form.createTextField("log-entry-id-" + id);
-            idField.enableMultiline();
-            idField.setAlignment(TextAlignment.Center);
-            idField.updateAppearances(this.formFont, staTextFieldAppearanceProvider(9));
+        let y = 97 + (index * (height + gap));
 
-            idField.addToPage(page, {
-                x: 32.9,
-                y: page.getHeight() - y - height,
-                width: 43.1,
-                height: height,
-                textColor: SimpleColor.from("#000000").asPdfRbg(),
-                borderWidth: 0,
-                font: this.formFont
-            });
-            idField.setFontSize(9);
-
-            let titleField = form.createTextField("log-entry-title-" + id);
-            titleField.enableMultiline();
-            titleField.updateAppearances(this.formFont, staTextFieldAppearanceProvider(9));
-
-            titleField.addToPage(page, {
-                x: 81.4,
-                y: page.getHeight() - y - height,
-                width: 176,
-                height: height,
-                textColor: SimpleColor.from("#000000").asPdfRbg(),
-                borderWidth: 0,
-                font: this.formFont
-            });
-            titleField.setFontSize(9);
+        if (logEntry.id != null) {
+            let column = new Column(32.9, y, height, 43.1);
+            let paragraph = new Paragraph(page, column, this.fonts);
+            paragraph.textAlignment = TextAlign.Centre;
+            paragraph.append(logEntry.id, new FontOptions(9, FontType.Bold));
+            paragraph.write();
         }
-    }
 
-    fillLogFields(logEntry: LogEntry, form: PDFForm, index: number) {
-        this.fillField(form, "log-entry-id-" + (index + 1), logEntry.id);
-
-        let title = "";
         if (logEntry.adventureTitle?.length) {
-            title = logEntry.adventureTitle;
-        }
-        if (logEntry.missionDescription?.length) {
-            if (title?.length) {
-                title += ": ";
+            let column = new Column(81.4, y, height, 176);
+            let paragraph = new Paragraph(page, column, this.fonts);
+            paragraph.append(logEntry.adventureTitle, new FontOptions(9, FontType.Bold));
+            paragraph.write();
+
+            if (logEntry.missionDescription?.length) {
+                paragraph = paragraph.nextParagraph(0);
+                if (paragraph) {
+                    paragraph.append(logEntry.missionDescription, new FontOptions(9));
+                    paragraph.write();
+                }
             }
-            title += logEntry.missionDescription;
         }
-        this.fillField(form, "log-entry-title-" + (index + 1), title);
+
+        if (logEntry.valuesUsed?.length || logEntry.directivesUsed?.length) {
+            let column = new Column(264.7, y, height, 92.2);
+            let paragraph = new Paragraph(page, column, this.fonts);
+            logEntry.valuesUsed?.forEach(v => {
+                if (paragraph) {
+                    paragraph.append(v.prefix + v.value, new FontOptions(9));
+                    paragraph.write();
+                    paragraph = paragraph.nextParagraph();
+                }
+            });
+            logEntry.directivesUsed?.forEach(d => {
+                if (paragraph) {
+                    paragraph.append(d, new FontOptions(9));
+                    paragraph.write();
+                    paragraph = paragraph.nextParagraph();
+                }
+            })
+
+        }
+
+        if (logEntry.notes?.length) {
+            let column = new Column(365.8, y, height, 212.7);
+            let paragraph = new Paragraph(page, column, this.fonts);
+            paragraph.append(logEntry.notes, new FontOptions(9));
+            paragraph.write();
+        }
     }
 
     get detailLabels() {
@@ -438,6 +457,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     fillReputation(form: PDFForm, character: Character) {
+        this.fillField(form, "Reputation", character.reputation);
     }
 
     fillCharacterRole(form: PDFForm, character: Character) {

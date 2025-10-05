@@ -43,6 +43,20 @@ export class LogValueEntry {
         this.useType = useType;
         this.newValue = newValue;
     }
+
+    get prefix() {
+        switch (this.useType) {
+        case ValueUseType.UsedPositively:
+            return "+";
+        case ValueUseType.UsedNegatively:
+            return "-";
+        case ValueUseType.Challenged:
+        default:
+            return "!";
+        }
+    }
+
+
 }
 
 export class LogEntry {

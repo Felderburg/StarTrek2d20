@@ -609,6 +609,7 @@
 
     "Common.text.description": "Description",
     "Common.text.none": "None",
+    "Common.text.notes": "Notes",
     "Common.text.copiedToClipboard": "Copied to clipboard",
     "Common.text.search": "Search...",
     "Common.text.select": "Select",
@@ -3181,6 +3182,10 @@
 
     "Talent.entanglingVines.description2e": "The creature is able to lash out with vines or roots against targets within **Reach**. A successful attack will pin the target and cause a Prone trait to be applied. Characters can attempt to break free with a **Fitness + Security** roll, or another type of attack.",
 
+    "Talent.evasion": "Evasion",
+
+    "Talent.evasion.description": "When someone is searching for you, you’ll take any opportunity to evade them When an enemy suffers a complication on a task attempt to detect or  locate you, you may immediately move one zone without them noticing you",
+
     "Talent.expandedEmergencyMedicalFacilities": "Expanded Emergency Medical Facilities",
 
     "Talent.expandedEmergencyMedicalFacilities.description": "Whenever a character attempts a task to identify specific illnesses or injuries, or to determine the severity of a patient’s condition, they may diagnose a number of patients equal to the ship’s Medical rating. If the character also has the Triage talent, they may diagnose two additional patients by spending 1 Momentum (Repeatable).\n\nDuring an extended task to process and treat many sick or injured patients, a character aboard the ship increases their Impact by 1.",
@@ -3338,6 +3343,10 @@
 
     "Talent.glancingImpact.description2e": "Whenever you succeed at the Evasive Action major ac- tion, increase the Resistance of the ship you are piloting by 2; this bonus lasts until the start of your next turn.",
 
+    "Talent.goToGround": "Go to Ground",
+
+    "Talent.goToGround.description": "Exploration often puts you in danger, and you know how to keep yourself safe. When you attempt a task to hide from an enemy, the first bonus d20 you purchase is free as long as you remain prone and do not move. In combat, if you are the target of a ranged attack while in Cover, you may gain one bonus success on your opposed task, but if you do so, you may not counterattack.",
+
     "Talent.grapplerCableSpecialRule": "Grappler Cable",
 
     "Talent.grapplerCableSpecialRule.description": "The ship utilizes a physical cable with a magnetic hook at the end, in place of the graviton-based tractor beams used by ships in later eras. This functions as a tractor beam, but if the target breaks free, roll a d20: if you roll above the ship’s Weapons system, the cable is damaged, and cannot be used until repaired. Repairing the cable is treated as repairing a breach.",
@@ -3361,6 +3370,10 @@
     "Talent.hardenedBiologyUnofficial": "Hardened Biology",
 
     "Talent.hardenedBiologyUnofficial.description": "Your cilia act independently and can continue to move even if you have been severely hurt. When you have only 1 injury, you can continue to take the Movement Minor Action.",
+
+    "Talent.headOnASwivel": "Head on a Swivel",
+
+    "Talent.headOnASwivel.description": "You’re always on the lookout for trouble, and ready to duck when it shows up. When you’re the target of a ranged attack, and you are not in Cover, you may suffer 1 Stress to react to the attack. If you do so, you may immediately move to any Cover within your current zone, or you may drop prone and count as being in Cover against the current attack.",
 
     "Talent.healingHands": "Healing Hands",
 
@@ -3556,6 +3569,10 @@
 
     "Talent.juryRiggedServiceRecord.description2e": "If the ship die generates a Complication, ignore it.",
 
+    "Talent.justAScratch": "Just a Scratch",
+
+    "Talent.justAScratch.description": "You have a knack for getting out of trouble with only minor scrapes and scratches. Once per scene, when you would suffer an Injury, you may avoid that Injury by adding to Threat instead of suffering Stress. The amount of Threat added is the same as the amount of Stress you would have suffered.",
+
     "Talent.killersInstinct": "Killer's Instinct",
 
     "Talent.killersInstinct.description2e": "So familiar are you with the intent to kill that you can even see it in others when you look them in the eyes. When you make a Deadly Attack, reduce the amount you add to Threat to 0. In addition, when an enemy attempts to make a Deadly Attack against you, you may add 1 Threat to increase the Difficulty of their Attack by 1, as you react to their intent.",
@@ -3585,6 +3602,10 @@
 
     "Talent.learnFromFailure.description2e": "When you fail at a Science task, you may add 3 Threat to create a trait which represents knowledge or insights gained from the failure. The cost of this is reduced by 1 for each success you scored on the failed task.",
 
+    "Talent.lifeLessons": "Life Lessons",
+
+    "Talent.lifeLessons.description": "Wisdom is the aftereffect of experience, and you’ve become adept at using your experiences to guide others. Whenever you use one of your values to gain or spend Momentum, and make a call back to a previous adventure in which you used that value, you may immediately add 3 Momentum to the group pool.",
+
     "Talent.luckyServiceRecord": "Lucky",
 
     "Talent.luckyServiceRecord.description2e": "For any task in which the Lucky Ship assists, a player can treat the ship as their Value for the purposes of spending Determination.",
@@ -3596,6 +3617,10 @@
     "Talent.maintenanceSpecialist": "Maintenance Specialist",
 
     "Talent.maintenanceSpecialist.description2e": "You may ignore the first complication rolled on any Engineering task. Further, when you create any equipment trait, any character who uses that piece of equipment in a task may ignore the first complication rolled.",
+
+    "Talent.makeYourOwnLuck": "Make your own Luck",
+
+    "Talent.makeYourOwnLuck.description": "You don’t rely on chance or fortune to guide you. When you attempt a task, after rolling, you may suffer 1 Stress to change any one die to be equal to the target number you used on the roll (guaranteeing one success). You may do this only once per task, and if you do this, you cannot re-roll any dice on that task roll.",
 
     "Talent.martialArtist": "Martial Artist",
 
@@ -3620,6 +3645,10 @@
     "Talent.mentalRepository": "Mental Repository",
 
     "Talent.mentalRepository.description2e": "Using extensive mental conditioning, you have access to memories with unprecedented clarity and accuracy. You may treat Obtain Information as if it were an Immediate Momentum spend, but the answers to these questions can only come from information you would already know and remember.",
+
+    "Talent.mercurial": "Mercurial",
+
+    "Talent.mercurial.description": "Your mood is quick to change. When you attempt a task and you are affected by any traits that represent emotions such as **Fear**, **Doubt**, or **Panic**, you may suffer 1 Stress to remove one of those traits before you make the task roll.",
 
     "Talent.meticulous": "Meticulous",
 
@@ -3730,6 +3759,10 @@
 
     "Talent.novice.description": "Select one of your attributes when you receive this talent. You’re inexperienced, but talented and with a bright future. You may not have or increase any attribute to above 11, or any department to above 4 while you have this talent (and may have to adjust attributes and departments accordingly at the end of character creation).\n\nWhenever you succeed at a task for which you bought one or more additional dice (by any means), roll a d20 after the roll. If you roll equal to or less than the chosen attribute, gain 1 bonus Momentum; if you roll higher, add 1 Threat instead. While you possess this talent, you cannot gain any higher rank than Lieutenant (junior grade), or a higher enlisted rate than Petty Officer.",
 
+    "Talent.objectiveFocused": "Objective Focused",
+
+    "Talent.objectiveFocused.description": "Once you have an objective in sight, little can deter you from pursuing it. Once per adventure, at the start of an action scene, you may define an immediate goal by adding 2 Threat. This goal must relate to the mission and your duties, such as reaching a particular location or character, obtaining an important item, or similar. During the scene, you may re-roll one d20 on any task attempt which would bring you closer to achieving your goal.",
+
     "Talent.orbExperience": "Orb Experience",
 
     "Talent.orbExperience.description": "You have received a vision from the Bajoran Prophets, through one of the Orbs. This rare experience, though confusing at first, has shaped your life and outlook. You have one additional Value, reflecting the insights you received from the experience. The first time this Value is Challenged, roll 1[D]; if an Effect is rolled, then some foretold element of the Orb Experience has come to pass, and the Value is not crossed out as it would normally be.",
@@ -3776,6 +3809,10 @@
     "Talent.percussiveMaintenance": "Percussive Maintenance",
 
     "Talent.percussiveMaintenance.description2e": "When you attempt a **Control + Engineering** task, you may add 1 Threat to use your Daring instead of your Control. If you do this, and the task succeeds, then you may reduce the time taken by 1 interval without spending Momentum.",
+
+    "Talent.persistent": "Persistent",
+
+    "Talent.persistent.description": "You don’t let trivial things like failure deter you, and you’d rather succeed messily than fail cleanly. When you attempt a task, you may choose to suffer a single automatic complication in exchange for gaining one automatic success.",
 
     "Talent.personalEffects": "Personal Effects",
 
@@ -3836,6 +3873,10 @@
 
     "Talent.premonitionsServiceRecord.description2e": "When a character spends momentum to Obtain Information while aboard ship, they may ask the GM an extra question for free.",
 
+    "Talent.preparation": "Preparation",
+
+    "Talent.preparation.description": "You thrive when there’s a clear plan of action. When you attempt a task, and there are one or more traits which would affect the task positively, you may re-roll one d20.",
+
     "Talent.prestigiousPosting": "Prestigious Posting",
 
     "Talent.prestigiousPosting.description": "When a new supporting character is first introduced, apply a single improvement to them immediately, like a milestone.",
@@ -3844,6 +3885,10 @@
 
     "Talent.preferentialTargeting.description": "Using its sensitive scientific equipment, a _Columbia_ can locate and exploit weaknesses in an enemy ship’s defenses. When a _Columbia_-class ship causes a breach to an enemy ship, the crew may spend 3 Momentum to immediately attack again with a different weapon.",
 
+    "Talent.prestigiousCareer": "Prestigious Career",
+
+    "Talent.prestigiousCareer.description": "You’ve had an impressive career, and it has earned you accolades and good standing. You begin play with a Reputation rating of 4, or you may begin play with a single award with a cost of 3 or less without needing to meet the conditions.\n\nYou may replace this talent with another without losing the benefits of it, but only if you can spend three or more Acclaim (from a successful Reputation roll) at the end of that mission.",
+
     "Talent.proceduralCompliance": "Procedural Compliance",
 
     "Talent.proceduralCompliance.description2e": "When you attempt an Engineering task, you may remove one d20 from your dice pool before rolling. If you do so, you gain one automatic success on your task.",
@@ -3851,6 +3896,10 @@
     "Talent.projectManager": "Project Manager",
 
     "Talent.projectManager.description": "You are used to overseeing engineering teams in technical projects. When you begin a technical project (typically a challenge or extended task), you may nominate a number of other characters up to your **Command** rating to be part of your team. While they are working on that project, they ignore the normal Momentum or Threat cost for assisting, and increase their Impact by 1 when working on an extended task.",
+
+    "Talent.protector": "Protector",
+
+    "Talent.protector.description": "You put the safety of your crew and comrades first, and will push yourself further to defend them. If an ally in the same scene as you is Defeated, you immediately recover up to 3 Stress as you push yourself harder to defend them.",
 
     "Talent.prototypeCloakingDevice": "Prototype",
 
@@ -3904,6 +3953,10 @@
     "Talent.ram": "Ram",
 
     "Talent.ram.description2e": "A creature may improve attacks with its horns, claws, or tail to represent gaining momentum through charging forward, spinning, or otherwise putting all it can into the attack. The creature may add the Intense quality to its melee attacks by taking the Prepare minor action before attacking.",
+
+    "Talent.ransack": "Ransack",
+
+    "Talent.ransack.description": "Sometimes it pays to search an area quickly and messily rather than methodically. When you attempt a task to search an area, you may add 2 Threat to reduce the Difficulty by 1 (to a minimum of 0), and you halve how long it takes to search that area.",
 
     "Talent.rapidAnalysis": "Rapid Analysis",
 
@@ -3970,6 +4023,10 @@
 
     "Talent.rightToolForTheRightJob.description2e": "Whenever you acquire an engineering tool with an Opportunity Cost, that equipment trait of that tool gains +1 Potency (typically this will result in Potency 2). If the tool is used in an extended task, whoever is using that tool increases their Impact by 1.",
 
+    "Talent.rivalry": "Rivalry",
+
+    "Talent.rivalry.description": "You have a fierce rivalry with another character, and you constantly push yourself to outdo them. Select one other Main Character in the group. Whenever they add 1 or more Threat to purchase bonus d20s, you recover 1 Stress for each die they purchase.\n\nYou may select this talent multiple times, selecting a different character each time. You may not select the same character for both Rivalry and Supportive.",
+
     "Talent.rocksIntoReplicators": "Rocks into Replicators",
 
     "Talent.rocksIntoReplicators.description2e": "Starfleet engineers are famed for being able to build or create nearly anything needed from the most basic of available components. Once per mission, you may take one or more pieces of equipment you possess and destroy them to jury-rig another device, which must have an equal or lower Opportunity Cost than the total cost of all the items destroyed (Standard Issue items are counted as having an Opportunity Cost of 1 for this purpose). Any task roll using this newly created piece of technology increase their complication range by 2, and any complication suffered will render the device useless. The gamemaster has the final say on what can be created using this talent.",
@@ -4028,6 +4085,14 @@
     "Talent.senseSpectrum": "Sense Spectrum",
 
     "Talent.senseSpectrum.description2e": "These creatures may “see” with X-rays, or hear sounds far too high pitched to often be considered useful. They may “smell” by sensing subspace particles, or even feel where their prey is through detecting the pattern of time surrounding its target.",
+
+    "Talent.sharedJoy": "Shared Joy",
+
+    "Talent.sharedJoy.description": "When you take a **break** to recover Stress and engage in an activity related to your pastime, you may invite an ally to join you. If you do so, you both may regain up to 10 Stress (instead of the normal 8), and immediately add 2 points to the group Momentum pool due to boosted morale.",
+
+    "Talent.showOff": "Show-Off",
+
+    "Talent.showOff.description": "You tend to show off, sometimes doing things the hard way just to demonstrate that you can. When you attempt a task, you may choose to increase the Difficulty by 1. If you succeed, you gain 2 bonus Momentum. Bonus Momentum cannot be saved.",
 
     "Talent.siphoningShields": "Siphoning Shields",
 
@@ -4118,9 +4183,21 @@
     "Talent.supervisor.description": "The ship’s Crew Support increases by one. This increase is cumulative if multiple Main Characters in the group select it.",
     "Talent.supervisor.description2e": "The ship’s Crew Support increases by 1. This increase is cumulative if multiple main characters select it.",
 
+    "Talent.supportive": "Supportive",
+
+    "Talent.supportive.description": "You have a close bond with another character, and will support them through any hardship. Select one other Main Character in the group. Whenever you spend Momentum to recover their Stress, you reduce the Momentum cost to 1 (allowing you to recover 1 of their Stress by spending 1 Momentum).\n\nYou may select this talent multiple times, selecting a different character each time. You may not select the same character for both Rivalry and Supportive.",
+
+    "Talent.suppressiveFire": "Suppressive Fire",
+
+    "Talent.suppressiveFire.description": "You know a few shots from a phaser can keep the enemy’s head down, even if they’re off-target. When you miss with a ranged attack, you may add 1 Threat to add a Suppressed trait (or similar effect) on the target. The target can only remove this trait if they are in Cover.",
+
     "Talent.surverySavant": "Surgery Savant",
 
     "Talent.surverySavant.description2e": "When attempting a Medicine task during an extended task relating to surgery, your Impact is increased by 1.",
+
+    "Talent.swift": "Swift",
+
+    "Talent.swift.description": "You’re quick on your feet. When you take the Movement minor action or the Sprint major action, you may spend 1 Momentum (Immediate) to move up to one additional zone.",
 
     "Talent.syntheticPhysiology": "Synthetic Physiology",
 
@@ -4237,6 +4314,10 @@
     "Talent.triage.description": "When you attempt a Task to identify specific injuries or illnesses, or to determine the severity of a patient’s condition, you may spend one Momentum (Repeatable) to diagnose one additional patient.",
     "Talent.triage.description2e": "When you attempt a task to identify specific Injuries or illnesses, or to determine the severity of a patient’s condition, you may spend 1 Momentum (Repeatable) to diagnose one additional patient.",
 
+    "Talent.trueNorth": "True North",
+
+    "Talent.trueNorth.description": "You rarely lose your way. When on a planet, or within a ship or space station, you always retain an accurate sense of your direction (on a planet, you always know which direction is north; on a ship, you can tell which way is forward; on a station, you can tell which way is the center), and the Difficulty of any task for you to determine your location is reduced by 2, to a minimum of 0, just by observing visible landmarks or other signs.",
+
     "Talent.unconventionalThinking": "Unconventional Thinking",
 
     "Talent.unconventionalThinking.description2e": "During any Challenge or Extended Task to adapt technology or study an unfamiliar phenomenon, you may propose an “Outside the Box” hypothesis—some strange, seemingly bizarre suggestion—and add 2 Threat to create a trait related to that hypothesis. Each time this trait is used to benefit you or your allies, add 1 Momentum to the group pool.",
@@ -4276,6 +4357,10 @@
     "Talent.walkingEncyclopedia": "Walking Encyclopedia",
 
     "Talent.walkingEncyclopedia.description2e": "Once per session, when you attempt a task, you may spend 2 Momentum (Immediate) to gain an additional focus for the remainder of the session, due to your breadth of knowledge. However, any task using that focus increases its complication range by 1, as you are not a true expert on that subject.",
+
+    "Talent.walkItOff": "Walk It Off",
+
+    "Talent.walkItOff.description": "You don’t let injuries bother you. The first time each adventure you avoid an Injury, the Injury’s severity is treated as 1: the injury was just a flesh wound, and not worth your attention.",
 
     "Talent.wallClimber": "Wall Climber",
 

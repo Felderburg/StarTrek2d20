@@ -33,6 +33,11 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
     if (!isSecondEdition() || !hasSource(Source.TechnicalManual) || !(wroteTheBook?.isPrerequisiteFulfilled(character))) {
         wroteTheBook = undefined;
     }
+    let lifeLessons = career.id === Career.Veteran ? TalentsHelper.getTalent("Life Lessons") : undefined;
+    if (!isSecondEdition() || !hasSource(Source.ExplorationGuide) || !(lifeLessons?.isPrerequisiteFulfilled(character))) {
+        console.log("No life lessons");
+        lifeLessons = undefined;
+    }
 
     useEffect(() => {
         if (career.talent != null && wroteTheBook === undefined) {
@@ -60,7 +65,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
             textDescription = t('Value.careerLength.veteran.text');
         }
 
-        if (career.talent != null && wroteTheBook === undefined) {
+        if (career.talent != null && filterTalentList().length <= 1) {
             return (<div className="row">
                 <div className="col-md-6 my-3">
                     <Header level={2}>{t('Construct.other.value')}</Header>
@@ -96,15 +101,16 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
     }
 
     const filterTalentList = (): RankedTalent[] => {
-        if (career.id === Career.Veteran && wroteTheBook !== undefined) {
-            return [
-                new RankedTalent(TalentsHelper.getTalent("Veteran")),
-                new RankedTalent(wroteTheBook),
-            ];
-        } else if (career.id === Career.Veteran) {
-            return [
-                new RankedTalent(TalentsHelper.getTalent("Veteran")),
-            ];
+        if (career.id === Career.Veteran) {
+            let result = [new RankedTalent(TalentsHelper.getTalent("Veteran")) ];
+
+            if (wroteTheBook != null) {
+                result.push(new RankedTalent(wroteTheBook));
+            }
+            if (lifeLessons != null) {
+                result.push(new RankedTalent(lifeLessons));
+            }
+            return result;
         } else {
             return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
                 t => !character.hasTalent(t.name)

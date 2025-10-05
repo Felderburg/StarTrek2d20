@@ -69,8 +69,8 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
         const mixedTrait = mixed != null
             ? (
                 <div>
-                    <div className="text-white my-3"><b>{mixed.localizedTrait}</b></div>
-                    <div className="text-white">{character.version > 1 ? mixed.localizedTraitDescription2e : mixed.localizedTraitDescription}</div>
+                    <Header level={3}><b>{mixed.localizedTrait}</b></Header>
+                    <p>{character.version > 1 ? mixed.localizedTraitDescription2e : mixed.localizedTraitDescription}</p>
                 </div>
             )
             : undefined;
