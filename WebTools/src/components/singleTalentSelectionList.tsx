@@ -656,7 +656,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                     } }/>
             </td>
         </tr>
-        {selection?.talent === t.name && t.name === TALENT_NAME_WARRIORS_SPIRIT
+        {selection?.talent === talent.name && talent.name === TALENT_NAME_WARRIORS_SPIRIT
             ? (<tr>
                 <td></td>
                 <td colSpan={2}>
