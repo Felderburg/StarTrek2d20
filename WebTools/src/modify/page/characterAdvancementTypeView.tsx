@@ -30,16 +30,18 @@ import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentE
 import { AttackType } from "../../common/attackType";
 import { TalentSelector } from "./talentSelector";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
+import { LogEntry } from "../../common/logEntry";
 
 
 
 interface ICharacterAdvancementTypeViewProperties extends ICharacterProperties {
+    logEntry?: LogEntry;
     onNextStep: () => void;
     onPreviousStep: () => void;
     type: CharacterAdvancementType;
 }
 
-export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeViewProperties> = ({character, onNextStep, onPreviousStep, type}) => {
+export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeViewProperties> = ({character, onNextStep, onPreviousStep, type, logEntry}) => {
 
     const { t } = useTranslation();
     const [ choice, setChoice ] = useState<CharacterAdvancementChoice|undefined>(undefined);
@@ -87,14 +89,14 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
         if (choice === CharacterAdvancementChoice.Attribute) {
             if (type === CharacterAdvancementType.Adjustment) {
                 if (attributeSelection != null && removeAttributeSelection != null) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, attributeSelection, removeAttributeSelection));
+                    store.dispatch(modifyCharacterAddAdvancement(choice, attributeSelection, removeAttributeSelection, logEntry));
                     onNextStep();
                 } else {
                     Dialog.show(t('CharacterAdvancementTypeView.error.twoAttributes'));
                 }
             } else {
                 if (attributeSelection != null) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, attributeSelection));
+                    store.dispatch(modifyCharacterAddAdvancement(choice, attributeSelection, undefined, logEntry));
                     onNextStep();
                 } else {
                     Dialog.show(t('Common.error.attribute'));
@@ -103,14 +105,14 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
         } else if (choice === CharacterAdvancementChoice.Department) {
             if (type === CharacterAdvancementType.Adjustment) {
                 if (departmentSelection != null && removeDepartmentSelection != null) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, departmentSelection, removeDepartmentSelection));
+                    store.dispatch(modifyCharacterAddAdvancement(choice, departmentSelection, removeDepartmentSelection, logEntry));
                     onNextStep();
                 } else {
                     Dialog.show(t('CharacterAdvancementTypeView.error.twoDepartments'));
                 }
             } else {
                 if (departmentSelection != null) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, departmentSelection));
+                    store.dispatch(modifyCharacterAddAdvancement(choice, departmentSelection, undefined, logEntry));
                     onNextStep();
                 } else {
                     Dialog.show(t('Common.error.department'));
@@ -119,14 +121,14 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
         } else if (choice === CharacterAdvancementChoice.Focus) {
             if (type === CharacterAdvancementType.Adjustment) {
                 if (focusSelection?.length && removeFocusSelection?.length) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, focusSelection, removeFocusSelection));
+                    store.dispatch(modifyCharacterAddAdvancement(choice, focusSelection, removeFocusSelection, logEntry));
                     onNextStep();
                 } else {
                     Dialog.show(t('CharacterAdvancementTypeView.error.twoFocuses'));
                 }
             } else {
                 if (focusSelection?.length) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, focusSelection));
+                    store.dispatch(modifyCharacterAddAdvancement(choice, focusSelection, undefined, logEntry));
                     onNextStep();
                 } else {
                     Dialog.show(t('Common.error.focus'));
@@ -137,20 +139,20 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
                 if (talentSelection == null || removeTalentSelectionIndex == null) {
                     Dialog.show(t('CharacterAdvancementTypeView.error.twoTalents'));
                 } else if (talentAdditionalDetailsSelected()) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection, character.talents[removeTalentSelectionIndex]));
+                    store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection, character.talents[removeTalentSelectionIndex], logEntry));
                     onNextStep();
                 }
             } else {
                 if (talentSelection == null) {
                     Dialog.show(t('Common.error.talent'));
                 } else if (talentAdditionalDetailsSelected()) {
-                    store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection));
+                    store.dispatch(modifyCharacterAddAdvancement(choice, talentSelection, undefined, logEntry));
                     onNextStep();
                 }
             }
         } else if (choice === CharacterAdvancementChoice.Value) {
             if (valueSelection?.length) {
-                store.dispatch(modifyCharacterAddAdvancement(choice, valueSelection));
+                store.dispatch(modifyCharacterAddAdvancement(choice, valueSelection, undefined, logEntry));
                 onNextStep();
             } else if (talentAdditionalDetailsSelected()) {
                 Dialog.show(t('Common.error.value'));

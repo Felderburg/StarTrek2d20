@@ -184,6 +184,7 @@ export class CharacterAdvancementStep {
     choice: CharacterAdvancementChoice;
     value: string|Attribute|Department|SelectedTalent;
     removeValue: string|Attribute|Department|SelectedTalent;
+    log?: number;
 
     copy() {
         let result = new CharacterAdvancementStep();
@@ -198,6 +199,7 @@ export class CharacterAdvancementStep {
         } else {
             result.removeValue = this.removeValue;
         }
+        result.log = this.log;
         return result;
     }
 }

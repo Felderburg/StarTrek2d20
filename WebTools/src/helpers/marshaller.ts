@@ -393,6 +393,9 @@ class Marshaller {
                             result["remove"] = this.talentToJson(i.removeValue as SelectedTalent);
                         }
                     }
+                    if (i.log != null) {
+                        result["log"] = i.log;
+                    }
                     return result;
                 } else if (i instanceof Promotion) {
                     let result = { type: "promotion" };
@@ -1858,6 +1861,10 @@ class Marshaller {
                         if (j["remove"] != null) {
                             improvement.removeValue = this.hydrateTalent(j["remove"], version);
                         }
+                    }
+
+                    if (j["log"] != null) {
+                        improvement.log = j["log"];
                     }
                     return improvement;
                 } else if (j["type"] === "promotion") {

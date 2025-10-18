@@ -444,8 +444,8 @@ export function modifyCharacterRank(rank: CharacterRank, type: ModificationType.
     }
 }
 
-export function modifyCharacterAddAdvancement(type: CharacterAdvancementChoice, value: string|Attribute|Department|SelectedTalent, removeValue?: string|Attribute|Department|SelectedTalent) {
-    let payload = { type: type, value: value };
+export function modifyCharacterAddAdvancement(type: CharacterAdvancementChoice, value: string|Attribute|Department|SelectedTalent, removeValue?: string|Attribute|Department|SelectedTalent, logEntry?: LogEntry) {
+    let payload = { type: type, value: value, logEntry: logEntry };
     if (removeValue != null) {
         payload["remove"] = removeValue;
     }

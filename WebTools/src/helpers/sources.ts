@@ -32,6 +32,7 @@ export enum Source {
     GmToolkit2e,
     TechnicalManual,
     ExplorationGuide,
+    Century23,
 
     ContinuingMissions,
 
@@ -132,6 +133,7 @@ class Sources {
         [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion2e, "GM Toolkit 2e", 2),
         [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion2e, "Technical Manual", 2),
         [Source.ExplorationGuide]: new SourceViewModel(Source.ExplorationGuide, SourceType.Expansion2e, "Exploration Guide", 2),
+        [Source.Century23]: new SourceViewModel(Source.Century23, SourceType.Expansion2e, "23rd Century Campaign", 2, false),
     };
 
     getSources() {

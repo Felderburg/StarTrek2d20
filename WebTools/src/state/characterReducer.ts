@@ -909,6 +909,7 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 }
                 temp.improvements.push(improvement);
             }
+            improvement.log = action.payload.logEntry?.id;
             return {
                 ...state,
                 currentCharacter: temp,
