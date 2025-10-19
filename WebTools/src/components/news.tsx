@@ -14,6 +14,15 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.251019</b>
+            <ul>
+                <li>
+                    Additional work on log entries.
+                </li>
+                <li>
+                    Bug fix on the Warrior's Spirit talent.
+                </li>
+            </ul>
             <b>v1.251005</b>
             <ul>
                 <li>
@@ -225,103 +234,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
             <ul>
                 <li>
                     Additional minor revisions.
-                </li>
-            </ul>
-            <b>v1.250410</b>
-            <ul>
-                <li>
-                    Some fixes for Foundry exports.
-                </li>
-                <li>
-                    Minor changes to the handling of some talents.
-                </li>
-            </ul>
-            <b>v1.250406</b>
-            <ul>
-                <li>
-                    I've made some adjustments to the handling of some Talents.
-                </li>
-                <li>
-                    I've updated the PDF export for the safety checklist.
-                </li>
-            </ul>
-            <b>v1.250405</b>
-            <ul>
-                <li>
-                    Minor tweaks to the tokens.
-                </li>
-            </ul>
-            <b>v1.250404</b>
-            <ul>
-                <li>
-                    A few tweaks to the modification flow.
-                </li>
-                <li>
-                    A few more spaceframe outlines.
-                </li>
-            </ul>
-            <b>v1.250330</b>
-            <ul>
-                <li>
-                    A few more tweaks to character advancement.
-                </li>
-                <li>
-                    PDF export for creatures.
-                </li>
-            </ul>
-            <b>v1.250329</b>
-            <ul>
-                <li>
-                    Minor tweaks to Ferengi tokens
-                </li>
-                <li>
-                    Preliminary support for character advancement (for 2nd edition characters).
-                </li>
-            </ul>
-            <b>v1.250324</b>
-            <ul>
-                <li>
-                    Some bug fixes on weapon qualities.
-                </li>
-                <li>
-                    Creatures.
-                </li>
-            </ul>
-            <b>v1.250316</b>
-            <ul>
-                <li>
-                    Still tweaking the NPC generator.
-                </li>
-                <li>
-                    A few minor bug fixes.
-                </li>
-            </ul>
-            <b>v1.250315</b>
-            <ul>
-                <li>
-                    Some additional tweaks to the NPC generator.
-                </li>
-                <li>
-                    Additional spaceframe outlines.
-                </li>
-            </ul>
-            <b>v1.250311</b>
-            <ul>
-                <li>
-                    And more tweaks, including adding a couple of spaceframe outlines that
-                    I'd not previously supported before.
-                </li>
-            </ul>
-            <b>v1.250310</b>
-            <ul>
-                <li>
-                    More tweaks.
-                </li>
-            </ul>
-            <b>v1.250309</b>
-            <ul>
-                <li>
-                    A few new tweaks.
                 </li>
             </ul>
 
