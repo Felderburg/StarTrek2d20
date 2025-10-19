@@ -22,11 +22,15 @@ import { LogEntry } from "../../common/logEntry";
 import { addCharacterLogEntry } from "../../state/characterActions";
 import { CheckBox } from "../../components/checkBox";
 import { Dialog } from "../../components/dialog";
+import { LogEntrySelectionView } from "./logEntrySelectionView";
+import { CharacterAdvancementStep } from "../../common/character";
+import { CharacterAdvancementChoice } from "../model/characterAdvancementChoice";
 
 enum Step {
     Initial,
     LogEntry,
     SelectLog,
+    SelectCallback,
     ModificationDetails,
     Finish
 }
@@ -53,6 +57,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     const [modificationType, setModificationType] = useState<ModificationType>(dropDownItems()[0].value as ModificationType);
     const [advancementType, setAdvancementType] = useState<CharacterAdvancementType>(CharacterAdvancementType.Adjustment);
     const [logEntry, setLogEntry] = useState<LogEntry|undefined>(undefined);
+    const [logEntryCallback, setLogEntryCallback] = useState<LogEntry|undefined>(undefined);
+    const [skipLogCallback, setSkipLogCallback] = useState(false);
     const navigate = useNavigate();
 
     const milestoneTypesDropDownItems = () => {
@@ -64,7 +70,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     }
 
     const previousStep = () => {
-        if (carouselIndex < 3) {
+        if (carouselIndex < 4) {
             setCarouselIndex(carouselIndex-1);
         }
     }
@@ -75,6 +81,12 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
             setCarouselIndex(carouselIndex+1);
         } else if (step === Step.SelectLog) {
             if (logEntry != null || skipLog) {
+                setCarouselIndex(carouselIndex+1);
+            } else {
+                Dialog.show(t("CharacterAdvancementTypeView.error.selectLog"));
+            }
+        } else if (step === Step.SelectCallback) {
+            if (logEntryCallback != null || skipLogCallback) {
                 setCarouselIndex(carouselIndex+1);
             } else {
                 Dialog.show(t("CharacterAdvancementTypeView.error.selectLog"));
@@ -116,7 +128,9 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
             return (<PromotionView character={character} onNextStep={nextStep} onPreviousStep={previousStep} type={ModificationType.Demotion} />);
         } else if (modificationType === ModificationType.CharacterAdvancement) {
             return (<CharacterAdvancementTypeView character={character} onNextStep={nextStep}
-                onPreviousStep={previousStep} type={advancementType} logEntry={skipLog ? undefined : logEntry} />);
+                onPreviousStep={previousStep} type={advancementType}
+                logEntry={skipLog ? undefined : logEntry}
+                logEntryCallback={skipLogCallback ? undefined : logEntryCallback} />);
         } else {
             return undefined;
         }
@@ -155,22 +169,22 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     const createSelectLog = () => {
 
         let logs = character.logEntries?.filter(l => l.valuesUsed?.length)
-                ?.map(l => (<CheckBox value={l.id} isChecked={l.id === logEntry?.id} onChanged={() => {
-                    if (l.id === logEntry?.id) {
-                        setLogEntry(undefined);
-                    } else {
-                        setLogEntry(l);
-                    }
-                }} text={l.adventureTitle} key={"log-entry-" + l.id} />));
+                ?.map(l => (<LogEntrySelectionView logEntry={l}
+                    isSelected={l.id === logEntry?.id}
+                    selectLogEntry={setLogEntry} key={"log-entry-" + l.id} />));
 
         return (<>
             <div className="row">
                 <div className="col-12 col-md-6">
                     <Header level={2} className="mt-3">{t('ModificationType.name.logEntry')}</Header>
                     <Markdown>{t('CharacterAdvancementTypeView.log.instructions')}</Markdown>
-                </div>
 
-                {logs}
+                    <table className="selection-list">
+                        <tbody>
+                            {logs}
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <div className="mt-5 d-flex justify-content-end">
@@ -186,13 +200,61 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         </>);
     }
 
-    const getSteps = (modificationType: ModificationType) => {
+    const createSelectLogCallback = () => {
+
+        let ids = character.improvements
+                ?.filter(i => i instanceof CharacterAdvancementStep)
+                ?.map(i => i as CharacterAdvancementStep)
+                ?.filter(i => i.log != null)
+                ?.filter(i => advancementType === CharacterAdvancementType.Milestone || i.removeValue == null)
+                ?.map(i => i.log);
+
+        let logs = character.logEntries?.filter(l => l.valuesUsed?.length && ids.includes(l.id));
+
+        return (<>
+            <div className="row">
+                <div className="col-12 col-md-6">
+                    <Header level={2} className="mt-3">{t('CharacterAdvancementTypeView.logCallback')}</Header>
+                    {advancementType === CharacterAdvancementType.CharacterArc
+                        ? (<Markdown>{t('CharacterAdvancementTypeView.logCallback.characterArc.instructions')}</Markdown>)
+                        : (<Markdown>{t('CharacterAdvancementTypeView.logCallback.milestone.instructions')}</Markdown>)}
+
+                    <table className="selection-list">
+                        <tbody>
+                            {logs?.length
+                                ? logs?.map(l => (<LogEntrySelectionView logEntry={l}
+                                    isSelected={l.id === logEntryCallback?.id}
+                                    selectLogEntry={setLogEntryCallback} key={"log-entry-" + l.id} />))
+                                : (<tr><td>{t("CharacterAdvancementTypeView.log.notFound")}</td></tr>)}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div className="mt-5 d-flex justify-content-end">
+                <div className="me-2">
+                    <CheckBox isChecked={skipLogCallback} onChanged={() => setSkipLogCallback(!skipLogCallback)}
+                        text={"Skip this step"} value={"skip"} />
+                </div>
+            </div>
+            <div className="my-3 d-flex justify-content-between">
+                <Button size="sm" onClick={() => previousStep()}>{t('Common.button.previous')}</Button>
+                <Button size="sm" onClick={() => nextStep()}>{t('Common.button.next')}</Button>
+            </div>
+        </>);
+    }
+
+    const getSteps = (modificationType: ModificationType): Step[] => {
         if (modificationType === ModificationType.LogEntry) {
             return [ Step.Initial, Step.LogEntry, Step.Finish ];
         } else if ([ModificationType.Promotion, ModificationType.Demotion].includes(modificationType)) {
             return [ Step.Initial, Step.ModificationDetails, Step.Finish ];
-        } else {
+        } else if (modificationType === ModificationType.CharacterAdvancement && advancementType === CharacterAdvancementType.Adjustment) {
             return [ Step.Initial, Step.SelectLog, Step.ModificationDetails, Step.Finish ];
+        } else if (modificationType === ModificationType.CharacterAdvancement) {
+            return [ Step.Initial, Step.SelectLog, Step.SelectCallback, Step.ModificationDetails, Step.Finish ];
+        } else {
+            return [];
         }
     }
 
@@ -205,6 +267,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                 return createLogEntryView();
             case Step.SelectLog:
                 return createSelectLog();
+            case Step.SelectCallback:
+                return createSelectLogCallback();
             case Step.ModificationDetails:
                 return createModifcationDataStepView();
             case Step.Finish:
@@ -236,6 +300,10 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
 
                     <Carousel.Item>
                         {showStep(3)}
+                    </Carousel.Item>
+
+                    <Carousel.Item>
+                        {showStep(4)}
                     </Carousel.Item>
                 </Carousel>
 

@@ -210,12 +210,12 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
                                 : undefined}
                             {l.valuesUsed?.length
                                 ? (<ul className="mt-2">
-                                    {l.valuesUsed?.map((v,i) => (<li  key={"entry-value-" + i} className="small">{v.value}</li>))}
+                                    {l.valuesUsed?.map((v,i) => (<li  key={"entry-value-" + i} className="small">{v.prefix + v.value}</li>))}
                                 </ul>)
                                 : undefined}
                             {l.directivesUsed?.length
                                 ? (<ul className="mt-2">
-                                    {l.directivesUsed?.map((d,i) => (<li key={"entry-directive-" + i}><small className="text-sm">{d}</small></li>))}
+                                    {l.directivesUsed?.map((d,i) => (<li key={"entry-directive-" + i} className="small">{d}</li>))}
                                 </ul>)
                                 : undefined}
                         </div>

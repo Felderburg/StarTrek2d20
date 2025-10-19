@@ -123,7 +123,7 @@
     "CustomSpeciesDetails.speciesTrait": "Each species gets a species-specific trait that may provide additional benefits in special circumstances.",
     "CustomSpeciesDetails.speciesNameWarning": "Please provide a name for this species.",
 
-    "CharacterAdvancementType.choice.instruction": "At the end of the adventure, create a log entry to record that the character has received a milestone. Once you’ve written the log entry, you may make a change to your character. The change can be any one of the following:",
+    "CharacterAdvancementType.choice.instruction": "Now that you've specified your log entry, you can make a change to your character. The change can be any one of the following:",
 
     "CharacterAdvancementTypeView.adjustment.attribute": "educe one attribute by 1 and increase another attribute by 1. You may not increase an attribute to above 11, nor may you reduce an attribute to below 7.",
     "CharacterAdvancementTypeView.adjustment.department": "Reduce one department by 1 and increase another by 1. You can’t increase any department to more than 4 in this way, nor reduce a department below 1.",
@@ -143,6 +143,18 @@
     "CharacterAdvancementTypeView.error.twoDepartments": "Please select both a department to remove and a new department",
     "CharacterAdvancementTypeView.error.twoFocuses": "Please select both a focus to remove, and a new focus.",
     "CharacterAdvancementTypeView.error.twoTalents": "Please select both a talent to remove and a new talent.",
+
+    "CharacterAdvancementTypeView.log.instructions": "Please select the log entry representing the mission that lead to the character advancement.\n\nThe mission must have used or challenged a value.",
+
+    "CharacterAdvancementTypeView.logCallback": "Previous Mission Callback",
+
+    "CharacterAdvancementTypeView.logCallback.milestone.instructions": "To use a milestone or character arc, you must call back to a past mission that previously used a similar value.\n\nChoose one of these past missions that was previously used in a character adjustment.",
+
+    "CharacterAdvancementTypeView.logCallback.characterArc.instructions": "To use a milestone or character arc, you must call back to a past mission that previously used a similar value.\n\nChoose one of these past missions that was previously used in a milestone.",
+
+    "CharacterAdvancementTypeView.log.notFound": "Uh-oh. None of your log entries meet the necessary criteria.",
+
+    "CharacterAdvancementTypeView.error.selectLog": "Please select a related log entry.",
 
     "CharacterLogEntry.instruction": "Please provide a brief description of the recent mission.",
 

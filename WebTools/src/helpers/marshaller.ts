@@ -396,6 +396,9 @@ class Marshaller {
                     if (i.log != null) {
                         result["log"] = i.log;
                     }
+                    if (i.logCallback != null) {
+                        result["logCallback"] = i.logCallback;
+                    }
                     return result;
                 } else if (i instanceof Promotion) {
                     let result = { type: "promotion" };
@@ -1865,6 +1868,9 @@ class Marshaller {
 
                     if (j["log"] != null) {
                         improvement.log = j["log"];
+                    }
+                    if (j["logCallback"] != null) {
+                        improvement.logCallback = j["logCallback"];
                     }
                     return improvement;
                 } else if (j["type"] === "promotion") {

@@ -102,7 +102,7 @@ CustomSpeciesDetails.speciesName,Name,,Name,Nombre,Nom,Имя,Nome
 CustomSpeciesDetails.instruction,What's the name of this species?,,Wie lautet der Name dieser Spezies?,¿Cuál es el nombre de esta especie?,Quel est le nom de cette espèce?,Каково название этой рассы?,Qual é o nome dessa espécie?
 CustomSpeciesDetails.speciesTrait,Each species gets a species-specific trait that may provide additional benefits in special circumstances.,,"Jede Spezies erhält ein bestimmtes Merkmal, das in bestimmten Situationen zusätzliche Vorteile gewähren kann.",Cada especie obtiene un rasgo específico de la especie que puede proporcionar beneficios adicionales en circunstancias especiales.,Chaque espèce a un trait qui lui est propre qui peut procurer des bonus additionnels dans des circonstances particulières.,"Каждая раса получает особую рассовую черту, которая может дать дополнительные преимущества в особых обстоятельствах.",Cada espécie recebe um traço específico que pode proporcionar benefícios adicionais em circunstâncias especiais.
 CustomSpeciesDetails.speciesNameWarning,Please provide a name for this species.,,Bitte einen Namen für diese Spezies angeben.,Por favor selecciona un talento antes de continuar,Merci de fournir un nom pour cette espèce,Пожалуйста предоставьте название для этой рассы.,"Por favor, forneça um nome para essa espécie."
-CharacterAdvancementType.choice.instruction,"At the end of the adventure, create a log entry to record that the character has received a milestone. Once you’ve written the log entry, you may make a change to your character. The change can be any one of the following:",,,,,,
+CharacterAdvancementType.choice.instruction,"Now that you've specified your log entry, you can make a change to your character. The change can be any one of the following:",,,,,,
 CharacterAdvancementTypeView.adjustment.attribute,"educe one attribute by 1 and increase another attribute by 1. You may not increase an attribute to above 11, nor may you reduce an attribute to below 7.",,,,,,
 CharacterAdvancementTypeView.adjustment.department,"Reduce one department by 1 and increase another by 1. You can’t increase any department to more than 4 in this way, nor reduce a department below 1.",,,,,,
 CharacterAdvancementTypeView.adjustment.focus,Choose one of your focuses and replace it with a different focus.,,,,,,
@@ -118,6 +118,18 @@ CharacterAdvancementTypeView.error.twoAttributes,Please select both an attribute
 CharacterAdvancementTypeView.error.twoDepartments,Please select both a department to remove and a new department,,,,,,
 CharacterAdvancementTypeView.error.twoFocuses,"Please select both a focus to remove, and a new focus.",,,,,,
 CharacterAdvancementTypeView.error.twoTalents,Please select both a talent to remove and a new talent.,,,,,,
+CharacterAdvancementTypeView.log.instructions,"Please select the log entry representing the mission that lead to the character advancement.
+
+The mission must have used or challenged a value.",,,,,,
+CharacterAdvancementTypeView.logCallback,Previous Mission Callback,,,,,,
+CharacterAdvancementTypeView.logCallback.milestone.instructions,"To use a milestone or character arc, you must call back to a past mission that previously used a similar value.
+
+Choose one of these past missions that was previously used in a character adjustment.",,,,,,
+CharacterAdvancementTypeView.logCallback.characterArc.instructions,"To use a milestone or character arc, you must call back to a past mission that previously used a similar value.
+
+Choose one of these past missions that was previously used in a milestone.",,,,,,
+CharacterAdvancementTypeView.log.notFound,Uh-oh. None of your log entries meet the necessary criteria.,,,,,,
+CharacterAdvancementTypeView.error.selectLog,Please select a related log entry.,,,,,,
 CharacterLogEntry.instruction,Please provide a brief description of the recent mission.,,,,,,
 CharacterLogEntry.notes.instruction,Record anything particularly noteworthy about this mission.,,,,,,
 CharacterLogEntry.values.instruction,Which values did the character use in this mission?,,,,,,

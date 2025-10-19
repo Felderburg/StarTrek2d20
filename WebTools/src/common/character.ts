@@ -185,6 +185,7 @@ export class CharacterAdvancementStep {
     value: string|Attribute|Department|SelectedTalent;
     removeValue: string|Attribute|Department|SelectedTalent;
     log?: number;
+    logCallback?: number;
 
     copy() {
         let result = new CharacterAdvancementStep();
@@ -200,6 +201,7 @@ export class CharacterAdvancementStep {
             result.removeValue = this.removeValue;
         }
         result.log = this.log;
+        result.logCallback = this.logCallback;
         return result;
     }
 }
