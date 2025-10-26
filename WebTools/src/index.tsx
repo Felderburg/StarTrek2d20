@@ -21,10 +21,6 @@ const SectorContainerPage = React.lazy(async () => {
     await PageFactory.instance.loadSystemGenerationFactory();
     return import(/* webpackChunkName: 'sector' */ './mapping/page/sectorContainerPage');
 });
-const StarSystemDetailsPage = React.lazy(async () => {
-    await PageFactory.instance.loadSystemGenerationFactory();
-    return import(/* webpackChunkName: 'sector' */ './mapping/page/starSystemDetailsPage');
-});
 const TableListPage = React.lazy(() => import(/* webpackChunkName: 'table' */ './table/page/tableListPage'));
 const ViewTablePage = React.lazy(() => import(/* webpackChunkName: 'table' */ './table/page/viewTablePage'));
 const EditTablePage = React.lazy(() => import(/* webpackChunkName: 'table' */ './table/page/editTablePage'));
@@ -42,6 +38,9 @@ const NpcStatsPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './np
 const NpcSpecialRulesPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpecialRulesPage'));
 const NpcFinalPage = React.lazy(() => import(/* webpackChunkName: 'npc' */ './npc/page/npcFinalPage'));
 const GMTrackerPage = React.lazy(() => import(/* webpackChunkName: 'tracker' */ './tracker/gmTrackerPage'));
+const SystemGenerationPage = React.lazy(() => import(/* webpackChunkName: 'sector' */ './mapping/page/systemGenerationPage'));
+const SectorDetailsPage = React.lazy(() => import(/* webpackChunkName: 'sector' */ './mapping/page/sectorDetailsPage'));
+const StarSystemDetailsPage = React.lazy(() => import(/* webpackChunkName: 'sector' */ './mapping/page/starSystemDetailsPage'));
 
 let root = createRoot(document.getElementById("mainBody"));
 root.render(
@@ -62,9 +61,9 @@ root.render(
                         <Route path="/npc/stats" element={<NpcStatsPage />} />
                         <Route path="/npc/specialrules" element={<NpcSpecialRulesPage />} />
                         <Route path="/npc/final" element={<NpcFinalPage />} />
-                        <Route path="/systemGenerator" element={<SectorContainerPage activePage={PageIdentity.SystemGeneration} />} />
-                        <Route path="/sectorDetails" element={<SectorContainerPage activePage={PageIdentity.SectorDetails} />} />
-                        <Route path="/starSystemDetails" element={<StarSystemDetailsPage />} />
+                        <Route path="/tools/sector/generator" element={<SystemGenerationPage />} />
+                        <Route path="/tools/sector/details" element={<SectorDetailsPage />} />
+                        <Route path="/tools/sector/starSystem" element={<StarSystemDetailsPage />} />
                         <Route path="/starship/generate" element={<RandomStarshipPage />} />
                         <Route path="/random/creature" element={<RandomCreaturePage />} />
                         <Route path="/tactical" element={<TacticalAssetsPage />} />

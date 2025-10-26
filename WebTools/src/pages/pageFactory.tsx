@@ -101,18 +101,6 @@ export class PageFactory {
         return factory ? factory() : undefined;
     }
 
-    async loadSystemGenerationFactory(completion: () => void = () => {}) {
-        if (this.pageFactories["system"] == null) {
-            import(/* webpackChunkName: 'sector' */'../mapping/page/systemPageFactory').then(({SystemPageFactory}) => {
-                this.pageFactories["system"] = SystemPageFactory.instance;
-                completion();
-            }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
-        } else {
-            completion();
-        }
-    }
-
-
     loadStarshipFactory(completion: () => void = () => {}) {
         if (this.pageFactories["starship"] == null) {
             import(/* webpackChunkName: 'starship' */'../starship/page/starshipPageFactory').then(({StarshipPageFactory}) => {

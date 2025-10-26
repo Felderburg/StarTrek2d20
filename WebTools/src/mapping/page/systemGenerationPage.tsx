@@ -6,8 +6,10 @@ import { DropDownElement, DropDownSelect } from '../../components/dropDownInput'
 import { useNavigate } from 'react-router';
 import { hasSource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
+import LcarsFrame from '../../components/lcarsFrame';
+import { PageIdentity } from '../../pages/pageIdentity';
 
-export const SystemGenerationPage = () => {
+const SystemGenerationPage = () => {
 
     const [region, setRegion] = useState(SpaceRegionModel.allRegions()[0].id);
     const [sectorType, setSectorType] = useState(SpecialSectors.GeneralExpanse);
@@ -41,28 +43,35 @@ export const SystemGenerationPage = () => {
 
     const generateSystem = () => {
         SystemGenerationTable.generateSector(SpaceRegionModel.for(region), region === SpaceRegion.ShackletonExpanse ? sectorType : undefined);
-        navigate("/sectorDetails");
+        navigate("/tools/sector/details");
     }
 
     return (
-        <div className="page container ms-0">
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="/index.html">Home</a></li>
-                    <li className="breadcrumb-item active" aria-current="page">System Generation</li>
-                </ol>
-            </nav>
+        <LcarsFrame activePage={PageIdentity.SystemGeneration}>
+            <div id="app">
 
-            <div className="page-text mt-3">
-                Select tool.
+                <div className="page container ms-0">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><a href="/index.html">Home</a></li>
+                            <li className="breadcrumb-item active" aria-current="page">System Generation</li>
+                        </ol>
+                    </nav>
+
+                    <div className="page-text mt-3">
+                        Select tool.
+                    </div>
+                    <div className="page-text mt-3">
+                    <DropDownSelect onChange={(e) => selectRegion(e as SpaceRegion)} defaultValue={region} items={regionOptions()} />
+                    </div>
+                    {renderSectorTypeSection()}
+                    <div className="button-container mt-4">
+                        <Button onClick={() => generateSystem()}>Generate Sector</Button>
+                    </div>
+                </div>
             </div>
-            <div className="page-text mt-3">
-            <DropDownSelect onChange={(e) => selectRegion(e as SpaceRegion)} defaultValue={region} items={regionOptions()} />
-            </div>
-            {renderSectorTypeSection()}
-            <div className="button-container mt-4">
-                <Button onClick={() => generateSystem()}>Generate Sector</Button>
-            </div>
-        </div>
+        </LcarsFrame>
     );
 }
+
+export default SystemGenerationPage;

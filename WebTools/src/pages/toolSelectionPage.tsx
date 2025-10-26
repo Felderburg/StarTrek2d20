@@ -20,13 +20,12 @@ const ToolSelectionPage = () => {
     const { t } = useTranslation();
     const [ loadingNpc, setLoadingNpc ] = useState(false);
     const [ loadingStarship, setLoadingStarship ] = useState(false);
-    const [ loadingSystem, setLoadingSystem ] = useState(false);
     const [ loadingRandomStarship, setLoadingRandomStarship ] = useState(false);
     const navigate = useNavigate();
 
     const renderSystemGenerationButton = () => {
         if (hasAnySource([Source.ShackletonExpanse, Source.ExplorationGuide])) {
-            return (<LoadingButton onClick={() => { loadSystemAndGoToPage(); } } loading={loadingSystem}>{t('ToolSelection.spaceSector')}</LoadingButton>);
+            return (<Button className="mt-4" onClick={() => navigate("/tools/sector/generator")}>{t('ToolSelection.spaceSector')}</Button>);
         } else {
             return undefined;
         }
@@ -52,14 +51,6 @@ const ToolSelectionPage = () => {
             store.dispatch(setCharacter(character));
             goToPage(PageIdentity.Species);
         }
-    }
-
-    const loadSystemAndGoToPage = () => {
-        setLoadingSystem(true);
-        PageFactory.instance.loadSystemGenerationFactory(() => {
-            setLoadingSystem(false);
-            goToPage(PageIdentity.SystemGeneration);
-        });
     }
 
     const loadStarshipAndGoToPage = () => {
@@ -92,9 +83,7 @@ const ToolSelectionPage = () => {
 
 
     const goToPage = (page: PageIdentity) => {
-        if (page === PageIdentity.SystemGeneration) {
-            navigate("/systemGenerator");
-        } else if (page === PageIdentity.RandomStarship) {
+        if (page === PageIdentity.RandomStarship) {
             navigate("/starship/generate");
         } else if (page === PageIdentity.RandomCreature) {
             navigate("/random/creature");

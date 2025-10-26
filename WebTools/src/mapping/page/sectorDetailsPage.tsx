@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { preventDefaultAnchorEvent } from "../../common/navigator";
 import { Header } from "../../components/header";
 import { setSectorName, setStar } from "../../state/starActions";
 import store from "../../state/store";
@@ -13,8 +12,11 @@ import { Sector } from "../table/sector";
 import { StarSystem } from "../table/starSystem";
 import { PDFDocument } from "@cantoo/pdf-lib";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router";
+import { useNavigate, useNavigation } from "react-router";
 import { LoadingButton } from "../../common/loadingButton";
+import LcarsFrame from "../../components/lcarsFrame";
+import { PageIdentity } from "../../pages/pageIdentity";
+import { Link } from "react-router-dom";
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -25,6 +27,7 @@ interface ISectorDetailsPageProperties {
 const SectorDetailsPage: React.FC<ISectorDetailsPageProperties> = ({sector}) => {
 
     const [loadingExport, setLoadingExport] = useState(false);
+    const navigate = useNavigate();
 
     const exportPdf = () => {
         setLoadingExport(true);
@@ -43,57 +46,58 @@ const SectorDetailsPage: React.FC<ISectorDetailsPageProperties> = ({sector}) => 
 
     const showSystem = (system: StarSystem) => {
         store.dispatch(setStar(system));
-        navigate("/starSystemDetails");
+        navigate("/tools/sector/starSystem");
     }
 
     const setSectorNameHandler = (text: string) => {
         store.dispatch(setSectorName(text));
     }
 
-    const navigate = useNavigate();
     const { t } = useTranslation();
     return sector
-    ?   (<div className="page container ms-0">
-            <nav aria-label="breadcrumb">
-                <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="/index.html"onClick={(event) =>
-                            preventDefaultAnchorEvent(event, () => navigate("/"))}>{t('Page.title.home')}</a></li>
-                    <li className="breadcrumb-item"><a href="/index.html" onClick={(event) =>
-                            preventDefaultAnchorEvent(event, () => navigate("/systemGenerator"))}>{t('Page.title.systemGeneration')}</a></li>
-                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.sectorDetails')}</li>
-                </ol>
-            </nav>
+    ?   (<LcarsFrame activePage={PageIdentity.SectorDetails}>
+        <div id="app">
+            <div className="page container ms-0">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><Link to="/">{t('Page.title.home')}</Link></li>
+                            <li className="breadcrumb-item"><Link to="/tools/sector/generator">{t('Page.title.systemGeneration')}</Link></li>
+                            <li className="breadcrumb-item active" aria-current="page">{t('Page.title.sectorDetails')}</li>
+                        </ol>
+                    </nav>
 
-            <EditableHeader prefix="Sector" separator=' • '  text={sector.name} onChange={setSectorNameHandler}/>
-            <div className="d-flex justify-content-center">
-                <div className="d-md-block d-none">
-                    <LcarsDecorationLeftView />
+                    <EditableHeader prefix="Sector" separator=' • '  text={sector.name} onChange={setSectorNameHandler}/>
+                    <div className="d-flex justify-content-center">
+                        <div className="d-md-block d-none">
+                            <LcarsDecorationLeftView />
+                        </div>
+                        <SectorMapView sector={sector} onClick={(s) => showSystem(s) } />
+                        <div className="d-md-block d-none">
+                            <LcarsDecorationRightView />
+                        </div>
+                    </div>
+                    <Header level={2} className="mb-5 mt-4">Notable Systems</Header>
+                    <div>
+                        <table className="selection-list">
+                            <thead>
+                                <tr>
+                                    <td>System Identifier</td>
+                                    <td>{t('StarSystem.common.primaryStar')}</td>
+                                    <td className="text-center">{t('StarSystem.common.worlds')}</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {sector.systems.map((s, i) => (<SystemView system={s} key={'system-' + i} onClick={() => showSystem(s) }/>))}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div className="mt-3">
+                        <LoadingButton loading={loadingExport} size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</LoadingButton>
+                    </div>
                 </div>
-                <SectorMapView sector={sector} onClick={(s) => showSystem(s) } />
-                <div className="d-md-block d-none">
-                    <LcarsDecorationRightView />
-                </div>
             </div>
-            <Header level={2} className="mb-5 mt-4">Notable Systems</Header>
-            <div>
-                <table className="selection-list">
-                    <thead>
-                        <tr>
-                            <td>System Identifier</td>
-                            <td>{t('StarSystem.common.primaryStar')}</td>
-                            <td className="text-center">{t('StarSystem.common.worlds')}</td>
-                            <td></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sector.systems.map((s, i) => (<SystemView system={s} key={'system-' + i} onClick={() => showSystem(s) }/>))}
-                    </tbody>
-                </table>
-            </div>
-            <div className="mt-3">
-                <LoadingButton loading={loadingExport} size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</LoadingButton>
-            </div>
-        </div>)
+        </LcarsFrame>)
     : null;
 }
 

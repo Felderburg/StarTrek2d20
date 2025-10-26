@@ -183,10 +183,10 @@ class SystemMapUpperView extends SystemMapView {
                     <path d="m 1025,160 v 75 h 85 v -75 z" fill="#9999FF" />
                     <path d="m 1025,0 v 150 h 85 V 45 c 0.3169,-30.744136 -13.3546,-45.38249962 -45.4395,-45 z" fill="#F9AC76" />
                     <path d="m 35,35 970,560" stroke="#888888" />
-                    <text x="1030" y="145" fontSize={16} fontFamily="lcars" fill="black" textAnchor="end">{createRandomValue(6)}</text>
-                    <text x="1030" y="230" fontSize={16} fontFamily="lcars" fill="black" textAnchor="end">{createRandomValue(6)}</text>
-                    <text x="1030" y="405" fontSize={16} fontFamily="lcars" fill="black" textAnchor="end">{createRandomValue(6)}</text>
-                    <text x="1030" y="440" fontSize={16} fontFamily="lcars" fill="black" textAnchor="end">{createRandomValue(6)}</text>
+                    <text x="1030" y="145" fontSize={16} fontFamily="lcars" fill="black" textAnchor="start">{createRandomValue(6)}</text>
+                    <text x="1030" y="230" fontSize={16} fontFamily="lcars" fill="black" textAnchor="start">{createRandomValue(6)}</text>
+                    <text x="1030" y="405" fontSize={16} fontFamily="lcars" fill="black" textAnchor="start">{createRandomValue(6)}</text>
+                    <text x="1030" y="440" fontSize={16} fontFamily="lcars" fill="black" textAnchor="start">{createRandomValue(6)}</text>
 
                     <circle cx="35px" cy="35px" r={coronaR} fill="url(#primaryStarCoronaRadialGradientUp)" />
                     <circle cx="35px" cy="35px" r={r} fill="url(#primaryStarRadialGradientUp)" stroke="black" strokeWidth={0.5} />

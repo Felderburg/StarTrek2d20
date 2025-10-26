@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import { preventDefaultAnchorEvent } from '../../common/navigator';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { setStarSystemName } from '../../state/starActions';
@@ -17,6 +16,7 @@ import { useNavigate } from 'react-router';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { LoadingButton } from '../../common/loadingButton';
+import { Link } from 'react-router-dom';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -59,7 +59,7 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
     }
 
     if (!starSystem) {
-        navigate("/systemGenerator");
+        navigate("/tools/sector/generator");
     } else {
         return (
             <LcarsFrame activePage={PageIdentity.SectorDetails}>
@@ -68,8 +68,8 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item"><a href="/index.html">{t('Page.title.home')}</a></li>
-                                <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => preventDefaultAnchorEvent(e, () => navigate("/systemGenerator"))}>{t('Page.title.systemGeneration')}</a></li>
-                                <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => preventDefaultAnchorEvent(e, () => navigate("/sectorDetails"))}>{t('Page.title.sectorDetails')}</a></li>
+                                <li className="breadcrumb-item"><Link to="/tools/sector/generator">{t('Page.title.systemGeneration')}</Link></li>
+                                <li className="breadcrumb-item"><Link to="/tools/sector/details">{t('Page.title.sectorDetails')}</Link></li>
                                 <li className="breadcrumb-item active" aria-current="page">{t('Page.title.starSystemDetails')}</li>
                             </ol>
                         </nav>
@@ -108,7 +108,7 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
                         </div>
 
                         <div>
-                            <Button size="sm" className="me-2" onClick={() => navigate("/sectorDetails") }>Back to Sector</Button>
+                            <Button size="sm" className="me-2" onClick={() => navigate("/tools/sector/details") }>Back to Sector</Button>
                             <LoadingButton loading={loadingExport} size="sm" onClick={() => exportPdf()} className="me-2">{t('Common.button.exportPdf')}</LoadingButton>
                         </div>
                     </div>
