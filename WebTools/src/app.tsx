@@ -1,5 +1,5 @@
 ﻿import React from 'react';
-import {Helmet} from "react-helmet";
+import {Helmet} from "@dr.pogodin/react-helmet";
 import { Events, EventIdentity } from './common/eventChannel';
 import { PageFactory } from './pages/pageFactory';
 import { PageIdentity } from './pages/pageIdentity';

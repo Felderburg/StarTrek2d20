@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { withTranslation, WithTranslation } from 'react-i18next';
-import {Helmet} from "react-helmet";
+import {Helmet} from "@dr.pogodin/react-helmet";
 import LcarsFrame from '../components/lcarsFrame';
 import { PageIdentity } from '../pages/pageIdentity';
 import { Header } from '../components/header';

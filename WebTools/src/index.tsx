@@ -11,6 +11,7 @@ import { PageIdentity } from './pages/pageIdentity';
 import { PageFactory } from './pages/pageFactory';
 import ImportTablePage from './table/page/importTablePage';
 import OtherToolsPage from './pages/otherToolsPage';
+import { HelmetProvider } from '@dr.pogodin/react-helmet';
 
 const CreditsPage = React.lazy(() => import('./pages/creditsPage'));
 const TalentsOverviewMainPage = React.lazy(() => import('./pages/talentsOverviewMainPage'));
@@ -44,42 +45,44 @@ const GMTrackerPage = React.lazy(() => import(/* webpackChunkName: 'tracker' */ 
 
 let root = createRoot(document.getElementById("mainBody"));
 root.render(
-    <Provider store={store}>
-        <Router>
-            <Suspense fallback={<LoadingPage />}>
-                <Routes>
-                    <Route path="/modify/main" element={<ModifyCharacterPage />} />
-                    <Route path="/modify/starship" element={<ModifyStarshipPage />} />
-                    <Route path="/modify/supporting" element={<ModifySupportCharacterPage />} />
-                    <Route path="/talents" element={<TalentsOverviewMainPage />} />
-                    <Route path="/view" element={<ViewSheetPage />} />
-                    <Route path="/credits" element={<CreditsPage />} />
-                    <Route path="/npc" element={<NpcBuilderPage />} />
-                    <Route path="/npc/species" element={<NpcSpeciesSelectionPage />} />
-                    <Route path="/npc/species/details" element={<NpcSpeciesDetailsPage />} />
-                    <Route path="/npc/stats" element={<NpcStatsPage />} />
-                    <Route path="/npc/specialrules" element={<NpcSpecialRulesPage />} />
-                    <Route path="/npc/final" element={<NpcFinalPage />} />
-                    <Route path="/systemGenerator" element={<SectorContainerPage activePage={PageIdentity.SystemGeneration} />} />
-                    <Route path="/sectorDetails" element={<SectorContainerPage activePage={PageIdentity.SectorDetails} />} />
-                    <Route path="/starSystemDetails" element={<StarSystemDetailsPage />} />
-                    <Route path="/starship/generate" element={<RandomStarshipPage />} />
-                    <Route path="/random/creature" element={<RandomCreaturePage />} />
-                    <Route path="/tactical" element={<TacticalAssetsPage />} />
-                    <Route path="/tools" element={<OtherToolsPage />} />
-                    <Route path="/tools/safety" element={<SafetyChecklistPage />} />
-                    <Route path="/token" element={<TokenCreationPage />} />
-                    <Route path="/tools/table" element={<TableListPage />} />
-                    <Route path="/tools/table/view" element={<ViewTablePage />} />
-                    <Route path="/tools/table/edit" element={<EditTablePage />} />
-                    <Route path="/tools/table/import" element={<ImportTablePage />} />
-                    <Route path="/tools/gmtracker" element={<GMTrackerPage />} />
-                    <Route path="*" element={<CharacterCreationApp />} />
-                </Routes>
-            </Suspense>
-        </Router>
-        <Toaster
-            position="bottom-center"
-            reverseOrder={false} />
-    </Provider>
+    <HelmetProvider>
+        <Provider store={store}>
+            <Router>
+                <Suspense fallback={<LoadingPage />}>
+                    <Routes>
+                        <Route path="/modify/main" element={<ModifyCharacterPage />} />
+                        <Route path="/modify/starship" element={<ModifyStarshipPage />} />
+                        <Route path="/modify/supporting" element={<ModifySupportCharacterPage />} />
+                        <Route path="/talents" element={<TalentsOverviewMainPage />} />
+                        <Route path="/view" element={<ViewSheetPage />} />
+                        <Route path="/credits" element={<CreditsPage />} />
+                        <Route path="/npc" element={<NpcBuilderPage />} />
+                        <Route path="/npc/species" element={<NpcSpeciesSelectionPage />} />
+                        <Route path="/npc/species/details" element={<NpcSpeciesDetailsPage />} />
+                        <Route path="/npc/stats" element={<NpcStatsPage />} />
+                        <Route path="/npc/specialrules" element={<NpcSpecialRulesPage />} />
+                        <Route path="/npc/final" element={<NpcFinalPage />} />
+                        <Route path="/systemGenerator" element={<SectorContainerPage activePage={PageIdentity.SystemGeneration} />} />
+                        <Route path="/sectorDetails" element={<SectorContainerPage activePage={PageIdentity.SectorDetails} />} />
+                        <Route path="/starSystemDetails" element={<StarSystemDetailsPage />} />
+                        <Route path="/starship/generate" element={<RandomStarshipPage />} />
+                        <Route path="/random/creature" element={<RandomCreaturePage />} />
+                        <Route path="/tactical" element={<TacticalAssetsPage />} />
+                        <Route path="/tools" element={<OtherToolsPage />} />
+                        <Route path="/tools/safety" element={<SafetyChecklistPage />} />
+                        <Route path="/token" element={<TokenCreationPage />} />
+                        <Route path="/tools/table" element={<TableListPage />} />
+                        <Route path="/tools/table/view" element={<ViewTablePage />} />
+                        <Route path="/tools/table/edit" element={<EditTablePage />} />
+                        <Route path="/tools/table/import" element={<ImportTablePage />} />
+                        <Route path="/tools/gmtracker" element={<GMTrackerPage />} />
+                        <Route path="*" element={<CharacterCreationApp />} />
+                    </Routes>
+                </Suspense>
+            </Router>
+            <Toaster
+                position="bottom-center"
+                reverseOrder={false} />
+        </Provider>
+    </HelmetProvider>
 );
