@@ -61,6 +61,7 @@ const SectorDetailsPage: React.FC<ISectorDetailsPageProperties> = ({sector}) => 
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><Link to="/">{t('Page.title.home')}</Link></li>
+                            <li className="breadcrumb-item"><Link to={"/tools"}>{t('Page.title.otherTools')}</Link></li>
                             <li className="breadcrumb-item"><Link to="/tools/sector/generator">{t('Page.title.systemGeneration')}</Link></li>
                             <li className="breadcrumb-item active" aria-current="page">{t('Page.title.sectorDetails')}</li>
                         </ol>

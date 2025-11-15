@@ -68,6 +68,7 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({star
                         <nav aria-label="breadcrumb">
                             <ol className="breadcrumb">
                                 <li className="breadcrumb-item"><a href="/index.html">{t('Page.title.home')}</a></li>
+                                <li className="breadcrumb-item"><Link to={"/tools"}>{t('Page.title.otherTools')}</Link></li>
                                 <li className="breadcrumb-item"><Link to="/tools/sector/generator">{t('Page.title.systemGeneration')}</Link></li>
                                 <li className="breadcrumb-item"><Link to="/tools/sector/details">{t('Page.title.sectorDetails')}</Link></li>
                                 <li className="breadcrumb-item active" aria-current="page">{t('Page.title.starSystemDetails')}</li>

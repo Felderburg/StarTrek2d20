@@ -385,6 +385,8 @@
 
     "OtherToolsPage.safetyChecklist.instruction": "This checklist is a tool which the gamemaster can use to help players in discussing where their personal boundaries for certain themes in this campaign may lie. This list is divided into several categories, each of which includes a number of topics. This online version of the safety checklist can allow GMs or players to review the topics and evaluate how they want those topics handled in-game.",
 
+    "OtherToolsPage.sector.instruction": "The Sector Generator creates random space sectors and star systems for exploration.",
+
     "OtherToolsPage.tables.instruction": "Create and use random roll tables to help guide some dice-driven outcomes for your campaigns.",
 
     "OtherToolsPage.tracker.instruction": "The Tracker allows you to collect a number of characters together in one reference list, and print out a simple summary list. It's intended to help GMs prepare for a game by keeping a group of characters together.",

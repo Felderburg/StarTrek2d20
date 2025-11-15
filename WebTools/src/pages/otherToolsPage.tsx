@@ -38,6 +38,16 @@ const OtherToolsPage = () => {
                             </div>
 
                             <div className="col mt-5">
+                                <Header level={2}>{t('Page.title.systemGeneration')}</Header>
+                                <p className="mt-3">
+                                    {t('OtherToolsPage.sector.instruction')}
+                                </p>
+                                <div className="text-end mt-4">
+                                    <Button onClick={() => navigate("/tools/sector/generator")} >{t('Page.title.systemGeneration')}</Button>
+                                </div>
+                            </div>
+
+                            <div className="col mt-5">
                                 <Header level={2}>{t('Page.title.tableList')}</Header>
                                 <p className="mt-3">
                                     {t('OtherToolsPage.tables.instruction')}

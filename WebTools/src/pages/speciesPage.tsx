@@ -16,6 +16,7 @@ import { Navigation } from '../common/navigator';
 import Button from 'react-bootstrap/Button';
 import { Stereotype } from '../common/construct';
 import { useNavigate } from 'react-router';
+import { Window } from '../common/window';
 
 enum SpeciesTab {
     Standard,
@@ -61,9 +62,9 @@ const SpeciesPage: React.FC<ICharacterProperties> = ({character}) => {
         return (<div className="text-end mt-4">
             <table className="selection-list">
                 <tbody>
-                    <tr>
+                    <tr  onClick={() => { if (Window.isCompact()) { showCustomSpecies(); } }}>
                         <td className="selection-header">Custom Species</td>
-                        <td className="text-end">
+                        <td className="d-none d-sm-table-cell text-end">
                             <Button size="sm" onClick={() => showCustomSpecies() }>{t('Common.text.select')}</Button>
                         </td>
                     </tr>
