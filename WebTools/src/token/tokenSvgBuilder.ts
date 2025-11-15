@@ -85,8 +85,8 @@ export class TokenSvgBuilder {
         const colour = this.getBorderColor(token);
         return "<circle cx=\"200px\" cy=\"200px\" r=\"190px\" stroke=\"" + colour + "\" stroke-width=\"20px\" />"
             + "<circle cx=\"200px\" cy=\"200px\" r=\"180px\" stroke=\"black\" stroke-width=\"6px\" />"
-            + RankIndicatorCatalog.instance.getBorderRankIndicator(token)
-            + this.getDelta(token);
+            + this.getDelta(token)
+            + RankIndicatorCatalog.instance.getBorderRankIndicator(token);
     }
 
     private static getBorderColor(token: Token) {
