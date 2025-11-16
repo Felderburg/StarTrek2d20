@@ -521,6 +521,7 @@ SpaceframeSelectionPage.note,"Note: The Utopia Planitia sourcebook has re-define
 SpaceframeSelectionPage.ignoreEndOfService,Ignore end-of-service date (GM's decision),,Das Datum der Außerdienststellung ignorieren (Entscheidung liegt bei der Spielleitung),Ignora fecha de fin de servicio (decisión del DJ),Ignorer la date de fin de service du modèle (en accord avec le MJ),,Ignorar a data de fim de serviço (decisão do MJ)
 SpaceframeSelectionPage.error,Please select a spaceframe before proceeding.,,Bitte wählen Sie eine Schiffsklasse um fortzufahren.,Selecciona una Plantilla antes de continuar.,"Choisissez un modèle avant de continuer, SVP",,Selecione um estrutura espacial antes de continuar.
 SpaceframeSelectionPage.errata,A published errata has revised this spaceframe from the original printed book's stats.,,,,,,
+SpaceframeSelectionPage.variant,Spaceframe Variant,,,,,,
 SpeciesAbilityView.instruction,"Each species provides a talent in the form of a Species Ability, which reflects some unique aspect of their physiology, psychology, or culture. You automatically receive this talent. Species abilities cannot be selected after character creation. These are distinct from talents which have a particular species as a requirement, which are always optional.",,,"Cada especie proporciona un talento en forma de Habilidad de Especie, que refleja algún aspecto único de su fisiología, psicología o cultura. Recibes este talento automáticamente. Las Habilidades de Especie no pueden seleccionarse tras la creación del personaje. Son distintas de los talentos que tienen como requisito una especie concreta, que siempre son opcionales.",,,"Cada espécie oferece um talento na forma de uma Habilidade de Espécie, que reflete algum aspecto exclusivo de sua fisiologia, psicologia ou cultura. Você recebe esse talento automaticamente. As Habilidades de Espécie não podem ser selecionadas após a criação do personagem. Elas são diferentes dos talentos que têm uma espécie específica como requisito, que são sempre opcionais."
 SpeciesDetails.originalSpecies,Original Species Type,,,,,,
 SpeciesDetails.error.originalSpecies,Please select an original species for this character.,,,,,,
@@ -2375,6 +2376,8 @@ Traduzido com a versão gratuita do tradutor - DeepL.com"
 Spaceframe.sydney,Sydney Class,,Sydney-Klasse,Clase Sydney,Classe Sydney,,Classe Sydney
 Spaceframe.tKalat,T'Kalat Class,,T'Kalat-Klasse,Clase T'Kalat,Classe T'Kalat,,Classe T'Kalat
 Spaceframe.walker,Walker Class,,Walker-Klasse,Clase Walker,Classe Walker,,Classe Walker
+SpaceframeVariant.excelsior,Original frame,,,,,,
+SpaceframeVariant.enterpriseBVariant,Enterprise-B variant,,,,,,
 SpaceRegion.alphaQuadrant,Alpha Quadrant,,Alpha-Quadrant,Cuadrante Alfa,Quadrant Alpha,Альфа Квадрант,Quadrante Alfa
 SpaceRegion.betaQuadrant,Beta Quadrant,,Beta-Quadrant,Cuadrante Beta,Quadrant Bêta,Бета Квадрант,Quadrante Beta
 SpaceRegion.gammaQuadrant,Gamma Quadrant,,Gamma-Quadrant,Cuadrante Gamma,Quadrant Gamma,Гамма Квадрант,Quadrante Gamma

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 import { CharacterType } from '../../common/characterType';
-import formatAsDelta from '../../common/formatAsDelta';
 import { Starship } from '../../common/starship';
 import { CheckBox } from '../../components/checkBox';
 import { Department } from '../../helpers/department';
@@ -11,7 +10,6 @@ import { SpaceframeHelper } from '../../helpers/spaceframes';
 import { System } from '../../helpers/systems';
 import { hasAnySource } from '../../state/contextFunctions';
 import { useTranslation } from 'react-i18next';
-import i18next from 'i18next';
 import { StatView } from "../../components/StatView";
 import { SpaceframeVariant, SpaceframeVariantModel } from "../../helpers/spaceframeVariant";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
@@ -128,7 +126,7 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({starship
                         <td></td>
                         <td colSpan={3}>
                             <div className="my-3 d-flex justify-content-start align-items-baseline">
-                                <div className="me-3">Variants:</div>
+                                <div className="me-3">{t('SpaceframeSelectionPage.variant')}</div>
                                 <DropDownSelect
                                     defaultValue={starship.spaceframeStep.variant}
                                     onChange={v => onSelection(f, v as SpaceframeVariant)}
