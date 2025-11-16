@@ -12,13 +12,17 @@ import { System } from '../../helpers/systems';
 import { hasAnySource } from '../../state/contextFunctions';
 import { useTranslation } from 'react-i18next';
 import i18next from 'i18next';
+import { StatView } from "../../components/StatView";
+import { SpaceframeVariant, SpaceframeVariantModel } from "../../helpers/spaceframeVariant";
+import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
+import { Spaceframe } from "../../helpers/spaceframeEnum";
 
 interface ISpaceframeSelectionProperties {
     serviceYear: number;
     starship: Starship;
     type: CharacterType;
     initialSelection?: SpaceframeModel;
-    onSelection: (s: SpaceframeModel) => void;
+    onSelection: (s: SpaceframeModel, variant?: SpaceframeVariant) => void;
 }
 
 const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({starship, initialSelection, onSelection}) => {
@@ -48,6 +52,20 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({starship
             return s1.localizedName.localeCompare(s2.localizedName);
         }
     })
+
+    const chooseDefaultVariant = (spaceframe: Spaceframe) => {
+        if (SpaceframeVariantModel.hasVariants(spaceframe)) {
+            let variants = SpaceframeVariantModel.variantsBySpaceframe(spaceframe);
+            return variants?.length ? variants[0]?.id : undefined;
+        } else {
+            return undefined;
+        }
+    }
+
+    const variantOptions = (spaceframe: Spaceframe) => {
+        return SpaceframeVariantModel.variantsBySpaceframe(spaceframe).map(v => new DropDownElement(v.id, v.localizedName));
+    }
+
     const frames = spaceframes.map((f, i) => {
         const talents = f.talents.map((t, ti) => {
             if (t === null) {
@@ -62,47 +80,64 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({starship
         return (
             <tbody key={i}>
                 <tr>
-                    <td rowSpan={4}><div className="selection-header">{f.localizedName}</div> {f.errata ? (<div style={{maxWidth: "14rem"}}>{t('SpaceframeSelectionPage.errata')}</div>) : undefined}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.system.comms')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{f.systems[System.Comms]}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.system.engines')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{f.systems[System.Engines]}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{t('Construct.system.structure')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{f.systems[System.Structure]}</td>
-                    <td className="d=none d-md-table-cell" style={{ verticalAlign: "top", textAlign: "center" }} rowSpan={4}>{f.scale}</td>
-                    <td className="d=none d-md-table-cell" style={{ verticalAlign: "top" }} rowSpan={4}>{talents}</td>
-                    <td rowSpan={4}>
+                    <td><div className="selection-header">{f.localizedName}</div> {f.errata ? (<div style={{maxWidth: "14rem"}}>{t('SpaceframeSelectionPage.errata')}</div>) : undefined}</td>
+                    <td className="d-none d-md-table-cell">
+                        <div className="row row-cols-1 row-cols-lg-3" style={{maxWidth: "32rem"}}>
+                            <StatView name={t('Construct.system.comms')} value={f.systems[System.Comms]}
+                                className="col mb-1" showZero={true} />
+                            <StatView name={t('Construct.system.computer')} value={f.systems[System.Computer]}
+                                className="col mb-1" showZero={true} />
+                            <StatView name={t('Construct.system.engines')} value={f.systems[System.Engines]}
+                                className="col mb-1" showZero={true} />
+                            <StatView name={t('Construct.system.sensors')} value={f.systems[System.Sensors]}
+                                className="col mb-1" showZero={true} />
+                            <StatView name={t('Construct.system.structure')} value={f.systems[System.Structure]}
+                                className="col mb-1" showZero={true} />
+                            <StatView name={t('Construct.system.weapons')} value={f.systems[System.Weapons]}
+                                className="col mb-1" showZero={true} />
+                        </div>
+                        <div className="row row-cols-1 row-cols-lg-3 mt-2 mb-2" style={{maxWidth: "32rem"}}>
+                            <StatView name={t('Construct.department.command')} value={f.departments[Department.Command]}
+                                className="col mb-1" showZero={false} />
+                            <StatView name={t('Construct.department.security')} value={f.departments[Department.Security]}
+                                className="col mb-1" showZero={false} />
+                            <StatView name={t('Construct.department.science')} value={f.departments[Department.Science]}
+                                className="col mb-1" showZero={false} />
+                            <StatView name={t('Construct.department.conn')} value={f.departments[Department.Conn]}
+                                className="col mb-1" showZero={false} />
+                            <StatView name={t('Construct.department.engineering')} value={f.departments[Department.Engineering]}
+                                className="col mb-1" showZero={false} />
+                            <StatView name={t('Construct.department.medicine')} value={f.departments[Department.Medicine]}
+                                className="col mb-1" showZero={false} />
+                        </div>
+
+                    </td>
+
+                    <td className="d-none d-md-table-cell" style={{ verticalAlign: "top", textAlign: "center" }}>{f.scale}</td>
+                    <td className="d-none d-md-table-cell" style={{ verticalAlign: "top" }}>{talents}</td>
+                    <td>
                         <CheckBox
                             isChecked={initialSelection?.id === f.id}
                             text=""
                             value={f.id}
-                            onChanged={(e) => onSelection(f) }/>
+                            onChanged={(e) => onSelection(f, chooseDefaultVariant(f.id)) }/>
                     </td>
                 </tr>
-                <tr>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.system.computer')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{f.systems[System.Computer]}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.system.sensors')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{f.systems[System.Sensors]}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.system.weapons')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{f.systems[System.Weapons]}</td>
-                </tr>
-                <tr>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.department.command')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{formatAsDelta(f.departments[Department.Command])}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.department.security')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{formatAsDelta(f.departments[Department.Security])}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.department.science')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{formatAsDelta(f.departments[Department.Science])}</td>
-                </tr>
-                <tr>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.department.conn')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{formatAsDelta(f.departments[Department.Conn])}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.department.engineering')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{formatAsDelta(f.departments[Department.Engineering])}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "right" }}>{i18next.t('Construct.department.medicine')}</td>
-                    <td className="d=none d-md-table-cell" style={{ textAlign: "center" }}>{formatAsDelta(f.departments[Department.Medicine])}</td>
-                </tr>
+                {initialSelection?.id === f.id && SpaceframeVariantModel.hasVariants(initialSelection.id)
+                    ? (<tr className="d-none d-md-table-row">
+                        <td></td>
+                        <td colSpan={3}>
+                            <div className="my-3 d-flex justify-content-start align-items-baseline">
+                                <div className="me-3">Variants:</div>
+                                <DropDownSelect
+                                    defaultValue={starship.spaceframeStep.variant}
+                                    onChange={v => onSelection(f, v as SpaceframeVariant)}
+                                    items={variantOptions(f.id)} />
+                            </div>
+                        </td>
+                        <td></td>
+                    </tr>)
+                    : undefined}
             </tbody>
         );
     });
@@ -115,9 +150,9 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({starship
                 <thead>
                     <tr>
                         <td></td>
-                        <td className="d=none d-md-table-cell text-center" colSpan={6}>{t('Construct.other.stats')}</td>
-                        <td className="d=none d-md-table-cell text-center">{t('Construct.other.scale')}</td>
-                        <td className="d=none d-md-table-cell">{t('Construct.other.talents')}</td>
+                        <td className="d-none d-md-table-cell text-center">{t('Construct.other.stats')}</td>
+                        <td className="d-none d-md-table-cell text-center">{t('Construct.other.scale')}</td>
+                        <td className="d-none d-md-table-cell">{t('Construct.other.talents')}</td>
                         <td></td>
                     </tr>
                 </thead>

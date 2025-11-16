@@ -981,6 +981,11 @@
     "Spaceframe.akira": "Класс Акира",
     "Spaceframe.nova": "Класс Нова",
 
+    "SpaceRegion.alphaQuadrant": "Альфа Квадрант",
+    "SpaceRegion.betaQuadrant": "Бета Квадрант",
+    "SpaceRegion.gammaQuadrant": "Гамма Квадрант",
+    "SpaceRegion.deltaQuadrant": "Дельта Квадрант",
+
     "Specialization.admiral": "Адмирал",
     "Specialization.admin": "Специалист",
     "Specialization.civilianDoctor": "Врач",

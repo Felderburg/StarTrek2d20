@@ -1042,6 +1042,11 @@
     "Spaceframe.tKalat": "T'Kalat-Klasse",
     "Spaceframe.walker": "Walker-Klasse",
 
+    "SpaceRegion.alphaQuadrant": "Alpha-Quadrant",
+    "SpaceRegion.betaQuadrant": "Beta-Quadrant",
+    "SpaceRegion.gammaQuadrant": "Gamma-Quadrant",
+    "SpaceRegion.deltaQuadrant": "Delta-Quadrant",
+
     "Species.aenar.name": "Aenar",
 
     "Species.andorian.name": "Andorianer",

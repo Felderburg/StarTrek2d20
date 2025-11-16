@@ -1725,6 +1725,11 @@
     "Spaceframe.tKalat": "Clase T'Kalat",
     "Spaceframe.walker": "Clase Walker",
 
+    "SpaceRegion.alphaQuadrant": "Cuadrante Alfa",
+    "SpaceRegion.betaQuadrant": "Cuadrante Beta",
+    "SpaceRegion.gammaQuadrant": "Cuadrante Gamma",
+    "SpaceRegion.deltaQuadrant": "Cuadrante Delta",
+
     "Specialization.admiral": "Almirante",
     "Specialization.admin": "Terrateniente",
     "Specialization.bodyguard": "Guardaespaldas",

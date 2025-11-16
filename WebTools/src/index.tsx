@@ -74,7 +74,7 @@ root.render(
                 </Suspense>
             </Router>
             <Toaster
-                position="bottom-center"
+                position="top-center"
                 reverseOrder={false} />
         </Provider>
     </HelmetProvider>

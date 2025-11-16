@@ -60,7 +60,7 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
             starship={starship}
             serviceYear={starship.serviceYear}
             type={starship.type}
-            onSelection={(spaceframe) => store.dispatch(setStarshipSpaceframe(spaceframe))} />
+            onSelection={(spaceframe, variant) => store.dispatch(setStarshipSpaceframe(spaceframe, variant))} />
         <div className="text-end">
             <Button className="mt-4" onClick={() => nextPage()}>{t('Common.button.next')}</Button>
         </div>

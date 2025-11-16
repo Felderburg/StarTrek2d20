@@ -7,6 +7,7 @@ import { Era } from "../helpers/eras";
 import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
+import { SpaceframeVariant } from "../helpers/spaceframeVariant";
 import { System } from "../helpers/systems";
 import { TalentModel } from "../helpers/talents";
 import { Weapon } from "../helpers/weapons";
@@ -116,8 +117,8 @@ export function setStarshipName(name: string) {
     }
 }
 
-export function setStarshipSpaceframe(spaceframe: SpaceframeModel) {
-    let payload = { spaceframe: spaceframe };
+export function setStarshipSpaceframe(spaceframe: SpaceframeModel, variant?: SpaceframeVariant) {
+    let payload = { spaceframe: spaceframe, variant: variant };
     return {
        type: SET_STARSHIP_SPACEFRAME,
        payload: payload

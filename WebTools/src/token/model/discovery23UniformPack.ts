@@ -1,5 +1,4 @@
 import { Rank } from "../../helpers/ranks";
-import { Species } from "../../helpers/speciesEnum";
 import { BaseTngEraUniformPack } from "./baseTngEraUniformPack";
 import { BodyType } from "./bodyTypeEnum";
 import { DivisionColors } from "./divisionColors";

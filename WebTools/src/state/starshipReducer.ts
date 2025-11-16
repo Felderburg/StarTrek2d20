@@ -1,6 +1,6 @@
 import { Stereotype } from "../common/construct";
 import { SelectedTalent } from "../common/selectedTalent";
-import { MissionProfileStep, ServiceRecordStep, SimpleStats, Starship, StarshipAdvancementStep } from "../common/starship";
+import { MissionProfileStep, ServiceRecordStep, SimpleStats, SpaceframeStep, Starship, StarshipAdvancementStep } from "../common/starship";
 import { StarshipAdvancementChoice } from "../common/starshipAdvancementChoice";
 import { System } from "../helpers/systems";
 import { ShipBuildWorkflow } from "../starship/model/shipBuildWorkflow";
@@ -178,10 +178,12 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         case SET_STARSHIP_SPACEFRAME: {
             let s = state.starship.copy();
             let original = s.spaceframeModel;
-            s.spaceframeModel = action.payload.spaceframe;
+            s.spaceframeStep = new SpaceframeStep(action.payload.spaceframe);
             if (original != null && s.spaceframeModel?.scale < original?.scale) {
                 s.pruneExcessTalents();
             }
+            s.spaceframeStep.variant = action.payload.variant;
+console.log(s.spaceframeStep);
             return {
                 ...state,
                 starship: s

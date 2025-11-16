@@ -255,7 +255,8 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
                                 <Header level={2} className="mt-4">{t('Construct.other.rank')}</Header>
                                 { isRankApplicable()
                                     ? (<div className="mt-3">
-                                        <DropDownSelect items={getRanks()} defaultValue={character.rank?.id || ""}
+                                        <DropDownSelect items={getRanks()}
+                                            defaultValue={character.rank?.id ?? ""}
                                             onChange={selectRank} />
                                     </div>)
                                     : undefined}

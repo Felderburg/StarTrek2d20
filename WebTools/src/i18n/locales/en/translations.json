@@ -575,6 +575,9 @@
     "SupportingCharacter.numericalValue": "Value",
     "SupportingCharacter.speciesBonus": "Species Bonus",
 
+    "SystemGenerationPage.selectQuadrant": "Select quadrant",
+    "SystemGenerationPage.generateSector": "Generate Sector",
+
     "TacticalAssetsPage.instruction": "Add additional assets to your asset list.",
     "TacticalAssetsPage.assets": "Asset List",
 
@@ -2216,6 +2219,12 @@
     "Spaceframe.sydney": "Sydney Class",
     "Spaceframe.tKalat": "T'Kalat Class",
     "Spaceframe.walker": "Walker Class",
+
+    "SpaceRegion.alphaQuadrant": "Alpha Quadrant",
+    "SpaceRegion.betaQuadrant": "Beta Quadrant",
+    "SpaceRegion.gammaQuadrant": "Gamma Quadrant",
+    "SpaceRegion.deltaQuadrant": "Delta Quadrant",
+    "SpaceRegion.shackletonExpanse": "Shackleton Expanse",
 
     "SpecialWeapon.batLeth": "Bat'Leth",
     "SpecialWeapon.mekLeth": "Mek'Leth",

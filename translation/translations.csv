@@ -618,6 +618,8 @@ SupportingCharacter.nameAndRank,Name & Rank,,Name & Rang,Nombre y Rango,Nom & Ra
 SupportingCharacter.nameAndRankInstruction,Give the character an appropriate name and rank. Supporting Characters should never have a rank above Lieutenant and may often be enlisted personnel rather than officers.,,Geben Sie dem Charakter einen passenden Namen und Rang. Nebencharaktere sollten keinen höheren Rang als Lieutenant haben und sind oftmals sogar Mannschaftsdienstgrade anstatt von Offizieren.,Proporciona al personaje un nombre y rango apropiado. Los Personajes de Apoyo nunca deberían tener un rango por encima de Teniente y la mayoría de las veces será personal alistado en vez de oficiales.,Donnez au personnage un nom et un grade approprié. Les personnages secondaires ne peuvent pas avoir un grade supérieur à Lieutenant et sont très sonvant du personnel enrôlé plutôt que des officiers.,"Дайте персонажу соответствующее имя и ранг. Второстепенные персонажи никогда не могут иметь ранг выше Лейтенанта и чаще бывают рядовым составом, чем офицерами.","Dê à personagem um nome e uma patente apropriados. As Personagens Coadjuvantes nunca devem ter uma patente acima de Tenente e, muitas vezes, podem ser alistados em vez de oficiais."
 SupportingCharacter.numericalValue,Value,,Wert,Valor,Valeur,Значение,Valor
 SupportingCharacter.speciesBonus,Species Bonus,,Spezies-Bonus,Bonificación por Especie,Bonus d'Espèce,Рассовый бонус,Bônus de Espécie
+SystemGenerationPage.selectQuadrant,Select quadrant,,,,,,
+SystemGenerationPage.generateSector,Generate Sector,,,,,,
 TacticalAssetsPage.instruction,Add additional assets to your asset list.,,,Añade otros recursos a tu lista de recursos.,,,Adicione outros recursos à sua lista de recursos.
 TacticalAssetsPage.assets,Asset List,,,Lista de Recursos,,,Lista de Recursos
 ToolSelection.instruction,What do you want to create?,,Was soll erschaffen werden?,¿Qué quieres crear?,Que voulez vous créer?,Что вы хотите сгенерировать?,O que você deseja criar?
@@ -2373,6 +2375,11 @@ Traduzido com a versão gratuita do tradutor - DeepL.com"
 Spaceframe.sydney,Sydney Class,,Sydney-Klasse,Clase Sydney,Classe Sydney,,Classe Sydney
 Spaceframe.tKalat,T'Kalat Class,,T'Kalat-Klasse,Clase T'Kalat,Classe T'Kalat,,Classe T'Kalat
 Spaceframe.walker,Walker Class,,Walker-Klasse,Clase Walker,Classe Walker,,Classe Walker
+SpaceRegion.alphaQuadrant,Alpha Quadrant,,Alpha-Quadrant,Cuadrante Alfa,Quadrant Alpha,Альфа Квадрант,Quadrante Alfa
+SpaceRegion.betaQuadrant,Beta Quadrant,,Beta-Quadrant,Cuadrante Beta,Quadrant Bêta,Бета Квадрант,Quadrante Beta
+SpaceRegion.gammaQuadrant,Gamma Quadrant,,Gamma-Quadrant,Cuadrante Gamma,Quadrant Gamma,Гамма Квадрант,Quadrante Gamma
+SpaceRegion.deltaQuadrant,Delta Quadrant,,Delta-Quadrant,Cuadrante Delta,Quadrant Delta,Дельта Квадрант,Quadrante Delta
+SpaceRegion.shackletonExpanse,Shackleton Expanse,,,,,,
 SpecialWeapon.batLeth,Bat'Leth,,,,,,
 SpecialWeapon.mekLeth,Mek'Leth,,,,,,
 Specialization.admiral,Admiral,,,Almirante,Amiral,Адмирал,Almirante

@@ -1402,6 +1402,11 @@
     "Spaceframe.tKalat": "Classe T'Kalat",
     "Spaceframe.walker": "Classe Walker",
 
+    "SpaceRegion.alphaQuadrant": "Quadrant Alpha",
+    "SpaceRegion.betaQuadrant": "Quadrant Bêta",
+    "SpaceRegion.gammaQuadrant": "Quadrant Gamma",
+    "SpaceRegion.deltaQuadrant": "Quadrant Delta",
+
     "Specialization.admiral": "Amiral",
     "Specialization.admin": "Yeoman",
     "Specialization.child": "Enfant",

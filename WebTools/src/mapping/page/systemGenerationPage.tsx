@@ -10,6 +10,7 @@ import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Header } from '../../components/header';
 
 const SystemGenerationPage = () => {
 
@@ -41,7 +42,7 @@ const SystemGenerationPage = () => {
         return SpaceRegionModel
             .allRegions()
             .filter(r => r.id !== SpaceRegion.ShackletonExpanse || hasSource(Source.ShackletonExpanse))
-            .map(r => { return new DropDownElement(r.id, r.name) });
+            .map(r => { return new DropDownElement(r.id, r.localizedName) });
     }
 
     const generateSystem = () => {
@@ -57,20 +58,21 @@ const SystemGenerationPage = () => {
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item"><Link to="/">Home</Link></li>
                             <li className="breadcrumb-item"><Link to="/tools">{t('Page.title.otherTools')}</Link></li>
-                            <li className="breadcrumb-item active" aria-current="page">System Generation</li>
+                            <li className="breadcrumb-item active" aria-current="page">{t('Page.title.systemGeneration')}</li>
                         </ol>
                     </nav>
 
                     <main>
+                        <Header className="mt-4">{t('Page.title.systemGeneration')}</Header>
                         <div className="page-text mt-3">
-                            Select tool.
+                            {t('SystemGenerationPage.selectQuadrant')}
                         </div>
                         <div className="page-text mt-3">
                         <DropDownSelect onChange={(e) => selectRegion(e as SpaceRegion)} defaultValue={region} items={regionOptions()} />
                         </div>
                         {renderSectorTypeSection()}
                         <div className="button-container mt-4">
-                            <Button onClick={() => generateSystem()}>Generate Sector</Button>
+                            <Button onClick={() => generateSystem()}>{t('SystemGenerationPage.generateSector')}</Button>
                         </div>
                     </main>
                 </div>

@@ -51,6 +51,7 @@ import { EquipmentHelper, EquipmentModel, EquipmentType } from './equipment';
 import { PropulsionSystemModel, PropulsionSystemType } from './propulsionSystem';
 import { allStarshipAdvancementChoices, StarshipAdvancementChoice } from '../common/starshipAdvancementChoice';
 import { LogEntry, LogValueEntry, ValueUseType, ValueUseTypeModel } from '../common/logEntry';
+import { SpaceframeVariant, SpaceframeVariantModel } from './spaceframeVariant';
 
 class Marshaller {
 
@@ -835,6 +836,9 @@ class Marshaller {
                 if (starship.spaceframeStep.talents?.length) {
                     sheet['spaceframe']['talents'] = this.toTalentList(starship.spaceframeStep.talents);
                 }
+                if (starship.spaceframeStep.variant != undefined) {
+                    sheet['spaceframe']['variant'] = SpaceframeVariant[starship.spaceframeStep.variant];
+                }
             }
         }
         if (starship.missionProfileStep?.type) {
@@ -1057,6 +1061,10 @@ class Marshaller {
                             result.spaceframeStep.talents.push(talent);
                         }
                     });
+                }
+                if (json.spaceframe.variant) {
+                    result.spaceframeStep.variant = SpaceframeVariantModel.variantCodeByName(json.spaceframe.variant);
+
                 }
             }
         }

@@ -29,8 +29,6 @@ const MajorNpcAttributeView: React.FC<ICharacterProperties> = ({character}) => {
         character.npcGenerationStep?.attributes?.forEach(n => total += n);
         const attributes = character.attributes;
 
-        console.log(total);
-
         if (character.hasMaxedAttribute()) {
             return total < NpcTypes.attributePointCount(NpcType.Major) && attributes[attribute] < (Character.ABSOLUTE_MAX_ATTRIBUTE - 1);
         } else {

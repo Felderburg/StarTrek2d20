@@ -1,3 +1,5 @@
+import i18next from "i18next";
+import { makeKey } from "../../common/translationKey";
 import { SpectralClass, SpectralClassModel } from "./spectralClass";
 
 export enum SpaceRegion {
@@ -55,6 +57,12 @@ export class SpaceRegionModel {
 
     public static for(id: SpaceRegion): SpaceRegionModel {
         return SpaceRegionModel.allRegions()[id];
+    }
+
+    get localizedName() {
+        let key = makeKey("SpaceRegion.", SpaceRegion[this.id]);
+        let localName = i18next.t(key);
+        return localName === key ? this.name : localName;
     }
 }
 
