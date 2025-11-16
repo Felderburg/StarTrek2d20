@@ -1,5 +1,4 @@
 import { LogValueEntry, ValueUseType } from "../../common/logEntry";
-import { useTranslation } from "react-i18next";
 import { CheckBox } from "../../components/checkBox";
 import { cyrb53 } from "../../common/cyrb53";
 import ValueInputWithRandom from "../../components/valueInputWithRandomOption";
@@ -15,7 +14,6 @@ interface ILogEntryValueProperties {
 }
 
 export const LogEntryValueView: React.FC<ILogEntryValueProperties> = ({ value, selected, character, onChange }) => {
-    const { t } = useTranslation();
 
     const modifySelection = () => {
         if (selected) {

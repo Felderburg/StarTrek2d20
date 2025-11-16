@@ -60,7 +60,7 @@ export class UniformEraHelper {
         new UniformEraModel(UniformEra.Bynar, "Bynar"),
         new UniformEraModel(UniformEra.Cardassian, "Cardassian"),
         new UniformEraModel(UniformEra.Civilian, "Civilian"),
-        new UniformEraModel(UniformEra.Discovery23, "Discovery (23rd Century)"),
+//        new UniformEraModel(UniformEra.Discovery23, "Discovery (23rd Century)"),
         new UniformEraModel(UniformEra.Enterprise, "Enterprise"),
         new UniformEraModel(UniformEra.Ferengi, "Ferengi"),
         new UniformEraModel(UniformEra.Klingon, "Klingon Armour"),

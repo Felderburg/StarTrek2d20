@@ -836,7 +836,7 @@ class Marshaller {
                 if (starship.spaceframeStep.talents?.length) {
                     sheet['spaceframe']['talents'] = this.toTalentList(starship.spaceframeStep.talents);
                 }
-                if (starship.spaceframeStep.variant != undefined) {
+                if (starship.spaceframeStep.variant !== undefined) {
                     sheet['spaceframe']['variant'] = SpaceframeVariant[starship.spaceframeStep.variant];
                 }
             }
