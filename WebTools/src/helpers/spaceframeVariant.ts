@@ -1,4 +1,6 @@
+import i18next from "i18next";
 import { Spaceframe } from "./spaceframeEnum";
+import { makeKey } from "../common/translationKey";
 
 export enum SpaceframeVariant {
     // Excelsior variants
@@ -21,7 +23,7 @@ export class SpaceframeVariantModel {
     }
 
     get localizedName() {
-        return SpaceframeVariant[this.id];
+        return i18next.t(makeKey('SpaceframeVariant.', SpaceframeVariant[this.id]));
     }
 
 

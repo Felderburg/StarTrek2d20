@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.251116</b>
+            <ul>
+                <li>
+                    More tweaks and bug fixes.
+                </li>
+            </ul>
             <b>v1.251115</b>
             <ul>
                 <li>
@@ -197,52 +203,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                 </li>
                 <li>
                     Some additional minor token work.
-                </li>
-            </ul>
-            <b>v1.250511</b>
-            <ul>
-                <li>
-                    Minor fixes and improvements.
-                </li>
-            </ul>
-            <b>v1.250509</b>
-            <ul>
-                <li>
-                    A few bug fixes.
-                </li>
-                <li>
-                    Some minor additional token options.
-                </li>
-            </ul>
-            <b>v1.250423</b>
-            <ul>
-                <li>
-                    I've recently been tweaking the handling of some talents: increasingly,
-                    talents are requiring selections of things, and I've decided to revise
-                    the way I handle that. Some of the types of talents that this affects
-                    includes old stand-bys like Bold and Cautious. Sadly my revision probably
-                    impacts some of the translations to other languages.
-                </li>
-                <li>
-                    Other bug fixes.
-                </li>
-            </ul>
-            <b>v1.250417</b>
-            <ul>
-                <li>
-                    More tweaks.
-                </li>
-                <li>
-                    Minor adjustments to some token options.
-                </li>
-                <li>
-                    Fix a bug with starship talents.
-                </li>
-            </ul>
-            <b>v1.250415</b>
-            <ul>
-                <li>
-                    Additional minor revisions.
                 </li>
             </ul>
 
