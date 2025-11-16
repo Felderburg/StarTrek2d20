@@ -2,7 +2,7 @@ import i18next from "i18next";
 import { BaseFormFillingSheet } from "./baseFormFillingSheet";
 import { SheetTag } from "./icharactersheet";
 import { Column } from "./column";
-import { PDFDocument, PDFForm, PDFPage, PDFTextField, TextAlignment } from "@cantoo/pdf-lib";
+import { PDFDocument, PDFForm, PDFPage, PDFTextField } from "@cantoo/pdf-lib";
 import { SimpleColor } from "../common/colour";
 import { Construct } from "../common/construct";
 import { Character } from "../common/character";
@@ -118,8 +118,6 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     fillLogFields(logEntry: LogEntry, page: PDFPage, index: number) {
-
-        let id = index + 1;
 
         let height = 31;
         let gap = 134 - 97 - height;
