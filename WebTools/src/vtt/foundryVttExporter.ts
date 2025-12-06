@@ -25,6 +25,8 @@ import { SelectedTalent } from "../common/selectedTalent";
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";
 
+const SYSTEM_VERSION = "2.4.2";
+
 export class FoundryVttExporter {
 
     private static _instance: FoundryVttExporter;
@@ -41,7 +43,9 @@ export class FoundryVttExporter {
 
         let result = {
             "name": starship.name || "Unnamed Starship",
-            "type": "starship",
+            "type": type === FoundryPluginType.Standard && starship.isSmallCraft
+                ? "smallcraft"
+                : "starship",
             "img": this.determineStarshipIcon(starship),
             "system": {
                 "notes": "",
@@ -77,7 +81,7 @@ export class FoundryVttExporter {
                 "world": "sta-bcholmes-org",
                 "system": "sta",
                 "coreVersion": "10.291",
-                "systemVersion": "1.1.9"
+                "systemVersion": SYSTEM_VERSION
               }
             },
             "_stats": {
@@ -130,7 +134,7 @@ export class FoundryVttExporter {
                 "flags": {},
                 "_stats": {
                     "systemId": "sta",
-                    "systemVersion": "1.1.9",
+                    "systemVersion": SYSTEM_VERSION,
                     "coreVersion": "10.291",
                     "createdTime": now,
                     "modifiedTime": now,
@@ -180,7 +184,7 @@ export class FoundryVttExporter {
                     },
                     "_stats": {
                     "systemId": "sta",
-                    "systemVersion": "1.1.9",
+                    "systemVersion": SYSTEM_VERSION,
                     "coreVersion": "10.291",
                     "createdTime": now,
                     "modifiedTime": now,
@@ -197,7 +201,8 @@ export class FoundryVttExporter {
     determineStarshipIcon(starship: Starship) {
         if (starship.buildType === ShipBuildType.Runabout) {
             return "systems/sta/assets/compendia/ships/starfleet/danube-runabout-token.webp";
-
+        } else if (starship.isSmallCraft) {
+            return "systems/sta/assets/compendia/ships/starfleet/type-6-shuttlepod-token.webp";
         } else if (starship.spaceframeModel?.id === Spaceframe.Akira ||
             starship.spaceframeModel?.id === Spaceframe.Akira_UP) {
             return "systems/sta/assets/compendia/ships/starfleet/akira-token.webp";
@@ -330,12 +335,12 @@ export class FoundryVttExporter {
                 "world": "sta-bcholmes-org",
                 "system": "sta",
                 "coreVersion": "10.291",
-                "systemVersion": "1.1.9"
+                "systemVersion": SYSTEM_VERSION
               }
             },
             "_stats": {
               "systemId": "sta",
-              "systemVersion": "1.1.9",
+              "systemVersion": SYSTEM_VERSION,
               "coreVersion": "10.291",
               "createdTime": now,
               "modifiedTime": now,
@@ -398,7 +403,7 @@ export class FoundryVttExporter {
                 "flags": {},
                 "_stats": {
                   "systemId": "sta",
-                  "systemVersion": "1.1.9",
+                  "systemVersion": SYSTEM_VERSION,
                   "coreVersion": "10.291",
                   "createdTime": now,
                   "modifiedTime": now,
@@ -425,7 +430,7 @@ export class FoundryVttExporter {
                 "flags": {},
                 "_stats": {
                   "systemId": "sta",
-                  "systemVersion": "1.1.9",
+                  "systemVersion": SYSTEM_VERSION,
                   "coreVersion": "10.291",
                   "createdTime": now,
                   "modifiedTime": now,
@@ -457,7 +462,7 @@ export class FoundryVttExporter {
                         "duplicateSource": null,
                         "coreVersion": "13.336",
                         "systemId": "sta",
-                        "systemVersion": "2.0.0",
+                        "systemVersion": SYSTEM_VERSION,
                         "createdTime": now,
                         "modifiedTime": now,
                         "lastModifiedBy": "a6BIWTTe2ysAI7Jm",
@@ -489,7 +494,7 @@ export class FoundryVttExporter {
                 "flags": {},
                 "_stats": {
                   "systemId": "sta",
-                  "systemVersion": "1.1.9",
+                  "systemVersion": SYSTEM_VERSION,
                   "coreVersion": "10.291",
                   "createdTime": now,
                   "modifiedTime": now,
@@ -522,7 +527,7 @@ export class FoundryVttExporter {
                     "flags": {},
                     "_stats": {
                       "systemId": "sta",
-                      "systemVersion": "1.1.9",
+                      "systemVersion": SYSTEM_VERSION,
                       "coreVersion": "10.291",
                       "createdTime": now,
                       "modifiedTime": now,
@@ -558,7 +563,7 @@ export class FoundryVttExporter {
                     "flags": {},
                     "_stats": {
                         "systemId": "sta",
-                        "systemVersion": "1.1.9",
+                        "systemVersion": SYSTEM_VERSION,
                         "coreVersion": "10.291",
                         "createdTime": now,
                         "modifiedTime": now,
@@ -592,7 +597,7 @@ export class FoundryVttExporter {
                 "flags": {},
                 "_stats": {
                     "systemId": "sta",
-                    "systemVersion": "1.1.9",
+                    "systemVersion": SYSTEM_VERSION,
                     "coreVersion": "10.291",
                     "createdTime": now,
                     "modifiedTime": now,
@@ -651,7 +656,7 @@ export class FoundryVttExporter {
                 },
                 "_stats": {
                   "systemId": "sta",
-                  "systemVersion": "1.1.9",
+                  "systemVersion": SYSTEM_VERSION,
                   "coreVersion": "10.291",
                   "createdTime": now,
                   "modifiedTime": now,
