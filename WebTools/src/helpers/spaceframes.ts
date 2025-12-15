@@ -3599,7 +3599,7 @@ export class SpaceframeHelper {
             ],
             [
                 "Klingon Starship",
-                "Symbol of Klingoon Unity"
+                "Symbol of Klingon Unity"
             ],
             2350),
         [Spaceframe.Brel_2E]: SpaceframeModel.createStandardSpaceframe(
@@ -3897,3 +3897,4 @@ export class SpaceframeHelper {
         }
     }
 }
+
