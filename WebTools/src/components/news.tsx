@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.251121</b>
+            <ul>
+                <li>
+                    More bug fixes.
+                </li>
+            </ul>
             <b>v1.251116</b>
             <ul>
                 <li>
@@ -194,15 +200,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                 <li>
                     The latest update implements a feature voted on over at my Patreon:
                     support for NPC creation.
-                </li>
-            </ul>
-            <b>v1.250518</b>
-            <ul>
-                <li>
-                    More prep for the <cite>Technical Manual</cite>.
-                </li>
-                <li>
-                    Some additional minor token work.
                 </li>
             </ul>
 

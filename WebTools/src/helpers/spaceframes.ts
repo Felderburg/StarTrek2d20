@@ -3585,7 +3585,7 @@ export class SpaceframeHelper {
             "D7-Class Battle Cruiser",
             2257,
             [ Source.KlingonCore ],
-            [7, 7, 8, 8, 8, 9],
+            [7, 7, 8, 6, 8, 9],
             [0, 1, 2, 0, 0, 0],
             4,
             [

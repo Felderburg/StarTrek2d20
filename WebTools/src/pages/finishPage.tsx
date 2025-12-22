@@ -51,7 +51,9 @@ const FinishPage: React.FC<IFinishPageProperties> = ({character}) => {
             let existingRank = rankList.filter(r => r.id === character.rank?.id);
             if (character.rank == null || existingRank.length === 0) {
                 const rank = rankList[rankList.length - 1];
-                store.dispatch(setCharacterRank(rank.name, rank.id));
+                if (rank) {
+                    store.dispatch(setCharacterRank(rank.name, rank.id));
+                }
             }
         }
     }, [currentRole]);
