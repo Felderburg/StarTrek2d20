@@ -587,7 +587,7 @@ export class RanksHelper {
             "Rear Admiral", "O8",
             [
                 new OfficerPrerequisite(),
-                new CareersPrerequisite(Career.Veteran),
+                new CareersPrerequisite(Career.Experienced, Career.Veteran),
                 new NotEraPrerequisite(Era.NextGeneration),
                 new SourcePrerequisite(Source.CommandDivision, Source.PlayersGuide),
                 new RolesPrerequisite([Role.Admiral]),
@@ -599,7 +599,7 @@ export class RanksHelper {
             "Rear Admiral, Lower Half",  "O7",
             [
                 new OfficerPrerequisite(),
-                new CareersPrerequisite(Career.Veteran),
+                new CareersPrerequisite(Career.Experienced, Career.Veteran),
                 new AnyEraPrerequisite(Era.NextGeneration, Era.PicardProdigy, Era.Discovery32),
                 new SourcePrerequisite(Source.CommandDivision, Source.PlayersGuide),
                 new RolesPrerequisite([Role.Admiral]),
@@ -611,7 +611,7 @@ export class RanksHelper {
             "Rear Admiral, Upper Half", "O8",
             [
                 new OfficerPrerequisite(),
-                new CareersPrerequisite(Career.Veteran),
+                new CareersPrerequisite(Career.Experienced, Career.Veteran),
                 new AnyEraPrerequisite(Era.NextGeneration, Era.PicardProdigy, Era.Discovery32),
                 new SourcePrerequisite(Source.CommandDivision, Source.PlayersGuide),
                 new RolesPrerequisite([Role.Admiral]),
@@ -623,7 +623,7 @@ export class RanksHelper {
             "Commodore", "O7",
             [
                 new OfficerPrerequisite(),
-                new CareersPrerequisite(Career.Veteran),
+                new CareersPrerequisite(Career.Experienced, Career.Veteran),
                 new SourcePrerequisite(Source.CommandDivision, Source.PlayersGuide),
                 new RolesPrerequisite([Role.CommandingOfficer]),
                 new CharacterTypePrerequisite(CharacterType.Starfleet)
