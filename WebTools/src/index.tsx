@@ -35,6 +35,7 @@ const GMTrackerPage = React.lazy(() => import(/* webpackChunkName: 'tracker' */ 
 const SystemGenerationPage = React.lazy(() => import(/* webpackChunkName: 'sector' */ './mapping/page/systemGenerationPage'));
 const SectorDetailsPage = React.lazy(() => import(/* webpackChunkName: 'sector' */ './mapping/page/sectorDetailsPage'));
 const StarSystemDetailsPage = React.lazy(() => import(/* webpackChunkName: 'sector' */ './mapping/page/starSystemDetailsPage'));
+const StationIndexPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './station/page/stationIndexPage'));
 
 let root = createRoot(document.getElementById("mainBody"));
 root.render(
@@ -59,6 +60,7 @@ root.render(
                         <Route path="/tools/sector/details" element={<SectorDetailsPage />} />
                         <Route path="/tools/sector/starSystem" element={<StarSystemDetailsPage />} />
                         <Route path="/starship/generate" element={<RandomStarshipPage />} />
+                        <Route path="/station" element={<StationIndexPage />} />
                         <Route path="/random/creature" element={<RandomCreaturePage />} />
                         <Route path="/tactical" element={<TacticalAssetsPage />} />
                         <Route path="/tools" element={<OtherToolsPage />} />

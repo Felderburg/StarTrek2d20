@@ -118,6 +118,7 @@ const ToolSelectionPage = () => {
                                 ? (<Button className="mt-4" onClick={() => { loadNpcAndGoToPage(); } }>{t('ToolSelection.npc')}</Button>)
                                 : undefined}
                             <LoadingButton className="mt-4" onClick={() => { loadStarshipAndGoToPage(); } } loading={loadingStarship}>{t('ToolSelection.starship')}</LoadingButton>
+                            <Button className="mt-4" onClick={() => navigate("/station")} >{t('ToolSelection.station')}</Button>
                             {renderSystemGenerationButton()}
                         </div>
                         <div className="col-md-6 button-column">

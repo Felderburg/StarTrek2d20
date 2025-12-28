@@ -98,6 +98,9 @@ export enum PageIdentity {
     SoloStarshipTalents,
     SoloStarshipFinish,
 
+    StationIndex,
+    StationSpaceframe,
+    StationMissionProfile,
 
     TableList,
     ViewTable,

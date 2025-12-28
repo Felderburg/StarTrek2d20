@@ -28,7 +28,20 @@ export enum MissionProfile {
     Flagship,
     LogisticalQuartermaster,
     Patrol,
-    Warship
+    Warship,
+
+
+    AdministrationAndBureaucracyStation,
+    BorderEnforcementStation,
+    CommunicationHubStation,
+    DefenseStation,
+    DiplomaticRelationsStation,
+    DrydockShipRepairStation,
+    EducationTrainingStation,
+    IntelligenceSpecialOperationsStation,
+    LogisticalAndTacticalSupportStation,
+    PolicalOperationsStation,
+    ResearchStation
 }
 
 export class MissionProfileModel {
@@ -634,6 +647,30 @@ class MissionProfiles {
         //    [],
         //    []),
     };
+
+
+    private _stationProfiles: { [id: number]: MissionProfileModel } = {
+        [MissionProfile.AdministrationAndBureaucracyStation]: new MissionProfileModel(
+            MissionProfile.AdministrationAndBureaucracyStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.BorderEnforcementStation]: new MissionProfileModel(
+            MissionProfile.BorderEnforcementStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.CommunicationHubStation]: new MissionProfileModel(
+            MissionProfile.CommunicationHubStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.DefenseStation]: new MissionProfileModel(
+            MissionProfile.DefenseStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+    }
 
     getMissionProfiles(starship: Starship) {
         let profiles: MissionProfileModel[] = [];
