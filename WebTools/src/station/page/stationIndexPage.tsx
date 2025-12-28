@@ -17,7 +17,7 @@ const StationIndexPage = () => {
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.otherTools')}</li>
+                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationIndex')}</li>
                 </ol>
                 </nav>
                 <main>

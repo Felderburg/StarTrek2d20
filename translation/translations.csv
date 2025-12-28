@@ -628,6 +628,7 @@ ToolSelection.mainCharacter,Main Character,,Hauptfigur,Personaje principal,Perso
 ToolSelection.supportingCharacter,Supporting Character,,Nebencharakter,Personaje de Apoyo,Personnage secondaire,Персонаж поддержки,Personagem Coadjuvante
 ToolSelection.npc,NPC,,NSC,PNJ,PNJ,,PdM
 ToolSelection.starship,Starship,,Raumschiff,Nave estelar,Vaisseau spatial,Звездолет,Nave Estelar
+ToolSelection.station,Station,,,,,,
 ToolSelection.spaceSector,Space Sector,,Raumsektor,Sector espacial,Secteur spatial,Звездный сектор,Setor Espacial
 ToolSelection.randomNpc,Random NPC,,Zufälliger NSC,PNJ Aleatorio,PNJ aléatoire,Рандомный второстепенный персонаж,PdM Aleatório
 ToolSelection.randomStarship,Random Starship,,,Nave estelar aleatoria,,Рандомный звездолет,Nave Aleatória
@@ -889,6 +890,7 @@ Page.title.npcConfiguration,Random NPC Configuration,,Anpassung zufälliger NSCs
 Page.title.npcFinal,Finishing Touches,,Feinschliff,Retoques Finales,Touches Finales,Заключительные штрихи,Toques Finais
 Page.title.npcStats,NPC Stats,,,,,,
 Page.title.npcTalents,Special Rules Selection,,,,,,
+Page.title.stationIndex,Station Creation,,,,,,
 Page.title.tokenCreationPage,Token Creation,,Tokenerschaffung,Creación de Token,Création de Jeton,Создание токена,Criação de Token
 Page.title.upbringing,Early Outlook,,Erziehung,Perspectiva Temprana,Experience initiale,Детали воспитания,Experiência Inicial
 Page.title.upbringingDetails,Early Outlook Details,,Erziehungsdetails,Detalles de Perspectiva Temprana,Détails de l'expérience initiale,Направление образование,Detalhes da Experiência Inicial
@@ -1932,6 +1934,13 @@ MissionProfile.klingon.scientificAndSurvey,Scientific and Survey Operations,,,Op
 MissionProfile.klingon.strategicAndDiplomatic,Strategic and Diplomatic Operations,,,Operaciones Estratégicas y Diplomáticas,Opérations stratégiques et diplomatiques,,Operações Estratégicas e Diplomáticas
 MissionProfile.klingon.houseGuard,House Guard,,,Guardia de la Casa,Garde de Maison,,Guarda da Casa
 MissionProfile.klingon.warship,Warship,,,Nave de Guerra,Vaisseau de guerre,,Nave de Guerra
+MissionProfile.default.administrationAndBureaucracyStation,Administration and Bureaucracy,,,,,,
+MissionProfile.default.borderEnforcementStation,Border Enforcement,,,,,,
+MissionProfile.default.communicationHubStation,Communication Hub,,,,,,
+MissionProfile.default.defenseStation,Defense,,,,,,
+MissionProfile.default.diplomaticRelationsStation,Diplomatic Relations,,,,,,
+MissionProfile.default.drydockShipRepairStation,Drydock / Ship Repair,,,,,,
+MissionProfile.default.educationTrainingStation,Education / Training,,,,,,
 InjuryType.deadly,Deadly,,,Mortífera,,,Letal
 InjuryType.stun,Stun,,,No letal,,,Atordoante
 InjuryType.stunOrDeadly,Stun/Deadly,,,No letal / Mortífera,,,Atordoante/Letal
@@ -2867,6 +2876,7 @@ StarSystem.common.primaryStar,Primary Star,,Hauptstern,Estrella Primaria,Etoile 
 StarSystem.common.sector,Sector,,,,,,
 StarSystem.common.system,System,,,,,,
 StarSystem.common.companionStar,Companion Star,,Begleitstern,Estrella Compañera,Etoile Binaire,,Estrela Companheira
+StationIndexPage.instruction,Use this process to create a space station.,,,,,,
 SupportingCharacterModificationType.additionalAttribute,Additional attribute,,,Atributo adicional,,,
 SupportingCharacterModificationType.additionalDepartment,Additional department,,,Disciplina adicional,,,
 SupportingCharacterModificationType.additionalFocus,Additional focus,,,Especialidad adicional,,,

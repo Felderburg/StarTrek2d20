@@ -150,3 +150,10 @@ export class AnyEraCharacterPrerequisite implements ICharacterPrerequisite {
         return this.eras.indexOf(construct.era) >= 0;
     }
 }
+
+export class CadetPrerequisite implements ICharacterPrerequisite {
+    isPrerequisiteFulfilled(character: Character): boolean {
+        return character.type === CharacterType.Cadet;
+    }
+}
+

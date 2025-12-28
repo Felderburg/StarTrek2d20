@@ -19,6 +19,8 @@ export enum Stereotype {
     SimpleStarship,
     SoloStarship,
 
+    Station,
+
     Creature
 }
 

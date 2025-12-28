@@ -20,15 +20,6 @@ export interface ICompositePrerequisite<T extends IConstruct> {
     prerequisites: IConstructPrerequisite<T>[];
 }
 
-export class CadetPrerequisite implements IConstructPrerequisite<Character> {
-    isPrerequisiteFulfilled(character: Character): boolean {
-        return character.type === CharacterType.Cadet;
-    }
-    describe(): string {
-        return "";
-    }
-}
-
 export class OfficerPrerequisite implements IConstructPrerequisite<Character> {
     isPrerequisiteFulfilled(character: Character) {
         return !character.enlisted && !character.isCivilian();
@@ -129,38 +120,6 @@ export class ServiceYearPrerequisite implements IConstructPrerequisite<Starship>
     }
 }
 
-export class KlingonPrerequisite implements IConstructPrerequisite<Character> {
-
-    isPrerequisiteFulfilled(character: Character) {
-        return character.isKlingonWarrior();
-    }
-    describe(): string {
-        return "";
-    }
-}
-
-export class CivilianPrerequisite implements IConstructPrerequisite<Character> {
-
-    // arguably, a Child character is a Civilian, but the Roles restrict Child
-    // characters to only one Role, so there's no point including them.
-    isPrerequisiteFulfilled(character: Character) {
-        if (new SourcePrerequisite(Source.SciencesDivision, Source.PlayersGuide, Source.KlingonCore).isPrerequisiteFulfilled(character)) {
-            return character.type === CharacterType.AmbassadorDiplomat ||
-                character.type === CharacterType.Civilian ||
-                (character.type === CharacterType.Starfleet
-                    && (character.educationStep?.track === Track.UniversityAlumni
-                        || character.educationStep?.track === Track.ResearchInternship)) ||
-                (character.type === CharacterType.KlingonWarrior
-                    && character.educationStep?.track === Track.Laborer);
-        } else {
-            return true;
-        }
-    }
-    describe(): string {
-        return "";
-    }
-}
-
 export class NotPrerequisite implements IConstructPrerequisite<Character> {
     private prereq: IConstructPrerequisite<Character>;
 
@@ -231,25 +190,6 @@ export class AnyEraPrerequisite implements IConstructPrerequisite<Construct> {
 
     isPrerequisiteFulfilled(construct: Construct) {
         return this.eras.indexOf(store.getState().context.era) >= 0;
-    }
-    describe(): string {
-        return "";
-    }
-}
-
-export class ChildPrerequisite implements IConstructPrerequisite<Character> {
-    isPrerequisiteFulfilled(character: Character): boolean {
-        return character.type === CharacterType.Child ||
-            character.age.isChild;
-    }
-    describe(): string {
-        return "";
-    }
-}
-
-export class AdultPrerequisite implements IConstructPrerequisite<Character> {
-    isPrerequisiteFulfilled(character: Character): boolean {
-        return character.age.isAdult;
     }
     describe(): string {
         return "";

@@ -118,8 +118,9 @@ const ToolSelectionPage = () => {
                                 ? (<Button className="mt-4" onClick={() => { loadNpcAndGoToPage(); } }>{t('ToolSelection.npc')}</Button>)
                                 : undefined}
                             <LoadingButton className="mt-4" onClick={() => { loadStarshipAndGoToPage(); } } loading={loadingStarship}>{t('ToolSelection.starship')}</LoadingButton>
-                            <Button className="mt-4" onClick={() => navigate("/station")} >{t('ToolSelection.station')}</Button>
-                            {renderSystemGenerationButton()}
+                            {isSecondEdition() && hasSource(Source.UtopiaPlanitia)
+                                ? (<Button className="mt-4" onClick={() => navigate("/station")} disabled={true} >{t('ToolSelection.station')}</Button>)
+                                : undefined}
                         </div>
                         <div className="col-md-6 button-column">
                             <LoadingButton className="mt-4" onClick={() => { loadRandomNpcAndGoToPage(); } } loading={loadingNpc}>{t('ToolSelection.randomNpc')}</LoadingButton>
@@ -127,6 +128,7 @@ const ToolSelectionPage = () => {
                             {isSecondEdition()
                                 ? (<Button className="mt-4" onClick={() => { goToPage(PageIdentity.RandomCreature); } }>{t('ToolSelection.randomCreature')}</Button>)
                                 : undefined}
+                            {renderSystemGenerationButton()}
                             {renderTacticalAssetButton()}
                         </div>
                     </div>

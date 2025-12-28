@@ -587,6 +587,7 @@
     "ToolSelection.supportingCharacter": "Supporting Character",
     "ToolSelection.npc": "NPC",
     "ToolSelection.starship": "Starship",
+    "ToolSelection.station": "Station",
     "ToolSelection.spaceSector": "Space Sector",
     "ToolSelection.randomNpc": "Random NPC",
     "ToolSelection.randomStarship": "Random Starship",
@@ -865,6 +866,7 @@
     "Page.title.npcFinal": "Finishing Touches",
     "Page.title.npcStats": "NPC Stats",
     "Page.title.npcTalents": "Special Rules Selection",
+    "Page.title.stationIndex": "Station Creation",
     "Page.title.tokenCreationPage": "Token Creation",
     "Page.title.upbringing": "Early Outlook",
     "Page.title.upbringingDetails": "Early Outlook Details",
@@ -1654,6 +1656,14 @@
     "MissionProfile.klingon.strategicAndDiplomatic": "Strategic and Diplomatic Operations",
     "MissionProfile.klingon.houseGuard": "House Guard",
     "MissionProfile.klingon.warship": "Warship",
+
+    "MissionProfile.default.administrationAndBureaucracyStation": "Administration and Bureaucracy",
+    "MissionProfile.default.borderEnforcementStation": "Border Enforcement",
+    "MissionProfile.default.communicationHubStation": "Communication Hub",
+    "MissionProfile.default.defenseStation": "Defense",
+    "MissionProfile.default.diplomaticRelationsStation": "Diplomatic Relations",
+    "MissionProfile.default.drydockShipRepairStation": "Drydock / Ship Repair",
+    "MissionProfile.default.educationTrainingStation": "Education / Training",
 
     "InjuryType.deadly": "Deadly",
     "InjuryType.stun": "Stun",
@@ -2638,6 +2648,8 @@
     "StarSystem.common.sector": "Sector",
     "StarSystem.common.system": "System",
     "StarSystem.common.companionStar": "Companion Star",
+
+    "StationIndexPage.instruction": "Use this process to create a space station.",
 
     "SupportingCharacterModificationType.additionalAttribute": "Additional attribute",
     "SupportingCharacterModificationType.additionalDepartment": "Additional department",
