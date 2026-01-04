@@ -597,7 +597,7 @@
     "Common.button.select": "Select",
     "Common.button.selectAll": "Select All",
     "Common.button.selectNone": "Select None",
-    "Common.button.showAll": "Show Alll",
+    "Common.button.showAll": "Show All",
     "Common.button.exportJson": "Export to JSON",
     "Common.button.export": "Export",
     "Common.button.exportVtt": "Export for VTT",
@@ -3751,6 +3751,10 @@
     "Talent.multiTasking": "Multi-Tasking",
 
     "Talent.multiTasking.description2e": "When you attempt the Override major action while at a bridge station that includes one or both helm or navigator positions, you may use your Conn department instead of the department usually required for that task.",
+
+    "Talent.multiTaskingEdosian": "Multi-Tasking",
+
+    "Talent.multiTaskingEdosian.description": "Edosians are capable, with extensive training and great effort, of compartmentalizing their thoughts and operating each arm completely independent of the others. Characters with this Talent may spend 3 Momentum to gain the benefit of an additional Senior Officer Role until the end of the current scene. This Talent may only be used once per episode.",
 
     "Talent.multiVectorAssaultMode": "Multi-Vector Assault Mode",
 

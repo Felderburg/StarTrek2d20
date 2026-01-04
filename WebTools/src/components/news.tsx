@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260103</b>
+            <ul>
+                <li>
+                    More bug fixes.
+                </li>
+            </ul>
             <b>v1.251122</b>
             <ul>
                 <li>
@@ -157,49 +163,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                 </li>
                 <li>
                     Very preliminary prep for the new <cite>Exploration Guide</cite>.
-                </li>
-            </ul>
-            <b>v1.250701</b>
-            <ul>
-                <li>
-                    Quick bug fix.
-                </li>
-            </ul>
-            <b>v1.250628</b>
-            <ul>
-                <li>
-                    A few additional tweaks to the Starship creation process, particularly around
-                    talent handling.
-                </li>
-                <li>
-                    A few tweaks to the NPC generation, and (particularly) handling of Personal Threat.
-                </li>
-            </ul>
-            <b>v1.250622</b>
-            <ul>
-                <li>
-                    Opening up support for the Technical Manual. There's one service record that's
-                    not currently available (because the implementation is complicated), but it
-                    should come shortly.
-                </li>
-            </ul>
-            <b>v1.250621</b>
-            <ul>
-                <li>
-                    A few minor tweaks to the NPC support.
-                </li>
-                <li>
-                    Some minor revisions to starship creation.
-                </li>
-                <li>
-                    More work on support for the <cite>Technical Manual</cite>.
-                </li>
-            </ul>
-            <b>v1.250608</b>
-            <ul>
-                <li>
-                    The latest update implements a feature voted on over at my Patreon:
-                    support for NPC creation.
                 </li>
             </ul>
 

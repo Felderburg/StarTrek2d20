@@ -1936,7 +1936,7 @@ export class Talents {
                 1,
                 "Cardassian"),
             new TalentModel(
-                "Multi-Tasking",
+                "Multi-Tasking (Edosian)",
                 "Edosians are capable, with extensive training and great effort, of compartmentalizing their thoughts and operating each arm completely independent of the others. Characters with this Talent may spend 3 Momentum to gain the benefit of an additional Senior Officer Role until the end of the current scene. This Talent may only be used once per episode.",
                 [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Edosian, true)],
                 1,

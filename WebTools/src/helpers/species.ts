@@ -762,7 +762,7 @@ class _Species {
             "Edosian",
             "With three legs, Endosians are somewhat slower than most humanoids, but far more stable. With three multidextrous arms, they are able to operate multiple stations or controls at the same time. They are long-lived and capable of deep thought – which others often mistake as antisocial behavior. Their long lives grant them a perspective most others lack and they are often able to recall details and facts from disciplines outside their areas of focus due to decades of exposure and broad study.",
             "Perspective Brings Understanding",
-            [TalentsHelper.getTalent("Multi-Tasking"), TalentsHelper.getTalent("The Long View")],
+            [TalentsHelper.getTalent("Multi-Tasking (Edosian)"), TalentsHelper.getTalent("The Long View")],
             "Given their species evolutionary emphasis on three’s, Edosian names typically contain three syllables – though two syllable names are not entirely uncommon. Edosians do not traditionally use surnames to denote family lineages, though Edosians with the same given name will often differentiate between each other by citing their region, city, or neighborhood of birth.",
             [
                 { type: "Female", suggestions: "Nitemi, Besheri, Unora, Kribara, Zamare, Cayamen, Elanwa, Matawa, Bodanie, Awiwa" },
