@@ -787,30 +787,30 @@ export class FoundryVttExporter {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-core.svg";
             }
         } else {
-            const abiility = talent as SpeciesAbility;
-            if (abiility.species === Species.Andorian) {
+            const ability = talent as SpeciesAbility;
+            if (ability.species === Species.Andorian) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-andorian.svg";
-            } else if (abiility.species === Species.Bajoran) {
+            } else if (ability.species === Species.Bajoran) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-bajoran.svg";
-            } else if (abiility.species === Species.Betazoid) {
+            } else if (ability.species === Species.Betazoid) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-betazoid.svg";
-            } else if (abiility.species === Species.Cardassian) {
+            } else if (ability.species === Species.Cardassian) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-cardassian.svg";
-            } else if (abiility.species === Species.Denobulan) {
+            } else if (ability.species === Species.Denobulan) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-denobulan.svg";
-            } else if (abiility.species === Species.Ferengi) {
+            } else if (ability.species === Species.Ferengi) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-ferengi.svg";
-            } else if (abiility.species === Species.Human) {
+            } else if (ability.species === Species.Human) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-human.svg";
-            } else if (abiility.species === Species.Klingon) {
+            } else if (ability.species === Species.Klingon) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-klingon.svg";
-            } else if (abiility.species === Species.Romulan) {
+            } else if (ability.species === Species.Romulan) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-romulan.svg";
-            } else if (abiility.species === Species.Tellarite) {
+            } else if (ability.species === Species.Tellarite) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-tellarite.svg";
-            } else if (abiility.species === Species.Trill) {
+            } else if (ability.species === Species.Trill) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-trill.svg";
-            } else if (abiility.species === Species.Vulcan) {
+            } else if (ability.species === Species.Vulcan) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-vulcan.svg";
             } else {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-core.svg";
