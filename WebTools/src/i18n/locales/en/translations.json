@@ -125,7 +125,7 @@
 
     "CharacterAdvancementType.choice.instruction": "Now that you've specified your log entry, you can make a change to your character. The change can be any one of the following:",
 
-    "CharacterAdvancementTypeView.adjustment.attribute": "educe one attribute by 1 and increase another attribute by 1. You may not increase an attribute to above 11, nor may you reduce an attribute to below 7.",
+    "CharacterAdvancementTypeView.adjustment.attribute": "Reduce one attribute by 1 and increase another attribute by 1. You may not increase an attribute to above 11, nor may you reduce an attribute to below 7.",
     "CharacterAdvancementTypeView.adjustment.department": "Reduce one department by 1 and increase another by 1. You can’t increase any department to more than 4 in this way, nor reduce a department below 1.",
     "CharacterAdvancementTypeView.adjustment.focus": "Choose one of your focuses and replace it with a different focus.",
     "CharacterAdvancementTypeView.adjustment.talent": "Replace one of your talents with a different one for which you meet the prerequisites.",
@@ -867,6 +867,7 @@
     "Page.title.npcStats": "NPC Stats",
     "Page.title.npcTalents": "Special Rules Selection",
     "Page.title.stationIndex": "Station Creation",
+    "Page.title.stationMissionProfile": "Station Mission Profile",
     "Page.title.tokenCreationPage": "Token Creation",
     "Page.title.upbringing": "Early Outlook",
     "Page.title.upbringingDetails": "Early Outlook Details",
@@ -1664,6 +1665,10 @@
     "MissionProfile.default.diplomaticRelationsStation": "Diplomatic Relations",
     "MissionProfile.default.drydockShipRepairStation": "Drydock / Ship Repair",
     "MissionProfile.default.educationTrainingStation": "Education / Training",
+    "MissionProfile.default.intelligenceSpecialOperationsStation": "Intelligence / Special Operations",
+    "MissionProfile.default.logisticalAndTacticalSupportStation": "Logistical and Tactical Support",
+    "MissionProfile.default.policalOperationsStation": "Policital Operations",
+    "MissionProfile.default.researchStation": "Research Station",
 
     "InjuryType.deadly": "Deadly",
     "InjuryType.stun": "Stun",
@@ -2650,6 +2655,8 @@
     "StarSystem.common.companionStar": "Companion Star",
 
     "StationIndexPage.instruction": "Use this process to create a space station.",
+
+    "StationMissionProfile.instruction": "Select a mission profile for this station.",
 
     "SupportingCharacterModificationType.additionalAttribute": "Additional attribute",
     "SupportingCharacterModificationType.additionalDepartment": "Additional department",

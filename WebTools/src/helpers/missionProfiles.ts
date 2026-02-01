@@ -670,6 +670,41 @@ class MissionProfiles {
             "",
             [0, 0, 0, 0, 0, 0],
             []),
+        [MissionProfile.DiplomaticRelationsStation]: new MissionProfileModel(
+            MissionProfile.DefenseStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.DrydockShipRepairStation]: new MissionProfileModel(
+            MissionProfile.DrydockShipRepairStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.EducationTrainingStation]: new MissionProfileModel(
+            MissionProfile.EducationTrainingStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.IntelligenceSpecialOperationsStation]: new MissionProfileModel(
+            MissionProfile.IntelligenceSpecialOperationsStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.LogisticalAndTacticalSupportStation]: new MissionProfileModel(
+            MissionProfile.LogisticalAndTacticalSupportStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.PolicalOperationsStation]: new MissionProfileModel(
+            MissionProfile.PolicalOperationsStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
+        [MissionProfile.ResearchStation]: new MissionProfileModel(
+            MissionProfile.ResearchStation,
+            "",
+            [0, 0, 0, 0, 0, 0],
+            []),
     }
 
     getMissionProfiles(starship: Starship) {
@@ -695,6 +730,15 @@ class MissionProfiles {
             }
         };
 
+        profiles.sort((p1, p2) => {
+            return p1.localizedName.localeCompare(p2.localizedName);
+        })
+
+        return profiles;
+    }
+
+    getStationMissionProfiles() {
+        let profiles = [... Object.values(this._stationProfiles)];
         profiles.sort((p1, p2) => {
             return p1.localizedName.localeCompare(p2.localizedName);
         })

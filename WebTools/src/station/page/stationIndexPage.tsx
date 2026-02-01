@@ -1,16 +1,21 @@
 import React from "react";
-import { connect } from "react-redux";
 import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const StationIndexPage = () => {
 
     const { t } = useTranslation();
+    const navigate = useNavigate();
+
+    const createStation = () => {
+        navigate("/station/profile");
+    }
+
     return (<LcarsFrame activePage={PageIdentity.StationIndex}>
         <div id="app">
             <div className="page container ms-0">
@@ -27,7 +32,7 @@ const StationIndexPage = () => {
                     <ReactMarkdown>{t('StationIndexPage.instruction')}</ReactMarkdown>
 
                     <div className="text-end">
-                        <Button onClick={() => {}}>{t('Common.button.create')}</Button>
+                        <Button onClick={createStation}>{t('Common.button.create')}</Button>
                     </div>
                 </main>
             </div>
@@ -35,10 +40,4 @@ const StationIndexPage = () => {
     </LcarsFrame>);
 }
 
-function mapStateToProps(state, ownProps) {
-    return {
-        starship: state.starship.starship
-    };
-}
-
-export default connect(mapStateToProps)(StationIndexPage);
+export default StationIndexPage;

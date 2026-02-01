@@ -126,6 +126,7 @@ const CreditsPage = () => {
                             <li>Charles C. Li</li>
                             <li>Dr. Twitch</li>
                             <li>John Till</li>
+                            <li>Lucius Licinius Lucullus</li>
                             <li>Marty Chodorek</li>
                             <li>Michael Dismuke</li>
                             <li>Nathaniel Johnson</li>
