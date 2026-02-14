@@ -33,10 +33,10 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
         }
 
         const getEnvironmentString = () => {
-            let env = c.environmentStep ? EnvironmentsHelper.getEnvironment(c.environmentStep.environment, c.type).localizedName : i18n.t('Common.text.none');
+            let env = c.environmentStep ? EnvironmentsHelper.getEnvironment(c.environmentStep.environment, c).localizedName : i18n.t('Common.text.none');
 
             if (c.environmentStep?.environment === Environment.AnotherSpeciesWorld && c.environmentStep?.otherSpecies != null) {
-                env = CharacterSerializer.serializeEnvironment(c.environmentStep.environment, c.environmentStep.otherSpecies, c.type);
+                env = CharacterSerializer.serializeEnvironment(c.environmentStep.environment, c.environmentStep.otherSpecies, c);
             }
 
             return env;

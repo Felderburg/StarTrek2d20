@@ -11,7 +11,6 @@ import { makeKey } from "../common/translationKey";
 import { Attribute } from "../helpers/attributes";
 import { Window } from "../common/window";
 import Button from "react-bootstrap/Button";
-import { EnvironmentConditionRandomTable, EnvironmentSettingRandomTable } from "../solo/table/environmentRandomTable";
 import CharacterCreationBreadcrumbs from "../components/characterCreationBreadcrumbs";
 import SoloCharacterBreadcrumbs from "../solo/component/soloCharacterBreadcrumbs";
 import { Header } from "../components/header";
@@ -20,19 +19,10 @@ import { connect } from "react-redux";
 import { Department } from "../helpers/department";
 import { DisciplinesOrDepartments } from "../view/disciplinesOrDepartments";
 
-enum EnvironmentTab {
-    Settings,
-    Conditions
-}
-
 const EnvironmentPage: React.FC<ICharacterProperties> = ({character}) => {
 
     const { t } = useTranslation();
-    const [tab, setTab] = useState((character?.environmentStep == null || EnvironmentsHelper.isSetting(character?.environmentStep?.environment)) ? EnvironmentTab.Settings : EnvironmentTab.Conditions);
-    const [randomSetting, setRandomSetting] = useState((character?.environmentStep && EnvironmentsHelper.isSetting(character?.environmentStep?.environment))
-        ? character?.environmentStep?.environment
-        : null);
-    const [randomCondition, setRandomCondition] = useState((character?.environmentStep && EnvironmentsHelper.isCondition(character?.environmentStep?.environment))
+    const [randomEnvironment, setRandomEnvironment] = useState((character?.environmentStep && EnvironmentsHelper.isSetting(character?.environmentStep?.environment))
         ? character?.environmentStep?.environment
         : null);
 
@@ -77,22 +67,29 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({character}) => {
         )
     }
 
-    const renderSettingsTab = () => {
+    const chooseRandomEnvironment = () => {
+        let environments = EnvironmentsHelper.getEnvironmentOptions(character);
 
-        let settingsList = character.stereotype === Stereotype.SoloCharacter
-            ? EnvironmentsHelper.getEnvironmentSettings()
-            : EnvironmentsHelper.getEnvironmentSettings(character.type);
-        if (randomSetting != null) {
-            settingsList = [EnvironmentsHelper.getEnvironmentSettingByType(randomSetting)];
+        return environments[Math.floor(Math.random() * environments.length)].id;
+    }
+
+    const renderTable = () => {
+
+        let environments = EnvironmentsHelper.getEnvironmentOptions(character);
+        if (randomEnvironment != null) {
+            environments = [EnvironmentsHelper.getEnvironment(randomEnvironment, character)];
         }
-        let settingRows = settingsList.map((e,i) => toTableRow(e, i));
+
+        let settings = environments.filter(e => EnvironmentsHelper.isSetting(e.id));
+        let conditions = environments.filter(e => EnvironmentsHelper.isCondition(e.id));
+        let homeworlds = environments.filter(e => EnvironmentsHelper.isHomeworld(e.id));
 
         return (<>
             <div className="my-4">
-                <Button size="sm" className="me-3" onClick={() => setRandomSetting( EnvironmentSettingRandomTable()) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomEnvironment( chooseRandomEnvironment()) }>
                     <img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}
                 </Button>
-                {randomSetting != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomSetting(null)} >{t('Common.button.showAll')}</Button>) : undefined}
+                {randomEnvironment != null ? (<Button className="btn btn-primary btn-sm me-3" onClick={() => setRandomEnvironment(null)} >{t('Common.button.showAll')}</Button>) : undefined}
             </div>
 
             <table className="selection-list">
@@ -104,41 +101,24 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({character}) => {
                             <td></td>
                         </tr>
                     </thead>
-                    <tbody>
-                        {settingRows}
-                    </tbody>
-                </table>
-            </>);
-    }
-
-    const renderConditionsTab = () => {
-
-        let settingsList = EnvironmentsHelper.getEnvironmentConditions();
-        if (randomCondition != null) {
-            settingsList = [EnvironmentsHelper.getEnvironmentConditionByType(randomCondition)];
-        }
-        let settingRows = settingsList.map((e,i) => toTableRow(e, i));
-
-        return (<>
-            <div className="my-4">
-                <Button size="sm" className="me-3" onClick={() => setRandomCondition( EnvironmentConditionRandomTable()) }>
-                    <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
-                </Button>
-                {randomCondition != null ? (<Button size="sm" className="me-3" onClick={() => setRandomCondition(null)} >{t('Common.button.showAll')}</Button>) : undefined}
-            </div>
-
-            <table className="selection-list">
-                    <thead>
-                        <tr>
-                            <td></td>
-                            <td><b>{t('Construct.other.attributes')}</b></td>
-                            <td><b><DisciplinesOrDepartments character={character}/></b></td>
-                            <td></td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {settingRows}
-                    </tbody>
+                    {settings?.length
+                        ? (<tbody>
+                            <tr><th colSpan={4} className="pt-4"><p>{t('SoloEnvironmentPage.settings')}</p></th></tr>
+                            {settings.map((e,i) => toTableRow(e, i))}
+                        </tbody>)
+                        : undefined}
+                    {homeworlds?.length
+                        ? (<tbody>
+                            <tr><th colSpan={4} className="pt-4"><p>{t('SoloEnvironmentPage.worlds')}</p></th></tr>
+                            {homeworlds.map((e,i) => toTableRow(e, i))}
+                        </tbody>)
+                        : undefined}
+                    {conditions?.length
+                        ? (<tbody>
+                            <tr><th colSpan={4} className="pt-4"><p>{t('SoloEnvironmentPage.conditions')}</p></th></tr>
+                            {conditions.map((e,i) => toTableRow(e, i))}
+                        </tbody>)
+                        : undefined}
                 </table>
             </>);
     }
@@ -153,16 +133,7 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({character}) => {
 
                 <InstructionText text={t('SoloEnvironmentPage.instruction')} />
 
-                <div className="btn-group w-100" role="group" aria-label="Environment types">
-                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === EnvironmentTab.Settings ? "active" : "")}
-                        onClick={() => setTab(EnvironmentTab.Settings)}>{t('SoloEnvironmentPage.settings')}</button>
-                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === EnvironmentTab.Conditions ? "active" : "")}
-                        onClick={() => setTab(EnvironmentTab.Conditions)}>{t('SoloEnvironmentPage.conditions')}</button>
-                </div>
-
-                {tab === EnvironmentTab.Settings
-                    ? renderSettingsTab()
-                    : renderConditionsTab()}
+                {renderTable()}
             </main>
         </div>);
 }

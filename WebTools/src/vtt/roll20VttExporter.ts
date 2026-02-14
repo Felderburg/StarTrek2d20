@@ -746,7 +746,7 @@ export class Roll20VttExporter {
         return {
             "name": "environment",
             "current": CharacterSerializer.serializeEnvironment(character.environmentStep?.environment,
-                character.environmentStep?.otherSpecies, character.type) ?? "",
+                character.environmentStep?.otherSpecies, character) ?? "",
             "max": "",
             "id": id.nextId()
         };

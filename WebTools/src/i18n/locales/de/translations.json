@@ -237,6 +237,7 @@
     "SoloEnvironmentPage.instruction": "Bei der Wahl der Lebensumstände deines Charakters wählst du entweder eine Herkunft oder eine Lebenslage. Beide bieten unterschiedliche Möglichkeiten, die Geschichte zu erzählen, aber beide bieten die gleiche Art von Vorteilen für deinen Charakter.\n\nDu kannst auch eine dieser Optionen zufällig auswählen.",
     "SoloEnvironmentPage.settings": "Herkunft",
     "SoloEnvironmentPage.conditions": "Lebenslage",
+    "SoloEnvironmentPage.worlds": "Welten",
 
     "SoloEnvironmentPage.anotherSpeciesWorld.attributeText": "Abhängig von der Spezies.",
 

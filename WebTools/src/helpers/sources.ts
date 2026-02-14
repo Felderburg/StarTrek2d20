@@ -33,6 +33,7 @@ export enum Source {
     TechnicalManual,
     ExplorationGuide,
     Century23,
+    SpeciesSourcebook,
 
     ContinuingMissions,
 
@@ -91,12 +92,12 @@ class SourceViewModel {
 class Sources {
     private types: SourceTypeModel[] = [
         new SourceTypeModel(SourceType.CoreBook, "Core Rulebooks"),
+        new SourceTypeModel(SourceType.Expansion2e, "Expansion Books for 2E"),
+        new SourceTypeModel(SourceType.Expansion, "Expansion Books"),
         new SourceTypeModel(SourceType.CrewBook, "Crew Books"),
         new SourceTypeModel(SourceType.QuadrantBook, "Quadrant Books"),
         new SourceTypeModel(SourceType.DivisionBook, "Division Books"),
         new SourceTypeModel(SourceType.CampaignBook, "Campaign Books"),
-        new SourceTypeModel(SourceType.Expansion, "Expansion Books"),
-        new SourceTypeModel(SourceType.Expansion2e, "Expansion Books for 2E"),
         new SourceTypeModel(SourceType.Misc, "Misc/Other Books"),
         new SourceTypeModel(SourceType.Unofficial, "Unofficial Books"),
     ];
@@ -133,7 +134,8 @@ class Sources {
         [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion2e, "GM Toolkit 2e", 2),
         [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion2e, "Technical Manual", 2),
         [Source.ExplorationGuide]: new SourceViewModel(Source.ExplorationGuide, SourceType.Expansion2e, "Exploration Guide", 2),
-        [Source.Century23]: new SourceViewModel(Source.Century23, SourceType.Expansion2e, "23rd Century Campaign", 2, false),
+        [Source.Century23]: new SourceViewModel(Source.Century23, SourceType.Expansion2e, "23rd Century Campaign", 2, true),
+        [Source.SpeciesSourcebook]: new SourceViewModel(Source.SpeciesSourcebook, SourceType.Expansion2e, "Species Sourcebook", 2, false),
     };
 
     getSources() {

@@ -39,7 +39,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
         this.fillField(form, 'Pronouns', character.pronouns);
         this.fillAssignment(form, character);
         this.fillField(form, 'Ship', character.assignedShip ?? "");
-        this.fillField(form, 'Environment', CharacterSerializer.serializeEnvironment(character.environmentStep?.environment, character.environmentStep?.otherSpecies, character.type));
+        this.fillField(form, 'Environment', CharacterSerializer.serializeEnvironment(character.environmentStep?.environment, character.environmentStep?.otherSpecies, character));
         this.fillRank(form, character);
         this.fillSpecies(form, character);
         this.fillUpbringing(form, character);

@@ -326,6 +326,7 @@
     "SoloEnvironmentPage.instruction": "Al elegir el entorno de tu personaje, seleccionarás un escenario o una condición. Cada uno ofrece diferentes sugerencias para la historia, pero ambos proporcionan el mismo tipo de beneficios para el personaje.\n\nTambién puedes determinar al azar una de esas opciones.",
     "SoloEnvironmentPage.settings": "Ajustes",
     "SoloEnvironmentPage.conditions": "Condiciones",
+    "SoloEnvironmentPage.worlds": "Mundos",
 
     "SoloEnvironmentPage.anotherSpeciesWorld.attributeText": "Basado en especies.",
 

@@ -16,7 +16,6 @@ import store from '../state/store';
 import { StepContext, modifyCharacterAttribute, modifyCharacterDiscipline, setCharacterEnvironment, setCharacterValue } from '../state/characterActions';
 import { IAttributeController } from '../components/attributeController';
 import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
-import { CharacterType } from '../common/characterType';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
 import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
 import InstructionText from '../components/instructionText';
@@ -28,6 +27,7 @@ import { connect } from 'react-redux';
 import { Stereotype } from '../common/construct';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
+import Markdown from 'react-markdown';
 
 class EnvironmentAttributeController implements IAttributeController {
 
@@ -114,9 +114,7 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({character}) => 
         return result;
     }
 
-    const environment = EnvironmentsHelper.getEnvironment(character.environmentStep?.environment, character.stereotype === Stereotype.SoloCharacter
-        ? CharacterType.Starfleet
-        : character.type);
+    const environment = EnvironmentsHelper.getEnvironment(character.environmentStep?.environment, character);
     let attributes = environment.attributes;
     if (environment.id === Environment.Homeworld) {
         let speciesType = character.speciesStep?.species;
@@ -180,7 +178,7 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({character}) => 
 
             <main>
                 <Header>{environment.localizedName}</Header>
-                <p>{environment.localizedDescription}</p>
+                <Markdown>{environment.localizedDescription}</Markdown>
                 <div className="row">
                     {environment.id === Environment.AnotherSpeciesWorld
                     ? (<div className="col-lg-6 my-3">
@@ -219,6 +217,15 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({character}) => 
                             </div>
                             <div className="py-1 text-white">{t('Value.environment.text')}</div>
                         </div>
+
+                        {environment.values?.length
+                        ? (<div>
+                            <p className="mt-3 mb-1 small"><b>{t('Common.text.suggestions')}:</b></p>
+                            <ul>
+                                {environment.values.map(v => (<li className="small">{v}</li>))}
+                            </ul>
+                        </div>)
+                        : undefined}
                     </div>
                 </div>
                 <div className='text-end mt-4'>

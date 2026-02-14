@@ -266,6 +266,7 @@
     "SoloEnvironmentPage.instruction": "Lors du choix de l'environnement de votre personnage, Vous allez selectionner soit un milieu, soit une condition. Chacun offre des invites narratives différentes, mais les deux produisent les mêmes types de bénéfices pour votre personnage",
     "SoloEnvironmentPage.settings": "Milieu",
     "SoloEnvironmentPage.conditions": "Condition",
+    "SoloEnvironmentPage.worlds": "Mondes",
 
     "SoloEnvironmentPage.anotherSpeciesWorld.attributeText": "Basé sur l'espèce",
 

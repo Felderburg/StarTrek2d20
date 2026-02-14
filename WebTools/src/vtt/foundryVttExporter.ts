@@ -367,7 +367,7 @@ export class FoundryVttExporter {
         });
 
         if (character.environmentStep) {
-            result.system["environment"] = CharacterSerializer.serializeEnvironment(character.environmentStep?.environment, character.environmentStep?.otherSpecies, character.type);
+            result.system["environment"] = CharacterSerializer.serializeEnvironment(character.environmentStep?.environment, character.environmentStep?.otherSpecies, character);
         } else {
             result.system["environment"] = "";
         }

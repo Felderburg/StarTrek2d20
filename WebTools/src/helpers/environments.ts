@@ -6,6 +6,10 @@ import { CharacterType } from '../common/characterType';
 import { Species } from './speciesEnum';
 import i18next from 'i18next';
 import { makeKey } from '../common/translationKey';
+import { Era } from './eras';
+import { hasSource } from '../state/contextFunctions';
+import { Source } from './sources';
+import { Construct, Stereotype } from '../common/construct';
 
 export enum Environment {
     // Core
@@ -15,6 +19,17 @@ export enum Environment {
     FrontierColony,
     StarshipOrStarbase,
     AnotherSpeciesWorld,
+
+    Andoria23rd,
+    Betazed23rd,
+    Denobula23rd,
+    Earth23rd,
+    Qonos23rd,
+    Risa23rd,
+    Romulus23rd,
+    TellarPrime23rd,
+    Trill23rd,
+    Vulcan23rd,
 
     UtopianParadise,
     Cosmopolitan,
@@ -30,13 +45,15 @@ export class EnvironmentModel {
     name: string;
     attributes: Attribute[];
     disciplines: Department[];
+    values: string[];
 
-    constructor(id: Environment, key: string, name: string, attributes: Attribute[], disciplines: Department[]) {
+    constructor(id: Environment, key: string, name: string, attributes: Attribute[], disciplines: Department[], values: string[] = []) {
         this.id = id;
         this.key = key;
         this.name = name;
         this.attributes = attributes;
         this.disciplines = disciplines;
+        this.values = values;
     }
 
     getAttributesForCharacter(character: Character) {
@@ -104,6 +121,119 @@ class Environments {
             "Another Species' World",
             [], // Another Species
             [Department.Command, Department.Conn, Department.Engineering, Department.Medicine, Department.Science, Department.Security]
+        ),
+    };
+
+    private _century23: { [id: number]: EnvironmentModel } = {
+        [Environment.Andoria23rd]: new EnvironmentModel(
+            Environment.Andoria23rd,
+            "common",
+            "Andoria",
+            [Attribute.Control, Attribute.Presence],
+            [Department.Command, Department.Science, Department.Security],
+            [
+                "Ice runs in my veins, but that doesn't mean I'm cold-hearted",
+                "Stubborn as a glacier"
+            ]
+        ),
+        [Environment.Betazed23rd]: new EnvironmentModel(
+            Environment.Betazed23rd,
+            "common",
+            "Betazed",
+            [Attribute.Insight, Attribute.Presence],
+            [Department.Command, Department.Science, Department.Medicine],
+            [
+                "Openness and honesty are just easier ways to live",
+                "Privacy is a luxury among telepaths"
+            ]
+        ),
+        [Environment.Denobula23rd]: new EnvironmentModel(
+            Environment.Denobula23rd,
+            "common",
+            "Denobula",
+            [Attribute.Insight, Attribute.Reason],
+            [Department.Engineering, Department.Medicine, Department.Science],
+            [
+                "A new neighbour is a potential friend",
+                "Everyone is connected somehow"
+            ]
+        ),
+        [Environment.Earth23rd]: new EnvironmentModel(
+            Environment.Earth23rd,
+            "common",
+            "Earth",
+            [Attribute.Daring, Attribute.Control],
+            [Department.Command, Department.Security, Department.Science],
+            [
+                "The Federation has brought peace to countless worlds",
+                "Earth is a paradise, but not everywhere is so fortunate"
+            ]
+        ),
+        [Environment.Qonos23rd]: new EnvironmentModel(
+            Environment.Qonos23rd,
+            "common",
+            "Qo'nos",
+            [Attribute.Daring, Attribute.Presence],
+            [Department.Command, Department.Security, Department.Engineering],
+            [
+                "The strong will prosper, but what they do with that strength is what matters",
+                "The Galaxy is a dangerous place for the unwary"
+            ]
+        ),
+        [Environment.Risa23rd]: new EnvironmentModel(
+            Environment.Risa23rd,
+            "common",
+            "Risa",
+            [Attribute.Insight, Attribute.Presence],
+            [Department.Conn, Department.Engineering, Department.Medicine],
+            [
+                "Joy is as noble a pursuit as truth, duty, or glory",
+                "Everyone deserves relief from their burdens"
+            ]
+        ),
+        [Environment.Romulus23rd]: new EnvironmentModel(
+            Environment.Romulus23rd,
+            "common",
+            "Romulus",
+            [Attribute.Insight, Attribute.Presence],
+            [Department.Conn, Department.Engineering, Department.Medicine],
+            [
+                "To survive, I must keep my secrets and discover yours",
+                "For the triumph of the Romulan Empire"
+            ]
+        ),
+        [Environment.TellarPrime23rd]: new EnvironmentModel(
+            Environment.TellarPrime23rd,
+            "common",
+            "Tellar Prime",
+            [Attribute.Insight, Attribute.Reason],
+            [Department.Command, Department.Engineering, Department.Science],
+            [
+                "Even the best ideas need to be re-examined occasionally",
+                "The truth can be painful, but I take no joy in your pain"
+            ]
+        ),
+        [Environment.Trill23rd]: new EnvironmentModel(
+            Environment.Trill23rd,
+            "common",
+            "Trill",
+            [Attribute.Insight, Attribute.Presence],
+            [Department.Command, Department.Science, Department.Medicine],
+            [
+                "Why argue when you can seek understanding",
+                "The Galaxy contains more than you can see in a lifetime"
+            ]
+        ),
+        [Environment.Vulcan23rd]: new EnvironmentModel(
+            Environment.Vulcan23rd,
+            "common",
+            "Vulcan",
+            [Attribute.Control, Attribute.Presence],
+            [Department.Command, Department.Conn, Department.Science, Department.Medicine],
+            [
+                "Service to the betterment of all gives purpose",
+                "We may choose to be guided by logic, but the real world isn’t always reasonable"
+            ]
         ),
     };
 
@@ -197,22 +327,25 @@ class Environments {
         ),
     };
 
-    getEnvironmentSettings(type: CharacterType = CharacterType.Starfleet) {
+    getEnvironmentOptions(construct: Construct) {
         let result = [];
-        let list = type === CharacterType.KlingonWarrior ? this._klingonEnvironments : this._environments;
-        for (let environment in list) {
-            result.push(list[environment]);
+        if (construct.stereotype === Stereotype.SoloCharacter) {
+            result.push(...Object.values(this._environments));
+        } else {
+            let list = (construct.type === CharacterType.KlingonWarrior && construct.version === 1)
+                ? this._klingonEnvironments
+                : this._environments;
+            for (let environment in list) {
+                result.push(list[environment]);
+            }
+            if (construct.era === Era.OriginalSeries && construct.version > 1 && hasSource(Source.Century23)) {
+                result.push(...Object.values(this._century23));
+            }
+            if (hasSource(Source.PlayersGuide)) {
+                result.push(...Object.values(this._alternateEnvironments));
+            }
         }
-
         return result;
-    }
-
-    getEnvironmentSettingByType(environment: Environment) {
-        return this._environments[environment];
-    }
-
-    getEnvironmentConditionByType(environment: Environment) {
-        return this._alternateEnvironments[environment];
     }
 
     getEnvironments(type: CharacterType) {
@@ -242,27 +375,10 @@ class Environments {
         return environments;
     }
 
-    getEnvironmentConditions() {
-        let environments: EnvironmentModel[] = [];
-        let environmentList = this._alternateEnvironments;
-        for (var environment in environmentList) {
-            var env = environmentList[environment];
-            environments.push(env);
-        }
-
-        environments = environments.sort((a, b) => {
-            return a.localizedName.localeCompare(b.localizedName);
-        });
-        return environments;
-    }
-
-    getEnvironment(env: Environment, type: CharacterType) {
-        if (env >= Environment.UtopianParadise) {
-            return this._alternateEnvironments[env];
-        } else {
-            let environmentList = type === CharacterType.KlingonWarrior ? this._klingonEnvironments : this._environments;
-            return environmentList[env];
-        }
+    getEnvironment(env: Environment, construct: Construct) {
+        let environmentList = this.getEnvironmentOptions(construct);
+        let matches = environmentList.filter(e => e.id === env);
+        return matches?.length ? matches[0] : undefined;
     }
 
     getEnvironmentByTypeName(typeName: string, type: CharacterType) {
@@ -281,6 +397,19 @@ class Environments {
             Environment.FrontierColony,
             Environment.StarshipOrStarbase,
             Environment.AnotherSpeciesWorld].indexOf(environment) >= 0
+    }
+
+    isHomeworld(environment: Environment) {
+        return [Environment.Andoria23rd,
+            Environment.Betazed23rd,
+            Environment.Denobula23rd,
+            Environment.Earth23rd,
+            Environment.Qonos23rd,
+            Environment.Risa23rd,
+            Environment.Romulus23rd,
+            Environment.TellarPrime23rd,
+            Environment.Trill23rd,
+            Environment.Vulcan23rd].indexOf(environment) >= 0
     }
 
     isCondition(environment: Environment) {
