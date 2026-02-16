@@ -6,5 +6,16 @@ export class Station extends Construct {
 
     constructor() {
         super(Stereotype.Station);
+        this.version = 2;
+    }
+
+    public static create(): Station {
+        return new Station();
+    }
+
+    public copy() {
+        let result = new Station();
+        result.scale = this.scale;
+        return result;
     }
 }

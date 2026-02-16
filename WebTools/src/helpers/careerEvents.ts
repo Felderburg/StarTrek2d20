@@ -4,6 +4,10 @@ import { CharacterType } from '../common/characterType';
 import i18next from 'i18next';
 import { hasSource } from '../state/contextFunctions';
 import { Source } from './sources';
+import { ICharacterPrerequisite, SourceCharacterPrerequisite } from './characterPrerequisite';
+import { Character } from '../common/character';
+import { AnyEraPrerequisite } from './prerequisite';
+import { Era } from './eras';
 
 export class CareerEventModel {
     private name: string;
@@ -16,11 +20,11 @@ export class CareerEventModel {
     special?: string;
     private prefix: string;
     focuses: string[];
-    source?: Source;
+    prerequisites: ICharacterPrerequisite[];
 
     constructor(name: string, description: string, attributes: Attribute[], disciplines: Department[], focusSuggestions: string,
         traitDescription: string, roll: number, special: string = undefined, prefix: string = "common.",
-        focuses: string[] = [], source?: Source) {
+        focuses: string[] = [], prerequisites: Source|ICharacterPrerequisite[] = []) {
         this.name = name;
         this.description = description;
         this.attributes = attributes;
@@ -31,7 +35,11 @@ export class CareerEventModel {
         this.special = special;
         this.prefix = prefix;
         this.focuses = focuses;
-        this.source = source;
+        if (Array.isArray(prerequisites)) {
+            this.prerequisites = prerequisites as ICharacterPrerequisite[];
+        } else {
+            this.prerequisites = [ new SourceCharacterPrerequisite(prerequisites as Source) ];
+        }
     }
 
     get localizedName() {
@@ -56,6 +64,12 @@ export class CareerEventModel {
         const key = 'CareerEvent.' + this.prefix + this.roll + '.traitDescription';
         let result = i18next.t(key);
         return result === key ? this.traitDescription : result;
+    }
+
+    isPrerequisiteFulfilled(character: Character) {
+        let result = true;
+        this.prerequisites.forEach(p => result = result && p.isPrerequisiteFulfilled(character));
+        return result;
     }
 }
 
@@ -641,6 +655,198 @@ class CareerEvents {
             ["Anthropology", "Linguistics", "Xenobiology"],
             Source.ExplorationGuide
         ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Control, Attribute.Reason],
+            [Department.Engineering, Department.Science],
+            "",
+            null,
+            77,
+            undefined,
+            "common.",
+            ["Computing", "Reverse Engineering", "Subspace Fields"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Reason, Attribute.Insight],
+            [Department.Medicine, Department.Security],
+            "",
+            null,
+            78,
+            undefined,
+            "common.",
+            ["Bioweaponry", "Demolitions", "Interrogation"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Fitness, Attribute.Insight],
+            [Department.Command, Department.Medicine],
+            "",
+            null,
+            79,
+            undefined,
+            "common.",
+            ["Agriculture", "Criminal Investigation", "Evacuation Procedures"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Daring, Attribute.Control],
+            [Department.Science, Department.Security],
+            "",
+            null,
+            80,
+            undefined,
+            "common.",
+            ["Ambush Tactics", "Xenobiology", "Xenolinguistics"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Presence, Attribute.Fitness],
+            [Department.Conn, Department.Security],
+            "",
+            null,
+            81,
+            undefined,
+            "common.",
+            ["Cloaking Technology", "Combat Medicine", "Evasive Action"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Control, Attribute.Insight],
+            [Department.Science, Department.Security],
+            "",
+            null,
+            82,
+            undefined,
+            "common.",
+            ["Ambush Tactics", "Cloaking Technology", "Emergency Repairs"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Daring, Attribute.Presence],
+            [Department.Command, Department.Conn],
+            "",
+            null,
+            83,
+            undefined,
+            "common.",
+            ["Composure", "Crisis Management", "Diplomacy"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Control, Attribute.Insight],
+            [Department.Command, Department.Science],
+            "",
+            null,
+            84,
+            undefined,
+            "common.",
+            ["Bargain", "Gambling", "Wilderness Survival"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Presence, Attribute.Reason],
+            [Department.Command, Department.Science],
+            "",
+            null,
+            85,
+            undefined,
+            "common.",
+            ["Anthropology", "Diplomacy", "Politics"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Control, Attribute.Reason],
+            [Department.Engineering, Department.Science],
+            "",
+            null,
+            86,
+            undefined,
+            "common.",
+            ["Archaeology", "History", "Research"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Daring, Attribute.Reason],
+            [Department.Command, Department.Engineering],
+            "",
+            null,
+            87,
+            undefined,
+            "common.",
+            ["Animal Behavior", "Electro-Plasma Systems", "Marine Biology"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
+        new CareerEventModel(
+            "",
+            "",
+            [Attribute.Presence, Attribute.Insight],
+            [Department.Command, Department.Security],
+            "",
+            null,
+            88,
+            undefined,
+            "common.",
+            ["Catastrophism", "Diplomacy", "Ecology"],
+            [
+                new SourceCharacterPrerequisite(Source.Century23),
+                new AnyEraPrerequisite(Era.OriginalSeries)
+            ]
+        ),
         // Operations
         new CareerEventModel(
             "Recruited to Starfleet Intelligence",
@@ -1221,16 +1427,16 @@ class CareerEvents {
         return result;
     }
 
-    getCareerEvents(type: CharacterType, version: number) {
-        let list = (type === CharacterType.KlingonWarrior && version === 1) ? this._klingonEvents : this._events;
-        list = list.filter(e => e.source == null || hasSource(e.source));
+    getCareerEvents(character: Character) {
+        let list = (character.type === CharacterType.KlingonWarrior && character.version === 1) ? this._klingonEvents : this._events;
+        list = list.filter(e => e.isPrerequisiteFulfilled(character));
         return [...list].sort((e1, e2) => {
             return e1.localizedName.localeCompare(e2.localizedName);
         })
     }
 
-    getCareerEventsIncludingUnofficial(type: CharacterType, version: number) {
-        let list = this.getCareerEvents(type, version);
+    getCareerEventsIncludingUnofficial(character: Character) {
+        let list = this.getCareerEvents(character);
         this._unofficialEvents.forEach(e => list.push(e));
         return list.sort((e1, e2) => {
             return e1.localizedName.localeCompare(e2.localizedName);
@@ -1257,12 +1463,12 @@ class CareerEvents {
         return event;
     }
 
-    generateEvent(type: CharacterType, version: number): CareerEventModel {
-        if (version === 1 || type === CharacterType.KlingonWarrior) {
+    generateEvent(character: Character): CareerEventModel {
+        if (character.version === 1 || character.type === CharacterType.KlingonWarrior) {
             let roll = Math.floor(Math.random() * 20) + 1;
             let event = undefined;
 
-            let list = type === CharacterType.KlingonWarrior ? this._klingonEvents : this._events;
+            let list = (character.version === 1 && character.type === CharacterType.KlingonWarrior) ? this._klingonEvents : this._events;
             list.forEach(ev => {
                 if (ev.roll === roll) {
                     event = ev;
@@ -1271,7 +1477,7 @@ class CareerEvents {
             });
             return event;
         } else {
-            let events = this.getCareerEvents(type, version);
+            let events = this.getCareerEvents(character);
             let roll = Math.floor(Math.random() * events.length);
             return events[roll];
         }

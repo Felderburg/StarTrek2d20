@@ -66,7 +66,7 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
         if (includeUnofficial) {
             return Math.floor(Math.random() * 50) + 1;
         } else {
-            return CareerEventsHelper.generateEvent(character.type, character.version).roll;
+            return CareerEventsHelper.generateEvent(character).roll;
         }
     }
 
@@ -74,7 +74,7 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
 
         const events = randomEvent != null
             ? toTableRow(CareerEventsHelper.getCareerEvent(randomEvent, character.type, character.version) , 0)
-            : CareerEventsHelper.getCareerEvents(character.type, character.version).map((c, i) => toTableRow(c, i));
+            : CareerEventsHelper.getCareerEvents(character).map((c, i) => toTableRow(c, i));
 
         return (<>
             <div className="my-4">
@@ -96,7 +96,7 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
 
         const events = randomEventWithUnofficial != null
             ? toTableRow(CareerEventsHelper.getCareerEvent(randomEventWithUnofficial, character.type, character.version) , 0)
-            : CareerEventsHelper.getCareerEventsIncludingUnofficial(character.type, character.version).map((c, i) => toTableRow(c, i));
+            : CareerEventsHelper.getCareerEventsIncludingUnofficial(character).map((c, i) => toTableRow(c, i));
 
         return (<>
             <div className="mt-4">

@@ -63,7 +63,7 @@ const SoloCareerEventPage: React.FC<ISoloCareerEventProperties> = ({character, c
             <Header>{t('Page.title.careerEvent')}</Header>
             <InstructionText text={t('SoloCareerEvent.instruction')} />
             <div className="my-4">
-                <Button size="sm" className="me-3" onClick={() => setRandomEvent( CareerEventsHelper.generateEvent(CharacterType.Starfleet, character.version).roll) }>
+                <Button size="sm" className="me-3" onClick={() => setRandomEvent( CareerEventsHelper.generateEvent(character).roll) }>
                     <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
                 </Button>
                 {randomEvent != null ? (<Button size="sm" className="me-3" onClick={() => setRandomEvent(null)} >{t('Common.button.showAll')}</Button>) : undefined}

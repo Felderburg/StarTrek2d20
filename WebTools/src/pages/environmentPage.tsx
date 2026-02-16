@@ -95,15 +95,18 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({character}) => {
             <table className="selection-list">
                     <thead>
                         <tr>
-                            <td></td>
-                            <td><b>{t('Construct.other.attributes')}</b></td>
-                            <td><b><DisciplinesOrDepartments character={character} /></b></td>
-                            <td></td>
+                            <th>
+                                <p>{(randomEnvironment != null && !EnvironmentsHelper.isSetting(randomEnvironment))
+                                    ? undefined
+                                    : t('SoloEnvironmentPage.settings')}</p>
+                            </th>
+                            <th><b>{t('Construct.other.attributes')}</b></th>
+                            <th><b><DisciplinesOrDepartments character={character} /></b></th>
+                            <th></th>
                         </tr>
                     </thead>
                     {settings?.length
                         ? (<tbody>
-                            <tr><th colSpan={4} className="pt-4"><p>{t('SoloEnvironmentPage.settings')}</p></th></tr>
                             {settings.map((e,i) => toTableRow(e, i))}
                         </tbody>)
                         : undefined}

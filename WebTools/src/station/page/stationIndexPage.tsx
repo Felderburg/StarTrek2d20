@@ -6,6 +6,7 @@ import ReactMarkdown from "react-markdown";
 import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { Link, useNavigate } from "react-router-dom";
+import { Station } from "../../common/station";
 
 const StationIndexPage = () => {
 
@@ -13,6 +14,7 @@ const StationIndexPage = () => {
     const navigate = useNavigate();
 
     const createStation = () => {
+        let station = Station.create();
         navigate("/station/profile");
     }
 

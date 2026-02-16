@@ -4,11 +4,6 @@ import { CharacterType } from "./characterType";
 import { IConstruct } from "./iconstruct";
 import { IWeaponDiceProvider } from "./iWeaponDiceProvider";
 
-export enum ConstructType {
-    Character,
-    Starship
-}
-
 export enum Stereotype {
     MainCharacter,
     SoloCharacter,

@@ -9,10 +9,12 @@ import safetyReducer from './safetyReducer';
 import tokenReducer from './tokenReducer';
 import tableReducer from './tableReducer';
 import savedConstructReducer from './savedConstructReducer';
+import stationReducer from './stationReducer';
 
 const reducer = combineReducers({
     star: star,
     starship: starshipReducer,
+    station: stationReducer,
     context: contextReducer,
     gmTracker: gmTracker,
     character: characterReducer,

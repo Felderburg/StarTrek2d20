@@ -381,11 +381,14 @@ class Environments {
         return matches?.length ? matches[0] : undefined;
     }
 
-    getEnvironmentByTypeName(typeName: string, type: CharacterType) {
-        let list = type === CharacterType.KlingonWarrior ? Object.values(this._klingonEnvironments) : Object.values(this._environments);
+    getEnvironmentByTypeName(typeName: string, type: CharacterType, version: number) {
+        let list = (version === 1 && type === CharacterType.KlingonWarrior) ? Object.values(this._klingonEnvironments) : Object.values(this._environments);
         let filtered = list.filter(e => Environment[e.id] === typeName);
         if (filtered.length === 0) {
             filtered = Object.values(this._alternateEnvironments).filter(e => Environment[e.id] === typeName);
+        }
+        if (filtered.length === 0) {
+            filtered = Object.values(this._century23).filter(e => Environment[e.id] === typeName);
         }
         return filtered.length === 0 ? undefined : filtered[0];
     }

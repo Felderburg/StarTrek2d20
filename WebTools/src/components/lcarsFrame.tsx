@@ -34,6 +34,12 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
             activePage === PageIdentity.SoloStarshipFinish;
     }
 
+    const isStationPage = () => {
+        return activePage === PageIdentity.StationIndex ||
+            activePage === PageIdentity.StationMissionProfile ||
+            activePage === PageIdentity.StationSpaceframe;
+    }
+
     const isStarshipPage = () => {
         if (activePage === PageIdentity.SmallCraftStats ||
             activePage === PageIdentity.ExtraStarshipTalentChoice ||
@@ -79,6 +85,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
 
     const isProfileSupportedForPage = () => {
         if (activePage === PageIdentity.ViewSheet ||
+            activePage === PageIdentity.StationIndex ||
             activePage === PageIdentity.NpcBuilder ||
             activePage === PageIdentity.NpcConfiguration ||
             activePage === PageIdentity.GamemasterTrackerPage ||

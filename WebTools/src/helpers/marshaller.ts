@@ -52,8 +52,25 @@ import { PropulsionSystemModel, PropulsionSystemType } from './propulsionSystem'
 import { allStarshipAdvancementChoices, StarshipAdvancementChoice } from '../common/starshipAdvancementChoice';
 import { LogEntry, LogValueEntry, ValueUseType, ValueUseTypeModel } from '../common/logEntry';
 import { SpaceframeVariant, SpaceframeVariantModel } from './spaceframeVariant';
+import { Station } from '../common/station';
 
 class Marshaller {
+
+    encodeStation(station: Station) {
+        let sheet = {
+            "stereotype": "creature",
+            "type": CharacterType[station.type],
+            "era": Era[station.era],
+            "name": station.name,
+            "version": station.version,
+            "scale": station.scale,
+//            "departments": this.toDepartmentObject(station.departments),
+//            "systems": this.toSystemsObject(station.attributes),
+        };
+
+
+        return sheet;
+    }
 
     encodeCreature(creature: Creature) {
         let sheet = {
@@ -1612,7 +1629,7 @@ class Marshaller {
             }
         }
         if (json.environment) {
-            let environment = EnvironmentsHelper.getEnvironmentByTypeName(json.environment.id, result.type);
+            let environment = EnvironmentsHelper.getEnvironmentByTypeName(json.environment.id, result.type, result.version);
             if (environment) {
                 if (environment.id === Environment.AnotherSpeciesWorld) {
                     if (json.environment.otherSpeciesWorld) {
