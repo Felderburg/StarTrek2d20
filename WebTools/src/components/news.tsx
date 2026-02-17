@@ -14,6 +14,15 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260217</b>
+            <ul>
+                <li>
+                    Some initial work supporting the <cite>23rd Centry Campaign Guide</cite>.
+                </li>
+                <li>
+                    Some bug fixes.
+                </li>
+            </ul>
             <b>v1.260201</b>
             <ul>
                 <li>
@@ -157,18 +166,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
             <ul>
                 <li>
                     Minor bug fixes.
-                </li>
-            </ul>
-            <b>v1.250713</b>
-            <ul>
-                <li>
-                    Implemented process for starship advancement (for version 2 starships).
-                </li>
-                <li>
-                    Minor bug fixes.
-                </li>
-                <li>
-                    Very preliminary prep for the new <cite>Exploration Guide</cite>.
                 </li>
             </ul>
 
