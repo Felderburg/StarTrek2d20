@@ -11,7 +11,7 @@ import { withTranslation, WithTranslation } from 'react-i18next';
 import { getPageTitle } from './pageHeader';
 
 export enum HistoryType {
-    Character, SoloCharacter, Starship
+    Character, SoloCharacter, Starship, None
 }
 
 
@@ -26,7 +26,10 @@ interface IHistoryProperties extends WithTranslation {
 class History extends React.Component<IHistoryProperties, {}> {
 
     renderHistoryByType() {
-        if (this.props.type === HistoryType.Starship) {
+        const {t} = this.props;
+        if (this.props.type === HistoryType.None) {
+            return (<div>{t('Lcars.noHistory')}</div>);
+        } else if (this.props.type === HistoryType.Starship) {
             return this.renderStarshipHistory();
         } else if (this.props.type === HistoryType.SoloCharacter) {
             return this.renderSoloCharacterHistory();

@@ -64,6 +64,16 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
         }
     }
 
+    const isModifyPage = () => {
+        if (activePage === PageIdentity.ModifyStarship ||
+            activePage === PageIdentity.ModifyMainCharacter ||
+            activePage === PageIdentity.ModifySupportingCharacter) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     const isSoloPage = () => {
         return activePage === PageIdentity.SoloCharacterEra ||
             activePage === PageIdentity.SoloConstructType ||
@@ -134,6 +144,18 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
     }
 
 
+    const historyType = () => {
+        if (isStarshipPage()) {
+            return HistoryType.Starship;
+        } else if (isSoloPage()) {
+            return HistoryType.SoloCharacter;
+        } else if (!isProfileSupportedForPage() || isModifyPage()) {
+            return HistoryType.None;
+        } else {
+            return HistoryType.Character;
+        }
+    }
+
     return (<>
         <div className="lcar-container" key="main-container">
             <div className="lcar-header">
@@ -150,9 +172,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
                     <div className="lcar-content-action" role="button" tabIndex={0}>
                         <div id="history-button" className="lcar-content-history" onClick={ () => toggleHistory() }>{t('Lcars.history')}</div>
                         <div id="history-container" className="history-container-hidden">
-                            <History showHistory={showHistory}
-                                type={isStarshipPage() ? HistoryType.Starship : (isSoloPage() ? HistoryType.SoloCharacter : HistoryType.Character)}
-                                close={() => setShowHistory(false)} />
+                            <History showHistory={showHistory} type={historyType()} />
                         </div>
                     </div>
                     <div className="lcar-content-action" role="button" tabIndex={0}>

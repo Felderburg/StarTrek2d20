@@ -23,7 +23,8 @@ class ServiceYear {
         2258: "Second season of Star Trek: Discovery",
         2259: "First season of Star Trek: Strange New Worlds",
         2260: "Second season of Star Trek: Strange New Worlds",
-        2261: "After the second season of Star Trek: Strange New Worlds",
+        2261: "Third season of Star Trek: Strange New Worlds",
+        2262: "After the third season of Star Trek: Strange New Worlds",
         2265: "The USS Enterprise is damaged at the galactic barrier; death of Gary Mitchell, Lee Kelso and others",
         2266: "First season of Star Trek: The Original Series",
         2267: "Second season of Star Trek: The Original Series",
@@ -85,6 +86,9 @@ class ServiceYear {
         3190: "Fourth season of Star Trek: Discovery",
         3191: "Fifth season of Star Trek Discovery",
         3192: "After the fifth season of Star Trek Discovery",
+        3195: "First season of Star Trek Starfleet Academy",
+        3196: "First season of Star Trek Starfleet Academy",
+        3197: "After the first season of Star Trek Starfleet Academy",
     }
 
 
@@ -97,7 +101,7 @@ class ServiceYear {
 
     public getTextHint(serviceYear: number) {
         let result = this.years[serviceYear];
-        while (result == null && serviceYear > 2063) {
+        while (result == null && serviceYear > 3197) {
             result = this.years[--serviceYear];
         }
         return result;
