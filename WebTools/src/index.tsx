@@ -36,6 +36,7 @@ const SystemGenerationPage = React.lazy(() => import(/* webpackChunkName: 'secto
 const SectorDetailsPage = React.lazy(() => import(/* webpackChunkName: 'sector' */ './mapping/page/sectorDetailsPage'));
 const StarSystemDetailsPage = React.lazy(() => import(/* webpackChunkName: 'sector' */ './mapping/page/starSystemDetailsPage'));
 const StationIndexPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './station/page/stationIndexPage'));
+const StationSpaceframePage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './station/page/stationSpaceframePage'));
 const StationMissionProfileSelectionPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './station/page/stationMissionProfileSelectionPage'));
 
 let root = createRoot(document.getElementById("mainBody"));
@@ -62,6 +63,7 @@ root.render(
                         <Route path="/tools/sector/starSystem" element={<StarSystemDetailsPage />} />
                         <Route path="/starship/generate" element={<RandomStarshipPage />} />
                         <Route path="/station" element={<StationIndexPage />} />
+                        <Route path="/station/frame" element={<StationSpaceframePage />} />
                         <Route path="/station/profile" element={<StationMissionProfileSelectionPage />} />
                         <Route path="/random/creature" element={<RandomCreaturePage />} />
                         <Route path="/tactical" element={<TacticalAssetsPage />} />

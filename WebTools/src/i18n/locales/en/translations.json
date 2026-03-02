@@ -869,6 +869,7 @@
     "Page.title.npcTalents": "Special Rules Selection",
     "Page.title.stationIndex": "Station Creation",
     "Page.title.stationMissionProfile": "Station Mission Profile",
+    "Page.title.stationSpceframe": "Station Frame",
     "Page.title.tokenCreationPage": "Token Creation",
     "Page.title.upbringing": "Early Outlook",
     "Page.title.upbringingDetails": "Early Outlook Details",
@@ -2670,6 +2671,18 @@
 
     "SpeciesAbility.aenar.description": "Aenar can sense the minds of other living creatures in their vicinity, and can read the thoughts of others, though they have strict taboos about reading a mind without permission. ",
 
+    "SpeciesAbility.arbazan": "Cold Shoulder",
+
+    "SpeciesAbility.arbazan.description": "Strong self-discipline and conservative cultural values prevent Arbazan from being susceptible to their baser desires. Characters attempting to use attractiveness, seduction, or base emotive appeals against an Arbazan during a social conflict increase their Difficulty by 1.",
+
+    "SpeciesAbility.arkarian": "Quick Recovery",
+
+    "SpeciesAbility.arkarian.description": "The increased bone density of the brow and nasal areas are also found throughout the rest of their physical frame and provide Arkarians with superior protection from blunt trauma. They gain +1 Protection against any Injury inflicted by bludgeoning weapons or blunt force trauma.",
+
+    "SpeciesAbility.ardanan": "Cultivated Intellect",
+
+    "SpeciesAbility.ardanan.description": "Your ancestors sought to bioengineer a heightened intelligence by interconnecting parts of the brain which are normally disconnected. This connectivity allows Ardanans to make intuitive leaps that might not be so readily apparent to others. When you attempt a task involving Reason, you may discard one d20 before the roll, and gain one automatic success instead.",
+
     "SpeciesAbility.bajoran": "The Will of the Prophets",
 
     "SpeciesAbility.bajoran.description": "You may find strength in the Prophets even when the situation is dire: once per adventure, when the gamemaster spends 3 or more Threat at once, you gain 1 Determination.",
@@ -2689,6 +2702,10 @@
     "SpeciesAbility.ferengi": "The Great Material Continuum",
 
     "SpeciesAbility.ferengi.description": "Once per session, when obtaining additional equipment, you may reduce the **Opportunity Cost** of an item by 1, to a minimum of 0.",
+
+    "SpeciesAbility.haliian": "Contact Empathy",
+
+    "SpeciesAbility.haliian.description": "Haliians possess minor empathic abilities which, without the canar focusing crystal, is limited to touch. When you touch another character, you can sense the emotions of that individual, as well as communicate telepathically with other empaths or telepaths. You cannot choose to not sense the emotions of those you touch. It may require effort and a task to gain information from beings that are resistant to forms of telepathy. This functions as the **Empathy** talent, but requires physical contact.",
 
     "SpeciesAbility.human": "Faith of the Heart",
 
@@ -2722,6 +2739,10 @@
 
     "SpeciesAbility.vulcan.description": "While Vulcans have some psychic capabilities, they require training to use it effectively (see the **Mind Meld** talent). Further, your maximum Stress is based on your Control rather than your Fitness, and you may suffer 2 Stress to avoid suffering any trait that represents an emotional state. However, if you become Fatigued, you increase the Potency of any such emotion-related trait by 1.",
 
+    "SpeciesAbility.zaranite": "Hardened Hide",
+
+    "SpeciesAbility.zaranite.description": "Zaranite skin is extremely tough and capable of withstanding pressures, temperatures, and even acidity levels that would prove lethal to other species. Zaranites gain 1 Protection.",
+
     "StarSystem.common.coordinates": "Coordinates",
     "StarSystem.common.innerZone": "Inner Zone",
     "StarSystem.common.ecosphere": "Ecosphere",
@@ -2734,8 +2755,16 @@
     "StarSystem.common.companionStar": "Companion Star",
 
     "StationIndexPage.instruction": "Use this process to create a space station.",
+    "StationIndexPage.characterType": "Station Type",
 
     "StationMissionProfile.instruction": "Select a mission profile for this station.",
+
+    "StationMissionProfile.error.selectProfile": "Please select a mission profile",
+
+    "StationSpaceframePage.instruction": "Choose the details about the station that you're building. You can build a new station frame from scratch, or you can pick a standard station frame.",
+    "StationSpaceframePage.frameType": "Frame type",
+    "StationSpaceframePage.custom": "Custom",
+    "StationSpaceframePage.standard": "Standard",
 
     "SupportingCharacterModificationType.additionalAttribute": "Additional attribute",
     "SupportingCharacterModificationType.additionalDepartment": "Additional department",
@@ -2759,6 +2788,11 @@
 
     "Talent.ablativeFieldProjector.soloDescription": "The ship’s shield emitters are combined with an ablative field projector that allows its graviton field to be shared with another target in close range. Complications could mean shield failure or power loss to key systems.",
     "Talent.ablativeFieldProjector.description2e": "The ship’s shield emitters are combined with an ablative field projector, allowing its graviton field to be shared with another target in Close range. These projectors charge the target’s shields while dissipating its own.\n\nWhen you attempt the _Regenerate Shields_ action, any Momentum you spend to increase shields regenerated may restore shields on an allied vessel within Close range.",
+
+    "Talent.aboveTheClouds": "Above the Clouds",
+
+    "Talent.aboveTheClouds.description": "While engaged in Social conflict in a lavish environment (or one of excess), you reduce the Difficulty of any Persuade Tasks by 1 to a minimum of 1.",
+    "Talent.aboveTheClouds.description2e": "When you are in a Social conflict scene in a lavish or opulent environment (or one of excess), you may re-roll one d20. If you succeed, score one bonus Momentum. Bonus Momentum may not be saved.",
 
     "Talent.abruptInsights": "Abrupt Insights",
 
@@ -3123,6 +3157,10 @@
     "Talent.constantlyWatching.description": "When you attempt a Task to detect danger or hidden enemies, reduce the Difficulty by 1.",
     "Talent.constantlyWatching.description2e": "At the start of an action scene, the gamemaster must spend an additional 2 Threat to have an NPC take the first turn. You may also re-roll 1d20 on any task attempted to locate a hidden enemy or danger.",
 
+    "Talent.coolUnderPressure": "Cool Under Pressure",
+
+    "Talent.coolUnderPressure.description2e": "Demands of Arkarian society place strict requirements on social interactions. You are able to keep your outward expressions neutral, revealing as little as possible. Whenever you are engaged in a social conflict, you may spend 1 Momentum (Immediate) to create an additional trait representing your stoic demeanor and composure. This is lost instantly If you suffer any trait or complication representing an emotional state.",
+
     "Talent.coordinatedEfforts": "Coordinated Efforts",
 
     "Talent.coordinatedEfforts.description2e": "When you Assist another character during an extended task, the character you Assist increases their Impact by 1.",
@@ -3265,6 +3303,10 @@
 
     "Talent.durability.description": "Whether through genetic engineering or cybernetic implants, you’re more durable than most people. You gain Protection 2.",
 
+    "Talent.dutyAndDiscipline": "Duty and Discipline",
+
+    "Talent.dutyAndDiscipline.description2e": "When you assist a character who is your superior officer, or when you are assisted by a superior officer, and the task is successful, generate 1 bonus Momentum. Bonus Momentum may not be saved.",
+
     "Talent.efficientEvasion": "Efficient Evasion",
 
     "Talent.efficientEvasion.description2e": "When you attempt an Evasive Action major action for the second or subsequent time in a row during a scene, you add 1 Momentum to the group pool.",
@@ -3310,6 +3352,10 @@
     "Talent.evasion": "Evasion",
 
     "Talent.evasion.description": "When someone is searching for you, you’ll take any opportunity to evade them When an enemy suffers a complication on a task attempt to detect or  locate you, you may immediately move one zone without them noticing you",
+
+    "Talent.everyManHasHisPrice": "Every Man Has His Price",
+
+    "Talent.everyManHasHisPrice.description2e": "When you attempt a task during social conflict where your opponent can be bribed, bought, or is otherwise enticed by monetary gain, the first bonus die you purchase is free.",
 
     "Talent.expandedEmergencyMedicalFacilities": "Expanded Emergency Medical Facilities",
 
@@ -3375,6 +3421,10 @@
     "Talent.extraSensoryPerception": "Extrasensory Perception",
 
     "Talent.extraSensoryPerception.description2e": "You have an ability to perceive things beyond the normal limits of humanoid senses, allowing you to gain knowledge of people, places, and objects beyond your ability to sense them conventionally. This is known as extra- sensory perception, or ESP. It is not directly under your control but instead tends to come in the form of accurate guesses, strong feelings, or flashes of insight. Such sensitivity often leaves you vulnerable to psychic dangers as well. At any point during play, you may ask the gamemaster for hints or insights about the current situation, and the gamemaster may similarly offer you information about the current situation that you would not normally be able to determine. Each hint adds 1 Threat, and you may always refuse to accept the hints offered.",
+
+    "Talent.facetedAttention": "Faceted Attention",
+
+    "Talent.facetedAttention.description2e": "Characters with this Talent can suddenly divert their attention to other Tasks, leaving their current Task in whatever state it was in, and immediately begin work on the second. To many this may seem undisciplined and unfocused, but to characters with this Talent it is simply an effective way of completing several Tasks at once. Whenever this character is participating in a Challenge, they may choose to use this Talent and attempt two Tasks simultaneously. The attempt is made against the Task with the highest Difficulty, which is then attempted using the appropriate pool. Successes are then divided between the two Tasks. When attempting Tasks using this Talent – the Complication range is increased by one and any Complications rolled can be from either Task – as thematically appropriate.",
 
     "Talent.farFromHomeServiceRecord": "Far from Home",
 
@@ -3503,6 +3553,10 @@
     "Talent.healingHands": "Healing Hands",
 
     "Talent.healingHands.description2e": "Whenever you attempt a task to remove any injury complications, you may re-roll 1d20.",
+
+    "Talent.hearAllTrustNothing": "Hear All, Trust Nothing",
+
+    "Talent.hearAllTrustNothing.description2e": "Whenever another character attempts a task to deceive you, you may suffer 2 Stress to ignore\ntheir attempt.",
 
     "Talent.heartBodyAndMind": "Heart, Body and Mind",
 
@@ -3702,6 +3756,10 @@
 
     "Talent.killersInstinct.description2e": "So familiar are you with the intent to kill that you can even see it in others when you look them in the eyes. When you make a Deadly Attack, reduce the amount you add to Threat to 0. In addition, when an enemy attempts to make a Deadly Attack against you, you may add 1 Threat to increase the Difficulty of their Attack by 1, as you react to their intent.",
 
+    "Talent.knowledgeEqualsProfit": "Knowledge Equals Profile",
+
+    "Talent.knowledgeEqualsProfit.description2e": "After you succeed at a task and spend one or more Momentum to _Obtain Information_, add 1\nMomentum to the group Momentum Pool after all other Momentum spends are resolved.",
+
     "Talent.kolinahr": "Kolinahr",
 
     "Talent.kolinahr.description": "You have undergone the ritual journey to purge all emotion. You reduce the Difficulty of all Tasks to resist coercion, mental intrusion, pain, and other mental attacks by two.",
@@ -3833,6 +3891,10 @@
     "Talent.multiLimbed": "Multi-Limbed",
 
     "Talent.multiLimbed.description2e": "The creature has more than two limbs that it can attack with at once effectively. If it succeeds at an attack, it adds 1 Threat.",
+
+    "Talent.multispectrumVision": "Multispectrum Vision",
+
+    "Talent.multispectrumVision.description2e": "Zaranites can see a broader spectrum of light than most humanoid species. You gain one bonus Momentum on any task to observe or study your surroundings. This bonus Momentum may only be used to Obtain Information, and bonus Momentum may not be saved.",
 
     "Talent.multiTasking": "Multi-Tasking",
 
@@ -4104,7 +4166,7 @@
 
     "Talent.reasonedDiscourse.description": "You are precise and succinct with language, allowing you to convey facts and logical arguments effectively and quickly. When you need to communicate complicated information or argue with logic over emotion, reduce the Difficulty of the task by 1.",
 
-    "Talent.reassuring": "Reassuring",
+    "Cuando tienes éxito en una Tarea utilizando tu Presencia, puedes gastar Inercia para tranquilizar a tus aliados, siempre que puedan oírte. Puedes gastar 1 punto de Inercia (repetible) para que un aliado que pueda verte y oírte recupere 1 punto de Estrés. Ese aliado no puede recuperar más de 3 puntos de Estrés con un solo uso de este talento.": "Reassuring",
 
     "Talent.reassuring.description2e": "When you succeed at a task using your Presence, you may spend Momentum to reassure your allies, so long as they are able to hear you. You may spend 1 Momentum (Repeatable) to allow one ally who can see and hear you to recover 1 Stress. That ally may not recover more than 3 Stress from one use of this talent.",
 
@@ -4324,6 +4386,10 @@
 
     "Talent.surverySavant.description2e": "When attempting a Medicine task during an extended task relating to surgery, your Impact is increased by 1.",
 
+    "Talent.suspiciousByNature": "Suspicious by Nature",
+
+    "Talent.suspiciousByNature.description2e": "When you attempt a task to detect hidden enemies, traps, or other hazards, you may re-roll one d20.",
+
     "Talent.swift": "Swift",
 
     "Talent.swift.description": "You’re quick on your feet. When you take the Movement minor action or the Sprint major action, you may spend 1 Momentum (Immediate) to move up to one additional zone.",
@@ -4387,6 +4453,10 @@
     "Talent.thePowerOfMath": "The Power of Math",
 
     "Talent.thePowerOfMath.description": "You can perform complex math equations quickly in your head, and even your rough estimates are startlingly precise. Whenever you attempt a task which requires precise calculations, you do not suffer any Difficulty increase for lacking tools, and the first d20 you purchase is free.",
+
+    "Talent.theProtocolsOfPolitics": "The Protocols of Politics",
+
+    "Talent.theProtocolsOfPolitics.description2e": "Arbazan are naturally adept at the subtleties of social protocol, and often come to rely on it heavily during social interactions. To many other species, the Arbazan’s focus on such rules and guidelines is often viewed as obsessive, but to the Arbazan, it is simply the natural way to engage in interactions. Whenever you attempt a task during Social Conflict, you may re-roll a d20 so long as you know from experience or have recently studied that culture’s protocols and social mores.",
 
     "Talent.theUshaan": "The Ushaan",
 
@@ -4528,6 +4598,11 @@
 
     "Talent.wormholeRelaySystem.description2e": "The ship has an additional sensor system outfitted with high-energy transceivers, verteron sensors, and neutrino sensors. These sensors, combined with field-generation devices, allow the ship to send and receive data streams through wormholes. The Difficulty of all Science tasks to send or receive data through a wormhole is reduced by 2, to a minimum of 0.",
     "Talent.wormholeRelaySystem.soloDescription": "The ship has an additional sensor system outfitted with high-energy transceivers, verteron sensors, and neutrino sensors. These sensors, combined with field-generation devices, allow the ship to send and receive data streams through wormholes.",
+
+    "Talent.zeniteInTheSoul": "Zenite in the Soul",
+
+    "Talent.zeniteInTheSoul.description": "Your ancestry is steeped in toil in the mines on Ardana’s surface and, you roll one additional d20 whenever using Engineering or Science in relation to geology, mining or mine equipment.",
+    "Talent.zeniteInTheSoul.description2e": "Your ancestry is steeped in toil in the mines on Ardana’s surface. Whenever you attempt an Engineering or Science task that pertains to geology, mining, or mining equipment, the first bonus d20 you purchase is free.",
 
     "Talent.zeroGCombat": "Zero-G Combat",
 

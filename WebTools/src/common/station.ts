@@ -1,23 +1,43 @@
 import { Department } from "../helpers/department";
+import { Era } from "../helpers/eras";
+import { MissionProfile } from "../helpers/missionProfiles";
 import { System } from "../helpers/systems";
+import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
+
+export class StationMissionProfileStep {
+    public readonly type: MissionProfile;
+
+    constructor(missionProfile: MissionProfile) {
+        this.type = missionProfile;
+    }
+
+    copy() {
+        let result = new StationMissionProfileStep(this.type);
+        return result;
+    }
+}
 
 export class Station extends Construct {
 
     scale: number;
+    missionProfileStep?: StationMissionProfileStep;
 
-    constructor() {
+    constructor(type: CharacterType, version: number, era: Era) {
         super(Stereotype.Station);
-        this.version = 2;
+        this.version = version;
+        this.era = era;
+        this.type = type;
     }
 
-    public static create(): Station {
-        return new Station();
+    public static create(type: CharacterType, version: number, era: Era): Station {
+        return new Station(type, version, era);
     }
 
     public copy() {
-        let result = new Station();
+        let result = new Station(this.type, this.version, this.era);
         result.scale = this.scale;
+        result.missionProfileStep = this.missionProfileStep?.copy();
         return result;
     }
 

@@ -68,6 +68,12 @@ class Marshaller {
 //            "systems": this.toSystemsObject(station.attributes),
         };
 
+        if (station.missionProfileStep?.type) {
+            let temp = {
+                "name": MissionProfile[station.missionProfileStep?.type]
+            }
+            sheet["missionProfile"] = temp;
+        }
 
         return sheet;
     }

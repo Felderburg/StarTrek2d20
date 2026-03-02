@@ -15,4 +15,3 @@ export const starshipMapStateToProperties = (state, ownProps) => {
         starship: state.starship?.starship
     };
 }
-

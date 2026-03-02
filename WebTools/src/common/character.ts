@@ -1179,6 +1179,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
         if (this.speciesStep?.species === Species.Klingon && this.version !== 1) {
             result += 1; // Brak'lul species ability
         }
+        if (this.speciesStep?.species === Species.Zaranite && this.version !== 1) {
+            result += 1; // Hardeneed Hide species ability
+        }
+
         if (this.hasTalent("Chelon Shell")) {
             result += 1;
         }

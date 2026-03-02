@@ -8,14 +8,27 @@ import { PageIdentity } from "../../pages/pageIdentity";
 import { Link, useNavigate } from "react-router-dom";
 import { MissionProfileHelper, MissionProfileModel } from "../../helpers/missionProfiles";
 import { CheckBox } from "../../components/checkBox";
+import { connect } from "react-redux";
+import { IStationPageProperties, stationMapStateToProperties } from "../iStationPageProperties";
+import store from "../../state/store";
+import { setStationMissionProfile } from "../../state/stationActions";
+import { Dialog } from "../../components/dialog";
 
-const StationMissionProfileSelectionPage = () => {
+const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({station}) => {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
 
     const onSelection = (missionProfile: MissionProfileModel) => {
+        store.dispatch(setStationMissionProfile(missionProfile.id));
+    }
 
+    const onNext = () => {
+        if (station.missionProfileStep?.type == null) {
+            Dialog.show(t("StationMissionProfile.error.selectProfile"));
+        } else {
+            navigate("/station/talents");
+        }
     }
 
     const missionProfiles = MissionProfileHelper.getStationMissionProfiles().map((m, i) => {
@@ -25,7 +38,7 @@ const StationMissionProfileSelectionPage = () => {
                         <td className=""><div className="selection-header">{m.localizedName}</div></td>
                         <td className="text-end">
                             <CheckBox
-                                isChecked={false}
+                                isChecked={station?.missionProfileStep?.type === m.id}
                                 text=""
                                 value={m.id}
                                 onChanged={() => { onSelection(m); } }/>
@@ -43,6 +56,7 @@ const StationMissionProfileSelectionPage = () => {
                     <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
                     <li className="breadcrumb-item"><Link to={"/station"}>{t('Page.title.stationIndex')}</Link></li>
+                    <li className="breadcrumb-item"><Link to={"/station/frame"}>{t('Page.title.stationSpceframe')}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationMissionProfile')}</li>
                 </ol>
                 </nav>
@@ -65,7 +79,7 @@ const StationMissionProfileSelectionPage = () => {
 
 
                     <div className="text-end mt-5">
-                        <Button onClick={() => {}}>{t('Common.button.next')}</Button>
+                        <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
                     </div>
                 </main>
             </div>
@@ -73,4 +87,4 @@ const StationMissionProfileSelectionPage = () => {
     </LcarsFrame>);
 }
 
-export default StationMissionProfileSelectionPage;
+export default connect(stationMapStateToProperties)(StationMissionProfileSelectionPage);

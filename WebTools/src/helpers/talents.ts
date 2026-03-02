@@ -1980,7 +1980,11 @@ export class Talents {
             new TalentModel(
                 "Contact Empathy",
                 "Haliians possess minor empathic abilities which, without the canar focusing crystal, is limited to touch. Once you make contact with another character, you can sense the emotions of that individual – as well as communicate telepathically with other empaths or telepaths. You cannot choose to not sense the emotions of those you make contact with. It may require effort and a Task to gain information from beings that are resistant to forms of telepathy. Such information can most often be used as an Advantage during Social Conflicts.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Haliian, true)],
+                [
+                    new SourcePrerequisite(Source.AlphaQuadrant),
+                    new SpeciesPrerequisite(Species.Haliian, true),
+                    new Version1Prerequisite()
+                ],
                 1,
                 Species[Species.Haliian]),
             new TalentModel(
@@ -2004,7 +2008,11 @@ export class Talents {
             new TalentModel(
                 "Hardened Hide",
                 "Zaranite skin is extremely tough and capable of withstanding pressures, temperatures, and acidity levels that would prove lethal to other species. Characters with this Talent gain 2 natural Resistance.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Zaranite, false)],
+                [
+                    new SourcePrerequisite(Source.AlphaQuadrant),
+                    new SpeciesPrerequisite(Species.Zaranite, false),
+                    new Version1Prerequisite(),
+                ],
                 1,
                 "Zaranite"),
             new TalentModel(

@@ -671,7 +671,7 @@ class MissionProfiles {
             [0, 0, 0, 0, 0, 0],
             []),
         [MissionProfile.DiplomaticRelationsStation]: new MissionProfileModel(
-            MissionProfile.DefenseStation,
+            MissionProfile.DiplomaticRelationsStation,
             "",
             [0, 0, 0, 0, 0, 0],
             []),
