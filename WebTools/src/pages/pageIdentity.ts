@@ -101,6 +101,8 @@ export enum PageIdentity {
     StationIndex,
     StationSpaceframe,
     StationMissionProfile,
+    StationTalents,
+    StationFinal,
 
     TableList,
     ViewTable,

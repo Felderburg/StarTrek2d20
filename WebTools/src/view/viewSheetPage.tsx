@@ -13,6 +13,8 @@ import NpcView from "./npcView";
 import SoloCharacterView from "./soloCharacterView";
 import { Asset } from "../asset/asset";
 import { originalEncodedSheet } from "./originalEncodedSheet";
+import StationView from "./stationView";
+import { Link } from "react-router-dom";
 
 const AssetView = lazy(() => import(/* webpackChunkName: 'asset' */ '../asset/view/assetView'));
 const CreatureView = lazy(() => import(/* webpackChunkName: 'creature' */ '../creature/view/creatureView'));
@@ -99,7 +101,7 @@ const ViewSheetPage = () => {
             return (<div className="page container ms-0">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                        <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => goToHome(e)}>{t('Page.title.home')}</a></li>
+                        <li className="breadcrumb-item"><Link to="/">{t('Page.title.home')}</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">{t('ViewPage.viewNpc')}</li>
                     </ol>
                 </nav>
@@ -111,11 +113,23 @@ const ViewSheetPage = () => {
             return (<div className="page container ms-0">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => goToHome(e)}>{t('Page.title.home')}</a></li>
+                        <li className="breadcrumb-item"><Link to="/">{t('Page.title.home')}</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">{t('ViewPage.viewMainCharacter')}</li>
                     </ol>
                 </nav>
                 <MainCharacterView character={character} />
+            </div>);
+        } else if (json.stereotype === "station") {
+            let station = marshaller.decodeStation(json);
+            modifyTitle(station);
+            return (<div className="page container ms-0">
+                <nav aria-label="breadcrumb">
+                    <ol className="breadcrumb">
+                        <li className="breadcrumb-item"><Link to="/">{t('Page.title.home')}</Link></li>
+                        <li className="breadcrumb-item active" aria-current="page">{t('ViewPage.viewStation')}</li>
+                    </ol>
+                </nav>
+                <StationView station={station} />
             </div>);
         } else if (json.stereotype === "soloCharacter") {
             let character = marshaller.decodeCharacter(json);
@@ -123,7 +137,7 @@ const ViewSheetPage = () => {
             return (<div className="page container ms-0">
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="/index.html" onClick={(e) => goToHome(e)}>{t('Page.title.home')}</a></li>
+                        <li className="breadcrumb-item"><Link to="/">{t('Page.title.home')}</Link></li>
                         <li className="breadcrumb-item active" aria-current="page">{t('ViewPage.viewSoloCharacter')}</li>
                     </ol>
                 </nav>

@@ -2757,6 +2757,12 @@
     "StationIndexPage.instruction": "Use this process to create a space station.",
     "StationIndexPage.characterType": "Station Type",
 
+    "StationFinalPage.instruction": "There are a few final steps to complete your starbase or\nspace station.",
+
+    "StationFinalPage.name.instruction": "Choose a name for this station or starbase.",
+
+    "StationFinalPage.traits.instruction": "Space stations will always have a trait that represents the culture that constructed them, such as Federation Starbase or Klingon Orbital Fortress. A second trait is also recommended to give the overall feel or purpose of the space station, such as Dry Dock or Cargo Transfer Station. These are often linked to the space station’s mission profile.",
+
     "StationMissionProfile.instruction": "Select a mission profile for this station.",
 
     "StationMissionProfile.error.selectProfile": "Please select a mission profile",
@@ -4628,7 +4634,11 @@
 
     "Track.civilian.traderOrMerchant": "Trader or Merchant",
 
-    "Track.civilian.traderOrMerchant.2e": "Trader",
+    "Track.civilian.traderOrMerchant.2e": "Merchant",
+
+    "Track.civilian.freeTrader": "Free Trader",
+
+    "Track.civilian.freeTrader.description": "You travel the stars not under the flag of another nation, but simply because it’s your chosen profession. You might consider yourself a freighter captain or an independent merchant, or you might think of yourself as an entrepreneur or freelancer. If you transport information or people, you might be a courier or transport captain. If you don’t care about the legality of your cargo, you might be condemned by others as a smuggler or pirate. You might choose to scout and survey distant worlds, selling your discoveries to merchants, miners, and governments. Regardless of what you label yourself (or how others label you), you have freedom to ply the spacelanes and fly wherever the mood and the opportunity take you.",
 
     "Track.starfleet.command": "Command Track",
 

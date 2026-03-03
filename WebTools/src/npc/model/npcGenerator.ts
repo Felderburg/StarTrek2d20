@@ -688,6 +688,14 @@ export class NpcGenerator {
                     character.age = ages[Math.floor(Math.random() * ages.length)];
                 } else {
                     character.type = CharacterType.Civilian;
+                    if (specialization.id === Specialization.IndependentTraderCaptain ||
+                        specialization.id === Specialization.SketchyTraderCaptain) {
+                        if (hasSource(Source.Century23)) {
+                            character.educationStep = new EducationStep(Track.FreeTrader);
+                        } else {
+                            character.educationStep = new EducationStep(Track.TraderOrMerchant);
+                        }
+                    }
                 }
                 break;
             case NpcCharacterType.Ferengi:

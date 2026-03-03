@@ -27,7 +27,7 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
         if (station.missionProfileStep?.type == null) {
             Dialog.show(t("StationMissionProfile.error.selectProfile"));
         } else {
-            navigate("/station/talents");
+            navigate("/station/final");
         }
     }
 
@@ -35,7 +35,6 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
         return (
                 <tbody key={i}>
                     <tr>
-                        <td className=""><div className="selection-header">{m.localizedName}</div></td>
                         <td className="text-end">
                             <CheckBox
                                 isChecked={station?.missionProfileStep?.type === m.id}
@@ -43,6 +42,7 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
                                 value={m.id}
                                 onChanged={() => { onSelection(m); } }/>
                         </td>
+                        <td className=""><div className="selection-header">{m.localizedName}</div></td>
                     </tr>
                 </tbody>
             );
@@ -70,7 +70,6 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
                     <thead>
                         <tr>
                             <th></th>
-                            <th className="d-none d-md-table-cell" style={{ paddingLeft: "0.75rem"}}>Talent options</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -78,9 +77,9 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
                 </table>
 
 
-                    <div className="text-end mt-5">
-                        <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
-                    </div>
+                <div className="text-end mt-5">
+                    <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
+                </div>
                 </main>
             </div>
         </div>

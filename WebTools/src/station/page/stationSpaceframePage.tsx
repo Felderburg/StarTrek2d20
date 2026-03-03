@@ -25,6 +25,10 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
     const navigate = useNavigate();
     const [tab, setTab] = useState<SpaceframeTab>(SpaceframeTab.Custom);
 
+    const onNext = () => {
+        navigate("/station/profile");
+    }
+
     const canIncreaseDepartment = (department: Department) => {
         return getDepartment(department) < 5;
     }
@@ -185,6 +189,10 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
                     </div>
 
                     {renderCustomStats()}
+
+                    <div className="text-end mt-5">
+                        <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
+                    </div>
 
                 </main>
             </div>

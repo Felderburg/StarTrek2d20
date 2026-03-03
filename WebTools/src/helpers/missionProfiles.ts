@@ -746,6 +746,17 @@ class MissionProfiles {
         return profiles;
     }
 
+    getStationMissionProfileByName(name: string): MissionProfileModel|undefined {
+        let profiles = [... Object.values(this._stationProfiles)]
+            .filter(p => MissionProfile[p.id] === name);
+
+        return profiles?.length ? profiles[0] : undefined;
+    }
+
+    getStationMissionProfileByType(type: MissionProfile): MissionProfileModel|undefined {
+        return this._stationProfiles[type];
+    }
+
     getMissionProfileByName(profile: string, type: CharacterType, version: number) {
         let list = this._profiles2e;
         if (version === 1) {

@@ -508,6 +508,19 @@ export class TracksHelper {
             false,
             "Track.civilian."
         ),
+        new TrackModel(
+            Track.FreeTrader,
+            "Free Trader",
+            Source.Century23,
+            "",
+            [Department.Command, Department.Conn],
+            [Department.Science, Department.Engineering, Department.Medicine, Department.Security],
+            ["Astrometrics", "Bargain", "Cultural Expert", "Ecology", "Geology", "Helm Operations", "Negotiation", "Repairs & Maintenance", "Survival"],
+            undefined,
+            new DepartmentImprovementRule(ImprovementRuleType.MAY_DECREMENT_ONE),
+            false,
+            "Track.civilian."
+        ),
     ];
 
     private chooseList(type: CharacterType, version: number) {
@@ -542,7 +555,7 @@ export class TracksHelper {
         }
 
         return tracks.sort((a, b) => {
-            return a.name.localeCompare(b.name);
+            return a.localizedName.localeCompare(b.localizedName);
         });
     }
 

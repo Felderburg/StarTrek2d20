@@ -3159,7 +3159,9 @@ export class Talents {
             new TalentModel(
                 "An Answer for Everything",
                 "You relish intense debate, where you can see your opponent’s argument unfold, then turn it back against them. When you succeed at a task as part of an extended task in a social conflict, you may reroll a number of [D] up to your Command score.",
-                [new SourcePrerequisite(Source.FederationKlingonWar)],
+                [
+                    new SourcePrerequisite(Source.FederationKlingonWar)
+                ],
                 1,
                 "General"),
             new TalentModel(

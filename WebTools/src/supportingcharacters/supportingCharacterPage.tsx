@@ -29,6 +29,7 @@ import { ValueRandomTable } from '../solo/table/valueRandomTable';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
 import { LoadingButton } from '../common/loadingButton';
 import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
+import { ViewButton } from '../components/viewButton';
 
 
 const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
@@ -37,6 +38,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
     const [ showRank, setShowRank ] = useState(true);
     const [loadingExport, setLoadingExport] = useState(false);
 
+    /*
     const showViewPage = () => {
         setTimeout(() => {
             let c = store.getState().character.currentCharacter;
@@ -45,6 +47,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
             window.open('/view?s=' + value, "_blank");
         }, 200);
     }
+    */
 
     const getAges = () => {
         return AgeHelper.getAllChildAges().map((a, i) => new DropDownElement(i, a.name));
@@ -382,7 +385,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
             </div>
             <div className="button-container mt-4">
                 <LoadingButton loading={loadingExport} className="btn-sm me-2 mb-2" onClick={() => showDialog() } >{t('Common.button.exportPdf')}</LoadingButton>
-                <Button size="sm" className="me-2 mb-2" onClick={() => showViewPage() }>{t('Common.button.view')}</Button>
+                <ViewButton className="me-2 mb-2" construct={character} />
             </div>
         </div>
     ) : undefined;

@@ -1,5 +1,5 @@
 import { Station, StationMissionProfileStep } from "../common/station";
-import { CREATE_STATION, SET_STATION_MISSION_PROFILE } from "./stationActions";
+import { CREATE_STATION, SET_STATION_MISSION_PROFILE, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
 
 interface StationState {
     station?: Station;
@@ -15,9 +15,6 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 station: s.copy()
             }
         }
-
-        default:
-           return state;
         case SET_STATION_MISSION_PROFILE: {
             let s = state.station?.copy();
             if (s) {
@@ -28,6 +25,29 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 station: s
             }
         }
+        case SET_STATION_NAME: {
+            let s = state.station?.copy();
+            if (s) {
+                s.name = action.payload.name;
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
+        case SET_STATION_TRAITS: {
+            let s = state.station?.copy();
+            if (s) {
+                s.traits = action.payload.traits;
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
+
+        default:
+           return state;
     }
 
 }

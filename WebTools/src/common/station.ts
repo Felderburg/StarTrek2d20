@@ -5,6 +5,14 @@ import { System } from "../helpers/systems";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
 
+export class CustomStationSpaceframeStep {
+
+    copy() {
+        let result = new CustomStationSpaceframeStep();
+        return result;
+    }
+}
+
 export class StationMissionProfileStep {
     public readonly type: MissionProfile;
 
@@ -22,21 +30,28 @@ export class Station extends Construct {
 
     scale: number;
     missionProfileStep?: StationMissionProfileStep;
+    traits: string[] = []
 
-    constructor(type: CharacterType, version: number, era: Era) {
+    constructor() {
         super(Stereotype.Station);
-        this.version = version;
-        this.era = era;
-        this.type = type;
     }
 
     public static create(type: CharacterType, version: number, era: Era): Station {
-        return new Station(type, version, era);
+        let result = new Station();
+        result.version = version;
+        result.era = era;
+        result.type = type;
+        return result;
     }
 
     public copy() {
-        let result = new Station(this.type, this.version, this.era);
+        let result = new Station();
         result.scale = this.scale;
+        result.type = this.type;
+        result.version = this.version;
+        result.era = this.era;
+        result.name = this.name;
+        result.traits = [...this.traits];
         result.missionProfileStep = this.missionProfileStep?.copy();
         return result;
     }
@@ -71,5 +86,9 @@ export class Station extends Construct {
 
     get totalAvailableDepartmentPoints(): number {
         return Math.min(13 + (3 * Math.max(0, this.scale-8)), 30);
+    }
+
+    get traitsAsString() {
+        return this.traits?.join(", ") || "";
     }
 }

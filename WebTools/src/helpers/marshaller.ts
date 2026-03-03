@@ -2,7 +2,7 @@ import { Base64 } from 'js-base64';
 import pako from 'pako';
 import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails, ReputationChangeStep } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
-import { Stereotype } from '../common/construct';
+import { Construct, Stereotype } from '../common/construct';
 import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, SimpleStats, SpaceframeStep, Starship, StarshipAdvancementStep } from '../common/starship';
 import AgeHelper from './age';
 import { Attribute, AttributesHelper } from './attributes';
@@ -52,18 +52,29 @@ import { PropulsionSystemModel, PropulsionSystemType } from './propulsionSystem'
 import { allStarshipAdvancementChoices, StarshipAdvancementChoice } from '../common/starshipAdvancementChoice';
 import { LogEntry, LogValueEntry, ValueUseType, ValueUseTypeModel } from '../common/logEntry';
 import { SpaceframeVariant, SpaceframeVariantModel } from './spaceframeVariant';
-import { Station } from '../common/station';
+import { Station, StationMissionProfileStep } from '../common/station';
 
 class Marshaller {
 
+    encodeConstruct(construct: Construct) {
+        if (construct instanceof Station) {
+            return this.encodeStation(construct);
+        } else if (construct instanceof Starship) {
+            return this.encodeStarship(construct);
+        } else if (construct instanceof Creature) {
+            return this.encodeCreature(construct);
+        } else {
+            return this.encodeCharacter(construct as Character);
+        }
+    }
+
     encodeStation(station: Station) {
         let sheet = {
-            "stereotype": "creature",
+            "stereotype": "station",
             "type": CharacterType[station.type],
             "era": Era[station.era],
             "name": station.name,
             "version": station.version,
-            "scale": station.scale,
 //            "departments": this.toDepartmentObject(station.departments),
 //            "systems": this.toSystemsObject(station.attributes),
         };
@@ -75,7 +86,11 @@ class Marshaller {
             sheet["missionProfile"] = temp;
         }
 
-        return sheet;
+        if (station.traits) {
+            sheet["traits"] = [...station.traits];
+        }
+
+        return this.encode(sheet);
     }
 
     encodeCreature(creature: Creature) {
@@ -1021,6 +1036,30 @@ class Marshaller {
         }
 
         return new Asset(type, name, stats, additionalInformation, ability);
+    }
+
+    decodeStation(json: any): Station {
+        let result = new Station();
+        if (json.version) {
+            result.version = json.version;
+        }
+        if (json.type) {
+            result.type = CharacterTypeModel.getCharacterTypeByTypeName(json.type)?.type;
+        }
+        result.name = json.name;
+
+        if (json["missionProfile"]) {
+            let profile = MissionProfileHelper.getStationMissionProfileByName(json["missionProfile"]["name"]);
+            if (profile != null) {
+                result.missionProfileStep = new StationMissionProfileStep(profile.id);
+            }
+        }
+
+        if (json["traits"]) {
+            result.traits = [...json["traits"]];
+        }
+
+        return result;
     }
 
 

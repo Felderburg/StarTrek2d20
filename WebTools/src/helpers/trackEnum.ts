@@ -42,6 +42,9 @@ export enum Track {
     // Exploration Guide
     IndependentArchaeologist,
     OutpostScientist,
+
+    // 23rd Century Campaign
+    FreeTrader,
 }
 
 export const getAllTracks = (): Track[] => {
