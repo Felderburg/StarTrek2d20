@@ -9,7 +9,6 @@ import { Career } from "./careerEnum";
 import { Era } from "./eras";
 import { Role } from "./roles";
 import { Source } from "./sources";
-import { Track } from "./trackEnum";
 
 export interface IConstructPrerequisite<T extends IConstruct> {
     isPrerequisiteFulfilled(t: T): boolean;

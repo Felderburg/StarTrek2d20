@@ -6,7 +6,6 @@ import { StatView } from "../components/StatView";
 import { useTranslation } from 'react-i18next';
 import { makeKey } from "../common/translationKey";
 import { LoadingButton } from "../common/loadingButton";
-import { useNavigate } from "react-router";
 import { Station } from "../common/station";
 import { MissionProfileHelper } from "../helpers/missionProfiles";
 
@@ -22,22 +21,21 @@ interface IStationViewProperties {
 const StationView: React.FC<IStationViewProperties> = ({station}) => {
 
     const [loadingExport, setLoadingExport] = useState(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
-        if (station .name) {
+        if (station.name) {
             document.title = station.name + " - STAR TREK ADVENTURES";
         }
     })
 
     const showExportDialog = () => {
-//        setLoadingExport(true);
-//        import(/* webpackChunkName: 'export' */ '../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
-//            import(/* webpackChunkName: 'export' */ '../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
-//                setLoadingExport(false);
-//                CharacterSheetDialog.show(CharacterSheetRegistry.getStarshipSheets(starship), "starship", starship);
-//            });
-//        });
+        setLoadingExport(true);
+        import(/* webpackChunkName: 'export' */ '../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
+            import(/* webpackChunkName: 'export' */ '../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
+                setLoadingExport(false);
+                CharacterSheetDialog.show(CharacterSheetRegistry.getStationSheets(station), "station", station);
+            });
+        });
     }
 
     const renderShields = () => {
@@ -137,6 +135,15 @@ const StationView: React.FC<IStationViewProperties> = ({station}) => {
                 </div>
 
                 <div className="mt-3">
+
+                    <Suspense fallback={<div className="mt-4 text-center">
+                        <div className="spinner-border text-light" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </div>
+                    </div>}>
+                        <OutlineImage starship={station} />
+                    </Suspense>
+
 
                     <div className="row row-cols-1 row-cols-xl-3 mb-2">
                         <StatView showZero={true} name={t('Construct.other.resistance')} value={station.resistance} className="col mb-2" colourClass="red" />

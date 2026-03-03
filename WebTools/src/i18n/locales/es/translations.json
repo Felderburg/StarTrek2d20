@@ -1787,7 +1787,8 @@
 
     "Species.arbazan.name": "Arbazano",
 
-    "Species.ardanan.name": "Ardanano",
+    "Species.ardanan.name": "Ardano",
+    "Species.ardanan.soloDescription": "Los naturales de Ardana de ambas castas son individuos recios, cuya dualidad entre el arte y la cultura o la minería y dirección hacen de ellos gente muy preparada para todo. Sin la exposición al gas zenita, muchos troglitas alcanzaron un nivel de estudios académicos y artísticos idéntico al de los urbanitas, haciendo de los ardanos un pueblo de gran aguante físico y excelencia cultural.",
 
     "Species.arcadian.name": "Arcadiano",
     "Species.arcadian.exampleValue": "La Páz es un ideal por el que vale la pena morir",
@@ -1840,7 +1841,8 @@
     "Species.cardassian.description2e": "A menudo vilipendiados y desconfiados debido a las acciones de su gobierno, los cardassianos tienen fama de ser despiadados, engañosos y agresivos. Debido a la escasez de recursos naturales y a un colapso económico, la cultura cardassiana fue dominada por un régimen autoritario opresivo dominado por los militares, que iniciaron una campaña de expansión, conquista y explotación que duró décadas y que incluyó la ocupación de Bajor y un largo conflicto fronterizo con la Federación. Tras la Guerra del Dominio, y una vez derrocado el gobierno militar, la reconstrucción de Cardassia fue un proceso difícil, entre otras cosas por los antiguos sentimientos de resentimiento hacia los cardassianos.\n\nLos cardassianos son un pueblo creativo y dedicado, con una fuerte fascinación cultural por la intriga. Los cardassianos tienden a guardar secretos y a considerar la sospecha como sabiduría, y el desvelamiento de secretos se considera una habilidad valiosa.",
     "Species.cardassian.traitDescription2e": "Los cardassianos son una especie pseudorreptiliana, acostumbrados a un entorno algo más cálido y húmedo de lo que es cómodo para los humanos, y tienden a encontrar incómoda la luz brillante. Su cultura valora la disciplina mental y la obediencia a jerarquías estrictas, y tienen fama de arrogantes, crueles y engreídos.",
 
-    "Species.changeling.name": "Metamorfo",
+    "Species.changeling.name": "Cambiante",
+    "Species.changeling.soloDescription": "Un cambiante es, por naturaleza, un fluido gelatinoso, morfogénico, de color marrón anaranjado, que puede adoptar la forma y la estructura de cualquier objeto sólido, incluyendo otros seres vivos y sustancias dispersas como la niebla. Aunque no pueden convertirse en energía, la capacidad de los cambiantes para adoptar otras formas está limitada más por su habilidad y experiencia que por su capacidad física: se teoriza que transfieren masa hacia y desde el subespacio para cambiar de tamaño y densidad. Muchos cambiantes son perseguidos por los «sólidos» debido a su capacidad de cambiar de forma, y a menudo anhelan un sentido del orden y la justicia en el universo, con una actitud rígida que contrasta con sus formas fluidas.",
 
     "Species.chelon.name": "Rigeliano Chelo",
 
@@ -1848,6 +1850,7 @@
     "Species.coridanite.exampleValue": "Finalmente podemos hablar sobre nuestras necesidades",
 
     "Species.deltan.name": "Deltano",
+    "Species.deltan.soloDescription": "Todos los deltanos se consideran individuos muy bellos, con potentes capacidades empáticas y alta sensualidad. Las feromonas que generan son un afrodisíaco natural para muchas de las especies de la Federación y, mientras sirven a bordo de una nave de la Flota Estelar, deben ser muy cuidadosos con su fisiología, utilizando supresores químicos para cancelar este efecto.",
 
     "Species.denobulan.name": "Denobulano",
     "Species.denobulan.aboutNames": "Los denobulanos suelen tener un solo nombre (un mismo denobulano puede pertenecer a diversas familias a la vez). Algunos pueden emplear el nombre de uno de sus cónyuges como apellido improvisado, llegado el caso. A menudo eso sirve para indicar alguna relación ante especies que tal vez no entiendan las familias denobulanas. Los nombres denobulanos tienden a ser breves y bruscos, especialmente los masculinos.",
@@ -1999,7 +2002,7 @@
 
     "SpeciesAbility.bajoran": "La voluntad de los Profetas",
 
-    "SpeciesAbility.bajoran.description": "Puedes encontrar fuerza en los Profetas incluso cuando la situación es calamitosa: una vez por aventura, cuando el Director de Juego gasta 3 o más puntos de Amenaza a la vez, ganas 1 Determinación.",
+    "SpeciesAbility.bajoran.description": "Puedes encontrar fuerza en los Profetas incluso cuando la situación es calamitosa: una vez por aventura, cuando el Director de Juego gasta 3 o más puntos de Amenaza a la vez, ganas 1 punto de Determinación.",
 
     "SpeciesAbility.betazoid": "Telepático",
 
@@ -2162,7 +2165,7 @@
 
     "Talent.backupEpsConduits": "Conductos EPS de reserva",
 
-    "Talent.backupEpsConduits.description2e": "Cuando la nave está sacudida y pierde Energía de Reserva, tira 1d20; si sacas igual o menos que la Estructura de tu nave, recuperas la Energía de Reserva.",
+    "Talent.backupEpsConduits.description2e": "Cuando la nave está zarandeada y pierde Energía de Reserva, tira 1d20; si sacas igual o menos que la Estructura de tu nave, recuperas la Energía de Reserva.",
 
     "Talent.backUpPlans": "Planes de emergencia",
 
@@ -2231,6 +2234,7 @@
 
     "Talent.cautious.description": "Debes elegir una Disciplina cuando escojas este Talento. Cuando emprendas una Tarea con dicha Disciplina y adquieras 1 o más d20 gastando Inercia, puedes repetir un único d20. Puedes escoger este Talento múltiples veces, una por cada Disciplina. No puedes escoger este Talento para una Disciplina para la que ya poseas el Talento Audaz.",
     "Talent.cautious.description2e": "Debes elegir un Departamento cuando escojas este Talento. Cuando emprendas una Tarea con dicho Departamento y adquieras 1 o más d20 gastando Inercia, puedes repetir un único d20. Puedes escoger este Talento múltiples veces, una por cada Departamento. No puedes escoger este Talento para un Departamento para el que ya poseas el Talento **Audaz**.",
+    "Talent.cautious.error": "El talento seleccionado (Prudente) requiere que elijas un Departamento.",
 
     "Talent.cautiousCommand": "Prudente: Mando",
 

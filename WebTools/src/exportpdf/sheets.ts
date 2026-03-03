@@ -33,6 +33,8 @@ import { Landscape2eCharacterSheet } from './landscape2eCharacterSheet';
 import { Standard2eStarshipSheet } from './standard2eStarshipSheet';
 import { BasicGeneratedTentCardCharacterSheet } from './generated2eTentCard';
 import { Landscape2eCreatureSheet } from './landscape2eCreatureSheet';
+import { Station } from '../common/station';
+import { Portrait2eStationSheet } from './portrait2eStationSheet';
 
 
 abstract class BasicSheet implements ICharacterSheet {
@@ -1164,6 +1166,10 @@ class CharacterSheets {
                 new LandscapeGeneratedCharacterSheet(), new TwoPageTngCharacterSheet(),
                 new TwoPageTngLandscapeCharacterSheet(), new TwoPageKlingonCharacterSheet(), new RomulanCharacterSheet() ];
         }
+    }
+
+    public getStationSheets(station: Station): ICharacterSheet[] {
+        return [ new Portrait2eStationSheet() ];
     }
 
     public getStarshipSheets(starship: Starship): ICharacterSheet[] {

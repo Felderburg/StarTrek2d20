@@ -48,6 +48,9 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
             );
         });
 
+    const selectedProfile = station.missionProfileStep?.type != null
+        ? MissionProfileHelper.getStationMissionProfileByType(station.missionProfileStep.type)
+        : undefined;
 
     return (<LcarsFrame activePage={PageIdentity.StationMissionProfile}>
         <div id="app">
@@ -56,7 +59,7 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
                     <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
                     <li className="breadcrumb-item"><Link to={"/station"}>{t('Page.title.stationIndex')}</Link></li>
-                    <li className="breadcrumb-item"><Link to={"/station/frame"}>{t('Page.title.stationSpceframe')}</Link></li>
+                    <li className="breadcrumb-item"><Link to={"/station/frame"}>{t('Page.title.stationSpaceframe')}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationMissionProfile')}</li>
                 </ol>
                 </nav>
@@ -66,20 +69,33 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
 
                     <ReactMarkdown>{t('StationMissionProfile.instruction')}</ReactMarkdown>
 
-                    <table className="selection-list w-100">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    {missionProfiles}
-                </table>
+                    <section className="row">
+                        <div className="col-12 col-md-6 mt-4">
+                            <table className="selection-list w-100">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                {missionProfiles}
+                            </table>
+                        </div>
 
+                        {selectedProfile != null
+                            ? (<div className="col-12 col-md-6 mt-4">
+                                <Header level={2}>{selectedProfile.localizedName}</Header>
+                                <div>
+                                    <ReactMarkdown className="markdown-sm">{selectedProfile.localizedDescription}</ReactMarkdown>
+                                </div>
+                            </div>)
+                            : undefined
+                        }
+                    </section>
 
-                <div className="text-end mt-5">
-                    <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
-                </div>
+                    <div className="text-end mt-5">
+                        <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
+                    </div>
                 </main>
             </div>
         </div>

@@ -172,12 +172,12 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
                     <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
                     <li className="breadcrumb-item"><Link to={"/station"}>{t('Page.title.stationIndex')}</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationSpceframe')}</li>
+                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationSpaceframe')}</li>
                 </ol>
                 </nav>
-                <main>
 
-                    <Header>{t('Page.title.stationSpceframe')}</Header>
+                <main>
+                    <Header>{t('Page.title.stationSpaceframe')}</Header>
 
                     <ReactMarkdown>{t('StationSpaceframePage.instruction')}</ReactMarkdown>
 

@@ -7,8 +7,15 @@ import { Construct, Stereotype } from "./construct";
 
 export class CustomStationSpaceframeStep {
 
+    scale: number;
+    departments: number[] = [];
+    systems: number[] = [];
+
     copy() {
         let result = new CustomStationSpaceframeStep();
+        result.scale = this.scale;
+        result.departments = [...this.departments];
+        result.systems = [...this.systems];
         return result;
     }
 }
@@ -28,7 +35,7 @@ export class StationMissionProfileStep {
 
 export class Station extends Construct {
 
-    scale: number;
+    stationFrameStep: CustomStationSpaceframeStep;
     missionProfileStep?: StationMissionProfileStep;
     traits: string[] = []
 
@@ -46,13 +53,13 @@ export class Station extends Construct {
 
     public copy() {
         let result = new Station();
-        result.scale = this.scale;
         result.type = this.type;
         result.version = this.version;
         result.era = this.era;
         result.name = this.name;
         result.traits = [...this.traits];
         result.missionProfileStep = this.missionProfileStep?.copy();
+        result.stationFrameStep = this.stationFrameStep?.copy();
         return result;
     }
 
@@ -66,6 +73,10 @@ export class Station extends Construct {
 
     get resistance(): number {
         return this.scale;
+    }
+
+    get scale(): number {
+        return this.stationFrameStep?.scale ?? 1
     }
 
     get crewSupport(): number {

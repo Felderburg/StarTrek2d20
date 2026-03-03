@@ -23,7 +23,7 @@ const StationFinalPage: React.FC<IStationPageProperties> = ({station}) => {
                 <nav aria-label="breadcrumb">
                     <ol className="breadcrumb">
                     <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
-                    <li className="breadcrumb-item"><Link to={"/station/frame"}>{t('Page.title.stationSpceframe')}</Link></li>
+                    <li className="breadcrumb-item"><Link to={"/station/frame"}>{t('Page.title.stationSpaceframe')}</Link></li>
                     <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationFinal')}</li>
                 </ol>
                 </nav>

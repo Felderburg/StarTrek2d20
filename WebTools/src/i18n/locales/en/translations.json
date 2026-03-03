@@ -86,6 +86,7 @@
     "ViewPage.viewMainCharacter": "View Main Character",
     "ViewPage.viewSoloCharacter": "View Solo Character",
     "ViewPage.viewStarship": "View Starship",
+    "ViewPage.viewStation": "View Station",
     "ViewPage.errorMessage": "Things have gone terribly, terribly wrong. We might be in the mirror universe.",
     "ViewPage.unnamedStarship": "Unnamed Starship",
 
@@ -869,7 +870,8 @@
     "Page.title.npcTalents": "Special Rules Selection",
     "Page.title.stationIndex": "Station Creation",
     "Page.title.stationMissionProfile": "Station Mission Profile",
-    "Page.title.stationSpceframe": "Station Frame",
+    "Page.title.stationSpaceframe": "Station Frame",
+    "Page.title.stationFinal": "Final Details",
     "Page.title.tokenCreationPage": "Token Creation",
     "Page.title.upbringing": "Early Outlook",
     "Page.title.upbringingDetails": "Early Outlook Details",
@@ -1743,12 +1745,32 @@
     "MissionProfile.default.defenseStation.description": "Though commonly unmanned, some satellites or stations serve the purpose of providing defense against potential threats, both naturally occurring or instigated by others. These facilities are likely to have defensive abilities that meet a specific purpose such as protecting a world from radiation, deflecting spaceborne objects, or concealing key locations. Focuses like Diagnostics, Emergency Repair, Meditation, Precision Targeting, Security Systems, Spatial Phenomena, and System Maintenance could prove valuable to officers stationed at such a facility. \n\nHigh systems for Weapons and Structure are important for Defense Starbases. Any talent centering on weapons or Ablative Armor, Improved Hull Integrity, or Advanced Shields are excellent choices.",
 
     "MissionProfile.default.diplomaticRelationsStation": "Diplomatic Relations",
+
+    "MissionProfile.default.diplomaticRelationsStation.description": "The increasing number of independent sovereign polities in the Galaxy demands maintenance of diplomatic relations and neutral locations in which to conduct meetings and conferences. These stations serve as good training grounds for command personnel with plenty of opportunity for exposure to alien cultures. Starships might be occasionally assigned to drop off or pick up special envoys from these stations or to provide security patrol during sensitive sessions. Arts, Composure, Cultural Studies, Diplomacy, Persuasion, Philosophy, and Politics are all focuses that would serve an officer well if stationed on such a base. \n\nDiplomacy is far more complex than bureaucracy, but many of the priorities in systems and departments are the same. These starbases often have higher Communications and Computer systems, and Command is a must for the Command department. Command Ship, Diplomatic Suites, and Redundant System (Communications) are all good talents to take.",
+
     "MissionProfile.default.drydockShipRepairStation": "Drydock / Ship Repair",
+
+    "MissionProfile.default.drydockShipRepairStation.description": "Dry docks are crucial for the construction, maintenance, and repair of starships. These stations can range from facilities capable of building or servicing only one vessel at a time all the way to massive facilities like Starbase 364, a gigantic station with a docking capacity of up to eighteen starships the same size or larger than Galaxy class. Some repair stations are even automated, not requiring any personnel to operate. Characters with focuses in any type of starship engineering will thrive at one of these facilities, along with experts on the many hundreds of systems that are replete in these amazing vessels. Self-Propelled, Drydock, and increased Docking Capacity are clear talents to take. Engines and Structure are good systems to check out, and the Engineering department is a must for high department numbers.",
+
     "MissionProfile.default.educationTrainingStation": "Education / Training",
+
+    "MissionProfile.default.educationTrainingStation.description": "With the sheer amount of information Federation and Starfleet collects every day, it is understandable how quickly learning curriculum and knowledge databases must be updated and revised. This is a never-ending process of data dissemination. Some starbases and colonies serve as learning centers where specialized training modules and learning resources are designed and developed. Subject matter experts (SMEs) may be placed at the facilities with the goal of analyzing new data and discoveries. Since assembling participants in a classroom may not be a feasible option, SMEs may develop a variety of resources ranging from audio lessons to white papers to interactive e-learning modules to holodeck simulations; a multitude of blended learning options can be transmitted to deep space vessels along the Federation’s expansive subspace relay\nnetwork. Trainers, researchers, and field experts could be deployed from these stations for temporary assignments on starships.\n\nHigh System Points in any department that the starbase typically teaches is a good choice, though Command often takes a priority. Diplomatic Suites and Advanced Research Laboratories to represent the classrooms and other teaching environments are also a good choice.",
+
     "MissionProfile.default.intelligenceSpecialOperationsStation": "Intelligence / Special Operations",
+
+    "MissionProfile.default.intelligenceSpecialOperationsStation.description": "There are times when stations must be constructed clandestinely. Their coordinates are kept classified, their location known only to the highest-ranking and most trustworthy officers. This is especially critical during times of war. These stations can be training grounds for elite soldiers assigned top-secret missions that might be disavowed by the government. Stations tasked with intelligence missions are likely to have characters well-versed in Combat Maneuvers, Disguise, Espionage, Forensics, Martial Arts, Psychiatry, Small Unit Tactics, and Survival.\n\nHigh Communications, Computers, and Sensors are a must. Command Ship, Dedicated Subspace Transceiver Array, and Electronic Warfare Systems are good talents for this profile.",
+
     "MissionProfile.default.logisticalAndTacticalSupportStation": "Logistical and Tactical Support",
+
+    "MissionProfile.default.logisticalAndTacticalSupportStation.description": "Whereas tactics is deployment of personnel to execute the strategy, logistics is about making sure that the personnel are where they’re meant to be before the fighting starts and that they have all the support required to conduct their mission successfully. This station may serve as a training facility, supply depot, refueling port, and weapons manufacturer. These stations might be outfitted with advanced weaponry and defense systems to keep them safe, as they are crucial components to an effective war campaign. In addition, stations dedicated to logistics and tactics will provide key intelligence and operational updates to command. Characters with focuses in Energy Weapons, Fleet Formations, Hazardous Environments, Lead by Example, Modeling & Design, Ship Engagement Tactics, and Strategy/Tactics will do well in this setting.\n\nEngineering and Security are good choices for priorities for System Points. High Powered Tractor Beam, Extra Docking Facilities, and Extensive Shuttlebays are all good talents to take for these starbases.",
+
     "MissionProfile.default.policalOperationsStation": "Policital Operations",
+
+    "MissionProfile.default.policalOperationsStation.description": "Unpopular as they may be, political operations are necessary to ensure that Starfleet’s mission is maintained. Political activity is directed toward the success of the Federation and its member worlds, addition of aligned worlds, and defense from worlds or polities deemed hostile to the Federation’s mission to seek out new life and new civilizations in a peaceful and open manner. Much thought and care must be put into screening candidates for leadership positions, monitoring and validating elections, rallying support for causes voted to be worthy of UFP resources, and determining the proper use of personnel and resources in defending member worlds and Starfleet. Any of the Command focuses would be well-suited to this setting, along with focuses like Cultural Studies or Psychology. \n\nHigh Communications and Structure are good priorities for systems, as are Command and other department that may focus on political operations.  Diplomatic Suites, Command Ship, and Fleet Command are good talents to check out.",
+
     "MissionProfile.default.researchStation": "Research Station",
+
+    "MissionProfile.default.researchStation.description": "Research stations are built for the purpose of conducting scientific research. The Federation has research stations spread all over its territory in every possible setting one could imagine: orbiting planets, established worlds, distant colonies, attached to asteroids, surface facilities, deep space, and so on. Research stations serve a vital function in adding to the ever-expanding library of knowledge that feeds humanity’s desire to learn. Characters may be assigned temporarily or for years at a research station to work on special projects. Some individuals desire nothing more than to study their area of expertise without the constant supervision of the Federation. Experts from such facilities could be called away to serve as mission specialists aboard starships or guest lecturers throughout the Federation. Any focuses related to Engineering, Medicine, or Scienc e would be well-suited to this setting.\n\nScience and Medicine are obvious choices for high departments, and Sensors and Computers are also excellent for points in systems. Advanced Research Facilities, High-Resolution Sensors, and Redundant System (Sensors) are all talents that could be seen here.",
 
     "InjuryType.deadly": "Deadly",
     "InjuryType.stun": "Stun",
