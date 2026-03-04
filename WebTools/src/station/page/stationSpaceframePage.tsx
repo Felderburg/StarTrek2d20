@@ -40,7 +40,7 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
     }
 
     const canIncreaseDepartment = (department: Department) => {
-        return getDepartment(department) < station.maxDepartmentValue && station.sumDepartmentPoints < station.totalAvailableDepartmentPoints;
+        return (getDepartment(department) < station.maxDepartmentValue) && (station.sumDepartmentPoints < station.totalAvailableDepartmentPoints);
     }
 
     const canDecreaseDepartment = (department: Department) => {
@@ -48,7 +48,7 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
     }
 
     const canIncreaseSystem = (system: System) => {
-        return getSystem(system) < station.maxSystemValue && station.sumSystemPoints < station.totalAvailableSystemPoints;
+        return (getSystem(system) < station.maxSystemValue) && (station.sumSystemPoints < station.totalAvailableSystemPoints);
     }
 
     const canDecreaseSystem= (system: System) => {
