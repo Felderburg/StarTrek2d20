@@ -12,6 +12,7 @@ import { BuildPoints } from "../model/buildPoints";
 import { BaseSimpleStarshipPage } from "./simpleStarshipPage";
 import { withTranslation } from 'react-i18next';
 import { DepartmentsHelper } from "../../helpers/department";
+import PointAllocator from "../../helpers/pointAllocator";
 
 class SystemValue {
     system: System;
@@ -70,7 +71,7 @@ class CustomSpaceframePage extends BaseSimpleStarshipPage {
             }
 
             if (systemDelta !== sumOfDeltas) {
-                let distribution = BuildPoints.allocatePointsEvenly(systemDelta - sumOfDeltas);
+                let distribution = PointAllocator.allocatePointsEvenly(systemDelta - sumOfDeltas);
                 for (let i = 0; i < distribution.length; i++) {
                     deltas[i] += distribution[i];
                 }

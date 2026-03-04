@@ -1,13 +1,16 @@
 import { Department } from "../helpers/department";
 import { Era } from "../helpers/eras";
 import { MissionProfile } from "../helpers/missionProfiles";
+import PointAllocator from "../helpers/pointAllocator";
 import { System } from "../helpers/systems";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
 
 export class CustomStationSpaceframeStep {
 
-    scale: number;
+    public static readonly MIN_SCALE = 3;
+
+    scale: number = CustomStationSpaceframeStep.MIN_SCALE;
     departments: number[] = [];
     systems: number[] = [];
 
@@ -48,6 +51,14 @@ export class Station extends Construct {
         result.version = version;
         result.era = era;
         result.type = type;
+
+        let frameStep = new CustomStationSpaceframeStep();
+        frameStep.scale = CustomStationSpaceframeStep.MIN_SCALE;
+        frameStep.systems = PointAllocator.allocatePointsEvenly(Station.totalAvailableSystemPointsForScale(frameStep.scale));
+        frameStep.departments = PointAllocator.allocatePointsEvenly(Station.totalAvailableDepartmentPointsForScale(frameStep.scale));
+
+        result.stationFrameStep = frameStep;
+
         return result;
     }
 
@@ -64,11 +75,11 @@ export class Station extends Construct {
     }
 
     get systems(): number[] {
-        return [];
+        return this.stationFrameStep?.systems ?? [0, 0, 0, 0, 0, 0];
     }
 
     get departments(): number[] {
-        return [];
+        return this.stationFrameStep?.departments ?? [0, 0, 0, 0, 0, 0];
     }
 
     get resistance(): number {
@@ -91,15 +102,39 @@ export class Station extends Construct {
         return this.systems[System.Engines];
     }
 
+    get maxSystemValue(): number {
+        return 15;
+    }
+
+    get maxDepartmentValue(): number {
+        return this.scale <= 12 ? 5 : 25;
+    }
+
+    get sumSystemPoints(): number {
+        return this.systems.reduce((a, b) => a + b, 0);
+    }
+
+    get sumDepartmentPoints(): number {
+        return this.departments.reduce((a, b) => a + b, 0);
+    }
+
     get totalAvailableSystemPoints(): number {
-        return Math.min(38 + (3 * Math.max(this.scale-2)), 78);
+        return Station.totalAvailableSystemPointsForScale(this.scale);
     }
 
     get totalAvailableDepartmentPoints(): number {
-        return Math.min(13 + (3 * Math.max(0, this.scale-8)), 30);
+        return Station.totalAvailableDepartmentPointsForScale(this.scale);
     }
 
     get traitsAsString() {
         return this.traits?.join(", ") || "";
+    }
+
+    static totalAvailableSystemPointsForScale(scale: number): number {
+        return Math.min(38 + (3 * Math.max(scale-2)), 78);
+    }
+
+    static totalAvailableDepartmentPointsForScale(scale: number): number {
+        return Math.min(13 + (3 * Math.max(0, scale-8)), 30);
     }
 }

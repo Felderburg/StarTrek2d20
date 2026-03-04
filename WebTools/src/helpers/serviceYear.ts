@@ -101,7 +101,7 @@ class ServiceYear {
 
     public getTextHint(serviceYear: number) {
         let result = this.years[serviceYear];
-        while (result == null && serviceYear > 3197) {
+        while (result == null && serviceYear > 2024) {
             result = this.years[--serviceYear];
         }
         return result;

@@ -52,7 +52,7 @@ import { PropulsionSystemModel, PropulsionSystemType } from './propulsionSystem'
 import { allStarshipAdvancementChoices, StarshipAdvancementChoice } from '../common/starshipAdvancementChoice';
 import { LogEntry, LogValueEntry, ValueUseType, ValueUseTypeModel } from '../common/logEntry';
 import { SpaceframeVariant, SpaceframeVariantModel } from './spaceframeVariant';
-import { Station, StationMissionProfileStep } from '../common/station';
+import { CustomStationSpaceframeStep, Station, StationMissionProfileStep } from '../common/station';
 
 class Marshaller {
 
@@ -74,9 +74,7 @@ class Marshaller {
             "type": CharacterType[station.type],
             "era": Era[station.era],
             "name": station.name,
-            "version": station.version,
-//            "departments": this.toDepartmentObject(station.departments),
-//            "systems": this.toSystemsObject(station.attributes),
+            "version": station.version
         };
 
         if (station.missionProfileStep?.type) {
@@ -88,6 +86,17 @@ class Marshaller {
 
         if (station.traits) {
             sheet["traits"] = [...station.traits];
+        }
+
+        if (station.stationFrameStep) {
+            if (station.stationFrameStep instanceof CustomStationSpaceframeStep) {
+                sheet["frame"] = {
+                    "type": "Custom",
+                    "departments": this.toDepartmentObject(station.stationFrameStep.departments),
+                    "systems": this.toSystemsObject(station.stationFrameStep.systems),
+                    "scale": station.stationFrameStep.scale
+                }
+            }
         }
 
         return this.encode(sheet);
@@ -1052,6 +1061,17 @@ class Marshaller {
             let profile = MissionProfileHelper.getStationMissionProfileByName(json["missionProfile"]["name"]);
             if (profile != null) {
                 result.missionProfileStep = new StationMissionProfileStep(profile.id);
+            }
+        }
+
+        if (json["frame"]) {
+            let frame : any = json["frame"];
+            if (frame["type"] === "Custom") {
+                let step = new CustomStationSpaceframeStep();
+                allSystems().forEach(s => step.systems[s] = frame.systems[System[s]]);
+                DepartmentsHelper.instance.getDepartments().forEach(d => step.departments[d] = frame.departments[Department[d]]);
+                step.scale=  frame.scale;
+                result.stationFrameStep = step;
             }
         }
 

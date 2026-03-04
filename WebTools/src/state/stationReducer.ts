@@ -1,5 +1,5 @@
-import { Station, StationMissionProfileStep } from "../common/station";
-import { CREATE_STATION, SET_STATION_MISSION_PROFILE, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
+import { CustomStationSpaceframeStep, Station, StationMissionProfileStep } from "../common/station";
+import { CREATE_STATION, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_CUSTOM_SCALE, SET_STATION_MISSION_PROFILE, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
 
 interface StationState {
     station?: Station;
@@ -29,6 +29,54 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
             let s = state.station?.copy();
             if (s) {
                 s.name = action.payload.name;
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
+        case SET_STATION_CUSTOM_SCALE: {
+            let s = state.station?.copy();
+            if (s) {
+                if (s.stationFrameStep == null || !(s.stationFrameStep instanceof CustomStationSpaceframeStep)) {
+                    s.stationFrameStep = new CustomStationSpaceframeStep();
+                }
+                s.stationFrameStep.scale = action.payload.scale;
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
+        case MODIFY_STATION_CUSTOM_FRAME_SYSTEM: {
+            let s = state.station?.copy();
+            if (s) {
+                if (s.stationFrameStep == null || !(s.stationFrameStep instanceof CustomStationSpaceframeStep)) {
+                    s.stationFrameStep = new CustomStationSpaceframeStep();
+                }
+                let system = action.payload.system;
+                s.stationFrameStep.systems[system] += action.payload.delta;
+                if (s.stationFrameStep.systems[system] > s.maxSystemValue) {
+                    s.stationFrameStep.systems[system] = s.maxSystemValue;
+                }
+
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
+        case MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT: {
+            let s = state.station?.copy();
+            if (s) {
+                if (s.stationFrameStep == null || !(s.stationFrameStep instanceof CustomStationSpaceframeStep)) {
+                    s.stationFrameStep = new CustomStationSpaceframeStep();
+                }
+                let department = action.payload.department;
+                s.stationFrameStep.departments[department] += action.payload.delta;
+                if (s.stationFrameStep.departments[department] > s.maxDepartmentValue) {
+                    s.stationFrameStep.departments[department] = s.maxDepartmentValue;
+                }
             }
             return {
                 ...state,

@@ -630,8 +630,7 @@ class SpaceframeOutlineHelper {
     renderFullSvg(starship: Starship|Station) {
         if (starship instanceof Station) {
             const outline = this.getStationOutline(starship as Station);
-            const path = outline.details;
-            return path ? '<svg width="216" height="260" viewBox="0 0 216 260" version="1.1" id="svg3666" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">'
+            return outline ? '<svg width="216" height="260" viewBox="0 0 216 260" version="1.1" id="svg3666" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">'
                     + '  <g id="layer1">'
                     + '    <path style="fill:#F9AC76;stroke:none;" d="' + outline.details + '"/>'
                     + '    <path style="fill:none;stroke:#F9AC76;stroke-width:2px;" d="' + outline.mainOutline + '"/>'
@@ -639,12 +638,22 @@ class SpaceframeOutlineHelper {
                     + '</svg>' : undefined;
         } else {
             const outline = starship.isSmallCraft ? this.getSmallCraftOutline(starship) : this.getOutline(starship);
-            const path = outline instanceof Outline ? outline.mainOutline : outline as string;
-            return path ? '<svg width="545" height="150" viewBox="0 0 545 150" version="1.1" id="svg3666" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">'
-                    + '  <g id="layer1">'
-                    + '    <path style="fill:#F9AC76;stroke:none;" d="' + path + '"/>'
-                    + '   </g>'
-                    + '</svg>' : undefined;
+            if (outline instanceof Outline) {
+                return outline ? '<svg width="545" height="150" viewBox="0 0 545 150" version="1.1" id="svg3666" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">'
+                        + '  <g id="layer1">'
+                        + '    <path style="fill:#F9AC76;stroke:none;" d="' + outline.details + '"/>'
+                        + '    <path style="fill:none;stroke:#F9AC76;stroke-width:2px;" d="' + outline.mainOutline + '"/>'
+                        + '   </g>'
+                        + '</svg>' : undefined;
+
+            } else {
+                const path = outline as string;
+                return path ? '<svg width="545" height="150" viewBox="0 0 545 150" version="1.1" id="svg3666" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">'
+                        + '  <g id="layer1">'
+                        + '    <path style="fill:#F9AC76;stroke:none;" d="' + path + '"/>'
+                        + '   </g>'
+                        + '</svg>' : undefined;
+            }
         }
     }
 }

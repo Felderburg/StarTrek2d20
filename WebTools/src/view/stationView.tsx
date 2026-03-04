@@ -5,9 +5,9 @@ import { Header } from "../components/header";
 import { StatView } from "../components/StatView";
 import { useTranslation } from 'react-i18next';
 import { makeKey } from "../common/translationKey";
-import { LoadingButton } from "../common/loadingButton";
 import { Station } from "../common/station";
 import { MissionProfileHelper } from "../helpers/missionProfiles";
+import { ExportToPdfButton } from "../components/exportToPdfButton";
 
 const OutlineImage = lazy(() => import(/* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'));
 
@@ -20,23 +20,11 @@ interface IStationViewProperties {
 
 const StationView: React.FC<IStationViewProperties> = ({station}) => {
 
-    const [loadingExport, setLoadingExport] = useState(false);
-
     useEffect(() => {
         if (station.name) {
             document.title = station.name + " - STAR TREK ADVENTURES";
         }
-    })
-
-    const showExportDialog = () => {
-        setLoadingExport(true);
-        import(/* webpackChunkName: 'export' */ '../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
-            import(/* webpackChunkName: 'export' */ '../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
-                setLoadingExport(false);
-                CharacterSheetDialog.show(CharacterSheetRegistry.getStationSheets(station), "station", station);
-            });
-        });
-    }
+    });
 
     const renderShields = () => {
         let shield = station.shields;
@@ -164,7 +152,7 @@ const StationView: React.FC<IStationViewProperties> = ({station}) => {
 
         (<div className="d-flex justify-content-between">
             <div className="button-container mt-5 mb-3">
-                <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+                <ExportToPdfButton construct={station} />
             </div>
         </div>)
 

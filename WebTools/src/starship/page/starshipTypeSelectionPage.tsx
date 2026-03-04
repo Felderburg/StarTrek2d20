@@ -17,6 +17,7 @@ import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import { withTranslation, WithTranslation } from 'react-i18next';
 import InstructionText from "../../components/instructionText";
 import { ServiceYearSelector } from "../view/serviceYearView";
+import PointAllocator from "../../helpers/pointAllocator";
 
 interface StarshipTypeSelectionPageProperties extends WithTranslation {
     era: Era
@@ -107,9 +108,9 @@ class StarshipTypeSelectionPage extends React.Component<StarshipTypeSelectionPag
             let workflow = ShipBuildWorkflow.createSmallCraftBuildWorkflow(this.state.buildType.type);
             let stats = new SimpleStats();
             stats.scale = this.state.buildType.type === ShipBuildType.Runabout ? 2 : 1;
-            stats.systems = BuildPoints.allocatePointsEvenly(BuildPoints.systemPointsForType(
+            stats.systems = PointAllocator.allocatePointsEvenly(BuildPoints.systemPointsForType(
                 this.state.buildType.type, this.state.campaignYear, this.state.type.type, stats.scale));
-            stats.departments = BuildPoints.allocatePointsEvenly(BuildPoints.departmentPointsForType(
+            stats.departments = PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(
                 this.state.buildType.type));
             store.dispatch(createNewStarship(this.state.type.type, this.props.era, this.state.campaignYear, stats, workflow, this.state.buildType.type, isSecondEdition() ? 2 : 1));
             Navigation.navigateToPage(PageIdentity.SmallCraftStats);

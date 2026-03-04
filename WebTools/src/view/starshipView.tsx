@@ -11,12 +11,12 @@ import { makeKey } from "../common/translationKey";
 import { VttSelectionDialog } from "../vtt/view/VttSelectionDialog";
 import TalentsBlockView from "./talentsBlockView";
 import WeaponBlockView from "./weaponBlockView";
-import { LoadingButton } from "../common/loadingButton";
 import { cyrb53 } from "../common/cyrb53";
 import { originalEncodedSheet } from "./originalEncodedSheet";
 import { createStarship } from "../state/starshipActions";
 import store from "../state/store";
 import { useNavigate } from "react-router";
+import { ExportToPdfButton } from "../components/exportToPdfButton";
 
 const OutlineImage = lazy(() => import(/* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'));
 
@@ -29,7 +29,6 @@ interface IStarshipViewProperties {
 
 const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
 
-    const [loadingExport, setLoadingExport] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -41,16 +40,6 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
     const refitAsString = () => {
         let refitString = starship.refitsAsString();
         return  refitString === "" ? NBSP : refitString;
-    }
-
-    const showExportDialog = () => {
-        setLoadingExport(true);
-        import(/* webpackChunkName: 'export' */ '../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
-            import(/* webpackChunkName: 'export' */ '../exportpdf/sheets').then(({CharacterSheetRegistry}) => {
-                setLoadingExport(false);
-                CharacterSheetDialog.show(CharacterSheetRegistry.getStarshipSheets(starship), "starship", starship);
-            });
-        });
     }
 
     const getAllTraits = () => {
@@ -206,7 +195,7 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
 
         (<div className="d-flex justify-content-between">
             <div className="button-container mt-5 mb-3">
-                <LoadingButton loading={loadingExport} className="btn-sm me-3" onClick={() => showExportDialog() }>{t('Common.button.exportPdf')}</LoadingButton>
+                <ExportToPdfButton construct={starship} />
                 <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
             </div>
 

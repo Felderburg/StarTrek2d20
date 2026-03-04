@@ -27,7 +27,7 @@ class StationScale {
 
     public getTextHint(scale: number) {
         let result = this.scales[scale];
-        while (result == null && scale > 2063) {
+        while (result == null && scale > 1) {
             result = this.scales[--scale];
         }
         return result;

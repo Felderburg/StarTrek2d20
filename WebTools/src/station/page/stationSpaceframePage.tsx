@@ -13,6 +13,10 @@ import { StatControl } from "../../starship/view/statControl";
 import { makeKey } from "../../common/translationKey";
 import { System } from "../../helpers/systems";
 import { Department } from "../../helpers/department";
+import { ScaleSelector } from "../view/scaleSelector";
+import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, setStationCustomScale } from "../../state/stationActions";
+import { CustomStationSpaceframeStep } from "../../common/station";
+import { Dialog } from "../../components/dialog";
 
 enum SpaceframeTab {
     Custom,
@@ -26,11 +30,17 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
     const [tab, setTab] = useState<SpaceframeTab>(SpaceframeTab.Custom);
 
     const onNext = () => {
-        navigate("/station/profile");
+        if (station.sumDepartmentPoints < station.totalAvailableDepartmentPoints) {
+            Dialog.show(t('StationSpaceframePage.error.departments'));
+        } else if (station.sumSystemPoints < station.totalAvailableSystemPoints) {
+            Dialog.show(t('StationSpaceframePage.error.systems'));
+        } else {
+            navigate("/station/profile");
+        }
     }
 
     const canIncreaseDepartment = (department: Department) => {
-        return getDepartment(department) < 5;
+        return getDepartment(department) < station.maxDepartmentValue && station.sumDepartmentPoints < station.totalAvailableDepartmentPoints;
     }
 
     const canDecreaseDepartment = (department: Department) => {
@@ -38,19 +48,11 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
     }
 
     const canIncreaseSystem = (system: System) => {
-        return getSystem(system) < 15;
+        return getSystem(system) < station.maxSystemValue && station.sumSystemPoints < station.totalAvailableSystemPoints;
     }
 
     const canDecreaseSystem= (system: System) => {
         return getSystem(system) > 1;
-    }
-
-    const canIncreaseScale = () => {
-        return station.scale < 7;
-    }
-
-    const canDecreaseScale = () => {
-        return station.scale > 1;
     }
 
     const getSystem = (system: System) => {
@@ -64,11 +66,11 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
     }
 
     const setSystem = (system: System, delta: number) => {
-//        store.dispatch(changeStationCustomFrameSystem(delta, system));
+        store.dispatch(changeStationCustomFrameSystem(delta, system));
     }
 
     const setDepartment = (department: Department, delta: number) => {
-//        store.dispatch(changeStationCustomFrameDepartment(delta, department));
+        store.dispatch(changeStationCustomFrameDepartment(delta, department));
     }
 
 
@@ -186,6 +188,17 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
                                 onClick={() => setTab(SpaceframeTab.Custom)}>{t('StationSpaceframePage.custom')}</button>
                         <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === SpaceframeTab.Standard ? "active" : "")}
                                 onClick={() => setTab(SpaceframeTab.Standard)}>{t('StationSpaceframePage.standard')}</button>
+                    </div>
+
+                    <div className="row">
+                        <div className="col-12 col-md-6 mt-5">
+                            <Header level={2}>{t('Construct.other.scale')}</Header>
+                            <ReactMarkdown>{t('StationSpaceframePage.scale.instruction')}</ReactMarkdown>
+
+                            <ScaleSelector scale={station.stationFrameStep?.scale ?? CustomStationSpaceframeStep.MIN_SCALE}
+                                onChange={v => store.dispatch(setStationCustomScale(v))} />
+                        </div>
+
                     </div>
 
                     {renderCustomStats()}

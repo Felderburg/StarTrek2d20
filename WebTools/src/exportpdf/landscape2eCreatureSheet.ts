@@ -39,7 +39,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
         return "Creature Sheet"
     }
     getThumbnailUrl(): string {
-        throw new Error('Method not implemented.');
+        return '/static/img/sheets/STA_2e_Creature_Sheet.png'
     }
     getPdfUrl(type: CharacterType): string {
         return '/static/pdf/STA_2e_Landscape_Sheet_blank.pdf';

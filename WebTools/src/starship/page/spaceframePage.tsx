@@ -12,6 +12,7 @@ import { BuildPoints } from "../model/buildPoints";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { withTranslation, WithTranslation } from 'react-i18next';
+import PointAllocator from "../../helpers/pointAllocator";
 
 interface ISpaceframePageProperties extends WithTranslation {
     starship: Starship;
@@ -44,9 +45,9 @@ class SpaceframePage extends React.Component<ISpaceframePageProperties, {}> {
 
     navigateToCustomSpaceframe() {
         let scale = 3;
-        let systems = BuildPoints.allocatePointsEvenly(BuildPoints.systemPointsForType(
+        let systems = PointAllocator.allocatePointsEvenly(BuildPoints.systemPointsForType(
             ShipBuildType.Starship, this.props.starship.serviceYear, this.props.starship.type, scale));
-        let departments = BuildPoints.allocatePointsEvenly(BuildPoints.departmentPointsForType(
+        let departments = PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(
             ShipBuildType.Starship))
         let spaceframe = SpaceframeModel.createCustomSpaceframe(this.props.starship?.type, this.props.starship?.serviceYear, systems, departments, scale);
         store.dispatch(setStarshipSpaceframe(spaceframe));

@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { IStationPageProperties, stationMapStateToProperties } from "../iStationPageProperties";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { ViewButton } from "../../components/viewButton";
+import { ExportToPdfButton } from "../../components/exportToPdfButton";
 
 const StationFinalPage: React.FC<IStationPageProperties> = ({station}) => {
 
@@ -70,7 +71,7 @@ const StationFinalPage: React.FC<IStationPageProperties> = ({station}) => {
 
                     <div className="mt-5">
                         <ViewButton construct={station} />
-                        <Button size="sm" onClick={() => {}}>{t('Common.button.exportPdf')}</Button>
+                        <ExportToPdfButton construct={station} />
                     </div>
                 </main>
             </div>
