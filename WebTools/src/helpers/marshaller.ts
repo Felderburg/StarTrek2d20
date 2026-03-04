@@ -99,6 +99,10 @@ class Marshaller {
             }
         }
 
+        if (station.weapons?.length) {
+            sheet["weapons"] = station.weapons.map(w => this.encodeWeapon(w));
+        }
+
         return this.encode(sheet);
     }
 
@@ -1077,6 +1081,10 @@ class Marshaller {
 
         if (json["traits"]) {
             result.traits = [...json["traits"]];
+        }
+
+        if (json.weapons) {
+            result.weapons = json.weapons.map(j => this.decodeWeapon(j, result.version));
         }
 
         return result;

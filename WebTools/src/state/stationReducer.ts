@@ -1,5 +1,5 @@
 import { CustomStationSpaceframeStep, Station, StationMissionProfileStep } from "../common/station";
-import { CREATE_STATION, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_CUSTOM_SCALE, SET_STATION_MISSION_PROFILE, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
+import { ADD_STATION_WEAPON, CREATE_STATION, DELETE_STATION_WEAPON, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_CUSTOM_SCALE, SET_STATION_MISSION_PROFILE, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
 
 interface StationState {
     station?: Station;
@@ -83,6 +83,25 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 station: s
             }
         }
+        case ADD_STATION_WEAPON: {
+            let s = state.station?.copy();
+            s.weapons.push(action.payload.weapon);
+            return {
+                ...state,
+                station: s
+            }
+        }
+        case DELETE_STATION_WEAPON: {
+            let s = state.station?.copy();
+            if (s.weapons.indexOf(action.payload.weapon) >= 0) {
+                s.weapons.splice(s.weapons.indexOf(action.payload.weapon), 1);
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
+
         case SET_STATION_TRAITS: {
             let s = state.station?.copy();
             if (s) {

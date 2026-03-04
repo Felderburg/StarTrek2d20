@@ -2,6 +2,7 @@ import { Station } from "../common/station"
 import { Department } from "../helpers/department";
 import { MissionProfile } from "../helpers/missionProfiles";
 import { System } from "../helpers/systems";
+import { Weapon } from "../helpers/weapons";
 
 export const CREATE_STATION = "CREATE_STATION";
 export const SET_STATION_MISSION_PROFILE = "SET_STATION_MISSION_PROFILE";
@@ -10,6 +11,9 @@ export const SET_STATION_TRAITS = "SET_STATION_TRAITS";
 export const SET_STATION_CUSTOM_SCALE = "SET_STATION_CUSTOM_SCALE";
 export const MODIFY_STATION_CUSTOM_FRAME_SYSTEM = "MODIFY_STATION_CUSTOM_FRAME_SYSTEM";
 export const MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT = "MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT";
+export const ADD_STATION_WEAPON = "ADD_STATION_WEAPON";
+export const DELETE_STATION_WEAPON = "DELETE_STATION_WEAPON";
+
 
 export function createStation(station: Station) {
     let payload = { station: station }
@@ -66,3 +70,20 @@ export function changeStationCustomFrameDepartment(delta: number, department: De
         payload: payload
     }
 }
+
+export function addStationWeapon(weapon: Weapon) {
+    let payload = { weapon: weapon };
+    return {
+       type: ADD_STATION_WEAPON,
+       payload: payload
+    }
+}
+
+export function deleteStationWeapon(weapon: Weapon) {
+    let payload = { weapon: weapon };
+    return {
+       type: DELETE_STATION_WEAPON,
+       payload: payload
+    }
+}
+

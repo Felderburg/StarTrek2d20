@@ -27,7 +27,7 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
         if (station.missionProfileStep?.type == null) {
             Dialog.show(t("StationMissionProfile.error.selectProfile"));
         } else {
-            navigate("/station/final");
+            navigate("/station/weapons");
         }
     }
 

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Department } from "../helpers/department";
 import { System } from "../helpers/systems";
 import { Header } from "../components/header";
@@ -8,6 +8,7 @@ import { makeKey } from "../common/translationKey";
 import { Station } from "../common/station";
 import { MissionProfileHelper } from "../helpers/missionProfiles";
 import { ExportToPdfButton } from "../components/exportToPdfButton";
+import WeaponBlockView from "./weaponBlockView";
 
 const OutlineImage = lazy(() => import(/* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'));
 
@@ -69,8 +70,7 @@ const StationView: React.FC<IStationViewProperties> = ({station}) => {
     }
 
     const renderWeapons = () => {
-        return undefined;
-//        return (<div><WeaponBlockView construct={starship} /></div>);
+        return (<div><WeaponBlockView construct={station} /></div>);
     }
 
     const { t } = useTranslation();

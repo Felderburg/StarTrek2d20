@@ -3,6 +3,7 @@ import { Era } from "../helpers/eras";
 import { MissionProfile } from "../helpers/missionProfiles";
 import PointAllocator from "../helpers/pointAllocator";
 import { System } from "../helpers/systems";
+import { Weapon } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
 
@@ -40,7 +41,8 @@ export class Station extends Construct {
 
     stationFrameStep: CustomStationSpaceframeStep;
     missionProfileStep?: StationMissionProfileStep;
-    traits: string[] = []
+    traits: string[] = [];
+    weapons: Weapon[] = [];
 
     constructor() {
         super(Stereotype.Station);
@@ -71,6 +73,7 @@ export class Station extends Construct {
         result.traits = [...this.traits];
         result.missionProfileStep = this.missionProfileStep?.copy();
         result.stationFrameStep = this.stationFrameStep?.copy();
+        result.weapons = [...this.weapons];
         return result;
     }
 
@@ -126,6 +129,10 @@ export class Station extends Construct {
         return Station.totalAvailableDepartmentPointsForScale(this.scale);
     }
 
+    get isMineLayer(): boolean {
+        return false;
+    }
+
     get traitsAsString() {
         return this.traits?.join(", ") || "";
     }
@@ -136,5 +143,9 @@ export class Station extends Construct {
 
     static totalAvailableDepartmentPointsForScale(scale: number): number {
         return Math.min(13 + (3 * Math.max(0, scale-8)), 30);
+    }
+
+    determineWeapons() {
+        return this.weapons;
     }
 }

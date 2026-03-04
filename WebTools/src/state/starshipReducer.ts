@@ -183,7 +183,6 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
                 s.pruneExcessTalents();
             }
             s.spaceframeStep.variant = action.payload.variant;
-console.log(s.spaceframeStep);
             return {
                 ...state,
                 starship: s

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { Starship } from "../common/starship";
 import { CharacterType } from "../common/characterType";
 import { Department } from "../helpers/department";

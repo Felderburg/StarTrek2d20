@@ -67,6 +67,13 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
                                 <div className="sheet-label-purple text-uppercase">{t('Construct.other.name')}</div>
                                 <div className="sheet-data">{station?.name ?? ""}</div>
                             </div>
+
+                            <div className="sheet-panel d-flex">
+                                <div className="sheet-label-purple text-uppercase">{t('Construct.other.scale')}</div>
+                                <div className="sheet-data">
+                                    {station?.scale ?? 3}
+                                </div>
+                            </div>
                         </div>
 
                         <div className="col-md-6 mb-2">
