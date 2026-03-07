@@ -1,19 +1,22 @@
-﻿import { CharacterType } from '../common/characterType';
+﻿import { Character } from '../common/character';
+import { CharacterType } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';
 import { Starship } from '../common/starship';
+import { Station } from '../common/station';
+import { Creature } from '../creature/model/creature';
 import { hasAnySource } from '../state/contextFunctions';
 import { Department } from './department';
 import { Era } from './eras';
-import { IConstructPrerequisite, ServiceYearPrerequisite, StarshipTypePrerequisite } from './prerequisite';
+import { AnyOfPrerequisite, IConstructPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, StarshipTypePrerequisite, StereotypePrerequisite } from './prerequisite';
 import {Source} from './sources';
 import { Spaceframe } from './spaceframeEnum';
 import { SoloSpaceframeStats, SpaceframeModel } from './spaceframeModel';
 import { System } from './systems';
 import { TalentsHelper } from './talents';
 
-class Version2Prerequisite implements IConstructPrerequisite<Starship> {
-    isPrerequisiteFulfilled(c: Starship) {
+class Version2Prerequisite implements IConstructPrerequisite {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return c.version === 2;
     }
 
@@ -22,68 +25,14 @@ class Version2Prerequisite implements IConstructPrerequisite<Starship> {
     }
 }
 
-export class AnyOfStarshipPrerequisite implements IConstructPrerequisite<Starship> {
-    private _prequisites: IConstructPrerequisite<Starship>[];
-
-    constructor(...prequisites: IConstructPrerequisite<Starship>[]) {
-        this._prequisites = prequisites;
-    }
-
-    isPrerequisiteFulfilled(character: Starship) {
-        if (this._prequisites.length === 0) {
-            return true;
-        } else {
-            var result = false;
-            this._prequisites.forEach(req => {
-                result = result || req.isPrerequisiteFulfilled(character);
-            });
-            return result;
-        }
-    }
-    describe(): string {
-        return "";
-    }
-}
-
-export class StarshipStereotypePrerequisite implements IConstructPrerequisite<Starship> {
-    private types: Stereotype[];
-
-    constructor(...type: Stereotype[]) {
-        this.types = type;
-    }
-
-    isPrerequisiteFulfilled(character: Starship) {
-        return character instanceof Starship && this.types.indexOf(character.stereotype) >= 0;
-    }
-    describe(): string {
-        return "";
-    }
-}
-
-export class SourcePrerequisite implements IConstructPrerequisite<Starship> {
+export class NotSourcePrerequisite implements IConstructPrerequisite {
     sources: Source[];
 
     constructor(...source: Source[]) {
         this.sources = source;
     }
 
-    isPrerequisiteFulfilled(c: Starship) {
-        return hasAnySource(this.sources);
-    }
-
-    describe(): string {
-        return "";
-    }
-}
-
-export class NotSourcePrerequisite implements IConstructPrerequisite<Starship> {
-    sources: Source[];
-
-    constructor(...source: Source[]) {
-        this.sources = source;
-    }
-
-    isPrerequisiteFulfilled(c: Starship) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return !hasAnySource(this.sources);
     }
 
@@ -434,8 +383,8 @@ export class SpaceframeHelper {
             2242,
             [
                 new SourcePrerequisite(Source.CaptainsLog, Source.CommandDivision),
-                new AnyOfStarshipPrerequisite(
-                    new StarshipStereotypePrerequisite(Stereotype.SoloCharacter),
+                new AnyOfPrerequisite(
+                    new StereotypePrerequisite(Stereotype.SoloCharacter),
                     new Version2Prerequisite()
                 )
              ],
@@ -1941,12 +1890,16 @@ export class SpaceframeHelper {
                 [9, 9, 10, 11, 10, 9],
                 [2, 2, 2, 3, 2, 4],
             )),
-        [Spaceframe.NX_UP]: SpaceframeModel.createStandardSpaceframe(
+        [Spaceframe.NX_UP]: new SpaceframeModel(
             Spaceframe.NX_UP,
             CharacterType.Starfleet,
             "NX Class",
             2151,
-            [ Source.UtopiaPlanitia ],
+            [
+                new SourcePrerequisite(Source.UtopiaPlanitia),
+                new NotSourcePrerequisite(Source.Core2ndEdition),
+                new ServiceYearPrerequisite(2151)
+            ],
             [5, 5, 6, 6, 6, 6],
             [0, 1, 0, 1, 1, 0],
             3,

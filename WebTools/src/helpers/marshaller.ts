@@ -81,6 +81,10 @@ class Marshaller {
             let temp = {
                 "name": MissionProfile[station.missionProfileStep?.type]
             }
+
+            if (station.missionProfileStep.talent) {
+                temp["talent"] = this.talentToJson(station.missionProfileStep.talent);
+            }
             sheet["missionProfile"] = temp;
         }
 
@@ -1052,6 +1056,7 @@ class Marshaller {
     }
 
     decodeStation(json: any): Station {
+        console.log(json);
         let result = new Station();
         if (json.version) {
             result.version = json.version;
@@ -1065,6 +1070,10 @@ class Marshaller {
             let profile = MissionProfileHelper.getStationMissionProfileByName(json["missionProfile"]["name"]);
             if (profile != null) {
                 result.missionProfileStep = new StationMissionProfileStep(profile.id);
+
+                if (json["missionProfile"]["talent"]) {
+                    result.missionProfileStep.talent = this.hydrateTalent(json["missionProfile"]["talent"], result.version);
+                }
             }
         }
 

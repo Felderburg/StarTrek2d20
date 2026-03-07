@@ -14,9 +14,10 @@ import { Department } from "../helpers/department";
 import { System } from "../helpers/systems";
 import { PropulsionSystemModel, PropulsionSystemType } from "../helpers/propulsionSystem";
 import { Weapon } from "../helpers/weapons";
+import { Station } from "../common/station";
 
 interface IConstructPageProperties {
-    construct: Character|Starship|Creature;
+    construct: Character|Starship|Creature|Station;
 }
 
 const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
@@ -115,9 +116,9 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
         }
     }
 
-    const renderStarshipTalents = () => {
-
-        const talents = (construct as Starship)?.rankedTalents.map((selectedTalent, i) => {
+    const renderStarshipTalents = (construct: Station|Starship) => {
+console.log(construct);
+        const talents = construct?.rankedTalents.map((selectedTalent, i) => {
             let t = selectedTalent.talentModel;
             let name = selectedTalent.displayNameWithMultiple;
             let description = undefined;
@@ -226,8 +227,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
     if (construct?.getDistinctTalentNameList()?.length) {
         if (construct instanceof Character) {
             return renderCharacterTalents();
-        } else if (construct instanceof Starship) {
-            return renderStarshipTalents();
+        } else if (construct instanceof Starship || construct instanceof Station) {
+            return renderStarshipTalents(construct);
         } else {
             return renderCreatureTalents();
         }

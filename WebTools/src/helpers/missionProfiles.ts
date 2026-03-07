@@ -7,6 +7,7 @@ import {TalentsHelper, TalentModel} from './talents';
 import { makeKey } from '../common/translationKey';
 import { allSystems, System } from './systems';
 import { SelectedTalent } from '../common/selectedTalent';
+import { Department } from './department';
 
 export enum MissionProfile {
     StrategicAndDiplomatic,
@@ -52,13 +53,13 @@ export class MissionProfileModel {
     talents: (SelectedTalent|TalentModel)[];
     traits: string;
     notes: string;
-    prerequisites: IConstructPrerequisite<Starship>[];
+    prerequisites: IConstructPrerequisite[];
     type: CharacterType;
 
     constructor(id: MissionProfile, name: string, departments: number[],
         talents: (SelectedTalent|TalentModel)[], type?: CharacterType, systems: System[] = [],
         traits: string = "", notes: string = "",
-        ...prerequisites: IConstructPrerequisite<Starship>[]) {
+        ...prerequisites: IConstructPrerequisite[]) {
         this.id = id;
         this.name = name;
         this.departments = departments;
@@ -654,57 +655,103 @@ class MissionProfiles {
             MissionProfile.AdministrationAndBureaucracyStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Diplomatic Suites"),
+                SelectedTalent.createWithSystem(TalentsHelper.getTalent("Redundant Systems").name, System.Comms)
+            ]),
         [MissionProfile.BorderEnforcementStation]: new MissionProfileModel(
             MissionProfile.BorderEnforcementStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher")
+            ]),
         [MissionProfile.CommunicationHubStation]: new MissionProfileModel(
             MissionProfile.CommunicationHubStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("Electronic Warfare Systems"),
+                TalentsHelper.getTalent("Dedicated Subspace Transceiver Array"),
+                SelectedTalent.createWithSystem(TalentsHelper.getTalent("Redundant Systems").name, System.Comms)
+            ]),
         [MissionProfile.DefenseStation]: new MissionProfileModel(
             MissionProfile.DefenseStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("High-Intensity Energy Weapons"),
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Improved Hull Integrity"),
+                TalentsHelper.getTalent("Advanced Shields")
+            ]),
         [MissionProfile.DiplomaticRelationsStation]: new MissionProfileModel(
             MissionProfile.DiplomaticRelationsStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Diplomatic Suites"),
+                SelectedTalent.createWithSystem(TalentsHelper.getTalent("Redundant Systems").name, System.Comms)
+            ]),
         [MissionProfile.DrydockShipRepairStation]: new MissionProfileModel(
             MissionProfile.DrydockShipRepairStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("Self-Propelled"),
+                TalentsHelper.getTalent("Docking Capacity"),
+            ]),
         [MissionProfile.EducationTrainingStation]: new MissionProfileModel(
             MissionProfile.EducationTrainingStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("Diplomatic Suites"),
+                TalentsHelper.getTalent("Advanced Research Facilities"),
+            ]),
         [MissionProfile.IntelligenceSpecialOperationsStation]: new MissionProfileModel(
             MissionProfile.IntelligenceSpecialOperationsStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Dedicated Subspace Transceiver Array"),
+                TalentsHelper.getTalent("Electronic Warfare Systems"),
+
+            ]),
         [MissionProfile.LogisticalAndTacticalSupportStation]: new MissionProfileModel(
             MissionProfile.LogisticalAndTacticalSupportStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("High-Power Tractor Beam"),
+                TalentsHelper.getTalent("Docking Capacity"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+
+            ]),
         [MissionProfile.PolicalOperationsStation]: new MissionProfileModel(
             MissionProfile.PolicalOperationsStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Diplomatic Suites"),
+                TalentsHelper.getTalent("Fleet Commander"),
+
+            ]),
         [MissionProfile.ResearchStation]: new MissionProfileModel(
             MissionProfile.ResearchStation,
             "",
             [0, 0, 0, 0, 0, 0],
-            []),
+            [
+                TalentsHelper.getTalent("High-Resolution Sensors"),
+                TalentsHelper.getTalent("Advanced Research Facilities"),
+                SelectedTalent.createWithSystem(TalentsHelper.getTalent("Redundant Systems").name, System.Sensors)
+            ]),
     }
 
     getMissionProfiles(starship: Starship) {

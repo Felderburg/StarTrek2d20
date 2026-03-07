@@ -40,6 +40,7 @@ const StationSpaceframePage = React.lazy(() => import(/* webpackChunkName: 'star
 const StationMissionProfileSelectionPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './station/page/stationMissionProfileSelectionPage'));
 const StationWeaponsPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './station/page/stationWeaponsPage'));
 const StationFinalPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './station/page/stationFinalPage'));
+const StationTalentsPage = React.lazy(() => import(/* webpackChunkName: 'starship' */ './station/page/stationTalentsPage'));
 
 let root = createRoot(document.getElementById("mainBody"));
 root.render(
@@ -68,6 +69,7 @@ root.render(
                         <Route path="/station/frame" element={<StationSpaceframePage />} />
                         <Route path="/station/profile" element={<StationMissionProfileSelectionPage />} />
                         <Route path="/station/weapons" element={<StationWeaponsPage />} />
+                        <Route path="/station/talents" element={<StationTalentsPage />} />
                         <Route path="/station/final" element={<StationFinalPage />} />
                         <Route path="/random/creature" element={<RandomCreaturePage />} />
                         <Route path="/tactical" element={<TacticalAssetsPage />} />

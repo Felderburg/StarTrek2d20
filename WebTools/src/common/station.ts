@@ -6,6 +6,7 @@ import { System } from "../helpers/systems";
 import { Weapon } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
+import { SelectedTalent } from "./selectedTalent";
 
 export class CustomStationSpaceframeStep {
 
@@ -26,6 +27,7 @@ export class CustomStationSpaceframeStep {
 
 export class StationMissionProfileStep {
     public readonly type: MissionProfile;
+    public talent?: SelectedTalent;
 
     constructor(missionProfile: MissionProfile) {
         this.type = missionProfile;
@@ -33,6 +35,7 @@ export class StationMissionProfileStep {
 
     copy() {
         let result = new StationMissionProfileStep(this.type);
+        result.talent = this.talent?.copy();
         return result;
     }
 }
@@ -43,6 +46,7 @@ export class Station extends Construct {
     missionProfileStep?: StationMissionProfileStep;
     traits: string[] = [];
     weapons: Weapon[] = [];
+    additionalTalents: SelectedTalent[] = []
 
     constructor() {
         super(Stereotype.Station);
@@ -74,6 +78,7 @@ export class Station extends Construct {
         result.missionProfileStep = this.missionProfileStep?.copy();
         result.stationFrameStep = this.stationFrameStep?.copy();
         result.weapons = [...this.weapons];
+        result.additionalTalents = this.additionalTalents?.map(t => t.copy());
         return result;
     }
 
@@ -137,6 +142,18 @@ export class Station extends Construct {
         return this.traits?.join(", ") || "";
     }
 
+    get freeTalentSlots() {
+        return Math.floor(this.scale / 2) - 1;
+    }
+
+    get baseTalents(): SelectedTalent[] {
+        if (this.missionProfileStep?.talent) {
+            return [ this.missionProfileStep.talent ];
+        } else {
+            return [];
+        }
+    }
+
     static totalAvailableSystemPointsForScale(scale: number): number {
         return Math.min(38 + (3 * Math.max(scale-2)), 78);
     }
@@ -147,5 +164,56 @@ export class Station extends Construct {
 
     determineWeapons() {
         return this.weapons;
+    }
+
+    get talents(): SelectedTalent[] {
+        let result = this.baseTalents;
+        result.push(...this.additionalTalents);
+        return result;
+    }
+
+    getRankForTalent(talentName: string) {
+        let rank = 0;
+        this.talents
+            .filter(t => t.name === talentName)
+            .forEach(t => {
+                if (t.multiple != null) {
+                    rank += t.multiple;
+                } else {
+                    rank += 1;
+                }
+            });
+        return rank;
+    }
+
+    getQualifierForTalent(name: string) {
+        return "";
+    }
+
+    get rankedTalents(): SelectedTalent[] {
+        let talents = this.talents;
+        let duplicates = [];
+        let result = [];
+        talents.forEach(t => {
+            if (t.talentModel.maxRank > 1 && !duplicates.includes(t.name)) {
+                let temp = t.copy();
+                temp.multiple = this.getRankForTalent(t.name);
+                duplicates.push(t.name);
+                result.push(temp);
+            } else if (t.talentModel.maxRank === 1) {
+                result.push(t);
+            }
+        });
+        return result;
+    }
+
+    getDistinctTalentNameList() {
+        let result = [];
+        this.talents.forEach(t => {
+            if (!result.includes(t.name)) {
+                result.push(t.name);
+            }
+        });
+        return result;
     }
 }

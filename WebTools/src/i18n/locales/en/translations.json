@@ -2790,6 +2790,12 @@
     "StationMissionProfile.error.selectProfile": "Please select a mission profile",
 
     "StationSpaceframePage.instruction": "Choose the details about the station that you're building. You can build a new station frame from scratch, or you can pick a standard station frame.",
+
+    "StationSpaceframePage.scale.instruction": "The Scale of a space station determines many of the numbers that are used later in the creation process. The smallest starbases, such as Regula I, are Scale 6, and even more moderately sized starbases such as DS9 and Narendra Station are Scale 12. The largest is Spacedock circling Earth at Scale 16. Starbases can range from Scale 3 (the International Space Station in Earth orbit as of 2022) to as high as you wish, though there is a ceiling at which there is diminishing returns for Scale.",
+
+    "StationSpaceframePage.error.departments": "Please distrubute all department points",
+    "StationSpaceframePage.error.systems": "Please distrubute all system points.",
+
     "StationSpaceframePage.frameType": "Frame type",
     "StationSpaceframePage.custom": "Custom",
     "StationSpaceframePage.standard": "Standard",
@@ -3498,6 +3504,7 @@
 
     "Talent.fleetCommander.description2e": "You are skilled at commanding multiple ships at once. Commanding a vessel during a fleet action allows you to re-roll 1d20 on any task to grant a bonus to your vessel or group. In addition, your flagship may use your **Command** rating instead of its own.",
 
+    "Talent.fleetCommanderNpc": "Fleet Commander",
     "Talent.flightController": "Flight Controller",
 
     "Talent.flightController.description": "Whenever the character assists an NPC in a Conn Task, one d20 re-roll may be done. The second result must be used.",

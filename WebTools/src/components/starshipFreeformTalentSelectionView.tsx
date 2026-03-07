@@ -26,7 +26,7 @@ export const StarshipFreeformTalentSelectionView: React.FC<IStarshipFreeformTale
     const { t } = useTranslation();
 
     const showTalentSelectionModal = () => {
-        const talents = TalentsHelper.getStarshipTalents(starship, true)
+        const talents = TalentsHelper.getStarshipOrStationTalents(starship, true)
             .filter(t => !starship.hasTalent(t.name)
             || t.maxRank > 1
             || isMultiSelectionTalent(t));

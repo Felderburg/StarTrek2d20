@@ -3031,6 +3031,9 @@ StationFinalPage.traits.instruction,"Space stations will always have a trait tha
 StationMissionProfile.instruction,Select a mission profile for this station.,,,,,,
 StationMissionProfile.error.selectProfile,Please select a mission profile,,,,,,
 StationSpaceframePage.instruction,"Choose the details about the station that you're building. You can build a new station frame from scratch, or you can pick a standard station frame.",,,,,,
+StationSpaceframePage.scale.instruction,"The Scale of a space station determines many of the numbers that are used later in the creation process. The smallest starbases, such as Regula I, are Scale 6, and even more moderately sized starbases such as DS9 and Narendra Station are Scale 12. The largest is Spacedock circling Earth at Scale 16. Starbases can range from Scale 3 (the International Space Station in Earth orbit as of 2022) to as high as you wish, though there is a ceiling at which there is diminishing returns for Scale.",,,,,,
+StationSpaceframePage.error.departments,Please distrubute all department points,,,,,,
+StationSpaceframePage.error.systems,Please distrubute all system points.,,,,,,
 StationSpaceframePage.frameType,Frame type,,,,,,
 StationSpaceframePage.custom,Custom,,,,,,
 StationSpaceframePage.standard,Standard,,,,,,
@@ -3473,6 +3476,7 @@ Talent.fixEmAndFlyEm.description,You may reroll one d20 on any **Engineering** t
 Talent.firstResponse.description2e,"When you attempt the First Aid task during combat, the first die you purchase is free. Further, you may always Succeed at Cost, with each complication you suffer adding 1 to the Difficulty of healing the patient’s Injury subsequently.",,,"Cuando emprendas una Tarea de “Primeros Auxilios” en combate, el primer d20 que compras es gratuito. Además, siempre puedes tener Éxito por un Precio, de modo que cada Complicación que sufras sume un +1 a la Dificultad a los posteriores intentos de curar la Herida del paciente.",,,"Quando você tenta a tarefa de Primeiros Socorros durante o combate, o primeiro dado que você compra é gratuito. Além disso, você sempre pode ser Bem- Sucedido ao Custo, sendo que cada complicação sofrida adiciona 1 à Dificuldade de curar a Ferida do paciente posteriormente."
 Talent.fleetCommander,Fleet Commander,,,,,,
 Talent.fleetCommander.description2e,"You are skilled at commanding multiple ships at once. Commanding a vessel during a fleet action allows you to re-roll 1d20 on any task to grant a bonus to your vessel or group. In addition, your flagship may use your **Command** rating instead of its own.",,,,,,
+Talent.fleetCommanderNpc,Fleet Commander,,,,,,
 Talent.flightController,Flight Controller,,,,,,
 Talent.flightController.description,"Whenever the character assists an NPC in a Conn Task, one d20 re-roll may be done. The second result must be used.",,,,,,
 Talent.flightController.description2e,"When you take the Assist action while at the helm of the ship, you or the ally you assist may re-roll 1d20.",,,,,,

@@ -11,7 +11,7 @@ import { Starship } from '../common/starship';
 import store from '../state/store';
 import { centuryToYear } from './weapons';
 import { Spaceframe } from './spaceframeEnum';
-import { CareersPrerequisite, CharacterStereotypePrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, NotPrerequisite, OfficerPrerequisite, RolePrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite } from './prerequisite';
+import { AllOfPrerequisite, AnyOfPrerequisite, CareersPrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, NotPrerequisite, OfficerPrerequisite, RolePrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite, StereotypePrerequisite } from './prerequisite';
 import { NotSourcePrerequisite } from './spaceframes';
 import { Career } from './careerEnum';
 import { hasAnySource, isSecondEdition } from '../state/contextFunctions';
@@ -25,6 +25,7 @@ import { NpcType } from '../npc/model/npcType';
 import { Role } from './roles';
 import { isFlagRank } from '../token/model/rankHelper';
 import { localizedFocus } from '../components/focusHelper';
+import { Station } from '../common/station';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -92,7 +93,7 @@ enum TalentCategory {
     Esoteric
 }
 
-class NpcTypePrerequisite implements IConstructPrerequisite<Character> {
+class NpcTypePrerequisite implements IConstructPrerequisite {
     type: NpcType;
 
     constructor(type: NpcType) {
@@ -107,7 +108,7 @@ class NpcTypePrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class AttributePrerequisite implements IConstructPrerequisite<Character> {
+class AttributePrerequisite implements IConstructPrerequisite {
     private attribute: Attribute;
     private value: number;
 
@@ -116,8 +117,9 @@ class AttributePrerequisite implements IConstructPrerequisite<Character> {
         this.value = minValue;
     }
 
-    isPrerequisiteFulfilled(c: Character) {
-        return c.attributes[this.attribute] >= this.value;
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        return (c instanceof Character || c instanceof Creature)
+            &&  c.attributes[this.attribute] >= this.value;
     }
     describe(): string {
         return "Requires " + Attribute[this.attribute] + " " + this.value + "+";
@@ -125,17 +127,17 @@ class AttributePrerequisite implements IConstructPrerequisite<Character> {
 };
 
 
-class VersionConstrainedPrerequisite implements IConstructPrerequisite<Construct> {
+class VersionConstrainedPrerequisite implements IConstructPrerequisite {
 
     private version: number;
-    private prerequisite: IConstructPrerequisite<Construct>;
+    private prerequisite: IConstructPrerequisite;
 
-    constructor(version: number, prerequisite: IConstructPrerequisite<Construct>) {
+    constructor(version: number, prerequisite: IConstructPrerequisite) {
         this.version = version;
         this.prerequisite = prerequisite;
     }
 
-    isPrerequisiteFulfilled(construct: Construct) {
+    isPrerequisiteFulfilled(construct: Character|Starship|Creature|Station) {
         if (this.version === 1) {
             if (construct.version === 1) {
                 return this.prerequisite.isPrerequisiteFulfilled(construct);
@@ -162,7 +164,7 @@ class VersionConstrainedPrerequisite implements IConstructPrerequisite<Construct
     }
 }
 
-class DisciplinePrerequisite implements IConstructPrerequisite<Character> {
+class DisciplinePrerequisite implements IConstructPrerequisite {
     discipline: Department;
     private value: number;
 
@@ -171,7 +173,7 @@ class DisciplinePrerequisite implements IConstructPrerequisite<Character> {
         this.value = minValue;
     }
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return c.departments[this.discipline] >= this.value;
     }
 
@@ -180,9 +182,9 @@ class DisciplinePrerequisite implements IConstructPrerequisite<Character> {
     }
 };
 
-class HasUntrainedDisciplinePrerequisite implements IConstructPrerequisite<Character> {
+class HasUntrainedDisciplinePrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character): boolean {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station): boolean {
         return c.departments.filter(d => d === 1).length > 0;
     }
     describe(): string {
@@ -190,7 +192,7 @@ class HasUntrainedDisciplinePrerequisite implements IConstructPrerequisite<Chara
     }
 };
 
-class VariableDisciplinePrerequisite implements IConstructPrerequisite<Character> {
+class VariableDisciplinePrerequisite implements IConstructPrerequisite {
     private discipline1: Department;
     private discipline2: Department;
     private value: number;
@@ -201,7 +203,7 @@ class VariableDisciplinePrerequisite implements IConstructPrerequisite<Character
         this.value = minValue;
     }
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return c.departments[this.discipline1] >= this.value ||
                c.departments[this.discipline2] >= this.value;
     }
@@ -211,10 +213,11 @@ class VariableDisciplinePrerequisite implements IConstructPrerequisite<Character
     }
 };
 
-class RandomNpcPrerequisite implements IConstructPrerequisite<Character> {
+class RandomNpcPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
-        return c.npcGenerationStep?.specialization != null;
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        return c instanceof Character &&
+            c.npcGenerationStep?.specialization != null;
     }
 
     describe(): string {
@@ -222,9 +225,9 @@ class RandomNpcPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class ScientistPrerequisite implements IConstructPrerequisite<Character> {
+class ScientistPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         let science = c.departments[Department.Science];
         let temp = c.departments.filter(d => d > science);
         return temp.length === 0;
@@ -235,9 +238,9 @@ class ScientistPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class SecurityPrerequisite implements IConstructPrerequisite<Character> {
+class SecurityPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         let security = c.departments[Department.Security];
         let temp = c.departments.filter(d => d > security);
         return temp.length === 0;
@@ -248,9 +251,9 @@ class SecurityPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class CommandPrerequisite implements IConstructPrerequisite<Character> {
+class CommandPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         let command = c.departments[Department.Command];
         let temp = c.departments.filter(d => d > command);
         return temp.length === 0;
@@ -261,10 +264,11 @@ class CommandPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class FlagOfficerPrerequisite implements IConstructPrerequisite<Character> {
+class FlagOfficerPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
-        return c.rank != null && isFlagRank(c.rank?.id);
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        return c instanceof Character &&
+            c.rank != null && isFlagRank(c.rank?.id);
     }
 
     describe(): string {
@@ -272,8 +276,8 @@ class FlagOfficerPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class Version1Prerequisite implements IConstructPrerequisite<Character> {
-    isPrerequisiteFulfilled(c: Character) {
+class Version1Prerequisite implements IConstructPrerequisite {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return c.version === 1;
     }
 
@@ -282,8 +286,8 @@ class Version1Prerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class Version2Prerequisite implements IConstructPrerequisite<Character> {
-    isPrerequisiteFulfilled(c: Character) {
+class Version2Prerequisite implements IConstructPrerequisite {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return c.version === 2;
     }
 
@@ -292,7 +296,7 @@ class Version2Prerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class SpeciesPrerequisite implements IConstructPrerequisite<Character> {
+class SpeciesPrerequisite implements IConstructPrerequisite {
     private species: number;
     private allowCrossSelection: boolean;
     private allowMixedSpecies: boolean;
@@ -303,8 +307,10 @@ class SpeciesPrerequisite implements IConstructPrerequisite<Character> {
         this.allowMixedSpecies = allowMixedSpecies;
     }
 
-    isPrerequisiteFulfilled(c: Character) {
-        if (this.allowMixedSpecies) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        if (!(c instanceof Character)) {
+            return false;
+        } else if (this.allowMixedSpecies) {
             return c.speciesStep?.species === this.species ||
             c.speciesStep?.mixedSpecies === this.species ||
             c.speciesStep?.originalSpecies === this.species ||
@@ -319,7 +325,7 @@ class SpeciesPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class AnySpeciesPrerequisite implements IConstructPrerequisite<Character> {
+class AnySpeciesPrerequisite implements IConstructPrerequisite {
     private species: Species[];
     private allowCrossSelection: boolean;
 
@@ -328,19 +334,23 @@ class AnySpeciesPrerequisite implements IConstructPrerequisite<Character> {
         this.allowCrossSelection = allowCrossSelection;
     }
 
-    isPrerequisiteFulfilled(c: Character) {
-        let result = (this.allowCrossSelection && store.getState().context.allowCrossSpeciesTalents);
-        this.species.forEach(s => result = result || c.speciesStep?.species === s || c.speciesStep?.mixedSpecies === s || c.speciesStep?.originalSpecies === s);
-        return result;
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        if (!(c instanceof Character)) {
+            return false;
+        } else {
+            let result = (this.allowCrossSelection && store.getState().context.allowCrossSpeciesTalents);
+            this.species.forEach(s => result = result || c.speciesStep?.species === s || c.speciesStep?.mixedSpecies === s || c.speciesStep?.originalSpecies === s);
+            return result;
+        }
     }
     describe(): string {
         return "";
     }
 }
 
-class ChildOnlyPrerequisite implements IConstructPrerequisite<Character> {
+class ChildOnlyPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return false; // it's never selected by players; only automatically added for child characters
     }
     describe(): string {
@@ -348,22 +358,22 @@ class ChildOnlyPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class CommandingAndExecutiveOfficerPrerequisite implements IConstructPrerequisite<Character> {
+class CommandingAndExecutiveOfficerPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         // Awkwardly, we don't know the character's role at the time that
         // they select talents. What we *do* know is that Young characters
         // don't get to be Commanding Officers or Executive Officers.
-        return !c.isYoung();
+        return  c instanceof Character && !c.isYoung();
     }
     describe(): string {
         return "Commanding Officer or Executive Officer only";
     }
 }
 
-class GMsDiscretionPrerequisite implements IConstructPrerequisite<Character> {
+class GMsDiscretionPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return store.getState().context.allowEsotericTalents;
     }
     describe(): string {
@@ -371,9 +381,9 @@ class GMsDiscretionPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class OnlyAtCharacterCreationPrerequisite implements IConstructPrerequisite<Character> {
+class OnlyAtCharacterCreationPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return true;
     }
     describe(): string {
@@ -382,9 +392,9 @@ class OnlyAtCharacterCreationPrerequisite implements IConstructPrerequisite<Char
 }
 
 
-class SupportingCharacterPrerequisite implements IConstructPrerequisite<Character> {
+class SupportingCharacterPrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return c.stereotype === Stereotype.SupportingCharacter;
     }
     describe(): string {
@@ -392,14 +402,14 @@ class SupportingCharacterPrerequisite implements IConstructPrerequisite<Characte
     }
 }
 
-class NotCharacterTypePrerequisite implements IConstructPrerequisite<Character> {
+class NotCharacterTypePrerequisite implements IConstructPrerequisite {
     private type: CharacterType;
 
     constructor(type: CharacterType) {
         this.type = type;
     }
 
-    isPrerequisiteFulfilled(c: Character) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return c.type !== this.type;
     }
     describe(): string {
@@ -407,38 +417,14 @@ class NotCharacterTypePrerequisite implements IConstructPrerequisite<Character> 
     }
 }
 
-class AnyOfPrerequisite implements IConstructPrerequisite<Construct>, ICompositePrerequisite<Construct> {
-    prerequisites: IConstructPrerequisite<Construct>[];
-
-    constructor(...prerequisites: IConstructPrerequisite<Construct>[]) {
-        this.prerequisites = prerequisites;
-    }
-
-    isPrerequisiteFulfilled(c: Construct) {
-        let result = false;
-        for (let p of this.prerequisites) {
-            result = result || p.isPrerequisiteFulfilled(c);
-            if (result) {
-                break;
-            }
-        }
-        return result;
-    }
-    describe(): string {
-
-        return "";
-    }
-}
-
-
-class TalentPrerequisite implements IConstructPrerequisite<Construct> {
+class TalentPrerequisite implements IConstructPrerequisite {
     private talent: string[];
 
     constructor(...talent: string[]) {
         this.talent = talent;
     }
 
-    isPrerequisiteFulfilled(c: Construct) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         let result = false;
         this.talent.forEach(t =>
             result = result || c.hasTalent(t)
@@ -450,18 +436,22 @@ class TalentPrerequisite implements IConstructPrerequisite<Construct> {
     }
 }
 
-class FocusPrerequisite implements IConstructPrerequisite<Character> {
+class FocusPrerequisite implements IConstructPrerequisite {
     private focuses: string[];
 
     constructor(...focuses: string[]) {
         this.focuses = focuses;
     }
 
-    isPrerequisiteFulfilled(c: Character) {
-        let localizedFocuses = this.focuses.map(f => localizedFocus(f));
-        return c.focuses
-            .filter(f => this.focuses.includes(f) || localizedFocuses.includes(f))
-            .length > 0;
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        if (!(c instanceof Character)) {
+            return false;
+        } else {
+            let localizedFocuses = this.focuses.map(f => localizedFocus(f));
+            return c.focuses
+                .filter(f => this.focuses.includes(f) || localizedFocuses.includes(f))
+                .length > 0;
+        }
     }
     describe(): string {
         if (this.focuses.length === 1) {
@@ -472,14 +462,14 @@ class FocusPrerequisite implements IConstructPrerequisite<Character> {
     }
 }
 
-class NotTalentPrerequisite implements IConstructPrerequisite<Construct> {
+class NotTalentPrerequisite implements IConstructPrerequisite {
     private talent: string;
 
     constructor(talent: string) {
         this.talent = talent;
     }
 
-    isPrerequisiteFulfilled(c: Construct) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         return !c.hasTalent(this.talent);
     }
     describe(): string {
@@ -487,31 +477,31 @@ class NotTalentPrerequisite implements IConstructPrerequisite<Construct> {
     }
 }
 
-class EraPrerequisite implements IConstructPrerequisite<Construct> {
+class EraPrerequisite implements IConstructPrerequisite {
     private era: Era;
 
     constructor(era: Era) {
         this.era = era;
     }
 
-    isPrerequisiteFulfilled(c: Construct) {
-        return store.getState().context.era >= this.era;
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        return c.era >= this.era;
     }
     describe(): string {
         return "";
     }
 }
 
-class NotEraPrerequisite implements IConstructPrerequisite<Construct> {
+class NotEraPrerequisite implements IConstructPrerequisite {
     private eras: Era[];
 
     constructor(...eras: Era[]) {
         this.eras = eras;
     }
 
-    isPrerequisiteFulfilled(c: Construct) {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
         let result = true;
-        this.eras.forEach((e) => { result = result && store.getState().context.era !== e })
+        this.eras.forEach((e) => { result = result && c.era !== e })
         return result;
     }
     describe(): string {
@@ -519,8 +509,8 @@ class NotEraPrerequisite implements IConstructPrerequisite<Construct> {
     }
 }
 
-class StarshipPrerequisite implements IConstructPrerequisite<Starship> {
-    isPrerequisiteFulfilled(starship: Starship) {
+class StarshipPrerequisite implements IConstructPrerequisite {
+    isPrerequisiteFulfilled(starship: Character|Starship|Creature|Station) {
         return starship instanceof Starship;
     }
     describe(): string {
@@ -528,46 +518,56 @@ class StarshipPrerequisite implements IConstructPrerequisite<Starship> {
     }
 }
 
-class StarbasePrerequisite implements IConstructPrerequisite<Construct> {
-    isPrerequisiteFulfilled(c: Construct) {
-        return false;
+class StarshipOrStationPrerequisite implements IConstructPrerequisite {
+    isPrerequisiteFulfilled(starship: Character|Starship|Creature|Station) {
+        return starship instanceof Starship || starship instanceof Station;
     }
     describe(): string {
         return "";
     }
 }
 
-export class MaxServiceYearPrerequisite implements IConstructPrerequisite<Starship> {
+
+class StarbasePrerequisite implements IConstructPrerequisite {
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        return c instanceof Station;
+    }
+    describe(): string {
+        return "";
+    }
+}
+
+export class MaxServiceYearPrerequisite implements IConstructPrerequisite {
     readonly year: number;
 
     constructor(year: number) {
         this.year = year;
     }
 
-    isPrerequisiteFulfilled(s: Starship) {
-        return s != null && s.serviceYear <= this.year;
+    isPrerequisiteFulfilled(s: Character|Starship|Creature|Station) {
+        return s != null && s instanceof Starship && s.serviceYear <= this.year;
     }
     describe(): string {
         return "";
     }
 }
 
-class SpaceframePrerequisite implements IConstructPrerequisite<Starship> {
+class SpaceframePrerequisite implements IConstructPrerequisite {
     private frame: number;
 
     constructor(frame: number) {
         this.frame = frame;
     }
 
-    isPrerequisiteFulfilled(s: Starship) {
-        return s?.spaceframeModel?.id === this.frame;
+    isPrerequisiteFulfilled(s: Character|Starship|Creature|Station) {
+        return s instanceof Starship && s?.spaceframeModel?.id === this.frame;
     }
     describe(): string {
         return "";
     }
 }
 
-export class CenturyPrerequisite implements IConstructPrerequisite<Starship> {
+export class CenturyPrerequisite implements IConstructPrerequisite {
     private century: number;
     private toCentury?: number;
 
@@ -579,9 +579,11 @@ export class CenturyPrerequisite implements IConstructPrerequisite<Starship> {
         return this.toCentury == null ? null : centuryToYear(this.toCentury);
     }
 
-    isPrerequisiteFulfilled(s: Starship) {
+    isPrerequisiteFulfilled(s: Character|Starship|Creature|Station) {
         let year = centuryToYear(this.century);
-        if (this.toCentury == null) {
+        if (!(s instanceof Starship)) {
+            return false;
+        } else if (this.toCentury == null) {
             return s != null && s.serviceYear != null && s.serviceYear >= year;
         } else {
             let toYear = centuryToYear(this.toCentury + 1) + 1;
@@ -610,46 +612,23 @@ export class CenturyPrerequisite implements IConstructPrerequisite<Starship> {
     }
 }
 
-class AllOfPrerequisite implements IConstructPrerequisite<Construct>, ICompositePrerequisite<Construct> {
-    prerequisites: IConstructPrerequisite<Construct>[];
-
-    constructor(...prerequisites: IConstructPrerequisite<Construct>[]) {
-        this.prerequisites = prerequisites;
-    }
-
-    isPrerequisiteFulfilled(c: Construct) {
-        if (this.prerequisites.length === 0) {
-            return true;
-        } else {
-            let result = true;
-            this.prerequisites.forEach(req => {
-                result = result && req.isPrerequisiteFulfilled(c);
-            });
-            return result;
-        }
-    }
-
-    describe(): string {
-        let temp = this.prerequisites.map(p => "(" + p.describe() + ")");
-        return temp.join(" and ");
-    }
-}
-class SpaceframesPrerequisite implements IConstructPrerequisite<Starship> {
+class SpaceframesPrerequisite implements IConstructPrerequisite {
     private frames: number[];
 
     constructor(frames: number[]) {
         this.frames = frames;
     }
 
-    isPrerequisiteFulfilled(starship: Starship) {
-        return starship.spaceframeModel && (this.frames.indexOf(starship.spaceframeModel.id) > -1);
+    isPrerequisiteFulfilled(starship: Character|Starship|Creature|Station) {
+        return starship instanceof Starship &&
+            starship.spaceframeModel && (this.frames.indexOf(starship.spaceframeModel.id) > -1);
     }
     describe(): string {
         return "";
     }
 }
 
-class DepartmentPrerequisite implements IConstructPrerequisite<Starship> {
+class DepartmentPrerequisite implements IConstructPrerequisite {
     private department: Department;
     private value: number;
 
@@ -658,7 +637,7 @@ class DepartmentPrerequisite implements IConstructPrerequisite<Starship> {
         this.value = value;
     }
 
-    isPrerequisiteFulfilled(starship: Starship) {
+    isPrerequisiteFulfilled(starship: Character|Starship|Creature|Station) {
         return starship != null && starship.departments[this.department] >= this.value;
     }
     describe(): string {
@@ -666,7 +645,7 @@ class DepartmentPrerequisite implements IConstructPrerequisite<Starship> {
     }
 }
 
-class SystemPrerequisite implements IConstructPrerequisite<Starship> {
+class SystemPrerequisite implements IConstructPrerequisite {
     private system: System;
     private value: number;
 
@@ -675,17 +654,18 @@ class SystemPrerequisite implements IConstructPrerequisite<Starship> {
         this.value = value;
     }
 
-    isPrerequisiteFulfilled(starship: Starship) {
-        return starship != null && starship.systems[this.system] >= this.value;
+    isPrerequisiteFulfilled(starship: Character|Starship|Creature|Station) {
+        return (starship instanceof Starship || starship instanceof Station)
+            && starship != null && starship.systems[this.system] >= this.value;
     }
     describe(): string {
         return "";
     }
 }
 
-class CreaturePrerequisite implements IConstructPrerequisite<Creature> {
+class CreaturePrerequisite implements IConstructPrerequisite {
 
-    isPrerequisiteFulfilled(creature: Creature) {
+    isPrerequisiteFulfilled(creature: Character|Starship|Creature|Station) {
         return creature instanceof Creature;
     }
     describe(): string {
@@ -696,13 +676,13 @@ class CreaturePrerequisite implements IConstructPrerequisite<Creature> {
 export class TalentModel implements ITalent {
     readonly name: string;
     private description: string;
-    prerequisites: IConstructPrerequisite<Construct>[];
+    prerequisites: IConstructPrerequisite[];
     maxRank: number;
     category: string;
     aliases: AliasModel[];
     specialRule: boolean;
 
-    constructor(name: string, desc: string, prerequisites: IConstructPrerequisite<Construct>[], maxRank: number = 1, category?: string, specialRule: boolean = false, ...aliases: AliasModel[]) {
+    constructor(name: string, desc: string, prerequisites: IConstructPrerequisite[], maxRank: number = 1, category?: string, specialRule: boolean = false, ...aliases: AliasModel[]) {
         this.name = name;
         this.description = desc;
         this.prerequisites = prerequisites;
@@ -802,7 +782,7 @@ export class TalentModel implements ITalent {
         return result === key ? "" : result;
     }
 
-    private sourcesFromPrerequsite(prerequisite: ICompositePrerequisite<Construct>) {
+    private sourcesFromPrerequsite(prerequisite: ICompositePrerequisite) {
         let result = [];
         let subList = prerequisite.prerequisites;
         subList.forEach(p => {
@@ -855,7 +835,7 @@ export class TalentModel implements ITalent {
         return available;
     }
 
-    isPrerequisiteFulfilled(c: Construct) {
+    isPrerequisiteFulfilled(c: Starship|Character|Creature|Station) {
         let include = true;
         this.prerequisites.forEach((p, i) => {
             if (!p.isPrerequisiteFulfilled(c)) {
@@ -865,7 +845,7 @@ export class TalentModel implements ITalent {
         return include;
     }
 
-    isSourcePrerequisiteFulfilled(c: Construct) {
+    isSourcePrerequisiteFulfilled(c: Starship|Character|Creature|Station) {
         let include = true;
         this.prerequisites.forEach((p, i) => {
             if (p instanceof SourcePrerequisite && !p.isPrerequisiteFulfilled(c)) {
@@ -3553,85 +3533,85 @@ export class Talents {
             new TalentModel(
                 "Ablative Armor",
                 "The vessel’s hull plating has an additional ablative layer that disintegrates slowly under extreme temperatures, such as those caused by energy weapons and torpedo blasts, dissipating the energy, and protecting the ship. This plating is replaced periodically. The ship’s Resistance is increased by 2.",
-                [new StarshipPrerequisite(), new ServiceYearPrerequisite(2371), new SourcePrerequisite(Source.Core, Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new ServiceYearPrerequisite(2371), new SourcePrerequisite(Source.Core, Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Advanced Research Facilities",
                 "The vessel is equipped with additional laboratories and long-term research facilities, which allow the crew to study phenomena over a protracted period, and thus generate a wealth of useful information. Whenever a character on board the ship attempts a Task to perform research, and they are assisted by the ship’s Computers + Science, the character gains one bonus Momentum, which must be used for the Obtain Information Momentum Spend.",
-                [new StarshipPrerequisite(), new DepartmentPrerequisite(Department.Science, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Science, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Advanced Sensor Suites",
                 "The vessel’s sensors are amongst the most sophisticated and advanced available in the fleet. Unless the ship’s Sensors have suffered one or more Breaches, whenever a character performs a Task assisted by the ship’s Sensors, they may reduce the Difficulty of the Task by one, to a minimum of 0.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Advanced Shields",
                 "The vessel’s shields are state of the art, using developments that other cultures have not yet learned to overcome, or which simply provide greater protection for the same power expenditure. The ship’s maximum Shields are increased by 5.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
                 "Starship"),
             new TalentModel(
                 "Advanced Sickbay",
                 "The ship’s medical ward or sickbay is well equipped, and larger than normal for a ship of this size. The ship gains the Advanced Medical Ward or Advanced Sickbay advantage, which applies to all tasks related to medicine and biology performed within the ward or sickbay. This advantage is lost if the ship’s Computers system is disabled.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.UtopiaPlanitia, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.UtopiaPlanitia, Source.Core2ndEdition)],
                 1,
                 "Starship", false, new AliasModel("Advanced Medical Ward/Sickbay", Source.UtopiaPlanitia), new AliasModel("Advanced Medical Ward/Sickbay", Source.CaptainsLog), new AliasModel("Advanced Medical Ward", Source.KlingonCore), new AliasModel("Advanced Sickbay", Source.Core)),
             new TalentModel(
                 "Backup EPS Conduits",
                 "The ship’s power conduits have additional redundancies, which can be activated to reroute power more easily in case of an emergency, keeping it from being lost when the ship is damaged. Whenever the ship would lose one or more Power because of suffering damage, roll [D] for each Power lost. Each Effect rolled prevents the loss of that point of Power.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
                 "Starship"),
             new TalentModel(
                 "Command Ship",
                 "The ship has command and control systems allowing it to coordinate easily with allies during a crisis. When a character on the ship succeeds at a Direct Task to create an Advantage, they may always be assisted by the ship’s Communications + Command, and they may confer the Advantage to allied ships or away teams with whom the ship maintains a communications link.",
-                [new StarshipPrerequisite(), new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Diplomatic Suites",
                 "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions. When hosting negotiations, members of the crew may be assisted by the ship’s Computers + Command or Structure + Command.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Electronic Warfare Systems",
                 "The ship’s communications systems have been speciallydesigned to intercept and disrupt enemy communications in battle. Whenever a character on the ship succeeds at the Intercept or Signals Jamming Tasks, they may spend 2 Momentum to select one additional ship to target.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Emergency Medical Hologram",
                 "The ship’s sickbay is equipped with holoemitters and a stateof-the-art holographic doctor, able to assist medical personnel during emergencies. The ship has one additional Supporting Character, an Emergency Medical Hologram, using the Attributes, Disciplines, and so forth as shown in the sidebar, which does not cost any Crew Support to introduce, and which does not automatically improve when introduced. This character cannot go into any location not equipped with holoemitters.",
-                [new StarshipPrerequisite(), new NotCharacterTypePrerequisite(CharacterType.KlingonWarrior), new ServiceYearPrerequisite(2371), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition), new MaxServiceYearPrerequisite(2380)],
+                [new StarshipOrStationPrerequisite(), new NotCharacterTypePrerequisite(CharacterType.KlingonWarrior), new ServiceYearPrerequisite(2371), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition), new MaxServiceYearPrerequisite(2380)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Extensive Shuttlebays",
                 "The vessel’s shuttlebays are large, well-supplied, and able to support a larger number of active shuttle missions simultaneously. The ship may have twice as many small craft active at any one time as it would normally allow, and it may carry up to two Scale 2 small craft.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
                 "Starship"),
             new TalentModel(
                 "Fast Targeting Systems",
                 "The ship’s targeting systems can lock weapons on target much faster and more accurately than other ships of its class, giving it an edge in battle. The ship does not suffer the normal Difficulty increase for targeting a specific System on the enemy ship.",
-                [new StarshipPrerequisite(), new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Improved Damage Control",
                 "The ship has more efficient damage reporting systems, and better-trained teams of technicians, allowing the crew to respond more quickly to damage during a crisis. When a character takes the Damage Control Task aboard this ship, they may re-roll a single d20. If the repairs require an Extended Task, then the characters also gain Progression 1, adding +1 to Work done for each Effect rolled.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Improved Hull Integrity",
                 "The ship’s hull has been reinforced to hold together better under stress and damage. The ship’s Resistance is increased by 1.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3643,13 +3623,13 @@ export class Talents {
             new TalentModel(
                 "Improved Power Systems",
                 "The ship’s power systems are extremely efficient, allowing power to be redirected and rerouted from different systems very quickly. Whenever a character succeeds at a Power Management Task, the ship gains 2 Power per Momentum spent (Repeatable) instead of 1.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Improved Reaction Control System",
                 "The ship’s maneuvering thrusters operate with greater precision, allowing the ship to adjust its course more carefully. Whenever a Task to move or maneuver the ship would increase in Difficulty because of obstacles or hazards, reduce the Difficulty by 1 (to a minimum of the Task’s normal Difficulty).",
-                [new StarshipPrerequisite(),
+                [new StarshipOrStationPrerequisite(),
                     new VersionConstrainedPrerequisite(1, new DepartmentPrerequisite(Department.Conn, 3)),
                     new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
@@ -3657,7 +3637,7 @@ export class Talents {
             new TalentModel(
                 "Improved Shield Recharge",
                 "The ship’s deflector shields have redundant capacitors and emitter arrays that allow the shields to be recharged and replenished much more efficiently. Whenever the Regenerate Shields Task is successful, the ship regains 3 points of Shields, plus 3 more for each Momentum spent (Repeatable), instead of the normal amount.",
-                [new StarshipPrerequisite(), new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
                 "Starship"),
             new TalentModel(
@@ -3669,31 +3649,31 @@ export class Talents {
             new TalentModel(
                 "Modular Laboratories",
                 "The ship has considerable numbers of empty, multi-purpose compartments that can be converted to laboratories as and when required. At the start of an adventure, the crew may decide how the modular laboratories are configured; this configuration counts as an Advantage which applies to work performed within the laboratories.",
-                [new StarshipPrerequisite(), new DepartmentPrerequisite(Department.Science, 2), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Science, 2), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Quantum Torpedoes",
                 "The vessel has been equipped with the latest in ship-to-ship munitions: the quantum torpedoes. The ship has quantum torpedoes in addition to any other form of torpedo it carries.",
-                [new StarshipPrerequisite(), new ServiceYearPrerequisite(2371), new NotSourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog)],
+                [new StarshipOrStationPrerequisite(), new ServiceYearPrerequisite(2371), new NotSourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Rapid-Fire Torpedo Launcher",
                 "The vessel’s torpedo launchers have been redesigned to allow the ship to fire multiple torpedoes much more quickly and accurately. Whenever the crew add 3 to Threat to fire a torpedo salvo, they may re-roll a single d20 on the attack, and any number of [D] on the damage roll.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition), new Version1Prerequisite()],
                 1,
                 "Starship"),
             new TalentModel(
                 TALENT_NAME_REDUNDANT_SYSTEMS,
                 "The ship has multiple additional redundancies that allow it to withstand severe damage more easily. Nominate a single System. When that system becomes Damaged or Disabled, the crew may choose to activate the backups as a Minor Action; if the System was Damaged, it is no longer Damaged. If it was Disabled, it becomes Damaged instead. A System’s backups may only be activated once per adventure, so subsequent damage will have the normal effect.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Rugged Design",
                 "The ship is designed with the frontier in mind, with a durable construction and easy access to critical systems that allow repairs to be made easily. Reduce the Difficulty of all Tasks to repair the ship by 1, to a minimum of 1.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3710,7 +3690,7 @@ export class Talents {
             new TalentModel(
                 "Secondary Reactors",
                 "The ship has additional impulse and fusion reactors, that allow the ship to generate far greater quantities of energy. Increase the ship’s normal Power capacity by 5.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
                 "Starship"),
             new TalentModel(
@@ -3722,20 +3702,20 @@ export class Talents {
             new TalentModel(
                 "Dedicated Personnel",
                 "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "High-Power Tractor Beam",
                 "The ship’s tractor beam systems channel far greater quantities of power and exert much more force on the target. The ship’s tractor beam has a strength two higher than normal. Further, the ship may spend Power whenever a target attempts to escape the tractor beam to increase its strength for that attempt; the strength increases by 1 for every two Power spent.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 2,
                 "Starship"),
             new TalentModel(
                 "Independent Phaser Supply",
                 "The ship’s phasers use an independent power supply, rather than drawing directly from the ship’s other power sources. Attacking with the ship’s phasers no longer has a Power Requirement. However, the ship may not spend additional Power to boost the effectiveness of an attack with the phasers.",
                 [
-                    new StarshipPrerequisite(),
+                    new StarshipOrStationPrerequisite(),
                     new SourcePrerequisite(Source.CommandDivision, Source.DiscoveryCampaign, Source.UtopiaPlanitia, Source.CaptainsLog)],
                 1,
                 "Starship", false, new AliasModel("Independent Phaser Supply", Source.CommandDivision), new AliasModel("Independent Phaser Supply", Source.DiscoveryCampaign), new AliasModel("Independent Phaser Supply", Source.UtopiaPlanitia), new AliasModel("Independent Phaser Supply", Source.CaptainsLog)),
@@ -3766,61 +3746,61 @@ export class Talents {
             new TalentModel(
                 "Specialized Crew (Command)",
                 "Rare in Starfleet, a starship with a specialized crew has had personnel assigned to it primarily from a specific division. During an adventure, if the players wish to introduce supporting characters, they may not use more than half their ship’s Crew Support rating on characters from divisions outside of the ship’s specialty. An example of this is the Crossfield class that is specialized with the Science division and is Scale 4. This means that only two crew points could be used for supporting characters from the Command or Operations divisions, while the other two could be used only for the Science division.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Specialized Crew (Operations)",
                 "Rare in Starfleet, a starship with a specialized crew has had personnel assigned to it primarily from a specific division. During an adventure, if the players wish to introduce supporting characters, they may not use more than half their ship’s Crew Support rating on characters from divisions outside of the ship’s specialty. An example of this is the Crossfield class that is specialized with the Science division and is Scale 4. This means that only two crew points could be used for supporting characters from the Command or Operations divisions, while the other two could be used only for the Science division.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Specialized Crew (Science)",
                 "Rare in Starfleet, a starship with a specialized crew has had personnel assigned to it primarily from a specific division. During an adventure, if the players wish to introduce supporting characters, they may not use more than half their ship’s Crew Support rating on characters from divisions outside of the ship’s specialty. An example of this is the Crossfield class that is specialized with the Science division and is Scale 4. This means that only two crew points could be used for supporting characters from the Command or Operations divisions, while the other two could be used only for the Science division.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Ablative Armor Generator",
                 "The ship is fitted with a number of external replicators pre-set to materialize an outer layer of armor plating over the hull, reinforced with structural integrity fields that make it extraordinarily resilient. When the ship raises its Shields, it may deploy armor instead, by spending 3 Power. This increases the maximum Shields capacity by 5 and increases the ship’s Resistance by 3. While armor is deployed, the Modulate Shields and Regenerate Shields actions cannot be taken – the armor cannot be fine-tuned in those ways.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.GmToolkit2e), new CenturyPrerequisite(25)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.GmToolkit2e), new CenturyPrerequisite(25)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Ablative Field Projector",
                 "The ship’s shield emitters are combined with an ablative field projector that allows its graviton field to be shared with another target in Close range. These projectors charge the target’s shields while dissipating its own. Doing so requires a Difficulty 1 Control + Security task. On a success, your ship loses 1 Shield point and the target gains 1 Shield point. This process can be repeated any number of times by spending 1 Momentum for each swap.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Adaptable Energy Weapons",
                 "The ship’s weapon delivery systems are enhanced by multiparticle emitters. These emitters allow for the ship’s energy weapon capabilities to be modified when fired. If desired, before an attack is rolled, the ship’s weapon’s Stress Rating is reduced by 1[D], but the officer making the attack roll may swap out any one Stress effect for another.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(24)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(24)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Advanced Emergency Crew Holograms",
                 "The starship has the entirety of its interior spaces and some critical areas on its exterior outfitted with holoemitters, allowing the computer to project simulated personnel during emergencies. The ship has a number of holographic supporting characters (which should be pre-created) equal to half the ship’s Computers score, rounding up; their appearance and personality are determined when the ship is created. These can be activated or deactivated as a minor action, and they do not require any Crew Support to appear. They cannot operate away from the ship, and they do not improve when introduced in subsequent adventures.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new ServiceYearPrerequisite(2380)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new ServiceYearPrerequisite(2380)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Advanced Transporters",
                 "The ship is outfitted with dozens of transporter emitter array pads, allowing targeting scanners to lock on to their targets and destination more easily. While accurate, this system is Power intensive. The Difficulty of all transporter tasks are decreased by 1. The Power requirement of all transporter tasks is increased by 1.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(24), new DepartmentPrerequisite(Department.Science, 4)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(24), new DepartmentPrerequisite(Department.Science, 4)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Annular Confinement Jacketing",
                 "The ship’s energy weapon emitters create an annular confinement beam around its energy beams, allowing the weapons to fire short distances at warp speeds. The ship may make an attack with its energy weapons at Close range while at warp; however, the Difficulty for the attack is increased by 2.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition), new CenturyPrerequisite(22, 23)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition), new CenturyPrerequisite(22, 23)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Automated Defenses",
                 "The ship’s weapons systems can automatically lock on to a target and fire. At the end of a combat round, if nobody fired a ship weapon, the ship may make an unassisted energy weapon attack using its Weapons + Security against a target. Momentum may be used and generated as normal for this attack.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(23), new DepartmentPrerequisite(Department.Security, 3)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(23), new DepartmentPrerequisite(Department.Security, 3)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3835,7 +3815,7 @@ export class Talents {
             new TalentModel(
                 "Cloaked Mines",
                 "The ship’s mines are equipped with state-of-the-art cloaking technology, making them almost impossible to detect. Mines that the ship places have the Hidden 2 Weapon Quality.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.TechnicalManual),
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.TechnicalManual),
                     new VersionConstrainedPrerequisite(1, new DepartmentPrerequisite(Department.Security, 3)),
                     new VersionConstrainedPrerequisite(2, new DepartmentPrerequisite(Department.Security, 4)),
                     new VersionConstrainedPrerequisite(2, new TalentPrerequisite("Minelayer"))
@@ -3845,7 +3825,7 @@ export class Talents {
             new TalentModel(
                 "Cloaking Device",
                 "The vessel has a device that allows it to vanish from sensors. Operating the device requires a Control + Engineering task with a Difficulty of 2, assisted by the ship’s Engines + Security as this is a task from the tactical position. This task has a Power requirement of 3. If successful, the vessel gains the Cloaked trait. While cloaked, the vessel cannot attempt any attacks, nor can it be the target of an attack unless the attacker has found some way of detecting the cloaked vessel. While cloaked, a vessel’s shields are down. It requires a minor action to decloak a vessel.",
-                [new StarshipPrerequisite(), new AnyOfPrerequisite(
+                [new StarshipOrStationPrerequisite(), new AnyOfPrerequisite(
                     new AllOfPrerequisite(new ServiceYearPrerequisite(2272), new SourcePrerequisite(Source.KlingonCore)),
                     new AllOfPrerequisite(new GMsDiscretionPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)))],
                 1,
@@ -3853,13 +3833,13 @@ export class Talents {
             new TalentModel(
                 "Dedicated Subspace Transceiver Array",
                 "A starship with this talent has a section of its hull that slides away where a long, tether-like subspace transceiver array can be deployed to enhance the vessel’s communication range and clarity, even at warp. Any tasks involving sending, receiving, or intercepting subspace or standard EM communications have their Difficulty reduced by 1.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Deluxe Galley",
                 "The ship’s mess hall is equipped with top-of-the-line food preparation systems as well as vast stores of non- replicated food. Whenever the ship’s cook or chef uses their role ability while in the ship’s galley, they generate 1 additional Momentum. In addition, whenever a crew member meets with a guest of the ship in the galley, they gain the Fine Dining advantage, which comes into play with all Presence and Command tasks.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3871,19 +3851,19 @@ export class Talents {
             new TalentModel(
                 "Expanded Munitions",
                 "The ship has been designed to defend itself from all manner of threats. As such, it has either additional energy delivery systems or extended storage for torpedoes or mines. The ship may add any one weapon to its profile. This talent may be taken multiple times, adding a different weapon each time. Any prerequisites for the weapon or its delivery system still apply.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)],
                 999,
                 "Starship"),
             new TalentModel(
                 "Expansive Department",
                 "This talent represents a highly-focused starship with many specialists in their field working closely together to perform tasks at peak efficiency. This talent must be taken for a starship to have a department score of 6 through application of a mission profile or through game events and player actions. Starbases do not need this talent to have a department above 5. All tasks that include this Expansive Department have a target number calculated as normal. Whenever the ship assists a task using this department, or performs a task on its own using this department, the ship may re-roll a d20.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "High-Resolution Sensors",
                 "The vessel’s sensors can gain large amounts of accurate data, though they are extremely sensitive. While the vessel is not in combat, any successful task that is assisted by the ship’s Sensors gains one bonus Momentum.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3895,19 +3875,19 @@ export class Talents {
             new TalentModel(
                 "Point Defense System",
                 "The ship is equipped with a system of small energy weapon emitters that operates independently from the main weapons systems. When a torpedo targets the ship, these emitters start firing in the direction it is traveling from, potentially destroying it before it impacts the shields or the ship’s hull. This system only works at subwarp speeds. The ship is considered to have Cover 2[D] against torpedo attacks.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Security, 3)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Security, 3)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Regenerative Hull",
                 "The ship’s hull is infused with reverse-engineered Borg nanite technology that seeks out and repairs the hull immediately when it is damaged, often preventing a breach before it can happen. The amount of Stress needed for the ship to sustain a breach is increased by 1.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Self-Replicating Mines",
                 "The ship carries mines that are capable of replicating themselves over time, allowing for a more thorough spread filling the area they’re deployed in. The Difficulty of any task made to avoid the mines does not reduce when mines are detonated.",
-                [new StarshipPrerequisite(),
+                [new StarshipOrStationPrerequisite(),
                     new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.TechnicalManual), new ServiceYearPrerequisite(2371),
                     new DepartmentPrerequisite(Department.Security, 4),
                     new VersionConstrainedPrerequisite(2, new TalentPrerequisite("Minelayer")),
@@ -3917,13 +3897,13 @@ export class Talents {
             new TalentModel(
                 "Siphoning Shields",
                 "The vessel’s shield emitters are connected to a network of particle siphons that capture some of the energy released when hit by an energy weapon, channeling it back into the shields. When the ship is hit by an energy weapon, after Stress is rolled, roll 1[D] for each point of Shields lost, then regain a number of Shield points equal to the number of effects rolled.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Slim Sensor Silhouette",
                 "Through a combination of advanced alloys, EM shielding, and electronic countermeasures, the starship is difficult to detect via electromagnetic radiation and subspace sensors. While not a true cloaking device, these vessels can sneak into star systems entirely undetected. Like a cloaking device, utilizing the EM shielding and ECM systems on board requires a Control + Engineering task with a Difficulty of 2. If this task is successful, the maximum Power rating of the ship is reduced by 2 to represent the power usage of the systems and “running silent,” and shields are deactivated. All tasks to detect the stealthy starship have their Difficulty increased by 1. There are no restrictions on weapons fire from the ship using this talent.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
                 "Starship",
                 false,
@@ -3931,7 +3911,7 @@ export class Talents {
             new TalentModel(
                 "Tachyon Detection Field",
                 "The ship is equipped with a field generator that projects a cloud of tachyons around it. Activating the field generator requires a Control + Engineering task with a Difficulty of 2, assisted by the ship’s Sensors + Science, and has a Power requirement of 2. The field remains active until the ship moves. While the field is active, the ship is notified of any cloaked vessels that are within or pass into Close range. The ship may attack a cloaked target within the field, though the Difficulty for the attack is increased by 2.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25), new DepartmentPrerequisite(Department.Science, 3)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25), new DepartmentPrerequisite(Department.Science, 3)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3943,7 +3923,7 @@ export class Talents {
             new TalentModel(
                 "Versatile Tractor Beam",
                 "The ship has exotic particle emitters integrated with its tractor beam system. With a few simple adjustments, the tractor beam can become even more useful against ships trapped within. When the tractor beam is activated, the operator may choose to add one of the following effects:\nDepleting: At the end of each round a target remains within the tractor beam, it loses 1 Shield.\nDraining: At the end of each round a target remains within the tractor beam, it loses 1 Power.",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -3955,49 +3935,49 @@ export class Talents {
             new TalentModel(
                 "Adaptive Shield Modulator",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new CenturyPrerequisite(24)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new CenturyPrerequisite(24)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Expanded Emergency Medical Facilities",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Extensive Automation",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new SystemPrerequisite(System.Computer, 10)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new SystemPrerequisite(System.Computer, 10)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Extensive Medical Laboratories",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 4)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 4)],
                 1,
                 "Starship"),
             new TalentModel(
                 "High-Intensity Energy Weapons",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new SystemPrerequisite(System.Weapons, 10)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new SystemPrerequisite(System.Weapons, 10)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Sophisticated Astrometrics Facilities",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Transport Inhibitors",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Improved Probe Bay",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
                 "Starship"),
             new TalentModel(
@@ -4009,37 +3989,37 @@ export class Talents {
             new TalentModel(
                 "Cluster Torpedoes",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Extended Sensor Range",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Industrial Replicators",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Minelayer",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Modular Cargo Bays",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
                 "Starship"),
             new TalentModel(
                 "Traceable Payload System",
                 "",
-                [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual), new CenturyPrerequisite(25)],
+                [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual), new CenturyPrerequisite(25)],
                 1,
                 "Starship"),
 
@@ -4417,85 +4397,85 @@ export class Talents {
         new TalentModel(
             "First into Battle",
             "When the Klingon Veteran makes a successful attack, they may spend 3 Momentum to assist another Klingon’s next attack with their Daring + Command.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran)],
             1,
             "Klingon", true),
         new TalentModel(
             "Precision Targeting (Klingon)",
             "When the character makes an attack that targets a specific system, he may reroll one d20 in his dice pool, and the attack gains the Piercing 1 damage effect",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite(), new DisciplinePrerequisite(Department.Security, 3)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite(), new DisciplinePrerequisite(Department.Security, 3)],
             1,
             "Klingon", true),
         new TalentModel(
             "Cunning Negotiator",
             "Whenever the character attempts a Presence task to influence an opponent during a negotiation, they may re-roll one d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite(), new AttributePrerequisite(Attribute.Presence, 9)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite(), new AttributePrerequisite(Attribute.Presence, 9)],
             1,
             "Klingon", true),
         new TalentModel(
             "Cutting Wit",
             "The character fights as much with words as with weapons. When in personal combat against an enemy who can understand them, they may use Presence instead of Daring to attack.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa, Species.Orion), new AttributePrerequisite(Attribute.Presence, 9)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa, Species.Orion), new AttributePrerequisite(Attribute.Presence, 9)],
             1,
             "Klingon/Orion", true),
         new TalentModel(
             "Tactical Genius",
             "Once per scene, if the character succeeds at an Insight + Command task to assess their opponent, they may spend 2 Threat to allow all under their command to re-roll one d20 on their next task.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite()],
             1,
             "Klingon", true),
         new TalentModel(
-            "Fleet Commander",
-            "Commanding a vessel during a fleet action reduces the Difficulty of a task to grant a bonus to Korrd’s vessel or group by 1, to a minimum of 1. Aboard a vessel during a fleet action, the character may treat the vessel as having a Command department of 4+, regardless of the actual value.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran), new DisciplinePrerequisite(Department.Command, 3)],
+            "Fleet Commander (NPC)",
+            "Commanding a vessel during a fleet action reduces the Difficulty of a task to grant a bonus to the character's vessel or group by 1, to a minimum of 1. Aboard a vessel during a fleet action, the character may treat the vessel as having a Command department of 4+, regardless of the actual value.",
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran), new DisciplinePrerequisite(Department.Command, 3)],
             1,
             "Klingon", true),
         new TalentModel(
             "Threatening 3 (Klingon)",
             "When the player characters encounter the Klingon character, add three Threat to the Threat pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa)],
             1,
             "Klingon", true),
         new TalentModel(
             "Free Advice Is Seldom Cheap",
             "Increase the Difficulty of all Social Conflict to persuade a Ferengi Merchant by 2. This Difficulty increase is removed as soon as the Ferengi is offered something in trade.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Ferengi, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Ferengi, false)],
             1,
             "Ferengi", true),
         new TalentModel(
             "Keep Your Ears Open",
             "Whenever the character attempts a Task to detect danger or hidden enemies, or to listen in on someone’s conversation, reduce the Difficulty by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Ferengi, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Ferengi, false)],
             1,
             "Ferengi", true),
         new TalentModel(
             "You Can’t Make a Deal If You’re Dead",
             "This Ferengi will never make a lethal attack. Further, whenever attempting a Task to make a deal or otherwise persuade an enemy who they have previously incapacitated, or an enemy who obviously outmatches them, they may add a bonus d20 to the roll.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Ferengi, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Ferengi, false)],
             1,
             "Ferengi", true),
         new TalentModel(
             "Ambush",
             "When attacking an opponent who is unaware, the Romulan Officer may spend 2 Threat, to allow the Officer and all Romulans under their command to re-roll any number of d20s on their attack rolls.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc),new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman),  new OfficerPrerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc),new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman),  new OfficerPrerequisite()],
             1,
             "Romulan", true),
         new TalentModel(
             "Ruthless and Determined",
             "The character may spend 2 Threat to gain the effects of a point of Determination, rather than the normal 3.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite()],
             1,
             "Romulan", true),
         new TalentModel(
             "Supreme Authority",
             "Whenever a Romulan currently under the character's command attempts a Task to resist persuasion or intimidation, the character may spend 1 Threat to allow that Romulan to re-roll, even if they are not present in that scene.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran)],
             1,
             "Romulan", true),
         new TalentModel(
             "Supreme Authority (Cardassian)",
             "Whenever a Cardassian currently under the character's command attempts a Task to resist persuasion or intimidation, the character may spend 1 Threat to allow that Cardassian to re-roll, even if they are not present in that scene.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian), new OfficerPrerequisite(),
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian), new OfficerPrerequisite(),
                 new AnyOfPrerequisite(
                     new CareersPrerequisite(Career.Veteran),
                     new NpcTypePrerequisite(NpcType.Major)
@@ -4505,19 +4485,19 @@ export class Talents {
         new TalentModel(
             "Senatorial Presence",
             "Whenever one of the senator's subordinates attempts a Task to resist persuasion, intimidation, or interrogation, the senator may spend two Threat to allow that Romulan to roll as if they had the benefit of their assistance using Control + Command, even if they are not present in the scene.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan), new CareersPrerequisite(Career.Veteran, Career.Experienced), new SpecializationPrerequisite(Specialization.RomulanSenator)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan), new CareersPrerequisite(Career.Veteran, Career.Experienced), new SpecializationPrerequisite(Specialization.RomulanSenator)],
             1,
             "Romulan", true),
         new TalentModel(
             "Reman Bodyguard",
             "The senator has a Reman bodyguard who is completely devoted to their well-being. If attacked while in the presence of the bodyguard, the senator may use the bodyguard’s Fitness + Security for purposes of Stress, providing they are within Reach.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan), new SpecializationPrerequisite(Specialization.RomulanSenator)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan), new SpecializationPrerequisite(Specialization.RomulanSenator)],
             1,
             "Romulan", true),
         new TalentModel(
             "Romulan Military Efficiency",
             "The character grants all Romulan NPCs under their command an additional Task each turn.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite(),
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman), new OfficerPrerequisite(),
                 new AnyOfPrerequisite(
                     new CareersPrerequisite(Career.Veteran, Career.Experienced),
                     new NpcTypePrerequisite(NpcType.Major)
@@ -4527,7 +4507,7 @@ export class Talents {
         new TalentModel(
             "Manipulation is Second Nature",
             "The character may attempt to Negotiate or Intimidate as an additional Task on their turn.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman),
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman),
                 new OfficerPrerequisite(),
                 new AnyOfPrerequisite(
                     new CareersPrerequisite(Career.Veteran, Career.Experienced),
@@ -4540,7 +4520,7 @@ export class Talents {
             "I Anticipated Your Move",
             "Unless a Player Character has a higher Daring than the Romulan officer, the Romulan always acts before the first Player Character.",
             [
-                new CharacterStereotypePrerequisite(Stereotype.Npc),
+                new StereotypePrerequisite(Stereotype.Npc),
                 new AnySpeciesPrerequisite(false, Species.Romulan, Species.Reman),
                 new OfficerPrerequisite(),
                 new AnyOfPrerequisite(
@@ -4552,25 +4532,25 @@ export class Talents {
         new TalentModel(
             "Ambushes and Traps",
             "Whenever a Cardassian uses the Ready Task to ready a Ranged attack, that Ranged attack gains one bonus d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian)],
             1,
             "Cardassian", true),
         new TalentModel(
             "Loyal and Disciplined",
             "Whenever a Cardassian receives assistance from a superior on a Task, the Cardassian may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian)],
             1,
             "Cardassian", true),
         new TalentModel(
             "Expects Success",
             "Whenever a Cardassian uses the Direct or Assist Task to aid a subordinate, that Task may always Succeed at Cost.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian)],
             1,
             "Cardassian", true),
         new TalentModel(
             "Ruthless",
             "A Cardassian Officer may re-roll any d20s in their dice pool when making an attack against an enemy that was not aware of or prepared for an attack, or against an enemy that is defenseless.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian), new OfficerPrerequisite(),
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Cardassian), new OfficerPrerequisite(),
                 new AnyOfPrerequisite(
                     new CareersPrerequisite(Career.Veteran, Career.Experienced),
                     new NpcTypePrerequisite(NpcType.Major))
@@ -4580,171 +4560,171 @@ export class Talents {
         new TalentModel(
             "No Quarter",
             "When commanding a boarding action and assisting the soldiers under their command by giving them orders, the character may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
             1,
             "Orion", true),
         new TalentModel(
             "Cutthroat Crew",
             "Whenever the pirates attempt a Task related to boarding a captured vessel, and they buy additional d20s with Threat, they may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
             1,
             "Orion", true),
         new TalentModel(
             "Vicious",
             "The character knows how to use cruelty to motivate others. When enforcing discipline using threats or violence and buying additional d20s with Threat, the character may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Pirate)],
             1,
             "Orion", true),
         new TalentModel(
             "A Little Bit Extra",
             "An Orion Science Officer is always on the lookout for something interesting, profitable, or valuable. Whenever performing a Task with Science, the Orion Scientist gains 1 bonus Momentum, that they can only spend on Obtain Information.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion), new DisciplinePrerequisite(Department.Science, 3)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion), new DisciplinePrerequisite(Department.Science, 3)],
             1,
             "Orion", true),
         new TalentModel(
             "Assess Odds",
             "The character knows when and where to apply their efforts for maximum payoff and how to best utilize their skills. Pick either Insight or Presence; when the character attempts a Task using that Attribute and don’t have an applicable Focus, each die that rolls a “2” scores two successes.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Orion)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Orion)],
             1,
             "Orion", true),
         new TalentModel(
             "Potent Pheromones",
             "While at Close range, when attempting a Task to negotiate, persuade, or seduce a humanoid creature physically attracted to them, the character adds a bonus d20 to the roll.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new NotSourcePrerequisite(Source.Core2ndEdition), new AnySpeciesPrerequisite(false, Species.Orion)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new NotSourcePrerequisite(Source.Core2ndEdition), new AnySpeciesPrerequisite(false, Species.Orion)],
             1,
             "Orion", true),
         new TalentModel(
             "Subservient",
             "Used to supplicating themselves to a higher authority (typically a female Orion slave master) the character will not willingly act against their superiors. Whenever they attempt a Task to resist being coerced into disobeying an order, betraying their allies, or otherwise acting against a directive, they reduce the Difficulty by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Orion)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Orion)],
             1,
             "Orion", true),
         new TalentModel(
             "Pheromonal Thrall",
             "Thanks to years of conditioning, exposure to an Orion superior's pheromones, and careful manipulation by that slave master, the character gains an additional d20 when assisting their superior in Tasks where the superior spends Threat.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion)],
             1,
             "Orion", true),
         new TalentModel(
             "False-Faced",
             "When deceiving others, the character reduces the difficulty by 1, to a minimum of zero.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion)],
             1,
             "Orion", true),
         new TalentModel(
             "Better Than You Know Yourself",
             "The character has honed their skill at reading others to an almost-psychic level. When using Insight + Command to do so, they roll an additional d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion)],
             1,
             "Orion", true),
         new TalentModel(
             "Provocative",
             "When performing a Task using Presence + Command, the character may spend a Threat to gain some small but useful secret from their target, whatever the Task’s result.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion)],
             1,
             "Orion", true),
         new TalentModel(
             "Devious and Untrustworthy",
             "If Yridians are involved, things may get treacherous. When a Yridian free agent first becomes involved in a Mission, roll 3[D]. For each point rolled, add one to the Threat pool. This effect may only apply once regardless of how many other Yridian free agents are encountered during the Mission.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Yridian)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Yridian)],
             1,
             "Yridian", true),
         new TalentModel(
             "Brute Force",
             "The character adds the Vicious 1 Effect to their Unarmed Strike, and removes the Non-lethal Quality.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Nausicaan, Species.JemHadar)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Nausicaan, Species.JemHadar)],
             1,
             "Nausicaan/Jem'Hadar", true),
         new TalentModel(
             "Nausicaan Bloodlust",
             "When the character attempts a melee attack, and purchases one or more additional dice with Threat, they may re-roll any number of d20s.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
             1,
             "Nausicaan", true),
         new TalentModel(
             "Ruthless and Determined (Nausicaan)",
             "The character may spend 2 Threat to gain the effects of a point of Determination, rather than the normal 3.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Nausicaan), new CareersPrerequisite(Career.Veteran, Career.Experienced)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Nausicaan), new CareersPrerequisite(Career.Veteran, Career.Experienced)],
             1,
             "Nausicaan", true),
         new TalentModel(
             "Bullying Demeanor",
             "When the Nausicaan attempts a Task to intimidate or frighten a creature they consider weaker and buy one or more d20s with Threat, they ignore any complications.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
             1,
             "Nausicaan", true),
         new TalentModel(
             "Lust for Violence",
             "When a Nausicaan attempts a Melee attack, and purchases one or more additional dice with Threat, the Nausicaan may re-roll any number of [D] from that attack",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
             1,
             "Nausicaan", true),
         new TalentModel(
             "Nausicaan Toughness",
             "The Nausicaan only suffers an injury after sustaining 6 damage instead of just 5.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
             1,
             "Nausicaan", true),
         new TalentModel(
             "Crippling Attack",
             "When the Nausicaan performs a Task using Security, they may spent 1 Threat to prevent their target from taking the Movement Minor Action.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
             1,
             "Nausicaan", true),
         new TalentModel(
             "Menacing",
             "When the Nausicaan enters a scene, immediately add a point to the Threat pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(false, Species.Nausicaan)],
             1,
             "Nausicaan", true),
         new TalentModel(
             "Bodyguard",
             "Whenever a Bodyguard attempts a Task to notice or detect an enemy or hazard, they may re-roll one d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Bodyguard)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Bodyguard)],
             1,
             "General", true),
         new TalentModel(
             "Accomplished Strategist",
             "The character is a skilled commander who learned the arts of warfare commanding ships in battle. Whenever they attempt a Task to formulate, execute, or explain a strategy, they may spend 1 Threat to re-roll his dice pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new FlagOfficerPrerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new FlagOfficerPrerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Counter Ploy",
             "Whenever an enemy attempts a Task to create an Advantage representing some manner of strategy or tactic, the character may spend 1 Threat to increase the Difficulty by 1. Further, if this Task then fails, the character may immediately spend one additional Threat to create an Advantage of their own, representing their own stratagem.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new FlagOfficerPrerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new FlagOfficerPrerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Sector Specialist",
             "The character is an expert in a specific sector of space. All Tasks involving the mapping of that sector, location of bodies, navigational hazards, etc. have their Difficulty reduced by 1. But this reliance on their own knowledge makes anything that is different from what they know often go unnoticed as they assume they know better, and the Complication range of these Tasks is increased by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
+            [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Astrometrics", "Stellar Cartography")],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Exploring Life",
             "A character that chooses this has an interest in Biology and Medicine, but no formal medical training. However, they have a great deal of knowledge about plant and animal species and how they may help or hinder a humanoid. Taking this increases the explorer’s Medicine Discipline by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
+            [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Biology", "Xenobiology", "Evolutionary Biology")],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Trailblazer",
             "The character has a wanderlust that drives them to be the first to see a new world, or be the first to explore a new sector of space. This can bring notoriety when they discover a new civilization or the remains of an ancient one, but the dangers of being on your own in the unknown mean many scientists risk their lives. A scientist with this choice may increase their Conn or Security Discipline by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Academic Explorer",
             "These scientists have been more formerly trained to accurately chart the unknown. Choosing this allows a Focus of one of the following: Stellar Cartography, Planetary Geography, or Geomorphology.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Specialist Subject: Hard Science",
             "The scientist gains a Focus based on a single scientific field of study, e.g. Astrophysics, Subspace Theory, Quantum Mechanics.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
+            [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Astrophysics", "Subspace Theory", "Physics", "Geology", "Quantum Mechanics", "Particle Physics", "Warp Theory"), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
             1,
             "General", true),
@@ -4752,7 +4732,7 @@ export class Talents {
             "Specialist Subject: Research Lead",
             "The scientist has a broad background in the sciences and have honed their people skills to be able to lead other researchers in their projects. The professor does not gain a Focus; rather their Command Discipline is increased by 1.",
             [
-                new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
+                new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
                 new AnyOfPrerequisite(
                     new CareersPrerequisite(Career.Experienced, Career.Veteran),
                     new NpcTypePrerequisite(NpcType.Major))
@@ -4762,68 +4742,68 @@ export class Talents {
         new TalentModel(
             "Specialist Subject: Social Scientist",
             "A social scientist is trained in how intelligent beings interact with the world around them in fields such as Anthropology, Geography, and Linguistics. Like the Hard Science choice above, the choices in Focus should also have a specific world or culture attached to them, e.g. History of Andor, Vulcan Linguistics, or Tellarite Law.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
+            [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Anthropology", "Geography", "Linguistics", "Sociology", "History"), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
             1,
             "General", true),
         new TalentModel(
             "Armchair Analysis",
             "When the counselor uses their Insight to gain psychological information about someone with whom they are in dialogue, they can reroll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Counselor)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Counselor)],
             1,
             "General", true),
         new TalentModel(
             "Son'a Desperation",
             "Whenever a Son’a officer is below their maximum Stress, and buys additional d20s with Threat, the Son’a officer may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.SonaCommandOfficer), new SpeciesPrerequisite(Species.SonA, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.SonaCommandOfficer), new SpeciesPrerequisite(Species.SonA, false)],
             1,
             "Son'a", true),
         new TalentModel(
             "Son'a Authority",
             "Whenever a Son’a command officer uses the Direct or Assist Task to command a Tarlac, Ellora, or another Son’a under their command, the officer may roll 2d20 instead of 1d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.SonaCommandOfficer), new SpeciesPrerequisite(Species.SonA, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.SonaCommandOfficer), new SpeciesPrerequisite(Species.SonA, false)],
             1,
             "Son'a", true),
         new TalentModel(
             "Endure the Pain",
             "Reduce non-lethal damage against the Talarian by 2. This is unaffected by Piercing.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Talarian, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Talarian, false)],
             1,
             "Talarian", true),
         new TalentModel(
             "Sharing Victory",
             "When a Talarian succeeds in a Task, the next Talarian in the initiative order, if performing a Task, may re-roll a d20 in their pool at no cost.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Talarian, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Talarian, false)],
             1,
             "Talarian", true),
         new TalentModel(
             "Guerilla Maneuvers",
             "The Talarian Officer may Create an Advantage once per adventure for free, representing a pre-arranged strategy, such as a rigged explosion or ambush. Such an explosion is treated as (Ranged, 5[D] Area).",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.TalarianOfficer)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.TalarianOfficer)],
             1,
             "Talarian", true),
         new TalentModel(
             "Renowned Diplomat",
             "The character’s renown and reputation are such that his mere presence can serve as the groundwork for diplomatic talks. Once per scene, when a character is involved in a Social Conflict reflecting peace talks, negotiations, or some other diplomatic mission, they may re-roll a single d20 as long as the ambassador is present in the scene or was instrumental in establishing the talks.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
             1,
             "General", true),
         new TalentModel(
             "Break the Ice",
             "The ambassador's manner breaks through formality in a way that sometimes puts other diplomats and negotiators ill-at-ease. It does open up talks in a way that proper etiquette and procedure often do not. When attempting a Task during a Social Conflict, the ambassador may choose to increase their Complication Range by 1, 2, or 3. If the Task succeeds, they gain bonus Momentum equal to the amount by which they increased her Complication range.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
             1,
             "General", true),
         new TalentModel(
             "Diplomatic Expertise",
             "Whenever the ambassador attempts a Task within a Social Conflict and buys one or more additional dice, they may re-roll their dice pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
             1,
             "General", true),
         new TalentModel(
             "Adaptable",
             "An Intelligence Operative may spend 2 Threat to gain a single focus for the remainder of the scene.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc),
+            [new StereotypePrerequisite(Stereotype.Npc),
                 new AnyOfPrerequisite(
                     new SpecializationPrerequisite(Specialization.IntelligenceOfficer),
                     new AllOfPrerequisite(
@@ -4835,7 +4815,7 @@ export class Talents {
         new TalentModel(
             "Covert",
             "Whenever required to attempt  task to conceal their activities for an Intelligence Operative—including to maintain their cover identity—they may roll an additional d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc),
+            [new StereotypePrerequisite(Stereotype.Npc),
                 new AnyOfPrerequisite(
                     new SpecializationPrerequisite(Specialization.IntelligenceOfficer),
                     new AllOfPrerequisite(
@@ -4847,7 +4827,7 @@ export class Talents {
         new TalentModel(
             "Jurisprudence",
             "The JAG Officer is extremely well-versed in the theory and philosophy of law, and may re-roll one d20 on a Task that uses the character’s Reason and their Law Focus.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc),
+            [new StereotypePrerequisite(Stereotype.Npc),
                 new AnyOfPrerequisite(
                     new SpecializationPrerequisite(Specialization.Jag),
                     new AllOfPrerequisite(
@@ -4860,7 +4840,7 @@ export class Talents {
         new TalentModel(
             "Proficiency: Courtroom Arguments",
             "When engaged in courtroom Tasks such as making a legal argument or cross-examining a witness the JAG officer may add one bonus d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new AnyOfPrerequisite(
+            [new StereotypePrerequisite(Stereotype.Npc), new AnyOfPrerequisite(
                 new SpecializationPrerequisite(Specialization.Jag),
                 new AllOfPrerequisite(
                     new FocusPrerequisite("Law", "Federation Laws", "Legal Procedures"),
@@ -4872,73 +4852,73 @@ export class Talents {
         new TalentModel(
             "Threatening 1",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 1 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 2"), new NotTalentPrerequisite("Threatening 3"), new Version1Prerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 2"), new NotTalentPrerequisite("Threatening 3"), new Version1Prerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Threatening 2",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 2 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 3"), new Version1Prerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 3"), new Version1Prerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Threatening 3",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 3 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Jag, Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 2"), new Version1Prerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Jag, Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 2"), new Version1Prerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Fast Recovery 2",
             "The character recovers from stress and injury quickly. At the start of each of their Turns, the character regains 2 Stress, up to their normal maximum. If the character is Injured at the start of their turn, they may instead spend two Threat to remove that Injury.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new Version1Prerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new Version1Prerequisite()],
             1,
             "General", true),
         new TalentModel(
             "Slippery",
             "The Smuggler is used to playing upon their essentially harmless nature to wriggle out of trouble. The Smuggler reduces all Difficulties when trying to convince authorities to let them go using Presence by 1 (to a minimum of 0).",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler)],
             1,
             "General", true),
         new TalentModel(
             "Proficiency: Concealing Contraband",
             "When engaged in Tasks associated with hiding contraband or evading scans the smuggler may add one bonus d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler)],
             1,
             "General", true),
         new TalentModel(
             "One with the Ship",
             "Whenever the Smuggler attempts a Task to pilot their ship, they may reduce the Difficulty by one, to a minimum of zero.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler), new DisciplinePrerequisite(Department.Conn, 3)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler), new DisciplinePrerequisite(Department.Conn, 3)],
             1,
             "General", true),
         new TalentModel(
             "Considered Every Outcome",
             "The character is a keenly analytical commander, regarding every situation from myriad different angles and considering the advice of her senior staff before coming to a command decision. When they succeed at a Reason + Command Task, the character scores one additional Momentum than normal.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Captain), new AttributePrerequisite(Attribute.Reason, 4)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Captain), new AttributePrerequisite(Attribute.Reason, 4)],
             1,
             "General", true),
         new TalentModel(
             "Tough 1",
             "This adversary’s Resistance against melee attacks is increased by 1.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
             1,
             "General", true),
         new TalentModel(
             "Threatening (Pakled)",
             "When a Pakled adds dice to a pool by spending Threat, they may re-roll a single d20.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
             1,
             "Pakled", true),
         new TalentModel(
             "Klingon Friends",
             "Once per combat encounter, the character may add two Minor Klingon adversaries to the encounter without spending Threat.",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
             1,
             "Pakled", true),
         new TalentModel(
             "Intensive Training (Special Rule)",
             "",
-            [new CharacterStereotypePrerequisite(Stereotype.Npc), new Version2Prerequisite()],
+            [new StereotypePrerequisite(Stereotype.Npc), new Version2Prerequisite()],
             1,
             "Special Rule", true),
 
@@ -5329,11 +5309,14 @@ export class Talents {
         }
     }
 
-    getStarshipTalents(starship: Starship, includeCustom: boolean = false) {
+    getStarshipOrStationTalents(starship: Starship|Station, includeCustom: boolean = false) {
         const talents: TalentModel[] = [];
         for (let i = 0; i < this._starshipTalents.length; i++) {
             let talent = this._starshipTalents[i];
             let include = talent.category === "Starship";
+            if (starship instanceof Station) {
+                include = include || (talent.category === "Starbase");
+            }
 
             if (include) {
                 talent.prerequisites.forEach((p, i) => {

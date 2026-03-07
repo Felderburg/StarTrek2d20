@@ -40,6 +40,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
             activePage === PageIdentity.StationMissionProfile ||
             activePage === PageIdentity.StationSpaceframe ||
             activePage === PageIdentity.StationTalents ||
+            activePage === PageIdentity.StationWeapons ||
             activePage === PageIdentity.StationFinal;
     }
 

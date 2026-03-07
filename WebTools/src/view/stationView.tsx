@@ -9,6 +9,7 @@ import { Station } from "../common/station";
 import { MissionProfileHelper } from "../helpers/missionProfiles";
 import { ExportToPdfButton } from "../components/exportToPdfButton";
 import WeaponBlockView from "./weaponBlockView";
+import TalentsBlockView from "./talentsBlockView";
 
 const OutlineImage = lazy(() => import(/* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'));
 
@@ -147,6 +148,7 @@ const StationView: React.FC<IStationViewProperties> = ({station}) => {
             <div className="col-xl-6 mt-4">
                 <Header level={2}>{t('Construct.other.shields')}</Header>
                 {renderShields()}
+                 <TalentsBlockView construct={station} />
             </div>
         </div>
 

@@ -19,24 +19,13 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
     let containerClass = showProfile ? "sheet-container sheet-container-visible pe-3" :  "sheet-container sheet-container-hidden pe-3";
     const eraModel = station?.era != null ? ErasHelper.getEra(station?.era) : null;
 
-    /*
-    const talents = starship?.talents.filter(t => !t.talentModel.specialRule).map((t, i) => {
-        let name = starship?.stereotype === Stereotype.SoloStarship
-            ? t.talentModel.localizedNameForSource(Source.CaptainsLog)
-            : t.displayName;
-        return (<div key={'talent-' + i}>{name}</div>)
+    const talents = station?.talents.filter(t => !t.talentModel.specialRule).map((t, i) => {
+        return (<div key={'talent-' + i}>{t.displayName}</div>)
     });
 
-    const specialRules = starship?.talents.filter(t => t.talentModel.specialRule).map((t, i) => {
-        let name = starship?.stereotype === Stereotype.SoloStarship
-            ? t.talentModel.localizedNameForSource(Source.CaptainsLog)
-            : t.displayName;
-        return (<div key={'talent-' + i}>{name}</div>)
-    });
-
-    const weapons = starship?.determineWeapons()?.map((w, i) =>
+    const weapons = station?.determineWeapons()?.map((w, i) =>
         (<div key={'weapon-' + i}>{w.name}</div>));
-*/
+
     return (
         <div id="character-sheet">
             <div id="character-sheet" className={showProfile ? 'sheet-visible' : 'sheet-hidden'}>
@@ -201,6 +190,25 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
 
                             </div>
                         </div>
+
+                        <div className="col-12 col-md-6 mb-2">
+                            <div className="sheet-panel d-flex">
+                                <div className="sheet-label-purple text-uppercase flex-shrink-0">{t('Construct.other.talents')}</div>
+                                <div className="sheet-data">
+                                {talents}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-12 col-md-6 mb-2">
+                            <div className="sheet-panel d-flex">
+                                <div className="sheet-label-purple text-uppercase flex-shrink-0">{t('Construct.other.weapons')}</div>
+                                <div className="sheet-data">
+                                {weapons}
+                                </div>
+                            </div>
+                        </div>
+
 
                     </div>
                 </div>

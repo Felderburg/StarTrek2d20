@@ -1,6 +1,5 @@
 import { CustomStationSpaceframeStep, Station, StationMissionProfileStep } from "../common/station";
-import { System } from "../helpers/systems";
-import { ADD_STATION_WEAPON, CREATE_STATION, DELETE_STATION_WEAPON, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_CUSTOM_SCALE, SET_STATION_MISSION_PROFILE, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
+import { ADD_STATION_WEAPON, CREATE_STATION, DELETE_STATION_WEAPON, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_ADDITIONAL_TALENTS, SET_STATION_CUSTOM_SCALE, SET_STATION_MISSION_PROFILE, SET_STATION_MISSION_PROFILE_TALENT, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
 
 interface StationState {
     station?: Station;
@@ -19,7 +18,21 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
         case SET_STATION_MISSION_PROFILE: {
             let s = state.station?.copy();
             if (s) {
+                const original = s.missionProfileStep;
                 s.missionProfileStep = new StationMissionProfileStep(action.payload.missionProfile);
+                if (original?.type === s.missionProfileStep?.type) {
+                    s.missionProfileStep.talent = original?.talent?.copy();
+                }
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
+        case SET_STATION_MISSION_PROFILE_TALENT: {
+            let s = state.station.copy();
+            if (s.missionProfileStep) {
+                s.missionProfileStep.talent = action.payload.talent;
             }
             return {
                 ...state,
@@ -48,7 +61,7 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                     let maxValue = 0;
                     let indexOfMax = 0;
                     for (let j = 0; j < s.departments.length; j++) {
-                        if (s.departments[j] > maxValue) {
+                        if (s.departments[j] >= maxValue) {
                             maxValue = s.departments[j];
                             indexOfMax = j;
                         }
@@ -59,7 +72,7 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                     let maxValue = 0;
                     let indexOfMax = 0;
                     for (let j = 0; j < s.systems.length; j++) {
-                        if (s.systems[j] > maxValue) {
+                        if (s.systems[j] >= maxValue) {
                             maxValue = s.systems[j];
                             indexOfMax = j;
                         }
@@ -125,6 +138,16 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 station: s
             }
         }
+
+        case SET_STATION_ADDITIONAL_TALENTS: {
+            let s = state.station.copy();
+            s.additionalTalents = action.payload.talents?.map(t => t.copy()) ?? [];
+            return {
+                ...state,
+                station: s
+            }
+        }
+
 
         case SET_STATION_TRAITS: {
             let s = state.station?.copy();

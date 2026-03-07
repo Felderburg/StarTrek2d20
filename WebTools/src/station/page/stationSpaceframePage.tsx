@@ -17,6 +17,7 @@ import { ScaleSelector } from "../view/scaleSelector";
 import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, setStationCustomScale } from "../../state/stationActions";
 import { CustomStationSpaceframeStep } from "../../common/station";
 import { Dialog } from "../../components/dialog";
+import StationBreadcrumbs from "../view/stationBreadcrumbs";
 
 enum SpaceframeTab {
     Custom,
@@ -170,14 +171,7 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
     return (<LcarsFrame activePage={PageIdentity.StationSpaceframe}>
         <div id="app">
             <div className="page container ms-0">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
-                    <li className="breadcrumb-item"><Link to={"/station"}>{t('Page.title.stationIndex')}</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationSpaceframe')}</li>
-                </ol>
-                </nav>
-
+                <StationBreadcrumbs pageIdentity={PageIdentity.StationSpaceframe} station={station} />
                 <main>
                     <Header>{t('Page.title.stationSpaceframe')}</Header>
 

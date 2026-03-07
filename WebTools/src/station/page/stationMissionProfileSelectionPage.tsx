@@ -11,13 +11,21 @@ import { CheckBox } from "../../components/checkBox";
 import { connect } from "react-redux";
 import { IStationPageProperties, stationMapStateToProperties } from "../iStationPageProperties";
 import store from "../../state/store";
-import { setStationMissionProfile } from "../../state/stationActions";
+import { setStationMissionProfile, setStationMissionProfileTalent } from "../../state/stationActions";
 import { Dialog } from "../../components/dialog";
+import { SelectedTalent } from "../../common/selectedTalent";
+import { RankedTalent } from "../../helpers/rankedTalent";
+import { TalentModel } from "../../helpers/talents";
+import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
 
 const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({station}) => {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
+
+    const selectedProfile = station.missionProfileStep?.type != null
+        ? MissionProfileHelper.getStationMissionProfileByType(station.missionProfileStep.type)
+        : undefined;
 
     const onSelection = (missionProfile: MissionProfileModel) => {
         store.dispatch(setStationMissionProfile(missionProfile.id));
@@ -27,8 +35,32 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
         if (station.missionProfileStep?.type == null) {
             Dialog.show(t("StationMissionProfile.error.selectProfile"));
         } else {
-            navigate("/station/weapons");
+            navigate("/station/talents");
         }
+    }
+
+    const saveTalent = (talent: SelectedTalent) => {
+        if (talent) {
+            store.dispatch(setStationMissionProfileTalent(talent));
+        } else {
+            store.dispatch(setStationMissionProfileTalent(undefined));
+        }
+    }
+
+    const getTalents = () => {
+        let talents: RankedTalent[] = [];
+
+        selectedProfile?.talents?.forEach(t => {
+            let talent = t instanceof SelectedTalent ? (t as SelectedTalent).talentModel : (t as TalentModel);
+            if (!talent.isSourcePrerequisiteFulfilled(station)) {
+                // skip it
+            } else if (true) {
+                talents.push(new RankedTalent(talent, talent.maxRank > 1 ? 1 : undefined));
+            } else if (talent.maxRank > 1) {
+                talents.push(new RankedTalent(talent, station.getRankForTalent(talent.name) + 1));
+            }
+        });
+        return talents;
     }
 
     const missionProfiles = MissionProfileHelper.getStationMissionProfiles().map((m, i) => {
@@ -47,10 +79,6 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
                 </tbody>
             );
         });
-
-    const selectedProfile = station.missionProfileStep?.type != null
-        ? MissionProfileHelper.getStationMissionProfileByType(station.missionProfileStep.type)
-        : undefined;
 
     return (<LcarsFrame activePage={PageIdentity.StationMissionProfile}>
         <div id="app">
@@ -91,6 +119,17 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
                             </div>)
                             : undefined
                         }
+
+                        {selectedProfile != null
+                            ? (<div className="col-12 mt-4">
+                                <Header level={2} className="mt-4">{t('Construct.other.talent')}</Header>
+                                <SingleTalentSelectionList
+                                    talents={getTalents()}
+                                    initialSelection={station.missionProfileStep?.talent?.talentModel}
+                                    construct={station}
+                                    onSelection={(talent) => saveTalent(talent)} />
+                            </div>)
+                            : undefined}
                     </section>
 
                     <div className="text-end mt-5">

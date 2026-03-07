@@ -29,9 +29,9 @@ export class MissionPodModel {
     departments: number[];
     systems: number[];
     talents: TalentModel[];
-    prerequisites: IConstructPrerequisite<Starship>[];
+    prerequisites: IConstructPrerequisite[];
 
-    constructor(id: number, name: string, description: string, departments: number[], systems: number[], talents: TalentModel[], prerequisites: IConstructPrerequisite<Starship>[] = []) {
+    constructor(id: number, name: string, description: string, departments: number[], systems: number[], talents: TalentModel[], prerequisites: IConstructPrerequisite[] = []) {
         this.id = id;
         this.name = name;
         this.description = description;

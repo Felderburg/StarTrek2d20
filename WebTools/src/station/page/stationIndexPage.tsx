@@ -13,6 +13,7 @@ import { CharacterType, CharacterTypeModel } from "../../common/characterType";
 import { connect } from "react-redux";
 import { Era } from "../../helpers/eras";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
+import StationBreadcrumbs from "../view/stationBreadcrumbs";
 
 interface IStationIndexPageProperties {
     era: Era;
@@ -41,12 +42,8 @@ const StationIndexPage: React.FC<IStationIndexPageProperties> = ({era}) => {
     return (<LcarsFrame activePage={PageIdentity.StationIndex}>
         <div id="app">
             <div className="page container ms-0">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationIndex')}</li>
-                </ol>
-                </nav>
+                <StationBreadcrumbs pageIdentity={PageIdentity.StationIndex} />
+
                 <main>
 
                     <Header>{t('Page.title.stationIndex')}</Header>

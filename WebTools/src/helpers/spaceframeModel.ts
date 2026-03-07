@@ -2,10 +2,9 @@ import i18next from "i18next";
 import { CharacterType } from "../common/characterType";
 import { Starship } from "../common/starship";
 import { makeKey } from "../common/translationKey";
-import { IConstructPrerequisite, NeverPrerequisite, ServiceYearPrerequisite, StarshipTypePrerequisite } from "./prerequisite";
+import { IConstructPrerequisite, NeverPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, StarshipTypePrerequisite } from "./prerequisite";
 import { Source } from "./sources";
 import { Spaceframe } from "./spaceframeEnum";
-import { SourcePrerequisite } from "./spaceframes";
 import { IServiceYearProvider } from "../common/serviceYearProvider";
 import { CenturyPrerequisite, MaxServiceYearPrerequisite, TalentModel } from "./talents";
 import { SelectedTalent } from "../common/selectedTalent";
@@ -26,7 +25,7 @@ export class SpaceframeModel implements IServiceYearProvider {
     type: CharacterType;
     name: string;
     serviceYear: number;
-    prerequisites: IConstructPrerequisite<Starship>[];
+    prerequisites: IConstructPrerequisite[];
     systems: number[];
     departments: number[];
     scale: number;
@@ -38,7 +37,7 @@ export class SpaceframeModel implements IServiceYearProvider {
     errata: boolean;
 
     constructor(id: Spaceframe|null, type: CharacterType, name: string, serviceYear: number,
-        prerequisites: IConstructPrerequisite<Starship>[], systems: number[], departments: number[],
+        prerequisites: IConstructPrerequisite[], systems: number[], departments: number[],
         scale: number, attacks: string[], talents: (TalentModel|SelectedTalent)[],
         additionalTraits: string[] = [ "Federation Starship" ], maxServiceYear: number = 99999,
         soloStats?: SoloSpaceframeStats, errata: boolean = false) {
@@ -174,7 +173,7 @@ export class SpaceframeModel implements IServiceYearProvider {
         maxServiceYear: number = 99999,
         soloStats?: SoloSpaceframeStats, errata: boolean = false) {
         let sourcePrerequisite = new SourcePrerequisite(...source);
-        let prerequisites: IConstructPrerequisite<Starship>[] = [
+        let prerequisites: IConstructPrerequisite[] = [
             sourcePrerequisite, new StarshipTypePrerequisite(type), new ServiceYearPrerequisite(serviceYear) ];
         if (serviceYear > 3100 || id === Spaceframe.ScoutType) {
             prerequisites.push(new NeverPrerequisite());

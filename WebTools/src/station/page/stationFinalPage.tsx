@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";

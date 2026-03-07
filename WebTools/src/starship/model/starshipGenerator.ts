@@ -87,7 +87,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
     }
 
     for (let i = 0; i < result.freeTalentSlots; i++) {
-        const talents = TalentsHelper.getStarshipTalents(result);
+        const talents = TalentsHelper.getStarshipOrStationTalents(result);
         if (talents?.length) {
             let model = talents[Math.floor(Math.random() * talents.length)];
             result.additionalTalents.push(new SelectedTalent(model.name));
