@@ -10,7 +10,7 @@ import { Career } from './careerEnum';
 import { CareersHelper } from './careers';
 import { Environment, EnvironmentsHelper } from './environments';
 import { MissionPod, MissionPodHelper } from './missionPods';
-import { MissionProfile, MissionProfileHelper } from './missionProfiles';
+import MissionProfiles, { MissionProfile } from './missionProfiles';
 import { Rank, RanksHelper } from './ranks';
 import { DepartmentsHelper, Department } from "./department";
 import { Spaceframe } from './spaceframeEnum';
@@ -1067,7 +1067,7 @@ class Marshaller {
         result.name = json.name;
 
         if (json["missionProfile"]) {
-            let profile = MissionProfileHelper.getStationMissionProfileByName(json["missionProfile"]["name"]);
+            let profile = MissionProfiles.instance.getStationMissionProfileByName(json["missionProfile"]["name"]);
             if (profile != null) {
                 result.missionProfileStep = new StationMissionProfileStep(profile.id);
 
@@ -1168,7 +1168,7 @@ class Marshaller {
             }
         }
         if (json.missionProfile && result.type != null) {
-            const missionProfileModel = MissionProfileHelper.getMissionProfileByName(json.missionProfile.name, result.type, result.version);
+            const missionProfileModel = MissionProfiles.instance.getMissionProfileByName(json.missionProfile.name, result.type, result.version);
             if (missionProfileModel != null) {
                 result.missionProfileStep = new MissionProfileStep(missionProfileModel);
                 if (json.missionProfile.system != null) {

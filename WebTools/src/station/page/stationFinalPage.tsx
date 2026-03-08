@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";
-import { Link } from "react-router-dom";
 import store from "../../state/store";
 import { setStationName, setStationTraits } from "../../state/stationActions";
 import { connect } from "react-redux";
@@ -12,6 +11,7 @@ import { IStationPageProperties, stationMapStateToProperties } from "../iStation
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { ViewButton } from "../../components/viewButton";
 import { ExportToPdfButton } from "../../components/exportToPdfButton";
+import StationBreadcrumbs from "../view/stationBreadcrumbs";
 
 const StationFinalPage: React.FC<IStationPageProperties> = ({station}) => {
 
@@ -20,17 +20,10 @@ const StationFinalPage: React.FC<IStationPageProperties> = ({station}) => {
     return (<LcarsFrame activePage={PageIdentity.StationFinal}>
         <div id="app">
             <div className="page container ms-0">
-                <nav aria-label="breadcrumb">
-                    <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
-                    <li className="breadcrumb-item"><Link to={"/station/frame"}>{t('Page.title.stationSpaceframe')}</Link></li>
-                    <li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationFinal')}</li>
-                </ol>
-                </nav>
+                <StationBreadcrumbs pageIdentity={PageIdentity.StationFinal} station={station} />
+
                 <main>
-
                     <Header>{t('Page.title.stationFinal')}</Header>
-
                     <ReactMarkdown>{t('StationFinalPage.instruction')}</ReactMarkdown>
 
                     <section className="row">

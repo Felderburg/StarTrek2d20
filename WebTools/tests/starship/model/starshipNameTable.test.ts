@@ -1,7 +1,7 @@
 import { test, expect, describe } from '@jest/globals'
 import { Era } from '../../../src/helpers/eras';
 import { StarshipRandomNameTable } from '../../../src/starship/model/starshipNameTable';
-import { RandomStarshipCharacterType } from '../../../src/starship/model/randomStarshipCharacterTypes';
+import { RandomStarshipCharacterType } from '../../../src/starship/model/randomStarshipCharacterType';
 import { CharacterType } from '../../../src/common/characterType';
 import { Spaceframe } from '../../../src/helpers/spaceframeEnum';
 

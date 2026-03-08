@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { Link, useNavigate } from "react-router-dom";
-import { MissionProfileHelper, MissionProfileModel } from "../../helpers/missionProfiles";
+import MissionProfiles, { MissionProfileModel } from "../../helpers/missionProfiles";
 import { CheckBox } from "../../components/checkBox";
 import { connect } from "react-redux";
 import { IStationPageProperties, stationMapStateToProperties } from "../iStationPageProperties";
@@ -24,7 +24,7 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
     const navigate = useNavigate();
 
     const selectedProfile = station.missionProfileStep?.type != null
-        ? MissionProfileHelper.getStationMissionProfileByType(station.missionProfileStep.type)
+        ? MissionProfiles.instance.getStationMissionProfileByType(station.missionProfileStep.type)
         : undefined;
 
     const onSelection = (missionProfile: MissionProfileModel) => {
@@ -63,7 +63,7 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
         return talents;
     }
 
-    const missionProfiles = MissionProfileHelper.getStationMissionProfiles().map((m, i) => {
+    const missionProfiles = MissionProfiles.instance.getStationMissionProfiles().map((m, i) => {
         return (
                 <tbody key={i}>
                     <tr>

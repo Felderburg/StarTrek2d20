@@ -2,6 +2,8 @@ import { Department } from "../helpers/department";
 import { Era } from "../helpers/eras";
 import { MissionProfile } from "../helpers/missionProfiles";
 import PointAllocator from "../helpers/pointAllocator";
+import { StationFrame } from "../helpers/stationFrame";
+import { StationFrameModel } from "../helpers/stationFrameModel";
 import { System } from "../helpers/systems";
 import { Weapon } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
@@ -16,12 +18,54 @@ export class CustomStationSpaceframeStep {
     departments: number[] = [];
     systems: number[] = [];
 
+    get type() {
+        return StationFrame.Custom;
+    }
+
     copy() {
         let result = new CustomStationSpaceframeStep();
         result.scale = this.scale;
         result.departments = [...this.departments];
         result.systems = [...this.systems];
         return result;
+    }
+
+    static create() {
+        let frameStep = new CustomStationSpaceframeStep();
+        frameStep.scale = CustomStationSpaceframeStep.MIN_SCALE;
+        frameStep.systems = PointAllocator.allocatePointsEvenly(Station.totalAvailableSystemPointsForScale(frameStep.scale));
+        frameStep.departments = PointAllocator.allocatePointsEvenly(Station.totalAvailableDepartmentPointsForScale(frameStep.scale));
+
+        return frameStep;
+    }
+}
+
+export class StandardStationSpaceframeStep {
+
+    readonly type: StationFrame;
+
+    constructor(type: StationFrame) {
+        this.type = type;
+    }
+
+    get model() {
+        return StationFrameModel.getById(this.type);
+    }
+
+    get scale() {
+        return this.model.scale;
+    }
+
+    get systems() {
+        return this.model.systems;
+    }
+
+    get departments() {
+        return this.model.departments;
+    }
+
+    copy() {
+        return new StandardStationSpaceframeStep(this.type);
     }
 }
 
@@ -42,7 +86,7 @@ export class StationMissionProfileStep {
 
 export class Station extends Construct {
 
-    stationFrameStep: CustomStationSpaceframeStep;
+    stationFrameStep: CustomStationSpaceframeStep|StandardStationSpaceframeStep;
     missionProfileStep?: StationMissionProfileStep;
     traits: string[] = [];
     weapons: Weapon[] = [];
@@ -58,13 +102,7 @@ export class Station extends Construct {
         result.era = era;
         result.type = type;
 
-        let frameStep = new CustomStationSpaceframeStep();
-        frameStep.scale = CustomStationSpaceframeStep.MIN_SCALE;
-        frameStep.systems = PointAllocator.allocatePointsEvenly(Station.totalAvailableSystemPointsForScale(frameStep.scale));
-        frameStep.departments = PointAllocator.allocatePointsEvenly(Station.totalAvailableDepartmentPointsForScale(frameStep.scale));
-
-        result.stationFrameStep = frameStep;
-
+        result.stationFrameStep = CustomStationSpaceframeStep.create();
         return result;
     }
 

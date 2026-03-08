@@ -6,7 +6,7 @@ import { DepartmentsHelper, Department } from "./department";
 import {Source} from './sources';
 import {Era} from './eras';
 import { Species } from './speciesEnum';
-import { Construct, Stereotype } from '../common/construct';
+import { Stereotype } from '../common/construct';
 import { Starship } from '../common/starship';
 import store from '../state/store';
 import { centuryToYear } from './weapons';

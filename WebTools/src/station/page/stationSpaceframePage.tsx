@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import ReactMarkdown from "react-markdown";
 import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import store from "../../state/store";
 import { IStationPageProperties, stationMapStateToProperties } from "../iStationPageProperties";
 import { connect } from "react-redux";
@@ -18,6 +18,11 @@ import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, set
 import { CustomStationSpaceframeStep } from "../../common/station";
 import { Dialog } from "../../components/dialog";
 import StationBreadcrumbs from "../view/stationBreadcrumbs";
+import { StationFrameModel } from "../../helpers/stationFrameModel";
+import { StatView } from "../../components/StatView";
+import { CheckBox } from "../../components/checkBox";
+import Markdown from "react-markdown";
+import { StationFrame } from "../../helpers/stationFrame";
 
 enum SpaceframeTab {
     Custom,
@@ -30,14 +35,38 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
     const navigate = useNavigate();
     const [tab, setTab] = useState<SpaceframeTab>(SpaceframeTab.Custom);
 
-    const onNext = () => {
-        if (station.sumDepartmentPoints < station.totalAvailableDepartmentPoints) {
-            Dialog.show(t('StationSpaceframePage.error.departments'));
-        } else if (station.sumSystemPoints < station.totalAvailableSystemPoints) {
-            Dialog.show(t('StationSpaceframePage.error.systems'));
+
+    const frames = StationFrameModel.getAllTypes()
+        .filter(f => f.type === station.type);
+    frames.sort((s1, s2) => {
+        if (s1.localizedName === s2.localizedName) {
+            return s2.id - s1.id;
         } else {
-            navigate("/station/profile");
+            return s1.localizedName.localeCompare(s2.localizedName);
         }
+    });
+
+    const onNext = () => {
+        if (tab === SpaceframeTab.Custom) {
+            if (station.sumDepartmentPoints < station.totalAvailableDepartmentPoints) {
+                Dialog.show(t('StationSpaceframePage.error.departments'));
+            } else if (station.sumSystemPoints < station.totalAvailableSystemPoints) {
+                Dialog.show(t('StationSpaceframePage.error.systems'));
+            } else {
+                navigate("/station/profile");
+            }
+        } else {
+            if (station.stationFrameStep?.type === StationFrame.Custom || station.stationFrameStep?.type == null) {
+                Dialog.show(t('StationSpaceframePage.error.standardFrame'));
+            } else {
+                navigate("/station/profile");
+            }
+
+        }
+    }
+
+    const onFrameSelection = (frame: StationFrameModel) => {
+
     }
 
     const canIncreaseDepartment = (department: Department) => {
@@ -167,6 +196,102 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
         </>);
     }
 
+    const renderStandardTab = () => {
+        const frameRows = frames.map((f, i) => {
+            const selectedFrame = station.stationFrameStep?.type;
+
+            return (
+                <tbody key={i}>
+                    <tr>
+                        <td><div className="selection-header">{f.localizedName}</div></td>
+                        <td className="d-none d-lg-table-cell" style={{ verticalAlign: "top", textAlign: "center" }}>{f.scale}</td>
+                        <td className="d-none d-lg-table-cell">
+                            <div className="row row-cols-1 row-cols-lg-3" style={{maxWidth: "32rem"}}>
+                                <StatView name={t('Construct.system.comms')} value={f.systems[System.Comms]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.system.computer')} value={f.systems[System.Computer]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.system.engines')} value={f.systems[System.Engines]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.system.sensors')} value={f.systems[System.Sensors]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.system.structure')} value={f.systems[System.Structure]}
+                                    className="col mb-1" showZero={true} />
+                                <StatView name={t('Construct.system.weapons')} value={f.systems[System.Weapons]}
+                                    className="col mb-1" showZero={true} />
+                            </div>
+                            <div className="row row-cols-1 row-cols-lg-3 mt-2 mb-2" style={{maxWidth: "32rem"}}>
+                                <StatView name={t('Construct.department.command')} value={f.departments[Department.Command]}
+                                    className="col mb-1" showZero={false} />
+                                <StatView name={t('Construct.department.security')} value={f.departments[Department.Security]}
+                                    className="col mb-1" showZero={false} />
+                                <StatView name={t('Construct.department.science')} value={f.departments[Department.Science]}
+                                    className="col mb-1" showZero={false} />
+                                <StatView name={t('Construct.department.conn')} value={f.departments[Department.Conn]}
+                                    className="col mb-1" showZero={false} />
+                                <StatView name={t('Construct.department.engineering')} value={f.departments[Department.Engineering]}
+                                    className="col mb-1" showZero={false} />
+                                <StatView name={t('Construct.department.medicine')} value={f.departments[Department.Medicine]}
+                                    className="col mb-1" showZero={false} />
+                            </div>
+
+                        </td>
+
+                        <td>
+                            <CheckBox
+                                isChecked={selectedFrame === f.id}
+                                text=""
+                                value={f.id}
+                                onChanged={(e) => onFrameSelection(f) }/>
+                        </td>
+                    </tr>
+                </tbody>
+            );
+        });
+
+        return (<>
+            <div className="row">
+                <div className="col-12 mt-5">
+                    <Header level={2}>{t('Construct.other.spaceFrame')}</Header>
+
+                    {frames?.length
+                        ? (<>
+                            <Markdown>{t('StationSpaceframePage.frame.instruction')}</Markdown>
+                            <table className="selection-list w-100">
+                                <thead>
+                                    <tr>
+                                        <td></td>
+                                        <td className="d-none d-lg-table-cell text-center">{t('Construct.other.scale')}</td>
+                                        <td className="d-none d-lg-table-cell text-center">{t('Construct.other.stats')}</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                {frameRows}
+                            </table>
+                        </>)
+                        : (<Markdown>{t('StationSpaceframePage.noFrames.instruction')}</Markdown>)}
+                </div>
+            </div>
+        </>);
+    }
+
+    const renderCustomTab = () => {
+        return (<>
+            <div className="row">
+                <div className="col-12 col-md-6 mt-5">
+                    <Header level={2}>{t('Construct.other.scale')}</Header>
+                    <ReactMarkdown>{t('StationSpaceframePage.scale.instruction')}</ReactMarkdown>
+
+                    <ScaleSelector scale={station.stationFrameStep?.scale ?? CustomStationSpaceframeStep.MIN_SCALE}
+                        onChange={v => store.dispatch(setStationCustomScale(v))} />
+                </div>
+
+            </div>
+
+            {renderCustomStats()}
+        </>)
+    }
+
 
     return (<LcarsFrame activePage={PageIdentity.StationSpaceframe}>
         <div id="app">
@@ -184,18 +309,10 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
                                 onClick={() => setTab(SpaceframeTab.Standard)}>{t('StationSpaceframePage.standard')}</button>
                     </div>
 
-                    <div className="row">
-                        <div className="col-12 col-md-6 mt-5">
-                            <Header level={2}>{t('Construct.other.scale')}</Header>
-                            <ReactMarkdown>{t('StationSpaceframePage.scale.instruction')}</ReactMarkdown>
+                    {tab === SpaceframeTab.Custom
+                        ? renderCustomTab()
+                        : renderStandardTab()}
 
-                            <ScaleSelector scale={station.stationFrameStep?.scale ?? CustomStationSpaceframeStep.MIN_SCALE}
-                                onChange={v => store.dispatch(setStationCustomScale(v))} />
-                        </div>
-
-                    </div>
-
-                    {renderCustomStats()}
 
                     <div className="text-end mt-5">
                         <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>

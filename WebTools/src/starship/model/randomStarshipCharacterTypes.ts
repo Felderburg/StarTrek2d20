@@ -3,13 +3,7 @@ import store from "../../state/store";
 import { Era } from "../../helpers/eras";
 import { hasSource } from "../../state/contextFunctions";
 import { Source } from "../../helpers/sources";
-
-export enum RandomStarshipCharacterType {
-    Starfleet,
-    Klingon,
-    Romulan,
-    Civilian
-}
+import { RandomStarshipCharacterType } from "./randomStarshipCharacterType";
 
 export class RandomStarshipCharacterTypeModel {
 

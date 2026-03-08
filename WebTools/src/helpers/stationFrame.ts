@@ -1,5 +1,5 @@
 
-export const enum StationFrame {
+export enum StationFrame {
     InternationalSpaceStation,
     UnitedEarthStarfleetConstructionSlip,
     KClassBorderOutpost,
@@ -9,5 +9,6 @@ export const enum StationFrame {
     TerakNorType,
     NarendraStationType,
     FederationListeningPost,
+    FederationSubspaceCommunicationsRelay,
     Custom
 }

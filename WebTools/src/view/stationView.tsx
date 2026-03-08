@@ -6,7 +6,7 @@ import { StatView } from "../components/StatView";
 import { useTranslation } from 'react-i18next';
 import { makeKey } from "../common/translationKey";
 import { Station } from "../common/station";
-import { MissionProfileHelper } from "../helpers/missionProfiles";
+import MissionProfiles from "../helpers/missionProfiles";
 import { ExportToPdfButton } from "../components/exportToPdfButton";
 import WeaponBlockView from "./weaponBlockView";
 import TalentsBlockView from "./talentsBlockView";
@@ -85,7 +85,7 @@ const StationView: React.FC<IStationViewProperties> = ({station}) => {
 
     let profile = undefined;
     if (station.missionProfileStep) {
-        profile = MissionProfileHelper.getStationMissionProfileByType(station.missionProfileStep.type);
+        profile = MissionProfiles.instance.getStationMissionProfileByType(station.missionProfileStep.type);
     }
 
     return (<main>

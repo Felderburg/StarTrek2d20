@@ -4,13 +4,13 @@ import { MissionProfileStep, ServiceRecordStep, Starship } from "../../common/st
 import RegistryNumber from "../../components/registryNumberGenerator";
 import { Era } from "../../helpers/eras";
 import { MissionPodHelper } from "../../helpers/missionPods";
-import { MissionProfileHelper } from "../../helpers/missionProfiles";
+import MissionProfiles from "../../helpers/missionProfiles";
 import { SpaceframeHelper } from "../../helpers/spaceframes";
 import { allSystems } from "../../helpers/systems";
 import { TalentsHelper } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { randomStarshipEvent } from "./randomStarshipEvent";
-import { RandomStarshipCharacterType } from "./randomStarshipCharacterTypes";
+import { RandomStarshipCharacterType } from "./randomStarshipCharacterType";
 import { ServiceRecord, ServiceRecordList } from "./serviceRecord";
 import { StarshipRandomNameTable } from "./starshipNameTable";
 import { SelectedTalent } from "../../common/selectedTalent";
@@ -61,7 +61,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
         result.spaceframeModel = frames[Math.floor(Math.random() * frames.length)];
     }
 
-    const missionProfiles = MissionProfileHelper.getMissionProfiles(result);
+    const missionProfiles = MissionProfiles.instance.getMissionProfiles(result);
 
     if (missionProfiles?.length) {
         result.missionProfileStep = new MissionProfileStep(missionProfiles[Math.floor(Math.random() * missionProfiles.length)]);

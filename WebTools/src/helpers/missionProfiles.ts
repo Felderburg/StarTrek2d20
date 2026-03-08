@@ -7,7 +7,6 @@ import {TalentsHelper, TalentModel} from './talents';
 import { makeKey } from '../common/translationKey';
 import { allSystems, System } from './systems';
 import { SelectedTalent } from '../common/selectedTalent';
-import { Department } from './department';
 
 export enum MissionProfile {
     StrategicAndDiplomatic,
@@ -95,6 +94,16 @@ export class MissionProfileModel {
 }
 
 class MissionProfiles {
+
+    static _instance: MissionProfiles;
+
+    static get instance() {
+        if (this._instance == null) {
+            this._instance = new MissionProfiles();
+        }
+        return this._instance;
+    }
+
     private _profiles2e: { [id: number]: MissionProfileModel } = {
         [MissionProfile.Battlecruiser]: new MissionProfileModel(
             MissionProfile.Battlecruiser,
@@ -822,4 +831,4 @@ class MissionProfiles {
     }
 }
 
-export const MissionProfileHelper = new MissionProfiles();
+export default MissionProfiles;

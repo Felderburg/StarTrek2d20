@@ -1,7 +1,7 @@
 import { CharacterType } from "../../common/characterType";
 import { Era } from "../../helpers/eras"
 import { Spaceframe } from "../../helpers/spaceframeEnum";
-import { RandomStarshipCharacterType } from "./randomStarshipCharacterTypes"
+import { RandomStarshipCharacterType } from "./randomStarshipCharacterType"
 
 const starshipRomulanNames = [
 

@@ -2776,6 +2776,18 @@
     "StarSystem.common.system": "System",
     "StarSystem.common.companionStar": "Companion Star",
 
+    "StationFrame.internationalSpaceStation": "International Space Station",
+    "StationFrame.unitedEarthStarfleetConstructionSlip": "United Earth / Starfleet Construction Slip",
+    "StationFrame.kClassBorderOutpost": "K-Class Border Outpost",
+    "StationFrame.regulaClassMultipurposeStation": "Regula-Class Multipurpose Station",
+    "StationFrame.spacedock": "Spacedock",
+    "StationFrame.federationStarbase": "Federation Starbase",
+    "StationFrame.terakNorType": "Terak-Nor-type",
+    "StationFrame.narendraStationType": "Narendra-Station-type",
+    "StationFrame.federationListeningPost": "Federation Border Listening Post",
+    "StationFrame.federationSubspaceCommunicationsRelay": "Federation Subspace Communications Relay",
+    "StationFrame.custom": "Custom",
+
     "StationIndexPage.instruction": "Use this process to create a space station.",
     "StationIndexPage.characterType": "Station Type",
 
@@ -2793,6 +2805,11 @@
 
     "StationSpaceframePage.scale.instruction": "The Scale of a space station determines many of the numbers that are used later in the creation process. The smallest starbases, such as Regula I, are Scale 6, and even more moderately sized starbases such as DS9 and Narendra Station are Scale 12. The largest is Spacedock circling Earth at Scale 16. Starbases can range from Scale 3 (the International Space Station in Earth orbit as of 2022) to as high as you wish, though there is a ceiling at which there is diminishing returns for Scale.",
 
+    "StationSpaceframePage.noFrames.instruction": "There are no standard frames for this polity.",
+
+    "StationSpaceframePage.frame.instruction": "Select a pre-defined frame for this space station.",
+
+    "StationSpaceframePage.error.standardFrame": "Please select a frame.",
     "StationSpaceframePage.error.departments": "Please distrubute all department points",
     "StationSpaceframePage.error.systems": "Please distrubute all system points.",
 

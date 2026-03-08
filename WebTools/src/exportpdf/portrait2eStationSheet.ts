@@ -24,7 +24,7 @@ import { PortraitSheetDecorations } from "./portraitSheetDecorations";
 import { assembleStarshipTalents } from "./generatedsheet";
 import { PageArea } from "./pageArea";
 import { Station } from "../common/station";
-import { MissionProfileHelper } from "../helpers/missionProfiles";
+import MissionProfiles from "../helpers/missionProfiles";
 import { Generated2eStarshipSheet } from "./generated2eStarshipSheet";
 
 export class Portrait2eStationSheet extends BaseNonForm2eSheet {
@@ -194,7 +194,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
         if (station.missionProfileStep?.type != null) {
             paragraph = paragraph.nextParagraph(1);
 
-            let profile = MissionProfileHelper.getStationMissionProfileByType(station.missionProfileStep.type);
+            let profile = MissionProfiles.instance.getStationMissionProfileByType(station.missionProfileStep.type);
             paragraph.append(i18next.t("Construct.other.missionProfile").toLocaleUpperCase() + ": ", new FontOptions(9, FontType.Bold),
                 colour);
             paragraph.append(profile?.localizedName ?? "", new FontOptions(9));
