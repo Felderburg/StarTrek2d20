@@ -80,6 +80,9 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                     }
                     s.stationFrameStep.systems[indexOfMax] -= 1;
                 }
+                for (let i = s.additionalTalents.length; i > s.freeTalentSlots; i = s.additionalTalents.length) {
+                    s.additionalTalents.splice(0, 1);
+                }
             }
             return {
                 ...state,
@@ -173,9 +176,12 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                     let frameModel = temp.model;
                     if (frameModel.missionProfiles?.length === 1) {
                         s.missionProfileStep = new StationMissionProfileStep(temp.model.missionProfiles[0].profile);
+                        s.weapons = [];
                     }
                 }
-                s.traits = action.payload.traits;
+                for (let i = s.additionalTalents.length; i > s.freeTalentSlots; i = s.additionalTalents.length) {
+                    s.additionalTalents.splice(0, 1);
+                }
             }
             return {
                 ...state,

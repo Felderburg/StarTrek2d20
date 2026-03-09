@@ -81,7 +81,7 @@ const StationWeaponsPage: React.FC<IStationPageProperties> = ({station}) => {
             <div className="page container ms-0">
                 <StationBreadcrumbs pageIdentity={PageIdentity.StationWeapons} station={station} />
                 <main>
-                <Header>Ship Weapons</Header>
+                <Header>{t('Page.title.stationWeapons')}</Header>
 
                     <div className="d-flex mb-3 mt-4 ">
                         <p className="me-auto mb-0">This ship has the following weapons:</p>

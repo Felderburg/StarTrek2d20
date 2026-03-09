@@ -14,6 +14,7 @@ import { SimpleColor } from "../common/colour";
 import { TextBlock } from "./textBlock";
 import { FontSpecification } from "./fontSpecification";
 import { CharacterType } from "../common/characterType";
+import { Station } from "../common/station";
 
 export abstract class BasicGeneratedSheet implements ICharacterSheet {
 
@@ -201,7 +202,7 @@ export const assembleWritableItems = (character: Character) => {
     return result;
 }
 
-export const assembleStarshipTalents = (starship: Starship, includeSpecialRules: boolean = false) => {
+export const assembleStarshipTalents = (starship: Starship|Station, includeSpecialRules: boolean = false) => {
     let result: (ReadableTalentModel|RoleModel|SpeciesAbility)[] = [];
     let specialRules: (ReadableTalentModel|RoleModel|SpeciesAbility)[] = [];
 
@@ -219,7 +220,7 @@ export const assembleStarshipTalents = (starship: Starship, includeSpecialRules:
             if (t.isCustom) {
                 readableTalent.customTalentName = t.customTalentName;
                 readableTalent.customTalentDescription = t.customTalentDescription;
-            } else if (talent.name === TALENT_NAME_MISSION_POD) {
+            } else if (talent.name === TALENT_NAME_MISSION_POD && starship instanceof Starship) {
                 readableTalent.missionPod = starship.missionPodModel;
             } else if (talent.name === TALENT_NAME_REDUNDANT_SYSTEMS) {
                 readableTalent.selection = t.selection;

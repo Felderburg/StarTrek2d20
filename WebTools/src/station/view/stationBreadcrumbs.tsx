@@ -45,6 +45,18 @@ const StationBreadcrumbs: React.FC<IStationBreadcrumbProperties> = ({station, pa
         }
     }
 
+    const renderTalents = () => {
+        if (station == null) {
+            return undefined;
+        } else if (pageIdentity === PageIdentity.StationTalents) {
+            return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.stationTalents')}</li>);
+        } else if (pageIdentity === PageIdentity.StationFinal || pageIdentity === PageIdentity.StationWeapons || station.additionalTalents?.length) {
+            return (<li className="breadcrumb-item"><Link to={"/station/talents"}>{t('Page.title.stationTalents')}</Link></li>)
+        } else {
+            return undefined;
+        }
+    }
+
     return (<nav aria-label="breadcrumb">
         <ol className="breadcrumb">
             <li className="breadcrumb-item"><Link to={"/"}>{t('Page.title.home')}</Link></li>
@@ -55,6 +67,7 @@ const StationBreadcrumbs: React.FC<IStationBreadcrumbProperties> = ({station, pa
 
             {renderSpaceframe()}
             {renderMissionProfile()}
+            {renderTalents()}
             {renderWeapons()}
         </ol>
     </nav>);

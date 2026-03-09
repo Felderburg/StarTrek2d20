@@ -119,7 +119,7 @@ const ToolSelectionPage = () => {
                                 : undefined}
                             <LoadingButton className="mt-4" onClick={() => { loadStarshipAndGoToPage(); } } loading={loadingStarship}>{t('ToolSelection.starship')}</LoadingButton>
                             {isSecondEdition() && hasSource(Source.UtopiaPlanitia)
-                                ? (<Button className="mt-4" onClick={() => navigate("/station")} disabled={true} >{t('ToolSelection.station')}</Button>)
+                                ? (<Button className="mt-4" onClick={() => navigate("/station")}>{t('ToolSelection.station')}</Button>)
                                 : undefined}
                         </div>
                         <div className="col-md-6 button-column">

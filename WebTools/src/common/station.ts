@@ -5,6 +5,7 @@ import PointAllocator from "../helpers/pointAllocator";
 import { StationFrame } from "../helpers/stationFrame";
 import { StationFrameModel } from "../helpers/stationFrameModel";
 import { System } from "../helpers/systems";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_IMPROVED_HULL_INTEGRITY } from "../helpers/talents";
 import { Weapon } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
@@ -128,8 +129,37 @@ export class Station extends Construct {
         return this.stationFrameStep?.departments ?? [0, 0, 0, 0, 0, 0];
     }
 
-    get resistance(): number {
-        return this.scale;
+    get resistance() {
+        if (this.version === 1) {
+            let base = this.scale;
+            if (this.hasTalent(TALENT_NAME_ABLATIVE_ARMOUR)) {
+                base += 2;
+            }
+            if (this.hasTalent(TALENT_NAME_IMPROVED_HULL_INTEGRITY)) {
+                base += 1;
+            }
+            return base;
+        } else {
+            let base = Math.ceil(this.scale / 2);
+            let structure = this.systems[System.Structure];
+            if (this.hasTalent(TALENT_NAME_ABLATIVE_ARMOUR)) {
+                base += 2;
+            }
+            if (this.hasTalent(TALENT_NAME_IMPROVED_HULL_INTEGRITY)) {
+                base += 1;
+            }
+            if (structure >= 13) {
+                return base + 4;
+            } else if (structure >= 11) {
+                return base + 3;
+            } else if (structure >= 9) {
+                return base + 2;
+            } else if (structure >= 7) {
+                return base + 1;
+            } else {
+                return base;
+            }
+        }
     }
 
     get scale(): number {
@@ -140,12 +170,29 @@ export class Station extends Construct {
         return this.scale;
     }
 
-    get shields(): number {
-        return this.systems[System.Structure] + this.departments[Department.Security];
+    get shields() {
+        if (this.departments) {
+            let base = this.systems[System.Structure] + this.departments[Department.Security];
+            if (this.version > 1) {
+                base += this.scale;
+            }
+            let advanced = this.talents.filter(t => t.name === "Advanced Shields");
+            if (advanced.length > 0) {
+                base += (5 * advanced.length);
+            }
+            return base;
+        } else {
+            return undefined;
+        }
     }
 
-    get power(): number {
-        return this.systems[System.Engines];
+    get power() {
+        let power = this.systems[System.Engines];
+        let bonus = this.talents.filter(t => t.name === "Secondary Reactors");
+        if (power != null && bonus.length > 0) {
+            power += (5 * bonus.length);
+        }
+        return power;
     }
 
     get maxSystemValue(): number {

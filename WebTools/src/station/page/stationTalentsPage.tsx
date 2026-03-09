@@ -117,7 +117,7 @@ const StationTalentsPage: React.FC<IStationPageProperties> = ({station}) => {
             <StationBreadcrumbs pageIdentity={PageIdentity.StationTalents} station={station} />
             <main className="page container ms-0">
 
-                <Header>{t('Page.title.starshipTalentSelection')}</Header>
+                <Header>{t('Page.title.stationTalents')}</Header>
                 <Markdown>{t('StarshipTalentSelection.instruction_one', {count: station.freeTalentSlots})}</Markdown>
                 {station.freeTalentSlots > 0
                     ? (<MultiTalentSelectionView

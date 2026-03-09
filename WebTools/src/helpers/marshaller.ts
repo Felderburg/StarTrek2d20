@@ -107,6 +107,10 @@ class Marshaller {
             sheet["weapons"] = station.weapons.map(w => this.encodeWeapon(w));
         }
 
+        if (station.additionalTalents?.length) {
+            sheet["talents"] = station.additionalTalents.map(t => this.talentToJson(t));
+        }
+
         return this.encode(sheet);
     }
 
@@ -1094,6 +1098,10 @@ class Marshaller {
 
         if (json.weapons) {
             result.weapons = json.weapons.map(j => this.decodeWeapon(j, result.version));
+        }
+
+        if (json["talents"]) {
+            result.additionalTalents = json.talents.map(t => this.hydrateTalent(t, result.version));
         }
 
         return result;

@@ -276,11 +276,12 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
 
         remainingColumn = remainingColumn.bottomAfter(bottomOfShields.y - remainingColumn.start.y).bottomAfter(16);
         this.writeSubTitle(page, i18next.t("Construct.other.talents"), remainingColumn);
-/*
+
         let talentsColumn = remainingColumn.bottomAfter(13 + 4);
 
         let finalColumn = await this.writeTalents(page, station, talentsColumn, colour);
 
+        /*
         if (this.hasSpecialRules(station) && finalColumn) {
             if (finalColumn.height <= 50 && finalColumn.isNextColumnAvailable) {
                 let newColumn = finalColumn.advanceToNextColumn(page);
@@ -294,7 +295,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
                 await this.writeSpecialRules(page, starship, finalColumn.bottomAfter(13 + 4), colour);
             }
         }
-*/
+        */
     }
 
     drawArrowHead(page: PDFPage, construct: Construct, colour: SimpleColor) {
@@ -464,9 +465,9 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
         return column.untranslateLocation(page, new XYLocation(column.translatedStart(page).x, y -= 12));
     }
 
-    async writeTalents(page: PDFPage, starship: Starship, column: Column, colour: SimpleColor) {
-        let talents = assembleStarshipTalents(starship, false);
-        let writer = new TalentWriter(page, this.fonts, starship.version, colour, true);
+    async writeTalents(page: PDFPage, station: Station, column: Column, colour: SimpleColor) {
+        let talents = assembleStarshipTalents(station, false);
+        let writer = new TalentWriter(page, this.fonts, station.version, colour, true);
         return await writer.writeTalents(talents, column, 9, 9, 15,
             (p) => bullet2EWriter(p.page, p, colour));
     }

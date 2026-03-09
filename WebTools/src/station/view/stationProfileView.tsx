@@ -6,7 +6,6 @@ import { ErasHelper } from "../../helpers/eras";
 import { CharacterTypeModel } from "../../common/characterType";
 import { System } from "../../helpers/systems";
 import { Department } from "../../helpers/department";
-import { StationFrame } from "../../helpers/stationFrame";
 import MissionProfiles from "../../helpers/missionProfiles";
 
 interface IStationProfileProperties {
