@@ -52,7 +52,7 @@ import { PropulsionSystemModel, PropulsionSystemType } from './propulsionSystem'
 import { allStarshipAdvancementChoices, StarshipAdvancementChoice } from '../common/starshipAdvancementChoice';
 import { LogEntry, LogValueEntry, ValueUseType, ValueUseTypeModel } from '../common/logEntry';
 import { SpaceframeVariant, SpaceframeVariantModel } from './spaceframeVariant';
-import { CustomStationSpaceframeStep, Station, StationMissionProfileStep } from '../common/station';
+import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station, StationMissionProfileStep } from '../common/station';
 
 class Marshaller {
 
@@ -99,6 +99,10 @@ class Marshaller {
                     "departments": this.toDepartmentObject(station.stationFrameStep.departments),
                     "systems": this.toSystemsObject(station.stationFrameStep.systems),
                     "scale": station.stationFrameStep.scale
+                }
+            } else {
+                sheet["frame"] = {
+                    "type": MissionProfile[station.stationFrameStep.type]
                 }
             }
         }
@@ -1089,6 +1093,12 @@ class Marshaller {
                 DepartmentsHelper.instance.getDepartments().forEach(d => step.departments[d] = frame.departments[Department[d]]);
                 step.scale=  frame.scale;
                 result.stationFrameStep = step;
+            } else {
+                let type = frame["type"];
+                let profile = MissionProfiles.instance.getMissionProfileByName(type, result.type, result.version);
+                if (profile) {
+                    result.stationFrameStep = new StandardStationSpaceframeStep(profile.id);
+                }
             }
         }
 

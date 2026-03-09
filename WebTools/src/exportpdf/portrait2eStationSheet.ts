@@ -36,7 +36,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
             { "defaultValue": "New 2nd Ed.-style Station Sheet (US Letter)"});
     }
     getThumbnailUrl(): string {
-        return '/static/img/sheets/STA_2e_Starship_Sheet.png'
+        return '/static/img/sheets/STA_2e_Station_Sheet.png'
     }
     getPdfUrl(type: CharacterType): string {
         return "/static/pdf/STA_2e_Portrait_Blank.pdf";
