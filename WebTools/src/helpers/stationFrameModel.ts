@@ -232,6 +232,4 @@ export class StationFrameModel {
         this.initializeType();
         return StationFrameModel.TYPES[type];
     }
-
-
 }

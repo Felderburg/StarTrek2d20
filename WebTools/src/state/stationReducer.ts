@@ -1,5 +1,6 @@
-import { CustomStationSpaceframeStep, Station, StationMissionProfileStep } from "../common/station";
-import { ADD_STATION_WEAPON, CREATE_STATION, DELETE_STATION_WEAPON, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_ADDITIONAL_TALENTS, SET_STATION_CUSTOM_SCALE, SET_STATION_MISSION_PROFILE, SET_STATION_MISSION_PROFILE_TALENT, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
+import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station, StationMissionProfileStep } from "../common/station";
+import { StationFrame } from "../helpers/stationFrame";
+import { ADD_STATION_WEAPON, CREATE_STATION, DELETE_STATION_WEAPON, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_ADDITIONAL_TALENTS, SET_STATION_CUSTOM_SCALE, SET_STATION_FRAME, SET_STATION_MISSION_PROFILE, SET_STATION_MISSION_PROFILE_TALENT, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
 
 interface StationState {
     station?: Station;
@@ -152,6 +153,28 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
         case SET_STATION_TRAITS: {
             let s = state.station?.copy();
             if (s) {
+                s.traits = action.payload.traits;
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
+
+        case SET_STATION_FRAME: {
+            let s = state.station?.copy();
+            if (s) {
+                if (action.payload.frame === StationFrame.Custom) {
+                    let scale = s.scale;
+                    s.stationFrameStep = CustomStationSpaceframeStep.create(scale);
+                } else {
+                    let temp = new StandardStationSpaceframeStep(action.payload.frame);
+                    s.stationFrameStep = temp;
+                    let frameModel = temp.model;
+                    if (frameModel.missionProfiles?.length === 1) {
+                        s.missionProfileStep = new StationMissionProfileStep(temp.model.missionProfiles[0].profile);
+                    }
+                }
                 s.traits = action.payload.traits;
             }
             return {

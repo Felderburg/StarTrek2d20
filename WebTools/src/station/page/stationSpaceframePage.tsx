@@ -14,7 +14,7 @@ import { makeKey } from "../../common/translationKey";
 import { System } from "../../helpers/systems";
 import { Department } from "../../helpers/department";
 import { ScaleSelector } from "../view/scaleSelector";
-import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, setStationCustomScale } from "../../state/stationActions";
+import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, setStationCustomScale, setStationFrame, setStationMissionProfile } from "../../state/stationActions";
 import { CustomStationSpaceframeStep } from "../../common/station";
 import { Dialog } from "../../components/dialog";
 import StationBreadcrumbs from "../view/stationBreadcrumbs";
@@ -33,7 +33,7 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const [tab, setTab] = useState<SpaceframeTab>(SpaceframeTab.Custom);
+    const [tab, setTab] = useState<SpaceframeTab>(station?.stationFrameStep?.type === StationFrame.Custom ? SpaceframeTab.Custom : SpaceframeTab.Standard);
 
 
     const frames = StationFrameModel.getAllTypes()
@@ -65,8 +65,19 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
         }
     }
 
-    const onFrameSelection = (frame: StationFrameModel) => {
+    const onChangeTab = (newTab: SpaceframeTab) => {
+        if (newTab === tab) {
+            // no change
+        } else if (newTab === SpaceframeTab.Custom) {
+            store.dispatch(setStationFrame(StationFrame.Custom));
+            setTab(newTab);
+        } else {
+            setTab(newTab);
+        }
+    }
 
+    const onFrameSelection = (frame: StationFrameModel) => {
+        store.dispatch(setStationFrame(frame.id));
     }
 
     const canIncreaseDepartment = (department: Department) => {
@@ -304,9 +315,9 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
 
                     <div className="btn-group w-100" role="group" aria-label={t('StationSpaceframePage.frameType')}>
                         <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === SpaceframeTab.Custom ? "active" : "")}
-                                onClick={() => setTab(SpaceframeTab.Custom)}>{t('StationSpaceframePage.custom')}</button>
+                                onClick={() => onChangeTab(SpaceframeTab.Custom)}>{t('StationSpaceframePage.custom')}</button>
                         <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === SpaceframeTab.Standard ? "active" : "")}
-                                onClick={() => setTab(SpaceframeTab.Standard)}>{t('StationSpaceframePage.standard')}</button>
+                                onClick={() => onChangeTab(SpaceframeTab.Standard)}>{t('StationSpaceframePage.standard')}</button>
                     </div>
 
                     {tab === SpaceframeTab.Custom

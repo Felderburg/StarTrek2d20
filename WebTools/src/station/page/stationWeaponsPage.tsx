@@ -13,6 +13,7 @@ import { IStationPageProperties, stationMapStateToProperties } from "../iStation
 import { useNavigate } from "react-router";
 import LcarsFrame from "../../components/lcarsFrame";
 import { addStationWeapon, deleteStationWeapon } from "../../state/stationActions";
+import StationBreadcrumbs from "../view/stationBreadcrumbs";
 
 const StationWeaponsPage: React.FC<IStationPageProperties> = ({station}) => {
 
@@ -78,6 +79,7 @@ const StationWeaponsPage: React.FC<IStationPageProperties> = ({station}) => {
     return (<LcarsFrame activePage={PageIdentity.StationWeapons}>
         <div id="app">
             <div className="page container ms-0">
+                <StationBreadcrumbs pageIdentity={PageIdentity.StationWeapons} station={station} />
                 <main>
                 <Header>Ship Weapons</Header>
 

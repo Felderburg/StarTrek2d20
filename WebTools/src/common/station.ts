@@ -30,9 +30,9 @@ export class CustomStationSpaceframeStep {
         return result;
     }
 
-    static create() {
+    static create(scale: number = CustomStationSpaceframeStep.MIN_SCALE) {
         let frameStep = new CustomStationSpaceframeStep();
-        frameStep.scale = CustomStationSpaceframeStep.MIN_SCALE;
+        frameStep.scale = scale;
         frameStep.systems = PointAllocator.allocatePointsEvenly(Station.totalAvailableSystemPointsForScale(frameStep.scale));
         frameStep.departments = PointAllocator.allocatePointsEvenly(Station.totalAvailableDepartmentPointsForScale(frameStep.scale));
 
@@ -112,7 +112,7 @@ export class Station extends Construct {
         result.version = this.version;
         result.era = this.era;
         result.name = this.name;
-        result.traits = [...this.traits];
+        result.traits = this.traits == null ? [] : [...this.traits];
         result.missionProfileStep = this.missionProfileStep?.copy();
         result.stationFrameStep = this.stationFrameStep?.copy();
         result.weapons = [...this.weapons];
@@ -181,15 +181,32 @@ export class Station extends Construct {
     }
 
     get freeTalentSlots() {
-        return Math.floor(this.scale / 2) - 1;
+        let slots = Math.floor(this.scale / 2);
+        if (this.stationFrameStep?.type === StationFrame.Custom) {
+            slots -= 1;
+        } else {
+            let model = (this.stationFrameStep as StandardStationSpaceframeStep).model;
+            slots -= model.talents.length;
+        }
+        return slots;
     }
 
     get baseTalents(): SelectedTalent[] {
-        if (this.missionProfileStep?.talent) {
-            return [ this.missionProfileStep.talent ];
-        } else {
-            return [];
+        let result = [];
+        if (this.stationFrameStep instanceof StandardStationSpaceframeStep) {
+            let model = this.stationFrameStep.model;
+            model.talents.forEach(t => {
+                if (t instanceof SelectedTalent) {
+                    result.push(t);
+                } else {
+                    result.push(new SelectedTalent(t.name));
+                }
+            })
         }
+        if (this.missionProfileStep?.talent) {
+            result.push(this.missionProfileStep.talent);
+        }
+        return result;
     }
 
     static totalAvailableSystemPointsForScale(scale: number): number {
@@ -201,7 +218,17 @@ export class Station extends Construct {
     }
 
     determineWeapons() {
-        return this.weapons;
+        let result = [];
+        if (this.stationFrameStep instanceof StandardStationSpaceframeStep) {
+            let model = this.stationFrameStep.model;
+            result.push(...model.weapons);
+        }
+        let talentWeapons = this.additionalTalents.filter(t => t.weapon != null).map(t => t.weapon);
+
+        result.push(...talentWeapons);
+        result.push(...this.weapons);
+
+        return result;
     }
 
     get talents(): SelectedTalent[] {

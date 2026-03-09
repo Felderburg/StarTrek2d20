@@ -17,6 +17,7 @@ import store from "../../state/store";
 import { setStationAdditionalTalents } from "../../state/stationActions";
 import { useNavigate } from "react-router";
 import StationBreadcrumbs from "../view/stationBreadcrumbs";
+import { StationFrame } from "../../helpers/stationFrame";
 
 const StationTalentsPage: React.FC<IStationPageProperties> = ({station}) => {
 
@@ -33,6 +34,8 @@ const StationTalentsPage: React.FC<IStationPageProperties> = ({station}) => {
             Dialog.show("Please select " + station.freeTalentSlots + ((station.freeTalentSlots === 1) ? ' talent ' : ' talents ') + " before proceeding.");
         } else if (message) {
             Dialog.show(message);
+        } else if (station.stationFrameStep?.type !== StationFrame.Custom) {
+            navigate("/station/final");
         } else {
             navigate("/station/weapons");
         }

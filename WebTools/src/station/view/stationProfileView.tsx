@@ -1,11 +1,13 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import store from "../../state/store";
-import { Station } from "../../common/station";
+import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station } from "../../common/station";
 import { ErasHelper } from "../../helpers/eras";
 import { CharacterTypeModel } from "../../common/characterType";
 import { System } from "../../helpers/systems";
 import { Department } from "../../helpers/department";
+import { StationFrame } from "../../helpers/stationFrame";
+import MissionProfiles from "../../helpers/missionProfiles";
 
 interface IStationProfileProperties {
     showProfile: boolean;
@@ -58,6 +60,13 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
                             </div>
 
                             <div className="sheet-panel d-flex">
+                                <div className="sheet-label-purple text-uppercase">{t('Construct.other.spaceFrame')}</div>
+                                <div className="sheet-data">{station?.stationFrameStep == null
+                                    ? ""
+                                    : station?.stationFrameStep instanceof CustomStationSpaceframeStep ? "Custom" : (station.stationFrameStep as StandardStationSpaceframeStep)?.model?.localizedName}</div>
+                            </div>
+
+                            <div className="sheet-panel d-flex">
                                 <div className="sheet-label-purple text-uppercase">{t('Construct.other.scale')}</div>
                                 <div className="sheet-data">
                                     {station?.scale ?? 3}
@@ -70,6 +79,12 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
                                 <div className="sheet-label-purple text-uppercase flex-shrink-0">{t('Construct.other.traits')}</div>
                                 <div className="sheet-data">{station?.traitsAsString ?? ""}</div>
                             </div>
+
+                            <div className="sheet-panel d-flex">
+                                <div className="sheet-label-purple text-uppercase">{t('Construct.other.missionProfile')}</div>
+                                <div className="sheet-data">{station?.missionProfileStep == null? "" : MissionProfiles.instance.getStationMissionProfileByType(station.missionProfileStep?.type).localizedName}</div>
+                            </div>
+
                         </div>
 
                         <div className="col-md-6 mb-2">
