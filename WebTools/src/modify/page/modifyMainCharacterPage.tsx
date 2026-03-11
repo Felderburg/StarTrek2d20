@@ -24,7 +24,6 @@ import { CheckBox } from "../../components/checkBox";
 import { Dialog } from "../../components/dialog";
 import { LogEntrySelectionView } from "./logEntrySelectionView";
 import { CharacterAdvancementStep } from "../../common/character";
-import { CharacterAdvancementChoice } from "../model/characterAdvancementChoice";
 
 enum Step {
     Initial,

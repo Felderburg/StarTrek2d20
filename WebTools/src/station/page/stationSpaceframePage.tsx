@@ -14,7 +14,7 @@ import { makeKey } from "../../common/translationKey";
 import { System } from "../../helpers/systems";
 import { Department } from "../../helpers/department";
 import { ScaleSelector } from "../view/scaleSelector";
-import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, setStationCustomScale, setStationFrame, setStationMissionProfile } from "../../state/stationActions";
+import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, setStationCustomScale, setStationFrame } from "../../state/stationActions";
 import { CustomStationSpaceframeStep } from "../../common/station";
 import { Dialog } from "../../components/dialog";
 import StationBreadcrumbs from "../view/stationBreadcrumbs";
@@ -116,11 +116,11 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
 
 
     const renderSystemsText = () => {
-        return undefined;
+        return (<Markdown>{t('StationSpaceframePage.systems.instruction', { points: station.totalAvailableSystemPoints})}</Markdown>);
     }
 
     const renderDepartmentText = () => {
-        return undefined;
+        return (<Markdown>{t('StationSpaceframePage.departments.instruction', { points: station.totalAvailableDepartmentPoints })}</Markdown>);
     }
 
     const renderCustomStats = () => {

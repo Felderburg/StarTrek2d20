@@ -176,6 +176,9 @@ export class Station extends Construct {
             if (this.version > 1) {
                 base += this.scale;
             }
+            if (this.hasTalent("Enhanced Defense Grid")) {
+                base += Math.floor(this.scale / 2);
+            }
             let advanced = this.talents.filter(t => t.name === "Advanced Shields");
             if (advanced.length > 0) {
                 base += (5 * advanced.length);
@@ -196,7 +199,7 @@ export class Station extends Construct {
     }
 
     get maxSystemValue(): number {
-        return 15;
+        return this.totalAvailableSystemPoints - 5;
     }
 
     get maxDepartmentValue(): number {

@@ -2805,7 +2805,11 @@
 
     "StationSpaceframePage.instruction": "Choose the details about the station that you're building. You can build a new station frame from scratch, or you can pick a standard station frame.",
 
+    "StationSpaceframePage.departments.instruction": "You have {{points}} points to distribute among the various station departments.",
+
     "StationSpaceframePage.scale.instruction": "The Scale of a space station determines many of the numbers that are used later in the creation process. The smallest starbases, such as Regula I, are Scale 6, and even more moderately sized starbases such as DS9 and Narendra Station are Scale 12. The largest is Spacedock circling Earth at Scale 16. Starbases can range from Scale 3 (the International Space Station in Earth orbit as of 2022) to as high as you wish, though there is a ceiling at which there is diminishing returns for Scale.",
+
+    "StationSpaceframePage.systems.instruction": "You have {{points}} points to distribute among the various station systems.",
 
     "StationSpaceframePage.noFrames.instruction": "There are no standard frames for this polity.",
 
@@ -3334,6 +3338,10 @@
     "Talent.diplomaticSuites.soloDescription": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions.",
     "Talent.diplomaticSuites.description2e": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions, including making environmental adjustments to make alien diplomats more comfortable.\n\nWhen hosting negotiations, members of the crew may be assisted by the ship’s **Computers + Command** or **Structure + Command**.",
 
+    "Talent.dockingCapacity": "Docking Capacity",
+
+    "Talent.dockingCapacity.description2e": "The station has additional ports and pylons that allow it to support a greater number of docked vessels, as well as larger vessels. The starbase has a number of docking ports equal to one and a half times its Scale (rounding up), instead of half its Scale as would normally be the case. Further, the  maximum Scale of any ship docked at the station is increased by 2.",
+
     "Talent.doctorsOrders": "Doctor’s Orders",
 
     "Talent.doctorsOrders.description": "When you attempt a Task to coordinate others, or to coerce someone into taking or refraining from a specific course of action, you may use your Medicine Discipline instead of Command.",
@@ -3397,6 +3405,10 @@
     "Talent.engineeringScienceAffinityUnofficial": "Engineering/Science Affinity",
 
     "Talent.engineeringScienceAffinityUnofficial.description": "Napeans have an affinity for the Engineering & Science Disciplines. Whenever, you use these you gain a bonus 1d20 for your rolls. ",
+
+    "Talent.enhancedDefenseGrid": "Enhanced Defense Grid",
+
+    "Talent.enhancedDefenseGrid.description2e": "The station’s Shields are increased by an additional amount equal to half the station’s Scale.",
 
     "Talent.entanglingVines": "Entangling Vines",
 
@@ -3508,6 +3520,10 @@
     "Talent.finesseStrikes": "Finesse Strikes",
 
     "Talent.finesseStrikes.description": "You are graceful on the field of battle, often dancing around the enemy with relative ease. Once per combat encounter, you may reroll all the [D] for the Stress you inflict when you make a single successful melee attack.",
+
+    "Talent.firebase": "Firebase",
+
+    "Talent.firebase.description2e": "The station is built to defend itself and the space around it from attack, and it is able to unleash colossal amounts of firepower. Whenever a character makes an Attack with the station, they may use the Swift Task Momentum spend for 1 Momentum instead of the normal 2, so long as their second task is also an _Attack_.",
 
     "Talent.firstResponse": "First Response",
 
@@ -4242,6 +4258,10 @@
 
     "Talent.reliable.description": "Whenever the ship rolls to assist a task attempt, the group may spend 1 Momentum to ignore any complications rolled on the ship’s die.",
 
+    "Talent.repairCrews": "Repair Crews",
+
+    "Talent.repairCrews.description2e": "Due to having additional personnel to support repair and maintenance work, the station may prioritize the repairs of a number of ships equal to its Engineering.",
+
     "Talent.repairTeamLeader": "Repair Team Leader",
 
     "Talent.repairTeamLeader.description2e": "You are trained to direct and lead damage repair teams during emergencies, giving them your guidance and expert knowledge of the ship’s systems. If you succeed at the Damage Control major action you may spend 2 Momentum (Repeatable) to repair one additional Breach.",
@@ -4416,6 +4436,10 @@
     "Talent.sturdy": "Sturdy",
 
     "Talent.sturdy.description": "You have a blend of physical resilience and mental fortitude such that you’re difficult to subdue. You reduce the cost to resist being knocked prone by the Knockdown damage effect by one, to a minimum of 0, and gain +1 Resistance against all non-lethal attacks.",
+
+    "Talent.sturdyConstruction": "Sturdy Construction",
+
+    "Talent.sturdyConstruction.description2e": "When the station suffers damage from an attack with the Piercing quality, halve the total damage (rounding up).",
 
     "Talent.sturdySpecialRule": "Sturdy",
 
