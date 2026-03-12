@@ -14,6 +14,16 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260311</b>
+            <ul>
+                <li>
+                    A few improvements/fixes to station creation.
+                </li>
+                <li>
+                    I neglected to mention that I also threw in 2nd Edition support for the
+                    <cite>Alpha</cite> and <cite>Beta Quadrant</cite> 2nd Edition updates.
+                </li>
+            </ul>
             <b>v1.260309</b>
             <ul>
                 <li>

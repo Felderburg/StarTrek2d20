@@ -330,11 +330,11 @@ class SpaceframeOutlineHelper {
             return new Outline(DRYDOCK_OUTLINE, DRYDOCK_DETAILS);
         } else if (station?.stationFrameStep?.type === StationFrame.NarendraStationType) {
             return new Outline(NARENDRA_STATION_OUTLINE, NARENDRA_STATION_DETAILS);
+        } else if (station?.stationFrameStep?.type === StationFrame.FederationSubspaceCommunicationsRelay) {
+            return new Outline(COMMUNICATION_RELAY_STATION_OUTLINE, COMMUNICATION_RELAY_STATION_DETAILS);
         } else if (station?.stationFrameStep?.type === StationFrame.FederationListeningPost
             || station?.missionProfileStep?.type === MissionProfile.CommunicationHubStation) {
             return new Outline(MIDAS_ARRAY_OUTLINE, MIDAS_ARRAY_DETAILS);
-        } else if (station?.stationFrameStep?.type === StationFrame.FederationSubspaceCommunicationsRelay) {
-            return new Outline(COMMUNICATION_RELAY_STATION_OUTLINE, COMMUNICATION_RELAY_STATION_DETAILS);
         } else if (station?.type === CharacterType.Cardassian ||
             station?.stationFrameStep?.type === StationFrame.TerakNorType) {
             return new Outline(TERAK_NOR_OUTLINE, TERAK_NOR_DETAILS);

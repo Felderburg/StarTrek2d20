@@ -259,6 +259,16 @@ export class Station extends Construct {
         return result;
     }
 
+    hasBaseTalent(talentName: string) {
+        let talents = this.baseTalents.filter(t => t.name === talentName);
+        return talents.length > 0;
+    }
+
+    hasTalent(talentName: string) {
+        let talents = this.talents.filter(t => t.name === talentName);
+        return talents.length > 0;
+    }
+
     static totalAvailableSystemPointsForScale(scale: number): number {
         return Math.min(38 + (3 * Math.max(scale-2)), 78);
     }

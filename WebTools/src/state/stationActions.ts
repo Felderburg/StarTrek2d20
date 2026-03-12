@@ -1,5 +1,5 @@
 import { SelectedTalent } from "../common/selectedTalent";
-import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station } from "../common/station"
+import { Station } from "../common/station"
 import { Department } from "../helpers/department";
 import { MissionProfile } from "../helpers/missionProfiles";
 import { StationFrame } from "../helpers/stationFrame";

@@ -102,7 +102,7 @@ const StationTalentsPage: React.FC<IStationPageProperties> = ({station}) => {
                     rankedTalents.push(new RankedTalent(t, i + 1));
                 }
 
-            } else {
+            } else if (!station.hasBaseTalent(t.name)) {
                 let count = station.baseTalents?.filter(s => s.talent === t.name)?.length ?? 0;
                 if (count === 0) {
                     rankedTalents.push(new RankedTalent(t));

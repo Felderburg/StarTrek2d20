@@ -67,7 +67,8 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({s
             let talent = t instanceof SelectedTalent ? (t as SelectedTalent).talentModel : (t as TalentModel);
             if (!talent.isSourcePrerequisiteFulfilled(station)) {
                 // skip it
-            } else if (true) {
+            } else if (station.stationFrameStep?.type === StationFrame.Custom
+                || !((station.stationFrameStep as StandardStationSpaceframeStep).model.talents.map(ft => ft.name).includes(t.name))) {
                 talents.push(new RankedTalent(talent, talent.maxRank > 1 ? 1 : undefined));
             } else if (talent.maxRank > 1) {
                 talents.push(new RankedTalent(talent, station.getRankForTalent(talent.name) + 1));

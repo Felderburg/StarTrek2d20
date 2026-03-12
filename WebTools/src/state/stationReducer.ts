@@ -35,6 +35,14 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
             if (s.missionProfileStep) {
                 s.missionProfileStep.talent = action.payload.talent;
             }
+            for (let i = 0; i < s.additionalTalents.length; ) {
+                if (s.hasBaseTalent(s.additionalTalents[i].name) && s.additionalTalents[i].talentModel.maxRank === 1) {
+                    s.additionalTalents.splice(i, 1);
+                } else {
+                    i++;
+                }
+            }
+
             return {
                 ...state,
                 station: s
@@ -176,9 +184,19 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                     let frameModel = temp.model;
                     if (frameModel.missionProfiles?.length === 1) {
                         s.missionProfileStep = new StationMissionProfileStep(temp.model.missionProfiles[0].profile);
-                        s.weapons = [];
+                    } else {
+                        s.missionProfileStep = null;
+                    }
+                    s.weapons = [];
+                }
+                for (let i = 0; i < s.additionalTalents.length; ) {
+                    if (s.hasBaseTalent(s.additionalTalents[i].name) && s.additionalTalents[i].talentModel.maxRank === 1) {
+                        s.additionalTalents.splice(i, 1);
+                    } else {
+                        i++;
                     }
                 }
+
                 for (let i = s.additionalTalents.length; i > s.freeTalentSlots; i = s.additionalTalents.length) {
                     s.additionalTalents.splice(0, 1);
                 }

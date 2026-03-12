@@ -53,6 +53,8 @@ import { allStarshipAdvancementChoices, StarshipAdvancementChoice } from '../com
 import { LogEntry, LogValueEntry, ValueUseType, ValueUseTypeModel } from '../common/logEntry';
 import { SpaceframeVariant, SpaceframeVariantModel } from './spaceframeVariant';
 import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station, StationMissionProfileStep } from '../common/station';
+import { StationFrameModel } from './stationFrameModel';
+import { StationFrame } from './stationFrame';
 
 class Marshaller {
 
@@ -102,7 +104,7 @@ class Marshaller {
                 }
             } else {
                 sheet["frame"] = {
-                    "type": MissionProfile[station.stationFrameStep.type]
+                    "type": StationFrame[station.stationFrameStep.type]
                 }
             }
         }
@@ -1095,7 +1097,7 @@ class Marshaller {
                 result.stationFrameStep = step;
             } else {
                 let type = frame["type"];
-                let profile = MissionProfiles.instance.getMissionProfileByName(type, result.type, result.version);
+                let profile = StationFrameModel.getByIdName(type);
                 if (profile) {
                     result.stationFrameStep = new StandardStationSpaceframeStep(profile.id);
                 }
