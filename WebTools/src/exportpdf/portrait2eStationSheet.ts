@@ -55,7 +55,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
             let name = station.name;
             this.writeName(page, name, colour, this.headingFont, this.nameColumn);
         } else {
-            this.writeName(page, i18next.t('ViewPage.unnamedStarship'), colour, this.headingFont, this.nameColumn);
+            this.writeName(page, i18next.t('ViewPage.unnamedStation'), colour, this.headingFont, this.nameColumn);
         }
     }
 
@@ -123,7 +123,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
         const column4 = new Column(538.5 - (284.7-56.7), 78.5, 715-78.5, 284.7-56.7);
         const column3 = new Column(56.7, 78.5, 715-78.5, 284.7-56.7, column4);
 
-        const column2 = new Column(538.5 - (284.7-56.7), 225, 715-225, 284.7-56.7,
+        const column2 = new Column(538.5 - (284.7-56.7), 340, 715-340, 284.7-56.7,
             () => {
                 const page = pdf.addPage(additionalPage);
                 return new PageArea(column3, page)
@@ -279,7 +279,8 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
 
         let talentsColumn = remainingColumn.bottomAfter(13 + 4);
 
-        let finalColumn = await this.writeTalents(page, station, talentsColumn, colour);
+        //let finalColumn =
+        await this.writeTalents(page, station, talentsColumn, colour);
 
         /*
         if (this.hasSpecialRules(station) && finalColumn) {

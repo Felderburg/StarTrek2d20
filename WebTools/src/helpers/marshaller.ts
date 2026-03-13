@@ -1066,7 +1066,6 @@ class Marshaller {
     }
 
     decodeStation(json: any): Station {
-        console.log(json);
         let result = new Station();
         if (json.version) {
             result.version = json.version;

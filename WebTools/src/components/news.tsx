@@ -14,6 +14,12 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260312</b>
+            <ul>
+                <li>
+                    Bug fixes.
+                </li>
+            </ul>
             <b>v1.260311</b>
             <ul>
                 <li>
@@ -108,83 +114,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
             <ul>
                 <li>
                     Some quick fixes.
-                </li>
-            </ul>
-            <b>v1.250906</b>
-            <ul>
-                <li>
-                    Some costmetic and internal updates. Importantly, the option for
-                    choosing <cite>Captain's Log</cite> characters is selected in the
-                    "editions" drop down on the sources page.
-                </li>
-            </ul>
-            <b>v1.250904</b>
-            <ul>
-                <li>
-                    More bug fixes.
-                </li>
-            </ul>
-            <b>v1.250830</b>
-            <ul>
-                <li>
-                    A few bug fixes and other cosmetic improvements.
-                </li>
-            </ul>
-            <b>v1.250823</b>
-            <ul>
-                <li>
-                    Minor revisions to some starship sheets.
-                </li>
-            </ul>
-            <b>v1.250822</b>
-            <ul>
-                <li>
-                    Finish up some partially-implemented features.
-                </li>
-            </ul>
-            <b>v1.250821</b>
-            <ul>
-                <li>
-                    A few bug fixes.
-                </li>
-                <li>
-                    Support for the 2nd edition update to the <cite>Science Division</cite> Sourcebook.
-                </li>
-            </ul>
-            <b>v1.250815</b>
-            <ul>
-                <li>
-                    Minor improvements.
-                </li>
-                <li>
-                    Custom talent support (at the moment, for NPCs and starships).
-                </li>
-            </ul>
-            <b>v1.250809</b>
-            <ul>
-                <li>
-                    Minor bug fixes.
-                </li>
-            </ul>
-            <b>v1.250719</b>
-            <ul>
-                <li>
-                    Correct version misnumbering.
-                </li>
-            </ul>
-            <b>v1.250719</b>
-            <ul>
-                <li>
-                    More bug fixes.
-                </li>
-                <li>
-                    Initial version of tracker.
-                </li>
-            </ul>
-            <b>v1.250718</b>
-            <ul>
-                <li>
-                    Minor bug fixes.
                 </li>
             </ul>
 
