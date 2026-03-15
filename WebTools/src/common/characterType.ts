@@ -4,6 +4,7 @@ import { makeKey } from "./translationKey";
 
 export enum CharacterType {
     Starfleet = 0,
+    Federation,
     KlingonWarrior,
     AlliedMilitary,
     AmbassadorDiplomat,
@@ -25,6 +26,7 @@ export enum CharacterType {
 export class CharacterTypeModel {
     private static TYPES: CharacterTypeModel[] = [
         new CharacterTypeModel("Starfleet", CharacterType.Starfleet),
+        new CharacterTypeModel("Federation", CharacterType.Federation),
         new CharacterTypeModel("Klingon Defense Force", CharacterType.KlingonWarrior),
         new CharacterTypeModel("Allied Military", CharacterType.AlliedMilitary),
         new CharacterTypeModel("Ambassador / Diplomat", CharacterType.AmbassadorDiplomat),
@@ -42,7 +44,9 @@ export class CharacterTypeModel {
     ];
 
     private static TYPES_EXCEPT_OTHER: CharacterTypeModel[] = CharacterTypeModel.TYPES
-        .filter(t => t.type !== CharacterType.Other && t.type !== CharacterType.Tribble);
+        .filter(t => t.type !== CharacterType.Other
+            && t.type !== CharacterType.Tribble
+            && t.type !== CharacterType.Federation);
 
     name: string;
     type: CharacterType;
@@ -61,7 +65,7 @@ export class CharacterTypeModel {
     }
 
     public static getByType(type: CharacterType) {
-        return CharacterTypeModel.TYPES[type];
+        return CharacterTypeModel.TYPES.filter(t => t.type === type)[0];
     }
 
 
@@ -97,7 +101,7 @@ export class CharacterTypeModel {
     }
 
     public static getNpcTypes(sources: Source[]) {
-        return CharacterTypeModel.TYPES.filter(t => ![CharacterType.Tribble, CharacterType.AmbassadorDiplomat, CharacterType.AlliedMilitary].includes(t.type));
+        return CharacterTypeModel.TYPES.filter(t => ![CharacterType.Tribble, CharacterType.Federation, CharacterType.AmbassadorDiplomat, CharacterType.AlliedMilitary].includes(t.type));
     }
 
     public static getSoloCharacterTypes() {

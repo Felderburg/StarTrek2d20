@@ -12,3 +12,18 @@ export enum StationFrame {
     FederationSubspaceCommunicationsRelay,
     Custom
 }
+
+export enum StationFrameAppearance {
+    InternationalSpaceStation,
+    Drydock,
+    KClassBorderOutpost,
+    VanguardType,
+    StarbaseOneType,
+    RegulaClassMultipurposeStation,
+    JupiterStation,
+    Spacedock,
+    TerakNorType,
+    NarendraStationType,
+    FederationCommunicationsArray,
+    FederationSubspaceCommunicationsRelay,
+}

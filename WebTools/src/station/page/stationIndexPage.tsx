@@ -23,7 +23,7 @@ const StationIndexPage: React.FC<IStationIndexPageProperties> = ({era}) => {
 
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const [characterType, setCharacterType] = useState(CharacterType.Starfleet);
+    const [characterType, setCharacterType] = useState(CharacterType.Federation);
 
     const createNewStation = () => {
         store.dispatch(createStation(Station.create(characterType, 2, era)));
@@ -31,7 +31,7 @@ const StationIndexPage: React.FC<IStationIndexPageProperties> = ({era}) => {
     }
 
     const getCharacterTypeElements = () => {
-        const supportedType = [CharacterType.Starfleet, CharacterType.KlingonWarrior,
+        const supportedType = [CharacterType.Federation, CharacterType.KlingonWarrior,
             CharacterType.Ferengi, CharacterType.Cardassian, CharacterType.Romulan,
             CharacterType.Other];
         return CharacterTypeModel.getAllTypes()

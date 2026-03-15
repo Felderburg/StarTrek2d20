@@ -318,7 +318,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
                 scale: 0.6
             });
         } else if (construct.type === CharacterType.KlingonWarrior || (construct as Starship).spaceframeModel?.type === CharacterType.KlingonWarrior) {
-            page.moveTo(513.5, page.getHeight() - 185.9);
+            page.moveTo(513.5, page.getHeight() - 75);
 
             page.drawSvgPath(politySymbolKlingonSymbolCircle, {
                 borderColor: Generated2eStarshipSheet.greyColour.asPdfRbg(),
@@ -335,7 +335,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
             });
 
         } else if (construct.type === CharacterType.Cardassian) {
-            page.moveTo(513.5, page.getHeight() - 185.9);
+            page.moveTo(513.5, page.getHeight() - 75);
 
             page.drawSvgPath(politySymbolCardassianSymbolInner, {
                 borderColor: Generated2eStarshipSheet.greyColour.asPdfRbg(),
@@ -352,7 +352,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
             });
 
         } else if (construct.type === CharacterType.Romulan) {
-            page.moveTo(499.5, page.getHeight() - 187.9);
+            page.moveTo(499.5, page.getHeight() - 75);
 
             page.drawSvgPath(politySymbolRomulanSymbolBackground, {
                 borderColor: Generated2eStarshipSheet.greyColour.asPdfRbg(),
@@ -368,8 +368,8 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
                 scale: 0.6
             });
 
-        } else if (construct.type === CharacterType.Civilian) {
-            page.moveTo(499.5, page.getHeight() - 187.9);
+        } else if (construct.type === CharacterType.Civilian || construct.type === CharacterType.Federation) {
+            page.moveTo(499.5, page.getHeight() - 75);
 
             page.drawSvgPath(politySymbolFederationLaurels, {
                 borderColor: greyColour2e.asPdfRbg(),
@@ -386,7 +386,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
             });
 
         } else if (construct.type === CharacterType.Ferengi) {
-            page.moveTo(509.5, page.getHeight() - 191.9);
+            page.moveTo(509.5, page.getHeight() - 75);
 
             page.drawSvgPath(politySymbolFerengiSymbol, {
                 borderColor: Generated2eStarshipSheet.greyColour.asPdfRbg(),

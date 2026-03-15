@@ -661,6 +661,7 @@
     "Construct.other.assignment": "Assignment",
     "Construct.other.attacks": "Attacks",
     "Construct.other.attackType": "Attack Type",
+    "Construct.other.appearance": "Appearance",
     "Construct.other.attribute": "Attribute",
     "Construct.other.attributes": "Attributes",
     "Construct.other.breaches": "Breaches",
@@ -736,6 +737,7 @@
     "Construct.other.speciesAbility": "Species Ability",
     "Construct.other.speciesAndTraits": "Species & Traits",
     "Construct.other.starshipType": "Starship Type",
+    "Construct.other.stationType": "Station Type",
     "Construct.other.stats": "Stats",
     "Construct.other.stress": "Stress",
     "Construct.other.supervisory": "Supervisory",
@@ -1237,6 +1239,7 @@
     "CharacterAdvancementType.characterArc": "Character Arc",
 
     "CharacterType.name.starfleet": "Starfleet",
+    "CharacterType.name.federation": "Federation",
     "CharacterType.name.klingonWarrior": "Klingon Defense Force",
     "CharacterType.name.civilian": "Civilian",
     "CharacterType.name.alliedMilitary": "Allied Military",
@@ -2791,6 +2794,19 @@
     "StationFrame.federationSubspaceCommunicationsRelay": "Federation Subspace Communications Relay",
     "StationFrame.custom": "Custom",
 
+    "StationFrameAppearance.internationalSpaceStation": "International Space Station",
+    "StationFrameAppearance.drydock": "United Earth / Starfleet Construction Slip",
+    "StationFrameAppearance.kClassBorderOutpost": "K-Class Border Outpost",
+    "StationFrameAppearance.regulaClassMultipurposeStation": "Regula-Class Multipurpose Station",
+    "StationFrameAppearance.spacedock": "Spacedock",
+    "StationFrameAppearance.terakNorType": "Terak-Nor-type",
+    "StationFrameAppearance.vanguardType": "Vanguard Station",
+    "StationFrameAppearance.jupiterStation": "Jupiter Station",
+    "StationFrameAppearance.starbaseOneType": "Starbase One",
+    "StationFrameAppearance.narendraStationType": "Narendra-Station-type",
+    "StationFrameAppearance.federationCommunicationsArray": "Federation Communications Array",
+    "StationFrameAppearance.federationSubspaceCommunicationsRelay": "Federation Communications Relay",
+
     "StationIndexPage.instruction": "Use this process to create a space station.",
     "StationIndexPage.characterType": "Station Type",
 
@@ -2805,6 +2821,8 @@
     "StationMissionProfile.error.selectProfile": "Please select a mission profile",
 
     "StationSpaceframePage.instruction": "Choose the details about the station that you're building. You can build a new station frame from scratch, or you can pick a standard station frame.",
+
+    "StationSpaceframePage.appearance.instruction": "Choose a basic appearance for the station.",
 
     "StationSpaceframePage.departments.instruction": "You have {{points}} points to distribute among the various station departments.",
 

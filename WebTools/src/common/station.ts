@@ -2,7 +2,7 @@ import { Department } from "../helpers/department";
 import { Era } from "../helpers/eras";
 import { MissionProfile } from "../helpers/missionProfiles";
 import PointAllocator from "../helpers/pointAllocator";
-import { StationFrame } from "../helpers/stationFrame";
+import { StationFrame, StationFrameAppearance } from "../helpers/stationFrame";
 import { StationFrameModel } from "../helpers/stationFrameModel";
 import { System } from "../helpers/systems";
 import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_IMPROVED_HULL_INTEGRITY } from "../helpers/talents";
@@ -18,6 +18,7 @@ export class CustomStationSpaceframeStep {
     scale: number = CustomStationSpaceframeStep.MIN_SCALE;
     departments: number[] = [];
     systems: number[] = [];
+    appearance?: StationFrameAppearance;
 
     get type() {
         return StationFrame.Custom;
@@ -26,6 +27,7 @@ export class CustomStationSpaceframeStep {
     copy() {
         let result = new CustomStationSpaceframeStep();
         result.scale = this.scale;
+        result.appearance = this.appearance;
         result.departments = [...this.departments];
         result.systems = [...this.systems];
         return result;
@@ -63,6 +65,32 @@ export class StandardStationSpaceframeStep {
 
     get departments() {
         return this.model.departments;
+    }
+
+    get appearance(): StationFrameAppearance|undefined {
+        switch (this.type) {
+            case StationFrame.InternationalSpaceStation:
+                return StationFrameAppearance.InternationalSpaceStation;
+            case StationFrame.UnitedEarthStarfleetConstructionSlip:
+                return StationFrameAppearance.Drydock;
+            case StationFrame.KClassBorderOutpost:
+                return StationFrameAppearance.KClassBorderOutpost;
+            case StationFrame.RegulaClassMultipurposeStation:
+                return StationFrameAppearance.RegulaClassMultipurposeStation;
+            case StationFrame.Spacedock:
+            case StationFrame.FederationStarbase:
+                return StationFrameAppearance.Spacedock;
+            case StationFrame.TerakNorType:
+                return StationFrameAppearance.TerakNorType;
+            case StationFrame.NarendraStationType:
+                return StationFrameAppearance.NarendraStationType;
+            case StationFrame.FederationSubspaceCommunicationsRelay:
+                return StationFrameAppearance.FederationSubspaceCommunicationsRelay;
+            case StationFrame.FederationListeningPost:
+                return StationFrameAppearance.FederationCommunicationsArray;
+            default:
+                return StationFrameAppearance.Spacedock;
+        }
     }
 
     copy() {

@@ -25,7 +25,7 @@ export class StationFrameModel {
     private static initializeType() {
         if (this.TYPES == null) {
             this.TYPES = [
-                new StationFrameModel(StationFrame.InternationalSpaceStation, CharacterType.Starfleet,
+                new StationFrameModel(StationFrame.InternationalSpaceStation, CharacterType.Federation,
                     [9, 7, 6, 9, 7, 3],
                     [1, 1, 1, 3, 4, 3],
                     3,
@@ -36,7 +36,7 @@ export class StationFrameModel {
                     ],
                     new MissionProfileConfiguration(MissionProfile.ResearchStation, "Advanced Research Facilities")
                 ),
-                new StationFrameModel(StationFrame.UnitedEarthStarfleetConstructionSlip, CharacterType.Starfleet,
+                new StationFrameModel(StationFrame.UnitedEarthStarfleetConstructionSlip, CharacterType.Federation,
                     [9, 10, 5, 9, 12, 5],
                     [1, 2, 1, 5, 2, 2],
                     6,
@@ -50,7 +50,7 @@ export class StationFrameModel {
                     ],
                     new MissionProfileConfiguration(MissionProfile.DrydockShipRepairStation, "Drydock")
                 ),
-                new StationFrameModel(StationFrame.KClassBorderOutpost, CharacterType.Starfleet,
+                new StationFrameModel(StationFrame.KClassBorderOutpost, CharacterType.Federation,
                     [8, 6, 8, 10, 9, 9],
                     [2, 2, 2, 2, 2, 3],
                     6,
@@ -66,7 +66,7 @@ export class StationFrameModel {
                     ],
                     new MissionProfileConfiguration(MissionProfile.LogisticalAndTacticalSupportStation, "Drydock")
                 ),
-                new StationFrameModel(StationFrame.RegulaClassMultipurposeStation, CharacterType.Starfleet,
+                new StationFrameModel(StationFrame.RegulaClassMultipurposeStation, CharacterType.Federation,
                     [10, 10, 8, 8, 10, 3],
                     [1, 1, 1, 2, 5, 3],
                     6,
@@ -139,7 +139,7 @@ export class StationFrameModel {
                     ],
                     new MissionProfileConfiguration(MissionProfile.BorderEnforcementStation, "Rapid-Fire Torpedo Launcher"),
                 ),
-                new StationFrameModel(StationFrame.NarendraStationType, CharacterType.Starfleet,
+                new StationFrameModel(StationFrame.NarendraStationType, CharacterType.Federation,
                     [11, 11, 10, 14, 14, 11],
                     [5, 4, 4, 5, 6, 4],
                     13,
@@ -159,7 +159,7 @@ export class StationFrameModel {
                     ],
                     new MissionProfileConfiguration(MissionProfile.DiplomaticRelationsStation),
                 ),
-                new StationFrameModel(StationFrame.FederationListeningPost, CharacterType.Starfleet,
+                new StationFrameModel(StationFrame.FederationListeningPost, CharacterType.Federation,
                     [8, 8, 9, 12, 9, 10],
                     [2, 1, 4, 1, 4, 1],
                     8,
@@ -177,7 +177,7 @@ export class StationFrameModel {
                     new MissionProfileConfiguration(MissionProfile.IntelligenceSpecialOperationsStation, "Electronic Warfare Systems"),
                     new MissionProfileConfiguration(MissionProfile.PolicalOperationsStation),
                 ),
-                new StationFrameModel(StationFrame.FederationSubspaceCommunicationsRelay, CharacterType.Starfleet,
+                new StationFrameModel(StationFrame.FederationSubspaceCommunicationsRelay, CharacterType.Federation,
                     [14, 11, 7, 8, 6, 4],
                     [5, 1, 1, 1, 4, 1],
                     6,

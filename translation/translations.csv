@@ -721,6 +721,7 @@ Construct.other.assetType,Asset Type,,,Tipo de Recurso,,,Tipo de Recurso
 Construct.other.assignment,Assignment,,Position,Asignación,Mission,Назначение,Designação
 Construct.other.attacks,Attacks,,,Ataques,Attaques,Оружие,Ataques
 Construct.other.attackType,Attack Type,,,,,,
+Construct.other.appearance,Appearance,,,,,,
 Construct.other.attribute,Attribute,,Attribut,Atributo,Attribut,Качество,Atributo
 Construct.other.attributes,Attributes,,Attribute,Atributos,Attributs,Качества,Atributos
 Construct.other.breaches,Breaches,,,Brechas,,,Rompimentos
@@ -792,6 +793,7 @@ Construct.other.species,Species,,Spezies,Especie,Espèce,Раса,Espécies
 Construct.other.speciesAbility,Species Ability,,,Habilidad de la Especie,Capacités d'espèce,,Habilidade de Espécie
 Construct.other.speciesAndTraits,Species & Traits,,,Especies y Rasgos,,,Espécies e Traços
 Construct.other.starshipType,Starship Type,,,Tipo de nave estelar,,,Tipo de Nave
+Construct.other.stationType,Station Type,,,,,,
 Construct.other.stats,Stats,,Werte,Estadísticas,Stats,Значения,Estatísticas
 Construct.other.stress,Stress,,Anstrengung,Estrés,Stress,Стресс,Estresse
 Construct.other.supervisory,Supervisory,,,Supervisor,,,Supervisório
@@ -1595,6 +1597,7 @@ CharacterAdvancementType.adjustment,Adjustment,,,,,,
 CharacterAdvancementType.milestone,Milestone,,Meilenstein,Hito,Jalon d'Expérience,Веха,Marco de História
 CharacterAdvancementType.characterArc,Character Arc,,,,,,
 CharacterType.name.starfleet,Starfleet,,Sternenflotte,Flota Estelar,Starfleet,Звездный флот,Frota Estelar
+CharacterType.name.federation,Federation,,,,,,
 CharacterType.name.klingonWarrior,Klingon Defense Force,,Klingonische Verteidigungsstreitmacht,Fuerza de Defensa Klingon,Forces de Défense Klingones,,Força de Defesa Klingon
 CharacterType.name.civilian,Civilian,,Zivilisten,Civil,Civil,,Civil
 CharacterType.name.alliedMilitary,Allied Military,,Alliiertes Militär,Armada Aliada,Armée Alliée,,Aliado Militar
@@ -3036,6 +3039,18 @@ StationFrame.narendraStationType,Narendra-Station-type,,,,,,
 StationFrame.federationListeningPost,Federation Border Listening Post,,,,,,
 StationFrame.federationSubspaceCommunicationsRelay,Federation Subspace Communications Relay,,,,,,
 StationFrame.custom,Custom,,,,,,
+StationFrameAppearance.internationalSpaceStation,International Space Station,,,,,,
+StationFrameAppearance.drydock,United Earth / Starfleet Construction Slip,,,,,,
+StationFrameAppearance.kClassBorderOutpost,K-Class Border Outpost,,,,,,
+StationFrameAppearance.regulaClassMultipurposeStation,Regula-Class Multipurpose Station,,,,,,
+StationFrameAppearance.spacedock,Spacedock,,,,,,
+StationFrameAppearance.terakNorType,Terak-Nor-type,,,,,,
+StationFrameAppearance.vanguardType,Vanguard Station,,,,,,
+StationFrameAppearance.jupiterStation,Jupiter Station,,,,,,
+StationFrameAppearance.starbaseOneType,Starbase One,,,,,,
+StationFrameAppearance.narendraStationType,Narendra-Station-type,,,,,,
+StationFrameAppearance.federationCommunicationsArray,Federation Communications Array,,,,,,
+StationFrameAppearance.federationSubspaceCommunicationsRelay,Federation Communications Relay,,,,,,
 StationIndexPage.instruction,Use this process to create a space station.,,,,,,
 StationIndexPage.characterType,Station Type,,,,,,
 StationFinalPage.instruction,"There are a few final steps to complete your starbase or
@@ -3045,6 +3060,7 @@ StationFinalPage.traits.instruction,"Space stations will always have a trait tha
 StationMissionProfile.instruction,Select a mission profile for this station.,,,,,,
 StationMissionProfile.error.selectProfile,Please select a mission profile,,,,,,
 StationSpaceframePage.instruction,"Choose the details about the station that you're building. You can build a new station frame from scratch, or you can pick a standard station frame.",,,,,,
+StationSpaceframePage.appearance.instruction,Choose a basic appearance for the station.,,,,,,
 StationSpaceframePage.departments.instruction,You have {{points}} points to distribute among the various station departments.,,,,,,
 StationSpaceframePage.scale.instruction,"The Scale of a space station determines many of the numbers that are used later in the creation process. The smallest starbases, such as Regula I, are Scale 6, and even more moderately sized starbases such as DS9 and Narendra Station are Scale 12. The largest is Spacedock circling Earth at Scale 16. Starbases can range from Scale 3 (the International Space Station in Earth orbit as of 2022) to as high as you wish, though there is a ceiling at which there is diminishing returns for Scale.",,,,,,
 StationSpaceframePage.systems.instruction,You have {{points}} points to distribute among the various station systems.,,,,,,

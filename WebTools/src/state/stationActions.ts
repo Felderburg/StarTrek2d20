@@ -2,7 +2,7 @@ import { SelectedTalent } from "../common/selectedTalent";
 import { Station } from "../common/station"
 import { Department } from "../helpers/department";
 import { MissionProfile } from "../helpers/missionProfiles";
-import { StationFrame } from "../helpers/stationFrame";
+import { StationFrame, StationFrameAppearance } from "../helpers/stationFrame";
 import { System } from "../helpers/systems";
 import { Weapon } from "../helpers/weapons";
 
@@ -18,6 +18,7 @@ export const DELETE_STATION_WEAPON = "DELETE_STATION_WEAPON";
 export const SET_STATION_MISSION_PROFILE_TALENT = "SET_STATION_MISSION_PROFILE_TALENT";
 export const SET_STATION_ADDITIONAL_TALENTS = "SET_STATION_ADDITIONAL_TALENTS";
 export const SET_STATION_FRAME = "SET_STATION_FRAME";
+export const SET_STATION_FRAME_APPEARANCE = "SET_STATION_FRAME_APPEARANCE";
 
 export function createStation(station: Station) {
     let payload = { station: station }
@@ -42,8 +43,6 @@ export function setStationMissionProfileTalent(talent: SelectedTalent) {
        payload: payload
     }
 }
-
-
 
 export function setStationName(name: String) {
     let payload = { name: name }
@@ -113,6 +112,15 @@ export function setStationFrame(frame: StationFrame) {
     let payload = { frame: frame }
     return {
        type: SET_STATION_FRAME,
+       payload: payload
+    }
+}
+
+
+export function setStationFrameAppearance(appearance: StationFrameAppearance) {
+    let payload = { appearance: appearance }
+    return {
+       type: SET_STATION_FRAME_APPEARANCE,
        payload: payload
     }
 }

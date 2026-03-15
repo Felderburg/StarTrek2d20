@@ -1,6 +1,6 @@
 import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station, StationMissionProfileStep } from "../common/station";
 import { StationFrame } from "../helpers/stationFrame";
-import { ADD_STATION_WEAPON, CREATE_STATION, DELETE_STATION_WEAPON, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_ADDITIONAL_TALENTS, SET_STATION_CUSTOM_SCALE, SET_STATION_FRAME, SET_STATION_MISSION_PROFILE, SET_STATION_MISSION_PROFILE_TALENT, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
+import { ADD_STATION_WEAPON, CREATE_STATION, DELETE_STATION_WEAPON, MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT, MODIFY_STATION_CUSTOM_FRAME_SYSTEM, SET_STATION_ADDITIONAL_TALENTS, SET_STATION_CUSTOM_SCALE, SET_STATION_FRAME, SET_STATION_FRAME_APPEARANCE, SET_STATION_MISSION_PROFILE, SET_STATION_MISSION_PROFILE_TALENT, SET_STATION_NAME, SET_STATION_TRAITS } from "./stationActions";
 
 interface StationState {
     station?: Station;
@@ -172,6 +172,16 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
             }
         }
 
+        case SET_STATION_FRAME_APPEARANCE: {
+            let s = state.station?.copy();
+            if (s?.stationFrameStep?.type === StationFrame.Custom) {
+                (s.stationFrameStep as CustomStationSpaceframeStep).appearance = action.payload.appearance;
+            }
+            return {
+                ...state,
+                station: s
+            }
+        }
         case SET_STATION_FRAME: {
             let s = state.station?.copy();
             if (s) {

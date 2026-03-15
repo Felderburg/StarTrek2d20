@@ -36,7 +36,7 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
                     <div className="row">
                         <div className="col-md-6 mb-2">
                             <div className="sheet-panel d-flex">
-                                <div className="sheet-label-purple text-uppercase">{t('Page.title.starshipTypeSelection')}</div>
+                                <div className="sheet-label-purple text-uppercase">{t('Construct.other.stationType')}</div>
                                 <div className="sheet-data">
                                     {CharacterTypeModel.getByType(station?.type)?.localizedName}
                                 </div>

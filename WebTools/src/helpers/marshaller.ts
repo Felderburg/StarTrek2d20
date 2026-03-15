@@ -54,7 +54,8 @@ import { LogEntry, LogValueEntry, ValueUseType, ValueUseTypeModel } from '../com
 import { SpaceframeVariant, SpaceframeVariantModel } from './spaceframeVariant';
 import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station, StationMissionProfileStep } from '../common/station';
 import { StationFrameModel } from './stationFrameModel';
-import { StationFrame } from './stationFrame';
+import { StationFrame, StationFrameAppearance } from './stationFrame';
+import { StationFrameAppearanceModel } from './stationFrameAppearanceModel';
 
 class Marshaller {
 
@@ -101,6 +102,9 @@ class Marshaller {
                     "departments": this.toDepartmentObject(station.stationFrameStep.departments),
                     "systems": this.toSystemsObject(station.stationFrameStep.systems),
                     "scale": station.stationFrameStep.scale
+                }
+                if (station.stationFrameStep.appearance != null) {
+                    sheet["frame"]["appearance"] = StationFrameAppearance[station.stationFrameStep.appearance];
                 }
             } else {
                 sheet["frame"] = {
@@ -1066,6 +1070,7 @@ class Marshaller {
     }
 
     decodeStation(json: any): Station {
+console.log(json);
         let result = new Station();
         if (json.version) {
             result.version = json.version;
@@ -1093,7 +1098,15 @@ class Marshaller {
                 allSystems().forEach(s => step.systems[s] = frame.systems[System[s]]);
                 DepartmentsHelper.instance.getDepartments().forEach(d => step.departments[d] = frame.departments[Department[d]]);
                 step.scale=  frame.scale;
+                if (frame["appearance"] != null) {
+                    StationFrameAppearanceModel.getAllAppearanceModels().forEach(m => {
+                        if (StationFrameAppearance[m.id] === frame["appearance"]) {
+                            step.appearance = m.id;
+                        }
+                    });
+                }
                 result.stationFrameStep = step;
+
             } else {
                 let type = frame["type"];
                 let profile = StationFrameModel.getByIdName(type);

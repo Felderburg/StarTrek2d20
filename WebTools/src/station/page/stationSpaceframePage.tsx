@@ -14,7 +14,7 @@ import { makeKey } from "../../common/translationKey";
 import { System } from "../../helpers/systems";
 import { Department } from "../../helpers/department";
 import { ScaleSelector } from "../view/scaleSelector";
-import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, setStationCustomScale, setStationFrame } from "../../state/stationActions";
+import { changeStationCustomFrameDepartment, changeStationCustomFrameSystem, setStationCustomScale, setStationFrame, setStationFrameAppearance } from "../../state/stationActions";
 import { CustomStationSpaceframeStep } from "../../common/station";
 import { Dialog } from "../../components/dialog";
 import StationBreadcrumbs from "../view/stationBreadcrumbs";
@@ -22,7 +22,10 @@ import { StationFrameModel } from "../../helpers/stationFrameModel";
 import { StatView } from "../../components/StatView";
 import { CheckBox } from "../../components/checkBox";
 import Markdown from "react-markdown";
-import { StationFrame } from "../../helpers/stationFrame";
+import { StationFrame, StationFrameAppearance } from "../../helpers/stationFrame";
+import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
+import { StationFrameAppearanceModel } from "../../helpers/stationFrameAppearanceModel";
+import { CharacterType } from "../../common/characterType";
 
 enum SpaceframeTab {
     Custom,
@@ -63,6 +66,17 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
             }
 
         }
+    }
+
+    const getAppearanceItems = () => {
+        let result = StationFrameAppearanceModel.getAllAppearanceModels()
+            .map(m => new DropDownElement(m.id, m.localizedName));
+        result.unshift(new DropDownElement("", t("Common.text.select")));
+        return result;
+    }
+
+    const onSelectAppearance = (appearance?: StationFrameAppearance) => {
+        store.dispatch(setStationFrameAppearance(appearance));
     }
 
     const onChangeTab = (newTab: SpaceframeTab) => {
@@ -296,6 +310,17 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({station}) => {
                     <ScaleSelector scale={station.stationFrameStep?.scale ?? CustomStationSpaceframeStep.MIN_SCALE}
                         onChange={v => store.dispatch(setStationCustomScale(v))} />
                 </div>
+
+                {station?.type === CharacterType.Federation
+                    ? (<div className="col-12 col-md-6 mt-5">
+                        <Header level={2}>{t('Construct.other.appearance')}</Header>
+                        <ReactMarkdown>{t('StationSpaceframePage.appearance.instruction')}</ReactMarkdown>
+
+                        <DropDownSelect defaultValue={station?.stationFrameStep?.appearance ?? ""}
+                            items={getAppearanceItems()}
+                            onChange={(e) => e === "" ? onSelectAppearance(undefined) : onSelectAppearance(e as StationFrameAppearance)} />
+                    </div>)
+                    : undefined}
 
             </div>
 
