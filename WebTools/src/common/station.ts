@@ -1,6 +1,6 @@
 import { Department } from "../helpers/department";
 import { Era } from "../helpers/eras";
-import { MissionProfile } from "../helpers/missionProfiles";
+import MissionProfiles, { MissionProfile } from "../helpers/missionProfiles";
 import PointAllocator from "../helpers/pointAllocator";
 import { StationFrame, StationFrameAppearance } from "../helpers/stationFrame";
 import { StationFrameModel } from "../helpers/stationFrameModel";
@@ -110,6 +110,10 @@ export class StationMissionProfileStep {
         let result = new StationMissionProfileStep(this.type);
         result.talent = this.talent?.copy();
         return result;
+    }
+
+    get model() {
+        return MissionProfiles.instance.getStationMissionProfileByType(this.type);
     }
 }
 

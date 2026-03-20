@@ -10,6 +10,7 @@ import { VttType, VttTypes } from "../vttType";
 import { FantasyGroupsVttExporter } from "../fantasyGroundsVttExport";
 import { Roll20VttExporter } from "../roll20VttExporter";
 import { FoundryPluginType } from "../foundryPluginType";
+import { Station } from "../../common/station";
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -106,6 +107,11 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({const
                 exportStarshipToRoll20(construct as Starship);
             }
         }
+        if (construct instanceof Station) {
+            if (vttType === VttType.Foundry) {
+                exportStationToFoundryVtt(construct as Station);
+            }
+        }
         VttSelectionDialog.instance.hide();
     }
 
@@ -147,6 +153,14 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({const
         download(jsonBytes, escaped + "-foundry-vtt.json", "application/json");
     }
 
+    const exportStationToFoundryVtt = (station: Station) => {
+        const json = FoundryVttExporter.instance.exportStation(station, foundryPluginType);
+        const jsonBytes = new TextEncoder().encode(JSON.stringify(json, null, 4));
+
+        const escaped = sanitizeName(station.name, "sta-station");
+        download(jsonBytes, escaped + "-foundry-vtt.json", "application/json");
+    }
+
     const sanitizeName = (name: string, defaultName: string) => {
         return name?.replace(/\\/g, '_').replace(/\//g, '_').replace(/\s/g, '_') || defaultName;
     }
@@ -159,6 +173,12 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({const
             data["foundryPlugin"] = FoundryPluginType[state.foundryPluginType];
         }
         window.localStorage.setItem("settings.vttOptions", JSON.stringify(data));
+    }
+
+    const isExportDisabled = () => {
+        return (vttType === VttType.FantasyGrounds && !(construct instanceof Character))
+            || (vttType !== VttType.Foundry && (construct instanceof Station))
+            || (foundryPluginType !== FoundryPluginType.Standard && (construct instanceof Station));
     }
 
     return (
@@ -174,7 +194,7 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({const
 
             <div className="mt-5 text-center">
                 <Button size="sm" onClick={() => exportConstruct() }
-                    disabled={vttType === VttType.FantasyGrounds && !(construct instanceof Character)} >Export</Button>
+                    disabled={isExportDisabled()} >Export</Button>
             </div>
         </div>
     );

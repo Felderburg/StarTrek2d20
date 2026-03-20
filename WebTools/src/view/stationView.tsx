@@ -10,6 +10,8 @@ import MissionProfiles from "../helpers/missionProfiles";
 import { ExportToPdfButton } from "../components/exportToPdfButton";
 import WeaponBlockView from "./weaponBlockView";
 import TalentsBlockView from "./talentsBlockView";
+import { VttSelectionDialog } from "../vtt/view/VttSelectionDialog";
+import { Button } from "react-bootstrap";
 
 const OutlineImage = lazy(() => import(/* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'));
 
@@ -75,6 +77,10 @@ const StationView: React.FC<IStationViewProperties> = ({station}) => {
     }
 
     const { t } = useTranslation();
+
+    const showVttExportDialog = () => {
+        VttSelectionDialog.instance.show(station);
+    }
 
     let name = "";
     if (station.name) {
@@ -155,6 +161,7 @@ const StationView: React.FC<IStationViewProperties> = ({station}) => {
         (<div className="d-flex justify-content-between">
             <div className="button-container mt-5 mb-3">
                 <ExportToPdfButton construct={station} />
+                <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
             </div>
         </div>)
 

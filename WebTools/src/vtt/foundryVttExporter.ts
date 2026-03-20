@@ -21,6 +21,7 @@ import { markupToHtml } from "./markupToHtml";
 import { FoundryPluginType } from "./foundryPluginType";
 import { marshaller } from "../helpers/marshaller";
 import { SelectedTalent } from "../common/selectedTalent";
+import { Station } from "../common/station";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";
@@ -86,7 +87,7 @@ export class FoundryVttExporter {
             },
             "_stats": {
               "systemId": "sta",
-              "systemVersion": "1.1.9",
+              "systemVersion": SYSTEM_VERSION,
               "coreVersion": "10.291",
               "createdTime": now,
               "modifiedTime": now,
@@ -197,6 +198,162 @@ export class FoundryVttExporter {
         return result;
     }
 
+    exportStation(station: Station, type: FoundryPluginType) {
+        let now = Date.now();
+
+        let result = {
+            "name": station.name || "Unnamed Station",
+            "type": "starship",
+            "img": "systems/sta/assets/icons/VoyagerCombadgeIcon.png",
+            "system": {
+                "notes": "",
+                "crew": {
+                    "value": station.crewSupport,
+                    "max": station.crewSupport
+                },
+                "departments": {
+                },
+                "designation": station.name || "Unnamed Station",
+                "missionprofile": station.missionProfileStep?.model?.localizedName ?? "",
+                "power": {
+                  "value": station.power,
+                  "max": station.power
+                },
+                "refit": "",
+                "resistance": station.resistance,
+                "scale": station.scale,
+                "shields": {
+                  "value": station.shields,
+                  "max": station.shields
+                },
+                "servicedate": "",
+                "spaceframe": "",
+                "systems": {
+                },
+                "traits": station.traitsAsString ?? ""
+            },
+            "items": [],
+            "effects": [],
+            "flags": {
+              "exportSource": {
+                "world": "sta-bcholmes-org",
+                "system": "sta",
+                "coreVersion": "10.291",
+                "systemVersion": SYSTEM_VERSION
+              }
+            },
+            "_stats": {
+              "systemId": "sta",
+              "systemVersion": SYSTEM_VERSION,
+              "coreVersion": "10.291",
+              "createdTime": now,
+              "modifiedTime": now,
+              "lastModifiedBy": "xuN9JpdcyRd60ZEJ"
+            }
+        }
+
+        DepartmentsHelper.instance.getDepartments().forEach(d => {
+            let name = Department[d].toLowerCase();
+            result.system.departments[name] = {
+                "label": "sta.actor.starship.department." + name,
+                "value": ("" + station.departments[d]),
+                "selected": false
+            };
+        });
+
+        allSystems().forEach(s => {
+            let name = System[s].toLowerCase();
+            if (s === System.Comms) {
+                name = "communications";
+            } else if (s === System.Computer) {
+                name = "computers";
+            }
+            result.system.systems[name] = {
+                "label": "sta.actor.starship.system." + name,
+                "value": ("" + station.systems[s]),
+                "selected": false
+            };
+        });
+
+        Object.values(station.rankedTalents).forEach(t => {
+            result.items.push({
+                "name": t.displayNameWithMultiple,
+                "type": "talent",
+                "img": this.determineTalentIcon(t.talentModel),
+                "system": {
+                    "description": this.convertDescription(t, station),
+                    "talenttype": {
+                        "typeenum": "general",
+                        "description": "",
+                        "minimum": 0
+                    }
+                },
+                "effects": [],
+                "flags": {},
+                "_stats": {
+                    "systemId": "sta",
+                    "systemVersion": SYSTEM_VERSION,
+                    "coreVersion": "10.291",
+                    "createdTime": now,
+                    "modifiedTime": now,
+                    "lastModifiedBy": "xuN9JpdcyRd60ZEJ"
+                },
+                "folder": null,
+                "sort": 0,
+                "ownership": {
+                    "default": 0,
+                    "xuN9JpdcyRd60ZEJ": 3
+                }
+            });
+        });
+
+        station.determineWeapons().forEach(w => {
+            if (w.type !== WeaponType.CAPTURE) {
+                result.items.push({
+                    "name": w.name,
+                    "type": "starshipweapon",
+                    "img": this.determineStarshipWeaponIcon(w),
+                    "effects": [],
+                    "folder": null,
+                    "sort": 0,
+                    "system": {
+                        "description": "",
+                        "damage": w.dice,
+                        "range": w.range != null ? WeaponRange[w.range].toLowerCase() : null,
+                        "qualities": {
+                        "area": w.isQualityPresent(Quality.Area),
+                        "spread": false,
+                        "dampening": w.isQualityPresent(Quality.Dampening),
+                        "calibration": w.isQualityPresent(Quality.Calibration),
+                        "devastating": w.isQualityPresent(Quality.Devastating),
+                        "highyield": w.isQualityPresent(Quality.HighYield),
+                        "persistentx": w.isQualityPresent(Quality.PersistentX) ? station.scale : 0,
+                        "piercingx": w.getRankForQuality(Quality.Piercing),
+                        "viciousx": w.getRankForQuality(Quality.Vicious),
+                        "hiddenx": w.getRankForQuality(Quality.Hidden),
+                        "versatilex": w.getRankForQuality(Quality.Versatile)
+                        },
+                        "opportunity": null,
+                        "escalation": null
+                    },
+                    "ownership": {
+                    "default": 0,
+                    "xuN9JpdcyRd60ZEJ": 3
+                    },
+                    "_stats": {
+                    "systemId": "sta",
+                    "systemVersion": SYSTEM_VERSION,
+                    "coreVersion": "10.291",
+                    "createdTime": now,
+                    "modifiedTime": now,
+                    "lastModifiedBy": "xuN9JpdcyRd60ZEJ"
+                    }
+                });
+            }
+        });
+
+        return result;
+    }
 
     determineStarshipIcon(starship: Starship) {
         if (starship.buildType === ShipBuildType.Runabout) {
