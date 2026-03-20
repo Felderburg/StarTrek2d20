@@ -12,10 +12,8 @@ import { blueColour2e, darkGreyColour2e, labelColourProvider } from "./colourPro
 import { Construct } from "../common/construct";
 import { XYLocation } from "../common/xyLocation";
 import { SimpleColor } from "../common/colour";
-import { FontOptions } from "./fontOptions";
 import { WeaponDescriber } from "./weaponDescriber";
 import { Paragraph } from "./paragraph";
-import { bullet2EWriter } from "./bullet2eWriter";
 import { TalentWriter } from "./talentWriter";
 import { FontSpecification } from "./fontSpecification";
 import { System } from "../helpers/systems";
@@ -24,6 +22,8 @@ import { staTextFieldAppearanceProvider } from "../helpers/pdfTextFieldAppearanc
 import { determineIdealFontWidth } from "./fontWidthDeterminer";
 import { TextBlock } from "./textBlock";
 import { CharacterType } from "../common/characterType";
+import { IWeaponDiceProvider } from "../common/iWeaponDiceProvider";
+import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 
 export class Standard2eStarshipSheet extends BasicGeneratedSheet {
 
@@ -88,7 +88,6 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
 
         await this.writeTalents(page, starship, Standard2eStarshipSheet.talentsColumn1, blueColour2e);
         await this.writeSpecialRules(page, starship, Standard2eStarshipSheet.specialRulesColumn, blueColour2e);
-        this.writeAttacks(page, starship, Standard2eStarshipSheet.attacksColumn, blueColour2e);
         this.writeTitle(page);
         this.writeShields(pdf, page, starship);
 
@@ -202,7 +201,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
             });
         });
 
-
+        this.fillWeapons(form, starship);
     }
 
     writeLabels(page: PDFPage, construct: Starship) {
@@ -284,31 +283,6 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
         let talents = assembleStarshipTalents(starship, true);
         let writer = new TalentWriter(page, this.fonts, starship.version, colour, true);
         return await writer.writeTalents(talents, column, 8, 8);
-    }
-
-    writeAttacks(page: PDFPage, construct: Construct, column: Column, colour: SimpleColor = blueColour2e) {
-
-        let bold = new FontOptions(8, FontType.Bold);
-        let standard = new FontOptions(8);
-        let paragraph = null;
-        let bottom = column.start;
-
-        construct.determineWeapons().forEach(w => {
-            const text = new WeaponDescriber(construct.version, false).describeFully(w, construct);
-            paragraph = paragraph == null ? new Paragraph(page, column, this.fonts) : paragraph.nextParagraph(0);
-            paragraph?.indent(15);
-            paragraph?.append(w.name + ": ", bold);
-            paragraph?.append(text, standard);
-            paragraph?.write();
-
-            if (paragraph?.lines?.length) {
-                bullet2EWriter(page, paragraph, colour);
-            }
-
-            bottom = paragraph?.bottom;
-        });
-
-        return bottom ? column.bottomAfter(bottom.y - column.start.y) : null;
     }
 
     writeTitle(page: PDFPage) {
@@ -418,4 +392,18 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
             }
         });
     }
+
+    fillWeapons(form: PDFForm, construct: Construct): void {
+        const describer = new WeaponDescriber(construct.version, true);
+
+        if (construct instanceof Starship) {
+            let attacks = construct.determineWeapons()
+                .map(w =>
+                    w.name + ": " +
+                    describer.describeFully(w, construct as IWeaponDiceProvider).replace(CHALLENGE_DICE_NOTATION, "\u25B2"));
+
+            this.fillField(form, "Attacks", attacks.join("\n"));
+        }
+    }
+
 }
