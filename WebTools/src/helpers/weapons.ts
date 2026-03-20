@@ -546,6 +546,8 @@ export class Weapon {
     get name() {
         if (this.usageCategory === UsageCategory.Character && this._name?.length) {
             return this._name;
+        } else if (this._name?.length) {
+            return this._name;
         } else if (this.deliveryType != null) {
             return this.loadType.description + " " + this.deliveryType.description;
         } else if (this.type === WeaponType.TORPEDO) {
