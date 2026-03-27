@@ -153,10 +153,20 @@ export enum Species {
     Coridanite,
     Megarite,
 
-    // None
+    // Species Book
+    Breen,
+    Chameloid,
+    HumanAugment,
+    Kellerun,
+    Klowahkan,
+    Kwejian,
+    Lanthanite,
+    Medusan,
+    Nanokin,
     Nausicaan,
-
-
+    BlueOrion,
+    Terran,
+    VauNAkat,
 
     Custom,
 };
