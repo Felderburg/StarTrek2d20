@@ -117,7 +117,6 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
     }
 
     const renderStarshipTalents = (construct: Station|Starship) => {
-console.log(construct);
         const talents = construct?.rankedTalents.map((selectedTalent, i) => {
             let t = selectedTalent.talentModel;
             let name = selectedTalent.displayNameWithMultiple;

@@ -15,6 +15,7 @@ import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { CharacterSerializer } from '../common/characterSerializer';
 import { isSecondEdition } from '../state/contextFunctions';
+import { Implant } from '../helpers/borgImplant';
 
 interface ICharacterSheetProperties extends WithTranslation {
     era?: Era;
@@ -57,7 +58,11 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
         });
 
         let equipment = c.equipmentAndImplants.map((e, i) => {
-            return (<div key={i}>{e.localizedName}</div>)
+            if (c.version > 1 && e instanceof Implant) {
+                return (<div key={i}>{e.localizedName2e}</div>)
+            } else {
+                return (<div key={i}>{e.localizedName}</div>)
+            }
         });
 
         if (c.careerStep?.career !== undefined) {

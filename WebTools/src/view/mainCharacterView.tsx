@@ -21,6 +21,7 @@ import { LoadingButton } from "../common/loadingButton";
 import { originalEncodedSheet } from "./originalEncodedSheet";
 import { cyrb53 } from "../common/cyrb53";
 import Markdown from "react-markdown";
+import EquipmentBlockView from "./equipmentBlockView";
 
 export interface ICharacterViewProperties {
     character: Character;
@@ -120,14 +121,6 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
         return character.localizedAssignment;
     }
 
-    function renderEquipment() {
-        if (character.equipmentAndImplants) {
-            return character.equipmentAndImplants.map((e, i) => (<div className="text-white view-border-bottom py-2" key={'equipment-' + i}>{e.localizedName}</div>));
-        } else {
-            return undefined;
-        }
-    }
-
     function showExportDialog() {
         setLoadingExport(true);
         import(/* webpackChunkName: 'export' */ '../components/characterSheetDialog').then(({CharacterSheetDialog}) => {
@@ -192,7 +185,7 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
                     <WeaponBlockView construct={character} />
 
                     <Header level={2} className="mt-4">{t('Construct.other.equipment')}</Header>
-                    {renderEquipment()}
+                    <EquipmentBlockView character={character} />
                 </div>
             </div>
         </div>

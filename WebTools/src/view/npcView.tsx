@@ -16,6 +16,7 @@ import { EditableHeader } from "../mapping/view/editableHeader";
 import { useNavigate } from "react-router";
 import { marshaller } from "../helpers/marshaller";
 import Markdown from "react-markdown";
+import EquipmentBlockView from "./equipmentBlockView";
 
 const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -84,14 +85,6 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
         VttSelectionDialog.instance.show(character);
     }
 
-    function renderEquipment() {
-        if (character.equipmentAndImplants) {
-            return character.equipmentAndImplants.map((e, i) => (<div className="text-white view-border-bottom py-2" key={'equipment-' + i}>{e.localizedName}</div>));
-        } else {
-            return undefined;
-        }
-    }
-
     return (<main>
         {renderTopFields()}
         <div className="row">
@@ -141,7 +134,7 @@ const NpcView: React.FC<ICharacterPageProperties> = ({character}) => {
                 <ValuesBlockView character={character} />
                 <WeaponBlockView construct={character} />
                 <Header level={2} className="mt-4">{t('Construct.other.equipment')}</Header>
-                {renderEquipment()}
+                <EquipmentBlockView character={character} />
 
             </div>
         </div>

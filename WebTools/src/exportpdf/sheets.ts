@@ -35,6 +35,7 @@ import { BasicGeneratedTentCardCharacterSheet } from './generated2eTentCard';
 import { Landscape2eCreatureSheet } from './landscape2eCreatureSheet';
 import { Station } from '../common/station';
 import { Portrait2eStationSheet } from './portrait2eStationSheet';
+import { Implant } from '../helpers/borgImplant';
 
 
 abstract class BasicSheet implements ICharacterSheet {
@@ -576,7 +577,11 @@ abstract class BasicFullCharacterSheet extends BasicShortCharacterSheet {
 
     fillEquipment(form: PDFForm, character: Character) {
         character.equipmentAndImplants.forEach((e, i) => {
-            this.fillField(form, 'Equipment ' + (i+1), e.localizedName);
+            if (character.version > 1 && e instanceof Implant) {
+                this.fillField(form, 'Equipment ' + (i+1), e.localizedName2e);
+            } else {
+                this.fillField(form, 'Equipment ' + (i+1), e.localizedName);
+            }
         });
     }
 

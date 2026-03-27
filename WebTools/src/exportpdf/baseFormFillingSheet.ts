@@ -13,6 +13,7 @@ import { TextAlign } from "./textAlign";
 import { WeaponDescriber } from "./weaponDescriber";
 import { CharacterType, CharacterTypeModel } from "../common/characterType";
 import { TracksHelper } from "../helpers/tracks";
+import { Implant } from "../helpers/borgImplant";
 
 export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
 
@@ -136,8 +137,12 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
     }
 
     fillEquipment(form: PDFForm, character: Character) {
-        character.equipmentModels.forEach((e, i) => {
-            this.fillField(form, 'Equipment ' + (i+1), e.localizedName);
+        character.equipmentAndImplants.forEach((e, i) => {
+            if (character.version > 1 && e instanceof Implant) {
+                this.fillField(form, 'Equipment ' + (i+1), e.localizedName2e);
+            } else {
+                this.fillField(form, 'Equipment ' + (i+1), e.localizedName);
+            }
         });
     }
 

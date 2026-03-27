@@ -138,8 +138,8 @@ export class TalentWriter {
                             if (paragraph) {
                                 paragraphs.push(paragraph);
                                 paragraph.indent(indent + 10);
-                                paragraph.append(implant.localizedName + ": ", new FontOptions(fontSize, FontType.Bold));
-                                paragraph.append(implant.description, new FontOptions(fontSize));
+                                paragraph.append((this.version === 1 ? implant.localizedName : implant.localizedName2e)+ ": ", new FontOptions(fontSize, FontType.Bold));
+                                paragraph.append(this.version === 1 ? implant.localizedDescription : implant.localizedDescription2e, new FontOptions(fontSize));
                             }
                         });
                     } else if (talent.talent.name === TALENT_NAME_UNTAPPED_POTENTIAL && talent.attributes?.length) {

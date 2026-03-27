@@ -56,23 +56,23 @@ TokenCreator.section.extras.face,Face,,Gesicht,Cara,Visage,Лицо,Rosto
 TokenCreator.section.extras.forehead,Forehead,,Stirn,Frente,Front,Лоб,Testa
 TokenCreator.section.extras.headwear,Headwear,,Kopfbedeckung,Accesorios para la Cabeza,Couvre-Chef,Головной убор,Acessórios de Cabeça
 ViewPage.viewAsset,View Asset,,,Ver Recurso,,Просмотр Ресурса,Visualizar Recurso
-ViewPage.viewCreature,View Creature,,,,,Просмотр Существа,
+ViewPage.viewCreature,View Creature,,,Ver Criatura,,Просмотр Существа,
 ViewPage.viewSupportingCharacter,View Supporting Character,,Nebencharakter anzeigen,Ver Personaje de Apoyo,Voir le personnage secondaire,Просмотр Персонажей Поддержки,Ver Personagem Coadjuvante
 ViewPage.viewNpc,View NPC,,NSC anzeigen,Ver PNJ,Voir PNJ,Просмотр НИП,Ver PdM
 ViewPage.viewMainCharacter,View Main Character,,Hauptfigur anzeigen,Ver Personaje Principal,Voir le personnage principal,Просмотр Игрового Персонажа,Ver Personagem Principal
 ViewPage.viewSoloCharacter,View Solo Character,,Solocharakter anzeigen,Ver Personaje en Solitario,Voir le personnage solo,Просмотр Сольного Персонажа,Ver Personagem Solo
 ViewPage.viewStarship,View Starship,,Raumschiff ansehen,Ver Nave Estelar,Voir le vaisseau spatial,Просмотр Звездолета,Ver Nave Estelar
-ViewPage.viewStation,View Station,,,,,,
+ViewPage.viewStation,View Station,,,Ver Estación,,,
 ViewPage.errorMessage,"Things have gone terribly, terribly wrong. We might be in the mirror universe.",,Etwas ist ganz schrecklich schief gelaufen. Wir könnten uns im Spiegeluniversum befinden.,Las cosas han ido terriblemente mal. Podríamos estar en el universo espejo.,"Les choses ont terriblement, terriblement mal tourné. Nous pourrions être dans l'univers miroir.",Что-то пошло чертовски не так. Вероятно мы оказались в зеркальной вселенной.,"As coisas deram terrivelmente, terrivelmente errado. Talvez estejamos em um universo espelho."
-ViewPage.unnamedStarship,Unnamed Starship,,Unbenanntes Raumschiff,Nave Estelar sin Nombre,Vaisseau sans nom,Безымянный Звездолет,Nave Estelar sem nome
-ViewPage.unnamedStation,Unnamed Station,,,,,,
+ViewPage.unnamedStarship,Unnamed Starship,,Unbenanntes Raumschiff,Nave Estelar sin nombre,Vaisseau sans nom,Безымянный Звездолет,Nave Estelar sem nome
+ViewPage.unnamedStation,Unnamed Station,,,Estación sin nombre,,,
 CareerEvents.instruction,"Your career is a tapestry of events and experiences, but amongst this, a few will have been pivotal moments in your life. Define which moments of your life are important in retrospect, and what seemed definitive to an ensign in their early 20s may be inconsequential to that same officer decades later.",,"Deine Karriere ist ein Sammelsurium von Ereignissen und Erfahrungen, aber einige davon werden entscheidende Momente in deinem Leben gewesen sein. Bestimme, welche Momente deines Lebens im Nachhinein wichtig sind, und was einem Fähnrich mit Anfang 20 entscheidend erschien, demselben Offizier Jahrzehnte später aber belanglos erscheinen mag.","Tu carrera es un tapiz de sucesos y experiencias, pero entre ellos, algunos habrán sido momentos cruciales en tu vida. Define qué momentos de tu vida son importantes en retrospectiva, y lo que parecía decisivo para un alférez de veintitantos años puede no tener importancia para ese mismo oficial décadas después.","Votre carrière est remplie d'évènements et d'expériences marquantes, mais certains de ces instants ont été des moments pivots dans votre vie. Définissez quels moments de votre vie ont, avec le recul, été lesplus importants. Ce qui semblait vital à un enseigne dans sa vaingtaine pourra paraitre insignifiant à l'officier qu'il sera devenu des decennies plus tard.","Ваша карьера, это смесь событий и опыта, но только некоторые из них являются поворотными моментами вашей жизни. Определите, какие из них важны в ретроспективе, и то, что казалось решающим для 20 летнего энсина, может оказаться несущественным для того же офицера десятилетия спустя.","Sua carreira é uma tapeçaria de eventos e experiências, mas, entre eles, alguns foram momentos determinantes em sua vida. Defina quais momentos de sua vida são importantes em retrospecto, e o que parecia definitivo para um alferes aos 20 e poucos anos poderia ser inconsequente para esse mesmo oficial algumas décadas depois."
 CareerEvents.standard,Standard,,Standard,Estándar,Standard,Стандартное,Padrão
 CareerEvents.standardAndUnofficial,Standard and Unofficial,,Standard und Inoffizielle,Estándar y No Oficial,Standard et Non Officiel,Стардартное и Неофициальное,Padrão e Não Oficial
 CareerEvents.unofficialNote,This list includes unofficial items from [Continuing Missions](https://continuingmissionsta.com/2018/05/09/replicator-resource-expanded-career-events-write-ups/). Check that your GM is comfortable allowing these items.,,"Diese Liste enthält inoffizielle Einträge aus [Continuing Missions](https://continuingmissionsta.com/2018/05/09/replicator-resource-expanded-career-events-write-ups/). Bitte prüfe, ob deine SL diese erlaubt.",Esta lista incluye elementos no oficiales de [Continuing Missions](https://continuingmissionsta.com/2018/05/09/replicator-resource-expanded-career-events-write-ups/). Comprueba con tu DJ que está de acuerdo con permitir esos elementos.,Cette liste inclus le travail non officiel de [Continuing Missions](https://continuingmissionsta.com/2018/05/09/replicator-resource-expanded-career-events-write-ups/). Demandez à votre MJ s'il l'autorise.,"Этот список включает в себя неофициальные предметы из [Продолжающихся Миссий] (https://continuingmissionsta.com/2018/05/09/replicator-resource-expeded-career-events-write-ups/). Убедитесь, что ваш Мастер готов разрешить использование этих предметов.",Esta lista inclui itens não oficiais de [Continuing Missions](https://continuingmissionsta.com/2018/05/09/replicator-resource-expanded-career-events-write-ups/). Verifique se o seu MJ está confortável em permitir esses itens.
-CareerEventDetails.errorAttribute,Please select an attribute.,,Bitte wähle ein Attribut.,"Por favor, seleciona un atributo.",Selectionez un Attribut SVP,Пожалуйста выберите качество,"Por favor, selecione um atributo."
-CareerEventDetails.errorDiscipline,Please select a discipline.,,Bitte wähle eine Disziplin.,"Por favor, seleciona una disciplina.",Selectionez une Discipline SVP,Пожалуйста выберите знание,"Por favor, selecione uma disciplina."
-CareerEventDetails.errorFocus,Please select a focus.,,Bitte wähle einen Fokus.,"Por favor, seleciona una especialidad.",Séléctionez une Spécialité SVP,Выберите специализацию,"Por favor, selecione um foco."
+CareerEventDetails.errorAttribute,Please select an attribute.,,Bitte wähle ein Attribut.,"Por favor, seleciona un Atributo.",Selectionez un Attribut SVP,Пожалуйста выберите качество,"Por favor, selecione um atributo."
+CareerEventDetails.errorDiscipline,Please select a discipline.,,Bitte wähle eine Disziplin.,"Por favor, seleciona una Disciplina.",Selectionez une Discipline SVP,Пожалуйста выберите знание,"Por favor, selecione uma disciplina."
+CareerEventDetails.errorFocus,Please select a focus.,,Bitte wähle einen Fokus.,"Por favor, seleciona una Especialidad.",Séléctionez une Spécialité SVP,Выберите специализацию,"Por favor, selecione um foco."
 ChildSelectionPage.instruction,"Naturally, a child has not attended Starfleet Academy (or any of its counterparts), or any institute of higher education. Indeed, they’re still in their earlier stages of education.
 
 Select an age for your character.",,"Ein Kind besuchte natürlich noch nicht die Sternenflottenakademie (bzw. ein vergleichbares Gegenstück) oder irgendein höheres Bildungsinstitut. Tatsächlich sind sie noch in den frühen Phasen der Ausbildung.
@@ -2083,6 +2083,35 @@ MissionProfile.default.researchStation,Research Station,,,,,,
 MissionProfile.default.researchStation.description,"Research stations are built for the purpose of conducting scientific research. The Federation has research stations spread all over its territory in every possible setting one could imagine: orbiting planets, established worlds, distant colonies, attached to asteroids, surface facilities, deep space, and so on. Research stations serve a vital function in adding to the ever-expanding library of knowledge that feeds humanity’s desire to learn. Characters may be assigned temporarily or for years at a research station to work on special projects. Some individuals desire nothing more than to study their area of expertise without the constant supervision of the Federation. Experts from such facilities could be called away to serve as mission specialists aboard starships or guest lecturers throughout the Federation. Any focuses related to Engineering, Medicine, or Scienc e would be well-suited to this setting.
 
 Science and Medicine are obvious choices for high departments, and Sensors and Computers are also excellent for points in systems. Advanced Research Facilities, High-Resolution Sensors, and Redundant System (Sensors) are all talents that could be seen here.",,,,,,
+Implant.adaptiveShielding,Adaptive Shielding,,,,,,
+Implant.adaptiveShielding.description2e,"Each time you are hit by an attack with an energy weapon, before deciding to _Avoid Injury_, you may roll 1d20; if you roll equal to or under your Fitness, the attack is negated.",,,,,,
+Implant.cardiopulmonaryStrengthener,Cardiopulminary Strengthener,,,,,,
+Implant.cardiopulmonaryStrengthener.2e,Cardiopulminary Reinforcement,,,,,,
+Implant.cardiopulmonaryStrengthener.description2e,"Your maximum Stress is increased by 2. Further, you may reroll one d20 on any Fitness-based task related to endurance or stamina.",,,,,,
+Implant.corticalArrayBioSyntheticGland,Cortical array (bio-synthetic gland),,,,,,
+Implant.corticalArrayBioSyntheticGland.2e,Biosynthetic Gland,,,,,,
+Implant.corticalArrayBioSyntheticGland.description2e,"Whenever you attempt a task to resist or overcome a disease or toxin, you may suffer Stress equal to the task’s Difficulty to automatically succeed.",,,,,,
+Implant.corticalArrayInterlinkNode,Cortical array (interlink node),,,,,,
+Implant.corticalArrayInterlinkNode.2e,Interlink Node,,,,,,
+Implant.corticalArrayInterlinkNode.description2e,"When Borg are present in a scene, you may add 1 Threat to ask a question as per Obtain Information, attempting to gain some knowledge from Borg communications.",,,,,,
+Implant.corticalArrayNeuralSubspaceTranceiver,Cortical Array (Neural Subspace Transceiver),,,,,,
+Implant.corticalArrayNeuralSubspaceTranceiver.2e,Cranial Transceiver,,,,,,
+Implant.corticalArrayNeuralSubspaceTranceiver.description2e,"You always have a communicator on your person, which is operated by mental command and cannot be removed from you. If you also have an Ocular Processor, you are able to perceive the subspace signals you can receive.",,,,,,
+Implant.corticalArrayCorticalNode,Cortical Array (cortical node),,,,,,
+Implant.corticalArrayCorticalNode.2e,Cortical Node,,,,,,
+Implant.corticalArrayCorticalNode.description2e,"You may suffer 2 Stress to avoid suffering any trait that represents an emotional state, and you have +1 Protection against Stun Attacks. However, if you become Fatigued, choose two attributes to shut down instead of one.",,,,,,
+Implant.cyberneticArmEngineering,Cybernetic Arm (Engineering),,,,,,
+Implant.cyberneticArmEngineering.description2e,Your arm has been replaced by a cybernetic implant which functions as an engineer’s toolkit.,,,,,,
+Implant.cyberneticArmMedical,Cybernetic Arm (Medical),,,,,,
+Implant.cyberneticArmMedical.description2e,Your arm has been replaced by a cybernetic implant which functions as a medkit.,,,,,,
+Implant.cyberneticArmTactical,Cyberntic Arm (Tactical),,,,,,
+Implant.cyberneticArmTactical.2e,Assimilation Tubules,,,,,,
+Implant.cyberneticArmTactical.description2e,"You have the assimilation tubules weapon, implanted within your arm. This is a one-handed Melee weapon inflicting Deadly Injuries with a Severity of 3, with the Debilitating and Intense qualities. Enemies defeated by assimilation tubules may become assimilated and become Borg Drones. If you have an Interlink Node, you may also use this weapon to directly interface with a computer, as per the Neural Interface talent.",,,,,,
+Implant.exoPlating,Exo-Plating,,,,,,
+Implant.exoPlating.description2e,"You have +1 Protection, and you are immune to ill effects and damage from exposure to hard vacuum or extremes of pressure.",,,,,,
+Implant.ocularSensoryEnhancer,Ocular sensory enhancer,,,,,,
+Implant.ocularSensoryEnhancer.2e,Ocular Processor,,,,,,
+Implant.ocularSensoryEnhancer.description2e,"You gain the trait **Multi-Spectral Vision**, representing your ability to see a wide visual spectrum and to scan the environment in a way comparable to a tricorder.",,,,,,
 InjuryType.deadly,Deadly,,,Mortífera,,,Letal
 InjuryType.stun,Stun,,,No letal,,,Atordoante
 InjuryType.stunOrDeadly,Stun/Deadly,,,No letal / Mortífera,,,Atordoante/Letal

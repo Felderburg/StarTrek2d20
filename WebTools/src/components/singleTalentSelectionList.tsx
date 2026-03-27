@@ -506,6 +506,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
     const renderBorgImplantsSelection = () => {
 
         const implants = BorgImplants.instance.implants.map(implant => {
+            const description = construct.version === 1 ? implant.localizedDescription : implant.localizedDescription2e
             return (
                 <tr key={'implant-' + implant.type}>
                     <td>
@@ -529,8 +530,11 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                             value={implant.name} />
                     </td>
                     <td>
-                        <div className="selection-header-small"><strong>{implant.name}</strong></div>
-                        <div>{replaceDiceWithArrowhead(implant.description)}</div></td>
+                        <div className="selection-header-small"><strong>{construct.version === 1 ? implant.localizedName : implant.localizedName2e}</strong></div>
+                        {description.includes(CHALLENGE_DICE_NOTATION)
+                            ? (<div>replaceDiceWithArrowhead(implant.description)</div>)
+                            : (<div><Markdown className="markdown-sm">{description}</Markdown></div>)}
+                    </td>
                 </tr>
             );
         });

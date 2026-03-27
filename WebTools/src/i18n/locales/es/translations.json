@@ -79,22 +79,25 @@
     "TokenCreator.section.extras.headwear": "Accesorios para la Cabeza",
 
     "ViewPage.viewAsset": "Ver Recurso",
+    "ViewPage.viewCreature": "Ver Criatura",
     "ViewPage.viewSupportingCharacter": "Ver Personaje de Apoyo",
     "ViewPage.viewNpc": "Ver PNJ",
     "ViewPage.viewMainCharacter": "Ver Personaje Principal",
     "ViewPage.viewSoloCharacter": "Ver Personaje en Solitario",
     "ViewPage.viewStarship": "Ver Nave Estelar",
+    "ViewPage.viewStation": "Ver Estación",
     "ViewPage.errorMessage": "Las cosas han ido terriblemente mal. Podríamos estar en el universo espejo.",
-    "ViewPage.unnamedStarship": "Nave Estelar sin Nombre",
+    "ViewPage.unnamedStarship": "Nave Estelar sin nombre",
+    "ViewPage.unnamedStation": "Estación sin nombre",
 
     "CareerEvents.instruction": "Tu carrera es un tapiz de sucesos y experiencias, pero entre ellos, algunos habrán sido momentos cruciales en tu vida. Define qué momentos de tu vida son importantes en retrospectiva, y lo que parecía decisivo para un alférez de veintitantos años puede no tener importancia para ese mismo oficial décadas después.",
     "CareerEvents.standard": "Estándar",
     "CareerEvents.standardAndUnofficial": "Estándar y No Oficial",
     "CareerEvents.unofficialNote": "Esta lista incluye elementos no oficiales de [Continuing Missions](https://continuingmissionsta.com/2018/05/09/replicator-resource-expanded-career-events-write-ups/). Comprueba con tu DJ que está de acuerdo con permitir esos elementos.",
 
-    "CareerEventDetails.errorAttribute": "Por favor, seleciona un atributo.",
-    "CareerEventDetails.errorDiscipline": "Por favor, seleciona una disciplina.",
-    "CareerEventDetails.errorFocus": "Por favor, seleciona una especialidad.",
+    "CareerEventDetails.errorAttribute": "Por favor, seleciona un Atributo.",
+    "CareerEventDetails.errorDiscipline": "Por favor, seleciona una Disciplina.",
+    "CareerEventDetails.errorFocus": "Por favor, seleciona una Especialidad.",
 
     "ChildSelectionPage.instruction": "Naturalmente, un niño aún no ha asistido a la Academia de la Flota Estelar (ni a ninguna de sus equivalentes), ni a ninguna institución de educación superior. De hecho, todavía está en las primeras etapas su educación.\n\nSelecciona una edad para tu personaje.",
 
