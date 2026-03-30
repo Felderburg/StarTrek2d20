@@ -80,6 +80,7 @@ export enum PageIdentity {
     SoloCharacterEra,
     SoloSpecies,
     SoloSpeciesDetails,
+    SoloCustomSpeciesDetails,
     SoloEarlyOutlook,
     SoloEarlyOutlookDetails,
     SoloEducationType,

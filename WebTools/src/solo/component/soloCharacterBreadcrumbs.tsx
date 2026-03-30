@@ -15,7 +15,7 @@ const SoloCharacterBreadcrumbs: React.FC<ISoloCharacterBreadcrumbProperties> = (
     const { t } = useTranslation();
 
     const renderSpecies = () => {
-        if ((character?.environmentStep && pageIdentity === PageIdentity.SoloSpeciesDetails) || pageIdentity === PageIdentity.SoloSpecies) {
+        if ((character?.environmentStep && [PageIdentity.SoloSpeciesDetails, PageIdentity.SoloCustomSpeciesDetails].includes(pageIdentity)) || pageIdentity === PageIdentity.SoloSpecies) {
             return (<li className="breadcrumb-item active" aria-current="page">{t('Page.title.species')}</li>);
         } else if (character?.speciesStep) {
             return (<li className="breadcrumb-item"><a href="/index.html" onClick={(e) => navigateTo(e, PageIdentity.SoloSpecies)}>{t('Page.title.species')}</a></li>);

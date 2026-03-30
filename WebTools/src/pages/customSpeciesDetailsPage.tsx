@@ -25,6 +25,8 @@ import { CustomSpeciesAttributeController } from '../components/speciesControlle
 import { SelectedTalent } from '../common/selectedTalent';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import soloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
+import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
 
 interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -37,50 +39,54 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
     const controller = new CustomSpeciesAttributeController(character);
 
     const renderTalentsSection = () => {
-        let talents: RankedTalent[] = [];
-        talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character)
-            .filter(t => !character.hasTalent(t.name)
-                        || (character.speciesStep?.talent?.talent === t.name)
-                        || t.maxRank > 1
-                        || isMultiSelectionTalent(t))
-            .map(t => {
-                if (t.maxRank > 1) {
-                    if (character.speciesStep?.talent?.talent === t.name) {
-                        return new RankedTalent(t, character.getRankForTalent(t.name));
+        if (character.stereotype !== Stereotype.SoloCharacter) {
+            let talents: RankedTalent[] = [];
+            talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character)
+                .filter(t => !character.hasTalent(t.name)
+                            || (character.speciesStep?.talent?.talent === t.name)
+                            || t.maxRank > 1
+                            || isMultiSelectionTalent(t))
+                .map(t => {
+                    if (t.maxRank > 1) {
+                        if (character.speciesStep?.talent?.talent === t.name) {
+                            return new RankedTalent(t, character.getRankForTalent(t.name));
+                        } else {
+                            return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
+                        }
                     } else {
-                        return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
+                        return new RankedTalent(t);
                     }
-                } else {
-                    return new RankedTalent(t);
-                }
-            }));
+                }));
 
-        const esotericTalentOption = (hasSource(Source.PlayersGuide)) ? (<div>
-                <CheckBox
-                    isChecked={allowEsotericTalents}
-                    text={t('SpeciesDetails.allowEsoteric')}
-                    value={!allowEsotericTalents}
-                    onChanged={() => { store.dispatch(setAllowEsotericTalents(!allowEsotericTalents));  }} />
-            </div>) : undefined;
+            const esotericTalentOption = (hasSource(Source.PlayersGuide)) ? (<div>
+                    <CheckBox
+                        isChecked={allowEsotericTalents}
+                        text={t('SpeciesDetails.allowEsoteric')}
+                        value={!allowEsotericTalents}
+                        onChanged={() => { store.dispatch(setAllowEsotericTalents(!allowEsotericTalents));  }} />
+                </div>) : undefined;
 
-        return talents.length > 0 && isTalentSelectionRequired()
-            ? (<div>
-                <Header level={2}>{t('Construct.other.talents')}</Header>
-                <div>
-                    {renderCrossSpeciesCheckbox()}
-                </div>
-                {esotericTalentOption}
-                <SingleTalentSelectionList talents={talents} construct={character}
-                    initialSelection={character.speciesStep?.talent}
-                    onSelection={talent => onTalentSelected(talent)} />
-            </div>)
-            : (<div>
-                <Header level={2}>{t('SpeciesDetails.options')}</Header>
-                <div>
-                    {renderCrossSpeciesCheckbox()}
-                </div>
-                {esotericTalentOption}
-              </div>);
+            return talents.length > 0 && isTalentSelectionRequired()
+                ? (<div>
+                    <Header level={2}>{t('Construct.other.talents')}</Header>
+                    <div>
+                        {renderCrossSpeciesCheckbox()}
+                    </div>
+                    {esotericTalentOption}
+                    <SingleTalentSelectionList talents={talents} construct={character}
+                        initialSelection={character.speciesStep?.talent}
+                        onSelection={talent => onTalentSelected(talent)} />
+                </div>)
+                : (<div>
+                    <Header level={2}>{t('SpeciesDetails.options')}</Header>
+                    <div>
+                        {renderCrossSpeciesCheckbox()}
+                    </div>
+                    {esotericTalentOption}
+                </div>);
+        } else {
+            return undefined;
+        }
     }
 
     const renderCrossSpeciesCheckbox = () => {
@@ -98,7 +104,8 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
     }
 
     const isTalentSelectionRequired = () => {
-        return character.stereotype !== Stereotype.SoloCharacter && character.type !== CharacterType.KlingonWarrior;
+        return character.stereotype !== Stereotype.SoloCharacter
+            && (character.type !== CharacterType.KlingonWarrior || character.version > 1);
     }
 
     const onNext = () => {
@@ -126,7 +133,9 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
     return (
         <div className="page">
             <div className="container ms-0">
-                <CharacterCreationBreadcrumbs />
+                {character.stereotype === Stereotype.SoloCharacter
+                    ? (<SoloCharacterBreadcrumbs pageIdentity={PageIdentity.SoloCustomSpeciesDetails} />)
+                    : (<CharacterCreationBreadcrumbs />)}
                 <Header>{t('Page.title.customSpeciesDetails')}</Header>
                 <InstructionText text={t('CustomSpeciesDetails.instruction')} />
                 <InputFieldAndLabel labelName={t('CustomSpeciesDetails.speciesName')} id="speciesName"

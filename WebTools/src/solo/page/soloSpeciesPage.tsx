@@ -33,12 +33,19 @@ const SoloSpeciesPage: React.FC<ISoloSpeciesPageProperties> = ({era, character})
         Navigation.navigateToPage(PageIdentity.SoloSpeciesDetails);
     }
 
+    const selectCustomSpecies = () => {
+        store.dispatch(setCharacterSpecies(Species.Custom));
+        Navigation.navigateToPage(PageIdentity.SoloCustomSpeciesDetails);
+    }
+
     const { t } = useTranslation();
     const [randomSpecies, setRandomSpecies] = useState(character?.speciesStep?.species);
 
     let speciesList = SpeciesHelper.getCaptainsLogSpecies();
-    if (randomSpecies != null) {
+    if (randomSpecies != null && randomSpecies !== Species.Custom) {
         speciesList = [SpeciesHelper.getSpeciesByType(randomSpecies)];
+    } else if (randomSpecies === Species.Custom) {
+        speciesList = [];
     }
     let speciesRows = speciesList.map((s,i) => {
         const attributes = s.id === Species.Ktarian
@@ -88,6 +95,15 @@ const SoloSpeciesPage: React.FC<ISoloSpeciesPageProperties> = ({era, character})
                     <tbody>
                         {speciesRows}
                     </tbody>
+                    {randomSpecies == null || randomSpecies === Species.Custom
+                    ? (<tbody>
+                        <tr onClick={() => { if (Window.isCompact()) selectCustomSpecies(); }}>
+                            <td className="selection-header">{t('SpeciesPage.customSpecies')}</td>
+                            <td></td>
+                            <td className="text-end"><Button size="sm" onClick={selectCustomSpecies} >{t('Common.button.select')}</Button></td>
+                        </tr>
+                    </tbody>)
+                    : null}
                 </table>
         </div>);
 }
