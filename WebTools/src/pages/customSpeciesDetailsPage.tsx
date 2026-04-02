@@ -25,7 +25,6 @@ import { CustomSpeciesAttributeController } from '../components/speciesControlle
 import { SelectedTalent } from '../common/selectedTalent';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
-import soloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
 import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
 
 interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
