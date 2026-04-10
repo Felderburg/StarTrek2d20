@@ -67,16 +67,28 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
     }
 
     const nextPage = () => {
-        if (starship.spaceframeModel == null) {
-            Dialog.show("Please select a spaceframe before proceeding.");
-        } else if (requiresDedicatedPersonnelSelection() || requiresRedundantSystemsSelection()) {
-            Navigation.navigateToPage(PageIdentity.ExtraStarshipTalentChoice);
-        } else if (starship.spaceframeModel.isMissionPodAvailable) {
-            Navigation.navigateToPage(PageIdentity.MissionPodSelection);
+        if (tab === SpaceframeTab.Standard) {
+            if (starship.spaceframeModel == null || starship.spaceframeModel.isCustom) {
+                Dialog.show("Please select a spaceframe before proceeding.");
+            } else if (requiresDedicatedPersonnelSelection() || requiresRedundantSystemsSelection()) {
+                Navigation.navigateToPage(PageIdentity.ExtraStarshipTalentChoice);
+            } else if (starship.spaceframeModel.isMissionPodAvailable) {
+                Navigation.navigateToPage(PageIdentity.MissionPodSelection);
+            } else {
+                let step = workflow.peekNextStep();
+                store.dispatch(nextStarshipWorkflowStep());
+                Navigation.navigateToPage(step.page);
+            }
         } else {
-            let step = workflow.peekNextStep();
-            store.dispatch(nextStarshipWorkflowStep());
-            Navigation.navigateToPage(step.page);
+            if (!(starship.className)) {
+                Dialog.show("Please provide a name for this class of ship.");
+            } else if (starship.spaceframeModel.sumSystemPoints < starship.totalAvailableSystemPoints) {
+                Dialog.show("You have not distributed all the Systems Points");
+            } else if (starship.spaceframeModel.sumDepartmentPoints < starship.totalAvailableDepartmentPoints) {
+                Dialog.show("You have not distributed all the Department Points");
+            } else {
+                Navigation.navigateToPage(PageIdentity.StarshipWeaponsSelection);
+            }
         }
     }
 

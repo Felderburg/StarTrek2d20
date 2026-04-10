@@ -33,7 +33,6 @@ export enum PageIdentity {
     RandomStarship,
     RandomCreature,
 
-    CustomSpaceframe,
     ExtraStarshipTalentChoice,
     MissionProfileTalentSelection,
     MissionProfileSelection,

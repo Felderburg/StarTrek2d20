@@ -82,8 +82,6 @@ export const getPageTitle = (t, page) => {
         return "Sector Details";
     } else if (page === PageIdentity.SpaceframeSelection) {
         return "Spaceframe Selection";
-    } else if (page === PageIdentity.CustomSpaceframe) {
-        return "Custom Spaceframe";
     } else if (page === PageIdentity.MissionProfileSelection) {
         return "Mission Profile";
     } else if (page === PageIdentity.MissionPodSelection) {

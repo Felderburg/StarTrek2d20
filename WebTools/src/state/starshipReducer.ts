@@ -83,9 +83,13 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         case CHANGE_STARSHIP_SPACEFRAME_SCALE: {
             let s = state.starship.copy();
             if (s?.spaceframeModel?.isCustom) {
+                let original = s.spaceframeStep;
                 let spaceframe = s.spaceframeModel.copy();
                 spaceframe.scale += action.payload.delta;
-                s.spaceframeModel = spaceframe;
+                s.spaceframeStep = new SpaceframeStep(spaceframe);
+                if (original?.appearance != null) {
+                    s.spaceframeStep.appearance = original.appearance;
+                }
             }
             s.pruneExcessTalents();
             return {
@@ -96,9 +100,13 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         case CHANGE_STARSHIP_SPACEFRAME_SERVICE_YEAR: {
             let s = state.starship.copy();
             if (s?.spaceframeModel?.isCustom) {
+                let original = s.spaceframeStep;
                 let spaceframe = s.spaceframeModel.copy();
                 spaceframe.serviceYear = action.payload.serviceYear;
-                s.spaceframeModel = spaceframe;
+                s.spaceframeStep = new SpaceframeStep(spaceframe);
+                if (original?.appearance != null) {
+                    s.spaceframeStep.appearance = original.appearance;
+                }
             }
             return {
                 ...state,
@@ -116,9 +124,13 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         case CHANGE_STARSHIP_SPACEFRAME_CLASS_NAME: {
             let s = state.starship.copy();
             if (s?.spaceframeModel?.isCustom) {
+                let original = s.spaceframeStep;
                 let spaceframe = s.spaceframeModel.copy();
                 spaceframe.name = action.payload.className;
-                s.spaceframeModel = spaceframe;
+                s.spaceframeStep = new SpaceframeStep(spaceframe);
+                if (original?.appearance != null) {
+                    s.spaceframeStep.appearance = original.appearance;
+                }
             }
             return {
                 ...state,
@@ -314,9 +326,13 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         case CHANGE_STARSHIP_SPACEFRAME_SYSTEM: {
             let s = state.starship.copy();
             if (s?.spaceframeModel?.isCustom) {
+                let original = s.spaceframeStep;
                 let spaceframe = s.spaceframeModel.copy();
                 spaceframe.systems[action.payload.system] += action.payload.delta;
-                s.spaceframeModel = spaceframe;
+                s.spaceframeStep = new SpaceframeStep(spaceframe);
+                if (original?.appearance != null) {
+                    s.spaceframeStep.appearance = original.appearance;
+                }
             }
             return {
                 ...state,
@@ -337,9 +353,13 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         case CHANGE_STARSHIP_SPACEFRAME_DEPARTMENT: {
             let s = state.starship.copy();
             if (s?.spaceframeModel?.isCustom) {
+                let original = s.spaceframeStep;
                 let spaceframe = s.spaceframeModel.copy();
                 spaceframe.departments[action.payload.department] += action.payload.delta;
-                s.spaceframeModel = spaceframe;
+                s.spaceframeStep = new SpaceframeStep(spaceframe);
+                if (original?.appearance != null) {
+                    s.spaceframeStep.appearance = original.appearance;
+                }
             }
             return {
                 ...state,

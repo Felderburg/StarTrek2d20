@@ -1,6 +1,5 @@
 import { IPageFactoryRegistry } from "../../pages/pageFactory";
 import { PageIdentity } from "../../pages/pageIdentity";
-import CustomSpaceframePage from "./customSpaceframePage";
 import FinalStarshipDetailsPage from "./finalStarshipDetailsPage";
 import MissionPodSelectionPage from "./missionPodSelectionPage";
 import MissionProfileSelectionPage from "./missionProfileSelectionPage";
@@ -9,7 +8,6 @@ import RefitsPage from "./refitsPage";
 import SelectStarshipToolPage from "./selectStarshipToolPage";
 import SimpleStarshipPage from "./simpleStarshipPage";
 import SmallCraftStatsPage from "./smallCraftStatsPage";
-import SpaceframePage from "./spaceframePage";
 import SpaceframeSelectionPage from "./spaceframeSelectionPage";
 import StarshipTalentsPage from "./starshipTalentsPage";
 import StarshipTypeSelectionPage from "./starshipTypeSelectionPage";
@@ -33,7 +31,6 @@ export class StarshipPageFactory implements IPageFactoryRegistry {
     constructor() {
         this.factories = {};
 
-        this.factories[PageIdentity.CustomSpaceframe] = () => <CustomSpaceframePage/>;
         this.factories[PageIdentity.ExtraStarshipTalentChoice] = () => <ExtraStarshipTalentChoicesPage />;
         this.factories[PageIdentity.MissionPodSelection] = () => <MissionPodSelectionPage/>;
         this.factories[PageIdentity.MissionProfileSelection] = () => <MissionProfileSelectionPage/>;

@@ -870,6 +870,7 @@ class Marshaller {
     }
 
     encodeStarship(starship: Starship) {
+console.log(starship);
         let sheet = {
             "stereotype": this.encodeStarshipStereoType(starship.stereotype),
             "type": CharacterType[starship.type],
@@ -900,6 +901,9 @@ class Marshaller {
                         "talents": starship.spaceframeModel.talents ? starship.spaceframeModel.talents.map(t => t.name) : []
                     }
                 }
+                if (starship.spaceframeStep.appearance != null) {
+                    sheet['spaceframe']['appearance'] = SpaceframeAppearance[starship.spaceframeStep.appearance];
+                }
             } else {
                 sheet['spaceframe'] = {
                     "name": Spaceframe[starship.spaceframeModel.id]
@@ -909,9 +913,6 @@ class Marshaller {
                 }
                 if (starship.spaceframeStep.variant !== undefined) {
                     sheet['spaceframe']['variant'] = SpaceframeVariant[starship.spaceframeStep.variant];
-                }
-                if (starship.spaceframeStep.appearance !== undefined) {
-                    sheet['spaceframe']['appearance'] = SpaceframeAppearance[starship.spaceframeStep.appearance];
                 }
             }
         }
@@ -965,7 +966,7 @@ class Marshaller {
         }
 
         sheet["improvements"] = this.encodeStarshipImprovements(starship);
-
+console.log(sheet);
         return this.encode(sheet);
     }
 
@@ -1139,6 +1140,7 @@ console.log(json);
 
     decodeStarship(s: string) {
         let json = this.decode(s);
+console.log(json);
         let result = new Starship();
         if (json.version) {
             result.version = json.version;
@@ -1186,7 +1188,11 @@ console.log(json);
                         }
                     })
                 }
-                result.spaceframeModel = frame;
+                result.spaceframeStep = new SpaceframeStep(frame);
+                console.log(json.spaceframe.appearance);
+                if (json.spaceframe.appearance != null) {
+                    result.spaceframeStep.appearance = SpaceframeAppearanceModel.appearanceCodeByName(json.spaceframe.appearance);
+                }
             } else {
                 result.spaceframeStep = new SpaceframeStep(
                     SpaceframeHelper.instance().getSpaceframeByName(json.spaceframe.name));
@@ -1200,9 +1206,6 @@ console.log(json);
                 }
                 if (json.spaceframe.variant) {
                     result.spaceframeStep.variant = SpaceframeVariantModel.variantCodeByName(json.spaceframe.variant);
-                }
-                if (json.spaceframe.appearanace) {
-                    result.spaceframeStep.appearance = SpaceframeAppearanceModel.appearanceCodeByName(json.spaceframe.appearanace);
                 }
             }
         }
@@ -1290,7 +1293,7 @@ console.log(json);
         if (json.improvements?.length) {
             result.advancementSteps = this.decodeStarshipImprovement(json.improvements, result.version) ?? [];
         }
-
+console.log(result);
         return result;
     }
 

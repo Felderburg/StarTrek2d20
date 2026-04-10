@@ -46,8 +46,6 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({starship,
 
     const updateSelectedTalent = (rankedTalent: RankedTalent, selection?: SelectedTalent) => {
 
-        console.log(rankedTalent, selection);
-
         let temp = [...(starship.additionalTalents ?? [])];
         if (selection == null) {
             if (rankedTalent.rank === undefined) {

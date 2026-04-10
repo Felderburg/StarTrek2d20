@@ -2399,6 +2399,10 @@
     "Spaceframe.tKalat": "T'Kalat Class",
     "Spaceframe.walker": "Walker Class",
 
+    "SpaceframeAppearance.antares": "Antares-type",
+    "SpaceframeAppearance.classJCargoShip": "Class-J cargo ship",
+    "SpaceframeAppearance.freighter": "Freighter",
+    "SpaceframeAppearance.jovisType": "Jovis-type",
     "SpaceframeAppearance.merchantman": "Merchantman",
     "SpaceframeAppearance.xhosaType": "Antares Class (Xhosa-type)",
     "SpaceframeAppearance.kaplanF17PatrolFrigate": "Kaplan F17 Patrol Frigate (La Sirena-type)",

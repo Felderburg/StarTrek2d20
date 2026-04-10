@@ -220,9 +220,13 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     }
 
     set spaceframeModel(spaceframe: SpaceframeModel) {
+        let original = this.spaceframeStep;
         this.spaceframeStep = new SpaceframeStep(spaceframe);
         if (!spaceframe?.isMissionPodAvailable) {
             this.missionPodModel = undefined;
+        }
+        if (original?.model?.isCustom && spaceframe.isCustom && original?.appearance != null) {
+            this.spaceframeStep.appearance = original.appearance;
         }
     }
 
