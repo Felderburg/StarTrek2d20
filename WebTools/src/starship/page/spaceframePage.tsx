@@ -9,57 +9,53 @@ import { PageIdentity } from "../../pages/pageIdentity";
 import { setStarshipSpaceframe } from "../../state/starshipActions";
 import store from "../../state/store";
 import { BuildPoints } from "../model/buildPoints";
-import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
-import { withTranslation, WithTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import PointAllocator from "../../helpers/pointAllocator";
 
-interface ISpaceframePageProperties extends WithTranslation {
+interface ISpaceframePageProperties {
     starship: Starship;
-    workflow: ShipBuildWorkflow;
 }
 
-class SpaceframePage extends React.Component<ISpaceframePageProperties, {}> {
+const SpaceframePage: React.FC<ISpaceframePageProperties> = ({starship}) => {
 
-    render() {
-        const { t } = this.props;
-        return (
-            <div className="page container ms-0">
-                <ShipBuildingBreadcrumbs />
-                <Header>{t('Page.title.spaceframeOption')}</Header>
+    const { t } = useTranslation();
 
-                <p>{t('SpaceframeOptionPage.text')}</p>
-
-                <div className="button-column">
-                    <Button className="btn btn-primary mt-4" onClick={() => this.navigateToSpaceframeSelection() }>{t('SpaceframeOptionPage.button.standardSpaceframe')}</Button>
-                    <Button className="btn btn-primary mt-4" onClick={() => this.navigateToCustomSpaceframe() }>{t('SpaceframeOptionPage.button.customSpaceframe')}</Button>
-                </div>
-            </div>
-        );
-    }
-
-    navigateToSpaceframeSelection() {
+    const navigateToSpaceframeSelection = () => {
         store.dispatch(setStarshipSpaceframe(null));
         Navigation.navigateToPage(PageIdentity.SpaceframeSelection);
     }
 
-    navigateToCustomSpaceframe() {
+    const navigateToCustomSpaceframe = () => {
         let scale = 3;
         let systems = PointAllocator.allocatePointsEvenly(BuildPoints.systemPointsForType(
-            ShipBuildType.Starship, this.props.starship.serviceYear, this.props.starship.type, scale));
+            ShipBuildType.Starship, starship.serviceYear, starship.type, scale));
         let departments = PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(
             ShipBuildType.Starship))
-        let spaceframe = SpaceframeModel.createCustomSpaceframe(this.props.starship?.type, this.props.starship?.serviceYear, systems, departments, scale);
+        let spaceframe = SpaceframeModel.createCustomSpaceframe(starship?.type, starship?.serviceYear, systems, departments, scale);
         store.dispatch(setStarshipSpaceframe(spaceframe));
         Navigation.navigateToPage(PageIdentity.CustomSpaceframe);
     }
+
+    return (
+        <div className="page container ms-0">
+            <ShipBuildingBreadcrumbs />
+            <Header>{t('Page.title.spaceframeOption')}</Header>
+
+            <p>{t('SpaceframeOptionPage.text')}</p>
+
+            <div className="button-column">
+                <Button className="btn btn-primary mt-4" onClick={() => navigateToSpaceframeSelection() }>{t('SpaceframeOptionPage.button.standardSpaceframe')}</Button>
+                <Button className="btn btn-primary mt-4" onClick={() => navigateToCustomSpaceframe() }>{t('SpaceframeOptionPage.button.customSpaceframe')}</Button>
+            </div>
+        </div>
+    );
 }
 
 function mapStateToProps(state, ownProps) {
     return {
-        starship: state.starship.starship,
-        workflow: state.starship.workflow
+        starship: state.starship.starship
     };
 }
 
-export default withTranslation()(connect(mapStateToProps)(SpaceframePage));
+export default connect(mapStateToProps)(SpaceframePage);

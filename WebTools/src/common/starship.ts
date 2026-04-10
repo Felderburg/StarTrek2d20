@@ -16,6 +16,8 @@ import { DepartmentsHelper } from "../helpers/department";
 import { SelectedTalent } from "./selectedTalent";
 import { StarshipAdvancementChoice } from "./starshipAdvancementChoice";
 import { SpaceframeVariant } from "../helpers/spaceframeVariant";
+import { SpaceframeAppearance } from "../helpers/spaceframeAppearance";
+import { BuildPoints } from "../starship/model/buildPoints";
 
 export class SimpleStats {
     departments: number[];
@@ -76,6 +78,7 @@ export class SpaceframeStep {
     readonly model: SpaceframeModel;
     talents: SelectedTalent[] = [];
     variant?: SpaceframeVariant;
+    appearance?: SpaceframeAppearance;
 
     constructor(model: SpaceframeModel) {
         this.model = model;
@@ -85,6 +88,7 @@ export class SpaceframeStep {
         const result = new SpaceframeStep(this.model);
         result.talents = this.talents.map(t => t.copy());
         result.variant = this.variant;
+        result.appearance = this.appearance;
         return result;
     }
 }
@@ -831,6 +835,14 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             }
         }
         return dice;
+    }
+
+    get totalAvailableDepartmentPoints(): number {
+        return BuildPoints.departmentPointsForType(this.buildType);
+    }
+
+    get totalAvailableSystemPoints(): number {
+        return BuildPoints.systemPointsForType(this.buildType, this.spaceframeModel.serviceYear, this.type, this.scale);
     }
 
     public copy(): Starship {

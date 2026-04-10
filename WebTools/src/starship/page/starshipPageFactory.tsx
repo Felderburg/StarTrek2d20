@@ -40,7 +40,6 @@ export class StarshipPageFactory implements IPageFactoryRegistry {
         this.factories[PageIdentity.MissionProfileTalentSelection] = () => <MissionProfileTalentSelectionPage/>;
         this.factories[PageIdentity.SimpleStarship] = () => <SimpleStarshipPage/>;
         this.factories[PageIdentity.SmallCraftStats] = () => <SmallCraftStatsPage/>;
-        this.factories[PageIdentity.SpaceframeOption] = () => <SpaceframePage/>;
         this.factories[PageIdentity.SpaceframeSelection] = () => <SpaceframeSelectionPage/>;
         this.factories[PageIdentity.StarshipRefits] = () => <RefitsPage/>;
         this.factories[PageIdentity.StarshipServiceRecord] = () => <ServiceRecordPage />;

@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Navigation } from "../../common/navigator";
-import { Starship } from "../../common/starship";
+import { ShipBuildType, Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
@@ -14,6 +14,15 @@ import SpaceframeSelection from "../view/spaceframeSelection";
 import { useTranslation } from 'react-i18next';
 import InstructionText from "../../components/instructionText";
 import { TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_REDUNDANT_SYSTEMS } from "../../helpers/talents";
+import CustomSpaceframeView from "../view/customSpaceframeView";
+import PointAllocator from "../../helpers/pointAllocator";
+import { BuildPoints } from "../model/buildPoints";
+import { SpaceframeModel } from "../../helpers/spaceframeModel";
+
+enum SpaceframeTab {
+    Custom,
+    Standard
+}
 
 interface ISpaceframeSelectionPageProperties {
     starship: Starship;
@@ -23,6 +32,26 @@ interface ISpaceframeSelectionPageProperties {
 const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({starship, workflow}) => {
 
     const { t } = useTranslation();
+    const [tab, setTab] = useState<SpaceframeTab>(starship?.spaceframeStep?.model?.isCustom ? SpaceframeTab.Custom : SpaceframeTab.Standard);
+
+    const onChangeTab = (newTab: SpaceframeTab) => {
+        if (newTab === tab) {
+            // no change
+        } else if (newTab === SpaceframeTab.Custom) {
+            if (!starship.spaceframeModel?.isCustom) {
+                let scale = 3;
+                let systems = PointAllocator.allocatePointsEvenly(BuildPoints.systemPointsForType(
+                    ShipBuildType.Starship, starship.serviceYear, starship.type, scale));
+                let departments = PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(
+                    ShipBuildType.Starship))
+                let spaceframe = SpaceframeModel.createCustomSpaceframe(starship?.type, starship?.serviceYear, systems, departments, scale);
+                store.dispatch(setStarshipSpaceframe(spaceframe));
+            }
+            setTab(newTab);
+        } else {
+            setTab(newTab);
+        }
+    }
 
     const requiresDedicatedPersonnelSelection = () => {
         const talents = starship.spaceframeModel.talents
@@ -55,12 +84,23 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
         <ShipBuildingBreadcrumbs />
         <Header>{t('Page.title.spaceframeSelection')}</Header>
         <InstructionText text={t('SpaceframeSelectionPage.text')} />
-        <SpaceframeSelection
-            initialSelection={starship.spaceframeModel}
-            starship={starship}
-            serviceYear={starship.serviceYear}
-            type={starship.type}
-            onSelection={(spaceframe, variant) => store.dispatch(setStarshipSpaceframe(spaceframe, variant))} />
+
+        <div className="btn-group w-100 mb-4" role="group" aria-label={t('StationSpaceframePage.frameType')}>
+            <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === SpaceframeTab.Standard ? "active" : "")}
+                    onClick={() => onChangeTab(SpaceframeTab.Standard)}>{t('StationSpaceframePage.standard')}</button>
+            <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === SpaceframeTab.Custom ? "active" : "")}
+                    onClick={() => onChangeTab(SpaceframeTab.Custom)}>{t('StationSpaceframePage.custom')}</button>
+        </div>
+
+
+        {tab === SpaceframeTab.Standard
+            ? (<SpaceframeSelection
+                initialSelection={starship.spaceframeModel}
+                starship={starship}
+                serviceYear={starship.serviceYear}
+                type={starship.type}
+                onSelection={(spaceframe, variant) => store.dispatch(setStarshipSpaceframe(spaceframe, variant))} />)
+            : (<CustomSpaceframeView starship={starship} />)}
         <div className="text-end">
             <Button className="mt-4" onClick={() => nextPage()}>{t('Common.button.next')}</Button>
         </div>

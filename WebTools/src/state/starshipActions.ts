@@ -6,6 +6,7 @@ import { Department } from "../helpers/department";
 import { Era } from "../helpers/eras";
 import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
+import { SpaceframeAppearance } from "../helpers/spaceframeAppearance";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { SpaceframeVariant } from "../helpers/spaceframeVariant";
 import { System } from "../helpers/systems";
@@ -43,6 +44,7 @@ export const SET_STARSHIP_SERVICE_YEAR = "SET_STARSHIP_SERVICE_YEAR";
 export const SET_STARSHIP_SERVICE_RECORD = "SET_STARSHIP_SERVICE_RECORD";
 export const SET_STARSHIP_SPACEFRAME_TALENTS = "SET_STARSHIP_SPACEFRAME_TALENTS";
 export const MODIFY_STARSHIP_ADD_ADVANCEMENT = "MODIFY_STARSHIP_ADD_ADVANCEMENT";
+export const SET_STARSHIP_SPACEFRAME_APPEARANCE = "SET_STARSHIP_SPACEFRAME_APPEARANCE";
 
 export function createStarship(starship: Starship, hash?: number) {
     let payload = { starship: starship, hash: hash }
@@ -197,6 +199,14 @@ export function setStarshipTraits(traits: string) {
     let payload = { traits: traits };
     return {
        type: SET_STARSHIP_TRAITS,
+       payload: payload
+    }
+}
+
+export function setStarshipSpaceframeAppearance(appearance?: SpaceframeAppearance) {
+    let payload = { appearance: appearance };
+    return {
+       type: SET_STARSHIP_SPACEFRAME_APPEARANCE,
        payload: payload
     }
 }

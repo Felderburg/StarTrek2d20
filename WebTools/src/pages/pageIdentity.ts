@@ -40,7 +40,6 @@ export enum PageIdentity {
     MissionPodSelection,
     SimpleStarship,
     SmallCraftStats,
-    SpaceframeOption,
     SpaceframeSelection,
     StarshipRefits,
     StarshipServiceRecord,

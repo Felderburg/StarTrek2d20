@@ -14,7 +14,7 @@ EditTablePage.header.createTable,Create Table,,Tabelle erstellen,Crear tabla,Cr�
 EditTablePage.header.modifyTable,Modify Table,,Tabelle bearbeiten,Modificar tabla,Modifier la table,Изменить таблицу,Modificar Tabela
 EraSelectionPage.eraInstruction,Select which Era to play in. Ask your GM which Era to choose.,,"Wählen Sie aus, in welcher Ära gespielt wird. Fragen Sie, wenn nötig, Ihre Spielleitung, welche Ära Sie wählen sollen.",Selecciona en qué Época jugar. Pregúntale a tu DJ qué Época elegir.,Sélectionnez l'ère dans laquelle jouer. Demandez à votre MJ quelle ère choisir.,Выберите в какой Эре вы планируете играть. Спросите Мастера какую Эру выбрать.,Selecione a Era em que deseja jogar. Pergunte ao seu MJ qual Era escolher.
 Lcars.noHistory,No history,,Kein Verlauf,Sin historial,Aucun historique,История пуста,Sem Histórico
-SourceSelectionPage.editionInstruction,Which edition of the rules are you using?,,,,,Какую редакцию правил вы используете?,
+SourceSelectionPage.editionInstruction,Which edition of the rules are you using?,,,¿Qué edición de reglas estás usando?,,Какую редакцию правил вы используете?,
 SourceSelectionPage.sourceInstruction,Select sources. Ask your GM which are available.,,"Wählen Sie die verfügbaren Quellen aus. Fragen Sie, wenn nötig, Ihre Spielleitung, welche zur Verfügung stehen.",Selecciona las fuentes. Pregunta a tu DJ cuáles están disponibles.,Sélectionnez les sources. Demandez à votre MJ lesquels sont disponibles.,Выберите источники. Уточните с Мастером если возможно.,Selecione as fontes. Pergunte ao seu MJ as que estão disponíveis.
 SourceSelectionPage.gameTypeInstruction,What type of game are you playing?,,Welche Art von Spiel spielst du?,¿Qué tipo de juego estás jugando?,A quel type de jeu jouez vous?,В какой вид игры вы играете?,Que tipo de jogo você está jogando?
 SourceSelectionPage.sourceNote,Some sources are not yet implemented; check back soon!,,Einige Quellen sind noch nicht verfügbar - schauen Sie bald wieder vorbei!,Algunas fuentes aún no se han implementado. ¡Vuelve a comprobarlo más adelante !,Certaines sources ne sont pas encore mises en œuvre; Revenez bientôt!,Некоторые источники еще не доступны; скоро добавим!,Algumas fontes ainda não foram implementadas; retorne em breve!
@@ -100,6 +100,8 @@ CareerSelectionPage.exclusionText,"Your character has a Talent (""Advanced Team 
 CareerSelectionPage.selectOneTalent,One talent of choice,,Ein Talent deiner Wahl,Un talento a tu elección,Un talent au choix,Один талант на выбор,Um talento à sua escolha
 CharacterSheetDialog.title,Choose Template,,Vorlage auswählen,Escoge una plantilla,Choisir un Modèle,Выберите модель,Escolha o Modelo
 CharacterSheetDialog.thumbnail,Thumbnail,,Portraitfoto,Miniatura,Vignette,Миниатюра,Miniatura
+CustomSpaceframe.systems.instruction,You have {{points}} points to distribute among the various spaceframe systems.,,,,,,
+CustomSpaceframe.departments.instruction,You have {{points}} points to distribute among the various spaceframe departments.,,,,,,
 CustomSpeciesDetails.speciesName,Name,,Name,Nombre,Nom,Имя,Nome
 CustomSpeciesDetails.instruction,What's the name of this species?,,Wie lautet der Name dieser Spezies?,¿Cuál es el nombre de esta especie?,Quel est le nom de cette espèce?,Каково название этой рассы?,Qual é o nome dessa espécie?
 CustomSpeciesDetails.speciesTrait,Each species gets a species-specific trait that may provide additional benefits in special circumstances.,,"Jede Spezies erhält ein bestimmtes Merkmal, das in bestimmten Situationen zusätzliche Vorteile gewähren kann.",Cada especie obtiene un rasgo específico de la especie que puede proporcionar beneficios adicionales en circunstancias especiales.,Chaque espèce a un trait qui lui est propre qui peut procurer des bonus additionnels dans des circonstances particulières.,"Каждая раса получает особую рассовую черту, которая может дать дополнительные преимущества в особых обстоятельствах.",Cada espécie recebe um traço específico que pode proporcionar benefícios adicionais em circunstâncias especiais.
@@ -444,9 +446,9 @@ SafetyChecklist.instruction,"This checklist is a tool which the gamemaster can u
 - **Alerta Vermelho**: Isso significa que o jogador não quer que esse assunto seja discutido em um jogo; ele pode ter vários motivos para isso. Alguns motivos podem incluir objeção ao tópico por princípios morais, experiência pessoal traumática, aversão à banalização do tópico em um meio de entretenimento fictício como um jogo e assim por diante. Não pergunte qual é o motivo do jogador que se sente assim; não cabe a ninguém mudar a opinião desse jogador. Simplesmente aceite a posição dele, respeite-a e não inclua o tópico em questão."
 ServiceRecordPage.instruction,You may optionally choose a service record for your starship to represent key elements of a starship's life of service. Selecting a service record provides an additional trait for the ship.,,,"Opcionalmente, puedes escoger un registro de servicio para tu nave para representar los principales elementos de la vida de servicio de una nave. Seleccionando un registro de servicio se proprorciona un rasgo adicional a la nave.",,"При желании вы можете выбрать послужной список для своего звездолета, который будет отражать ключевые момегы послужного списка звездолета. Эта выборка дает кораблю дополнительную черту.","Opcionalmente, você pode escolher um registro de serviço para sua nave para representar os principais elementos da vida de serviço de uma nave. A seleção de um registro de serviço fornece um Traço adicional para a nave."
 ServiceRecordPage.survivorOfX.selection,Battle or War,,,Batalla o Guerra,,Битва или война,Batalhas ou Guerras
-ServiceRecordPage.removeTalent,Removed Talent,,,,,Удаленный талант,
-ServiceRecordPage.replacedTalent,Replaced Talent,,,,,Замененный талант,
-ServiceRecordPage.error.talents,Please select two talents -- one to remove and a replacement.,,,,,"Пожалуйста, выберите два таланта: один для удаления и на замену.",
+ServiceRecordPage.removeTalent,Removed Talent,,,Eliminar Talento,,Удаленный талант,
+ServiceRecordPage.replacedTalent,Replaced Talent,,,Reemplazar Talento,,Замененный талант,
+ServiceRecordPage.error.talents,Please select two talents -- one to remove and a replacement.,,,"Por favor, elige dos talentos - uno para eliminar y su reemplazo",,"Пожалуйста, выберите два таланта: один для удаления и на замену.",
 SoloCareerEvent.instruction,"Your character’s career is a tapestry of events and experiences, but a few will have been pivotal moments in the character’s life. A character defines which moments of their life are important in retrospect, and what seemed definitive to a young ensign may be inconsequential to that same officer decades later.
 
 Your character has two defining career events, chosen or determined randomly from the list below, and gains whatever benefits they provide.
@@ -648,8 +650,8 @@ SupportingCharacter.nameAndRank,Name & Rank,,Name & Rang,Nombre y Rango,Nom & Ra
 SupportingCharacter.nameAndRankInstruction,Give the character an appropriate name and rank. Supporting Characters should never have a rank above Lieutenant and may often be enlisted personnel rather than officers.,,Geben Sie dem Charakter einen passenden Namen und Rang. Nebencharaktere sollten keinen höheren Rang als Lieutenant haben und sind oftmals sogar Mannschaftsdienstgrade anstatt von Offizieren.,Proporciona al personaje un nombre y rango apropiado. Los Personajes de Apoyo nunca deberían tener un rango por encima de Teniente y la mayoría de las veces será personal alistado en vez de oficiales.,Donnez au personnage un nom et un grade approprié. Les personnages secondaires ne peuvent pas avoir un grade supérieur à Lieutenant et sont très sonvant du personnel enrôlé plutôt que des officiers.,"Дайте персонажу соответствующее имя и ранг. Второстепенные персонажи никогда не могут иметь ранг выше Лейтенанта и чаще бывают рядовым составом, чем офицерами.","Dê à personagem um nome e uma patente apropriados. As Personagens Coadjuvantes nunca devem ter uma patente acima de Tenente e, muitas vezes, podem ser alistados em vez de oficiais."
 SupportingCharacter.numericalValue,Value,,Wert,Valor,Valeur,Значение,Valor
 SupportingCharacter.speciesBonus,Species Bonus,,Spezies-Bonus,Bonificación por Especie,Bonus d'Espèce,Рассовый бонус,Bônus de Espécie
-SystemGenerationPage.selectQuadrant,Select quadrant,,,,,,
-SystemGenerationPage.generateSector,Generate Sector,,,,,,
+SystemGenerationPage.selectQuadrant,Select quadrant,,,Seleccionar cuadrante,,,
+SystemGenerationPage.generateSector,Generate Sector,,,Generar sector,,,
 TacticalAssetsPage.instruction,Add additional assets to your asset list.,,,Añade otros recursos a tu lista de recursos.,,,Adicione outros recursos à sua lista de recursos.
 TacticalAssetsPage.assets,Asset List,,,Lista de Recursos,,,Lista de Recursos
 ToolSelection.instruction,What do you want to create?,,Was soll erschaffen werden?,¿Qué quieres crear?,Que voulez vous créer?,Что вы хотите сгенерировать?,O que você deseja criar?
@@ -657,11 +659,11 @@ ToolSelection.mainCharacter,Main Character,,Hauptfigur,Personaje principal,Perso
 ToolSelection.supportingCharacter,Supporting Character,,Nebencharakter,Personaje de Apoyo,Personnage secondaire,Персонаж поддержки,Personagem Coadjuvante
 ToolSelection.npc,NPC,,NSC,PNJ,PNJ,,PdM
 ToolSelection.starship,Starship,,Raumschiff,Nave estelar,Vaisseau spatial,Звездолет,Nave Estelar
-ToolSelection.station,Station,,,,,,
+ToolSelection.station,Station,,,Estación,,,
 ToolSelection.spaceSector,Space Sector,,Raumsektor,Sector espacial,Secteur spatial,Звездный сектор,Setor Espacial
 ToolSelection.randomNpc,Random NPC,,Zufälliger NSC,PNJ Aleatorio,PNJ aléatoire,Рандомный второстепенный персонаж,PdM Aleatório
 ToolSelection.randomStarship,Random Starship,,,Nave estelar aleatoria,,Рандомный звездолет,Nave Aleatória
-ToolSelection.randomCreature,Random Creature,,,,,Рамдомное существо,
+ToolSelection.randomCreature,Random Creature,,,Criatura aleatoria,,Рамдомное существо,
 Common.button.random,Random,,Zufällig,Aleatorio,Aléatoire,Случайный выбор,Aleatório
 Common.button.select,Select,,Auswählen,Seleccionar,Choisir,Выбрать,Selecione
 Common.button.selectAll,Select All,,Alles auswählen,Seleccionar todo,Sélectionner tout,Выбрать все,Selecione Todos
@@ -677,24 +679,24 @@ Common.button.copyToClipboard,Copy to clipboard,,In die Zwischenablage kopieren,
 Common.button.add,Add,,Hinzufügen,Agregar,Ajouter,Добавить,Adicionar
 Common.button.cancel,Cancel,,Abbrechen,Cancelar,Annuler,Отменить,Cancelar
 Common.button.create,Create,,Erschaffen,Crear,Créer,Создать,Criar
-Common.button.delete,Delete,,,,,,
+Common.button.delete,Delete,,,Borrar,,,
 Common.button.modify,Modify,,Anpassen,Modificar,Modifier,Изменить,Modificar
 Common.button.next,Next,,Weiter,Siguiente,Prochain,Дальше,Próximo
 Common.button.previous,Previous,,,Anterior,,,Anterior
-Common.button.save,Save,,,,,,
-Common.button.share,Share,,,,,,
+Common.button.save,Save,,,Guardar,,,
+Common.button.share,Share,,,Ver,,,
 Common.button.view,View,,Anzeigen,Visualizar,Vue,Показать,Visualizar
-Common.edition.1,1st Edition,,,,,,
-Common.edition.2,2nd Edition,,,,,,
-Common.error.focus,Please select a focus.,,Bitte wähle einen Fokus.,"Selecciona una especialidad, por favor.",Choisissez une Spécialité SVP,Пожалуйста выберите Специализацию,"Por favor, selecione um foco."
-Common.error.value,Please select a value.,,Bitte wähle eine Überzeugung.,"Selecciona un Valor, por favor.",Sélectionnez une Valeur SVP.,Пожалуйста выберите значение.,"Por favor, selecione um valor."
-Common.error.department,Please select a department.,,,,,Пожалуйста выберите отдел,
-Common.error.attribute,Please select an attribute.,,Bitte wähle ein Attribut.,"Por favor, seleciona un atributo.",Selectionez un Attribut SVP,Пожалуйста выберите качество,"Por favor, selecione um atributo."
-Common.error.system,Please select a system.,,,,,,
-Common.error.talent,Please select a talent.,,,Por favor selecciona un talento antes de continuar,,Пожалуйста выберите талант,
+Common.edition.1,1st Edition,,,1ª edición,,,
+Common.edition.2,2nd Edition,,,2ª edición,,,
+Common.error.focus,Please select a focus.,,Bitte wähle einen Fokus.,"Por favor, selecciona una Especialidad",Choisissez une Spécialité SVP,Пожалуйста выберите Специализацию,"Por favor, selecione um foco."
+Common.error.value,Please select a value.,,Bitte wähle eine Überzeugung.,"Por favor, selecciona un Valor",Sélectionnez une Valeur SVP.,Пожалуйста выберите значение.,"Por favor, selecione um valor."
+Common.error.department,Please select a department.,,,"Por favor, selecciona un Departamento",,Пожалуйста выберите отдел,
+Common.error.attribute,Please select an attribute.,,Bitte wähle ein Attribut.,"Por favor, seleciona un Atributo",Selectionez un Attribut SVP,Пожалуйста выберите качество,"Por favor, selecione um atributo."
+Common.error.system,Please select a system.,,,"Por favor, selecciona un Sistema",,,
+Common.error.talent,Please select a talent.,,,Por favor selecciona un Talento,,Пожалуйста выберите талант,
 Common.text.description,Description,,Beschreibung,Descripción,Description,Описание,Descrição
 Common.text.none,None,,Keine Auswahl,Ninguno,Aucun,Пусто,Nenhum
-Common.text.notes,Notes,,,,,,
+Common.text.notes,Notes,,,Notas,,,
 Common.text.copiedToClipboard,Copied to clipboard,,In die Zwischenablage kopiert,Copiado al portapapeles,Copié dans le presse papier !,Скопировано в буфер,Copiado para a área de transferência
 Common.text.search,Search...,,Suchen...,Buscar...,Recherche...,Поиск ...,Pesquisar...
 Common.text.select,Select,,Wähle,Seleccionar,Selectionnez,Выбрать,Selecionar
@@ -703,25 +705,25 @@ Common.text.suggestions,Suggestions,,Vorschläge,Sugerencias,Suggestions,Пре�
 Common.text.total,Total,,Insgesamt,Total,Total,Всего,Total
 Common.text.yes,Yes,,Ja,Si,Oui,Да,Sim
 Common.text.modify,Modify,,Anpassen,Modificar,Modifier,Изменить,Modificar
-Common.text.talentName,Name,,,,,,
-Common.text.new,New,,,,,Новый,
+Common.text.talentName,Name,,,Nombre,,,
+Common.text.new,New,,,Nuevo,,Новый,
 Common.text.no,No,,Nein,No,Non,Нет,Não
 Common.text.other,Other,,Andere,Otro,Autre,Другое,Outro
-Common.text.remove,Remove,,,,,Удалить,
-Common.text.directive,Directive,,,,,,
-Common.text.directives,Directives,,,,,,
+Common.text.remove,Remove,,,Eliminar,,Удалить,
+Common.text.directive,Directive,,,Directriz,,,
+Common.text.directives,Directives,,,Directrices,,,
 Common.select.choose,Choose...,,Wählen Sie aus ...,Elegir...,Choisir,Выберите ...,Escolha...
-Construct.creature.creatureType,Creature Type,,,,,,
-Construct.creature.dietType,Diet Type,,,,,,
-Construct.creature.form,Form,,,,,,
-Construct.creature.habitat,Habitat,,,,,,
-Construct.creature.locomotion,Locomotion,,,,,,
-Construct.creature.size,Size,,,,,,
+Construct.creature.creatureType,Creature Type,,,Tipo de criatura,,,
+Construct.creature.dietType,Diet Type,,,Tipo de alimentación,,,
+Construct.creature.form,Form,,,Forma,,,
+Construct.creature.habitat,Habitat,,,Hábitat,,,
+Construct.creature.locomotion,Locomotion,,,Locomoción,,,
+Construct.creature.size,Size,,,Tamaño,,,
 Construct.other.assetType,Asset Type,,,Tipo de Recurso,,,Tipo de Recurso
 Construct.other.assignment,Assignment,,Position,Asignación,Mission,Назначение,Designação
 Construct.other.attacks,Attacks,,,Ataques,Attaques,Оружие,Ataques
-Construct.other.attackType,Attack Type,,,,,,
-Construct.other.appearance,Appearance,,,,,,
+Construct.other.attackType,Attack Type,,,Tipo de ataque,,,
+Construct.other.appearance,Appearance,,,Apariencia,,,
 Construct.other.attribute,Attribute,,Attribut,Atributo,Attribut,Качество,Atributo
 Construct.other.attributes,Attributes,,Attribute,Atributos,Attributs,Качества,Atributos
 Construct.other.breaches,Breaches,,,Brechas,,,Rompimentos
@@ -740,7 +742,7 @@ Construct.other.description,Description,,Beschreibung,Descripción,Description,�
 Construct.other.department,Department,,,Departamento,Département,Отдел,Departamento
 Construct.other.departments,Departments,,Abteilungen,Departamentos,Departements,Отделы,Departamentos
 Construct.other.determination,Determination,,Entschlossenheit,Determinación,Détermination,Целеустремленность,Determinação
-Construct.other.directive,Directive,,,,,,
+Construct.other.directive,Directive,,,Directriz,,,
 Construct.other.discipline,Discipline,,Disziplin,Disciplina,Discipline,Знание,Disciplina
 Construct.other.disciplines,Disciplines,,Disziplinen,Disciplinas,Disciplines,Знания,Disciplinas
 Construct.other.education,Education,,Ausbildung,Educacion,Education,Образование,Educação
@@ -775,7 +777,7 @@ Construct.other.purpose,Purpose,,Zweck,Proposito,Rôle,Роль,Propósito
 Construct.other.rank,Rank,,Rang,Rango,Grade,Ранг,Patente
 Construct.other.refits,Refits,,Nachrüstungen,Modificaciones,Mises à jour,,Reajustes
 Construct.other.registry,Registry,,Registriernummer,Registro,Immatriculation,,Registro
-Construct.other.role,Role,,,,,,
+Construct.other.role,Role,,,Rol,,,
 Construct.other.resistance,Resistance,,Widerstand,Resistencia,Résistance,Сопротивление,Resistência
 Construct.other.reprimands,Reprimands,,Verwarnungen,Reprimendas,Réprimandes,Выговоры,Reprimendas
 Construct.other.reputation,Reputation,,Ansehen,Reputación,Réputation,Репутация,Reputação
@@ -793,7 +795,7 @@ Construct.other.species,Species,,Spezies,Especie,Espèce,Раса,Espécies
 Construct.other.speciesAbility,Species Ability,,,Habilidad de la Especie,Capacités d'espèce,,Habilidade de Espécie
 Construct.other.speciesAndTraits,Species & Traits,,,Especies y Rasgos,,,Espécies e Traços
 Construct.other.starshipType,Starship Type,,,Tipo de nave estelar,,,Tipo de Nave
-Construct.other.stationType,Station Type,,,,,,
+Construct.other.stationType,Station Type,,,Tipo de estación,,,
 Construct.other.stats,Stats,,Werte,Estadísticas,Stats,Значения,Estatísticas
 Construct.other.stress,Stress,,Anstrengung,Estrés,Stress,Стресс,Estresse
 Construct.other.supervisory,Supervisory,,,Supervisor,,,Supervisório
@@ -807,11 +809,11 @@ Construct.other.trait,Trait,,Merkmal,Rasgo,Trait,Черта,Traço
 Construct.other.traits,Traits,,Merkmale,Rasgos,Traits,Черты,Traços
 Construct.other.additionalTraits,Additional Traits,,Zusätzliche Merkmale,Rasgos Adicionales,Traits additionnels,Дополнительные черты,Traços Adicionais
 Construct.other.unnamedCharacter,Unnamed Character,,,Personaje sin nombre,,,Personagem Sem Nome
-Construct.other.unnamedCreature,Unnamed Creature,,,,,,
+Construct.other.unnamedCreature,Unnamed Creature,,,Criatura sin nombre,,,
 Construct.other.upbringing,Upbringing,,Erziehung,Educación,Education,Воспитание,Educação
 Construct.other.value,Value,,Überzeugung,Valor,Valeur,Ценность,Valor
 Construct.other.values,Values,,Überzeugungen,Valores,Valeurs,Ценности,Valores
-Construct.other.weapon,Weapon,,,,,,
+Construct.other.weapon,Weapon,,,Arma,,,
 Construct.other.weapons,Weapons,,Waffen,Armas,Armes,Оружие,Armas
 Construct.other.yearsOfService_one,{{count}} year of service,,,{{count}} año de servicio,{{count}} année de service,,{{count}} ano de serviço
 Construct.other.yearsOfService_other,{{count}} years of service,,,{{count}} años de servicio,{{count}} années de service,,{{count}} anos de serviço
@@ -870,13 +872,13 @@ Page.title.finish,Finishing Touches,,Feinschliff,Retoques Finales,Touches Finale
 Page.title.gamemasterTrackerPage,Tracking,,NSC-Verwaltung,Seguimiento,Suivi,,Acompanhamento
 Page.title.home,Home,,Startseite,Página principal,Page d'accueil,Домашняя,Principal
 Page.title.modifySupportingCharacter,Modify Supporting Character,,,Modificar personaje de apoyo,,,Modificar Personagem Coadjuvante
-Page.title.modifyStarship,Modify Starship,,,,,,
+Page.title.modifyStarship,Modify Starship,,,Modificar nave estelar,,,
 Page.title.missionPodSelection,Mission Pod Selection,,Auswahl Missionsmodul,Selección de Módulo de Misión,Selection des Nacelles de Mission,,Seleção do Módulo de Missão
 Page.title.missionProfileSelection,Mission Profile Selection,,Auswahl Missionsprofil,Selección de Perfil de Misión,Selection du Profil de Mission,,Seleção do Perfil da Missão
 Page.title.missionProfileTalentSelection,Mission Profile Talent,,Auswahl Missionsprofil-Talent,Talento de Perfil de Misión,Talent du Profil de mission,,Talento do Perfil da Missão
-Page.title.missionProfileDetails,Mission Profile Details,,,Detalles del Perdil de Misión,,,Detalhes do Perfil da Missão
+Page.title.missionProfileDetails,Mission Profile Details,,,Detalles del Perfil de Misión,,,Detalhes do Perfil da Missão
 Page.title.otherTools,Other Tools,,,Otras Herramientas,Autres outils,Другие инструменты,Outras Ferramentas
-Page.title.randomCreature,Random Creature Configuration,,,,,,
+Page.title.randomCreature,Random Creature Configuration,,,Configuración aleatoria de criatura,,,
 Page.title.randomStarship,Random Starship Configuration,,,Configuración aleatoria de nave estelar,,,Configuração de Nave Aleatória
 Page.title.safetyChecklist,Safety Checklist,,,Lista de Verificación de Seguridad,Checklist de sécurité,Список согласия,Lista de Verificação de Segurança
 Page.title.sectorDetails,Sector Details,,Sektordetails,Detalles del sector,Détails du secteur,Данные сектора,Detalhes do Setor
@@ -914,19 +916,19 @@ Page.title.reputationChange,Reputation Change,,Änderung des Ansehens,Cambio de 
 Page.title.promotion,Promotion,,Beförderung,Ascenso,Promotion,Продвижение по службе,Promoção
 Page.title.normalMilestone,Normal Milestone,,Regulärer Meilenstein,Hito Normal,Jalon Normal,Обычная веха,Marco de História Normal
 Page.title.modificationComplete,Modification Completed,,Änderung abgeschlossen,Modificación Completada,Modification Effectuée,Изменения завершены,Modificação Concluída
-Page.title.modifySupportingCharacter,Modify Supporting Character,,,,,,
-Page.title.modifyMainCharacter,Modify Main Character,,,,,,
-Page.title.npcBuilder,NPC Builder,,,,,,
+Page.title.modifySupportingCharacter,Modify Supporting Character,,,Modificar Personaje de Apoyo,,,
+Page.title.modifyMainCharacter,Modify Main Character,,,Modificar Personaje Principal,,,
+Page.title.npcBuilder,NPC Builder,,,Creador de PNJ,,,
 Page.title.npcConfiguration,Random NPC Configuration,,Anpassung zufälliger NSCs,Configuración Aleatoria de PNJ,Configuration des PNJ Aléatoires,Конфигурация рандомного ВП,Configuração de PdM Aleatórios
 Page.title.npcFinal,Finishing Touches,,Feinschliff,Retoques Finales,Touches Finales,Заключительные штрихи,Toques Finais
-Page.title.npcStats,NPC Stats,,,,,,
-Page.title.npcTalents,Special Rules Selection,,,,,,
-Page.title.stationIndex,Station Creation,,,,,,
-Page.title.stationMissionProfile,Station Mission Profile,,,,,,
-Page.title.stationSpaceframe,Station Frame,,,,,,
-Page.title.stationTalents,Station Talents,,,,,,
-Page.title.stationWeapons,Station Weapons,,,,,,
-Page.title.stationFinal,Final Details,,,,,,
+Page.title.npcStats,NPC Stats,,,Estadísticas de PNJ,,,
+Page.title.npcTalents,Special Rules Selection,,,Selección de reglas especiales,,,
+Page.title.stationIndex,Station Creation,,,Creación de Estación,,,
+Page.title.stationMissionProfile,Station Mission Profile,,,Perfil de misión de la Estación,,,
+Page.title.stationSpaceframe,Station Frame,,,Plantilla de Estación,,,
+Page.title.stationTalents,Station Talents,,,Talentos de la Estación,,,
+Page.title.stationWeapons,Station Weapons,,,Armas de la Estación,,,
+Page.title.stationFinal,Final Details,,,Detalles finales,,,
 Page.title.tokenCreationPage,Token Creation,,Tokenerschaffung,Creación de Token,Création de Jeton,Создание токена,Criação de Token
 Page.title.upbringing,Early Outlook,,Erziehung,Educación,Experience initiale,Детали воспитания,Experiência Inicial
 Page.title.upbringingDetails,Early Outlook Details,,Erziehungsdetails,Detalles de la educación,Détails de l'expérience initiale,Направление образование,Detalhes da Experiência Inicial
@@ -1819,7 +1821,7 @@ Focus.disruptors,Disruptors,,Disruptoren,Disruptores,Disrupteurs,Дистрап�
 Focus.efficientEvasion,Efficient Evasion,,,Evasión Eficiente,Efficacité d'évasion,,Evasão Eficiente
 Focus.electroPlasmaPowerSystems,Electro-Plasma Power Systems,,Elektroplasma-Systeme (EPS),Sistemas de Energía de Electroplasma,Systèmes d'Alimentations Electro-Plasmiques,Электро-плазменные силовые установки,Sistemas de Energia de Eletro-Plasma
 Focus.emergencyMedicine,Emergency Medicine,,Notfallmedizin,Medicina de Emergencia,Médecine d'Urgence,Неотложная медицинская помощь,Medicina de Emergência
-Focus.emergencyRepairs,Emergency Repairs,,,Reperaciones de Emergencia,Réparations d'urgence,,Reparos de Emergência
+Focus.emergencyRepairs,Emergency Repairs,,,Reparaciones de Emergencia,Réparations d'urgence,,Reparos de Emergência
 Focus.emotionalIntelligence,Emotional Intelligence,,,Inteligencia Emocional,Intelligence émotionnelle,,Inteligência Emocional
 Focus.energyWeapons,Energy Weapons,,,Armas de Energía,Armes à énergie,,Armas de Energia
 Focus.espionage,Espionage,,Spionage,Espionaje,Espionnage,Шпионаж,Espionagem
@@ -2556,6 +2558,9 @@ Traduzido com a versão gratuita do tradutor - DeepL.com"
 Spaceframe.sydney,Sydney Class,,Sydney-Klasse,Clase Sydney,Classe Sydney,,Classe Sydney
 Spaceframe.tKalat,T'Kalat Class,,T'Kalat-Klasse,Clase T'Kalat,Classe T'Kalat,,Classe T'Kalat
 Spaceframe.walker,Walker Class,,Walker-Klasse,Clase Walker,Classe Walker,,Classe Walker
+SpaceframeAppearance.merchantman,Merchantman,,,,,,
+SpaceframeAppearance.xhosaType,Antares Class (Xhosa-type),,,,,,
+SpaceframeAppearance.kaplanF17PatrolFrigate,Kaplan F17 Patrol Frigate (La Sirena-type),,,,,,
 SpaceframeVariant.excelsior,Original frame,,,,,,
 SpaceframeVariant.enterpriseBVariant,Enterprise-B variant,,,,,,
 SpaceRegion.alphaQuadrant,Alpha Quadrant,,Alpha-Quadrant,Cuadrante Alfa,Quadrant Alpha,Альфа Квадрант,Quadrante Alfa
@@ -4107,7 +4112,7 @@ Talent.thatWasntMe.description2e,"The Orions are known as one of the most untrus
 of social interactions, reputations, and plausible denials that allow others to trust you despite what they’ve heard about ‘those other Orions’. When another character attempts a task to determine if they can trust you, you may spend 2 Momentum if you are sincere, or add 2 Threat if you’re attempting to deceive them. Either way, the character does not need to make a task roll: you convince them you are trustworthy.",,,"Los Oriones son conocidos como una de las especies más poco fiables de la Galaxia, junto a los Ferengi, y a pesar de ello la gente está dispuesta a hacer negocios con ellos o con demasiada frecuencia son engañados o engañados por ellos. Has aprendido el sutil juego de las interacciones sociales, las reputaciones y las negaciones plausibles que permiten a los demás confiar en ti a pesar de lo que han oído hablar de «esos otros Oriones». Cuando otro personaje intente una Tarea para determinar si puede confiar en ti, puedes gastar 2 de Inercia si eres sincero, o añadir 2 de Amenaza si estás intentando engañarle. En cualquier caso, el personaje no necesita hacer una tirada de Tarea: le convences de que eres digno de confianza.",,,"Os Orions são conhecidos como uma das espécies mais indignas de confiança da Galáxia, ao lado dos Ferengi, e ainda assim as pessoas estão dispostas a fazer negócios com eles ou são frequentemente enganadas ou ludibriadas por eles. Você aprendeu a interação sutil de interações sociais, reputações e negações plausíveis que permitem que os outros confiem em você apesar do que ouviram sobre 'aqueles outros Orions'. 
 Quando outra personagem tentar uma tarefa para determinar se pode confiar em você, você pode gastar 2 Ímpeto se for sincero ou adicionar 2 Ameaça se estiver tentando enganá-la. De qualquer forma, o personagem não precisa fazer uma rolagem de tarefa: você o convence de que é digno de confiança."
 Talent.theEndsJustifyTheMeans,The Ends Justify the Means,,,El fin justifica los medios,,,Os Fins Justificam os Meios
-Talent.theEndsJustifyTheMeans.description2e,"When you spend Determination because of a Directive, you may select two of the benefits for spending Determination, rather than one.",,,"Cuando gastas Determinación debido a una Directiva, puedes seleccionar dos de los beneficios por gastar Determinación, en lugar de uno.",,,"Quando você gasta Determinação por causa de uma Diretiva, pode selecionar dois dos benefícios para gastar Determinação, em vez de um."
+Talent.theEndsJustifyTheMeans.description2e,"When you spend Determination because of a Directive, you may select two of the benefits for spending Determination, rather than one.",,,"Cuando gastas Determinación debido a una Directriz, puedes seleccionar dos de los beneficios por gastar Determinación, en lugar de uno.",,,"Quando você gasta Determinação por causa de uma Diretiva, pode selecionar dois dos benefícios para gastar Determinação, em vez de um."
 Talent.theLastGenerationServiceRecord,The Last Generation,,,,,,
 Talent.theLastGenerationServiceRecord.description,"Select one of the ship’s systems. When you attempt a task assisted by that system, if the Difficulty is 2 or lower, you may reroll the ship’s assist die; If the Difficulty is 3 or higher, increase the task’s complication range by 1.",,,,,,
 Talent.theLongViewElAurian,The Long View,,,,,,
@@ -4141,7 +4146,7 @@ Talent.tracker.description,"You can follow even the faintest of tracks. When you
 Talent.transformativeTreatments,Transformative Treatments,,,,,,
 Talent.transformativeTreatments.description,"You are especially talented when it comes to disguising a person as a member of another species, whether using targeted epigenetic treatments, plastic surgery, or other methods. When you succeed at a **Medicine** task to disguise a character as a member of a different species (creating a trait), you may spend 1 Momentum to increase the potency of that trait by 1.",,,,,,
 Talent.transporterChief,Transporter Chief,,,Jefe de Transportador,,,Chefe de Transporte
-Talent.transporterChief.description2e,"You’re well-versed in the operation of transporter systems and can often get them to function in extreme circumstances or to achieve outcomes that few could manage. Such efforts are never without risk, given the delicacy of the technology. When you attempt a task to use, repair, or modify a transporter, you may add 2 Threat to reduce the Difficulty of the task by 2, to a minimum of 0.",,,"Conoce bien el funcionamiento de los sistemas de transportador y a menudo logras que funcionen en circunstancias extremas o alcancen resultados que pocos podrían conseguir. Estos esfuerzos nunca están exentos de riesgos, dada la delicadeza de la tecnología. Cuando intentas usar, reparar o modificar un transportador, puedes añadir 2 puntos de Amenaza para reducir la Dificultad de la Tarea en 2, hasta un mínimo de 0.",,,"Você é muito versado na operação de sistemas de transporte e, muitas vezes, consegue fazer com que eles funcionem em circunstâncias extremas ou alcancem resultados que poucos conseguiriam. Esses esforços nunca são isentos de riscos, dada a delicadeza da tecnologia. Ao tentar uma tarefa para usar, reparar ou modificar um transportador, você pode adicionar 2 Ameaças para reduzir a Dificuldade da tarefa em 2, até um mínimo de 0."
+Talent.transporterChief.description2e,"You’re well-versed in the operation of transporter systems and can often get them to function in extreme circumstances or to achieve outcomes that few could manage. Such efforts are never without risk, given the delicacy of the technology. When you attempt a task to use, repair, or modify a transporter, you may add 2 Threat to reduce the Difficulty of the task by 2, to a minimum of 0.",,,"Conoces bien el funcionamiento de los sistemas de transportador y a menudo logras que funcionen en circunstancias extremas o alcancen resultados que pocos podrían conseguir. Estos esfuerzos nunca están exentos de riesgos, dada la delicadeza de la tecnología. Cuando intentas usar, reparar o modificar un transportador, puedes añadir 2 puntos de Amenaza para reducir la Dificultad de la Tarea en 2, hasta un mínimo de 0.",,,"Você é muito versado na operação de sistemas de transporte e, muitas vezes, consegue fazer com que eles funcionem em circunstâncias extremas ou alcancem resultados que poucos conseguiriam. Esses esforços nunca são isentos de riscos, dada a delicadeza da tecnologia. Ao tentar uma tarefa para usar, reparar ou modificar um transportador, você pode adicionar 2 Ameaças para reduzir a Dificuldade da tarefa em 2, até um mínimo de 0."
 Talent.transportInhibitors,Transport Inhibitors,,,,,,
 Talent.transportInhibitors.description,"While transporter inhibitors are active on the ship, nobody may transport onto or off the ship: all tasks to transport people or materials to or from the ship immediately fail. This necessarily means that the ship’s own transporters are shut down, as they will not function alongside the inhibitors.",,,,,,
 Talent.triage,Triage,,,Triaje,Triage,Первичный осмотр,Triagem
@@ -4255,7 +4260,7 @@ UniformEra.originalSeries,Original Series,,Originalserie,Serie Original,Série o
 UniformEra.originalSeriesKlingon,Klingon (Original Series),,Klingonen (Originalserie),Klingon (Serie Original),Klingon (série originale),Клингон (Оригинальные серии),Klingon (Série Original)
 UniformEra.romulan,Romulan,,Romulaner,Romulano,Romulien,Ромуланец,Romulano
 UniformEra.suliban,Suliban,,Suliban,Suliban,Suliban,Сулибан,Suliban
-UniformEra.starTrekOnline,Star Trek Online,,,,,,
+UniformEra.starTrekOnline,Star Trek Online,,,Star Trek Online,,,
 UniformEra.strangeNewWorlds,Strange New Worlds,,Strange New Worlds,Strange New Worlds,Strange New Worlds,Странные Новые Миры,Strange New Worlds
 UniformEra.theMotionPicture,The Motion Picture,,,La Película,Star Trek : Le film,,O Filme
 UniformEra.voyagerDS9,Voyager/DS9,,Voyager/DS9,Voyager/DS9,Voyager/DS9,Вояджер/Далекий Космос 9,Voyager/DS9

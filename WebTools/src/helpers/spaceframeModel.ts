@@ -74,6 +74,18 @@ export class SpaceframeModel implements IServiceYearProvider {
         }
     }
 
+    get sumSystemPoints() {
+        let total = 0;
+        this.systems.forEach(s => total += s);
+        return total;
+    }
+
+    get sumDepartmentPoints() {
+        let total = 0;
+        this.departments.forEach(d => total += d);
+        return total;
+    }
+
     talentsEffectiveForDate(serviceYear?: number) {
         if (serviceYear != null) {
             return this.talents.filter(t => {

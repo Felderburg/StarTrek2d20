@@ -9,11 +9,13 @@ export class Orbit {
     public index: number;
     public radius: number;
     public world: World;
+    public slot: number;
 
-    static createStandardOrbit(index: number, radius: number) {
+    static createStandardOrbit(index: number, radius: number, slot: number) {
         let result = new Orbit();
         result.index = index;
         result.radius = radius;
+        result.slot = radius;
         return result;
     }
 }
@@ -60,12 +62,14 @@ export class Orbits {
         }
 
         let bodeIndex = 0;
+        let orbitSlot = 1;
         for (let i = 1; i <= numberOfWorlds; i++) {
 
             let orbitalRadius = this.determineRadius(bodeIndex++, initialOrbit, bodeConstant);
 
             if (D20.roll() === 20 && (hasGardenZoneOrbit || system.gardenZoneOuterRadius < orbitalRadius)) {
                 // consider the calculated radius to be an "empty" orbit
+                orbitSlot++;
                 orbitalRadius = this.determineRadius(bodeIndex++, initialOrbit, bodeConstant);
             }
 
@@ -73,13 +77,15 @@ export class Orbits {
                 hasGardenZoneOrbit = true;
             }
 
-            orbits.orbits.push(Orbit.createStandardOrbit(i, orbitalRadius));
+            orbits.orbits.push(Orbit.createStandardOrbit(i, orbitalRadius, orbitSlot));
         }
 
         if (system.companionStar != null && system.companionType === CompanionType.Distant) {
             let orbitalRadius = this.determineRadius(bodeIndex + 2, initialOrbit, bodeConstant);
             system.companionOrbitalRadius = orbitalRadius;
         }
+        orbitSlot++;
+
 
         return orbits;
     }

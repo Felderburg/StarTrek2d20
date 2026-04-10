@@ -80,8 +80,6 @@ export const getPageTitle = (t, page) => {
         return "System Generation";
     } else if (page === PageIdentity.SectorDetails) {
         return "Sector Details";
-    } else if (page === PageIdentity.SpaceframeOption) {
-        return "Spaceframe Choice";
     } else if (page === PageIdentity.SpaceframeSelection) {
         return "Spaceframe Selection";
     } else if (page === PageIdentity.CustomSpaceframe) {

@@ -56,6 +56,8 @@ import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station, St
 import { StationFrameModel } from './stationFrameModel';
 import { StationFrame, StationFrameAppearance } from './stationFrame';
 import { StationFrameAppearanceModel } from './stationFrameAppearanceModel';
+import { SpaceframeAppearance } from './spaceframeAppearance';
+import { SpaceframeAppearanceModel } from './spaceframeAppearanceModel';
 
 class Marshaller {
 
@@ -908,6 +910,9 @@ class Marshaller {
                 if (starship.spaceframeStep.variant !== undefined) {
                     sheet['spaceframe']['variant'] = SpaceframeVariant[starship.spaceframeStep.variant];
                 }
+                if (starship.spaceframeStep.appearance !== undefined) {
+                    sheet['spaceframe']['appearance'] = SpaceframeAppearance[starship.spaceframeStep.appearance];
+                }
             }
         }
         if (starship.missionProfileStep?.type) {
@@ -1195,7 +1200,9 @@ console.log(json);
                 }
                 if (json.spaceframe.variant) {
                     result.spaceframeStep.variant = SpaceframeVariantModel.variantCodeByName(json.spaceframe.variant);
-
+                }
+                if (json.spaceframe.appearanace) {
+                    result.spaceframeStep.appearance = SpaceframeAppearanceModel.appearanceCodeByName(json.spaceframe.appearanace);
                 }
             }
         }

@@ -19,6 +19,7 @@
 
     "Lcars.noHistory": "Sin historial",
 
+    "SourceSelectionPage.editionInstruction": "¿Qué edición de reglas estás usando?",
     "SourceSelectionPage.sourceInstruction": "Selecciona las fuentes. Pregunta a tu DJ cuáles están disponibles.",
     "SourceSelectionPage.gameTypeInstruction": "¿Qué tipo de juego estás jugando?",
     "SourceSelectionPage.sourceNote": "Algunas fuentes aún no se han implementado. ¡Vuelve a comprobarlo más adelante !",
@@ -288,6 +289,11 @@
 
     "ServiceRecordPage.survivorOfX.selection": "Batalla o Guerra",
 
+    "ServiceRecordPage.removeTalent": "Eliminar Talento",
+    "ServiceRecordPage.replacedTalent": "Reemplazar Talento",
+
+    "ServiceRecordPage.error.talents": "Por favor, elige dos talentos - uno para eliminar y su reemplazo",
+
     "SoloCareerEvent.instruction": "La carrera de tu personaje es un tapiz de eventos y experiencias, pero algunos habrán sido momentos cruciales en la vida del personaje. Un personaje define qué momentos de su vida son importantes en retrospectiva, y lo que parecía determinante para un joven alférez puede resultar intrascendente para ese mismo oficial décadas después.\n\nTu personaje tiene dos eventos de carrera que lo definen, elegidos o determinados al azar de la lista a continuación, y obtiene los beneficios que le proporcionan.\n\nPara los personajes que eligieron Duración de Carrera como Novato, se puede suponer que estos eventos profesionales tuvieron lugar durante el tiempo que el personaje estuvo en la Academia o equivalente, tal vez durante una asignación de entrenamiento de campo a bordo de una nave estelar.",
 
     "SoloConstructTypePage.character": "Personaje",
@@ -433,6 +439,9 @@
     "SupportingCharacter.numericalValue": "Valor",
     "SupportingCharacter.speciesBonus": "Bonificación por Especie",
 
+    "SystemGenerationPage.selectQuadrant": "Seleccionar cuadrante",
+    "SystemGenerationPage.generateSector": "Generar sector",
+
     "TacticalAssetsPage.instruction": "Añade otros recursos a tu lista de recursos.",
     "TacticalAssetsPage.assets": "Lista de Recursos",
 
@@ -441,9 +450,11 @@
     "ToolSelection.supportingCharacter": "Personaje de Apoyo",
     "ToolSelection.npc": "PNJ",
     "ToolSelection.starship": "Nave estelar",
+    "ToolSelection.station": "Estación",
     "ToolSelection.spaceSector": "Sector espacial",
     "ToolSelection.randomNpc": "PNJ Aleatorio",
     "ToolSelection.randomStarship": "Nave estelar aleatoria",
+    "ToolSelection.randomCreature": "Criatura aleatoria",
 
     "Common.button.random": "Aleatorio",
     "Common.button.select": "Seleccionar",
@@ -460,18 +471,27 @@
     "Common.button.add": "Agregar",
     "Common.button.cancel": "Cancelar",
     "Common.button.create": "Crear",
+    "Common.button.delete": "Borrar",
     "Common.button.modify": "Modificar",
     "Common.button.next": "Siguiente",
     "Common.button.previous": "Anterior",
+    "Common.button.save": "Guardar",
+    "Common.button.share": "Ver",
     "Common.button.view": "Visualizar",
 
-    "Common.error.focus": "Selecciona una especialidad, por favor.",
-    "Common.error.value": "Selecciona un Valor, por favor.",
-    "Common.error.attribute": "Por favor, seleciona un atributo.",
-    "Common.error.talent": "Por favor selecciona un talento antes de continuar",
+    "Common.edition.1": "1ª edición",
+    "Common.edition.2": "2ª edición",
+
+    "Common.error.focus": "Por favor, selecciona una Especialidad",
+    "Common.error.value": "Por favor, selecciona un Valor",
+    "Common.error.department": "Por favor, selecciona un Departamento",
+    "Common.error.attribute": "Por favor, seleciona un Atributo",
+    "Common.error.system": "Por favor, selecciona un Sistema",
+    "Common.error.talent": "Por favor selecciona un Talento",
 
     "Common.text.description": "Descripción",
     "Common.text.none": "Ninguno",
+    "Common.text.notes": "Notas",
     "Common.text.copiedToClipboard": "Copiado al portapapeles",
     "Common.text.search": "Buscar...",
     "Common.text.select": "Seleccionar",
@@ -480,14 +500,28 @@
     "Common.text.total": "Total",
     "Common.text.yes": "Si",
     "Common.text.modify": "Modificar",
+    "Common.text.talentName": "Nombre",
+    "Common.text.new": "Nuevo",
     "Common.text.no": "No",
     "Common.text.other": "Otro",
+    "Common.text.remove": "Eliminar",
+    "Common.text.directive": "Directriz",
+    "Common.text.directives": "Directrices",
 
     "Common.select.choose": "Elegir...",
+
+    "Construct.creature.creatureType": "Tipo de criatura",
+    "Construct.creature.dietType": "Tipo de alimentación",
+    "Construct.creature.form": "Forma",
+    "Construct.creature.habitat": "Hábitat",
+    "Construct.creature.locomotion": "Locomoción",
+    "Construct.creature.size": "Tamaño",
 
     "Construct.other.assetType": "Tipo de Recurso",
     "Construct.other.assignment": "Asignación",
     "Construct.other.attacks": "Ataques",
+    "Construct.other.attackType": "Tipo de ataque",
+    "Construct.other.appearance": "Apariencia",
     "Construct.other.attribute": "Atributo",
     "Construct.other.attributes": "Atributos",
     "Construct.other.breaches": "Brechas",
@@ -510,6 +544,7 @@
     "Construct.other.department": "Departamento",
     "Construct.other.departments": "Departamentos",
     "Construct.other.determination": "Determinación",
+    "Construct.other.directive": "Directriz",
     "Construct.other.discipline": "Disciplina",
     "Construct.other.disciplines": "Disciplinas",
     "Construct.other.education": "Educacion",
@@ -544,6 +579,7 @@
     "Construct.other.rank": "Rango",
     "Construct.other.refits": "Modificaciones",
     "Construct.other.registry": "Registro",
+    "Construct.other.role": "Rol",
     "Construct.other.resistance": "Resistencia",
     "Construct.other.reprimands": "Reprimendas",
     "Construct.other.reputation": "Reputación",
@@ -561,6 +597,7 @@
     "Construct.other.speciesAbility": "Habilidad de la Especie",
     "Construct.other.speciesAndTraits": "Especies y Rasgos",
     "Construct.other.starshipType": "Tipo de nave estelar",
+    "Construct.other.stationType": "Tipo de estación",
     "Construct.other.stats": "Estadísticas",
     "Construct.other.stress": "Estrés",
     "Construct.other.supervisory": "Supervisor",
@@ -574,9 +611,11 @@
     "Construct.other.traits": "Rasgos",
     "Construct.other.additionalTraits": "Rasgos Adicionales",
     "Construct.other.unnamedCharacter": "Personaje sin nombre",
+    "Construct.other.unnamedCreature": "Criatura sin nombre",
     "Construct.other.upbringing": "Educación",
     "Construct.other.value": "Valor",
     "Construct.other.values": "Valores",
+    "Construct.other.weapon": "Arma",
     "Construct.other.weapons": "Armas",
     "Construct.other.yearsOfService_one": "{{count}} año de servicio",
     "Construct.other.yearsOfService_other": "{{count}} años de servicio",
@@ -641,11 +680,13 @@
     "Page.title.gamemasterTrackerPage": "Seguimiento",
     "Page.title.home": "Página principal",
     "Page.title.modifySupportingCharacter": "Modificar personaje de apoyo",
+    "Page.title.modifyStarship": "Modificar nave estelar",
     "Page.title.missionPodSelection": "Selección de Módulo de Misión",
     "Page.title.missionProfileSelection": "Selección de Perfil de Misión",
     "Page.title.missionProfileTalentSelection": "Talento de Perfil de Misión",
-    "Page.title.missionProfileDetails": "Detalles del Perdil de Misión",
+    "Page.title.missionProfileDetails": "Detalles del Perfil de Misión",
     "Page.title.otherTools": "Otras Herramientas",
+    "Page.title.randomCreature": "Configuración aleatoria de criatura",
     "Page.title.randomStarship": "Configuración aleatoria de nave estelar",
     "Page.title.safetyChecklist": "Lista de Verificación de Seguridad",
     "Page.title.sectorDetails": "Detalles del sector",
@@ -683,8 +724,19 @@
     "Page.title.promotion": "Ascenso",
     "Page.title.normalMilestone": "Hito Normal",
     "Page.title.modificationComplete": "Modificación Completada",
+    "Page.title.modifySupportingCharacter": "Modificar Personaje de Apoyo",
+    "Page.title.modifyMainCharacter": "Modificar Personaje Principal",
+    "Page.title.npcBuilder": "Creador de PNJ",
     "Page.title.npcConfiguration": "Configuración Aleatoria de PNJ",
     "Page.title.npcFinal": "Retoques Finales",
+    "Page.title.npcStats": "Estadísticas de PNJ",
+    "Page.title.npcTalents": "Selección de reglas especiales",
+    "Page.title.stationIndex": "Creación de Estación",
+    "Page.title.stationMissionProfile": "Perfil de misión de la Estación",
+    "Page.title.stationSpaceframe": "Plantilla de Estación",
+    "Page.title.stationTalents": "Talentos de la Estación",
+    "Page.title.stationWeapons": "Armas de la Estación",
+    "Page.title.stationFinal": "Detalles finales",
     "Page.title.tokenCreationPage": "Creación de Token",
     "Page.title.upbringing": "Educación",
     "Page.title.upbringingDetails": "Detalles de la educación",
@@ -1094,7 +1146,7 @@
     "Focus.efficientEvasion": "Evasión Eficiente",
     "Focus.electroPlasmaPowerSystems": "Sistemas de Energía de Electroplasma",
     "Focus.emergencyMedicine": "Medicina de Emergencia",
-    "Focus.emergencyRepairs": "Reperaciones de Emergencia",
+    "Focus.emergencyRepairs": "Reparaciones de Emergencia",
     "Focus.emotionalIntelligence": "Inteligencia Emocional",
     "Focus.energyWeapons": "Armas de Energía",
     "Focus.espionage": "Espionaje",
@@ -2936,7 +2988,7 @@
 
     "Talent.theEndsJustifyTheMeans": "El fin justifica los medios",
 
-    "Talent.theEndsJustifyTheMeans.description2e": "Cuando gastas Determinación debido a una Directiva, puedes seleccionar dos de los beneficios por gastar Determinación, en lugar de uno.",
+    "Talent.theEndsJustifyTheMeans.description2e": "Cuando gastas Determinación debido a una Directriz, puedes seleccionar dos de los beneficios por gastar Determinación, en lugar de uno.",
 
     "Talent.theUshaan": "El Ushaan",
 
@@ -2958,7 +3010,7 @@
 
     "Talent.transporterChief": "Jefe de Transportador",
 
-    "Talent.transporterChief.description2e": "Conoce bien el funcionamiento de los sistemas de transportador y a menudo logras que funcionen en circunstancias extremas o alcancen resultados que pocos podrían conseguir. Estos esfuerzos nunca están exentos de riesgos, dada la delicadeza de la tecnología. Cuando intentas usar, reparar o modificar un transportador, puedes añadir 2 puntos de Amenaza para reducir la Dificultad de la Tarea en 2, hasta un mínimo de 0.",
+    "Talent.transporterChief.description2e": "Conoces bien el funcionamiento de los sistemas de transportador y a menudo logras que funcionen en circunstancias extremas o alcancen resultados que pocos podrían conseguir. Estos esfuerzos nunca están exentos de riesgos, dada la delicadeza de la tecnología. Cuando intentas usar, reparar o modificar un transportador, puedes añadir 2 puntos de Amenaza para reducir la Dificultad de la Tarea en 2, hasta un mínimo de 0.",
 
     "Talent.triage": "Triaje",
 
@@ -3041,6 +3093,7 @@
     "UniformEra.originalSeriesKlingon": "Klingon (Serie Original)",
     "UniformEra.romulan": "Romulano",
     "UniformEra.suliban": "Suliban",
+    "UniformEra.starTrekOnline": "Star Trek Online",
     "UniformEra.strangeNewWorlds": "Strange New Worlds",
     "UniformEra.theMotionPicture": "La Película",
     "UniformEra.voyagerDS9": "Voyager/DS9",

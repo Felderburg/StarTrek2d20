@@ -120,6 +120,10 @@
     "CharacterSheetDialog.title": "Choose Template",
     "CharacterSheetDialog.thumbnail": "Thumbnail",
 
+    "CustomSpaceframe.systems.instruction": "You have {{points}} points to distribute among the various spaceframe systems.",
+
+    "CustomSpaceframe.departments.instruction": "You have {{points}} points to distribute among the various spaceframe departments.",
+
     "CustomSpeciesDetails.speciesName": "Name",
     "CustomSpeciesDetails.instruction": "What's the name of this species?",
     "CustomSpeciesDetails.speciesTrait": "Each species gets a species-specific trait that may provide additional benefits in special circumstances.",
@@ -2394,6 +2398,10 @@
     "Spaceframe.sydney": "Sydney Class",
     "Spaceframe.tKalat": "T'Kalat Class",
     "Spaceframe.walker": "Walker Class",
+
+    "SpaceframeAppearance.merchantman": "Merchantman",
+    "SpaceframeAppearance.xhosaType": "Antares Class (Xhosa-type)",
+    "SpaceframeAppearance.kaplanF17PatrolFrigate": "Kaplan F17 Patrol Frigate (La Sirena-type)",
 
     "SpaceframeVariant.excelsior": "Original frame",
     "SpaceframeVariant.enterpriseBVariant": "Enterprise-B variant",
