@@ -76,7 +76,7 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
                         <div className="col-md-6 mb-2">
                             <div className="sheet-panel d-flex">
                                 <div className="sheet-label-purple text-uppercase flex-shrink-0">{t('Construct.other.traits')}</div>
-                                <div className="sheet-data">{station?.traitsAsString ?? ""}</div>
+                                <div className="sheet-data">{station?.allTraitsAsString ?? ""}</div>
                             </div>
 
                             <div className="sheet-panel d-flex">

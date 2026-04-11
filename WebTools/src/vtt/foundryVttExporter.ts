@@ -230,7 +230,7 @@ export class FoundryVttExporter {
                 "spaceframe": "",
                 "systems": {
                 },
-                "traits": station.traitsAsString ?? ""
+                "traits": station.allTraitsAsString ?? ""
             },
             "items": [],
             "effects": [],

@@ -22,6 +22,7 @@ export enum StationFrameAppearance {
     RegulaClassMultipurposeStation,
     JupiterStation,
     Spacedock,
+    SpacedockRevised,
     TerakNorType,
     NarendraStationType,
     FederationCommunicationsArray,

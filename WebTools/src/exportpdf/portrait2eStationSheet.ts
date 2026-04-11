@@ -205,7 +205,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
 
         paragraph.append(i18next.t("Construct.other.traits").toLocaleUpperCase() + ": ", new FontOptions(9, FontType.Bold),
             colour);
-        paragraph.append(station.traitsAsString, new FontOptions(9));
+        paragraph.append(station.allTraitsAsString, new FontOptions(9));
         paragraph.write();
 
         let bottom = this.writeThreeColumnDerivedStats(page, station, paragraph, colour);

@@ -105,9 +105,12 @@ export class CharacterTypeModel {
     }
 
     public static getSoloCharacterTypes() {
-        return [ CharacterTypeModel.TYPES[0], CharacterTypeModel.TYPES[2], CharacterTypeModel.TYPES[3], CharacterTypeModel.TYPES[4] ].sort((c1, c2) =>
-            c1.localizedName.localeCompare(c2.localizedName)
-        );
+        return [
+                CharacterTypeModel.TYPES[CharacterType.Starfleet],
+                CharacterTypeModel.TYPES[CharacterType.AlliedMilitary],
+                CharacterTypeModel.TYPES[CharacterType.AmbassadorDiplomat],
+                CharacterTypeModel.TYPES[CharacterType.Civilian]
+            ].sort((c1, c2) => c1.localizedName.localeCompare(c2.localizedName));
     }
 
     public static getStarshipTypes(version: number) {
@@ -120,7 +123,7 @@ export class CharacterTypeModel {
                 CharacterType.Romulan,
                 CharacterType.Cardassian,
                 CharacterType.Ferengi,
-                CharacterType.Civilian].indexOf(t.type) >= 0);
+                CharacterType.Civilian].includes(t.type));
         }
     }
 }

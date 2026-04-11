@@ -7,7 +7,7 @@ import { StationFrameModel } from "../helpers/stationFrameModel";
 import { System } from "../helpers/systems";
 import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_IMPROVED_HULL_INTEGRITY } from "../helpers/talents";
 import { Weapon } from "../helpers/weapons";
-import { CharacterType } from "./characterType";
+import { CharacterType, CharacterTypeModel } from "./characterType";
 import { Construct, Stereotype } from "./construct";
 import { SelectedTalent } from "./selectedTalent";
 
@@ -194,6 +194,15 @@ export class Station extends Construct {
         }
     }
 
+    get baseTraits(): string[] {
+        let type = CharacterTypeModel.getByType(this.type);
+        if (type != null) {
+            return [ type.name + " Station" ];
+        } else {
+            return [];
+        }
+    }
+
     get scale(): number {
         return this.stationFrameStep?.scale ?? 1
     }
@@ -258,8 +267,12 @@ export class Station extends Construct {
         return false;
     }
 
-    get traitsAsString() {
-        return this.traits?.join(", ") || "";
+    get allTraits() {
+        return this.baseTraits.concat(this.traits);
+    }
+
+    get allTraitsAsString() {
+        return this.allTraits?.join(", ") || "";
     }
 
     get freeTalentSlots() {

@@ -4,7 +4,7 @@ import { Header } from "../../components/header";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import { BuildPoints } from "../model/buildPoints";
 import store from "../../state/store";
-import { changeStarshipSimpleClassName, changeStarshipSpaceframeClassName, changeStarshipSpaceframeDepartment, changeStarshipSpaceframeScale, changeStarshipSpaceframeServiceYear, changeStarshipSpaceframeSystem, setStarshipSpaceframeAppearance } from "../../state/starshipActions";
+import { changeStarshipSpaceframeClassName, changeStarshipSpaceframeDepartment, changeStarshipSpaceframeScale, changeStarshipSpaceframeServiceYear, changeStarshipSpaceframeSystem, setStarshipSpaceframeAppearance } from "../../state/starshipActions";
 import PointAllocator from "../../helpers/pointAllocator";
 import { allSystems, System } from "../../helpers/systems";
 import { StatControl } from "./statControl";
