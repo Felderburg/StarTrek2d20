@@ -62,7 +62,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
     // if we can stick the three stats together, then we should do so
     writeThreeColumnDerivedStats(page: PDFPage, station: Station, previousParagraph: Paragraph, colour: SimpleColor) {
         let resistanceParagraph = previousParagraph.nextParagraph(1);
-        resistanceParagraph.append(i18next.t("Construct.other.resistance").toLocaleUpperCase() + ": ", new FontSpecification(this.boldFont, 9),
+        resistanceParagraph.append(i18next.t("Construct.other.protection").toLocaleUpperCase() + ": ", new FontSpecification(this.boldFont, 9),
             colour);
         resistanceParagraph.append(station.resistance, new FontSpecification(this.textFont, 9));
 
@@ -99,7 +99,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
                 x += textBlock.width;
             });
 
-            return crewParagraph.bottom;
+            return crewParagraph.nextArea(page);
         } else {
             resistanceParagraph.write();
 
@@ -115,7 +115,7 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
             crewParagraph.append(station.crewSupport, new FontSpecification(this.textFont, 9));
             crewParagraph.write();
 
-            return crewParagraph.bottom;
+            return crewParagraph.nextArea(page);
         }
     }
 
@@ -208,14 +208,22 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
         paragraph.append(station.allTraitsAsString, new FontOptions(9));
         paragraph.write();
 
-        let bottom = this.writeThreeColumnDerivedStats(page, station, paragraph, colour);
+        let bottomArea = this.writeThreeColumnDerivedStats(page, station, paragraph, colour);
+
+        let dockingParagraph = new Paragraph(page, bottomArea.areaWithAtLeast(50).column, this.fonts).nextParagraph(1);
+        dockingParagraph.append(i18next.t("Construct.other.dockingPorts").toLocaleUpperCase() + ": ", new FontSpecification(this.boldFont, 9),
+            colour);
+        dockingParagraph.append(station.dockingPorts, new FontSpecification(this.textFont, 9));
+        dockingParagraph.write();
 
         let statFontSize = this.determineFontSizeForWidth(this.determineAllStatLabels(station), 72.2 * 0.8 - 2);
 
-        this.writeSubTitle(page, i18next.t("Construct.other.systems"), new Column(bottom.x, bottom.y + 16,
-            13, column.width));
+        let statsArea = dockingParagraph.endColumn.columnWithAtLeast(25, page);
 
-        let systemsBoxes = new XYLocation(bottom.x, bottom.y + 16 + 13 + 4);
+        let statsColumn = statsArea.column.bottomAfter(16 + 4, page);
+        this.writeSubTitle(page, i18next.t("Construct.other.systems"), statsColumn);
+
+        let systemsBoxes = statsColumn.bottomAfter(13 + 4).start;
         // these sheets use an unusual order
         [System.Comms, System.Engines, System.Structure, System.Computer, System.Sensors, System.Weapons].forEach((s, i) => {
 

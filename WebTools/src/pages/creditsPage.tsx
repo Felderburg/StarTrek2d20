@@ -130,6 +130,7 @@ const CreditsPage = () => {
                             <li>Marty Chodorek</li>
                             <li>Michael Dismuke</li>
                             <li>Nathaniel Johnson</li>
+                            <li>Philip Sharp-Garcia</li>
                             <li>Ricardo Gonzales</li>
                         </ul>
 

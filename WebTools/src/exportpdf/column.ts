@@ -80,7 +80,7 @@ export class Column {
         }
     }
 
-    columnWithAtLeast(height: number, currentPage: PDFPage) {
+    columnWithAtLeast(height: number, currentPage: PDFPage): PageArea|undefined {
         if (this.height >= height) {
             return new PageArea(this, currentPage);
         } else {

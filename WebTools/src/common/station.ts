@@ -6,7 +6,7 @@ import { StationFrame, StationFrameAppearance } from "../helpers/stationFrame";
 import { StationFrameModel } from "../helpers/stationFrameModel";
 import { System } from "../helpers/systems";
 import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_IMPROVED_HULL_INTEGRITY } from "../helpers/talents";
-import { Weapon } from "../helpers/weapons";
+import { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType, CharacterTypeModel } from "./characterType";
 import { Construct, Stereotype } from "./construct";
 import { SelectedTalent } from "./selectedTalent";
@@ -385,5 +385,61 @@ export class Station extends Construct {
             }
         });
         return result;
+    }
+
+    getDiceForWeapon(weapon: Weapon) {
+
+        if (weapon.isTractorOrGrappler) {
+            let dice = this.scale - 1;
+
+            if (this.hasTalent("High-Power Tractor Beam")) {
+                dice += 2;
+            }
+            return dice;
+        } else if (this.version === 1) {
+            let security = this.departments[Department.Security];
+            let dice = weapon.dice + security
+            if (weapon.scaleApplies) {
+                dice += this.scale;
+            }
+            return dice;
+        } else {
+            let dice = weapon.dice;
+
+            if (this.systems[System.Weapons] >= 13) {
+                dice += 4;
+            } else if (this.systems[System.Weapons] >= 11) {
+                dice += 3;
+            } else if (this.systems[System.Weapons] >= 9) {
+                dice += 2;
+            } else if (this.systems[System.Weapons] >= 7) {
+                dice += 1;
+            }
+
+            if (weapon.type === WeaponType.TORPEDO && this.hasTalent("Rapid-Fire Torpedo Launcher")) {
+                dice += 1;
+            }
+
+            if (weapon.scaleApplies) {
+                return dice + this.scale;
+            } else {
+                return dice;
+            }
+        }
+    }
+
+    get dockingPorts() {
+        if (this.scale < 9) {
+            return 0;
+        } else {
+            let ports = Math.floor(this.scale / 2);
+
+            if (this.hasTalent("Docking Capacity")) {
+                let rank = this.getRankForTalent("Docking Capacity");
+                ports = 1 + Math.floor(rank * this.scale / 2);
+            }
+
+            return ports;
+        }
     }
 }

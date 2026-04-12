@@ -223,7 +223,7 @@ export class Paragraph {
         return column?.bottomAfter(bottom.y - column.start.y);
     }
 
-    nextArea(currentPage: PDFPage, minimumHeight?: number) {
+    nextArea(currentPage: PDFPage, minimumHeight?: number): PageArea|undefined {
         if (this.lines?.length) {
             let column = this.nextColumn();
             let page = this.lines[this.lines.length-1].page;
