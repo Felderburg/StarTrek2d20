@@ -870,7 +870,6 @@ class Marshaller {
     }
 
     encodeStarship(starship: Starship) {
-console.log(starship);
         let sheet = {
             "stereotype": this.encodeStarshipStereoType(starship.stereotype),
             "type": CharacterType[starship.type],
@@ -1189,7 +1188,6 @@ console.log(json);
                     })
                 }
                 result.spaceframeStep = new SpaceframeStep(frame);
-                console.log(json.spaceframe.appearance);
                 if (json.spaceframe.appearance != null) {
                     result.spaceframeStep.appearance = SpaceframeAppearanceModel.appearanceCodeByName(json.spaceframe.appearance);
                 }
@@ -1293,7 +1291,6 @@ console.log(json);
         if (json.improvements?.length) {
             result.advancementSteps = this.decodeStarshipImprovement(json.improvements, result.version) ?? [];
         }
-console.log(result);
         return result;
     }
 

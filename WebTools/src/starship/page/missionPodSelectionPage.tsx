@@ -29,7 +29,7 @@ class MissionPodSelectionPage extends React.Component<IMissionPodSelectionPagePr
                 initialSelection={this.props.starship.missionPodModel}
                 starship={this.props.starship}
                 onSelection={(missionPod) => store.dispatch(setStarshipMissionPod(missionPod))} />
-            <div className="text-end">
+            <div className="text-end mt-4">
                 <Button onClick={() => this.nextPage()}>{t('Common.button.next')}</Button>
             </div>
         </div>);

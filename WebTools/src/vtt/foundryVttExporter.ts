@@ -192,6 +192,52 @@ export class FoundryVttExporter {
                     "lastModifiedBy": "xuN9JpdcyRd60ZEJ"
                     }
                 });
+                if (type === FoundryPluginType.Standard && starship.version > 1) {
+                    result.items.push({
+                        "name": w.name,
+                        "type": "starshipweapon2e",
+                        "sort": 1000,
+                        "img": this.determineStarshipWeaponIcon(w),
+                        "system": {
+                            "damage": w.dice,
+                            "range": w.range != null ? WeaponRange[w.range].toLowerCase() : null,
+                            "includescale": w.type === WeaponType.TORPEDO ? "torpedo" : "energy",
+                            "description": "",
+                            "opportunity": 0,
+                            "escalation": 0,
+                            "qualities": {
+                                "energy": w.type === WeaponType.ENERGY,
+                                "torpedo": w.type === WeaponType.TORPEDO,
+                                "area": w.isQualityPresent(Quality.Area),
+                                "calibration": w.isQualityPresent(Quality.Calibration),
+                                "cumbersome": w.isQualityPresent(Quality.Cumbersome),
+                                "dampening": w.isQualityPresent(Quality.Dampening),
+                                "depleting": w.isQualityPresent(Quality.Depleting),
+                                "devastating": w.isQualityPresent(Quality.Devastating),
+                                "highyield": w.isQualityPresent(Quality.HighYield),
+                                "intense": w.isQualityPresent(Quality.Intense),
+                                "jamming": w.isQualityPresent(Quality.Jamming),
+                                "persistent": w.isQualityPresent(Quality.PersistentX),
+                                "piercing": w.isQualityPresent(Quality.Piercing),
+                                "slowing": w.isQualityPresent(Quality.Slowing),
+                                "spread": w.isQualityPresent(Quality.Spread),
+                                "hiddenx": 0,
+                                "versatilex": 0
+                            }
+                        },
+                        "effects": [],
+                        "folder": null,
+                        "flags": {},
+                        "_stats": {
+                            "coreVersion": "13.346",
+                            "systemId": "sta",
+                            "systemVersion": SYSTEM_VERSION,
+                            "createdTime": 1775998532666,
+                            "modifiedTime": 1775998603845,
+                            "lastModifiedBy": "aodUFbctO5o4nV3h"
+                        }
+                    });
+                }
             }
         });
 
@@ -308,45 +354,89 @@ export class FoundryVttExporter {
         });
 
         station.determineWeapons().forEach(w => {
-            if (w.type !== WeaponType.CAPTURE) {
+            result.items.push({
+                "name": w.name,
+                "type": "starshipweapon",
+                "img": this.determineStarshipWeaponIcon(w),
+                "effects": [],
+                "folder": null,
+                "sort": 0,
+                "system": {
+                    "description": "",
+                    "damage": w.dice,
+                    "range": w.range != null ? WeaponRange[w.range].toLowerCase() : null,
+                    "qualities": {
+                    "area": w.isQualityPresent(Quality.Area),
+                    "spread": false,
+                    "dampening": w.isQualityPresent(Quality.Dampening),
+                    "calibration": w.isQualityPresent(Quality.Calibration),
+                    "devastating": w.isQualityPresent(Quality.Devastating),
+                    "highyield": w.isQualityPresent(Quality.HighYield),
+                    "persistentx": w.isQualityPresent(Quality.PersistentX) ? station.scale : 0,
+                    "piercingx": w.getRankForQuality(Quality.Piercing),
+                    "viciousx": w.getRankForQuality(Quality.Vicious),
+                    "hiddenx": w.getRankForQuality(Quality.Hidden),
+                    "versatilex": w.getRankForQuality(Quality.Versatile)
+                    },
+                    "opportunity": null,
+                    "escalation": null
+                },
+                "ownership": {
+                "default": 0,
+                "xuN9JpdcyRd60ZEJ": 3
+                },
+                "_stats": {
+                "systemId": "sta",
+                "systemVersion": SYSTEM_VERSION,
+                "coreVersion": "10.291",
+                "createdTime": now,
+                "modifiedTime": now,
+                "lastModifiedBy": "xuN9JpdcyRd60ZEJ"
+                }
+            });
+            if (type === FoundryPluginType.Standard && station.version > 1) {
                 result.items.push({
                     "name": w.name,
-                    "type": "starshipweapon",
+                    "type": "starshipweapon2e",
+                    "sort": 1000,
                     "img": this.determineStarshipWeaponIcon(w),
-                    "effects": [],
-                    "folder": null,
-                    "sort": 0,
                     "system": {
-                        "description": "",
                         "damage": w.dice,
                         "range": w.range != null ? WeaponRange[w.range].toLowerCase() : null,
+                        "includescale": w.type === WeaponType.TORPEDO ? "torpedo" : "energy",
+                        "description": "",
+                        "opportunity": 0,
+                        "escalation": 0,
                         "qualities": {
-                        "area": w.isQualityPresent(Quality.Area),
-                        "spread": false,
-                        "dampening": w.isQualityPresent(Quality.Dampening),
-                        "calibration": w.isQualityPresent(Quality.Calibration),
-                        "devastating": w.isQualityPresent(Quality.Devastating),
-                        "highyield": w.isQualityPresent(Quality.HighYield),
-                        "persistentx": w.isQualityPresent(Quality.PersistentX) ? station.scale : 0,
-                        "piercingx": w.getRankForQuality(Quality.Piercing),
-                        "viciousx": w.getRankForQuality(Quality.Vicious),
-                        "hiddenx": w.getRankForQuality(Quality.Hidden),
-                        "versatilex": w.getRankForQuality(Quality.Versatile)
-                        },
-                        "opportunity": null,
-                        "escalation": null
+                            "energy": w.type === WeaponType.ENERGY,
+                            "torpedo": w.type === WeaponType.TORPEDO,
+                            "area": w.isQualityPresent(Quality.Area),
+                            "calibration": w.isQualityPresent(Quality.Calibration),
+                            "cumbersome": w.isQualityPresent(Quality.Cumbersome),
+                            "dampening": w.isQualityPresent(Quality.Dampening),
+                            "depleting": w.isQualityPresent(Quality.Depleting),
+                            "devastating": w.isQualityPresent(Quality.Devastating),
+                            "highyield": w.isQualityPresent(Quality.HighYield),
+                            "intense": w.isQualityPresent(Quality.Intense),
+                            "jamming": w.isQualityPresent(Quality.Jamming),
+                            "persistent": w.isQualityPresent(Quality.PersistentX),
+                            "piercing": w.isQualityPresent(Quality.Piercing),
+                            "slowing": w.isQualityPresent(Quality.Slowing),
+                            "spread": w.isQualityPresent(Quality.Spread),
+                            "hiddenx": 0,
+                            "versatilex": 0
+                        }
                     },
-                    "ownership": {
-                    "default": 0,
-                    "xuN9JpdcyRd60ZEJ": 3
-                    },
+                    "effects": [],
+                    "folder": null,
+                    "flags": {},
                     "_stats": {
-                    "systemId": "sta",
-                    "systemVersion": SYSTEM_VERSION,
-                    "coreVersion": "10.291",
-                    "createdTime": now,
-                    "modifiedTime": now,
-                    "lastModifiedBy": "xuN9JpdcyRd60ZEJ"
+                        "coreVersion": "13.346",
+                        "systemId": "sta",
+                        "systemVersion": SYSTEM_VERSION,
+                        "createdTime": 1775998532666,
+                        "modifiedTime": 1775998603845,
+                        "lastModifiedBy": "aodUFbctO5o4nV3h"
                     }
                 });
             }
@@ -441,6 +531,8 @@ export class FoundryVttExporter {
             } else {
                 return DEFAULT_EQUIPMENT_ICON;
             }
+        } else if (weapon.type === WeaponType.CAPTURE) {
+            return "systems/sta/assets/compendia/icons/starshipweapons-core/weapon-tractor-beam.svg";
         } else {
             return DEFAULT_EQUIPMENT_ICON;
         }
