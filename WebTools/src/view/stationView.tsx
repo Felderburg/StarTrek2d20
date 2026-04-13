@@ -145,7 +145,11 @@ const StationView: React.FC<IStationViewProperties> = ({station}) => {
                         <StatView showZero={true} name={t('Construct.other.scale')} value={station.scale} className="col mb-2" colourClass="red" />
                         <StatView showZero={true} name={t('Construct.other.crew')} value={station.crewSupport} className="col mb-2" colourClass="red" />
 
-                        {station.version === 1 ? (<StatView showZero={true} name={t('Construct.other.power')} value={station.power} className="col mb-2" colourClass="red" />) : undefined}
+                        {station.version === 1
+                            ? (<StatView showZero={true} name={t('Construct.other.power')} value={station.power} className="col mb-2" colourClass="red" />)
+                            : undefined}
+                        <StatView showZero={true} name={t('Construct.other.dockingPorts')} value={station.dockingPorts} className="col mb-2" colourClass="red" />
+                        <StatView showZero={true} name={t('Construct.other.dockingScale')} value={station.dockingScale} className="col mb-2" colourClass="red" />
                     </div>
                 </div>
                 {renderWeapons()}

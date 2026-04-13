@@ -442,4 +442,19 @@ export class Station extends Construct {
             return ports;
         }
     }
+
+    get dockingScale() {
+        if (this.scale < 9) {
+            return 0;
+        } else {
+            let scale = Math.floor(this.scale / 2);
+
+            if (this.hasTalent("Docking Capacity")) {
+                let rank = this.getRankForTalent("Docking Capacity");
+                scale += 2 * rank;
+            }
+
+            return scale;
+        }
+    }
 }
