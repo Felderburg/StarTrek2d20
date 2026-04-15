@@ -2561,12 +2561,18 @@ Spaceframe.sydney,Sydney Class,,Sydney-Klasse,Clase Sydney,Classe Sydney,,Classe
 Spaceframe.tKalat,T'Kalat Class,,T'Kalat-Klasse,Clase T'Kalat,Classe T'Kalat,,Classe T'Kalat
 Spaceframe.walker,Walker Class,,Walker-Klasse,Clase Walker,Classe Walker,,Classe Walker
 SpaceframeAppearance.antares,Antares-type,,,,,,
+SpaceframeAppearance.birdOfPrey22ndCentury,Bird of Prey (22nd Century),,,,,,
 SpaceframeAppearance.classJCargoShip,Class-J cargo ship,,,,,,
+SpaceframeAppearance.dDeridex,D'Deridex Class,,,,,,
 SpaceframeAppearance.freighter,Freighter,,,,,,
 SpaceframeAppearance.jovisType,Jovis-type,,,,,,
-SpaceframeAppearance.merchantman,Merchantman,,,,,,
-SpaceframeAppearance.xhosaType,Antares Class (Xhosa-type),,,,,,
 SpaceframeAppearance.kaplanF17PatrolFrigate,Kaplan F17 Patrol Frigate (La Sirena-type),,,,,,
+SpaceframeAppearance.merchantman,Merchantman,,,,,,
+SpaceframeAppearance.mogai,Mogai Class,,,,,,
+SpaceframeAppearance.redLadyType,Red Lady-type,,,,,,
+SpaceframeAppearance.romulanD7,D7 (Romulan),,,,,,
+SpaceframeAppearance.tliss,T'Liss Class,,,,,,
+SpaceframeAppearance.xhosaType,Antares Class (Xhosa-type),,,,,,
 SpaceframeVariant.excelsior,Original frame,,,,,,
 SpaceframeVariant.enterpriseBVariant,Enterprise-B variant,,,,,,
 SpaceRegion.alphaQuadrant,Alpha Quadrant,,Alpha-Quadrant,Cuadrante Alfa,Quadrant Alpha,Альфа Квадрант,Quadrante Alfa

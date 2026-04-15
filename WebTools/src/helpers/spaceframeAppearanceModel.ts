@@ -25,6 +25,7 @@ export class SpaceframeAppearanceModel {
     static getAllAppearanceModels(type: CharacterType, era: Era) {
         if (this.TYPES == null) {
             this.TYPES = [
+                // Civilian
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Antares, CharacterType.Civilian, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.ClassJCargoShip, CharacterType.Civilian, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Freighter, CharacterType.Civilian, [Era.NextGeneration]),
@@ -32,6 +33,14 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Merchantman, CharacterType.Civilian, [Era.OriginalSeries, Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.XhosaType, CharacterType.Civilian, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.KaplanF17PatrolFrigate, CharacterType.Civilian, [Era.NextGeneration]),
+
+                // Romulan
+                new SpaceframeAppearanceModel(SpaceframeAppearance.BirdOfPrey22ndCentury, CharacterType.Romulan, [Era.Enterprise]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Tliss, CharacterType.Romulan, [Era.OriginalSeries, Era.NextGeneration]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.RomulanD7, CharacterType.Romulan, [Era.OriginalSeries]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.DDeridex, CharacterType.Romulan, [Era.NextGeneration]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Mogai, CharacterType.Romulan, [Era.NextGeneration]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.RedLadyType, CharacterType.Romulan, [Era.NextGeneration]),
             ];
         }
 

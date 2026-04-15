@@ -3826,6 +3826,7 @@ export class Talents {
                 "Cloaking Device",
                 "The vessel has a device that allows it to vanish from sensors. Operating the device requires a Control + Engineering task with a Difficulty of 2, assisted by the ship’s Engines + Security as this is a task from the tactical position. This task has a Power requirement of 3. If successful, the vessel gains the Cloaked trait. While cloaked, the vessel cannot attempt any attacks, nor can it be the target of an attack unless the attacker has found some way of detecting the cloaked vessel. While cloaked, a vessel’s shields are down. It requires a minor action to decloak a vessel.",
                 [new StarshipOrStationPrerequisite(), new AnyOfPrerequisite(
+                    new CharacterTypePrerequisite(CharacterType.Romulan),
                     new AllOfPrerequisite(new ServiceYearPrerequisite(2272), new SourcePrerequisite(Source.KlingonCore)),
                     new AllOfPrerequisite(new GMsDiscretionPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)))],
                 1,

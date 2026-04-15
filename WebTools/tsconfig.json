@@ -2,7 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "module": "esnext",
-    "target": "es5",
+    "target": "es2023",
     "noImplicitAny": false,
     "sourceMap": false,
     "jsx": "react-jsx",
@@ -20,7 +20,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true
