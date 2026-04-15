@@ -1895,7 +1895,7 @@ class _Species {
             "Yridian",
             "",
             "",
-            [TalentsHelper.getTalent("Listener"), TalentsHelper.getTalent("Wisdom of Years")],
+            [TalentsHelper.getTalent("Mind for Information"), TalentsHelper.getTalent("Scavenger Instinct")],
             "",
             []),
         [Species.Hupyrian]: new SpeciesModel(
