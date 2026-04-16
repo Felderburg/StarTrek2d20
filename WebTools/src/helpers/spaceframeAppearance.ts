@@ -11,7 +11,9 @@ export enum SpaceframeAppearance {
     BirdOfPrey22ndCentury,
     Tliss,
     RomulanD7,
+    Whitewind,
     DDeridex,
     Mogai,
-    RedLadyType
+    RedLadyType,
+    Snakehead
 }

@@ -38,9 +38,11 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.BirdOfPrey22ndCentury, CharacterType.Romulan, [Era.Enterprise]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Tliss, CharacterType.Romulan, [Era.OriginalSeries, Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.RomulanD7, CharacterType.Romulan, [Era.OriginalSeries]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Whitewind, CharacterType.Romulan, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.DDeridex, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Mogai, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.RedLadyType, CharacterType.Romulan, [Era.NextGeneration]),
+//                new SpaceframeAppearanceModel(SpaceframeAppearance.Snakehead, CharacterType.Romulan, [Era.NextGeneration]),
             ];
         }
 

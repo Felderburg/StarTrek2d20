@@ -158,7 +158,9 @@ export enum Species {
     Brikar,
     Chameloid,
     ElAurian_2E,
+    Horta_2E,
     HumanAugment,
+    Illyrian_2E,
     Kellerun,
     Klowahkan,
     Kwejian,
@@ -169,6 +171,8 @@ export enum Species {
     BlueOrion,
     Terran,
     VauNAkat,
+    Yridian_2E,
+    XindiAquatic,
 
     Custom,
 };

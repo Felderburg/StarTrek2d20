@@ -28,6 +28,7 @@ import { localizedFocus } from '../components/focusHelper';
 import { Station } from '../common/station';
 import { SpeciesHelper } from './species';
 import { makeKey } from '../common/translationKey';
+import { CareersHelper } from './careers';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -104,6 +105,36 @@ export class TalentCategorization {
     constructor(category: TalentCategory, type?: Species|Career|Department) {
         this.category = category;
         this.type = type;
+    }
+
+    get key() {
+        let result = TalentCategory[this.category];
+        if (this.category === TalentCategory.Species && this.type != null) {
+            result += ":" + Species[this.type];
+        } else if (this.category === TalentCategory.Department && this.type != null) {
+            result += ":" + Department[this.type];
+        } else if (this.category === TalentCategory.Career && this.type != null) {
+            result += ":" + Career[this.type];
+        }
+        return result;
+    }
+
+    get localizedDescription() {
+        let result = i18next.t(makeKey("TalentCategory.", TalentCategory[this.category]));
+
+        if (this.category === TalentCategory.Species && this.type != null) {
+            const species = SpeciesHelper.getSpeciesByType(this.type as Species);
+            if (species != null) {
+                result += " (" + species.localizedName + ")";
+            }
+        } else if (this.category === TalentCategory.Career && this.type != null) {
+            const career = CareersHelper.instance.getCareerByType(this.type as Career);
+            if (career != null) {
+                result += " (" + career.localizedName + ")";
+            }
+        }
+
+        return result;
     }
 }
 
@@ -716,6 +747,22 @@ export class TalentModel implements ITalent {
         this.aliases = aliases || AliasModel[0];
     }
 
+    get isStarshipTalent() {
+        if (this.category instanceof TalentCategorization) {
+            return this.category.category === TalentCategory.Starship;
+        } else {
+            return this.category === "Starship";
+        }
+    }
+
+    get isStarbaseTalent() {
+        if (this.category instanceof TalentCategorization) {
+            return this.category.category === TalentCategory.Starbase;
+        } else {
+            return this.category === "Starbase";
+        }
+    }
+
     get displayName() {
         if (this.category) {
             const suffix = " (" + this.category + ")";
@@ -1159,7 +1206,7 @@ export class Talents {
                 "Pack Tactics",
                 "Whenever you assist another character during combat, the character you assisted gains one bonus Momentum if they succeed.",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1, "Security"),
+                1, new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Quick to Action",
                 "During the first round of any combat, you and your allies may ignore the normal cost to Retain the Initiative.",
@@ -1180,7 +1227,7 @@ export class Talents {
                 "Small squad tactics can mean the difference between life and death in a dangerous, hostile situation, and the character excels at coordinating action in battle. The character may make use of the Direct Task (Star Trek Adventures core rulebook p. 173). If they already have access to the Direct Task, they may do so twice per scene instead of once.",
                 [new VariableDisciplinePrerequisite(Department.Security, Department.Command, 3), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
-                "Security"),
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Deadeye Marksman",
                 "The character has spent time at the target range every day, working on their aim. When the character takes the Aim Minor Action, they reduce the Difficulty of their next Attack by 1, in addition to the normal effects of the Aim Minor Action.",
@@ -1448,7 +1495,7 @@ export class Talents {
                 "When attempting a Medicine Task, you may ignore any increase in Difficulty for working without the proper tools or equipment.",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "Medicine"),
+                new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "First Response",
                 "Whenever you attempt the First Aid Task during combat, you gain a bonus d20. Further, you may always Succeed at a Cost, with each Complication you suffer adding +1 to the Difficulty of healing the patient’s Injury subsequently.",
@@ -2878,19 +2925,19 @@ export class Talents {
                 "You are connected to either the Bynar master system or your ship’s mainframe. Provided the computer is in communication range and there is no interference, that computer can assist you on Tasks where its Communication, Computer, or Sensor Systems would apply to the Task.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Bynar, true)],
                 1,
-                "Bynar"),
+                new TalentCategorization(TalentCategory.Species, Species.Bynar)),
             new TalentModel(
                 "Paired",
                 "You are genetically paired to another Bynar on the crew. This Bynar is a support character that does not count against your Crew Support for the mission. Once per scene, you can use their Disciplines on a Reason or Insight roll in place of your own.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Bynar, false)],
                 1,
-                "Bynar"),
+                new TalentCategorization(TalentCategory.Species, Species.Bynar)),
             new TalentModel(
                 "Unpaired",
                 "Your genetic pair is dead or is otherwise unavailable, and can’t be replaced during your current mission or deployment. Mentally alone, you are compulsively driven to aid others. When you assist another character with a Task, one d20 related to that Task can be re- rolled.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Bynar, false)],
                 1,
-                "Bynar"),
+                new TalentCategorization(TalentCategory.Species, Species.Bynar)),
             new TalentModel(
                 "The Long View (El-Aurian)",
                 "Due to their extremely long lifespans, El-Aurians come to understand and gain knowledge more extensively that most other individuals. When a character with this Talent uses a Milestone to exchange a Focus, they may do so twice instead of once.",
@@ -2900,7 +2947,7 @@ export class Talents {
             new TalentModel(
                 "Temporal Awareness",
                 "One hundred and fifty El-Aurian refugees who were aboard the SS Lakul in 2293 became caught in the Nexus. For them it was akin to “being inside joy”. Forty-Seven of these refugees were “yanked out” by the USS Enterprise-B, leaving a temporal “echo” of themselves behind within the Nexus that exists outside of all of time. These El-Aurians are still connected to their “echoes” granting them an awareness of manipulations made to the time-space continuum. Any alterations to the natural flow of time leaves the El-Aurian with this talent with a nagging “feeling” that something is just not right, or is fundamentally “off”. The Gamemaster secretly makes a Difficulty 0 Insight + Science Task check for the player. If the Task fails the player is oblivious to the changes. On one success, the El-Aurian knows something is wrong, but not exactly what it is. For each success past the first, the Gamemaster may give the player brief hints as the character begins to remember brief impulses of “how things should be”. Additionally, the player may spend a point of Momentum to remember a specific fact about the former timeline.",
-                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.ElAurian, true)],
+                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.ElAurian, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 "El-Aurian"),
             new TalentModel(
@@ -2920,19 +2967,19 @@ export class Talents {
                 "You have a gift for processing information and retaining it. When you attempt a Task to organize information or recall it, you may add a bonus d20 to your dice pool.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Yridian, true)],
                 1,
-                "Yridian"),
+                new TalentCategorization(TalentCategory.Species, Species.Yridian)),
             new TalentModel(
                 "Scavenger Instinct",
                 "Your Yridian evolutionary ancestors were scavengers, which gives you an instinct for searching, as well as furtive skills such as spying, burglary, and smuggling. When you attempt a Task where non-detection or searching is an asset, and you add a d20 to your dice pool by adding to Threat, you may re-roll two d20s.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Yridian, false)],
                 1,
-                "Yridian"),
+                new TalentCategorization(TalentCategory.Species, Species.Yridian)),
             new TalentModel(
                 "Vow of Silence",
                 "You are intensely loyal and have taken a vow of silence and will only speak to your direct superior. Whenever you attempt to resist efforts to make you speak or betray your employer’s trust, reduce the Difficulty of the Task by two.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Hupyrian, true)],
                 1,
-                "Hupyrian"),
+                new TalentCategorization(TalentCategory.Species, Species.Hupyrian)),
             new TalentModel(
                 "Dolbargy Healing Trance",
                 "You have learned the technique of inducing a voluntary deep coma that simulates death. Entering the trance is a Control+Medicine Task. Choose a Difficulty of 1, 2, or 3. Success means that any attempt to detect your vital signs must increase the Difficulty of that task by an amount equal to the Difficulty you chose. While in this trance, you may listen but do nothing else. Gain a temporary Trait: Appears Dead that lasts until you wake up. To wake from the trance is a Control+Medicine Task at Difficulty 1.",
@@ -2944,19 +2991,19 @@ export class Talents {
                 "You know how to use your twin sets of arms with coordination and efficiency. On your turn, you can take an additional Minor Action, which can only be used for the Draw Item or Interact Minor Actions. Additionally, you add the Vicious 1 effect to your Unarmed Strike.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(true, Species.Tzenkethi)],
                 1,
-                "Tzenkethi"),
+                new TalentCategorization(TalentCategory.Species, Species.Tzenkethi)),
             new TalentModel(
                 "Technological Savvy",
                 "You were taught at a young age about robotics and machinery. When you perform or assist with a Task where knowledge of robotics or machines would help, you may re- roll a d20.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(true, Species.Tiburonian)],
                 1,
-                "Tiburonian"),
+                new TalentCategorization(TalentCategory.Species, Species.Tiburonian)),
             new TalentModel(
                 "Tiburonian Charm",
                 "You are able to bring out the best in people with your natural charisma. If you assist someone with your Presence Attribute, if they succeed at the assisted Task, add an extra point of Momentum.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(true, Species.Tiburonian)],
                 1,
-                "Tiburonian"),
+                new TalentCategorization(TalentCategory.Species, Species.Tiburonian)),
 
 
             // Careers
@@ -2965,13 +3012,13 @@ export class Talents {
                 "The character is inexperienced, but talented and with a bright future in Starfleet. The character may not have or increase any Attribute above 11, or any Discipline above 4 while they have this Talent (and may have to adjust Attributes and Disciplines accordingly at the end of character creation). Whenever the character succeeds at a Task for which they bought one or more additional dice with either Momentum or Threat, they may roll 1[D]. The character receives bonus Momentum equal to the roll, and adds one point to Threat if an Effect is rolled. The character cannot gain any higher rank than lieutenant (junior grade) while they possess this Talent.",
                 [new CareersPrerequisite(Career.Young)],
                 1,
-                "Career"),
+                new TalentCategorization(TalentCategory.Career, Career.Young)),
             new TalentModel(
                 "Veteran",
                 "The character is wise and experienced, and draws upon inner reserves of willpower and determination in a more measured and considered way. Whenever the character spends a point of Determination, roll 1[D]. If an Effect is rolled, immediately regain that spent point of Determination. The character has a rank of at least Lieutenant Commander.",
                 [new CareersPrerequisite(Career.Veteran)],
                 1,
-                "Career"),
+                new TalentCategorization(TalentCategory.Career, Career.Veteran)),
             // Other
             new TalentModel(
                 TALENT_NAME_BOLD,
@@ -3317,85 +3364,85 @@ export class Talents {
                 "",
                 [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Security, 2)],
                 1,
-                "Security"),
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Piercing Salvo",
                 "",
                 [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Security, 4)],
                 1,
-                "Security"),
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Precision Targeting (2e)",
                 "",
                 [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Conn, 3)],
                 1,
-                "Security"),
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Steady Hands",
                 "",
                 [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Security, 3), new AttributePrerequisite(Attribute.Control, 9)],
                 1,
-                "Security"),
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Positive Reinforcement",
                 "",
                 [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3), new AttributePrerequisite(Attribute.Presence, 9)],
                 1,
-                "Medicine"),
+                new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Command and Control",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Command, 4), new DisciplinePrerequisite(Department.Engineering, 2)],
                 1,
-                "Command"),
+                new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Project Manager",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Command, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
                 1,
-                "Command"),
+                new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Fix 'Em and Fly 'Em",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Conn, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
                 1,
-                "Conn"),
+                new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Hot Rod Shuttle",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Conn, 4), new DisciplinePrerequisite(Department.Engineering, 4)],
                 1,
-                "Conn"),
+                new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Custom Tools",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Engineering, 4)],
                 1,
-                "Engineering"),
+                new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Wrote the Book",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Engineering, 4), new CareersPrerequisite(Career.Veteran)],
                 1,
-                "Engineering"),
+                new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Calibrated Munitions",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 4), new DisciplinePrerequisite(Department.Engineering, 3)],
                 1,
-                "Security"),
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Well-Maintained Arsenal",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Engineering, 2)],
                 1,
-                "Security"),
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Tactical Countermeasures",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
                 1,
-                "Security"),
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "On the Shoulders of Giants",
                 "",
@@ -3413,13 +3460,13 @@ export class Talents {
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Medicine, 3)],
                 1,
-                "Medicine"),
+                new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Transformative Treatments",
                 "",
                 [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Medicine, 3)],
                 1,
-                "Medicine"),
+                new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Evasion",
                 "",
@@ -3587,7 +3634,46 @@ export class Talents {
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Deltan)),
 
+            new TalentModel(
+                "Circumspect",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiAquatic, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.XindiAquatic)),
+            new TalentModel(
+                "Seek Consensus",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiAquatic, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.XindiAquatic)),
+            new TalentModel(
+                "Heirloom",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.VauNAkat, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.VauNAkat)),
+            new TalentModel(
+                "Share Strength",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.VauNAkat, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.VauNAkat)),
+            new TalentModel(
+                "Don't Look Threatening",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Yridian_2E, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Yridian_2E)),
+            new TalentModel(
+                "See All, Admit Nothing",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Yridian_2E, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Yridian_2E)),
 
+
+
+            // Continuing Missions
             new TalentModel(
                 "Engineering/Science Affinity (Unofficial)",
                 "",
@@ -5410,9 +5496,9 @@ export class Talents {
         const talents: TalentModel[] = [];
         for (let i = 0; i < this._starshipTalents.length; i++) {
             let talent = this._starshipTalents[i];
-            let include = talent.category === "Starship";
+            let include = talent.isStarshipTalent;
             if (starship instanceof Station) {
-                include = include || (talent.category === "Starbase");
+                include = include || talent.isStarbaseTalent;
             }
 
             if (include) {

@@ -1252,7 +1252,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 traits.push(e.trait);
             }
         })
-        if (this.hasTalent("Augmented Ability (Control)")
+        if (this.speciesStep?.species === Species.Illyrian_2E ||
+            this.speciesStep?.species === Species.HumanAugment) {
+
+            traits.push("Augment");
+        } else if (this.hasTalent("Augmented Ability (Control)")
                 || this.hasTalent("Augmented Ability (Daring)")
                 || this.hasTalent("Augmented Ability (Fitness)")
                 || this.hasTalent("Augmented Ability (Insight)")
@@ -1261,11 +1265,14 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 || this.hasTalent("Augmented Ability")) {
             traits.push("Augment");
         }
-        if (this.hasTalent("Synthetic Physiology") && this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
+        if (this.speciesStep?.species === Species.Bynar) {
+            traits.push("Cyborg");
+        } else if (this.hasTalent("Synthetic Physiology") && this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
             traits.push("Cyborg");
         }
         if (this.hasTalent("Analytical Recall") && !(traits.includes("Augment") || traits.includes("Cyborg"))) {
-            if (this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
+            if (this.speciesStep?.species !== Species.CyberneticallyEnhanced
+                && this.speciesStep?.species !== Species.Bynar) {
                 traits.push("Augment");
             } else {
                 traits.push("Cyborg");

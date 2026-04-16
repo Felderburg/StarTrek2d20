@@ -2412,7 +2412,9 @@
     "SpaceframeAppearance.mogai": "Mogai Class",
     "SpaceframeAppearance.redLadyType": "Red Lady-type",
     "SpaceframeAppearance.romulanD7": "D7 (Romulan)",
+    "SpaceframeAppearance.snakehead": "Snakehead",
     "SpaceframeAppearance.tliss": "T'Liss Class",
+    "SpaceframeAppearance.whitewind": "Whitewind",
     "SpaceframeAppearance.xhosaType": "Antares Class (Xhosa-type)",
 
     "SpaceframeVariant.excelsior": "Original frame",
@@ -2606,6 +2608,9 @@
     "Species.elAurian.exampleValue": "I told you, I listen",
     "Species.elAurian.traitDescription": "This species are masters of the art of listening. They understand that listening is an active skill, and involves taking into consideration such things as body language, tone of voice, as well as the words that other beings are speaking. El-Aurians may use this trait to reduce the Difficulty of Social Interaction Tasks. El-Aurians know that time is on their side, they never really feel a need to rush. When performing an Extended Task, an El-Aurian may make one free Re-Roll Work without a spend of Momentum. Since they destroyed the El-Aurian home world, most El-Aurians are distrustful of or outright hate the Borg.",
 
+    "Species.elAurian2e.name": "El-Aurian",
+    "Species.elAurian2e.description": "Appearing similar to Humans in many ways, **El-Aurians** are an enigmatic species, a culture of “listeners” who travel far and wide across the Galaxy learning about other cultures and offering advice. Many of their kind had travelled as far as Earth even as early as the 19th century. They seem to possess an unknown perceptive capability which extends beyond the normal boundaries of space-time. The El-Aurians’ homeworld was conquered by the Borg in the mid-22nd century. \n\nWhile they are biologically very similar to Humans, El-Aurians are notable for their extremely long lifespans, allowing them to remain vital and active for centuries or longer. Further, older El-Aurians have demonstrated the ability to influence the visible signs of their own aging, allowing them to remain unchanging for centuries or superficially age among shorter-lived species to help blend in among them: it’s been said that El-Aurians only age when they choose to. However, young El-Aurians reach maturity at around the same time as Humans.",
+
     "Species.ferengi.name": "Ferengi",
     "Species.ferengi.aboutNames": "Ferengi tend to have only a single name, which tend to be only one or two syllables, though exceptions exist. Among cultures who have family names, Ferengi will occasionally refer to themselves as “son of...,” “daughter of...,” “child of...,” and so forth, but as each Ferengi is expected to make their own way in life, family names are unheard of among Ferengi.",
     "Species.ferengi.description2e": "An acquisitive species native to Ferenginar, the Ferengi are unimposing beings, known mostly as merchants and traders. Their culture promotes the accumulation of material wealth, and their society is capitalistic, with most routine activities accompanied by an exchange of money, typically in the form of gold-pressed latinum (a non-rep- licable liquid metal, suspended within “slips,” “strips,” “bars,” and “bricks” of gold). Ferengi society is strongly patriarchal, with female Ferengi traditionally disallowed from owning property or even wearing clothing (and male Ferengi often having deeply unpleasant attitudes towards non-Ferengi women), though these attitudes start to change by the late 24th century.\n\nFerengi pride themselves on their ability to acquire wealth, though there are many different approaches to this. For centuries, Ferengi culture has been domi- nated by the philosophies and lessons of the Rules of Acquisition, though these can be interpreted in a variety of different ways and applied to a Ferengi’s life.",
@@ -2740,9 +2745,17 @@
     "Species.tzenkethi.exampleValue": "Might is the Only Right",
     "Species.tzenkethi.traitDescription": "This Trait may reduce the Difficulty of Tasks requiring (extreme) flexibility. When not in combat or stressful situations, they naturally regenerate at extremely fast speeds as long as they have at least 1 Stress. Tzenkethi are singularly focused on excellence and moving up the Echelons, therefore they will do anything they can in order to complete the task ahead of them and succeed, even if this means dying in the process. Other Tzenkethi authority figures are holy to them and they would never go against direct orders. Due to a history of dealing with alien invaders the Tzenkethi are extremely mistrustful of aliens and believe they are without morals.",
 
+    "Species.vauNAkat.name": "Vau N'Akat",
+    "Species.vauNAkat.description": "The **Vau N’Akat** are native to the planet Solum in the Delta Quadrant. While technologically advanced, the Vau N’Akat had little interest in space exploration until the late 24th century, when a Federation vessel made first contact with them: prior to this event, the species had believed themselves to be the only intelligent life in the universe, and saw little value in venturing beyond their homeworld. However, the revelation that there was life upon other worlds caused a vicious schism in Vau N’Akat society, resulting in an intense civil war. The specifics of these events are the subject of a significant temporal event which has been classified by the Department of Temporal Investigations.\n\nThe Vau N’Akat themselves are a humanoid species, though an unusual one in many regards. Among their qualities is a distinctive psychokinetic potential which expresses in a few ways. Certain forms of their technology—notably the adaptive multi-tool weapons known as heirlooms—were operated and configured into a variety of forms using little more than mental effort, even at a distance.",
+    "Species.vauNAkat.traitDescription": "A humanoid species with numerous unusual qualities, the Vau N’Akat have a potent psychokinetic potential which allows them to influence and control their technology, and which allows them to share strength and vitality with other Vau N’Akat over a short distance. It can also be directed inwards, heightening their own physical recovery from injury. Vau N’Akat minds are also impervious to telepathy. When a Vau N’Akat dies, the unexpressed psychokinetic potential in their bodies causes their remains to evaporate into a shower of luminescent blue particles.",
+    "Species.vauNAkat.aboutNames": "While Vau N’Akat have names in the normal sense, under some circumstances, a Vau N’Akat carrying out some vital duty for their people may forego their name and adopt a title, typically one preceded by the definitive article; the leader of the Tar Lamora mining outpost was known as The Diviner, for example.",
+
     "Species.vorta.name": "Vorta",
     "Species.vorta.description": "The Vorta are genetically-engineered life-forms, created to serve as advisors, scientists, diplomats, and overseers for the Dominion, acting as the Founders’ closest servants and foremost representatives. Vorta are cloned, in batches of identical beings, with a new clone being activated and placed into service upon the death of a predecessor, receiving the memories of those that came before them, though each clone is nevertheless a distinct individual. Vorta are extremely cunning and clever, but have little creativity or sense of aesthetics.",
+    "Species.vorta.description2e": "Notable as the administrators, field commanders, scientists, and diplomats of the Dominion, the **Vorta** style themselves as the Founders’ closest servants. They are a genetically engineered species designed specifically for dutiful service. The Vorta themselves are bred artificially, each engineered for specific purposes, in batches of identical clones: each clone is a unique individual, but they receive all the memories of their predecessors to ensure that they can pick up where the last one of their line left off. Though they reproduce via artificial means, the Vorta still have a superficial, vestigial sense of sex and gender, though they often affect more pronounced gender presentation if it will aid them in their work.\n\nThe Vorta hold an important place within Dominion society, and are often mistakenly thought of as the leaders of the Dominion, as the Founders prefer to be reclusive and stay out of the day-to-day of running the Dominion. The Vorta themselves are extremely cunning, ruthless, and persuasive, and highly adept at playing political games among themselves, and with any vassals or allies of the Dominion, though they would never  dare to allow such activities to interfere with the will of the Founders.",
     "Species.vorta.traitDescription": "Vorta have extremely keen hearing, but relatively poor eyesight. They are immune to most forms of poison. Vorta are absolutely loyal to the Dominion, revering the Founders as living gods. Those who encounter the Vorta often regard them as insincere or manipulative.",
+    "Species.vorta.traitDescription2e": "Vorta have extremely keen hearing, but poor eyesight. They are immune to most forms of poison, as a defense against assassination attempts. The Vorta revere the Founders as living gods, and are incapable of acting against a Founder. Those who encounter the Vorta often regard them as insincere or manipulative.",
+    "Species.vorta.aboutNames": "Vorta have only a single name, which is used for all Vorta in that batch. Different clones within the same batch are differentiated by a number, with the next higher number being activated upon the death of their predecessor.",
 
     "Species.vulcan.name": "Vulcan",
     "Species.vulcan.aboutNames": "Vulcans have only a single name, in practical terms — while they do have family names, these are not discussed amongst other species — and tend to be traditional in the names they use. Male Vulcans often — though far from always — are given names beginning with S, while female names frequently begin with T. These are far from universal, however.",
@@ -2751,6 +2764,11 @@
     "Species.vulcan.exampleValue": "The Needs of the Many Outweighs the Needs of the Few, or the One",
     "Species.vulcan.traitDescription": "Due to the harsh, arid, high-gravity world they come from, Vulcans are naturally resistant to extreme heat and dehydration; they are also extremely strong, with keen auditory and olfactory senses. They are also telepathic, though this takes training to properly manifest, and they learn mental discipline and emotional control from childhood. However, this control takes regular meditation to maintain, and their controlled nature and desire for privacy can distance them from others, and make interactions awkward.",
     "Species.vulcan.traitDescription2e": "Vulcans have a naturally high tolerance for extremes of heat, are resistant to dehydration, and can shield their eyes from blinding light with a set of secondary eyelids. Their auditory and olfactory senses are extremely keen, and the gravity of their homeworld means an average Vulcan is about three times as strong as a Human of similar size and weight. Vulcans are innately telepathic, and through extensive training since childhood, Vulcan minds can suppress their emotional responses, and even exert influence upon biological pro- cesses, though this takes regular meditation to maintain.",
+
+    "Species.xindiAquatic.name": "Xindi-Aquatic",
+    "Species.xindiAquatic.description": "**Xindi-Aquatics** are non-humanoid species that evolved on Xindus, a planet in the Delphic Expanse in the Beta Quadrant. A species evolved to live underwater, Xindi-Aquatics are also known to be patient and prudent, sometimes to the point of being overly cautious or even indecisive; their natural environments are in constant flux, meaning that they are used to processing the interplay of complex factors and variables in their everyday lives. They are extremely technically adept, and many of the technological adaptations necessary for them to communicate with other Xindi species—and eventually, species from other worlds—were developed by the Aquatics themselves. Historically, the Xindi-Aquatics were the first Xindi species to achieve sapience, and they are customarily peaceful, only engaging in the brutal civil wars of their lost homeworld when the land-dwelling species’ conflicts spilled over into the Aquatics’ oceans.\n\nXindi-Aquatics have their own starships adapted to their watery environment, but since joining the Federation, a small number of Xindi-Aquatics have been found in Starfleet, often serving alongside or in similar roles to Earth-born Cetaceans and other aquatic species, with whom they share many qualities. The Aquatics’ culture prizes equity and the forming of consensus, and despite their customary circumspection, they were among the first of the Xindi species to propose joining the Federation, due to these values.",
+    "Species.xindiAquatic.traitDescription": "Xindi-Aquatics evolved to live underwater, and cannot survive for long outside the water. They have forelimbs with dextrous three-fingered hands, but fins and tails for maneuvering under the water. Their eyesight is adapted to discern objects underwater and with limited light, but they dislike bright lights. They communicate using high- and low-frequency vocalizations similar to whale song. Like all Xindi, they have distinctive ridges on their faces.",
+    "Species.xindiAquatic.aboutNames": "Xindi-Aquatics generally have two names, one used among their own kind, spoken in their own language, and one translated into the shared language spoken by land-dwelling Xindi. The latter sometimes only contains a single personal name, but some Xindi-Aquatics insist on having a full  name to reflect status or honor their family.",
 
     "Species.xindiArboreal.name": "Xindi-Arboreal",
 
@@ -2764,7 +2782,14 @@
     "Species.yridian.description": "Yridians are often free agents working with those who share their personal goals, or as hired hands for other species. They are known to be traders, smugglers and information merchants, and are unwilling to part with information without payment. They were believed to be extinct until the mid-2360s until the Federation made first contact. They use disruptor weaponry.",
     "Species.yridian.traitDescription": "The Yridians are usually bald, but some have dark, curly hair. They have a wrinkly appearance, with rodent-like ears and small eyes and noses. They have a ridge running from their nose, up and over their heads. Most are thumbless and have only four fingers on each hand, but some have thumbs. They are often devious and untrustworthy.",
 
+    "Species.yridian2e.name": "Yridian",
+    "Species.yridian2e.description": "A warp-capable humanoid species found across the Alpha and Beta quadrants, **Yridians** are commonly encountered as traders, merchants, information brokers, and mercenaries. Yridians have no known central government, and they are found everywhere, aboard starbases and on planets across the Federation and beyond; the illicit dealings of some Yridians has led to them gaining an unsavory reputation in many parts of the Galaxy. They originally hailed from Yridia, a world in the Beta Quadrant, and then suddenly vanished, leading many to believe that the species had gone extinct, and that some disaster had befallen their homeworld. This apparent extinction was proven wrong during the 2360s, when isolated colonies of Yridians were discovered. Soon after, Yridians were once again a widespread site across the Galaxy; the mystery of their homeworld is yet to be solved, and conspiracy theorists often suggest some sinister agenda behind this oddity.\n\nYridians are, generally, a calm and affable people who socialize easily with others of any species, though some see them as ruthless and self-serving. They are believed to have evolved from a prey species on their homeworld, who developed to favor subtlety, avoidance, and wariness as survival tactics. Yridians typically demonstrate a hunched posture that makes them appear smaller than they are, and they’re known to possess an eidetic memory, allowing them to retain any and all information that might be useful to them. In the modern day, the tendency to avoid presenting as a threat while soaking up information from all around them has made them effective traders and information brokers, and given them an edge in more illicit, clandestine work.",
+    "Species.yridian2e.traitDescription": "A humanoid species with wrinkled skin and large ears, Yridians maintain a hunched posture to appear smaller than others, and tend to act pleasantly sociable in most cases. They’re notable for possessing an eidetic memory, and they’re reputed to work as information brokers, smugglers, and spies.",
+
     "Species.zakdorn.name": "Zakdorn",
+    "Species.zakdorn.description2e": "**Zakdorn** are a humanoid species from the Beta Quadrant world of the same name. They joined the Federation in 2344, and quickly became an important contributor. While many Zakdorn appear physically unimpressive, their meticulous minds, attention to detail, and capacity for high-level theoretical reasoning have resulted in them gaining the reputation as the finest tactical and strategic minds in the Galaxy, able to outthink and outwit their foes with startling, almost contemptuous ease: it’s said that no foe has bested the Zakdorn in millennia. The Zakdorn have quickly become a major asset in defining Federation defense policy and strategic readiness.\n\nCritics of the Zakdorn point out that part of their reputation means that nobody has tried to beat them in a very long time, meaning that the reputation was untested. Nevertheless, Zakdorn strategists are in high demand, and the same qualities that make them excellent strategists also allow them to thrive in other detail-oriented roles. Zakdorn are seen across the Federation and beyond as bureaucrats, administrators, engineers, investigators, scientists, and politicians. The Zakdorn tend to be officious and self-confident, often to the point of hubris; the Zakdorn themselves contend that this attitude is a deserved self-assuredness, and that it isn’t overconfidence if they can back up their claims.",
+    "Species.zakdorn.traitDescription2e": "Zakdorn tend to be of shorter stature than most humanoids and have distinctive wrinkles of fatty tissue over their faces and bodies. This fatty layer enables Zakdorn to survive without food for much longer periods than most humanoids. Their analytical brains give them an edge in logic and reasoning that rivals even Vulcans.",
+    "Species.zakdorn.aboutNames": "Zakdorn have personal names and family names as is common among many species. They tend towards polysyllabic names, and often insist on being addressed formally.",
 
     "Species.mixedSpecies.text": "{{primarySpecies}} / {{secondarySpecies}}",
 
@@ -2850,9 +2875,9 @@
 
     "SpeciesAbility.chameloid.description": "You commonly exist in a form other than your natural state. At the start of a mission, you gain an additional trait to reflect the form you’ve chosen, which may be the form of a specific individual. You may suffer 1 Stress as a minor action once per turn to change this form. It is difficult requiring a successful Difficulty 3 task) to detect a disguised Chameloid without technological assistance.",
 
-    "SpeciesAbility.changeling": "Morphogenic Matrix",
+    "SpeciesAbility.changelingGamma": "Morphogenic Matrix",
 
-    "SpeciesAbility.changeling.description": "You may suffer 1 Stress as a minor action once per turn to assume a different form, gaining one additional trait to reflect whatever form you have chosen. You cannot yet mimic a specific individual, and you must revert to a liquid state for a few hours after sixteen hours in a solid form. While in an alternate form, it is next to impossible (requiring a Difficulty 5 task roll) to detect a hidden Changeling. Your body is highly resistant to physical harm and energy weapons, giving you Protection 2, and your thoughts and emotions cannot be detected by telepaths or empaths. You are immune to extremes of heat, cold, and exposure to vacuum.",
+    "SpeciesAbility.changelingGamma.description": "You may suffer 1 Stress as a minor action once per turn to assume a different form, gaining one additional trait to reflect whatever form you have chosen. You cannot yet mimic a specific individual, and you must revert to a liquid state for a few hours after sixteen hours in a solid form. While in an alternate form, it is next to impossible (requiring a Difficulty 5 task roll) to detect a hidden Changeling. Your body is highly resistant to physical harm and energy weapons, giving you Protection 2, and your thoughts and emotions cannot be detected by telepaths or empaths. You are immune to extremes of heat, cold, and exposure to vacuum.",
 
     "SpeciesAbility.deltan": "Empath",
 
@@ -2882,13 +2907,33 @@
 
     "SpeciesAbility.ferengi.description": "Once per session, when obtaining additional equipment, you may reduce the **Opportunity Cost** of an item by 1, to a minimum of 0.",
 
+    "SpeciesAbility.grazerite": "Agreeable",
+
+    "SpeciesAbility.grazerite.description": "You are inclined to seek agreement and cooperation in everything you do. When you succeed at an Insight-based task to discern another creature’s  mood, or a Presence-based task to try and defuse a conflict or confrontation, you may immediately recover 1 Stress.",
+
     "SpeciesAbility.haliian": "Contact Empathy",
 
     "SpeciesAbility.haliian.description": "Haliians possess minor empathic abilities which, without the canar focusing crystal, is limited to touch. When you touch another character, you can sense the emotions of that individual, as well as communicate telepathically with other empaths or telepaths. You cannot choose to not sense the emotions of those you touch. It may require effort and a task to gain information from beings that are resistant to forms of telepathy. This functions as the **Empathy** talent, but requires physical contact.",
 
+    "SpeciesAbility.hologram": "Photonic",
+
+    "SpeciesAbility.hologram.description": "You are not an organic being, and are not vulnerable to physical harm as they are: you have 2 Protection. Injuries and fatigue you suffer represent disruption to your holomatrix or damage to holo-emitters. You recover from injuries with Engineering tasks, rather than Medicine. You cannot be present in any scene where there are no holo-emitters. In addition, because you were programmed for a specific purpose, you do not have a pastime.",
+
+    "SpeciesAbility.horta2e": "Silicon-Based Burrower",
+
+    "SpeciesAbility.horta2e.description": "You are nigh-impervious to harm, having Protection 3, and you can move freely through solid rock with little difficulty (very dense rock might count as difficult terrain). Your acidic secretions give you a melee attack which inflicts Deadly 4 Injuries with the Debilitating and Piercing qualities.",
+
     "SpeciesAbility.human": "Faith of the Heart",
 
     "SpeciesAbility.human.description": "When you use one of your values to spend or gain Determination, you may also add 1 Momentum to the group pool.",
+
+    "SpeciesAbility.humanAugment": "Genetically Enhanced",
+
+    "SpeciesAbility.humanAugment.description": "You are an **Augment**. You may select one or two talents which require the Augment trait, which you gain in addition to the normal talents you can select. If you select two of these Augment talents, then you must select an additional trait which represents a severe personality flaw or neurological problem, such as **Heightened Aggression**, or **Sensory Processing Disorder**.",
+
+    "SpeciesAbility.illyrian2e": "Adapt and Excel",
+
+    "SpeciesAbility.illyrian2e.description": "You may have the Augment trait. In addition, select a single attribute when you create your character: when you attempt a task using that attribute, you may suffer 1 Stress to reroll a single d20.",
 
     "SpeciesAbility.klingon": "Brak'lul",
 
@@ -2918,9 +2963,49 @@
 
     "SpeciesAbility.trill.description": "When you succeed at a task where you purchased one or more d20s by spending Momentum, you generate 1 bonus Momentum for each d20 purchased. Bonus Momentum may not be saved.",
 
+    "SpeciesAbility.vauNAkat": "Neuroflux",
+
+    "SpeciesAbility.vauNAkat.description": "Vau N’Akat have an innate psychokinetic capability which they refer to as neuroflux. You can use this ability to heal yourself more swiftly: you may recover 2 Stress at the start of any scene. Further, when healing Injuries you have suffered, count the Severity of the Injury as 2 lower than normal. You may directly interact with objects of Vau N’Akat technology using your neuroflux, without the need for any control interfaces; when you do this, your eyes and patterns across your skin glow.",
+
+    "SpeciesAbility.vorta": "The Voice of the Founders",
+
+    "SpeciesAbility.vorta.description": "When you use the Direct or Assist major action to aid or command another servant of the Dominion (a Jem’Hadar, a Vorta of lower status, or a member of an allied state), you may roll 2d20 for your assist dice rather than 1d20 and apply both results. If you are captured, you may trigger a termination implant as a minor action, which kills you instantly. Whenever you die, you are replaced by your next clone at the start of the next mission. \n\nAdditionally, some Vorta are engineered with telepathic or telekinetic abilities, and may purchase the Telepathy or Psychokinesis talents.",
+
     "SpeciesAbility.vulcan": "Mental Discipline",
 
     "SpeciesAbility.vulcan.description": "While Vulcans have some psychic capabilities, they require training to use it effectively (see the **Mind Meld** talent). Further, your maximum Stress is based on your Control rather than your Fitness, and you may suffer 2 Stress to avoid suffering any trait that represents an emotional state. However, if you become Fatigued, you increase the Potency of any such emotion-related trait by 1.",
+
+    "SpeciesAbility.xahean": "Camouflage Field",
+
+    "SpeciesAbility.xahean.description": "Using the _Prepare_ minor action, you may suffer 1 Stress to camouflage yourself, becoming nearly invisible. You gain the **Camouflaged** trait. While camouflaged, tasks to detect or locate you increase in Difficulty accordingly, and you cannot be the target of an attack unless the attacker has found some other way to detect you. This ends when you make an attack or when you take another Prepare minor action to end the effect. This ability is taxing, and the amount of Stress suffered increases by 1 each time during the same scene it is used; this increase is cumulative.",
+
+    "SpeciesAbility.xindiAquatic": "Aquatic",
+
+    "SpeciesAbility.xindiAquatic.description": "Xindi-Aquatics evolved to live underwater, and cannot survive for long outside the water. They have forelimbs with dextrous three-fingered hands, but fins and tails for maneuvering under the water. Their eyesight is adapted to discern objects underwater and with limited light, but they dislike  bright lights. They communicate using high- and low-frequency vocalizations similar to whale song. Like all Xindi, they have distinctive ridges on their faces.",
+
+    "SpeciesAbility.xindiArboreal": "Calm under Pressure",
+
+    "SpeciesAbility.xindiArboreal.description": "Your unwavering calm allows you to maintain a clear head in a crisis. Your maximum Stress is equal to your Control, rather than your Fitness. Whenever you are affected by a trait or effect which represents fear or panic, you may suffer 2 Stress to avoid that trait.",
+
+    "SpeciesAbility.xindiInsectoid": "Insectoid",
+
+    "SpeciesAbility.xindiInsectoid.description": "Your exoskeleton gives you Protection 1, while your rapid metabolism means that you may reroll 1d20 on any task roll using Fitness.",
+
+    "SpeciesAbility.xindiPrimate": "Adaptable and Talented",
+
+    "SpeciesAbility.xindiPrimate.description": "Xindi-Primates are well-known and respected for their ingenuity and drive to overcome challenges. Once per mission, when you attempt a task roll, select one of your focuses: on that task roll, and for the remainder of the mission, whenever you succeed at a task using that focus, you score 1 bonus Momentum. Bonus Momentum may not be saved.",
+
+    "SpeciesAbility.xindiReptilian": "Durable Physiology",
+
+    "SpeciesAbility.xindiReptilian.description": "Xindi-Reptilians are tough, and cannot easily be stopped by attacks intended to subdue or incapacitate. Nothing short of deadly force can deter you. You have 1 Protection, which increases to 3 against Stun _Attacks_.",
+
+    "SpeciesAbility.yridian2e": "Eidetic Memory",
+
+    "SpeciesAbility.yridian2e.description": "Yridians have an extraordinary ability to process, retain, and recall information. You may spend 1 Momentum (and a major action if in combat) attempting an Insight + Science task with a Difficulty of 0 to recall some event which you witnessed in the past; Momentum spent may be used to _Obtain Information_ to gain new insights from this recollection.",
+
+    "SpeciesAbility.zakdorn": "Several Moves Ahead",
+
+    "SpeciesAbility.zakdorn.description": "Zakdorn are reputed to have the finest strategic minds, and they can analyze complex situations and predict their outcomes with startling accuracy. Once per scene, when you create a trait representing a plan of action or a strategy, you may spend 1 additional Momentum to either increase the Potency of that trait by 1, or to create a second copy of that trait to grant to an ally you are in communication with.",
 
     "SpeciesAbility.zaranite": "Hardened Hide",
 
@@ -3306,6 +3391,10 @@
 
     "Talent.chosenSpeaker.description2e": "Among Aenar communities, leaders and mediators are chosen as and when the need arises, nominating an individual to serve as Speaker. You’ve been chosen for this role often and are adept at using your senses and your telepathy to aid communication. When attempting a task to communicate telepathically with a willing being, you may re-roll 1d20.",
 
+    "Talent.circumspect": "Circumspect",
+
+    "Talent.circumspect.description": "Xindi-Aquatics do not rush into decisions that matter. When you attempt a task roll outside of combat, you may choose (before rolling) to double the amount of time the task will take; if you do so, then you may either reduce the Difficulty by 2 or generate 2 bonus Momentum if the task is successful. Bonus Momentum may not be saved.",
+
     "Talent.classifiedDesign": "Classified Design",
 
     "Talent.classifiedDesign.description": "As the _Crossfield_ class is a highly experimental spaceframe, Starfleet outfitted all ships of this class with the Technical Testbed mission profile.",
@@ -3541,6 +3630,10 @@
 
     "Talent.doctorsOrders.description": "When you attempt a Task to coordinate others, or to coerce someone into taking or refraining from a specific course of action, you may use your Medicine Discipline instead of Command.",
     "Talent.doctorsOrders.description2e": "When you attempt a task to coordinate others, or to coerce someone into taking or refraining from a specific course of action, you may use your Medicine depart- ment instead of Command.",
+
+    "Talent.dontLookThreatening": "Don't Look Threatening",
+
+    "Talent.dontLookThreatening.description": "You strive to be innocuous, seeking to avoid hostile attention. Whenever you are attacked, the attacker must spend 1 Threat to attack you (in addition to any Threat spent on a Deadly _Attack_) if there is another ally who lacks this talent within Close range of you. If you are armed, you cannot use the benefits of this talent unless the weapons you are carrying have the _Hidden X_ quality.",
 
     "Talent.dontYouDieOnMe": "Don't You Die on Me!",
 
@@ -3826,6 +3919,10 @@
     "Talent.heartBodyAndMind": "Heart, Body and Mind",
 
     "Talent.heartBodyAndMind.description2e": "Whenever you succeed at a Medicine task, and you spend Momentum to recover an ally’s Stress, it costs you only 1 Momentum per Stress recovered. If you have any other talents which let you recover an ally’s Stress, any affected ally recovers one more Stress than they would otherwise.",
+
+    "Talent.heirloom": "Heirloom",
+
+    "Talent.heirloom.description": "You bear an object known only as an heirloom, which normally appears as a piece of fretwork jewelry made from a brass-colored metal. The metal can respond to trained use of neuroflux by reconfiguring into various forms, such as blades, shields, or other useful structures.\n\nYou add an heirloom device to your standard issue equipment, and have the training necessary to use it. If this item is out of your reach but still present in the same scene, you may suffer 1 Stress affect the heirloom at a distance, or to move it telekinetically. If it is damaged, you may suffer 6 Stress in order to force it to reform.",
 
     "Talent.highIntensityEnergyWeapons": "High-Intensity Energy Weapons",
 
@@ -4541,6 +4638,14 @@
 
     "Talent.secondWind.description2e": "You may spend Determination at the start of your turn to remove the Defeated state, and to recover up to half of your maximum Stress. The normal requirements for spending a point of Determination still apply.",
 
+    "Talent.seeAllAdmitNothing": "See All, Admit Nothing",
+
+    "Talent.seeAllAdmitNothing.description": "Everything you observe is stored away, even if it might seem trivial, and you never reveal more than you have to, just in case that knowledge is vital  later on. Whenever an NPC suffers a complication, you may add 1 Momentum to the group pool. Once per mission, if you have added one or more Momentum to the group pool previously during that mission, you may spend 2 Momentum (Immediate) to immediately create a truth which represents some advantage, insight, or situational benefit that you can exploit due to something trivial you observed earlier. You may declare what this benefit is, such as declaring that the Orion mercenary holding you at gunpoint has serious gambling debts, and might be more open to bribery, or noticing that a diplomat is distracted due to a family matter and might miss some important detail in important negotiations.",
+
+    "Talent.seekConsensus": "Seek Consensus",
+
+    "Talent.seekConsensus.description": "Xindi-Aquatics established a society that prized equality and consensus-building long before any other Xindi did. When you spend Momentum to Obtain Information about another character and ask questions about that character’s goals, perspective, or state of mind, you may reduce the cost of creating a trait to 1 Momentum. Any trait created using this talent must relate to the information gained.",
+
     "Talent.selfReliant": "Self-Reliant",
 
     "Talent.selfReliant.description2e": "Whenever you succeed at a task where you did not purchase additional dice by spending Momentum or adding to Threat, you generate bonus Momentum equal to the task’s Difficulty. Bonus Momentum cannot be saved.",
@@ -4557,6 +4662,10 @@
     "Talent.sharedJoy": "Shared Joy",
 
     "Talent.sharedJoy.description": "When you take a **break** to recover Stress and engage in an activity related to your pastime, you may invite an ally to join you. If you do so, you both may regain up to 10 Stress (instead of the normal 8), and immediately add 2 points to the group Momentum pool due to boosted morale.",
+
+    "Talent.shareStrength": "Share Strength",
+
+    "Talent.shareStrength.description": "You can, with effort, direct some of your psychokinetic potential to bolster another. As a major action, you may attempt a **Control + Command** task roll with a Difficulty of 2 to direct your energy to an ally within Long range; you reduce the Difficulty by 1 if the target is another Vau N’Akat. On a successful task, you can suffer up to 5 Stress, and the target recovers an equal amount of Stress.",
 
     "Talent.showOff": "Show-Off",
 
@@ -4899,6 +5008,8 @@
     "TalentCategory.starship": "Starship",
     "TalentCategory.starbase": "Starbase",
     "TalentCategory.esoteric": "Esoteric",
+    "TalentCategory.species": "Species",
+    "TalentCategory.department": "Department",
 
     "Track.civilian.freightAndTransport": "Freight and Transport",
     "Track.civilian.lawEnforcement": "Law Enforcement",

@@ -135,7 +135,7 @@ class Sources {
         [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion2e, "Technical Manual", 2),
         [Source.ExplorationGuide]: new SourceViewModel(Source.ExplorationGuide, SourceType.Expansion2e, "Exploration Guide", 2),
         [Source.Century23]: new SourceViewModel(Source.Century23, SourceType.Expansion2e, "23rd Century Campaign", 2, true),
-        [Source.SpeciesSourcebook]: new SourceViewModel(Source.SpeciesSourcebook, SourceType.Expansion2e, "Species Sourcebook", 2, false),
+        [Source.SpeciesSourcebook]: new SourceViewModel(Source.SpeciesSourcebook, SourceType.Expansion2e, "Species Sourcebook", 2, true),
     };
 
     getSources() {
