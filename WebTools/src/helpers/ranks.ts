@@ -104,6 +104,13 @@ export enum Rank {
     LorC,
     LorBB,
     LorAA,
+
+    HRen,
+    OkChed,
+    VelSh,
+    Chot,
+    Thot,
+
     None
 }
 
@@ -1061,6 +1068,30 @@ export class RanksHelper {
                 new AlliedMilitaryCharacterPrerequisite(AlliedMilitaryType.TzenkethiCoalition)
             ],
             "Lor-C"),
+        new RankModel(
+            Rank.Thot,
+            "Thot", "O8",
+            [
+                new OfficerCharacterPrerequisite(),
+                new AlliedMilitaryCharacterPrerequisite(AlliedMilitaryType.BreenConfederacy)
+            ],
+            "Thot"),
+        new RankModel(
+            Rank.OkChed,
+            "Ok'Ched", "O5",
+            [
+                new OfficerCharacterPrerequisite(),
+                new AlliedMilitaryCharacterPrerequisite(AlliedMilitaryType.BreenConfederacy)
+            ],
+            "Ok'Ched"),
+        new RankModel(
+            Rank.VelSh,
+            "Vel'Sh", "O4",
+            [
+                new OfficerCharacterPrerequisite(),
+                new AlliedMilitaryCharacterPrerequisite(AlliedMilitaryType.BreenConfederacy)
+            ],
+            "Vel'Sh"),
         ];
 
     getRanks(character: Character, ignorePrerequisites?: boolean) {

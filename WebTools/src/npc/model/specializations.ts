@@ -1204,6 +1204,25 @@ export class Specializations {
                     "I'm just an old country doctor."
                 ],
                 0),
+            new SpecializationModel(Specialization.BreenWarrior, NpcCharacterType.MinorPolity, "Breen Thot",
+                [Attribute.Fitness, Attribute.Presence, Attribute.Control],
+                Department.Command,
+                [
+                    "Starship Battle Tactics", "Negotiation", "Threats",
+                    "Leadership", "Diplomacy",
+                    "Particle Rifles", "Hand-to-Hand Combat", "Melee Weapons"
+                ],
+                [
+                    "Starship Tactical Weapons", "Breen Treaties", "Composure", "Interrogation",
+                    "Military Tactics", "Starship Systems", "Willpower"
+                ],
+                [
+                    "All others are meant to serve us",
+                    "Brutally effective",
+                    "Do not cross me",
+                    "My soldiers are my tools"
+                ],
+                1, [ Species.Breen ]),
         ]
     }
 

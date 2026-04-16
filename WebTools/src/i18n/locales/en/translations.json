@@ -2478,6 +2478,10 @@
     "Species.andorian.exampleValue": "Proud Son/Daughter of Andoria",
     "Species.andorian.traitDescription": "This trait may reduce the Difficulty of Tasks to resist extreme cold, or Tasks impacted by extremely low temperatures. Their antennae aid in balance and spatial awareness; a lost antenna can be debilitating until it regrows. Andorians also have a high metabolism, meaning, amongst other things, that they tire more quickly than Humans; this also makes them more vulnerable to infection from certain types of injury. Before the Federation, Andorians and Vulcans had numerous disputes; though these issues are largely considered to be ancient history, Andorians and Vulcans don’t always get along.",
 
+    "Species.android.name": "Android",
+    "Species.android.description": "Synthetic humanoids—commonly referred to as **androids** or **synths**—have been produced by many civilizations throughout the Galaxy, demonstrated by the partly understood remnants of ancient civilizations. In the 24th century, the Human scientist **Noonien Soong** sought to develop fully sapient androids using a positronic brain, and eventually found success, creating the androids Data and Lore. While Lore was deeply misanthropic and eventually had to be deactivated, Data became a celebrated and renowned Starfleet officer and a pioneer in cybernetics in his own right.\n\nSoong’s son **Altan**, along with Starfleet cyberneticist **Bruce Maddox**, built on theories developed by Data that would allow them to create new  androids from positronic neurons taken from Data’s brain, refining the technology to where they could be created from synthetic organic tissues, making them nearly indistinguishable from Humans. These Coppelius androids—named for the planet where they were created—were discovered and their homeworld accepted as a protectorate of the Federation in 2399.",
+    "Species.android.traitDescription": "The physical and mental capabilities of an android are enhanced compared to that of many organic or cybernetic life-forms. They are highly resistant to the effects of hard vacuum, disease, radiation, suffocation, toxins, and telepathy. Some environmental conditions, such as highly ionized atmospheres, intense electromagnetic discharges, and the like can have a severe effect. The legal personhood of androids has been a controversial matter, and many people look on androids with suspicion or doubt.",
+
     "Species.aquan.name": "Aquan",
     "Species.aquan.aboutNames": "Aquan names are typically a single word composed of just a few syllables.",
     "Species.aquan.description": "The humanoid, water-breathing Aquans were transformed indigenous inhabitants of the planet Argo. They had green skin, flat noses, hair resembling kelp, webbed hands, and fins on their ankles. Argo was once mostly land, but planetary-wide seismic disturbances caused the land to gradually sink into the sea. Though not everyone chose the procedure, the medically advanced Aquans developed drugs to turn themselves into an aquatic species. Although they had the means to reverse the transformation, once they became water breathers, they chose to forget their past and construct a new society beneath the sea.\n\nThe reversal formula was lost to time, and the remaining air breathers were seen as enemies. Among the water-breathing Aquans’ many medical talents were the manipulation and erasure of memories, which they used on their enemies.\n\nIn 2269, the _Enterprise_ was studying Argo, unaware of any intelligent life on the planet, when a catastrophic seaquake put Kirk and Spock in peril of drowning.\n\nFortunately, they were saved by some of the Aquans and transformed into sea-breathers. With the help of the Aquans, they were able to find a way to reverse the transformation, and some younger Aquans chose to also use the drug so they could experience life on the surface of their world.\n\nToday, both groups of Aquans live in peace on Argo, and within a year of first contact, a handful of Aquans, both air and water breathers, joined Starfleet.",
@@ -2546,6 +2550,10 @@
     "Species.borg.name": "Borg",
     "Species.borg.description": "Borg is not something that a person is born to, but rather something that they are forced to become — though for infants and children assimilated by the Collective, they may have little or no memory of any other life. The Borg meld biology with technology, and a drone will have countless implants, the result of both invasive surgery and aggressive nanotechnology. As of 2371, only a single individual has ever been removed from the Borg Collective — Jean-Luc Picard, who was captured only days earlier, meaning that his implants were less extensive than those of someone assimilated years or decades before. Borg NPCs are all mixed-species characters — their original species, and their new reality as part of the Collective",
     "Species.borg.traitDescription": "Borg are extremely strong and resilient, owing to their technologically-enhanced physiology. They lack self-determination and intuition, relying on directives and protocols from the Collective, and the gestalt consciousness of countless other Borg drones.",
+
+    "Species.breen.name": "Breen",
+    "Species.breen.description": "A species with an isolationist, militaristic culture, the **Breen** have been an enigma for centuries; indeed, few had seen a Breen outside of their refrigeration suits and lived to tell of it prior to the 32nd century. Their territory is deep within the Alpha Quadrant, beyond the Cardassian Union and Ferengi Alliance. Contact with the Federation and other Beta Quadrant polities is rare and typically violent, though they are regarded as secretive and untrustworthy even to the Romulans, who have a saying: “Never turn your back on a Breen.”\n\nDuring the 24th century, little was known of the Breen Confederacy, but they were considered to be one of the most warlike cultures in the Galaxy. They came into wider contact with the other powers of the Alpha and Beta Quadrants when they aligned themselves with the Dominion. Centuries later, the Breen Imperium was similarly militaristic, but also highly territorial and expansionist, though just as secretive about themselves. Among the few facts known was that some Breen technology was based on biotechnology, cultivating engineered strains of algae to possess properties similar to other useful materials, and allowing them to grow technological components.",
+    "Species.breen.traitDescription": "Breen physiology is semi-gelatinous in nature, but with effort and concentration they can assume a more solid form with a hardened outer shell, though they dislike doing this: young Breen are taught that solid state was a sign of weakness. Breen are accustomed to extremely low temperatures, and they customarily wear all-concealing refrigeration suits. Breen do not have blood or other bodily fluids, only their natural gelatinous substance, and few non-Breen have any understanding of Breen physiology. The thoughts and emotions of Breen are not detectable by telepaths or empaths.",
 
     "Species.bynar.name": "Bynar",
     "Species.bynar.exampleValue": "There are only ever two choices",
@@ -2766,6 +2774,10 @@
 
     "SpeciesAbility.andorian.description": "When you succeed at a task where you purchased one or more d20s by adding to Threat, you generate 1 bonus Momentum for each d20 purchased. Bonus Momentum may not be saved.",
 
+    "SpeciesAbility.android": "Synthetic Life-Form",
+
+    "SpeciesAbility.android.description": "You are not an organic being, and are not as vulnerable to physical harm: you have +1 Protection against Stun Attacks. You recover from injuries with Engineering tasks, rather than Medicine. In addition, you add 1 automatic success to any task roll which uses your Reason, due to your powerful positronic brain.",
+
     "SpeciesAbility.aenar": "Telepathic",
 
     "SpeciesAbility.aenar.description": "Aenar can sense the minds of other living creatures in their vicinity, and can read the thoughts of others, though they have strict taboos about reading a mind without permission. ",
@@ -2782,6 +2794,10 @@
 
     "SpeciesAbility.ardanan.description": "Your ancestors sought to bioengineer a heightened intelligence by interconnecting parts of the brain which are normally disconnected. This connectivity allows Ardanans to make intuitive leaps that might not be so readily apparent to others. When you attempt a task involving Reason, you may discard one d20 before the roll, and gain one automatic success instead.",
 
+    "SpeciesAbility.aurelian": "Airborne Avian",
+
+    "SpeciesAbility.aurelian.description": "Your powerful wings allow you to maneuver easily through the air. When you take a _Movement_ minor action or _Sprint_ major action, you may choose to fly; if you fly, you move one additional zone, and you ignore any difficult terrain or obstacles on the ground. However, weather conditions, such as strong winds, can act as difficult terrain when you fly. When in any enclosed space, including the interior of a starship, increase the complication range of all tasks you attempt by 2, as you feel agitated and claustrophobic.",
+
     "SpeciesAbility.bajoran": "The Will of the Prophets",
 
     "SpeciesAbility.bajoran.description": "You may find strength in the Prophets even when the situation is dire: once per adventure, when the gamemaster spends 3 or more Threat at once, you gain 1 Determination.",
@@ -2790,13 +2806,77 @@
 
     "SpeciesAbility.betazoid.description": "Betazoids can sense the minds of living creatures in their vicinity and can read the thoughts and emotions of others. Each Betazoid has either **Telepathy** or **Empathy**. Part-Betazoid characters generally have Empathy rather than Telepathy.",
 
+    "SpeciesAbility.barzan": "Unyielding Resolve",
+
+    "SpeciesAbility.barzan.description": "You give 100% as often as you are able, and you will not allow setbacks to deter you. When you spend a point of Determination on a task roll, if the task still fails, you regain that spent Determination.",
+
+    "SpeciesAbility.benzite": "All Fingers and Thumbs",
+
+    "SpeciesAbility.benzite.description": "Your hands consist of four fingers and two thumbs each, and you’re used to operating technology swiftly and with precision. When you succeed at a task which would require extremely fine motor skills, you generate 1 bonus Momentum. Bonus Momentum cannot be saved.",
+
+    "SpeciesAbility.betelgeusian": "Hardened for Battle",
+
+    "SpeciesAbility.betelgeusian.description": "Your body is hardened against harm, and your mind is hardened against fear. You have +1 Protection against any ranged attack from a phaser, disruptor, or comparable energy weapon. In addition, whenever you would suffer a trait or other effect representing fear or panic, you may suffer 1 Stress to ignore that trait or effect.",
+
+    "SpeciesAbility.bolian": "Amiable",
+
+    "SpeciesAbility.bolian.description": "You’re outspoken and sociable, always with a supportive word to ease your comrades’ burdens. Whenever you succeed at a Presence-based task roll, the Momentum cost to remove an ally’s Stress is reduced to 1. Whenever you and an ally both rest, and spend a meaningful part of that rest together (the entire breather, at least half of a break, or at least one hour of a longer rest), you each recover 1 more Stress than normal.",
+
+    "SpeciesAbility.breen": "Gelatinous Form",
+
+    "SpeciesAbility.breen.description": "In your natural gelatinous state, you may reroll 1d20 on any task roll using Control. You may assume a solid state by suffering 2 Stress, gaining 1 Protection, but losing the reroll from your gelatinous form. While wearing a refrigeration suit, you gain 1 Protection without the need to suffer Stress, and may remain in your gelatinous state.",
+
+    "SpeciesAbility.brikar": "Rock Hard",
+
+    "SpeciesAbility.brikar.description": "Your body is huge, heavy, and rocky. You have 2 Protection against all attacks. However, you add 1 Threat whenever you take an action where your mass and size would be a potential risk.",
+
+    "SpeciesAbility.bynar": "Bynar Pair",
+
+    "SpeciesAbility.bynar.description": "You are a *Cyborg*, and may select cybernetic talents. You always operate in a pair with another Bynar who has been with you since you were both  children. Create a Bynar supporting character as your partner; this supporting character starts with one value, which must either be the same as one of yours, or directly reference it. You do not need to use Crew Support to introduce this supporting character each session, and they always accompany you.",
+
+    "SpeciesAbility.caitian": "Feline Form",
+
+    "SpeciesAbility.caitian.description": "You have a prehensile tail, and retractable claws in your fingertips, useful for climbing and hunting. Whenever you attempt a task to maintain your balance or to climb, the first d20 you purchase is free. Further, you may grasp objects with your tail, though not as tightly or easily as with your hands. Due to your claws, your unarmed attacks may inflict both Stun and Deadly Injuries.",
+
     "SpeciesAbility.cardassian": "Healthy Suspicions",
 
     "SpeciesAbility.cardassian.description": "You may add 1 Threat when interacting with an NPC to ask the gamemaster if that NPC is lying about something. The gamemaster must answer either Yes or No, and this answer must be accurate, but the gamemaster does not have to specify what the NPC is lying about.",
 
+    "SpeciesAbility.cetacean": "Aquatic Mammal",
+
+    "SpeciesAbility.cetacean.description": "You can move freely and without hindrance through the water. You may ignore any traits or injuries caused by exposure to extremely cold aquatic conditions. However, when on land you are always considered to be Prone",
+
+    "SpeciesAbility.chameloid": "Natural Shapeshifter",
+
+    "SpeciesAbility.chameloid.description": "You commonly exist in a form other than your natural state. At the start of a mission, you gain an additional trait to reflect the form you’ve chosen, which may be the form of a specific individual. You may suffer 1 Stress as a minor action once per turn to change this form. It is difficult requiring a successful Difficulty 3 task) to detect a disguised Chameloid without technological assistance.",
+
+    "SpeciesAbility.changeling": "Morphogenic Matrix",
+
+    "SpeciesAbility.changeling.description": "You may suffer 1 Stress as a minor action once per turn to assume a different form, gaining one additional trait to reflect whatever form you have chosen. You cannot yet mimic a specific individual, and you must revert to a liquid state for a few hours after sixteen hours in a solid form. While in an alternate form, it is next to impossible (requiring a Difficulty 5 task roll) to detect a hidden Changeling. Your body is highly resistant to physical harm and energy weapons, giving you Protection 2, and your thoughts and emotions cannot be detected by telepaths or empaths. You are immune to extremes of heat, cold, and exposure to vacuum.",
+
+    "SpeciesAbility.deltan": "Empath",
+
+    "SpeciesAbility.deltan.description": "You have the Empathy talent. You may develop this ability further by selecting the Telepathy talent during the course of character advancement.",
+
     "SpeciesAbility.denobulan": "Breadth of Study",
 
     "SpeciesAbility.denobulan.description": "You may select two additional focuses.",
+
+    "SpeciesAbility.edosian": "Trilateral Symmetry",
+
+    "SpeciesAbility.edosian.description": "Edosians are capable, with effort and practice, of compartmentalizing their thoughts and operating each arm completely independently, performing multiple complex tasks simultaneously. When you spend Momentum on the Swift Action option, you may suffer 1 Stress to ignore the normal Difficulty increase of your second action. You may also suffer 1 Stress to ignore the Difficulty increase from the Override starship conflict action.",
+
+    "SpeciesAbility.efrosian": "Visual Spectrum",
+
+    "SpeciesAbility.efrosian.description": "An Efrosian can see beyond the normal Human visual spectrum, from some infrared to ultraviolet light. Any task in which detecting those parts of the spectrum is useful reduce in Difficulty by 1. Location or situation traits such as low light levels, do not affect the Difficulty of tasks for an Efrosian.",
+
+    "SpeciesAbility.elAurian2e": "Transtemporal Awareness",
+
+    "SpeciesAbility.elAurian2e.description": "You are aware of shifts and changes in the fabric of space-time in ways that few other beings are. Whenever there is a phenomenon present in a scene which was caused by alterations to the timeline, or the influence of alternate dimensions or extradimensional entities, the gamemaster must immediately inform you that something is wrong (though they do not have to specify what). You may add 1, 2, or 3 Threat to ask that many questions (as per _Obtain Information_) to try and discern details about the phenomenon.",
+
+    "SpeciesAbility.exocomp": "Technological Life",
+
+    "SpeciesAbility.exocomp.description": "You are not an organic being, and are not vulnerable to physical harm as they are: you have +1 Protection against Stun Attacks. You recover from injuries with Engineering, rather than Medicine. In addition, your onboard micro-replicator allows you to produce small tools and one-handed items for your own use with opportunity cost 1 by suffering 1 Stress for each such item created. Due to your lack of hands, you cannot use tools made for other creatures.",
 
     "SpeciesAbility.ferengi": "The Great Material Continuum",
 
@@ -2825,6 +2905,10 @@
     "SpeciesAbility.romulan": "Paranoia",
 
     "SpeciesAbility.romulan.description": "When an action scene begins, if the gamemaster wishes an adversary to take the first turn, they must spend 1 Threat more than normal.",
+
+    "SpeciesAbility.tamarian": "Sokath, His Eyes Uncovered",
+
+    "SpeciesAbility.tamarian.description": "You derive wisdom and understanding from the lessons and stories of the past. When you make a reference to a previous use of one of your values, you may also add 1 Momentum to the group pool.",
 
     "SpeciesAbility.tellarite": "Sturdy",
 
@@ -3013,6 +3097,10 @@
     "Talent.advisor.description": "Whenever you assist another character using your Command Discipline, the character being assisted may re-roll one d20.",
     "Talent.advisor.description2e": "Whenever you Assist another character using your Command, the assisted character may re-roll one d20.",
 
+    "Talent.airborneAdvantage": "Airborrne Advantage",
+
+    "Talent.airborneAdvantage.description": "You’re quick to take advantage of the fact that most other sapient species are stuck on the ground and seldom look up. When you make an attack against an enemy who is below you, you may reroll 1d20, and you score 1 bonus Momentum if your attack succeeds. Bonus Momentum cannot be saved.",
+
     "Talent.aLittleMorePower": "More Power",
 
     "Talent.aLittleMorePower.description": "Whenever you succeed at an Engineering Task aboard your own ship, you may spend one Momentum to regain one spent Power.",
@@ -3042,6 +3130,10 @@
     "Talent.annularConfinementJacketing": "Annular Confinement Jacketing",
 
     "Talent.annularConfinementJacketing.description2e": "The ship may make an attack with its energy weapons while at warp; however, the range of these attacks is limited to Close range, and the Difficulty for the attack is increased by 1.",
+
+    "Talent.anEyeOnTheHorizon": "An Eye on the Horizon",
+
+    "Talent.anEyeOnTheHorizon.description": "The Aurelians’ keen eyesight allows them to discern distant details when flying overhead. This mindset often influences Aurelians in other ways, giving them a tendency to try and anticipate problems a long way off. Each time you or another player character in the same scene as you attempt a task roll where the complication range has been increased, you may spend 1 Momentum to negate that complication range increase: the complication range of that task reverts to normal (i.e., a complication arises on a result of 20).",
 
     "Talent.anyKnowledgeOfYourActions": "Any Knowledge of Your Actions",
 
@@ -3106,6 +3198,10 @@
     "Talent.bedsideManner": "Bedside Manner",
 
     "Talent.bedsideManner.description2e": "When you succeed at a Medicine task to heal an Injury, you may immediately remove a negative trait from the patient, even if that trait was unrelated to the Injury being treated. In addition, when you attempt a Reputation Check, add one additional positive influence.",
+
+    "Talent.biosyntheticConstruction": "Biosynthetic Construction",
+
+    "Talent.biosyntheticConstruction.description": "Though you are an android, your construction is almost indistinguishable from that of a living creature. You gain one additional species trait: this is the species you appear to be. To determine that you are an android, an observer must examine you closely with a tricorder or similar tool, and succeed at a **Reason + Engineering** or **Reason + Medicine** task with a Difficulty of 3. Your injuries may be healed using either Engineering or Medicine.",
 
     "Talent.bold": "Bold",
 
@@ -3239,6 +3335,10 @@
     "Talent.coldReading": "Cold Reading",
 
     "Talent.coldReading.description2e": "When you succeed at a task during social conflict, you generate 1 bonus Momentum which must be used for the Obtain Information Momentum spend to gain knowledge about one of the people you’re interacting with. If the  social conflict with that person involves an extended task, you may ignore any Resistance the extended task has.",
+
+    "Talent.coldWarrior": "Cold Warrior",
+
+    "Talent.coldWarrior.description": "Your use of a refrigeration suit is a great asset. When you attempt a task to conceal yourself from technological forms of detection, you may select one d20 and treat it as though you had rolled a 1, as your refrigeration suit masks your thermal signature and disrupts other signals you may give off.",
 
     "Talent.collaboration": "Collaboration",
 
@@ -3428,6 +3528,10 @@
 
     "Talent.diplomaticSuites.soloDescription": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions.",
     "Talent.diplomaticSuites.description2e": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions, including making environmental adjustments to make alien diplomats more comfortable.\n\nWhen hosting negotiations, members of the crew may be assisted by the ship’s **Computers + Command** or **Structure + Command**.",
+
+    "Talent.disregardForHardship": "Disregard for Hardship",
+
+    "Talent.disregardForHardship.description": "You are ruthless and determined, and hold little regard for the pain it takes to achieve your goals. Whenever you use a value or Directive positively, recover 4 Stress. You may regain Stress in this way even if you are Fatigued.",
 
     "Talent.dockingCapacity": "Docking Capacity",
 
@@ -3950,6 +4054,10 @@
 
     "Talent.lifeLessons.description": "Wisdom is the aftereffect of experience, and you’ve become adept at using your experiences to guide others. Whenever you use one of your values to gain or spend Momentum, and make a call back to a previous adventure in which you used that value, you may immediately add 3 Momentum to the group pool.",
 
+    "Talent.listener": "Listener",
+
+    "Talent.listener.description2e": "Even among a species known for listening to others, you’re practiced at gleaning insights from the smallest interactions. Once per scene, when you have observed or conversed with another person, you may spend 1 Momentum (Immediate) to ask one question about them, as per Obtain Information. This question must be about their mental state, emotions, or a dilemma they are currently grappling with. Further, if a character spends a breather or break rest talking to you about their problems, they recover 1 additional Stress.",
+
     "Talent.luckyServiceRecord": "Lucky",
 
     "Talent.luckyServiceRecord.description2e": "For any task in which the Lucky Ship assists, a player can treat the ship as their Value for the purposes of spending Determination.",
@@ -4195,6 +4303,10 @@
     "Talent.polarizedHullPlatingSpecialRule": "Polarized Hull Plating",
 
     "Talent.polarizedHullPlatingSpecialRule.description": "Vessels of this spaceframe lack deflector shields common to many other ships, and instead rely upon polarization of the hull plating to resist damage. The ship’s Shields track instead represents the state of the ship’s polarized hull. The ship’s Shields are equal to its Structure, with no additional modifiers. However, these do not count as shields for the purposes of blocking transporter use.",
+
+    "Talent.polyalloyConstruction": "Duranium Polyalloy Construction",
+
+    "Talent.polyalloyConstruction.description2e": "Your physical form has been constructed from extremely durable materials, and your resilience and physical capabilities are formidable. You have +1 Protection against all attacks (this stacks with the Protection gained from your species ability). In addition, you add 1 automatic success to all task rolls using your Fitness.",
 
     "Talent.positiveReinforcement": "Positive Reinforcement",
 
@@ -4647,6 +4759,10 @@
     "Talent.toolUser": "Tool User",
 
     "Talent.toolUser.description2e": "While not sentient or self-aware, these creatures have a nervous system advanced enough to be able to manipulate the environment somehow in their favor. These creatures can be taught how to use simple devices or tools, or perhaps can learn through observation.",
+
+    "Talent.touchedTheNexus": "Touched the Nexus",
+
+    "Talent.touchedTheNexus.description": "In 2293, you and 46 other El-Aurians aboard the S.S. Lakul were rescued from an extradimensional energy ribbon known as the **Nexus** by the _U.S.S. Enterprise-B_. While you were physically pulled from the Nexus by the Enterprise’s transporters, an echo of you still lingers within the Nexus: a tiny piece of yourself left behind which you remain aware of. This has heightened your awareness of changes in time and space: when you use your Transtemporal Awareness ability, the first question you ask is free, and you may purchase up to two additional questions by adding Threat.",
 
     "Talent.tough": "Tough",
 

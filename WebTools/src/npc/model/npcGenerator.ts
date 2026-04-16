@@ -676,6 +676,8 @@ export class NpcGenerator {
                     character.typeDetails = new AlliedMilitaryDetails(new AlliedMilitary("Tzenkethi Coalition", AlliedMilitaryType.TzenkethiCoalition, [ Species.Tzenkethi ]), "Tzenkethi Coalition");
                 } else if (specialization.id === Specialization.TholianWarrior) {
                     character.typeDetails = new AlliedMilitaryDetails(new AlliedMilitary("Tholian Assembly", AlliedMilitaryType.TholianAssembly, [ Species.Tholian ]), "Tholian Assembly");
+                } else if (specialization.id === Specialization.BreenThot || specialization.id === Specialization.BreenWarrior) {
+                    character.typeDetails = new AlliedMilitaryDetails(new AlliedMilitary("Breen Confederacy", AlliedMilitaryType.BreenConfederacy, [ Species.Breen ]), "Breen Confederacy");
                 }
                 break;
             case NpcCharacterType.Civilian:
@@ -911,6 +913,8 @@ export class NpcGenerator {
             ranks = [ RanksHelper.instance().getRank(Rank.Gul) ];
         } else if (specialization.id === Specialization.TholianWarrior) {
             ranks = [];
+        } else if (specialization.id === Specialization.BreenThot) {
+            ranks = [RanksHelper.instance().getRank(Rank.Thot)];
         }
 
         ranks = ranks.filter(r => r.id !== Rank.Yeoman1stClass

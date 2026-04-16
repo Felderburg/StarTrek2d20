@@ -32,7 +32,7 @@ export class SpeciesModel implements ISpecies {
     attributes: Attribute[];
     trait: string;
     private traitDescription: string;
-    exampleValue: string;
+    exampleValues: string[];
     talents: TalentModel[];
     nameDescription: string;
     nameSuggestions: NameModel[];
@@ -40,7 +40,11 @@ export class SpeciesModel implements ISpecies {
     secondaryAttributes: Attribute[];
     isMixedSpeciesAllowed: boolean;
 
-    constructor(id: Species, name: string, eras: Era[], sources: Source[], description: string[], attributes: Attribute[], trait: string, traitDescription: string, exampleValue: string, talents: TalentModel[], nameDescription: string, nameSuggestions: NameModel[], secondaryAttributes: Attribute[] = [], isMixedSpeciesAllowed: boolean = true) {
+    constructor(id: Species, name: string, eras: Era[], sources: Source[], description: string[],
+            attributes: Attribute[], trait: string, traitDescription: string,
+            exampleValues: string|string[], talents: TalentModel[], nameDescription: string,
+            nameSuggestions: NameModel[], secondaryAttributes: Attribute[] = [],
+            isMixedSpeciesAllowed: boolean = true) {
         this.id = id;
         this.name = name;
         this.eras = eras;
@@ -48,7 +52,11 @@ export class SpeciesModel implements ISpecies {
         this.attributes = attributes;
         this.trait = trait;
         this.traitDescription = traitDescription;
-        this.exampleValue = exampleValue;
+        if (Array.isArray(exampleValues)) {
+            this.exampleValues = exampleValues;
+        } else {
+            this.exampleValues = [ exampleValues ];
+        }
         this.talents = talents;
         this.nameDescription = nameDescription;
         this.nameSuggestions = nameSuggestions;
@@ -130,10 +138,10 @@ export class SpeciesModel implements ISpecies {
         return key === localized ? this.localizedTraitDescription : localized;
     }
 
-    get localizedExampleValue() {
+    get localizedExampleValues(): string[] {
         const key = makeKey('Species.', this.speciesKeyName, ".exampleValue");
         const localized = i18next.t(key);
-        return key === localized ? this.exampleValue : localized;
+        return key === localized ? this.exampleValues : [ localized ];
     }
 }
 
@@ -626,7 +634,7 @@ class _Species {
             "Soong-type Android",
             "The physical and mental capabilities of a Soong-type android are superior to that of most organic or cybernetic life-forms, allowing them to ignore or resist effects like hard vacuum, disease, radiation, oxygen deprivation, telepathy, or biochemical imbalance. However, some environmental conditions, such as highly-ionized atmospheres, and electromagnetic fields, can have a severe effect. Further, Soong-type androids do not naturally have the capacity for emotions, requiring additional hardware to process and experience any feelings. The legal personhood of Soong-type androids is somewhat disputed, though a landmark case involving Lieutenant Commander Data establishes their right to self-determination.",
             "Ethical Programming Defines My Thinking",
-            [TalentsHelper.getTalent("Polyalloy Construction"), TalentsHelper.getTalent("Positronic Brain")],
+            [TalentsHelper.getTalent("Polyalloy Construction"), TalentsHelper.getTalent("Positronic Brain"), TalentsHelper.getTalent("Biosynthetic Construction")],
             "",
             []),
         [Species.Reman]: new SpeciesModel(
@@ -713,7 +721,7 @@ class _Species {
             "Aurelian",
             "Aurelians are capable of flight, thanks to large and muscular wings. This allows them to quickly traverse distances and avoid obstacles on the ground. They also possess keen sight and a natural directional sense based on the magnetic poles of planetary bodies. Nearly all Aurelians suffer from claustrophobia, though the severity of the affliction differs from individual to individual.",
             "Soar High and Achieve Greatness",
-            [TalentsHelper.getTalent("Aerial Combat"), TalentsHelper.getTalent("Keen Senses")],
+            [TalentsHelper.getTalent("Aerial Combat"), TalentsHelper.getTalent("Keen Senses"), TalentsHelper.getTalent("Airborne Advantage"), TalentsHelper.getTalent("An Eye on the Horizon")],
             "Aurelian names usually comprise song-like syllables with the individual’s name first and the familial or clan name second. The familial name, however, is included for tradition’s sake only – as clan divisions have long since been abolished on Aurelia.",
             [
                 { type: "Female", suggestions: "Manika-Esp, Sutrial-Jon, Loisma-Ne, Pipadi-Par, Inroha-Fe, Evaasa-Al" },
@@ -1977,6 +1985,44 @@ class _Species {
             "",
             []),
 
+        // Species Sourcebook
+        [Species.Breen]: new SpeciesModel(
+            Species.Breen,
+            "Breen",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [""],
+            [Attribute.Control, Attribute.Fitness, Attribute.Insight],
+            "",
+            "",
+            [
+                "I do not care what happens as long as I achieve my objectives",
+                "Your pain does not concern me",
+                "My regard for you lasts only as long as I benefit",
+                "My code of honor is for me and mine; I’m not obliged to treat you honorably"
+            ],
+            [TalentsHelper.getTalent("Cold Warrior"), TalentsHelper.getTalent("Disregard for Hardship")],
+            "",
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Arisar, Gor, Gren, L’ak, Lok, Pran, Rong, Ruhn, Sar, Tahal, Trel, Vart, Vog, Za’dag"
+                }
+            ]),
+        [Species.ElAurian_2E]: new SpeciesModel(
+            Species.ElAurian_2E,
+            "El-Aurian",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Insight, Attribute.Reason, Attribute.Presence],
+            "El-Aurian",
+            "",
+            "",
+            [TalentsHelper.getTalent("Listener"), TalentsHelper.getTalent("Touched the Nexus")],
+            "",
+            []),
+
 
         [Species.Nausicaan]: new SpeciesModel(
             Species.Nausicaan,
@@ -2258,6 +2304,13 @@ class _Species {
                 return true;
             }
         }
+
+        if (hasSource(Source.SpeciesSourcebook)) {
+            if (species === Species.ElAurian) {
+                return true;
+            }
+        }
+
 
         return false;
     }

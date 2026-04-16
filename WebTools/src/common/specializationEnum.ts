@@ -43,6 +43,9 @@ export enum Specialization {
     TzenkethiSoldier,
     TholianWarrior,
 
+    BreenThot,
+    BreenWarrior,
+
     Scientist,
     Bureaucrat,
     Colonist,

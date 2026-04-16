@@ -1,4 +1,4 @@
-import {Character } from '../common/character';
+import {Character, Division } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import {AliasModel} from './aliases';
 import {Attribute} from './attributes';
@@ -26,6 +26,8 @@ import { Role } from './roles';
 import { isFlagRank } from '../token/model/rankHelper';
 import { localizedFocus } from '../components/focusHelper';
 import { Station } from '../common/station';
+import { SpeciesHelper } from './species';
+import { makeKey } from '../common/translationKey';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -90,7 +92,19 @@ enum TalentCategory {
     Enhancement,
     Starship,
     Starbase,
-    Esoteric
+    Esoteric,
+    Species,
+    Department
+}
+
+export class TalentCategorization {
+    readonly category: TalentCategory;
+    readonly type?: Species|Career|Department;
+
+    constructor(category: TalentCategory, type?: Species|Career|Department) {
+        this.category = category;
+        this.type = type;
+    }
 }
 
 class NpcTypePrerequisite implements IConstructPrerequisite {
@@ -678,11 +692,11 @@ export class TalentModel implements ITalent {
     private description: string;
     prerequisites: IConstructPrerequisite[];
     maxRank: number;
-    category: string;
+    category: string|TalentCategorization;
     aliases: AliasModel[];
     specialRule: boolean;
 
-    constructor(name: string, desc: string, prerequisites: IConstructPrerequisite[], maxRank: number = 1, category?: string, specialRule: boolean = false, ...aliases: AliasModel[]) {
+    constructor(name: string, desc: string, prerequisites: IConstructPrerequisite[], maxRank: number = 1, category?: string|TalentCategorization, specialRule: boolean = false, ...aliases: AliasModel[]) {
         this.name = name;
         this.description = desc;
         this.prerequisites = prerequisites;
@@ -712,6 +726,18 @@ export class TalentModel implements ITalent {
             }
         } else {
             return this.name;
+        }
+    }
+
+    get categoryString(): string {
+        if (this.category instanceof TalentCategorization) {
+            if (this.category.category === TalentCategory.Species) {
+                return Species[this.category.type];
+            } else {
+                return TalentCategory[this.category.category];
+            }
+        } else {
+            return this.category;
         }
     }
 
@@ -897,16 +923,21 @@ export class TalentModel implements ITalent {
         return prerequisites;
     }
 
-    get localizedCategory() {
-        let categoryEnum = undefined;
-        for (let i = 0; i < TalentCategory.Esoteric; i++) {
-            if (this.category === TalentCategory[i]) {
-                categoryEnum = TalentCategory[i];
+    get localizedCategoryString(): string {
+        let categoryEnum: TalentCategory = undefined;
+        if (this.category instanceof TalentCategorization) {
+            categoryEnum = this.category.category;
+        } else {
+            for (let i = 0; i < TalentCategory.Esoteric; i++) {
+                if (this.categoryString === TalentCategory[i]) {
+                    categoryEnum = i;
+                }
             }
         }
-        if (categoryEnum != null) {
-            let key = "TalentCategory." + toCamelCase(categoryEnum);
-            return i18next.t(key);
+        if (this.category instanceof TalentCategorization && this.category.category === TalentCategory.Species) {
+            return SpeciesHelper.getSpeciesByType(this.category.type as Species).localizedName;
+        } else if (categoryEnum != null && categoryEnum !== TalentCategory.Species && categoryEnum !== TalentCategory.Department) {
+            return i18next.t(makeKey("TalentCategory.", TalentCategory[categoryEnum]));
         } else {
             let match = DepartmentsHelper.instance.getDepartments().filter(s => Department[s] === this.category);
             if (match.length) {
@@ -914,14 +945,14 @@ export class TalentModel implements ITalent {
                 return i18next.t(key);
             } else {
                 // assume that it's a species
-                let key = "Species." + toCamelCase(this.category) + ".name";
-                if (this.category === "Rigellian Jelna") {
+                let key = "Species." + toCamelCase(this.categoryString) + ".name";
+                if (this.categoryString === "Rigellian Jelna") {
                     key = "Species.jelna.name";
-                } else if (this.category === "Rigellian Chelon") {
+                } else if (this.categoryString === "Rigellian Chelon") {
                     key = "Species.chelon.name";
                 }
                 let result = i18next.t(key);
-                return result === key ? this.category : result;
+                return result === key ? this.categoryString : result;
             }
         }
     }
@@ -1834,15 +1865,20 @@ export class Talents {
             new TalentModel(
                 "Polyalloy Construction",
                 "While appearing extremely lifelike – even simulating breathing, blinking, and other autonomic processes – a Soong-type android is not organic life. They are highly resistant to environmental conditions, reducing the Difficulty of Tasks to resist extremes of heat and cold by 2, and they are immune to the effects of suffocation, hard vacuum, starvation, and thirst. Further, their sturdy construction grants them Resistance 1. Further, while they can detect damage and dangerous conditions, they do not experience real pain, gaining +3 Resistance against non-lethal attacks, and being entirely immune to any penalties or hindrances caused by pain.",
-                [new SpeciesPrerequisite(Species.Android, false), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.TNG)],
+                [
+                    new SpeciesPrerequisite(Species.Android, false),
+                    new EraPrerequisite(Era.NextGeneration),
+                    new SourcePrerequisite(Source.TNG),
+                    new NotTalentPrerequisite("Biosynthetic Construction")
+                ],
                 1,
-                "Soong-type Android"),
+                new TalentCategorization(TalentCategory.Species, Species.Android)),
             new TalentModel(
                 "Positronic Brain",
                 "A Soong –type android is normally created with a positronic brain that allows it to process information made available to them considerably quicker than a Human. The character gains one automatic success on all Tasks using Reason, in addition to any generated by rolling.",
-                [new SpeciesPrerequisite(Species.Android, false), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.TNG)],
+                [new SpeciesPrerequisite(Species.Android, false), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.TNG), new Version1Prerequisite()],
                 1,
-                "Soong-type Android"),
+                new TalentCategorization(TalentCategory.Species, Species.Android)),
             new TalentModel(
                 "Cold Shoulder",
                 "Strong self-discipline and conservative cultural values prevent Arbazan from being susceptible to their baser desires. Any character attempting to use their physical attractiveness or seductive nature against an Arbazan during a Social Conflict increases their Difficulty by 1.",
@@ -1870,13 +1906,21 @@ export class Talents {
             new TalentModel(
                 "Aerial Combat",
                 "While most Aurelians avoid confrontation, they understand that sometimes it is necessary for survival. Some Aurelians have learned to take advantage of their natural flying ability. Characters with this Talent may use a Minor Action to move to any Zone within Long Range instead of Medium, and ignore any Difficulty increases associated with terrestrial terrain – however, they increase the Difficulty of any weather-related hazards by 1. Characters with this Talent are also considered to have the Advantage when making an attack against ground-based Targets.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Aurelian, false)],
+                [
+                    new SourcePrerequisite(Source.AlphaQuadrant),
+                    new SpeciesPrerequisite(Species.Aurelian, false),
+                    new Version1Prerequisite()
+                ],
                 1,
                 "Aurelian"),
             new TalentModel(
                 "Keen Senses",
                 "Aurelians are known for their keen vision, hearing, and directional sense. Characters with this Talent reduce the Difficulty due to Distance of Perception Tasks by 1.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Aurelian, true)],
+                [
+                    new SourcePrerequisite(Source.AlphaQuadrant),
+                    new SpeciesPrerequisite(Species.Aurelian, true),
+                    new Version1Prerequisite()
+                ],
                 1,
                 "Aurelian"),
             new TalentModel(
@@ -2934,55 +2978,55 @@ export class Talents {
                 "",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 TALENT_NAME_CAUTIOUS,
                 "",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 TALENT_NAME_COLLABORATION,
                 "",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Constantly Watching",
                 "When you attempt a Task to detect danger or hidden enemies, reduce the Difficulty by 1.",
                 [],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Dauntless",
                 "Whenever you attempt a Task to resist being intimidated or threatened, you may add a bonus d20 to your dice pool.",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Personal Effects",
                 "The character possesses some significant and uncommon item or device which is not part of Starfleet’s standard issue, but which is nevertheless useful for missions. The character may select one item with an Opportunity Cost of 2, or two items with an Opportunity Cost of 1 each. Neither items may have an Escalation Cost greater than 1.",
                 [new MainCharacterPrerequisite()],
                 10,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Studious",
                 "Whenever you spend one or more Momentum to Obtain Information, you may ask one additional question (in total, not per Momentum spent on Obtain Information).",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Technical Expertise",
                 "Whenever you attempt a Task assisted by the ship’s Computers or Sensors, you may re-roll one d20 (which may be the ship’s die).",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Tough",
                 "Whenever you Avoid an Injury, the cost is reduced by 1, to a minimum of 1.",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 TALENT_NAME_AUGMENTED_ABILITY,
                 "You gain the Augment Trait. Choose a single Attribute when this Talent is selected. You gain the Extraordinary Attribute 1 special rule for the chosen Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task. This Talent may be selected multiple times, once for each Attribute.",
@@ -3012,97 +3056,97 @@ export class Talents {
                 "You have plans and contingencies which are set into motion whenever something goes awry. Whenever you or an ally fails a task, you may add 1 point to the group’s Momentum pool.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Control, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Calm and Logical",
                 "You are a highly rational individual, with a disciplined mind that can set aside your feelings to view things as objectively as possible. You may still have to deal with those feelings later, however. When you would gain a trait or complication which represents a mood or emotional state, you may immediately remove that trait by adding 1 to Threat.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Reason, 11)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Close-Knit Crew",
                 "You and your crew have bonded through shared adversity, and you all pull together when the situation demands. When a scene begins, if there are fewer points of Momentum in the group pool than there are characters in the scene who possess this talent, immediately add 1 point of Momentum to the group pool.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new MainCharacterPrerequisite()],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Constant Presence",
                 "You’re a regular fixture of away missions and other important work, relied upon by the senior staff for your expertise and judgement. Introducing this Supporting Character in subsequent adventures no longer costs Crew Support, and the Supporting Character gains 1 Determination the first time they are used in an adventure.",
                 [new SourcePrerequisite(Source.PlayersGuide), new SupportingCharacterPrerequisite()],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Extra Effort",
                 "You can push yourself to extremes to succeed, but at a cost. When you attempt a task, you may reduce the Difficulty of the task by 1, to a minimum of 0. However, once the task is completed, you reduce your maximum Stress by 2 for the remainder of the current adventure (after which you can rest sufficiently to return your maximum Stress to its normal value).",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Fitness, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Gut Feeling",
                 "You’ve learned to trust your gut when something doesn’t feel right, and your instincts are rarely wrong. When the gamemaster spends one or more Threat to introduce reinforcements or to cause a Reversal, they must spend 2 additional Threat to do so (2 extra Threat in total, not per reinforcement).",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Insight, 11)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Indefatigable",
                 "You don’t give up, and you don’t let failure deter you. When you fail a task, and attempt that task again during the same scene, reduce the Difficulty of the second attempt (and any subsequent attempts if you still fail) by 1.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Fitness, 11)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Methodical Planning",
                 "You have a clear path to achieving your goals and objectives, and you have a thorough understanding of what you and your allies need to do at each step. When an ally attempts a task which benefits from an advantage or other trait you created based on your plans or strategy, you may assist that ally’s task even if you are not present. In combat, this assistance does not require you to use your task to assist that ally.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Reason, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "No Hesitation",
                 "You know that responding quickly to dangerous situations can be vital, so you are always the first to act. At the start of any round in an action scene, you may add 1 to Threat to take the first turn, regardless of who would otherwise have acted first.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Daring, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "No Pain, No Gain",
                 "You prefer to achieve your goal first, and then deal with the consequences felt along the way. When you fail a task (but not an opposed task) which used your Daring, you may always choose to succeed at a cost.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Daring, 11)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Quick Survey",
                 "You have a way of getting a good impression of a situation with only a moment’s observation. At the start of a scene, you may immediately ask one question, as if you had spent one Momentum on the Obtain Information Momentum spend. The answer can only provide information that you could obtain with your own senses; you cannot gain information from equipment in so short a time.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Insight, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Reassuring",
                 "Your presence is a boon to your comrades, providing them with a little extra confidence when they need it most. When you succeed at a task using your Presence, you may spend Momentum to reassure your allies, so long as they are within communication range of you. It costs 1 Momentum (Repeatable) to reassure an ally, and this effect allows them to ignore a single complication rolled. This cannot be used to ignore complications from succeeding at cost.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Presence, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Second Wind",
                 "You can sometimes draw upon deep reserves of energy and resilience when the situation becomes desperate. You may spend a point of Determination to remove all the Stress you have accumulated. The normal requirements for spending a point of Determination still apply.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Self-Reliant",
                 "While you understand the value of teamwork, you’re just as capable when you’re forced to rely on your own abilities. Whenever you succeed at a task where you did not purchase additional dice by spending Momentum or adding to Threat, you generate bonus Momentum equal to the task’s Difficulty. Bonus Momentum cannot be saved.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Control, 11)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Voice of Authority",
                 "The tone of your voice and the clarity of your words conveys that you are in control, that you are someone who should be listened to. When you assist someone, and use your Presence to do so, you may add 2 to Threat to treat your assistance die as if it had rolled a 1 instead of rolling it.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new AttributePrerequisite(Attribute.Presence, 11)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Well-Informed",
                 "You have contacts everywhere and you listen for news and rumors from far and wide. At the start of a scene, you may add 1 to Threat to ask the gamemaster two questions about the situation or location, as if you had spent Momentum on the Obtain Information spend. The answers you receive will be knowledge you’ve gained from your contacts and the news and rumors you’ve heard.",
                 [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Extra-Sensory Perception",
                 "You have an ability to perceive things beyond the normal limits of humanoid senses, allowing you to gain knowledge of people, places, and objects beyond your ability to sense them conventionally. This is known as Extra-Sensory Perception, or ESP. It is not directly under your control, but instead tends to come in the form of accurate guesses, strong feelings, or flashes of insight. Such sensitivity often leaves you vulnerable to psychic dangers as well. At any point during play, you may ask the gamemaster for hints or insights about the current situation, and the gamemaster may similarly offer you information about the current situation that you would not normally be able to determine. Each hint adds 1 point to Threat, and you may always refuse to accept the hints offered.",
@@ -3135,7 +3179,7 @@ export class Talents {
                 "When in your private lab, you automatically receive the advantage: Weapons and Monsters. Increase the complication range of any task by 2 when the advantage is active.",
                 [new SourcePrerequisite(Source.DiscoveryS1S2), new GMsDiscretionPrerequisite()],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "An Answer for Everything",
                 "You relish intense debate, where you can see your opponent’s argument unfold, then turn it back against them. When you succeed at a task as part of an extended task in a social conflict, you may reroll a number of [D] up to your Command score.",
@@ -3143,13 +3187,13 @@ export class Talents {
                     new SourcePrerequisite(Source.FederationKlingonWar)
                 ],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Combat Gunner",
                 "You have trained to operate ground vehicles and mounted weapons. You may use your Conn instead of Security when making an attack with a weapon mounted on a ground vehicle.",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Conn, 4), new DisciplinePrerequisite(Department.Security, 3)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 TALENT_NAME_DEFENSIVE_TRAINING_FED_KLINGON_WAR,
                 "You are adept at staying out of harm’s way during a skirmish. Melee attacks that target you have their Difficulty increased by 1.",
@@ -3158,7 +3202,7 @@ export class Talents {
                     new NotSourcePrerequisite(Source.Core2ndEdition)
                 ],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Demolitionist",
                 "You are skilled in making, setting, and defusing explosive devices. Whenever you attempt an Engineering task to create, set, or to defuse an explosive device or whenever you make an attack with a weapon with the Grenade weapon quality, the first d20 you purchase is free. In addition, you can ignore the first complication on an Engineering task involving explosives once per scene.",
@@ -3167,61 +3211,61 @@ export class Talents {
                     new VersionConstrainedPrerequisite(2, new DisciplinePrerequisite(Department.Engineering, 4)),
                     new DisciplinePrerequisite(Department.Security, 3)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Exploit Weakness",
                 "You are trained in surprising your opponent and taking advantage of any weaknesses they have. When you attempt an attack against an unaware enemy, or an enemy suffering from a trait that represents weakness or vulnerability, the attack gains the Piercing 2 effect.",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new AttributePrerequisite(Attribute.Insight, 10), new DisciplinePrerequisite(Department.Security, 3)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Finesse Strikes",
                 "You are graceful on the field of battle, often dancing around the enemy with relative ease. Once per combat encounter, you may reroll all the [D] for the Stress you inflict when you make a single successful melee attack.",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Security, 4)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Focused Fire",
                 "You are adept at focusing your attacks on the same point of an enemy to inflict massive damage in that area. When you make a successful ranged attack against an enemy that has already been shot this turn and choose to spend Momentum to increase the amount of Stress suffered, you may reroll up to 3[D].",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Security, 4)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Improvised Weapon Training",
                 "You are able to turn the most innocuous items into weapons at a moment’s notice. Once per scene, you may use an item such as a rock, crystal, or shard of metal laying around into a melee weapon. This weapon deals 2[D] + Security damage and is removed at the end of the encounter.",
                 [new SourcePrerequisite(Source.FederationKlingonWar)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Moving Target",
                 "Your training in hit-and-move tactics allows you to confuse attackers as you run to take cover. When you take the Sprint task, the Difficulty of ranged attacks that target you is increased by 1 until your next turn.",
                 [new SourcePrerequisite(Source.FederationKlingonWar)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Nimble (War)",
                 "You are quick on your feet and know how to navigate obstacles around you. When attempting a task to move through difficult terrain or similar physical obstacles, you may reduce the Difficulty of the task by 2. If this reduces the Difficulty to 0, you may move over or around that obstacle as if it wasn’t there.",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new AttributePrerequisite(Attribute.Fitness, 10)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Out of Harm's Way",
                 "You are used to balancing the need to keep a patient still and the need to get them somewhere safer. When attempting to carry or restrain another person, you may use Medicine instead of Security, and you ignore the first complication rolled on any such tasks.",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Security, 2), new DisciplinePrerequisite(Department.Medicine, 3)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Reasoned Discourse",
                 "You are precise and succinct with language, allowing you to convey facts and logical arguments effectively and quickly. When you need to communicate complicated information or argue with logic over emotion, reduce the Difficulty of the task by 1.",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Command, 3)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Rousing Speaker",
                 "You are accustomed to public speaking, stirring the emotions of your audience. When you attempt a task to convince or persuade others with a stirring speech, reduce the Difficulty of the task by 1.",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new AttributePrerequisite(Attribute.Presence, 10)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Saboteur (War)",
                 "You have a knack for breaking things. When attacking an object, structure, or stationary vehicle, you may use your Engineering score instead of Security. In addition, when inflicting Stress on such a target, you can spend 2 Momentum to change any challenge dice to an effect result, up to your Engineering score.",
@@ -3230,13 +3274,13 @@ export class Talents {
                     new DisciplinePrerequisite(Department.Engineering, 5),
                     new DisciplinePrerequisite(Department.Security, 2)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Tracker",
                 "You can follow even the faintest of tracks. When you attempt a task to track animals, people, or ground vehicles, the first d20 you buy is free. If the tracking was done as part of an extended task then the roll gains Progression 1.",
                 [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Conn, 2)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
 
             new TalentModel(
                 "Durability",
@@ -3381,151 +3425,193 @@ export class Talents {
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Go to Ground",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Head on a Swivel",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Just a Scratch",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Life Lessons",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide), new CareersPrerequisite(Career.Veteran)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Make Your Own Luck",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Mercurial",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Objective Focused",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Persistent",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Preparation",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Prestigious Career",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide), new MainCharacterPrerequisite()],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Protector",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide), new AttributePrerequisite(Attribute.Daring, 11)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Ransack",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide), new AttributePrerequisite(Attribute.Daring, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Rivalry",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Shared Joy",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Show-Off",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide), new AttributePrerequisite(Attribute.Presence, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Supportive",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Suppressive Fire",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Swift",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide), new AttributePrerequisite(Attribute.Fitness, 9)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "True North",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Walk It Off",
                 "",
                 [new SourcePrerequisite(Source.ExplorationGuide), new AttributePrerequisite(Attribute.Fitness, 11)],
                 1,
-                "General"),
+                new TalentCategorization(TalentCategory.General)),
+            new TalentModel(
+                "Biosynthetic Construction",
+                "",
+                [
+                    new SourcePrerequisite(Source.SpeciesSourcebook),
+                    new Version2Prerequisite(),
+                    new SpeciesPrerequisite(Species.Android, true),
+                    new NotTalentPrerequisite("Polyalloy Construction")],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Android)),
+            new TalentModel(
+                "Airborne Advantage",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Aurelian, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Aurelian)),
+            new TalentModel(
+                "An Eye on the Horizon",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Aurelian, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Aurelian)),
+            new TalentModel(
+                "Cold Warrior",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Breen, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Breen)),
+            new TalentModel(
+                "Disregard for Hardship",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Breen, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Breen)),
+            new TalentModel(
+                "Touched the Nexus",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Deltan, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Deltan)),
+
+
             new TalentModel(
                 "Engineering/Science Affinity (Unofficial)",
                 "",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Napean, false)],
                 1,
-                "Napean"),
+                new TalentCategorization(TalentCategory.Species, Species.Napean)),
             new TalentModel(
                 "Acidic Touch (Unofficial)",
                 "",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Horta, false)],
                 1,
-                "Horta"),
+                new TalentCategorization(TalentCategory.Species, Species.Horta)),
             new TalentModel(
                 "Hardened Biology (Unofficial)",
                 "",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Horta, false)],
                 1,
-                "Horta"),
+                new TalentCategorization(TalentCategory.Species, Species.Horta)),
             new TalentModel(
                 "Rocky Exterior (Unofficial)",
                 "",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Horta, false)],
                 1,
-                "Horta"),
+                new TalentCategorization(TalentCategory.Species, Species.Horta)),
         ];
 
         private _starshipTalents: TalentModel[] = [
@@ -3535,97 +3621,97 @@ export class Talents {
                 "The vessel’s hull plating has an additional ablative layer that disintegrates slowly under extreme temperatures, such as those caused by energy weapons and torpedo blasts, dissipating the energy, and protecting the ship. This plating is replaced periodically. The ship’s Resistance is increased by 2.",
                 [new StarshipOrStationPrerequisite(), new ServiceYearPrerequisite(2371), new SourcePrerequisite(Source.Core, Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Advanced Research Facilities",
                 "The vessel is equipped with additional laboratories and long-term research facilities, which allow the crew to study phenomena over a protracted period, and thus generate a wealth of useful information. Whenever a character on board the ship attempts a Task to perform research, and they are assisted by the ship’s Computers + Science, the character gains one bonus Momentum, which must be used for the Obtain Information Momentum Spend.",
                 [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Science, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Advanced Sensor Suites",
                 "The vessel’s sensors are amongst the most sophisticated and advanced available in the fleet. Unless the ship’s Sensors have suffered one or more Breaches, whenever a character performs a Task assisted by the ship’s Sensors, they may reduce the Difficulty of the Task by one, to a minimum of 0.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Advanced Shields",
                 "The vessel’s shields are state of the art, using developments that other cultures have not yet learned to overcome, or which simply provide greater protection for the same power expenditure. The ship’s maximum Shields are increased by 5.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Advanced Sickbay",
                 "The ship’s medical ward or sickbay is well equipped, and larger than normal for a ship of this size. The ship gains the Advanced Medical Ward or Advanced Sickbay advantage, which applies to all tasks related to medicine and biology performed within the ward or sickbay. This advantage is lost if the ship’s Computers system is disabled.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.UtopiaPlanitia, Source.Core2ndEdition)],
                 1,
-                "Starship", false, new AliasModel("Advanced Medical Ward/Sickbay", Source.UtopiaPlanitia), new AliasModel("Advanced Medical Ward/Sickbay", Source.CaptainsLog), new AliasModel("Advanced Medical Ward", Source.KlingonCore), new AliasModel("Advanced Sickbay", Source.Core)),
+                new TalentCategorization(TalentCategory.Starship), false, new AliasModel("Advanced Medical Ward/Sickbay", Source.UtopiaPlanitia), new AliasModel("Advanced Medical Ward/Sickbay", Source.CaptainsLog), new AliasModel("Advanced Medical Ward", Source.KlingonCore), new AliasModel("Advanced Sickbay", Source.Core)),
             new TalentModel(
                 "Backup EPS Conduits",
                 "The ship’s power conduits have additional redundancies, which can be activated to reroute power more easily in case of an emergency, keeping it from being lost when the ship is damaged. Whenever the ship would lose one or more Power because of suffering damage, roll [D] for each Power lost. Each Effect rolled prevents the loss of that point of Power.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Command Ship",
                 "The ship has command and control systems allowing it to coordinate easily with allies during a crisis. When a character on the ship succeeds at a Direct Task to create an Advantage, they may always be assisted by the ship’s Communications + Command, and they may confer the Advantage to allied ships or away teams with whom the ship maintains a communications link.",
                 [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Diplomatic Suites",
                 "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions. When hosting negotiations, members of the crew may be assisted by the ship’s Computers + Command or Structure + Command.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Electronic Warfare Systems",
                 "The ship’s communications systems have been speciallydesigned to intercept and disrupt enemy communications in battle. Whenever a character on the ship succeeds at the Intercept or Signals Jamming Tasks, they may spend 2 Momentum to select one additional ship to target.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Emergency Medical Hologram",
                 "The ship’s sickbay is equipped with holoemitters and a stateof-the-art holographic doctor, able to assist medical personnel during emergencies. The ship has one additional Supporting Character, an Emergency Medical Hologram, using the Attributes, Disciplines, and so forth as shown in the sidebar, which does not cost any Crew Support to introduce, and which does not automatically improve when introduced. This character cannot go into any location not equipped with holoemitters.",
                 [new StarshipOrStationPrerequisite(), new NotCharacterTypePrerequisite(CharacterType.KlingonWarrior), new ServiceYearPrerequisite(2371), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition), new MaxServiceYearPrerequisite(2380)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Extensive Shuttlebays",
                 "The vessel’s shuttlebays are large, well-supplied, and able to support a larger number of active shuttle missions simultaneously. The ship may have twice as many small craft active at any one time as it would normally allow, and it may carry up to two Scale 2 small craft.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Fast Targeting Systems",
                 "The ship’s targeting systems can lock weapons on target much faster and more accurately than other ships of its class, giving it an edge in battle. The ship does not suffer the normal Difficulty increase for targeting a specific System on the enemy ship.",
                 [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Improved Damage Control",
                 "The ship has more efficient damage reporting systems, and better-trained teams of technicians, allowing the crew to respond more quickly to damage during a crisis. When a character takes the Damage Control Task aboard this ship, they may re-roll a single d20. If the repairs require an Extended Task, then the characters also gain Progression 1, adding +1 to Work done for each Effect rolled.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Improved Hull Integrity",
                 "The ship’s hull has been reinforced to hold together better under stress and damage. The ship’s Resistance is increased by 1.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Improved Impulse Drive",
                 "The ship’s Impulse drives are more powerful than on most ships, allowing the ship to accelerate much more quickly. When the flight controller succeeds at the Impulse, Attack Pattern, Evasive Action, or Ramming Speed Tasks, they may spend 2 Momentum to increase the Difficulty of attacks against the ship by 1 until the start of the flight controller’s next Turn, due to the ship’s rapid acceleration.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 2,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Improved Power Systems",
                 "The ship’s power systems are extremely efficient, allowing power to be redirected and rerouted from different systems very quickly. Whenever a character succeeds at a Power Management Task, the ship gains 2 Power per Momentum spent (Repeatable) instead of 1.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Improved Reaction Control System",
                 "The ship’s maneuvering thrusters operate with greater precision, allowing the ship to adjust its course more carefully. Whenever a Task to move or maneuver the ship would increase in Difficulty because of obstacles or hazards, reduce the Difficulty by 1 (to a minimum of the Task’s normal Difficulty).",
@@ -3633,49 +3719,49 @@ export class Talents {
                     new VersionConstrainedPrerequisite(1, new DepartmentPrerequisite(Department.Conn, 3)),
                     new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Improved Shield Recharge",
                 "The ship’s deflector shields have redundant capacitors and emitter arrays that allow the shields to be recharged and replenished much more efficiently. Whenever the Regenerate Shields Task is successful, the ship regains 3 points of Shields, plus 3 more for each Momentum spent (Repeatable), instead of the normal amount.",
                 [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Improved Warp Drive",
                 "The ship’s warp drive is more efficient, capitalizing on improved field dynamics, better control of antimatter flow rates, or some other advancement that allows the ship to expend less energy when travelling at warp. Whenever the ship spends power to go to warp, roll 1 for each Power spent; for each Effect rolled, that point of Power is not spent.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Modular Laboratories",
                 "The ship has considerable numbers of empty, multi-purpose compartments that can be converted to laboratories as and when required. At the start of an adventure, the crew may decide how the modular laboratories are configured; this configuration counts as an Advantage which applies to work performed within the laboratories.",
                 [new StarshipOrStationPrerequisite(), new DepartmentPrerequisite(Department.Science, 2), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Quantum Torpedoes",
                 "The vessel has been equipped with the latest in ship-to-ship munitions: the quantum torpedoes. The ship has quantum torpedoes in addition to any other form of torpedo it carries.",
                 [new StarshipOrStationPrerequisite(), new ServiceYearPrerequisite(2371), new NotSourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Rapid-Fire Torpedo Launcher",
                 "The vessel’s torpedo launchers have been redesigned to allow the ship to fire multiple torpedoes much more quickly and accurately. Whenever the crew add 3 to Threat to fire a torpedo salvo, they may re-roll a single d20 on the attack, and any number of [D] on the damage roll.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition), new Version1Prerequisite()],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 TALENT_NAME_REDUNDANT_SYSTEMS,
                 "The ship has multiple additional redundancies that allow it to withstand severe damage more easily. Nominate a single System. When that system becomes Damaged or Disabled, the crew may choose to activate the backups as a Minor Action; if the System was Damaged, it is no longer Damaged. If it was Disabled, it becomes Damaged instead. A System’s backups may only be activated once per adventure, so subsequent damage will have the normal effect.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Rugged Design",
                 "The ship is designed with the frontier in mind, with a durable construction and easy access to critical systems that allow repairs to be made easily. Reduce the Difficulty of all Tasks to repair the ship by 1, to a minimum of 1.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Saucer Separation",
                 "The ship is designed so that the saucer section can be separated from the engineering section, to operate as two distinct ships. Each section has the same Systems, Departments, Talents, and weapons, but their Scale is one lower than the whole ship (recalculate anything derived from Scale), and each section only has half the Power (round down) that the ship had before separation. Further, if the ship has suffered any damage, ongoing effects of that damage apply equally to both sections. The saucer section, which contains the crew quarters and recreational areas, does not have the capacity to go to warp.",
@@ -3686,31 +3772,31 @@ export class Talents {
                     new NotSourcePrerequisite(Source.Core2ndEdition)
                 ],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Secondary Reactors",
                 "The ship has additional impulse and fusion reactors, that allow the ship to generate far greater quantities of energy. Increase the ship’s normal Power capacity by 5.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core, Source.CaptainsLog, Source.Core2ndEdition)],
                 99,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Captain’s Yacht",
                 "The vessel has a single additional support craft, normally mounted in a dedicated port under the saucer section of the ship. These craft, larger than most shuttles, are often used for diplomatic missions and special excursions by the commanding officer, and are often known as the Captain’s Yacht (though not always; some Intrepid-class vessels have a similar craft called an aeroshuttle). The ship has one additional Small Craft, which does not count against the number which may be active at any one time.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Dedicated Personnel",
                 "The ship gains two additional Crew Support, which may only be used to establish Supporting Characters.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "High-Power Tractor Beam",
                 "The ship’s tractor beam systems channel far greater quantities of power and exert much more force on the target. The ship’s tractor beam has a strength two higher than normal. Further, the ship may spend Power whenever a target attempts to escape the tractor beam to increase its strength for that attempt; the strength increases by 1 for every two Power spent.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 2,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Independent Phaser Supply",
                 "The ship’s phasers use an independent power supply, rather than drawing directly from the ship’s other power sources. Attacking with the ship’s phasers no longer has a Power Requirement. However, the ship may not spend additional Power to boost the effectiveness of an attack with the phasers.",
@@ -3718,97 +3804,98 @@ export class Talents {
                     new StarshipOrStationPrerequisite(),
                     new SourcePrerequisite(Source.CommandDivision, Source.DiscoveryCampaign, Source.UtopiaPlanitia, Source.CaptainsLog)],
                 1,
-                "Starship", false, new AliasModel("Independent Phaser Supply", Source.CommandDivision), new AliasModel("Independent Phaser Supply", Source.DiscoveryCampaign), new AliasModel("Independent Phaser Supply", Source.UtopiaPlanitia), new AliasModel("Independent Phaser Supply", Source.CaptainsLog)),
+                new TalentCategorization(TalentCategory.Starship),
+                false, new AliasModel("Independent Phaser Supply", Source.CommandDivision), new AliasModel("Independent Phaser Supply", Source.DiscoveryCampaign), new AliasModel("Independent Phaser Supply", Source.UtopiaPlanitia), new AliasModel("Independent Phaser Supply", Source.CaptainsLog)),
             new TalentModel(
                 "Polarized Hull Plating",
                 "The ship does not have deflector shielding, but rather is equipped with layers of hull plating that can be polarized to resist attack. This functions in the same way as Shields do, with one difference: the ship suffers a Breach if four or more damage is suffered after deductions for Resistance.",
                 [new StarshipPrerequisite(), new MaxServiceYearPrerequisite(2199), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia), new NotSourcePrerequisite(Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Grappler Cables",
                 "This precursor to tractor beams uses sturdy cables and magnetic grapplers to grab on to objects and ships. This functions as a tractor beam, but if the target breaks free, roll 1[D] — on an Effect, the cables have been Damaged and cannot be used again until repaired.",
                 [new StarshipPrerequisite(), new MaxServiceYearPrerequisite(2199), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia), new NotSourcePrerequisite(Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Photonic Torpedoes",
                 "The vessel is equipped with photonic torpedoes instead of spatial torpedoes.",
                 [new StarshipPrerequisite(), new MaxServiceYearPrerequisite(2199), new SourcePrerequisite(Source.CommandDivision)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Nuclear Warheads",
                 "The vessel is equipped with nuclear warheads in addition to its spatial torpedoes.",
                 [new StarshipPrerequisite(), new MaxServiceYearPrerequisite(2199), new SpaceframesPrerequisite([Spaceframe.Daedalus, Spaceframe.NX]), new SourcePrerequisite(Source.CommandDivision)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Specialized Crew (Command)",
                 "Rare in Starfleet, a starship with a specialized crew has had personnel assigned to it primarily from a specific division. During an adventure, if the players wish to introduce supporting characters, they may not use more than half their ship’s Crew Support rating on characters from divisions outside of the ship’s specialty. An example of this is the Crossfield class that is specialized with the Science division and is Scale 4. This means that only two crew points could be used for supporting characters from the Command or Operations divisions, while the other two could be used only for the Science division.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Specialized Crew (Operations)",
                 "Rare in Starfleet, a starship with a specialized crew has had personnel assigned to it primarily from a specific division. During an adventure, if the players wish to introduce supporting characters, they may not use more than half their ship’s Crew Support rating on characters from divisions outside of the ship’s specialty. An example of this is the Crossfield class that is specialized with the Science division and is Scale 4. This means that only two crew points could be used for supporting characters from the Command or Operations divisions, while the other two could be used only for the Science division.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Specialized Crew (Science)",
                 "Rare in Starfleet, a starship with a specialized crew has had personnel assigned to it primarily from a specific division. During an adventure, if the players wish to introduce supporting characters, they may not use more than half their ship’s Crew Support rating on characters from divisions outside of the ship’s specialty. An example of this is the Crossfield class that is specialized with the Science division and is Scale 4. This means that only two crew points could be used for supporting characters from the Command or Operations divisions, while the other two could be used only for the Science division.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Ablative Armor Generator",
                 "The ship is fitted with a number of external replicators pre-set to materialize an outer layer of armor plating over the hull, reinforced with structural integrity fields that make it extraordinarily resilient. When the ship raises its Shields, it may deploy armor instead, by spending 3 Power. This increases the maximum Shields capacity by 5 and increases the ship’s Resistance by 3. While armor is deployed, the Modulate Shields and Regenerate Shields actions cannot be taken – the armor cannot be fine-tuned in those ways.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.GmToolkit2e), new CenturyPrerequisite(25)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Ablative Field Projector",
                 "The ship’s shield emitters are combined with an ablative field projector that allows its graviton field to be shared with another target in Close range. These projectors charge the target’s shields while dissipating its own. Doing so requires a Difficulty 1 Control + Security task. On a success, your ship loses 1 Shield point and the target gains 1 Shield point. This process can be repeated any number of times by spending 1 Momentum for each swap.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Adaptable Energy Weapons",
                 "The ship’s weapon delivery systems are enhanced by multiparticle emitters. These emitters allow for the ship’s energy weapon capabilities to be modified when fired. If desired, before an attack is rolled, the ship’s weapon’s Stress Rating is reduced by 1[D], but the officer making the attack roll may swap out any one Stress effect for another.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(24)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Advanced Emergency Crew Holograms",
                 "The starship has the entirety of its interior spaces and some critical areas on its exterior outfitted with holoemitters, allowing the computer to project simulated personnel during emergencies. The ship has a number of holographic supporting characters (which should be pre-created) equal to half the ship’s Computers score, rounding up; their appearance and personality are determined when the ship is created. These can be activated or deactivated as a minor action, and they do not require any Crew Support to appear. They cannot operate away from the ship, and they do not improve when introduced in subsequent adventures.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new ServiceYearPrerequisite(2380)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Advanced Transporters",
                 "The ship is outfitted with dozens of transporter emitter array pads, allowing targeting scanners to lock on to their targets and destination more easily. While accurate, this system is Power intensive. The Difficulty of all transporter tasks are decreased by 1. The Power requirement of all transporter tasks is increased by 1.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(24), new DepartmentPrerequisite(Department.Science, 4)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Annular Confinement Jacketing",
                 "The ship’s energy weapon emitters create an annular confinement beam around its energy beams, allowing the weapons to fire short distances at warp speeds. The ship may make an attack with its energy weapons at Close range while at warp; however, the Difficulty for the attack is increased by 2.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition), new CenturyPrerequisite(22, 23)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Automated Defenses",
                 "The ship’s weapons systems can automatically lock on to a target and fire. At the end of a combat round, if nobody fired a ship weapon, the ship may make an unassisted energy weapon attack using its Weapons + Security against a target. Momentum may be used and generated as normal for this attack.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new CenturyPrerequisite(23), new DepartmentPrerequisite(Department.Security, 3)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Automated Return",
                 "The ship’s computer is programmed to recognize a starbase, colony, or some other location as its home base. The shuttles on board have the same programming and recognize the ship as their home base. If the ship’s Computers system goes for 10 days without commands from the crew, it will automatically pilot the ship back to the home base at maximum impulse.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia), new CenturyPrerequisite(23)],
                 1,
-                "Starship",
+                new TalentCategorization(TalentCategory.Starship),
                 false,
                 new AliasModel("Automated Return", Source.UtopiaPlanitia),
                 new AliasModel("Automated Return", Source.CaptainsLog)),
@@ -3821,7 +3908,7 @@ export class Talents {
                     new VersionConstrainedPrerequisite(2, new TalentPrerequisite("Minelayer"))
                 ],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Cloaking Device",
                 "The vessel has a device that allows it to vanish from sensors. Operating the device requires a Control + Engineering task with a Difficulty of 2, assisted by the ship’s Engines + Security as this is a task from the tactical position. This task has a Power requirement of 3. If successful, the vessel gains the Cloaked trait. While cloaked, the vessel cannot attempt any attacks, nor can it be the target of an attack unless the attacker has found some way of detecting the cloaked vessel. While cloaked, a vessel’s shields are down. It requires a minor action to decloak a vessel.",
@@ -3830,61 +3917,61 @@ export class Talents {
                     new AllOfPrerequisite(new ServiceYearPrerequisite(2272), new SourcePrerequisite(Source.KlingonCore)),
                     new AllOfPrerequisite(new GMsDiscretionPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)))],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Dedicated Subspace Transceiver Array",
                 "A starship with this talent has a section of its hull that slides away where a long, tether-like subspace transceiver array can be deployed to enhance the vessel’s communication range and clarity, even at warp. Any tasks involving sending, receiving, or intercepting subspace or standard EM communications have their Difficulty reduced by 1.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Deluxe Galley",
                 "The ship’s mess hall is equipped with top-of-the-line food preparation systems as well as vast stores of non- replicated food. Whenever the ship’s cook or chef uses their role ability while in the ship’s galley, they generate 1 additional Momentum. In addition, whenever a crew member meets with a guest of the ship in the galley, they gain the Fine Dining advantage, which comes into play with all Presence and Command tasks.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Dual Environment",
                 "The ship is outfitted with redundant system rooms that can be filled with gases or liquids that allow crew members requiring different atmospheric conditions to work side by side with the rest of the crew. In addition, passages that can be filled with the necessary liquids or gases run parallel to all passages in the ship, allowing these crew members to move freely throughout. A character who is in a redundant system room may assist others in the connected system room as if they were in the same room.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Expanded Munitions",
                 "The ship has been designed to defend itself from all manner of threats. As such, it has either additional energy delivery systems or extended storage for torpedoes or mines. The ship may add any one weapon to its profile. This talent may be taken multiple times, adding a different weapon each time. Any prerequisites for the weapon or its delivery system still apply.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)],
                 999,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Expansive Department",
                 "This talent represents a highly-focused starship with many specialists in their field working closely together to perform tasks at peak efficiency. This talent must be taken for a starship to have a department score of 6 through application of a mission profile or through game events and player actions. Starbases do not need this talent to have a department above 5. All tasks that include this Expansive Department have a target number calculated as normal. Whenever the ship assists a task using this department, or performs a task on its own using this department, the ship may re-roll a d20.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "High-Resolution Sensors",
                 "The vessel’s sensors can gain large amounts of accurate data, though they are extremely sensitive. While the vessel is not in combat, any successful task that is assisted by the ship’s Sensors gains one bonus Momentum.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Multi-Vector Assault Mode",
                 "Like the Saucer Separation talent, Multi-Vector Assault Mode changes the statistics of the ship as it splits apart into three distinct sections. Each section has the same systems and departments scores as the original fully integrated starship, but each individual section has only one third the power (divide original Power rating by 3, rounding down) that it originally hadd and each of the sections has a Scale 1 less than the original starship. Starships that wish to take this talent must also have the Redundant Systems (Propulsion) talent. All energy weapons’ Stress ratings for each section is one less due to the reduction in Scale.\nSeparating the starship into three sections (Command and two attack sections) requires a Control + Conn task with a Difficulty of 2, assisted by the ship’s Structure + Engineering. Reconnecting the separate sections requires the same task as separation, but done twice. Sections may not disconnect or reconnect if the Structure of any section of the ship, or the ship as a whole, has been damaged or disabled.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Point Defense System",
                 "The ship is equipped with a system of small energy weapon emitters that operates independently from the main weapons systems. When a torpedo targets the ship, these emitters start firing in the direction it is traveling from, potentially destroying it before it impacts the shields or the ship’s hull. This system only works at subwarp speeds. The ship is considered to have Cover 2[D] against torpedo attacks.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Security, 3)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Regenerative Hull",
                 "The ship’s hull is infused with reverse-engineered Borg nanite technology that seeks out and repairs the hull immediately when it is damaged, often preventing a breach before it can happen. The amount of Stress needed for the ship to sustain a breach is increased by 1.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Self-Replicating Mines",
                 "The ship carries mines that are capable of replicating themselves over time, allowing for a more thorough spread filling the area they’re deployed in. The Difficulty of any task made to avoid the mines does not reduce when mines are detonated.",
@@ -3894,19 +3981,19 @@ export class Talents {
                     new VersionConstrainedPrerequisite(2, new TalentPrerequisite("Minelayer")),
                     new VersionConstrainedPrerequisite(2, new ServiceYearPrerequisite(2371))],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Siphoning Shields",
                 "The vessel’s shield emitters are connected to a network of particle siphons that capture some of the energy released when hit by an energy weapon, channeling it back into the shields. When the ship is hit by an energy weapon, after Stress is rolled, roll 1[D] for each point of Shields lost, then regain a number of Shield points equal to the number of effects rolled.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Slim Sensor Silhouette",
                 "Through a combination of advanced alloys, EM shielding, and electronic countermeasures, the starship is difficult to detect via electromagnetic radiation and subspace sensors. While not a true cloaking device, these vessels can sneak into star systems entirely undetected. Like a cloaking device, utilizing the EM shielding and ECM systems on board requires a Control + Engineering task with a Difficulty of 2. If this task is successful, the maximum Power rating of the ship is reduced by 2 to represent the power usage of the systems and “running silent,” and shields are deactivated. All tasks to detect the stealthy starship have their Difficulty increased by 1. There are no restrictions on weapons fire from the ship using this talent.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship",
+                new TalentCategorization(TalentCategory.Starship),
                 false,
                 new AliasModel("Slim Sensor Silhouette", Source.UtopiaPlanitia), new AliasModel("Slim Sensor Silhouette", Source.CaptainsLog)),
             new TalentModel(
@@ -3914,115 +4001,115 @@ export class Talents {
                 "The ship is equipped with a field generator that projects a cloud of tachyons around it. Activating the field generator requires a Control + Engineering task with a Difficulty of 2, assisted by the ship’s Sensors + Science, and has a Power requirement of 2. The field remains active until the ship moves. While the field is active, the ship is notified of any cloaked vessels that are within or pass into Close range. The ship may attack a cloaked target within the field, though the Difficulty for the attack is increased by 2.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25), new DepartmentPrerequisite(Department.Science, 3)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Variable Geometry Warp Field",
                 "An extension of the variable pitch warp nacelles seen on the Intrepid class and the warp vector technology found on many Vulcan-designed starships, a ship with a variable geometry warp field can adjust its subspace field in highly turbulent spacetime and can continue to provide propulsive force even then. These vessels provide the advantage of Variable Geometry Warp Field in any scene involving a disadvantage related to difficulties forming or maintaining a stable warp field.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition)],
                 1,
-                "Starship", false, new AliasModel("Variable Geometry Warp Drive", Source.CaptainsLog)),
+                new TalentCategorization(TalentCategory.Starship), false, new AliasModel("Variable Geometry Warp Drive", Source.CaptainsLog)),
             new TalentModel(
                 "Versatile Tractor Beam",
                 "The ship has exotic particle emitters integrated with its tractor beam system. With a few simple adjustments, the tractor beam can become even more useful against ships trapped within. When the tractor beam is activated, the operator may choose to add one of the following effects:\nDepleting: At the end of each round a target remains within the tractor beam, it loses 1 Shield.\nDraining: At the end of each round a target remains within the tractor beam, it loses 1 Power.",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.GmToolkit2e), new CenturyPrerequisite(25)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Wormhole Relay System",
                 "The ship has an additional sensor system outfitted with high-energy transceivers, verteron sensors, and neutrino sensors. These sensors, combined with field-generation devices, allow the ship to send and receive data streams through wormholes. The Difficulty of all Science tasks to send or receive data through a wormhole is reduced by 2 to a minimum of 0.",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.CaptainsLog, Source.Core2ndEdition), new ServiceYearPrerequisite(2371)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Adaptive Shield Modulator",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new CenturyPrerequisite(24)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Expanded Emergency Medical Facilities",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Extensive Automation",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new SystemPrerequisite(System.Computer, 10)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Extensive Medical Laboratories",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 4)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "High-Intensity Energy Weapons",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition), new SystemPrerequisite(System.Weapons, 10)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Sophisticated Astrometrics Facilities",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Transport Inhibitors",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Improved Probe Bay",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Additional Propulsion System (Talent)",
                 "",
                 [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Cluster Torpedoes",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Extended Sensor Range",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Industrial Replicators",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Minelayer",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Modular Cargo Bays",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
             new TalentModel(
                 "Traceable Payload System",
                 "",
                 [new StarshipOrStationPrerequisite(), new SourcePrerequisite(Source.TechnicalManual), new CenturyPrerequisite(25)],
                 1,
-                "Starship"),
+                new TalentCategorization(TalentCategory.Starship)),
 
 
 
@@ -4031,44 +4118,43 @@ export class Talents {
                 "The station has additional ports and pylons that allow it to support a greater number of docked vessels as well as larger vessels than would normally be the case. The starbase has a number of docking ports equal to one-and-a-half times its Scale (rounding down), instead of half its Scale. The maximum Scale of any ship that may dock at the station is increased by 2.",
                 [new StarbasePrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia)],
                 99,
-                "Starbase"),
+                new TalentCategorization(TalentCategory.Starbase)),
             new TalentModel(
                 "Drydock",
                 "A space station with this talent has facilities that can assist in construction or repair of starships, including the fabrication facilities for equipment, and limited refining capabilities for producing alloys from raw material. Space stations with this talent provide an advantage called Drydock that applies to all repairs and construction tasks involved with starships docked to it.",
                 [new StarbasePrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
                 99,
-                "Starbase"),
+                new TalentCategorization(TalentCategory.Starbase)),
             new TalentModel(
                 "Enhanced Defense Grid",
                 "The station’s Shields are increased by an amount equal to half the station’s Scale.",
                 [new StarbasePrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia)],
                 99,
-                "Starbase"),
+                new TalentCategorization(TalentCategory.Starbase)),
             new TalentModel(
                 "Firebase",
                 "The station is built to defend itself and surrounding space from attack and can unleash colossal firepower. Whenever a character makes an Attack with the station, they may use the Swift Task Momentum Spend for 1 Momentum instead of the normal 2, so long as their second Task is also an Attack.",
                 [new StarbasePrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia)],
                 1,
-                "Starbase"),
+                new TalentCategorization(TalentCategory.Starbase)),
             new TalentModel(
                 "Repair Crews",
                 "With additional personnel to support repair and maintenance work, the station may prioritize repairs to a number of ships equal to its Engineering Department.",
                 [new StarbasePrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia)],
                 1,
-                "Starbase"),
+                new TalentCategorization(TalentCategory.Starbase)),
             new TalentModel(
                 "Self-Propelled",
                 "All space stations have limited propulsive capabilities to adjust their orbit around a planetary body or move slowly through empty space to new positions. A space station with this talent has the ability to not only move through regular space, but to also move at warp speeds. The majority of space stations with this talent are self-propelled drydocks capable of assisting stranded starships or moving between star systems to where they are most needed. All Power requirements for tasks related to warp speeds are doubled to represent the bulk and mass of the station.",
                 [new StarbasePrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
                 1,
-                "Starbase"),
+                new TalentCategorization(TalentCategory.Starbase)),
             new TalentModel(
                 "Sturdy Construction",
                 "When the station suffers damage, after Resistance, from an attack or hazard, it suffers a Breach if 8 or more damage is inflicted, rather than 5 or more as is normally the case.",
                 [new StarbasePrerequisite(), new SourcePrerequisite(Source.CommandDivision, Source.UtopiaPlanitia)],
                 1,
-                "Starbase"),
-
+                new TalentCategorization(TalentCategory.Starbase)),
             ];
 
     private _specialRules: TalentModel[] = [
@@ -4483,6 +4569,16 @@ export class Talents {
                 )],
             1,
             "Cardassian", true),
+        new TalentModel(
+            "Supreme Authority (Breen)",
+            "Whenever a Breen warrior currently under the character's command attempts a Task to resist persuasion or intimidation, the character may spend 1 Threat to allow that Breen warrior to re-roll, even if they are not present in that scene.",
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Breen), new OfficerPrerequisite(),
+                new AnyOfPrerequisite(
+                    new CareersPrerequisite(Career.Veteran),
+                    new NpcTypePrerequisite(NpcType.Major)
+                )],
+            1,
+            "Breen", true),
         new TalentModel(
             "Senatorial Presence",
             "Whenever one of the senator's subordinates attempts a Task to resist persuasion, intimidation, or interrogation, the senator may spend two Threat to allow that Romulan to roll as if they had the benefit of their assistance using Control + Command, even if they are not present in the scene.",
@@ -5220,7 +5316,7 @@ export class Talents {
             []);
 
 
-    getTalents() {
+    getTalents(): TalentModel[] {
         let result = [];
         this._talents.forEach(t => result.push(t));
         this._starshipTalents.forEach(t => result.push(t));

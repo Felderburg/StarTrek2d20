@@ -155,7 +155,9 @@ export enum Species {
 
     // Species Book
     Breen,
+    Brikar,
     Chameloid,
+    ElAurian_2E,
     HumanAugment,
     Kellerun,
     Klowahkan,
