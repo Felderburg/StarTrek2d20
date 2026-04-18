@@ -959,7 +959,7 @@ export class Specializations {
                     "I hacked the Gibson",
                     "Mess with the best; die like the rest.",
                     "Information wants to be free, but for now, it has a price attached to it."
-                ], 0, [Species.Yridian, Species.Bynar, Species.CyberneticallyEnhanced, Species.Betazoid]),
+                ], 0, [Species.Yridian_2E, Species.Bynar, Species.CyberneticallyEnhanced, Species.Betazoid]),
             new SpecializationModel(Specialization.BruteForHire, NpcCharacterType.RogueRuffianMercenary, "Brute-for-Hire",
                 [Attribute.Fitness, Attribute.Daring, Attribute.Presence],
                 Department.Security,

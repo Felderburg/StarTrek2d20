@@ -8,6 +8,7 @@ export enum SpaceframeAppearance {
     KaplanF17PatrolFrigate,
 
     // Romulan
+    Aelahl,
     BirdOfPrey22ndCentury,
     Tliss,
     RomulanD7,
