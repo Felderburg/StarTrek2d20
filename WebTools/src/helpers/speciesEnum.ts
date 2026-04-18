@@ -158,6 +158,7 @@ export enum Species {
     Brikar,
     Chameloid,
     ElAurian_2E,
+    Exocomp_2E,
     Horta_2E,
     HumanAugment,
     Illyrian_2E,

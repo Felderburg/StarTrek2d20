@@ -5,10 +5,12 @@ import { Source } from "./sources";
 
 export class SpeciesAbility {
     readonly species: Species;
+    readonly source?: Source;
     readonly talentNames: string[];
 
     constructor(species: Species, source: Source = Source.Core2ndEdition, talentNames: string[] = []) {
         this.species = species;
+        this.source = source;
         this.talentNames = talentNames;
     }
 
@@ -53,13 +55,14 @@ export class SpeciesAbilityList {
         [Species.Chameloid]: new SpeciesAbility(Species.Chameloid, Source.SpeciesSourcebook),
         [Species.ChangelingGamma]: new SpeciesAbility(Species.ChangelingGamma, Source.SpeciesSourcebook),
         [Species.Chelon]: new SpeciesAbility(Species.Chelon, Source.SpeciesSourcebook),
-        [Species.Cardassian]: new SpeciesAbility(Species.Cardassian, Source.SpeciesSourcebook),
+        [Species.Cardassian]: new SpeciesAbility(Species.Cardassian),
+        [Species.Cetacean]: new SpeciesAbility(Species.Cetacean, Source.SpeciesSourcebook),
         [Species.Deltan]: new SpeciesAbility(Species.Deltan, Source.SpeciesSourcebook),
         [Species.Denobulan]: new SpeciesAbility(Species.Denobulan),
         [Species.Edosian]: new SpeciesAbility(Species.Edosian, Source.SpeciesSourcebook),
         [Species.Efrosian]: new SpeciesAbility(Species.Efrosian, Source.SpeciesSourcebook),
         [Species.ElAurian_2E]: new SpeciesAbility(Species.ElAurian_2E, Source.SpeciesSourcebook),
-        [Species.Exocomp]: new SpeciesAbility(Species.Exocomp, Source.SpeciesSourcebook),
+        [Species.Exocomp_2E]: new SpeciesAbility(Species.Exocomp_2E, Source.SpeciesSourcebook),
         [Species.Ferengi]: new SpeciesAbility(Species.Ferengi),
         [Species.Grazerite]: new SpeciesAbility(Species.Grazerite, Source.SpeciesSourcebook),
         [Species.Haliian]: new SpeciesAbility(Species.Haliian, Source.AlphaQuadrant),
@@ -69,7 +72,17 @@ export class SpeciesAbilityList {
         [Species.HumanAugment]: new SpeciesAbility(Species.HumanAugment, Source.SpeciesSourcebook),
         [Species.Illyrian_2E]: new SpeciesAbility(Species.Illyrian_2E, Source.SpeciesSourcebook),
         [Species.Jelna]: new SpeciesAbility(Species.Jelna, Source.SpeciesSourcebook),
+        [Species.JemHadar]: new SpeciesAbility(Species.JemHadar, Source.SpeciesSourcebook),
+        [Species.Kellerun]: new SpeciesAbility(Species.Kellerun, Source.SpeciesSourcebook),
         [Species.Klingon]: new SpeciesAbility(Species.Klingon),
+        [Species.Ktarian]: new SpeciesAbility(Species.Ktarian, Source.SpeciesSourcebook),
+        [Species.Kzinti]: new SpeciesAbility(Species.Kzinti, Source.SpeciesSourcebook),
+        [Species.Lanthanite]: new SpeciesAbility(Species.Lanthanite, Source.SpeciesSourcebook),
+        [Species.LiberatedBorg]: new SpeciesAbility(Species.LiberatedBorg, Source.SpeciesSourcebook),
+        [Species.Lurian]: new SpeciesAbility(Species.Lurian, Source.SpeciesSourcebook),
+        [Species.Medusan]: new SpeciesAbility(Species.Medusan, Source.ContinuingMissions),
+        [Species.Nanokin]: new SpeciesAbility(Species.Nanokin, Source.SpeciesSourcebook),
+        [Species.Nausicaan]: new SpeciesAbility(Species.Nausicaan, Source.SpeciesSourcebook),
         [Species.Napean]: new SpeciesAbility(Species.Napean, Source.ContinuingMissions),
         [Species.Ocampa]: new SpeciesAbility(Species.Ocampa, Source.SpeciesSourcebook),
         [Species.Orion]: new SpeciesAbility(Species.Orion),

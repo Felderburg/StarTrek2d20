@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import SplitButton from 'react-bootstrap/SplitButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { hasSource } from '../state/contextFunctions';
+import { SpeciesAbilityList } from '../helpers/speciesAbility';
 
 enum RandomMode {
     All,
@@ -117,6 +118,14 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({character, onS
             : s.talents.map((t, i) => {
                 return t.isAvailableExcludingSpecies(character) ? <div key={i}>{t.localizedDisplayName}</div> : <span key={i}></span>;
             });
+
+        let speciesAbility = null;
+        if (character.version > 1) {
+            let ability = SpeciesAbilityList.instance.getBySpecies(s.id);
+            if (ability != null && (ability.source == null || hasSource(ability.source))) {
+                speciesAbility = (<div className="mb-2">{ability.name + " (" + t('Construct.other.speciesAbility') + ")"}</div>);
+            }
+        }
         const sources = SourcesHelper.getSourceName(s.sources);
 
         return (
@@ -124,7 +133,10 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({character, onS
                 <td className="selection-header">{s.localizedName}</td>
                 <td>{attributes}</td>
                 <td className="d-none d-md-table-cell">{sources}</td>
-                <td>{talents}</td>
+                <td>
+                    {speciesAbility}
+                    {talents}
+                </td>
                 <td className="text-end d-none d-sm-table-cell"><Button size="sm" onClick={() => { onSelection(s.id) }} >{t('Common.button.select')}</Button></td>
             </tr>
         );

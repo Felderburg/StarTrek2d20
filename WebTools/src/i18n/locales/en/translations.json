@@ -501,6 +501,7 @@
     "SpeciesDetails.attributes.instruction.kobali": "Please select an original species before selecting attributes.",
 
     "SpeciesDetails.error.attributes": "You have not distributed all Attribute points.",
+    "SpeciesDetails.error.implants": "Please select up to three implants.",
 
     "SpeciesDetails.originalSpecies.instruction.kobali": "The Kobali collect the corpses of other species and use an advanced from of genetic engineering to modify these deceased individuals, converting them into Kobali.",
     "SpeciesDetails.originalSpecies.instruction.borg": "Before being assimilated by the Borg, the Borg drone was a member of another species. That species can be selected below.",
@@ -2904,13 +2905,13 @@
 
     "SpeciesAbility.efrosian.description": "An Efrosian can see beyond the normal Human visual spectrum, from some infrared to ultraviolet light. Any task in which detecting those parts of the spectrum is useful reduce in Difficulty by 1. Location or situation traits such as low light levels, do not affect the Difficulty of tasks for an Efrosian.",
 
-    "SpeciesAbility.elAurian2e": "Transtemporal Awareness",
+    "SpeciesAbility.elAurian_2e": "Transtemporal Awareness",
 
-    "SpeciesAbility.elAurian2e.description": "You are aware of shifts and changes in the fabric of space-time in ways that few other beings are. Whenever there is a phenomenon present in a scene which was caused by alterations to the timeline, or the influence of alternate dimensions or extradimensional entities, the gamemaster must immediately inform you that something is wrong (though they do not have to specify what). You may add 1, 2, or 3 Threat to ask that many questions (as per _Obtain Information_) to try and discern details about the phenomenon.",
+    "SpeciesAbility.elAurian_2e.description": "You are aware of shifts and changes in the fabric of space-time in ways that few other beings are. Whenever there is a phenomenon present in a scene which was caused by alterations to the timeline, or the influence of alternate dimensions or extradimensional entities, the gamemaster must immediately inform you that something is wrong (though they do not have to specify what). You may add 1, 2, or 3 Threat to ask that many questions (as per _Obtain Information_) to try and discern details about the phenomenon.",
 
-    "SpeciesAbility.exocomp": "Technological Life",
+    "SpeciesAbility.exocomp_2e": "Technological Life",
 
-    "SpeciesAbility.exocomp.description": "You are not an organic being, and are not vulnerable to physical harm as they are: you have +1 Protection against Stun Attacks. You recover from injuries with Engineering, rather than Medicine. In addition, your onboard micro-replicator allows you to produce small tools and one-handed items for your own use with opportunity cost 1 by suffering 1 Stress for each such item created. Due to your lack of hands, you cannot use tools made for other creatures.",
+    "SpeciesAbility.exocomp_2e.description": "You are not an organic being, and are not vulnerable to physical harm as they are: you have +1 Protection against Stun Attacks. You recover from injuries with Engineering, rather than Medicine. In addition, your onboard micro-replicator allows you to produce small tools and one-handed items for your own use with opportunity cost 1 by suffering 1 Stress for each such item created. Due to your lack of hands, you cannot use tools made for other creatures.",
 
     "SpeciesAbility.ferengi": "The Great Material Continuum",
 
@@ -2928,9 +2929,9 @@
 
     "SpeciesAbility.hologram.description": "You are not an organic being, and are not vulnerable to physical harm as they are: you have 2 Protection. Injuries and fatigue you suffer represent disruption to your holomatrix or damage to holo-emitters. You recover from injuries with Engineering tasks, rather than Medicine. You cannot be present in any scene where there are no holo-emitters. In addition, because you were programmed for a specific purpose, you do not have a pastime.",
 
-    "SpeciesAbility.horta2e": "Silicon-Based Burrower",
+    "SpeciesAbility.horta_2e": "Silicon-Based Burrower",
 
-    "SpeciesAbility.horta2e.description": "You are nigh-impervious to harm, having Protection 3, and you can move freely through solid rock with little difficulty (very dense rock might count as difficult terrain). Your acidic secretions give you a melee attack which inflicts Deadly 4 Injuries with the Debilitating and Piercing qualities.",
+    "SpeciesAbility.horta_2e.description": "You are nigh-impervious to harm, having Protection 3, and you can move freely through solid rock with little difficulty (very dense rock might count as difficult terrain). Your acidic secretions give you a melee attack which inflicts Deadly 4 Injuries with the Debilitating and Piercing qualities.",
 
     "SpeciesAbility.human": "Faith of the Heart",
 
@@ -2940,9 +2941,9 @@
 
     "SpeciesAbility.humanAugment.description": "You are an **Augment**. You may select one or two talents which require the Augment trait, which you gain in addition to the normal talents you can select. If you select two of these Augment talents, then you must select an additional trait which represents a severe personality flaw or neurological problem, such as **Heightened Aggression**, or **Sensory Processing Disorder**.",
 
-    "SpeciesAbility.illyrian2e": "Adapt and Excel",
+    "SpeciesAbility.illyrian_2e": "Adapt and Excel",
 
-    "SpeciesAbility.illyrian2e.description": "You may have the Augment trait. In addition, select a single attribute when you create your character: when you attempt a task using that attribute, you may suffer 1 Stress to reroll a single d20.",
+    "SpeciesAbility.illyrian_2e.description": "You may have the Augment trait. In addition, select a single attribute when you create your character: when you attempt a task using that attribute, you may suffer 1 Stress to reroll a single d20.",
 
     "SpeciesAbility.jelna": "Divergent Physiology",
 
@@ -3104,9 +3105,9 @@
 
     "SpeciesAbility.xindiReptilian.description": "Xindi-Reptilians are tough, and cannot easily be stopped by attacks intended to subdue or incapacitate. Nothing short of deadly force can deter you. You have 1 Protection, which increases to 3 against Stun _Attacks_.",
 
-    "SpeciesAbility.yridian2e": "Eidetic Memory",
+    "SpeciesAbility.yridian_2e": "Eidetic Memory",
 
-    "SpeciesAbility.yridian2e.description": "Yridians have an extraordinary ability to process, retain, and recall information. You may spend 1 Momentum (and a major action if in combat) attempting an Insight + Science task with a Difficulty of 0 to recall some event which you witnessed in the past; Momentum spent may be used to _Obtain Information_ to gain new insights from this recollection.",
+    "SpeciesAbility.yridian_2e.description": "Yridians have an extraordinary ability to process, retain, and recall information. You may spend 1 Momentum (and a major action if in combat) attempting an Insight + Science task with a Difficulty of 0 to recall some event which you witnessed in the past; Momentum spent may be used to _Obtain Information_ to gain new insights from this recollection.",
 
     "SpeciesAbility.zakdorn": "Several Moves Ahead",
 

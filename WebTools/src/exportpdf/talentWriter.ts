@@ -6,7 +6,7 @@ import { RoleModel } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { Column } from "./column";
 import { CharacterType } from "../common/characterType";
-import { Implant } from "../helpers/borgImplant";
+import { BorgImplants, Implant } from "../helpers/borgImplant";
 import { Attribute } from "../helpers/attributes";
 import { MissionPodModel } from "../helpers/missionPods";
 import { FontOptions } from "./fontOptions";
@@ -19,6 +19,7 @@ import { Department } from "../helpers/department";
 import { PropulsionSystemModel, PropulsionSystemType } from "../helpers/propulsionSystem";
 import { OtherSelection } from "../common/selectedTalent";
 import { System } from "../helpers/systems";
+import { SpeciesAbilityAndOptions } from "./generatedsheet";
 
 export class ReadableTalentModel {
     characterType: CharacterType;
@@ -59,7 +60,7 @@ export class TalentWriter {
         this.capitalizeName = capitalizeName;
     }
 
-    async writeTalents(talents: (ReadableTalentModel|RoleModel|SpeciesAbility)[], column: Column,
+    async writeTalents(talents: (ReadableTalentModel|RoleModel|SpeciesAbilityAndOptions)[], column: Column,
             fontSize: number = 9, nameFontSize?: number,
             indent: number = 0, bulletWriter: (paragraph?: Paragraph) => void = (p => {})) {
         let paragraphs: Paragraph[] = [];
@@ -81,12 +82,24 @@ export class TalentWriter {
                     if (paragraph) {
                         paragraphs.push(paragraph);
                     }
-                } else if (talent instanceof SpeciesAbility) {
-                    paragraph.append(talent.name + " (" + i18next.t('Construct.other.speciesAbility') + "): ", new FontOptions(nameFontSize, FontType.Bold), this.headingColour);
-                    paragraph.append(talent.description, new FontOptions(fontSize));
+                } else if (talent instanceof SpeciesAbilityAndOptions) {
+                    paragraph.append(talent.ability.name + " (" + i18next.t('Construct.other.speciesAbility') + "): ", new FontOptions(nameFontSize, FontType.Bold), this.headingColour);
+                    paragraph.append(talent.ability.description, new FontOptions(fontSize));
                     bulletWriter(paragraph);
 
+                    talent.options?.implants?.forEach(type => {
+                        const implant = BorgImplants.instance.getImplantByType(type);
+                        paragraph = paragraph?.nextParagraph(0);
+                        if (paragraph) {
+                            paragraphs.push(paragraph);
+                            paragraph.indent(indent + 10);
+                            paragraph.append((this.version === 1 ? implant.localizedName : implant.localizedName2e)+ ": ", new FontOptions(fontSize, FontType.Bold));
+                            paragraph.append(this.version === 1 ? implant.localizedDescription : implant.localizedDescription2e, new FontOptions(fontSize));
+                        }
+                    });
+
                     paragraph = paragraph.nextParagraph();
+                    paragraph.indent(indent);
                     if (paragraph) {
                         paragraphs.push(paragraph);
                     }

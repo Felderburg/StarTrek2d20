@@ -65,6 +65,8 @@ export const REMOVE_NPC_CHARACTER_WEAPON = "REMOVE_NPC_CHARACTER_WEAPON";
 export const ADD_NPC_CHARACTER_WEAPON = "ADD_NPC_CHARACTER_WEAPON";
 export const SET_NPC_CHARACTER_TALENTS = "SET_NPC_CHARACTER_TALENTS";
 export const ADD_CHARACTER_LOG_ENTRY = "ADD_CHARACTER_LOG_ENTRY";
+export const REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
+export const ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
 
 export enum StepContext {
     Species,
@@ -94,6 +96,14 @@ export function addCharacterBorgImplant(type: BorgImplantType) {
     }
 }
 
+export function addCharacterBorgImplantSpeciesOption(type: BorgImplantType) {
+    let payload = { type: type };
+    return {
+       type: ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION,
+       payload: payload
+    }
+}
+
 export function addCharacterUntappedPotentialAttribute(attribute: Attribute) {
     let payload = { attribute: attribute };
     return {
@@ -106,6 +116,14 @@ export function removeCharacterBorgImplant(type: BorgImplantType) {
     let payload = { type: type };
     return {
        type: REMOVE_CHARACTER_BORG_IMPLANT,
+       payload: payload
+    }
+}
+
+export function removeCharacterBorgImplantSpeciesOption(type: BorgImplantType) {
+    let payload = { type: type };
+    return {
+       type: REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION,
        payload: payload
     }
 }

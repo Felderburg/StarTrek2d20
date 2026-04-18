@@ -751,9 +751,14 @@ class Marshaller {
         }
 
         if (character.speciesStep.abilityOptions) {
-            json["abilityOptions"] = {
-                focuses: [...character.speciesStep.abilityOptions.focuses]
+            let options = {};
+            if (character.speciesStep.abilityOptions.focuses?.length) {
+                options["focuses"] = [...character.speciesStep.abilityOptions.focuses];
             };
+            if (character.speciesStep.abilityOptions.implants?.length) {
+                options["implants"] = character.speciesStep.abilityOptions.implants?.map(i => BorgImplantType[i]) ?? []
+            };
+            json["abilityOptions"] = options;
         }
 
         if (character.speciesStep.decrementAttributes?.length) {
@@ -1632,6 +1637,9 @@ console.log(json);
                         result.speciesStep.abilityOptions = new SpeciesAbilityOptions();
                         if (speciesBlock.abilityOptions.focuses) {
                             result.speciesStep.abilityOptions.focuses = [...speciesBlock.abilityOptions.focuses];
+                        }
+                        if (speciesBlock.abilityOptions.implants) {
+                            result.speciesStep.abilityOptions.implants = speciesBlock.abilityOptions.implants.map(i => BorgImplants.instance.getImplantByTypeName(i)?.type).filter(i => i != null);
                         }
                     }
                 }

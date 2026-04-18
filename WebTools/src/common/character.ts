@@ -225,10 +225,12 @@ export class CareerStep {
 
 export class SpeciesAbilityOptions {
     focuses: string[] = [];
+    implants?: BorgImplantType[] = [];
 
     copy() {
         let result = new SpeciesAbilityOptions();
         result.focuses = [...this.focuses];
+        result.implants = [...this.implants];
         return result;
     }
 }
@@ -1033,7 +1035,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get implants(): BorgImplantType[] {
         let result = [];
-        this.talents.forEach(t => result.push.apply(result, t.implants));
+        this.speciesStep?.abilityOptions?.implants?.forEach(i => result.push(i));
+        this.talents.forEach(t => result.push(...t.implants));
         return result;
     }
 
@@ -1265,7 +1268,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 || this.hasTalent("Augmented Ability")) {
             traits.push("Augment");
         }
-        if (this.speciesStep?.species === Species.Bynar) {
+        if ([Species.Bynar, Species.LiberatedBorg].includes(this.speciesStep?.species)) {
             traits.push("Cyborg");
         } else if (this.hasTalent("Synthetic Physiology") && this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
             traits.push("Cyborg");
