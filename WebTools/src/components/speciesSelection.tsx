@@ -126,7 +126,7 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({character, onS
                 speciesAbility = (<div className="mb-2">{ability.name + " (" + t('Construct.other.speciesAbility') + ")"}</div>);
             }
         }
-        const sources = SourcesHelper.getSourceName(s.sources);
+        const sources = s.sources.map(s => (<div key={'source-' + s}>{SourcesHelper.getSourceName([s])}</div>));
 
         return (
             <tr key={i} onClick={() => { if (Window.isCompact()) onSelection(s.id); }}>

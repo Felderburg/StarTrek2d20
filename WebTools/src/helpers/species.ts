@@ -179,7 +179,7 @@ class _Species {
             [
                 { type: "Female", suggestions: "Adami, Chami, Fala, Jaxa, Laren, Lipras, Leeta, Lupaza, Meru, Neela, Nerys, Seriah, Sul, Yesa" },
                 { type: "Male", suggestions: "Anaphis, Edon, Essa, Furel, Gel, Holem, Hovath, Kag, Los, Mabrin, Nalas, Reon, Taban, Tennan" },
-                { type: "Family", suggestions: "Anbara, Anjohl, Faren, Jaro, Kalem, Krim, Kubus, Latara, Latha, Lenaris, Li, Tahna, Reil" },
+                { type: "Family Name", suggestions: "Anbara, Anjohl, Faren, Jaro, Kalem, Krim, Kubus, Latara, Latha, Lenaris, Li, Tahna, Reil" },
             ]),
         [Species.Betazoid]: new SpeciesModel(
             Species.Betazoid,
@@ -196,7 +196,7 @@ class _Species {
             [
                 { type: "Female", suggestions: "Deanna, Ania, Kestra, Lwaxanna, Dalera, Gloranna, Abeana, Pekera, Nissila, Lomestra, Ioza, Pegira, Nemenna, Nerira, Lojeea" },
                 { type: "Male", suggestions: "Konal, Reban, Xani, Enon, Dael, Etas, Andal, Kolel, Atani, Devoni, Algar, Jensar, Nikael, Kalos, Rennan" },
-                { type: "Family", suggestions: "Grax, Hagen, Morganth, Stadi, Dutrax, Odutan, Nelan, Onovren, Kader, Nostrun, Dulas, Konin, Ebesin" },
+                { type: "Family Name", suggestions: "Grax, Hagen, Morganth, Stadi, Dutrax, Odutan, Nelan, Onovren, Kader, Nostrun, Dulas, Konin, Ebesin" },
             ]),
         [Species.Denobulan]: new SpeciesModel(
             Species.Denobulan,
@@ -244,7 +244,7 @@ class _Species {
                 { type: "Female", suggestions: "Pola, Cherthish, Zhuggaa, Torthem, Neshlel, Verg, Kholo, Fratho, Skig, Vaolli, Glavom, Nihraogh, Ghand, Rensh" },
                 { type: "Male", suggestions: "Prugm, Brag, Dash, Gisich, Gullerg, Zankir, Hellek, Trar, Jorsh, Geshniv, Tuk, Rinkog, Veth, Cek, Gullak" },
                 { type: "Prefixes", suggestions: "bav, glov, blasch, lorin, jav, bim, glasch" },
-                { type: "Family", suggestions: "Gronnahk, Nonkursh, Slaal, Ker, Zhiv, Blav, Zhuffand, Khebloss, Pend, Brin, Wenkurn, Gerkow, Khutohk, Jagh, Krer" },
+                { type: "Family Name", suggestions: "Gronnahk, Nonkursh, Slaal, Ker, Zhiv, Blav, Zhuffand, Khebloss, Pend, Brin, Wenkurn, Gerkow, Khutohk, Jagh, Krer" },
             ]),
         [Species.Trill]: new SpeciesModel(
             Species.Trill,
@@ -261,7 +261,7 @@ class _Species {
             [
                 { type: "Female", suggestions: "Audrid, Azala, Emony, Kareel, Lenara, Nilani, Reeza, Zharaina, Koria, Lidra, Diranne, Kimoni, Larista, Vidria, Kehdza" },
                 { type: "Male", suggestions: "Arjin, Bejal, Curzon, Hanor, Joran, Malko, Selin, Timor, Tobin, Torias, Verad, Yedrin, Keman, Sabin, Joal, Dorin" },
-                { type: "Family", suggestions: "Nedan, Sozenn, Rulon, Les, Tral, Inazin, Hama, Kelen, Imonim, Razix, Idiron, Paron, Tanan, Sulil, Kerev" },
+                { type: "Family Name", suggestions: "Nedan, Sozenn, Rulon, Les, Tral, Inazin, Hama, Kelen, Imonim, Razix, Idiron, Paron, Tanan, Sulil, Kerev" },
                 { type: "Symbiont", suggestions: "Jexen, Del, Ogar, Kyl, Eku, Nala, Cela, Pohr, Ral, Okir, Etahn, Lahl" },
             ]),
         [Species.Vulcan]: new SpeciesModel(
@@ -368,7 +368,7 @@ class _Species {
             "Vorta",
             "Vorta have extremely keen hearing, but relatively poor eyesight. They are immune to most forms of poison. Vorta are absolutely loyal to the Dominion, revering the Founders as living gods. Those who encounter the Vorta often regard them as insincere or manipulative.",
             "",
-            [],
+            [TalentsHelper.getTalent("Manipulative"), TalentsHelper.getTalent("Overseer")],
             "",
             [
                 { type: "Female", suggestions: "Eris, Kilana, Luaren, Taris" },
@@ -433,12 +433,12 @@ class _Species {
             "Deltan",
             "Deltans are considered to be beautiful individuals, with powerful empathic abilities and heightened sensuality. The pheromones they excrete are a natural aphrodisiac in most species throughout the Federation, and while serving aboard Starfleet they must be very careful with their natural physiology, using chemical suppressants to cancel the effect.",
             "Bodies and Minds as One",
-            [TalentsHelper.getTalent("Deltan Pheromones"), TalentsHelper.getTalent("Empath")],
+            [TalentsHelper.getTalent("Deltan Pheromones"), TalentsHelper.getTalent("Empath"), TalentsHelper.getTalent("Empathic Touch")],
             "",
             [
                 { type: "Male", suggestions: "Jedda, Clarze" },
                 { type: "Female", suggestions: "Ilia, Zinaida" },
-                { type: "Family Name", suggestions: "Adzhin-Dal" }
+                { type: "Family Name", suggestions: "Adzhin-Dall" }
             ]),
         [Species.Efrosian]: new SpeciesModel(
             Species.Efrosian,
@@ -531,7 +531,7 @@ class _Species {
             "Xindi-Arboreal",
             "Covered in hair, and with distinctive ridges on their nose and cheekbones, the Arboreals are evolved from creatures similar to that of the Earth sloth. They possess sharp claws and have slightly longer arms than the average humanoid. With a naturally calm, rational mind, they do not panic or stress easily though they do fear large bodies of water. Their dark eyes allow them to see easier in low light conditions compared to other humanoids.",
             "Calm Focuses the Mind",
-            [TalentsHelper.getTalent("Calm Under Pressure")],
+            [TalentsHelper.getTalent("Calm Under Pressure"), TalentsHelper.getTalent("Patient Counsel"), TalentsHelper.getTalent("Unwavering Calm")],
             "",
             [
                 { type: "Male", suggestions: "Janner, Gralik" },
@@ -548,7 +548,7 @@ class _Species {
             "Xindi-Primate",
             "With a similar physiology to humans, Primates share their characteristic internal organ structure and metabolism, as well as their sensory perceptions. Their facial structure is markedly different, however, with pronounced foreheads and ridged cheekbones like other Xindus species. Amongst other Xindi, Primates have a reputation for fairness and honesty. Many people beyond Xindus have come to regard Xindi-Primates as trustworthy and decent.",
             "Honestly Never Makes a Problem Worse",
-            [TalentsHelper.getTalent("A Mind for Design")],
+            [TalentsHelper.getTalent("A Mind for Design"), TalentsHelper.getTalent("Voice of the Xindi")],
             "",
             [
                 { type: "Male", suggestions: "Begram, Chusra, Degra, Logra, Mallora, Ragnar, Rhucsa, Toki" },
@@ -564,7 +564,7 @@ class _Species {
             "Xindi-Reptilian",
             "These are cold blooded individuals who prefer hotter climates. Scales, ridges and spikes cover their body and they have vertical slit eyes, for adapting to low light conditions and judging depth. A carnivorous, protein-heavy diet gives them muscular tone and definition that enhances their strength and endurance. They have a reputation amongst other Xindi for being aggressive, impatient, stubborn, and untrustworthy.",
             "Patience is for the Dead",
-            [TalentsHelper.getTalent("Stun Resistance")],
+            [TalentsHelper.getTalent("Stun Resistance"), TalentsHelper.getTalent("Triumph Against Any Odds"), TalentsHelper.getTalent("Cold-Blooded Supremacy")],
             "",
             [
                 { type: "Male", suggestions: "Dankra,  Drolid, Guruk, Kolrimm" },
@@ -581,7 +581,7 @@ class _Species {
             "Xindi-Insectoid",
             "Reproduction is asexual with a single adult laying a clutch of eggs. Life expectancy is very short compared to other species with 12 years as the average. Their insectoid bodies grant them enhanced abilities, such as crawling and climbing, while their cheek ridges distinguish them as Xindus natives.",
             "Protect Your Off-spring at the Expense of Self",
-            [TalentsHelper.getTalent("Protective Instinct")],
+            [TalentsHelper.getTalent("Protective Instinct"), TalentsHelper.getTalent("Rapid Processing")],
             "Xindi-Insectoid names are an incredibly intricate series of clicks and chirps, and while amongst other species often choose a name to be known as by their crewmates, favoring short names that work well with their consonant heavy language.",
             []),
         [Species.Zakdorn]: new SpeciesModel(
@@ -740,7 +740,7 @@ class _Species {
             "Caitian",
             "Caitians are all slightly smaller in both height and weight than average humanoids – with most reaching between 1.5-1.7 meters. They have retained the retractable claws of their evolutionary ancestors along with a flexible tail. Caitians are carnivorous and prefer uncooked meat. While they evolved from predatory felines, the Caitians are regarded as some of the greatest poets and philosophers within the Federation.",
             "War is Instinct, Conflict an Art",
-            [TalentsHelper.getTalent("Disarming Nature"), TalentsHelper.getTalent("Prehensile Tail")],
+            [TalentsHelper.getTalent("Disarming Nature"), TalentsHelper.getTalent("Prehensile Tail"), TalentsHelper.getTalent("Feral Aggression")],
             "Caitians derive their names from their familial units, to which they have strong connections. Their names often have a near-musical quality, though most humanoid species have difficulty pronouncing them correctly – as the species generates extremely low frequency vibrations that are at the far range of Human hearing.",
             [
                 { type: "Female", suggestions: "J’Aana, M’ress, S’isha, K’irst, N’Simi, H’Lata, A’Ahia, P’Erone, C’Nola, L’Eni" },
@@ -761,7 +761,7 @@ class _Species {
             [
                 { type: "Female", suggestions: "Mesha, Eskei, Asha, Brocai, Zarale, Marata, Itea, Risha, Gaska, Kosha, Alissa, Marei, Esha, Seam, Dearei" },
                 { type: "Male", suggestions: "Trula, Ganem, Jolort, Setem, Dukat, Meket, Corak, Seltan, Revok, Ekoor, Hadar, Telak, Kovat, Yaltar" },
-                { type: "Family", suggestions: "Priman, Aanrad, Drat, Rin, Liat, Moset, Tain, Lang, Pa’Dar, Dal, Ghemor, Belor, Prin, Oddat, Zenal" }
+                { type: "Family Name", suggestions: "Priman, Aanrad, Drat, Rin, Liat, Moset, Tain, Lang, Pa’Dar, Dal, Ghemor, Belor, Prin, Oddat, Zenal" }
             ]),
         [Species.Edosian]: new SpeciesModel(
             Species.Edosian,
@@ -1094,7 +1094,7 @@ class _Species {
                 { type: "Masculine", suggestions: "Chellick, Kollarn, Parett, Mattack, Wuttallet, Donnarrek, Sorretten, Garrek, Bennick, Charelenn" },
                 { type: "Feminine", suggestions: " Jesal, Farna, Nalah, Bejal, Valona, Meris, Salah, Harena, Lalona, Jalya" },
                 { type: "Gender-neutral", suggestions: " Bellah, Carru, Ettria, Gunnara, Jojjah, Moddi, Pallon, Ruddis, Urroin, Wefft" },
-                { type: "Family", suggestions: "Kales, Hormal, Terrek, Questel, Corele, Volel, Foralen, Murcosta, Nertal, Ballek" }
+                { type: "Family Name", suggestions: "Kales, Hormal, Terrek, Questel, Corele, Volel, Foralen, Murcosta, Nertal, Ballek" }
             ]),
         [Species.LiberatedBorg]: new SpeciesModel(
             Species.LiberatedBorg,
@@ -1106,7 +1106,7 @@ class _Species {
             "Liberated Borg",
             "As they come from many different species, Liberated Borg have little physically in common with each other, save for the remnants of their former lives. Each still retains at least some of the cybernetic implants so common to Borg drones, as not all the implants can be safely removed. The characteristics of their original species slowly begin to reassert their influence the longer the drone remains free of the collective. Borg are highly resistant to natural diseases and other ailments, but suffer a slight weakness to direct electrical shocks and exotic radiation. Those who still possess a significant number of Borg implants can even survive hard vacuum and other harsh environments, though they may still be susceptible to influence from the collective, and failing implants can be hazardous to a Liberated Borg’s health. In addition, while Liberated Borg do not sleep conventionally, they require routine access to a Borg regeneration alcove.",
             "What Does It Mean to be an Individual?",
-            [TalentsHelper.getTalent("Borg Implants"), TalentsHelper.getTalent("Direct Neural Interface")],
+            [TalentsHelper.getTalent("Borg Implants"), TalentsHelper.getTalent("Direct Neural Interface"), TalentsHelper.getTalent("Collective Insights"), TalentsHelper.getTalent("The Pursuit of Perfection")],
             "Borg drones do not possess names and instead are assigned designations which represent their numerical place within their assigned section. Due to the limitation of their connectivity outside of a vinculum or other supporting network, most drones are organized into groups of about six. Because adjunct drones can increase this number to ten or more, sections which include them have higher numbers. These designations are neutral to gender and are always given as “Number-of-Number.” Liberated Borg may choose to retain their Borg designations – often because they feel disassociated from their former cultures and identities – or try to reclaim the names and lives they used to live.",
             [], [], false),
         [Species.Lokirrim]: new SpeciesModel(
@@ -1159,7 +1159,7 @@ class _Species {
                 { type: "Masculine", suggestions: "Hurgo, Korp, Baguk, Movok, Waguc, Berkus, Pumop, Jobol, Lalob, Burgo" },
                 { type: "Feminine", suggestions: " Jula, Poho, Mamaw, Baloa, Wamah, Halola, Yahala, Kugla, Wola, Layha" },
                 { type: "Gender-neutral", suggestions: "Muloh, Bahlo, Zerha, Kome, Jelah, Hurpa, Gaehe" },
-                { type: "Family", suggestions: "Zulohu, Bahaho, Mowel, Ahlog, Unajal, Elgoha, Omol, Malom" }
+                { type: "Family Name", suggestions: "Zulohu, Bahaho, Mowel, Ahlog, Unajal, Elgoha, Omol, Malom" }
             ]),
         [Species.Ocampa]: new SpeciesModel(
             Species.Ocampa,
@@ -1212,7 +1212,7 @@ class _Species {
                 { type: "Masculine", suggestions: " Sinom, Rosar, Baret, Gathorel, Japenel, Seberal, Naderen, Kanel" },
                 { type: "Feminine", suggestions: "Aldena, Halle, Kisteri, Jalelli, Corta, Suleila, Jodela, Carela, Diena" },
                 { type: "Gender-neutral", suggestions: " Posel, Harge, Marce, Senel, Alanel" },
-                { type: "Family", suggestions: "Otel, Labin, Solis, Tann, Almar, Miton, Moras, Goull, Mitlon, Donal" }
+                { type: "Family Name", suggestions: "Otel, Labin, Solis, Tann, Almar, Miton, Moras, Goull, Mitlon, Donal" }
             ]),
         [Species.Talaxian]: new SpeciesModel(
             Species.Talaxian,
@@ -1247,7 +1247,7 @@ class _Species {
                 { type: "Masculine", suggestions: "Bellas, Torral, Peral, Norrick, Relarr, Mariek, Berrel, Varrolik, Julear, Desteck" },
                 { type: "Feminine", suggestions: "Pesta, Alerri, Estarra, Trelli, Errika, Rellen, Harrila, Jularri, Waseun, Donwani" },
                 { type: "Gender-neutral", suggestions: "Busal, Derran, Warrek, Sarrvel, Kiran, Arrolen, Kenuer, Shilsen" },
-                { type: "Family", suggestions: "Turell, Buhese, Kiralur, Wanoti, Kotathi, Hailova, Jailance, Madmika" }
+                { type: "Family Name", suggestions: "Turell, Buhese, Kiralur, Wanoti, Kotathi, Hailova, Jailance, Madmika" }
             ]),
         [Species.Kobali]: new SpeciesModel(
             Species.Kobali,
@@ -1283,7 +1283,7 @@ class _Species {
                 { type: "Masculine", suggestions: "Degna, Ando, Tromo, Deon, Vanil, Darab, Leom, Gree, Gesur, Hanar, Lelsh" },
                 { type: "Feminine", suggestions: "Persa, Halya, Dijah, Morna, Fani, Balwa, Fulna, Essa, Zare, Nalise, Pente" },
                 { type: "Gender-neutral", suggestions: "Luren, Kley, Jori, Gabel, Bhana, Cirde, Amaro" },
-                { type: "Family", suggestions: "Wikan, Tigh, Temb, Sami, Mahid, Remue, Dregor, Nacul, Sedet, Dalin, Ketpor" }
+                { type: "Family Name", suggestions: "Wikan, Tigh, Temb, Sami, Mahid, Remue, Dregor, Nacul, Sedet, Dalin, Ketpor" }
             ]),
         [Species.Hologram]: new SpeciesModel(
             Species.Hologram,
@@ -1447,7 +1447,7 @@ class _Species {
             "Barzan",
             "The Barzan have long struggled to make do without some of the advantages other species benefit from, but this has turned into one of their greatest strengths. A Barzan takes on each task with their full focus and determination while keeping a keen eye for not only how to accomplish the task but to do so with as few resources as possible. To the Barzan, any resources not spent in this way can be used in the future to help benefit their family or crew. The Barzan also form close bonds with their crewmates, and are willing to sacrifice their own needs if it benefits the group as a whole.",
             "My Greatest Resource Is Myself, and I Will Use It Wisely",
-            [TalentsHelper.getTalent("Expert Quartermaster"), TalentsHelper.getTalent("Unyielding Resolve")],
+            [TalentsHelper.getTalent("Expert Quartermaster"), TalentsHelper.getTalent("Unyielding Resolve"), TalentsHelper.getTalent("Strive and Sacrifice")],
             "Barzan tend to have a given name and surname, though often use only their given name.",
             [{ type: "Sample Names", suggestions: "Amma, Attis, Bhavani, Nhan, Ryess, Servu, Tolpra" }]),
         [Species.Osnullus]: new SpeciesModel(
@@ -1473,7 +1473,7 @@ class _Species {
             "Xahean",
             "The Xaheans are technologically gifted as a species, to the point that they often appear smug in the face of technological advancements by other species. When they encounter a technology unfamiliar to them, they adapt quickly to its uses and seek out ways to construct devices of their own. Their innate ability to manipulate energy fields allows them to activate many different types of machinery in their proximity, and their ability to shroud themselves in a field that obscures their appearance allows them to remain undetected from pursuers.",
             "Balance Between Oneself and the World Around You.",
-            [TalentsHelper.getTalent("Discerning Scientific Mind"), TalentsHelper.getTalent("Camouflage Field")],
+            [TalentsHelper.getTalent("Discerning Scientific Mind"), TalentsHelper.getTalent("Camouflage Field"), TalentsHelper.getTalent("Technopathy")],
             "Xaheans tend to have names consisting of several short names, and often allow non-Xaheans to refer to them by one of them.",
             [{ type: "Sample Names", suggestions: "Caler No Fi Dafili, Drex Dar Mala So Lesk, Foto Mri Ka Se Wachi, Me Hani Ika Hali Ka Po, Vinters Saba Ra Ke Fa Nobi" }]),
         [Species.Saurian]: new SpeciesModel(
@@ -1593,12 +1593,10 @@ class _Species {
             "Exocomp",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
             [Source.SpeciesSourcebook],
-            ["Originally designed as self-directing maintenance workers, Exocomps eventually evolved to sentience by rewriting their own codes to become more efficient. The process of recognizing the Exocomps’ sentience took a while, but it eventually became clear that they were making logical choices to survive and eventually even developed personalities.",
-            "Exocomps come prefabricated with micro- replicators which they use to create the tools and attachments they need to complete a job. A by-product of this system is the ability to create new circuit pathways that effectively give Exocomps the ability to create memories and learn new skills.",
-            "Through interactions with Starfleet, Exocomps were eventually recognized as sentient artificial life-forms who were even able to create and understand both family structures and friendship. Though they are still trying to understand the concept of humanoid emotions, some have formed a bond with other Exocomps that are so strong, they create the parts for new Exocomps together and assemble it as a new life-form. Many engineers and scientists believe this is how the Exocomps solved the problem of reproduction and breeding, moving them even closer to true living organisms."],
+            [""],
             [Attribute.Control, Attribute.Daring, Attribute.Reason],
             "Exocomp",
-            "Exocomps are technological life-forms who can crawl across the ground or hover for short periods of time. They are experts at repairing damage. With a built-in micro-replicator, Exocomps are rarely caught without a tool they need. The gamemaster may rule that this means an Exocomp never suffers a penalty for lacking the right tools, or may waive the Opportunity cost of specialized equipment.",
+            "",
             "Always Use a Sufficiently Adequate Tool",
             [TalentsHelper.getTalent("Enhanced Thrusters"), TalentsHelper.getTalent("Extra Power Supply")],
             "",
@@ -1711,7 +1709,7 @@ class _Species {
             "Bynar",
             "Despite their small size, Bynars are physical robust and durable. Their augmentations allow them to communicate instantaneously with their twin while in the same system, sharing all sensory input. However, they are vulnerable to electromagnetic pulses, which can disable or destroy their implants, leaving them disoriented or even disabled.",
             "There are only ever two choices",
-            [TalentsHelper.getTalent("Networked"), TalentsHelper.getTalent("Paired"), TalentsHelper.getTalent("Unpaired")],
+            [TalentsHelper.getTalent("Networked"), TalentsHelper.getTalent("Paired"), TalentsHelper.getTalent("Unpaired"), TalentsHelper.getTalent("Entangled Consciousness"), TalentsHelper.getTalent("Synchronistic Operation")],
             "",
             []),
         [Species.Doopler]: new SpeciesModel(
@@ -2027,6 +2025,50 @@ class _Species {
                     suggestions: "Arisar, Gor, Gren, L’ak, Lok, Pran, Rong, Ruhn, Sar, Tahal, Trel, Vart, Vog, Za’dag"
                 }
             ]),
+        [Species.Brikar]: new SpeciesModel(
+            Species.Brikar,
+            "Brikar",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [""],
+            [Attribute.Fitness, Attribute.Insight, Attribute.Presence],
+            "",
+            "",
+            [
+                "Your fear of my appearance blinds you to who I am",
+                "I do not want to fight, but I will resist you if I must",
+                "The Galaxy’s a perilous place, but we can make it less so",
+                "Patience and curiosity are more valuable than aggression"
+            ],
+            [TalentsHelper.getTalent("Ablative Hide"), TalentsHelper.getTalent("Massive (Brikar)")],
+            "",
+            [
+                {
+                    type: "Feminine",
+                    suggestions: "Rok-Tahk, Mirg"
+                },
+                {
+                    type: "Masculine",
+                    suggestions: "Cal, Kelner, Nyll, Roakn, Zak"
+                },
+                {
+                    type: "Family Name",
+                    suggestions: "Kebron, Saygur"
+                },
+            ]),
+        [Species.BlueOrion]: new SpeciesModel(
+            Species.BlueOrion,
+            "Orion, Blue",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Fitness, Attribute.Presence],
+            "Orion, Blue",
+            "",
+            "",
+            [TalentsHelper.getTalent("Piratical Understanding"), TalentsHelper.getTalent("True Blue")],
+            "",
+            []),
         [Species.ElAurian_2E]: new SpeciesModel(
             Species.ElAurian_2E,
             "El-Aurian",
@@ -2040,6 +2082,63 @@ class _Species {
             [TalentsHelper.getTalent("Listener"), TalentsHelper.getTalent("Touched the Nexus")],
             "",
             []),
+        [Species.Horta_2E]: new SpeciesModel(
+            Species.Horta_2E,
+            "Horta",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            ["The Horta is a highly intelligent, silicon-based species capable of tunneling through solid rock."],
+            [Attribute.Fitness, Attribute.Insight, Attribute.Reason],
+            "Horta",
+            "",
+            [
+                "All things, even rocks and stones, grow and change with time",
+                "Be your best, so that all may thrive",
+                "We may not resemble what you think of as life, but we are alive",
+                "I am not a monster"
+            ],
+            [TalentsHelper.getTalent("Old as Dirt"), TalentsHelper.getTalent("Tunnel-Wise")],
+            "",
+            []),
+        [Species.HumanAugment]: new SpeciesModel(
+            Species.HumanAugment,
+            "Human Augment",
+            [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [],
+            "Human Augment",
+            "",
+            "",
+            [TalentsHelper.getTalent("Heightened Senses"), TalentsHelper.getTalent("Regenerative Healing")],
+            "",
+            []),
+        [Species.Illyrian_2E]: new SpeciesModel(
+            Species.Illyrian_2E,
+            "Illyrian",
+            [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Reason, Attribute.Presence],
+            "Illyrian",
+            "",
+            "",
+            [TalentsHelper.getTalent("Augmented Immunity"), TalentsHelper.getTalent("Rapid Comprehension")],
+            "",
+            [{
+                    type: "Feminine",
+                    suggestions: "Neera, Una"
+                },
+                {
+                    type: "Masculine",
+                    suggestions: "Ivan, Hudek, Usarn"
+                },
+                {
+                    type: "Family Name",
+                    suggestions: "Chin, Riley, Ketoul"
+                }
+            ]),
+
         [Species.VauNAkat]: new SpeciesModel(
             Species.VauNAkat,
             "Vau N'Akat",
@@ -2383,6 +2482,10 @@ class _Species {
             }
 
             if (species === Species.ElAurian) {
+                return true;
+            }
+
+            if (species === Species.Horta) {
                 return true;
             }
 

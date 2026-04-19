@@ -230,6 +230,7 @@ const typeSpecificGeneralValues: { [type : number ]: (string|Value)[]} = {
         "Information is Power",
         "Adaptation is Survival",
         new Value("Discipline Breeds Excellence", "disciplined"),
+        new Value("It doesn't seem right, all this plotting and secrecy. What are we? Romulans?", "direct and unsubtle"),
         "Sacrifice for the Greater Good",
         "Loyalty Commands Respect",
         new Value("Patriotism as Virtue", "patriotic"),
@@ -272,6 +273,12 @@ const speciesSpecificValues: { [species : number ]: (string|Value)[]} = {
         "I come from one of the great clans of Andoria!",
         "My grandmother in her dotage was a greater warrior than you!",
         "Passion! Exhilaration! Excellence! These are the vital components of life!"
+    ],
+    [ Species.Breen ] : [
+        "I do not care what happens as long as I achieve my objectives",
+        "Your pain does not concern me",
+        "My regard for you lasts only as long as I benefit",
+        "My code of honour is for me and mine; I'm not obligated to treat you honourably"
     ],
     [ Species.Human ] : [
         "An injustice to one is an injustice to all!",
@@ -915,6 +922,13 @@ export class NpcGenerator {
             ranks = [];
         } else if (specialization.id === Specialization.BreenThot) {
             ranks = [RanksHelper.instance().getRank(Rank.Thot)];
+        } else if (specialization.id === Specialization.BreenWarrior) {
+            ranks = [
+                RanksHelper.instance().getRank(Rank.Chot),
+                RanksHelper.instance().getRank(Rank.VelSh),
+                RanksHelper.instance().getRank(Rank.OkChed),
+                RanksHelper.instance().getRank(Rank.HRen)
+            ];
         }
 
         ranks = ranks.filter(r => r.id !== Rank.Yeoman1stClass

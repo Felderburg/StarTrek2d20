@@ -2548,6 +2548,10 @@
     "Species.betelgeusian.exampleValue": "There Will Be One Victor Here and It Shall Be Me",
     "Species.betelgeusian.traitDescription": "Betelgeusians appreciate the study of combat in all its forms. In their culture, survival is never guaranteed and a wise Betelgeusian knows to train their body, their mind, and their soul for all forms of conflict. Though martial, they do not engage in  warfare indiscriminately and never take risks unless they are justified. Betelgeusians consider debate to be one of the highest forms of warfare because it can be used to defeat an opponent without having to strike them.",
 
+    "Species.blueOrion.name": "Orion, Blue",
+    "Species.blueOrion.description": "A relatively rare, blue-skinned subset of Orions, **Blue Orions** (who pronounce their species’ name as Or-ee-on) represent a minority among the Orion people, largely represented in the Orion Syndicate by House Azure. Unlike the majority green Orions, Blue Orions have a more patriarchal culture, and are generally more uniform and conformist in their behavior. They’re often mocked and derided by the majority Orion culture.",
+    "Species.blueOrion.traitDescription": "Blue Orions are very similar to the majority of the Orion species, and the largest physical difference is their skin pigmentation. The other differences between the green Orion majority and the Blue Orions are cultural, with the Blue Orions cleaving more strongly to traditions and a narrower definition of “acceptable” pirate behaviours. They are commonly disrespected by other Orions, and have a strong sense of solidarity. You also have the Orion trait.",
+
     "Species.bolian.name": "Bolian",
     "Species.bolian.soloDescription": "Identified by a cartilaginous ridge that extends vertically down their head, past the center of the face to the chest, with skin color ranging from light blues to dark greens and muted purples with darker banding across the head. They are predominantly bald, though some females are known to have hair. Bolians are an understanding, hospitable species, often forward-facing in their duties in customer relations or diplomatic service.",
 
@@ -2558,6 +2562,10 @@
     "Species.breen.name": "Breen",
     "Species.breen.description": "A species with an isolationist, militaristic culture, the **Breen** have been an enigma for centuries; indeed, few had seen a Breen outside of their refrigeration suits and lived to tell of it prior to the 32nd century. Their territory is deep within the Alpha Quadrant, beyond the Cardassian Union and Ferengi Alliance. Contact with the Federation and other Beta Quadrant polities is rare and typically violent, though they are regarded as secretive and untrustworthy even to the Romulans, who have a saying: “Never turn your back on a Breen.”\n\nDuring the 24th century, little was known of the Breen Confederacy, but they were considered to be one of the most warlike cultures in the Galaxy. They came into wider contact with the other powers of the Alpha and Beta Quadrants when they aligned themselves with the Dominion. Centuries later, the Breen Imperium was similarly militaristic, but also highly territorial and expansionist, though just as secretive about themselves. Among the few facts known was that some Breen technology was based on biotechnology, cultivating engineered strains of algae to possess properties similar to other useful materials, and allowing them to grow technological components.",
     "Species.breen.traitDescription": "Breen physiology is semi-gelatinous in nature, but with effort and concentration they can assume a more solid form with a hardened outer shell, though they dislike doing this: young Breen are taught that solid state was a sign of weakness. Breen are accustomed to extremely low temperatures, and they customarily wear all-concealing refrigeration suits. Breen do not have blood or other bodily fluids, only their natural gelatinous substance, and few non-Breen have any understanding of Breen physiology. The thoughts and emotions of Breen are not detectable by telepaths or empaths.",
+
+    "Species.brikar.name": "Brikar",
+    "Species.brikar.description": "Also sometimes called Brikarians, the Brikar are an unusual species who originate from the planet Brikar in the Beta Quadrant, near the Federation-Klingon border. Brikar are large, powerfully built creatures whose bodies are covered in dense silicate growths that appear like rocks. Brikar skin comes in a variety of colors and patterns, similar to those seen in geological formations. Younger Brikar molt their original rocky skin periodically through their lives as they grow, and older Brikar often require gravity compensators to allow them to move effectively in non-Brikar gravity levels. For all that their appearance can be intimidating to others, Brikar are generally a curious, thoughtful people, and while they can be formidable in battle, they have no particular inclination towards violence. Indeed, a long history of struggles with the Klingons mean that many Brikar think poorly of warrior cultures, and have a strong drive for fairness and justice.",
+    "Species.brikar.traitDescription": "Brikar are large, powerfully built, stoneskinned humanoids, whose dense silicate hides are highly resistant to impact and even energy weapons. Their size and mass can make them somewhat cumbersome, especially as they age and grow—but they are incredibly strong and durable. Their physical resistance does not extend to extreme cold, however. Brikar are imposing, intimidating creatures due to their size and rocky appearance, which often makes people underestimate their quiet wisdom.",
 
     "Species.bynar.name": "Bynar",
     "Species.bynar.exampleValue": "There are only ever two choices",
@@ -2627,15 +2635,22 @@
 
     "Species.horta.name": "Horta",
     "Species.horta.description": "The Horta are a silicon-based life form native to Janus VI. Literate and tool-using, Horta are a highly emotional and intelligent species, who appreciate the strengths and differences of others. Family orientated, Horta are social and protective of those they consider kin, especially those younger than themselves. The Hortas’ preferred habitat was surrounded by solid rock. While they can survive in a Oxygen-Nitrogen atmosphere, they found it disconcertingly empty to the touch, and required a thin coating of Teflon to avoid damaging structures. The Horta diet consisted of minerals dissolved with a powerful acid secreted from glands across their bodies. This acid permits Horta to tunnel through solid rock as easily as a humanoid can swim through water. When Horta are afraid, they can lose control of their acid glands and express the powerful corrosive all around them. They also have the urge to tunnel to safety, although they can suppress this instinct when needed.",
+    "Species.horta.description2e": "**Horta** are sapient, silicate life-forms native to the Alpha Quadrant planet Janus VI. Appearing as an amorphous rocky mass, Horta have little in common with carbon-based life, and they were not identified as being sapient until encountered by the crew of the _U.S.S. Enterprise_ NCC-1701 in 2267, after conflict had arisen between a Human mining colony and the native Horta. Indeed, silicon-based life was deemed purely theoretical prior to first contact with the Horta. The Horta have an extraordinarily long life cycle, spanning almost fifty thousand years, at the end of which time a single mother Horta will remain to guard over the eggs for a new generation.\n\nHorta feed upon mineral deposits found within rock, and they absorb these minerals while tunnelling through rock: their bodies secrete a highly potent acid that dissolves rock, metal, and even organic matter with ease, allowing them to tunnel through dense stone as easily as a Human might walk through an empty room. They are, however, highly intelligent and compassionate beings, and once communication was established between the Horta and the miners on Janus VI, they were able to cooperate extremely effectively. Horta cannot speak, but communicate through scent, vibration, and a limited psionic communion; among humanoids, they rely on universal translators, but in an emergency, they can etch writing into solid surfaces with their acid. \n\nSince then, small numbers of Horta have travelled to other worlds, often as part of mining cooperatives, and a handful have even joined Starfleet.",
     "Species.horta.exampleValue": "Protect the Future",
     "Species.horta.soloDescription": "The Horta is a highly intelligent, silicon-based species capable of tunneling through solid rock.",
     "Species.horta.traitDescription": "The exterior of a Horta consists of a brown rocky carapace that is highly resistant to damage; anything but the highest phaser settings is just a mild irritation to a Horta. On their underside, Horta have numerous cilia upon which they move. Horta  sensory organs can detect the chemical composition of materials around them. This permits them to tell what gases make up the surrounding air, identify species by the chemical composition of their blood, and sense veins of ore. They have poor eyesight but can partially see in the infrared spectrum. Their method of hearing involves detecting atmospheric vibrations, and they have a highly developed sense of smell that is their primary means of communication. To communicate with humanoids Horta are fitted with specialized universal translators and vocalizers, but they can also communicate by etching text into surfaces. Horta can survive exposure to the vacuum of space, though the shock results in a temporary coma.",
+    "Species.horta.traitDescription2e": "A Horta is a large amorphous mass of orange-brown silicate biomatter. They are silicon-based life, rather than carbon-based, and difficult for conventional scanners and sensors to detect as life, and an immobile Horta is nearly impossible to distinguish from a pile of rock or rubble. They are non-humanoid, but their bodies are flexible enough to allow them to grasp objects and manipulate tools with pseudopod-like projections, though humanoid tools are not always easy for them to wield. They have poor eyesight, and see mainly in the infrared range, but instead navigate by a vibrational sense and a multispectral olfactory sense that can detect the chemical compositions of objects, gases, and terrain in their vicinity.\n\nHorta player characters seldom use more physical tools than are absolutely necessary, as their natural acids risk damaging any objects not specially modified for them. They will still carry a communicator and universal translator.",
 
     "Species.human.name": "Human",
     "Species.human.aboutNames": "Human names vary wildly, and rather than make sweeping generalizations here, it’s better that Players seek out other sources for names, considering the vast range of languages, cultures, and traditions Humanity encompasses.",
     "Species.human.description": "Originating on the planet Earth in the Sol system, Humans are a resilient, diverse, and adaptable species, who developed from fractious, warring nations on the brink of mutual annihilation to a united, peaceful society in less than a century, and managed to forge alliances between former enemies within a century of achieving interstellar space flight. Earth is a founder and pivotal member of the United Federation of Planets, and many of the Federation’s institutions can be found on Earth. Humans often exhibit a dichotomy in their nature — being both driven to strong emotion and careful reason — and while they have largely grown beyond their warlike and divisive past, their drive and capacity for aggression are as much a part of their success as their curiosity and analytical minds.",
     "Species.human.description2e": "Originating on the planet Earth in the Sol system, Humans are a hardy and ambitious species, who went from the brink of mutual annihilation to a united peace- ful society in less than a century. A century after that, humanity had established itself as part of an interplane- tary alliance, the United Federation of Planets, bringing former rivals together as allies. Humans often exhibit a dichotomy in their nature—sometimes strongly emo- tional and passionate like Klingons or Andorians, yet at others highly analytical and rational like Tellarites or Vulcans—which has allowed them to grow beyond their warlike and fractious past, but their capacity for ambition and aggression are as much a part of their success as their curiosity and analytical minds.\n\nHumans tend to draw upon two sets of cultural values. As a central and founding member of the Federation, the traditions and ideals of the Federation (or even those of Starfleet) are often regarded as synonymous with “Human culture” (though the Federation draws a lot from each of its members), to the point where nobody is entirely sure where Earth ends and the Federation begins. Yet, conversely, this can also lead to Humans finding value in preserving the traditions and cultures of their pre-warp ancestors.",
     "Species.human.exampleValue": "The Drive for Exploration",
+
+    "Species.humanAugment.name": "Human Augment",
+    "Species.humanAugment.description": "While genetic engineering is not a science limited to humanity, Humans have a particular history with genetically engineered people, commonly referred to as **Augments**. In the latter years of the 20th century or the early years of the 21st century—historical records from this era are patchy and sometimes contradictory—scientists on Earth created a number of Augments with superhuman capabilities: heightened strength, speed, resilience, and intellect. However, these Augments were also notably belligerent, violent, ambitious, and amoral. Seizing power over many nations on Earth, these superhuman tyrants wrought havoc on the world during the Eugenics Wars.\n\nSince that time, Humans have been notably wary of genetic augmentation as a science, and it became illegal on Earth to use genetic engineering to enhance the innate capabilities of a person. This ban would remain law within the Federation upon its founding as well. Officially, Augments and other genetically enhanced people are prohibited from entering Starfleet, but this ban has been challenged, and the civil rights of Augments has been a matter for debate within the Federation for some time, with notable cases such as _Chin-Riley v. Starfleet_ and _Bashir v. Starfleet Medical_ creating exceptions and precedents.",
+    "Species.humanAugment.traitDescription": "An Augment has had their genetic structure artificially altered in order to enhance specific qualities and abilities they possess. The specifics of these enhancements can vary considerably depending on which qualities the geneticist chooses to enhance. Creating Augments is banned in the Federation, and many organizations refuse to recruit or employ Augments. Because of this, many Augments are created by illicit geneticists, whose methods are often dubious and whose creations can have debilitating side-effects. Most Augments have to hide their altered nature their entire lives. \n\nYou also have the Human trait",
+
     "Species.human.traitDescription": "Humans are adaptable and resilient, and their resolve and ambition often allow them to resist great hardship and triumph despite great adversity. However, Humans can also be reckless and stubborn, irrational, and unpredictable.",
 
     "Species.hupyrian.name": "Hupyrian",
@@ -2645,6 +2660,11 @@
 
     "Species.illyrian.name": "Illyrian",
     "Species.illyrian.description": "A spacefaring humanoid species that utilizes genetic engineering to adapt their bodies to the new planets they settle, rather than changing the planet to suit themselves.",
+
+    "Species.illyrian_2E.name": "Illyrian",
+    "Species.illyrian_2E.description": "**Illyrians** are a species native to the region once known as the Delphic Expanse, and Illyria itself was located in the Vaultera Nebula, but they have spread and settled countless colony worlds over the centuries. Illyrians have embraced genetic engineering to adapt their bodies to suit the worlds they settle, as an alternative to terraforming or geoengineering to make worlds habitable. As a result, Illyrians live on many worlds that other species might regard as uninhabitable.\n\nHowever, while many of their colonies are now within Federation space, they exist in an awkward limbo, as their tendency towards genetic engineering puts them in direct conflict with Federation laws against genetic augmentation. This has left them as outcasts, forced to either undo their genetic enhancements, hide their nature, or live in marginalized communities on the fringes of society. The treatment of Illyrians—and by extension, all genetically enhanced persons—is a matter of controversy and the subject of a long-running civil rights movement.\n\nDue to their engineered nature, Illyrians can vary wildly in appearance, ranging from appearing indistinguishable from Humans, to possessing cranial ridges, brow spines, webbed hands and feet, or a range of other visible or invisible physiological alterations.",
+    "Species.illyrian_2E.traitDescription": "Illyrian baseline physiology is fairly close to that of Humans, but few Illyrians match this baseline closely, due to countless generations of divergent genetic engineering to suit different planetary environments or to gain other desired capabilities. Illyrians tend to be secretive due to a history of being outcast or dismissed by Federation races for their enhancements.",
+    "Species.illyrian_2E.aboutNames": "Illyrians tend to have names with the common pattern of personal name followed by family name; in some cases, the family name will be the names of two families linked by a hyphen. Illyrians who have removed their enhancements, or who seek to hide their enhancements, often take new names or alter their names to better blend in.",
 
     "Species.jelna.name": "Rigellian Jelna",
 
@@ -2905,13 +2925,13 @@
 
     "SpeciesAbility.efrosian.description": "An Efrosian can see beyond the normal Human visual spectrum, from some infrared to ultraviolet light. Any task in which detecting those parts of the spectrum is useful reduce in Difficulty by 1. Location or situation traits such as low light levels, do not affect the Difficulty of tasks for an Efrosian.",
 
-    "SpeciesAbility.elAurian_2e": "Transtemporal Awareness",
+    "SpeciesAbility.elAurian_2E": "Transtemporal Awareness",
 
-    "SpeciesAbility.elAurian_2e.description": "You are aware of shifts and changes in the fabric of space-time in ways that few other beings are. Whenever there is a phenomenon present in a scene which was caused by alterations to the timeline, or the influence of alternate dimensions or extradimensional entities, the gamemaster must immediately inform you that something is wrong (though they do not have to specify what). You may add 1, 2, or 3 Threat to ask that many questions (as per _Obtain Information_) to try and discern details about the phenomenon.",
+    "SpeciesAbility.elAurian_2E.description": "You are aware of shifts and changes in the fabric of space-time in ways that few other beings are. Whenever there is a phenomenon present in a scene which was caused by alterations to the timeline, or the influence of alternate dimensions or extradimensional entities, the gamemaster must immediately inform you that something is wrong (though they do not have to specify what). You may add 1, 2, or 3 Threat to ask that many questions (as per _Obtain Information_) to try and discern details about the phenomenon.",
 
-    "SpeciesAbility.exocomp_2e": "Technological Life",
+    "SpeciesAbility.exocomp_2E": "Technological Life",
 
-    "SpeciesAbility.exocomp_2e.description": "You are not an organic being, and are not vulnerable to physical harm as they are: you have +1 Protection against Stun Attacks. You recover from injuries with Engineering, rather than Medicine. In addition, your onboard micro-replicator allows you to produce small tools and one-handed items for your own use with opportunity cost 1 by suffering 1 Stress for each such item created. Due to your lack of hands, you cannot use tools made for other creatures.",
+    "SpeciesAbility.exocomp_2E.description": "You are not an organic being, and are not vulnerable to physical harm as they are: you have +1 Protection against Stun Attacks. You recover from injuries with Engineering, rather than Medicine. In addition, your onboard micro-replicator allows you to produce small tools and one-handed items for your own use with opportunity cost 1 by suffering 1 Stress for each such item created. Due to your lack of hands, you cannot use tools made for other creatures.",
 
     "SpeciesAbility.ferengi": "The Great Material Continuum",
 
@@ -2929,9 +2949,9 @@
 
     "SpeciesAbility.hologram.description": "You are not an organic being, and are not vulnerable to physical harm as they are: you have 2 Protection. Injuries and fatigue you suffer represent disruption to your holomatrix or damage to holo-emitters. You recover from injuries with Engineering tasks, rather than Medicine. You cannot be present in any scene where there are no holo-emitters. In addition, because you were programmed for a specific purpose, you do not have a pastime.",
 
-    "SpeciesAbility.horta_2e": "Silicon-Based Burrower",
+    "SpeciesAbility.horta_2E": "Silicon-Based Burrower",
 
-    "SpeciesAbility.horta_2e.description": "You are nigh-impervious to harm, having Protection 3, and you can move freely through solid rock with little difficulty (very dense rock might count as difficult terrain). Your acidic secretions give you a melee attack which inflicts Deadly 4 Injuries with the Debilitating and Piercing qualities.",
+    "SpeciesAbility.horta_2E.description": "You are nigh-impervious to harm, having Protection 3, and you can move freely through solid rock with little difficulty (very dense rock might count as difficult terrain). Your acidic secretions give you a melee attack which inflicts Deadly 4 Injuries with the Debilitating and Piercing qualities.",
 
     "SpeciesAbility.human": "Faith of the Heart",
 
@@ -2941,9 +2961,9 @@
 
     "SpeciesAbility.humanAugment.description": "You are an **Augment**. You may select one or two talents which require the Augment trait, which you gain in addition to the normal talents you can select. If you select two of these Augment talents, then you must select an additional trait which represents a severe personality flaw or neurological problem, such as **Heightened Aggression**, or **Sensory Processing Disorder**.",
 
-    "SpeciesAbility.illyrian_2e": "Adapt and Excel",
+    "SpeciesAbility.illyrian_2E": "Adapt and Excel",
 
-    "SpeciesAbility.illyrian_2e.description": "You may have the Augment trait. In addition, select a single attribute when you create your character: when you attempt a task using that attribute, you may suffer 1 Stress to reroll a single d20.",
+    "SpeciesAbility.illyrian_2E.description": "You may have the Augment trait. In addition, select a single attribute when you create your character: when you attempt a task using that attribute, you may suffer 1 Stress to reroll a single d20.",
 
     "SpeciesAbility.jelna": "Divergent Physiology",
 
@@ -3105,9 +3125,9 @@
 
     "SpeciesAbility.xindiReptilian.description": "Xindi-Reptilians are tough, and cannot easily be stopped by attacks intended to subdue or incapacitate. Nothing short of deadly force can deter you. You have 1 Protection, which increases to 3 against Stun _Attacks_.",
 
-    "SpeciesAbility.yridian_2e": "Eidetic Memory",
+    "SpeciesAbility.yridian_2E": "Eidetic Memory",
 
-    "SpeciesAbility.yridian_2e.description": "Yridians have an extraordinary ability to process, retain, and recall information. You may spend 1 Momentum (and a major action if in combat) attempting an Insight + Science task with a Difficulty of 0 to recall some event which you witnessed in the past; Momentum spent may be used to _Obtain Information_ to gain new insights from this recollection.",
+    "SpeciesAbility.yridian_2E.description": "Yridians have an extraordinary ability to process, retain, and recall information. You may spend 1 Momentum (and a major action if in combat) attempting an Insight + Science task with a Difficulty of 0 to recall some event which you witnessed in the past; Momentum spent may be used to _Obtain Information_ to gain new insights from this recollection.",
 
     "SpeciesAbility.zakdorn": "Several Moves Ahead",
 
@@ -3212,6 +3232,10 @@
     "Talent.ablativeFieldProjector.soloDescription": "The ship’s shield emitters are combined with an ablative field projector that allows its graviton field to be shared with another target in close range. Complications could mean shield failure or power loss to key systems.",
     "Talent.ablativeFieldProjector.description2e": "The ship’s shield emitters are combined with an ablative field projector, allowing its graviton field to be shared with another target in Close range. These projectors charge the target’s shields while dissipating its own.\n\nWhen you attempt the _Regenerate Shields_ action, any Momentum you spend to increase shields regenerated may restore shields on an allied vessel within Close range.",
 
+    "Talent.ablativeHide": "Ablative Hide",
+
+    "Talent.ablativeHide.description": "Your hide is especially dense and resilient, allowing you to endure severe impacts; further, even against severe impacts that could hurt you, surface layers of your rocky hide flake away, diffusing the blow. Your Protection is increased to 3, and your maximum Stress is increased by 3.",
+
     "Talent.aboveTheClouds": "Above the Clouds",
 
     "Talent.aboveTheClouds.description": "While engaged in Social conflict in a lavish environment (or one of excess), you reduce the Difficulty of any Persuade Tasks by 1 to a minimum of 1.",
@@ -3305,6 +3329,10 @@
 
     "Talent.ambushTactics.description2e": "When you succeed at an Attack against an enemy who is unaware of your presence, or who is suffering from a trait or complication which represents a weakness or vulnerability, increase the Severity of the Attack by 2.",
 
+    "Talent.aMindForDesign": "A Mind for Design",
+
+    "Talent.aMindForDesign.description2e": "Xindi-Primates have produced many talented engineers and scientists, pushing at the frontiers of design and construction. When you spend 2 or more Momentum to Obtain Information when using a focus that represents science or technology, you may create a new trait for free which represents a hypothesis. Further, when you succeed at an extended task related to a scientific or engineering activity, you may spend 2 Momentum to ignore any Resistance on the extended task for that roll.",
+
     "Talent.amphibious": "Amphibious",
 
     "Talent.amphibious.description": "This creature can move on the ground or through the water with ease. Complications normally suffered by a creature moving through an environment in which it is not native are ignored. This special rule can apply to any two environments, such as vacuum and magma, or aquatic and air.",
@@ -3359,6 +3387,10 @@
     "Talent.augmentedAbility.description": "You gain the Augment Trait. Choose a single Attribute when this Talent is selected. You gain the Extraordinary Attribute 1 special rule for the chosen Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task. This Talent may be selected multiple times, once for each Attribute.",
     "Talent.augmentedAbility.description2e": "Choose a single attribute when this talent is selected. You gain the Extraordinary Attribute 1 special rule for the chosen attribute, granting one automatic success on all tasks using that attribute. When you use this ability, increase the complication range by 2 for that task. This talent may be selected multiple times, choosing a different attribute each time.",
     "Talent.augmentedAbility.error": "The selected talent requires you to choose an attribute.",
+
+    "Talent.augmentedImmunity": "Augmented Immunity",
+
+    "Talent.augmentedImmunity.description": "Your immune system has been altered to burn out toxins and diseases. Whenever you would be affected by toxins or diseases, you may add 1 Threat to immediately eliminate the infectious agent and ignore the effect. You visibly glow when this occurs.",
 
     "Talent.automatedDefenses": "Automated Defenses",
 
@@ -3527,6 +3559,10 @@
 
     "Talent.clusterTorpedoes.description": "The ship uses a modified torpedo system, where each casing splits into several smaller projectiles with separate payloads. When the ship fires a torpedo salvo, the attack gains the Versatile 2 quality.",
 
+    "Talent.coldBloodedSupremacy": "Cold-Blooded Supremacy",
+
+    "Talent.coldBloodedSupremacy.description": "You are driven to excel, and to prove not only your own might, but that of Xindi-Reptilians in general. Your maximum Stress is increased by 3. Further, whenever you spend a point of Determination on a task roll, you recover Stress equal to the task’s Difficulty.",
+
     "Talent.coldReading": "Cold Reading",
 
     "Talent.coldReading.description2e": "When you succeed at a task during social conflict, you generate 1 bonus Momentum which must be used for the Obtain Information Momentum spend to gain knowledge about one of the people you’re interacting with. If the  social conflict with that person involves an extended task, you may ignore any Resistance the extended task has.",
@@ -3564,6 +3600,10 @@
     "Talent.collaborationSecurity": "Collaboration: Security",
 
     "Talent.collaborationSecurity.description": "Whenever an ally attempts a Task using Security, you may spend one Momentum (Immediate) to allow them to use your score for that Discipline, and one of your Focuses.",
+
+    "Talent.collectiveInsights": "Collective Insights",
+
+    "Talent.collectiveInsights.description": "You still have extensive knowledge from your time in the Borg Collective, though your knowledge may be accompanied by horrific memories of your experiences as a drone. Once per session, when you attempt a task, you may suffer 1 Stress to gain one additional focus of your choice for the remainder of the current session. The focus should reflect some knowledge that the Borg Collective would have assimilated, and thus should not be any subject which the Borg would deem irrelevant.",
 
     "Talent.combatGunner": "Combat Gunner",
 
@@ -3724,6 +3764,10 @@
     "Talent.diplomaticSuites.soloDescription": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions.",
     "Talent.diplomaticSuites.description2e": "The ship has numerous high-quality staterooms for hosting VIPs, as well as briefing rooms and other facilities that allow the ship to serve as a neutral ground for diplomatic summits, trade negotiations, and similar functions, including making environmental adjustments to make alien diplomats more comfortable.\n\nWhen hosting negotiations, members of the crew may be assisted by the ship’s **Computers + Command** or **Structure + Command**.",
 
+    "Talent.discerningScientificMind": "Discerning Scientific Mind",
+
+    "Talent.discerningScientificMind.description2e": "Xahean culture and physiology allows them to discern scientific phenomena quickly and inspires them in how to replicate it. When a Xahean is attempting to perform an extended task to determine the purpose of a piece of technology, their Impact increases by 1.",
+
     "Talent.disregardForHardship": "Disregard for Hardship",
 
     "Talent.disregardForHardship.description": "You are ruthless and determined, and hold little regard for the pain it takes to achieve your goals. Whenever you use a value or Directive positively, recover 4 Stress. You may regain Stress in this way even if you are Fatigued.",
@@ -3788,6 +3832,10 @@
 
     "Talent.empathy2e.description": "You can sense the emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom you are extremely familiar. You cannot choose not to sense the emotions of those nearby, except for those who are resistant to telepathy. It may require effort and a task to pick out the emotions of a specific individual in a crowd, or to block out the emotions of those nearby. Increase the Difficulty of this task if the situation is stressful, if there are a lot of beings present, if the target has resist- ance to telepathy, and other relevant factors.",
 
+    "Talent.empathicTouch": "Empathic Touch",
+
+    "Talent.empathicTouch.description": "You’ve practiced your empathic abilities, and you can influence the emotions of others in close proximity, and can even relieve physical pain. When you attempt a task to try and persuade, provoke, or manipulate a living creature, you may suffer 2 Stress to create or remove an emotion-related trait from them before you roll. Further, if you spend Momentum to recover an ally’s Stress, the cost is reduced to 1 as long as you’re touching them.",
+
     "Talent.encounterTheStrangeServiceRecord": "Encounter the Strange",
 
     "Talent.encounterTheStrangeServiceRecord.description": "Each adventure, the gamemaster begins with +2 Threat. In addition, the ship always has an additional Directive for each mission: **Understand the Inexplicable**.",
@@ -3803,6 +3851,10 @@
     "Talent.enhancedDefenseGrid": "Enhanced Defense Grid",
 
     "Talent.enhancedDefenseGrid.description2e": "The station’s Shields are increased by an additional amount equal to half the station’s Scale.",
+
+    "Talent.entangledConsciousness": "Entangled Consciousness",
+
+    "Talent.entangledConsciousness.description": "Your mind and that of your partner are so connected that you can draw on their expertise almost without effort. When you attempt a task, you may spend 1 Momentum (Immediate) to use one of your partner’s focuses instead of one of your own. Alternatively, you may spend 2 Momentum (Immediate) to use one of your partner’s talents for the remainder of the scene.",
 
     "Talent.entanglingVines": "Entangling Vines",
 
@@ -3827,6 +3879,9 @@
     "Talent.expandedMunitions.errorMines": "You cannot select a mine weapon if your starship is not a mine layer.",
 
     "Talent.expandedProgram": "Expanded Program",
+
+    "Talent.expandedProgram.description2e": "Your program has been expanded considerably, and even includes interests beyond the scope of your original programming. You may select up to two additional focuses. In addition, you may select a pastime.",
+
     "Talent.expansiveDepartment": "Expansive Department",
 
     "Talent.expansiveDepartment.description2e": "When you select this talent, select a single department on the ship with a score of 5. Whenever a ship assists a task roll using the chosen department, you may ignore a complication by spending 1 Momentum (Immediate, Repeatable).",
@@ -3842,6 +3897,10 @@
     "Talent.experimentalVessel": "Experimental Vessel",
 
     "Talent.experimentalVessel.description": "When the ship is created, apply two additional refits to the ship. In addition, whenever the ship assists a task attempt, the ship’s die increases its complication range by 2 (to 18–20). A milestone refit can remove this complication range increase, representing the ship’s crew working out the problems in the prototype design.",
+
+    "Talent.expertQuartermaster": "Expert Quartermaster",
+
+    "Talent.expertQuartermaster.description2e": "The Barzan people have long had to make do with less, and this has taught them to be especially considerate of all resources at their command. When attempting a task to salvage resources, materials, or components from existing items, you may reroll 1d20. Further, once per session, when you obtain equipment with an opportunity cost, you may reduce that cost by 1, to a minimum of 0.",
 
     "Talent.extendedSensorRange": "Extended Sensor Range",
 
@@ -3901,6 +3960,10 @@
     "Talent.fellowshipSpeciality": "Fellowship Specialty",
 
     "Talent.fellowshipSpeciality.description2e": "Select a focus. When you succeed at a Medicine task where that focus applies, the cost of the Create Trait Momentum spend is reduced to 1.",
+
+    "Talent.feralAggression": "Feral Aggression",
+
+    "Talent.feralAggression.description": "Some Caitians tend towards a territorial manner, reacting to threats with anger, and pain with defiance. You gain 1 Protection, and whenever you suffer a trait that represents pain or fear, you may add 1 Threat to remove that trait immediately.",
 
     "Talent.fireAtWill": "Fire at Will",
 
@@ -4025,6 +4088,10 @@
     "Talent.heartBodyAndMind": "Heart, Body and Mind",
 
     "Talent.heartBodyAndMind.description2e": "Whenever you succeed at a Medicine task, and you spend Momentum to recover an ally’s Stress, it costs you only 1 Momentum per Stress recovered. If you have any other talents which let you recover an ally’s Stress, any affected ally recovers one more Stress than they would otherwise.",
+
+    "Talent.heightenedSenses": "Heightened Senses",
+
+    "Talent.heightenedSenses.description": "When you select this talent, select a single sense: sight, hearing, smell, taste, or touch. When you attempt a task to perceive or detect something using that sense, reduce the Difficulty by 2, to a minimum of 0. You may also attempt to detect things using that sense which a normal Human could not naturally detect.",
 
     "Talent.heirloom": "Heirloom",
 
@@ -4277,13 +4344,25 @@
 
     "Talent.makeYourOwnLuck.description": "You don’t rely on chance or fortune to guide you. When you attempt a task, after rolling, you may suffer 1 Stress to change any one die to be equal to the target number you used on the roll (guaranteeing one success). You may do this only once per task, and if you do this, you cannot re-roll any dice on that task roll.",
 
+    "Talent.manipulative": "Manipulative",
+
+    "Talent.manipulative.description": "You have a knack for knowing what to say to elicit the desired response from others. When you purchase one or more d20s when attempting a task roll to deceive or intimidate someone, you may reroll 1d20. Further, if you use either deception or intimidation during a social conflict, and the affected character attempts to resist being persuaded, the Severity (the amount of Stress they must suffer to resist) increases by 1.",
+
     "Talent.martialArtist": "Martial Artist",
 
     "Talent.martialArtist.description2e": "Your Unarmed Strike Attack may be used to inflict Deadly Injuries as well as Stun Injuries.",
 
+    "Talent.massiveBrikar": "Massive",
+
+    "Talent.massiveBrikar.description": "You’ve grown larger and rockier with age. Whenever you attempt a Fitness-related task, you add one automatic success due to your sheer size and  physical presence. You also increase the Severity of all melee attacks by 1. Additionally, you carry a Gravity Compensator (equipment trait) to aid your movement, and if this is lost or damaged, you suffer difficulties moving around easily in non-Brikar gravity levels.",
+
     "Talent.massive": "Massive",
 
     "Talent.massive.description2e": "The creature is massive. It must suffer three Injuries before it is defeated.",
+
+    "Talent.masterStrategist": "Master Strategist",
+
+    "Talent.masterStrategist.description2e": "Zakdorn strategic sense is unparalleled in contemporary military theory. When you attempt a task to _Create a Trait_ related to strategy or tactics, the first bonus d20 you purchase is free. If you have such a trait currently in effect, then each time an enemy NPC suffers a complication, you may immediately select another player character who has not yet acted this round and allow them to take an extra minor action immediately, to capitalize on the enemy’s mistake.",
 
     "Talent.meanRightHook": "Mean Right Hook",
 
@@ -4338,6 +4417,10 @@
     "Talent.missionPod": "Mission Pod",
 
     "Talent.missionPod.description2e": "All vessels of this class are fitted with a mission pod, which provides two talents as well as adjustments to the ship’s system and department ratings. The mission pod can be changed as if it were a single talent; replacing it takes 12–24 hours at a starbase or other facility.",
+
+    "Talent.mobileEmitter": "Mobile Emitter",
+
+    "Talent.mobileEmitter.description2e": "You have a device that allows you a degree of autonomy from fixed holo-emitters. Most of these mobile emitters are bulky, awkward pieces of equipment with a limited amount of power, making them useful only for short periods and emergencies, but the technology is improving. While you have your mobile emitter, you can move freely in places that lack holo-emitters. However, the device is vulnerable, which reduces your Protection by 1.",
 
     "Talent.modularCargoBays": "Modular Cargo Bays",
 
@@ -4426,6 +4509,10 @@
 
     "Talent.objectiveFocused.description": "Once you have an objective in sight, little can deter you from pursuing it. Once per adventure, at the start of an action scene, you may define an immediate goal by adding 2 Threat. This goal must relate to the mission and your duties, such as reaching a particular location or character, obtaining an important item, or similar. During the scene, you may re-roll one d20 on any task attempt which would bring you closer to achieving your goal.",
 
+    "Talent.oldAsDirt": "Old as Dirt",
+
+    "Talent.oldAsDirt.description": "Horta can live to be thousands of years old, and while few have any experiences of the wider universe prior to first contact with them in 2267, their potential for accumulated wisdom is considerable. When you attempt a task for which you have an applicable focus, you may spend Determination to automatically succeed at that task roll, as long as the task’s Difficulty is lower than the department you would use on that roll (for example, if you attempt a task using Science, and you have Science rating of 4, you may spend Determination to auto-succeed at the task if it has a Difficulty of 3 or less).",
+
     "Talent.orbExperience": "Orb Experience",
 
     "Talent.orbExperience.description": "You have received a vision from the Bajoran Prophets, through one of the Orbs. This rare experience, though confusing at first, has shaped your life and outlook. You have one additional Value, reflecting the insights you received from the experience. The first time this Value is Challenged, roll 1[D]; if an Effect is rolled, then some foretold element of the Orb Experience has come to pass, and the Value is not crossed out as it would normally be.",
@@ -4447,6 +4534,10 @@
 
     "Talent.openBook.description": "When a character enters a scene, you may spend 1 Momentum (Immediate) to immediately ask the gamemaster one question about that character’s current emotions or surface thoughts. You cannot do this for characters immune to telepathy.",
 
+    "Talent.overseer": "Overseer",
+
+    "Talent.overseer.description": "You are not much of a combatant yourself, but you know how to coordinate others. When you take the _Assist_ or _Direct_ major action in combat, you may spend Determination to apply the effects of that action to two allies rather than one. The normal requirements for spending Determination apply.",
+
     "Talent.packTactics": "Pack Tactics",
 
     "Talent.packTactics.description": "Whenever you assist another character during combat, the character you assisted gains one bonus Momentum if they succeed.",
@@ -4464,6 +4555,10 @@
     "Talent.pathfinder": "Pathfinder",
 
     "Talent.pathfinder.description2e": "Whenever you attempt a task to plot a course through unknown territory, reduce the Difficulty of the task by 1, 2, or 3, to a minimum of 1. For each point by which you reduce the Difficulty, increase the complication range of that task.",
+
+    "Talent.patientCounsel": "Patient Counsel",
+
+    "Talent.patientCounsel.description": "Xindi-Arboreals are commonly the voice of reason in a crisis. During a social conflict, whenever you or an ally spends one or more Momentum to purchase d20s on a task, they may ignore the first complication rolled.",
 
     "Talent.peakPerformanceServiceRecord": "Peak Performance",
 
@@ -4493,6 +4588,10 @@
     "Talent.piercingSalvo": "Piercing Salvo",
 
     "Talent.piercingSalvo.description2e": "When you make a Torpedo Attack, you may spend 2 Momentum (Immediate) to add the Piercing quality.",
+
+    "Talent.piraticalUnderstanding": "Piratical Understanding",
+
+    "Talent.piraticalUnderstanding.description": "You’re well-versed in many traditions, techniques, and tactics of Orion pirates, and you can both utilize and defend against these methods. When attempting to bypass a lock or other security measure, you may reroll 1d20, and you may ignore complications rolled by spending 1 Momentum (Repeatable). In addition, you own an Orion Multikey, which counts as standard issue for you.",
 
     "Talent.planOfAction": "Plan of Action",
 
@@ -4568,6 +4667,10 @@
 
     "Talent.protector.description": "You put the safety of your crew and comrades first, and will push yourself further to defend them. If an ally in the same scene as you is Defeated, you immediately recover up to 3 Stress as you push yourself harder to defend them.",
 
+    "Talent.protectiveInstinct": "Protective Instinct",
+
+    "Talent.protectiveInstinct.description2e": "The Insectoid instinct to defend their eggs and offspring is powerful, but many Insectoids have developed a similar protective bond with comrades, colleagues, and friends. When you attempt the _Guard_ major action to protect an ally within Reach, you immediately recover 2 Stress as you receive a surge of vitality, and you ignore the normal Difficulty increase for using the _Guard_ action to protect an ally.",
+
     "Talent.prototypeCloakingDevice": "Prototype",
 
     "Talent.prototypeCloakingDevice.description": "The cloaking device employed on this vessel has some notable limitations. The vessel cannot travel at warp while cloaked, and the difficulty of the task roll to activate the cloak increases to 3.",
@@ -4629,9 +4732,17 @@
 
     "Talent.rapidAnalysis.description2e": "When you succeed at a Science task, the cost of the Reduce Time Momentum option is reduced to 1.",
 
+    "Talent.rapidComprehension": "Rapid Comprehension",
+
+    "Talent.rapidComprehension.description": "Your mind processes information swiftly, allowing you to learn even advanced concepts very quickly. Once per scene, when you ask questions with _Obtain Information_, or create a trait that represents researched information, you may spend 1 Momentum (Immediate) to select an additional focus related to those questions or that trait. You gain the benefits of the new focus for the remainder of the current scene.",
+
     "Talent.rapidHypothesis": "Rapid Hypothesis",
 
     "Talent.rapidHypothesis.description2e": "Once per scene, when you ask two or more questions using Obtain Information, you may immediately create a trait representing your theoretical understanding of the subject of those questions.",
+
+    "Talent.rapidProcessing": "Rapid Processing",
+
+    "Talent.rapidProcessing.description": "Xindi-Insectoids learn quickly, as their lives aren’t long enough to spend decades in deep study. The first time each scene that you _Obtain Information_ after succeeding at a task roll which used one of your focuses, that use of _Obtain Information_ is free.",
 
     "Talent.rapidFireTorpedoLauncher": "Rapid-Fire Torpedo Launcher",
 
@@ -4680,6 +4791,10 @@
 
     "Talent.resolute.description": "You are indomitable, and unwilling to succumb to adversity. You increase your maximum Stress by 3.",
     "Talent.resolute.description2e": "Your Maximum Stress increases by an amount equal to your Command rating.",
+
+    "Talent.regenerativeHealing": "Regenerative Healing",
+
+    "Talent.regenerativeHealing.description": "Your body’s natural recovery and repair processes have been enhanced, allowing you to withstand and heal from injuries more quickly. You gain +1 Protection against Stun Injuries. At the end of each scene, you may select one untreated injury you currently have and add Threat equal to the Injury’s Severity: the Injury becomes treated. If all your injuries are currently treated, you may instead pick a treated injury, and add Threat equal to its Severity to heal that injury completely.",
 
     "Talent.regenerativeHull": "Regenerative Hull",
 
@@ -4787,6 +4902,10 @@
     "Talent.slimSensorSilhouette.description2e": "Through a combination of advanced alloys, EM shielding, and electronic countermeasures, the starship is difficult to detect via electromagnetic radiation and subspace sensors. Tasks attempting to scan or detect the vessel increase in Difficulty by 1.",
     "Talent.slimSensorSilhouette.soloDescription": "This ship is designed to present a minimal sensor return to a searching ship’s sensors through advanced hull plating, jamming, and passive subspace baffles.",
 
+    "Talent.songOfTheOcean": "Song of the Ocean",
+
+    "Talent.songOfTheOcean.description2e": "Your innate echolocation capabilities—sometimes called biosonar—are especially well-honed and precise. When attempting to detect fine details of your environment, notice the movement of other objects or creatures, or navigate a complex path through that environment, or communicate with other aquatic creatures capable of echolocation, you ignore all normal penalties for distance: you can perceive and communicate clearly up to 100 kilometers away.",
+
     "Talent.sophisticatedAstrometricsFacilities": "Sophisticated Astrometrics Facilities",
 
     "Talent.sophisticatedAstrometricsFacilities.description": "When a character in the stellar cartography laboratory or at navigation attempts a task to plot a course or map a large region of space, they may re-roll a d20. Further, if such a task creates a trait to represent a planned course or knowledge about the region, this trait automatically increases its Potency by one step.",
@@ -4836,6 +4955,10 @@
     "Talent.strafingRun": "Strafing Run",
 
     "Talent.strafingRun.description2e": "Whenever you succeed at the Attack Pattern task and then Keep the Initiative, the cost to Keep the Initiative is reduced to 0. If the character taking the next turn makes an Attack, they may re-roll one d20.",
+
+    "Talent.striveAndSacrifice": "Strive and Sacrifice",
+
+    "Talent.striveAndSacrifice.description": "You push yourself harder when your effort makes the difference between your kin or crew succeeding or failing. When you assist an ally, you may suffer 1 Stress to reroll your assistance die.",
 
     "Talent.strongPagh": "Strong Pagh",
 
@@ -4890,6 +5013,10 @@
 
     "Talent.swift.description": "You’re quick on your feet. When you take the Movement minor action or the Sprint major action, you may spend 1 Momentum (Immediate) to move up to one additional zone.",
 
+    "Talent.synchronisticOperation": "Synchronistic Operation",
+
+    "Talent.synchronisticOperation.description": "You work in perfect concert with your partner. When you attempt a task and your partner assists you (or vice versa), each of you may reroll one d20. Further, if you are task leader and your partner is assisting (or vice versa), then the assistant’s successes still count even if the task leader scores no successes of their own.",
+
     "Talent.syntheticPhysiology": "Synthetic Physiology",
 
     "Talent.syntheticPhysiology.description": "Much of your body has been reconstructed with cybernetics. You have Protection 1, which increases by 1 against Stun attacks. Further, when you attempt a task using **Fitness**, you may suffer 1 Stress to reroll a single d20. Tasks to heal your Injuries use **Engineering** instead of **Medicine**.",
@@ -4902,6 +5029,10 @@
     "Talent.tacticalCountermeasures": "Tactical Countermeasures",
 
     "Talent.tacticalCountermeasures.description": "You have studied the weapon systems commonly used across the Galaxy, and you know the best ways to counter them. When you take the Modulate Shields major action during starship combat, you increase the ship’s Resistance by an amount equal to your Security rating.\n\nDuring personal combat, if you create a trait that represents creating or modifying a force field, energy field, or dampening field, then all allies protected by that field gain +1 Protection against a single type of energy weapons (phasers, disruptors, plasma weapons, etc.).",
+
+    "Talent.tacticalVoice": "Tactical Voice",
+
+    "Talent.tacticalVoice.description2e": "In command positions, the speed of Zakdorn tactical calculations allows them to issue succinct, efficient orders. During combat, you may use the Direct major action without paying the normal Momentum cost. Further, when you use the Swift Action Momentum spend, the cost is reduced to 1 Momentum, so long as the second action you attempt is either _Assist_ or _Direct_.",
 
     "Talent.teacher": "Teacher",
 
@@ -4923,6 +5054,10 @@
 
     "Talent.technicalExpertise.description": "Whenever you attempt a Task assisted by the ship’s Computers or Sensors, you may re-roll one d20 (which may be the ship’s die).",
     "Talent.technicalExpertise.description2e": "Whenever you attempt a task assisted by the ship’s Computers or Sensors, you may re-roll one d20 in your pool, or you may allow the ship to re-roll its d20.",
+
+    "Talent.technopathy": "Technopathy",
+
+    "Talent.technopathy.description": "All Xaheans have a limited capability to manipulate electromagnetic fields nearby, which contributes to their camouflage field and their ability to influence technology. However, it takes practice to be able to manipulate technology in useful ways. You may suffer 1 Stress to operate technology within Close range as if you were holding it. If someone else is holding and operating that technology, they may cancel or override any actions you attempt with that device, and if operating that technology takes an action and/or a task roll, then it still does when operated remotely.",
 
     "Talent.temporalMechanic": "Temporal Mechanic",
 
@@ -4954,6 +5089,10 @@
 
     "Talent.theProtocolsOfPolitics.description2e": "Arbazan are naturally adept at the subtleties of social protocol, and often come to rely on it heavily during social interactions. To many other species, the Arbazan’s focus on such rules and guidelines is often viewed as obsessive, but to the Arbazan, it is simply the natural way to engage in interactions. Whenever you attempt a task during Social Conflict, you may re-roll a d20 so long as you know from experience or have recently studied that culture’s protocols and social mores.",
 
+    "Talent.thePursuitOfPerfection": "The Pursuit of Perfection",
+
+    "Talent.thePursuitOfPerfection.description": "While you are free from the Collective, some aspects of Borg existence still resonate with you; the pursuit of perfection is worthy, but only your own terms. When you make a task roll, you may suffer 1 Stress to reroll any die which would cause a complication. You may do this on as many dice as you like on each task roll.",
+
     "Talent.theUshaan": "The Ushaan",
 
     "Talent.theUshaan.description": "You are experienced in the tradition of honor-dueling known as the Ushaan, having spilt much blood upon the ice. When you make a melee Attack, or are targeted by a melee Attack, and buy one or more d20s by adding to Threat, you may re-roll the dice pool for the Task. Further, you own an Ushaan-tor, a razor-sharp ice-miner’s tool used in these duels.",
@@ -4967,9 +5106,17 @@
 
     "Talent.threatGesture.description2e": "The creature can suddenly rear up on its hind legs and tower over its prey, bellow an intimidating roar, suddenly display brightly colored spines, or even spray noxious juices in defense of itself. Once per encounter, the creature may make an opposed task of **Presence + Command** or **Security**. Characters that tie or fail that task are knocked prone as they backpedal, are startled, or otherwise pause due to a flight-or-fight response.",
 
+    "Talent.threeDimensionalThinking": "Three-Dimensional Thinking",
+
+    "Talent.threeDimensionalThinking.description2e": "You possess a knack for navigating in three-dimensional spaces which terrestrial species tend to lack, and you’ve trained to adapt that capability to starship navigation. Whenever you attempt a task to pilot or navigate a starship (normally using Conn), and suffer any complications, you may spend 1 Momentum (Immediate, Repeatable) to ignore a complication.",
+
     "Talent.theoryIntoPractice": "Theory into Practice",
 
     "Talent.theoryIntoPractice.description2e": "When you succeed at a task using Engineering or Science where you gain the additional d20 from the Testing a Theory talent, or which benefits from a trait that represents a hypothesis you’ve made, you generate 2 bonus Momentum. Bonus Momentum may not be saved.",
+
+    "Talent.thoroughAndMethodical": "Thorough and Methodical",
+
+    "Talent.thoroughAndMethodical.description": "You’re careful in everything you do, and do not stray from the proper way of doing things lightly. When you attempt a task using Reason, and purchase one or more dice by spending Momentum, you may pick a single die in your dice pool and treat it as if it had rolled equal to your target number for that task (and is thus a success) instead of rolling it. However, you may not spend any Momentum to reduce the amount of time the task took to perform. You cannot use this talent’s benefit if you are the first character to act during a round in combat.",
 
     "Talent.toolUser": "Tool User",
 
@@ -5013,9 +5160,21 @@
     "Talent.triage.description": "When you attempt a Task to identify specific injuries or illnesses, or to determine the severity of a patient’s condition, you may spend one Momentum (Repeatable) to diagnose one additional patient.",
     "Talent.triage.description2e": "When you attempt a task to identify specific Injuries or illnesses, or to determine the severity of a patient’s condition, you may spend 1 Momentum (Repeatable) to diagnose one additional patient.",
 
+    "Talent.triumphAgainstAnyOdds": "Triumph Against Any Odds",
+
+    "Talent.triumphAgainstAnyOdds.description": "You will face any challenge that presents itself. When you attempt a task with a Difficulty of 3 or higher, you may suffer 1 Stress to reroll 1d20. You may reroll any number of dice this way, each one inflicting 1 Stress, but you may not reroll any dice that have already been rerolled (as normal), and you may not use this ability to reroll more dice than half (rounding up) the Difficulty of the task.",
+
+    "Talent.trueBlue": "True Blue",
+
+    "Talent.trueBlue.description": "You stand with your allies above all else. When you notice an ally become Defeated, add 1 to the group’s Momentum pool, as your ally’s fall motivates you to work harder so you don’t fail them.",
+
     "Talent.trueNorth": "True North",
 
     "Talent.trueNorth.description": "You rarely lose your way. When on a planet, or within a ship or space station, you always retain an accurate sense of your direction (on a planet, you always know which direction is north; on a ship, you can tell which way is forward; on a station, you can tell which way is the center), and the Difficulty of any task for you to determine your location is reduced by 2, to a minimum of 0, just by observing visible landmarks or other signs.",
+
+    "Talent.tunnelWise": "Tunnel-Wise",
+
+    "Talent.tunnelWise.description": "All Horta can sense the chemical and mineral composition of the rocks and other objects around them, using a mixture of olfactory and vibrational senses. You’ve honed your senses to a masterful degree, allowing you to discern oddities, impurities, and other abnormal phenomena. Your sense of smell and your vibrational senses can discern fine details that other living creatures cannot detect without the use of high-tech scanners, and when you attempt to discern hidden or obscured details while within a subterranean environment, you may reroll 1d20.",
 
     "Talent.unconventionalThinking": "Unconventional Thinking",
 
@@ -5025,6 +5184,10 @@
 
     "Talent.untappedPotential.description": "The character is inexperienced, but talented and with a bright future in Starfleet. The character may not have or increase any Attribute above 11, or any Discipline above 4 while they have this Talent (and may have to adjust Attributes and Disciplines accordingly at the end of character creation). Whenever the character succeeds at a Task for which they bought one or more additional dice with either Momentum or Threat, they may roll 1[D]. The character receives bonus Momentum equal to the roll, and adds one point to Threat if an Effect is rolled. The character cannot gain any higher rank than lieutenant (junior grade) while they possess this Talent.",
     "Talent.untappedPotential.description2e": "Select one of your attributes when you receive this talent. You’re inexperienced, but talented and with a bright future. You may not have or increase any attribute to above 11, or any department to above 4 while you have this talent (and may have to adjust attributes and departments accordingly at the end of character creation).\n\nWhenever you succeed at a task for which you bought one or more additional dice (by any means), roll a d20 after the roll. If you roll equal to or less than the chosen attribute, gain 1 bonus Momentum; if you roll higher, add 1 Threat instead. While you possess this talent, you cannot gain any higher rank than Lieutenant (junior grade), or a higher enlisted rate than Petty Officer.",
+
+    "Talent.unwaveringCalm": "Unwavering Calm",
+
+    "Talent.unwaveringCalm.description": "Even by the standards of your people, you are unflappable, never letting the pressure get to you. When you suffer Stress to avoid a trait that represents fear or panic, you only suffer 1 Stress rather than two. In addition, your maximum Stress is increased by 2.",
 
     "Talent.upgradedSystemsServiceRecord": "Upgraded Systems",
 
@@ -5052,6 +5215,10 @@
     "Talent.voiceOfAuthority": "Voice of Authority",
 
     "Talent.voiceOfAuthority.description2e": "When you Assist someone, and use your Presence to do so, you may add 2 Threat to treat your assistance die as if it had rolled a 1 instead of rolling it.",
+
+    "Talent.voiceOfTheXindi": "Voice of the Xindi",
+
+    "Talent.voiceOfTheXindi.description": "Among the Xindi, the Primates are respected for their fairness and honesty, and you work to live up to that. When you begin a social conflict, you may create an additional trait to represent a reputation for honesty and fairness, which will last to the end of the scene. While you have that trait, you may reroll 1d20 on any Persuasion task made as long as you remain completely honest during the scene, but any attempt at deception immediately adds 1 Threat as **escalation**.",
 
     "Talent.walkingEncyclopedia": "Walking Encyclopedia",
 

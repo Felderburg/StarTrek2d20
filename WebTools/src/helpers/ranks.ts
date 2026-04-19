@@ -1077,21 +1077,37 @@ export class RanksHelper {
             ],
             "Thot"),
         new RankModel(
-            Rank.OkChed,
-            "Ok'Ched", "O5",
+            Rank.Chot,
+            "Chot", "O5",
             [
                 new OfficerCharacterPrerequisite(),
                 new AlliedMilitaryCharacterPrerequisite(AlliedMilitaryType.BreenConfederacy)
             ],
-            "Ok'Ched"),
+            "Chot"),
         new RankModel(
             Rank.VelSh,
-            "Vel'Sh", "O4",
+            "Vel'sh", "O4",
             [
                 new OfficerCharacterPrerequisite(),
                 new AlliedMilitaryCharacterPrerequisite(AlliedMilitaryType.BreenConfederacy)
             ],
-            "Vel'Sh"),
+            "Vel'sh"),
+        new RankModel(
+            Rank.OkChed,
+            "Ok'ched", "O3",
+            [
+                new OfficerCharacterPrerequisite(),
+                new AlliedMilitaryCharacterPrerequisite(AlliedMilitaryType.BreenConfederacy)
+            ],
+            "Ok'ched"),
+        new RankModel(
+            Rank.HRen,
+            "H'ren", "O1",
+            [
+                new OfficerCharacterPrerequisite(),
+                new AlliedMilitaryCharacterPrerequisite(AlliedMilitaryType.BreenConfederacy)
+            ],
+            "H'ren"),
         ];
 
     getRanks(character: Character, ignorePrerequisites?: boolean) {

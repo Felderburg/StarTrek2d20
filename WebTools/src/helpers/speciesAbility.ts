@@ -74,6 +74,7 @@ export class SpeciesAbilityList {
         [Species.Jelna]: new SpeciesAbility(Species.Jelna, Source.SpeciesSourcebook),
         [Species.JemHadar]: new SpeciesAbility(Species.JemHadar, Source.SpeciesSourcebook),
         [Species.Kellerun]: new SpeciesAbility(Species.Kellerun, Source.SpeciesSourcebook),
+        [Species.Kelpien]: new SpeciesAbility(Species.Kelpien, Source.SpeciesSourcebook),
         [Species.Klingon]: new SpeciesAbility(Species.Klingon),
         [Species.Ktarian]: new SpeciesAbility(Species.Ktarian, Source.SpeciesSourcebook),
         [Species.Kzinti]: new SpeciesAbility(Species.Kzinti, Source.SpeciesSourcebook),

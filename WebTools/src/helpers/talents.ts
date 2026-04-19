@@ -132,6 +132,11 @@ export class TalentCategorization {
             if (career != null) {
                 result += " (" + career.localizedName + ")";
             }
+        } else if (this.category === TalentCategory.Department && this.type != null) {
+            const department = DepartmentsHelper.instance.getDepartmentName(this.type as Department);
+            if (department != null) {
+                result += " (" + i18next.t(makeKey('Construct.discipline.', department)) + ")";
+            }
         }
 
         return result;
@@ -981,8 +986,8 @@ export class TalentModel implements ITalent {
                 }
             }
         }
-        if (this.category instanceof TalentCategorization && this.category.category === TalentCategory.Species) {
-            return SpeciesHelper.getSpeciesByType(this.category.type as Species).localizedName;
+        if (this.category instanceof TalentCategorization) {
+            return this.category.localizedDescription;
         } else if (categoryEnum != null && categoryEnum !== TalentCategory.Species && categoryEnum !== TalentCategory.Department) {
             return i18next.t(makeKey("TalentCategory.", TalentCategory[categoryEnum]));
         } else {
@@ -999,7 +1004,7 @@ export class TalentModel implements ITalent {
                     key = "Species.chelon.name";
                 }
                 let result = i18next.t(key);
-                return result === key ? this.categoryString : result;
+                return result === key ? this.categoryString : (i18next.t("TalentCategory.species") + " (" + result + ")");
             }
         }
     }
@@ -1233,7 +1238,7 @@ export class Talents {
                 "Mean Right Hook",
                 "Your Unarmed Strike Attack has the Vicious 1 Damage Effect.",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1, "Security", false, new AliasModel("Warrior’s Strike", Source.KlingonCore)),
+                1, new TalentCategorization(TalentCategory.Department, Department.Security), false, new AliasModel("Warrior’s Strike", Source.KlingonCore)),
             new TalentModel(
                 "Pack Tactics",
                 "Whenever you assist another character during combat, the character you assisted gains one bonus Momentum if they succeed.",
@@ -1679,7 +1684,14 @@ export class Talents {
             new TalentModel(
                 "Telepathy2e",
                 "",
-                [new SourcePrerequisite(Source.Core2ndEdition), new GMsDiscretionPrerequisite()],
+                [new SourcePrerequisite(Source.Core2ndEdition),
+                    new AnyOfPrerequisite(
+                        new GMsDiscretionPrerequisite(),
+                        new AllOfPrerequisite(
+                            new SourcePrerequisite(Source.SpeciesSourcebook),
+                            new AnySpeciesPrerequisite(false, Species.Deltan, Species.Reman, Species.Vorta)
+                        )
+                    )],
                 1,
                 new TalentCategorization(TalentCategory.Esoteric)),
             new TalentModel(
@@ -1765,31 +1777,31 @@ export class Talents {
                 "When you encounter unidentified phenomena through sensors, you may immediately make a Swift Task, without the need to spend Momentum or an increase in Difficulty. This Task may only be used to attempt to analyze the preliminary data you have received using Reason + Science and a relevant Focus.",
                 [new SpeciesPrerequisite(Species.Benzite, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Benzite"),
+                new TalentCategorization(TalentCategory.Species, Species.Benzite)),
             new TalentModel(
                 "All Fingers and Thumbs",
                 "When you succeed at a Task using a computer console (including a bridge station), you gain one bonus Momentum. This bonus Momentum cannot be saved into the group pool.",
-                [new SpeciesPrerequisite(Species.Benzite, false), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.Benzite, false), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Benzite"),
+                new TalentCategorization(TalentCategory.Species, Species.Benzite)),
             new TalentModel(
                 "Warm Welcome",
                 "A cheerful, outgoing personality is the perfect thing to put diplomatic guests at ease. Whenever assisting another character the Bolian may use their Presence Attribute instead of their own. Further, both the Bolian and the character being assisted may ignore any increases in Complication Range for the Task.",
                 [new SpeciesPrerequisite(Species.Bolian, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Bolian"),
+                new TalentCategorization(TalentCategory.Species, Species.Bolian)),
             new TalentModel(
                 "Born Near a Warp Core",
                 "Bolian traditions say that a child born near an active Warp Core has an improved, more positive, disposition. Optimism and an upbeat attitude certainly lends credence to this tradition, allowing the Bolian to weather misfortune. When they suffer a Complication from a Task, roll 1[D]; if the result is an Effect, the Complication is ignored. Once a Complication has been ignored in this way, the Bolian may not ignore another Complication for the remainder of the scene.",
                 [new SpeciesPrerequisite(Species.Bolian, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Bolian"),
+                new TalentCategorization(TalentCategory.Species, Species.Bolian)),
             new TalentModel(
                 "Deltan Pheromones",
                 "The character excretes a natural aphrodisiac pheromone. Whenever they attempt a Task using Presence to influence an attracted creature, they gain one bonus d20. However, they also increase their Complication Range  by 2, as the effect can be distracting or lead to unwanted consequences. This talent can be switched off, losing both the bonus and the drawback, by applying chemical suppressants.",
                 [new SpeciesPrerequisite(Species.Deltan, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Deltan"),
+                new TalentCategorization(TalentCategory.Species, Species.Deltan)),
             new TalentModel(
                 "Visual Spectrum",
                 "An Efrosian can see beyond what others think of as the visual spectrum, from some infra-red to ultra-violet light. Any Tasks in which detecting those parts of the spectrum is useful reduce in Difficulty by 1. Circumstances, such as low light levels, do not affect the Difficulty of Tasks, as long as those Tasks do not relate to perceiving minutiae of a subject.",
@@ -1871,7 +1883,7 @@ export class Talents {
             new TalentModel(
                 "Calm Under Pressure",
                 "Arboreals possess an unwaveringly calm nature, allowing them to ignore the stress of a crisis. When attempting Tasks with Control to resist stress or mental affliction they may reroll one die in your pool.",
-                [new SpeciesPrerequisite(Species.XindiArboreal, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.XindiArboreal, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 "Xindi-Arboreal"),
             new TalentModel(
@@ -1883,7 +1895,7 @@ export class Talents {
             new TalentModel(
                 "Stun Resistance",
                 "Reptillians are naturally resistant to energy weapons stun settings. They gain +1 Resistance against Non-lethal attacks from energy weapons. They may always Avoid an Injury from a Non-lethal attack with a cost of 1 Momentum (Immediate), even if they have already Avoided an Injury during the scene.",
-                [new SpeciesPrerequisite(Species.XindiReptilian, false), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.XindiReptilian, false), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 "Xindi-Reptilian"),
             new TalentModel(
@@ -1998,7 +2010,7 @@ export class Talents {
             new TalentModel(
                 "Prehensile Tail",
                 "While most Caitians have some functional control over their tail, characters with this Talent have worked to increase their control over the appendage to the point of it becoming fully functional. This provides the character with the ability to hold and operate an additional piece of equipment, like an additional hand. In addition, the character gains a bonus d20 to any Fitness Test to maintain balance or to climb.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Caitian, false)],
+                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Caitian, false), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 "Caitian"),
             new TalentModel(
@@ -2010,7 +2022,7 @@ export class Talents {
             new TalentModel(
                 "Suspicious by Nature",
                 "When attempting to detect hidden enemies, traps or other forms of danger, the character may re-roll a die.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Cardassian, true)],
+                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Cardassian, true), new Version1Prerequisite()],
                 1,
                 "Cardassian"),
             new TalentModel(
@@ -2318,7 +2330,7 @@ export class Talents {
             new TalentModel(
                 "Telepath (Ocampa)",
                 "The character can sense the surface thoughts and emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom they are extremely familiar. Surface thoughts are whatever a creature is thinking about at that precise moment. The character cannot choose not to sense the emotions or read the surface thoughts of those nearby, except for those who are resistant to telepathy. It will require effort and a Task to pick out the emotions or thoughts of a specific individual in a crowd, to search a creature’s mind for specific thoughts or memories, or to block out the minds of those nearby. Unwilling targets may resist with an Opposed Task.\nWhile all Ocampa are telepathic, their short lifespan and rapid development means that a young Ocampa character may not fully develop their abilities until later in life, so it is possible to choose the Talent after character creation. Unlike other telepathic/empathic species, the Ocampa have demonstrated the ability to develop even greater psychic abilities, including precognition, mental projection, telekinesis, and the ability to manipulate matter at a subatomic level.",
-                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Ocampa, true)],
+                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Ocampa, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 "Ocampa"),
             new TalentModel(
@@ -2366,7 +2378,7 @@ export class Talents {
             new TalentModel(
                 "Widely Traveled",
                 "Having traveled space for more of their adult life, the character has seen much and has picked up bits of knowledge and unusual skills along the way. Once per mission, the character may add 1 to Threat to gain an additional Focus for the remainder of that mission, representing a specific skill or field of knowledge the character possesses which is useful in the current situation.",
-                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Talaxian, true)],
+                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Talaxian, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 "Talaxian"),
             new TalentModel(
@@ -2396,15 +2408,15 @@ export class Talents {
             new TalentModel(
                 "Expanded Program",
                 "Your programming has been expanded considerably, with subroutines and databases covering a wide range of additional subjects and fields of expertise. You may select up to two additional Focuses.",
-                [new SourcePrerequisite(Source.Voyager), new SpeciesPrerequisite(Species.Hologram, false)],
+                [new SourcePrerequisite(Source.Voyager, Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Hologram, false)],
                 1,
-                "Hologram"),
+                new TalentCategorization(TalentCategory.Species, Species.Hologram)),
             new TalentModel(
                 "Mobile Emitter",
                 "You have a device that allows you a degree of autonomy from fixed holoemitters. Most of these mobile emitters are bulky, awkward pieces of equipment with a limited amount of power, making them useful only for short periods and emergencies, but the technology is improving. While you have your mobile emitter, you can move freely in places that lack holo-emitters. However, Complications may reflect damage to or problems with the emitter.",
-                [new SourcePrerequisite(Source.Voyager), new SpeciesPrerequisite(Species.Hologram, false)],
+                [new SourcePrerequisite(Source.Voyager, Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Hologram, false)],
                 1,
-                "Hologram"),
+                new TalentCategorization(TalentCategory.Species, Species.Hologram)),
             new TalentModel(
                 "Cruel",
                 "You have a tendency towards ruthlessness and cruelty, and the reputation to match, always seeking to undermine those you wish to destroy before you deal the final blow. When you attempt a Task to identify the weaknesses or flaws of an enemy, or matters they are particularly sensitive or protective about, you may reduce the Difficulty by 1. If the enemy has a trait which reflects this weakness (such as an advantage you’ve created, or a complication they’re suffering from), you may re-roll a single d20 on the next attack or persuasion Task you attempt against them.",
@@ -2548,37 +2560,37 @@ export class Talents {
                 "Kelpiens have special organs on the back of their heads called ganglia. These organs do different things depending on what stage of life the Kelpien is in, as such, this talent grants different abilities based on the character’s Vahar’ai trait. Pre-Vahar’ai: When the gamemaster spends Threat to either add a complication, or to add dice to a pool or that directly affects the character, roll 1[D]; if an effect is rolled, add 1 Momentum to the pool. Post-Vahar’ai: The character gains the following attack: Ganglia Dart (Ranged, 2[D], Piercing 1). The character’s Security is added as normal to the attack’s Stress rating.",
                 [new SourcePrerequisite(Source.DiscoveryS1S2, Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Kelpien, true)],
                 1,
-                "Kelpian", false, new AliasModel("Ganglia", Source.DiscoveryS1S2)),
+                new TalentCategorization(TalentCategory.Species, Species.Kelpien), false, new AliasModel("Ganglia", Source.DiscoveryS1S2)),
             new TalentModel(
                 "On All Fours",
                 "Kelpiens are able to run at considerable speeds for short bursts when necessary. Whenever the character succeeds at a Sprint task, they generate 2 additional Momentum which may only be used to move additional zones.",
                 [new SourcePrerequisite(Source.DiscoveryS1S2, Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Kelpien, true)],
                 1,
-                Species[Species.Kelpien]),
+                new TalentCategorization(TalentCategory.Species, Species.Kelpien)),
             new TalentModel(
                 "Expert Quartermaster",
                 "The Barzan have long had to make do with less, and this has taught them to be especially considerate of all resources at their command. When needing a rare element or device to accomplish an action, a Barzan may reroll a d20 in their task roll to determine if another element or device can be used in its stead. The Barzan are also aware of most of the alternate uses any piece of personal equipment they possess can do should the need arise, such as substituting a tricorder’s memory module to repair a terminal.",
                 [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Barzan, true)],
                 1,
-                Species[Species.Barzan]),
+                new TalentCategorization(TalentCategory.Species, Species.Barzan)),
             new TalentModel(
                 "Unyielding Resolve",
                 "The Barzan possess such great determination in accomplishing their tasks that they refuse to let any setback deter them. When a Barzan spends a point of Determination on a task, but the task fails, the character regains the spent point of Determination.",
-                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Barzan, true)],
+                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Barzan, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                Species[Species.Barzan]),
+                new TalentCategorization(TalentCategory.Species, Species.Barzan)),
             new TalentModel(
                 "Born to a Task",
                 "The Osnullus caste system is a relic from a bygone age but it still affects the futures of many of their species. Some Osnullus are born with advanced reflexes for working in space, while others have a hardier carapace to assist them with construction. Over time, an Osnullus can shift their bodies slightly to assist them with certain tasks. When this talent is chosen, the Osnullus may pick a discipline that they are gifted toward. Whenever the character attempts a task involving this talent, they may reroll one of their d20s.",
                 [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Osnullus, true)],
                 1,
-                Species[Species.Osnullus]),
+                new TalentCategorization(TalentCategory.Species, Species.Osnullus)),
             new TalentModel(
                 "Unreadable Face",
                 "While their fellow Osnullus can tell what each other are thinking by looking at each other’s faces, it is more difficult for other species to do so. This natural trait gives them an advantage when it comes to treachery and deceit. The Osnullus may roll an additional d20 for the purposes of trying to mislead or lie to another species.",
-                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Osnullus, true)],
+                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Osnullus, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                Species[Species.Osnullus]),
+                new TalentCategorization(TalentCategory.Species, Species.Osnullus)),
             new TalentModel(
                 "Discerning Scientific Mind",
                 "Xahean culture allows them to discern scientific phenomena quickly and inspires them in how to replicate it. When a Xahean is attempting to perform an extended task to determine the purpose of a piece of technology, they may re-roll any number of [D] the first time they roll to determine progress.",
@@ -2588,7 +2600,7 @@ export class Talents {
             new TalentModel(
                 "Camouflage Field",
                 "While most Xaheans can generate a limited camouflage field to obscure their presence, training and practice can heighten this ability further. The Xahean may spend 2 Momentum (Immediate) as a minor action to become virtually invisible, adding +2 to the Difficulty of all tasks to observe, locate, or target the Xahean. This effect ends when the Xahean makes an attack, takes a minor action to end the effect, or otherwise loses concentration. This ability is taxing to maintain, and each additional time during a scene it is used increases the Momentum cost by 1; this increase is cumulative.",
-                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Xahean, true)],
+                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Xahean, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 Species[Species.Xahean]),
             new TalentModel(
@@ -2948,13 +2960,13 @@ export class Talents {
             new TalentModel(
                 "Paired",
                 "You are genetically paired to another Bynar on the crew. This Bynar is a support character that does not count against your Crew Support for the mission. Once per scene, you can use their Disciplines on a Reason or Insight roll in place of your own.",
-                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Bynar, false)],
+                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Bynar, false), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Bynar)),
             new TalentModel(
                 "Unpaired",
                 "Your genetic pair is dead or is otherwise unavailable, and can’t be replaced during your current mission or deployment. Mentally alone, you are compulsively driven to aid others. When you assist another character with a Task, one d20 related to that Task can be re- rolled.",
-                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Bynar, false)],
+                [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Bynar, false), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Bynar)),
             new TalentModel(
@@ -3635,6 +3647,30 @@ export class Talents {
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Aurelian)),
             new TalentModel(
+                "Strive and Sacrifice",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Barzan, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Barzan)),
+            new TalentModel(
+                "Thorough and Methodical",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Benzite, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Benzite)),
+            new TalentModel(
+                "Piratical Understanding",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.BlueOrion, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.BlueOrion)),
+            new TalentModel(
+                "True Blue",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.BlueOrion, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.BlueOrion)),
+            new TalentModel(
                 "Cold Warrior",
                 "",
                 [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Breen, true)],
@@ -3647,12 +3683,116 @@ export class Talents {
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Breen)),
             new TalentModel(
-                "Touched the Nexus",
+                "Ablative Hide",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Brikar, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Brikar)),
+            new TalentModel(
+                "Massive (Brikar)",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Brikar, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Brikar)),
+            new TalentModel(
+                "Entangled Consciousness",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Bynar, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Bynar)),
+            new TalentModel(
+                "Synchronistic Operation",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Bynar, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Bynar)),
+            new TalentModel(
+                "Empathic Touch",
                 "",
                 [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Deltan, true)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Deltan)),
+            new TalentModel(
+                "Feral Aggression",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Caitian, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Caitian)),
+            new TalentModel(
+                "Touched the Nexus",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.ElAurian_2E, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.ElAurian_2E)),
 
+            new TalentModel(
+                "Old as Dirt",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Horta_2E, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Horta_2E)),
+            new TalentModel(
+                "Tunnel-Wise",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Horta_2E, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Horta_2E)),
+            new TalentModel(
+                "Heightened Senses",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.HumanAugment, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.HumanAugment)),
+            new TalentModel(
+                "Regenerative Healing",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.HumanAugment, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.HumanAugment)),
+            new TalentModel(
+                "Augmented Immunity",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Illyrian_2E, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Illyrian_2E)),
+            new TalentModel(
+                "Rapid Comprehension",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Illyrian_2E, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Illyrian_2E)),
+            new TalentModel(
+                "Collective Insights",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.LiberatedBorg, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.LiberatedBorg)),
+            new TalentModel(
+                "The Pursuit of Perfection",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.LiberatedBorg, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.LiberatedBorg)),
+
+
+            new TalentModel(
+                "Manipulative",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Vorta, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Vorta)),
+            new TalentModel(
+                "Overseer",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Vorta, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Vorta)),
+            new TalentModel(
+                "Technopathy",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Xahean, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Xahean)),
             new TalentModel(
                 "Circumspect",
                 "",
@@ -3665,6 +3805,42 @@ export class Talents {
                 [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiAquatic, true)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.XindiAquatic)),
+            new TalentModel(
+                "Patient Counsel",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiArboreal, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.XindiArboreal)),
+            new TalentModel(
+                "Unwavering Calm",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiArboreal, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.XindiArboreal)),
+            new TalentModel(
+                "Rapid Processing",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiInsectoid, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.XindiInsectoid)),
+            new TalentModel(
+                "Voice of the Xindi",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiPrimate, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.XindiPrimate)),
+            new TalentModel(
+                "Cold-Blooded Supremacy",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiReptilian, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.XindiReptilian)),
+            new TalentModel(
+                "Triumph Against Any Odds",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.XindiReptilian, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.XindiReptilian)),
             new TalentModel(
                 "Heirloom",
                 "",
