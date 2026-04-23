@@ -2581,8 +2581,16 @@
     "Species.cardassian.traitDescription2e": "Cardassians are a pseudo-reptilian species, used to an environment somewhat warmer and more humid than is comfortable for Humans, and tend to find bright light uncomfortable. Their culture prizes mental discipline and obedience to strict hierarchies and they have a reputation for arrogance, cruelty, and smug superiority.",
     "Species.cardassian.soloDescription": "A much-feared people known for devotion to their state and a sense of superiority. Often adversaries of Starfleet and other civilizations, though personal alliances have been formed during times of war, and societal cooperation witnessed in far-future times of scarcity. Grey-skinned humanoids with ridges on their neck and forehead.",
 
+    "Species.chameloid.name": "Chameloid",
+    "Species.chameloid.description": "A semi-amorphous species, **Chameloids** are shapeshifters, able to assume the appearance of a variety of other species, or even specific individuals, right down to their clothing. Without the use of advanced scanning technology, it’s extremely difficult to detect a disguised Chameloid. For this reason, Chameloids are often regarded with suspicion and even fear, though encounters with them are rare enough that many people doubt the existence of Chameloids entirely.\n\nChameloid culture is little known, and the Chameloids themselves are secretive and elusive at the best of times, often finding themselves involved in criminal activities or covert work where their abilities are most useful, and where the distrust directed at their kind is less of a concern. Chameloids may choose to favor one common form over others for interacting regularly with friends, allies, or colleagues, or even with one specific group of marks. They do not have a physical sex, and they only have a sense of gender within the context of specific adopted forms.",
+    "Species.chameloid.traitDescription": "Chameloids are a species of shapeshifters, whose rarely-seen natural form is a writhing mass of tubules and tendrils. They can quickly alter their cellular structure to adopt the appearance of other individuals from other species, including their clothing, and it seems to take little effort or cause them little strain to do so. Telling a disguised Chameloid apart from a true member of a species is extremely difficult without technological scanning methods.",
+    "Species.chameloid.aboutNames": "Little is known about Chameloid culture or society, but it’s believed that Chameloids tend to pick a single nickname to refer to themselves when not pretending to be someone else.",
+
     "Species.changeling.name": "Changeling",
     "Species.changeling.soloDescription": "A Changeling is naturally a gelatinous, morphogenic, orange-brown fluid, which can adopt the form and structure of any solid object, including other living creatures and diffuse substances like fog. While they cannot become energy, a Changeling’s ability to assume other forms is limited more by skill and experience than by physical capacity: it is theorized that they transfer mass to and from subspace to change size and density. Many Changelings find themselves persecuted by “solids” for their shapeshifting ability, and often crave a sense of order and justice in the universe, with a rigid attitude at odds with their fluid forms.",
+    "Species.changeling.description2e": "Also known as the Founders of the Dominion, the **Changelings** are deeply wreathed in myth, legend, and hearsay. They generally dislike “solids”—their term for other species—and they founded the Dominion in order to protect themselves from what they perceived as the brutality and hostility of other species. Changelings themselves are composed of a morphogenic substance that allows them to adopt the appearance and properties of other creatures and objects. At their most basic level, this allows them to blend into their surroundings, mimicking rocks, plant life, and simple animal life. With practice and experience, they can perfectly mimic the likeness and manner of sapient beings, or even take the form of luminescent displays or even complex cosmozoans able to travel through space on solar winds or by entering subspace. Their shapeshifting is on a molecular level, making them extraordinarily difficult to detect without specially calibrated sensors.\n\nChangelings seldom allow themselves to be seen by outsiders, due to many experiences of being hunted or attacked. They are more willing to appear in disguise, but they prefer to act through proxies, such as the Vorta and Jem’Hadar.",
+    "Species.changeling.traitDescription2e": "A Changeling is a mass of viscous orange-brown fluid, which can arrange its molecular structure to adopt the form of other objects, from living creatures to diffuse substances such as fog. While they cannot become energy, given sufficient skill and practice, a Changeling can adopt almost any other form: it is theorized that they transfer energy and mass to and from subspace to alter size and mass. They are deeply distrustful of “solids,” and often find themselves persecuted for their abilities.",
+    "Species.changeling.aboutNames": "Changelings belonging to the Great Link tend not to have names at all. Changelings discovered on far-flung worlds tend to pick up names on their travels, many of which are often descriptive terms in alien languages; for example, Odo, the former security chief of Deep Space 9, was named for the Cardassian word _odo’ital_, the “unknown sample” label on his container, which was turned into a mockery of a Bajoran name: Odo Ital.",
 
     "Species.chelon.name": "Rigellian Chelon",
 
@@ -2683,6 +2691,9 @@
 
     "Species.kelpien.name": "Kelpien",
     "Species.kelpien.soloDescription": "An empathetic people kept in check by the technologically advanced Ba’ul who share their homeworld. Initially prohibited from contact with other civilizations, notable individuals managed to join Starfleet, and the ensuing centuries brought both species of Kaminar into the Federation. Tall and lanky, with keen eyesight, a capacity for sprinting, and sensitive ganglia on their heads which become capable of shooting barbs once they mature through vahar’ai.",
+    "Species.kelpien.description2e": "A sapient humanoid species indigenous to the planet Kaminar, Kelpiens live in an agrarian society. Elders are the leaders of the **Kelpien** culture, passing down knowledge and history through stories. One of these stories speaks of the Great Balance, a belief that by culling members of their species, the Kelpiens would have peace with the Ba’ul, a powerful species that would hunt their people to extinction if the Kelpien population got out of hand. This meant that when a Kelpien started going through their physiological change known as Vahar’ai, they would be brought in front of the Watchful Eye and culled, releasing them from the pain and threat of mental instability, as well as maintaining the Great Balance.\n\nIn the mid-23rd century, Commander Saru—the first Kelpien in Starfleet—discovered that Vahar’ai was actually a natural physical change that made his people expert hunters. The culling and the Great Balance were both lies forced onto the Kelpiens by the Ba’ul. Eventually, the crew of _U.S.S. Discovery_ helped the Kelpiens rise up against the Ba’ul and break free of the lies they had been told for generations.",
+    "Species.kelpien.traitDescription2e": "The Kelpiens are a bipedal species adapted to living on land and in the water. Kelpiens are physically stronger than most humanoids, and are able to run at considerable speeds for short bursts and can see into the ultraviolet and infrared spectrums of light.\n\nIn addition, all Kelpiens have an additional trait: either **Pre-Vahar’ai** or **Post-Vahar’ai**. If Pre-Vahar’ai is chosen, you may choose for your character to undergo Vahar’ai (changing the trait) as part of a character arc.",
+    "Species.kelpien.aboutNames": "Kelpiens tend to have a single name, which vary only slightly between masculine and feminine forms.",
 
     "Species.klingon.name": "Klingon",
     "Species.klingon.description2e": "Klingons are a proud, martial people, native to the planet Qo’noS in the Beta Quadrant. Their tall, strong physiques, sharp teeth, and the distinctive dense crest that runs from their brow, over their heads, and down their spines, all contribute to an appearance that is synonymous with martial prowess and ferocity. Hardy and aggressive, Klingons combine a sense of pride and personal conviction with a fatalistic streak, regarding honorable death to be preferable to what they would deem a shameful or cowardly life.\n\nKlingons embrace life and death alike without fear. They are also a people with a powerful sense of honor, both personal and familial, and they are quick to anger when attacked; the greatest slights can result in generations-long blood feuds.",
@@ -2691,11 +2702,60 @@
 
     "Species.klingonQuchHa.name": "Klingon (QuchHa’)",
 
+    "Species.klingonQuchHa_2E.name": "Klingon (QuchHa’)",
+    "Species.klingonQuchHa_2E.description": "In 2154, a lethal, metagenic strain of the Levodian flu ran rampant through the Klingon Empire, infecting vast numbers of Klingons. Though a cure was eventually devised, the combination of the plague’s metagenic effects and the cure itself led to numerous physiological and genetic changes in those afflicted, most notably the dissolution of their cranial ridges and a number of neurological alterations, to a point where they somewhat resemble Humans, with these changes passed onto the descendants of those afflicted. These altered Klingons came to be known as **QuchHa’**, “the unhappy ones,” for their seeming deformity, while those who escaped the plague’s effects were commonly referred to as the **HemQuch**. Though still  hardy and vigorous, the **QuchHa’** tend to express the customary aggression of their culture as a ruthless cunning, and they are often regarded as less honorable and trustworthy. They join the armed forces and intelligence services in great numbers to prove their worth and gain glory as a result of this discrimination. By the early 2270s, almost all **QuchHa’** had undergone corrective treatment to restore their Klingon physiology, and Klingons in later eras refuse to discuss the matter with outsiders.",
+    "Species.klingonQuchHa_2E.traitDescription2e": "Those Klingons affected by this metagenic plague are frequently discriminated against or regarded as cowardly, shameful, or un-Klingon in nature, a stigma that they frequently strive to disprove, or which frees them to take actions that other Klingons may not regard as proper. Their altered genetics leave them less susceptible to a number of diseases and disorders that affect Klingons but allows them to contract a number of Human diseases that Klingons are normally immune to.",
+
+    "Species.klowahkan": "Klowahkan",
+
+    "Species.klowahkan.description": "The **Klowahkans** are a species of bird-like humanoids native to the Beta Quadrant planet of Klowahka. Klowahkans have bright plumage in a variety of colors, and they possess the ability to “fluff” their down—the inner layer of fine feathers used for insulation—to bulk up their appearance and appear larger when threatened, though many Klowahkans consider the act to be embarrassing.\n\nKlowahkan culture places considerable emphasis on food, with great worth and status afforded those who live epicurean lifestyles. It is said that the Klowahkans developed warp drive in order to “seek out strange new meals,” and the highest regard is given to chefs, food critics, and others similarly devoted to the culinary arts; consequently, the idea of replicated food is an affront to their way of life. The Klowahkan language is rife with food metaphors, which can often cause communication difficulties (or simply annoyance) when translated to other languages.",
+    "Species.klowahkan.traitDescription": "Klowahkans are an avian humanoid species with bright plumage. Their downy feathers can help keep them warm in cold environments, and can be fluffed up to make themselves look larger when threatened. They have extremely sensitive senses of taste and smell, and have a culture of appreciating fine food, meaning that they have an extremely refined palette, able to discern flavors other species often cannot.",
+
+    "Species.ktarian.name": "Ktarian",
+    "Species.ktarian.description2e": "The **Ktarians** are a physically diverse species native to the Federation world of Ktaris. They are a common sight throughout Federation space and are one of the many species that maintains its own fleet of vessels, both merchant and military. The Ktarian fleet is considered to be a reserve force, and can be transferred under Starfleet during times of great need. The Ktarians sent representatives to the original Coalition of Planets talks on Earth that preceded the Federation, but Ktaris did not officially join the Federation until much later.\n\nUnlike most Federation species, the Ktarians are comprised of two separate species that evolved together on Ktaris: one whose brows are bisected into two hemispheres and the other with bone ridges along the center of the forehead. Intermarriage among these two species has resulted in both carrying the traits of the other. Predicting which traits will manifest in offspring is extremely difficult, especially when Ktarians mate with other species. Rumors circulate that the Miradorn are an offshoot of Ktarians, but the reclusive nature of the Miradorn makes this difficult to confirm.",
+    "Species.ktarian.traitDescription2e": "Ktarians are a hard people, determined and relentless in pursuit of their goals. The intertwining of the two native species has led to the Ktarians possessing the best traits of both. They are physically fit and quick witted—adapting and responding to adversity with ease. They dislike entering any situation where they haven’t managed to secure a significant advantage in advance.",
+    "Species.ktarian.aboutNames": "Ktarian names are as diverse as the two interbred species that give them. Some are simple two to three syllables while others are a string of as many as eight syllables. Most names follow familial or geographic traditions, though Ktarians rarely use surnames regardless of origin.",
+
+    "Species.kwejian.name": "Kwejian",
+    "Species.kwejian.description": "The **Kwejian** are a relatively new species to the galactic community, having achieved warp travel during the 31st century during the desperate aftermath of **The Burn**; subspace disruptions altered the orbit of the Kwejian moon, causing an ecological disaster on a massive scale. Eventually the Kwejian people were forced to trade with the ruthless capitalist syndicate the **Emerald Chain** in order to survive. Alas, this would not be the last disaster Kwejian would face: the planet was destroyed in 3190 by a **Dark Matter Anomaly** later discovered to have been engineered by an unknown species from beyond the edge of the Galaxy. The remaining Kwejian people are scattered refugees.\n\nKwejian society has a deep spirituality, and a reverence for the natural cycles and balance of their homeworld’s ecosystem, though many had compromised on their culture in the name of survival after The Burn. A major element of their culture was the **World Root**, a root network that spanned the entire planet prior to its destruction, and which symbolized their ancestry and their bond with their home; a cutting of this root was preserved and persists on another world into the 33rd century. \n\nThe Kwejian are relatively few in number, and dwelled within a region of their planet called the Sanctuary, which was hidden from sensors and transporters and shielded from orbital bombardment. In each generation, a few of them would demonstrate an innate empathic ability that allows them to communicate with and influence plants and animals; the manifestation of this trait was regarded as a part of the natural balance of their home.",
+    "Species.kwejian.traitDescription": "Kwejians closely resemble Humans, and have a similar biology, biochemistry, and anatomy. A portion of them possess an innate telempathic ability to communicate with and influence plants and animals, which manifests with a glowing pattern appearing on their foreheads. Further, whenever you attempt a task to intuit or understand the nature or behavior of an alien life-form, you may reroll 1d20.",
+    "Species.kwejian.aboutNames": "Kwejians tend to have only a single name; their relatively small population has never required much in the way of differentiation with family names. Many names are passed down over successive generations.",
+
+    "Species.kzinti.name": "Kzinti",
+    "Species.kzinti.description2e": "**Kzinti** (singular, Kzin) are humanoid felines who typically have orange fur and yellow eyes. With sharp fangs and claws along with ears that resemble the structure of bat wings, Kzinti are amazing hunters and obligate carnivores who regard omnivorous and herbivorous species with disdain. A species with a highly aggressive culture, the Kzinti have waged numerous border wars with neighboring cultures for centuries, including Earth in the decades before the Federation. These conflicts ended with the Treaty of Sirius, forcing the Kzinti Patriarchy to demilitarize aside from limited peacekeeping and law enforcement vessels, though Kzinti privateers remained a problem for centuries after.\n\nThe Kzinti largely isolated themselves from the wider Galaxy, but suffered greatly during the Dominion War. With no other options, the Kzinti signed additional treaties with their former enemies, destabilizing their government and causing serious shifts in their culture. This time of societal upheaval also included a female rights movement where their women were no longer thought of as “dumb animals” and began to attain both political and military positions, and a small number of Kzinti have even been seen in the Federation and Klingon Defense Forces. Nevertheless, Kzinti aggression and privateering continue to be a threat to Federation worlds to the end of the 24th century.",
+    "Species.kzinti.traitDescription2e": "Kzinti physiology is honed towards making them exceptional predators, and they are tall, powerfully-built beings with multiple hearts, providing them with exceptional endurance during times of stress. As obligate carnivores, they cannot digest plant matter, and it can make them sick. Kzinti possess superior hearing and balance compared to many other species, and a small percentage of their population have limited telepathic capabilities.",
+    "Species.kzinti.aboutNames": "Kzinti are not given a name at birth, and are referred to simply as their father’s child until they reach maturity, at which point they will take their profession or vocation as their name. Throughout their lives, they seek to earn a name through their accomplishments, with minor accomplishments becoming a prefix in front of their profession-name. Especially distinguished Kzinti may earn several names. Single-named Kzinti are shown little respect. The rare Kzinti living among other cultures tend to take a common name in the language of one of the cultures they dwell among.",
+
+    "Species.lanthanite.name": "Lanthanite",
+    "Species.lanthanite.description": "**Lanthanites** are a species who are almost indistinguishable from Humans in every way except one: they appear to be immortal. The origin of the Lanthanite species is unknown, but a group of them are known to have dwelled on Earth for several thousand years, leading some to speculate that they may be an ancient offshoot of humanity who age far more slowly (or who simply do not age beyond a certain point), but this is unconfirmed. They had managed to move among Humans undetected until the 22nd century, and there is little idea of how many live on Earth, as not all have been forthcoming about their nature.\n\nAs a consequence of their longevity, Lanthanites tend to accumulate quirks about their behavior. Several known Lanthanites demonstrate a strange accent influenced by numerous ancient cultures and dialects over millennia. Some tend to travel light while others are packrats, both often a response to living lives where even the most stable civilization feels temporary. Many hold on to habits and customs from favorite eras of history. They also tend to have idiosyncratic views on the history they lived through.",
+    "Species.lanthanite.traitDescription": "Lanthanites are physically almost identical to a Human, though with a lifespan of several thousand years or more. Many were able to live among Humans for millennia, remaining undetected on Earth until the 22nd century. \n\nDuring lifepath character creation, Lanthanite characters always select the **Veteran** option at **Step Five**.",
+    "Species.lanthanite.aboutNames": "Lanthanites are as eclectic with their names as they are with other aspects of their lives. Some maintain a singular name and identity for centuries or more, while others may adopt new names and periodically relocate to retain their anonymity.",
+
+    "Species.liberatedBorg.name": "Liberated Borg",
+    "Species.liberatedBorg.description2e": "The horror of the Borg are the drones, sapient beings who have been assimilated: subjugated by advanced technology into the service of the singular will of the Collective. Countless trillions of people—in some cases entire civilizations—have been enslaved by the Borg in this manner, their individual will, sense of self, and their identity suppressed by cybernetic implants and neurochemical conditioning. Once brought into the Collective, these drones are merely an extension of the whole, visiting that same horror upon any unfortunate enough to cross paths with the Borg.\n\nBut over the latter decades of the 24th century, an increasing number of former Borg Drones have been liberated from the Collective. Some escaped by chance, separated from the hive mind by an accident. Others were rescued. More still gained independence during the Unimatrix Zero incident, or found the Collective’s control slipping as it began to suffer defeats. These liberated Borg—also known as **Ex-Borg**, or **XBs**—often have a long and painful recovery ahead of them, and they may never fully recover what was taken from them. Some seek to reclaim their original identities, while others are so far removed from who they once were that they must learn how to be individuals all over again.",
+    "Species.liberatedBorg.traitDescription2e": "Due to extensive cybernetic, biochemical, and nanotechnological enhancement, Borg are resistant to adverse environmental conditions such as heat, cold, toxins, ionizing radiation, and even vacuum, though this lessens for liberated Borg who have had some of their implants removed. Even those freed are susceptible to influence from the Collective, and their implants can result in health or psychological problems if they malfunction. Borg must periodically undergo a regeneration cycle to recharge their implants and keep them functioning properly.\n\nAll Liberated Borg characters are mixed heritage, and should select one (or more) other species: this represents what species (or mix of species) the character was before they were assimilated.",
+
+    "Species.lurian.name": "Lurian",
+    "Species.lurian.description2e": "A race as well known for their fierce martial skills as they are for their artistic endeavors, the **Lurians** are a power whose homeworld is near the Alpha Quadrant side of the Bajoran wormhole. Though their world is controlled by the Royal Family of Luria, they are a frequent sight at outposts and trading posts, and their skill as navigators and warriors makes them prized members of any crew. With multiple hearts and two stomachs, they require large quantities of food and their religious custom dictates that attendees at a Lurian funeral should bring plenty of food and liquor to see the dead through their journey into the afterlife. Though some Lurians have become involved in criminal endeavors such as the Orion Syndicate, they prefer to make their own way, and it is not uncommon to see lone Lurians happily plying their way through space on another great adventure.",
+    "Species.lurian.traitDescription2e": "Lurians are a passionate people, and never do anything by half measure. Whether it is by devoting themselves to the arts or by trying to become the greatest pilots in the Galaxy, the Lurians live with their emotions on their sleeves despite their normally impassive facial features. Lurians are always great thinkers and dreamers, and even though they may sometimes appear quiet, their minds are often on important matters and on formulating plans for their futures. They take great satisfaction in the sharing of ideas, opinions, and stories.",
+    "Species.lurian.aboutNames": "Examples include:",
+
+    "Species.medusan": "Medusan",
+
+    "Species.medusan.description": "**Medusans** are a telepathic non-corporeal species with similar drive to explore and understand the universe to many Federation cultures. Their minds and thought processes are considered by other telepathic species to have a sublime elegance and beauty, yet their appearance—an amorphous mass of coherent electromagnetic energy—is anathema to corporeal life, and looking upon a Medusan without protection causes a severe neurological disruption, resulting in madness and potentially even death (though some species demonstrate a limited resistance, and telepaths are more resistant in general to this effect).\n\nIn their natural state, Medusans gather together and telepathically bond into hive minds, but they are fully capable of leaving a hive mind to travel alone. Among corporeal life, Medusans tend to use a carrier pod or containment suit to travel, hiding their physical appearance; they dislike doing this, as it feels lonely and isolating to exist in this way. Medusans have a deep appreciation for beauty, which they express through a fascination for art—especially the art of other cultures—but also through a deep understanding of physics and mathematics so that they can better appreciate the natural beauty of the universe. Their incompatibility with corporeal species is the main thing that limits their exploration: Medusans are pacifistic, and do not wish to cause harm, but they’re all too aware of how dangerous their presence is to others. Thus, few Medusans leave the safety and comfort of their hive minds to move alone among other people.",
+    "Species.medusan.traitDescription": "Medusans are non-corporeal beings composed of coherent electromagnetic energy. As incorporeal beings, they have no physical body, are genderless, do not age, and are immune to most biological hazards such as toxins, diseases, heat, cold, and suffocation. Medusans are potent telepaths, and can communicate by projecting their thoughts into the minds of other beings nearby. The electromagnetic form of a Medusan allows them to physically interact with objects in close proximity using magnetic fields, but it also emits wavelengths of EM radiation that can induce severe neurological disruption in corporeal beings who see them.",
+    "Species.medusan.aboutNames": "As an incorporeal, telepathic species, Medusans have no spoken or written language to communicate, and do not strictly need names to communicate within their customary hive minds. On the rare occasions when they travel among other species, Medusans adopt a name, or are given one by others to aid communication.",
+
     "Species.megarite.name": "Megarite",
     "Species.megarite.aboutNames": "Megarites tend to have a given name and surname, though often use only their given name. Most Megarite names are drawn from musical compositions considered important to the individual’s parents, as music is considered not just an important part of Megarite culture but also plays a key role in how they communicate with each other.",
     "Species.megarite.description": "Seeing a Megarite outside of their homeworld is a rare occurrence as this species’ strict dietary requirements means they prefer to stay home. Possessing a thick hide capable of keeping them warm in the frigid waters of their home, the Megarites are considered some of the finest minds in the field of aquatic engineering. The Federation Science Council will often consult experts when attempting to build aquatic enclosures and reinforcing Cetacean research labs aboard Starfleet vessels. The Megarites are a greatly poetic people, and will often spend their downtime composing lyrical ballads and poems of such beauty that they are renowned throughout the quadrant. Their biology can only process the proteins of the aquatic life of their homeworld, so Megarites rely upon nutrient injections when traveling away from Megarus.",
     "Species.megarite.exampleValue": "As Swift as the Tide, As Strong as the Glacier",
     "Species.megarite.traitDescription": "Megarites believe that every moment should be appreciated for what it is. Their thick hides protect them from most threats, which leads Megarites to take risks if it means they can accomplish their tasks. Though Megarites prefer to keep to themselves, they become energetic when others have similar interests as them, and one of the greatest gifts they can give another is a custom poem composed in their honor.",
+
+    "Species.nanokin.name": "Nanokin",
+    "Species.nanokin.description": "**Nanokin** are a rare example of a near-microscopic sapient species. They typically do not interact with the “behemoths,” as they call humanoid creatures, as they exist on an entirely different scale, though they are known to scavenge materials and technology. They reproduce in extremely large numbers, with hundreds of thousands of hatchlings to each brood. Nanokin have extremely volatile emotions, which can cause them to act in erratic or eccentric ways by Human standards. Nanokin are a rare species where first contact was by operatives of Section 31 rather than Starfleet, though this was by accident, as a colony—mistakenly identified as some kind of biological infestation—of Nanokin was discovered on a derelict ship in the late 23rd century. \n\nOn the rare occasion they do need to interact with humanoid life, they do so by piloting android suits called **conveyances**. Conveyances, especially black-market ones, can be extremely lifelike, and they are difficult to discern as artificial. A Nanokin can depart from their conveyance in a near-microscopic backup vehicle able to fly short distances from the conveyance, leaving the conveyance to operate on autopilot while they range around. Given their small size, this backup vehicle can fit into extremely small spaces, including the inner workings of technology, and it is nearly impossible to spot without technological means.",
+    "Species.nanokin.traitDescription": "These creatures are extremely small, almost on the scale of microbes, and can only meaningfully interact with humanoid creatures via technology, such as their conveyances, communicators, and so forth. Their physiology is wildly different to that of humanoids, but it allows them—in appropriate craft—to circumvent most barriers or conceal themselves from any search. Nanokin characters also have the trait **Conveyance**: a conveyance is a piloted android that allows a Nanokin to move among and interact with humanoid life. These all have the same capabilities as a normal Human or similar humanoid being, though they are technological rather than organic. A Nanokin can use a small craft (barely a few millimeters across) to exit its conveyance, leaving the conveyance on autopilot.",
+    "Species.nanokin.aboutNames": "Nanokin names tend to be quirky and whimsical, often single syllables such as “Blip” or “Clip,” or with plays on the names of diseases or microbes.",
 
     "Species.napean.name": "Napean",
     "Species.napean.description": "Napeans, native to Napea II (Beta quadrant), are humanoids with putty-colored skin & a large, leaf-shaped bone ridge that runs down from the crown of the high foreheads to the top of the nose. A tiny, egg-shaped organ near the base of the brain, created as a mutation by an experiment in genetic engineering, receives empathic signals & transmits them to the brain proper. They have terraformed their homeworld to a state of conformity that strikes many outsiders as obsessive. While their empathic powers have forged social stability, they also struggle to suppress negative emotions & embarrassing feelings. This is quite impossible among their own kind, but they try anyway, since absolute emotional transparency has a way of straining familial & social relationships. Their history has taught them to place great faith in advanced technology as a way to solve serious problems. However, the idea of genetically altering lifeforms appalls them.",
@@ -2704,6 +2764,8 @@
 
     "Species.nausicaan.name": "Nausicaan",
     "Species.nausicaan.traitDescription": "Nausicaans are a tall, very strong species hailing from Nausicaa. They are generally stronger than an average Human, though often somewhat less intelligent, preferring brute force over finesse and direct methods as opposed to subtlety. They have little patience for organized forms of government, though they will tolerate following a captain for as long as that captain earns their capricious loyalty. Nausicaans are somewhat resistant to pain and injury, and almost never back down from a challenge, especially when it involves games that carry the potential for serious bodily harm to themselves or their opponents.",
+    "Species.nausicaan.description": "**Nausicaans** are a belligerent species native to the Beta Quadrant world of Nausicaa, and with territories spreading into the Alpha Quadrant. Nausicaan civilization has a long and storied history, whose ancestors had access to advanced technology, but by the 22nd century, they were mainly known as pirates and mercenaries, with little or no stable central government: indeed, Vulcan High Command regarded the Nausicaan government as being “in a state of constant transition.” Little has changed since.\n\nThe Nausicaans themselves are tall, powerfully built humanoids with prominent bony ridges across their faces, with sharp tusks framing their mouths. Some also have rows of small horns running along their cranial ridges. Their culture tends towards anarchy, with the only consistent social structures being extended family groups dominated by the strongest and most domineering family members. Nausicaans believe that the strong should prosper and those weaker survive by doing as the strong command. Interactions with others tend to involve a lot of bragging, one-upmanship, and bravado, which can turn into “friendly” violence which seldom results in lasting injury.",
+    "Species.nausicaan.aboutNames": "Nausicaans tend towards short, guttural names, normally with one or two syllables (though exceptions exist). They tend not to have surnames: while family groups are important to Nausicaans, that family identity is fluid and driven mainly by whoever is strongest rather than by a specific elder figure or sense of tradition.",
 
     "Species.orion.name": "Orion",
     "Species.orion.description2e": "A species with a colorful reputation, the Orions are subject to rumor, speculation, and flights of fancy, to the point where there are numerous common misconceptions about their species and culture. This seems to be at least partially by design. Orions are accustomed to taking full advantage of any opportunity that passes their way, and the uncertainty and misdirection that surrounds them is a considerable advantage. The influence of Orion traders and the Orion Syndicate can be felt across the Alpha and Beta Quadrants, often in ways that flout the laws of other cultures, and often employing agents of other species.\n\nOrion culture appears to be divided along gender lines, and there is evidence to suggest they have a broadly matriarchal culture, with the women serving in leadership roles, while Orion males more often serving as muscle, laborers, and minor operatives, though this has shifted somewhat over the centuries. This appears to be due to a trait of some Orion females, who have been observed to produce pheromones that can make male Orions (and males of some other species, including Humans) compliant. It isn’t known how widespread this trait is.",
@@ -3333,6 +3395,10 @@
     "Talent.aLittleMorePower.description": "Whenever you succeed at an Engineering Task aboard your own ship, you may spend one Momentum to regain one spent Power.",
     "Talent.aLittleMorePower.description2e": "Whenever you use the Reroute Power major action, you may spend 2 Momentum to give Reserve Power to two systems, rather than one.",
 
+    "Talent.alteredChangeling": "Altered Changeling",
+
+    "Talent.alteredChangeling.description": "Through torturous experimentation and exposure to thelomium-847, the nature of your morphogenic matrix has been altered. When you adopt the form of a living being, you may mimic the form of a specific individual, taking their appearance and personality to a degree that it is nearly impossible for others to determine your nature, even with blood tests or extensive bio-screening, and you may retain that form indefinitely. Increase the Potency of the trait you gain when you assume that form by 2. However, it costs 2 Stress for you to change form, and you are no longer immune to exposure to vacuum.",
+
     "Talent.ambushHunter": "Ambush Hunter",
 
     "Talent.ambushHunter.description2e": "This creature hunts using surprise attacks such as dropping quickly from above or emerging from the ground. When the creature succeeds at attacking a character that is unaware of its presence or suffering from a complication that represents a weakness or vulnerability, increase the attack's Severity by 2.",
@@ -3357,6 +3423,14 @@
     "Talent.anAnswerForEverything": "An Answer for Everything",
 
     "Talent.anAnswerForEverything.description": "You relish intense debate, where you can see your opponent’s argument unfold, then turn it back against them. When you succeed at a task as part of an extended task in a social conflict, you may reroll a number of [D] up to your Command score.",
+
+    "Talent.anatomicalExpertise": "Anatomical Expertise",
+
+    "Talent.anatomicalExpertise.description": "You’re well-versed in the anatomical strengths and weaknesses of different species, as only someone who has worn many skins can. When you create a trait that represents knowing a particular anatomical or physiological weakness possessed by a specific species, the Difficulty of the task to create that trait is reduced by 1, or the Momentum cost of that trait is reduced by 1.",
+
+    "Talent.ancientExpertise": "Ancient Expertise",
+
+    "Talent.ancientExpertise.description": "While all Lanthanites pick up a lot of eclectic knowledge over their long lives, some devote themselves to mastering some of that knowledge. Select one department with a rating of 4 or 5. Whenever you attempt a task roll using that department but do not have an applicable focus, you may spend 1 Momentum to count as having an applicable focus for that task roll.",
 
     "Talent.annularConfinementJacketing": "Annular Confinement Jacketing",
 
@@ -3668,6 +3742,10 @@
     "Talent.constantlyWatching.description": "When you attempt a Task to detect danger or hidden enemies, reduce the Difficulty by 1.",
     "Talent.constantlyWatching.description2e": "At the start of an action scene, the gamemaster must spend an additional 2 Threat to have an NPC take the first turn. You may also re-roll 1d20 on any task attempted to locate a hidden enemy or danger.",
 
+    "Talent.containmentSuit": "Containment Suit",
+
+    "Talent.containmentSuit.description": "You have replaced your containment pod with a fully mobile containment suit, which allows you to interact with corporeal beings without harming them. You gain a **Containment Suit** trait. Your suit has two arms and two legs, allowing you to move around and operate technology as a humanoid would, and it is sealed in such a way that others are not exposed to your form.",
+
     "Talent.coolUnderPressure": "Cool Under Pressure",
 
     "Talent.coolUnderPressure.description2e": "Demands of Arkarian society place strict requirements on social interactions. You are able to keep your outward expressions neutral, revealing as little as possible. Whenever you are engaged in a social conflict, you may spend 1 Momentum (Immediate) to create an additional trait representing your stoic demeanor and composure. This is lost instantly If you suffer any trait or complication representing an emotional state.",
@@ -3695,6 +3773,14 @@
     "Talent.crisisManagement": "Crisis Management",
 
     "Talent.crisisManagement.description2e": "The Momentum cost to use the Direct major action is removed.",
+
+    "Talent.cruel": "Cruel",
+
+    "Talent.cruel.description2e": "You have a tendency towards ruthlessness and cruelty, and the reputation to match, always seeking to undermine those you wish to destroy before you deal the final blow. When you attempt a task to identify the weaknesses or flaws of an enemy, or matters they are particularly sensitive or protective about, you may reduce the Difficulty by 1. If the enemy has a trait which reflects this weakness (such as an advantage you’ve created, or a complication they’re suffering from), you may reroll a single d20 on the next attack or Persuasion task you attempt against them.",
+
+    "Talent.culinaryComforts": "Culinary Comforts",
+
+    "Talent.culinaryComforts.description": "You cannot let the culinary traditions of your people sit idle, so you combine them with your duties where possible. You have the **Ship’s Cook** or **Ship’s Chef** role, in addition to any other role. Further, the amount of Stress you and your allies recover when you cook is increased by 2.",
 
     "Talent.culturalFlexibility": "Cultural Flexibility",
 
@@ -3892,6 +3978,10 @@
 
     "Talent.enhancedThrusters.description2e": "You have upgraded your motive systems to help you maneuver more effectively. When you move across difficult terrain or obstacles, you may reduce the Momentum cost of that terrain by 1, to a minimum of 0. Further, you may suffer Stress—representing depleting your own internal power supply—to cross difficult terrain or obstacles instead of spending Momentum.",
 
+    "Talent.esotericExperiences": "Esoteric Experiences",
+
+    "Talent.esotericExperiences.description": "You’d be surprised at the weird things someone learns over a couple of millennia of life. When you attempt a task roll which uses any department with a rating of 1 or 2, you may add 2 Threat to pick a different department and any one focus you possess and explain how that unlikely combination actually applies to the current situation. If the gamemaster is convinced, you may use that department and focus.",
+
     "Talent.entangledConsciousness": "Entangled Consciousness",
 
     "Talent.entangledConsciousness.description": "Your mind and that of your partner are so connected that you can draw on their expertise almost without effort. When you attempt a task, you may spend 1 Momentum (Immediate) to use one of your partner’s focuses instead of one of your own. Alternatively, you may spend 2 Momentum (Immediate) to use one of your partner’s talents for the remainder of the scene.",
@@ -4080,6 +4170,10 @@
     "Talent.fourNacelleStability": "Four-Nacelle Stability",
 
     "Talent.fourNacelleStability.description": "The vessel’s configuration of four warp nacelles can be used to produce a stable and long-lasting warp field. The Difficulty of any task attempted to go to warp, or to maintain warp speed despite hazards, damage, or anomalies, is reduced by 1, to a minimum of 1.",
+
+    "Talent.freshPerspective": "Fresh Perspective",
+
+    "Talent.freshPerspective.description": "Your species’ unique life cycle gives you a distinct perspective that more jaded minds may overlook. Whenever an ally fails a task roll using a focus which you also share, you may add 1 Threat to create a trait which represents the benefits of your perspective.",
 
     "Talent.fullSpreadMaximumYield": "Full Spread — Maximum Yield!",
 
@@ -4314,6 +4408,10 @@
     "Talent.initiativeX.description2e": "The creature is fast enough to act more than once per round. Unless otherwise noted, creatures have Initiative 1; this creature may take X turns each round.",
     "Talent.initiativeX.error": "Please select a value for X.",
 
+    "Talent.innerWorkings": "Inner Workings",
+
+    "Talent.innerWorkings.description": "You have a unique perspective on technology, from being _inside_ that technology. When away from your conveyance, and able to access the inner workings of a device, you may reroll 1d20 on any Engineering task to operate, sabotage, repair, or alter that technology.",
+
     "Talent.insightfulGuidance": "Insightful Guidance",
 
     "Talent.insightfulGuidance.description2e": "Whenever you Assist a character in a social conflict, using your knowledge of psychology or emotional states, that character is considered to have a beneficial trait (Psychological Profile) in addition to the normal benefits provided by your Assist.",
@@ -4340,6 +4438,14 @@
 
     "Talent.inTheNickOfTime.description": "Whenever you succeed at an Engineering or Science Task as part of an Extended Task, you score 1 additional Work for every Effect rolled.",
     "Talent.inTheNickOfTime.description2e": "Whenever you succeed at an Engineering or Science task as part of an extended task, you increase your Impact by 1.",
+
+    "Talent.intoTheBreach": "Into the Breach",
+
+    "Talent.intoTheBreach.description2e": "Life is not worth living to a Lurian if there is not some risk involved. Always willing to dare greater than others, the Lurian finds that the real thrill lurks just beyond the edge of danger and that is what they should strive for even if their comrades do not. When you succeed at a task roll using Daring, you generate 1 bonus Momentum. Bonus Momentum cannot be saved.",
+
+    "Talent.intuitiveNavigator": "Intuitive Navigator",
+
+    "Talent.intuitiveNavigator.description": "Medusans are noted for having refined interstellar navigation to a fine art; their electromagnetic forms allowing them to perceive and interact with space in ways that corporeal life cannot. When you attempt to plot a starship course, you may reduce the Difficulty of the task roll by 2, to a minimum of 0. If the Difficulty is reduced to 0, you also gain 2 bonus Momentum on a successful task. Bonus Momentum cannot be saved.",
 
     "Talent.joined": "Joined",
 
@@ -4392,9 +4498,17 @@
 
     "Talent.learnFromFailure.description2e": "When you fail at a Science task, you may add 3 Threat to create a trait which represents knowledge or insights gained from the failure. The cost of this is reduced by 1 for each success you scored on the failed task.",
 
+    "Talent.letNoChallengeStand": "Let No Challenge Stand",
+
+    "Talent.letNoChallengeStand.description": "Your pride cannot allow a challenge to go unmet. When you attempt a task to intimidate or attack a character who has intimidated or attacked you previously in the current scene, the first bonus die you purchase is free. While an enemy is present in an action scene who has attempted to threaten or attack you, you must add 1 Threat at the end of each of your turns where you do not attempt to retaliate against them.",
+
     "Talent.lifeLessons": "Life Lessons",
 
     "Talent.lifeLessons.description": "Wisdom is the aftereffect of experience, and you’ve become adept at using your experiences to guide others. Whenever you use one of your values to gain or spend Momentum, and make a call back to a previous adventure in which you used that value, you may immediately add 3 Momentum to the group pool.",
+
+    "Talent.lifelikeConveyance": "Lifelike Conveyance",
+
+    "Talent.lifelikeConveyance.description": "Your conveyance is especially realistic, and can pass as a natural member of whatever species it was constructed to resemble. Any attempt to discern that it is artificial requires a task with a Difficulty of 4, even with technological means (as the interior is shielded against sensors). When you take this talent, select a single species for the conveyance to resemble: the conveyance allows you to function as if you had all the physical capabilities of a member of that species. However, your mental faculties are unaffected, and if you behave in a manner unexpected for a typical member of that species, you may draw attention which causes people to scrutinize your conveyance further. In addition, an improved autopilot means the conveyance can attempt tasks with a Difficulty of 1 or higher, though it cannot purchase additional d20s by itself.",
 
     "Talent.listener": "Listener",
 
@@ -4549,6 +4663,10 @@
     "Talent.naturalProtectionX.description2e": "The creature has X Protection.",
     "Talent.naturalProtectionX.error": "Please select a value for X.",
 
+    "Talent.negotiateFromStrength": "From a Place of Strength",
+
+    "Talent.negotiateFromStrength.description2e": "Ktarians are loath to enter into negotiations, or any other situation, unless they feel they are at an advantage. Once per scene, when you attempt a task, you may select one trait that currently benefits you on that task; you may increase that trait’s Potency by 1 for the duration of that task.",
+
     "Talent.nervePinch": "Nerve Pinch",
 
     "Talent.nervePinch.description": "You have learned numerous techniques for the stimulation and control of nerve impulses — collectively called neuropressure. Some applications of neuropressure can be used to swiftly and non-lethally incapacitate assailants. The nerve pinch counts as a melee weapon with 1[D], Size 1H, and the Intense and Non-lethal qualities. You may use Science or Medicine instead of Security when attempting a nerve pinch Attack, and may increase damage by your Science or Medicine Discipline instead of Security.",
@@ -4627,6 +4745,10 @@
 
     "Talent.overseer.description": "You are not much of a combatant yourself, but you know how to coordinate others. When you take the _Assist_ or _Direct_ major action in combat, you may spend Determination to apply the effects of that action to two allies rather than one. The normal requirements for spending Determination apply.",
 
+    "Talent.packHunter": "Pack Hunter",
+
+    "Talent.packHunter.description": "There is strength in being able to command others to crush your foes. When you or an ally attacks an enemy who has already been attacked by you or an ally during this current round, the attacker may reroll 1d20 in their dice pool.",
+
     "Talent.packTactics": "Pack Tactics",
 
     "Talent.packTactics.description": "Whenever you assist another character during combat, the character you assisted gains one bonus Momentum if they succeed.",
@@ -4653,7 +4775,10 @@
 
     "Talent.pathfinder.description2e": "Whenever you attempt a task to plot a course through unknown territory, reduce the Difficulty of the task by 1, 2, or 3, to a minimum of 1. For each point by which you reduce the Difficulty, increase the complication range of that task.",
 
-    "Talent.patienceBeforeAggression": "Decisive action is often necessary, but it should never be done hastily or needlessly. During combat, if you allow one or more enemies to take a turn before you, add 1 Momentum to the group pool when your turn begins.",
+    "Talent.patienceBeforeAggression": "Patience before Aggression",
+
+    "Talent.patienceBeforeAggression.description": "Decisive action is often necessary, but it should never be done hastily or needlessly. During combat, if you allow one or more enemies to take a turn before you, add 1 Momentum to the group pool when your turn begins.",
+
     "Talent.patientCounsel": "Patient Counsel",
 
     "Talent.patientCounsel.description": "Xindi-Arboreals are commonly the voice of reason in a crisis. During a social conflict, whenever you or an ally spends one or more Momentum to purchase d20s on a task, they may ignore the first complication rolled.",
@@ -4741,6 +4866,10 @@
 
     "Talent.precisionTargeting2e.description": "You can more easily pick out and target specific systems when making an Attack against an enemy vessel. When you make an Attack with starship weapons that targets a specific ship system, you may re-roll a d20.",
 
+    "Talent.predatoryPosture": "Predatory Posture",
+
+    "Talent.predatoryPosture.description": "Your size, fangs, and body language all contribute to an aura of danger and menace which you can wield as well as any weapon. You may adopt a predatory stance, hunched and looming menacingly over others, during any scene by adding 2 Threat. For the remainder of the scene, you may reroll 1d20 on any task roll to threaten, coerce, or intimidate others, and when you make a Deadly _Attack_, you reduce the amount you add to Threat to 0.",
+
     "Talent.premonitionsServiceRecord": "Premonitions",
 
     "Talent.premonitionsServiceRecord.description2e": "When a character spends momentum to Obtain Information while aboard ship, they may ask the GM an extra question for free.",
@@ -4807,6 +4936,10 @@
 
     "Talent.pushTowardsASingleGoal.description": "When faced with a difficult challenge, you push yourself to support your comrades or your community. When you assist an ally, you may suffer 2 Stress to set your assistance die to a 1 instead of rolling. Each time after the first in a single mission that you use this talent, the Stress cost increases by 1.",
 
+    "Talent.putYourHeartsIntoIt": "Put Your Hearts into It",
+
+    "Talent.putYourHeartsIntoIt.description": "There’s no point in doing something unless you’re going to give it your all. When you succeed on a task where you purchased three additional dice, you score 3 bonus Momentum. Bonus Momentum cannot be saved.",
+
     "Talent.quantumTorpedoes": "Quantum Torpedoes",
 
     "Talent.quantumTorpedoes.soloDescription": "The vessel has been equipped with the latest in ship-to-ship munitions: quantum torpedoes. The ship has quantum torpedoes in addition to any other form of torpedo it carries.",
@@ -4814,6 +4947,10 @@
     "Talent.quantumSlipstreamBurstDrive": "Quantum Slipstream Burst Drive",
 
     "Talent.quantumSlipstreamBurstDrive.description": "This experimental drive allows the ship to enter quantum slipstream for 30 minutes at a time, moving the ship up to 150 light-years before shutting down. The drive requires 12 hours to reset. As experimental technology, this drive may require extensive maintenance and be prone to failure. This is an independent system, so the crew may operate the warp drive in between slipstream bursts.",
+
+    "Talent.quickLearner": "Quick Learner",
+
+    "Talent.quickLearner.description2e": "You learn quickly from watching others work. When you attempt a task which you have seen another ally attempt during this adventure, the first d20 you purchase is free.",
 
     "Talent.quickStudy": "Quick Study",
 
@@ -4859,6 +4996,10 @@
     "Talent.rapidFireTorpedoLauncher.description2e": "The vessel’s torpedo launchers have been designed to allow the ship to fire multiple torpedoes much more quickly and accurately. When the ship fires a torpedo salvo, the character at Tactical may re-roll a d20 on the Attack. Also, the weapon’s Damage rating is increased by 1.",
     "Talent.rapidFireTorpedoLauncher.soloDescription": "The vessel’s torpedo launchers have been redesigned to allow the ship to fire multiple torpedoes much more quickly and accurately.",
 
+    "Talent.rapidShift": "Rapid Shift",
+
+    "Talent.rapidShift.description": "You are especially swift and efficient at shapeshifting, and no longer suffer Stress to assume another form. Further, you do not require a minor action to shapeshift, but you may only assume a new form at most twice per round when action order is being used.",
+
     "Talent.reasonedDiscourse": "Reasoned Discourse",
 
     "Talent.reasonedDiscourse.description": "You are precise and succinct with language, allowing you to convey facts and logical arguments effectively and quickly. When you need to communicate complicated information or argue with logic over emotion, reduce the Difficulty of the task by 1.",
@@ -4880,6 +5021,10 @@
     "Talent.refusesToDieServiceRecord": "Refuses to Die",
 
     "Talent.refusesToDieServiceRecord.description2e": "If the ship has taken critical damage, it can still function. However, a further breach will still destroy it.",
+
+    "Talent.relentless": "Relentless",
+
+    "Talent.relentless.description": "Ktarians are known to face adversity with resolve, adapting to and enduring whatever obstacles arise in their path. Whenever you gain or spend Determination, recover 2 Stress.",
 
     "Talent.reliable": "Reliable",
 
@@ -5160,6 +5305,10 @@
 
     "Talent.telepath.description": "You can sense the surface thoughts and emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom you are extremely familiar. Surface thoughts are whatever a creature is thinking about at that precise moment. The character cannot choose not to sense the emotions or read the surface thoughts of those nearby, except for those who are resistant to telepathy. It will require effort and a Task to pick out the emotions or thoughts of a specific individual in a crowd, to search a creature’s mind for specific thoughts or memories, or to block out the minds of those nearby. Unwilling targets may resist with an Opposed Task.",
 
+    "Talent.telepathKzinti": "Kzinti Telepath",
+
+    "Talent.telepathKzinti.description2e": "You belong to the portion of Kzinti who have limited telepathic abilities. This functions as per the **Telepathy** talent, but each time you attempt to read the thoughts of another creature, you suffer 1 Stress. Further, when you attempt to read the mind of an enemy, they may suffer 2 Stress (or, for NPCs, spend 2 Threat) to force you out of their mind by concentrating on thoughts, imagery, and feelings which disgust you: commonly, this is the memory of eating fruits and vegetables, as these are inedible and unpalatable to Kzinti.",
+
     "Talent.telepathicProjection": "Telepathic Projection",
 
     "Talent.telepathicProjection.description2e": "Your telepathic ability is more potent than most, and you are accustomed to projecting your thoughts into other minds. You can send your thoughts into the minds of other creatures—other than those immune to telepathy—even if those creatures are not telepathic themselves. You can ‘hear’ their responses by reading their minds. You are also capable of using this ability offensively, overwhelming a target’s mind with pain-inducing psychic noise. This requires a Presence + Security task with a Difficulty of 2 (increasing by 1 for each range category beyond Close); success inflicts a Stun or Deadly Injury with Severity 3 and the Piercing effect.",
@@ -5215,6 +5364,10 @@
 
     "Talent.thePursuitOfPerfection.description": "While you are free from the Collective, some aspects of Borg existence still resonate with you; the pursuit of perfection is worthy, but only your own terms. When you make a task roll, you may suffer 1 Stress to reroll any die which would cause a complication. You may do this on as many dice as you like on each task roll.",
 
+    "Talent.theSpiceOfLife": "The Spice of Life",
+
+    "Talent.theSpiceOfLife.description": "You are eager to explore all that life has to offer, in all its varieties, and you prize yourself on being versatile enough to embrace those different experiences. Each time you use a particular **attribute + department** combination for the first time during the current mission, add 1 Momentum to the group pool before you roll.",
+
     "Talent.theUshaan": "The Ushaan",
 
     "Talent.theUshaan.description": "You are experienced in the tradition of honor-dueling known as the Ushaan, having spilt much blood upon the ice. When you make a melee Attack, or are targeted by a melee Attack, and buy one or more d20s by adding to Threat, you may re-roll the dice pool for the Task. Further, you own an Ushaan-tor, a razor-sharp ice-miner’s tool used in these duels.",
@@ -5239,6 +5392,10 @@
     "Talent.thoroughAndMethodical": "Thorough and Methodical",
 
     "Talent.thoroughAndMethodical.description": "You’re careful in everything you do, and do not stray from the proper way of doing things lightly. When you attempt a task using Reason, and purchase one or more dice by spending Momentum, you may pick a single die in your dice pool and treat it as if it had rolled equal to your target number for that task (and is thus a success) instead of rolling it. However, you may not spend any Momentum to reduce the amount of time the task took to perform. You cannot use this talent’s benefit if you are the first character to act during a round in combat.",
+
+    "Talent.toBattle": "To Battle!",
+
+    "Talent.toBattle.description2e": "When you buy additional dice for a melee attack using Threat, you increase the Severity of your melee attack by 1.",
 
     "Talent.toolUser": "Tool User",
 

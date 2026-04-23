@@ -842,8 +842,13 @@ class _Species {
             [Attribute.Control, Attribute.Reason],
             "Ktarian",
             "Ktarians are a hard people, determined and relentless in pursuit of their goals. The intertwining of the two native species has led to the Ktarians possessing the best traits of both. They are physically fit and quick witted – adapting and responding to adversity with ease. They rarely engage in negotiations unless they feel they have the upper hand.",
-            "Hold the Course Until the End",
-            [TalentsHelper.getTalent("Deep Determination"), TalentsHelper.getTalent("Negotiate from Strength")],
+            [
+                "Hold the Course Until the End",
+                "See an obstacle, overcome it",
+                "Only the foolish fail to prepare",
+                "Find a solution before the problem arises"
+            ],
+            [TalentsHelper.getTalent("Deep Determination"), TalentsHelper.getTalent("Negotiate from Strength"), TalentsHelper.getTalent("Relentless")],
             "Ktarian names are as diverse as the two interbred species that give them. Some are simple two to three syllables while others are a string consisting of as many as eight syllables. Most names follow familial or geographic traditions, though Ktarians rarely use surnames regardless of origin.",
             [
                 { type: "Female", suggestions: "Nives, Etana, Milosama, Brunmohley, Jezas, Selit, Meriana, Reginalundula" },
@@ -892,8 +897,13 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Presence],
             "Changeling",
             "A Changeling is naturally a gelatinous orange-brown fluid, which can adopt the form and structure of any solid object, including other living creatures and diffuse substances like fog. While they cannot become energy, a Changeling’s ability to assume other forms is limited more by skill and experience than by physical capacity: it is theorized that they transfer mass to and from subspace in order to change size and density. Many Changelings find themselves persecuted by “solids” for their shapeshifting ability, and often crave a sense of order and justice in the universe, with a rigid attitude at odds with their fluid forms. ",
-            "The Founders Are the Will of the Dominion",
-            [TalentsHelper.getTalent("Morphogenic Matrix"), TalentsHelper.getTalent("Morphogenic Mastery")],
+            [
+                "The Founders Are the Will of the Dominion",
+                "Solids will never understand us",
+                "The Galaxy is dangerous, and safety comes from order",
+                "The ocean becomes the drop, and the drop becomes the ocean",
+            ],
+            [TalentsHelper.getTalent("Morphogenic Matrix"), TalentsHelper.getTalent("Morphogenic Mastery"), TalentsHelper.getTalent("Altered Changeling")],
             "",
             [
                 { type: "Masculine", suggestions: "Odo, Holak" },
@@ -959,8 +969,13 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Presence],
             "Lurian",
             "Lurians are a passionate people, and never do anything by half measure. Whether it is by devoting themselves to the arts or by trying to become the greatest pilots in the quadrant, the Lurians live with their emotions on their sleeves despite their normally impassive facial features. Lurians are always great thinkers and dreamers, and even though they may appear quiet their minds are often on important matters and on formulating plans for their futures. The Dominion War is of great interest on the Lurians’ homeworld, where their people swing from obsession with how the war will play out for their people to mild annoyance that the war is all that off worlders will talk about. ",
-            "Belly Full of Song and Heart Full of Glory",
-            [TalentsHelper.getTalent("Into the Breach"), TalentsHelper.getTalent("Resistant Anatomy")],
+            [
+                "Belly Full of Song and Heart Full of Glory",
+                "Live life fully and unashamedly",
+                "There is inspiration and fortune to be had among the stars",
+                "A good story starts with a grand adventure",
+            ],
+            [TalentsHelper.getTalent("Into the Breach"), TalentsHelper.getTalent("Resistant Anatomy"), TalentsHelper.getTalent("Put Your Hearts into It")],
             "",
             [
                 { type: "Masculine", suggestions: "Morn, Lok" },
@@ -1438,10 +1453,18 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Insight],
             "Kelpien",
             "The Kelpiens are a bipedal species that are adapted to living on land and in the water. Kelpiens are able to run at considerable speeds for short bursts and can see into the ultraviolet and infrared spectrums of light. Pre-Vahar’ai / Post-Vahar’ai. When created, choose one of these two traits. If Pre-Vahar’ai is chosen, and your character ever experiences the changes that come with Vahar’ai, the trait is replaced by the Post-Vahar’ai trait.",
-            "The Great Balance Must Be Achieved",
-            [TalentsHelper.getTalent("Threat Ganglia"), TalentsHelper.getTalent("On All Fours")],
+            [
+                "The universe requires a balance; if it does not exist, we must find it",
+                "You call it fear, I call it healthy caution",
+                "We are predators, and I study my prey carefully",
+                "I am keenly aware of the coming of danger"
+            ],
+            [TalentsHelper.getTalent("Threat Ganglia"), TalentsHelper.getTalent("On All Fours"), TalentsHelper.getTalent("Threat Awareness"), TalentsHelper.getTalent("Predator's Insight")],
             "Kelpiens tend to have just a single name.",
-            [{ type: "Sample Names", suggestions: "Brinna, Dor’na, Kaladar, Lin’lev, Su’Vyn, Trialla, Tuvu, Vilara" }]),
+            [{
+                type: "Sample Names",
+                suggestions: "Brinna, Dor’na, Kaladar, Lin’lev, Su’Vyn, Trialla, Tuvu, Vilara"
+            }]),
         [Species.Barzan]: new SpeciesModel(
             Species.Barzan,
             "Barzan",
@@ -1465,7 +1488,7 @@ class _Species {
             "Osnullus",
             "The Osnullus exemplify being at peace with themselves as much as they do coexisting with others. They are able to notice changes in the behavior of their friends and crewmates while also being able to exist on their own. The Osnullus prize their independence and there is nothing more abhorrent to them than the subjugation of others against their will. They see working toward the same goal as something that others should strive for, but being coerced into doing so makes them want to rebel against it.",
             "I Am as Strong Apart as I Am with Others",
-            [TalentsHelper.getTalent("Born to a Task"), TalentsHelper.getTalent("Unreadable Face")],
+            [TalentsHelper.getTalent("Born to a Task"), TalentsHelper.getTalent("Unreadable Face"), TalentsHelper.getTalent("Push Towards a Single Goal")],
             "Osnullus tend to have just a single name.",
             [{ type: "Sample Names", suggestions: "Aemmo, Hivfa, Rahma, Srwell" }]),
         [Species.Xahean]: new SpeciesModel(
@@ -1673,8 +1696,13 @@ class _Species {
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
             "Kzinti",
             "Kzinti physiology is designed to make them expert predators. In addition, Kzinti possess superior hearing and balance compared to many other species.",
-            "",
-            [TalentsHelper.getTalent("Hyper Agile"), TalentsHelper.getTalent("Pathfinder"), TalentsHelper.getTalent("Cat-Like Reflexes"), TalentsHelper.getTalent("Applied Force"), TalentsHelper.getTalent("Telepath (Kzinti)")],
+            [
+                "Plant-eaters do not deserve my respect",
+                "If you wound me but do not kill me, expect retaliation",
+                "Once you smell blood, you finish the job",
+                "I need to make a name for myself"
+            ],
+            [TalentsHelper.getTalent("Hyper Agile"), TalentsHelper.getTalent("Pathfinder"), TalentsHelper.getTalent("Cat-Like Reflexes"), TalentsHelper.getTalent("Applied Force"), TalentsHelper.getTalent("Telepath (Kzinti)"), TalentsHelper.getTalent("Predatory Posture")],
             "",
             [{ type: "Examples", suggestions: "Chuft-Captain, Chuft-Warrior, Flyer, Healer, Mechanic, Taylor, Telepath Srith, Gunner, Fth-Captain, Arm-of-the-Hamstringer"}]),
         [Species.Anabaj]: new SpeciesModel(
@@ -2061,6 +2089,24 @@ class _Species {
                     suggestions: "Kebron, Saygur"
                 },
             ]),
+        [Species.Chameloid]: new SpeciesModel(
+            Species.Chameloid,
+            "Chameloid",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Insight, Attribute.Presence],
+            "Chameloid",
+            "",
+            [
+                "I am safest when I’m anonymous",
+                "I lie to keep myself alive",
+                "Which face would you like to meet today?",
+                "Keep everyone guessing about who you really are"
+            ],
+            [TalentsHelper.getTalent("Anatomical Expertise"), TalentsHelper.getTalent("Rapid Shift")],
+            "",
+            []),
         [Species.BlueOrion]: new SpeciesModel(
             Species.BlueOrion,
             "Orion, Blue",
@@ -2159,7 +2205,152 @@ class _Species {
                 type: "Sample Names",
                 suggestions: "Ayelle, Carzot, Defren, Ferro, Harreb, Korlom, Mennor, Pherri, Rayner, Sharat, Tivana, Wennix"
             }]),
+        [Species.KlingonQuchHa_2E]: new SpeciesModel(
+            Species.KlingonQuchHa_2E,
+            "Klingon (QuchHa’)",
+            [Era.Enterprise, Era.OriginalSeries],
+            [Source.SpeciesSourcebook],
+            [""],
+            [Attribute.Control, Attribute.Fitness, Attribute.Presence],
+            "Klingon and QuchHa’",
+            "",
+            [
+                "There is nothing more honorable than victory",
+                "I am Klingon in my heart, even if I must prove it continually",
+                "There is always a path to victory",
+                "Survival must be earned"
+            ],
+            [TalentsHelper.getTalent("Cruel"), TalentsHelper.getTalent("To Battle!"), TalentsHelper.getTalent("R'uustai"), TalentsHelper.getTalent("Warrior's Spirit"), TalentsHelper.getTalent("Killer's Instinct")],
+            "",
+            [
+                { type: "Male", suggestions: "Be'etor, Cheng, Mogh, Qeng, Torgh" },
+                { type: "Female", suggestions: "a'Setbur, HuS, lurSa, Mara" }
+            ]),
+        [Species.Klowahkan]: new SpeciesModel(
+            Species.Klowahkan,
+            "Klowakhan",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.LowerDecksCampaign, Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Reason, Attribute.Insight],
+            "Klowakhan",
+            "",
+            [
+                "The Galaxy is a sumptuous buffet just waiting to be sampled",
+                "Be a can-alope, not a can’t-alope",
+                "Life is too short to be wasted on blandness",
+                "We appreciate a meal more when we are hungry"
+            ],
+            [TalentsHelper.getTalent("Culinary Comforts"), TalentsHelper.getTalent("The Spice of Life")],
+            "",
+            [{
+                type: "Sample Names",
+                suggestions: "Gabers Migleemo, Gonald, Legnog"
+            }]),
+        [Species.Kwejian]: new SpeciesModel(
+            Species.Kwejian,
+            "Kwejian",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Daring, Attribute.Insight, Attribute.Presence],
+            "Kwejian",
+            "",
+            [
+                "The universe is in careful balance, but care is needed to maintain it",
+                "Be careful not to let trouble follow you home",
+                "The world gives back what we put into it",
+                "We few carry the legacy of the lost"
+            ],
+            [TalentsHelper.getTalent("Bait for the Carrion Reaver"), TalentsHelper.getTalent("Natural Bond")],
+            "",
+            [{
+                type: "Sample Names",
+                suggestions: "Kyheem, Leto, Tareckx"
+            }]),
+        [Species.Lanthanite]: new SpeciesModel(
+            Species.Lanthanite,
+            "Lanthanite",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Fitness, Attribute.Presence],
+            "Lanthanite",
+            "",
+            [
+                "Boredom is the worst part of living almost forever",
+                "Sooner or later, everything ends; so enjoy it now",
+                "I keep mementos of my past, and I’m always looking for the next one",
+                "Cherish those who walk through life with you, no matter how briefly"
+            ],
+            [TalentsHelper.getTalent("Ancient Expertise"), TalentsHelper.getTalent("Esoteric Experiences")],
+            "",
+            []),
+        [Species.Medusan]: new SpeciesModel(
+            Species.Medusan,
+            "Medusan",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Reason, Attribute.Insight, Attribute.Presence],
+            "Medusan",
+            "",
+            [
+                "The universe contains countless wonders waiting to be experienced",
+                "I must balance my desire to explore with the harm my presence may do",
+                "We are all bettered by learning from perspectives other than our own",
+                "I care not for solitude or isolation"
+            ],
+            [TalentsHelper.getTalent("Containment Suit"), TalentsHelper.getTalent("Intuitive Navigator")],
+            "",
+            []),
+        [Species.Nanokin]: new SpeciesModel(
+            Species.Nanokin,
+            "Nanokin",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Daring, Attribute.Insight, Attribute.Presence],
+            "Nanokin",
+            "",
+            [
+                "Not all life is on the same scale as you",
+                "Sometimes good things come in small packages",
+                "Small things survive big events",
+                "Living large, despite my size"
+            ],
+            [TalentsHelper.getTalent("Lifelike Conveyance"), TalentsHelper.getTalent("Inner Workings")],
+            "",
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Blip, Clip, Cowpox, Crimean-Congo Hemorrhagic Fever, Grip, Influensina, Polio, Tonsillitis, Trip, Trip 2, Wisp"
+                }
+            ]),
+        [Species.Nausicaan]: new SpeciesModel(
+            Species.Nausicaan,
+            "Nausicaan",
+            [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
+            "Nausicaan",
+            "",
+            [
+                "Do not back down from any challenge",
+                "It’s only cheating if you are foolish enough to be caught",
+                "My strength gives me the right to make the rules",
+                "Only the weak have need to fear pain"
+            ],
+            [TalentsHelper.getTalent("Pack Hunter"), TalentsHelper.getTalent("Let No Challenge Stand")],
+            "",
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Franti, Ghlarig, Kajek, Krozh, Savonigar, Trenigar, Urotoxa, Zon"
+                }
 
+            ]),
         [Species.Terran]: new SpeciesModel(
             Species.Terran,
             "Terran",
@@ -2229,19 +2420,7 @@ class _Species {
             ]),
 
 
-        [Species.Nausicaan]: new SpeciesModel(
-            Species.Nausicaan,
-            "Nausicaan",
-            [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.SpeciesSourcebook],
-            [],
-            [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
-            "Nausicaan",
-            "",
-            "",
-            [],
-            "",
-            []),
+
 
 
 
@@ -2524,6 +2703,10 @@ class _Species {
             }
 
             if (species === Species.Illyrian) {
+                return true;
+            }
+
+            if (species === Species.KlingonQuchHa) {
                 return true;
             }
 

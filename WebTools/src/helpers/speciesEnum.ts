@@ -163,6 +163,7 @@ export enum Species {
     HumanAugment,
     Illyrian_2E,
     Kellerun,
+    KlingonQuchHa_2E,
     Klowahkan,
     Kwejian,
     Lanthanite,
