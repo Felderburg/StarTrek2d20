@@ -349,12 +349,17 @@ class _Species {
             Species.JemHadar,
             "Jem'Hadar",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.Core, Source.CaptainsLog],
+            [Source.Core, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["The Jem’Hadar are genetically-engineered life-forms, created to serve as the military of the Dominion. Bred in birthing chambers, rather than born naturally, they grow to maturity in three days, developing complex reasoning and language skills within a day of birth. Once mature, they do not eat, drink, or sleep, taking all nourishment from the drug ketracel-white, often simply known as “the white,” which is distributed to them by their Vorta overseer as a means of ensuring loyalty. Few Jem’Hadar live for longer than fifteen years due simply to battlefield casualties, with those living to twenty being regarded as ‘Elders’."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Insight],
             "Jem'Hadar",
             "Individual Jem’Hadar are physically powerful, and far stronger and more resilient than Humans. They also have exceptionally keen eyesight, and act utterly without fear or hesitation in battle. They do not regard death with any apprehension, and are extremely aggressive, limited only by their absolute obedience to the Founders and the Vorta.",
-            "",
+            [
+                "Obedience brings victory, and victory is life!",
+                "We pledge loyalty to the Founders from now until death",
+                "Relaxation and recreation are weaknesses",
+                "I will do as ordered, but I will seek to do so honorably"
+            ],
             [],
             "",
             []),
@@ -498,7 +503,7 @@ class _Species {
             "Rigellian Jelna",
             "The Jelna on Rigel V evolved along similar lines to most humanoids, aside from their four sexes. Endosexes are comparable to other humanoids, while exosexes possess a more robust physique and aggressive tendancies. Endosexes have exclusively gray skin and red eyes and are more suited to nurture and care; exosexes have a pale brown complexion.",
             "Governance and Trade for the Prosperity of All",
-            [TalentsHelper.getTalent("Exosex"), TalentsHelper.getTalent("Industrious Mind")],
+            [TalentsHelper.getTalent("Exosex"), TalentsHelper.getTalent("Industrious Mind"), TalentsHelper.getTalent("Inquisitive Drive")],
             "",
             [
                 { type: "Male", suggestions: "Jemer, Shalna" },
@@ -650,7 +655,7 @@ class _Species {
             "Reman",
             "Remans are tall, powerfully built beings, stronger and more durable even than Romulans. Their nocturnal nature means that they cannot easily tolerate bright light. A proportion of Remans have telepathic abilities, allowing them to read the minds of others and to project their thoughts to others, though using these powers effectively takes skill and training.",
             "",
-            [],
+            [TalentsHelper.getTalent("Familiar with Suffering"), TalentsHelper.getTalent("Shock Assault")],
             "",
             []),
         [Species.Orion]: new SpeciesModel(
@@ -1023,7 +1028,7 @@ class _Species {
             "Son’a",
             "The Son’a were once similar to humans in appearance but centuries of exile from their homeworld has led them to experiment upon themselves to stay alive. Most Son’a must spend several hours each day undergoing beautification treatments and extensive genetic modifications in order to stay alive. Most Son’a can be described as possessing a stretched appearance to their faces, while others develop painful lesions along their body. Son’a children, who are almost never permitted to leave their homeworld, are similar in appearance to the Ba’ku but possess pale skin.",
             "We Do What We Must",
-            [TalentsHelper.getTalent("At All Costs"), TalentsHelper.getTalent("Particle Engineering")],
+            [TalentsHelper.getTalent("At All Costs"), TalentsHelper.getTalent("Particle Engineering"), TalentsHelper.getTalent("To the Fullest")],
             "",
             [
                 { type: "Masculine", suggestions: "Ru'afo, Soboi" },
@@ -1486,7 +1491,7 @@ class _Species {
             "Saurian",
             "Saurians possess enhanced senses that are often superior to their colleagues. With six nasal canals, they can pick up scents from kilometers away and their sharp fangs and claws make them imposing. As a civilization, they respect strength and decisiveness but prefer to avoid aggression if at all possible. Saurians also possess a high tolerance for alcohol, and Saurian brandy is prized throughout the Alpha and Beta Quadrants.",
             "Consider Carefully, Then Act Decisively.",
-            [TalentsHelper.getTalent("Enhanced Metabolism"), TalentsHelper.getTalent("Hunter’s Senses")],
+            [TalentsHelper.getTalent("Enhanced Metabolism"), TalentsHelper.getTalent("Hunter’s Senses"), TalentsHelper.getTalent("Patience Before Aggression")],
             "Due to the shape of their mouths and how their native tongue is spoken, Saurians often pick a name in Federation Standard that they like and do not mind being referred to as. They often choose their favorite historical figure or a name that sounds pleasing to them. Saying a Saurian’s proper name correctly will always be endearing to them but they understand if other species struggle to do so.",
             [{ type: "Sample Names", suggestions: "Vk’chk’tk (Victoria), Sh’larlst (Shae), Gr’hsk-ha’sha (Gaius), Lss’t-kel’sar (Linus)" }]),
         [Species.CyberneticallyEnhanced]: new SpeciesModel(
@@ -2138,7 +2143,36 @@ class _Species {
                     suggestions: "Chin, Riley, Ketoul"
                 }
             ]),
+        [Species.Kellerun]: new SpeciesModel(
+            Species.Kellerun,
+            "Kellerun",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Daring, Attribute.Control, Attribute.Presence],
+            "Kellerun",
+            "",
+            "",
+            [TalentsHelper.getTalent("Out of Necessity"), TalentsHelper.getTalent("Pragmatic Professional")],
+            "",
+            [{
+                type: "Sample Names",
+                suggestions: "Ayelle, Carzot, Defren, Ferro, Harreb, Korlom, Mennor, Pherri, Rayner, Sharat, Tivana, Wennix"
+            }]),
 
+        [Species.Terran]: new SpeciesModel(
+            Species.Terran,
+            "Terran",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [],
+            "Terran",
+            "",
+            "",
+            [TalentsHelper.getTalent("Because We Feel Like It"), TalentsHelper.getTalent("Doppleganger"), TalentsHelper.getTalent("Paranoia")],
+            "",
+            []),
         [Species.VauNAkat]: new SpeciesModel(
             Species.VauNAkat,
             "Vau N'Akat",

@@ -1805,7 +1805,7 @@ export class Talents {
             new TalentModel(
                 "Visual Spectrum",
                 "An Efrosian can see beyond what others think of as the visual spectrum, from some infra-red to ultra-violet light. Any Tasks in which detecting those parts of the spectrum is useful reduce in Difficulty by 1. Circumstances, such as low light levels, do not affect the Difficulty of Tasks, as long as those Tasks do not relate to perceiving minutiae of a subject.",
-                [new SpeciesPrerequisite(Species.Efrosian, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.Efrosian, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 "Efrosian"),
             new TalentModel(
@@ -1847,39 +1847,39 @@ export class Talents {
             new TalentModel(
                 "Chelon Shell",
                 "The hard shell extending over a Chelon’s body provides added protection from physical and radioactive threats. This natural armor gives the character a Resistance of 1. They may also ignore any Complications from radiation sources.",
-                [new SpeciesPrerequisite(Species.Chelon, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.Chelon, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Rigellian Chelon"),
+                new TalentCategorization(TalentCategory.Species, Species.Chelon)),
             new TalentModel(
                 "Toxic Claws",
                 "In times of danger Chelons excrete a contact toxin onto their claws that can be used to debilitate foes. Their Unarmed Strike is replaced with a melee attack Claw Strike (Melee, 1[D], Piercing 1, Debilitating, Non-lethal).",
-                [new SpeciesPrerequisite(Species.Chelon, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.Chelon, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Rigellian Chelon"),
+                new TalentCategorization(TalentCategory.Species, Species.Chelon)),
             new TalentModel(
                 "Exosex",
                 "The character possess a Z chromosome that strengthens their physical and survival instincts and abilities. Whenever attempting a Task using Fitness or Daring, roll 1 additional d20 and gain one bonus Momentum on such Tasks.",
-                [new SpeciesPrerequisite(Species.Jelna, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.Jelna, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Rigellian Jelna"),
+                new TalentCategorization(TalentCategory.Species, Species.Jelna)),
             new TalentModel(
                 "Industrious Mind",
                 "The Jelna are naturally enterprising and industrious, and have an affinity for technological developments and industrial engineering. When succeeding an Engineering or Science Task relating to fixing or adapting technology, and spending 2 or more Momentum, a Jelna may add an Advantage related to that technology for free.",
                 [new SpeciesPrerequisite(Species.Jelna, true), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Rigellian Jelna"),
+                new TalentCategorization(TalentCategory.Species, Species.Jelna)),
             new TalentModel(
                 "Peaceful Existence",
                 "Your upbringing in a peaceful society, one that promotes harmony and has an outright ban on weapons, has developed the Risian ability for peaceful resolutions. Whenever a Risian attempts a Task to dissuade another individual or group from resorting to conflict, they reduce the Difficulty of that Task by 1.",
                 [new SpeciesPrerequisite(Species.Risian, true), new EraPrerequisite(Era.Enterprise), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Risian"),
+                new TalentCategorization(TalentCategory.Species, Species.Risian)),
             new TalentModel(
                 "Open and Insightful",
                 "Risian open, and often frank, discussion of problems and personal opinion enables conversation and understanding when working in a team. Whenever a Risian assists another character using Insight or Reason they may re-roll a single d20 in their dice pool. In addition, if the lead character succeeds in the Task using Insight or Reason, they gain 1 bonus Momentum.",
                 [new SpeciesPrerequisite(Species.Risian, true), new EraPrerequisite(Era.Enterprise), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Risian"),
+                new TalentCategorization(TalentCategory.Species, Species.Risian)),
             new TalentModel(
                 "Calm Under Pressure",
                 "Arboreals possess an unwaveringly calm nature, allowing them to ignore the stress of a crisis. When attempting Tasks with Control to resist stress or mental affliction they may reroll one die in your pool.",
@@ -1909,13 +1909,13 @@ export class Talents {
                 "In command positions, the speed of Zakdorn tactical calculations enables them to give concise orders to their crew. During combat, a Zakdorn leader may use the Direct Task one additional time per scene (so, twice per scene overall). Further, when they use the Swift Task Momentum Spend for an extra Task, the cost is reduced to 1 Momentum, so long as the second Task is the Assist or Direct Task.",
                 [new SpeciesPrerequisite(Species.Zakdorn, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Zakdorn"),
+                new TalentCategorization(TalentCategory.Species, Species.Zakdorn)),
             new TalentModel(
                 "Master Strategist",
                 "Zakdorn strategic sense is unparalleled in contemporary military theory. Whenever a Zakdorn attempts a Task to Create an Advantage related to strategy or tactics (as opposed to spending Momentum), reduce the Difficulty by 1.",
                 [new SpeciesPrerequisite(Species.Zakdorn, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Zakdorn"),
+                new TalentCategorization(TalentCategory.Species, Species.Zakdorn)),
             new TalentModel(
                 "Morphogenic Matrix",
                 " The character may spend 1 Momentum as a Minor Action once per Turn to assume a different form, gaining an additional Trait to reflect whatever form they have chosen, though they cannot yet mimic an individual, and they must return to a liquid state for a few hours of rest every sixteen hours. While in an alternate form, it is next to impossible (Difficulty 5) to discern the Changeling’s true nature, without separating some part of the Changeling’s substance. The character also has a Resistance of 4.",
@@ -2222,7 +2222,7 @@ export class Talents {
             new TalentModel(
                 "At All Costs",
                 "Though a small power in the Alpha Quadrant, the Son’a have not become one of the dominant powers in the Briar Patch by engaging only in half measures or pulling their punches. When a Son’a declares their attack action, they may add an additional point of Momentum as long as they are not dealing Non-lethal damage. ",
-                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.SonA, true)],
+                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.SonA, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
                 "Son’a"),
             new TalentModel(
@@ -2326,13 +2326,13 @@ export class Talents {
                 "Ocampa possess keen minds and enjoy near-perfect memories, and they take to new situations and new challenges quickly. When a character with this talent attempts a Task which they have seen at least one ally perform during this mission, you may add an additional d20 to that Task. ",
                 [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Ocampa, true)],
                 1,
-                "Ocampa"),
+                new TalentCategorization(TalentCategory.Species, Species.Ocampa)),
             new TalentModel(
                 "Telepath (Ocampa)",
                 "The character can sense the surface thoughts and emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom they are extremely familiar. Surface thoughts are whatever a creature is thinking about at that precise moment. The character cannot choose not to sense the emotions or read the surface thoughts of those nearby, except for those who are resistant to telepathy. It will require effort and a Task to pick out the emotions or thoughts of a specific individual in a crowd, to search a creature’s mind for specific thoughts or memories, or to block out the minds of those nearby. Unwilling targets may resist with an Opposed Task.\nWhile all Ocampa are telepathic, their short lifespan and rapid development means that a young Ocampa character may not fully develop their abilities until later in life, so it is possible to choose the Talent after character creation. Unlike other telepathic/empathic species, the Ocampa have demonstrated the ability to develop even greater psychic abilities, including precognition, mental projection, telekinesis, and the ability to manipulate matter at a subatomic level.",
                 [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Ocampa, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Ocampa"),
+                new TalentCategorization(TalentCategory.Species, Species.Ocampa)),
             new TalentModel(
                 "Born to Fight",
                 "The character may reroll one d20 when making an attack. In addition, if an attack is successful, the character generates one point of bonus Momentum which may only be spent to re-roll the damage roll or to increase the total damage. Bonus Momentum may not be saved.",
@@ -2606,15 +2606,15 @@ export class Talents {
             new TalentModel(
                 "Enhanced Metabolism",
                 "Saurian biology allows them to process toxins at a much higher rate than other species. A Saurian is capable of recovering from the effects of a toxin in half the time as other species, and may reroll one d20 in any task to determine if they can resist the effects of toxic substances introduced to their body.",
-                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Saurian, true)],
+                [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Saurian, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                Species[Species.Saurian]),
+                new TalentCategorization(TalentCategory.Species, Species.Saurian)),
             new TalentModel(
                 "Hunter’s Senses",
                 "Due to their natural gifted senses of smell and sight, a Saurian can detect minute pheromone signatures, and can see into the infrared portion of the EM spectrum. With practice, they can hone these senses into a superlative tracking Department. When a Saurian attempts to determine the presence of hidden creatures, or attempts a task to track a creature which has passed through an area within the last 24 hours, reduce the Difficulty by 2. If this is part of an extended task, then the Saurian also rolls +2[D] when determining progress on the Work track.",
                 [new SourcePrerequisite(Source.DiscoveryCampaign), new SpeciesPrerequisite(Species.Saurian, true)],
                 1,
-                Species[Species.Saurian]),
+                new TalentCategorization(TalentCategory.Species, Species.Saurian)),
             new TalentModel(
                 "Synthetic Physiology",
                 "Some injuries suffered by organic beings require extensive augmentations and improvements of an individual’s body. Some of these improvements leave the Cybernetically Enhanced possessing physical abilities superior to their original capabilities, and allow them to achieve feats well beyond what they once could. The Cybernetically Enhanced increases their Resistance by 1 against non-lethal attacks. The Cybernetically Enhanced may also spend 2 Momentum (Immediate) to re-roll a single die for any task involving Fitness.",
@@ -2686,13 +2686,13 @@ export class Talents {
             new TalentModel(
                 "Enhanced Thrusters",
                 "Many Exocomps have been known to create structural upgrades to themselves to help be better at the job they are assigned to. Often this can take the form of more efficient and powerful thrusters to increase their maneuverability and flight duration. You may reduce the Difficulty of tasks to avoid falling or floating debris by 1.",
-                [new SourcePrerequisite(Source.LowerDecksCampaign), new SpeciesPrerequisite(Species.Exocomp, true)],
+                [new SourcePrerequisite(Source.LowerDecksCampaign), new AnySpeciesPrerequisite(true, Species.Exocomp, Species.Exocomp_2E)],
                 1,
                 "Exocomp"),
             new TalentModel(
                 "Extra Power Supply",
                 "Some Exocomps install an additional power supply in order to accomplish multiple tasks at the same time. You may ignore the opportunity cost of up to three pieces of equipment per scene.",
-                [new SourcePrerequisite(Source.LowerDecksCampaign), new SpeciesPrerequisite(Species.Exocomp, true)],
+                [new SourcePrerequisite(Source.LowerDecksCampaign), new AnySpeciesPrerequisite(true, Species.Exocomp, Species.Exocomp_2E)],
                 1,
                 "Exocomp"),
             new TalentModel(
@@ -3713,11 +3713,29 @@ export class Talents {
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Deltan)),
             new TalentModel(
+                "Defensive Posture",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Chelon, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Chelon)),
+            new TalentModel(
+                "Strength in Service",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Chelon, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Chelon)),
+            new TalentModel(
                 "Feral Aggression",
                 "",
                 [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Caitian, true)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Caitian)),
+            new TalentModel(
+                "Geospatial Awareness",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Efrosian, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Efrosian)),
             new TalentModel(
                 "Touched the Nexus",
                 "",
@@ -3762,6 +3780,24 @@ export class Talents {
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Illyrian_2E)),
             new TalentModel(
+                "Inquisitive Drive",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Jelna, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Jelna)),
+            new TalentModel(
+                "Out of Necessity",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Kellerun, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Kellerun)),
+            new TalentModel(
+                "Pragmatic Professional",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Kellerun, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Kellerun)),
+            new TalentModel(
                 "Collective Insights",
                 "",
                 [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.LiberatedBorg, true)],
@@ -3775,6 +3811,54 @@ export class Talents {
                 new TalentCategorization(TalentCategory.Species, Species.LiberatedBorg)),
 
 
+            new TalentModel(
+                "Fresh Perspective",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Ocampa, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Ocampa)),
+            new TalentModel(
+                "Push Towards a Single Goal",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Osnullus, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Osnullus)),
+            new TalentModel(
+                "Familiar with Suffering",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Reman, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Reman)),
+            new TalentModel(
+                "Patience Before Aggression",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Saurian, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Saurian)),
+            new TalentModel(
+                "To the Fullest",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.SonA, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.SonA)),
+            new TalentModel(
+                "Because We Feel Like It",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Terran, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Terran)),
+            new TalentModel(
+                "Doppleganger",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Terran, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Terran)),
+            new TalentModel(
+                "Paranoia",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Terran, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Terran)),
             new TalentModel(
                 "Manipulative",
                 "",

@@ -2028,7 +2028,7 @@
     "Role.flightController": "Flight Controller",
 
     "Role.flightController.description": "Not a typical senior staff role, some captains, particularly those operating in uncharted space, choose the most senior helmsman or flight control officer to serve as senior staff as well.",
-    "Role.flightController.description2e": "Also known as a helmsman on 22nd and 23rd century Starfleet vessels. Not a typical senior staff role, though some captains, particularly those operating in unchart- ed space, choose the most senior helmsman or flight control officer to serve on the senior staff.",
+    "Role.flightController.description2e": "Also known as a helmsman on 22nd and 23rd century Starfleet vessels. Not a typical senior staff role, though some captains, particularly those operating in uncharted space, choose the most senior helmsman or flight control officer to serve on the senior staff.",
     "Role.flightController.ability": "When the flight controller is required to analyze or repair technology related to flight or propulsion, they may use the Conn Discipline instead of Engineering.",
     "Role.flightController.ability2e": "When you attempt an engineering task related to flight or propulsion, you may use your Conn rating instead of Engineering. When you succeed at a Conn task to pilot a starship, you generate 1 bonus Momentum to be used on that task (bonus Momentum may not be saved).",
 
@@ -2042,7 +2042,7 @@
     "Role.communicationsOfficer": "Communications Officer",
 
     "Role.communicationsOfficer.description": "More common in the earlier days of Starfleet, dedicated communications officers are typically skilled in linguistics and cryptography, and aided with advanced translation and decryption technologies, and thus valuable during encounters with both new cultures, and with hostile ones.",
-    "Role.communicationsOfficer.description2e": "More common in the earlier days of Starfleet, dedicated communications officers are typically skilled in linguis- tics and cryptography, and aided with advanced translation and decryption technologies, and are valuable during encounters with new cultures, hostile or otherwise.",
+    "Role.communicationsOfficer.description2e": "More common in the earlier days of Starfleet, dedicated communications officers are typically skilled in linguistics and cryptography, and aided with advanced translation and decryption technologies, and are valuable during encounters with new cultures, hostile or otherwise.",
     "Role.communicationsOfficer.ability": "When a Task attempted by the communications officer is increased in Difficulty because of an unfamiliar language or encryption, ignore that Difficulty increase.",
     "Role.communicationsOfficer.ability2e": "When you attempt a task assisted by the ship’s Computers or Communications systems, do not roll the ship’s assist die: instead, count the ship’s die as if it had rolled a 1.",
 
@@ -2076,7 +2076,7 @@
     "Role.intelligenceAgent": "Intelligence Agent",
 
     "Role.intelligenceAgent.description2e": "You are not a traditional part of the fleet. Instead, you are an operative of the intelligence services of your civilization. You are charged with gathering information from places and people that don’t want their information gathered, and you achieve this through a combination of your own skills and the network of informants and contacts you have cultivated.",
-    "Role.intelligenceAgent.ability2e": "Onceperadventure,youmaycre- ate a trait without requiring a task or spending any Momentum, Threat, or Determination. This trait must reflect information, physical resources, or access to a location (such as access codes or identification data) provided to you by a contact or by your agency.",
+    "Role.intelligenceAgent.ability2e": "Once per adventure, you may create a trait without requiring a task or spending any Momentum, Threat, or Determination. This trait must reflect information, physical resources, or access to a location (such as access codes or identification data) provided to you by a contact or by your agency.",
 
     "Role.merchant": "Merchant",
 
@@ -2085,7 +2085,7 @@
 
     "Role.politicalLiaison": "Political Liaison",
 
-    "Role.politicalLiaison.description2e": "You serve as a representative of a government, representing their needs and interests during the operations of the crew, and providing the crew with a means of communicating with that government in turn. This is often the case where multiple groups are required to coexist, such as a Starfleet facility operating close to an allied non-Fed- eration world, or as part of a joint operation between Starfleet and Klingon Defense Force personnel.",
+    "Role.politicalLiaison.description2e": "You serve as a representative of a government, representing their needs and interests during the operations of the crew, and providing the crew with a means of communicating with that government in turn. This is often the case where multiple groups are required to coexist, such as a Starfleet facility operating close to an allied non-Federation world, or as part of a joint operation between Starfleet and Klingon Defense Force personnel.",
     "Role.politicalLiaison.ability2e": "You represent the official government your organization belongs to—i.e., if you are a member of the Bajoran Militia, you represent the current Bajoran government. You gain an additional Directive, which only applies to you, which reflects the political stance of the government you represent. Your gamemaster will work with you to determine the wording of this Directive. It serves to provide you with a source of complications and potential restrictions when acting against the interests of your government, and benefits when you are acting with the full support of your superiors.",
 
     "Role.translator": "Translator",
@@ -2467,7 +2467,7 @@
     "Species.aenar.name": "Aenar",
     "Species.aenar.aboutNames": "Aenar usually have a single given name, as their enhanced senses allow them to tell the differences between two individuals with the same name based on the cadence of their voice, their heartbeat, and other physiological features.",
     "Species.aenar.description": "An offshoot of Andorians, the Aenar are a telepathic species whose lack of sight is compensated by their enhanced senses and telepathic abilities. Once thought to be a myth, the Aenar prefer their solitude and live in shielded communities far from their fellow Andorians. Though they are few in number, the Aenar are highly valued for their sensory capabilities. The Andorian government has granted them some degree of sovereignty to manage their own matters. While most prefer to stick to the polar icecaps of their homeworld, some Aenar have left Andoria to pursue careers in Starfleet or other efforts. Known for possessing a fascination with technology, some have gone on to become valued engineers.",
-    "Species.aenar.description2e": "The Aenar are a subspecies of Andorians originally native to an isolated region of the northern wastes of Andoria. Though typically blind, they are telepathic, and their other senses are heightened. Once believed to be a myth, the Aenar are few and most prefer to remain within their isolated settlements, and they rarely bother themselves with matters outside their own communities. They lack the distinctive blue skin pigmentation of other Andorians, instead having skin tones that range from white, to ice blue, to pale gray. Aenar deplore violence, and commonly follow a strictly pacifist ideology.\n\nCompared to their Andorian kin, Aenar often seem calm and restrained. They are no less proud of their heritage, but they express that pride differently, often taking great pride in their skills and the work they do. The few Aenar who leave their homeworld often come off as highly mo- tivated and sure of themselves, maintaining their sense of self even when far from their families.",
+    "Species.aenar.description2e": "The Aenar are a subspecies of Andorians originally native to an isolated region of the northern wastes of Andoria. Though typically blind, they are telepathic, and their other senses are heightened. Once believed to be a myth, the Aenar are few and most prefer to remain within their isolated settlements, and they rarely bother themselves with matters outside their own communities. They lack the distinctive blue skin pigmentation of other Andorians, instead having skin tones that range from white, to ice blue, to pale gray. Aenar deplore violence, and commonly follow a strictly pacifist ideology.\n\nCompared to their Andorian kin, Aenar often seem calm and restrained. They are no less proud of their heritage, but they express that pride differently, often taking great pride in their skills and the work they do. The few Aenar who leave their homeworld often come off as highly motivated and sure of themselves, maintaining their sense of self even when far from their families.",
     "Species.aenar.exampleValue": "I May Be Blind but I See it as Clear as Day",
     "Species.aenar.soloDescription": "The Aenar were a subspecies of Andorians who were on the verge of extinction by the mid-22nd century. They had two antennae and no skin or hair pigmentation. Their most distinctive trait was their telepathic abilities, which included reading minds and psychically projecting themselves into the minds of other humanoids.",
     "Species.aenar.trait": "Aenar",
@@ -2540,7 +2540,7 @@
     "Species.betazoid.exampleValue": "Compassion Through Understanding",
     "Species.betazoid.soloDescription": "Betazoids appear almost identical to Humans, but differ in one major way: they are naturally telepathic, developing mental abilities during adolescence. All Betazoids are telepathic to varying degrees, and even when not actively using their abilities, they are highly perceptive of others around them, but also sensitive to telepathic disturbances and mental assaults. They have little familiarity with lies and deception, due to their open culture and ability to read the thoughts and emotions of others. As they are sensitive to the minds of other living beings, they tend not to be comfortable around animals, for fear of losing themselves in the minds of wild creatures.",
     "Species.betazoid.traitDescription": "All Betazoids are telepathic to varying degrees, and even when not actively using their abilities, they are highly perceptive of others around them, but also highly sensitive to telepathic disturbances and mental assaults. They have little familiarity with lies and deception, due to their open culture and ability to read the thoughts and emotions of others. As they are sensitive to the minds of other living beings, they tend not to be comfortable around animals, for fear of losing themselves in the minds of wild creatures.",
-    "Species.betazoid.traitDescription2e": "All Betazoids are telepathic to varying degrees, and even when not actively using their abili- ties, they are highly perceptive of others around them, but also highly sensitive to telepathic disturbances and mental assaults. They have little familiarity with lies and deception, due to their open culture and ability to read the thoughts and emotions of others. As they are sensitive to the minds of other living beings, they tend not to be comfortable around animals, for fear of losing themselves in the minds of wild creatures. Similarly, they can find species immune to telepathy to be off-putting.",
+    "Species.betazoid.traitDescription2e": "All Betazoids are telepathic to varying degrees, and even when not actively using their abilities, they are highly perceptive of others around them, but also highly sensitive to telepathic disturbances and mental assaults. They have little familiarity with lies and deception, due to their open culture and ability to read the thoughts and emotions of others. As they are sensitive to the minds of other living beings, they tend not to be comfortable around animals, for fear of losing themselves in the minds of wild creatures. Similarly, they can find species immune to telepathy to be off-putting.",
 
     "Species.betelgeusian.name": "Betelgeusian",
     "Species.betelgeusian.aboutNames": "Betelgeusian tend to have a given name and surname, though often use only their given name. They differ from other species in that a Betelgeusian will often change their name to use pleasing words they like that are used by other species. While some prefer to use traditional names like Jelfrit or Yor, it is not uncommon to encounter a Betelgeusian whose love of traveling through space makes them inclined to use “Cosmo” as their first name if they find it aesthetically pleasing and representative  of their personality.",
@@ -2598,7 +2598,7 @@
     "Species.denobulan.name": "Denobulan",
     "Species.denobulan.aboutNames": "Denobulans tend to only have a single name — an individual Denobulan may be part of several overlapping families. Some Denobulans may use the name of one of their spouses as an impromptu surname, however; this is often to indicate association to species that may not understand Denobulan families. Denobulan names tend to be short and hard-sounding, particularly male names.",
     "Species.denobulan.description": "Hailing from the planet Denobula, Denobulans are a gregarious, inquisitive people who have been allies of Humanity since the 2130s. Though Denobula was not one of the founders of the Federation, the Denobulans joined soon after. Denobulans are a sociable people, with distinctive expressive features, who are used to living in close, communal conditions, and whose extended family groups are large and complex — a Denobulan may have several spouses, each of whom may have several partners of their own, and dozens of children between them. Culturally, they are intellectually curious, perceptive, and interested in a wide range of philosophies, though their scholarly nature, large families, and gregarious nature means that relatively few of them venture far from their homeworld.",
-    "Species.denobulan.description2e": "Hailing from the planet Denobula, Denobulans are a gregarious, inquisitive people who have been allies of humanity since the 2130s. Denobulans are long-lived and highly sociable, with large families—Denobulans are typically polyamorous, with individuals potentially having several spouses, each of whom may have several spouses of their own, and dozens of children between them—living in relatively close, communal environ- ments. Culturally, Denobulans are an intellectually curi- ous people, highly perceptive, and interested in a wide range of philosophies, with their long lives allowing them to pursue a wide range of fields of study, often granting them unusual perspectives on the different philosophies and fields of expertise they’ve studied.\n\nDenobulans enjoy learning new things, meeting new people, and they revel in the drama, intrigue, and gossip that come from a rich and complex social environment. They are extraordinarily patient, taking a long view of the changes that happen in life, but they dislike solitude, and even a busy starship or starbase can sometimes seem a little empty to a Denobulan.",
+    "Species.denobulan.description2e": "Hailing from the planet Denobula, Denobulans are a gregarious, inquisitive people who have been allies of humanity since the 2130s. Denobulans are long-lived and highly sociable, with large families—Denobulans are typically polyamorous, with individuals potentially having several spouses, each of whom may have several spouses of their own, and dozens of children between them—living in relatively close, communal environments. Culturally, Denobulans are an intellectually curious people, highly perceptive, and interested in a wide range of philosophies, with their long lives allowing them to pursue a wide range of fields of study, often granting them unusual perspectives on the different philosophies and fields of expertise they’ve studied.\n\nDenobulans enjoy learning new things, meeting new people, and they revel in the drama, intrigue, and gossip that come from a rich and complex social environment. They are extraordinarily patient, taking a long view of the changes that happen in life, but they dislike solitude, and even a busy starship or starbase can sometimes seem a little empty to a Denobulan.",
     "Species.denobulan.exampleValue": "Safety in Numbers",
     "Species.denobulan.soloDescription": "A gregarious, inquisitive people allied with humanity since the 2130s. Often at ease encountering new cultures and collaborating within large social groups. Robust physiology, similar to Humans in appearance, with facial ridges.",
     "Species.denobulan.traitDescription": "Denobulans have a robust immune system, but a vulnerability to various forms of radiation poisoning. They are naturally adept climbers, scuttling up sheer walls like some forms of terrestrial lizard. Denobulans do not need to sleep, but must hibernate for several days each year, becoming disoriented if kept awake during this period.",
@@ -2623,7 +2623,7 @@
 
     "Species.ferengi.name": "Ferengi",
     "Species.ferengi.aboutNames": "Ferengi tend to have only a single name, which tend to be only one or two syllables, though exceptions exist. Among cultures who have family names, Ferengi will occasionally refer to themselves as “son of...,” “daughter of...,” “child of...,” and so forth, but as each Ferengi is expected to make their own way in life, family names are unheard of among Ferengi.",
-    "Species.ferengi.description2e": "An acquisitive species native to Ferenginar, the Ferengi are unimposing beings, known mostly as merchants and traders. Their culture promotes the accumulation of material wealth, and their society is capitalistic, with most routine activities accompanied by an exchange of money, typically in the form of gold-pressed latinum (a non-rep- licable liquid metal, suspended within “slips,” “strips,” “bars,” and “bricks” of gold). Ferengi society is strongly patriarchal, with female Ferengi traditionally disallowed from owning property or even wearing clothing (and male Ferengi often having deeply unpleasant attitudes towards non-Ferengi women), though these attitudes start to change by the late 24th century.\n\nFerengi pride themselves on their ability to acquire wealth, though there are many different approaches to this. For centuries, Ferengi culture has been domi- nated by the philosophies and lessons of the Rules of Acquisition, though these can be interpreted in a variety of different ways and applied to a Ferengi’s life.",
+    "Species.ferengi.description2e": "An acquisitive species native to Ferenginar, the Ferengi are unimposing beings, known mostly as merchants and traders. Their culture promotes the accumulation of material wealth, and their society is capitalistic, with most routine activities accompanied by an exchange of money, typically in the form of gold-pressed latinum (a non-rep- licable liquid metal, suspended within “slips,” “strips,” “bars,” and “bricks” of gold). Ferengi society is strongly patriarchal, with female Ferengi traditionally disallowed from owning property or even wearing clothing (and male Ferengi often having deeply unpleasant attitudes towards non-Ferengi women), though these attitudes start to change by the late 24th century.\n\nFerengi pride themselves on their ability to acquire wealth, though there are many different approaches to this. For centuries, Ferengi culture has been dominated by the philosophies and lessons of the Rules of Acquisition, though these can be interpreted in a variety of different ways and applied to a Ferengi’s life.",
     "Species.ferengi.traitDescription2e": "Ferengi physiology does not lend itself to physical activity, nor does their culture value such hardship, though they have a resistance to many common diseases. Ferengi have exceptional hearing, and highly sensitive ears, though this also means that intense sounds (and physical force applied to the ears) can inflict debilitating pain. Their unusual brain structure means that telepaths cannot read Ferengi minds. Ferengi regard the accumulation of wealth as the highest virtue, and while this has given them a reputation as cunning negotiators, they are also often seen as duplicitous and manipulative.",
     "Species.ferengi.soloDescription": "An enterprising people devoted to applying their considerable technology toward the acquisition of wealth. Encountered by Starfleet in 2364 and forming a wide variety of relationships to the Federation, being organized as a collection of private businesses. Possessed of large, sensitive ears which supply an acute sense of hearing and the lobes for business acumen.",
 
@@ -2644,7 +2644,7 @@
     "Species.human.name": "Human",
     "Species.human.aboutNames": "Human names vary wildly, and rather than make sweeping generalizations here, it’s better that Players seek out other sources for names, considering the vast range of languages, cultures, and traditions Humanity encompasses.",
     "Species.human.description": "Originating on the planet Earth in the Sol system, Humans are a resilient, diverse, and adaptable species, who developed from fractious, warring nations on the brink of mutual annihilation to a united, peaceful society in less than a century, and managed to forge alliances between former enemies within a century of achieving interstellar space flight. Earth is a founder and pivotal member of the United Federation of Planets, and many of the Federation’s institutions can be found on Earth. Humans often exhibit a dichotomy in their nature — being both driven to strong emotion and careful reason — and while they have largely grown beyond their warlike and divisive past, their drive and capacity for aggression are as much a part of their success as their curiosity and analytical minds.",
-    "Species.human.description2e": "Originating on the planet Earth in the Sol system, Humans are a hardy and ambitious species, who went from the brink of mutual annihilation to a united peace- ful society in less than a century. A century after that, humanity had established itself as part of an interplane- tary alliance, the United Federation of Planets, bringing former rivals together as allies. Humans often exhibit a dichotomy in their nature—sometimes strongly emo- tional and passionate like Klingons or Andorians, yet at others highly analytical and rational like Tellarites or Vulcans—which has allowed them to grow beyond their warlike and fractious past, but their capacity for ambition and aggression are as much a part of their success as their curiosity and analytical minds.\n\nHumans tend to draw upon two sets of cultural values. As a central and founding member of the Federation, the traditions and ideals of the Federation (or even those of Starfleet) are often regarded as synonymous with “Human culture” (though the Federation draws a lot from each of its members), to the point where nobody is entirely sure where Earth ends and the Federation begins. Yet, conversely, this can also lead to Humans finding value in preserving the traditions and cultures of their pre-warp ancestors.",
+    "Species.human.description2e": "Originating on the planet Earth in the Sol system, Humans are a hardy and ambitious species, who went from the brink of mutual annihilation to a united peaceful society in less than a century. A century after that, humanity had established itself as part of an interplanetary alliance, the United Federation of Planets, bringing former rivals together as allies. Humans often exhibit a dichotomy in their nature—sometimes strongly emotional and passionate like Klingons or Andorians, yet at others highly analytical and rational like Tellarites or Vulcans—which has allowed them to grow beyond their warlike and fractious past, but their capacity for ambition and aggression are as much a part of their success as their curiosity and analytical minds.\n\nHumans tend to draw upon two sets of cultural values. As a central and founding member of the Federation, the traditions and ideals of the Federation (or even those of Starfleet) are often regarded as synonymous with “Human culture” (though the Federation draws a lot from each of its members), to the point where nobody is entirely sure where Earth ends and the Federation begins. Yet, conversely, this can also lead to Humans finding value in preserving the traditions and cultures of their pre-warp ancestors.",
     "Species.human.exampleValue": "The Drive for Exploration",
 
     "Species.humanAugment.name": "Human Augment",
@@ -2670,9 +2670,16 @@
 
     "Species.jemHadar.name": "Jem'Hadar",
     "Species.jemHadar.soloDescription": "Individual Jem’Hadar are physically powerful, and far stronger and more resilient than Humans. They also have exceptionally keen eyesight, and act utterly without fear or hesitation in battle. They do not regard death with any apprehension, and are extremely aggressive, limited only by their absolute obedience to the Founders and the Vorta.",
+    "Species.jemHadar.description2e": "An artificial species of reptilian humanoids created by the Founders, who serve as the military of the Dominion. Rather than being born naturally, **Jem’Hadar** are bred in birthing chambers, and their growth cycle is accelerated such that they reach maturity within three days. It was rare for any Jem’Hadar to live longer than 10 or 15 years, and those over 20 were regarded as honored elders.\n \nJem’Hadar are engineered to be a perfect warrior species. They have exceptional strength, excellent vision and coordination, and they are extremely resilient to attack. They do not require sleep, and receive all their nourishment from a drug known as ketracel-white, which also contains a necessary isogenic enzyme that their metabolism does not produce. Jem’Hadar received regular doses of “the white” from their Vorta overseers, ensuring their loyalty. \n\nThe Jem’Hadar worship the Founders as gods, though few of them had ever actually seen a Founder. Those who had were driven to such a fervid loyalty that they would commit suicide if they allowed a Founder to be harmed. Duty was central to their existence, regarding their lives only as having value as long as they continued to triumph. While some have a personal sense of honor, this is not a major part of their culture.",
+    "Species.jemHadar.traitDescription2e": "Jem’Hadar are physically powerful, and far stronger and more resilient than Humans. They have keen eyesight, and act without fear or hesitation in battle. They do not regard death with apprehension, and are aggressive, limited only by their absolute obedience to the Founders and the Vorta.",
 
     "Species.kazon.name": "Kazon",
     "Species.kazon.description": "An aggressive warrior species from the Delta Quadrant divided into eighteen different sects that war over resources. They have intricate head ridges and thick, coral-shaped hair.",
+
+    "Species.kellerun.name": "Kellerun",
+    "Species.kellerun.description": "The **Kellerun** are a species native to the Alpha Quadrant with a long history of space exploration, but also of conflict. Prior to the late 24th century, the Kellerun were embroiled in a centuries-long conflict with a species from a neighboring system, the T’Lani, which had escalated to the point that deadly nano-biogenic weapons—called the Harvester—were used extensively by both sides, which led to mass casualties. When a tentative peace was finally achieved, both sides sought Federation aid in destroying their stockpiles of the Harvester weapon. Centuries later, the Kellerun\nfaced conflict again, as the territories of the Breen Imperium expanded to claim the Kellerun homeworld as an outpost, stripping it of resources.\n\nThe Kellerun themselves are a humanoid species with pointed, ridged ears, but who otherwise appear similar to Humans, Betazoids, or Vulcans. The species’ long history of warfare has resulted in the Kellerun being an intense and determined people, but it would be difficult to class them as a warrior culture in the way the Klingons are. Still, Kellerun culture does encourage a pragmatic attitude, which some might see as ruthlessness, when it comes to eliminating dire threats before they can arise.",
+    "Species.kellerun.traitDescription": "Kellerun are a humanoid species with features and physiology similar to Humans and many other species, aside from ridged and pointed ears. The Kellerun have a reputation for being focused and intense, slow to trust, and even humorless.",
+    "Species.kellerun.aboutNames": "Kellerun names tend to be straight-forward, much like their pragmatic attitude.",
 
     "Species.kelpien.name": "Kelpien",
     "Species.kelpien.soloDescription": "An empathetic people kept in check by the technologically advanced Ba’ul who share their homeworld. Initially prohibited from contact with other civilizations, notable individuals managed to join Starfleet, and the ensuing centuries brought both species of Kaminar into the Federation. Tall and lanky, with keen eyesight, a capacity for sprinting, and sensitive ganglia on their heads which become capable of shooting barbs once they mature through vahar’ai.",
@@ -2741,13 +2748,18 @@
     "Species.talarian.exampleValue": "Constantly testing one's capabilities promotes strength.",
     "Species.talarian.traitDescription": "Talarians are characterized by a distinctive hairless enlargement of the coronal area of the skull extending in 2 lobes to the back of the head. Talarian blood is red, & Talarians are prone to radiation burns & respiratory distress. Otherwise their physique is very similar to humans & Human/Talarian hybrids are possible without too many complications.",
 
+    "Species.tamarian.name": "Child of Tama",
+    "Species.tamarian.description2e": "The **Children of Tama**, also known as **Tamarians**, are bipedal humanoids with long nostrils and ear holes on the sides of their heads. A bony ridge runs from the top of their nose and over the top of their heads. Two smaller ridges usually run along the side of their heads, over their ear holes. Tamarians are hairless and have thick, milky-white blood. Their thumbs are long in proportion to the rest of their fingers and have a sucker-like tip on the end.\n\nTamarians have a complex language that uses historical and mythological metaphors to describe their feelings and to explain their actions. This language shows a tremendous connection to the stories and actions of their ancestors. In addition, Tamarians participate in sleeping rituals and death rituals that pay homage to their ancestors. These rituals include objects that Tamarians carry with them, including a ceremonial dagger.",
+    "Species.tamarian.traitDescription": "The Children of Tama are solid, sturdy humanoids with thick skin that tends towards shades of orange or ochre, with red or red-brown markings. They are most notable for their distinctive form of communication, which relies on idiom and metaphor to an extreme degree, even compared to many other known languages. The sucker-like tip of their thumbs gives them a particularly secure grip, especially on objects of Tamarian design.",
+    "Species.tamarian.aboutNames": "Because of their attachments to names and events, no two Tamarians have ever had the same name. This practice ensures that there isn’t confusion about whose actions are referenced in their language. Typically, a Tamarian’s name is two syllables though there have been three and four syllable names throughout their history and mythology.",
+
     "Species.tellarite.name": "Tellarite",
     "Species.tellarite.aboutNames": "Tellarite names have considerable variation, but all tend to be composed of harsh, even guttural sounds. Tellarite names consist of a personal name and a family name, though the family name is often a compound, indicating that the family name is a patronym or matronym (the name of a father or mother, respectively), toponym(derived from a place) or similar — in this way, these prefixes are similar to “O’”, “Mc“, “von”, and similar elements in some Human names. Examples: Pola jav Brin (female), Tuk glasch Khutohk (male)",
     "Species.tellarite.description": "The stout, hirsute Tellarite species comes from Tellar Prime, a temperate planet in the Alpha Quadrant. Theirs is a culture noted for being abrasive and argumentative, with a stubborn pride, quick tempers, and little patience. However, this is only a superficial view: while Tellarites are argumentative, it comes from a sense of intellectual honesty and rigorous skepticism. To a Tellarite, no idea, concept, or person is beyond challenge or analysis, and any notion that cannot stand up to scrutiny is an unworthy one. Tellarites revel in debates, and tend to greet one another with criticisms, complaints, and even insults; failing to respond in kind is poorly- regarded, as it displays a weakness of character and an unwillingness to confront flaws.",
-    "Species.tellarite.description2e": "The stubborn, argumentative Tellarite species originated upon Tellar Prime, a temperate planet in the Alpha Quadrant. Their bodies are thick-set and covered in dense hair, and they stand a little shorter than Humans on average. Many male Tellarites possess tusks to some degree, though they vary in size and prominence.\n\nTellarites are known to be highly argumentative, even rude by the standards of other cultures, often com- plaining frequently or insulting others as part of social interactions. In truth, this comes from a sense of intellec- tual honesty and rigorous skepticism. To a Tellarite, no idea, concept or person is beyond challenge or analysis, and any notion that cannot stand up to scrutiny is an unworthy one. Tellarites revel in debates, and enjoy arguing, and the criticisms, complaints, and insults issued during conversations are intended to be met in kind: to do otherwise is to display a weak character, an inability to stand up for oneself, or an unwillingness to confront one’s own flaws.",
+    "Species.tellarite.description2e": "The stubborn, argumentative Tellarite species originated upon Tellar Prime, a temperate planet in the Alpha Quadrant. Their bodies are thick-set and covered in dense hair, and they stand a little shorter than Humans on average. Many male Tellarites possess tusks to some degree, though they vary in size and prominence.\n\nTellarites are known to be highly argumentative, even rude by the standards of other cultures, often complaining frequently or insulting others as part of social interactions. In truth, this comes from a sense of intellectual honesty and rigorous skepticism. To a Tellarite, no idea, concept or person is beyond challenge or analysis, and any notion that cannot stand up to scrutiny is an unworthy one. Tellarites revel in debates, and enjoy arguing, and the criticisms, complaints, and insults issued during conversations are intended to be met in kind: to do otherwise is to display a weak character, an inability to stand up for oneself, or an unwillingness to confront one’s own flaws.",
     "Species.tellarite.exampleValue": "All Ideas must Withstand Scrutiny",
     "Species.tellarite.traitDescription": "Tellarites have a keen sense of smell and a high tolerance for many common drugs, toxins, and inebriants (Tellarites don’t get drunk, just feisty). They also have excellent eyesight, and more acute perception of distance, depth, and dimension than Humans.",
-    "Species.tellarite.traitDescription2e": "Tellarites have keen senses of smell and hearing, and excellent spatial awareness, allowing them to judge distance, depth, and dimension with con- siderable accuracy. They have a high tolerance for many common drugs, toxins, and inebriants (Tellarites don’t get drunk, just ‘feisty’).",
+    "Species.tellarite.traitDescription2e": "Tellarites have keen senses of smell and hearing, and excellent spatial awareness, allowing them to judge distance, depth, and dimension with considerable accuracy. They have a high tolerance for many common drugs, toxins, and inebriants (Tellarites don’t get drunk, just ‘feisty’).",
 
     "Species.tiburonian.name": "Tiburonian",
     "Species.tiburonian.description": "Tiburonians or Tiburons are from the planet Tiburon, and are members of the Federation. They are from a vastly technological culture, which makes heavy use of robots even for the simplest tasks. They are easy-going and charming, but can also be driven to pursue a single cause. They enjoy scientific research and exploration, and do not turn a blind eye to authoritarianism. They may mark themselves with blue tribal tattoo markings. Their culture is devoted to the pursuit of joy.",
@@ -2760,7 +2772,7 @@
     "Species.trill.description2e": "The Trill are a pair of species who originate from a world of the same name. The Trill that most outsiders know appear almost identical to Humans or Betazoids, but for a row of irregular spots running down the sides of their bodies. The other Trill species are small invertebrates, which dwell in subterranean caverns. There are relatively few of this second species, species, but they are extremely intelligent and capable of living for centuries.\n\nWhile not a secret, it is not widely discussed that a small portion of humanoid Trill are capable of bonding with the invertebrates, commonly referred to as symbionts, and in this bond—called a Joining—creates a gestalt person, a combination of the minds, memories, and personalities of both creatures. While a symbiont cannot be removed without killing its host, upon a host’s death, a symbiont will be passed to a new host, preserving knowledge and memory over generations.\n\nTrill society has been shaped by the Joined, with Trill culture tending to take a long view of social development, and pursuing intellectual and philosophical development over interpersonal conflict. The Trill are a firm and dedicated member of the Federation.",
     "Species.trill.exampleValue": "Four Lifetimes of Adventure",
     "Species.trill.traitDescription": "Trill are especially resilient to parasites, as a quirk of their potential to be Joined; Joined Trill are entirely immune to parasitic infection. However, they tend to have strong allergic reactions to insect bites and other forms of venom, which can disrupt their neurochemistry, particularly if they’re Joined. As many of the specifics of Trill physiology — especially with regards to symbiosis — are not widely known, this can result in medical complications.",
-    "Species.trill.traitDescription2e": "Trill are especially resistant to parasites and similar intrusion. However, they tend to have strong allergic reactions to insect bites and other venoms, which can disrupt their neurochemistry, especially if they are Joined. Many of the specifics of Trill physiology—specifically with regards to symbionts—are not widely under- stood by non-Trill doctors, which can result in medical complications. Many Joined Trill find using a transporter to be uncomfortable.",
+    "Species.trill.traitDescription2e": "Trill are especially resistant to parasites and similar intrusion. However, they tend to have strong allergic reactions to insect bites and other venoms, which can disrupt their neurochemistry, especially if they are Joined. Many of the specifics of Trill physiology—specifically with regards to symbionts—are not widely understood by non-Trill doctors, which can result in medical complications. Many Joined Trill find using a transporter to be uncomfortable.",
 
     "Species.tzenkethi.name": "Tzenkethi",
     "Species.tzenkethi.description": "Aggressive and territorial, the Tzenkethi Coalition is led by a ruler known as the Autarch. The Tzenkethi government is a kratocracy, and the Autarch retains their position for as long as they can hold onto power, which transitions via coups. Under the Autarch are a series of appointed ministers, known as Tzelnira, whose job is to maintain order during shifts of power. The Tzenkethi have a well-earned reputation for pragmatism and ruthlessness, with mercy only being granted to those who earn it. Tzenkethi have little respect for weakness or frailty, but acknowledge cunning as a variant form of strength. Early in the 24th Century, the Tzenkethi engaged in several skirmishes with the Klingon Empire and even fought a border war against the Federation. Following these defeats, the Tzenkethi withdrew behind their borders, participating in little diplomacy for the better part of a century. The Tzenkethi retain lingering animosity over their war with the Federation, and the Coalition engages in regular propaganda that paints the United Federation of Planets as immoral: a source of chaos, dissidents, and illicit chemicals. The Tzenkethi government considers the Federation’s method of government—where all members and people have a voice—as tantamount to anarchy, and view Federation values as subversive. All Tzenkethi who leave their home world heavily armoured, with soldiers wearing defensive body armour with build-in weaponry and equipment. Specialists have additional equipment built into their armour, such as sensors, surgical equipment, or heavy mortars.",
@@ -2785,7 +2797,7 @@
     "Species.vulcan.description2e": "The first species to contact Humans, Vulcans are stoic, rational people. Widely claimed to be emotionless, Vulcans in fact feel emotions deeply and intensely, to their own detriment. Ancient Vulcans were prone to murderous rage and fits of paranoia, and nearly destroyed themselves millennia ago, before Surak taught logic and the purging of emotion. His teachings led to peace among the Vulcans and the establishment of a culture driven by reason.\n\nVulcans embrace science and logic, but their lives are not purely devoted to such things: they have a deeply philosophical and spiritual side, with art and music as vital to their culture as logic. They are also an intensely private people, with many aspects of their culture largely kept secret from outsiders.",
     "Species.vulcan.exampleValue": "The Needs of the Many Outweighs the Needs of the Few, or the One",
     "Species.vulcan.traitDescription": "Due to the harsh, arid, high-gravity world they come from, Vulcans are naturally resistant to extreme heat and dehydration; they are also extremely strong, with keen auditory and olfactory senses. They are also telepathic, though this takes training to properly manifest, and they learn mental discipline and emotional control from childhood. However, this control takes regular meditation to maintain, and their controlled nature and desire for privacy can distance them from others, and make interactions awkward.",
-    "Species.vulcan.traitDescription2e": "Vulcans have a naturally high tolerance for extremes of heat, are resistant to dehydration, and can shield their eyes from blinding light with a set of secondary eyelids. Their auditory and olfactory senses are extremely keen, and the gravity of their homeworld means an average Vulcan is about three times as strong as a Human of similar size and weight. Vulcans are innately telepathic, and through extensive training since childhood, Vulcan minds can suppress their emotional responses, and even exert influence upon biological pro- cesses, though this takes regular meditation to maintain.",
+    "Species.vulcan.traitDescription2e": "Vulcans have a naturally high tolerance for extremes of heat, are resistant to dehydration, and can shield their eyes from blinding light with a set of secondary eyelids. Their auditory and olfactory senses are extremely keen, and the gravity of their homeworld means an average Vulcan is about three times as strong as a Human of similar size and weight. Vulcans are innately telepathic, and through extensive training since childhood, Vulcan minds can suppress their emotional responses, and even exert influence upon biological processes, though this takes regular meditation to maintain.",
 
     "Species.xindiAquatic.name": "Xindi-Aquatic",
     "Species.xindiAquatic.description": "**Xindi-Aquatics** are non-humanoid species that evolved on Xindus, a planet in the Delphic Expanse in the Beta Quadrant. A species evolved to live underwater, Xindi-Aquatics are also known to be patient and prudent, sometimes to the point of being overly cautious or even indecisive; their natural environments are in constant flux, meaning that they are used to processing the interplay of complex factors and variables in their everyday lives. They are extremely technically adept, and many of the technological adaptations necessary for them to communicate with other Xindi species—and eventually, species from other worlds—were developed by the Aquatics themselves. Historically, the Xindi-Aquatics were the first Xindi species to achieve sapience, and they are customarily peaceful, only engaging in the brutal civil wars of their lost homeworld when the land-dwelling species’ conflicts spilled over into the Aquatics’ oceans.\n\nXindi-Aquatics have their own starships adapted to their watery environment, but since joining the Federation, a small number of Xindi-Aquatics have been found in Starfleet, often serving alongside or in similar roles to Earth-born Cetaceans and other aquatic species, with whom they share many qualities. The Aquatics’ culture prizes equity and the forming of consensus, and despite their customary circumspection, they were among the first of the Xindi species to propose joining the Federation, due to these values.",
@@ -3278,7 +3290,7 @@
     "Talent.advancedSickbay": "Advanced Medical Ward / Sickbay",
 
     "Talent.advancedSickbay.soloDescription": "The ship’s medical ward or sickbay is well equipped, and larger than normal for a ship of this size.",
-    "Talent.advancedSickbay.description2e": "The ship gains the Advanced Medical Ward or Advanced Sickbay trait, which applies to all tasks relat- ed to medicine and biology performed within the ward or sickbay, and stacks with the normal benefits of being in sickbay. This trait is lost if the ship’s Computers system is disabled. In addition, the ship receives one additional Crew Support, which may only be used to introduce supporting characters from the Medical department.",
+    "Talent.advancedSickbay.description2e": "The ship gains the Advanced Medical Ward or Advanced Sickbay trait, which applies to all tasks related to medicine and biology performed within the ward or sickbay, and stacks with the normal benefits of being in sickbay. This trait is lost if the ship’s Computers system is disabled. In addition, the ship receives one additional Crew Support, which may only be used to introduce supporting characters from the Medical department.",
 
     "Talent.advancedResearchFacilities": "Advanced Research Facilities",
 
@@ -3418,9 +3430,17 @@
 
     "Talent.bargain.description2e": "When you use Negotiation to make an offer to someone during social conflict, you may re-roll a single d20 on your next Persuade task to convince that person. If the social conflict with that person involves an extended task, your Impact is increased by 1.",
 
+    "Talent.becauseWeFeelLikeIt": "Because We Feel Like It",
+
+    "Talent.becauseWeFeelLikeIt.description": "Terrans are notably unclouded by motivations more complex than simple, selfish whims or revenge. Once per adventure, you may spend a point of Determination without needing to have an applicable value. Once per adventure, when you are attacked or someone takes direct action to hinder or defy you, you may gain 1 Determination. Because a value is not involved, you do not add anything to your log when Determination is gained or spent using this talent.",
+
     "Talent.bedsideManner": "Bedside Manner",
 
     "Talent.bedsideManner.description2e": "When you succeed at a Medicine task to heal an Injury, you may immediately remove a negative trait from the patient, even if that trait was unrelated to the Injury being treated. In addition, when you attempt a Reputation Check, add one additional positive influence.",
+
+    "Talent.beingOfManyTalents": "Being of Many Talents",
+
+    "Talent.beingOfManyTalents.description2e": "You’ve developed a degree of ability across a broad range of disciplines that often intersect in interesting ways. When attempting a task where more than one of your focuses would apply, you may reroll 1d20.",
 
     "Talent.biosyntheticConstruction": "Biosynthetic Construction",
 
@@ -3464,6 +3484,10 @@
 
     "Talent.borgImplants.description": "A Liberated Borg character must select this Talent during character creation. When this Talent is chosen, pick one, two, or three Borg Implants. The character gains the benefits of those implants, but the Difficulty of Medicine Tasks performed on them increases by the number of implants they have. The character also increases the Complication range of all social interaction Tasks by the number of implants they have. An ordinary milestone may be used to remove one implant at a time, not the whole Talent; once all implants have been removed, this Talent can be swapped for another.",
     "Talent.borgImplants.error": "The selected talent requires you to select at least one implant.",
+
+    "Talent.bornToATask": "Born to a Task",
+
+    "Talent.bornToATask.description2e": "The Osnullus caste system is a relic from a bygone age, but it still affects the futures of many of their species. Some Osnullus are born with advanced reflexes for working in space, while others have a hardier carapace to assist them with construction. Over time, an Osnullus can shift their bodies slightly to assist with certain tasks. When this talent is chosen, you may pick a single department. Whenever you attempt a task using that department, you may suffer 1 Stress to reroll one of your d20s. You may change which department this talent affects when you gain a milestone.",
 
     "Talent.calibratedMunitions": "Calibrated Munitions",
 
@@ -3626,6 +3650,10 @@
     "Talent.commandShip.soloDescription": "The ship has command and control systems allowing it to coordinate easily with allies during a crisis.",
     "Talent.commandShip.description2e": "When a character on the ship succeeds at a Command task to create a trait, they may always be assisted by the ship’s **Communications + Command**, and they may confer the trait to allied ships, landing parties, or away teams with whom the ship maintains a communication link.",
 
+    "Talent.communal": "Communal",
+
+    "Talent.communal.description2e": "You’re used to communal effort, and you work well in coordination with others. Whenever you assist another character, you always count as having an applicable focus. If you do have an applicable focus, you may reroll your assistance die.",
+
     "Talent.compactVessel": "Compact Vessel",
 
     "Talent.compactVessel.description": "This spaceframe has a Scale of 2, but it does not count as a small craft. It has no small craft capability of its own, and cannot launch or receive shuttlepods, shuttlecraft, or any comparable craft.",
@@ -3727,6 +3755,10 @@
 
     "Talent.defensiveTrainingFederationKlingonWar.description": "You are adept at staying out of harm’s way during a skirmish. Choose one of the following: melee attacks or ranged attacks. Those types of attacks that target you have their Difficulty increased by 1. This talent may be taken twice, once for each type of attack.",
 
+    "Talent.defensivePosture": "Defensive Posture",
+
+    "Talent.defensivePosture.description": "You’ve learned to turn your dense shell to protect yourself and your allies during a difficult situation. The Protection you gain from your species ability is increased to 2. Further, up to one ally may take up a defensive position behind you, gaining the benefit of being in cover.",
+
     "Talent.defuseTheTension": "Defuse the Tension",
 
     "Talent.defuseTheTension.description": "Whenever you attempt a Task to persuade someone not to resort to violence, you may add a bonus d20 to your dice pool.",
@@ -3779,7 +3811,7 @@
     "Talent.doctorsOrders": "Doctor’s Orders",
 
     "Talent.doctorsOrders.description": "When you attempt a Task to coordinate others, or to coerce someone into taking or refraining from a specific course of action, you may use your Medicine Discipline instead of Command.",
-    "Talent.doctorsOrders.description2e": "When you attempt a task to coordinate others, or to coerce someone into taking or refraining from a specific course of action, you may use your Medicine depart- ment instead of Command.",
+    "Talent.doctorsOrders.description2e": "When you attempt a task to coordinate others, or to coerce someone into taking or refraining from a specific course of action, you may use your Medicine department instead of Command.",
 
     "Talent.dontLookThreatening": "Don't Look Threatening",
 
@@ -3787,7 +3819,11 @@
 
     "Talent.dontYouDieOnMe": "Don't You Die on Me!",
 
-    "Talent.dontYouDieOnMe.description2e": "When a character is killed, you may spend Determination to make one attempt to revive them. If they were killed instantly by an Attack, then this may only be attempted within that scene. If the character suffered an Injury and died because they didn’t receive medical treatment in time, this may be attempted before the end of the subsequent scene. This requires a **Daring + Medicine** task, with a Difficulty of 3. If successful, the character is brought back from the brink of death, though they will remain Defeated for the remain- der of the adventure. Failure means that your efforts were unsuccessful and the character dies.",
+    "Talent.dontYouDieOnMe.description2e": "When a character is killed, you may spend Determination to make one attempt to revive them. If they were killed instantly by an Attack, then this may only be attempted within that scene. If the character suffered an Injury and died because they didn’t receive medical treatment in time, this may be attempted before the end of the subsequent scene. This requires a **Daring + Medicine** task, with a Difficulty of 3. If successful, the character is brought back from the brink of death, though they will remain Defeated for the remainder of the adventure. Failure means that your efforts were unsuccessful and the character dies.",
+
+    "Talent.doppleganger": "Doppleganger",
+
+    "Talent.doppleganger.description": "You have a Prime Universe counterpart in an important or noteworthy position. Work with the gamemaster to create that character; you are physically indistinguishable from your counterpart (this includes having no visible scars or body modifications) and can convincingly pass yourself off as them if desired, requiring a Difficulty 5 task to detect that you are an imposter. If your counterpart is currently alive and active in the same universe as you, then you add 1 Threat in each scene you pretend to be your counterpart.",
 
     "Talent.dreaded": "Dreaded",
 
@@ -3830,7 +3866,7 @@
 
     "Talent.empathy2e": "Empathy",
 
-    "Talent.empathy2e.description": "You can sense the emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom you are extremely familiar. You cannot choose not to sense the emotions of those nearby, except for those who are resistant to telepathy. It may require effort and a task to pick out the emotions of a specific individual in a crowd, or to block out the emotions of those nearby. Increase the Difficulty of this task if the situation is stressful, if there are a lot of beings present, if the target has resist- ance to telepathy, and other relevant factors.",
+    "Talent.empathy2e.description": "You can sense the emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom you are extremely familiar. You cannot choose not to sense the emotions of those nearby, except for those who are resistant to telepathy. It may require effort and a task to pick out the emotions of a specific individual in a crowd, or to block out the emotions of those nearby. Increase the Difficulty of this task if the situation is stressful, if there are a lot of beings present, if the target has resistance to telepathy, and other relevant factors.",
 
     "Talent.empathicTouch": "Empathic Touch",
 
@@ -3851,6 +3887,10 @@
     "Talent.enhancedDefenseGrid": "Enhanced Defense Grid",
 
     "Talent.enhancedDefenseGrid.description2e": "The station’s Shields are increased by an additional amount equal to half the station’s Scale.",
+
+    "Talent.enhancedThrusters": "Enhanced Thrusters",
+
+    "Talent.enhancedThrusters.description2e": "You have upgraded your motive systems to help you maneuver more effectively. When you move across difficult terrain or obstacles, you may reduce the Momentum cost of that terrain by 1, to a minimum of 0. Further, you may suffer Stress—representing depleting your own internal power supply—to cross difficult terrain or obstacles instead of spending Momentum.",
 
     "Talent.entangledConsciousness": "Entangled Consciousness",
 
@@ -3936,6 +3976,10 @@
     "Talent.extraordinaryAttributeX.description2e": "One or more of the creature’s attributes are far beyond the normal range for humanoids. This is indicated by a number, which is added as automatic successes on tasks using that attribute. For example, a creature with Extraordinary Reason 1 gains one success on all tasks using Reason. ",
     "Talent.extraordinaryAttributeX.error": "The talent \"Extraordinary Attribute X\" requires you to select both an attribute and a value for X.",
 
+    "Talent.extraPowerSupply": "Extra Power Supply",
+
+    "Talent.extraPowerSupply.description2e": "You’ve installed a supplementary power supply to help you remain functional for longer and perform more challenging tasks. Your Maximum Stress is increased by your Engineering rating.",
+
     "Talent.extraSensoryPerception": "Extrasensory Perception",
 
     "Talent.extraSensoryPerception.description2e": "You have an ability to perceive things beyond the normal limits of humanoid senses, allowing you to gain knowledge of people, places, and objects beyond your ability to sense them conventionally. This is known as extra- sensory perception, or ESP. It is not directly under your control but instead tends to come in the form of accurate guesses, strong feelings, or flashes of insight. Such sensitivity often leaves you vulnerable to psychic dangers as well. At any point during play, you may ask the gamemaster for hints or insights about the current situation, and the gamemaster may similarly offer you information about the current situation that you would not normally be able to determine. Each hint adds 1 Threat, and you may always refuse to accept the hints offered.",
@@ -3943,6 +3987,10 @@
     "Talent.facetedAttention": "Faceted Attention",
 
     "Talent.facetedAttention.description2e": "Characters with this Talent can suddenly divert their attention to other Tasks, leaving their current Task in whatever state it was in, and immediately begin work on the second. To many this may seem undisciplined and unfocused, but to characters with this Talent it is simply an effective way of completing several Tasks at once. Whenever this character is participating in a Challenge, they may choose to use this Talent and attempt two Tasks simultaneously. The attempt is made against the Task with the highest Difficulty, which is then attempted using the appropriate pool. Successes are then divided between the two Tasks. When attempting Tasks using this Talent – the Complication range is increased by one and any Complications rolled can be from either Task – as thematically appropriate.",
+
+    "Talent.familiarWithSuffering": "Familiar with Suffering",
+
+    "Talent.familiarWithSuffering.description": "The Reman people have suffered for centuries, and you are no stranger to hardship. Once per scene, when you suffer 1 or more Stress, reduce the amount of Stress you must suffer to 1.",
 
     "Talent.farFromHomeServiceRecord": "Far from Home",
 
@@ -4037,13 +4085,17 @@
 
     "Talent.fullSpreadMaximumYield.description2e": "You’re skilled in setting up torpedo attacks. When you make an attack with torpedoes, and declare that it is a salvo, you gain 2 bonus Momentum, which may only be used to pay extra targets hit by the Area quality, or for the Devastating Attack Momentum spend when using the Spread quality.",
 
+    "Talent.geospatialAwareness": "Geospatial Awareness",
+
+    "Talent.geospatialAwareness.description": "The Efrosians are believed to have evolved a keen sense of direction from a need to navigate the blinding snowstorms of their homeworld. Whether this is true or not, you have an especially keen sense of spatial awareness. When attempting to determine a course or path through an unknown territory—whether on a planetary surface, within an artificial environment (such as a ship, city, or space station), or when navigating through space, you may always reroll 1d20, and you may ignore the first complication suffered.",
+
     "Talent.getDown": "Get Down!",
 
     "Talent.getDown.description": "You and any allies within Close range gain +1 Protection while in Cover.",
 
     "Talent.glancingImpact": "Glancing Impact",
 
-    "Talent.glancingImpact.description2e": "Whenever you succeed at the Evasive Action major ac- tion, increase the Resistance of the ship you are piloting by 2; this bonus lasts until the start of your next turn.",
+    "Talent.glancingImpact.description2e": "Whenever you succeed at the Evasive Action major action, increase the Resistance of the ship you are piloting by 2; this bonus lasts until the start of your next turn.",
 
     "Talent.goToGround": "Go to Ground",
 
@@ -4114,6 +4166,10 @@
 
     "Talent.highResolutionSensors.description2e": "The vessel’s sensors can gain large amounts of accurate data, though they are extremely sensitive. While the vessel is not in combat, any successful task assisted by the ship’s Sensors gains 1 bonus Momentum. Bonus Momentum may not be saved.",
 
+    "Talent.hornSense": "Horn Sense",
+
+    "Talent.hornSense.description2e": "A small minority of Grazerites are born with a genetic variance that causes their horns to be hollow. This gives them a highly sensitive organ that can detect subtle changes in air pressure, sound, and all manner of vibrations. When you attempt a task that involves the detection or analysis of sound or vibrations of any kind, the first additional d20 you purchase is free.",
+
     "Talent.hotRodShuttle": "Hot Rod Shuttle",
 
     "Talent.hotRodShuttle.description": "You have customized one of the ship’s small craft as a personal project. You have a number of points equal to your Conn score, which you may spend to improve the small craft: each point spent adds 1 to one of its systems or departments. Additionally, select one starship talent of your choice for use on the small craft.",
@@ -4121,6 +4177,10 @@
     "Talent.hunkerDown": "Hunker Down",
 
     "Talent.hunkerDown.description2e": "Making good use of your surroundings for protection is one of the hallmarks of a skilled soldier. Whenever you take cover, you may count the Potency of any location trait that represents that cover by +1.",
+
+    "Talent.huntersSenses": "Hunder's Senses",
+
+    "Talent.huntersSenses.description2e": "Your enhanced senses have been honed with practice and study to make you a superlative tracker. When you attempt a task to detect the presence of hidden creatures, or to discern if creatures have passed through the area recently, you may automatically count one of your d20s as if it had rolled a 1. If you’re attempting an extended task to locate or track a creature, your Impact increases by 1.",
 
     "Talent.hyperAgile": "Hyper-Agile",
 
@@ -4229,9 +4289,21 @@
     "Talent.independentPhaserSupply.soloDescription": "The ship’s phasers use an independent power supply, rather than drawing directly from the ship’s other power sources.",
     "Talent.independentPhaserSupply.description2e": "The ship’s directed energy weapons are powered from an independent reactor rather than tied to the ship’s main engines. \n\nIncrease the Damage rating of the ship’s energy weapons by 1. Further, when you fire one of the ship’s energy weapons, ignore one breach currently affecting the ship’s Weapons system. However, Reserve Power cannot be redirected to the ship’s Weapons.",
 
+    "Talent.industriousMind": "Industrious Mind",
+
+    "Talent.industriousMind.description2e": "The Jelna are naturally enterprising and industrious and have an affinity for technological developments and industrial engineering. When you  succeed at an Engineering or Science task relating to fixing or adapting technology, and spend 2 or more Momentum for any other purpose, you may use the _Create Trait_ Momentum spend for free once on that task.",
+
     "Talent.industrialReplicators": "Industrial Replicators",
 
     "Talent.industrialReplicators.description": "The ship is equipped with high-power, high-capacity replicators which can produce large-scale objects, components for prefabricated buildings, colonial infrastructure, or even vehicles. Tied into the ship’s cargo transporters, they can deposit their output directly onto a planet’s surface from orbit: a valuable ability during crisis relief missions.\n\nThe ship has the trait **Industrial Replicators**, and the ship’s Small Craft Capacity is increased by 2 (if the ship also has Extensive Shuttlebays, apply this bonus afterwards). In addition, characters on the ship may replicate large objects, structures, and vehicles during a mission; these have **opportunity cost 3**.",
+
+    "Talent.infectousNature": "Infectious Nature",
+
+    "Talent.infectousNature.description2e": "You come from a people who are outgoing, good-natured, and enjoy the company of others. This exuberance can even improve the outlook of those around you, whether they want to be cheered up or not. Whenever you succeed at a Presence-based task roll, you may spend 1 Momentum to create a trait which represents your positive attitude on the scene. Further, whenever you and an ally both rest, and spend a meaningful part of that rest together (the entire Breather, at least half of a break, or at least one hour of a longer rest), you both recover 1 more Stress than normal.",
+
+    "Talent.inquisitiveDrive": "Inquisitive Drive",
+
+    "Talent.inquisitiveDrive.description": "The Jelna long ago learned the value in looking beyond their homes and themselves for all the answers, and they actively encourage curiosity and a willingness to explore. At the start of a scene, if you are the first person to attempt a task during that scene, you may reroll 1d20.",
 
     "Talent.inertia": "Inertia",
 
@@ -4339,6 +4411,10 @@
     "Talent.maintenanceSpecialist": "Maintenance Specialist",
 
     "Talent.maintenanceSpecialist.description2e": "You may ignore the first complication rolled on any Engineering task. Further, when you create any equipment trait, any character who uses that piece of equipment in a task may ignore the first complication rolled.",
+
+    "Talent.makeItGo": "Make It Go",
+
+    "Talent.makeItGo.description2e": "You are smart, and can make things go when they won’t go. When you attempt an Engineering task, you may reduce the Difficulty by 1, 2, or 3. If you do so, the complication range for that task increases by the same amount.",
 
     "Talent.makeYourOwnLuck": "Make your own Luck",
 
@@ -4458,6 +4534,7 @@
     "Talent.multiTaskingEdosian": "Multi-Tasking",
 
     "Talent.multiTaskingEdosian.description": "Edosians are capable, with extensive training and great effort, of compartmentalizing their thoughts and operating each arm completely independent of the others. Characters with this Talent may spend 3 Momentum to gain the benefit of an additional Senior Officer Role until the end of the current scene. This Talent may only be used once per episode.",
+    "Talent.multiTaskingEdosian.description2e": "You have much greater ease with performing multiple simultaneous tasks. You may perform one additional minor action per turn for free.",
 
     "Talent.multiVectorAssaultMode": "Multi-Vector Assault Mode",
 
@@ -4513,6 +4590,14 @@
 
     "Talent.oldAsDirt.description": "Horta can live to be thousands of years old, and while few have any experiences of the wider universe prior to first contact with them in 2267, their potential for accumulated wisdom is considerable. When you attempt a task for which you have an applicable focus, you may spend Determination to automatically succeed at that task roll, as long as the task’s Difficulty is lower than the department you would use on that roll (for example, if you attempt a task using Science, and you have Science rating of 4, you may spend Determination to auto-succeed at the task if it has a Difficulty of 3 or less).",
 
+    "Talent.openAndInsightful": "Open and Insightful",
+
+    "Talent.openAndInsightful.description2e": "Risians favor open, frank discussion of problems and opinions, which enables conversation and understanding when working as a team. Whenever you assist another character and use your Insight or Reason, the ally you assist may reroll 1d20. If the character you assist succeeds in their task, they gain 1 bonus Momentum. Bonus Momentum cannot be saved.",
+
+    "Talent.oralScholar": "Oral Scholar",
+
+    "Talent.oralScholar.description": "Efrosians pass on much of their knowledge through oral practices or by rote. Whenever you spend 1 or more Momentum to _Obtain Information_ after a successful task using one of your focuses, you may ask one additional question for free.",
+
     "Talent.orbExperience": "Orb Experience",
 
     "Talent.orbExperience.description": "You have received a vision from the Bajoran Prophets, through one of the Orbs. This rare experience, though confusing at first, has shaped your life and outlook. You have one additional Value, reflecting the insights you received from the experience. The first time this Value is Challenged, roll 1[D]; if an Effect is rolled, then some foretold element of the Orb Experience has come to pass, and the Value is not crossed out as it would normally be.",
@@ -4521,6 +4606,10 @@
     "Talent.outOfHarmsWay": "Out of Harm's Way",
 
     "Talent.outOfHarmsWay.description": "You are used to balancing the need to keep a patient still and the need to get them somewhere safer. When attempting to carry or restrain another person, you may use Medicine instead of Security, and you ignore the first complication rolled on any such tasks.",
+
+    "Talent.outOfNecessity": "Out of Necessity",
+
+    "Talent.outOfNecessity.description": "You are willing to take whatever action is necessary to achieve the best outcome, even if that action might be dangerous or destructive in the short term. Once per mission, when you take an action that would cause **escalation** (such as using lethal force on an attack), you may insist that the action is necessary: if you do so, you ignore the normal **escalation** for that action as long as the action itself was successful. You may also reroll 1d20 on any task roll to try and use intimidation or threats to force an enemy to back down from a fight.",
 
     "Talent.onceMoreUntoTheBreach": "Once More unto the Breach",
 
@@ -4543,10 +4632,18 @@
     "Talent.packTactics.description": "Whenever you assist another character during combat, the character you assisted gains one bonus Momentum if they succeed.",
     "Talent.packTactics.description2e": "Whenever you Assist another character during combat, the character you assisted gains 1 bonus Momentum if they succeed.",
 
+    "Talent.paranoia": "Paranoia",
+
+    "Talent.paranoia.description": "Being paranoid is just good sense when you know people are out to get you. Your maximum Stress increases by an amount equal to your Security rating.",
+
     "Talent.parentFigure": "Parent Figure",
 
     "Talent.parentFigure.description": "You have a large family, with many children, nieces, and nephews, and you’ve learned how to coordinate even the most unruly and fractious of groups when necessary. When attempting or assisting a Task, and two or more other characters are involved in the Task, the first Complication generated on the Task — either by the character attempting the Task, or one of the assistants — may be ignored.",
     "Talent.parentFigure.description2e": "You have a large family, with many children, nieces, and nephews, and you’ve learned how to coordinate even the most unruly and fractious of groups when necessary. When attempting or assisting a task, and two or more other characters are involved in the task, the first complication generated on the task—either by the character attempting the task, or one of the assistants—may be ignored.",
+
+    "Talent.particleEngineering": "Particle Engineering",
+
+    "Talent.particleEngineering.description2e": "A large portion of the Son’a’s scientific research is dedicated towards understanding the unique particles that cling to the atmosphere of their former homeworld. When you attempt a task which relates to studying or manipulating radiation or exotic particles, the first d20 you purchase is free, and you may ignore the negative effects of any one trait that represents radiation or exotic particles.",
 
     "Talent.pastTheRedline": "Past the Redline",
 
@@ -4556,9 +4653,14 @@
 
     "Talent.pathfinder.description2e": "Whenever you attempt a task to plot a course through unknown territory, reduce the Difficulty of the task by 1, 2, or 3, to a minimum of 1. For each point by which you reduce the Difficulty, increase the complication range of that task.",
 
+    "Talent.patienceBeforeAggression": "Decisive action is often necessary, but it should never be done hastily or needlessly. During combat, if you allow one or more enemies to take a turn before you, add 1 Momentum to the group pool when your turn begins.",
     "Talent.patientCounsel": "Patient Counsel",
 
     "Talent.patientCounsel.description": "Xindi-Arboreals are commonly the voice of reason in a crisis. During a social conflict, whenever you or an ally spends one or more Momentum to purchase d20s on a task, they may ignore the first complication rolled.",
+
+    "Talent.peacefulExistence": "Peaceful Existence",
+
+    "Talent.peacefulExistence.description2e": "Your upbringing in a peaceful society, one that promotes harmony and has an outright ban on weapons, has developed the Risian knack for peaceful resolutions. Whenever you attempt a task to dissuade another individual or group from resorting to conflict, the first d20 you purchase is free.",
 
     "Talent.peakPerformanceServiceRecord": "Peak Performance",
 
@@ -4617,6 +4719,10 @@
     "Talent.practiceMakesPerfect": "Practice Makes Perfect",
 
     "Talent.practiceMakesPerfect.description2e": "After you have succeeded in a Medicine task, the Difficulty of any other Medicine tasks attempted that scene to treat or heal the same kind of Injury, poison, disease, or other ailment is reduced by 1.",
+
+    "Talent.pragmaticProfessional": "Pragmatic Professional",
+
+    "Talent.pragmaticProfessional.description": "The niceties of leadership and teamwork concern you less than the outcome of your endeavors. When you attempt a task with assistance from another character, or assist another character’s task, any character involved in the task may suffer 1 Stress to reroll 1d20.",
 
     "Talent.precautions": "Precautions",
 
@@ -4696,6 +4802,10 @@
 
     "Talent.pushTheLimits.description": "When you attempt a Conn Task that has increased in Difficulty due to environmental conditions or damage to the engines, reduce the Difficulty by 1, to a minimum of 1.",
     "Talent.pushTheLimits.description2e": "When you attempt a Conn task that has increased in Difficulty due to environmental conditions or damage to the engines, you may add 1 Threat to ignore the difficulty increase.",
+
+    "Talent.pushTowardsASingleGoal": "Push Towards a Single Goal",
+
+    "Talent.pushTowardsASingleGoal.description": "When faced with a difficult challenge, you push yourself to support your comrades or your community. When you assist an ally, you may suffer 2 Stress to set your assistance die to a 1 instead of rolling. Each time after the first in a single mission that you use this talent, the Stress cost increases by 1.",
 
     "Talent.quantumTorpedoes": "Quantum Torpedoes",
 
@@ -4888,6 +4998,10 @@
 
     "Talent.shareStrength.description": "You can, with effort, direct some of your psychokinetic potential to bolster another. As a major action, you may attempt a **Control + Command** task roll with a Difficulty of 2 to direct your energy to an ally within Long range; you reduce the Difficulty by 1 if the target is another Vau N’Akat. On a successful task, you can suffer up to 5 Stress, and the target recovers an equal amount of Stress.",
 
+    "Talent.shockAssault": "Shock Assault",
+
+    "Talent.shockAssault.description": "You’re well-versed in swift, decisive attacks that overwhelm enemies who are unprepared for your ferocity. When you make an attack against an enemy who has not yet taken a turn during this scene, or against an enemy who is hindered by a trait which does not hinder you, you may reroll 1d20 on your task roll, and the Severity of your attack (or, if in space combat, the Damage rating of the attack) is increased by 1.",
+
     "Talent.showOff": "Show-Off",
 
     "Talent.showOff.description": "You tend to show off, sometimes doing things the hard way just to demonstrate that you can. When you attempt a task, you may choose to increase the Difficulty by 1. If you succeed, you gain 2 bonus Momentum. Bonus Momentum cannot be saved.",
@@ -4955,6 +5069,10 @@
     "Talent.strafingRun": "Strafing Run",
 
     "Talent.strafingRun.description2e": "Whenever you succeed at the Attack Pattern task and then Keep the Initiative, the cost to Keep the Initiative is reduced to 0. If the character taking the next turn makes an Attack, they may re-roll one d20.",
+
+    "Talent.strengthInService": "Strength in Service",
+
+    "Talent.strengthInService.description2e": "Chelons have a strong sense of community and in supporting the group, and take strength from the success of such actions. When you assist an ally on a task, you and the character you assist both recover 1 Stress. If that task is successful, you and the character you assisted recover 1 additional Stress, and any Momentum spent from that task to recover further Stress affects both you and the character you assisted.",
 
     "Talent.striveAndSacrifice": "Strive and Sacrifice",
 
@@ -5080,6 +5198,10 @@
 
     "Talent.theLastGenerationServiceRecord.description": "Select one of the ship’s systems. When you attempt a task assisted by that system, if the Difficulty is 2 or lower, you may reroll the ship’s assist die; If the Difficulty is 3 or higher, increase the task’s complication range by 1.",
 
+    "Talent.theLongView": "The Long View",
+
+    "Talent.theLongView.description2e": "Due to their extremely long lifespans, Edosians often accumulate a wealth of knowledge. When you select this talent, gain two additional focuses.",
+
     "Talent.theLongViewElAurian": "The Long View",
     "Talent.thePowerOfMath": "The Power of Math",
 
@@ -5121,6 +5243,14 @@
     "Talent.toolUser": "Tool User",
 
     "Talent.toolUser.description2e": "While not sentient or self-aware, these creatures have a nervous system advanced enough to be able to manipulate the environment somehow in their favor. These creatures can be taught how to use simple devices or tools, or perhaps can learn through observation.",
+
+    "Talent.tooStubbornToDie": "Too Stubborn to Die",
+
+    "Talent.tooStubbornToDie.description2e": "You are strong, and they cannot kill you. When you take a Deadly Injury, roll 1d20: if you roll equal to or under your Fitness, that Injury counts as treated immediately, and you do not die from that Injury at the end of the scene.",
+
+    "Talent.toTheFullest": "To the Fullest",
+
+    "Talent.toTheFullest.description": "You live life intensely and show no remorse for the things you do. Whenever you attempt a task and purchase the maximum number of d20s, you may either reroll 1d20 or you may recover 2 Stress. You may choose which effect you gain after you have rolled your dice pool.",
 
     "Talent.touchedTheNexus": "Touched the Nexus",
 

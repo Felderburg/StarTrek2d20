@@ -1606,7 +1606,12 @@ console.log(json);
                             result.addTrait(species.trait);
 
                             if (result.version > 1) {
-                                result.speciesStep.ability = SpeciesAbilityList.instance.getBySpecies(speciesCode);
+                                const ability = SpeciesAbilityList.instance.getBySpecies(speciesCode);
+                                // if the character has a talent, it might have been created before the
+                                // new species abilities were available
+                                if (ability.isTalentSelectionSupported || speciesBlock.talent != null) {
+                                    result.speciesStep.ability = ability;
+                                }
                             }
                         }
                     }

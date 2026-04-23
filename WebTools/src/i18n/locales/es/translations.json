@@ -1506,36 +1506,49 @@
     "Role.commandingOfficer": "Oficial al mando",
 
     "Role.commandingOfficer.description": "El capitán. Aunque el oficial al mando no ostente el rango de capitán, sus subordinados se referirán a él como tal. Toda nave tiene un oficial al mando.",
+    "Role.commandingOfficer.description2e": "Aunque el oficial al mando no ostente el rango de capitán, sus subordinados se referirán a él como tal. En las estaciones, a los oficiales al mando se les llama por su rango. Los oficiales al mando son responsables de la nave o instalación bajo su mando, así como de ejecutar las órdenes y directrices de sus superiores.",
     "Role.commandingOfficer.ability": "El oficial al mando puede gastar un punto de Determinación para proporcionar a otro personaje con el que pueda comunicarse un punto de Determinación (esta acción no tiene por qué estar asociada a un Valor).",
+    "Role.commandingOfficer.ability2e": "Puedes gastar un punto de Determinación para proporcionar a otro personaje con el que puedas comunicarte un punto de Determinación (esta acción no tiene por qué estar asociada a un Valor).",
 
     "Role.executiveOfficer": "Oficial ejecutivo",
 
     "Role.executiveOfficer.description": "Primer oficial. El oficial ejecutivo es el principal consejero del capitán y asume el mando en situaciones en que al capitán no le sea posible. Si una nave no tiene un oficial ejecutivo asignado, se debería designar como primer oficial a un oficial con otra función, pero este no recibirá los beneficios de un oficial ejecutivo.",
+    "Role.executiveOfficer.description2e": "Primer oficial. El oficial ejecutivo es el principal consejero del capitán y asume el mando en situaciones en que al capitán no le sea posible. Si una nave no tiene un oficial ejecutivo asignado, se debería designar como primer oficial a un oficial con otra función, pero este no recibirá los beneficios de un oficial ejecutivo.",
     "Role.executiveOfficer.ability": "Cuando otro personaje que se esté comunicando con el oficial ejecutivo gaste un punto de Determinación, el oficial ejecutivo puede gastar tres puntos de Inercia (Inmediata) para que dicho personaje recupere el punto de Determinación gastado.",
+    "Role.executiveOfficer.ability2e": "Cuando un personaje aliado que se esté comunicando contigo gaste un punto de Determinación, puedes gastar tres puntos de Inercia (Inmediata) para que dicho personaje recupere el punto de Determinación gastado.",
 
     "Role.operationsManager": "Jefe de operaciones",
 
     "Role.operationsManager.description": "El jefe de operaciones dirige y supervisa todas las operaciones técnicas a bordo de la nave o relacionadas con esta, normalmente desde el puesto de Operaciones, en el Puente, o cooperando con el jefe de Ingeniería (en naves menores, puede que un mismo oficial asuma ambas funciones). A menudo, eso implica asumir las obligaciones de un oficial científico si no hay uno asignado al personal del puente.",
+    "Role.operationsManager.description2e": "El jefe de operaciones dirige y supervisa todas las operaciones técnicas a bordo de la nave o relacionadas con esta, normalmente desde el puesto de Operaciones, en el Puente, o cooperando con el jefe de Ingeniería (en naves menores, puede que un mismo oficial asuma ambas funciones). A menudo, eso implica asumir las obligaciones de un oficial científico si no hay uno asignado al personal del puente.",
     "Role.operationsManager.ability": "Cuando el jefe de operaciones tenga éxito en una Tarea en que cuente con la ayuda de los ordenadores o sensores de la nave o en que utilice un tricorder, el personaje genera un punto de Inercia adicional que solo se puede utilizar para el Uso de Inercia “\"Obtener información\"”.",
+    "Role.operationsManager.ability2e": "Cada vez que crees un rasgo que represente un objeto de equipamiento, o una modificación realizada a un objeto de equipamiento ya existente, cualquier personaje que se beneficie de ese rasgo mientras tú estés presente en la escena podrá volver a tirar un d20.",
 
     "Role.chiefEngineer": "Ingeniero jefe",
 
     "Role.chiefEngineer.description": "El jefe de ingeniería es el responsable de asegurarse de que la nave sigue operativa y funcional y dirige el Departamento de ingeniería a bordo de la nave.",
-    "Role.chiefEngineer.ability": "Mien-tras esté a bordo, el jefe de ingeniería siempre tiene la Ventaja “Departamento de Ingeniería”, que representa la dotación de ingenieros y técnicos de la nave.",
+    "Role.chiefEngineer.description2e": "El jefe de ingeniería es el responsable de asegurarse de que la nave sigue operativa y funcional y dirige el Departamento de ingeniería a bordo de la nave.",
+    "Role.chiefEngineer.ability": "Mientras esté a bordo, el jefe de ingeniería siempre tiene la Ventaja “Departamento de Ingeniería”, que representa la dotación de ingenieros y técnicos de la nave.",
+    "Role.chiefEngineer.ability2e": "Reduces el coste de oportunidad de los equipos de ingeniería en 1, hasta un mínimo de 0. Además, cuando intentes realizar una tarea para reparar una nave estelar o llevar las capacidades de la nave más allá de sus límites normales, puedes gastar 1 punto de Inercia (inmediato) para volver a tirar un d20.",
 
     "Role.chiefOfSecurity": "Jefe de seguridad",
 
     "Role.chiefOfSecurity.description": "El jefe de seguridad supervisa el Departamento de Seguridad y es el responsable de garantizar la protección de la nave y su tripulación durante las misiones, de investigar las cuestiones disciplinarias y criminales, así como de supervisar la protección de personas importantes a bordo de la nave. ",
+    "Role.chiefOfSecurity.description2e": "El jefe de seguridad supervisa el Departamento de Seguridad y es el responsable de garantizar la protección de la nave y su tripulación durante las misiones, de investigar las cuestiones disciplinarias y criminales, así como de supervisar la protección de personas importantes a bordo de la nave. ",
     "Role.chiefOfSecurity.ability": "Mientras esté a bordo, el jefe de seguridad siempre tiene la Ventaja “Departamento de Seguridad”, que representa el personal de seguridad de la nave.",
+    "Role.chiefOfSecurity.ability2e": "Reduces el coste de oportunidad de las armas y los equipos de seguridad en 1, hasta un mínimo de 0. Además, cuando tengas éxito en un _Ataque_ contra un enemigo durante un combate cuerpo a cuerpo, puedes gastar 1 punto de Inercia para aumentar en 1 la dificultad del siguiente _Ataque_ de ese enemigo.",
 
     "Role.chiefMedicalOfficer": "Oficial médico en jefe",
 
     "Role.chiefMedicalOfficer.description": "El oficial médico en jefe, también conocido como cirujano de la nave o doctor de la nave, es el responsable de la salud y bienestar de la tripulación y demás personas a bordo de la nave, cuyo Departamento Médico dirige. Un oficial médico en jefe puede dar órdenes a un oficial del puente (y revocar las órdenes de este) en relación a la salud de dicho oficial.",
+    "Role.chiefMedicalOfficer.description2e": "El oficial médico en jefe, también conocido como cirujano de la nave o doctor de la nave, es el responsable de la salud y bienestar de la tripulación y demás personas a bordo de la nave, cuyo Departamento Médico dirige. Un oficial médico en jefe puede dar órdenes a un oficial del puente (y revocar las órdenes de este) en relación a la salud de dicho oficial. En situaciones extremas, el jefe médico puede declarar a un oficial no apto para el servicio y apartarlo del servicio activo (incluido el oficial al mando).\n\nUna nave puede contar con un oficial médico en jefe o con un doctor.",
     "Role.chiefMedicalOfficer.ability": "Mientras esté a bordo, el oficial médico en jefe siempre tiene la Ventaja “Departamento Médico”, que representa el personal médico de la nave.",
+    "Role.chiefMedicalOfficer.ability2e": "Reduces el coste de oportunidad del equipo médico y los equipos médicos en 1, hasta un mínimo de 0. Además, cuando intentes realizar una acción utilizando tu puntuación en Medicina y cuentes con ayuda, obtienes 1 punto de Inercia adicional (la Inercia adicional no se puede guardar).",
 
     "Role.scienceOfficer": "Oficial científico",
 
     "Role.scienceOfficer.description": "Un oficial científico es el responsable de aconsejar al oficial al mando en cuestiones científicas y aportar hipótesis en asuntos relacionados con lo desconocido. No todas las naves tienen asignado un oficial científico entre el personal del puente y a menudo el jefe de operaciones asume sus funciones. ",
+    "Role.scienceOfficer.description2e": "El oficial científico (a veces denominado «oficial científico jefe») es el responsable de aconsejar al oficial al mando en cuestiones científicas y aportar hipótesis en asuntos relacionados con lo desconocido. El oficial científico también es responsable de todo el personal científico de la nave o la estación.",
     "Role.scienceOfficer.ability": "Cuando el oficial científico tenga éxito en una Tarea en que cuente con la ayuda de los ordenadores o sensores de la nave o en que utilice un tricorder, el personaje genera un punto de Inercia adicional que solo se puede utilizar para el Uso de Inercia “\"Obtener información\"”.",
 
     "Role.tacticalOfficer": "Oficial Táctico",
