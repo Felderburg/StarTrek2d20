@@ -3,15 +3,22 @@ import { Species } from "./speciesEnum";
 import { makeKey } from "../common/translationKey";
 import { Source } from "./sources";
 
+export enum SpeciesAbilityChoice {
+    Choice1,
+    Choice2
+}
+
 export class SpeciesAbility {
     readonly species: Species;
     readonly source?: Source;
     readonly talentNames: string[];
+    readonly choices: SpeciesAbilityChoice[];
 
-    constructor(species: Species, source: Source = Source.Core2ndEdition, talentNames: string[] = []) {
+    constructor(species: Species, source: Source = Source.Core2ndEdition, talentNames: string[] = [], choices: SpeciesAbilityChoice[] = []) {
         this.species = species;
         this.source = source;
         this.talentNames = talentNames;
+        this.choices = choices;
     }
 
     get name() {
@@ -26,6 +33,20 @@ export class SpeciesAbility {
 
     get isTalentSelectionSupported() {
         return this.talentNames?.length;
+    }
+
+    get isChoiceRequired() {
+        return this.choices.length > 1;
+    }
+
+    public getChoiceName(choice: SpeciesAbilityChoice) {
+        let key = makeKey("SpeciesAbility.", Species[this.species], ".", SpeciesAbilityChoice[choice]);
+        return i18next.t(key);
+    }
+
+    public getChoiceDescription(choice: SpeciesAbilityChoice) {
+        let key = makeKey("SpeciesAbility.", Species[this.species], ".", SpeciesAbilityChoice[choice], ".description");
+        return i18next.t(key);
     }
 }
 
@@ -71,10 +92,12 @@ export class SpeciesAbilityList {
         [Species.Human]: new SpeciesAbility(Species.Human),
         [Species.HumanAugment]: new SpeciesAbility(Species.HumanAugment, Source.SpeciesSourcebook),
         [Species.Illyrian_2E]: new SpeciesAbility(Species.Illyrian_2E, Source.SpeciesSourcebook),
-        [Species.Jelna]: new SpeciesAbility(Species.Jelna, Source.SpeciesSourcebook),
+        [Species.Jelna]: new SpeciesAbility(Species.Jelna, Source.SpeciesSourcebook, [],
+            [SpeciesAbilityChoice.Choice1, SpeciesAbilityChoice.Choice2]),
         [Species.JemHadar]: new SpeciesAbility(Species.JemHadar, Source.SpeciesSourcebook),
         [Species.Kellerun]: new SpeciesAbility(Species.Kellerun, Source.SpeciesSourcebook),
-        [Species.Kelpien]: new SpeciesAbility(Species.Kelpien, Source.SpeciesSourcebook),
+        [Species.Kelpien]: new SpeciesAbility(Species.Kelpien, Source.SpeciesSourcebook, [],
+            [SpeciesAbilityChoice.Choice1, SpeciesAbilityChoice.Choice2]),
         [Species.Klingon]: new SpeciesAbility(Species.Klingon),
         [Species.KlingonQuchHa_2E]: new SpeciesAbility(Species.KlingonQuchHa_2E, Source.SpeciesSourcebook),
         [Species.Klowahkan]: new SpeciesAbility(Species.Klowahkan, Source.SpeciesSourcebook),

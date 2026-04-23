@@ -1,4 +1,4 @@
-﻿import { Attribute } from './attributes';
+﻿import { Attribute, AttributesHelper } from './attributes';
 import { TalentModel, TalentsHelper } from './talents';
 import { AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
@@ -404,12 +404,17 @@ class _Species {
             [Attribute.Control, Attribute.Insight, Attribute.Reason],
             "Benzite",
             "A Benzite’s average body temperature is several degrees lower than an average, warm blooded humanoid, though the Benzite themselves are not cold blooded. Their blood being mercury and platinum based. Benzites also have 2 apposable thumbs on each hand, aiding their dexterity.",
-            "Report Only What You Know",
-            [TalentsHelper.getTalent("Meticulous Analysis"), TalentsHelper.getTalent("All Fingers and Thumbs")],
+            [
+                "Report only what you know",
+                "Devise a solution for any problem you discover",
+                "Information is only worth sharing if it’s useful",
+                "Rushing to conclusions is a sure path to disaster"
+            ],
+            [TalentsHelper.getTalent("Meticulous Analysis"), TalentsHelper.getTalent("All Fingers and Thumbs"), TalentsHelper.getTalent("Thorough and Methodical")],
             "",
             [
-                { type: "Male", suggestions: "Mendon, Mordock" },
-                { type: "Female", suggestions: "Hoya" }
+                { type: "Male", suggestions: "Cardok, Kamis, Laporin, Mendon, Monyodin, Mordock, Oorv, Selidok" },
+                { type: "Female", suggestions: "Dralia, Hava, Hoya, Magark, Mardral, Marya, N’Verix, Salmak, Shelzane, Veldon" }
             ]),
         [Species.Bolian]: new SpeciesModel(
             Species.Bolian,
@@ -728,7 +733,12 @@ class _Species {
             [Attribute.Daring, Attribute.Fitness, Attribute.Insight],
             "Aurelian",
             "Aurelians are capable of flight, thanks to large and muscular wings. This allows them to quickly traverse distances and avoid obstacles on the ground. They also possess keen sight and a natural directional sense based on the magnetic poles of planetary bodies. Nearly all Aurelians suffer from claustrophobia, though the severity of the affliction differs from individual to individual.",
-            "Soar High and Achieve Greatness",
+            [
+                "Soar high and achieve greatness",
+                "By knowing our past, we can see better what’s coming",
+                "I need an open sky and the wind in my feathers",
+                "There is always something more to explore"
+            ],
             [TalentsHelper.getTalent("Aerial Combat"), TalentsHelper.getTalent("Keen Senses"), TalentsHelper.getTalent("Airborne Advantage"), TalentsHelper.getTalent("An Eye on the Horizon")],
             "Aurelian names usually comprise song-like syllables with the individual’s name first and the familial or clan name second. The familial name, however, is included for tradition’s sake only – as clan divisions have long since been abolished on Aurelia.",
             [
@@ -1325,7 +1335,7 @@ class _Species {
             [Source.KlingonCore],
             ["In 2154, a lethal, metagenic strain of the Levodian flu ran rampant through the Klingon Empire, infecting vast numbers of Klingons. Though a cure was eventually devised, the combination of the plague’s metagenic effects and the cure itself led to numerous physiological and genetic changes in those afflicted, most notably the dissolution of their cranial ridges and a number of neurological alterations, to a point where they somewhat resemble Humans, with these changes passed onto the descendants of those afflicted. These altered Klingons came to be known as QuchHa’, \"the unhappy ones,\" for their seeming deformity, while those who escaped the plague's effects were commonly referred to as the HemQuch. Though still hardy and vigorous, the QuchHa’ tend to express the customary aggression of their culture as a ruthless cunning, and they are often regarded as less honorable and trustworthy. They join the armed forces and intelligence services in great numbers to prove their worth and gain glory as a result of this discrimination. By the early 2270s, almost all QuchHa’ had undergone corrective treatment to restore their Klingon physiology, and Klingons in later eras refuse to discuss the matter with outsiders."],
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
-            "Klingon and QuchHa’",
+            "Klingon (QuchHa’)",
             "Those Klingons affected by this metagenic plague are frequently discriminated against or regarded as cowardly, shameful, or un-Klingon in nature, a stigma that they frequently strive to disprove, or which frees them to take actions that other Klingons may not regard as proper. Their altered genetics leave them less susceptible to a number of diseases and disorders that affect Klingons but allows them to contract a number of Human diseases that Klingons are normally immune to.",
             "",
             [TalentsHelper.getTalent("Cruel"), TalentsHelper.getTalent("Superior Ambition"), TalentsHelper.getTalent("To Battle!"), TalentsHelper.getTalent("R'uustai"), TalentsHelper.getTalent("Warrior's Spirit"), TalentsHelper.getTalent("Killer's Instinct")],
@@ -1474,7 +1484,12 @@ class _Species {
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
             "Barzan",
             "The Barzan have long struggled to make do without some of the advantages other species benefit from, but this has turned into one of their greatest strengths. A Barzan takes on each task with their full focus and determination while keeping a keen eye for not only how to accomplish the task but to do so with as few resources as possible. To the Barzan, any resources not spent in this way can be used in the future to help benefit their family or crew. The Barzan also form close bonds with their crewmates, and are willing to sacrifice their own needs if it benefits the group as a whole.",
-            "My Greatest Resource Is Myself, and I Will Use It Wisely",
+            [
+                "Duty above all",
+                "What is required of me that others may survive?",
+                "My skill and resolve are the only resources I need",
+                "Anything less than my best is a waste"
+            ],
             [TalentsHelper.getTalent("Expert Quartermaster"), TalentsHelper.getTalent("Unyielding Resolve"), TalentsHelper.getTalent("Strive and Sacrifice")],
             "Barzan tend to have a given name and surname, though often use only their given name.",
             [{ type: "Sample Names", suggestions: "Amma, Attis, Bhavani, Nhan, Ryess, Servu, Tolpra" }]),
@@ -2157,7 +2172,7 @@ class _Species {
             [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
             [Source.SpeciesSourcebook],
             [],
-            [],
+            AttributesHelper.getAllAttributes(),
             "Human Augment",
             "",
             "",
@@ -2357,10 +2372,15 @@ class _Species {
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
             [Source.SpeciesSourcebook],
             [],
-            [],
+            AttributesHelper.getAllAttributes(),
             "Terran",
             "",
-            "",
+            [
+                "Long live the Empire!",
+                "Every day is a new battle for supremacy",
+                "Those who rely on others are asking to be betrayed",
+                "Leave no star unconquered"
+            ],
             [TalentsHelper.getTalent("Because We Feel Like It"), TalentsHelper.getTalent("Doppleganger"), TalentsHelper.getTalent("Paranoia")],
             "",
             []),
@@ -2373,7 +2393,12 @@ class _Species {
             [Attribute.Control, Attribute.Daring, Attribute.Reason],
             "Vau N'Akat",
             "",
-            "",
+            [
+                "There is no barrier we cannot overcome",
+                "All that we need is right here",
+                "Our strength is one another, and division does us great harm",
+                "We should not deny ourselves what other worlds have to offer"
+            ],
             [TalentsHelper.getTalent("Heirloom"), TalentsHelper.getTalent("Share Strength")],
             "",
             [
@@ -2391,7 +2416,12 @@ class _Species {
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Xindi-Aquatic",
             "",
-            "",
+            [
+                "The world is too complex to rush to conclusions",
+                "If you want to convince me, show me the proof: don’t just tell me",
+                "If something is important, it’s worth debating and considering deeply and thoroughly",
+                "We all swim in the same ocean; the same currents affect us all",
+            ],
             [TalentsHelper.getTalent("Circumspect"), TalentsHelper.getTalent("Seek Consensus")],
             "",
             [
@@ -2409,7 +2439,12 @@ class _Species {
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Yridian",
             "",
-            "",
+            [
+                "Don’t get involved unless you can get away clean",
+                "Every fact is worth something to someone",
+                "Know where the exits are",
+                "I get forgetful without latinum",
+            ],
             [TalentsHelper.getTalent("Don't Look Threatening"), TalentsHelper.getTalent("See All, Admit Nothing")],
             "",
             [
@@ -2471,12 +2506,9 @@ class _Species {
 
             var klingonSpecies = store.getState().context.era === Era.NextGeneration ? [
                 Species.Klingon
-            ] : [
-                Species.Klingon, Species.KlingonQuchHa
-            ];
-            for (var archetype of klingonSpecies) {
-                var spec = this._species[archetype];
-
+            ] : [ Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E ];
+            for (let archetype of klingonSpecies) {
+                let spec = this._species[archetype];
                 const hasSource = hasAnySource(spec.sources);
 
                 if (hasSource && !this.ignoreSpecies(archetype)) {
@@ -2539,7 +2571,11 @@ class _Species {
         } else if (characterType === CharacterType.KlingonWarrior) {
             let roll = Math.floor(Math.random() * 20) + 1;
             // it doesn't appear that there are any real rules for this.
-            return roll <= 5 ? Species.KlingonQuchHa : Species.Klingon;
+            if (hasSource(Source.SpeciesSourcebook)) {
+                return roll <= 5 ? Species.KlingonQuchHa_2E : Species.Klingon;
+            } else {
+                return roll <= 5 ? Species.KlingonQuchHa : Species.Klingon;
+            }
         } else {
             let roll = Math.floor(Math.random() * 20) + 1;
             let species = Species.Human;

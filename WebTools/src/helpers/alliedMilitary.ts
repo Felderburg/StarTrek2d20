@@ -65,7 +65,7 @@ class AllyHelper {
                 Era.NextGeneration, Era.PicardProdigy),
         new AlliedMilitary("Dominion", AlliedMilitaryType.Dominion, [Species.JemHadar], Era.NextGeneration, Era.PicardProdigy),
         new AlliedMilitary("Ferengi", AlliedMilitaryType.FerengiMilitary, [Species.Ferengi], Era.NextGeneration, Era.PicardProdigy),
-        new AlliedMilitary("Klingon Defence Force",AlliedMilitaryType.KlingonDefenceForce, [Species.KlingonExt, Species.Klingon, Species.KlingonQuchHa],
+        new AlliedMilitary("Klingon Defence Force",AlliedMilitaryType.KlingonDefenceForce, [Species.KlingonExt, Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E],
                 Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32),
         new AlliedMilitary("MACO", AlliedMilitaryType.Maco, [Species.Human], Era.Enterprise),
         new AlliedMilitary("Romulan Star Empire", AlliedMilitaryType.RomulanStarEmpire, [Species.RomulanExt, Species.Romulan, Species.Reman],

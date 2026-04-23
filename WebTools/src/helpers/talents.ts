@@ -2023,7 +2023,7 @@ export class Talents {
             new TalentModel(
                 "Cold Shoulder",
                 "Strong self-discipline and conservative cultural values prevent Arbazan from being susceptible to their baser desires. Any character attempting to use their physical attractiveness or seductive nature against an Arbazan during a Social Conflict increases their Difficulty by 1.",
-                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Arbazan, true)],
+                [new SourcePrerequisite(Source.AlphaQuadrant), new SpeciesPrerequisite(Species.Arbazan, true), new Version1Prerequisite()],
                 1,
                 "Arbazan"),
             new TalentModel(
@@ -3971,6 +3971,18 @@ export class Talents {
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Medusan)),
             new TalentModel(
+                "Inner Workings",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Nanokin, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Nanokin)),
+            new TalentModel(
+                "Lifelike Conveyance",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Nanokin, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Nanokin)),
+            new TalentModel(
                 "Pack Hunter",
                 "",
                 [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Nausicaan, true)],
@@ -3996,6 +4008,12 @@ export class Talents {
                 new TalentCategorization(TalentCategory.Species, Species.Osnullus)),
             new TalentModel(
                 "Familiar with Suffering",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Reman, true)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.Reman)),
+            new TalentModel(
+                "Shock Assault",
                 "",
                 [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Reman, true)],
                 1,

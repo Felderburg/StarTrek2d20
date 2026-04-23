@@ -98,6 +98,16 @@ export class TalentWriter {
                         }
                     });
 
+                    if (talent.options?.choice != null) {
+                        paragraph = paragraph?.nextParagraph(0);
+                        if (paragraph) {
+                            paragraphs.push(paragraph);
+                            paragraph.indent(indent + 10);
+                            paragraph.append(talent.ability.getChoiceName(talent.options?.choice) + ": ", new FontOptions(fontSize, FontType.Bold));
+                            paragraph.append(talent.ability.getChoiceDescription(talent.options?.choice), new FontOptions(fontSize));
+                        }
+                    }
+
                     paragraph = paragraph.nextParagraph();
                     paragraph.indent(indent);
                     if (paragraph) {

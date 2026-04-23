@@ -30,7 +30,7 @@ import { Era, ErasHelper } from './eras';
 import { Asset, AssetAbility, AssetStat } from '../asset/asset';
 import { AssetType } from '../asset/assetType';
 import { AssetStatType, allAssetStatTypes } from '../asset/assetStat';
-import { SpeciesAbilityList } from './speciesAbility';
+import { SpeciesAbilityChoice, SpeciesAbilityList } from './speciesAbility';
 import { allServiceRecords, ServiceRecord, ServiceRecordList } from '../starship/model/serviceRecord';
 import AllyHelper, { AlliedMilitary, AlliedMilitaryType } from './alliedMilitary';
 import Governments, { Government, Polity } from './governments';
@@ -757,6 +757,9 @@ class Marshaller {
             };
             if (character.speciesStep.abilityOptions.implants?.length) {
                 options["implants"] = character.speciesStep.abilityOptions.implants?.map(i => BorgImplantType[i]) ?? []
+            };
+            if (character.speciesStep.abilityOptions.choice != null) {
+                options["choice"] = SpeciesAbilityChoice[character.speciesStep.abilityOptions.choice];
             };
             json["abilityOptions"] = options;
         }
@@ -1609,7 +1612,7 @@ console.log(json);
                                 const ability = SpeciesAbilityList.instance.getBySpecies(speciesCode);
                                 // if the character has a talent, it might have been created before the
                                 // new species abilities were available
-                                if (ability.isTalentSelectionSupported || speciesBlock.talent != null) {
+                                if (ability.isTalentSelectionSupported || speciesBlock.talent == null) {
                                     result.speciesStep.ability = ability;
                                 }
                             }
@@ -1645,6 +1648,16 @@ console.log(json);
                         }
                         if (speciesBlock.abilityOptions.implants) {
                             result.speciesStep.abilityOptions.implants = speciesBlock.abilityOptions.implants.map(i => BorgImplants.instance.getImplantByTypeName(i)?.type).filter(i => i != null);
+                        }
+                        if (speciesBlock.abilityOptions.choice != null) {
+                            let choices = Object.keys(SpeciesAbilityChoice).filter((item) => {
+                                    return !isNaN(Number(item));
+                                }).map(item => Number(item));
+                            choices.forEach(c => {
+                                if (SpeciesAbilityChoice[c] === speciesBlock.abilityOptions.choice) {
+                                    result.speciesStep.abilityOptions.choice = c;;
+                                }
+                            });
                         }
                     }
                 }

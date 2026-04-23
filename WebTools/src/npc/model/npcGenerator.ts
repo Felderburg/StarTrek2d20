@@ -500,7 +500,7 @@ export class NpcGenerator {
         let nameSpecies = species;
         if (character.speciesStep?.originalSpecies != null) {
             nameSpecies = SpeciesHelper.getSpeciesByType(character.speciesStep.originalSpecies);
-        } else if (nameSpecies.id === Species.KlingonQuchHa) {
+        } else if (nameSpecies.id === Species.KlingonQuchHa || nameSpecies.id === Species.KlingonQuchHa_2E) {
             nameSpecies = SpeciesHelper.getSpeciesByType(Species.Klingon);
         }
 
@@ -839,7 +839,7 @@ export class NpcGenerator {
         valueOptions.push.apply(valueOptions, specialization.values ?? []);
         valueOptions.push.apply(valueOptions, typeSpecificGeneralValues[specialization.type] ?? []);
         valueOptions.push.apply(valueOptions, typeSpecificValues[specialization.type] ?? []);
-        valueOptions.push.apply(valueOptions, speciesSpecificValues[(character.speciesStep.species === Species.KlingonQuchHa
+        valueOptions.push.apply(valueOptions, speciesSpecificValues[((character.speciesStep.species === Species.KlingonQuchHa || character.speciesStep.species === Species.KlingonQuchHa_2E)
             ? Species.Klingon
             : character.speciesStep.species)] ?? []);
 

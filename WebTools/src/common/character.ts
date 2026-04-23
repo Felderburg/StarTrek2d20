@@ -21,7 +21,7 @@ import { BorgImplantType, BorgImplants, Implant } from '../helpers/borgImplant';
 import { Specialization } from './specializationEnum';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from '../helpers/equipment';
 import { Era } from '../helpers/eras';
-import { SpeciesAbility, SpeciesAbilityList } from '../helpers/speciesAbility';
+import { SpeciesAbility, SpeciesAbilityChoice, SpeciesAbilityList } from '../helpers/speciesAbility';
 import { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';
 import { SelectedTalent } from './selectedTalent';
@@ -225,12 +225,14 @@ export class CareerStep {
 
 export class SpeciesAbilityOptions {
     focuses: string[] = [];
+    choice?: SpeciesAbilityChoice;
     implants?: BorgImplantType[] = [];
 
     copy() {
         let result = new SpeciesAbilityOptions();
         result.focuses = [...this.focuses];
         result.implants = [...this.implants];
+        result.choice = this.choice;
         return result;
     }
 }
@@ -266,6 +268,16 @@ export class SpeciesStep {
                 result += (" (originally " + orginalSpecies.name + ")");
             }
             return result;
+        }
+    }
+
+    get abilityDisplayName() {
+        if (this.ability == null) {
+            return undefined;
+        } else if (this.abilityOptions?.choice == null) {
+            return this.ability.name;
+        } else {
+            return this.ability.name + " (" + this.ability.getChoiceName(this.abilityOptions.choice) + ")";
         }
     }
 
@@ -1246,6 +1258,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 traits.splice(traits.indexOf(species.name), 1);
             }
             traits.push(this.localizedSpeciesName);
+
+            if (species?.id === Species.Benzite && this.speciesStep?.ability != null) {
+                traits.push("Breathing Apparatus");
+            }
         }
         if (this.enlisted) {
             traits.push("Enlisted Crewman");

@@ -21,7 +21,7 @@ import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION, 
     SET_CHARACTER_CAREER_EVENT_TRAIT, SET_CHARACTER_CAREER_LENGTH, SET_CHARACTER_EARLY_OUTLOOK, SET_CHARACTER_EDUCATION,
     SET_CHARACTER_ENVIRONMENT, SET_CHARACTER_FINISHING_TOUCHES, SET_CHARACTER_FOCUS, SET_CHARACTER_HOUSE,
     SET_CHARACTER_LINEAGE, SET_CHARACTER_NAME, SET_CHARACTER_PASTIME, SET_CHARACTER_PRONOUNS, SET_CHARACTER_RANK,
-    SET_CHARACTER_ROLE, SET_CHARACTER_SPECIES, SET_CHARACTER_TYPE, SET_CHARACTER_VALUE, SET_NPC_CHARACTER_ATTRIBUTES, SET_NPC_CHARACTER_DEPARTMENTS, SET_NPC_CHARACTER_TALENTS, SET_SUPPORTING_CHARACTER_ATTRIBUTES,
+    SET_CHARACTER_ROLE, SET_CHARACTER_SPECIES, SET_CHARACTER_SPECIES_ABILITY_CHOICE, SET_CHARACTER_TYPE, SET_CHARACTER_VALUE, SET_NPC_CHARACTER_ATTRIBUTES, SET_NPC_CHARACTER_DEPARTMENTS, SET_NPC_CHARACTER_TALENTS, SET_SUPPORTING_CHARACTER_ATTRIBUTES,
     SET_SUPPORTING_CHARACTER_DISCIPLINES, SET_SUPPORTING_CHARACTER_SUPERVISORY, StepContext } from "./characterActions";
 
 interface CharacterState {
@@ -566,6 +566,20 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                     temp.speciesStep.abilityOptions.focuses[temp.speciesStep.abilityOptions.focuses.length] = "";
                 }
                 temp.speciesStep.abilityOptions.focuses[index] = focus;
+            }
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case SET_CHARACTER_SPECIES_ABILITY_CHOICE: {
+            let temp = state.currentCharacter.copy();
+            if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
+                temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
+            }
+            if (temp.speciesStep?.abilityOptions != null) {
+                temp.speciesStep.abilityOptions.choice = action.payload.choice;
             }
             return {
                 ...state,

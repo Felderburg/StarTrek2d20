@@ -8,7 +8,7 @@ import store from "../state/store";
 import D20IconButton from "../solo/component/d20IconButton";
 import { localizedFocus } from "./focusHelper";
 import { FocusRandomTableWithHints } from "../solo/table/focusRandomTable";
-import { addCharacterBorgImplantSpeciesOption, removeCharacterBorgImplantSpeciesOption, setCharacterSpeciesAbilityFocus } from "../state/characterActions";
+import { addCharacterBorgImplantSpeciesOption, removeCharacterBorgImplantSpeciesOption, setCharacterSpeciesAbilityChoice, setCharacterSpeciesAbilityFocus } from "../state/characterActions";
 import { Department } from "../helpers/department";
 import { hasSource } from "../state/contextFunctions";
 import { Source } from "../helpers/sources";
@@ -68,7 +68,7 @@ export const SpeciesAbilityView: React.FC<ISpeciesAbilityProperties> = ({charact
                     <td>
                         <CheckBox
                             isChecked={character.speciesStep?.abilityOptions?.implants?.includes(implant.type) ?? false}
-                            onChanged={(val) => {
+                            onChanged={(_) => {
                                 if (character.speciesStep?.abilityOptions?.implants?.includes(implant.type)) {
                                     store.dispatch(removeCharacterBorgImplantSpeciesOption(implant.type))
                                 } else {
@@ -95,7 +95,38 @@ export const SpeciesAbilityView: React.FC<ISpeciesAbilityProperties> = ({charact
             </table>
         );
 
-        return undefined;
+    }
+
+    const renderSpeciesAbilityChoices = () => {
+
+        const choices = character.speciesStep?.ability?.choices?.map(c => (<tr key={'choice-' + c}>
+            <td>
+                <CheckBox
+                    isChecked={character.speciesStep?.abilityOptions?.choice === c}
+                    onChanged={(_) => {
+                        if (character.speciesStep?.abilityOptions?.choice === c) {
+                            store.dispatch(setCharacterSpeciesAbilityChoice(undefined))
+                        } else {
+                            store.dispatch(setCharacterSpeciesAbilityChoice(c))
+                        }
+                    }}
+                    value={c} />
+            </td>
+            <td>
+                <Markdown className="markdown-sm">{
+                    '**' + character.speciesStep?.ability?.getChoiceName(c) + '**: ' +
+                    character.speciesStep?.ability?.getChoiceDescription(c)}
+                </Markdown>
+            </td>
+        </tr>));
+
+        return (
+            <table className="selection-list">
+                <tbody>
+                    {choices}
+                </tbody>
+            </table>
+        );
     }
 
 
@@ -112,6 +143,9 @@ export const SpeciesAbilityView: React.FC<ISpeciesAbilityProperties> = ({charact
                 : undefined}
             {character.speciesStep?.species === Species.LiberatedBorg && hasSource(Source.SpeciesSourcebook)
                 ? renderBorgImplants()
+                : undefined}
+            {character.speciesStep?.ability?.isChoiceRequired
+                ? renderSpeciesAbilityChoices()
                 : undefined}
         </>);
     } else {

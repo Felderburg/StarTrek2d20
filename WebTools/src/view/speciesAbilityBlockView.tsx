@@ -18,6 +18,14 @@ const SpeciesAbilityBlockView: React.FC<ISpeciesAbilityPageProperties> = ({chara
                     {"**" + character.speciesStep.ability.name + ":** " +
                     character.speciesStep.ability.description}
                 </ReactMarkdown>
+
+            {character.speciesStep.abilityOptions?.choice != null
+                ? (<ReactMarkdown className="markdown-sm mx-4">
+                    {"\n\n**"
+                        + character.speciesStep.ability.getChoiceName(character.speciesStep.abilityOptions?.choice) + "**: "
+                        +  character.speciesStep.ability.getChoiceDescription(character.speciesStep.abilityOptions?.choice)}
+                </ReactMarkdown>)
+                : undefined}
             </div>
         </>);
     }
