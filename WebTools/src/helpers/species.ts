@@ -1,4 +1,4 @@
-﻿import { Attribute } from './attributes';
+﻿import { Attribute, AttributesHelper } from './attributes';
 import { TalentModel, TalentsHelper } from './talents';
 import { AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
@@ -32,7 +32,7 @@ export class SpeciesModel implements ISpecies {
     attributes: Attribute[];
     trait: string;
     private traitDescription: string;
-    exampleValue: string;
+    exampleValues: string[];
     talents: TalentModel[];
     nameDescription: string;
     nameSuggestions: NameModel[];
@@ -40,7 +40,11 @@ export class SpeciesModel implements ISpecies {
     secondaryAttributes: Attribute[];
     isMixedSpeciesAllowed: boolean;
 
-    constructor(id: Species, name: string, eras: Era[], sources: Source[], description: string[], attributes: Attribute[], trait: string, traitDescription: string, exampleValue: string, talents: TalentModel[], nameDescription: string, nameSuggestions: NameModel[], secondaryAttributes: Attribute[] = [], isMixedSpeciesAllowed: boolean = true) {
+    constructor(id: Species, name: string, eras: Era[], sources: Source[], description: string[],
+            attributes: Attribute[], trait: string, traitDescription: string,
+            exampleValues: string|string[], talents: TalentModel[], nameDescription: string,
+            nameSuggestions: NameModel[], secondaryAttributes: Attribute[] = [],
+            isMixedSpeciesAllowed: boolean = true) {
         this.id = id;
         this.name = name;
         this.eras = eras;
@@ -48,7 +52,11 @@ export class SpeciesModel implements ISpecies {
         this.attributes = attributes;
         this.trait = trait;
         this.traitDescription = traitDescription;
-        this.exampleValue = exampleValue;
+        if (Array.isArray(exampleValues)) {
+            this.exampleValues = exampleValues;
+        } else {
+            this.exampleValues = [ exampleValues ];
+        }
         this.talents = talents;
         this.nameDescription = nameDescription;
         this.nameSuggestions = nameSuggestions;
@@ -130,10 +138,10 @@ export class SpeciesModel implements ISpecies {
         return key === localized ? this.localizedTraitDescription : localized;
     }
 
-    get localizedExampleValue() {
+    get localizedExampleValues(): string[] {
         const key = makeKey('Species.', this.speciesKeyName, ".exampleValue");
         const localized = i18next.t(key);
-        return key === localized ? this.exampleValue : localized;
+        return key === localized ? this.exampleValues : [ localized ];
     }
 }
 
@@ -171,7 +179,7 @@ class _Species {
             [
                 { type: "Female", suggestions: "Adami, Chami, Fala, Jaxa, Laren, Lipras, Leeta, Lupaza, Meru, Neela, Nerys, Seriah, Sul, Yesa" },
                 { type: "Male", suggestions: "Anaphis, Edon, Essa, Furel, Gel, Holem, Hovath, Kag, Los, Mabrin, Nalas, Reon, Taban, Tennan" },
-                { type: "Family", suggestions: "Anbara, Anjohl, Faren, Jaro, Kalem, Krim, Kubus, Latara, Latha, Lenaris, Li, Tahna, Reil" },
+                { type: "Family Name", suggestions: "Anbara, Anjohl, Faren, Jaro, Kalem, Krim, Kubus, Latara, Latha, Lenaris, Li, Tahna, Reil" },
             ]),
         [Species.Betazoid]: new SpeciesModel(
             Species.Betazoid,
@@ -188,7 +196,7 @@ class _Species {
             [
                 { type: "Female", suggestions: "Deanna, Ania, Kestra, Lwaxanna, Dalera, Gloranna, Abeana, Pekera, Nissila, Lomestra, Ioza, Pegira, Nemenna, Nerira, Lojeea" },
                 { type: "Male", suggestions: "Konal, Reban, Xani, Enon, Dael, Etas, Andal, Kolel, Atani, Devoni, Algar, Jensar, Nikael, Kalos, Rennan" },
-                { type: "Family", suggestions: "Grax, Hagen, Morganth, Stadi, Dutrax, Odutan, Nelan, Onovren, Kader, Nostrun, Dulas, Konin, Ebesin" },
+                { type: "Family Name", suggestions: "Grax, Hagen, Morganth, Stadi, Dutrax, Odutan, Nelan, Onovren, Kader, Nostrun, Dulas, Konin, Ebesin" },
             ]),
         [Species.Denobulan]: new SpeciesModel(
             Species.Denobulan,
@@ -236,7 +244,7 @@ class _Species {
                 { type: "Female", suggestions: "Pola, Cherthish, Zhuggaa, Torthem, Neshlel, Verg, Kholo, Fratho, Skig, Vaolli, Glavom, Nihraogh, Ghand, Rensh" },
                 { type: "Male", suggestions: "Prugm, Brag, Dash, Gisich, Gullerg, Zankir, Hellek, Trar, Jorsh, Geshniv, Tuk, Rinkog, Veth, Cek, Gullak" },
                 { type: "Prefixes", suggestions: "bav, glov, blasch, lorin, jav, bim, glasch" },
-                { type: "Family", suggestions: "Gronnahk, Nonkursh, Slaal, Ker, Zhiv, Blav, Zhuffand, Khebloss, Pend, Brin, Wenkurn, Gerkow, Khutohk, Jagh, Krer" },
+                { type: "Family Name", suggestions: "Gronnahk, Nonkursh, Slaal, Ker, Zhiv, Blav, Zhuffand, Khebloss, Pend, Brin, Wenkurn, Gerkow, Khutohk, Jagh, Krer" },
             ]),
         [Species.Trill]: new SpeciesModel(
             Species.Trill,
@@ -253,7 +261,7 @@ class _Species {
             [
                 { type: "Female", suggestions: "Audrid, Azala, Emony, Kareel, Lenara, Nilani, Reeza, Zharaina, Koria, Lidra, Diranne, Kimoni, Larista, Vidria, Kehdza" },
                 { type: "Male", suggestions: "Arjin, Bejal, Curzon, Hanor, Joran, Malko, Selin, Timor, Tobin, Torias, Verad, Yedrin, Keman, Sabin, Joal, Dorin" },
-                { type: "Family", suggestions: "Nedan, Sozenn, Rulon, Les, Tral, Inazin, Hama, Kelen, Imonim, Razix, Idiron, Paron, Tanan, Sulil, Kerev" },
+                { type: "Family Name", suggestions: "Nedan, Sozenn, Rulon, Les, Tral, Inazin, Hama, Kelen, Imonim, Razix, Idiron, Paron, Tanan, Sulil, Kerev" },
                 { type: "Symbiont", suggestions: "Jexen, Del, Ogar, Kyl, Eku, Nala, Cela, Pohr, Ral, Okir, Etahn, Lahl" },
             ]),
         [Species.Vulcan]: new SpeciesModel(
@@ -341,12 +349,17 @@ class _Species {
             Species.JemHadar,
             "Jem'Hadar",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.Core, Source.CaptainsLog],
+            [Source.Core, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["The Jem’Hadar are genetically-engineered life-forms, created to serve as the military of the Dominion. Bred in birthing chambers, rather than born naturally, they grow to maturity in three days, developing complex reasoning and language skills within a day of birth. Once mature, they do not eat, drink, or sleep, taking all nourishment from the drug ketracel-white, often simply known as “the white,” which is distributed to them by their Vorta overseer as a means of ensuring loyalty. Few Jem’Hadar live for longer than fifteen years due simply to battlefield casualties, with those living to twenty being regarded as ‘Elders’."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Insight],
             "Jem'Hadar",
             "Individual Jem’Hadar are physically powerful, and far stronger and more resilient than Humans. They also have exceptionally keen eyesight, and act utterly without fear or hesitation in battle. They do not regard death with any apprehension, and are extremely aggressive, limited only by their absolute obedience to the Founders and the Vorta.",
-            "",
+            [
+                "Obedience brings victory, and victory is life!",
+                "We pledge loyalty to the Founders from now until death",
+                "Relaxation and recreation are weaknesses",
+                "I will do as ordered, but I will seek to do so honorably"
+            ],
             [],
             "",
             []),
@@ -354,15 +367,18 @@ class _Species {
             Species.Vorta,
             "Vorta",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.Core],
+            [Source.Core, Source.SpeciesSourcebook],
             ["The Vorta are genetically-engineered life-forms, created to serve as advisors, scientists, diplomats, and overseers for the Dominion, acting as the Founders’ closest servants and foremost representatives. Vorta are cloned, in batches of identical beings, with a new clone being activated and placed into service upon the death of a predecessor, receiving the memories of those that came before them, though each clone is nevertheless a distinct individual. Vorta are extremely cunning and clever, but have little creativity or sense of aesthetics."],
             [Attribute.Insight, Attribute.Presence, Attribute.Reason],
             "Vorta",
             "Vorta have extremely keen hearing, but relatively poor eyesight. They are immune to most forms of poison. Vorta are absolutely loyal to the Dominion, revering the Founders as living gods. Those who encounter the Vorta often regard them as insincere or manipulative.",
             "",
-            [],
+            [TalentsHelper.getTalent("Manipulative"), TalentsHelper.getTalent("Overseer")],
             "",
-            []),
+            [
+                { type: "Female", suggestions: "Eris, Kilana, Luaren, Taris" },
+                { type: "Male", suggestions: "Borath, Deyos, Glenon, Keevan, Yelgrun" }
+            ]),
         [Species.Ardanan]: new SpeciesModel(
             Species.Ardanan,
             "Ardanan",
@@ -383,23 +399,28 @@ class _Species {
             Species.Benzite,
             "Benzite",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Benzite physiology gives this species’ skin a hairless blue-to-green complexion. The Benzite skull has a thick protrusion that extends over the brow and nose, with two facial tendrils above the lip. Until 2370 Benzites in Starfleet had trouble breathing a standard nitrogen/oxygen atmosphere and relied on breathing apparatus. Their apparent change in condition, which allows the species to go without breathing aids, is rumored to be thanks to genetic engineering, though reports are unconfirmed. Highly meticulous, a Benzite Starfleet officer is a valuable resource when it comes to exploration and investigation."],
             [Attribute.Control, Attribute.Insight, Attribute.Reason],
             "Benzite",
             "A Benzite’s average body temperature is several degrees lower than an average, warm blooded humanoid, though the Benzite themselves are not cold blooded. Their blood being mercury and platinum based. Benzites also have 2 apposable thumbs on each hand, aiding their dexterity.",
-            "Report Only What You Know",
-            [TalentsHelper.getTalent("Meticulous Analysis"), TalentsHelper.getTalent("All Fingers and Thumbs")],
+            [
+                "Report only what you know",
+                "Devise a solution for any problem you discover",
+                "Information is only worth sharing if it’s useful",
+                "Rushing to conclusions is a sure path to disaster"
+            ],
+            [TalentsHelper.getTalent("Meticulous Analysis"), TalentsHelper.getTalent("All Fingers and Thumbs"), TalentsHelper.getTalent("Thorough and Methodical")],
             "",
             [
-                { type: "Male", suggestions: "Mendon, Mordock" },
-                { type: "Female", suggestions: "Hoya" }
+                { type: "Male", suggestions: "Cardok, Kamis, Laporin, Mendon, Monyodin, Mordock, Oorv, Selidok" },
+                { type: "Female", suggestions: "Dralia, Hava, Hoya, Magark, Mardral, Marya, N’Verix, Salmak, Shelzane, Veldon" }
             ]),
         [Species.Bolian]: new SpeciesModel(
             Species.Bolian,
             "Bolian",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["From the planet Bolarus IX, Bolians are well known for their hospitality and outgoing personalities. Identified by a cartilaginous ridge that extends down their head, vertically, down the center of the face to the chest, with skin color ranging from light blues, to dark greens and muted purples with darker banding across the head. They are predominantly bald, though some females are known to have hair on their heads. Bolian marriages have more than two partners, of both sexes, but procreation with other species isn’t all that common, given the Bolians’ incompatibility with others. Humans, in particular, have noted several side effects of inter-species relations, including nausea, fatigue, and inflammation."],
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Bolian",
@@ -416,24 +437,24 @@ class _Species {
             Species.Deltan,
             "Deltan",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["These humanoids from the Delta system differ in appearance only slightly from Humans, with very little hair across their bodies, aside from eye brows and lashes. As a telepathic and empathic species, the Deltans rank themselves alongside the Vulcans and Betazoids as able to read and communicate via thoughts and feelings. Indeed, some Deltan genealogists have theorized Betazoids are a distant cousin species. With some of the most potent pheromones the Federation has ever encountered, many other species find the Deltans very sexually appealing.The vast majority of Deltans in Starfleet, therefore, take an oath of celibacy, ensuring their sexuality is not a distraction to their colleagues.By all accounts this is a good thing, as the Deltan act of intimacy involves not only their bodies but also their telepathic minds, possibly endangering the mental health of other species."],
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Deltan",
             "Deltans are considered to be beautiful individuals, with powerful empathic abilities and heightened sensuality. The pheromones they excrete are a natural aphrodisiac in most species throughout the Federation, and while serving aboard Starfleet they must be very careful with their natural physiology, using chemical suppressants to cancel the effect.",
             "Bodies and Minds as One",
-            [TalentsHelper.getTalent("Deltan Pheromones"), TalentsHelper.getTalent("Empath")],
+            [TalentsHelper.getTalent("Deltan Pheromones"), TalentsHelper.getTalent("Empath"), TalentsHelper.getTalent("Empathic Touch")],
             "",
             [
                 { type: "Male", suggestions: "Jedda, Clarze" },
                 { type: "Female", suggestions: "Ilia, Zinaida" },
-                { type: "Family Name", suggestions: "Adzhin-Dal" }
+                { type: "Family Name", suggestions: "Adzhin-Dall" }
             ]),
         [Species.Efrosian]: new SpeciesModel(
             Species.Efrosian,
             "Efrosian",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Hailing from the planet Efros Delta, Efrosians are renowned musicians and historians. Their society is dedicated to oral teaching, most notably in the form of a musical language that all Efrosian children are taught in some form or another. They are also excellent navigators and are often sought out as helm and navigation officers, as well as translators thanks to being natural linguists and communications experts. While their cranial ridges bear some similarity to Klingon physiology (though less pronounced), a male’s hair is almost always white from birth while females exhibit darker colors. Males grow long moustaches and both male and female Efrosians grow their hair out down their backs."],
             [Attribute.Fitness, Attribute.Presence, Attribute.Reason],
             "Efrosian",
@@ -465,7 +486,7 @@ class _Species {
             Species.Chelon,
             "Rigellian Chelon",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant],
+            [Source.BetaQuadrant, Source.SpeciesSourcebook],
             ["Chelons are a hardy race, sharing their home solar system of Rigel with Rigellian Jelna. They are descendants of sabertoothed turtles and, though bipedal, they have retained their ancestral beaks, claws and hard shells. Chelons are androgynous and take on masculine or feminine societal roles at varying points in their lives, reproducing like most reptilians by laying eggs and fertilizing those eggs. Some traditionalists within Chelon society maintain a neutral gender, and refuse to take on male or female roles."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Insight],
             "Rigellian Chelon",
@@ -481,13 +502,13 @@ class _Species {
             Species.Jelna,
             "Rigellian Jelna",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant],
+            [Source.BetaQuadrant, Source.SpeciesSourcebook],
             ["The Jelna, like the Chelon, are natives of the Rigel system and come from Rigel V. A diligent and hard-working species, the Jelna were the first Rigellians to engage in space flight. Although they took to commerce and systemwide government quicker than the Chelon, the Jelna weren’t aggressive, and they made sure that of democratic representation for all Rigellian species on the Governing Board and the Rigellian Trade Commission. The humanoid Jelnas have four genders: two male and two female genders. Male and female exosexes contain an additional Z chromosome, and they outnumber the endosexes 2 to 1. Exosexes are the more resilient and physically adept members of the species, while endosexes are more comparable to the male and female sexes typically found in other humanoid species."],
             [Attribute.Fitness, Attribute.Presence, Attribute.Reason],
             "Rigellian Jelna",
             "The Jelna on Rigel V evolved along similar lines to most humanoids, aside from their four sexes. Endosexes are comparable to other humanoids, while exosexes possess a more robust physique and aggressive tendancies. Endosexes have exclusively gray skin and red eyes and are more suited to nurture and care; exosexes have a pale brown complexion.",
             "Governance and Trade for the Prosperity of All",
-            [TalentsHelper.getTalent("Exosex"), TalentsHelper.getTalent("Industrious Mind")],
+            [TalentsHelper.getTalent("Exosex"), TalentsHelper.getTalent("Industrious Mind"), TalentsHelper.getTalent("Inquisitive Drive")],
             "",
             [
                 { type: "Male", suggestions: "Jemer, Shalna" },
@@ -498,7 +519,7 @@ class _Species {
             Species.Risian,
             "Risian",
             [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Risa was a planet of fierce storms and tectonic instability before the Risians took it upon themselves to essentially terraform their planet. It is now colloquially known throughout the Federation as a “pleasure planet.” It’s a wonder the Risians evolved into the ceremonial society they have today, with tradition and ceremony being central to Risa society. Risians have an honest and open attitude to sexuality, renowned throughout the Galaxy.Potential mates with a sexual appetite display ceremonial icons, called a horga’hn, that invite partners to participate in the sexual rite jamaharon."],
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Risian",
@@ -514,13 +535,13 @@ class _Species {
             Species.XindiArboreal,
             "Xindi-Arboreal",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["The intelligent Arboreal species of the Xindi are a contrast some of their cousins on Xindus in that they are known to have an incredibly calm demeanor, some would call them lethargic. But with a relaxed pace comes an appreciation for logical thought and considered discussion. Since becoming members of the Federation, Xindi–Arboreals have worked in Starfleet and the Federation as mediators, counsellors, diplomats and administrators."],
             [Attribute.Control, Attribute.Insight, Attribute.Reason],
             "Xindi-Arboreal",
             "Covered in hair, and with distinctive ridges on their nose and cheekbones, the Arboreals are evolved from creatures similar to that of the Earth sloth. They possess sharp claws and have slightly longer arms than the average humanoid. With a naturally calm, rational mind, they do not panic or stress easily though they do fear large bodies of water. Their dark eyes allow them to see easier in low light conditions compared to other humanoids.",
             "Calm Focuses the Mind",
-            [TalentsHelper.getTalent("Calm Under Pressure")],
+            [TalentsHelper.getTalent("Calm Under Pressure"), TalentsHelper.getTalent("Patient Counsel"), TalentsHelper.getTalent("Unwavering Calm")],
             "",
             [
                 { type: "Male", suggestions: "Janner, Gralik" },
@@ -531,53 +552,53 @@ class _Species {
             Species.XindiPrimate,
             "Xindi-Primate",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Xindi-Primates were the second Xindus species to evolve intelligence, after the Xindi–Aquatics. Primates are talented engineers and are often fair, honest and trusted. The Xindi inclusion into the United Federation of Planets in 2311 enabled Xindi-Primates to enhance their learning, and find positions in design, architecture, engineering, along with research and development. They, more than most species to attend the Academy, find themselves in the command division upon graduation, given their adaptability and audaciousness."],
             [Attribute.Daring, Attribute.Presence, Attribute.Reason],
             "Xindi-Primate",
             "With a similar physiology to humans, Primates share their characteristic internal organ structure and metabolism, as well as their sensory perceptions. Their facial structure is markedly different, however, with pronounced foreheads and ridged cheekbones like other Xindus species. Amongst other Xindi, Primates have a reputation for fairness and honesty. Many people beyond Xindus have come to regard Xindi-Primates as trustworthy and decent.",
             "Honestly Never Makes a Problem Worse",
-            [TalentsHelper.getTalent("A Mind for Design")],
+            [TalentsHelper.getTalent("A Mind for Design"), TalentsHelper.getTalent("Voice of the Xindi")],
             "",
             [
-                { type: "Male", suggestions: "Degra, Ragnar, Toki" },
-                { type: "Female", suggestions: "Bryn, Guyda, Hreidur" }
+                { type: "Male", suggestions: "Begram, Chusra, Degra, Logra, Mallora, Ragnar, Rhucsa, Toki" },
+                { type: "Female", suggestions: "Allina, Bryn, Guyda, Hreidur, Jaina, Naara, Piral, Trenia" }
             ]),
         [Species.XindiReptilian]: new SpeciesModel(
             Species.XindiReptilian,
             "Xindi-Reptilian",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["The Reptilian species from Xindus rival the insectoids in aggression, and are likely to resort to force to achieve their goals. They’re also notably dishonest and impatient when it comes to dealing with other species, including other Xindi. It is rare for Reptilians to apply to Starfleet Academy, and rarer still for them to be accepted, as their temperament can lead to confrontations. Those XindiReptilians who do join Starfleet rival the Klingons in martial prowess, Tellarites in aptitude for debate, and Zakdorn in tactical expertise."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
             "Xindi-Reptilian",
             "These are cold blooded individuals who prefer hotter climates. Scales, ridges and spikes cover their body and they have vertical slit eyes, for adapting to low light conditions and judging depth. A carnivorous, protein-heavy diet gives them muscular tone and definition that enhances their strength and endurance. They have a reputation amongst other Xindi for being aggressive, impatient, stubborn, and untrustworthy.",
             "Patience is for the Dead",
-            [TalentsHelper.getTalent("Stun Resistance")],
+            [TalentsHelper.getTalent("Stun Resistance"), TalentsHelper.getTalent("Triumph Against Any Odds"), TalentsHelper.getTalent("Cold-Blooded Supremacy")],
             "",
             [
-                { type: "Male", suggestions: "Dankra, Guruk" },
-                { type: "Female", suggestions: "Igak, Krell" },
-                { type: "Family Name", suggestions: "Dolim" },
+                { type: "Male", suggestions: "Dankra,  Drolid, Guruk, Kolrimm" },
+                { type: "Female", suggestions: "Igak, Kimo, Kolo, Krell, Najiin" },
+                { type: "Family Name", suggestions: "Damron, Dolim, Kimdommoa, Mokima, Rilromma, Rokkima, Rommarol" },
             ]),
         [Species.XindiInsectoid]: new SpeciesModel(
             Species.XindiInsectoid,
             "Xindi-Insectoid",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Among Xindus species, Xindi-Insectoids are considered one of the most aggressive and decisive. They, and the Reptilians are responsible for the destruction of their original homeworld, after detonating vast explosions beneath several seismically active points. Their language is the most complex among the Xindi species with 67 different dialects of clicks and chirps that other species find hard to replicate. Insectoid names grow longer as the individual ages, carrying more meaning and life history than many other species’ given names."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Reason],
             "Xindi-Insectoid",
             "Reproduction is asexual with a single adult laying a clutch of eggs. Life expectancy is very short compared to other species with 12 years as the average. Their insectoid bodies grant them enhanced abilities, such as crawling and climbing, while their cheek ridges distinguish them as Xindus natives.",
             "Protect Your Off-spring at the Expense of Self",
-            [TalentsHelper.getTalent("Protective Instinct")],
+            [TalentsHelper.getTalent("Protective Instinct"), TalentsHelper.getTalent("Rapid Processing")],
             "Xindi-Insectoid names are an incredibly intricate series of clicks and chirps, and while amongst other species often choose a name to be known as by their crewmates, favoring short names that work well with their consonant heavy language.",
             []),
         [Species.Zakdorn]: new SpeciesModel(
             Species.Zakdorn,
             "Zakdorn",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Seen as easily the best tactical minds in the Galaxy, the Zakdorn excel at complex strategic thinking. This asset has enabled the Federation to streamline its defensive policy over the years, with Zakdorn officials overseeing training exercises and “war games” for Starfleet. Their personal confidence and conviction is often considered boasting and hubris, particularly given that no rival species has ever tested the Zakdorn military. Zakdorn strategists have, however, helped Starfleet and the Federation immeasurably since they joined in the early 24th Century."],
             [Attribute.Insight, Attribute.Presence, Attribute.Reason],
             "Zakdorn",
@@ -586,9 +607,9 @@ class _Species {
             [TalentsHelper.getTalent("Tactical Voice"), TalentsHelper.getTalent("Master Strategist")],
             "",
             [
-                { type: "Male", suggestions: "Gruhn, Jir, Koll, Sirna" },
-                { type: "Female", suggestions: "Bel, Myk, Orym" },
-                { type: "Family Name", suggestions: "Azernal, Bunkrep, Kolrami, Roplik" },
+                { type: "Male", suggestions: "Gelim, Gruhn, Jir, Koll, Rujat, Sakud, Sirna, Virum" },
+                { type: "Female", suggestions: "Bel, Gelfina, Myk, Orym" },
+                { type: "Family Name", suggestions: "Armnoj, Azernal, Betai, Borvale, Bunkrep, Kalnota, Kolrami, Kreinns, Roplik, Suwadi" },
             ]),
         [Species.Changeling]: new SpeciesModel(
             Species.Changeling,
@@ -620,26 +641,26 @@ class _Species {
             Species.Android,
             "Soong-type Android",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.TNG, Source.CaptainsLog],
+            [Source.TNG, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Originally designed by Dr. Noonian Soong the Soong-type Android is a exceptionally advanced artificial intelligence life-form. These android are capable of incredible feats of reason due to their positronic brain but are normally emotionless and may find it difficult to relate to organic beings. Certain advanced versions offset this problem by use of an emotion chip that allows them to experience a full gamut of emotions. Unfortunately it is possible for negative emotions like anger and megalomania to become dominant and cause the android to harm others."],
             [Attribute.Control, Attribute.Fitness, Attribute.Reason],
             "Soong-type Android",
             "The physical and mental capabilities of a Soong-type android are superior to that of most organic or cybernetic life-forms, allowing them to ignore or resist effects like hard vacuum, disease, radiation, oxygen deprivation, telepathy, or biochemical imbalance. However, some environmental conditions, such as highly-ionized atmospheres, and electromagnetic fields, can have a severe effect. Further, Soong-type androids do not naturally have the capacity for emotions, requiring additional hardware to process and experience any feelings. The legal personhood of Soong-type androids is somewhat disputed, though a landmark case involving Lieutenant Commander Data establishes their right to self-determination.",
             "Ethical Programming Defines My Thinking",
-            [TalentsHelper.getTalent("Polyalloy Construction"), TalentsHelper.getTalent("Positronic Brain")],
+            [TalentsHelper.getTalent("Polyalloy Construction"), TalentsHelper.getTalent("Positronic Brain"), TalentsHelper.getTalent("Biosynthetic Construction")],
             "",
             []),
         [Species.Reman]: new SpeciesModel(
             Species.Reman,
             "Reman",
             [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.BetaQuadrant, Source.CaptainsLog],
+            [Source.BetaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Remans are a nocturnal species subjugated by the Romulan Star Empire. They are enslaved by the Empire, employed both as indentured miners within the Reman mines, and as expendable shock troops and bodyguards serving the Romulan military. Little is known about the Remans outside of the Romulan Empire, due mainly to the Romulans’ secrecy."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Insight],
             "Reman",
             "Remans are tall, powerfully built beings, stronger and more durable even than Romulans. Their nocturnal nature means that they cannot easily tolerate bright light. A proportion of Remans have telepathic abilities, allowing them to read the minds of others and to project their thoughts to others, though using these powers effectively takes skill and training.",
             "",
-            [],
+            [TalentsHelper.getTalent("Familiar with Suffering"), TalentsHelper.getTalent("Shock Assault")],
             "",
             []),
         [Species.Orion]: new SpeciesModel(
@@ -707,13 +728,18 @@ class _Species {
             Species.Aurelian,
             "Aurelian",
             [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.AlphaQuadrant, Source.CaptainsLog, Source.AnimatedSeries ],
+            [Source.AlphaQuadrant, Source.CaptainsLog, Source.AnimatedSeries, Source.SpeciesSourcebook],
             ["One of the few avian species to be represented within the Federation, the Aurelians are renowned for their study of history and service within the Federation Science Council. While not unheard of, there are a few Aurelians serving in Starfleet, and those that do most commonly work as science officers. Aurelians dislike enclosed spaces and many suffer from a mild form of claustrophobia, which makes long-term service aboard a starship that much more difficult. Most Aurelians that pursue a career in Starfleet request assignments at planetary installations, allowing them to spend their off-duty time outdoors."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Insight],
             "Aurelian",
             "Aurelians are capable of flight, thanks to large and muscular wings. This allows them to quickly traverse distances and avoid obstacles on the ground. They also possess keen sight and a natural directional sense based on the magnetic poles of planetary bodies. Nearly all Aurelians suffer from claustrophobia, though the severity of the affliction differs from individual to individual.",
-            "Soar High and Achieve Greatness",
-            [TalentsHelper.getTalent("Aerial Combat"), TalentsHelper.getTalent("Keen Senses")],
+            [
+                "Soar high and achieve greatness",
+                "By knowing our past, we can see better what’s coming",
+                "I need an open sky and the wind in my feathers",
+                "There is always something more to explore"
+            ],
+            [TalentsHelper.getTalent("Aerial Combat"), TalentsHelper.getTalent("Keen Senses"), TalentsHelper.getTalent("Airborne Advantage"), TalentsHelper.getTalent("An Eye on the Horizon")],
             "Aurelian names usually comprise song-like syllables with the individual’s name first and the familial or clan name second. The familial name, however, is included for tradition’s sake only – as clan divisions have long since been abolished on Aurelia.",
             [
                 { type: "Female", suggestions: "Manika-Esp, Sutrial-Jon, Loisma-Ne, Pipadi-Par, Inroha-Fe, Evaasa-Al" },
@@ -723,13 +749,13 @@ class _Species {
             Species.Caitian,
             "Caitian",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.AlphaQuadrant, Source.CaptainsLog, Source.AnimatedSeries],
+            [Source.AlphaQuadrant, Source.CaptainsLog, Source.AnimatedSeries, Source.SpeciesSourcebook],
             ["The Caitian are a bipedal felinoid species with a strong history of service within Starfleet. Their homeworld of Cait is a pleasant Class-M planet with extensive grasslands that support sprawling city complexes that integrate seamlessly into the environment, for which the Caitians have great respect. While known to be extremely effective and proud warriors, the Caitian culture holds artistic and philosophical endeavors in extremely high regard."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Insight],
             "Caitian",
             "Caitians are all slightly smaller in both height and weight than average humanoids – with most reaching between 1.5-1.7 meters. They have retained the retractable claws of their evolutionary ancestors along with a flexible tail. Caitians are carnivorous and prefer uncooked meat. While they evolved from predatory felines, the Caitians are regarded as some of the greatest poets and philosophers within the Federation.",
             "War is Instinct, Conflict an Art",
-            [TalentsHelper.getTalent("Disarming Nature"), TalentsHelper.getTalent("Prehensile Tail")],
+            [TalentsHelper.getTalent("Disarming Nature"), TalentsHelper.getTalent("Prehensile Tail"), TalentsHelper.getTalent("Feral Aggression")],
             "Caitians derive their names from their familial units, to which they have strong connections. Their names often have a near-musical quality, though most humanoid species have difficulty pronouncing them correctly – as the species generates extremely low frequency vibrations that are at the far range of Human hearing.",
             [
                 { type: "Female", suggestions: "J’Aana, M’ress, S’isha, K’irst, N’Simi, H’Lata, A’Ahia, P’Erone, C’Nola, L’Eni" },
@@ -750,13 +776,13 @@ class _Species {
             [
                 { type: "Female", suggestions: "Mesha, Eskei, Asha, Brocai, Zarale, Marata, Itea, Risha, Gaska, Kosha, Alissa, Marei, Esha, Seam, Dearei" },
                 { type: "Male", suggestions: "Trula, Ganem, Jolort, Setem, Dukat, Meket, Corak, Seltan, Revok, Ekoor, Hadar, Telak, Kovat, Yaltar" },
-                { type: "Family", suggestions: "Priman, Aanrad, Drat, Rin, Liat, Moset, Tain, Lang, Pa’Dar, Dal, Ghemor, Belor, Prin, Oddat, Zenal" }
+                { type: "Family Name", suggestions: "Priman, Aanrad, Drat, Rin, Liat, Moset, Tain, Lang, Pa’Dar, Dal, Ghemor, Belor, Prin, Oddat, Zenal" }
             ]),
         [Species.Edosian]: new SpeciesModel(
             Species.Edosian,
             "Edosian",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.AlphaQuadrant, Source.CaptainsLog, Source.AnimatedSeries],
+            [Source.AlphaQuadrant, Source.CaptainsLog, Source.AnimatedSeries, Source.SpeciesSourcebook],
             ["Edosians are a tripedal species with three arms and three legs. While not a member of the Federation, the Edosians have a long-standing, loose alliance with the Federation since their earliest contact. It is rare, though not unknown, for Edosians to serve in Starfleet. Edosian culture tends toward inner reflection and a meticulousness with historical records. Genealogy has a much larger focus than in many other cultures, and Edosians are able to trace their individual family lines back thousands of years. Being a race that lives longer than even Vulcans, an Edosian may spend decades focused on a particular area of study before moving on to a new interest. Interesting to exobiologists, with practice, an Edosian becomes capable of allocating sections of their brain to each arm, operating independently with nearly fully focus and capability."],
             [Attribute.Fitness, Attribute.Insight, Attribute.Reason],
             "Edosian",
@@ -788,7 +814,7 @@ class _Species {
             Species.Grazerite,
             "Grazerite",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.AlphaQuadrant],
+            [Source.AlphaQuadrant, Source.SpeciesSourcebook],
             ["The Grazerite are a peaceful people whose homeworld, Grazer, is one of the harsher examples of the far ends of the planetary M classification. The three main continents are predominately covered by extensive mountain ranges that reach as far as 10 kilometers above ‘sea level.’ The Grazerites’ evolutionary development has incorporated not only traditional humanoid traits – but also those of bovidae – giving them goat like physical features. Grazerites are a peaceful people with a natural sense of curiosity."],
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Grazerite",
@@ -821,13 +847,18 @@ class _Species {
             Species.Ktarian,
             "Ktarian",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.AlphaQuadrant],
+            [Source.AlphaQuadrant, Source.SpeciesSourcebook],
             ["The Ktarians are a physically diverse species native to the Federation world of Ktaris. They are a common sight throughout Federation space and are one of the many species that maintains its own fleet of vessels – both merchant and military. The Ktarian fleet is considered to be a reserve force, and can be transferred to the command of Starfleet during times of great need. Unlike most Federation species, the Ktarians are comprised of two separate species that evolved together on Ktaris – one whose brows are bisected into two hemispheres and the other with bone ridges along the center of the forehead. Intermarriage among these two species has resulted in both carrying the traits of the other. Predicting which traits will manifest in offspring is extremely difficult, especially when Ktarians mate with other species. Rumors circulate that the Miradorn are an offshoot of Ktarians, but the Miradorns’ reclusive nature makes this difficult to confirm."],
             [Attribute.Control, Attribute.Reason],
             "Ktarian",
             "Ktarians are a hard people, determined and relentless in pursuit of their goals. The intertwining of the two native species has led to the Ktarians possessing the best traits of both. They are physically fit and quick witted – adapting and responding to adversity with ease. They rarely engage in negotiations unless they feel they have the upper hand.",
-            "Hold the Course Until the End",
-            [TalentsHelper.getTalent("Deep Determination"), TalentsHelper.getTalent("Negotiate from Strength")],
+            [
+                "Hold the Course Until the End",
+                "See an obstacle, overcome it",
+                "Only the foolish fail to prepare",
+                "Find a solution before the problem arises"
+            ],
+            [TalentsHelper.getTalent("Deep Determination"), TalentsHelper.getTalent("Negotiate from Strength"), TalentsHelper.getTalent("Relentless")],
             "Ktarian names are as diverse as the two interbred species that give them. Some are simple two to three syllables while others are a string consisting of as many as eight syllables. Most names follow familial or geographic traditions, though Ktarians rarely use surnames regardless of origin.",
             [
                 { type: "Female", suggestions: "Nives, Etana, Milosama, Brunmohley, Jezas, Selit, Meriana, Reginalundula" },
@@ -871,13 +902,18 @@ class _Species {
             Species.ChangelingGamma,
             "Changeling",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.GammaQuadrant, Source.CaptainsLog],
+            [Source.GammaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["To the people of the Gamma Quadrant, the Founders of the Dominion are shadowed in myth and legend. Few realize that the mythical Changelings from the quadrant’s distant history were in fact the same species that rules over all of the Dominion. To the people of the Alpha Quadrant, the Changelings are a grave threat and one that is very difficult to counter. They are an entire species composed of a morphogenic substance that allows them to not only take on the appearance of what they are trying to mimic but the physical qualities as well. The simplest of them can assume the forms of rocks, trees, and even simple animals like hawks and reptiles. The more experienced Changelings are able to change their forms to completely appear like the species they are mimicking, whether it is a Starfleet officer working in a top secret space station or as a shower of light that floats gently through a room. Some Changelings have even discovered the secret of interstellar travel by taking on the form of organisms that are able to enter subspace at will. Unlike other shapeshifting species throughout the Galaxy, Changelings are unique in that they can shift their molecules around and literally turn into the rocks around them, making it difficult for them to be located by all but the most intensive scans. "],
             [Attribute.Control, Attribute.Fitness, Attribute.Presence],
             "Changeling",
             "A Changeling is naturally a gelatinous orange-brown fluid, which can adopt the form and structure of any solid object, including other living creatures and diffuse substances like fog. While they cannot become energy, a Changeling’s ability to assume other forms is limited more by skill and experience than by physical capacity: it is theorized that they transfer mass to and from subspace in order to change size and density. Many Changelings find themselves persecuted by “solids” for their shapeshifting ability, and often crave a sense of order and justice in the universe, with a rigid attitude at odds with their fluid forms. ",
-            "The Founders Are the Will of the Dominion",
-            [TalentsHelper.getTalent("Morphogenic Matrix"), TalentsHelper.getTalent("Morphogenic Mastery")],
+            [
+                "The Founders Are the Will of the Dominion",
+                "Solids will never understand us",
+                "The Galaxy is dangerous, and safety comes from order",
+                "The ocean becomes the drop, and the drop becomes the ocean",
+            ],
+            [TalentsHelper.getTalent("Morphogenic Matrix"), TalentsHelper.getTalent("Morphogenic Mastery"), TalentsHelper.getTalent("Altered Changeling")],
             "",
             [
                 { type: "Masculine", suggestions: "Odo, Holak" },
@@ -938,13 +974,18 @@ class _Species {
             Species.Lurian,
             "Lurian",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.GammaQuadrant, Source.CaptainsLog],
+            [Source.GammaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["A race as well known for their fierce martial skills as they are for their artistic endeavors, the Lurians are a power whose homeworld is near the Wormhole. Though their world is controlled by the Royal Family of Luria, they are a frequent sight at outposts and trading posts across the quadrant, and their skill as navigators and warriors makes them prized members of any crew. With multiple hearts and two stomachs they require large quantities of food and their religious custom dictates that attendees at a Lurian funeral should bring plenty of food and liquor to see the dead through their journey into the afterlife. Though some Lurians have become involved in criminal endeavors such as the Orion Syndicate, they prefer to make their own way across the quadrant, and it is not uncommon to see lone Lurians happily plying their way through space on another great adventure."],
             [Attribute.Control, Attribute.Fitness, Attribute.Presence],
             "Lurian",
             "Lurians are a passionate people, and never do anything by half measure. Whether it is by devoting themselves to the arts or by trying to become the greatest pilots in the quadrant, the Lurians live with their emotions on their sleeves despite their normally impassive facial features. Lurians are always great thinkers and dreamers, and even though they may appear quiet their minds are often on important matters and on formulating plans for their futures. The Dominion War is of great interest on the Lurians’ homeworld, where their people swing from obsession with how the war will play out for their people to mild annoyance that the war is all that off worlders will talk about. ",
-            "Belly Full of Song and Heart Full of Glory",
-            [TalentsHelper.getTalent("Into the Breach"), TalentsHelper.getTalent("Resistant Anatomy")],
+            [
+                "Belly Full of Song and Heart Full of Glory",
+                "Live life fully and unashamedly",
+                "There is inspiration and fortune to be had among the stars",
+                "A good story starts with a grand adventure",
+            ],
+            [TalentsHelper.getTalent("Into the Breach"), TalentsHelper.getTalent("Resistant Anatomy"), TalentsHelper.getTalent("Put Your Hearts into It")],
             "",
             [
                 { type: "Masculine", suggestions: "Morn, Lok" },
@@ -1006,13 +1047,13 @@ class _Species {
             Species.SonA,
             "Son’a",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.GammaQuadrant],
+            [Source.GammaQuadrant, Source.SpeciesSourcebook],
             ["The Son’a are a new addition to the Dominion’s ranks of allies but important to their war in the Alpha Quadrant. The Son’a are unique in that they are an off-shoot of the Ba’ku, a race of beings hailing from a planet in the sector of space known as the Briar Patch. They are a race of conquerors who had subjugated several neighboring systems into their small but powerful empire, and they were not afraid to employ weaponry such as isolytic subspace weapons which were so deadly they tore holes in subspace to release devastating waves of energy. Their use of slave labor and illegal genetic tampering meant that the Federation could not initiate trade with them although a rogue Starfleet Admiral was caught offering the Son’a assistance with a plot to drain their homeworld of its metaphasic radiation. Although some Son’a returned to their homeworld to try to start over, a large number of their race refused to give up their wealth and territory and allied themselves with the Dominion during the war. Although they make up a small portion of the Dominion’s armed forces, the Son’a fight ravenously against the Federation because they see them as having ruined their chance at immortality. Some Son’a refuse to join in their race’s vendetta against the Federation, and instead travel as traders of illicit goods."],
             [Attribute.Control, Attribute.Daring, Attribute.Insight],
             "Son’a",
             "The Son’a were once similar to humans in appearance but centuries of exile from their homeworld has led them to experiment upon themselves to stay alive. Most Son’a must spend several hours each day undergoing beautification treatments and extensive genetic modifications in order to stay alive. Most Son’a can be described as possessing a stretched appearance to their faces, while others develop painful lesions along their body. Son’a children, who are almost never permitted to leave their homeworld, are similar in appearance to the Ba’ku but possess pale skin.",
             "We Do What We Must",
-            [TalentsHelper.getTalent("At All Costs"), TalentsHelper.getTalent("Particle Engineering")],
+            [TalentsHelper.getTalent("At All Costs"), TalentsHelper.getTalent("Particle Engineering"), TalentsHelper.getTalent("To the Fullest")],
             "",
             [
                 { type: "Masculine", suggestions: "Ru'afo, Soboi" },
@@ -1083,19 +1124,19 @@ class _Species {
                 { type: "Masculine", suggestions: "Chellick, Kollarn, Parett, Mattack, Wuttallet, Donnarrek, Sorretten, Garrek, Bennick, Charelenn" },
                 { type: "Feminine", suggestions: " Jesal, Farna, Nalah, Bejal, Valona, Meris, Salah, Harena, Lalona, Jalya" },
                 { type: "Gender-neutral", suggestions: " Bellah, Carru, Ettria, Gunnara, Jojjah, Moddi, Pallon, Ruddis, Urroin, Wefft" },
-                { type: "Family", suggestions: "Kales, Hormal, Terrek, Questel, Corele, Volel, Foralen, Murcosta, Nertal, Ballek" }
+                { type: "Family Name", suggestions: "Kales, Hormal, Terrek, Questel, Corele, Volel, Foralen, Murcosta, Nertal, Ballek" }
             ]),
         [Species.LiberatedBorg]: new SpeciesModel(
             Species.LiberatedBorg,
             "Liberated Borg",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.DeltaQuadrant, Source.Voyager, Source.CaptainsLog],
+            [Source.DeltaQuadrant, Source.Voyager, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["The true power of the Borg comes from the nearly infinite number of drones that have been assimilated into the collective, like slaves of ancient civilizations. Thousands upon thousands of species have been forcibly pressed into service, their individuality stripped away in the most horrific way imaginable. For centuries, these poor souls had no hope of escape, condemned to a life of servitude aboard Borg ships, installations, and planets. Worse, once fully brought into the hive mind, they would seek out and visit the same fate upon anyone and everyone unfortunate enough to cross their path. However, in recent decades, more drones have been separated from the collective – either intentionally or by some twist of fate. Once removed from the grip of the cacophony of voices speaking as one, the identity of these lucky few can begin to resurface, allowing them an opportunity to regain the life that was taken from them. Liberated Borg, as they have become known, are as different and distinct from each other as any other individual member of a species. Some want only to return to the simplicity of existence that the collective offers, and will work tirelessly to become one with the Borg again. Others, invigorated by their release, embrace life with exuberant abandon. Regardless of their response to their new-found freedom, all must contend with the difficulties that their new life brings: rehabilitation, reintegration, and reintroduction to life as a solitary individual."],
             [Attribute.Control, Attribute.Fitness, Attribute.Reason],
             "Liberated Borg",
             "As they come from many different species, Liberated Borg have little physically in common with each other, save for the remnants of their former lives. Each still retains at least some of the cybernetic implants so common to Borg drones, as not all the implants can be safely removed. The characteristics of their original species slowly begin to reassert their influence the longer the drone remains free of the collective. Borg are highly resistant to natural diseases and other ailments, but suffer a slight weakness to direct electrical shocks and exotic radiation. Those who still possess a significant number of Borg implants can even survive hard vacuum and other harsh environments, though they may still be susceptible to influence from the collective, and failing implants can be hazardous to a Liberated Borg’s health. In addition, while Liberated Borg do not sleep conventionally, they require routine access to a Borg regeneration alcove.",
             "What Does It Mean to be an Individual?",
-            [TalentsHelper.getTalent("Borg Implants"), TalentsHelper.getTalent("Direct Neural Interface")],
+            [TalentsHelper.getTalent("Borg Implants"), TalentsHelper.getTalent("Direct Neural Interface"), TalentsHelper.getTalent("Collective Insights"), TalentsHelper.getTalent("The Pursuit of Perfection")],
             "Borg drones do not possess names and instead are assigned designations which represent their numerical place within their assigned section. Due to the limitation of their connectivity outside of a vinculum or other supporting network, most drones are organized into groups of about six. Because adjunct drones can increase this number to ten or more, sections which include them have higher numbers. These designations are neutral to gender and are always given as “Number-of-Number.” Liberated Borg may choose to retain their Borg designations – often because they feel disassociated from their former cultures and identities – or try to reclaim the names and lives they used to live.",
             [], [], false),
         [Species.Lokirrim]: new SpeciesModel(
@@ -1148,13 +1189,13 @@ class _Species {
                 { type: "Masculine", suggestions: "Hurgo, Korp, Baguk, Movok, Waguc, Berkus, Pumop, Jobol, Lalob, Burgo" },
                 { type: "Feminine", suggestions: " Jula, Poho, Mamaw, Baloa, Wamah, Halola, Yahala, Kugla, Wola, Layha" },
                 { type: "Gender-neutral", suggestions: "Muloh, Bahlo, Zerha, Kome, Jelah, Hurpa, Gaehe" },
-                { type: "Family", suggestions: "Zulohu, Bahaho, Mowel, Ahlog, Unajal, Elgoha, Omol, Malom" }
+                { type: "Family Name", suggestions: "Zulohu, Bahaho, Mowel, Ahlog, Unajal, Elgoha, Omol, Malom" }
             ]),
         [Species.Ocampa]: new SpeciesModel(
             Species.Ocampa,
             "Ocampa",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.DeltaQuadrant, Source.CaptainsLog],
+            [Source.DeltaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["An oddity for humanoid species, the Ocampa are an extremely short-lived people whose lifespan rarely exceeds a decade. For nearly all of Ocampan history, they have been under the protective watch of the Caretaker – a member of an extremely powerful extra-galactic civilization. At some point in the distant past, the Caretaker was responsible for rendering the Ocampan homeworld nearly uninhabitable. To attempt to atone for this act, the Caretaker then spent the following centuries ensuring the Ocampan people had everything they could need. This relationship continued until the Caretaker’s death – and as a final act, the powerful being provided the Ocampans with sufficient energy reserves to hold out for another half decade at best. While, physically, they are nearly identical to Humans, Ocampan physiology is radically different. The Ocampa only live to be roughly ten standard years old – though this can be extended significantly through advanced medical technologies. Much like insects, Ocampa development proceeds through a series of stages – alternating periods of stability and rapid aging. New-born Ocampans remain in a childlike stage for a brief year before rapidly aging and growing into pseudo-adulthood. Following this, they remain in this stage for another few years before reaching sexual maturity, a stage that lasts only a few months before fading. After this, Ocampans gradually continue to age through their adulthood before undergoing one final rapid development stage that marks their twilight. Once this occurs, Ocampa can expect to live for no more than a year or two before expiring."],
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Ocampa",
@@ -1201,13 +1242,13 @@ class _Species {
                 { type: "Masculine", suggestions: " Sinom, Rosar, Baret, Gathorel, Japenel, Seberal, Naderen, Kanel" },
                 { type: "Feminine", suggestions: "Aldena, Halle, Kisteri, Jalelli, Corta, Suleila, Jodela, Carela, Diena" },
                 { type: "Gender-neutral", suggestions: " Posel, Harge, Marce, Senel, Alanel" },
-                { type: "Family", suggestions: "Otel, Labin, Solis, Tann, Almar, Miton, Moras, Goull, Mitlon, Donal" }
+                { type: "Family Name", suggestions: "Otel, Labin, Solis, Tann, Almar, Miton, Moras, Goull, Mitlon, Donal" }
             ]),
         [Species.Talaxian]: new SpeciesModel(
             Species.Talaxian,
             "Talaxian",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.DeltaQuadrant, Source.CaptainsLog],
+            [Source.DeltaQuadrant, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Resilient and reliable, the Talaxians have become one of the most widely recognizable and dispersed species in the Delta Quadrant. Talaxians have been warp capable for millennia, and during this time they have encountered countless species and traveled to nearly all corners of the quadrant. Talaxians have a reputation for being sociable, good natured travelers who enjoy the company of others. Unlike other species that have been warp capable for such an extended time, Talaxians are not known for their technological capabilities – which can vary wildly from group to group. Like many species in the quadrant, Talaxians do not boast a significant military presence or large empire, though this may be due to the war between them and the Haakonian Order – a conflict that left both sides exhausted. Unfortunately, the war ended with the surrender of the Talaxian government following the detonation of a weapon of mass destruction on a Talaxian moon."],
             [Attribute.Control, Attribute.Presence, Attribute.Insight],
             "Talaxian",
@@ -1236,7 +1277,7 @@ class _Species {
                 { type: "Masculine", suggestions: "Bellas, Torral, Peral, Norrick, Relarr, Mariek, Berrel, Varrolik, Julear, Desteck" },
                 { type: "Feminine", suggestions: "Pesta, Alerri, Estarra, Trelli, Errika, Rellen, Harrila, Jularri, Waseun, Donwani" },
                 { type: "Gender-neutral", suggestions: "Busal, Derran, Warrek, Sarrvel, Kiran, Arrolen, Kenuer, Shilsen" },
-                { type: "Family", suggestions: "Turell, Buhese, Kiralur, Wanoti, Kotathi, Hailova, Jailance, Madmika" }
+                { type: "Family Name", suggestions: "Turell, Buhese, Kiralur, Wanoti, Kotathi, Hailova, Jailance, Madmika" }
             ]),
         [Species.Kobali]: new SpeciesModel(
             Species.Kobali,
@@ -1272,7 +1313,7 @@ class _Species {
                 { type: "Masculine", suggestions: "Degna, Ando, Tromo, Deon, Vanil, Darab, Leom, Gree, Gesur, Hanar, Lelsh" },
                 { type: "Feminine", suggestions: "Persa, Halya, Dijah, Morna, Fani, Balwa, Fulna, Essa, Zare, Nalise, Pente" },
                 { type: "Gender-neutral", suggestions: "Luren, Kley, Jori, Gabel, Bhana, Cirde, Amaro" },
-                { type: "Family", suggestions: "Wikan, Tigh, Temb, Sami, Mahid, Remue, Dregor, Nacul, Sedet, Dalin, Ketpor" }
+                { type: "Family Name", suggestions: "Wikan, Tigh, Temb, Sami, Mahid, Remue, Dregor, Nacul, Sedet, Dalin, Ketpor" }
             ]),
         [Species.Hologram]: new SpeciesModel(
             Species.Hologram,
@@ -1294,7 +1335,7 @@ class _Species {
             [Source.KlingonCore],
             ["In 2154, a lethal, metagenic strain of the Levodian flu ran rampant through the Klingon Empire, infecting vast numbers of Klingons. Though a cure was eventually devised, the combination of the plague’s metagenic effects and the cure itself led to numerous physiological and genetic changes in those afflicted, most notably the dissolution of their cranial ridges and a number of neurological alterations, to a point where they somewhat resemble Humans, with these changes passed onto the descendants of those afflicted. These altered Klingons came to be known as QuchHa’, \"the unhappy ones,\" for their seeming deformity, while those who escaped the plague's effects were commonly referred to as the HemQuch. Though still hardy and vigorous, the QuchHa’ tend to express the customary aggression of their culture as a ruthless cunning, and they are often regarded as less honorable and trustworthy. They join the armed forces and intelligence services in great numbers to prove their worth and gain glory as a result of this discrimination. By the early 2270s, almost all QuchHa’ had undergone corrective treatment to restore their Klingon physiology, and Klingons in later eras refuse to discuss the matter with outsiders."],
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
-            "Klingon and QuchHa’",
+            "Klingon (QuchHa’)",
             "Those Klingons affected by this metagenic plague are frequently discriminated against or regarded as cowardly, shameful, or un-Klingon in nature, a stigma that they frequently strive to disprove, or which frees them to take actions that other Klingons may not regard as proper. Their altered genetics leave them less susceptible to a number of diseases and disorders that affect Klingons but allows them to contract a number of Human diseases that Klingons are normally immune to.",
             "",
             [TalentsHelper.getTalent("Cruel"), TalentsHelper.getTalent("Superior Ambition"), TalentsHelper.getTalent("To Battle!"), TalentsHelper.getTalent("R'uustai"), TalentsHelper.getTalent("Warrior's Spirit"), TalentsHelper.getTalent("Killer's Instinct")],
@@ -1422,60 +1463,73 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Insight],
             "Kelpien",
             "The Kelpiens are a bipedal species that are adapted to living on land and in the water. Kelpiens are able to run at considerable speeds for short bursts and can see into the ultraviolet and infrared spectrums of light. Pre-Vahar’ai / Post-Vahar’ai. When created, choose one of these two traits. If Pre-Vahar’ai is chosen, and your character ever experiences the changes that come with Vahar’ai, the trait is replaced by the Post-Vahar’ai trait.",
-            "The Great Balance Must Be Achieved",
-            [TalentsHelper.getTalent("Threat Ganglia"), TalentsHelper.getTalent("On All Fours")],
+            [
+                "The universe requires a balance; if it does not exist, we must find it",
+                "You call it fear, I call it healthy caution",
+                "We are predators, and I study my prey carefully",
+                "I am keenly aware of the coming of danger"
+            ],
+            [TalentsHelper.getTalent("Threat Ganglia"), TalentsHelper.getTalent("On All Fours"), TalentsHelper.getTalent("Threat Awareness"), TalentsHelper.getTalent("Predator's Insight")],
             "Kelpiens tend to have just a single name.",
-            [{ type: "Sample Names", suggestions: "Brinna, Dor’na, Kaladar, Lin’lev, Su’Vyn, Trialla, Tuvu, Vilara" }]),
+            [{
+                type: "Sample Names",
+                suggestions: "Brinna, Dor’na, Kaladar, Lin’lev, Su’Vyn, Trialla, Tuvu, Vilara"
+            }]),
         [Species.Barzan]: new SpeciesModel(
             Species.Barzan,
             "Barzan",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.DiscoveryCampaign, Source.CaptainsLog],
+            [Source.DiscoveryCampaign, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Hailing from a resource-poor world, the Barzan are a species known for their stubbornness and their ability to accomplish great things despite the advantages other species may have. Their homeworld’s atmosphere is considered toxic to other species and the Barzan require specialized breathing apparatus to exist in different environments. Despite their homeworld’s lack of resources, the Barzan are diligent in carrying out their duties, believing that their greatest natural resource will always be their determination. This has made them respected by some civilizations for their hard work and their ingenuity with accomplishing tasks. Barzan are especially focused on their families, and believe that it is the duty of each Barzan family to take each other’s burdens upon themselves in order for the group to succeed. The Barzan have a keen mind toward acquiring resources that they believe will benefit their family and their people, and are constantly looking for lucrative trade deals or scientific advancements that may help uplift their people as a whole."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
             "Barzan",
             "The Barzan have long struggled to make do without some of the advantages other species benefit from, but this has turned into one of their greatest strengths. A Barzan takes on each task with their full focus and determination while keeping a keen eye for not only how to accomplish the task but to do so with as few resources as possible. To the Barzan, any resources not spent in this way can be used in the future to help benefit their family or crew. The Barzan also form close bonds with their crewmates, and are willing to sacrifice their own needs if it benefits the group as a whole.",
-            "My Greatest Resource Is Myself, and I Will Use It Wisely",
-            [TalentsHelper.getTalent("Expert Quartermaster"), TalentsHelper.getTalent("Unyielding Resolve")],
+            [
+                "Duty above all",
+                "What is required of me that others may survive?",
+                "My skill and resolve are the only resources I need",
+                "Anything less than my best is a waste"
+            ],
+            [TalentsHelper.getTalent("Expert Quartermaster"), TalentsHelper.getTalent("Unyielding Resolve"), TalentsHelper.getTalent("Strive and Sacrifice")],
             "Barzan tend to have a given name and surname, though often use only their given name.",
             [{ type: "Sample Names", suggestions: "Amma, Attis, Bhavani, Nhan, Ryess, Servu, Tolpra" }]),
         [Species.Osnullus]: new SpeciesModel(
             Species.Osnullus,
             "Osnullus",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.DiscoveryCampaign, Source.CaptainsLog],
+            [Source.DiscoveryCampaign, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["The Osnullus hail from a homeworld that has only recently begun to shed their caste-based society. Once beholden biologically to queens who governed their individual colonies, Osnullus have evolved to a stage where they are more independent minded and are capable of breaking away from their colonies. Though some still prefer to cling to the castes of their births, the Osnullus have embraced independence and the concept of the individual. Since joining Starfleet, the Osnullus can now be seen across the Alpha Quadrant where they embrace the close communities of their starships as new colonies for them to live in. Some species find the Osnullus method of eating to be disturbing, as their lack of mouths means they absorb their food through specialized feeding ports within their fingers."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Reason],
             "Osnullus",
             "The Osnullus exemplify being at peace with themselves as much as they do coexisting with others. They are able to notice changes in the behavior of their friends and crewmates while also being able to exist on their own. The Osnullus prize their independence and there is nothing more abhorrent to them than the subjugation of others against their will. They see working toward the same goal as something that others should strive for, but being coerced into doing so makes them want to rebel against it.",
             "I Am as Strong Apart as I Am with Others",
-            [TalentsHelper.getTalent("Born to a Task"), TalentsHelper.getTalent("Unreadable Face")],
+            [TalentsHelper.getTalent("Born to a Task"), TalentsHelper.getTalent("Unreadable Face"), TalentsHelper.getTalent("Push Towards a Single Goal")],
             "Osnullus tend to have just a single name.",
             [{ type: "Sample Names", suggestions: "Aemmo, Hivfa, Rahma, Srwell" }]),
         [Species.Xahean]: new SpeciesModel(
             Species.Xahean,
             "Xahean",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.DiscoveryCampaign, Source.CaptainsLog],
+            [Source.DiscoveryCampaign, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Believing themselves to have been created at the exact moment their world was, the Xaheans are a species who have achieved a great level of technological advancement in a short amount of time. Capable of manipulating technology instinctively and possessing numerous self-defense mechanisms such as spines and the ability to render themselves almost invisible, the Xaheans have recently begun to experiment with dilithium crystals and warp technology. Their culture is currently at odds with their most principal beliefs ever sincethey discovered the power of dilithium; once dedicated to the belief of balance in all things, they now have become obsessed with advancing themselves technologically and commercially to the point of inflicting damage upon their homeworld. The appointment of their new queen may bring hope that balance can be restored to the Xahean way of life."],
             [Attribute.Control, Attribute.Insight, Attribute.Reason],
             "Xahean",
             "The Xaheans are technologically gifted as a species, to the point that they often appear smug in the face of technological advancements by other species. When they encounter a technology unfamiliar to them, they adapt quickly to its uses and seek out ways to construct devices of their own. Their innate ability to manipulate energy fields allows them to activate many different types of machinery in their proximity, and their ability to shroud themselves in a field that obscures their appearance allows them to remain undetected from pursuers.",
             "Balance Between Oneself and the World Around You.",
-            [TalentsHelper.getTalent("Discerning Scientific Mind"), TalentsHelper.getTalent("Camouflage Field")],
+            [TalentsHelper.getTalent("Discerning Scientific Mind"), TalentsHelper.getTalent("Camouflage Field"), TalentsHelper.getTalent("Technopathy")],
             "Xaheans tend to have names consisting of several short names, and often allow non-Xaheans to refer to them by one of them.",
             [{ type: "Sample Names", suggestions: "Caler No Fi Dafili, Drex Dar Mala So Lesk, Foto Mri Ka Se Wachi, Me Hani Ika Hali Ka Po, Vinters Saba Ra Ke Fa Nobi" }]),
         [Species.Saurian]: new SpeciesModel(
             Species.Saurian,
             "Saurian",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.DiscoveryCampaign, Source.CaptainsLog],
+            [Source.DiscoveryCampaign, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["The Saurians are new members of the Federation and are still taking time adjusting to the norms of being aboard Federation starships. With their native language being a series of clicks, chirps, and growls, the universal translator sometimes has problems translating Saurian speech into Federation Standard. They are a physically imposing species, with large eyes capable of seeing long distances and an advanced sense of smell. They are welcome additions to landing parties and away teams because of their ability to be resourceful in almost any environment. Their culture stresses prudence and consideration in all things, though if a Saurian is pushed into conflict, they will respond ferociously. Saurians are omnivores, and frequently enjoy meals consisting of bamboo, fish, and dried insect casings."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Reason],
             "Saurian",
             "Saurians possess enhanced senses that are often superior to their colleagues. With six nasal canals, they can pick up scents from kilometers away and their sharp fangs and claws make them imposing. As a civilization, they respect strength and decisiveness but prefer to avoid aggression if at all possible. Saurians also possess a high tolerance for alcohol, and Saurian brandy is prized throughout the Alpha and Beta Quadrants.",
             "Consider Carefully, Then Act Decisively.",
-            [TalentsHelper.getTalent("Enhanced Metabolism"), TalentsHelper.getTalent("Hunter’s Senses")],
+            [TalentsHelper.getTalent("Enhanced Metabolism"), TalentsHelper.getTalent("Hunter’s Senses"), TalentsHelper.getTalent("Patience Before Aggression")],
             "Due to the shape of their mouths and how their native tongue is spoken, Saurians often pick a name in Federation Standard that they like and do not mind being referred to as. They often choose their favorite historical figure or a name that sounds pleasing to them. Saying a Saurian’s proper name correctly will always be endearing to them but they understand if other species struggle to do so.",
             [{ type: "Sample Names", suggestions: "Vk’chk’tk (Victoria), Sh’larlst (Shae), Gr’hsk-ha’sha (Gaius), Lss’t-kel’sar (Linus)" }]),
         [Species.CyberneticallyEnhanced]: new SpeciesModel(
@@ -1538,7 +1592,7 @@ class _Species {
             Species.Cetacean,
             "Cetacean",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.LowerDecksCampaign],
+            [Source.LowerDecksCampaign, Source.SpeciesSourcebook],
             ["Native to Earth, the cetaceans are one of numerous species indigenous to the planet. For much of the species’ history, they lacked means of verbal communication with land-dwelling life-forms on the planet, a situation which may have continued perpetually if humanity had not developed universal translator technology. As one of the first species to benefit from the advent of extra-species communication, cetaceans were able to foster a better working relationship with the land-dwelling Humans.",
             "Cetaceans are somewhat rare in the Federation, in no small part due to much of the Academy’s facilities still being tailored for terrestrial species, often lacking aquatic capabilities. Despite this, cetacean species have found themselves valued contributors to starships; their sensory capabilities and instinctive understanding of navigating three-dimensional locations often finds their contributions to both navigation and communications vital. Despite this, few cetacean species ever care to leave the comfort of their environmental chambers — when a cetacean lives their entire life in three dimensions, trying to move in two can cause excessive nausea even in the most adventurous-minded."],
             [Attribute.Daring, Attribute.Insight, Attribute.Reason],
@@ -1577,6 +1631,19 @@ class _Species {
             [TalentsHelper.getTalent("Enhanced Thrusters"), TalentsHelper.getTalent("Extra Power Supply")],
             "",
             []),
+        [Species.Exocomp_2E]: new SpeciesModel(
+            Species.Exocomp_2E,
+            "Exocomp",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [""],
+            [Attribute.Control, Attribute.Daring, Attribute.Reason],
+            "Exocomp",
+            "",
+            "Always Use a Sufficiently Adequate Tool",
+            [TalentsHelper.getTalent("Enhanced Thrusters"), TalentsHelper.getTalent("Extra Power Supply")],
+            "",
+            []),
         [Species.Gorn]: new SpeciesModel(
             Species.Gorn,
             "Gorn",
@@ -1610,7 +1677,7 @@ class _Species {
             Species.Pakled,
             "Pakled",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.LowerDecksCampaign, Source.CaptainsLog],
+            [Source.LowerDecksCampaign, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Pakleds are a corpulent, bipedal species who have eyebrows that swoop up their foreheads and skin flaps beneath their eyes. There is still much being learned about Pakled physiology which somehow allows them to survive the vacuum of space. A Pakled is adept at processing information, though this can take extended periods of time and multiple inputs before the information is fully processed.",
             "Pakleds seek to make themselves strong and powerful, typically adapting and combining the technologies of other species together to help them do so. Adapting the technology takes many attempts and failures before it works, but once these adaptations work, they are surprisingly successful."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Insight],
@@ -1624,7 +1691,7 @@ class _Species {
             Species.Tamarian,
             "Tamarian",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.LowerDecksCampaign, Source.CaptainsLog],
+            [Source.LowerDecksCampaign, Source.CaptainsLog, Source.SpeciesSourcebook],
             ["Tamarians are bipedal humanoids with long nostrils and ear holes on the sides of their heads. A bony ridge runs from the top of their nose and over the top of their heads. Two smaller ridges usually run along the side of their heads, over their ear holes. Tamarians are hairless and have thick, milky-white blood. Their thumbs are long in proportion to the rest of their fingers and have a sucker-like tip on the end.",
             "Tamarians have a complex language that uses historical and mythological metaphors to describe their feelings and to explain their actions. This language shows a tremendous connection to the stories and actions of their ancestors. In addition, Tamarians participate in sleeping rituals and death rituals that pay homage to their ancestors. These rituals include objects that Tamarians carry with them, including a ceremonial dagger."],
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
@@ -1638,14 +1705,19 @@ class _Species {
             Species.Kzinti,
             "Kzinti",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.LowerDecksCampaign, Source.CaptainsLog, Source.AnimatedSeries],
+            [Source.LowerDecksCampaign, Source.CaptainsLog, Source.AnimatedSeries, Source.SpeciesSourcebook],
             ["Kzinti are bipedal felines who typically have orange fur and yellow eyes. With sharp fangs and claws along with ears that resemble the structure of bat wings, Kzinti are amazing hunters and eat only meat.",
             "After centuries of battle against the Caitians, the Klingons, and even the Federation, the Kzinti were crippled by the Dominion during the war. With no other options, the Kzinti signed truces with their former enemies, allowing their people to join Starfleet and even the Klingon Defense Force. During this time, the Kzinti also began a female rights movement where their women were no longer thought of as “dumb animals” and were elevated to both political and military positions."],
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
             "Kzinti",
             "Kzinti physiology is designed to make them expert predators. In addition, Kzinti possess superior hearing and balance compared to many other species.",
-            "",
-            [TalentsHelper.getTalent("Hyper Agile"), TalentsHelper.getTalent("Pathfinder"), TalentsHelper.getTalent("Cat-Like Reflexes"), TalentsHelper.getTalent("Applied Force"), TalentsHelper.getTalent("Telepath (Kzinti)")],
+            [
+                "Plant-eaters do not deserve my respect",
+                "If you wound me but do not kill me, expect retaliation",
+                "Once you smell blood, you finish the job",
+                "I need to make a name for myself"
+            ],
+            [TalentsHelper.getTalent("Hyper Agile"), TalentsHelper.getTalent("Pathfinder"), TalentsHelper.getTalent("Cat-Like Reflexes"), TalentsHelper.getTalent("Applied Force"), TalentsHelper.getTalent("Telepath (Kzinti)"), TalentsHelper.getTalent("Predatory Posture")],
             "",
             [{ type: "Examples", suggestions: "Chuft-Captain, Chuft-Warrior, Flyer, Healer, Mechanic, Taylor, Telepath Srith, Gunner, Fth-Captain, Arm-of-the-Hamstringer"}]),
         [Species.Anabaj]: new SpeciesModel(
@@ -1679,13 +1751,13 @@ class _Species {
             Species.Bynar,
             "Bynar",
             [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.CaptainsLog, Source.ContinuingMissions],
+            [Source.CaptainsLog, Source.ContinuingMissions, Source.SpeciesSourcebook],
             ["Over time their interconnection with their world’s master computer has grown to the point that their language and thought patterns have become as close to binary as is possible for organic beings. In fact, their very lives depend on this interaction with their master computer, as well as with one another. They are shorter in height than most humanoids, genderless with lilac skin and enlarged skulls, and usually operate in pairs."],
             [Attribute.Control, Attribute.Insight, Attribute.Reason],
             "Bynar",
             "Despite their small size, Bynars are physical robust and durable. Their augmentations allow them to communicate instantaneously with their twin while in the same system, sharing all sensory input. However, they are vulnerable to electromagnetic pulses, which can disable or destroy their implants, leaving them disoriented or even disabled.",
             "There are only ever two choices",
-            [TalentsHelper.getTalent("Networked"), TalentsHelper.getTalent("Paired"), TalentsHelper.getTalent("Unpaired")],
+            [TalentsHelper.getTalent("Networked"), TalentsHelper.getTalent("Paired"), TalentsHelper.getTalent("Unpaired"), TalentsHelper.getTalent("Entangled Consciousness"), TalentsHelper.getTalent("Synchronistic Operation")],
             "",
             []),
         [Species.Doopler]: new SpeciesModel(
@@ -1836,7 +1908,7 @@ class _Species {
             Species.Betelgeusian,
             "Betelgeusian",
             [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.FederationKlingonWar],
+            [Source.FederationKlingonWar, Source.SpeciesSourcebook],
             [],
             [Attribute.Control, Attribute.Fitness, Attribute.Presence],
             "Betelgeusian",
@@ -1977,20 +2049,413 @@ class _Species {
             "",
             []),
 
-
+        // Species Sourcebook
+        [Species.Breen]: new SpeciesModel(
+            Species.Breen,
+            "Breen",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [""],
+            [Attribute.Control, Attribute.Fitness, Attribute.Insight],
+            "",
+            "",
+            [
+                "I do not care what happens as long as I achieve my objectives",
+                "Your pain does not concern me",
+                "My regard for you lasts only as long as I benefit",
+                "My code of honor is for me and mine; I’m not obliged to treat you honorably"
+            ],
+            [TalentsHelper.getTalent("Cold Warrior"), TalentsHelper.getTalent("Disregard for Hardship")],
+            "",
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Arisar, Gor, Gren, L’ak, Lok, Pran, Rong, Ruhn, Sar, Tahal, Trel, Vart, Vog, Za’dag"
+                }
+            ]),
+        [Species.Brikar]: new SpeciesModel(
+            Species.Brikar,
+            "Brikar",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [""],
+            [Attribute.Fitness, Attribute.Insight, Attribute.Presence],
+            "",
+            "",
+            [
+                "Your fear of my appearance blinds you to who I am",
+                "I do not want to fight, but I will resist you if I must",
+                "The Galaxy’s a perilous place, but we can make it less so",
+                "Patience and curiosity are more valuable than aggression"
+            ],
+            [TalentsHelper.getTalent("Ablative Hide"), TalentsHelper.getTalent("Massive (Brikar)")],
+            "",
+            [
+                {
+                    type: "Feminine",
+                    suggestions: "Rok-Tahk, Mirg"
+                },
+                {
+                    type: "Masculine",
+                    suggestions: "Cal, Kelner, Nyll, Roakn, Zak"
+                },
+                {
+                    type: "Family Name",
+                    suggestions: "Kebron, Saygur"
+                },
+            ]),
+        [Species.Chameloid]: new SpeciesModel(
+            Species.Chameloid,
+            "Chameloid",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Insight, Attribute.Presence],
+            "Chameloid",
+            "",
+            [
+                "I am safest when I’m anonymous",
+                "I lie to keep myself alive",
+                "Which face would you like to meet today?",
+                "Keep everyone guessing about who you really are"
+            ],
+            [TalentsHelper.getTalent("Anatomical Expertise"), TalentsHelper.getTalent("Rapid Shift")],
+            "",
+            []),
+        [Species.BlueOrion]: new SpeciesModel(
+            Species.BlueOrion,
+            "Orion, Blue",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Fitness, Attribute.Presence],
+            "Orion, Blue",
+            "",
+            "",
+            [TalentsHelper.getTalent("Piratical Understanding"), TalentsHelper.getTalent("True Blue")],
+            "",
+            []),
+        [Species.ElAurian_2E]: new SpeciesModel(
+            Species.ElAurian_2E,
+            "El-Aurian",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Insight, Attribute.Reason, Attribute.Presence],
+            "El-Aurian",
+            "",
+            "",
+            [TalentsHelper.getTalent("Listener"), TalentsHelper.getTalent("Touched the Nexus")],
+            "",
+            []),
+        [Species.Horta_2E]: new SpeciesModel(
+            Species.Horta_2E,
+            "Horta",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            ["The Horta is a highly intelligent, silicon-based species capable of tunneling through solid rock."],
+            [Attribute.Fitness, Attribute.Insight, Attribute.Reason],
+            "Horta",
+            "",
+            [
+                "All things, even rocks and stones, grow and change with time",
+                "Be your best, so that all may thrive",
+                "We may not resemble what you think of as life, but we are alive",
+                "I am not a monster"
+            ],
+            [TalentsHelper.getTalent("Old as Dirt"), TalentsHelper.getTalent("Tunnel-Wise")],
+            "",
+            []),
+        [Species.HumanAugment]: new SpeciesModel(
+            Species.HumanAugment,
+            "Human Augment",
+            [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            AttributesHelper.getAllAttributes(),
+            "Human Augment",
+            "",
+            "",
+            [TalentsHelper.getTalent("Heightened Senses"), TalentsHelper.getTalent("Regenerative Healing")],
+            "",
+            []),
+        [Species.Illyrian_2E]: new SpeciesModel(
+            Species.Illyrian_2E,
+            "Illyrian",
+            [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Reason, Attribute.Presence],
+            "Illyrian",
+            "",
+            "",
+            [TalentsHelper.getTalent("Augmented Immunity"), TalentsHelper.getTalent("Rapid Comprehension")],
+            "",
+            [{
+                    type: "Feminine",
+                    suggestions: "Neera, Una"
+                },
+                {
+                    type: "Masculine",
+                    suggestions: "Ivan, Hudek, Usarn"
+                },
+                {
+                    type: "Family Name",
+                    suggestions: "Chin, Riley, Ketoul"
+                }
+            ]),
+        [Species.Kellerun]: new SpeciesModel(
+            Species.Kellerun,
+            "Kellerun",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Daring, Attribute.Control, Attribute.Presence],
+            "Kellerun",
+            "",
+            "",
+            [TalentsHelper.getTalent("Out of Necessity"), TalentsHelper.getTalent("Pragmatic Professional")],
+            "",
+            [{
+                type: "Sample Names",
+                suggestions: "Ayelle, Carzot, Defren, Ferro, Harreb, Korlom, Mennor, Pherri, Rayner, Sharat, Tivana, Wennix"
+            }]),
+        [Species.KlingonQuchHa_2E]: new SpeciesModel(
+            Species.KlingonQuchHa_2E,
+            "Klingon (QuchHa’)",
+            [Era.Enterprise, Era.OriginalSeries],
+            [Source.SpeciesSourcebook],
+            [""],
+            [Attribute.Control, Attribute.Fitness, Attribute.Presence],
+            "Klingon and QuchHa’",
+            "",
+            [
+                "There is nothing more honorable than victory",
+                "I am Klingon in my heart, even if I must prove it continually",
+                "There is always a path to victory",
+                "Survival must be earned"
+            ],
+            [TalentsHelper.getTalent("Cruel"), TalentsHelper.getTalent("To Battle!"), TalentsHelper.getTalent("R'uustai"), TalentsHelper.getTalent("Warrior's Spirit"), TalentsHelper.getTalent("Killer's Instinct")],
+            "",
+            [
+                { type: "Male", suggestions: "Be'etor, Cheng, Mogh, Qeng, Torgh" },
+                { type: "Female", suggestions: "a'Setbur, HuS, lurSa, Mara" }
+            ]),
+        [Species.Klowahkan]: new SpeciesModel(
+            Species.Klowahkan,
+            "Klowakhan",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.LowerDecksCampaign, Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Reason, Attribute.Insight],
+            "Klowakhan",
+            "",
+            [
+                "The Galaxy is a sumptuous buffet just waiting to be sampled",
+                "Be a can-alope, not a can’t-alope",
+                "Life is too short to be wasted on blandness",
+                "We appreciate a meal more when we are hungry"
+            ],
+            [TalentsHelper.getTalent("Culinary Comforts"), TalentsHelper.getTalent("The Spice of Life")],
+            "",
+            [{
+                type: "Sample Names",
+                suggestions: "Gabers Migleemo, Gonald, Legnog"
+            }]),
+        [Species.Kwejian]: new SpeciesModel(
+            Species.Kwejian,
+            "Kwejian",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Daring, Attribute.Insight, Attribute.Presence],
+            "Kwejian",
+            "",
+            [
+                "The universe is in careful balance, but care is needed to maintain it",
+                "Be careful not to let trouble follow you home",
+                "The world gives back what we put into it",
+                "We few carry the legacy of the lost"
+            ],
+            [TalentsHelper.getTalent("Bait for the Carrion Reaver"), TalentsHelper.getTalent("Natural Bond")],
+            "",
+            [{
+                type: "Sample Names",
+                suggestions: "Kyheem, Leto, Tareckx"
+            }]),
+        [Species.Lanthanite]: new SpeciesModel(
+            Species.Lanthanite,
+            "Lanthanite",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Fitness, Attribute.Presence],
+            "Lanthanite",
+            "",
+            [
+                "Boredom is the worst part of living almost forever",
+                "Sooner or later, everything ends; so enjoy it now",
+                "I keep mementos of my past, and I’m always looking for the next one",
+                "Cherish those who walk through life with you, no matter how briefly"
+            ],
+            [TalentsHelper.getTalent("Ancient Expertise"), TalentsHelper.getTalent("Esoteric Experiences")],
+            "",
+            []),
+        [Species.Medusan]: new SpeciesModel(
+            Species.Medusan,
+            "Medusan",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Reason, Attribute.Insight, Attribute.Presence],
+            "Medusan",
+            "",
+            [
+                "The universe contains countless wonders waiting to be experienced",
+                "I must balance my desire to explore with the harm my presence may do",
+                "We are all bettered by learning from perspectives other than our own",
+                "I care not for solitude or isolation"
+            ],
+            [TalentsHelper.getTalent("Containment Suit"), TalentsHelper.getTalent("Intuitive Navigator")],
+            "",
+            []),
+        [Species.Nanokin]: new SpeciesModel(
+            Species.Nanokin,
+            "Nanokin",
+            [Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Daring, Attribute.Insight, Attribute.Presence],
+            "Nanokin",
+            "",
+            [
+                "Not all life is on the same scale as you",
+                "Sometimes good things come in small packages",
+                "Small things survive big events",
+                "Living large, despite my size"
+            ],
+            [TalentsHelper.getTalent("Lifelike Conveyance"), TalentsHelper.getTalent("Inner Workings")],
+            "",
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Blip, Clip, Cowpox, Crimean-Congo Hemorrhagic Fever, Grip, Influensina, Polio, Tonsillitis, Trip, Trip 2, Wisp"
+                }
+            ]),
         [Species.Nausicaan]: new SpeciesModel(
             Species.Nausicaan,
             "Nausicaan",
             [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
-            [Source.None],
+            [Source.SpeciesSourcebook],
             [],
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
             "Nausicaan",
             "",
+            [
+                "Do not back down from any challenge",
+                "It’s only cheating if you are foolish enough to be caught",
+                "My strength gives me the right to make the rules",
+                "Only the weak have need to fear pain"
+            ],
+            [TalentsHelper.getTalent("Pack Hunter"), TalentsHelper.getTalent("Let No Challenge Stand")],
             "",
-            [TalentsHelper.getTalent("Listener"), TalentsHelper.getTalent("Wisdom of Years")],
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Franti, Ghlarig, Kajek, Krozh, Savonigar, Trenigar, Urotoxa, Zon"
+                }
+
+            ]),
+        [Species.Terran]: new SpeciesModel(
+            Species.Terran,
+            "Terran",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            AttributesHelper.getAllAttributes(),
+            "Terran",
+            "",
+            [
+                "Long live the Empire!",
+                "Every day is a new battle for supremacy",
+                "Those who rely on others are asking to be betrayed",
+                "Leave no star unconquered"
+            ],
+            [TalentsHelper.getTalent("Because We Feel Like It"), TalentsHelper.getTalent("Doppleganger"), TalentsHelper.getTalent("Paranoia")],
             "",
             []),
+        [Species.VauNAkat]: new SpeciesModel(
+            Species.VauNAkat,
+            "Vau N'Akat",
+            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Daring, Attribute.Reason],
+            "Vau N'Akat",
+            "",
+            [
+                "There is no barrier we cannot overcome",
+                "All that we need is right here",
+                "Our strength is one another, and division does us great harm",
+                "We should not deny ourselves what other worlds have to offer"
+            ],
+            [TalentsHelper.getTalent("Heirloom"), TalentsHelper.getTalent("Share Strength")],
+            "",
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Borom, Ascencia, Gwyndala, Ilthuran, Kathon"
+                }
+            ]),
+        [Species.XindiAquatic]: new SpeciesModel(
+            Species.XindiAquatic,
+            "Xindi-Aquatic",
+            [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Insight, Attribute.Presence],
+            "Xindi-Aquatic",
+            "",
+            [
+                "The world is too complex to rush to conclusions",
+                "If you want to convince me, show me the proof: don’t just tell me",
+                "If something is important, it’s worth debating and considering deeply and thoroughly",
+                "We all swim in the same ocean; the same currents affect us all",
+            ],
+            [TalentsHelper.getTalent("Circumspect"), TalentsHelper.getTalent("Seek Consensus")],
+            "",
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Ainsuri, Amsoti, Bimmaul, Ixmaut, Kiaphet, Mizaub, Muaza, Phetixa, Qoh, Qam, Soreb, Zuain, Zumamt"
+                }
+            ]),
+        [Species.Yridian_2E]: new SpeciesModel(
+            Species.Yridian_2E,
+            "Yridian",
+            [Era.Enterprise, Era.OriginalSeries, Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Source.SpeciesSourcebook],
+            [],
+            [Attribute.Control, Attribute.Insight, Attribute.Presence],
+            "Yridian",
+            "",
+            [
+                "Don’t get involved unless you can get away clean",
+                "Every fact is worth something to someone",
+                "Know where the exits are",
+                "I get forgetful without latinum",
+            ],
+            [TalentsHelper.getTalent("Don't Look Threatening"), TalentsHelper.getTalent("See All, Admit Nothing")],
+            "",
+            [
+                {
+                    type: "Sample Names",
+                    suggestions: "Ashrock, Galdus Mon, Jaglom Shrek, Manimoujak, Xillius Vas, Yerdrin Lek, Yog, Yranac"
+                }
+            ]),
+
+
+
 
 
 
@@ -2041,12 +2506,9 @@ class _Species {
 
             var klingonSpecies = store.getState().context.era === Era.NextGeneration ? [
                 Species.Klingon
-            ] : [
-                Species.Klingon, Species.KlingonQuchHa
-            ];
-            for (var archetype of klingonSpecies) {
-                var spec = this._species[archetype];
-
+            ] : [ Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E ];
+            for (let archetype of klingonSpecies) {
+                let spec = this._species[archetype];
                 const hasSource = hasAnySource(spec.sources);
 
                 if (hasSource && !this.ignoreSpecies(archetype)) {
@@ -2109,7 +2571,11 @@ class _Species {
         } else if (characterType === CharacterType.KlingonWarrior) {
             let roll = Math.floor(Math.random() * 20) + 1;
             // it doesn't appear that there are any real rules for this.
-            return roll <= 5 ? Species.KlingonQuchHa : Species.Klingon;
+            if (hasSource(Source.SpeciesSourcebook)) {
+                return roll <= 5 ? Species.KlingonQuchHa_2E : Species.Klingon;
+            } else {
+                return roll <= 5 ? Species.KlingonQuchHa : Species.Klingon;
+            }
         } else {
             let roll = Math.floor(Math.random() * 20) + 1;
             let species = Species.Human;
@@ -2255,6 +2721,32 @@ class _Species {
 
         if (hasSource(Source.PicardS1) || hasSource(Source.Core2ndEdition)) {
             if (species === Species.RomulanExt) {
+                return true;
+            }
+        }
+
+        if (hasSource(Source.SpeciesSourcebook)) {
+            if (species === Species.Exocomp) {
+                return true;
+            }
+
+            if (species === Species.ElAurian) {
+                return true;
+            }
+
+            if (species === Species.Horta) {
+                return true;
+            }
+
+            if (species === Species.Illyrian) {
+                return true;
+            }
+
+            if (species === Species.KlingonQuchHa) {
+                return true;
+            }
+
+            if (species === Species.Yridian) {
                 return true;
             }
         }

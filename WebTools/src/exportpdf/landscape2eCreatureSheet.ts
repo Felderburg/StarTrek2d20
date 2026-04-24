@@ -23,6 +23,7 @@ import { RoleModel } from "../helpers/roles";
 import { bullet2EWriter } from "./bullet2eWriter";
 import { PageArea } from "./pageArea";
 import { CharacterType } from "../common/characterType";
+import { SpeciesAbilityAndOptions } from "./generatedsheet";
 
 export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 
@@ -272,7 +273,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 }
 
 export const assembleCreatureTalents = (creature: Creature) => {
-    let result: (ReadableTalentModel|RoleModel|SpeciesAbility)[] = [];
+    let result: (ReadableTalentModel|RoleModel|SpeciesAbilityAndOptions)[] = [];
 
     creature.talents.forEach(t => {
         const talent = t.talentModel;

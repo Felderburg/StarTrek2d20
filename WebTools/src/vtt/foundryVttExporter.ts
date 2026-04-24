@@ -1097,7 +1097,7 @@ export class FoundryVttExporter {
         if (this.determineTalentType(talent) === "general") {
             return "";
         } else if (this.determineTalentType(talent) === "discipline") {
-            return talent.category.toLowerCase();
+            return talent.categoryString.toLowerCase();
         } else {
             return talent.category;
         }
@@ -1107,7 +1107,7 @@ export class FoundryVttExporter {
         if (talent.category == null || talent.category === "Esoteric" || talent.category === "General"
                 || talent.category === "Career" || talent.category === "Starship" || talent.category === "Starbase" || talent.category === "") {
             return "general";
-        } else if (DepartmentsHelper.instance.getDepartmentByName(talent.category) !== undefined) {
+        } else if (DepartmentsHelper.instance.getDepartmentByName(talent.categoryString) !== undefined) {
             return "discipline";
         } else {
             return "species";

@@ -14,7 +14,7 @@ import { NpcCharacterType, NpcCharacterTypeModel, NpcCharacterTypes } from '../m
 import { NpcGenerator } from '../model/npcGenerator';
 import { NpcType, NpcTypes } from '../model/npcType';
 import { SpecializationModel, Specializations } from '../model/specializations';
-import { hasAnySource } from '../../state/contextFunctions';
+import { hasAnySource, hasSource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
 import { Specialization } from '../../common/specializationEnum';
 import { LoadingButton } from '../../common/loadingButton';
@@ -81,7 +81,11 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({era}) 
             });
             return items.map(s => SpeciesHelper.getSpeciesByType(s)).filter(s => s.eras.includes(era));
         } else if (selectedType?.type === NpcCharacterType.KlingonDefenseForces) {
-            const list = era === Era.NextGeneration ? [ Species.Klingon ] : [ Species.Klingon, Species.KlingonQuchHa ];
+            const list = era === Era.NextGeneration
+                ? [ Species.Klingon ]
+                : hasSource(Source.SpeciesSourcebook)
+                    ? [ Species.Klingon, Species.KlingonQuchHa_2E ]
+                    : [ Species.Klingon, Species.KlingonQuchHa ];
             return list.map(s => SpeciesHelper.getSpeciesByType(s));
         } else if (selectedType?.type === NpcCharacterType.Cardassian) {
             return [ SpeciesHelper.getSpeciesByType(Species.Cardassian)];

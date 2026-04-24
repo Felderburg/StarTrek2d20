@@ -155,9 +155,15 @@ export enum Species {
 
     // Species Book
     Breen,
+    Brikar,
     Chameloid,
+    ElAurian_2E,
+    Exocomp_2E,
+    Horta_2E,
     HumanAugment,
+    Illyrian_2E,
     Kellerun,
+    KlingonQuchHa_2E,
     Klowahkan,
     Kwejian,
     Lanthanite,
@@ -167,6 +173,8 @@ export enum Species {
     BlueOrion,
     Terran,
     VauNAkat,
+    Yridian_2E,
+    XindiAquatic,
 
     Custom,
 };

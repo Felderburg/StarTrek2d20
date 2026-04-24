@@ -596,7 +596,7 @@ export class Specializations {
                 ], 0.0,
                 [
                     Species.Ferengi, Species.Human, Species.Nausicaan, Species.Orion, Species.Pakled,
-                    Species.Tellarite, Species.Yridian
+                    Species.Tellarite, Species.Yridian_2E
                 ]),
             new SpecializationModel(Specialization.FerengiMerchant, NpcCharacterType.Ferengi, "Ferengi Merchant",
                 [Attribute.Control, Attribute.Insight, Attribute.Presence],
@@ -959,7 +959,7 @@ export class Specializations {
                     "I hacked the Gibson",
                     "Mess with the best; die like the rest.",
                     "Information wants to be free, but for now, it has a price attached to it."
-                ], 0, [Species.Yridian, Species.Bynar, Species.CyberneticallyEnhanced, Species.Betazoid]),
+                ], 0, [Species.Yridian_2E, Species.Bynar, Species.CyberneticallyEnhanced, Species.Betazoid]),
             new SpecializationModel(Specialization.BruteForHire, NpcCharacterType.RogueRuffianMercenary, "Brute-for-Hire",
                 [Attribute.Fitness, Attribute.Daring, Attribute.Presence],
                 Department.Security,
@@ -1204,6 +1204,45 @@ export class Specializations {
                     "I'm just an old country doctor."
                 ],
                 0),
+            new SpecializationModel(Specialization.BreenThot, NpcCharacterType.MinorPolity, "Breen Thot",
+                [Attribute.Fitness, Attribute.Presence, Attribute.Control],
+                Department.Command,
+                [
+                    "Starship Battle Tactics", "Negotiation", "Threats",
+                    "Leadership", "Diplomacy",
+                    "Particle Rifles", "Hand-to-Hand Combat", "Melee Weapons"
+                ],
+                [
+                    "Starship Tactical Weapons", "Breen Treaties", "Composure", "Interrogation",
+                    "Military Tactics", "Starship Systems", "Willpower", "Defensive Maneuvers"
+                ],
+                [
+                    "All others are meant to serve us",
+                    "Brutally effective",
+                    "Do not cross me",
+                    "My soldiers are my tools"
+                ],
+                1, [ Species.Breen ]),
+            new SpecializationModel(Specialization.BreenWarrior, NpcCharacterType.MinorPolity, "Breen Warrior",
+                [Attribute.Fitness, Attribute.Presence, Attribute.Control],
+                Department.Command,
+                [
+                    "Starship Battle Tactics", "Negotiation", "Threats",
+                    "Particle Rifles", "Hand-to-Hand Combat", "Melee Weapons",
+                    "Ground Assault Tactics"
+                ],
+                [
+                    "Starship Tactical Weapons", "Interrogation",
+                    "Starship Systems", "Willpower", "Survival",
+                    "Guerilla Tactics", "Shield Modulation"
+                ],
+                [
+                    "All others are meant to serve us",
+                    "Brutally effective",
+                    "Do not cross me",
+                    "My soldiers are my tools"
+                ],
+                1, [ Species.Breen ]),
         ]
     }
 

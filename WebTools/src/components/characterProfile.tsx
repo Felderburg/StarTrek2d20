@@ -164,7 +164,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
                             (<div className="sheet-panel d-flex">
                                 <div className="sheet-label-purple text-uppercase">{t('Construct.other.speciesAbility')}</div>
                                 <div className="sheet-data">
-                                    {c.speciesStep?.ability?.name}
+                                    {c.speciesStep?.abilityDisplayName ?? ""}
                                 </div>
                             </div>)
                             : undefined}

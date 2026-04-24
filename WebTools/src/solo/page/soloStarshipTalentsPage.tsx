@@ -104,7 +104,9 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({star
             }
         });
 
-        let lines = t.description.split('\n').map((l, i) => {
+        let description = starship.version === 1 ? t.localizedDescription : t.localizedDescription2e;
+
+        let lines = description.split('\n').map((l, i) => {
             return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
         });
 

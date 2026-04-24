@@ -11,16 +11,17 @@ import { Species } from "../helpers/speciesEnum";
 import { TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_UNTAPPED_POTENTIAL } from "../helpers/talents";
 import { Track } from "../helpers/trackEnum";
 import { CharacterAdvancementChoice } from "../modify/model/characterAdvancementChoice";
-import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_CAREER_EVENT, ADD_CHARACTER_LOG_ENTRY, ADD_CHARACTER_SPECIES_ABILITY_FOCUS, ADD_CHARACTER_TALENT, ADD_CHARACTER_TALENT_FOCUS,
+import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION, ADD_CHARACTER_CAREER_EVENT, ADD_CHARACTER_LOG_ENTRY, ADD_CHARACTER_SPECIES_ABILITY_FOCUS, ADD_CHARACTER_TALENT, ADD_CHARACTER_TALENT_FOCUS,
     ADD_CHARACTER_TALENT_VALUE, ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE, ADD_NPC_CHARACTER_EQUIPMENT, ADD_NPC_CHARACTER_VALUE, ADD_NPC_CHARACTER_WEAPON, MODIFY_CHARACTER_ADD_ADVANCEMENT, MODIFY_CHARACTER_ATTRIBUTE,
     MODIFY_CHARACTER_DISCIPLINE, MODIFY_CHARACTER_RANK, MODIFY_CHARACTER_REPUTATION, REMOVE_CHARACTER_BORG_IMPLANT,
+    REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION,
     REMOVE_NPC_CHARACTER_EQUIPMENT,
     REMOVE_NPC_CHARACTER_WEAPON,
     SET_CHARACTER, SET_CHARACTER_ADDITIONAL_TRAITS, SET_CHARACTER_AGE, SET_CHARACTER_ASSIGNED_SHIP,
     SET_CHARACTER_CAREER_EVENT_TRAIT, SET_CHARACTER_CAREER_LENGTH, SET_CHARACTER_EARLY_OUTLOOK, SET_CHARACTER_EDUCATION,
     SET_CHARACTER_ENVIRONMENT, SET_CHARACTER_FINISHING_TOUCHES, SET_CHARACTER_FOCUS, SET_CHARACTER_HOUSE,
     SET_CHARACTER_LINEAGE, SET_CHARACTER_NAME, SET_CHARACTER_PASTIME, SET_CHARACTER_PRONOUNS, SET_CHARACTER_RANK,
-    SET_CHARACTER_ROLE, SET_CHARACTER_SPECIES, SET_CHARACTER_TYPE, SET_CHARACTER_VALUE, SET_NPC_CHARACTER_ATTRIBUTES, SET_NPC_CHARACTER_DEPARTMENTS, SET_NPC_CHARACTER_TALENTS, SET_SUPPORTING_CHARACTER_ATTRIBUTES,
+    SET_CHARACTER_ROLE, SET_CHARACTER_SPECIES, SET_CHARACTER_SPECIES_ABILITY_CHOICE, SET_CHARACTER_TYPE, SET_CHARACTER_VALUE, SET_NPC_CHARACTER_ATTRIBUTES, SET_NPC_CHARACTER_DEPARTMENTS, SET_NPC_CHARACTER_TALENTS, SET_SUPPORTING_CHARACTER_ATTRIBUTES,
     SET_SUPPORTING_CHARACTER_DISCIPLINES, SET_SUPPORTING_CHARACTER_SUPERVISORY, StepContext } from "./characterActions";
 
 interface CharacterState {
@@ -509,6 +510,21 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 isModified: true
             }
         }
+        case ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION: {
+            let temp = state.currentCharacter.copy();
+            if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
+                temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
+            }
+            temp.speciesStep?.abilityOptions?.implants.push(action.payload.type);
+            while (temp.speciesStep?.abilityOptions?.implants.length > 3) {
+                temp.speciesStep?.abilityOptions?.implants.splice(0, 1);
+            }
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
         case REMOVE_CHARACTER_BORG_IMPLANT: {
             let temp = state.currentCharacter.copy();
             let talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
@@ -516,6 +532,20 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 const index = talent.implants.indexOf(action.payload.type);
                 if (index >= 0) {
                     talent.implants.splice(index, 1);
+                }
+            }
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION: {
+            let temp = state.currentCharacter.copy();
+            if (temp.speciesStep != null && temp.speciesStep?.abilityOptions != null) {
+                const index = temp.speciesStep?.abilityOptions?.implants?.indexOf(action.payload.type);
+                if (index >= 0) {
+                    temp.speciesStep?.abilityOptions?.implants?.splice(index, 1);
                 }
             }
             return {
@@ -536,6 +566,20 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                     temp.speciesStep.abilityOptions.focuses[temp.speciesStep.abilityOptions.focuses.length] = "";
                 }
                 temp.speciesStep.abilityOptions.focuses[index] = focus;
+            }
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case SET_CHARACTER_SPECIES_ABILITY_CHOICE: {
+            let temp = state.currentCharacter.copy();
+            if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
+                temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
+            }
+            if (temp.speciesStep?.abilityOptions != null) {
+                temp.speciesStep.abilityOptions.choice = action.payload.choice;
             }
             return {
                 ...state,

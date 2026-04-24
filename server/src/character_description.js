@@ -39,6 +39,8 @@ function describeSpecies(species) {
         return "The Tholians are a crystalline species, with hard, carapaces that are made of flame/orange-hued mineral/crystal. They have six legs that allow them to move very quickly. ";
     } else if (species === "Tzenkethi") {
         return "The Tzenkethi have hulking reptile-like anatomy with a large pair of arms extending from their shoulders and a smaller pair of arms used for finer manipulation. Their skin color ranges from purple to scarlet to emerald green. ";
+    } else if (species === "Breen") {
+        return "The Breen are a spacefaring humanoid species native to the planet Breen in the Alpha Quadrant. Notoriously reclusive and warlike, the Breen are a formidable power in their region of the galaxy. They almost always wear refrigeration suits that entirely conceal their bodies. The Breen are hairless, pale green humanoids with two distinct forms: a solid form, and a gelatinous form in which their tissues are translucent and flexible. Breen culture teaches that the gelatinous form is their true face, whereas the solid form represents a weak evolutionary throwback. ";
     } else {
         return "";
     }
@@ -201,6 +203,8 @@ function describeSpecialization(inputJson, pronoun) {
             prompt += pronounPhrase + " a soldier in the Tzenkethi military service, with the rank of " + inputJson.rank + ".";
         } else if (inputJson.specialization === "TholianWarrior") {
             prompt += pronounPhrase + " a member of the Tholian military service.";
+        } else if (inputJson.specialization === "BreenThot") {
+            prompt += pronounPhrase + " a senior military leader of the Breen military with the rank of Thot.";
         }
     }
 

@@ -18,6 +18,7 @@ import { ModificationType } from "../modify/model/modificationType";
 import { EquipmentModel, EquipmentType } from "../helpers/equipment";
 import { PersonalWeaponType } from "../helpers/weapons";
 import { LogEntry } from "../common/logEntry";
+import { SpeciesAbilityChoice } from "../helpers/speciesAbility";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -56,6 +57,7 @@ export const SET_NPC_CHARACTER_DEPARTMENTS = "SET_NPC_CHARACTER_DEPARTMENTS";
 export const SET_SUPPORTING_CHARACTER_ATTRIBUTES = "SET_SUPPORTING_CHARACTER_ATTRIBUTES";
 export const SET_SUPPORTING_CHARACTER_SUPERVISORY = "SET_SUPPORTING_CHARACTER_SUPERVISORY";
 export const ADD_CHARACTER_SPECIES_ABILITY_FOCUS = "ADD_CHARACTER_SPECIES_ABILITY_FOCUS";
+export const SET_CHARACTER_SPECIES_ABILITY_CHOICE = "SET_CHARACTER_SPECIES_ABILITY_CHOICE";
 export const MODIFY_CHARACTER_ADD_ADVANCEMENT = "MODIFY_CHARACTER_ADD_ADVANCEMENT";
 export const ADD_NPC_CHARACTER_VALUE = "SET_NPC_CHARACTER_VALUE";
 export const SET_NPC_CHARACTER_ATTRIBUTES = "SET_NPC_CHARACTER_ATTRIBUTES";
@@ -65,6 +67,8 @@ export const REMOVE_NPC_CHARACTER_WEAPON = "REMOVE_NPC_CHARACTER_WEAPON";
 export const ADD_NPC_CHARACTER_WEAPON = "ADD_NPC_CHARACTER_WEAPON";
 export const SET_NPC_CHARACTER_TALENTS = "SET_NPC_CHARACTER_TALENTS";
 export const ADD_CHARACTER_LOG_ENTRY = "ADD_CHARACTER_LOG_ENTRY";
+export const REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
+export const ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
 
 export enum StepContext {
     Species,
@@ -94,6 +98,14 @@ export function addCharacterBorgImplant(type: BorgImplantType) {
     }
 }
 
+export function addCharacterBorgImplantSpeciesOption(type: BorgImplantType) {
+    let payload = { type: type };
+    return {
+       type: ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION,
+       payload: payload
+    }
+}
+
 export function addCharacterUntappedPotentialAttribute(attribute: Attribute) {
     let payload = { attribute: attribute };
     return {
@@ -106,6 +118,14 @@ export function removeCharacterBorgImplant(type: BorgImplantType) {
     let payload = { type: type };
     return {
        type: REMOVE_CHARACTER_BORG_IMPLANT,
+       payload: payload
+    }
+}
+
+export function removeCharacterBorgImplantSpeciesOption(type: BorgImplantType) {
+    let payload = { type: type };
+    return {
+       type: REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION,
        payload: payload
     }
 }
@@ -259,6 +279,14 @@ export function setCharacterSpeciesAbilityFocus(focus: string, index: number = 0
     let payload = { focus: focus, index: index };
     return {
        type: ADD_CHARACTER_SPECIES_ABILITY_FOCUS,
+       payload: payload
+    }
+}
+
+export function setCharacterSpeciesAbilityChoice(choice?: SpeciesAbilityChoice) {
+    let payload = { choice: choice };
+    return {
+       type: SET_CHARACTER_SPECIES_ABILITY_CHOICE,
        payload: payload
     }
 }

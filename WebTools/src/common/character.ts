@@ -21,7 +21,7 @@ import { BorgImplantType, BorgImplants, Implant } from '../helpers/borgImplant';
 import { Specialization } from './specializationEnum';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from '../helpers/equipment';
 import { Era } from '../helpers/eras';
-import { SpeciesAbility, SpeciesAbilityList } from '../helpers/speciesAbility';
+import { SpeciesAbility, SpeciesAbilityChoice, SpeciesAbilityList } from '../helpers/speciesAbility';
 import { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';
 import { SelectedTalent } from './selectedTalent';
@@ -225,10 +225,14 @@ export class CareerStep {
 
 export class SpeciesAbilityOptions {
     focuses: string[] = [];
+    choice?: SpeciesAbilityChoice;
+    implants?: BorgImplantType[] = [];
 
     copy() {
         let result = new SpeciesAbilityOptions();
         result.focuses = [...this.focuses];
+        result.implants = [...this.implants];
+        result.choice = this.choice;
         return result;
     }
 }
@@ -264,6 +268,16 @@ export class SpeciesStep {
                 result += (" (originally " + orginalSpecies.name + ")");
             }
             return result;
+        }
+    }
+
+    get abilityDisplayName() {
+        if (this.ability == null) {
+            return undefined;
+        } else if (this.abilityOptions?.choice == null) {
+            return this.ability.name;
+        } else {
+            return this.ability.name + " (" + this.ability.getChoiceName(this.abilityOptions.choice) + ")";
         }
     }
 
@@ -1033,7 +1047,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get implants(): BorgImplantType[] {
         let result = [];
-        this.talents.forEach(t => result.push.apply(result, t.implants));
+        this.speciesStep?.abilityOptions?.implants?.forEach(i => result.push(i));
+        this.talents.forEach(t => result.push(...t.implants));
         return result;
     }
 
@@ -1243,6 +1258,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 traits.splice(traits.indexOf(species.name), 1);
             }
             traits.push(this.localizedSpeciesName);
+
+            if (species?.id === Species.Benzite && this.speciesStep?.ability != null) {
+                traits.push("Breathing Apparatus");
+            }
         }
         if (this.enlisted) {
             traits.push("Enlisted Crewman");
@@ -1252,7 +1271,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 traits.push(e.trait);
             }
         })
-        if (this.hasTalent("Augmented Ability (Control)")
+        if (this.speciesStep?.species === Species.Illyrian_2E ||
+            this.speciesStep?.species === Species.HumanAugment) {
+
+            traits.push("Augment");
+        } else if (this.hasTalent("Augmented Ability (Control)")
                 || this.hasTalent("Augmented Ability (Daring)")
                 || this.hasTalent("Augmented Ability (Fitness)")
                 || this.hasTalent("Augmented Ability (Insight)")
@@ -1261,11 +1284,14 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 || this.hasTalent("Augmented Ability")) {
             traits.push("Augment");
         }
-        if (this.hasTalent("Synthetic Physiology") && this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
+        if ([Species.Bynar, Species.LiberatedBorg].includes(this.speciesStep?.species)) {
+            traits.push("Cyborg");
+        } else if (this.hasTalent("Synthetic Physiology") && this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
             traits.push("Cyborg");
         }
         if (this.hasTalent("Analytical Recall") && !(traits.includes("Augment") || traits.includes("Cyborg"))) {
-            if (this.speciesStep?.species !== Species.CyberneticallyEnhanced) {
+            if (this.speciesStep?.species !== Species.CyberneticallyEnhanced
+                && this.speciesStep?.species !== Species.Bynar) {
                 traits.push("Augment");
             } else {
                 traits.push("Cyborg");

@@ -244,6 +244,13 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
             Dialog.show(t('Common.error.talent'));
         } else if (isTalentSelectionRequired() && determineSelectedTalentExtraErrors(character.speciesStep?.talent) != null) {
             Dialog.show(determineSelectedTalentExtraErrors(character.speciesStep?.talent));
+        } else if (character.speciesStep.species === Species.LiberatedBorg
+                && hasSource(Source.SpeciesSourcebook)
+                && !(character.speciesStep?.abilityOptions?.implants?.length)) {
+            Dialog.show(t('SpeciesDetails.error.implants'));
+        } else if (character.speciesStep.ability?.isChoiceRequired
+                && character.speciesStep.abilityOptions?.choice == null) {
+            Dialog.show(t('SpeciesDetails.error.choice'));
         } else if (character.stereotype === Stereotype.Npc) {
             navigate("/npc/stats");
         } else {

@@ -5,7 +5,7 @@ import { Construct } from "../common/construct";
 import { ReadableTalentModel } from "./talentWriter";
 import { RoleModel, RolesHelper } from "../helpers/roles";
 import { SpeciesAbility } from "../helpers/speciesAbility";
-import { Character } from "../common/character";
+import { Character, SpeciesAbilityOptions } from "../common/character";
 import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_MISSION_POD, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_UNTAPPED_POTENTIAL, TALENT_NAME_WARRIORS_SPIRIT } from "../helpers/talents";
 import { BorgImplants } from "../helpers/borgImplant";
 import { Starship } from "../common/starship";
@@ -15,6 +15,17 @@ import { TextBlock } from "./textBlock";
 import { FontSpecification } from "./fontSpecification";
 import { CharacterType } from "../common/characterType";
 import { Station } from "../common/station";
+
+
+export class SpeciesAbilityAndOptions {
+    readonly ability: SpeciesAbility;
+    readonly options?: SpeciesAbilityOptions;
+
+    constructor(ability: SpeciesAbility, options?: SpeciesAbilityOptions) {
+        this.ability = ability;
+        this.options = options;
+    }
+}
 
 export abstract class BasicGeneratedSheet implements ICharacterSheet {
 
@@ -126,7 +137,7 @@ export abstract class BasicGeneratedSheet implements ICharacterSheet {
 }
 
 export const assembleWritableItems = (character: Character) => {
-    let result: (ReadableTalentModel|RoleModel|SpeciesAbility)[] = [];
+    let result: (ReadableTalentModel|RoleModel|SpeciesAbilityAndOptions)[] = [];
 
     if (character.role != null) {
         let role = RolesHelper.instance.getRole(character.role, character.type);
@@ -142,8 +153,8 @@ export const assembleWritableItems = (character: Character) => {
         }
     }
 
-    if (character.speciesStep?.ability) {
-        result.push(character.speciesStep.ability);
+    if (character.speciesStep?.ability && (character.speciesStep?.talent == null || character.speciesStep?.ability?.isTalentSelectionSupported)) {
+        result.push(new SpeciesAbilityAndOptions(character.speciesStep.ability, character.speciesStep.abilityOptions));
     }
 
     let handledTalents = [];
@@ -203,8 +214,8 @@ export const assembleWritableItems = (character: Character) => {
 }
 
 export const assembleStarshipTalents = (starship: Starship|Station, includeSpecialRules: boolean = false) => {
-    let result: (ReadableTalentModel|RoleModel|SpeciesAbility)[] = [];
-    let specialRules: (ReadableTalentModel|RoleModel|SpeciesAbility)[] = [];
+    let result: (ReadableTalentModel|RoleModel|SpeciesAbilityAndOptions)[] = [];
+    let specialRules: (ReadableTalentModel|RoleModel|SpeciesAbilityAndOptions)[] = [];
 
     let handledTalents = [];
     starship.talents.forEach(t => {

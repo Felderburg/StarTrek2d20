@@ -169,6 +169,15 @@ export class CareersHelper {
         }
     }
 
+    getCareerByType(career: Career, stereotype: Stereotype = Stereotype.MainCharacter, version: number = 2) {
+        if (stereotype === Stereotype.SoloCharacter || version > 1) {
+            return this.getSoloCareerLength(career);
+        } else {
+            const list = this.getBaseList(CharacterType.Civilian);
+            return list[career];
+        }
+    }
+
     getCareerByTypeName(typeName: string, type: CharacterType, version: number = 1) {
         const list = (version === 1) ? this.getBaseList(type) : this._soloCareerLengths;
         const filtered = list.filter(c => Career[c.id] === typeName);

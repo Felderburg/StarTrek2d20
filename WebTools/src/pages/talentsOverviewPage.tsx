@@ -10,6 +10,8 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { toCamelCase } from '../common/camelCaseUtil';
 import { hasSource } from '../state/contextFunctions';
+import Markdown from 'react-markdown';
+import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 
 class TalentViewModel {
     name: string;
@@ -42,7 +44,7 @@ class TalentViewModel {
             || this.displayName.toLowerCase().replace("’", "'").indexOf(term) >= 0
             || this.description.toLowerCase().replace("’", "'").indexOf(term) >= 0
             || this.category.toLowerCase().indexOf(term) >= 0 || this.matchesAlias(term)
-            || this.talent.localizedCategory.toLowerCase().indexOf(term) >= 0 || this.matchesAlias(term);
+            || this.talent.localizedCategoryString.toLowerCase().indexOf(term) >= 0 || this.matchesAlias(term);
     }
     matchesAlias(term) {
         var result = false;
@@ -176,7 +178,7 @@ const TalentsOverviewPage = () => {
             });
 
             if (available) {
-                const model = TalentViewModel.from(talent, talent.category);
+                const model = TalentViewModel.from(talent, talent.categoryString);
                 _allTalents.push(model);
             }
         }
@@ -191,11 +193,11 @@ const TalentsOverviewPage = () => {
                 const talents = TalentsHelper.getTalents();
                 for (let i = 0; i < talents.length; i++) {
                     const talent = talents[i];
-                    if (talent.category === category.value) {
+                    if (talent.categoryString === category.value) {
                         _talents[category.value].push(TalentViewModel.from(talent, category.value as string));
-                    } else if (talent.category.indexOf("/") >= 0) {
-                        let c = talent.category.split('/');
-                        if (c.indexOf(category.value) >= 0) {
+                    } else if (talent.categoryString.indexOf("/") >= 0) {
+                        let c = talent.categoryString.split('/');
+                        if (c.indexOf(category.value as string) >= 0) {
                             _talents[category.value].push(TalentViewModel.from(talent, category.value as string));
                         }
                     }
@@ -228,9 +230,13 @@ const TalentsOverviewPage = () => {
         if (t.prerequisites) {
             prerequsites = (<div style={{ fontWeight: "bold" }}>{t.prerequisites}</div>);
         }
-        let lines = t.description.split('\n').map((l, i) => {
-            return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
-        });
+
+        let lines = (t.description.includes(CHALLENGE_DICE_NOTATION))
+            ? t.description.split('\n').map((l, i) => {
+                return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
+            })
+            :  (<Markdown className="markdown-sm">{t.description}</Markdown>)
+
         return (
             <tr key={i}>
                 <td className="selection-header">
@@ -239,7 +245,7 @@ const TalentsOverviewPage = () => {
                         ({t.source})
                     </div>
                 </td>
-                <td className="d=none d-md-table-cell">{t.talent.localizedCategory}</td>
+                <td className="d=none d-md-table-cell">{t.talent.localizedCategoryString}</td>
                 <td>{lines} {prerequsites} {info}</td>
             </tr>
         );
