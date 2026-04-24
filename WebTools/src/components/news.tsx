@@ -14,6 +14,18 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260423</b>
+            <ul>
+                <li>
+                    Support for most of the new material for the <cite>Species Sourcebook</cite>.
+                    There are certain features &mdash; like additional rules around custom
+                    species &mdash; that haven't yet been implemented. They'll come soon enough.
+                </li>
+                <li>
+                    There may be certain rules that still need to be implemented (such as species
+                    abilities that change things like Protection). I'll work on cleaning that up, soon.
+                </li>
+            </ul>
             <b>v1.260412</b>
             <ul>
                 <li>
