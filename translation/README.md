@@ -7,11 +7,12 @@ This directory contains a simple tool to build the translation files from a comm
 At the moment, the code supports the following languages:
 
 1. English
-2. French
-3. German
-4. Spanish
-5. Russian
-6. Portuguese (Brazilian)
+2. American
+3. French
+4. German
+5. Spanish
+6. Russian
+7. Portuguese (Brazilian)
 
 I'm not averse to adding other languages; I'm just trying to make the best effort vs. benefit decision possible.
 If you really think we should have another language included (and, especially, if you're willing to help out

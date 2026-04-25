@@ -166,6 +166,8 @@ export abstract class BaseNeckProvider {
             } else if (species === Species.Cardassian) {
                 if (uniformEra === UniformEra.Cardassian) {
                     result = CardassianNeck.male.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, skinColor);
+                } else if (uniformEra === UniformEra.Civilian && uniformVariant === UniformVariantType.Variant12) {
+                    result = CardassianNeck.male.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, skinColor);
                 }
             } else if (species === Species.Suliban) {
                 result = SulibanNeck.male.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, skinColor);

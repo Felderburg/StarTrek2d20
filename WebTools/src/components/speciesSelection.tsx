@@ -113,11 +113,9 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({character, onS
                     return <div key={i}>{t(makeKey('Construct.attribute.', Attribute[a])) }</div>;
                 });
 
-        const talents = s.id === Species.Changeling
-            ? <div>Morphogenic Matrix</div>
-            : s.talents.map((t, i) => {
-                return t.isAvailableExcludingSpecies(character) ? <div key={i}>{t.localizedDisplayName}</div> : <span key={i}></span>;
-            });
+        const talents = s.talents.map((t, i) => {
+            return t.isAvailableExcludingSpecies(character) ? <div key={i}>{t.localizedDisplayName}</div> : <span key={i}></span>;
+        });
 
         let speciesAbility = null;
         if (character.version > 1) {

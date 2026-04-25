@@ -843,6 +843,11 @@ export class NpcGenerator {
             ? Species.Klingon
             : character.speciesStep.species)] ?? []);
 
+        let species = SpeciesHelper.getSpeciesByType(character.speciesStep.species);
+        if (species.exampleValues?.length) {
+            valueOptions.push(...species.exampleValues);
+        }
+
         let aspects = [];
         for (let i = 0; i < count; i++) {
             let done = false;

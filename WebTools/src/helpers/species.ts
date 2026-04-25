@@ -54,6 +54,8 @@ export class SpeciesModel implements ISpecies {
         this.traitDescription = traitDescription;
         if (Array.isArray(exampleValues)) {
             this.exampleValues = exampleValues;
+        } else if (exampleValues === "") {
+            this.exampleValues = [];
         } else {
             this.exampleValues = [ exampleValues ];
         }
@@ -156,7 +158,12 @@ class _Species {
             [Attribute.Control, Attribute.Daring, Attribute.Presence],
             "Andorian",
             "This trait may reduce the Difficulty of Tasks to resist extreme cold, or Tasks impacted by extremely low temperatures. Their antennae aid in balance and spatial awareness; a lost antenna can be debilitating until it regrows. Andorians also have a high metabolism, meaning, amongst other things, that they tire more quickly than Humans; this also makes them more vulnerable to infection from certain types of injury. Before the Federation, Andorians and Vulcans had numerous disputes; though these issues are largely considered to be ancient history, Andorians and Vulcans don’t always get along.",
-            "Proud Son/Daughter of Andoria",
+            [
+                "I always repay my debts",
+                "No challenge unmet",
+                "Proud child of Andoria",
+                "Question my word, question my honour"
+            ],
             [TalentsHelper.getTalent("Proud and Honorable"), TalentsHelper.getTalent("The Ushaan")],
             "Andorian names tend to be somewhat harsh-sounding, and have a personal name followed by a clan name. Amongst some Andorians, it’s common to begin the clan name with a gender-specific prefix: 'zh' or 'sh' for females, and 'ch' or 'th' for males. This is placed before the family name, separated by an apostrophe. Longer or more complicated Andorian names are commonly shortened, especially when dealing with other species. Examples: Ishrelia zh’Azonan (female), Atheth th’Zynes(male)",
             [
@@ -173,7 +180,12 @@ class _Species {
             [Attribute.Control, Attribute.Daring, Attribute.Insight],
             "Bajoran",
             "For obvious reasons, Bajorans tend to be hostile towards Cardassians, and resentful of those who are dismissive of, or turned a blind eye to, the suffering of the Bajoran people. While not all Bajorans are spiritual or religious to the same degree, most have a cultural understanding of the Prophets’ place in Bajoran society.",
-            "Faith in the Prophets",
+            [
+                "I help others to be closer to the Prophets",
+                "Survival at any cost",
+                "We are in the hands of the Prophets",
+                "You cannot explain faith to those who lack it"
+            ],
             [TalentsHelper.getTalent("Orb Experience"), TalentsHelper.getTalent("Strong Pagh")],
             "Bajoran names begin with the family name, followed by a personal name. The individual names are normally short — rarely more than two syllables — and with a soft or melodic sound. Bajor Is traditionally matriarchal, with children taking their mother’s family name. Examples: Reil Yesa (female), Latara Gel (male)",
             [
@@ -190,7 +202,12 @@ class _Species {
             [Attribute.Insight, Attribute.Presence, Attribute.Reason],
             "Betazoid",
             "All Betazoids are telepathic to varying degrees, and even when not actively using their abilities, they are highly perceptive of others around them, but also highly sensitive to telepathic disturbances and mental assaults. They have little familiarity with lies and deception, due to their open culture and ability to read the thoughts and emotions of others. As they are sensitive to the minds of other living beings, they tend not to be comfortable around animals, for fear of losing themselves in the minds of wild creatures.",
-            "Compassion Through Understanding",
+            [
+                "A lie is a story told in bad faith",
+                "Do not be what others expect you to be",
+                "I can feel your pain",
+                "I'm just saying what you're thinking"
+            ],
             [TalentsHelper.getTalent("Empath"), TalentsHelper.getTalent("Telepath"), TalentsHelper.getTalent("Open Book"), TalentsHelper.getTalent("Abrupt Insights")],
             "Betazoid names tend to have at least two syllables and a melodic sound, with a personal name followed by a family name; of these, the family name tends to have a harder sound. Betazoids are traditionally matriarchal, with children taking their mother’s family name.",
             [
@@ -207,7 +224,12 @@ class _Species {
             [Attribute.Fitness, Attribute.Insight, Attribute.Reason],
             "Denobulan",
             "Denobulans have a robust immune system, but a vulnerability to various forms of radiation poisoning. They are naturally adept climbers, scuttling up sheer walls like some forms of terrestrial lizard. Denobulans do not need to sleep, but must hibernate for several days each year, becoming disoriented if kept awake during this period.",
-            "Safety in Numbers",
+            [
+                "You cannot truly learn about people unless you talk to them",
+                "Comfort in numbers",
+                "There's always someone new to meet",
+                "My patience exceeds your stubbornness"
+            ],
             [TalentsHelper.getTalent("Cultural Flexibility"), TalentsHelper.getTalent("Parent Figure")],
             "Denobulans tend to only have a single name — an individual Denobulan may be part of several overlapping families. Some Denobulans may use the name of one of their spouses as an impromptu surname, however; this is often to indicate association to species that may not understand Denobulan families. Denobulan names tend to be short and hard-sounding, particularly male names.",
             [
@@ -223,7 +245,12 @@ class _Species {
             [Attribute.Control, Attribute.Daring, Attribute.Fitness, Attribute.Insight, Attribute.Presence, Attribute.Reason],
             "Human",
             "Humans are adaptable and resilient, and their resolve and ambition often allow them to resist great hardship and triumph despite great adversity. However, Humans can also be reckless and stubborn, irrational, and unpredictable.",
-            "The Drive for Exploration",
+            [
+                "I believe in what the Federation stands for",
+                "Learn something new every day",
+                "We are stronger together",
+                "Seek out new life and new civilizations"
+            ],
             [TalentsHelper.getTalent("Resolute"), TalentsHelper.getTalent("Spirit of Discovery")],
             "Human names vary wildly, and rather than make sweeping generalizations here, it’s better that Players seek out other sources for names, considering the vast range of languages, cultures, and traditions Humanity encompasses.",
             [
@@ -237,7 +264,12 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Insight],
             "Tellarite",
             "Tellarites have a keen sense of smell and a high tolerance for many common drugs, toxins, and inebriants (Tellarites don’t get drunk, just feisty). They also have excellent eyesight, and more acute perception of distance, depth, and dimension than Humans.",
-            "All Ideas must Withstand Scrutiny",
+            [
+                "No notion is above proper scrutiny",
+                "No voice silenced, no perspective unheard",
+                "You'll never get an answer if you don't ask questions",
+                "An idea left unchallenged can be dangerous"
+            ],
             [TalentsHelper.getTalent("Incisive Scrutiny"), TalentsHelper.getTalent("Sturdy"), TalentsHelper.getTalent("Asking the Right Questions")],
             "Tellarite names have considerable variation, but all tend to be composed of harsh, even guttural sounds. Tellarite names consist of a personal name and a family name, though the family name is often a compound, indicating that the family name is a patronym or matronym (the name of a father or mother, respectively), toponym(derived from a place) or similar — in this way, these prefixes are similar to “O’”, “Mc“, “von”, and similar elements in some Human names. Examples: Pola jav Brin (female), Tuk glasch Khutohk (male)",
             [
@@ -255,7 +287,12 @@ class _Species {
             [Attribute.Control, Attribute.Presence, Attribute.Reason],
             "Trill",
             "Trill are especially resilient to parasites, as a quirk of their potential to be Joined; Joined Trill are entirely immune to parasitic infection. However, they tend to have strong allergic reactions to insect bites and other forms of venom, which can disrupt their neurochemistry, particularly if they’re Joined. As many of the specifics of Trill physiology — especially with regards to symbiosis — are not widely known, this can result in medical complications.",
-            "Four Lifetimes of Adventure",
+            [
+                "Several lifetimes of experience",
+                "What will this mean a century from now?",
+                "What can I discover today?",
+                "Who I was is only part of who I am"
+            ],
             [TalentsHelper.getTalent("Former Initiate"), TalentsHelper.getTalent("Joined")],
             "Trill names consist of a personal name and a family name, though in the case of a joined Trill, the family name is replaced with the name of the symbiont. Examples: Koria Inazin (female, unjoined), Bejal Okir (male, joined)",
             [
@@ -273,7 +310,12 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Reason],
             "Vulcan",
             "Due to the harsh, arid, high-gravity world they come from, Vulcans are naturally resistant to extreme heat and dehydration; they are also extremely strong, with keen auditory and olfactory senses. They are also telepathic, though this takes training to properly manifest, and they learn mental discipline and emotional control from childhood. However, this control takes regular meditation to maintain, and their controlled nature and desire for privacy can distance them from others, and make interactions awkward.",
-            "The Needs of the Many Outweighs the Needs of the Few, or the One",
+            [
+                "Logic is the beginning of wisdom, not the end",
+                "Nothing that is, is unimportant",
+                "The needs of the many outweighs the needs of the few, or the one",
+                "In accepting the inevitable, on finds peace"
+            ],
             [TalentsHelper.getTalent("Kolinahr"), TalentsHelper.getTalent("Mind-Meld"), TalentsHelper.getTalent("Nerve Pinch")],
             "Vulcans have only a single name, in practical terms — while they do have family names, these are not discussed amongst other species — and tend to be traditional in the names they use. Male Vulcans often — though far from always — are given names beginning with S, while female names frequently begin with T. These are far from universal, however.",
             [
@@ -341,7 +383,7 @@ class _Species {
             [Attribute.Control, Attribute.Presence, Attribute.Reason],
             "Cardassian",
             "Cardassians possess extraordinary mental discipline, and commonly have photographic memories, the result of intense training during childhood. They are intolerant of cold environments, but quite comfortable at higher temperatures. Cardassian hearing is slightly less acute than that of Humans, and they are uncomfortable in bright light. Cardassians have a negative reputation amongst many Alpha Quadrant cultures, particularly Bajorans, whose homeworld they occupied for decades.",
-            "",
+            [],
             [],
             "",
             []),
@@ -425,7 +467,12 @@ class _Species {
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Bolian",
             "Bolians are able, thanks to their cartilaginous tongues, to consume substances unsafe to other species, such as acids or decaying meat. Bolian hearts are on the right side of their body, moving blue blood around their circulatory system. Bolians are an understanding, hospitable species, often forward-facing in their duties in customer relations or diplomatic service.",
-            "A Broad Smile and a Warm Heart",
+            [
+                "A broad smile and a warm heart",
+                "Who am I going to meet today?",
+                "A shared task is half the work and twice the satisfaction",
+                "If you don’t speak your mind, how can anyone know you?",
+            ],
             [TalentsHelper.getTalent("Warm Welcome"), TalentsHelper.getTalent("Born Near a Warp Core")],
             "",
             [
@@ -475,7 +522,12 @@ class _Species {
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
             "Klingon",
             "There is a great redundancy in Klingon organs, with two livers, multiple stomachs, three lungs, and an eight-chambered heart. Their skeletal structure also has several redundancies that mitigate injuries that would prove fatal to other humanoids.",
-            "Honor is More Important Than Life",
+            [
+                "It is a good day to die!",
+                "Own the day!",
+                "Revenge is a dish best served cold",
+                "I am a Klingon Warrior; if you doubt it, a demonstration can be arranged!"
+            ],
             [TalentsHelper.getTalent("To Battle!"), TalentsHelper.getTalent("Brak'lul"), TalentsHelper.getTalent("R'uustai"), TalentsHelper.getTalent("Warrior's Spirit"), TalentsHelper.getTalent("Killer's Instinct")],
             "",
             [
@@ -633,7 +685,12 @@ class _Species {
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "Ferengi",
             "Ferengi physiology does not lend itself to physical activity, nor does their culture value such hardship, though they have a resistance to many common diseases. Ferengi have exceptional hearing, and highlysensitive ears, though this also means that intense sounds (and physical force applied to the ears) can inflict debilitating pain. Their unusual brain structure means that telepaths cannot read Ferengi minds. Culturally, Ferengi are acquisitive, regarding the accumulation of wealth as the highest virtue, and while this has given them a reputation as cunning negotiators, they are also often seen as duplicitous and manipulative as well.",
-            "18th Rule of Acquisition - A Ferengi Without Profit is No Ferengi At All",
+            [
+                "9th Rule: Opportunity plus instinct equals profit",
+                "62nd Rule: The riskier the road, the greater the profit",
+                "125th Rule: You can't make a deal if you're dead",
+                "263rd Rule: Never allow doubt to tarnish you lust for latinum"
+            ],
             [TalentsHelper.getTalent("Greed Is Eternal"), TalentsHelper.getTalent("Never Place Friendship Above Profit")],
             "",
             []),
@@ -646,7 +703,12 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Reason],
             "Soong-type Android",
             "The physical and mental capabilities of a Soong-type android are superior to that of most organic or cybernetic life-forms, allowing them to ignore or resist effects like hard vacuum, disease, radiation, oxygen deprivation, telepathy, or biochemical imbalance. However, some environmental conditions, such as highly-ionized atmospheres, and electromagnetic fields, can have a severe effect. Further, Soong-type androids do not naturally have the capacity for emotions, requiring additional hardware to process and experience any feelings. The legal personhood of Soong-type androids is somewhat disputed, though a landmark case involving Lieutenant Commander Data establishes their right to self-determination.",
-            "Ethical Programming Defines My Thinking",
+            [
+                "Ethical programming defines my thinking",
+                "What does it mean to be alive?",
+                "Just because I am synthetic doesn't mean I'm not a person",
+                "A whole galaxy to explore and experience",
+            ],
             [TalentsHelper.getTalent("Polyalloy Construction"), TalentsHelper.getTalent("Positronic Brain"), TalentsHelper.getTalent("Biosynthetic Construction")],
             "",
             []),
@@ -673,7 +735,12 @@ class _Species {
             [Attribute.Daring, Attribute.Fitness, Attribute.Presence],
             "Orion",
             "Orions thrive in Class-M environments and are well suited to long voyages through space. The Orions are a dimorphic species where the females secrete special pheromones that can stimulate the adrenal systems of other species and make them become fascinated with them, which the Orion women have used to maintain control over not only Orion males but to manipulate other species. The pheromones produced by Orion males can generally make them seem attractive to other humanoids, but not to the same degree as that produced by Orion females.",
-            "Everything is a Deal",
+            [
+                "Everything has a price",
+                "Your expectations limit you",
+                "I am not who you expect me to be",
+                "I thrive because I do not ignore opportunities"
+            ],
             [TalentsHelper.getTalent("That Wasn't Me"), TalentsHelper.getTalent("Criminal Understanding"), TalentsHelper.getTalent("Pheromones")],
             "",
             [
@@ -770,7 +837,12 @@ class _Species {
             [Attribute.Control, Attribute.Presence, Attribute.Reason],
             "Cardassian",
             "Cardassians are known for their dedication and discipline – mentally and culturally. With an emphasis on the superiority of the State, Cardassians are a xenophobic species, considering themselves superior to nearly all others. Many dislike them, viewing them as arrogant, intolerant, and cruel. Physically, Cardassians are similar to most species, save for slightly reduced hearing and a biological preference for hotter climates.",
-            "State - Family - Self",
+            [
+                "Everyone is guilty of something, but who and of what?",
+                "State above family; family above self",
+                "If you don't want me knowing, hide it better",
+                "All my stories are true, especially the lies"
+            ],
             [TalentsHelper.getTalent("Duty and Discipline"), TalentsHelper.getTalent("Suspicious by Nature"), TalentsHelper.getTalent("Regimented Mind"), TalentsHelper.getTalent("The Ends Justify the Means")],
             "Cardassian names consist of a personal and family name. However, Cardassians rarely, if ever, provide their family name to those they do not share a close relationship with, giving their personal name almost exclusively. Male Cardassian personal names usually are made up of two to three syllables and tend to make use of harder sounds. Female Cardassians however, often possess soft, nearly melodic names.",
             [
@@ -1569,7 +1641,12 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Reason],
             "Romulan",
             "Romulan physiology is not meaningfully different from that of Vulcans, though a portion of the Romulan species exhibits a V-shaped forehead ridge not evident in Vulcans. The largest differences are that most Romulans lack the intense mental discipline common to Vulcans, and do not develop their psychic abilities. Psychologically and culturally, Romulans prize cunning and strength of will, and are distrustful of other species: this opinion is reciprocated, as Romulans have a reputation for manipulation, deception, and betrayal.",
-            "To Die in The Service of my People",
+            [
+                "I give my life to the service of the Empire",
+                "Secrecy is a shield against betrayal",
+                "Every secret I discover is another weapon in my arsenal",
+                "Even my secrets have secrets!"
+            ],
             [TalentsHelper.getTalent("Guile and Cunning"), TalentsHelper.getTalent("Wary")],
             "Romulan names are personal and wrapped up in secrecy. Romulans tend to have a single name they use openly, a private name they use amongst family, and a true name used only with those they give their hearts to.",
             [{ type: "Sample Names", suggestions: "Alidar, Ayel, Bidran, Bochra, Chulak, D’Tan, Donatra, Hiren, Kabath, Karina, Kimara, Koval, Laris, Letant, Lovok, M’ret, Mendak, Mirok, N’Raj, N’Vek, Neral, Pardek, Rakal, Rekar, Setal, Sirol, T’Rul, Taibak, Tal, Tal’aura, Taris, Telek, Tenqem, Tokath, Toreth, Valdore, Vrax, Zhaban"}], [], false),
@@ -1743,7 +1820,12 @@ class _Species {
             [Attribute.Control, Attribute.Insight, Attribute.Presence],
             "",
             "",
-            "",
+            [
+                "Do not mistake my blindness for helplessness",
+                "I perceive things your eyes do not",
+                "Life is incomplete without purpose",
+                "Pacifism is no passive"
+            ],
             [TalentsHelper.getTalent("Telepathic Interference"), TalentsHelper.getTalent("Telepath"), TalentsHelper.getTalent("Empath"), TalentsHelper.getTalent("Acute Senses"), TalentsHelper.getTalent("Chosen Speaker")],
             "",
             [{type: "Sample Names", suggestions: "Ataria, Hemmer, Dhaleb, Jhamel, Gareb, Zuonna, Mehen"}]),
@@ -1913,7 +1995,12 @@ class _Species {
             [Attribute.Control, Attribute.Fitness, Attribute.Presence],
             "Betelgeusian",
             "",
-            "",
+            [
+                "There will be one victor here, and it shall be me",
+                "My foe deserves every respect as a fellow warrior",
+                "My word is absolute, and I will not break it",
+                "I am nothing without my conduct"
+            ],
             [TalentsHelper.getTalent("Verbal Warfare"), TalentsHelper.getTalent("Strength of the Elders")],
             "",
             [{ type: "Sample Names", suggestions: "Cosmo Traitt, Yor, Jelfrit, Badakar, Shor Malkune"}]),
