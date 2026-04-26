@@ -811,6 +811,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
             } else if (this.speciesStep?.species === Species.Vulcan) {
                 // species ability makes stress based on Control
                 stress = this.attributes[Attribute.Control];
+            } else if (this.speciesStep?.species === Species.Pakled && this.speciesStep?.ability != null) {
+                stress += 3;
             }
         }
         if (this.hasTalent("Resolute")) {
@@ -1191,13 +1193,32 @@ export class Character extends Construct implements IWeaponDiceProvider {
     private calculateProtection() {
         let result = 0;
         this.equipmentModels.filter(e => e.isArmour).forEach(e => result += e.protection);
-        if (this.speciesStep?.species === Species.Klingon && this.version !== 1) {
-            result += 1; // Brak'lul species ability
+        if (this.version !== 1) {
+            if (this.speciesStep?.species === Species.Klingon) {
+                result += 1; // Brak'lul species ability
+            }
+            if (this.speciesStep?.species === Species.Zaranite && this.speciesStep?.ability != null) {
+                result += 1; // Hardeneed Hide species ability
+            }
+            if (this.speciesStep?.species === Species.Brikar && this.speciesStep?.ability != null) {
+                result += 2; // Rock Hard species ability
+            }
+            if (this.speciesStep?.species === Species.JemHadar && this.speciesStep?.ability != null) {
+                result += 1; // Perfect Soldier species ability
+            }
+            if (this.speciesStep?.species === Species.Lurian && this.speciesStep?.ability != null) {
+                result += 1; // Resistant Anatomy species ability
+            }
+            if (this.speciesStep?.species === Species.Chelon && this.speciesStep?.ability != null) {
+                result += 1; // Atavistic Defenses species ability
+            }
+            if (this.speciesStep?.species === Species.XindiReptilian && this.speciesStep?.ability != null) {
+                result += 1; // Durable Physiology species ability
+            }
         }
-        if (this.speciesStep?.species === Species.Zaranite && this.version !== 1) {
-            result += 1; // Hardeneed Hide species ability
+        if (this.hasTalent("Ablative Hide")) {
+            result += 1;
         }
-
         if (this.hasTalent("Chelon Shell")) {
             result += 1;
         }

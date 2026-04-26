@@ -16,5 +16,12 @@ export enum SpaceframeAppearance {
     DDeridex,
     Mogai,
     RedLadyType,
-    Snakehead
+    Snakehead,
+
+
+    // Discovery-era Federation ships
+    Kirk,
+    Janeway,
+    Friendship,
+    Eisenberg
 }

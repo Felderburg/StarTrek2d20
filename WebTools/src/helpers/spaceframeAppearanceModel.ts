@@ -44,6 +44,13 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Mogai, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.RedLadyType, CharacterType.Romulan, [Era.NextGeneration]),
 //                new SpaceframeAppearanceModel(SpaceframeAppearance.Snakehead, CharacterType.Romulan, [Era.NextGeneration]),
+
+                // Discovery 32nd century
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Eisenberg, CharacterType.Starfleet, [Era.Discovery32]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Friendship, CharacterType.Starfleet, [Era.Discovery32]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Kirk, CharacterType.Starfleet, [Era.Discovery32]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Janeway, CharacterType.Starfleet, [Era.Discovery32]),
+
             ];
         }
 

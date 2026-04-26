@@ -399,10 +399,18 @@ class SpaceframeOutlineHelper {
                 return new Outline(ANTARES_CLASS_ELABORATE_OUTLINE, ANTARES_CLASS_DETAILS);
             } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.ClassJCargoShip) {
                 return new Outline(CLASS_J_CARGO_SHIP_OUTLINE, CLASS_J_CARGO_SHIP_DETAILS);
+            } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.Eisenberg) {
+                return EISENBERG_CLASS_ELABORATE_OUTLINE;
+            } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.Friendship) {
+                return FRIENDSHIP_CLASS_ELABORATE_OUTLINE;
             } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.Freighter) {
                 return KLINGON_FREIGHTER_ELABORATE_OUTLINE;
+            } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.Janeway) {
+                return JANEWAY_CLASS_ELABORATE_OUTLINE;
             } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.JovisType) {
                 return new Outline(JOVIS_TYPE_ELABORATE_OUTLINE, JOVIS_TYPE_DETAILS);
+            } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.Kirk) {
+                return KIRK_CLASS_ELABORATE_OUTLINE;
             } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.Merchantman) {
                 return new Outline(MERCHANTMAN_CLASS_ELABORATE_OUTLINE, MERCHANTMAN_CLASS_DETAILS);
             } else if (starship.spaceframeStep?.appearance === SpaceframeAppearance.XhosaType) {
