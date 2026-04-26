@@ -2,7 +2,7 @@ import i18next from "i18next";
 import { makeKey } from "../common/translationKey";
 import { SpaceframeAppearance } from "./spaceframeAppearance";
 import { CharacterType } from "../common/characterType";
-import { Era } from "./eras";
+import { Era } from "./erasEnum";
 
 export class SpaceframeAppearanceModel {
 

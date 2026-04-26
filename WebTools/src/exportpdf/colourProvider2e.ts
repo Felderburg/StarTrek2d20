@@ -1,6 +1,6 @@
 import { Division } from "../common/character";
 import { SimpleColor } from "../common/colour"
-import { Era } from "../helpers/eras";
+import { Era } from "../helpers/erasEnum";
 
 export const romulanGreenColour2e: SimpleColor = SimpleColor.from("#1A6847");
 export const orionGreenColour2e: SimpleColor = SimpleColor.from("#84C98B");

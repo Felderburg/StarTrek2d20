@@ -7,7 +7,7 @@ import { Station } from '../common/station';
 import { Creature } from '../creature/model/creature';
 import { hasAnySource } from '../state/contextFunctions';
 import { Department } from './department';
-import { Era } from './eras';
+import { Era } from './erasEnum';
 import { AnyOfPrerequisite, IConstructPrerequisite, ServiceYearPrerequisite, SourcePrerequisite, StarshipTypePrerequisite, StereotypePrerequisite } from './prerequisite';
 import {Source} from './sources';
 import { Spaceframe } from './spaceframeEnum';

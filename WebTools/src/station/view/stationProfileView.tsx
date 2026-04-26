@@ -2,7 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import store from "../../state/store";
 import { CustomStationSpaceframeStep, StandardStationSpaceframeStep, Station } from "../../common/station";
-import { ErasHelper } from "../../helpers/eras";
+import Eras from "../../helpers/eras";
 import { CharacterTypeModel } from "../../common/characterType";
 import { System } from "../../helpers/systems";
 import { Department } from "../../helpers/department";
@@ -18,7 +18,7 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
     const { t } = useTranslation();
     let station = store.getState().station?.station as Station;
     let containerClass = showProfile ? "sheet-container sheet-container-visible pe-3" :  "sheet-container sheet-container-hidden pe-3";
-    const eraModel = station?.era != null ? ErasHelper.getEra(station?.era) : null;
+    const eraModel = station?.era != null ? Eras.instance.getEra(station?.era) : null;
 
     const talents = station?.talents.filter(t => !t.talentModel.specialRule).map((t, i) => {
         return (<div key={'talent-' + i}>{t.displayName}</div>)

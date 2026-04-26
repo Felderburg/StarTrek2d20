@@ -1,4 +1,4 @@
-import { Era } from "../helpers/eras";
+import { Era } from "../helpers/erasEnum";
 import { Source, SourcesHelper } from "../helpers/sources";
 import { ADD_SOURCE, REMOVE_SOURCE, SET_ALLOW_CROSS_SPECIES_TALENTS, SET_ALLOW_ESOTERIC_TALENTS, SET_ERA, SET_SOURCES } from "./contextActions";
 

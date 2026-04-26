@@ -1,6 +1,6 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 import { Department } from "../../helpers/department";
 import { TALENT_NAME_FLIGHT, TALENT_NAME_WEB } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";

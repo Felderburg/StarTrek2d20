@@ -1,5 +1,5 @@
 import { Department } from "../helpers/department";
-import { Era } from "../helpers/eras";
+import { Era } from "../helpers/erasEnum";
 import MissionProfiles, { MissionProfile } from "../helpers/missionProfiles";
 import PointAllocator from "../helpers/pointAllocator";
 import { StationFrame, StationFrameAppearance } from "../helpers/stationFrame";

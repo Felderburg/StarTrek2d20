@@ -6,7 +6,8 @@ import { ShipBuildType, ShipBuildTypeModel, SimpleStats } from "../../common/sta
 import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { Header } from "../../components/header";
-import { Era, eraDefaultYear } from "../../helpers/eras";
+import { eraDefaultYear } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 import { Source } from "../../helpers/sources";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { hasSource, isSecondEdition } from "../../state/contextFunctions";

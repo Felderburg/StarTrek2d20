@@ -10,7 +10,7 @@ import { Habitat, HabitatHelper } from "../model/habitat";
 import { useEffect, useState } from "react";
 import { CreatureGenerator } from "../model/creatureGenerator";
 import { connect } from "react-redux";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 import { marshaller } from "../../helpers/marshaller";
 import { CreatureType, CreatureTypeHelper, habitatsByCreatureType } from "../model/creatureType";
 import { LoadingButton } from "../../common/loadingButton";

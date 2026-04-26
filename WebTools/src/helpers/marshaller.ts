@@ -26,7 +26,8 @@ import { CaptureType, CaptureTypeModel, DeliverySystem, DeliverySystemModel, Ene
 import { Role, RolesHelper } from './roles';
 import { BorgImplantType, BorgImplants } from './borgImplant';
 import { Specialization, allSpecializations } from '../common/specializationEnum';
-import { Era, ErasHelper } from './eras';
+import { Era } from './erasEnum';
+import Eras from './eras';
 import { Asset, AssetAbility, AssetStat } from '../asset/asset';
 import { AssetType } from '../asset/assetType';
 import { AssetStatType, allAssetStatTypes } from '../asset/assetStat';
@@ -1159,7 +1160,7 @@ console.log(json);
             result.stereotype = Stereotype.SimpleStarship;
         }
         if (json.era) {
-            let era = ErasHelper.getEraByName(json.era);
+            let era = Eras.instance.getEraByName(json.era);
             if (era != null) {
                 result.era = era;
             }
@@ -1366,7 +1367,7 @@ console.log(json);
         }
 
         if (json.era) {
-            let era = ErasHelper.getEraByName(json.era);
+            let era = Eras.instance.getEraByName(json.era);
             if (era != null) {
                 result.era = era;
             }
@@ -1454,7 +1455,7 @@ console.log(json);
             result.type = type.type;
         }
         if (json.era) {
-            let era = ErasHelper.getEraByName(json.era);
+            let era = Eras.instance.getEraByName(json.era);
             if (era != null) {
                 result.era = era;
             }

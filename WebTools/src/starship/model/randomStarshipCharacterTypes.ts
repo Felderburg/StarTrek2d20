@@ -1,6 +1,6 @@
 import i18next from "i18next";
 import store from "../../state/store";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 import { hasSource } from "../../state/contextFunctions";
 import { Source } from "../../helpers/sources";
 import { RandomStarshipCharacterType } from "./randomStarshipCharacterType";

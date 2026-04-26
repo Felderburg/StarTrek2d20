@@ -3,7 +3,7 @@ import {Source} from './sources';
 import {Character} from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Career } from './careerEnum';
-import { Era } from './eras';
+import { Era } from './erasEnum';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
 import { AllOfCharacterPrerequisite, AnyEraCharacterPrerequisite, AnyOfCharacterPrerequisite, CadetPrerequisite, CareersCharacterPrerequisite, CharacterTypePrerequisite, EnlistedCharacterPrerequisite, ICharacterPrerequisite, KlingonCharacterPrerequisite, NotCharacterPrerequisite, SourceCharacterPrerequisite } from './characterPrerequisite';

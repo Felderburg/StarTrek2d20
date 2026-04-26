@@ -1,4 +1,4 @@
-import { Era } from "../helpers/eras";
+import { Era } from "../helpers/erasEnum";
 import { Weapon } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { IConstruct } from "./iconstruct";

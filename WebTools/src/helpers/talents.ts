@@ -1,10 +1,10 @@
-import {Character, Division } from '../common/character';
+import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import {AliasModel} from './aliases';
 import {Attribute} from './attributes';
 import { DepartmentsHelper, Department } from "./department";
 import {Source} from './sources';
-import {Era} from './eras';
+import {Era} from './erasEnum';
 import { Species } from './speciesEnum';
 import { Stereotype } from '../common/construct';
 import { Starship } from '../common/starship';

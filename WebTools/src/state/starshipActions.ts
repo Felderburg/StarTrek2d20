@@ -3,7 +3,7 @@ import { SelectedTalent } from "../common/selectedTalent";
 import { ShipBuildType, SimpleStats, Starship } from "../common/starship";
 import { StarshipAdvancementChoice } from "../common/starshipAdvancementChoice";
 import { Department } from "../helpers/department";
-import { Era } from "../helpers/eras";
+import { Era } from "../helpers/erasEnum";
 import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeAppearance } from "../helpers/spaceframeAppearance";

@@ -7,7 +7,8 @@ import {EnvironmentsHelper, Environment} from '../helpers/environments';
 import {TracksHelper} from '../helpers/tracks';
 import {CareersHelper} from '../helpers/careers';
 import {CareerEventsHelper} from '../helpers/careerEvents';
-import {Era, ErasHelper} from '../helpers/eras';
+import {Era} from '../helpers/erasEnum';
+import Eras from '../helpers/eras';
 import store from '../state/store';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -83,7 +84,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
         });
 
         let containerClass = this.props.showProfile ? "sheet-container sheet-container-visible pe-3" :  "sheet-container sheet-container-hidden pe-3";
-        const era = c.era == null ? null : ErasHelper.getEra(c.era);
+        const era = c.era == null ? null : Eras.instance.getEra(c.era);
 
         return (
             <div id="character-sheet">

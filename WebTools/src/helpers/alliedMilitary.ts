@@ -1,4 +1,4 @@
-import { Era } from "./eras";
+import { Era } from "./erasEnum";
 import { Species } from "./speciesEnum";
 import i18next from "i18next";
 import { makeKey } from "../common/translationKey";

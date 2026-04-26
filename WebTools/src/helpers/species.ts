@@ -2,7 +2,7 @@
 import { TalentModel, TalentsHelper } from './talents';
 import { AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
-import { Era } from '../helpers/eras';
+import { Era } from '../helpers/erasEnum';
 import { Source } from '../helpers/sources';
 import { Species } from './speciesEnum';
 import store from '../state/store';
@@ -2352,7 +2352,7 @@ class _Species {
         [Species.Kwejian]: new SpeciesModel(
             Species.Kwejian,
             "Kwejian",
-            [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32],
+            [Era.Discovery32],
             [Source.SpeciesSourcebook],
             [],
             [Attribute.Daring, Attribute.Insight, Attribute.Presence],

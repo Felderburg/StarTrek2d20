@@ -15,7 +15,7 @@ import store from "../../state/store";
 import { setCharacterSpecies } from "../../state/characterActions";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
 import { Character } from "../../common/character";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 
 interface ISoloSpeciesPageProperties {
     era: Era;

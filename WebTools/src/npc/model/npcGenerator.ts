@@ -19,7 +19,7 @@ import AllyHelper from "../../helpers/alliedMilitary";
 import { Specialization } from "../../common/specializationEnum";
 import { Track } from "../../helpers/trackEnum";
 import Governments, { Polity } from "../../helpers/governments";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 import AgeHelper from "../../helpers/age";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
 import { SelectedTalent } from "../../common/selectedTalent";

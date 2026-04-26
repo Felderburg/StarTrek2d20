@@ -1,5 +1,6 @@
 ﻿import React from 'react';
-import {Era, ErasHelper} from '../helpers/eras';
+import {Era} from '../helpers/erasEnum';
+import Eras from '../helpers/eras';
 import {navigateTo, Navigation} from '../common/navigator';
 import {Window} from '../common/window';
 import {PageIdentity} from './pageIdentity';
@@ -14,7 +15,7 @@ class EraSelectionPage extends React.Component<WithTranslation, {}> {
     render() {
         const { t } = this.props;
 
-        const eras = ErasHelper.getBasicEras().map((e, i) => {
+        const eras = Eras.instance.getBasicEras().map((e, i) => {
             return (
                 <tr key={i} onClick={() => { if (Window.isCompact()) this.eraSelected(e.id); }}>
                     <td className="selection-header">{e.localizedName}</td>

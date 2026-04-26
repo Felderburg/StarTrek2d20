@@ -3,7 +3,7 @@ import i18next from "i18next";
 import { Source } from "../../helpers/sources";
 import { hasAnySource } from "../../state/contextFunctions";
 import store from "../../state/store";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 
 export enum NpcCharacterType {
     Starfleet, KlingonDefenseForces, RomulanEmpire, Ferengi, Cardassian, MinorPolity, Civilian, RogueRuffianMercenary

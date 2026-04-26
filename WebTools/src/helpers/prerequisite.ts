@@ -1,14 +1,13 @@
 import { Character } from "../common/character";
 import { CharacterType } from "../common/characterType";
-import { Construct, Stereotype } from "../common/construct";
-import { IConstruct } from "../common/iconstruct";
+import { Stereotype } from "../common/construct";
 import { Specialization } from "../common/specializationEnum";
 import { Starship } from "../common/starship";
 import { Station } from "../common/station";
 import { Creature } from "../creature/model/creature";
 import store from "../state/store";
 import { Career } from "./careerEnum";
-import { Era } from "./eras";
+import { Era } from "./erasEnum";
 import { Role } from "./roles";
 import { Source } from "./sources";
 

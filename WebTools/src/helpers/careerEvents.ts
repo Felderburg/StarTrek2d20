@@ -2,12 +2,11 @@
 import {Attribute, AttributesHelper} from './attributes';
 import { CharacterType } from '../common/characterType';
 import i18next from 'i18next';
-import { hasSource } from '../state/contextFunctions';
 import { Source } from './sources';
 import { ICharacterPrerequisite, SourceCharacterPrerequisite } from './characterPrerequisite';
 import { Character } from '../common/character';
 import { AnyEraPrerequisite } from './prerequisite';
-import { Era } from './eras';
+import { Era } from './erasEnum';
 
 export class CareerEventModel {
     private name: string;

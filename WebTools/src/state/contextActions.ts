@@ -1,4 +1,4 @@
-import { Era } from "../helpers/eras";
+import { Era } from "../helpers/erasEnum";
 import { Source } from "../helpers/sources";
 
 export const ADD_SOURCE = 'ADD_SOURCE';
@@ -10,7 +10,7 @@ export const SET_ALLOW_ESOTERIC_TALENTS = 'SET_ALLOW_ESOTERIC_TALENTS';
 
 /**
  * The context describes the environment in which the characters/starships are
- * built. It encapsulates things like "what sources are available" and 
+ * built. It encapsulates things like "what sources are available" and
  * "what decisions has the GM made about optional items"
  */
 

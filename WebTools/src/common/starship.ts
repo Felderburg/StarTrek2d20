@@ -9,7 +9,7 @@ import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
 import { makeKey } from "./translationKey";
-import { Era } from "../helpers/eras";
+import { Era } from "../helpers/erasEnum";
 import { IWeaponDiceProvider } from "./iWeaponDiceProvider";
 import { ServiceRecord, ServiceRecordModel } from "../starship/model/serviceRecord";
 import { DepartmentsHelper } from "../helpers/department";

@@ -1,6 +1,6 @@
 ﻿import {Career} from './careerEnum';
 import {Role} from './roles';
-import {Era} from './eras';
+import {Era} from './erasEnum';
 import {Source} from './sources';
 import {Track} from './trackEnum';
 import {AlliedMilitaryDetails, Character } from '../common/character';

@@ -7,7 +7,7 @@ import { Window } from "../../common/window";
 import Button from "react-bootstrap/Button";
 import { useState } from "react";
 import store from "../../state/store";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 import { Starship } from "../../common/starship";
 import { SpaceframeHelper } from "../../helpers/spaceframes";
 import { Department } from "../../helpers/department";

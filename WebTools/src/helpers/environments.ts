@@ -6,7 +6,7 @@ import { CharacterType } from '../common/characterType';
 import { Species } from './speciesEnum';
 import i18next from 'i18next';
 import { makeKey } from '../common/translationKey';
-import { Era } from './eras';
+import { Era } from './erasEnum';
 import { hasSource } from '../state/contextFunctions';
 import { Source } from './sources';
 import { Construct, Stereotype } from '../common/construct';

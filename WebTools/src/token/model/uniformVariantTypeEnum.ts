@@ -13,5 +13,8 @@ export enum UniformVariantType {
     Variant10,
     Variant11,
     Variant12,
-
+    Variant13,
+    Variant14,
+    Variant15,
+    Variant16,
 }

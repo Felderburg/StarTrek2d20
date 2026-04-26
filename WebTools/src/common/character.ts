@@ -20,7 +20,7 @@ import { Role, RolesHelper } from '../helpers/roles';
 import { BorgImplantType, BorgImplants, Implant } from '../helpers/borgImplant';
 import { Specialization } from './specializationEnum';
 import { EquipmentHelper, EquipmentModel, EquipmentType } from '../helpers/equipment';
-import { Era } from '../helpers/eras';
+import { Era } from '../helpers/erasEnum';
 import { SpeciesAbility, SpeciesAbilityChoice, SpeciesAbilityList } from '../helpers/speciesAbility';
 import { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';

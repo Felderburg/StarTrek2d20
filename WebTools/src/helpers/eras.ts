@@ -1,13 +1,7 @@
 ﻿import i18n from "i18next";
 import { makeKey } from "../common/translationKey";
-
-export enum Era {
-    Enterprise,
-    OriginalSeries,
-    NextGeneration,
-    PicardProdigy,
-    Discovery32
-}
+import { isSecondEdition } from "../state/contextFunctions";
+import { Era } from "./erasEnum";
 
 export class EraModel {
     id: Era;
@@ -39,6 +33,16 @@ export const eraDefaultYear = (era: Era) => {
 }
 
 class Eras {
+
+    private static _instance: Eras;
+
+    static get instance() {
+        if (Eras._instance == null) {
+            Eras._instance = new Eras();
+        }
+        return Eras._instance;
+    }
+
     private _eras: { [id: number]: EraModel } = {
         [Era.Enterprise]: new EraModel(Era.Enterprise, "Enterprise (mid-22nd century)"),
         [Era.OriginalSeries]: new EraModel(Era.OriginalSeries, "Original Series (mid-23rd century)"),
@@ -48,7 +52,11 @@ class Eras {
     };
 
     getBasicEras() {
-        return [ this._eras[Era.Enterprise], this._eras[Era.OriginalSeries], this._eras[Era.NextGeneration]];
+        if (isSecondEdition()) {
+            return [ this._eras[Era.Enterprise], this._eras[Era.OriginalSeries], this._eras[Era.NextGeneration], this._eras[Era.Discovery32]];
+        } else {
+            return [ this._eras[Era.Enterprise], this._eras[Era.OriginalSeries], this._eras[Era.NextGeneration]];
+        }
     }
 
     getEras() {
@@ -74,4 +82,4 @@ class Eras {
     }
 }
 
-export const ErasHelper = new Eras();
+export default Eras;

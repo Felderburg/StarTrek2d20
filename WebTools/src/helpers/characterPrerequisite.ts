@@ -2,7 +2,7 @@ import { Character } from "../common/character";
 import { CharacterType } from "../common/characterType";
 import store from "../state/store";
 import { Career } from "./careerEnum";
-import { Era } from "./eras";
+import { Era } from "./erasEnum";
 import { Role } from "./roles";
 import { Source } from "./sources";
 

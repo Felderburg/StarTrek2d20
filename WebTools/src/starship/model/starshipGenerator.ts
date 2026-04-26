@@ -2,7 +2,7 @@ import { CharacterType } from "../../common/characterType";
 import { D20 } from "../../common/die";
 import { MissionProfileStep, ServiceRecordStep, Starship } from "../../common/starship";
 import RegistryNumber from "../../components/registryNumberGenerator";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 import { MissionPodHelper } from "../../helpers/missionPods";
 import MissionProfiles from "../../helpers/missionProfiles";
 import { SpaceframeHelper } from "../../helpers/spaceframes";

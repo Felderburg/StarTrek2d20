@@ -1,6 +1,6 @@
 import { D20 } from "../../common/die"
 import { TableRoll } from "../../common/tableRoll";
-import { Era } from "../../helpers/eras";
+import { Era } from "../../helpers/erasEnum";
 
 export const eraRandomTable: TableRoll<Era> = () => {
     let roll = D20.roll();

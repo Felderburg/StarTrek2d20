@@ -5,7 +5,7 @@ import { navigateTo } from '../../common/navigator';
 import { DropDownElement, DropDownSelect } from '../../components/dropDownInput';
 import { Header } from '../../components/header';
 import InstructionText from '../../components/instructionText';
-import { Era } from '../../helpers/eras';
+import { Era } from '../../helpers/erasEnum';
 import { marshaller } from '../../helpers/marshaller';
 import { SpeciesHelper } from '../../helpers/species';
 import { Species } from '../../helpers/speciesEnum';

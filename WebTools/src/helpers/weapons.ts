@@ -1,7 +1,7 @@
 import i18next from "i18next";
 import { CharacterType } from "../common/characterType";
 import { makeKey } from "../common/translationKey";
-import { Era } from "./eras";
+import { Era } from "./erasEnum";
 
 export enum Quality {
     Area, Calibration, Charge, Dampening, Deadly, Depleting, Devastating, Hidden, HighYield,

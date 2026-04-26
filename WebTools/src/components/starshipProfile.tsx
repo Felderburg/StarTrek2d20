@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Era, ErasHelper } from "../helpers/eras";
+import { Era } from "../helpers/erasEnum";
+import Eras from "../helpers/eras";
 import store from "../state/store";
 import { CharacterTypeModel } from "../common/characterType";
 import { useTranslation } from "react-i18next";
@@ -21,7 +22,7 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({showProfile, era
     const { t } = useTranslation();
     let starship = store.getState().starship?.starship as Starship;
     let containerClass = showProfile ? "sheet-container sheet-container-visible pe-3" :  "sheet-container sheet-container-hidden pe-3";
-    const eraModel = era != null ? ErasHelper.getEra(era) : null;
+    const eraModel = era != null ? Eras.instance.getEra(era) : null;
 
     const talents = starship?.talents.filter(t => !t.talentModel.specialRule).map((t, i) => {
         let name = starship?.stereotype === Stereotype.SoloStarship

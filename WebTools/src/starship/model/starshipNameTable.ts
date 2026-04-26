@@ -1,5 +1,5 @@
 import { CharacterType } from "../../common/characterType";
-import { Era } from "../../helpers/eras"
+import { Era } from "../../helpers/erasEnum"
 import { Spaceframe } from "../../helpers/spaceframeEnum";
 import { RandomStarshipCharacterType } from "./randomStarshipCharacterType"
 

@@ -5,7 +5,7 @@ import { DepartmentsHelper, Department } from "../helpers/department";
 import { PDFCheckBox, PDFDocument, PDFFont, PDFForm, PDFPage, PDFTextField, rgb, StandardFonts } from "@cantoo/pdf-lib";
 import fontkit from '@pdf-lib/fontkit'
 import { CharacterSerializer } from '../common/characterSerializer';
-import { Era } from '../helpers/eras';
+import { Era } from '../helpers/erasEnum';
 import { System } from '../helpers/systems';
 import { Weapon } from '../helpers/weapons';
 import { CareerEventsHelper } from '../helpers/careerEvents';

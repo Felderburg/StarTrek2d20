@@ -313,7 +313,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
                         {t('SupportingCharacter.focusInstruction')}
                     </p>
                     <div className="d-flex justify-content-between align-items-center flex-wrap mb-2">
-                        <InputFieldAndLabel labelName={t('Construct.other.focus1')} value={character.supportingStep.focuses[0] ?? ""}
+                        <InputFieldAndLabel labelName={t('Construct.other.focus1')} value={character.supportingStep?.focuses[0] ?? ""}
                             id="focus1" onChange={(value) => {
                                 store.dispatch(setCharacterFocus(value, StepContext.FinishingTouches, 0));
                             }} />
@@ -322,7 +322,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
                         </div>
                     </div>
                     <div className="d-flex justify-content-between align-items-center flex-wrap mb-2">
-                        <InputFieldAndLabel labelName={t('Construct.other.focus2')} value={character.supportingStep.focuses[1] ?? ""}
+                        <InputFieldAndLabel labelName={t('Construct.other.focus2')} value={character.supportingStep?.focuses[1] ?? ""}
                             id="focus2" onChange={(value) => {
                                 store.dispatch(setCharacterFocus(value, StepContext.FinishingTouches, 1));
                             }} />
@@ -331,7 +331,7 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
                         </div>
                     </div>
                     <div className="d-flex justify-content-between align-items-center flex-wrap mb-2">
-                        <InputFieldAndLabel labelName={t('Construct.other.focus3')} value={character.supportingStep.focuses[2] ?? ""}
+                        <InputFieldAndLabel labelName={t('Construct.other.focus3')} value={character.supportingStep?.focuses[2] ?? ""}
                             id="focus3" onChange={(value) => {
                                 store.dispatch(setCharacterFocus(value, StepContext.FinishingTouches, 2));
                             }} />

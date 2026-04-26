@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Era, EraModel, ErasHelper, eraDefaultYear } from '../../helpers/eras';
+import Eras, { EraModel, eraDefaultYear } from '../../helpers/eras';
 import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
 import { navigateTo, Navigation } from '../../common/navigator';
@@ -13,6 +13,7 @@ import { Stereotype } from '../../common/construct';
 import { createStarship, setStarshipServiceYear } from '../../state/starshipActions';
 import { Starship } from '../../common/starship';
 import { Header } from '../../components/header';
+import { Era } from '../../helpers/erasEnum';
 
 interface ISoloEraSelectionPage {
     stereotype: Stereotype;
@@ -52,10 +53,10 @@ const SoloEraSelectionPage: React.FC<ISoloEraSelectionPage> = ({stereotype}) => 
     }
 
     const eras = randomEra != null
-        ? toTableRow(ErasHelper.getEra(randomEra), 0)
+        ? toTableRow(Eras.instance.getEra(randomEra), 0)
         : (stereotype === Stereotype.SoloStarship
-            ? ErasHelper.getEras().map((e, i) => toTableRow(e, i))
-            : ErasHelper.getBasicEras().map((e, i) => toTableRow(e, i)));
+            ? Eras.instance.getEras().map((e, i) => toTableRow(e, i))
+            : Eras.instance.getBasicEras().map((e, i) => toTableRow(e, i)));
 
     return (
         <div className="page container ms-0">
