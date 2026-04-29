@@ -18,7 +18,8 @@ import { ModificationType } from "../modify/model/modificationType";
 import { EquipmentModel, EquipmentType } from "../helpers/equipment";
 import { PersonalWeaponType } from "../helpers/weapons";
 import { LogEntry } from "../common/logEntry";
-import { SpeciesAbilityChoice } from "../helpers/speciesAbility";
+import { SpeciesAbilityChoice, SpeciesAbilityList } from "../helpers/speciesAbility";
+import { hasSource } from "./contextFunctions";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -133,6 +134,10 @@ export function removeCharacterBorgImplantSpeciesOption(type: BorgImplantType) {
 export function setCharacterSpecies(species: Species, attributes: Attribute[] = [], mixedSpecies?: Species, originalSpecies?: Species, customSpeciesName?: string, decrementAttributes: Attribute[] = []) {
     let payload = { species: species, attributes: attributes, mixedSpecies: mixedSpecies,
         originalSpecies: originalSpecies, customSpeciesName: customSpeciesName, decrementAttributes: decrementAttributes };
+    let ability = SpeciesAbilityList.instance.getBySpecies(species)
+    if (ability && (ability.source == null || hasSource(ability.source))) {
+        payload["ability"] = ability;
+    }
     return {
        type: SET_CHARACTER_SPECIES,
        payload: payload

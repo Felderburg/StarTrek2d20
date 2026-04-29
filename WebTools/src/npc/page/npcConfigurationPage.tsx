@@ -100,7 +100,11 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({era}) 
 
     const getSpeciesDropDownList = () => {
         let result = [ new DropDownElement(null, t('NpcConfigurationPage.option.anyMajorSpecies'))];
-        getSpeciesList().forEach(s => result.push(new DropDownElement(s.id, s.localizedName)));
+        getSpeciesList()
+            .sort((s1, s2) => {
+                return (s1.localizedName.localeCompare(s2.localizedName));
+            })
+            .forEach(s => result.push(new DropDownElement(s.id, s.localizedName)));
         return result;
     }
 

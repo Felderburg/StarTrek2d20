@@ -303,6 +303,12 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             trait.push("Klingon Starship");
         } else if (this.type === CharacterType.Starfleet && this.buildType === ShipBuildType.Starship) {
             trait.push("Federation Starship");
+        } else if (this.type === CharacterType.Romulan && this.buildType === ShipBuildType.Starship) {
+            trait.push("Romulan Starship");
+        } else if (this.type === CharacterType.Ferengi && this.buildType === ShipBuildType.Starship) {
+            trait.push("Ferengi Starship");
+        } else if (this.type === CharacterType.Cardassian && this.buildType === ShipBuildType.Starship) {
+            trait.push("Cardassian Starship");
         } else if (this.buildType !== ShipBuildType.Starship) {
             trait.push("Small Craft");
         }

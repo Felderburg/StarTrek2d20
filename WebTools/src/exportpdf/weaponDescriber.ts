@@ -1,5 +1,5 @@
 import i18next from "i18next";
-import { InjuryType, Weapon, WeaponType, WeaponTypeModel } from "../helpers/weapons";
+import { InjuryType, PersonalWeaponType, Weapon, WeaponType, WeaponTypeModel } from "../helpers/weapons";
 import { makeKey } from "../common/translationKey";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { IWeaponDiceProvider } from "../common/iWeaponDiceProvider";
@@ -17,7 +17,7 @@ export class WeaponDescriber {
     describeFully(weapon: Weapon, diceProvider: IWeaponDiceProvider) {
         let type = WeaponTypeModel.TYPES[weapon.type].description;
         if (this.personal) {
-            type = weapon.type === WeaponType.MELEE ? i18next.t("Weapon.common.melee") : i18next.t("Weapon.common.ranged");
+            type = (weapon.type === WeaponType.MELEE && weapon.personalWeaponType !== PersonalWeaponType.KeratinDart) ? i18next.t("Weapon.common.melee") : i18next.t("Weapon.common.ranged");
         }
         let injuryType = "";
         if (this.version > 1 && weapon.injuryType != null) {

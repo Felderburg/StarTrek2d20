@@ -1167,6 +1167,12 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
         });
 
+        if (this.speciesStep?.species === Species.Kelpien && this.speciesStep?.ability != null
+            && this.speciesStep?.abilityOptions?.choice === SpeciesAbilityChoice.Choice2) {
+
+            result.push(PersonalWeapons.instance(this.version).keratinDart);
+        }
+
         return result;
     }
 

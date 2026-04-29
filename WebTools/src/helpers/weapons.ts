@@ -838,6 +838,7 @@ export enum PersonalWeaponType {
     JemHadarPlasmaRifle,
     EnergyWhip,
     Dagger,
+    KeratinDart,
 }
 
 export class PersonalWeapons {
@@ -943,6 +944,10 @@ export class PersonalWeapons {
         return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.dagger.name'), InjuryType.Deadly, 2, [], [new WeaponQuality(Quality.Hidden, 1)], WeaponType.MELEE, 1, PersonalWeaponType.Dagger);
     }
 
+    get keratinDart() {
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.keratinDart.name'), InjuryType.StunOrDeadly, 2, [], [], WeaponType.MELEE, 1, PersonalWeaponType.KeratinDart);
+    }
+
     getWeaponByType(type: PersonalWeaponType) {
         switch (type) {
         case PersonalWeaponType.PhasePistol:
@@ -981,6 +986,8 @@ export class PersonalWeapons {
             return this.dagger;
         case PersonalWeaponType.EnergyWhip:
             return this.energyWhip;
+        case PersonalWeaponType.KeratinDart:
+            return this.keratinDart;
         default:
             return undefined;
         }

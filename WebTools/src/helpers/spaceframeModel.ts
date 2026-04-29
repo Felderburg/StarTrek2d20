@@ -197,6 +197,6 @@ export class SpaceframeModel implements IServiceYearProvider {
             systems: number[] = [7, 7, 7, 7, 7, 7], departments: number[] = [0, 0, 0, 0, 0, 0], scale: number = 3) {
         return new SpaceframeModel(null, type, "", serviceYear,
             [ new SourcePrerequisite(Source.None) ], systems, departments, scale, [], [],
-            type === CharacterType.KlingonWarrior ? [ "Klingon Starship"] : [ "Federation Starship" ]);
+            []);
     }
 }

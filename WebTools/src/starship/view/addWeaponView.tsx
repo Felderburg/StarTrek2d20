@@ -45,6 +45,29 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             return WeaponTypeModel.allStarshipTypes().filter(t => t.type === WeaponType.MINE);
         }
     }
+
+    const getMineTypes = () => {
+        if (serviceYear && version === 1) {
+            return MineTypeModel.allTypesByYear(version, serviceYear);
+        } else if (mode !== AddWeaponMode.NoMines) {
+            return MineTypeModel.allTypes(version);
+        } else {
+            return [];
+        }
+    }
+
+    const getTorpedoLoadTypes = () => {
+        if (serviceYear && version === 1) {
+            return TorpedoLoadTypeModel.allTypesByYear(serviceYear, version);
+        } else {
+            return TorpedoLoadTypeModel.allTypes(version);
+        }
+    }
+
+    const getCaptureTypes = () => {
+        return CaptureTypeModel.allTypes();
+    }
+
     const chooseInitialLoadType = (weaponType: WeaponType) => {
         if (weaponType === WeaponType.ENERGY) {
             return getEnergyLoadTypes()[0];
@@ -86,28 +109,6 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
 
     const selectDeliverySystem = (system: DeliverySystemModel) => {
         setDeliverySystem(system);
-    }
-
-    const getTorpedoLoadTypes = () => {
-        if (serviceYear && version === 1) {
-            return TorpedoLoadTypeModel.allTypesByYear(serviceYear, version);
-        } else {
-            return TorpedoLoadTypeModel.allTypes(version);
-        }
-    }
-
-    const getMineTypes = () => {
-        if (serviceYear && version === 1) {
-            return MineTypeModel.allTypesByYear(version, serviceYear);
-        } else if (mode !== AddWeaponMode.NoMines) {
-            return MineTypeModel.allTypes(version);
-        } else {
-            return [];
-        }
-    }
-
-    const getCaptureTypes = () => {
-        return CaptureTypeModel.allTypes();
     }
 
     const addWeaponFunction = () => {

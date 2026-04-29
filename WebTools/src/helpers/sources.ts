@@ -34,6 +34,7 @@ export enum Source {
     ExplorationGuide,
     Century23,
     SpeciesSourcebook,
+    AlliesAndAdversaries,
 
     ContinuingMissions,
 
@@ -136,6 +137,7 @@ class Sources {
         [Source.ExplorationGuide]: new SourceViewModel(Source.ExplorationGuide, SourceType.Expansion2e, "Exploration Guide", 2),
         [Source.Century23]: new SourceViewModel(Source.Century23, SourceType.Expansion2e, "23rd Century Campaign", 2, true),
         [Source.SpeciesSourcebook]: new SourceViewModel(Source.SpeciesSourcebook, SourceType.Expansion2e, "Species Sourcebook", 2, true),
+        [Source.AlliesAndAdversaries]: new SourceViewModel(Source.AlliesAndAdversaries, SourceType.Expansion2e, "Allies and Adversaries", 2, false),
     };
 
     getSources() {
