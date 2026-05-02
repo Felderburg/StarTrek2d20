@@ -1993,9 +1993,9 @@
 
     "Species.phylosian.name": "Phylosiano",
 
-    "Species.risian.name": "Risiano",
-
     "Species.reman.name": "Remano",
+
+    "Species.risian.name": "Risiano",
 
     "Species.romulan.name": "Romulano",
     "Species.romulan.description": "Los romulanos son similares a los vulcanos pero no idénticos, puesto que vienen de antepasados comunes pero no adoptaron el estoicismo y la lógica de sus primos. En lugar de eso, los romulanos son un pueblo cruel e implacable, dado a la ira y muy visceral. Su cultura militarista parece destinar a sus peores miembros a fines útiles, aunque la paranoia y el interés personal motivan la política romulana tanto como la búsqueda del bien común. A veces se diría que lo único que mantiene unido al Imperio Estelar Romulano es el hecho de que desprecian a otras especies más que los unos a los otros. Los personajes romulanos tienen los siguientes modificadores:",
@@ -2046,11 +2046,11 @@
 
     "Species.xindiArboreal.name": "Xindi-Arbóreo",
 
+    "Species.xindiInsectoid.name": "Xindi-Insectoide",
+
     "Species.xindiPrimate.name": "Xindi-Primate",
 
     "Species.xindiReptilian.name": "Xindi-Reptiliano",
-
-    "Species.xindiInsectoid.name": "Xindi-Insectoide",
 
     "Species.yridian.name": "Yridiano",
 

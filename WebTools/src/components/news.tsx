@@ -14,6 +14,16 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260502</b>
+            <ul>
+                <li>
+                    At Modiphius/Paramount's request, I've removed key text that
+                    originated in the <cite>Species Sourcebook</cite>.
+                </li>
+                <li>
+                    Other minor improvements.
+                </li>
+            </ul>
             <b>v1.260429</b>
             <ul>
                 <li>

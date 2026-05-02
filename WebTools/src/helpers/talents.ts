@@ -1838,7 +1838,7 @@ export class Talents {
             new TalentModel(
                 "Meticulous Analysis",
                 "When you encounter unidentified phenomena through sensors, you may immediately make a Swift Task, without the need to spend Momentum or an increase in Difficulty. This Task may only be used to attempt to analyze the preliminary data you have received using Reason + Science and a relevant Focus.",
-                [new SpeciesPrerequisite(Species.Benzite, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.Benzite, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant, Source.SpeciesSourcebook)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Benzite)),
             new TalentModel(
@@ -1862,7 +1862,7 @@ export class Talents {
             new TalentModel(
                 "Deltan Pheromones",
                 "The character excretes a natural aphrodisiac pheromone. Whenever they attempt a Task using Presence to influence an attracted creature, they gain one bonus d20. However, they also increase their Complication Range  by 2, as the effect can be distracting or lead to unwanted consequences. This talent can be switched off, losing both the bonus and the drawback, by applying chemical suppressants.",
-                [new SpeciesPrerequisite(Species.Deltan, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant)],
+                [new SpeciesPrerequisite(Species.Deltan, false), new EraPrerequisite(Era.OriginalSeries), new SourcePrerequisite(Source.BetaQuadrant, Source.SpeciesSourcebook)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Deltan)),
             new TalentModel(
@@ -2955,13 +2955,13 @@ export class Talents {
             new TalentModel(
                 "Verbal Warfare",
                 "Engaging in debate is one of the highest forms of expression in Betelgeusian culture, and a Betelgeusian who deigns to engage someone in argument is considered to be giving them a great gift. During an opposed task in a social conflict, Betelgeusians gain 1 bonus Momentum so long as they succeed at their task.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new SpeciesPrerequisite(Species.Betelgeusian, true)],
+                [new SourcePrerequisite(Source.FederationKlingonWar, Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Betelgeusian, true)],
                 1,
                 "Betelgeusian"),
             new TalentModel(
                 "Strength of the Elders",
                 "Betelgeusians are descended from predators who used speed and ferocity to overwhelm their prey. In modern times a Betelgeusian can enter a mental state where they strike their opponent viciously in order to defeat them quickly. A Betelgeusian may use Fitness + Security rather than Daring + Security to make melee attacks. In addition, they inflict +1[D] Stress with any successful melee attack.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new SpeciesPrerequisite(Species.Betelgeusian, false)],
+                [new SourcePrerequisite(Source.FederationKlingonWar, Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Betelgeusian, false)],
                 1,
                 "Betelgeusian"),
             new TalentModel(
@@ -3868,6 +3868,18 @@ export class Talents {
                 [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.Jelna, true)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Jelna)),
+            new TalentModel(
+                "The Shroud",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.JemHadar, false)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.JemHadar)),
+            new TalentModel(
+                "Victory is Life!",
+                "",
+                [new SourcePrerequisite(Source.SpeciesSourcebook), new SpeciesPrerequisite(Species.JemHadar, false)],
+                1,
+                new TalentCategorization(TalentCategory.Species, Species.JemHadar)),
             new TalentModel(
                 "Out of Necessity",
                 "",

@@ -402,7 +402,7 @@ class _Species {
                 "Relaxation and recreation are weaknesses",
                 "I will do as ordered, but I will seek to do so honorably"
             ],
-            [],
+            [TalentsHelper.getTalent("The Shroud"), TalentsHelper.getTalent("Victory is Life!")],
             "",
             []),
         [Species.Vorta]: new SpeciesModel(

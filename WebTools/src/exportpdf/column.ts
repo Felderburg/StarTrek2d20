@@ -15,6 +15,10 @@ export class Column {
         this.nextColumnHelper = nextColumn;
     }
 
+    private round(n: number) {
+        return Math.round(n * 10) / 10;
+    }
+
     indent(indentAmount: number) {
         return new Column(this.start.x + indentAmount, this.start.y, this.height, this.width - indentAmount);
     }
@@ -25,8 +29,8 @@ export class Column {
 
     contains(point: XYLocation, page: PDFPage) {
         let untranslatedPoint = this.untranslateLocation(page, point);
-        return untranslatedPoint.x >= this.start.x && untranslatedPoint.x <= (this.start.x + this.width)
-            && untranslatedPoint.y >= this.start.y && untranslatedPoint.y <= (this.start.y + this.height);
+        return this.round(untranslatedPoint.x) >= this.start.x && this.round(untranslatedPoint.x) <= (this.start.x + this.width)
+            && this.round(untranslatedPoint.y) >= this.start.y && this.round(untranslatedPoint.y) <= (this.start.y + this.height);
     }
     translatedStart(page: PDFPage) {
         let x = this.start.x;

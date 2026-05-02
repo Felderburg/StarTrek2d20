@@ -17,6 +17,8 @@ export enum SpaceframeAppearance {
     Mogai,
     RedLadyType,
     Snakehead,
+    ScimitarType,
+    Khnial,
 
 
     // Discovery-era Federation ships
