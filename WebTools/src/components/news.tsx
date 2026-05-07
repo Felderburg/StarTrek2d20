@@ -14,6 +14,15 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260507</b>
+            <ul>
+                <li>
+                    Tweaks to the Talent list.
+                </li>
+                <li>
+                    More work on spaceframe appearances and other bug fixes.
+                </li>
+            </ul>
             <b>v1.260502</b>
             <ul>
                 <li>
@@ -158,15 +167,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
                 </li>
                 <li>
                     A few bug fixes.
-                </li>
-            </ul>
-            <b>v1.251019</b>
-            <ul>
-                <li>
-                    Additional work on log entries.
-                </li>
-                <li>
-                    Bug fix on the Warrior's Spirit talent.
                 </li>
             </ul>
 
