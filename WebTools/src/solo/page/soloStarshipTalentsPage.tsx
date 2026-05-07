@@ -8,7 +8,7 @@ import SoloStarshipBreadcrumbs from "../component/soloStarshipBreadcrumbs";
 import Button from "react-bootstrap/Button";
 import replaceDiceWithArrowhead from "../../common/arrowhead";
 import { CheckBox } from "../../components/checkBox";
-import { CenturyPrerequisite, TalentModel, TalentsHelper } from "../../helpers/talents";
+import { CenturyPrerequisite, TalentCategory, TalentModel, TalentsHelper } from "../../helpers/talents";
 import { Source } from "../../helpers/sources";
 import { ServiceYearPrerequisite } from "../../helpers/prerequisite";
 import store from "../../state/store";
@@ -85,8 +85,8 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({star
     }
 
     const talents = TalentsHelper.getTalents()
-        .filter(t => t.category === "Starship")
-        .filter(t => t.sources.indexOf(Source.CaptainsLog) >= 0)
+        .filter(t => t.category.category === TalentCategory.Starship)
+        .filter(t => t.sources.includes(Source.CaptainsLog))
         .filter(t => t.name !== "Cloaking Device" && t.name !== "Cloaked Mines")
         .filter(t => isTalentAllowed(t))
         .sort((t1, t2) => t1.localizedNameForSource(Source.CaptainsLog).localeCompare(t2.localizedNameForSource(Source.CaptainsLog)));

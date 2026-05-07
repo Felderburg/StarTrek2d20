@@ -1649,7 +1649,7 @@ class _Species {
             ],
             [TalentsHelper.getTalent("Guile and Cunning"), TalentsHelper.getTalent("Wary")],
             "Romulan names are personal and wrapped up in secrecy. Romulans tend to have a single name they use openly, a private name they use amongst family, and a true name used only with those they give their hearts to.",
-            [{ type: "Sample Names", suggestions: "Alidar, Ayel, Bidran, Bochra, Chulak, D’Tan, Donatra, Hiren, Kabath, Karina, Kimara, Koval, Laris, Letant, Lovok, M’ret, Mendak, Mirok, N’Raj, N’Vek, Neral, Pardek, Rakal, Rekar, Setal, Sirol, T’Rul, Taibak, Tal, Tal’aura, Taris, Telek, Tenqem, Tokath, Toreth, Valdore, Vrax, Zhaban"}], [], false),
+            [{ type: "Sample Names", suggestions: "Alidar, Ayel, Bidran, Bochra, Chulak, D’Tan, Donatra, Hiren, Kabath, Karina, Kimara, Koval, Laris, Letant, Lovok, M’ret, Mendak, Mirok, N’Raj, N’Vek, Neral, Pardek, Rakal, Rekar, Setal, Sirol, T’Rul, Taibak, Tal, Tal’aura, Taris, Telek, Tenqem, Tokath, Toreth, Valdore, Vrax, Zhaban"}]),
         [Species.Apergosian]: new SpeciesModel(
             Species.Apergosian,
             "Apergosian",

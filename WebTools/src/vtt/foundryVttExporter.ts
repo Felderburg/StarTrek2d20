@@ -5,7 +5,7 @@ import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Role, RoleModel, RolesHelper } from "../helpers/roles";
 import { DepartmentsHelper, Department } from "../helpers/department";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
-import { TALENT_NAME_UNTAPPED_POTENTIAL, TalentModel } from "../helpers/talents";
+import { TALENT_NAME_UNTAPPED_POTENTIAL, TalentCategorization, TalentCategory, TalentModel } from "../helpers/talents";
 import { DeliverySystem, EnergyLoadType, InjuryType, PersonalWeapons, Quality, TorpedoLoadType, Weapon, WeaponRange, WeaponType } from "../helpers/weapons";
 import { allSystems, System } from "../helpers/systems";
 import { Spaceframe } from "../helpers/spaceframeEnum";
@@ -990,43 +990,43 @@ export class FoundryVttExporter {
     determineTalentIcon(talent: TalentModel|SpeciesAbility) {
         if (talent instanceof TalentModel) {
 
-            if (talent.category === "Command") {
+            if (talent.category.category === TalentCategory.Department && talent.category.type[0] === Department.Command) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-command.svg";
-            } else if (talent.category === "Conn") {
+            } else if (talent.category.category === TalentCategory.Department && talent.category.type[0] === Department.Conn) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-conn.svg";
-            } else if (talent.category === "Security") {
+            } else if (talent.category.category === TalentCategory.Department && talent.category.type[0] === Department.Security) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-security.svg";
-            } else if (talent.category === "Science") {
+            } else if (talent.category.category === TalentCategory.Department && talent.category.type[0] === Department.Science) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-science.svg";
-            } else if (talent.category === "Medical") {
+            } else if (talent.category.category === TalentCategory.Department && talent.category.type[0] === Department.Medicine) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-medical.svg";
-            } else if (talent.category === "Andorian") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Andorian) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-andorian.svg";
-            } else if (talent.category === "Bajoran") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Bajoran) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-bajoran.svg";
-            } else if (talent.category === "Betazoid") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Betazoid) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-betazoid.svg";
-            } else if (talent.category === "Borg") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Borg) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-borg.svg";
-            } else if (talent.category === "Cardassian") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Cardassian) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-cardassian.svg";
-            } else if (talent.category === "Denobulan") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Denobulan) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-denobulan.svg";
-            } else if (talent.category === "Ferengi") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Ferengi) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-ferengi.svg";
-            } else if (talent.category === "Human") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Human) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-human.svg";
-            } else if (talent.category === "Klingon") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Klingon) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-klingon.svg";
-            } else if (talent.category === "Romulan") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Romulan) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-romulan.svg";
-            } else if (talent.category === "Tellarite") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Tellarite) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-tellarite.svg";
-            } else if (talent.category === "Trill") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Trill) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-trill.svg";
-            } else if (talent.category === "Vulcan") {
+            } else if (talent.category.category === TalentCategory.Species && talent.category.type[0] === Species.Vulcan) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-vulcan.svg";
-            } else if (talent.category === "Starship") {
+            } else if (talent.category.category === TalentCategory.Starship) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-ship.svg";
             } else if (talent.name === TALENT_NAME_UNTAPPED_POTENTIAL) {
                 return "systems/sta/assets/compendia/icons/talents-core/talent-career-young.svg";
@@ -1097,20 +1097,19 @@ export class FoundryVttExporter {
         if (this.determineTalentType(talent) === "general") {
             return "";
         } else if (this.determineTalentType(talent) === "discipline") {
-            return talent.categoryString.toLowerCase();
+            return DepartmentsHelper.instance.getDepartmentName((talent.category as TalentCategorization).type[0] as Department);
         } else {
             return talent.category;
         }
     }
 
     determineTalentType(talent: TalentModel) {
-        if (talent.category == null || talent.category === "Esoteric" || talent.category === "General"
-                || talent.category === "Career" || talent.category === "Starship" || talent.category === "Starbase" || talent.category === "") {
-            return "general";
-        } else if (DepartmentsHelper.instance.getDepartmentByName(talent.categoryString) !== undefined) {
+        if (talent.category instanceof TalentCategorization && talent.category.category === TalentCategory.Department) {
             return "discipline";
-        } else {
+        } else if (talent.category instanceof TalentCategorization && talent.category.category === TalentCategory.Species) {
             return "species";
+        } else {
+            return "general";
         }
     }
 

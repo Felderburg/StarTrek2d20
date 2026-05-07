@@ -43,7 +43,7 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.DDeridex, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Mogai, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.RedLadyType, CharacterType.Romulan, [Era.NextGeneration]),
-//                new SpaceframeAppearanceModel(SpaceframeAppearance.Snakehead, CharacterType.Romulan, [Era.NextGeneration]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Snakehead, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.ScimitarType, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Khnial, CharacterType.Romulan, [Era.NextGeneration]),
 

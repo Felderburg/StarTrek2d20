@@ -70,7 +70,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
             ? (
                 <div>
                     <Header level={3}><b>{mixed.localizedTrait}</b></Header>
-                    <p>{character.version > 1 ? mixed.localizedTraitDescription2e : mixed.localizedTraitDescription}</p>
+                    <Markdown>{character.version > 1 ? mixed.localizedTraitDescription2e : mixed.localizedTraitDescription}</Markdown>
                 </div>
             )
             : undefined;
@@ -78,7 +78,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
         return (<div>
                 <Header level={2}>{t('Construct.other.trait')}</Header>
                 <Header level={3} className="text-white my-3">{species.localizedTrait}</Header>
-                <p>{character.version > 1 ? species.localizedTraitDescription2e : species.localizedTraitDescription}</p>
+                <Markdown>{character.version > 1 ? species.localizedTraitDescription2e : species.localizedTraitDescription}</Markdown>
                 {mixedTrait}
             </div>);
     }

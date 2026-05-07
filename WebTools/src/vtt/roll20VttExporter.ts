@@ -8,7 +8,7 @@ import { EquipmentModel } from "../helpers/equipment";
 import { DepartmentsHelper, Department } from "../helpers/department";
 import { SpeciesHelper } from "../helpers/species";
 import { Species } from "../helpers/speciesEnum";
-import { TalentsHelper } from "../helpers/talents";
+import { TalentCategory, TalentModel, TalentsHelper } from "../helpers/talents";
 import { Weapon, WeaponRange, WeaponType, WeaponTypeModel } from "../helpers/weapons";
 import { System, allSystems } from "../helpers/systems";
 import { makeKey } from "../common/translationKey";
@@ -808,14 +808,21 @@ export class Roll20VttExporter {
         return result;
     }
 
+    determineCategoryType(talent: TalentModel) {
+        let category = TalentCategory[talent.category.category];
+        if (talent.category.category === TalentCategory.Species) {
+            category = Species[talent.category.type[0]];
+        } else if (talent.category.category === TalentCategory.Department) {
+            category = Department[talent.category.type[0]];
+        }
+        return category;
+    }
+
     convertStarshipTalent(starship: Starship, selectedTalent: SelectedTalent, id: IdHelper) {
         const rowId = id.nextId();
 
         let talent = selectedTalent.talentModel;
-        let category = talent.category;
-        if (category === "") {
-            category = "General";
-        }
+        let category = this.determineCategoryType(talent);
 
         let name = selectedTalent.displayNameWithMultiple;
 
@@ -865,10 +872,7 @@ export class Roll20VttExporter {
         const rowId = id.nextId();
 
         let talent = selectedTalent.talentModel;
-        let category = talent.category;
-        if (category === "") {
-            category = "General";
-        }
+        let category = this.determineCategoryType(talent);
 
         let name = selectedTalent.displayNameWithMultiple;
 

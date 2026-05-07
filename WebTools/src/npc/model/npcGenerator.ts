@@ -7,7 +7,7 @@ import { RanksHelper, Rank } from "../../helpers/ranks";
 import { Department, DepartmentsHelper } from "../../helpers/department";
 import { Species } from "../../helpers/speciesEnum";
 import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_WARRIORS_SPIRIT, TalentCategory, TalentsHelper } from "../../helpers/talents";
 import { NameGenerator } from "../nameGenerator";
 import { NpcType, NpcTypes } from "./npcType";
 import { SpecializationModel, Specializations, Specialty, Value } from "./specializations";
@@ -740,7 +740,7 @@ export class NpcGenerator {
             } else {
                 while (!done) {
                     let talentList = TalentsHelper.getAllAvailableTalentsForCharacter(character);
-                    let specializationSkill = Department[specialization.primaryDiscipline];
+                    let specializationSkill = specialization.primaryDiscipline;
                     let roll = D20.roll();
                     if (roll < 7) {
                         // go for species talents
@@ -758,7 +758,7 @@ export class NpcGenerator {
                                 }
                             });
                     } else if (roll < 14) {
-                        talentList = talentList.filter(t => t.category === specializationSkill);
+                        talentList = talentList.filter(t => t.category.category === TalentCategory.Department && t.category.type[0] === specializationSkill);
                     } else {
                         talentList = talentList.filter(t => {
                             if (t.name === TALENT_NAME_BOLD || t.name === TALENT_NAME_CAUTIOUS
@@ -767,7 +767,7 @@ export class NpcGenerator {
                                     && !character.hasTalent(TALENT_NAME_CAUTIOUS)
                                     && !character.hasTalent(TALENT_NAME_COLLABORATION);
                             } else {
-                                return t.category === "" || t.category === "General";
+                                return t.category.category === TalentCategory.General;
                             }
                         });
                     }

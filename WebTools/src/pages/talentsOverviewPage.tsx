@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { DropDownElement, DropDownSelect } from "../components/dropDownInput";
 import { Department, DepartmentsHelper } from "../helpers/department";
-import { TalentModel, TalentsHelper } from "../helpers/talents";
+import { TalentCategorization, TalentCategory, TalentModel, TalentsHelper } from "../helpers/talents";
 import { Source, SourcesHelper } from "../helpers/sources";
 import { SpeciesHelper } from "../helpers/species";
 import replaceDiceWithArrowhead from '../common/arrowhead';
@@ -12,21 +12,24 @@ import { toCamelCase } from '../common/camelCaseUtil';
 import { hasSource } from '../state/contextFunctions';
 import Markdown from 'react-markdown';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
+import { Button } from 'react-bootstrap';
+
+enum TalentVersion {
+    FirstEdition,
+    SecondEdition,
+    Both
+}
 
 class TalentViewModel {
     name: string;
     talent: TalentModel;
-    description: string;
-    category: string;
     prerequisites: string;
-    displayName: string;
+    localizedName: string;
 
-    constructor(name: string, displayName: string, description: string, category: string, prerequisites: string, talent: TalentModel) {
+    constructor(name: string, localizedName: string, prerequisites: string, talent: TalentModel) {
         this.name = name;
-        this.description = description;
-        this.category = category;
         this.prerequisites = prerequisites;
-        this.displayName = displayName;
+        this.localizedName = localizedName;
         this.talent = talent;
     }
 
@@ -41,9 +44,9 @@ class TalentViewModel {
     matches(term) {
         term = term.toLowerCase().replace("’", "'");
         return this.name.toLowerCase().replace("’", "'").indexOf(term) >= 0
-            || this.displayName.toLowerCase().replace("’", "'").indexOf(term) >= 0
-            || this.description.toLowerCase().replace("’", "'").indexOf(term) >= 0
-            || this.category.toLowerCase().indexOf(term) >= 0 || this.matchesAlias(term)
+            || this.localizedName.toLowerCase().replace("’", "'").indexOf(term) >= 0
+            || this.talent.localizedDescription.toLowerCase().replace("’", "'").indexOf(term) >= 0
+            || this.talent.localizedDescription2e.toLowerCase().replace("’", "'").indexOf(term) >= 0
             || this.talent.localizedCategoryString.toLowerCase().indexOf(term) >= 0 || this.matchesAlias(term);
     }
     matchesAlias(term) {
@@ -57,7 +60,30 @@ class TalentViewModel {
         }
         return result;
     }
-    static from(talent: TalentModel, category: string) {
+
+    get version() {
+        let first = false;
+        let second = false;
+        let sources = SourcesHelper.getSources();
+
+        this.talent.sources.forEach(s => {
+            let source = sources.filter(src => src.id === s)[0];
+            if (source.version === 1) {
+                first = true;
+            } else if (source.version === 2) {
+                second = true;
+            }
+        });
+        if (first && second) {
+            return TalentVersion.Both;
+        } else if (second) {
+            return TalentVersion.SecondEdition;
+        } else {
+            return TalentVersion.FirstEdition;
+        }
+    }
+
+    static from(talent: TalentModel) {
         let prerequisites = "";
         talent.prerequisites.forEach((p) => {
             let desc = p.describe();
@@ -70,39 +96,68 @@ class TalentViewModel {
             }
         });
 
-        return new TalentViewModel(talent.name, talent.localizedDisplayName,
-            hasSource(Source.Core2ndEdition) ? talent.localizedDescription2e : talent.localizedDescription,
-            category, prerequisites, talent);
+        return new TalentViewModel(talent.name, talent.localizedName,
+            prerequisites, talent);
     }
 }
 
 const TalentsOverviewPage = () => {
-    const ALL: string = "All";
-    let _categories: DropDownElement[] = [];
     let _allTalents: TalentViewModel[] = [];
-    let _talents: { [category: string]: TalentViewModel[] } = {};
-    const [category, setCategory] = useState(ALL);
+    const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
     const [search, setSearch] = useState('');
+    const [version, setVersion] = useState<TalentVersion>(TalentVersion.Both);
+    const [categoryType, setCategoryType] = useState<TalentCategory|undefined>(undefined);
+    const [department, setDepartment] = useState<Department|undefined>(undefined);
+    const [species, setSpecies] = useState<Species|undefined>(undefined);
 
     const navigate = useNavigate();
     const { t } = useTranslation();
 
     const selectTalents = () => {
-        if (search.length === 0) {
-            return category === ALL ? _allTalents : _talents[category];
-        } else {
-            let talents = [];
-            for (let i = 0; i < _allTalents.length; i++) {
-                const talent = _allTalents[i];
-                if (talent.matches(search)) {
-                    talents.push(talent);
-                }
+        let talents = [];
+        for (let i = 0; i < _allTalents.length; i++) {
+            const talent = _allTalents[i];
+            if (search.length && !talent.matches(search)) {
+                // don't include
+            } else if (version === TalentVersion.FirstEdition && talent.version === TalentVersion.SecondEdition) {
+                // don't include
+            } else if (version === TalentVersion.SecondEdition && talent.version === TalentVersion.FirstEdition) {
+                // don't include
+            } else if (categoryType != null && talent.talent.category?.category !== categoryType) {
+                // don't include
+            } else if (categoryType === TalentCategory.Department && department != null && !talent.talent.category?.includes(department)) {
+                // don't include
+            } else if (categoryType === TalentCategory.Species && species != null && !talent.talent.category?.includes(species)) {
+                // don't include
+            } else {
+                talents.push(talent);
             }
-
-            return talents;
         }
+
+        return talents;
     }
 
+    const getVersionElements = () => {
+        return [
+            new DropDownElement(TalentVersion.Both, "Both 1e and 2e"),
+            new DropDownElement(TalentVersion.FirstEdition, "1e"),
+            new DropDownElement(TalentVersion.SecondEdition, "2e"),
+        ]
+    }
+
+    const onVersionChanged = (v: TalentVersion) => {
+        setVersion(v);
+    }
+
+    const onCategoryTypeChanged = (c?: TalentCategory) => {
+        setCategoryType(c);
+        if (c !== TalentCategory.Department) {
+            setDepartment(undefined);
+        }
+        if (c !== TalentCategory.Species) {
+            setSpecies(undefined);
+        }
+    }
     const goToHome = (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         e.stopPropagation();
@@ -111,57 +166,51 @@ const TalentsOverviewPage = () => {
     }
 
     const searchChanged = (event) => {
-        let searchValue = event.target.value;
         setSearch(event.target.value);
-        if (searchValue.length > 0) {
-            setCategory(ALL);
-        }
     }
 
-    const setupCategories = () => {
-        var skillFilter = [6];
+    const getCategoryTypes = () => {
+        return [
+            new DropDownElement("", ""),
+            new DropDownElement(TalentCategory.General, t('TalentCategory.general')),
+            new DropDownElement(TalentCategory.Career, t('TalentCategory.career')),
+            new DropDownElement(TalentCategory.Enhancement, t('TalentCategory.enhancement')),
+            new DropDownElement(TalentCategory.Starship, t('TalentCategory.starship')),
+            new DropDownElement(TalentCategory.Starbase, t('TalentCategory.starbase')),
+            new DropDownElement(TalentCategory.Department, t('TalentCategory.department')),
+            new DropDownElement(TalentCategory.Species, t('TalentCategory.species')),
+        ]
+    }
 
-        _categories.push(new DropDownElement(ALL, ALL));
-        for (let sk in Object.keys(Department).filter(skill => !isNaN(Number(Department[skill])))) {
-            if (skillFilter.indexOf(Number(sk)) === -1) {
-                let s = DepartmentsHelper.instance.getDepartmentName(Number(sk));
-                _categories.push(new DropDownElement(s, t('Construct.discipline.' + toCamelCase(Department[sk]))));
-            }
-        }
+    const getDepartments = () => {
+        return [
+            new DropDownElement("", ""),
+            new DropDownElement(Department.Command, t('Construct.discipline.command')),
+            new DropDownElement(Department.Conn, t('Construct.discipline.conn')),
+            new DropDownElement(Department.Science, t('Construct.discipline.science')),
+            new DropDownElement(Department.Security, t('Construct.discipline.security')),
+            new DropDownElement(Department.Medicine, t('Construct.discipline.medicine')),
+            new DropDownElement(Department.Science, t('Construct.discipline.science')),
+        ]
+    }
 
-        _categories.push(new DropDownElement("General", t('TalentCategory.general')));
-        _categories.push(new DropDownElement("Career", t('TalentCategory.career')));
-        _categories.push(new DropDownElement("Enhancement", t('TalentCategory.enhancement')));
-        _categories.push(new DropDownElement("Starship", t('TalentCategory.starship')));
-        _categories.push(new DropDownElement("Starbase", t('TalentCategory.starbase')));
-        _categories.push(new DropDownElement("Esoteric", t('TalentCategory.esoteric')));
-
-        for (let sp in Object.keys(Species).filter(species => !isNaN(Number(Species[species])))) {
-            const species = SpeciesHelper.getSpeciesByType(Number(sp));
-            if (species && species.talents.length > 0) {
-                _categories.filter(d => d.value === species.name)
-                if (_categories.filter(d => d.value === species.name).length === 0) {
-                    _categories.push(new DropDownElement(species.name, species.localizedName));
-                }
-            }
-        }
-
-        _categories = _categories.sort((a, b) => {
-            if (a.name === ALL) {
-                return -1;
-            } else if (b.name === ALL) {
-                return 1;
-            } else {
-                return a.name.localeCompare(b.name);
+    const getSpecies = () => {
+        let speciesList: Species[] = [];
+        _allTalents.forEach(t => {
+            if (t.talent.category.category === TalentCategory.Species) {
+                t.talent.category.type.forEach(s => {
+                    if (!speciesList.includes(s as Species)) {
+                        speciesList.push(s as Species);
+                    }
+                })
             }
         });
+        let dropDowns = speciesList.map(s => new DropDownElement(s, SpeciesHelper.getSpeciesByType(s).localizedName));
 
-        for (var c = 0; c < _categories.length; c++) {
-            const category = _categories[c];
-            if (!_talents[category.value]) {
-                _talents[category.value] = [];
-            }
-        }
+        dropDowns.sort(DropDownElement.compare);
+
+        dropDowns.unshift(new DropDownElement("", ""));
+        return dropDowns;
     }
 
     const loadTalents = () => {
@@ -178,42 +227,17 @@ const TalentsOverviewPage = () => {
             });
 
             if (available) {
-                const model = TalentViewModel.from(talent, talent.categoryString);
+                const model = TalentViewModel.from(talent);
                 _allTalents.push(model);
             }
         }
         _allTalents.sort((left, right): number => {
-            if (left.name < right.name) return -1;
-            if (left.name > right.name) return 1;
+            if (left.localizedName < right.localizedName) return -1;
+            if (left.localizedName > right.localizedName) return 1;
             return 0;
         });
-        for (let c = 0; c < _categories.length; c++) {
-            const category = _categories[c];
-            if (category.value !== ALL) {
-                const talents = TalentsHelper.getTalents();
-                for (let i = 0; i < talents.length; i++) {
-                    const talent = talents[i];
-                    if (talent.categoryString === category.value) {
-                        _talents[category.value].push(TalentViewModel.from(talent, category.value as string));
-                    } else if (talent.categoryString.indexOf("/") >= 0) {
-                        let c = talent.categoryString.split('/');
-                        if (c.indexOf(category.value as string) >= 0) {
-                            _talents[category.value].push(TalentViewModel.from(talent, category.value as string));
-                        }
-                    }
-                }
-            }
-
-            _talents[category.value].sort((a, b) => a.name.localeCompare(b.name));
-        }
     }
 
-    const onCategoryChanged = (value: string) => {
-        setCategory(value);
-        setSearch('');
-    }
-
-    setupCategories();
     loadTalents();
 
 
@@ -231,21 +255,25 @@ const TalentsOverviewPage = () => {
             prerequsites = (<div style={{ fontWeight: "bold" }}>{t.prerequisites}</div>);
         }
 
-        let lines = (t.description.includes(CHALLENGE_DICE_NOTATION))
-            ? t.description.split('\n').map((l, i) => {
+        let description = (hasSource(Source.Core2ndEdition) && version !== TalentVersion.FirstEdition)
+            ? t.talent.localizedDescription2e
+            : t.talent.localizedDescription;
+
+        let lines = (description.includes(CHALLENGE_DICE_NOTATION))
+            ? description.split('\n').map((l, i) => {
                 return (<div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>{replaceDiceWithArrowhead(l)}</div>);
             })
-            :  (<Markdown className="markdown-sm">{t.description}</Markdown>)
+            :  (<Markdown className="markdown-sm">{description}</Markdown>)
 
         return (
             <tr key={i}>
                 <td className="selection-header">
-                    {t.displayName}
+                    {t.localizedName}
                     <div className="selection-header-small">
                         ({t.source})
                     </div>
                 </td>
-                <td className="d=none d-md-table-cell">{t.talent.localizedCategoryString}</td>
+                <td className="d-none d-md-table-cell">{t.talent.localizedCategoryString}</td>
                 <td>{lines} {prerequsites} {info}</td>
             </tr>
         );
@@ -262,20 +290,62 @@ const TalentsOverviewPage = () => {
             <main>
                 <div className="row">
                     <div className="col-md-6 mt-3">
-                        <label className="visually-hidden" htmlFor='category'>Category</label>
-                        <DropDownSelect id="category" items={_categories} defaultValue={category} onChange={(value) => { onCategoryChanged(value as string); }} />
-                    </div>
-                    <div className="col-md-6 mt-3 text-end">
                         <label className="visually-hidden" htmlFor='search'>Search</label>
                         <input type="search" id="search" onChange={(e) => { searchChanged(e); }} value={search} placeholder="Search..." autoComplete="off"/>
                     </div>
+                    {showAdvanced
+                        ? undefined
+                        : (<div className='col-md-6 mt-3 text-end'>
+                            <Button variant="link" className='text-secondary px-0' onClick={() => setShowAdvanced(!showAdvanced)}>Advanced</Button>
+                        </div>)}
                 </div>
+                {showAdvanced
+                ? (<div className="row mb-4">
+                    <div className="col-12 col-md-2 mt-3">
+                        <label className="visually-hidden" htmlFor='category'>Version</label>
+                        <DropDownSelect id="talentVersion" items={getVersionElements()}
+                            className="w-auto"
+                            defaultValue={version}
+                            onChange={(value) => { onVersionChanged(value as TalentVersion); }} />
+                    </div>
+                    <div className="col-12 col-md-2 mt-3">
+                        <label className="visually-hidden" htmlFor='category'>Category</label>
+                        <DropDownSelect id="categoryType" items={getCategoryTypes()}
+                            className="w-auto"
+                            defaultValue={categoryType}
+                            onChange={(value) => {
+                                onCategoryTypeChanged(value === "" ? undefined : value as TalentCategory); }} />
+                    </div>
+                    {categoryType === TalentCategory.Department
+                        ? (<div className="col-12 col-md-2 mt-3">
+                            <label className="visually-hidden" htmlFor='department'>{t('Construct.other.departmnet')}</label>
+                            <DropDownSelect id="department" items={getDepartments()}
+                                className="w-auto"
+                                defaultValue={department}
+                                onChange={(value) => {
+                                    setDepartment(value === "" ? undefined : value as Department); }} />
+                        </div>)
+                        : undefined}
+                    {categoryType === TalentCategory.Species
+                        ? (<div className="col-12 col-md-2 mt-3">
+                            <label className="visually-hidden" htmlFor='department'>Species</label>
+                            <DropDownSelect id="species" items={getSpecies()}
+                                className="w-auto"
+                                defaultValue={species}
+                                onChange={(value) => {
+                                    setSpecies(value === "" ? undefined : value as Species); }} />
+                        </div>)
+                        : undefined}
+                </div>)
+                : undefined}
+
+
                 <div>
                     <table className="selection-list">
                         <thead className="visually-hidden">
                             <tr>
                                 <th>{t('Construct.other.talent')}</th>
-                                <th>Category</th>
+                                <th className="d-none d-md-table-cell">Category</th>
                                 <th>Description</th>
                             </tr>
                         </thead>

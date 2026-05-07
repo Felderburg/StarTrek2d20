@@ -87,7 +87,7 @@ export const talentNameCompare = (t1: TalentModel, t2: TalentModel) => {
     }
 }
 
-enum TalentCategory {
+export enum TalentCategory {
     General,
     Career,
     Enhancement,
@@ -95,47 +95,51 @@ enum TalentCategory {
     Starbase,
     Esoteric,
     Species,
-    Department
+    Department,
+    SpecialRule
 }
 
 export class TalentCategorization {
     readonly category: TalentCategory;
-    readonly type?: Species|Career|Department;
+    readonly type?: (Species[])|(Career[])|(Department[]);
 
-    constructor(category: TalentCategory, type?: Species|Career|Department) {
+    constructor(category: TalentCategory, ...type: (Species[])|(Career[])|(Department[])) {
         this.category = category;
         this.type = type;
     }
 
-    get key() {
-        let result = TalentCategory[this.category];
-        if (this.category === TalentCategory.Species && this.type != null) {
-            result += ":" + Species[this.type];
-        } else if (this.category === TalentCategory.Department && this.type != null) {
-            result += ":" + Department[this.type];
-        } else if (this.category === TalentCategory.Career && this.type != null) {
-            result += ":" + Career[this.type];
-        }
-        return result;
+    includes(item: Species|Department|Career) {
+        return (this.type as any[]).includes(item);
     }
 
     get localizedDescription() {
         let result = i18next.t(makeKey("TalentCategory.", TalentCategory[this.category]));
 
         if (this.category === TalentCategory.Species && this.type != null) {
-            const species = SpeciesHelper.getSpeciesByType(this.type as Species);
-            if (species != null) {
-                result += " (" + species.localizedName + ")";
+            if (this.type.length) {
+                result += " (" + this.type
+                    .map(t => SpeciesHelper.getSpeciesByType(t as Species))
+                    .filter(s => s != null)
+                    .map(t => t.localizedName)
+                    .join("/")
+                + ")";
             }
         } else if (this.category === TalentCategory.Career && this.type != null) {
-            const career = CareersHelper.instance.getCareerByType(this.type as Career);
-            if (career != null) {
-                result += " (" + career.localizedName + ")";
+            if (this.type.length) {
+                result += " (" + this.type
+                    .map(t => CareersHelper.instance.getCareerByType(t as Career))
+                    .filter(c => c != null)
+                    .map(t => t.localizedName)
+                    .join("/")
+                + ")";
             }
         } else if (this.category === TalentCategory.Department && this.type != null) {
-            const department = DepartmentsHelper.instance.getDepartmentName(this.type as Department);
-            if (department != null) {
-                result += " (" + i18next.t(makeKey('Construct.discipline.', department)) + ")";
+            if (this.type.length) {
+                result += " (" + this.type
+                    .map(t => DepartmentsHelper.instance.getDepartmentName(t as Department))
+                    .filter(c => c != null)
+                    .join("/")
+                + ")";
             }
         }
 
@@ -214,25 +218,7 @@ class VersionConstrainedPrerequisite implements IConstructPrerequisite {
     }
 }
 
-class DisciplinePrerequisite implements IConstructPrerequisite {
-    discipline: Department;
-    private value: number;
-
-    constructor(discipline: Department, minValue: number) {
-        this.discipline = discipline;
-        this.value = minValue;
-    }
-
-    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
-        return c.departments[this.discipline] >= this.value;
-    }
-
-    describe(): string {
-        return "Requires " + Department[this.discipline] + " " + this.value + "+";
-    }
-};
-
-class HasUntrainedDisciplinePrerequisite implements IConstructPrerequisite {
+class HasUntrainedDepartmentPrerequisite implements IConstructPrerequisite {
 
     isPrerequisiteFulfilled(c: Character|Starship|Creature|Station): boolean {
         return c.departments.filter(d => d === 1).length > 0;
@@ -242,7 +228,7 @@ class HasUntrainedDisciplinePrerequisite implements IConstructPrerequisite {
     }
 };
 
-class VariableDisciplinePrerequisite implements IConstructPrerequisite {
+class VariableDepartmentPrerequisite implements IConstructPrerequisite {
     private discipline1: Department;
     private discipline2: Department;
     private value: number;
@@ -687,8 +673,8 @@ class DepartmentPrerequisite implements IConstructPrerequisite {
         this.value = value;
     }
 
-    isPrerequisiteFulfilled(starship: Character|Starship|Creature|Station) {
-        return starship != null && starship.departments[this.department] >= this.value;
+    isPrerequisiteFulfilled(construct: Character|Starship|Creature|Station) {
+        return construct != null && construct.departments[this.department] >= this.value;
     }
     describe(): string {
         return "Requires " + Department[this.department] + " " + this.value + "+";
@@ -728,26 +714,29 @@ export class TalentModel implements ITalent {
     private description: string;
     prerequisites: IConstructPrerequisite[];
     maxRank: number;
-    category: string|TalentCategorization;
+    category: TalentCategorization;
     aliases: AliasModel[];
     specialRule: boolean;
 
-    constructor(name: string, desc: string, prerequisites: IConstructPrerequisite[], maxRank: number = 1, category?: string|TalentCategorization, specialRule: boolean = false, ...aliases: AliasModel[]) {
+    constructor(name: string, desc: string, prerequisites: IConstructPrerequisite[],
+        maxRank: number = 1, category: string|TalentCategorization = new TalentCategorization(TalentCategory.General),
+        specialRule: boolean = false, ...aliases: AliasModel[]) {
         this.name = name;
         this.description = desc;
         this.prerequisites = prerequisites;
         this.maxRank = maxRank;
-        if (category == null) {
-            let prereq = prerequisites.filter(p => (p instanceof DisciplinePrerequisite));
-            if (prereq.length > 0) {
-                let p = prereq[0] as DisciplinePrerequisite;
-                this.category = Department[p.discipline];
-            } else {
-                this.category = "";
-            }
-        } else {
+        if (category instanceof TalentCategorization) {
             this.category = category;
+        } else {
+            let species = Object.keys(Species).filter((item) =>
+                    !isNaN(Number(item)) && Species[item] === category);
+            if (species?.length == 0) {
+                console.log("Talent category " + category);
+            } else {
+                this.category = new TalentCategorization(TalentCategory.Species, parseInt(species[0]));
+            }
         }
+
         this.specialRule = specialRule;
         this.aliases = aliases || AliasModel[0];
     }
@@ -780,7 +769,7 @@ export class TalentModel implements ITalent {
             return this.name;
         }
     }
-
+/*
     get categoryString(): string {
         if (this.category instanceof TalentCategorization) {
             if (this.category.category === TalentCategory.Species) {
@@ -792,7 +781,7 @@ export class TalentModel implements ITalent {
             return this.category;
         }
     }
-
+*/
     get localizedDisplayName() {
         let key = "Talent." + this.rootKey;
         let result = i18next.t(key);
@@ -976,37 +965,7 @@ export class TalentModel implements ITalent {
     }
 
     get localizedCategoryString(): string {
-        let categoryEnum: TalentCategory = undefined;
-        if (this.category instanceof TalentCategorization) {
-            categoryEnum = this.category.category;
-        } else {
-            for (let i = 0; i < TalentCategory.Esoteric; i++) {
-                if (this.categoryString === TalentCategory[i]) {
-                    categoryEnum = i;
-                }
-            }
-        }
-        if (this.category instanceof TalentCategorization) {
-            return this.category.localizedDescription;
-        } else if (categoryEnum != null && categoryEnum !== TalentCategory.Species && categoryEnum !== TalentCategory.Department) {
-            return i18next.t(makeKey("TalentCategory.", TalentCategory[categoryEnum]));
-        } else {
-            let match = DepartmentsHelper.instance.getDepartments().filter(s => Department[s] === this.category);
-            if (match.length) {
-                let key = "Construct.discipline." + toCamelCase(Department[match[0]]);
-                return i18next.t(key);
-            } else {
-                // assume that it's a species
-                let key = "Species." + toCamelCase(this.categoryString) + ".name";
-                if (this.categoryString === "Rigellian Jelna") {
-                    key = "Species.jelna.name";
-                } else if (this.categoryString === "Rigellian Chelon") {
-                    key = "Species.chelon.name";
-                }
-                let result = i18next.t(key);
-                return result === key ? this.categoryString : (i18next.t("TalentCategory.species") + " (" + result + ")");
-            }
-        }
+        return this.category.localizedDescription;
     }
 }
 
@@ -1015,225 +974,233 @@ export class Talents {
             new TalentModel(
                 "Advisor",
                 "Whenever you assist another character using your Command Discipline, the character being assisted may re-roll one d20.",
-                [new DisciplinePrerequisite(Department.Command, 2), new MainCharacterPrerequisite(), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 2), new MainCharacterPrerequisite(), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Defuse the Tension",
                 "Whenever you attempt a Task to persuade someone not to resort to violence, you may add a bonus d20 to your dice pool.",
-                [new DisciplinePrerequisite(Department.Command, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Follow My Lead",
                 "Once per scene, when you succeed at a Task during combat or another perilous situation, you may spend one Determination. If you do, choose a single ally. The next Task that ally attempts counts as having assistance from you, using your Presence + Command.",
-                [new DisciplinePrerequisite(Department.Command, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Supervisor",
                 "The ship’s Crew Support increases by one. This increase is cumulative if multiple Main Characters in the group select it.",
                 [new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1, "Command", false, new AliasModel("War Leader", Source.KlingonCore)),
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Command),
+                false, new AliasModel("War Leader", Source.KlingonCore)),
             new TalentModel(
                 "Bargain",
                 "When negotiating an offer with someone during Social Conflict, you may re-roll a d20 on your next Persuade Task to convince that person. If the Social Conflict involves an Extended Task, you gain the Progression 1 benefit when you roll your Challenge Dice.",
-                [new DisciplinePrerequisite(Department.Command, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Call Out Targets",
                 "Upon assisting a character making an attack (using either the Assist Task, the Direct Task, or some other means), the helped character generates one point of bonus Momentum if they succeed; bonus Momentum cannot be saved to the group pool.",
-                [new DisciplinePrerequisite(Department.Command, 3), new DisciplinePrerequisite(Department.Security, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 3), new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Call to Action",
                 "In a Conflict, a character may use the Prepare Minor Action to grant one ally a Minor Action of their choice (performed immediately) if they can communicate with that ally.",
-                [new DisciplinePrerequisite(Department.Command, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Cold Reading",
                 "Succeeding at a Task during Social Conflict generates one bonus Momentum which must be used for the Obtain Information Momentum Spend to gain knowledge about an individual on the other side of the interaction. If the Social Conflict involves an Extended Task, the character gains the Scrutinize 1 benefit when rolling Challenge Dice.",
-                [new DisciplinePrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Coordinated Efforts",
                 "During an Extended Task, an assisted character may gain either the Scrutinize 2 or Progression 1 benefits when they roll their Challenge Dice.",
-                [new DisciplinePrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Decisive Leadership",
                 "In a Conflict, whenever the character performs the Assist Task and would then pay two Momentum to keep the initiative, the cost to keep the initiative is reduced to 0.",
-                [new DisciplinePrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Fleet Commander",
                 "Commanding a vessel during a fleet action reduces the Difficulty of a Task to grant a bonus to your vessel or group by 1, to a minimum of 1. Aboard a vessel during a fleet action, the character may treat the vessel as having a Command Department of 4+, regardless of the actual value.",
-                [new DisciplinePrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision)],
-                1),
+                [new DepartmentPrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Multi-Discipline",
                 "The character may select one additional Role, but not Commanding Officer or Admiral.",
-                [new DisciplinePrerequisite(Department.Command, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Plan of Action",
                 "When an ally succeeds at a Task that was made possible or had reduced Difficulty because of an Advantage created by the character, if that Advantage represented a plan or strategy, they generate two bonus Momentum. Bonus Momentum cannot be saved into the group pool.",
-                [new DisciplinePrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Time Management",
                 "During any Challenge, Extended Task or other activity under time pressure, the character may attempt a Control + Command Task with a Difficulty 3. If this Task succeeds, reduce the total number of intervals the Players have taken by 1; for every 2 Momentum spent (Repeatable) reduce by a further 1. The character has managed to minimize lost time. If the Task fails, add one additional interval as the character’s efforts actually waste time.",
-                [new DisciplinePrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision)],
-                1),
+                [new DepartmentPrerequisite(Department.Command, 4), new SourcePrerequisite(Source.CommandDivision)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Advanced Team Dynamics",
                 "The people working for you are the best, and you expect the best from them. The first time each adventure that you introduce a supporting character, that supporting character may take one additional option to improve the supporting character (from the list on page 134 of the core rulebook, or page 126 of The Klingon Empire core rulebook).",
-                [new DisciplinePrerequisite(Department.Command, 4), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new MainCharacterPrerequisite(), new CommandingAndExecutiveOfficerPrerequisite()],
+                [new DepartmentPrerequisite(Department.Command, 4), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new MainCharacterPrerequisite(), new CommandingAndExecutiveOfficerPrerequisite()],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Bolster",
                 "You are skilled in keeping your allies up and active even under the most difficult circumstances. When you succeed at any task using your Command discipline during an action scene, you may spend Momentum to recover Stress suffered by your allies: each Momentum spent (Repeatable) recovers Stress equal to your Command rating from a single ally. This cannot help an injured character.",
-                [new DisciplinePrerequisite(Department.Command, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Precautions",
                 "You prepare for the worst, just in case. Once per scene, when an ally suffers an injury or the ship suffers a breach, you may prevent that injury or breach; describe what precaution you took to allow that ally to avoid being injured or to prevent that breach occurring.",
-                [new DisciplinePrerequisite(Department.Command, 4), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Command, 4), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Teacher",
                 "Beyond only being a leader, you concern yourself with the development and growth of your crew, taking pride in their accomplishments. When you create an advantage for an ally that represents your guidance or advice, that ally may re-roll one d20 on a single task they attempt which benefits from that advantage.",
-                [new DisciplinePrerequisite(Department.Command, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
+                [new DepartmentPrerequisite(Department.Command, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Fly-By",
                 "Whenever you use the Swift Task Momentum Spend, you do not increase the Difficulty of the second Task if one of the Tasks you attempt is to pilot a vessel or vehicle.",
-                [new DisciplinePrerequisite(Department.Conn, 2), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 2), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Precise Evasion",
                 "Whenever you succeed at the Evasive Action Task, you may spend two Momentum. If you do, the ship does not suffer the increased Difficulty for attacks normally caused by Evasive Action.",
-                [new DisciplinePrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1),
+                [new DepartmentPrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Push the Limits",
                 "When you attempt a Conn Task that has increased in Difficulty due to environmental conditions or damage to the engines, reduce the Difficulty by 1, to a minimum of 1.",
-                [new DisciplinePrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Starship Expert",
                 "Whenever you succeed at a Conn Task to identify a type of starship, or to try and understand an unknown form of Starship, you gain one bonus Momentum, which may only be used on the Obtain Information Momentum Spend, or to pay part of the cost of the Create Advantage Momentum Spend (where the Advantage must represent some form of known or observed weakness in the ship being studied).",
-                [new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Attack Run",
                 "A success in the Attack Pattern Task lets a character spend two Momentum. Enemy Attacks against the character’s ship do not reduce in Difficulty due to the Attack Pattern Task.",
-                [new DisciplinePrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Covering Advance",
                 "A success at any Helm Task means two Momentum can be spent to block a single enemy vessel within Medium range, plus one additional enemy vessel for each additional Momentum spent beyond that (Repeatable). When a blocked vessel makes its next attack, before the beginning of the character’s next Turn, the Difficulty of any Attack that does not target your vessel has a base Difficulty equal to the character ship’s Scale, instead of normal Difficulty.",
-                [new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Efficient Evasion",
                 "Attempting an Evasive Action Task for the second or subsequent time in a row during a scene reduces the Power Requirement for Evasive Action to 0.",
-                [new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Flight Controller",
                 "",
                 [new SourcePrerequisite(Source.CommandDivision), new RolePrerequisite(Role.FlightController)],
-                1),
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Glancing Impact",
                 "Succeeding at the Evasive Action Task increases the Resistance of the ship being piloted by +2. This bonus lasts until the start of the character’s next Turn.",
-                [new DisciplinePrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Inertia",
                 "When the character succeeds at a Maneuver Task, 1 Momentum may be spent to move one additional zone so long as the previous Turn included an Impulse or Warp Task.",
-                [new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Multi-Tasking",
                 "Attempting the Override Task while at a bridge station including Helm and/or Navigator positions utilizes the character’s Conn Discipline instead of the Discipline normally required for the Task.",
-                [new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Pathfinder",
                 "When a character attempts a Task to plot a course through unknown territory, reduce the Difficulty of the Task by 1, 2, or 3, to a minimum of 1. Each point that reduces Difficulty increases the Complication Range of the Task.",
-                [new DisciplinePrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Precision Maneuvering",
                 "Reduces the Difficulty of the Task by 1, to a minimum of 0, when attempting a Task that requires precise maneuvering, or where there is a collision risk.",
-                [new DisciplinePrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Spacewalk",
                 "Whenever the Difficulty of a Task is increased thanks to low- or zero-gravity, ignore the increase. A Task that is normally possible but isn’t because of low- or zero-gravity, may be attempted at +1 Difficulty to the Task.",
-                [new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Strafing Run",
                 "When a character succeeds at the Attack Pattern Task and spends Momentum to keep the initiative, the cost to keep the initiative is 0.",
-                [new DisciplinePrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.CommandDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Thread the Needle",
                 "You’re used to operating small, nimble ships, where their agility and small profile make them a much harder target, if you know how to fly them. When you perform an Impulse, Warp, or Evasive Action task when piloting a starship, enemy attacks from ships with a greater Scale than yours increase in Difficulty by 1. If attacked by a ship with a Scale that is double or more the Scale of your ship, then you increase the Difficulty by 2 instead.",
-                [new DisciplinePrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
+                [new DepartmentPrerequisite(Department.Conn, 4), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Zero-G Combat",
                 "You have received special training to fight effectively in micro-gravity and zero-gravity environments, a process that famously involves a significant amount of nausea as participants acclimatize to the conditions. In combat, when you make an attack while in a zero-gravity or micro-gravity environment, you may use the higher of your Conn or Security disciplines for the task, and you ignore any Difficulty increases caused by the lack of gravity. In addition, enemies who lack similar training increase the Difficulty of attacks against you by 1.",
-                [new DisciplinePrerequisite(Department.Conn, 3), new DisciplinePrerequisite(Department.Security, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
+                [new DepartmentPrerequisite(Department.Conn, 3), new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Hands-On Pilot",
                 "Your piloting style delves deeply into the technical aspects of a ship’s propulsion systems, and you spend much of your time in Engineering, fine-tuning power flows, subspace field geometries, and inertial stabilizers to ensure that the ship flies exactly the way you want it to. When you perform one of the Impulse, Warp, Evasive Action, or Attack Pattern tasks, the ship may treat its assistance die as if it had rolled a 1. However, when anyone else pilots the ship, they increase their complication range by 1, as your adjustments don’t suit everyone.",
-                [new DisciplinePrerequisite(Department.Conn, 3), new DisciplinePrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
+                [new DepartmentPrerequisite(Department.Conn, 3), new DepartmentPrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 TALENT_NAME_VISIT_EVERY_STAR,
                 "Your expertise in navigation and stellar cartography come from a deep and enduring fascination with space; as a child, you dreamed of the stars you’d visit and the stellar phenomena you’d see up close, and you memorized every fact you could about them. You gain an additional focus, and one of your focuses (either the one gained from this talent, or an existing one) must relate to Astronavigation, Stellar Cartography, or a similar field of space science. Further, when you succeed at a navigation-related task, you gain 1 bonus Momentum due to your knowledge and familiarity. Bonus Momentum cannot be saved.",
-                [new DisciplinePrerequisite(Department.Conn, 3), new DisciplinePrerequisite(Department.Science, 2), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
+                [new DepartmentPrerequisite(Department.Conn, 3), new DepartmentPrerequisite(Department.Science, 2), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Close Protection",
                 "When you make a successful Attack, you may spend one Momentum to protect a single ally within Close range. The next Attack against that ally before the start of your next turn increases in Difficulty by 1.",
-                [new DisciplinePrerequisite(Department.Security, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1),
+                [new DepartmentPrerequisite(Department.Security, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Interrogation",
                 "When you succeed at a Task to coerce someone to reveal information in a social conflict, you will gain one bonus Momentum, which may only be spent on the Obtain Information Momentum Spend.",
-                [new DisciplinePrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1),
+                [new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Mean Right Hook",
                 "Your Unarmed Strike Attack has the Vicious 1 Damage Effect.",
@@ -1247,86 +1214,86 @@ export class Talents {
             new TalentModel(
                 "Quick to Action",
                 "During the first round of any combat, you and your allies may ignore the normal cost to Retain the Initiative.",
-                [new DisciplinePrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Combat Medic",
                 "The character’s abilities in field medicine and battle triage are exceptional and their presence inspires allies to continue any fight. Whenever the character attempts the First Aid Task, they may spend one Momentum to cause the recipient to regain points of Stress equal to the number of the character’s Medicine Discipline. A character may only regain Stress in this way once per scene.",
-                [new DisciplinePrerequisite(Department.Security, 2), new DisciplinePrerequisite(Department.Medicine, 2), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Security, 2), new DepartmentPrerequisite(Department.Medicine, 2), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Criminal Minds",
                 "By imagining they are a suspect, and thinking in the same way, the character gains insight into a criminal’s thought processes or actions. Whenever a character succeeds at a Task to interpret information about a suspect using Reason, a character generates 1 bonus Momentum which may only be used for the Obtain Information Momentum Spend.",
-                [new DisciplinePrerequisite(Department.Security, 3), new SourcePrerequisite(Source.OperationsDivision)],
+                [new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.OperationsDivision)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Crisis Management",
                 "Small squad tactics can mean the difference between life and death in a dangerous, hostile situation, and the character excels at coordinating action in battle. The character may make use of the Direct Task (Star Trek Adventures core rulebook p. 173). If they already have access to the Direct Task, they may do so twice per scene instead of once.",
-                [new VariableDisciplinePrerequisite(Department.Security, Department.Command, 3), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
+                [new VariableDepartmentPrerequisite(Department.Security, Department.Command, 3), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Deadeye Marksman",
                 "The character has spent time at the target range every day, working on their aim. When the character takes the Aim Minor Action, they reduce the Difficulty of their next Attack by 1, in addition to the normal effects of the Aim Minor Action.",
-                [new DisciplinePrerequisite(Department.Security, 3), new AttributePrerequisite(Attribute.Control, 10), new SourcePrerequisite(Source.OperationsDivision)],
+                [new DepartmentPrerequisite(Department.Security, 3), new AttributePrerequisite(Attribute.Control, 10), new SourcePrerequisite(Source.OperationsDivision)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Fire at Will",
                 "The character is capable of tracking multiple targets and making attacks against them with great effect. Whenever the character makes a ranged weapon attack, and then uses the Swift Task Momentum spend to make a second ranged attack, they ignore the normal Difficulty increase from Swift Task.",
-                [new DisciplinePrerequisite(Department.Security, 2), new AttributePrerequisite(Attribute.Daring, 9), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Security, 2), new AttributePrerequisite(Attribute.Daring, 9), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Full Spread - Maximum Yield!",
                 "The character is skilled in setting up torpedo attacks. In addition to the normal benefits of a Salvo, the attack also gains the benefit of the Devastating Attack Momentum Spend as though 2 Momentum had been spent. The Devastating Attack Momentum Spend may not be selected again for this attack.",
-                [new DisciplinePrerequisite(Department.Security, 3), new SourcePrerequisite(Source.OperationsDivision)],
+                [new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.OperationsDivision)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Hunker Down",
                 "Making good use of the surroundings for protection is one of the hallmarks of a skilled soldier. Whenever the character rolls Cover Dice,  they may add +1 Resistance to the total for each Effect rolled.",
-                [new DisciplinePrerequisite(Department.Security, 2), new SourcePrerequisite(Source.OperationsDivision)],
+                [new DepartmentPrerequisite(Department.Security, 2), new SourcePrerequisite(Source.OperationsDivision)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Lead Investigator",
                 "The character has a mind intrigued by mystery and investigation, and is often called upon to review and coordinate response to lawbreaking. The character generates two bonus Momentum after a successful Task to investigate a crime.",
-                [new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Conn, 2), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Security, 3), new DepartmentPrerequisite(Department.Conn, 2), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Martial Artist",
                 "There are countless forms and styles of hand-to-hand combat, and the character has mastered several of them. The character’s Unarmed Strike attacks gain the Intense Damage Effect. If the character also has the Mean Right Hook Talent, then both Damage Effect apply when Effects are rolled.",
-                [new DisciplinePrerequisite(Department.Security, 4), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Security, 4), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Precision Targeting",
                 "Having extensive knowledge of ship systems and operations, the character can easily target specific systems when attacking an enemy vessel. When the character makes an attack that targets a specific System they may  reroll 1d20 in their dice pool, and the attack gains the Piercing 1 damage effect.",
-                [new DisciplinePrerequisite(Department.Security, 4), new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.OperationsDivision), new NotSourcePrerequisite(Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Security, 4), new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.OperationsDivision), new NotSourcePrerequisite(Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Ambush Tactics",
                 "You’ve familiarized yourself with techniques that make ambushes and surprise attacks especially effective. When you succeed at an attack against an enemy who is unaware of your presence, or who is suffering from a trait or complication which represents a weakness or vulnerability, add 2[D] to the amount of Stress the attack inflicts. This applies to both personal combat and ship combat.",
-                [new DisciplinePrerequisite(Department.Security, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Applied Force",
                 "You’ve trained to best apply your size and strength in a fight. When you make a melee attack, you may use Fitness instead of Daring. In addition, you add 1[D] to the Stress rating of your unarmed attacks, or 2[D] if you have a Fitness of 11 or higher.",
-                [new DisciplinePrerequisite(Department.Security, 4), new AttributePrerequisite(Attribute.Fitness, 9), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Security, 4), new AttributePrerequisite(Attribute.Fitness, 9), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Defensive Training",
                 "You’re especially good at avoiding harm. Select either melee attacks or ranged attacks when you acquire this talent. Attacks against you of the chosen type increase in Difficulty by 1.",
                 [
-                    new DisciplinePrerequisite(Department.Security, 2),
+                    new DepartmentPrerequisite(Department.Security, 2),
                     new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition),
                     new AnyOfPrerequisite(
                         new SourcePrerequisite(Source.Core2ndEdition),
@@ -1337,65 +1304,69 @@ export class Talents {
             new TalentModel(
                 "Precision Salvo",
                 "You’ve spent countless hours running combat simulations and fine-tuning targeting subroutines, and you can now place a torpedo salvo exactly where it will have the most decisive effect. When you make a torpedo attack, you may spend 1 Momentum (Immediate) to add the Piercing 1 weapon effect.",
-                [new DisciplinePrerequisite(Department.Security, 4), new SourcePrerequisite(Source.PlayersGuide)],
+                [new DepartmentPrerequisite(Department.Security, 4), new SourcePrerequisite(Source.PlayersGuide)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Shield Breaker",
                 "You’ve developed firing solutions designed to overwhelm a target vessel’s shields without harming the ship beneath, ideally as a prelude to boarding or extracting a target using transporters. When you make an attack with a starship’s energy weapons, you may spend 1 Momentum (Immediate) to target shields. If you do so, then increase the Stress rating of the energy weapon used by 2[D]. This attack cannot inflict any breaches to the target. If used on a ship with 0 shields, then it adds 1 Difficulty to the next Regenerate Shields task the target attempts.",
-                [new DisciplinePrerequisite(Department.Security, 3), new SourcePrerequisite(Source.PlayersGuide)],
+                [new DepartmentPrerequisite(Department.Security, 3), new SourcePrerequisite(Source.PlayersGuide)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "A Little More Power",
                 "Whenever you succeed at an Engineering Task aboard your own ship, you may spend one Momentum to regain one spent Power.",
-                [new DisciplinePrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.Core, Source.KlingonCore, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.Core, Source.KlingonCore, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering),
                 false, new AliasModel("A Little More Power", Source.Core), new AliasModel("More Power", Source.KlingonCore)),
             new TalentModel(
                 "I Know My Ship",
                 "Whenever you attempt a Task to determine the source of a technical problem with your ship, add one bonus d20.",
-                [new DisciplinePrerequisite(Department.Engineering, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Engineering, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "In the Nick of Time",
                 "Whenever you succeed at an Engineering or Science Task as part of an Extended Task, you score 1 additional Work for every Effect rolled.",
-                [new VariableDisciplinePrerequisite(Department.Engineering, Department.Science, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1, "Science"),
+                [new VariableDepartmentPrerequisite(Department.Engineering, Department.Science, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Intense Scrutiny",
                 "Whenever you succeed at a Task using Reason or Control as part of an Extended Task, you may ignore up to two Resistance for every Effect rolled.",
-                [new VariableDisciplinePrerequisite(Department.Engineering, Department.Science, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1, "Science"),
+                [new VariableDepartmentPrerequisite(Department.Engineering, Department.Science, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Jury-Rig",
                 "Whenever you attempt an Engineering Task to perform repairs, you may reduce the Difficulty by two, to a minimum of 0. If you do this, however, then the repairs are only temporary and will last only a single scene, plus one additional scene per Momentum spent (Repeatable) before they fail again. Jury-rigged repairs can only be applied once, and the Difficulty to repair a device that has been Jury-rigged increases by 1.",
-                [new DisciplinePrerequisite(Department.Engineering, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Engineering, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Experimental Device",
                 "You have designed and constructed a new piece of equipment that is either a brand new invention or is heavily modified from its original to the point of being barely recognizable. In either case, the device performs a function that you determine when you select this Talent. When used appropriately, it automatically provides you an Advantage. However, its experimental nature means there are lingering design bugs that sometimes plagues its function. Increase the Complication Range of any Task by 2 when using this device. This Talent may be selected multiple times with a different device for each selection.",
-                [new DisciplinePrerequisite(Department.Engineering, 4), new SourcePrerequisite(Source.OperationsDivision), new MainCharacterPrerequisite()],
-                10),
+                [new DepartmentPrerequisite(Department.Engineering, 4), new SourcePrerequisite(Source.OperationsDivision), new MainCharacterPrerequisite()],
+                10,
+                new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Exploit Engineering Flaw",
                 "Following an ally’s successful Scan for Weakness Task,  you may highlight an identified engineering flaw in the opponent’s ship. In addition to the bonus granted by the Scan for Weakness Task, you may assist anyone making an Attack against the target ship, which does not count against the normal limit for providing assistance. If the Attack is successful, it generates 1 bonus Momentum. You must be able to communicate with the ally making the Attack to offer this assistance.",
-                [new DisciplinePrerequisite(Department.Engineering, 3), new DisciplinePrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.OperationsDivision)],
-                1),
+                [new DepartmentPrerequisite(Department.Engineering, 3), new DepartmentPrerequisite(Department.Conn, 3), new SourcePrerequisite(Source.OperationsDivision)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Maintenance Specialist",
                 "You are an expert in conducting and directing normal, day-to-day, maintenance and repairs on Starfleet equipment. Whenever they are required to perform maintenance, reduce the Difficulty by 1, to a minimum of 1, and halve the time required to complete the Task.",
-                [new DisciplinePrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Meticulous",
                 "You are patient, methodical, and check for errors before considering Tasks complete. Whenever they use Engineering to complete a Task, you may negate one Complication generated from the roll. However, during timed Tasks or Challenges, you take 1 more interval to complete the Task.",
                 [
-                    new DisciplinePrerequisite(Department.Engineering, 3),
+                    new DepartmentPrerequisite(Department.Engineering, 3),
                     new AttributePrerequisite(Attribute.Control, 10),
                     new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
@@ -1404,7 +1375,7 @@ export class Talents {
                 "Miracle Worker",
                 "You have a reputation of doing the impossible: repairs or modifications well in advance of expectations; getting offline systems up and running when most needed and so on. Whenever you use Engineering on an Extended Task, if you achieve a Breakthrough and roll at least one Effect on a Challenge Die, you achieve a second Breakthrough.",
                 [
-                    new DisciplinePrerequisite(Department.Engineering, 5),
+                    new DepartmentPrerequisite(Department.Engineering, 5),
                     new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
@@ -1412,8 +1383,8 @@ export class Talents {
                 "Procedural Compliance",
                 "You are well versed in established Starfleet engineering practices and guidelines. By spending 2 Momentum to Create an Advantage (obtaining the proper technical manuals and documentation prior to attempting a Task to work on a ship’s system), you may reroll 1d20 during the next Engineering Task.",
                 [
-                    new DisciplinePrerequisite(Department.Engineering, 3),
-                    new DisciplinePrerequisite(Department.Conn, 2),
+                    new DepartmentPrerequisite(Department.Engineering, 3),
+                    new DepartmentPrerequisite(Department.Conn, 2),
                     new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)
                 ],
                 1,
@@ -1422,7 +1393,7 @@ export class Talents {
                 "Past the Redline",
                 "Engineers understand that safety tolerances and operating margins are always designed into the acceptable performance range of equipment. While not recommended the equipment is usually capable of higher performance, if the consequences are risky. This Talent provides bonus Momentum for using a ship’s System until the end of the scene. Select the System you wish to enhance, and the number of bonus Momentum to be provided. Attempt a Daring + Engineering Task with a Difficulty equal to the bonus Momentum selected. If the you succeed, subsequent Tasks using that System automatically generate that amount of bonus Momentum. However, to represent the risks involved, the Task also increases its Complication Range by the same number as the Bonus Momentum provided. If a Complication is rolled, the System no longer provides bonus Momentum and the System suffers a number of Breaches equal to half the ship’s Scale.",
                 [
-                    new DisciplinePrerequisite(Department.Engineering, 4),
+                    new DepartmentPrerequisite(Department.Engineering, 4),
                     new AttributePrerequisite(Attribute.Daring, 10),
                     new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
@@ -1431,8 +1402,8 @@ export class Talents {
                 "Repair Team Leader",
                 "You are trained to direct and lead damage repair parties during emergencies, giving them guidance and expert knowledge of the ships systems. If you succeed at the Damage Control Task you may spend 3 Momentum (Repeatable) to also repair one Breach.",
                 [
-                    new DisciplinePrerequisite(Department.Engineering, 3),
-                    new DisciplinePrerequisite(Department.Command, 2),
+                    new DepartmentPrerequisite(Department.Engineering, 3),
+                    new DepartmentPrerequisite(Department.Command, 2),
                     new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)
                 ],
                 1,
@@ -1440,145 +1411,147 @@ export class Talents {
             new TalentModel(
                 "Right Tool for the Right Job",
                 "Engineers are trained to identify and use appropriate tools whenever they are working on the delicate components that make up complex ship systems. Whenever you acquire an engineering tool with an Opportunity Cost, the tool grants an Advantage if it did not do so originally, or increases the Advantage it provides by one step.",
-                [new DisciplinePrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.OperationsDivision, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Rocks Into Replicators",
                 "Starfleet engineers are famed for being able to build or create nearly anything needed from the most basic of available components. Once per session, you may destroy any single piece of equipment to create any other piece of equipment of an equal or lower Opportunity Cost. This new piece of equipment has a Complication range increase of 2, with the Complication being a malfunction that renders it useless. You should provide a reasonable explanation as to how a repurposed or cannibalized device could function and the Gamemaster has final say if there is any question about the “reasonableness” of the new device.",
-                [new DisciplinePrerequisite(Department.Engineering, 4), new DisciplinePrerequisite(Department.Science, 2), new SourcePrerequisite(Source.OperationsDivision)],
-                1),
+                [new DepartmentPrerequisite(Department.Engineering, 4), new DepartmentPrerequisite(Department.Science, 2), new SourcePrerequisite(Source.OperationsDivision)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Saboteur",
                 "You’re skilled in taking things apart – violently if necessary. When you make an attack against a structure, machine, or stationary vehicle while in personal combat (i.e., you aren’t using a ship’s weapons to make the attack), you may use your Engineering instead of your Security to resolve the attack task and the Stress inflicted.",
-                [new DisciplinePrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Percussive Maintenance",
                 "You have an extensive repertoire of quick fixes, crude bypasses, and other improvised techniques for using and repairing devices during a crisis. They all do the job, but it’s messy work. When you attempt a Control + Engineering task, you may add 2 to Threat to use your Daring instead of your Control. If you do this, and the task succeeds, you may reduce the time taken by 1 interval without spending Momentum.",
                 [
-                    new DisciplinePrerequisite(Department.Engineering, 4),
+                    new DepartmentPrerequisite(Department.Engineering, 4),
                     new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)
                 ], 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "I’m Giving It All She’s Got!",
                 "You can keep a ship running on a fraction of its normal power levels, and always seem to be able to squeeze just a little more power out of the reserves or non-essential systems. Whenever someone attempts a task with a Power requirement aboard your ship while you are aboard, roll 1[D]; on an effect, reduce that Power requirement by 1, to a minimum of 0. In addition, when you succeed at the Power Management task, you restore Power equal to your Engineering score, rather than only 1; you may increase this amount by spending Momentum as normal.",
-                [new DisciplinePrerequisite(Department.Engineering, 4), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
+                [new DepartmentPrerequisite(Department.Engineering, 4), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)], 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)
                 ),
             new TalentModel(
                 "Transporter Chief",
                 "You’re well-versed in the operation of transporter systems and can often get them to function in extreme circumstances or to achieve outcomes that few others could manage. Such efforts are never without risk, given the delicacy of the technology. When you attempt a task to use, repair, or modify a transporter, you may add 2 to Threat to reduce the Difficulty of the task by 2, to a minimum of 0.",
-                [new DisciplinePrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Engineering, 3), new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Computer Expertise",
                 "Whenever you attempt a Task that involves the programming or study of a computer system, you may add a bonus d20 to your pool.",
-                [new DisciplinePrerequisite(Department.Science, 2), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
-                1),
+                [new DepartmentPrerequisite(Department.Science, 2), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                1,
+                new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Testing a Theory",
                 "When you attempt a Task using Engineering or Science, you may roll one additional d20, so long as you succeeded at a previous Task covering the same scientific or technological field earlier in the same adventure.",
-                [new VariableDisciplinePrerequisite(Department.Science, Department.Engineering, 2), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new VariableDepartmentPrerequisite(Department.Science, Department.Engineering, 2), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Baffling Briefing",
                 "When the character engages in a Social Conflict using deception, the character may use Science in place of Command so long as their technical knowledge is used to mislead their opponent. ",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Presence, 9)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Presence, 9)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Dedicated Focus X",
                 "Choose a Focus your character has. When attempting a Task where that Focus applies, each d20 that generates 2 successes also generates 1 bonus Momentum. This Talent only applies to d20s in the character’s dice pool, and does not apply to d20s added due to equipment, starship assistance, or character assistance.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 4)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Expedition Expert",
                 "Prior to participating in an away team mission, the character may prepare by conducting a research Task. If they succeed, Momentum may be spent to allow the character to substitute their Science Discipline in place of any other, during any Task to navigate or transverse difficult terrain during the mission. Each point of Momentum spent from the research Task in this way allows for one such substitution.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Fitness, 9)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Fitness, 9)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Lab Rat",
                 "The character prefers to spend most of their free time engaged in various side projects and experiments. Because of this, they are extremely familiar with the equipment and capabilities of the labs on board their ship. When attempting an Extended Task while using a laboratory, the character gains the Progression 1 Effect.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 3), new DepartmentPrerequisite(Department.Engineering, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Mental Repository",
                 "Using extensive mental conditioning, the character has access to memories with unprecedented clarity and accuracy. So long as the character takes time to focus their mind prior to attempting a Task – which takes 2 Intervals during a Timed Challenge – they reduce the Difficulty of the Task by 1 to a minimum of 1. In addition, if they succeed they gain a bonus Momentum which may only be spent on the Obtain Information Momentum spend.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Reason, 10)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Reason, 10)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Rapid Analysis",
                 "Tasks attempted as part of a Timed Challenge using the Science Discipline takes the character 1 Time Interval instead of 2. The amount of time taken for any Task may not be reduced to less than 1 Interval.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Daring, 9)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Daring, 9)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Student of War",
                 "The character has conducted extensive research into numerous kinds of conflict and has devoted their academic career to the study of war. While this knowledge may be purely theoretical, such information, when placed into the hands of more capable combatants, can be truly devastating. When the character provides assistance to a Combat Task, they may reroll their die.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 4), new DisciplinePrerequisite(Department.Security, 3)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 4), new DepartmentPrerequisite(Department.Security, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Temporal Mechanic",
                 "Long study into the facets of temporal mechanics has given the character an intuitive understanding of the space-time continuum and the various phenomena that can distort it. Once per scene, when confronted with an anomaly that affects the flow of time and space, the character rolls 1[D] when attempting a Task relating to the phenomenon. The character generates bonus Momentum equal to the result, in addition to any Momentum generated from the Task result. If an Effect is rolled, the Gamemaster gains 1 Threat instead.",
-                [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Science, 3), new FocusPrerequisite("Temporal Mechanics")],
+                [new SourcePrerequisite(Source.SciencesDivision), new DepartmentPrerequisite(Department.Science, 3), new FocusPrerequisite("Temporal Mechanics")],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Theory Into Practice",
                 "When you attempt a Task using Engineering or Science where you gain the additional d20 from the Testing a  Theory Talent, reduce the Difficulty of the Task by 1, to a minimum of 0.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 3), new TalentPrerequisite("Testing a Theory")],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 3), new TalentPrerequisite("Testing a Theory")],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Unconventional Thinking",
                 "During any Challenge or Extended Task that uses the Scientific Method to adapt technology in which the character is participating, if the hypothesis being pursued is considered “Outside the Box” – the Difficulty of the Tasks are reduced by 1. It should be noted that Players are not aware of the fact they are pursuing an “Outside the Box” hypothesis under normal circumstances – it is up to the Gamemaster to ensure they receive the proper Difficulty reduction.",
-                [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Insight, 9)],
+                [new SourcePrerequisite(Source.SciencesDivision), new DepartmentPrerequisite(Department.Science, 3), new AttributePrerequisite(Attribute.Insight, 9)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Walking Encyclopedia",
                 "Once per session, when you attempt a Task, you may spend 2 Momentum (Immediate) in order to gain an additional Focus for the remainder of the session, due to your breadth of knowledge. However, any Task using that Focus increases in Complication range by 1, as you are not a true expert on that subject.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 2), new AttributePrerequisite(Attribute.Reason, 9)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 2), new AttributePrerequisite(Attribute.Reason, 9)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Applied Research",
                 "You’re a practical scientist, always looking to see how your knowledge can be put into practice. Once per scene, when you attempt a task which relates to information you received earlier that scene from an Obtain Information question, you may roll an additional d20.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 3)],
+                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Did the Reading",
                 "You absorb information quickly and know how to put it to good use. When you attempt a task, you may spend 1 Momentum (Immediate) to use Science on that task instead of the discipline you would normally use. In addition, you count as having an applicable focus for that task. Each time after the first in a single scene that you use this ability, the Momentum cost increases by 1: this is cumulative.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 4)],
+                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Learn from Failure",
                 "A true scientist learns as much from failure as from success. When you fail at a Science task, you may add 3 to Threat to create an advantage that represents knowledge or insights gained from the failure. The cost of this is reduced by 1 for each success you scored on the failed task.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 4)],
+                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Rapid Hypothesis",
                 "You are quick to devise a working theory about an unknown phenomenon’s nature, origin, or effect. Once per scene, when you ask two or more questions using Obtain Information, you may immediately create an advantage that represents your theoretical understanding of the subject of those questions.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Science, 5)],
+                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Science, 5)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Doctor’s Orders",
                 "When you attempt a Task to coordinate others, or to coerce someone into taking or refraining from a specific course of action, you may use your Medicine Discipline instead of Command.",
-                [new DisciplinePrerequisite(Department.Medicine, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Medicine, 4), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
@@ -1590,115 +1563,115 @@ export class Talents {
             new TalentModel(
                 "First Response",
                 "Whenever you attempt the First Aid Task during combat, you gain a bonus d20. Further, you may always Succeed at a Cost, with each Complication you suffer adding +1 to the Difficulty of healing the patient’s Injury subsequently.",
-                [new DisciplinePrerequisite(Department.Medicine, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Medicine, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Quick Study",
                 "When attempting a Task that will involve an unfamiliar medical procedure, or which is to treat an unfamiliar species, ignore any Difficulty increase stemming from your unfamiliarity.",
-                [new DisciplinePrerequisite(Department.Medicine, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Medicine, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Triage",
                 "When you attempt a Task to identify specific injuries or illnesses, or to determine the severity of a patient’s condition, you may spend one Momentum (Repeatable) to diagnose one additional patient.",
-                [new DisciplinePrerequisite(Department.Medicine, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
+                [new DepartmentPrerequisite(Department.Medicine, 3), new SourcePrerequisite(Source.Core, Source.Core2ndEdition)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Bedside Manner",
                 "When the character succeeds at a Medicine Task to heal another’s Injury, the character may immediately remove a personal Complication from the patient, even if that Complication was unrelated to the treated Injury. In addition, whenever this character attempts a Reputation Check, they are considered to have one additional positive influence.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3), new DisciplinePrerequisite(Department.Command, 3)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3), new DepartmentPrerequisite(Department.Command, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Chief of Staff",
                 "When using the Medicine Discipline to provide  assistance to another character attempting a Medicine Task, all characters providing assistance may reroll one d20 in their dice pool.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3), new DisciplinePrerequisite(Department.Command, 3)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3), new DepartmentPrerequisite(Department.Command, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Cyberneticist",
                 "Whenever the character attempts a Task to work on, install, or remove a cybernetic device from a patient, they add a d20 to their dice pool. ",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3), new DepartmentPrerequisite(Department.Engineering, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Fellowship Specialty",
                 "Select a Focus. When you succeed at a Medicine Task where that Focus applies, the cost of the Create Advantage Momentum spend is reduced by 1, to a minimum of 1.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 4)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Field Medic",
                 "Through experience and training, the stress of battle fades when there’s a patient in need. When attempting a Medicine Task while in the midst of combat, you may ignore the first Complication that would increase the Difficulty of this Task.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3), new DisciplinePrerequisite(Department.Security, 2)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3), new DepartmentPrerequisite(Department.Security, 2)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Healing Hands",
                 "When attempting the Control + Medicine Task to heal  Injury-related Complications, reduce the Difficulty by 1, to a minimum of 1.",
-                [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Medicine, 3), new AttributePrerequisite(Attribute.Control, 9)],
+                [new SourcePrerequisite(Source.SciencesDivision), new DepartmentPrerequisite(Department.Medicine, 3), new AttributePrerequisite(Attribute.Control, 9)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Heart, Body and Mind",
                 "Whenever you Assist a character with the Recover Combat Task, you gain 1 bonus Momentum that can only be spent on the active character to recover Stress.",
-                [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Medicine, 3), new DisciplinePrerequisite(Department.Command, 2)],
+                [new SourcePrerequisite(Source.SciencesDivision), new DepartmentPrerequisite(Department.Medicine, 3), new DepartmentPrerequisite(Department.Command, 2)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "I’m a Doctor, Not a...",
                 "When this Talent is purchased, select a Discipline with a score of 1. Once per scene, before attempting a Task using the selected Discipline, a point of Determination may be spent to substitute the character’s Medicine Score in place of that Discipline. This does not have to be linked to a Value.",
-                [new SourcePrerequisite(Source.SciencesDivision), new DisciplinePrerequisite(Department.Medicine, 3), new HasUntrainedDisciplinePrerequisite()],
+                [new SourcePrerequisite(Source.SciencesDivision), new DepartmentPrerequisite(Department.Medicine, 3), new HasUntrainedDepartmentPrerequisite()],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Insightful Guidance",
                 "Whenever you Assist a character, who is in a Social Conflict, using your knowledge of psychology or emotional states, that character is considered to have an Advantage in addition to the normal benefits provided by your Assist. ",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3), new DisciplinePrerequisite(Department.Command, 2)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3), new DepartmentPrerequisite(Department.Command, 2)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Practice Makes Perfect",
                 "Once per scene, after the character has succeeded on a Medicine Task relating to the treatment of a patient, reduce the Difficulty of the next Medicine Task relating to that patient by 1.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3), new AttributePrerequisite(Attribute.Reason, 8)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3), new AttributePrerequisite(Attribute.Reason, 8)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Psychoanalyst",
                 "When you use the Medicine Discipline during a Social Conflict you may increase the Complication range of your Task by a number of steps. For each step you may ask a single question as if you’d spent Momentum on Obtain Information. Any Complications generated from this Task results in the individual you are interacting with becoming offended or upset with being “analyzed.”",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Surgery Savant",
                 "When attempting a Medicine Task during an Extended Task relating to surgery, the character gains the Triumphant Effect.",
-                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 4)],
+                [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Cutting-Edge Medicine",
                 "You keep up to date with the latest medical publications and the latest advances in medical science, to ensure that there are no diseases you’re unprepared to face, and no treatments or medicines you’re unfamiliar with. Whenever you make a Medicine task with a Difficulty of 3 or higher, you may spend up to 3 Momentum (Immediate) to reduce the Difficulty by the number of Momentum spent, to a minimum Difficulty of 1. However, as these latest advances are often experimental, the complication range of the task increases by 1 for each Momentum spent.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 4)],
+                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Diagnostic Expertise",
                 "You focus on diagnosing the nature of an illness, injury, psychological problem, or other condition, because once the cause has been determined, finding the solution gets easier. When you succeed at a Medicine task to identify and diagnose the nature of a medical problem, you gain 1 bonus Momentum for every additional d20 you bought by spending Momentum, which may only be used to Obtain Information or Create Advantage.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 4)],
+                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Don’t You Die on Me!",
                 "The line between life and death is a thin one, and you’re good enough to keep a patient alive when lesser doctors would have pronounced them dead. When a character is killed, you may spend 1 Determination to make one attempt to revive them. If they were killed instantly by suffering two injuries, then this may only be attempted within that scene. If the character suffered a lethal injury and died because they didn’t receive medical treatment in time, this may be attempted before the end of the subsequent scene. This requires a Daring + Medicine task, with a Difficulty of 3. If successful, the character is brought back from the brink of death, though the injury / injuries that nearly killed them still require healing. Failure means that your efforts were unsuccessful and the character dies.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 5)],
+                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 5)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Stimulant Shot",
                 "You’ve got a few tricks and treatments that can get an injured patient back on their feet for a while. They are rough on the body, but they can be essential during a crisis. When you perform the First Aid task on an injured ally, you may get them back into the fighting right away without spending Momentum. In addition, the ally recovers Stress equal to twice your Medicine rating.",
-                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3)],
+                [new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             // Species
@@ -1731,7 +1704,7 @@ export class Talents {
                 "You can sense the emotions of most living beings nearby, and can communicate telepathically with other empaths and telepaths, as well as those with whom you are extremely familiar. You cannot choose not to sense the emotions of those nearby, except for those who are resistant to telepathy. It may require effort and a Task to pick out the emotions of a specific individual in a crowd, or to block out the emotions of those nearby. Increase the Difficulty of this Task if the situation is stressful, if there are a lot of beings present, if the target has resistance to telepathy, and other relevant factors.",
                 [new AnySpeciesPrerequisite(true, Species.Betazoid, Species.Mari, Species.Deltan, Species.Aenar), new NotSourcePrerequisite(Source.Core2ndEdition)],
                 1,
-                "Betazoid/Mari/Deltan"),
+                new TalentCategorization(TalentCategory.Species, Species.Betazoid, Species.Deltan, Species.Mari)),
             new TalentModel(
                 "Empathy2e",
                 "",
@@ -1762,7 +1735,7 @@ export class Talents {
                 "Your people are friendly, patient, and inquisitive, and you exemplify these traits. You are at ease when meeting new cultures, and adapt to unfamiliar social structures easily. When you attempt a Task to learn about an unfamiliar culture, or to act in an appropriate manner when interacting with members of such a culture, you reduce the Difficulty by 1.",
                 [new AnySpeciesPrerequisite(true, Species.Denobulan, Species.ElAurian), new EraPrerequisite(Era.Enterprise)],
                 1,
-                "Denobulan/El-Aurian"),
+                new TalentCategorization(TalentCategory.Species, Species.Denobulan, Species.ElAurian_2E)),
             new TalentModel(
                 "Parent Figure",
                 "You have a large family, with many children, nieces, and nephews, and you’ve learned how to coordinate even the most unruly and fractious of groups when necessary. When attempting or assisting a Task, and two or more other characters are involved in the Task, the first Complication generated on the Task — either by the character attempting the Task, or one of the assistants — may be ignored.",
@@ -1948,25 +1921,25 @@ export class Talents {
                 "Arboreals possess an unwaveringly calm nature, allowing them to ignore the stress of a crisis. When attempting Tasks with Control to resist stress or mental affliction they may reroll one die in your pool.",
                 [new SpeciesPrerequisite(Species.XindiArboreal, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Xindi-Arboreal"),
+                new TalentCategorization(TalentCategory.Species, Species.XindiArboreal)),
             new TalentModel(
                 "A Mind for Design",
                 "Xindi-Primates are natural engineers and scientists, pushing at the frontiers of design and construction. When following the Scientific Method, they may suggest an additional Focus, which they do not have to possess, as ‘The Good Way’. Every Task they attempt in an Extended Task related to the Scientific Method automatically gains the Piercing 1 effect.",
                 [new SpeciesPrerequisite(Species.XindiPrimate, true), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Xindi-Primate"),
+                new TalentCategorization(TalentCategory.Species, Species.XindiPrimate)),
             new TalentModel(
                 "Stun Resistance",
                 "Reptillians are naturally resistant to energy weapons stun settings. They gain +1 Resistance against Non-lethal attacks from energy weapons. They may always Avoid an Injury from a Non-lethal attack with a cost of 1 Momentum (Immediate), even if they have already Avoided an Injury during the scene.",
                 [new SpeciesPrerequisite(Species.XindiReptilian, false), new SourcePrerequisite(Source.BetaQuadrant), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Xindi-Reptilian"),
+                new TalentCategorization(TalentCategory.Species, Species.XindiReptilian)),
             new TalentModel(
                 "Protective Instinct",
                 "Insectoids have a profound instinct to defend your eggs and their off-spring, and this transfers onto teams or groups with which they develop a close bond. Whenever an Insectoid attempts a Guard Task in combat, and confers the benefits to another Main Character, ignore the increase in Difficulty when attempting the Task.",
                 [new SpeciesPrerequisite(Species.XindiInsectoid, false), new EraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.BetaQuadrant)],
                 1,
-                "Xindi-Insectoid"),
+                new TalentCategorization(TalentCategory.Species, Species.XindiInsectoid)),
             new TalentModel(
                 "Tactical Voice",
                 "In command positions, the speed of Zakdorn tactical calculations enables them to give concise orders to their crew. During combat, a Zakdorn leader may use the Direct Task one additional time per scene (so, twice per scene overall). Further, when they use the Swift Task Momentum Spend for an extra Task, the cost is reduced to 1 Momentum, so long as the second Task is the Assist or Direct Task.",
@@ -2289,13 +2262,13 @@ export class Talents {
                 "Though a small power in the Alpha Quadrant, the Son’a have not become one of the dominant powers in the Briar Patch by engaging only in half measures or pulling their punches. When a Son’a declares their attack action, they may add an additional point of Momentum as long as they are not dealing Non-lethal damage. ",
                 [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.SonA, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Son’a"),
+                new TalentCategorization(TalentCategory.Species, Species.SonA)),
             new TalentModel(
                 "Particle Engineering",
                 "The Son’a are hedonists who embrace all the pleasures that life has to offer but that does not mean they are not well educated. A large portion of the Son’a’s scientific research is dedicated towards understanding the unique particles that cling to the atmosphere of their former homeworld. When dealing with subatomic particles and the effects of radiation, the Son’a may ignore the effects of any Condition for the scene and may roll an additional d20 when attempting to understand the nature of these effects. ",
                 [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.SonA, false)],
                 1,
-                "Son’a"),
+                new TalentCategorization(TalentCategory.Species, Species.SonA)),
             new TalentModel(
                 "Survivor’s Luck",
                 "For the Drai, the greatest hunts always come when their prey manages to continually outwit them and the Tosk are cunning adversaries. Some are given extra stores of information when they are created while others are able to pick up survival techniques as they try to escape from the Hunters. The Tosk adds 1 bonus Momentum to the pool for each adversary they are trying to escape in the scene to a maximum of 3. ",
@@ -2487,13 +2460,13 @@ export class Talents {
                 "You have a tendency towards ruthlessness and cruelty, and the reputation to match, always seeking to undermine those you wish to destroy before you deal the final blow. When you attempt a Task to identify the weaknesses or flaws of an enemy, or matters they are particularly sensitive or protective about, you may reduce the Difficulty by 1. If the enemy has a trait which reflects this weakness (such as an advantage you’ve created, or a complication they’re suffering from), you may re-roll a single d20 on the next attack or persuasion Task you attempt against them.",
                 [new AnySpeciesPrerequisite(true, Species.KlingonQuchHa, Species.KlingonQuchHa_2E), new NotEraPrerequisite(Era.NextGeneration), new SourcePrerequisite(Source.KlingonCore)],
                 1,
-                "Klingon (QuchHa’)"),
+                new TalentCategorization(TalentCategory.Species, Species.KlingonQuchHa_2E)),
             new TalentModel(
                 "Superior Ambition",
                 "You believe that your cunning and insight give you an advantage over other Klingons, and your ambition is greater than theirs. When you spend Determination, you may add three to Threat in order to gain two benefits from spending Determination, instead of one.",
                 [new SourcePrerequisite(Source.KlingonCore), new NotEraPrerequisite(Era.NextGeneration), new AnySpeciesPrerequisite(true, Species.KlingonQuchHa, Species.KlingonQuchHa_2E), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "Klingon (QuchHa’)"),
+                new TalentCategorization(TalentCategory.Species, Species.KlingonQuchHa_2E)),
             new TalentModel(
                 "A Better Path",
                 "Akaru value efficiency in all things, including when working on problems or tasks. Whenever you succeed at a task during an extended task, add 1[D] to your dice pool to determine Work completed.",
@@ -2511,13 +2484,13 @@ export class Talents {
                 "A Cal-Mirran can learn to “glass” water on contact, i.e., harden it temporarily, similar to freezing, but without expansion or temperature change. Glassing can create tools or be used for defense. It is a skill that must be mastered, and requires concentration. Advanced glassers can harden anywhere from their body volume of water, to large swaths of ocean, but the larger the volume and the longer it is held, the greater the strain on the Cal-Mirran mind. Glassing requires a Fitness + Science task, with a Difficulty determined by the quantity of water being affected. After a successful use of this ability, the character is sluggish and will be unable to use this talent or change their own body’s state for the remainder of the scene.",
                 [new SourcePrerequisite(Source.ShackletonExpanse), new EraPrerequisite(Era.NextGeneration), new SpeciesPrerequisite(Species.CalMirran, true)],
                 1,
-                "Cal-Mirran"),
+                new TalentCategorization(TalentCategory.Species, Species.CalMirran)),
             new TalentModel(
                 "Time Refraction",
                 "With training, Cal-Mirrans can absorb tachyon radiation and use it to refract space-time, bending their surroundings slightly into the future or past. The more radiation, the further the slide, but the greater the risk – too much refraction can result in severe physical or mental damage and a weakening of their crystalline matrix. By spending a point of Determination and attempting an Insight + Science task, the character can perceive a glimpse of the past or future as if they were in that location at that time. The Difficulty of this task is based on how far into the past or future the character is looking; a glimpse of up to a minute earlier or later is Difficulty 1, up to an hour is Difficulty 2, up to a day is Difficulty 3, and longer durations have a higher Difficulty at the gamemaster’s discretion. Success allows the character to ask one question, plus one extra question per Momentum spent, about events in that time and place. Glimpses of the future are subject to change, as future events are not fixed.",
                 [new SourcePrerequisite(Source.ShackletonExpanse), new EraPrerequisite(Era.NextGeneration), new SpeciesPrerequisite(Species.CalMirran, true)],
                 1,
-                "Cal-Mirran"),
+                new TalentCategorization(TalentCategory.Species, Species.CalMirran)),
             new TalentModel(
                 "That Wasn’t Me",
                 "The Orions are known as one of the most untrustworthy species in the Galaxy next to the Ferengi, and yet people are always willing to do business with them or are continually tricked by them. This is due to the subtle dance of social interactions and the release of pheromones that make the Orion endearing to whom they are dealing with, and can be used to gain their trust. An Orion adds 1 bonus Momentum to their pool when they have successfully completed a task to win a target’s trust.",
@@ -2559,19 +2532,19 @@ export class Talents {
                 "Many members of the permanently calcified Lo’Kari faction will look for any excuse to start a fight with the sea-dwelling I’Qosa. During the first round of any combat against sea dwellers, the character may ignore the normal cost to Retain the Initiative.",
                 [new SourcePrerequisite(Source.IdwYearFive), new SpeciesPrerequisite(Species.IQosa, true)],
                 1,
-                "I’Qosa"),
+                new TalentCategorization(TalentCategory.Species, Species.IQosa)),
             new TalentModel(
                 "Waters of Renewal",
                 "The waters of I’Qosa nourish and restore the inhabitants of the planet. While in the waters of their homeworld, the character recovers 2 Stress at the start of each round, up to the character’s normal maximum Stress.",
                 [new SourcePrerequisite(Source.IdwYearFive), new SpeciesPrerequisite(Species.IQosa, true)],
                 1,
-                "I’Qosa"),
+                new TalentCategorization(TalentCategory.Species, Species.IQosa)),
             new TalentModel(
                 "Zero-G Swimmer",
                 "I’Qosa are experts at moving both in underwater and zero-gravity environments due to their natural aquatic habitat. The character receives a bonus d20 on any task related to swimming or zero-g maneuvering.",
                 [new SourcePrerequisite(Source.IdwYearFive), new SpeciesPrerequisite(Species.IQosa, true)],
                 1,
-                "I’Qosa"),
+                new TalentCategorization(TalentCategory.Species, Species.IQosa)),
             new TalentModel(
                 "Campaign Fatigue",
                 "The constant churn of the election cycle on Sigma Iotia II has made most Iotians experts at sniffing our liars and frauds. Whenever the character attempts a task to resist being deceived, they add a bonus d20 to their dice pool.",
@@ -2689,7 +2662,7 @@ export class Talents {
                         new SourcePrerequisite(Source.TechnicalManual))
                 ],
                 1,
-                "Cybernetically Enhanced"),
+                new TalentCategorization(TalentCategory.Species, Species.CyberneticallyEnhanced)),
             new TalentModel(
                 "Analytical Recall",
                 "Some Cybernetically Enhanced find themselves able to recall information faster than they used to and are able to process crucial details to a greater degree. Three times per session, a Cybernetically Enhanced individual may ask the gamemaster for more information regarding data they have recorded or situations they have personally seen, as if they had spent a point of Momentum to Obtain Information.",
@@ -2699,7 +2672,7 @@ export class Talents {
                         new SourcePrerequisite(Source.TechnicalManual))
                 ],
                 1,
-                "Cybernetically Enhanced"),
+                new TalentCategorization(TalentCategory.Species, Species.CyberneticallyEnhanced)),
             new TalentModel(
                 "Guile and Cunning",
                 "Secrecy is as natural as breathing for you. When you attempt to remain hidden or for your actions to remain unnoticed, you may add 1 to Threat in order to increase the Difficulty of a task to detect you or discern the true nature of your actions.",
@@ -2853,7 +2826,7 @@ export class Talents {
             new TalentModel(
                 "Aquatic Mutation",
                 "The Aquans can transform specimens of most humanoid species into water breathers through surgically induced mutations. An Aquan with this talent can perform the necessary procedure on any humanoid character with a Difficulty 1 Reason + Medicine task, so long as they are able to access the appropriate medical facilities. The procedure takes several hours to complete and can be reversed if the subject is given the appropriate reversal formula.",
-                [new SourcePrerequisite(Source.AnimatedSeries), new SpeciesPrerequisite(Species.Aquan, true), new DisciplinePrerequisite(Department.Medicine, 3)],
+                [new SourcePrerequisite(Source.AnimatedSeries), new SpeciesPrerequisite(Species.Aquan, true), new DepartmentPrerequisite(Department.Medicine, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Species, Species.Aquan)),
             new TalentModel(
@@ -3039,25 +3012,25 @@ export class Talents {
                 "Due to their extremely long lifespans, El-Aurians come to understand and gain knowledge more extensively that most other individuals. When a character with this Talent uses a Milestone to exchange a Focus, they may do so twice instead of once.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.ElAurian, true)],
                 1,
-                "El-Aurian"),
+                new TalentCategorization(TalentCategory.Species, Species.ElAurian_2E)),
             new TalentModel(
                 "Temporal Awareness",
                 "One hundred and fifty El-Aurian refugees who were aboard the SS Lakul in 2293 became caught in the Nexus. For them it was akin to “being inside joy”. Forty-Seven of these refugees were “yanked out” by the USS Enterprise-B, leaving a temporal “echo” of themselves behind within the Nexus that exists outside of all of time. These El-Aurians are still connected to their “echoes” granting them an awareness of manipulations made to the time-space continuum. Any alterations to the natural flow of time leaves the El-Aurian with this talent with a nagging “feeling” that something is just not right, or is fundamentally “off”. The Gamemaster secretly makes a Difficulty 0 Insight + Science Task check for the player. If the Task fails the player is oblivious to the changes. On one success, the El-Aurian knows something is wrong, but not exactly what it is. For each success past the first, the Gamemaster may give the player brief hints as the character begins to remember brief impulses of “how things should be”. Additionally, the player may spend a point of Momentum to remember a specific fact about the former timeline.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.ElAurian, true), new NotSourcePrerequisite(Source.SpeciesSourcebook)],
                 1,
-                "El-Aurian"),
+                new TalentCategorization(TalentCategory.Species, Species.ElAurian_2E)),
             new TalentModel(
                 "Listener",
                 "You know how to subtly use your empathic skills to discern not only what is being said but also what is being unsaid. This allows you to tell someone exactly what they needs to hear. When you attempt a Task to advise or convince someone into taking or refraining from a specific course of action, you may add a bonus d20",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.ElAurian, true)],
                 1,
-                "El-Aurian"),
+                new TalentCategorization(TalentCategory.Species, Species.ElAurian_2E)),
             new TalentModel(
                 "Wisdom of Years",
                 "You have many decades if not several centuries of experiences to draw upon. You may have one additional Value and Focus, reflecting the insights you received from your long life",
                 [new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.ElAurian, true)],
                 1,
-                "El-Aurian"),
+                new TalentCategorization(TalentCategory.Species, Species.ElAurian_2E)),
             new TalentModel(
                 "Mind for Information",
                 "You have a gift for processing information and retaining it. When you attempt a Task to organize information or recall it, you may add a bonus d20 to your dice pool.",
@@ -3081,7 +3054,7 @@ export class Talents {
                 "You have learned the technique of inducing a voluntary deep coma that simulates death. Entering the trance is a Control+Medicine Task. Choose a Difficulty of 1, 2, or 3. Success means that any attempt to detect your vital signs must increase the Difficulty of that task by an amount equal to the Difficulty you chose. While in this trance, you may listen but do nothing else. Gain a temporary Trait: Appears Dead that lasts until you wake up. To wake from the trance is a Control+Medicine Task at Difficulty 1.",
                 [new SourcePrerequisite(Source.ContinuingMissions), new AnySpeciesPrerequisite(true, Species.Hupyrian, Species.Ferengi)],
                 1,
-                "Hupyrian/Ferengi"),
+                new TalentCategorization(TalentCategory.Species, Species.Hupyrian, Species.Ferengi)),
             new TalentModel(
                 "Extra Arms",
                 "You know how to use your twin sets of arms with coordination and efficiency. On your turn, you can take an additional Minor Action, which can only be used for the Draw Item or Interact Minor Actions. Additionally, you add the Vicious 1 effect to your Unarmed Strike.",
@@ -3175,25 +3148,25 @@ export class Talents {
                 "You gain the Augment Trait. Choose a single Attribute when this Talent is selected. You gain the Extraordinary Attribute 1 special rule for the chosen Attribute. When the character uses this ability, they increase their Complication Range by 2 for that Task. This Talent may be selected multiple times, once for each Attribute.",
                 [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
                 1,
-                "Enhancement"),
+                new TalentCategorization(TalentCategory.Enhancement)),
             new TalentModel(
                 "Neural Interface",
                 "The character has had a cybernetic device implanted directly into their brain, allowing them to interface with computers and similar technologies with their thoughts. Initiating or breaking the link between their minds and a computer system takes a Minor Action, and while they are connected they may reroll the d20 gained from using ship’s Systems. However, any time the ship suffers a Breach the character also suffers 3[D] of Stress.",
                 [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
                 1,
-                "Enhancement"),
+                new TalentCategorization(TalentCategory.Enhancement)),
             new TalentModel(
                 "Physical Enhancement",
                 "The character has some portion of their body replaced by an advanced piece of bio-mechanical hardware. This device functions exactly like its organic counterpart; however, before attempting a Task, the Character may choose to take 3[D] Stress to add a single additional d20 to their dice pool. Any Injuries caused by this damage is resolved after the effects of the Task. Multiple dice may be bought in this way, but the damage is added together (so, buying two dice inflicts 6[D] damage, and buying 3 dice inflicts 9[D] damage). These dice count towards the normal limit of bonus d20s purchased.",
                 [new SourcePrerequisite(Source.SciencesDivision)],
                 1,
-                "Enhancement"),
+                new TalentCategorization(TalentCategory.Enhancement)),
             new TalentModel(
                 "Sensory Replacement",
                 "Due to physical injury or irreparable birth defect, the character has been forced to adopt a cybernetic device that replaces one of their sensory functions – most commonly sight or hearing. The character gains the Artificial Sense Trait, which can be used normally. In addition, when the character is using the Obtain Information Momentum spend, they may ask questions or be given information not normally available with organic senses.",
                 [new SourcePrerequisite(Source.SciencesDivision, Source.Core2ndEdition)],
                 1,
-                "Enhancement"),
+                new TalentCategorization(TalentCategory.Enhancement)),
             new TalentModel(
                 "Back-Up Plans",
                 "You have plans and contingencies which are set into motion whenever something goes awry. Whenever you or an ally fails a task, you may add 1 point to the group’s Momentum pool.",
@@ -3334,7 +3307,7 @@ export class Talents {
             new TalentModel(
                 "Combat Gunner",
                 "You have trained to operate ground vehicles and mounted weapons. You may use your Conn instead of Security when making an attack with a weapon mounted on a ground vehicle.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Conn, 4), new DisciplinePrerequisite(Department.Security, 3)],
+                [new SourcePrerequisite(Source.FederationKlingonWar), new DepartmentPrerequisite(Department.Conn, 4), new DepartmentPrerequisite(Department.Security, 3)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
             new TalentModel(
@@ -3350,27 +3323,27 @@ export class Talents {
                 "Demolitionist",
                 "You are skilled in making, setting, and defusing explosive devices. Whenever you attempt an Engineering task to create, set, or to defuse an explosive device or whenever you make an attack with a weapon with the Grenade weapon quality, the first d20 you purchase is free. In addition, you can ignore the first complication on an Engineering task involving explosives once per scene.",
                 [new SourcePrerequisite(Source.FederationKlingonWar),
-                    new VersionConstrainedPrerequisite(1, new DisciplinePrerequisite(Department.Engineering, 5)),
-                    new VersionConstrainedPrerequisite(2, new DisciplinePrerequisite(Department.Engineering, 4)),
-                    new DisciplinePrerequisite(Department.Security, 3)],
+                    new VersionConstrainedPrerequisite(1, new DepartmentPrerequisite(Department.Engineering, 5)),
+                    new VersionConstrainedPrerequisite(2, new DepartmentPrerequisite(Department.Engineering, 4)),
+                    new DepartmentPrerequisite(Department.Security, 3)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Exploit Weakness",
                 "You are trained in surprising your opponent and taking advantage of any weaknesses they have. When you attempt an attack against an unaware enemy, or an enemy suffering from a trait that represents weakness or vulnerability, the attack gains the Piercing 2 effect.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new AttributePrerequisite(Attribute.Insight, 10), new DisciplinePrerequisite(Department.Security, 3)],
+                [new SourcePrerequisite(Source.FederationKlingonWar), new AttributePrerequisite(Attribute.Insight, 10), new DepartmentPrerequisite(Department.Security, 3)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Finesse Strikes",
                 "You are graceful on the field of battle, often dancing around the enemy with relative ease. Once per combat encounter, you may reroll all the [D] for the Stress you inflict when you make a single successful melee attack.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Security, 4)],
+                [new SourcePrerequisite(Source.FederationKlingonWar), new DepartmentPrerequisite(Department.Security, 4)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Focused Fire",
                 "You are adept at focusing your attacks on the same point of an enemy to inflict massive damage in that area. When you make a successful ranged attack against an enemy that has already been shot this turn and choose to spend Momentum to increase the amount of Stress suffered, you may reroll up to 3[D].",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Security, 4)],
+                [new SourcePrerequisite(Source.FederationKlingonWar), new DepartmentPrerequisite(Department.Security, 4)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
             new TalentModel(
@@ -3394,13 +3367,13 @@ export class Talents {
             new TalentModel(
                 "Out of Harm's Way",
                 "You are used to balancing the need to keep a patient still and the need to get them somewhere safer. When attempting to carry or restrain another person, you may use Medicine instead of Security, and you ignore the first complication rolled on any such tasks.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Security, 2), new DisciplinePrerequisite(Department.Medicine, 3)],
+                [new SourcePrerequisite(Source.FederationKlingonWar), new DepartmentPrerequisite(Department.Security, 2), new DepartmentPrerequisite(Department.Medicine, 3)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Reasoned Discourse",
                 "You are precise and succinct with language, allowing you to convey facts and logical arguments effectively and quickly. When you need to communicate complicated information or argue with logic over emotion, reduce the Difficulty of the task by 1.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Command, 3)],
+                [new SourcePrerequisite(Source.FederationKlingonWar), new DepartmentPrerequisite(Department.Command, 3)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
             new TalentModel(
@@ -3414,14 +3387,14 @@ export class Talents {
                 "You have a knack for breaking things. When attacking an object, structure, or stationary vehicle, you may use your Engineering score instead of Security. In addition, when inflicting Stress on such a target, you can spend 2 Momentum to change any challenge dice to an effect result, up to your Engineering score.",
                 [
                     new SourcePrerequisite(Source.FederationKlingonWar),
-                    new DisciplinePrerequisite(Department.Engineering, 5),
-                    new DisciplinePrerequisite(Department.Security, 2)],
+                    new DepartmentPrerequisite(Department.Engineering, 5),
+                    new DepartmentPrerequisite(Department.Security, 2)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
             new TalentModel(
                 "Tracker",
                 "You can follow even the faintest of tracks. When you attempt a task to track animals, people, or ground vehicles, the first d20 you buy is free. If the tracking was done as part of an extended task then the roll gains Progression 1.",
-                [new SourcePrerequisite(Source.FederationKlingonWar), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Conn, 2)],
+                [new SourcePrerequisite(Source.FederationKlingonWar), new DepartmentPrerequisite(Department.Security, 3), new DepartmentPrerequisite(Department.Conn, 2)],
                 1,
                 new TalentCategorization(TalentCategory.General)),
 
@@ -3430,7 +3403,7 @@ export class Talents {
                 "",
                 [new SourcePrerequisite(Source.Core2ndEdition)],
                 1,
-                "Enhancement"),
+                new TalentCategorization(TalentCategory.Enhancement)),
             new TalentModel(
                 "Open Book",
                 "",
@@ -3458,109 +3431,109 @@ export class Talents {
             new TalentModel(
                 "Get Down",
                 "",
-                [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Security, 2)],
+                [new SourcePrerequisite(Source.Core2ndEdition), new DepartmentPrerequisite(Department.Security, 2)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Piercing Salvo",
                 "",
-                [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Security, 4)],
+                [new SourcePrerequisite(Source.Core2ndEdition), new DepartmentPrerequisite(Department.Security, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Precision Targeting (2e)",
                 "",
-                [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Conn, 3)],
+                [new SourcePrerequisite(Source.Core2ndEdition), new DepartmentPrerequisite(Department.Security, 3), new DepartmentPrerequisite(Department.Conn, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Steady Hands",
                 "",
-                [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Security, 3), new AttributePrerequisite(Attribute.Control, 9)],
+                [new SourcePrerequisite(Source.Core2ndEdition), new DepartmentPrerequisite(Department.Security, 3), new AttributePrerequisite(Attribute.Control, 9)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Positive Reinforcement",
                 "",
-                [new SourcePrerequisite(Source.Core2ndEdition), new DisciplinePrerequisite(Department.Medicine, 3), new AttributePrerequisite(Attribute.Presence, 9)],
+                [new SourcePrerequisite(Source.Core2ndEdition), new DepartmentPrerequisite(Department.Medicine, 3), new AttributePrerequisite(Attribute.Presence, 9)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Command and Control",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Command, 4), new DisciplinePrerequisite(Department.Engineering, 2)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Command, 4), new DepartmentPrerequisite(Department.Engineering, 2)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Project Manager",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Command, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Command, 3), new DepartmentPrerequisite(Department.Engineering, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Command)),
             new TalentModel(
                 "Fix 'Em and Fly 'Em",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Conn, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Conn, 3), new DepartmentPrerequisite(Department.Engineering, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Hot Rod Shuttle",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Conn, 4), new DisciplinePrerequisite(Department.Engineering, 4)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Conn, 4), new DepartmentPrerequisite(Department.Engineering, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Conn)),
             new TalentModel(
                 "Custom Tools",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Engineering, 4)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Engineering, 4)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Wrote the Book",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Engineering, 4), new CareersPrerequisite(Career.Veteran)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Engineering, 4), new CareersPrerequisite(Career.Veteran)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Engineering)),
             new TalentModel(
                 "Calibrated Munitions",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 4), new DisciplinePrerequisite(Department.Engineering, 3)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Security, 4), new DepartmentPrerequisite(Department.Engineering, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Well-Maintained Arsenal",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Engineering, 2)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Security, 3), new DepartmentPrerequisite(Department.Engineering, 2)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "Tactical Countermeasures",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Security, 3), new DisciplinePrerequisite(Department.Engineering, 3)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Security, 3), new DepartmentPrerequisite(Department.Engineering, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Security)),
             new TalentModel(
                 "On the Shoulders of Giants",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Science, 3)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Science, 3)],
                 1,
-                "Science"),
+                new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "The Power of Math",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Science, 3)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Science, 3)],
                 1,
-                "Science"),
+                new TalentCategorization(TalentCategory.Department, Department.Science)),
             new TalentModel(
                 "Combat Stimulants",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Medicine, 3)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Medicine, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
                 "Transformative Treatments",
                 "",
-                [new SourcePrerequisite(Source.TechnicalManual), new DisciplinePrerequisite(Department.Medicine, 3)],
+                [new SourcePrerequisite(Source.TechnicalManual), new DepartmentPrerequisite(Department.Medicine, 3)],
                 1,
                 new TalentCategorization(TalentCategory.Department, Department.Medicine)),
             new TalentModel(
@@ -4729,313 +4702,313 @@ export class Talents {
             "The vessel includes an additional, non-standard form of propulsion, such as Transwarp or Quantum Slipstream Drive.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia), new Version1Prerequisite()],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Aquarius Escort",
             "The Aquarius escort is a small starship, about the size of a Defiant-class ship, embedded in a docking slip at the aft of the Odyssey class. The Aquarius is an independent starship and can travel at warp, though its endurance is relatively limited and it is not designed to go on extended missions without frequent resupply. When deployed, the Aquarius can be an NPC ally starship or can be commanded by a player at the gamemaster's discretion. The Aquarius uses the stats of a Defiant-class starship, but cannot have a cloaking device. When docked, the Aquarius's power and defensive systems supplement that of the mothership, and so when deployed, the scale of the Odyssey-class ship (and all derived stats except for its number of talents) is reduced from 7 to 6.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Backpacking",
             "Norway-class vessels can tow cargo containers while at warp between their widely-spaced nacelles. The extra equipment and supplies this provides produces the advantage “We Have That!” in scenes where the gamemaster feels these extra supplies and parts could come in handy. While towing these cargo containers, all Conn tasks have their Difficulty and complication range increased by 1 to represent the difficulties in keeping the cargo containers secure. Failure on these tasks could be resolved by loss of the containers, or damage to the vessel.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Constitution Saucer Separation",
             "All Constitution-class vessels have the capability to detach their saucer section in an emergency to be used as a lifeboat. However, unlike the Saucer Separation talent, the Constitution class is unable to re-dock the detached saucer with the secondary hull outside of a drydock. Ship’s systems are halved (round down) for the saucer and the secondary hull when separated, the saucer is unable to enter warp speeds, and each section is considered a Scale 3 vessel. However the saucer is able to land on a planetary surface with extended landing legs that fold down from the ventral side of its hull. In the original series era, the saucer has both phasers and photon torpedoes, and the secondary hull has only phasers, but the opposite is true after the refit program of the 2270s.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Defiant Class Cloaking Device",
             "The ship has a cloaking device, allowing it to vanish from view. Activating the device is a Control + Engineering task with a Difficulty of 2, assisted by the ship’s Engines + Security, performed from the tactical position. Th task has a Power requirement of 3. If successful, the vessel gains the Cloaked trait. While cloaked, the vessel cannot attack, nor can it be the target of an attack unless the attacker has found some way of detecting the cloaked ship. While cloaked, the vessel’s shields are down. It takes a minor action to decloak. Due to incompatibilities between Romulan and Federation technology, and Federation unfamiliarity with cloaking technology, any task relating to using the cloaking device has a +1 complication range.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Do No Harm",
             "As the Olympic class is considered a non-combatant and its phaser system is seen as defensive only, any use of the ship’s phaser system outside of self-defense or as a tool automatically generates 1 Threat per scene. In addition, the characters on an Olympic-class vessel may, once per adventure, gain an extra d20 for a task involving convincing another group of the good intentions of Starfleet, the Federation, or the crew themselves due to the reputation of these hospital vessels.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Efficiency",
             "Daedalus-class vessels are constructed with simple systems that are easily maintained, and a highly adaptable modular construction beyond what most Starfleet vessels of even the 24th century use. These vessels may have up to five talents, rather than the three its Scale would normally permit.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Excelsior Saucer Separation",
             "All Excelsior-class vessels have the capability to detach their saucer section in an emergency to be used as a lifeboat. However, unlike the Saucer Separation talent, the Excelsior class is unable to re-dock the detached saucer with the secondary hull outside of a drydock. Ships’ systems are halved (round down) for the saucer and the secondary hull when separated, the saucer is unable to enter warp speeds, and each section is considered a Scale 4 vessel. However, the saucer is able to land on a planetary surface with extended landing legs down from the ventral side of its hull.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "EXEO Holographic Core",
             "The EXEO Holographic Core allows the ship to support a holographic life form as part of its crew. This supporting character can be from any discipline and does not count against the ship's crew support total. This holographic life form also has a primitive mobile emitter. The mobile emitter provides the EXEO with some EVA mobility, but it is not as advanced as the Doctor's 29th-centry emitter and will not function more than 100,000 kilometers away from the EXEO core itself. Unlike a standard EMH, the EXEO may improve.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Four-Nacelle Stability",
             "Constellation-class vessels can generate an incredibly stable warp field by using their two standby nacelles as warp field repeaters/stabilizers. Any task that involves the warp drive for movement, or while moving, may have its Difficulty reduced by a maximum of 1 by spending 2 Power.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Modular Cargo Pods",
             "The modular cargo pods of the Par’tok class transport can be replaced or removed at any rudimentary spacedock as long as other pods are available and service vehicles such as shuttlecraft can assist in tractoring new pods into place. Depending on the mission assigned to the Par’tok class vessel, the performance and traits of the vessel can drastically change.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.KlingonCore)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Ploughshares to Swords",
             "Miranda-class vessels were originally designed to be vessels of war, and although the Starfleet Advanced Technologies Group redesigned and repurposed the vessel, aspects of the ship's martial pedigree show through. This spaceframe's phaser banks may be used as phaser cannons when at Close range, which increases their Stress rating by 1.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Expanded Connectivity",
             "Extensive user-interface reworking has been done throughout the ship. Due to this any Override actions taken, where an action is taken from a different station on the bridge, can be attempted with no penalty.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.TheseAreTheVoyages)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Linked Fire Control",
             "The spaceframe gains an advantage \"Linked Fire Control\" that applies to fleet combat as determined by the gamemaster, reducing the complication range on weapons fire.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Modular Mission Bay",
             "A Pathfinder must take one talent from the list below. This talen counts against the ship's maximum number of talents, but the crew may exchange it for another on the list during a week-long layover at a Federation starbase. Advanced Research Facilities. Advanced Sickbay. Dedicated Personnel (Medicine). Dedicated Personnel (Science). Dedicated Personnel (Security). Diplomatic Suites. Extensive Shuttlebays. Improved Damage Control. Modular Laboratories.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Refracting Energy Shunt",
             "This starship can use its deflector array to temporarily absorb energy from a target vessel and channel that back into its own power reserves. Once per scene, the crew can spend 3 Momentum to reduce an enemy starship's Power by 3 and provide their own ship with 3 bonus Power, even exceeding the ship's maximum Power rating. This is executed on a Daring + Engineering task with a Difficulty of 3, and, depending on the result of the check, the gamemaster may create a complication related to the ship's Power or weapons systems.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Steamrunner Separation",
             "The small secondary hull can be jettisoned as a sizable emergency lifeboat. This secondary hull has limited impulse power and no capability for warp. The secondary hull has no talents or weapons, and uses the systems and departments of a Type-6 shuttle. Once detached, the primary hull is unable to enter warp and has all of its systems reduced by 2. Reattaching the secondary hull requires extensive work at a drydock facility.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Mission Pod",
             "Ships of this class have a mission pod. This mission pod provides two talents to the vessel that count toward the maximum normally allowed, but the entire mission pod (and all of its benefits) may be swapped out as if it were a single talent. If equipping a mission pod results in a talent being taken twice, a new talent may be chosen.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.UtopiaPlanitia, Source.GmToolkit2e)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Stealth Systems",
             "Prior to the treaty with the Romulan Star Empire and gaining access to advanced cloaking devices, the Klingon Empire used stealth systems based on reverse-engineered Hur’Q technology left behind on Qo’noS after their departure. These stealth systems include adaptive chromatic plates on the outer hull to blend into the background in the near infrared to ultraviolet wavelengths, thermal buffers and heat sinks to reduce the emissions in the far infrared, and microscale wavelength guides to absorb incoming sensor beams and prevent returns. This equipment functions in a similar way to the Cloaking Device found on page 207 of The Klingon Empire core rulebook, except it is more difficult to use, requiring a Control + Engineering task with a Difficulty of 3 rather than 2, and a Power requirement of 5 instead of 3.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Monopole Warp Field",
             "A monopole warp field results from either tightly packed warp coils or through what is referred to as “warp rings” such as early Vulcan superluminal propulsion. These fields provide excellent straight-line warp acceleration, allowing vessels to outrun or escape from pursuers with ease. If an enemy wishes to pursue a vessel with this talent, they must spend at least 2 more Power than the vessel with the talent, rather than only one more. If both vessels have this talent, treat it as though it were a normal warp pursuit. Additionally, a vessel with this talent does not need to spend Power to enter warp.",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.DiscoveryCampaign)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             TALENT_NAME_ABUNDANT_PERSONNEL,
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Compact Vessel",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Grappler Cable (Special Rule)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Landing Gear",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Polarized Hull Plating (Special Rule)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Saucer Separation and Reconnect",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Prototype Cloaking Device",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Larger Crew",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Reliable",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Prestigious Posting",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Mission of Mercy",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Experimental Vessel",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Ready for Battle",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Jury-Rigged (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Lucky (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Refuses to Die (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Premonitions (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Efficiency (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.Core2ndEdition)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Encounter the Strange (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "The Last Generation (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Far from Home (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Upgraded Systems (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Peak Performance (Service Record)",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.TechnicalManual)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Any Knowledge of Your Actions",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.ContinuingMissions), new CharacterTypePrerequisite(CharacterType.Romulan)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Once More Unto the Breach",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.ContinuingMissions), new CharacterTypePrerequisite(CharacterType.Romulan)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Dreaded",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.ContinuingMissions), new CharacterTypePrerequisite(CharacterType.Romulan)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Four-Nacelle Stability",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.GmToolkit2e)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Classified Design",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.GmToolkit2e)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Preferential Targeting",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.GmToolkit2e)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Specialized Shuttlebay",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.GmToolkit2e)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Pulse Phaser Cannons",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.GmToolkit2e)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Quantum Slipstream Burst Drive",
             "",
             [new StarshipPrerequisite(), new SourcePrerequisite(Source.GmToolkit2e)],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
         new TalentModel(
             "Saucer Separation (2nd Edition)",
             "",
@@ -5044,7 +5017,7 @@ export class Talents {
                 new SourcePrerequisite(Source.Core2ndEdition)
             ],
             1,
-            "Starship", true),
+            new TalentCategorization(TalentCategory.Starship), true),
 
 
         new TalentModel(
@@ -5056,7 +5029,7 @@ export class Talents {
         new TalentModel(
             "Precision Targeting (Klingon)",
             "When the character makes an attack that targets a specific system, he may reroll one d20 in his dice pool, and the attack gains the Piercing 1 damage effect",
-            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E), new OfficerPrerequisite(), new DisciplinePrerequisite(Department.Security, 3)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E), new OfficerPrerequisite(), new DepartmentPrerequisite(Department.Security, 3)],
             1,
             "Klingon", true),
         new TalentModel(
@@ -5070,7 +5043,7 @@ export class Talents {
             "The character fights as much with words as with weapons. When in personal combat against an enemy who can understand them, they may use Presence instead of Daring to attack.",
             [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E, Species.Orion), new AttributePrerequisite(Attribute.Presence, 9)],
             1,
-            "Klingon/Orion", true),
+            new TalentCategorization(TalentCategory.Species, Species.Klingon, Species.Orion), true),
         new TalentModel(
             "Tactical Genius",
             "Once per scene, if the character succeeds at an Insight + Command task to assess their opponent, they may spend 2 Threat to allow all under their command to re-roll one d20 on their next task.",
@@ -5080,7 +5053,7 @@ export class Talents {
         new TalentModel(
             "Fleet Commander (NPC)",
             "Commanding a vessel during a fleet action reduces the Difficulty of a task to grant a bonus to the character's vessel or group by 1, to a minimum of 1. Aboard a vessel during a fleet action, the character may treat the vessel as having a Command department of 4+, regardless of the actual value.",
-            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran), new DisciplinePrerequisite(Department.Command, 3)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E), new OfficerPrerequisite(), new CareersPrerequisite(Career.Veteran), new DepartmentPrerequisite(Department.Command, 3)],
             1,
             "Klingon", true),
         new TalentModel(
@@ -5241,7 +5214,7 @@ export class Talents {
         new TalentModel(
             "A Little Bit Extra",
             "An Orion Science Officer is always on the lookout for something interesting, profitable, or valuable. Whenever performing a Task with Science, the Orion Scientist gains 1 bonus Momentum, that they can only spend on Obtain Information.",
-            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion), new DisciplinePrerequisite(Department.Science, 3)],
+            [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Orion), new DepartmentPrerequisite(Department.Science, 3)],
             1,
             "Orion", true),
         new TalentModel(
@@ -5297,7 +5270,7 @@ export class Talents {
             "The character adds the Vicious 1 Effect to their Unarmed Strike, and removes the Non-lethal Quality.",
             [new StereotypePrerequisite(Stereotype.Npc), new AnySpeciesPrerequisite(false, Species.Nausicaan, Species.JemHadar)],
             1,
-            "Nausicaan/Jem'Hadar", true),
+            new TalentCategorization(TalentCategory.Species, Species.Nausicaan, Species.JemHadar), true),
         new TalentModel(
             "Nausicaan Bloodlust",
             "When the character attempts a melee attack, and purchases one or more additional dice with Threat, they may re-roll any number of d20s.",
@@ -5345,52 +5318,52 @@ export class Talents {
             "Whenever a Bodyguard attempts a Task to notice or detect an enemy or hazard, they may re-roll one d20.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Bodyguard)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Accomplished Strategist",
             "The character is a skilled commander who learned the arts of warfare commanding ships in battle. Whenever they attempt a Task to formulate, execute, or explain a strategy, they may spend 1 Threat to re-roll his dice pool.",
             [new StereotypePrerequisite(Stereotype.Npc), new FlagOfficerPrerequisite()],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Counter Ploy",
             "Whenever an enemy attempts a Task to create an Advantage representing some manner of strategy or tactic, the character may spend 1 Threat to increase the Difficulty by 1. Further, if this Task then fails, the character may immediately spend one additional Threat to create an Advantage of their own, representing their own stratagem.",
             [new StereotypePrerequisite(Stereotype.Npc), new FlagOfficerPrerequisite()],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Sector Specialist",
             "The character is an expert in a specific sector of space. All Tasks involving the mapping of that sector, location of bodies, navigational hazards, etc. have their Difficulty reduced by 1. But this reliance on their own knowledge makes anything that is different from what they know often go unnoticed as they assume they know better, and the Complication range of these Tasks is increased by 1.",
             [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Astrometrics", "Stellar Cartography")],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Specialist Subject: Exploring Life",
             "A character that chooses this has an interest in Biology and Medicine, but no formal medical training. However, they have a great deal of knowledge about plant and animal species and how they may help or hinder a humanoid. Taking this increases the explorer’s Medicine Discipline by 1.",
             [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Biology", "Xenobiology", "Evolutionary Biology")],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Specialist Subject: Trailblazer",
             "The character has a wanderlust that drives them to be the first to see a new world, or be the first to explore a new sector of space. This can bring notoriety when they discover a new civilization or the remains of an ancient one, but the dangers of being on your own in the unknown mean many scientists risk their lives. A scientist with this choice may increase their Conn or Security Discipline by 1.",
             [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite()],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Specialist Subject: Academic Explorer",
             "These scientists have been more formerly trained to accurately chart the unknown. Choosing this allows a Focus of one of the following: Stellar Cartography, Planetary Geography, or Geomorphology.",
             [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite()],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Specialist Subject: Hard Science",
             "The scientist gains a Focus based on a single scientific field of study, e.g. Astrophysics, Subspace Theory, Quantum Mechanics.",
             [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Astrophysics", "Subspace Theory", "Physics", "Geology", "Quantum Mechanics", "Particle Physics", "Warp Theory"), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Specialist Subject: Research Lead",
             "The scientist has a broad background in the sciences and have honed their people skills to be able to lead other researchers in their projects. The professor does not gain a Focus; rather their Command Discipline is increased by 1.",
@@ -5401,68 +5374,68 @@ export class Talents {
                     new NpcTypePrerequisite(NpcType.Major))
             ],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Specialist Subject: Social Scientist",
             "A social scientist is trained in how intelligent beings interact with the world around them in fields such as Anthropology, Geography, and Linguistics. Like the Hard Science choice above, the choices in Focus should also have a specific world or culture attached to them, e.g. History of Andor, Vulcan Linguistics, or Tellarite Law.",
             [new StereotypePrerequisite(Stereotype.Npc), new ScientistPrerequisite(),
             new FocusPrerequisite("Anthropology", "Geography", "Linguistics", "Sociology", "History"), new CareersPrerequisite(Career.Experienced, Career.Veteran)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Armchair Analysis",
             "When the counselor uses their Insight to gain psychological information about someone with whom they are in dialogue, they can reroll a single d20.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Counselor)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Son'a Desperation",
             "Whenever a Son’a officer is below their maximum Stress, and buys additional d20s with Threat, the Son’a officer may re-roll a single d20.",
             [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.SonaCommandOfficer), new SpeciesPrerequisite(Species.SonA, false)],
             1,
-            "Son'a", true),
+            new TalentCategorization(TalentCategory.Species, Species.SonA), true),
         new TalentModel(
             "Son'a Authority",
             "Whenever a Son’a command officer uses the Direct or Assist Task to command a Tarlac, Ellora, or another Son’a under their command, the officer may roll 2d20 instead of 1d20.",
             [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.SonaCommandOfficer), new SpeciesPrerequisite(Species.SonA, false)],
             1,
-            "Son'a", true),
+            new TalentCategorization(TalentCategory.Species, Species.SonA), true),
         new TalentModel(
             "Endure the Pain",
             "Reduce non-lethal damage against the Talarian by 2. This is unaffected by Piercing.",
             [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Talarian, false)],
             1,
-            "Talarian", true),
+            new TalentCategorization(TalentCategory.Species, Species.Talarian), true),
         new TalentModel(
             "Sharing Victory",
             "When a Talarian succeeds in a Task, the next Talarian in the initiative order, if performing a Task, may re-roll a d20 in their pool at no cost.",
             [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpeciesPrerequisite(Species.Talarian, false)],
             1,
-            "Talarian", true),
+            new TalentCategorization(TalentCategory.Species, Species.Talarian), true),
         new TalentModel(
             "Guerilla Maneuvers",
             "The Talarian Officer may Create an Advantage once per adventure for free, representing a pre-arranged strategy, such as a rigged explosion or ambush. Such an explosion is treated as (Ranged, 5[D] Area).",
             [new StereotypePrerequisite(Stereotype.Npc), new SourcePrerequisite(Source.ContinuingMissions), new SpecializationPrerequisite(Specialization.TalarianOfficer)],
             1,
-            "Talarian", true),
+            new TalentCategorization(TalentCategory.Species, Species.Talarian), true),
         new TalentModel(
             "Renowned Diplomat",
             "The character’s renown and reputation are such that his mere presence can serve as the groundwork for diplomatic talks. Once per scene, when a character is involved in a Social Conflict reflecting peace talks, negotiations, or some other diplomatic mission, they may re-roll a single d20 as long as the ambassador is present in the scene or was instrumental in establishing the talks.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Break the Ice",
             "The ambassador's manner breaks through formality in a way that sometimes puts other diplomats and negotiators ill-at-ease. It does open up talks in a way that proper etiquette and procedure often do not. When attempting a Task during a Social Conflict, the ambassador may choose to increase their Complication Range by 1, 2, or 3. If the Task succeeds, they gain bonus Momentum equal to the amount by which they increased her Complication range.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Diplomatic Expertise",
             "Whenever the ambassador attempts a Task within a Social Conflict and buys one or more additional dice, they may re-roll their dice pool.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.FederationAmbassador)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Adaptable",
             "An Intelligence Operative may spend 2 Threat to gain a single focus for the remainder of the scene.",
@@ -5474,7 +5447,7 @@ export class Talents {
                         new SecurityPrerequisite())
             )],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Covert",
             "Whenever required to attempt  task to conceal their activities for an Intelligence Operative—including to maintain their cover identity—they may roll an additional d20.",
@@ -5486,7 +5459,7 @@ export class Talents {
                         new SecurityPrerequisite())
             )],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Jurisprudence",
             "The JAG Officer is extremely well-versed in the theory and philosophy of law, and may re-roll one d20 on a Task that uses the character’s Reason and their Law Focus.",
@@ -5499,7 +5472,7 @@ export class Talents {
                     )
             )],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Proficiency: Courtroom Arguments",
             "When engaged in courtroom Tasks such as making a legal argument or cross-examining a witness the JAG officer may add one bonus d20.",
@@ -5511,61 +5484,61 @@ export class Talents {
                 )
             )],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Threatening 1",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 1 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 2"), new NotTalentPrerequisite("Threatening 3"), new Version1Prerequisite()],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Threatening 2",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 2 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 3"), new Version1Prerequisite()],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Threatening 3",
             "The character is powerful and dangerous, with a vitality and drive that allows them to triumph where others might fail. The character begins each scene with 3 Threat, that may only be used to benefit themself, and which are not drawn from the general Threat pool.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Jag, Specialization.TzenkethiSoldier), new NotTalentPrerequisite("Threatening 1"), new NotTalentPrerequisite("Threatening 2"), new Version1Prerequisite()],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Fast Recovery 2",
             "The character recovers from stress and injury quickly. At the start of each of their Turns, the character regains 2 Stress, up to their normal maximum. If the character is Injured at the start of their turn, they may instead spend two Threat to remove that Injury.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.TzenkethiSoldier), new Version1Prerequisite()],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Slippery",
             "The Smuggler is used to playing upon their essentially harmless nature to wriggle out of trouble. The Smuggler reduces all Difficulties when trying to convince authorities to let them go using Presence by 1 (to a minimum of 0).",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Proficiency: Concealing Contraband",
             "When engaged in Tasks associated with hiding contraband or evading scans the smuggler may add one bonus d20.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "One with the Ship",
             "Whenever the Smuggler attempts a Task to pilot their ship, they may reduce the Difficulty by one, to a minimum of zero.",
-            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler), new DisciplinePrerequisite(Department.Conn, 3)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Smuggler), new DepartmentPrerequisite(Department.Conn, 3)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Considered Every Outcome",
             "The character is a keenly analytical commander, regarding every situation from myriad different angles and considering the advice of her senior staff before coming to a command decision. When they succeed at a Reason + Command Task, the character scores one additional Momentum than normal.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpecializationPrerequisite(Specialization.Captain), new AttributePrerequisite(Attribute.Reason, 4)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Tough 1",
             "This adversary’s Resistance against melee attacks is increased by 1.",
             [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
             1,
-            "General", true),
+            new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
             "Threatening (Pakled)",
             "When a Pakled adds dice to a pool by spending Threat, they may re-roll a single d20.",
@@ -5583,7 +5556,7 @@ export class Talents {
             "",
             [new StereotypePrerequisite(Stereotype.Npc), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
 
 
         new TalentModel(
@@ -5591,289 +5564,289 @@ export class Talents {
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             TALENT_NAME_AMPHIBIOUS,
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             TALENT_NAME_AQUATIC_LIQUID_ENVIRONMENT,
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Camouflaged X",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Coordination",
             "",
             [new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Corrosive Spit",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Energy Based",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Entangling Vines",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X,
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Fast Recovery",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Flight",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Formless",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Hyper Agile",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Immune to Cold",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Immune to Disease",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Immune to Fear",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Immune to Heat",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Immune to Pain",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Immune to Poison",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Immune to Vacuum",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Incorporeal",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Instinctive Dodge",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Initiative X",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Machine",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Menacing X",
             "",
             [new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Massive",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Mimicry",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Multi-Limbed",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Multidimensional",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Natural Climber",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Natural Protection X",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Night Vision",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Pheromones (Creature)",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Ram",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Resilient",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Sense Spectrum",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Spiked Tail",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Spore Attack",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Stealthy",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Sturdy (Special Rule)",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Threat Gesture",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Tool User",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Toxic, Poisonous or Venomous",
             "",
             [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Stink Attack",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Wall Climber",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             TALENT_NAME_WEB,
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             "Attach",
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
         new TalentModel(
             TALENT_NAME_WHIP_LIKE_TAIL,
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
             1,
-            "Special Rule", true),
+            new TalentCategorization(TalentCategory.SpecialRule), true),
     ];
 
     customTalent = new TalentModel(
