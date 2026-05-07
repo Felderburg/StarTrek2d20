@@ -20,10 +20,16 @@
 
     "SpeciesAbility.blueOrion": "Honor Among Thieves",
 
+    "SpeciesAbility.paradan.description": "The Paradans are known for the potent odors they produce, which shift with their mood, but also their highly receptive olfactory senses which allow them to discern fine details about others nearby from smell alone. Whenever you attempt a task to discern the mood or health of another, your keen sense of smell allows you to re-roll 1d20. When you are scared, upset, or angry, your potent odor distracts and dissuades others nearby; an enemy within Medium range attempting to attack you increases their difficulty by 1.",
+
     "Talent.ablativeArmor": "Ablative Armor",
     "Talent.ablativeArmorGenerator": "Ablative Armor Generator",
 
     "Talent.ablativeArmorGenerator.description2e": "The ship is fitted with several external replicators pre-set to materialize an outer layer of armor plating over the hull, reinforced with structural integrity fields.\n\nWhen the ship raises its shields, it may deploy armor instead, but this requires using Reserve Power. Deploying the armor increases the ship’s maximum shields capacity by 5 and increases the ship’s Resistance by\n3. While armor is deployed, the _Modulate Shields_ and _Regenerate Shields_ actions cannot be taken—the armor cannot be fine-tuned.",
+
+    "Talent.myHonorIsMyShield": "My Honor is My Shield",
+
+    "Talent.myHonorIsMyShield.description2e": "While it can be difficult to maintain a sterling reputation and in doing so lead to hardship and loss, there are times when pursuing a higher path can reap great benefits for the individual. It is the difficult road, but one that will ultimately lead towards fulfilling the needs of the many rather than the selfish desires of the one. If you have behaved honorably during the scene, and in prior interactions with a person, then you gain an **Honorable Reputation** trait which applies to any social conflict Persuasion task you attempt to convince that person of something.",
 
     "UniformEra.klingon": "Klingon Armor"
 }

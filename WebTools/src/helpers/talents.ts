@@ -2164,7 +2164,7 @@ export class Talents {
             new TalentModel(
                 "Absolute Conviction",
                 "The Argrathi come from a culture where crime has been systematically eliminated and therefore they view themselves as the true arbiters of justice across the Gamma Quadrant. They view criminals with disdain, and they live to show others the true greatness of their beliefs. An Argrathi gains +1 to all rolls when dealing with someone they know to be a criminal or who engages in criminal behavior. ",
-                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Argrathi, true)],
+                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Argrathi, true), new Version1Prerequisite()],
                 1,
                 "Argrathi"),
             new TalentModel(
@@ -2182,13 +2182,13 @@ export class Talents {
             new TalentModel(
                 "Glorious Notoriety",
                 "The Dosi’s culture has adapted itself to being able to look at an individual Dosi’s skin and being able to read their accomplishments before the other Dosi has even had a chance to open their mouth. The Dosi know other races are not as civilized as theirs and therefore they know how to radiate a sense of intimidation and respect to those who are around them, whether by flexing their muscles or by adding implied threats as they attempt to negotiate their deals. The Dosi reduces the Difficulty of all checks involving negotiations or diplomacy by 1. ",
-                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Dosi, true)],
+                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Dosi, true), new Version1Prerequisite()],
                 1,
                 "Dosi"),
             new TalentModel(
                 "Genetic Mastery",
                 "Research into the field of genetics has become the cornerstone of the Drai’s technology. Some families have begun experimenting on their own children in order to produce the most powerful heirs and offspring possible. The character must choose one attribute to be the focus of Genetic Mastery. Once an attribute is assigned to Genetic Mastery, the character reduces the Difficulty of all Tasks that involve that attribute by 1. ",
-                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Drai, true)],
+                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Drai, true), new Version1Prerequisite()],
                 1,
                 "Drai"),
             new TalentModel(
@@ -2206,7 +2206,7 @@ export class Talents {
             new TalentModel(
                 "Instant Appraisal",
                 "A tricorder can tell someone what an object is composed of in only a few seconds but it is rumoured that the Karemma can do it in only one. Drawing upon past experience, the Karemma is able to instinctively identify the materials that make up an object that they interact with physically. In the event of dealing with unknown or exotic substances, they are able to identify familiar patterns within the material that can point the characters in the right direction while performing the Scientific Method and reduce the difficulty by 1. ",
-                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Karemma, false)],
+                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Karemma, false), new Version1Prerequisite()],
                 1,
                 "Karemma"),
             new TalentModel(
@@ -2242,7 +2242,7 @@ export class Talents {
             new TalentModel(
                 "Disciplined Mind",
                 "The brutal laws that the Rakhari government has passed over the years has kept the population under control but led to most Rakhari being too afraid to share their intimate thoughts in public. This has led to several Rakhari becoming particularly adept at not only shielding their emotions while around others but also being able to discern the true feelings of those they communicate with. The Rakhari is able to reduce any psychic damage they may suffer by 1 and they gain a free reroll on one die in their pool when attempting to determine lies. ",
-                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Rakhari, true)],
+                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Rakhari, true), new Version1Prerequisite()],
                 1,
                 "Rakhari"),
             new TalentModel(
@@ -2254,7 +2254,7 @@ export class Talents {
             new TalentModel(
                 "Strength Through Struggle",
                 "Though some believe it is the Skreeaan’s history of being conquered that has made them expert laborers the truth is they are a tough and hardy people eager to throw off the reins of oppression. The fact that they are physically gifted when it comes to labor only means they are able to succeed easily where others struggle. When they succeed at performing a physically arduous Task they gain one bonus Momentum. This bonus Momentum cannot be saved into the group pool. ",
-                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Skreeaa, true)],
+                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Skreeaa, true), new Version1Prerequisite()],
                 1,
                 "Skreeaa"),
             new TalentModel(
@@ -2290,7 +2290,7 @@ export class Talents {
             new TalentModel(
                 "Life is a Game",
                 "Life is meant to be enjoyed, and the more risk one puts into their life the sweeter the victory. A Wadi has a distinct ability to sense patterns when it comes to solving tasks, and the more involved they are with something the more competitive they get and the quicker they are at solving puzzles. When attempting to solve a task or a riddle that involves them becoming competitive they gain an additional point of Momentum.",
-                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Wadi, false)],
+                [new SourcePrerequisite(Source.GammaQuadrant), new SpeciesPrerequisite(Species.Wadi, false), new Version1Prerequisite()],
                 1,
                 "Wadi"),
             new TalentModel(
