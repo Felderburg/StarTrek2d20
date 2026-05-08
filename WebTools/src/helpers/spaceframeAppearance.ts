@@ -21,6 +21,10 @@ export enum SpaceframeAppearance {
     Khnial,
 
 
+    // Orion
+    DVar,
+    Intruder,
+
     // Discovery-era Federation ships
     Kirk,
     Janeway,

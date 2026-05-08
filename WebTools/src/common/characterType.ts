@@ -15,6 +15,7 @@ export enum CharacterType {
     Romulan,
     Cardassian,
     Ferengi,
+    Orion,
 
     Tribble,
 
@@ -37,13 +38,14 @@ export class CharacterTypeModel {
         new CharacterTypeModel("Romulan", CharacterType.Romulan),
         new CharacterTypeModel("Cardassian", CharacterType.Cardassian),
         new CharacterTypeModel("Ferengi", CharacterType.Ferengi),
+        new CharacterTypeModel("Orion", CharacterType.Orion),
 
         new CharacterTypeModel("Tribble", CharacterType.Tribble),
 
         new CharacterTypeModel("Other", CharacterType.Other)
     ];
 
-    private static TYPES_EXCEPT_OTHER: CharacterTypeModel[] = CharacterTypeModel.TYPES
+    private static MAIN_CHARACTER_TYPES: CharacterTypeModel[] = CharacterTypeModel.TYPES
         .filter(t => t.type !== CharacterType.Other
             && t.type !== CharacterType.Tribble
             && t.type !== CharacterType.Federation);
@@ -70,7 +72,7 @@ export class CharacterTypeModel {
 
 
     public static getCharacterTypesForCharacter(sources: Source[]) {
-        return this.filterBySources(this.TYPES_EXCEPT_OTHER, sources);
+        return this.filterBySources(this.MAIN_CHARACTER_TYPES, sources);
     }
 
     private static filterBySources(types: CharacterTypeModel[], sources: Source[]) {
@@ -81,7 +83,7 @@ export class CharacterTypeModel {
                 return true;
             } else if (t.type === CharacterType.Civilian || t.type === CharacterType.AmbassadorDiplomat) {
                 return sources.indexOf(Source.PlayersGuide) || sources.indexOf(Source.Core2ndEdition);
-            } else if (t.type === CharacterType.Romulan || t.type === CharacterType.Ferengi || t.type === CharacterType.Cardassian) {
+            } else if (t.type === CharacterType.Romulan || t.type === CharacterType.Ferengi || t.type === CharacterType.Cardassian || t.type === CharacterType.Orion) {
                 return false;
             } else if (t.type === CharacterType.Creature) {
                 return false;
@@ -97,7 +99,7 @@ export class CharacterTypeModel {
     }
 
     public static getSupportingCharacterTypes() {
-        return CharacterTypeModel.TYPES_EXCEPT_OTHER;
+        return CharacterTypeModel.MAIN_CHARACTER_TYPES;
     }
 
     public static getNpcTypes(sources: Source[]) {
@@ -123,6 +125,7 @@ export class CharacterTypeModel {
                 CharacterType.Romulan,
                 CharacterType.Cardassian,
                 CharacterType.Ferengi,
+                CharacterType.Orion,
                 CharacterType.Civilian].includes(t.type));
         }
     }

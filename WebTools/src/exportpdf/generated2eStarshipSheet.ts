@@ -15,7 +15,7 @@ import { TalentsHelper } from "../helpers/talents";
 import { Column } from "./column";
 import { FontOptions } from "./fontOptions";
 import { FontType } from "./fontLibrary";
-import { cardassianBrownColour2e, ferengiOrangeColour2e, goldColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, redColour2e, romulanGreenColour2e, tealColour2e } from "./colourProvider2e";
+import { cardassianBrownColour2e, ferengiOrangeColour2e, goldColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, orionGreenColour2e, redColour2e, romulanGreenColour2e, tealColour2e } from "./colourProvider2e";
 import { CharacterType } from "../common/characterType";
 import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird } from "./politySymbols";
 import { TalentWriter } from "./talentWriter";
@@ -402,6 +402,8 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
             return cardassianBrownColour2e;
         } else if (construct.type === CharacterType.Ferengi) {
             return ferengiOrangeColour2e;
+        } else if (construct.type === CharacterType.Orion) {
+            return orionGreenColour2e;
         } else {
             return tealColour2e;
         }

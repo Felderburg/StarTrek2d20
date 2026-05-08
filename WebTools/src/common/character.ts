@@ -1537,9 +1537,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get isOrion() {
-        return this.stereotype === Stereotype.Npc &&
+        return this.type === CharacterType.Orion ||
+            (this.stereotype === Stereotype.Npc &&
                 (this.speciesStep?.species === Species.Orion &&
-                [Specialization.Pirate, Specialization.SketchyTraderCaptain, Specialization.IndependentTraderCaptain].indexOf(this.npcGenerationStep?.specialization) >= 0);
+                [Specialization.Pirate, Specialization.SketchyTraderCaptain, Specialization.IndependentTraderCaptain].indexOf(this.npcGenerationStep?.specialization) >= 0));
     }
 
     get isSona() {

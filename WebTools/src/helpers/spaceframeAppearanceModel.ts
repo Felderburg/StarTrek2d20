@@ -53,6 +53,9 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Kirk, CharacterType.Starfleet, [Era.Discovery32]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Janeway, CharacterType.Starfleet, [Era.Discovery32]),
 
+                // Orion
+                new SpaceframeAppearanceModel(SpaceframeAppearance.DVar, CharacterType.Orion, [Era.OriginalSeries]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Intruder, CharacterType.Orion, [Era.OriginalSeries]),
             ];
         }
 

@@ -1613,6 +1613,7 @@ CharacterType.name.child,Child,,Kinder,Niño,Enfant,,Criança
 CharacterType.name.other,Other,,Andere,Otro,Autre,,Outro
 CharacterType.name.cardassian,Cardassian Union,,Cardassianische Union,Unión Cardassiana,Union Cardassienne,,União Cardassiana
 CharacterType.name.romulan,Romulan Star Empire,,Romulanisches Sternenimperium,Imperio Estelar Romulano,Empire Stellaire Romulien,,Império Estelar Romulano
+CharacterType.name.orion,Orion,,,,,,
 CharacterType.name.ferengi,Ferengi Alliance,,,Alianza Ferengi,,,Aliança Ferengi
 EarlyOutlook.MilitaryOrExploration,Starfleet,,,Flota Estelar,Starfleet,Звездный флот,Frota Estelar
 EarlyOutlook.MilitaryOrExploration.description,"The character’s family may have a strong tradition of Starfleet service, with at least one member of the family in every generation serving the Federation in this way. Perhaps both the character’s parents were Starfleet officers, who met in service. Either way, the character’s formative years were influenced by Starfleet.",,,"Puede que la familia del personaje tenga una gran tradición de servicio en la Flota Estelar y que al menos un miembro de la familia de cada generación sirva de ese modo a la Federación. Quizá ambos progenitores del personaje fueran oficiales de la Flota Estelar y se conocieran estando de servicio. En ambos casos, los años de formación del personaje reciben la influencia de la Flota Estelar.","Le personnage peut être issu d'une famille ayant une longue tradition au service de Starfleet, avec au moins un membre de la famille de chaque génération servant la fédération. Peut être les deux parents du personnage étaient des officiers de Starfleet qui se sont rencontré en service. Quoi qu'""il en soit, les années formatrices du personnage ont été influencé par Starfleet.","Персонаж получает Ценность, которая должна
@@ -2569,9 +2570,11 @@ SpaceframeAppearance.antares,Antares-type,,,,,,
 SpaceframeAppearance.birdOfPrey22ndCentury,Bird of Prey (22nd Century),,,,,,
 SpaceframeAppearance.classJCargoShip,Class-J cargo ship,,,,,,
 SpaceframeAppearance.dDeridex,D'Deridex Class,,,,,,
+SpaceframeAppearance.dVar,D'Var Class,,,,,,
 SpaceframeAppearance.eisenberg,Eisenberg Class,,,,,,
 SpaceframeAppearance.friendship,Friendship Class,,,,,,
 SpaceframeAppearance.freighter,Freighter,,,,,,
+SpaceframeAppearance.intruder,Intruder Class,,,,,,
 SpaceframeAppearance.janeway,Janeway Class,,,,,,
 SpaceframeAppearance.jovisType,Jovis-type,,,,,,
 SpaceframeAppearance.kaplanF17PatrolFrigate,Kaplan F17 Patrol Frigate (La Sirena-type),,,,,,

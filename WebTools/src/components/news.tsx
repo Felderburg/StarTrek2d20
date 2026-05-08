@@ -14,6 +14,13 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260508</b>
+            <ul>
+                <li>
+                    Support for the 2nd edition updates for the <cite>Gamma Quadrant</cite> and
+                    <cite>Delta Quadrant</cite> sourcebooks.
+                </li>
+            </ul>
             <b>v1.260507</b>
             <ul>
                 <li>
