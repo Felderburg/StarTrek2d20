@@ -27,6 +27,7 @@
 
     "Talent.ablativeArmorGenerator.description2e": "The ship is fitted with several external replicators pre-set to materialize an outer layer of armor plating over the hull, reinforced with structural integrity fields.\n\nWhen the ship raises its shields, it may deploy armor instead, but this requires using Reserve Power. Deploying the armor increases the ship’s maximum shields capacity by 5 and increases the ship’s Resistance by\n3. While armor is deployed, the _Modulate Shields_ and _Regenerate Shields_ actions cannot be taken—the armor cannot be fine-tuned.",
 
+    "Talent.favoredByFortune": "Favored by Fortune",
     "Talent.myHonorIsMyShield": "My Honor is My Shield",
 
     "Talent.myHonorIsMyShield.description2e": "While it can be difficult to maintain a sterling reputation and in doing so lead to hardship and loss, there are times when pursuing a higher path can reap great benefits for the individual. It is the difficult road, but one that will ultimately lead towards fulfilling the needs of the many rather than the selfish desires of the one. If you have behaved honorably during the scene, and in prior interactions with a person, then you gain an **Honorable Reputation** trait which applies to any social conflict Persuasion task you attempt to convince that person of something.",

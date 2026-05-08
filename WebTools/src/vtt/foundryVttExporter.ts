@@ -5,7 +5,7 @@ import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Role, RoleModel, RolesHelper } from "../helpers/roles";
 import { DepartmentsHelper, Department } from "../helpers/department";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
-import { TALENT_NAME_UNTAPPED_POTENTIAL, TalentCategorization, TalentCategory, TalentModel } from "../helpers/talents";
+import { TALENT_NAME_UNTAPPED_POTENTIAL, TalentModel } from "../helpers/talents";
 import { DeliverySystem, EnergyLoadType, InjuryType, PersonalWeapons, Quality, TorpedoLoadType, Weapon, WeaponRange, WeaponType } from "../helpers/weapons";
 import { allSystems, System } from "../helpers/systems";
 import { Spaceframe } from "../helpers/spaceframeEnum";
@@ -22,6 +22,7 @@ import { FoundryPluginType } from "./foundryPluginType";
 import { marshaller } from "../helpers/marshaller";
 import { SelectedTalent } from "../common/selectedTalent";
 import { Station } from "../common/station";
+import { TalentCategory } from "../helpers/talentCategory";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";
@@ -1097,16 +1098,16 @@ export class FoundryVttExporter {
         if (this.determineTalentType(talent) === "general") {
             return "";
         } else if (this.determineTalentType(talent) === "discipline") {
-            return DepartmentsHelper.instance.getDepartmentName((talent.category as TalentCategorization).type[0] as Department);
+            return DepartmentsHelper.instance.getDepartmentName(talent.category.type[0] as Department);
         } else {
             return talent.category;
         }
     }
 
     determineTalentType(talent: TalentModel) {
-        if (talent.category instanceof TalentCategorization && talent.category.category === TalentCategory.Department) {
+        if (talent.category.category === TalentCategory.Department) {
             return "discipline";
-        } else if (talent.category instanceof TalentCategorization && talent.category.category === TalentCategory.Species) {
+        } else if (talent.category.category === TalentCategory.Species) {
             return "species";
         } else {
             return "general";

@@ -2,7 +2,7 @@ import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import {AliasModel} from './aliases';
 import {Attribute} from './attributes';
-import { DepartmentsHelper, Department } from "./department";
+import { Department } from "./department";
 import {Source} from './sources';
 import {Era} from './erasEnum';
 import { Species } from './speciesEnum';
@@ -26,9 +26,7 @@ import { Role } from './roles';
 import { isFlagRank } from '../token/model/rankHelper';
 import { localizedFocus } from '../components/focusHelper';
 import { Station } from '../common/station';
-import { SpeciesHelper } from './species';
-import { makeKey } from '../common/translationKey';
-import { CareersHelper } from './careers';
+import { TalentCategorization, TalentCategory } from './talentCategory';
 
 export const ADVANCED_TEAM_DYNAMICS = "Advanced Team Dynamics";
 export const TALENT_NAME_BORG_IMPLANTS = "Borg Implants";
@@ -84,66 +82,6 @@ export const talentNameCompare = (t1: TalentModel, t2: TalentModel) => {
         return -1;
     } else {
         return t2.name > t1.name ? -1 : 1;
-    }
-}
-
-export enum TalentCategory {
-    General,
-    Career,
-    Enhancement,
-    Starship,
-    Starbase,
-    Esoteric,
-    Species,
-    Department,
-    SpecialRule
-}
-
-export class TalentCategorization {
-    readonly category: TalentCategory;
-    readonly type?: (Species[])|(Career[])|(Department[]);
-
-    constructor(category: TalentCategory, ...type: (Species[])|(Career[])|(Department[])) {
-        this.category = category;
-        this.type = type;
-    }
-
-    includes(item: Species|Department|Career) {
-        return (this.type as any[]).includes(item);
-    }
-
-    get localizedDescription() {
-        let result = i18next.t(makeKey("TalentCategory.", TalentCategory[this.category]));
-
-        if (this.category === TalentCategory.Species && this.type != null) {
-            if (this.type.length) {
-                result += " (" + this.type
-                    .map(t => SpeciesHelper.getSpeciesByType(t as Species))
-                    .filter(s => s != null)
-                    .map(t => t.localizedName)
-                    .join("/")
-                + ")";
-            }
-        } else if (this.category === TalentCategory.Career && this.type != null) {
-            if (this.type.length) {
-                result += " (" + this.type
-                    .map(t => CareersHelper.instance.getCareerByType(t as Career))
-                    .filter(c => c != null)
-                    .map(t => t.localizedName)
-                    .join("/")
-                + ")";
-            }
-        } else if (this.category === TalentCategory.Department && this.type != null) {
-            if (this.type.length) {
-                result += " (" + this.type
-                    .map(t => DepartmentsHelper.instance.getDepartmentName(t as Department))
-                    .filter(c => c != null)
-                    .join("/")
-                + ")";
-            }
-        }
-
-        return result;
     }
 }
 
@@ -2302,7 +2240,7 @@ export class Talents {
             new TalentModel(
                 "Vibration Senses",
                 "The character has learned to use their unique physiology to allow them to detect vibrations, enhancing their ability to see and hear, even in darkness. Characters with this Talent reduce the Difficulty of perception-related Tasks by 1.",
-                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Ankari, true)],
+                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Ankari, true), new Version1Prerequisite()],
                 1,
                 "Ankari"),
             new TalentModel(
@@ -2332,7 +2270,7 @@ export class Talents {
             new TalentModel(
                 "Hologram Taskmaster",
                 "In decades past, the Lokirrim designed and utilized holograms to perform countless tasks. The character’s ship’s Crew Support is increased by 1. In addition, the character’s ship gains the Photonic Crew Trait. This increase can only be applied to a ship once, regardless of the number of Main Characters who possess this Talent.",
-                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Lokirrim, true)],
+                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Lokirrim, true), new Version1Prerequisite()],
                 1,
                 "Lokirrim"),
             new TalentModel(
@@ -2356,7 +2294,7 @@ export class Talents {
             new TalentModel(
                 "Submariner",
                 "Having lived underwater for centuries, the Moneans have long since developed a keen understanding of navigating underwater environments. The character reduces any Difficulty penalties to Conn Tasks while navigating or piloting underwater by 1.",
-                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Monean, true)],
+                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Monean, true), new Version1Prerequisite()],
                 1,
                 "Monean"),
             new TalentModel(
@@ -2380,13 +2318,13 @@ export class Talents {
             new TalentModel(
                 "Robust Physiology",
                 "Various physiological redundancies mean that wounds that would kill other humanoid species don’t affect Pendari as much. The character gains +2 Resistance against all nonlethal attacks. In addition, whenever the Pendari is the target of a First Aid Task, reduce the Difficulty of that Task by 1, to a minimum of 1.",
-                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Pendari, true)],
+                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Pendari, true), new Version1Prerequisite()],
                 1,
                 "Pendari"),
             new TalentModel(
                 "Canonic Law",
                 "A deep respect for and adherence to established laws provides the character with emotional assuredness. When spending Determination to bring one of their Values into play, the character may select two benefits instead of one. The circumstances of this Task and the Value being used must relate to the character’s belief and adherence to the laws of their people. This Talent may only be used once per mission, and it cannot be used when challenging the selected Value.",
-                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Sikarian, true)],
+                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Sikarian, true), new Version1Prerequisite()],
                 1,
                 "Sikarian"),
             new TalentModel(
@@ -2434,7 +2372,7 @@ export class Talents {
             new TalentModel(
                 "Thermal Regulation",
                 "This species is capable of regulating their body temperatures such that they can survive in hostile environments with ease. Reduce the severity of any negative Trait dealing with temperature by 1. This can eliminate any ongoing damage the character would normally be required to suffer due to these Traits.",
-                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Zahl, true)],
+                [new SourcePrerequisite(Source.DeltaQuadrant), new SpeciesPrerequisite(Species.Zahl, true), new Version1Prerequisite()],
                 1,
                 "Zahl"),
             new TalentModel(

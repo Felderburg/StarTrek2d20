@@ -8,11 +8,12 @@ import { EquipmentModel } from "../helpers/equipment";
 import { DepartmentsHelper, Department } from "../helpers/department";
 import { SpeciesHelper } from "../helpers/species";
 import { Species } from "../helpers/speciesEnum";
-import { TalentCategory, TalentModel, TalentsHelper } from "../helpers/talents";
+import { TalentModel, TalentsHelper } from "../helpers/talents";
 import { Weapon, WeaponRange, WeaponType, WeaponTypeModel } from "../helpers/weapons";
 import { System, allSystems } from "../helpers/systems";
 import { makeKey } from "../common/translationKey";
 import { SelectedTalent } from "../common/selectedTalent";
+import { TalentCategory } from "../helpers/talentCategory";
 
 interface IRoll20Attribute {
     name: string,

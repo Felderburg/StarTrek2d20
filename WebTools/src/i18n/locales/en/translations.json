@@ -2971,6 +2971,10 @@
 
     "SpeciesAbility.android.description": "See pg. 10 of the _Species Sourcebook_",
 
+    "SpeciesAbility.ankari": "Vibration Senses",
+
+    "SpeciesAbility.ankari.description": "Your unique vibrational sense gives you a greater awareness of your surroundings. When you attempt a task roll to detect or perceive some obscure detail of your surroundings, you may spend 1 Momentum (Immediate) before you roll to reduce the Difficulty by 1.",
+
     "SpeciesAbility.aenar": "Telepathic",
 
     "SpeciesAbility.aenar.description": "Aenar can sense the minds of other living creatures in their vicinity, and can read the thoughts of others, though they have strict taboos about reading a mind without permission. ",
@@ -3138,6 +3142,10 @@
 
     "SpeciesAbility.jemHadar.description": "See pg. 58 of the _Species Sourcebook_",
 
+    "SpeciesAbility.jye": "Thermal Adaptation",
+
+    "SpeciesAbility.jye.description": "You count your Protection as 2 higher than normal against any injury caused by intense cold, and you may suffer 1 Stress to ignore the effects of any trait which comes from extremes of cold. However, the Severity of any Injury inflicted by intense heat is increased by +1, and you increase the potency of any traits caused by intense heat by 1.",
+
     "SpeciesAbility.karemma": "Instant Appraisal",
 
     "SpeciesAbility.karemma.description": "A tricorder can tell someone what an object is composed of in only a few seconds, but it is rumored that the Karemma can do it in only one. Drawing upon past experience, the Karemma is able to instinctively identify the materials that make up an object that they interact with physically. In the event of dealing with unknown or exotic substances, they are able to identify familiar patterns within the material that can point the characters in the right direction. When studying an object or substance, you may roll 1d20: if you roll equal to or under your Reason, you may immediately ask one question about that object or substance as per _Obtain Information_.",
@@ -3189,13 +3197,25 @@
 
     "SpeciesAbility.liberatedBorg.description": "See pg. 76 of the _Species Sourcebook_",
 
+    "SpeciesAbility.lokirrim": "Hologram Taskmaster",
+
+    "SpeciesAbility.lokirrim.description": "In decades past, your people designed and utilized photonics to perform countless tasks. Your ship’s Crew Support is increased by +1 (which does not stack if multiple characters have this talent). Additionally, you may create supporting characters with a species of Hologram for free, costing no Crew Support; these may only remain on the ship, and cannot be improved.",
+
     "SpeciesAbility.lurian": "Resistant Anatomy",
 
     "SpeciesAbility.lurian.description": "See pg. 78 of the _Species Sourcebook_",
 
+    "SpeciesAbility.mari": "Telepathic",
+
+    "SpeciesAbility.mari.description": "You are telepathic, and have one of either the **Empathy** or **Telepathy** talents.",
+
     "SpeciesAbility.medusan": "Sublime Mind, Hideous Form",
 
     "SpeciesAbility.medusan.description": "See pp. 80-81 of the _Species Sourcebook_",
+
+    "SpeciesAbility.monean": "Submariner",
+
+    "SpeciesAbility.monean.description": "Having lived underwater for centuries, your people have a keen understanding of navigation. Whenever you attempt a task to pilot or navigate a starship (normally using your Conn rating), and suffer any complications, you may spend 1 Momentum (Immediate, Repeatable) to ignore a complication.",
 
     "SpeciesAbility.nanokin": "Tiny Being in a Lifelike Android",
 
@@ -3229,6 +3249,10 @@
 
     "SpeciesAbility.paradan.description": "The Paradans are known for the potent odours they produce, which shift with their mood, but also their highly receptive olfactory senses which allow them to discern fine details about others nearby from smell alone. Whenever you attempt a task to discern the mood or health of another, your keen sense of smell allows you to re-roll 1d20. When you are scared, upset, or angry, your potent odour distracts and dissuades others nearby; an enemy within Medium range attempting to attack you increases their difficulty by 1.",
 
+    "SpeciesAbility.pendari": "Robust Physiology",
+
+    "SpeciesAbility.pendari.description": "You gain 1 Protection which stacks with the benefits of any armor worn. Further, when another character attempts First Aid to heal you, they may re-roll a d20.",
+
     "SpeciesAbility.rakhari": "Disciplined Mind",
 
     "SpeciesAbility.rakhari.description": "The brutal laws that the Rakhari government has passed over the years has kept the population under control but led to most Rakhari being too afraid to share their intimate thoughts in public. This has led to several Rakhari becoming particularly adept at not only shielding their emotions while around others but also being able to discern the true feelings of those they communicate with. When someone attempts to read your thoughts or emotions, or otherwise make telepathic contact with you (including telepathic attack), you may prevent the telepath by suffering 2 Stress. When you attempt an Insight task to discern if someone is lying, you may re-roll one d20.",
@@ -3248,6 +3272,10 @@
     "SpeciesAbility.saurian": "Superior Metabolism",
 
     "SpeciesAbility.saurian.description": "See pg. 102 of the _Species Sourcebook_",
+
+    "SpeciesAbility.sikarian": "Canonic Law",
+
+    "SpeciesAbility.sikarian.description": "You derive emotional assurance from adhering to the established laws and traditions of your people. When you spend Determination to bring one of  your values into play, you also recover 2 Stress.",
 
     "SpeciesAbility.skreeaa": "Strength through Struggle",
 
@@ -3280,6 +3308,10 @@
     "SpeciesAbility.tosk": "Engineered to Evade",
 
     "SpeciesAbility.tosk.description": "You have the ability to conceal yourself from your pursuers. Using the Prepare minor action, you may shroud yourself, becoming nearly invisible. You gain the **Shrouded** trait. While shrouded, tasks to detect or locate you increase in difficulty accordingly, and you cannot be the target of an attack unless the attacker has found some other way to detect you. This ends when you make an attack or when you take another Prepare minor action to end the effect. You cannot use this ability if you’re _Fatigued_.",
+
+    "SpeciesAbility.turei": "Deep Determination",
+
+    "SpeciesAbility.turei.description": "Once per adventure, when you succeed at a task where one of your values or a directive would have aided your action, but you did not choose to spend a point of Determination, you may spend 3 Momentum to immediately earn a point of Determination.",
 
     "SpeciesAbility.vauNAkat": "Neuroflux",
 
@@ -3328,6 +3360,10 @@
     "SpeciesAbility.zakdorn": "Several Moves Ahead",
 
     "SpeciesAbility.zakdorn.description": "See pg. 128 of the _Species Sourcebook_",
+
+    "SpeciesAbility.zahl": "Thermal Regulation",
+
+    "SpeciesAbility.zahl.description": "Whenever you suffer a trait caused by extremes of heat or cold, you may suffer 2 Stress to ignore that trait. You count your Protection as 1 higher against any Injury caused by extreme heat or extreme cold.",
 
     "SpeciesAbility.zaranite": "Hardened Hide",
 
@@ -3700,6 +3736,10 @@
     "Talent.bornToATask": "Born to a Task",
 
     "Talent.bornToATask.description2e": "See pg. 91 of the _Species Sourcebook_",
+
+    "Talent.bornToFight": "Born to Fight",
+
+    "Talent.bornToFight.description2e": "The character may reroll one d20 when making an attack. In addition, if an attack is successful, the character generates 1 bonus Momentum which may only be spent to increase the Severity of the attack. Bonus Momentum may not be saved.",
 
     "Talent.calibratedMunitions": "Calibrated Munitions",
 
@@ -4245,6 +4285,10 @@
     "Talent.fastTargetingSystems.soloDescription": "The ship’s targeting systems can lock weapons on target much faster and more accurately than other ships of its class, giving it an edge in battle.",
     "Talent.fastTargetingSystems.description2e": "When you use the Targeting Solution minor action, you may gain both benefits: re-roll a d20 on the next attack and choose the system hit by the attack.",
 
+    "Talent.favoredByFortune": "Favoured by Fortune",
+
+    "Talent.favoredByFortune.description2e": "If you are successful on a task, the next task you succeed on during that same scene gains 1 bonus Momentum if successful. Bonus Momentum may not be saved.",
+
     "Talent.fellowshipSpeciality": "Fellowship Specialty",
 
     "Talent.fellowshipSpeciality.description2e": "Select a focus. When you succeed at a Medicine task where that focus applies, the cost of the Create Trait Momentum spend is reduced to 1.",
@@ -4640,6 +4684,10 @@
 
     "Talent.largerCrew.description": "The ship’s Crew Support is increased by 1.",
 
+    "Talent.lastBreath": "Last Breath",
+
+    "Talent.lastBreath.description2e": "The Tosk are designed to keep running no matter what, and refuse to allow themselves to be captured because they start to feel the effects of fatigue or exhaustion. When you become _Fatigued_, you may immediately add 1 Threat to recover 1 Stress. Each time during an adventure that you use this ability, the amount you add to Threat increases by 1.",
+
     "Talent.leadInvestigator": "Lead Investigator",
 
     "Talent.leadInvestigator.description2e": "Whenever you attempt a task to retrieve or analyze evidence of a crime, you may re-roll 1d20. When you spend one or more Momentum to Obtain Information to ask questions about a crime scene or evidence, you may ask one additional question.",
@@ -4707,6 +4755,10 @@
     "Talent.masterStrategist": "Master Strategist",
 
     "Talent.masterStrategist.description2e": "See pg. 129 of the _Species Sourcebook_",
+
+    "Talent.maximizedEfficiency": "Maximized Efficiency",
+
+    "Talent.maximizedEfficiency.description2e": "When assisting another character, you may re-roll your assist die. In addition, if your assistance die generated one or more successes, the character you are assisting scores 1 bonus Momentum if the task succeeds. Bonus Momentum may not be saved.",
 
     "Talent.meanRightHook": "Mean Right Hook",
 
@@ -4867,6 +4919,10 @@
 
     "Talent.noHesitation.description2e": "At the start of any round in an action scene, you may add 1 Threat to take the first turn, regardless of who would otherwise have acted first.",
 
+    "Talent.nomadicHeritage": "Nomadic Heritage",
+
+    "Talent.nomadicHeritage.description2e": "Generations of traversing the stars ingrained a natural affinity for navigation and positioning. The character may reroll a d20 during any task associated with positioning, course determination and other forms of navigation.",
+
     "Talent.noPainNoGain": "No Pain, No Gain",
 
     "Talent.noPainNoGain.description2e": "When you fail a task (but not an opposed task) which used your Daring, you may always choose to Succeed at Cost.",
@@ -4942,6 +4998,10 @@
 
     "Talent.particleEngineering.description2e": "See pg. 105 of the _Species Sourcebook_",
 
+    "Talent.passivePersuader": "Passive Persuader",
+
+    "Talent.passivePersuader.description2e": "You always have a sense of how to convince others. During a social conflict, if you use Evidence or Negotiation, you may re-roll 1d20 on your next _Persuasion_ task.",
+
     "Talent.pastTheRedline": "Past the Redline",
 
     "Talent.pastTheRedline.description2e": "When you use advanced technology, including attempting a task assisted by the ship, you may choose to increase the complication range by 1, 2, or 3. If you succeed, then you gain bonus Momentum equal to the amount by which the complication range was increased. Bonus Momentum cannot be saved.",
@@ -4986,6 +5046,10 @@
     "Talent.pheromonesCreature": "Pheromones",
 
     "Talent.pheromonesCreature.description2e": "The creature excretes a natural aphrodisiac pheromone. The creature may spend a turn emitting these pheromones around them to increase the Difficulty towards attacking them by 1.",
+
+    "Talent.photonicProsecutor": "Photonic Prosecutor",
+
+    "Talent.photonicProsecutor.description2e": "The Lokirrim have a long history of interrogating rogue photonics. When engaged in a social conflict with a hologram or other photonic life-form, you count as having one additional beneficial trait.",
 
     "Talent.piercingSalvo": "Piercing Salvo",
 
@@ -5250,6 +5314,10 @@
     "Talent.rivalry": "Rivalry",
 
     "Talent.rivalry.description": "You have a fierce rivalry with another character, and you constantly push yourself to outdo them. Select one other Main Character in the group. Whenever they add 1 or more Threat to purchase bonus d20s, you recover 1 Stress for each die they purchase.\n\nYou may select this talent multiple times, selecting a different character each time. You may not select the same character for both Rivalry and Supportive.",
+
+    "Talent.rivetingStoryteller": "Riveting Storyteller",
+
+    "Talent.rivetingStoryteller.description2e": "When you’re involved in a social conflict, if you can tell a story as part of your interaction, you may reroll one d20. Further, if you tell a story during a break, then each character you spend the break with recovers 1 additional Stress.",
 
     "Talent.rocksIntoReplicators": "Rocks into Replicators",
 
@@ -5678,6 +5746,10 @@
 
     "Talent.unconventionalThinking.description2e": "During any Challenge or Extended Task to adapt technology or study an unfamiliar phenomenon, you may propose an “Outside the Box” hypothesis—some strange, seemingly bizarre suggestion—and add 2 Threat to create a trait related to that hypothesis. Each time this trait is used to benefit you or your allies, add 1 Momentum to the group pool.",
 
+    "Talent.underdweller": "Underdweller",
+
+    "Talent.underdweller.description2e": "When you attempt a task to navigate or study subspace realms, you may re-roll 1d20.",
+
     "Talent.untappedPotential": "Untapped Potential",
 
     "Talent.untappedPotential.description": "The character is inexperienced, but talented and with a bright future in Starfleet. The character may not have or increase any Attribute above 11, or any Discipline above 4 while they have this Talent (and may have to adjust Attributes and Disciplines accordingly at the end of character creation). Whenever the character succeeds at a Task for which they bought one or more additional dice with either Momentum or Threat, they may roll 1[D]. The character receives bonus Momentum equal to the roll, and adds one point to Threat if an Effect is rolled. The character cannot gain any higher rank than lieutenant (junior grade) while they possess this Talent.",
@@ -5738,6 +5810,10 @@
 
     "Talent.wallClimber.description2e": "The creature is able to climb walls and suspend from ceilings.",
 
+    "Talent.warmWelcome": "Warm Welcome",
+
+    "Talent.warmWelcome.description2e": "A cheerful, outgoing personality is the perfect thing to put diplomatic guests at ease. Whenever you assist another character, you and the character being assisted may ignore any increases to complication range for the task. Further, if the task uses Presence, you may use either your Presence rating, or the Presence rating of the character being assisted, whichever is higher.",
+
     "Talent.warriorsSpirit": "Warrior's Spirit",
 
     "Talent.warriorsSpirit.description2e": "When you make a Melee Attack, or are targeted by a Melee Attack, and you buy one or more d20s by adding Threat, you may re-roll the dice pool for your task roll. Further, you own either a mek’leth (a blade) or a bat’leth (a heavy blade) at your discretion, which counts as standard issue for you.",
@@ -5761,6 +5837,10 @@
     "Talent.wellMaintainedArsenal": "Well-Maintained Arsenal",
 
     "Talent.wellMaintainedArsenal.description": "One of your duties is to maintain the weapons used by the ship’s personnel, and you take that duty very seriously. Each scene, any character using a weapon from the ship’s weapons lockers may ignore the first complication rolled when making an attack or attempting another task using that weapon. Further, when you attempt a task to create a trait that represents modifying, calibrating, or modulating a weapon, reduce the Difficulty by 1.\n\nThis covers any standard issue weapons, or any obtained by paying the Opportunity Cost aboard ship, excluding those gained from other talents.",
+
+    "Talent.wellRegarded": "Well-Regarded",
+
+    "Talent.wellRegarded.description": "Your people have a favorable reputation amongst others, and you’re used to leveraging it. When you use your Reputation instead of a department rating to persuade someone, you may reroll 1d20.",
 
     "Talent.whipLikeTail": "Whip-like Tail",
 

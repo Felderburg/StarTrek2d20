@@ -1,18 +1,18 @@
 ﻿import React, { useState } from 'react';
 import { DropDownElement, DropDownSelect } from "../components/dropDownInput";
-import { Department, DepartmentsHelper } from "../helpers/department";
-import { TalentCategorization, TalentCategory, TalentModel, TalentsHelper } from "../helpers/talents";
+import { Department } from "../helpers/department";
+import { TalentModel, TalentsHelper } from "../helpers/talents";
 import { Source, SourcesHelper } from "../helpers/sources";
 import { SpeciesHelper } from "../helpers/species";
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { Species } from '../helpers/speciesEnum';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import { toCamelCase } from '../common/camelCaseUtil';
 import { hasSource } from '../state/contextFunctions';
 import Markdown from 'react-markdown';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import { Button } from 'react-bootstrap';
+import { TalentCategory } from '../helpers/talentCategory';
 
 enum TalentVersion {
     FirstEdition,
@@ -174,6 +174,7 @@ const TalentsOverviewPage = () => {
             new DropDownElement("", ""),
             new DropDownElement(TalentCategory.General, t('TalentCategory.general')),
             new DropDownElement(TalentCategory.Career, t('TalentCategory.career')),
+            new DropDownElement(TalentCategory.Esoteric, t('TalentCategory.esoteric')),
             new DropDownElement(TalentCategory.Enhancement, t('TalentCategory.enhancement')),
             new DropDownElement(TalentCategory.Starship, t('TalentCategory.starship')),
             new DropDownElement(TalentCategory.Starbase, t('TalentCategory.starbase')),

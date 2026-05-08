@@ -8,7 +8,7 @@ import SoloStarshipBreadcrumbs from "../component/soloStarshipBreadcrumbs";
 import Button from "react-bootstrap/Button";
 import replaceDiceWithArrowhead from "../../common/arrowhead";
 import { CheckBox } from "../../components/checkBox";
-import { CenturyPrerequisite, TalentCategory, TalentModel, TalentsHelper } from "../../helpers/talents";
+import { CenturyPrerequisite, TalentModel, TalentsHelper } from "../../helpers/talents";
 import { Source } from "../../helpers/sources";
 import { ServiceYearPrerequisite } from "../../helpers/prerequisite";
 import store from "../../state/store";
@@ -18,6 +18,7 @@ import { Navigation } from "../../common/navigator";
 import { PageIdentity } from "../../pages/pageIdentity";
 import { StarshipRandomTalentTable } from "../table/starshipRandomTalentTable";
 import { SelectedTalent } from "../../common/selectedTalent";
+import { TalentCategory } from "../../helpers/talentCategory";
 
 interface ISoloStarshipTalentsProperties {
     starship: Starship;

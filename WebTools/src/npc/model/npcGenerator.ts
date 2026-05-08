@@ -4,10 +4,10 @@ import { D20 } from "../../common/die";
 import { AttributesHelper } from "../../helpers/attributes";
 import { Career } from "../../helpers/careerEnum";
 import { RanksHelper, Rank } from "../../helpers/ranks";
-import { Department, DepartmentsHelper } from "../../helpers/department";
+import { DepartmentsHelper } from "../../helpers/department";
 import { Species } from "../../helpers/speciesEnum";
 import { SpeciesHelper, SpeciesModel } from "../../helpers/species";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_WARRIORS_SPIRIT, TalentCategory, TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_WARRIORS_SPIRIT, TalentsHelper } from "../../helpers/talents";
 import { NameGenerator } from "../nameGenerator";
 import { NpcType, NpcTypes } from "./npcType";
 import { SpecializationModel, Specializations, Specialty, Value } from "./specializations";
@@ -24,6 +24,7 @@ import AgeHelper from "../../helpers/age";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { SpecialWeapon } from "../../common/specialWeapon";
+import { TalentCategory } from "../../helpers/talentCategory";
 
 const recreationSkills: { [type: number ]: string[] } = {
 
