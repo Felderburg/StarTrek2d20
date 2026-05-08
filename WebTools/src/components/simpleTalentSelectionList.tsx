@@ -1,6 +1,7 @@
 ﻿import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
-import {TALENT_NAME_CUSTOM_TALENT, TalentModel} from '../helpers/talents';
+import {TalentModel} from '../helpers/talentModel';
+import {TALENT_NAME_CUSTOM_TALENT} from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import { Construct } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';

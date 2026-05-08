@@ -1,7 +1,8 @@
 import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { Attribute, AttributesHelper } from "../../helpers/attributes";
-import { TalentModel, TalentsHelper } from "../../helpers/talents";
+import { TalentModel } from "../../helpers/talentModel";
+import { TalentsHelper } from "../../helpers/talents";
 import { CreatureType } from "./creatureType";
 import { DietType } from "./diet";
 

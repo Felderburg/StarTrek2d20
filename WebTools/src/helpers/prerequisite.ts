@@ -10,6 +10,7 @@ import { Career } from "./careerEnum";
 import { Era } from "./erasEnum";
 import { Role } from "./roles";
 import { Source } from "./sources";
+import { Species } from "./speciesEnum";
 
 export interface IConstructPrerequisite {
     isPrerequisiteFulfilled(construct: Character|Starship|Creature|Station): boolean;
@@ -278,3 +279,56 @@ export class AllOfPrerequisite implements IConstructPrerequisite, ICompositePrer
         return "";
     }
 }
+
+export class SpeciesPrerequisite implements IConstructPrerequisite {
+    private species: number;
+    private allowCrossSelection: boolean;
+    private allowMixedSpecies: boolean;
+
+    constructor(species: number, allowCrossSelection: boolean, allowMixedSpecies: boolean = true) {
+        this.species = species;
+        this.allowCrossSelection = allowCrossSelection;
+        this.allowMixedSpecies = allowMixedSpecies;
+    }
+
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        if (!(c instanceof Character)) {
+            return false;
+        } else if (this.allowMixedSpecies) {
+            return c.speciesStep?.species === this.species ||
+            c.speciesStep?.mixedSpecies === this.species ||
+            c.speciesStep?.originalSpecies === this.species ||
+            (this.allowCrossSelection && store.getState().context.allowCrossSpeciesTalents);
+        } else {
+            return c.speciesStep?.species === this.species && c.speciesStep?.mixedSpecies == null && c.speciesStep?.originalSpecies == null;
+        }
+    }
+
+    describe(): string {
+        return "";
+    }
+}
+
+export class AnySpeciesPrerequisite implements IConstructPrerequisite {
+    private species: Species[];
+    private allowCrossSelection: boolean;
+
+    constructor(allowCrossSelection: boolean, ...species: Species[]) {
+        this.species = species;
+        this.allowCrossSelection = allowCrossSelection;
+    }
+
+    isPrerequisiteFulfilled(c: Character|Starship|Creature|Station) {
+        if (!(c instanceof Character)) {
+            return false;
+        } else {
+            let result = (this.allowCrossSelection && store.getState().context.allowCrossSpeciesTalents);
+            this.species.forEach(s => result = result || c.speciesStep?.species === s || c.speciesStep?.mixedSpecies === s || c.speciesStep?.originalSpecies === s);
+            return result;
+        }
+    }
+    describe(): string {
+        return "";
+    }
+}
+

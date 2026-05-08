@@ -15,7 +15,7 @@ import { setStationMissionProfile, setStationMissionProfileTalent } from "../../
 import { Dialog } from "../../components/dialog";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { RankedTalent } from "../../helpers/rankedTalent";
-import { TalentModel } from "../../helpers/talents";
+import { TalentModel } from "../../helpers/talentModel";
 import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
 import { StandardStationSpaceframeStep } from "../../common/station";
 import { StationFrame } from "../../helpers/stationFrame";

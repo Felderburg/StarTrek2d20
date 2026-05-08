@@ -6,8 +6,9 @@ import { IConstructPrerequisite, NeverPrerequisite, ServiceYearPrerequisite, Sou
 import { Source } from "./sources";
 import { Spaceframe } from "./spaceframeEnum";
 import { IServiceYearProvider } from "../common/serviceYearProvider";
-import { CenturyPrerequisite, MaxServiceYearPrerequisite, TalentModel } from "./talents";
+import { CenturyPrerequisite, MaxServiceYearPrerequisite } from "./talents";
 import { SelectedTalent } from "../common/selectedTalent";
+import { TalentModel } from "./talentModel";
 
 
 export class SoloSpaceframeStats {

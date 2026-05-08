@@ -2,7 +2,8 @@ import i18next from "i18next";
 import { Starship } from "../common/starship";
 import { IConstructPrerequisite, SourcePrerequisite } from "./prerequisite";
 import { Source } from "./sources";
-import { TalentModel, TalentsHelper } from "./talents";
+import { TalentModel } from "./talentModel";
+import { TalentsHelper } from "./talents";
 import { makeKey } from "../common/translationKey";
 
 

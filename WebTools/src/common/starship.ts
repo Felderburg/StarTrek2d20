@@ -4,7 +4,7 @@ import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
-import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MINELAYER, TALENT_NAME_MISSION_POD, TalentModel } from "../helpers/talents";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MINELAYER, TALENT_NAME_MISSION_POD } from "../helpers/talents";
 import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
@@ -18,6 +18,7 @@ import { StarshipAdvancementChoice } from "./starshipAdvancementChoice";
 import { SpaceframeVariant } from "../helpers/spaceframeVariant";
 import { SpaceframeAppearance } from "../helpers/spaceframeAppearance";
 import { BuildPoints } from "../starship/model/buildPoints";
+import { TalentModel } from "../helpers/talentModel";
 
 export class SimpleStats {
     departments: number[];

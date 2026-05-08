@@ -10,7 +10,7 @@ import { SpaceframeAppearance } from "../helpers/spaceframeAppearance";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { SpaceframeVariant } from "../helpers/spaceframeVariant";
 import { System } from "../helpers/systems";
-import { TalentModel } from "../helpers/talents";
+import { TalentModel } from "../helpers/talentModel";
 import { Weapon } from "../helpers/weapons";
 import { ServiceRecordModel } from "../starship/model/serviceRecord";
 import { ShipBuildWorkflow } from "../starship/model/shipBuildWorkflow";

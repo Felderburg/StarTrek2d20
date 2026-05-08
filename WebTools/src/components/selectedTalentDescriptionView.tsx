@@ -15,10 +15,11 @@ import { BorgImplants, BorgImplantType } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';
 import { Attribute } from '../helpers/attributes';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TalentModel } from '../helpers/talents';
+import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION } from '../helpers/talents';
 import { SimpleDepartmentSelector } from './simpleDepartmentSelector';
 import { Department } from '../helpers/department';
 import { AttackType } from '../common/attackType';
+import { TalentModel } from '../helpers/talentModel';
 
 interface ISelectedTalentDescriptionProperties {
     version: number;

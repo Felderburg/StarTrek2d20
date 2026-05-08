@@ -7,7 +7,7 @@ import MissionProfiles, { MissionProfileModel } from '../../helpers/missionProfi
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { StatView } from '../../components/StatView';
 import { SelectedTalent } from '../../common/selectedTalent';
-import { TalentModel } from '../../helpers/talents';
+import { TalentModel } from '../../helpers/talentModel';
 
 interface IMissionProfileSelectionProperties extends WithTranslation {
     initialSelection?: MissionProfileModel;

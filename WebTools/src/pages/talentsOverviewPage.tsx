@@ -1,7 +1,8 @@
 ﻿import React, { useState } from 'react';
 import { DropDownElement, DropDownSelect } from "../components/dropDownInput";
 import { Department } from "../helpers/department";
-import { TalentModel, TalentsHelper } from "../helpers/talents";
+import { TalentModel } from "../helpers/talentModel";
+import { TalentsHelper } from "../helpers/talents";
 import { Source, SourcesHelper } from "../helpers/sources";
 import { SpeciesHelper } from "../helpers/species";
 import replaceDiceWithArrowhead from '../common/arrowhead';
@@ -63,7 +64,7 @@ class TalentViewModel {
 
     get version() {
         let first = false;
-        let second = false;
+        let second = this.talent.is2eSupported;
         let sources = SourcesHelper.getSources();
 
         this.talent.sources.forEach(s => {

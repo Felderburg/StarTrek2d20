@@ -1,4 +1,5 @@
-import { TALENT_NAME_CUSTOM_TALENT, TalentModel } from "./talents";
+import { TalentModel } from "./talentModel";
+import { TALENT_NAME_CUSTOM_TALENT } from "./talents";
 
 export class RankedTalent {
     readonly talentModel: TalentModel;

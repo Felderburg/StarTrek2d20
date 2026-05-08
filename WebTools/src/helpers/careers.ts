@@ -1,10 +1,11 @@
-﻿import {TalentsHelper, TalentModel} from './talents';
+﻿import {TalentsHelper} from './talents';
 import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Career } from './careerEnum';
 import i18next from 'i18next';
 import { makeKey } from '../common/translationKey';
 import { Stereotype } from '../common/construct';
+import { TalentModel } from './talentModel';
 
 
 export class CareerModel {
