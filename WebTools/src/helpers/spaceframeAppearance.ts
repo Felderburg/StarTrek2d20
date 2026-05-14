@@ -6,6 +6,7 @@ export enum SpaceframeAppearance {
     Merchantman,
     XhosaType,
     KaplanF17PatrolFrigate,
+    ConestogaType,
 
     // Romulan
     Aelahl,

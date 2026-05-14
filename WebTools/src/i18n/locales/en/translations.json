@@ -2408,6 +2408,7 @@
     "SpaceframeAppearance.antares": "Antares-type",
     "SpaceframeAppearance.birdOfPrey22ndCentury": "Bird of Prey (22nd Century)",
     "SpaceframeAppearance.classJCargoShip": "Class-J cargo ship",
+    "SpaceframeAppearance.conestogaType": "Conestoga-type",
     "SpaceframeAppearance.dDeridex": "D'Deridex Class",
     "SpaceframeAppearance.dVar": "D'Var Class",
     "SpaceframeAppearance.eisenberg": "Eisenberg Class",
@@ -2431,6 +2432,9 @@
 
     "SpaceframeVariant.excelsior": "Original frame",
     "SpaceframeVariant.enterpriseBVariant": "Enterprise-B variant",
+    "SpaceframeVariant.originalSeries": "Original Series",
+    "SpaceframeVariant.originalSeriesMovies": "Original Series (Movies)",
+    "SpaceframeVariant.strangeNewWorldsVariant": "Strange New Worlds",
 
     "SpaceRegion.alphaQuadrant": "Alpha Quadrant",
     "SpaceRegion.betaQuadrant": "Beta Quadrant",

@@ -28,6 +28,9 @@ export enum EarlyOutlook {
     ToDiscover,
     ToProtect,
     ToProsper,
+
+    // Species Sourcebook
+    HardshipAndSubjugation,
 }
 
 export class EarlyOutlookModel {

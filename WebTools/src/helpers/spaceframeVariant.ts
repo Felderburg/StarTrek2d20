@@ -43,6 +43,12 @@ export class SpaceframeVariantModel {
                 const variants = [SpaceframeVariant.Excelsior, SpaceframeVariant.EnterpriseBVariant];
                 return this.ALL.filter(v => variants.includes(v.id));
             }
+            case Spaceframe.Constitution:
+            case Spaceframe.Constitution_2E:
+            case Spaceframe.Constitution_UP: {
+                const variants = [SpaceframeVariant.OriginalSeries, SpaceframeVariant.OriginalSeriesMovies, SpaceframeVariant.StrangeNewWorldsVariant];
+                return this.ALL.filter(v => variants.includes(v.id));
+            }
             default:
                 return [];
         }

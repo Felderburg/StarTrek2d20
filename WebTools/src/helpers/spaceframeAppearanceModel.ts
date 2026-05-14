@@ -28,6 +28,7 @@ export class SpaceframeAppearanceModel {
                 // Civilian
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Antares, CharacterType.Civilian, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.ClassJCargoShip, CharacterType.Civilian, [Era.OriginalSeries]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.ConestogaType, CharacterType.Civilian, [Era.Enterprise]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Freighter, CharacterType.Civilian, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.JovisType, CharacterType.Civilian, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Merchantman, CharacterType.Civilian, [Era.OriginalSeries, Era.NextGeneration]),
