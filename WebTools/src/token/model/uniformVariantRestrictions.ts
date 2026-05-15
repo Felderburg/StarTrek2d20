@@ -30,6 +30,8 @@ export default class UniformVariantRestrictions {
                 result.push(UniformVariantType.Variant3); // Kruge
             }
             result.push(UniformVariantType.Variant2); // Klingon vest or Key'lehr
+        } else if (uniformEra === UniformEra.Discovery32) {
+            result.push(UniformVariantType.Variant1);
         } else if (uniformEra === UniformEra.StrangeNewWorlds) {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === "Medical") {
                 result.push(UniformVariantType.Variant2);

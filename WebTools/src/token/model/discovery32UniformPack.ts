@@ -200,13 +200,16 @@ export class Discovery32UniformPack extends BaseTngEraUniformPack implements IUn
 
     getUniformSwatches() {
         return [
-            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, token.variant, BodyType.AverageMale), BodyType.AverageMale, token), "BodyType.averageMale"),
-            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, token.variant, BodyType.AverageFemale), BodyType.AverageFemale, token), "BodyType.averageFemale")
+            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Base, BodyType.AverageMale), BodyType.AverageMale, token), "BodyType.averageMale"),
+            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Base, BodyType.AverageFemale), BodyType.AverageFemale, token), "BodyType.averageFemale")
         ];
     }
 
     getUniformVariantSwatches(token: Token) {
-        return [];
+        return [
+            new Swatch(UniformVariantType.Base, "Base", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Base, token.bodyType), UniformVariantType.Base, token)),
+            new Swatch(UniformVariantType.Variant1, "Grey Variant", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Variant1, token.bodyType), UniformVariantType.Variant1, token))
+        ];
     }
 
     getUniformAndVariantBody(token: Token) {
@@ -230,8 +233,11 @@ export class Discovery32UniformPack extends BaseTngEraUniformPack implements IUn
             }
         }
 
-        base = base.replace(DefaultRed, divisionColour).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-
+        if (variant === UniformVariantType.Variant1) {
+            base = base.replace(DefaultRed, "#808889").replace(/#2c2c2c/g, divisionColour).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+        } else {
+            base = base.replace(DefaultRed, divisionColour).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+        }
         let metalHighlights = COPPER
         if (DivisionColors.getDivision(this.era, token.divisionColor) === 'Command') {
             metalHighlights = COPPER;
