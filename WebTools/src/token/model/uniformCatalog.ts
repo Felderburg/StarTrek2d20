@@ -1,3 +1,4 @@
+import { Species } from "../../helpers/speciesEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { Token } from "./token";
 import { UniformEra } from "./uniformEra";
@@ -20,8 +21,8 @@ class UniformCatalog {
         return this.getUniformPack(token.uniformEra).getUniformAndVariantBody(token);
     }
 
-    getSwatches(uniformEra: UniformEra) {
-        return this.getUniformPack(uniformEra).getUniformSwatches();
+    getSwatches(uniformEra: UniformEra, species: Species) {
+        return this.getUniformPack(uniformEra).getUniformSwatches(species);
     }
 
     getUniformVariantSwatches(token: Token) {

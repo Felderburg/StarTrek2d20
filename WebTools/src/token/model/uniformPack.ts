@@ -1,9 +1,10 @@
+import { Species } from "../../helpers/speciesEnum";
 import Swatch from "./swatch";
 import { Token } from "./token";
 
 export interface IUniformPack {
 
-    getUniformSwatches(): Swatch[];
+    getUniformSwatches(species?: Species): Swatch[];
     getUniformAndVariantBody(token: Token): string;
     getUniformVariantSwatches(token: Token): Swatch[];
 

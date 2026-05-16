@@ -185,12 +185,16 @@ export class DominionWarUniformPack extends BaseTngEraUniformPack implements IUn
         super(UniformEra.DominionWar);
     }
 
-    getUniformSwatches() {
-        return [
-            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.DominionWar) + DominionWarMaleBody, BodyType.AverageMale, token), "BodyType.averageMale"),
-            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.DominionWar) + DominionWarFemaleBody, BodyType.AverageFemale, token), "BodyType.averageFemale"),
-            new Swatch(BodyType.AverageNonBinary, "Average Non-Binary", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageNonBinary, token.skinColor, undefined, UniformEra.DominionWar) + DominionWarUniforms.nonBinary.standard, BodyType.AverageNonBinary, token), "BodyType.averageNonBinary"),
-        ];
+    getUniformSwatches(species: Species) {
+        if (species === Species.Edosian) {
+            return [ new Swatch(BodyType.AverageNonBinary, "Average Edosian", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageNonBinary, token.skinColor, Species.Edosian, UniformEra.DominionWar) + DominionWarUniforms.edosian.standard, BodyType.AverageNonBinary, token), "Species.edosian") ];
+        } else {
+            return [
+                new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.DominionWar) + DominionWarMaleBody, BodyType.AverageMale, token), "BodyType.averageMale"),
+                new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.DominionWar) + DominionWarFemaleBody, BodyType.AverageFemale, token), "BodyType.averageFemale"),
+                new Swatch(BodyType.AverageNonBinary, "Average Non-Binary", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageNonBinary, token.skinColor, undefined, UniformEra.DominionWar) + DominionWarUniforms.nonBinary.standard, BodyType.AverageNonBinary, token), "BodyType.averageNonBinary"),
+            ];
+        }
     }
 
     getUniformVariantSwatches(token: Token) {
