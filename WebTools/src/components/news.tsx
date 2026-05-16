@@ -14,10 +14,20 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260516</b>
+            <ul>
+                <li>
+                    Minor improvements to tokens.
+                </li>
+            </ul>
             <b>v1.260515</b>
             <ul>
                 <li>
                     A handful of minor updates and bug fixes.
+                </li>
+                <li>
+                    Added a 32nd-century uniform, with important commbadge contributions
+                    from Felderburg.
                 </li>
             </ul>
             <b>v1.260508</b>
