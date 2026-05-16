@@ -147,7 +147,8 @@ export default class UniformVariantRestrictions {
     }
 
     static getSupportedBodyTypes(uniformEra: UniformEra) {
-        if (uniformEra === UniformEra.DominionWar) {
+        if (uniformEra === UniformEra.DominionWar ||
+            uniformEra === UniformEra.Picard25) {
             return [ BodyType.AverageMale, BodyType.AverageFemale, BodyType.AverageNonBinary ];
         } else {
             return [ BodyType.AverageMale, BodyType.AverageFemale ];
