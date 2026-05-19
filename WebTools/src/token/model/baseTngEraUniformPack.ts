@@ -306,7 +306,6 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
             new Swatch(Rank.LtCommander, "Lt. Commander", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.ltCommander, Rank.LtCommander, token), "Rank.ltCommander.name"),
             new Swatch(Rank.Commander, "Commander", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.commander, Rank.Commander, token), "Rank.commander.name"),
             new Swatch(Rank.Captain, "Captain", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.captain, Rank.Captain, token), "Rank.captain.name"),
-
         ];
         result.push(...this.getEnlistedRankSwatches());
         result.push(...this.getFlagOfficerRankSwatches());

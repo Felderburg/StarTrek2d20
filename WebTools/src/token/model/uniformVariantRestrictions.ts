@@ -58,6 +58,9 @@ export default class UniformVariantRestrictions {
             result.push(UniformVariantType.Variant11);
             result.push(UniformVariantType.Variant12);
             result.push(UniformVariantType.Variant13);
+            if (bodyType === BodyType.AverageFemale) {
+                result.push(UniformVariantType.Variant14);
+            }
         } else if (uniformEra === UniformEra.OriginalSeries) {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === "Command" && (rank === Rank.Captain || rank === Rank.Commodore)) {
                 result.push(UniformVariantType.Variant1);
@@ -76,6 +79,13 @@ export default class UniformVariantRestrictions {
     static isRankSupported(rankIndicator: Rank, uniformEra: UniformEra) {
         switch (uniformEra) {
             case UniformEra.DominionWar:
+                return [
+                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                    // Rank.CadetFirstClass, Rank.CadetSecondClass, Rank.CadetThirdClass, Rank.CadetFourthClass,
+                    Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,
+                    Rank.PettyOfficer1stClass, Rank.ChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, Rank.MasterChiefPettyOfficer,
+                    Rank.RearAdmiral, Rank.ViceAdmiral, Rank.Admiral
+                ].includes(rankIndicator);
             case UniformEra.NextGeneration:
             case UniformEra.VoyagerDS9:
                 return [

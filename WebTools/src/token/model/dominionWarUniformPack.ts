@@ -1,6 +1,7 @@
 import { Species } from "../../helpers/speciesEnum";
 import { BaseTngEraUniformPack } from "./baseTngEraUniformPack";
 import { BodyType } from "./bodyTypeEnum";
+import { isCadetRank } from "./rankHelper";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
 import { Token } from "./token";
@@ -202,20 +203,28 @@ export class DominionWarUniformPack extends BaseTngEraUniformPack implements IUn
     }
 
     getUniformAndVariantBody(token: Token) {
+        let result = "";
+
         if (token.species === Species.Cetacean) {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarCetaceanBody.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            result = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarCetaceanBody;
         } else if (token.species === Species.Edosian) {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarUniforms.edosian.standard.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            result = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarUniforms.edosian.standard;
         } else if (token.bodyType === BodyType.AverageMale && this.isAdmiralty(token)) {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarUniforms.male.admiralty.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            result = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarUniforms.male.admiralty;
         } else if (token.bodyType === BodyType.AverageMale) {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarMaleBody.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            result = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarMaleBody;
         } else if (token.bodyType === BodyType.AverageNonBinary) {
-            return this.getNeck(BodyType.AverageFemale, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarUniforms.nonBinary.standard.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            result = this.getNeck(BodyType.AverageFemale, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarUniforms.nonBinary.standard;
         } else if (this.isAdmiralty(token)) {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarUniforms.female.admiralty.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            result = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarUniforms.female.admiralty;
         } else {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarFemaleBody.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+            result = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.DominionWar) + DominionWarFemaleBody;
+        }
+
+        if (isCadetRank(token.rankIndicator)) {
+            return result.replace(/#7d7d7d/g, token.divisionColor).replace(/#2d2d2d/g, "#7d7d7d").replace(DefaultRed, "#7d7d7d").replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+        } else {
+            return result.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
         }
     }
 
