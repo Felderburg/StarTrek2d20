@@ -2,7 +2,7 @@ import { BaseRomulanUniformPack } from "./baseRomulanUniformPack";
 import { BodyType } from "./bodyTypeEnum"
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch"
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog from "./uniformCatalog"
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -1553,7 +1553,7 @@ export class RomulanNemesisUniformPack extends BaseRomulanUniformPack implements
         ];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = "";
         let neck = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.RomulanNemesis)
         switch (token.bodyType) {
@@ -1568,7 +1568,7 @@ export class RomulanNemesisUniformPack extends BaseRomulanUniformPack implements
         return (neck + result).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return borderSymbol;
     }
 }

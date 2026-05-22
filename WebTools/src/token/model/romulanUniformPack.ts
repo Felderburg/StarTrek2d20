@@ -2,7 +2,7 @@ import { BaseRomulanUniformPack } from "./baseRomulanUniformPack";
 import { BodyType } from "./bodyTypeEnum"
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch"
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog from "./uniformCatalog"
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -283,7 +283,7 @@ export class RomulanUniformPack extends BaseRomulanUniformPack implements IUnifo
         ];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = "";
         let neck = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.Romulan)
         switch (token.bodyType) {

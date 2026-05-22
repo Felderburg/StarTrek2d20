@@ -1,13 +1,13 @@
 import i18next from "i18next";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 
 class Swatch {
     id: number;
     name: string;
-    svg: string|((token: Token) => string);
+    svg: string|((token: TokenModel) => string);
     private readonly localizationKey: string;
 
-    constructor(id: number, name: string, svg: string|((token: Token) => string), localizationKey?: string) {
+    constructor(id: number, name: string, svg: string|((token: TokenModel) => string), localizationKey?: string) {
         this.id = id;
         this.name = name;
         this.svg = svg;

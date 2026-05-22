@@ -5,7 +5,7 @@ import { BodyType } from "./bodyTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -394,41 +394,41 @@ export class FerengiUniformPack extends BaseNeckProvider implements IUniformPack
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return "#7d7d7d";
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return FerengiLogo;
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return false;
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = FerengiBody;
         let neck = this.getNeck(BodyType.AverageFemale, token.skinColor, token.species, UniformEra.Ferengi);
         return neck.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor) + result;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         if (token.species !== Species.Ferengi) {
             return "";
         } else {
@@ -445,7 +445,7 @@ export class FerengiUniformPack extends BaseNeckProvider implements IUniformPack
         }
     }
 
-    static decorateSwatch(svg: string, rankIndicator: Rank, token: Token) {
+    static decorateSwatch(svg: string, rankIndicator: Rank, token: TokenModel) {
         return `<svg viewBox="0 0 40 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g transform="translate(-248, -43)">`
                     + svg

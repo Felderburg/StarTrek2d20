@@ -1,81 +1,68 @@
 import React from "react";
-import { Token } from "../model/token";
-import { withTranslation, WithTranslation } from 'react-i18next';
-import { connect } from "react-redux";
+import { useTranslation } from 'react-i18next';
 import SwatchButton from "./swatchButton";
 import ExtrasCatalog from "../model/extrasCatalog";
 import { ExtraCategory, ExtraType, getExtraCategory } from "../model/extrasTypeEnum";
 import store from "../../state/store";
 import { setTokenExtrasTypes } from "../../state/tokenActions";
 import { Species } from "../../helpers/speciesEnum";
+import { ITokenPageProperties } from "./iTokenPageProperties";
 
-interface IExtraSelectionViewProperties extends WithTranslation {
-    token: Token;
-}
+const ExtraSelectionView: React.FC<ITokenPageProperties> = ({token}) => {
 
-class ExtraSelectionView extends React.Component<IExtraSelectionViewProperties, {}> {
+    const { t } = useTranslation();
 
-    render() {
-        const { t } = this.props;
-        return (<>
-        <p className="mt-4">{t('TokenCreator.section.extras.ears')}:</p>
-        <div className="d-flex flex-wrap" style={{gap: "0.5rem"}}>
-        {ExtrasCatalog.instance.getSwatches(this.props.token, ExtraCategory.Ear).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
-            onClick={() => this.addExtra(s.id, ExtraCategory.Ear)} active={this.props.token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !this.isExtraCategoryPresent(ExtraCategory.Ear))}
-            token={this.props.token}
-            key={'extra-swatch-ear-' + s.id }/>)}
-        </div>
-
-        <p className="mt-4">{t('TokenCreator.section.extras.forehead')}:</p>
-        <div className="d-flex flex-wrap" style={{gap: "0.5rem"}}>
-        {ExtrasCatalog.instance.getSwatches(this.props.token, ExtraCategory.Forehead).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
-            onClick={() => this.addExtra(s.id, ExtraCategory.Forehead)}
-            active={this.props.token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !this.isExtraCategoryPresent(ExtraCategory.Forehead))}
-            token={this.props.token} size={this.props.token.species === Species.Ferengi ? "lg" : "md"}
-            key={'extra-swatch-forehead-' + s.id }/>)}
-        </div>
-
-        <p className="mt-4">{t('TokenCreator.section.extras.face')}:</p>
-        <div className="d-flex flex-wrap" style={{gap: "0.5rem"}}>
-        {ExtrasCatalog.instance.getSwatches(this.props.token, ExtraCategory.Face).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
-            onClick={() => this.addExtra(s.id, ExtraCategory.Face)}
-            active={this.props.token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !this.isExtraCategoryPresent(ExtraCategory.Face))}
-            token={this.props.token} size="lg"
-            key={'extra-swatch-headwear-' + s.id }/>)}
-        </div>
-
-
-        <p className="mt-4">{t('TokenCreator.section.extras.headwear')}:</p>
-        <div className="d-flex flex-wrap" style={{gap: "0.5rem"}}>
-        {ExtrasCatalog.instance.getSwatches(this.props.token, ExtraCategory.Headwear).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
-            onClick={() => this.addExtra(s.id, ExtraCategory.Headwear)}
-            active={this.props.token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !this.isExtraCategoryPresent(ExtraCategory.Headwear))}
-            token={this.props.token} size="lg"
-            key={'extra-swatch-headwear-' + s.id }/>)}
-        </div>
-
-
-        </>)
+    const isExtraCategoryPresent = (category: ExtraCategory) => {
+        return token.extras.filter(i => ExtrasCatalog.instance.isInCategory(i, category)).length > 0;
     }
 
-    isExtraCategoryPresent(category: ExtraCategory) {
-        return this.props.token.extras.filter(i => ExtrasCatalog.instance.isInCategory(i, category)).length > 0;
-    }
-
-    addExtra(extraType: ExtraType, category: ExtraCategory) {
-        let current = this.props.token.extras.filter(e => getExtraCategory(e) !== category);
+    const addExtra = (extraType: ExtraType, category: ExtraCategory) => {
+        let current = token.extras.filter(e => getExtraCategory(e) !== category);
         if (extraType !== ExtraType.None) {
             current.push(extraType);
         }
         store.dispatch(setTokenExtrasTypes(current));
     }
+
+    return (<>
+    <p className="mt-4">{t('TokenCreator.section.extras.ears')}:</p>
+    <div className="d-flex flex-wrap" style={{gap: "0.5rem"}}>
+    {ExtrasCatalog.instance.getSwatches(token, ExtraCategory.Ear).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
+        onClick={() => addExtra(s.id, ExtraCategory.Ear)} active={token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !isExtraCategoryPresent(ExtraCategory.Ear))}
+        token={token}
+        key={'extra-swatch-ear-' + s.id }/>)}
+    </div>
+
+    <p className="mt-4">{t('TokenCreator.section.extras.forehead')}:</p>
+    <div className="d-flex flex-wrap" style={{gap: "0.5rem"}}>
+    {ExtrasCatalog.instance.getSwatches(token, ExtraCategory.Forehead).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
+        onClick={() => addExtra(s.id, ExtraCategory.Forehead)}
+        active={token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !isExtraCategoryPresent(ExtraCategory.Forehead))}
+        token={token} size={token.species === Species.Ferengi ? "lg" : "md"}
+        key={'extra-swatch-forehead-' + s.id }/>)}
+    </div>
+
+    <p className="mt-4">{t('TokenCreator.section.extras.face')}:</p>
+    <div className="d-flex flex-wrap" style={{gap: "0.5rem"}}>
+    {ExtrasCatalog.instance.getSwatches(token, ExtraCategory.Face).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
+        onClick={() => addExtra(s.id, ExtraCategory.Face)}
+        active={token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !isExtraCategoryPresent(ExtraCategory.Face))}
+        token={token} size="lg"
+        key={'extra-swatch-headwear-' + s.id }/>)}
+    </div>
+
+
+    <p className="mt-4">{t('TokenCreator.section.extras.headwear')}:</p>
+    <div className="d-flex flex-wrap" style={{gap: "0.5rem"}}>
+    {ExtrasCatalog.instance.getSwatches(token, ExtraCategory.Headwear).map(s => <SwatchButton svg={s.svg} title={s.localizedName}
+        onClick={() => addExtra(s.id, ExtraCategory.Headwear)}
+        active={token.extras.indexOf(s.id) >= 0 || (s.id === ExtraType.None && !isExtraCategoryPresent(ExtraCategory.Headwear))}
+        token={token} size="lg"
+        key={'extra-swatch-headwear-' + s.id }/>)}
+    </div>
+
+
+    </>);
 }
 
-
-function mapStateToProps(state, ownProps) {
-    return {
-        token: state.token
-    };
-}
-
-export default withTranslation()(connect(mapStateToProps)(ExtraSelectionView));
+export default ExtraSelectionView;

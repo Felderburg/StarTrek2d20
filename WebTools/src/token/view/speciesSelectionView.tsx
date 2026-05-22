@@ -1,55 +1,27 @@
 
 import React from 'react';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Species } from '../../helpers/speciesEnum';
 import { DropDownElement } from '../../components/dropDownInput';
 import { SpeciesHelper } from '../../helpers/species';
 import { DropDownSelect } from '../../components/dropDownInput';
-import { connect } from 'react-redux';
 import store from '../../state/store';
 import { setTokenSpecies, setTokenSpeciesOption } from '../../state/tokenActions';
-import { Token } from '../model/token';
 import SpeciesRestrictions from '../model/speciesRestrictions';
 import SpeciesOptionCatalog from '../model/speciesOptionCatalog';
 import SwatchButton from './swatchButton';
+import { ITokenPageProperties } from './iTokenPageProperties';
 
-interface ISpeciesSelectionProperties extends WithTranslation {
-    token: Token;
+interface ISpeciesSelectionProperties extends ITokenPageProperties {
     isLoading: boolean;
     loadExtension: () => void;
 }
 
-class SpeciesSelectionView extends React.Component<ISpeciesSelectionProperties, {}> {
+const SpeciesSelectionView: React.FC<ISpeciesSelectionProperties> = ({token, isLoading, loadExtension}) => {
 
-    selectSpecies(species: Species) {
-        if (SpeciesRestrictions.isRubberHeaded(species)) {
-            this.props.loadExtension();
-        }
-        store.dispatch(setTokenSpecies(species));
-    }
+    const { t } = useTranslation();
 
-    render() {
-        const { token, isLoading } = this.props;
-        if (isLoading) {
-            return (<div className="mt-4 text-center">
-                    <div className="spinner-border text-light" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </div>
-                </div>);
-        } else {
-            return (
-                <div className="mt-4">
-                    <label className="visually-hidden" htmlFor="species">Species</label>
-                    <DropDownSelect items={this.speciesList()} defaultValue={token.species} onChange={(s) => this.selectSpecies(s as Species)}
-                        id="species"/>
-
-                    {this.renderOptions()}
-                </div>);
-        }
-    }
-
-    renderOptions() {
-        const { t, token } = this.props;
+    const renderOptions = () => {
 
         if (SpeciesRestrictions.isOptionsSupportedFor(token.species)) {
             return (<>
@@ -67,7 +39,7 @@ class SpeciesSelectionView extends React.Component<ISpeciesSelectionProperties, 
         }
     }
 
-    speciesList() {
+    const speciesList = () => {
         return [Species.Andorian,
                 Species.Ariolo,
                 Species.Aurelian, Species.Bajoran, Species.Benzite, Species.Betazoid, Species.Bolian,
@@ -104,12 +76,32 @@ class SpeciesSelectionView extends React.Component<ISpeciesSelectionProperties, 
             ].map(s => new DropDownElement(s, SpeciesHelper.getSpeciesByType(s).localizedName))
             .sort((d1, d2) => d1.name.localeCompare(d2.name));
     }
+
+
+    const selectSpecies = (species: Species) => {
+        if (SpeciesRestrictions.isRubberHeaded(species)) {
+            loadExtension();
+        }
+        store.dispatch(setTokenSpecies(species));
+    }
+
+    if (isLoading) {
+        return (<div className="mt-4 text-center">
+                <div className="spinner-border text-light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>);
+    } else {
+        return (
+            <div className="mt-4">
+                <label className="visually-hidden" htmlFor="species">Species</label>
+                <DropDownSelect items={speciesList()} defaultValue={token.species} onChange={(s) => selectSpecies(s as Species)}
+                    id="species"/>
+
+                {renderOptions()}
+            </div>);
+    }
+
 }
 
-function mapStateToProps(state, ownProps) {
-    return {
-        token: state.token
-    };
-}
-
-export default withTranslation()(connect(mapStateToProps)(SpeciesSelectionView));
+export default SpeciesSelectionView;

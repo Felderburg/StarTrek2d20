@@ -4,7 +4,7 @@ import { BodyType } from "./bodyTypeEnum";
 import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -221,35 +221,35 @@ export class CardassianUniformPack extends BaseNeckProvider implements IUniformP
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return "#68d3c2";
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return CardassianUniform.logo;
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return false;
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         if (token.bodyType === BodyType.AverageMale) {
             return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.Cardassian)
                 + CardassianUniform.male.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
@@ -259,7 +259,7 @@ export class CardassianUniformPack extends BaseNeckProvider implements IUniformP
         }
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

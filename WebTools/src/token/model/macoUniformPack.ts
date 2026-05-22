@@ -3,7 +3,7 @@ import { BaseNeckProvider } from "./baseNeckProvider";
 import { BodyType } from "./bodyTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -291,13 +291,13 @@ export class MacoUniformPack extends BaseNeckProvider implements IUniformPack {
             new Swatch(Rank.Private, "Private", (token) => MacoUniformPack.decorateSwatch(macoRanks.border.private, Rank.Private, token), "Rank.private.name"),
         ];
     }
-    getBorderColor(token: Token): string {
+    getBorderColor(token: TokenModel): string {
         return "#670b0e";
     }
-    getRankBorderDefinitions(token: Token, bordered: boolean): string {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean): string {
         return "";
     }
-    getRankBorderIndicator(token: Token): string {
+    getRankBorderIndicator(token: TokenModel): string {
         switch (token.rankIndicator) {
             case Rank.Colonel:
                 return macoRanks.border.colonel;
@@ -321,7 +321,7 @@ export class MacoUniformPack extends BaseNeckProvider implements IUniformPack {
                 return "";
         }
     }
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return false;
     }
 
@@ -332,11 +332,11 @@ export class MacoUniformPack extends BaseNeckProvider implements IUniformPack {
         ];
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         if (token.bodyType === BodyType.AverageMale) {
             return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.Maco)
                 + MacoUniforms.averageMale.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
@@ -346,7 +346,7 @@ export class MacoUniformPack extends BaseNeckProvider implements IUniformPack {
         }
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         if (token.rankIndicator === Rank.None) {
             return "";
         } else {
@@ -365,15 +365,15 @@ export class MacoUniformPack extends BaseNeckProvider implements IUniformPack {
         }
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return MacoUniforms.insignia;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 
-    static decorateSwatch(svg: string, rankIndicator: Rank, token: Token) {
+    static decorateSwatch(svg: string, rankIndicator: Rank, token: TokenModel) {
         return `<svg viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g transform="translate(14, -265)">`
                     + svg

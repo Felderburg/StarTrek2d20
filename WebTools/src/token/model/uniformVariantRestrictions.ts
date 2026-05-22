@@ -4,7 +4,7 @@ import { Species } from "../../helpers/speciesEnum";
 import { BodyType } from "./bodyTypeEnum";
 import { DivisionColors } from "./divisionColors";
 import { isEnlistedRank, isFlagRank } from "./rankHelper";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import { UniformEra } from "./uniformEra";
 import { UniformVariantType } from "./uniformVariantTypeEnum";
 
@@ -72,7 +72,7 @@ export default class UniformVariantRestrictions {
         return result;
     }
 
-    static isVariantOptionsAvailable(token: Token) {
+    static isVariantOptionsAvailable(token: TokenModel) {
         return this.getAvailableVariants(token.uniformEra, token.bodyType, token.species, token.divisionColor, token.rankIndicator).length > 1;
     }
 

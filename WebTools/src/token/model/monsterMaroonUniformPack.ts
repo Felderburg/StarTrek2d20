@@ -5,7 +5,7 @@ import { DivisionColors } from "./divisionColors";
 import { isEnlistedRank } from "./rankHelper";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -749,7 +749,7 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         if (token.variant === UniformVariantType.Base) {
             switch (token.rankIndicator) {
                 case Rank.Ensign:
@@ -772,7 +772,7 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
         }
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         if (token.rankIndicator === Rank.Ensign) {
             return MonsterMaroonSilverMetalGradient +
                 MonsterMaroonEnsignGradient +
@@ -818,7 +818,7 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
         }
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         let strap = isEnlistedRank(token.rankIndicator) ? "" : MonsterMaroonBorderStrap.replace(DefaultRed, token.divisionColor);
         let rank = "";
         switch (token.rankIndicator) {
@@ -865,7 +865,7 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
         return strap + rank;
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = "";
         let neck = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.MonsterMaroon)
         if (token.bodyType === BodyType.AverageMale) {
@@ -897,7 +897,7 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
         return DivisionColors.getDivision(UniformEra.MonsterMaroon, token.divisionColor) === "Trainee" ? finalResult.replace(/#2d2d2d/g, token.divisionColor) : finalResult;
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         if (token.bodyType === BodyType.AverageFemale) {
             let result = [
                 new Swatch(UniformVariantType.Base, "Base", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.MonsterMaroon)
@@ -931,11 +931,11 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
         }
     }
 
-    isEnlisted(token: Token) {
+    isEnlisted(token: TokenModel) {
         return isEnlistedRank(token.rankIndicator);
     }
 
-    static decorateUniformSwatch(svg: string, clipPathId: number, token: Token) {
+    static decorateUniformSwatch(svg: string, clipPathId: number, token: TokenModel) {
         let divisionSvg = svg.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
         if (isEnlistedRank(token.rankIndicator) && DivisionColors.getDivision(UniformEra.MonsterMaroon, token.divisionColor) === "Trainee") {
             divisionSvg = divisionSvg.replace(/#2d2d2d/g, token.divisionColor);
@@ -957,12 +957,12 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
     }
 
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return "#700000";
     }
 
 
-    static decorateRankSwatch(svg: string, rankIndicator: Rank, token: Token, gradient: string = "") {
+    static decorateRankSwatch(svg: string, rankIndicator: Rank, token: TokenModel, gradient: string = "") {
         let gradientKey = 'rank' + Rank[rankIndicator] + "Gradient";
             return `<svg viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>`
@@ -975,15 +975,15 @@ export class MonsterMaroonUniformPack extends BaseNeckProvider implements IUnifo
             </svg>`;
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return TwokDelta;
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return true;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

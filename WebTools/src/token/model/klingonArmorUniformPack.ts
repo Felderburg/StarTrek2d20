@@ -4,7 +4,7 @@ import { BaseKlingonUniformPack } from "./baseKlingonUniformPack";
 import { BodyType } from "./bodyTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -1318,7 +1318,7 @@ const KlingonArmour = {
 
 export class KlingonArmorUniformPack extends BaseKlingonUniformPack implements IUniformPack {
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         let borderRank = this.getRankBorderIndicator(token);
         if (token.bodyType === BodyType.AverageMale
                 && UniformVariantType.Variant3 === token.variant) {
@@ -1364,7 +1364,7 @@ export class KlingonArmorUniformPack extends BaseKlingonUniformPack implements I
         return result;
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = "";
             let seam = "";
             let neck = "";
@@ -1392,7 +1392,7 @@ export class KlingonArmorUniformPack extends BaseKlingonUniformPack implements I
             return (neck + result + seam).replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         const result = [];
         if (token.bodyType === BodyType.AverageMale) {
             result.push(

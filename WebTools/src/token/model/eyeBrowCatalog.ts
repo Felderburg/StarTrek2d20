@@ -1,7 +1,7 @@
 import { Species } from "../../helpers/speciesEnum";
 import { EyeType } from "./eyeTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import { SpeciesOption } from "./speciesOptionEnum";
 import { svgTranslationHelper } from "./svgTranslationHelper";
 
@@ -650,7 +650,7 @@ class EyeBrowCatalog {
     }
 
 
-    getEyeBrows(token: Token) {
+    getEyeBrows(token: TokenModel) {
         let result = this.getBrow(token.eyeType, token.species, token.skinColor, token.speciesOption);
         return result.replace(SpeciesRestrictions.DEFAULT_HAIR_COLOR_REGEX, token.hairColor);
     }

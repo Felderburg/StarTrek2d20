@@ -4,8 +4,8 @@ import { HeadType } from "./headTypeEnum";
 import { SpeciesOption } from "./speciesOptionEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
 import { svgTranslationHelper } from "./svgTranslationHelper";
+import { TokenModel } from "./tokenModel";
 
 const StandardHeads = {
 
@@ -432,8 +432,8 @@ const ZakdornProsthetics = {
 }
 
 export interface IExtendedHeadCatalog {
-    getHead(token: Token, species?: Species, headType?: HeadType): string;
-    getSwatches(token: Token): Swatch[];
+    getHead(token: TokenModel, species?: Species, headType?: HeadType): string;
+    getSwatches(token: TokenModel): Swatch[];
 }
 
 export const ReferenceHead = StandardHeads.Head3;
@@ -464,7 +464,7 @@ class HeadCatalog {
         return HeadCatalog._instance;
     }
 
-    getHead(token: Token) {
+    getHead(token: TokenModel) {
         let result = "";
         switch (token.headType) {
             case HeadType.AverageAngular:
@@ -615,7 +615,7 @@ class HeadCatalog {
         }
     }
 
-    getSwatches(token: Token) {
+    getSwatches(token: TokenModel) {
         if (SpeciesRestrictions.isRubberHeaded(token.species) && this.isRubberHeadExtensionLoaded && token.species !== Species.Benzite) {
             return this.rubberHeadCatalog.getSwatches(token);
         } else {

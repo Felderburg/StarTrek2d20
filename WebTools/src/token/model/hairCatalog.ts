@@ -5,7 +5,7 @@ import { ReferenceHead, SimpleNeck } from "./headCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 
 interface HairSource {
     front: string;
@@ -1034,7 +1034,7 @@ class HairCatalog {
         return HairCatalog._instance;
     }
 
-    getDefinitions(hairType: HairType, token: Token) {
+    getDefinitions(hairType: HairType, token: TokenModel) {
         if (hairType === HairType.CornRows) {
             return CornRowsGradientDefinition.replace(/#383838/g, token.hairColor);
         } else {
@@ -1042,7 +1042,7 @@ class HairCatalog {
         }
     }
 
-    getHair(token: Token, element: HairElement) {
+    getHair(token: TokenModel, element: HairElement) {
         let hair = this.items.filter(i => i.id === token.hairType)[0];
         let front = (typeof hair.frontSvg === "string") ? hair.frontSvg as string : (hair.frontSvg as HairSource).front
         let back = (typeof hair.frontSvg === "string") ? hair.backSvg : (hair.frontSvg as HairSource).back;
@@ -1060,14 +1060,14 @@ class HairCatalog {
         }
     }
 
-    getSwatches(token: Token) {
+    getSwatches(token: TokenModel) {
         let hairTypes = SpeciesRestrictions.getHairTypes(token.species);
         return this.items
             .filter(i => hairTypes.indexOf(i.id) >= 0)
             .map(i => new Swatch(i.id, i.name, (token) => HairCatalog.decorateSwatch(i, token), makeKey("HairType.", HairType[i.id])));
     }
 
-    private static decorateSwatch(hair: HairItem, token: Token) {
+    private static decorateSwatch(hair: HairItem, token: TokenModel) {
         let front = (typeof hair.frontSvg === "string") ? hair.frontSvg as string : (hair.frontSvg as HairSource).front
         let back = (typeof hair.frontSvg === "string") ? hair.backSvg : (hair.frontSvg as HairSource).back;
         let result = `<svg viewBox="0 0 280 280" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

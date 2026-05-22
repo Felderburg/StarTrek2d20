@@ -2,7 +2,7 @@ import { FacialHairCategory, FacialHairType } from "./facialHairEnum";
 import { DefaultLip } from "./mouthCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 
 
 const SoulPatch = `<g>
@@ -163,7 +163,7 @@ class FacialHairCatalog {
         }
     }
 
-    getFacialHair(token: Token, category: FacialHairCategory) {
+    getFacialHair(token: TokenModel, category: FacialHairCategory) {
         let result = "";
         this.items.forEach(i => {
             if (token.facialHairType.indexOf(i.id) >= 0) {
@@ -188,7 +188,7 @@ class FacialHairCatalog {
         return result;
     }
 
-    getSwatches(token: Token, category: FacialHairCategory) {
+    getSwatches(token: TokenModel, category: FacialHairCategory) {
         return this.items
             .filter(i => i.category === category || (i.category === FacialHairCategory.MoustacheAndBeard && category === FacialHairCategory.Beard))
             .map(i => new Swatch(i.id, i.name, (token) => FacialHairCatalog.decorateSwatch(i, token)));
@@ -199,7 +199,7 @@ class FacialHairCatalog {
         return types?.length ? types[0].category : FacialHairCategory.MoustacheAndBeard;
     }
 
-    private static decorateSwatch(item: FacialHairItem, token: Token) {
+    private static decorateSwatch(item: FacialHairItem, token: TokenModel) {
         if (item.category === FacialHairCategory.Moustache) {
             let result = `<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g transform="translate(-255, -140)">`

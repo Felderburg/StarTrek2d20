@@ -4,7 +4,7 @@ import { BodyType } from "./bodyTypeEnum";
 import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -43,41 +43,41 @@ export class BynarUniformPack extends BaseNeckProvider implements IUniformPack {
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return "#cccccc";
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return "";
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return false;
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = BynarBody;
         let neck = this.getNeck(BodyType.AverageFemale, token.skinColor, token.species, UniformEra.Bynar);
         return neck.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor) + result;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

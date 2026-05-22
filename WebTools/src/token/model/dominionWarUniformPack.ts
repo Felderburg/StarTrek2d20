@@ -4,7 +4,7 @@ import { BodyType } from "./bodyTypeEnum";
 import { isCadetRank } from "./rankHelper";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -221,15 +221,15 @@ export class DominionWarUniformPack extends BaseTngEraUniformPack implements IUn
         }
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         return this.getUniformAndVariantByBodyType(token, token.variant, token.bodyType);
     }
 
-    getUniformAndVariantByBodyType(token: Token, variant: UniformVariantType, bodyType: BodyType) {
+    getUniformAndVariantByBodyType(token: TokenModel, variant: UniformVariantType, bodyType: BodyType) {
 
         let result = "";
 
@@ -264,7 +264,7 @@ export class DominionWarUniformPack extends BaseTngEraUniformPack implements IUn
         }
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         let result = super.getRankIndicator(token);
         if (token.species === Species.Cetacean) {
             result = `<g transform="rotate(-21.492033,417.22301,211.31432)">` + result + `</g>`;

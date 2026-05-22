@@ -1,11 +1,11 @@
 import React from "react";
-import { Token } from "../model/token";
+import { TokenModel } from "../model/tokenModel";
 
 interface ISwatchButtonProperties {
-    svg: string|((token: Token) => string);
+    svg: string|((token: TokenModel) => string);
     title: string;
     onClick: () => void;
-    token: Token;
+    token: TokenModel;
     active?: boolean;
     size?: string;
 }
@@ -22,7 +22,7 @@ class SwatchButton extends React.Component<ISwatchButtonProperties, {}> {
         if (svg instanceof String || typeof svg === 'string') {
             svgContents = svg as string;
         } else {
-            let s = svg as ((token: Token) => string);
+            let s = svg as ((token: TokenModel) => string);
             svgContents = s(token);
         }
         return (<button className={'btn btn-light btn-swatch rounded-circle' + (active ? ' active' : '')} style={{ width: width, aspectRatio: "1" }} title={title}

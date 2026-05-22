@@ -1,6 +1,6 @@
 import { Rank } from "../../helpers/ranks";
 import { isEnlistedRank, isFlagRank } from "./rankHelper";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import { UniformEra } from "./uniformEra";
 import UniformPackCollection from "./uniformPackCollection";
 
@@ -15,19 +15,19 @@ class RankIndicatorCatalog {
         return RankIndicatorCatalog._instance;
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return this.getUniformPack(token.uniformEra).getRankIndicator(token);
     }
 
-    getRankExtra(token: Token) {
+    getRankExtra(token: TokenModel) {
         return this.getUniformPack(token.uniformEra).getRankIndicatorExtra(token);
     }
 
-    getBorderRankDefinitions(token: Token, bordered: boolean) {
+    getBorderRankDefinitions(token: TokenModel, bordered: boolean) {
         return this.getUniformPack(token.uniformEra).getRankBorderDefinitions(token, bordered);
     }
 
-    getBorderRankIndicator(token: Token) {
+    getBorderRankIndicator(token: TokenModel) {
         return this.getUniformPack(token.uniformEra).getRankBorderIndicator(token);
     }
 
@@ -35,11 +35,11 @@ class RankIndicatorCatalog {
         return UniformPackCollection.instance.getUniformPack(era);
     }
 
-    getSwatches(token: Token) {
+    getSwatches(token: TokenModel) {
         return this.getUniformPack(token.uniformEra).getRankSwatches();
     }
 
-    static decorateSwatch(svg: string, rankIndicator: Rank, token: Token, gradient: string = "") {
+    static decorateSwatch(svg: string, rankIndicator: Rank, token: TokenModel, gradient: string = "") {
         if (token.uniformEra === UniformEra.Enterprise) {
             return `<svg viewBox="0 0 175 175" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g transform="translate(5, -260)">`

@@ -3,7 +3,7 @@ import { BaseKlingonUniformPack } from "./baseKlingonUniformPack";
 import { BodyType } from "./bodyTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -169,7 +169,7 @@ export class TosKlingonUniformPack extends BaseKlingonUniformPack implements IUn
             ];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = "";
         let neck = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.OriginalSeriesKlingon);
 
@@ -187,7 +187,7 @@ export class TosKlingonUniformPack extends BaseKlingonUniformPack implements IUn
         return (neck + result).replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         if (token.bodyType === BodyType.AverageMale && token.rankIndicator === Rank.Captain) {
             return [
                 new Swatch(UniformVariantType.Base, "Base", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.OriginalSeriesKlingon) + OriginalSeriesKlingon.averageMaleBody, 100000 + UniformVariantType.Base, token)),
@@ -199,7 +199,7 @@ export class TosKlingonUniformPack extends BaseKlingonUniformPack implements IUn
         }
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         let borderRank = this.getRankBorderIndicator(token);
         if (token.bodyType === BodyType.AverageMale) {
             if (token.variant === UniformVariantType.Variant1) {

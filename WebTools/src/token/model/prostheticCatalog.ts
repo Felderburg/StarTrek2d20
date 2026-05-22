@@ -4,7 +4,7 @@ import { KlingonForehead1, KlingonForehead2, KlingonForehead3, KlingonForehead4,
 import { SpeciesOption } from "./speciesOptionEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 
 const AndorianAntenna = {
     back: `<g>
@@ -316,7 +316,7 @@ class ProstheticCatalog {
         return ProstheticCatalog._instance;
     }
 
-    getProsthetic(token: Token, placement: ProstheticPlacement) {
+    getProsthetic(token: TokenModel, placement: ProstheticPlacement) {
         if (token.species === Species.Andorian) {
             switch (placement) {
                 case ProstheticPlacement.BehindHead:

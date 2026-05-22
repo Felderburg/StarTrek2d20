@@ -4,7 +4,7 @@ import { BodyType } from "./bodyTypeEnum"
 import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch"
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog"
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -561,7 +561,7 @@ export class EnterpriseUniformPack extends BaseNeckProvider implements IUniformP
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         switch (token.rankIndicator) {
             case Rank.Crewman3rdClass:
                 return EnterpriseInsignia.Insignia.CrewmanThirdClass;
@@ -586,7 +586,7 @@ export class EnterpriseUniformPack extends BaseNeckProvider implements IUniformP
         }
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         switch (token.rankIndicator) {
             case Rank.Captain:
                 return EnterpriseInsignia.Border.Captain;
@@ -611,11 +611,11 @@ export class EnterpriseUniformPack extends BaseNeckProvider implements IUniformP
         }
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = "";
         let neck = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.Enterprise);
         switch (token.bodyType) {
@@ -630,23 +630,23 @@ export class EnterpriseUniformPack extends BaseNeckProvider implements IUniformP
         return (neck + result).replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return token.divisionColor;
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return EnterpriseEraStarfleetLogo;
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return true;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

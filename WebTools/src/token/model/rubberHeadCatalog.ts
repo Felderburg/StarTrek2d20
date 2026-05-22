@@ -4,7 +4,7 @@ import { HeadType } from "./headTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import { UniformEra } from "./uniformEra";
 
 const ArioloHead = `<g>
@@ -1469,7 +1469,7 @@ const Tholian = `<g>
 
 export class RubberHeadCatalog implements IExtendedHeadCatalog {
 
-    getSwatches(token: Token) {
+    getSwatches(token: TokenModel) {
         if (token.species === Species.Caitian) {
             return [
                 new Swatch(HeadType.SquareJawed, "Square-Jawed Angular", (token) => HeadCatalog.decorateSwatch(CaitianHead1, token.skinColor), "HeadType.squareJawed"),
@@ -1501,7 +1501,7 @@ export class RubberHeadCatalog implements IExtendedHeadCatalog {
         }
     }
 
-    getHead(token: Token, species?: Species, headType?: HeadType) {
+    getHead(token: TokenModel, species?: Species, headType?: HeadType) {
         if (species == null) {
             species = token.species;
         }

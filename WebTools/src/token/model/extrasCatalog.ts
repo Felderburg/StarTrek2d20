@@ -10,7 +10,7 @@ import { FerengiForehead, ReferenceHead } from "./headCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 
@@ -359,7 +359,7 @@ class ExtrasCatalog {
         return ExtrasCatalog._instance;
     }
 
-    getExtras(token: Token, category: ExtraCategory, back: boolean = false, detail?: HairType) {
+    getExtras(token: TokenModel, category: ExtraCategory, back: boolean = false, detail?: HairType) {
         return this.items
             .filter(i => i.category === category && token.extras.indexOf(i.id) >= 0)
             .filter(i => (i.id !== ExtraType.FerengiHeadFlap && i.id !== ExtraType.VulcanHeaddress) || back)
@@ -392,7 +392,7 @@ class ExtrasCatalog {
             .join();
     }
 
-    getSwatches(token: Token, category: ExtraCategory) {
+    getSwatches(token: TokenModel, category: ExtraCategory) {
         return this.items
             .filter(i => (category === i.category) && (SpeciesRestrictions.isExtraAvailableFor(i.id, token.species, token.uniformEra)))
             .map(i => new Swatch(i.id, i.name, (token) => ExtrasCatalog.decorateSwatch(i, token), makeKey("ExtraType.", ExtraType[i.id])));
@@ -402,7 +402,7 @@ class ExtrasCatalog {
         return this.items.filter(i => i.id === type && i.category === category).length > 0;
     }
 
-    static decorateSwatch(item: ExtraItem, token: Token) {
+    static decorateSwatch(item: ExtraItem, token: TokenModel) {
         if (item.category === ExtraCategory.Ear) {
             return `<svg viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <defs>

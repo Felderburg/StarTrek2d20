@@ -7,7 +7,7 @@ import { isEnlistedRank, isFlagRank } from "./rankHelper";
 import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -455,7 +455,7 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
         ];
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         if (DivisionColors.getDivision(UniformEra.StarTrekOnline, token.divisionColor) === Division[Division.Command]
                 && token.rankIndicator === Rank.Captain) {
 
@@ -492,7 +492,7 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
         }
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let division = DivisionColors.getDivision(token.uniformEra, token.divisionColor);
         if (token.bodyType === BodyType.AverageMale) {
             let divisionInsignia = "";
@@ -558,7 +558,7 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
         }
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         switch (token.rankIndicator) {
             case Rank.Captain:
                 return this.fitPipsToBody(RankIndicators.collar.captain, token.bodyType);
@@ -609,7 +609,7 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
     }
 
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         let division = DivisionColors.getDivision(token.uniformEra, token.divisionColor);
         let base = StoInsignia.base;
         if (token.rankIndicator === Rank.Admiral) {
@@ -624,7 +624,7 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
         }
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         switch (token.rankIndicator) {
             case Rank.Captain:
                 return RankIndicators.border.captain;
@@ -654,7 +654,7 @@ export class StoUniformPack extends BaseTngEraUniformPack implements IUniformPac
                 return "";
         }
     }
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return true;
     }
 }

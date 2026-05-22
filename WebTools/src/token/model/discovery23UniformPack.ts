@@ -4,7 +4,7 @@ import { BodyType } from "./bodyTypeEnum";
 import { DivisionColors } from "./divisionColors";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -123,11 +123,11 @@ export class Discovery23UniformPack extends BaseTngEraUniformPack implements IUn
         ];
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let base = this.getUniformAndVariantByBodyType(token, token.variant, token.bodyType);
 
         let insignia = "";
@@ -155,7 +155,7 @@ export class Discovery23UniformPack extends BaseTngEraUniformPack implements IUn
         return base + insignia;
     }
 
-    getUniformAndVariantByBodyType(token: Token, variant: UniformVariantType, bodyType: BodyType) {
+    getUniformAndVariantByBodyType(token: TokenModel, variant: UniformVariantType, bodyType: BodyType) {
         let base = "";
         let divisionColour = token.divisionColor;
         if (DivisionColors.getDivision(this.era, token.divisionColor) === "Medical") {
@@ -181,11 +181,11 @@ export class Discovery23UniformPack extends BaseTngEraUniformPack implements IUn
 
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return "";
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         let base = borderInsignia.base;
 
         let division = DivisionColors.getDivision(this.era, token.divisionColor);
@@ -209,7 +209,7 @@ export class Discovery23UniformPack extends BaseTngEraUniformPack implements IUn
         return base;
     }
 
-    getBorderColor(token: Token): string {
+    getBorderColor(token: TokenModel): string {
         let division = DivisionColors.getDivision(this.era, token.divisionColor);
         if (division === "Medical") {
             return token.divisionColor;
@@ -218,7 +218,7 @@ export class Discovery23UniformPack extends BaseTngEraUniformPack implements IUn
         }
     }
 
-    getRankBorderIndicator(token: Token): string {
+    getRankBorderIndicator(token: TokenModel): string {
         let divisionColour = token.divisionColor;
 
         let division = DivisionColors.getDivision(this.era, token.divisionColor);

@@ -10,7 +10,6 @@ import { Canvg, presets } from 'canvg'
 import UniformSelectionView from './view/uniformSelectionView';
 import SpeciesSelectionView from './view/speciesSelectionView';
 import { TokenSvgBuilder } from './tokenSvgBuilder';
-import { Token } from './model/token';
 import { connect } from 'react-redux';
 import { CheckBox } from '../components/checkBox';
 import NoseSelectionView from './view/noseSelectionView';
@@ -26,6 +25,7 @@ import { UniformEra } from './model/uniformEra';
 import UniformPackCollection from './model/uniformPackCollection';
 import HeadCatalog from './model/headCatalog';
 import UniformVariantRestrictions from './model/uniformVariantRestrictions';
+import { TokenModel } from './model/tokenModel';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -41,7 +41,7 @@ enum Tab {
 }
 
 interface ITokenCreationPageProperties extends WithTranslation {
-    token: Token;
+    token: TokenModel;
 }
 
 interface ITokenCreationPageState {
@@ -174,21 +174,21 @@ class TokenCreationPage extends React.Component<ITokenCreationPageProperties, IT
     renderTab() {
         switch (this.state.tab) {
             case Tab.Species:
-                return (<SpeciesSelectionView isLoading={this.state.loadingExtension} loadExtension={() => this.loadHeadExtension()} />);
+                return (<SpeciesSelectionView isLoading={this.state.loadingExtension} loadExtension={() => this.loadHeadExtension()} token={this.props.token} />);
             case Tab.Body:
-                return (<UniformSelectionView isLoading={this.state.loadingExtension} loadPack={(uniformEra) => this.loadUniformPack(uniformEra)}/>);
+                return (<UniformSelectionView isLoading={this.state.loadingExtension} loadPack={(uniformEra) => this.loadUniformPack(uniformEra)} token={this.props.token} />);
             case Tab.Head:
-                return (<HeadSelectionView isLoading={this.state.loadingExtension} />);
+                return (<HeadSelectionView isLoading={this.state.loadingExtension} token={this.props.token} />);
             case Tab.Mouth:
-                return (<MouthSelectionView />);
+                return (<MouthSelectionView token={this.props.token} />);
             case Tab.Nose:
-                return (<NoseSelectionView />);
+                return (<NoseSelectionView token={this.props.token} />);
             case Tab.Eyes:
-                return (<EyeSelectionView />);
+                return (<EyeSelectionView token={this.props.token} />);
             case Tab.Hair:
-                return (<HairSelectionView />);
+                return (<HairSelectionView token={this.props.token} />);
             case Tab.Extras:
-                return (<ExtrasSelectionView />);
+                return (<ExtrasSelectionView token={this.props.token} />);
             default:
                 return (<div className="mt-4"><p>Not yet available.</p></div>);
         }
@@ -235,7 +235,7 @@ class TokenCreationPage extends React.Component<ITokenCreationPageProperties, IT
 
 function mapStateToProps(state, ownProps) {
     return {
-        token: state.token
+        token: TokenModel.from(state.token)
     };
 }
 

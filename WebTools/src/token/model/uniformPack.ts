@@ -1,21 +1,21 @@
 import { Species } from "../../helpers/speciesEnum";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 
 export interface IUniformPack {
 
     getUniformSwatches(species?: Species): Swatch[];
-    getUniformAndVariantBody(token: Token): string;
-    getUniformVariantSwatches(token: Token): Swatch[];
+    getUniformAndVariantBody(token: TokenModel): string;
+    getUniformVariantSwatches(token: TokenModel): Swatch[];
 
     getRankSwatches(): Swatch[];
-    getRankIndicator(token: Token): string;
-    getRankIndicatorExtra(token: Token): string;
-    getBorderColor(token: Token): string;
-    getRankBorderDefinitions(token: Token, bordered: boolean): string;
-    getRankBorderIndicator(token: Token): string;
+    getRankIndicator(token: TokenModel): string;
+    getRankIndicatorExtra(token: TokenModel): string;
+    getBorderColor(token: TokenModel): string;
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean): string;
+    getRankBorderIndicator(token: TokenModel): string;
 
-    getBorderLogo(token: Token): string;
+    getBorderLogo(token: TokenModel): string;
 
-    isDivisionColorSupported(token: Token): boolean;
+    isDivisionColorSupported(token: TokenModel): boolean;
 }

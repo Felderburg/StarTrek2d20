@@ -2,7 +2,7 @@ import { BaseNeckProvider } from "./baseNeckProvider";
 import { BodyType } from "./bodyTypeEnum"
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch"
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog from "./uniformCatalog"
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -153,19 +153,19 @@ export class JemHadarUniformPack extends BaseNeckProvider implements IUniformPac
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let result = "";
         let neck = this.getNeck(BodyType.AverageMale, token.skinColor, token.species, UniformEra.JemHadar)
         switch (token.bodyType) {
@@ -177,23 +177,23 @@ export class JemHadarUniformPack extends BaseNeckProvider implements IUniformPac
         return (neck + result).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return "#a89bb4";
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return DominionSymbol;
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return false;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

@@ -3,7 +3,7 @@ import { BaseTngEraUniformPack } from "./baseTngEraUniformPack";
 import { BodyType } from "./bodyTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -82,11 +82,11 @@ export class LowerDecksUniformPack extends BaseTngEraUniformPack implements IUni
         ];
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         if (token.species === Species.Cetacean) {
             return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.LowerDecks)
                 + LowerDeckUniforms.cetacean.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
@@ -99,7 +99,7 @@ export class LowerDecksUniformPack extends BaseTngEraUniformPack implements IUni
         }
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         let result = super.getRankIndicator(token);
         if (token.species === Species.Cetacean) {
             result = `<g transform="rotate(-33.133696,372.37812,245.54587)">` + result + `</g>`;
@@ -109,7 +109,7 @@ export class LowerDecksUniformPack extends BaseTngEraUniformPack implements IUni
         return result;
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return LowerDeckUniforms.insignia;
     }
 }

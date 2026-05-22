@@ -2,7 +2,7 @@ import { Rank } from "../../helpers/ranks";
 import { BaseNeckProvider } from "./baseNeckProvider";
 import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import { UniformEra } from "./uniformEra";
 import UniformVariantRestrictions from "./uniformVariantRestrictions";
 
@@ -313,7 +313,7 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
         return result.filter(s => UniformVariantRestrictions.isRankSupported(s.id as Rank, this.era));
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         switch (token.rankIndicator) {
             case Rank.Ensign:
                 return BorderIndicator.ensign;
@@ -356,7 +356,7 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
         }
     }
 
-    getRankIndicator(token: Token): string {
+    getRankIndicator(token: TokenModel): string {
         switch (token.rankIndicator) {
             case Rank.Ensign:
                 return CollarPips.ensign;
@@ -401,7 +401,7 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
         }
     }
 
-    isAdmiralty(token: Token) {
+    isAdmiralty(token: TokenModel) {
         switch (token.rankIndicator) {
             case Rank.Admiral:
             case Rank.ViceAdmiral:
@@ -413,24 +413,24 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
         }
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return token.divisionColor;
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return DominionWarCommbadge;
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return true;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

@@ -3,7 +3,7 @@ import { BodyType } from "./bodyTypeEnum";
 import { isFlagRank } from "./rankHelper";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -125,11 +125,11 @@ export class VoyagerUniformPack extends BaseTngEraUniformPack implements IUnifor
         ];
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         if (token.bodyType === BodyType.AverageMale) {
             if (isFlagRank(token.rankIndicator)) {
                 return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.VoyagerDS9)
@@ -149,7 +149,7 @@ export class VoyagerUniformPack extends BaseTngEraUniformPack implements IUnifor
         }
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         let result = super.getRankIndicator(token);
         result = `<g transform="translate(3, 5)">` + result + `</g>`;
         return result;

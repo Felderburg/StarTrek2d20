@@ -4,7 +4,7 @@ import { MouthType } from "./mouthTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 
 const StandardMouths = {
     Mouth1: `<g>
@@ -382,7 +382,7 @@ class MouthCatalog {
         return MouthCatalog._instance;
     }
 
-    getMouth(token: Token) {
+    getMouth(token: TokenModel) {
         let lipColour = token.skinColor;
         if (SpeciesRestrictions.isHumanLikeSkinColouring(token.species)) {
             let blendColour = SpeciesRestrictions.LIP_COLOUR;
@@ -527,7 +527,7 @@ class MouthCatalog {
         }
     }
 
-    getSwatches(token: Token) {
+    getSwatches(token: TokenModel) {
         if (SpeciesRestrictions.isRubberHeaded(token.species)) {
             return [];
         } else {
@@ -551,7 +551,7 @@ class MouthCatalog {
         }
     }
 
-    private static decorateSwatch(mouthType: MouthType, token: Token) {
+    private static decorateSwatch(mouthType: MouthType, token: TokenModel) {
         let result = `<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g transform="translate(-255, -140)">`
             + this.getMouthSvg(mouthType, token.species).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, "#ffffff").replace(/#c14242/g, token.lipstickColor)

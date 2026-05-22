@@ -5,7 +5,7 @@ import { BodyType } from "./bodyTypeEnum";
 import { DivisionColors } from "./divisionColors";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -294,7 +294,7 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
         ];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let division = DivisionColors.getDivision(token.uniformEra, token.divisionColor);
         let result = "";
         switch (token.bodyType) {
@@ -338,11 +338,11 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
             + result.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     }
 
-    isCaptainOrCommodore(token: Token) {
+    isCaptainOrCommodore(token: TokenModel) {
         return token.rankIndicator === Rank.Captain || token.rankIndicator === Rank.Commodore;
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         let swatches = [];
         if (token.bodyType === BodyType.AverageMale) {
             swatches.push(new Swatch(UniformVariantType.Base, "Standard Uniform", (token) => UniformCatalog.decorateSwatch(this.getNeck(token.bodyType, token.skinColor, undefined, UniformEra.OriginalSeries) + TosUniforms.averageMaleBody, 1000 + UniformVariantType.Base, token)));
@@ -376,11 +376,11 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         switch (token.rankIndicator) {
             case Rank.Ensign:
                 return TosEnsignRankBorder.replace(DefaultRed, token.divisionColor);
@@ -409,7 +409,7 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
         }
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         if (token.variant === UniformVariantType.Variant1 && DivisionColors.getDivision(UniformEra.OriginalSeries, token.divisionColor) === "Command"
                 && (token.rankIndicator === Rank.Captain || token.rankIndicator === Rank.Commodore)) {
             return "#88966c";
@@ -419,11 +419,11 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
     }
 
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    static decorateRankSwatch(svg: string, rankIndicator: Rank, token: Token) {
+    static decorateRankSwatch(svg: string, rankIndicator: Rank, token: TokenModel) {
         return `<svg viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <clipPath id="rankClipPath` + rankIndicator + `">
@@ -438,7 +438,7 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
         </svg>`;
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         let division = DivisionColors.getDivision(token.uniformEra, token.divisionColor);
         if (division === Division[Division.Command]) {
             return TosCommandDelta;
@@ -449,11 +449,11 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
         }
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return true;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

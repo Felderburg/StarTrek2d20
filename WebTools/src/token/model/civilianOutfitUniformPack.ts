@@ -4,7 +4,7 @@ import { BodyType } from "./bodyTypeEnum"
 import RankIndicatorCatalog from "./rankIndicatorCatalog";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch"
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog from "./uniformCatalog"
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -1198,23 +1198,23 @@ export class CivilianOutfitUniformPack extends BaseNeckProvider implements IUnif
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         return this.getUniformAndVariantByBodyType(token, token.variant, token.bodyType);
     }
 
-    getUniformAndVariantByBodyType(token: Token, variant: UniformVariantType, bodyType: BodyType) {
+    getUniformAndVariantByBodyType(token: TokenModel, variant: UniformVariantType, bodyType: BodyType) {
         let result = "";
         let neck = this.getNeck(bodyType, token.skinColor, token.species, UniformEra.Civilian, variant);
         switch (bodyType) {
@@ -1317,11 +1317,11 @@ export class CivilianOutfitUniformPack extends BaseNeckProvider implements IUnif
         return (neck + result).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return "#cccccc";
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         let swatches = [];
         if (token.bodyType === BodyType.AverageMale) {
             swatches.push(new Swatch(UniformVariantType.Base, "Default Outfit", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.Civilian) + CivilianOutfits.maleInsurrectionLeatherJacket, 1000 + UniformVariantType.Base, token)));
@@ -1360,15 +1360,15 @@ export class CivilianOutfitUniformPack extends BaseNeckProvider implements IUnif
         }
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return "";
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return false;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

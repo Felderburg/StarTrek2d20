@@ -12,7 +12,7 @@ import NasoLabialFoldCatalog from "./model/nasoLabialFoldCatalog";
 import NoseCatalog from "./model/noseCatalog";
 import ProstheticCatalog, { ProstheticPlacement } from "./model/prostheticCatalog";
 import RankIndicatorCatalog from "./model/rankIndicatorCatalog";
-import { Token } from "./model/token";
+import { TokenModel } from "./model/tokenModel";
 import UniformCatalog from "./model/uniformCatalog";
 import { UniformEra } from "./model/uniformEra";
 import UniformPackCollection from "./model/uniformPackCollection";
@@ -24,7 +24,7 @@ const EnterpriseEraStarfleetLogoGradient = `<radialGradient xmlns="http://www.w3
 
 export class TokenSvgBuilder {
 
-    static createSvg(token: Token, rounded: boolean = false, fancyBorder: boolean = false) {
+    static createSvg(token: TokenModel, rounded: boolean = false, fancyBorder: boolean = false) {
         return `<?xml version="1.0" encoding="UTF-8"?>
             <svg viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <title>Token</title>
@@ -81,7 +81,7 @@ export class TokenSvgBuilder {
         </svg>`;
     }
 
-    private static createBorder(token: Token) {
+    private static createBorder(token: TokenModel) {
         const colour = this.getBorderColor(token);
         return "<circle cx=\"200px\" cy=\"200px\" r=\"190px\" stroke=\"" + colour + "\" stroke-width=\"20px\" />"
             + "<circle cx=\"200px\" cy=\"200px\" r=\"180px\" stroke=\"black\" stroke-width=\"6px\" />"
@@ -89,11 +89,11 @@ export class TokenSvgBuilder {
             + RankIndicatorCatalog.instance.getBorderRankIndicator(token);
     }
 
-    private static getBorderColor(token: Token) {
+    private static getBorderColor(token: TokenModel) {
         return UniformPackCollection.instance.getUniformPack(token.uniformEra).getBorderColor(token);
     }
 
-    private static getDelta(token: Token) {
+    private static getDelta(token: TokenModel) {
         return UniformPackCollection.instance.getUniformPack(token.uniformEra).getBorderLogo(token);
     }
 }

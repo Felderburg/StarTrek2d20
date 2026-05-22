@@ -6,7 +6,7 @@ import { BodyType } from "./bodyTypeEnum";
 import { DivisionColors } from "./divisionColors";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -307,7 +307,7 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
         ];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         let division = DivisionColors.getDivision(token.uniformEra, token.divisionColor);
         let result = "";
         switch (token.bodyType) {
@@ -377,7 +377,7 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
         return division === "Nursing" ? finalResult.replace(/#2d2d2d/, token.divisionColor) : finalResult;
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         if (token.bodyType === BodyType.AverageMale && DivisionColors.getDivision(UniformEra.StrangeNewWorlds, token.divisionColor) === "Medical") {
             return [
                 new Swatch(UniformVariantType.Base, "Standard Uniform", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.StrangeNewWorlds)
@@ -410,11 +410,11 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
         ];
     }
 
-    getRankIndicator(token: Token) {
+    getRankIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         const barColour = StrangeNewWorldsUniformPack.getRankIndicatorColor(token.divisionColor);
         switch (token.rankIndicator) {
             case Rank.Ensign:
@@ -436,7 +436,7 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
         }
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         if (token.variant === UniformVariantType.Variant1 && DivisionColors.getDivision(UniformEra.OriginalSeries, token.divisionColor) === "Command"
                 && token.rankIndicator === Rank.Captain) {
             return "#88966c";
@@ -446,11 +446,11 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
     }
 
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    static decorateRankSwatch(svg: string, rankIndicator: Rank, token: Token) {
+    static decorateRankSwatch(svg: string, rankIndicator: Rank, token: TokenModel) {
         return `<svg viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
                 <clipPath id="rankClipPath` + rankIndicator + `">
@@ -470,7 +470,7 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
         return base.isDark ? base.lighten(0.4).asHex() : base.darken(0.25).asHex();
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         let division = DivisionColors.getDivision(token.uniformEra, token.divisionColor);
         if (division === Division[Division.Command]) {
             return StrangeNewWorldsInsignia.base + StrangeNewWorldsInsignia.command;
@@ -481,11 +481,11 @@ export class StrangeNewWorldsUniformPack extends BaseNeckProvider implements IUn
         }
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return true;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

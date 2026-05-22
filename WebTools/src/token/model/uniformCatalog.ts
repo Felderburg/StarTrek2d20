@@ -1,6 +1,6 @@
 import { Species } from "../../helpers/speciesEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import { UniformEra } from "./uniformEra";
 import UniformPackCollection from "./uniformPackCollection";
 
@@ -17,7 +17,7 @@ class UniformCatalog {
         return UniformCatalog._instance;
     }
 
-    getBody(token: Token) {
+    getBody(token: TokenModel) {
         return this.getUniformPack(token.uniformEra).getUniformAndVariantBody(token);
     }
 
@@ -25,7 +25,7 @@ class UniformCatalog {
         return this.getUniformPack(uniformEra).getUniformSwatches(species);
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         let uniformPack = this.getUniformPack(token.uniformEra);
         if (uniformPack != null) {
             return uniformPack.getUniformVariantSwatches(token);
@@ -38,7 +38,7 @@ class UniformCatalog {
         return UniformPackCollection.instance.getUniformPack(era);
     }
 
-    static decorateSwatch(svg: string, clipPathId: number, token: Token) {
+    static decorateSwatch(svg: string, clipPathId: number, token: TokenModel) {
         let result = `<svg viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <clipPath id="clipPath` + clipPathId + `">

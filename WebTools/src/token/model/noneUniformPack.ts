@@ -1,5 +1,5 @@
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import { IUniformPack } from "./uniformPack";
 
 export class NoneUniformPack implements IUniformPack {
@@ -7,10 +7,10 @@ export class NoneUniformPack implements IUniformPack {
     getUniformSwatches(): Swatch[] {
         return [];
     }
-    getUniformAndVariantBody(token: Token): string {
+    getUniformAndVariantBody(token: TokenModel): string {
         return "";
     }
-    getUniformVariantSwatches(token: Token): Swatch[] {
+    getUniformVariantSwatches(token: TokenModel): Swatch[] {
         return [];
     }
 
@@ -18,31 +18,31 @@ export class NoneUniformPack implements IUniformPack {
         return [];
     }
 
-    getRankIndicator(token: Token): string {
+    getRankIndicator(token: TokenModel): string {
         return "";
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         return "";
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return "#999999";
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
             return "";
         }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return false;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

@@ -1,7 +1,7 @@
 import { Rank } from "../../helpers/ranks";
 import { BaseNeckProvider } from "./baseNeckProvider";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 
 const KlingonEmblem = `<g>
     <path d="m 373.45807,351.99135 a 41.83528,41.83528 0 1 1 -83.67056,0 41.83528,41.83528 0 1 1 83.67056,0 z" id="path3776" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.14577;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>
@@ -59,7 +59,7 @@ export abstract class BaseKlingonUniformPack extends BaseNeckProvider {
         ];
     }
 
-    getRankBorderIndicator(token: Token) {
+    getRankBorderIndicator(token: TokenModel) {
         switch (token.rankIndicator) {
             case Rank.Captain:
                 return KlingonRanks.Border.Captain;
@@ -78,15 +78,15 @@ export abstract class BaseKlingonUniformPack extends BaseNeckProvider {
         }
     }
 
-    getRankBorderDefinitions(token: Token, bordered: boolean) {
+    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
         return "";
     }
 
-    getBorderColor(token: Token) {
+    getBorderColor(token: TokenModel) {
         return "#ca0001";
     }
 
-    static decorateSwatch(svg: string, rankIndicator: Rank, token: Token) {
+    static decorateSwatch(svg: string, rankIndicator: Rank, token: TokenModel) {
         return `<svg viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g transform="translate(-5, -260)">`
                     + svg
@@ -94,15 +94,15 @@ export abstract class BaseKlingonUniformPack extends BaseNeckProvider {
                 </svg>`;
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return KlingonEmblem;
     }
 
-    isDivisionColorSupported(token: Token): boolean {
+    isDivisionColorSupported(token: TokenModel): boolean {
         return false;
     }
 
-    getRankIndicatorExtra(token: Token): string {
+    getRankIndicatorExtra(token: TokenModel): string {
         return "";
     }
 }

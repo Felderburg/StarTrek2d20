@@ -3,7 +3,7 @@ import { BaseTngEraUniformPack } from "./baseTngEraUniformPack";
 import { BodyType } from "./bodyTypeEnum";
 import SpeciesRestrictions from "./speciesRestrictions";
 import Swatch from "./swatch";
-import { Token } from "./token";
+import { TokenModel } from "./tokenModel";
 import UniformCatalog, { DefaultRed } from "./uniformCatalog";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
@@ -137,14 +137,14 @@ export class Picard25thCenturyUniformPack extends BaseTngEraUniformPack implemen
         }
     }
 
-    getUniformVariantSwatches(token: Token) {
+    getUniformVariantSwatches(token: TokenModel) {
         return [];
     }
 
-    getUniformAndVariantBody(token: Token) {
+    getUniformAndVariantBody(token: TokenModel) {
         return this.getUniformAndVariantByBodyType(token, token.variant, token.bodyType);
     }
-    getUniformAndVariantByBodyType(token: Token, variant: UniformVariantType, bodyType: BodyType) {
+    getUniformAndVariantByBodyType(token: TokenModel, variant: UniformVariantType, bodyType: BodyType) {
         if (token.species === Species.Edosian) {
             return this.getNeck(bodyType, token.skinColor, token.species, UniformEra.Picard25)
                 + Picard25thCenturyUniforms.averageEdosian.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
@@ -160,16 +160,16 @@ export class Picard25thCenturyUniformPack extends BaseTngEraUniformPack implemen
         }
     }
 
-    getBorderLogo(token: Token): string {
+    getBorderLogo(token: TokenModel): string {
         return Picard25thCenturyUniforms.insignia;
     }
 
-    getRankIndicator(token: Token): string {
+    getRankIndicator(token: TokenModel): string {
         let result = super.getRankIndicator(token);
         return result.replace(/#fbb03b/g, "#fddfb1");
     }
 
-    getRankBorderIndicator(token: Token): string {
+    getRankBorderIndicator(token: TokenModel): string {
         let result = super.getRankBorderIndicator(token);
         return result.replace(/#fbb03b/g, "#fddfb1");
     }
