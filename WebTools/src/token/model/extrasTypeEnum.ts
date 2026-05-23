@@ -11,10 +11,13 @@ export enum ExtraType {
     FerengiHeadFlap, SecurityHelmet, BynarHeadpiece1, BynarHeadpiece2, VulcanHeaddress,
 
     FerengiRankTattoo,
+
+    BorgCheekImplant1, BorgJawImplant2, BorgEyebrowImplant3, BorgEyeImplant4, BorgEyeImplant5, BorgEyeImplant6,
+
 }
 
 export enum ExtraCategory {
-    Ear, Forehead, Face, Headwear
+    Ear, Forehead, Face, Headwear, BorgImplant
 }
 
 export const getExtraCategory = (extraType: ExtraType) => {
@@ -38,6 +41,14 @@ export const getExtraCategory = (extraType: ExtraType) => {
         case ExtraType.OrionPiece2:
         case ExtraType.OrionPiece3:
             return ExtraCategory.Face;
+
+        case ExtraType.BorgCheekImplant1:
+        case ExtraType.BorgJawImplant2:
+        case ExtraType.BorgEyebrowImplant3:
+        case ExtraType.BorgEyeImplant4:
+        case ExtraType.BorgEyeImplant5:
+        case ExtraType.BorgEyeImplant6:
+            return ExtraCategory.BorgImplant;
 
         case ExtraType.SmallBindi:
         case ExtraType.RisanSymbol:

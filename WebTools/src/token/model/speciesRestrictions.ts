@@ -213,7 +213,12 @@ class SpeciesRestrictions {
         return this.getSpeciesOptions(species).length > 1;
     }
 
-    static isExtraAvailableFor(extra: ExtraType, species: Species, uniformEra: UniformEra) {
+    static isExtraAvailableFor(extra: ExtraType, primarySpecies: Species, secondarySpecies: Species, uniformEra: UniformEra) {
+        let species = primarySpecies;
+        if (primarySpecies === Species.LiberatedBorg) {
+            species = secondarySpecies;
+        }
+
         if (extra === ExtraType.BajoranEarring) {
             return species === Species.Bajoran;
         } else if (extra === ExtraType.BynarHeadpiece1 || extra === ExtraType.BynarHeadpiece2) {
@@ -243,7 +248,15 @@ class SpeciesRestrictions {
         } else if (extra === ExtraType.Visor) {
             return species !== Species.Cetacean
                 && species !== Species.Tholian
-                && species !== Species.Tzenkethi;
+                && species !== Species.Tzenkethi
+                && primarySpecies !== Species.LiberatedBorg;
+        } else if ([ExtraType.BorgCheekImplant1,
+            ExtraType.BorgJawImplant2,
+            ExtraType.BorgEyebrowImplant3,
+            ExtraType.BorgEyeImplant4,
+            ExtraType.BorgEyeImplant5,
+            ExtraType.BorgEyeImplant6].includes(extra)) {
+            return primarySpecies === Species.LiberatedBorg;
         } else {
             return true;
         }

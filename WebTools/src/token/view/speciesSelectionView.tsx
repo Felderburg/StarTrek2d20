@@ -6,7 +6,7 @@ import { DropDownElement } from '../../components/dropDownInput';
 import { SpeciesHelper } from '../../helpers/species';
 import { DropDownSelect } from '../../components/dropDownInput';
 import store from '../../state/store';
-import { setTokenSpecies, setTokenSpeciesOption } from '../../state/tokenActions';
+import { setTokenSecondarySpecies, setTokenSpecies, setTokenSpeciesOption } from '../../state/tokenActions';
 import SpeciesRestrictions from '../model/speciesRestrictions';
 import SpeciesOptionCatalog from '../model/speciesOptionCatalog';
 import SwatchButton from './swatchButton';
@@ -58,6 +58,7 @@ const SpeciesSelectionView: React.FC<ISpeciesSelectionProperties> = ({token, isL
                 Species.Kelpien,
                 Species.Klingon, Species.KlingonQuchHa, Species.Jelna, Species.JemHadar,
                 Species.Ktarian,
+                Species.LiberatedBorg,
                 Species.Napean,
                 Species.Orion, Species.Pakled, Species.Reman, Species.Risian, Species.Romulan,
                 Species.Saurian, Species.Suliban,
@@ -73,10 +74,34 @@ const SpeciesSelectionView: React.FC<ISpeciesSelectionProperties> = ({token, isL
                 Species.Yridian,
                 Species.Zakdorn,
                 Species.Zaranite
-            ].map(s => new DropDownElement(s, SpeciesHelper.getSpeciesByType(s).localizedName))
+            ];
+    }
+
+    const speciesListAsOption = () => {
+        return speciesList().map(s => new DropDownElement(s, SpeciesHelper.getSpeciesByType(s).localizedName))
             .sort((d1, d2) => d1.name.localeCompare(d2.name));
     }
 
+
+    const secondarySpeciesListAsOption  = () => {
+        return speciesList()
+            .filter(s => ![Species.LiberatedBorg,
+                Species.Cetacean,
+                Species.Edosian,
+                Species.Ferengi,
+                Species.Saurian,
+                Species.Tholian,
+                Species.Tzenkethi].includes(s))
+            .map(s => new DropDownElement(s, SpeciesHelper.getSpeciesByType(s).localizedName))
+            .sort((d1, d2) => d1.name.localeCompare(d2.name));
+    }
+
+    const selectSecondarySpecies = (species: Species) => {
+        if (SpeciesRestrictions.isRubberHeaded(species)) {
+            loadExtension();
+        }
+        store.dispatch(setTokenSecondarySpecies(species));
+    }
 
     const selectSpecies = (species: Species) => {
         if (SpeciesRestrictions.isRubberHeaded(species)) {
@@ -95,8 +120,17 @@ const SpeciesSelectionView: React.FC<ISpeciesSelectionProperties> = ({token, isL
         return (
             <div className="mt-4">
                 <label className="visually-hidden" htmlFor="species">Species</label>
-                <DropDownSelect items={speciesList()} defaultValue={token.species} onChange={(s) => selectSpecies(s as Species)}
+                <DropDownSelect items={speciesListAsOption()} defaultValue={token.primarySpecies} onChange={(s) => selectSpecies(s as Species)}
                     id="species"/>
+
+                {token.primarySpecies === Species.LiberatedBorg
+                ? (<>
+                    <div className="text-white mt-4 mb-2">{t('SpeciesDetails.originalSpecies')}</div>
+                    <DropDownSelect className="mb-3" items={secondarySpeciesListAsOption()} defaultValue={token.secondarySpecies ?? Species.Human} onChange={(s) => selectSecondarySpecies(s as Species)}
+                    id="secondarySpecies"/>
+                    </>)
+                : undefined}
+
 
                 {renderOptions()}
             </div>);

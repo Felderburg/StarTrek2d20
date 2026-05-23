@@ -32,11 +32,20 @@ export const SET_TOKEN_EYE_TYPE = 'SET_TOKEN_EYE_TYPE';
 export const SET_TOKEN_LIPSTICK_COLOR = 'SET_TOKEN_LIPSTICK_COLOR';
 export const SET_TOKEN_FACIAL_HAIR_TYPE = 'SET_TOKEN_FACIAL_HAIR_TYPE';
 export const SET_TOKEN_EXTRAS_TYPE = 'SET_TOKEN_EXTRAS_TYPE';
+export const SET_TOKEN_SECONDARY_SPECIES = 'SET_TOKEN_SECONDARY_SPECIES';
 
 export function setTokenSpecies(species: Species) {
     let payload = { species: species };
     return {
        type: SET_TOKEN_SPECIES,
+       payload: payload
+    }
+}
+
+export function setTokenSecondarySpecies(species: Species) {
+    let payload = { species: species };
+    return {
+       type: SET_TOKEN_SECONDARY_SPECIES,
        payload: payload
     }
 }

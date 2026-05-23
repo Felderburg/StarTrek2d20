@@ -15,6 +15,7 @@ import { UniformVariantType } from "./uniformVariantTypeEnum";
 
 export interface Token {
     species: Species;
+    secondarySpecies?: Species;
     divisionColor: string;
     skinColor: string;
     headType: HeadType;

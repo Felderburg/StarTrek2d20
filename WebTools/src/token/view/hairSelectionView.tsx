@@ -1,6 +1,5 @@
 import React from "react";
-import { useTranslation, withTranslation, WithTranslation } from 'react-i18next';
-import { connect } from "react-redux";
+import { useTranslation } from 'react-i18next';
 import SwatchButton from "./swatchButton";
 import HairCatalog from "../model/hairCatalog";
 import store from "../../state/store";

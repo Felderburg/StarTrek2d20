@@ -14,7 +14,7 @@ import { Token } from "../token/model/token";
 import { UniformEra } from "../token/model/uniformEra";
 import UniformVariantRestrictions from "../token/model/uniformVariantRestrictions";
 import { UniformVariantType } from "../token/model/uniformVariantTypeEnum";
-import { SET_TOKEN_BODY_TYPE, SET_TOKEN_DIVISION_COLOR, SET_TOKEN_EXTRAS_TYPE, SET_TOKEN_EYE_COLOR, SET_TOKEN_EYE_TYPE, SET_TOKEN_FACIAL_HAIR_TYPE, SET_TOKEN_HAIR_COLOR, SET_TOKEN_HAIR_TYPE, SET_TOKEN_HEAD_TYPE, SET_TOKEN_LIPSTICK_COLOR, SET_TOKEN_MOUTH_TYPE, SET_TOKEN_NASO_LABIAL_FOLD_TYPE, SET_TOKEN_NOSE_TYPE, SET_TOKEN_RANK, SET_TOKEN_SKIN_COLOR, SET_TOKEN_SPECIES, SET_TOKEN_SPECIES_OPTION, SET_TOKEN_UNIFORM_ERA, SET_TOKEN_UNIFORM_VARIANT_TYPE } from "./tokenActions";
+import { SET_TOKEN_BODY_TYPE, SET_TOKEN_DIVISION_COLOR, SET_TOKEN_EXTRAS_TYPE, SET_TOKEN_EYE_COLOR, SET_TOKEN_EYE_TYPE, SET_TOKEN_FACIAL_HAIR_TYPE, SET_TOKEN_HAIR_COLOR, SET_TOKEN_HAIR_TYPE, SET_TOKEN_HEAD_TYPE, SET_TOKEN_LIPSTICK_COLOR, SET_TOKEN_MOUTH_TYPE, SET_TOKEN_NASO_LABIAL_FOLD_TYPE, SET_TOKEN_NOSE_TYPE, SET_TOKEN_RANK, SET_TOKEN_SECONDARY_SPECIES, SET_TOKEN_SKIN_COLOR, SET_TOKEN_SPECIES, SET_TOKEN_SPECIES_OPTION, SET_TOKEN_UNIFORM_ERA, SET_TOKEN_UNIFORM_VARIANT_TYPE } from "./tokenActions";
 
 const initialState = {
     species: Species.Human,
@@ -40,6 +40,7 @@ const initialState = {
 
 const token = (state: Token = initialState, action) => {
     switch (action.type) {
+    case SET_TOKEN_SECONDARY_SPECIES:
     case SET_TOKEN_SPECIES: {
         let newSpecies = action.payload.species;
         let skinColor = state.skinColor;
@@ -92,7 +93,10 @@ const token = (state: Token = initialState, action) => {
         if (options.indexOf(option) < 0) {
             option = SpeciesOption.Option1;
         }
-        let extras = state.extras.filter(e => SpeciesRestrictions.isExtraAvailableFor(e, newSpecies, state.uniformEra));
+        let extras = state.extras.filter(e =>
+            action.type === SET_TOKEN_SECONDARY_SPECIES
+            ? SpeciesRestrictions.isExtraAvailableFor(e, Species.LiberatedBorg, newSpecies, state.uniformEra)
+            : SpeciesRestrictions.isExtraAvailableFor(e, newSpecies, state.secondarySpecies, state.uniformEra));
 
         let uniformEra = state.uniformEra;
         let colour = state.divisionColor;
@@ -119,6 +123,17 @@ const token = (state: Token = initialState, action) => {
             variant = UniformVariantType.Base;
         }
 
+        let secondarySpecies = state.secondarySpecies;
+        if (action.type === SET_TOKEN_SECONDARY_SPECIES) {
+            secondarySpecies = newSpecies;
+            if (secondarySpecies == null) {
+                secondarySpecies = Species.Human;
+            }
+            newSpecies = state.species;
+        } else if (newSpecies === Species.LiberatedBorg && secondarySpecies == null) {
+            secondarySpecies = Species.Human;
+        }
+
         return {
             ...state,
             eyeColor: eyeColor,
@@ -129,7 +144,8 @@ const token = (state: Token = initialState, action) => {
             mouthType: mouthType,
             skinColor: skinColor,
             facialHairType: facialHairType,
-            species: action.payload.species,
+            species: newSpecies,
+            secondarySpecies: secondarySpecies,
             speciesOption: option,
             extras: extras,
             uniformEra: uniformEra,
@@ -160,7 +176,7 @@ const token = (state: Token = initialState, action) => {
         if (variants.indexOf(variant) < 0) {
             variant = UniformVariantType.Base;
         }
-        let extras = state.extras.filter(e => SpeciesRestrictions.isExtraAvailableFor(e, state.species, action.payload.era));
+        let extras = state.extras.filter(e => SpeciesRestrictions.isExtraAvailableFor(e, state.species, state.secondarySpecies, action.payload.era));
 
         return {
             ...state,

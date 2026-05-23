@@ -16,15 +16,20 @@ import { UniformVariantType } from "./uniformVariantTypeEnum";
 
 export class TokenModel {
 
-    species: Species;
+    primarySpecies: Species;
+    speciesOption: SpeciesOption;
+    secondarySpecies?: Species;
+
+    uniformEra: UniformEra;
+    variant: UniformVariantType;
     divisionColor: string;
+    rankIndicator: Rank;
+
     skinColor: string;
     headType: HeadType;
-    rankIndicator: Rank;
     noseType: NoseType;
     nasoLabialFold: NasoLabialFoldType;
     hairType: HairType;
-    uniformEra: UniformEra;
     bodyType: BodyType;
     hairColor: string;
     eyeColor: string;
@@ -32,14 +37,23 @@ export class TokenModel {
     mouthType: MouthType;
     lipstickColor: string;
     facialHairType: FacialHairType[];
-    speciesOption: SpeciesOption;
-    extras: ExtraType[];
-    variant: UniformVariantType;
 
+    extras: ExtraType[];
+
+    get species() {
+        if (this.primarySpecies === Species.LiberatedBorg) {
+            return this.secondarySpecies ?? Species.Human;
+        } else {
+            return this.primarySpecies;
+        }
+    }
 
     static from(token: Token): TokenModel {
         let result = new TokenModel();
-        result.species = token.species;
+        result.primarySpecies = token.species;
+        result.secondarySpecies = token.secondarySpecies;
+        result.speciesOption = token.speciesOption;
+
         result.divisionColor = token.divisionColor;
         result.skinColor = token.skinColor;
         result.headType = token.headType;
@@ -56,7 +70,6 @@ export class TokenModel {
         result.lipstickColor = token.lipstickColor;
         result.facialHairType = [...token.facialHairType];
         result.extras = [...token.extras];
-        result.speciesOption = token.speciesOption;
         result.variant = token.variant;
 
         return result;

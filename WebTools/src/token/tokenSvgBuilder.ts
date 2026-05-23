@@ -62,6 +62,9 @@ export class TokenSvgBuilder {
                             EyeBrowCatalog.instance.getEyeBrows(token) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Forehead) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Face, true, token.hairType) +
+                        "</g>" +
+                            ExtrasCatalog.instance.getExtras(token, ExtraCategory.BorgImplant) +
+                        "<g transform=\"translate(-20,0)\">" +
                             HairCatalog.instance.getHair(token, HairElement.BehindEars) +
                             ExtrasCatalog.instance.getExtras(token, ExtraCategory.Headwear, true) +
                             EarCatalog.instance.getEar(token) +
