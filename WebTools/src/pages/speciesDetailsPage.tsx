@@ -1,7 +1,8 @@
 ﻿import React from 'react';
 import { Navigation } from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
-import { SpeciesHelper, SpeciesModel } from '../helpers/species';
+import { SpeciesHelper } from '../helpers/species';
+import { SpeciesModel } from '../helpers/speciesModel';
 import { TalentsHelper } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
@@ -238,7 +239,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     const onNext = () => {
         if (isSpecialSpecies() && character.speciesStep.originalSpecies == null) {
             Dialog.show(t('SpeciesDetails.error.originalSpecies'));
-        } else if (character.speciesStep?.attributes?.length !== 3) {
+        } else if (!character.speciesStep?.isAttributeSelectionComplete) {
             Dialog.show(t('SpeciesDetails.error.attributes'));
         } else if (isTalentSelectionRequired() && character.speciesStep?.talent == null) {
             Dialog.show(t('Common.error.talent'));

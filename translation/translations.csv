@@ -51,6 +51,7 @@ TokenCreator.section.eyes,Eyes,,Augen,Ojos,Yeux,Глаза,Olhos
 TokenCreator.section.eyes.style,Eye Style,,Augenstil,Estilo de Ojo,Forme des Yeux,Тип глаз,Estilo do Olho
 TokenCreator.section.eyes.colour,Eye Colour,Eye Color,Augenfarbe,Color de Ojos,Couleur desYeux,Цвет глаз,Cor dos Olhos
 TokenCreator.section.extras,Extras,,Extras,Extras,Extras,Дополнения,Extras
+TokenCreator.section.extras.borgImplants,Borg Implants,,,,,,
 TokenCreator.section.extras.ears,Ears,,Ohren,Orejas,Oreilles,Уши,Orelhas
 TokenCreator.section.extras.face,Face,,Gesicht,Cara,Visage,Лицо,Rosto
 TokenCreator.section.extras.forehead,Forehead,,Stirn,Frente,Front,Лоб,Testa

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Window } from '../common/window';
-import { SpeciesModel } from '../helpers/species';
+import { SpeciesModel } from '../helpers/speciesModel';
 import { AttributesHelper } from '../helpers/attributes';
 import Button from 'react-bootstrap/Button';
 import { Species } from '../helpers/speciesEnum';

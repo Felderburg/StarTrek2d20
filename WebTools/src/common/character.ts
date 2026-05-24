@@ -253,6 +253,11 @@ export class SpeciesStep {
         this.attributes = [];
     }
 
+    get isAttributeSelectionComplete() {
+console.log(this);
+        return (this.attributes?.length ?? 0) - (this.decrementAttributes?.length ?? 0) === 3;
+    }
+
     get localizedName() {
         if (this.species === Species.Custom) {
             return this.customSpeciesName || "";
