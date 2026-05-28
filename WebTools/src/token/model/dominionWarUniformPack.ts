@@ -270,7 +270,7 @@ export class DominionWarUniformPack extends BaseTngEraUniformPack implements IUn
             result = `<g transform="rotate(-21.492033,417.22301,211.31432)">` + result + `</g>`;
         } else if (token.species === Species.Edosian) {
             result = `<g transform="translate(-2, 2)">` + result + `</g>`;
-        } else {
+        } else if (!isCadetRank(token.rankIndicator)) {
             result = `<g transform="translate(3, 5)">` + result + `</g>`;
         }
         return result;

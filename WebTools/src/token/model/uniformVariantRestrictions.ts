@@ -79,7 +79,7 @@ export default class UniformVariantRestrictions {
             case UniformEra.DominionWar:
                 return [
                     Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
-                    // Rank.CadetFirstClass, Rank.CadetSecondClass, Rank.CadetThirdClass, Rank.CadetFourthClass,
+                    Rank.CadetFirstClass, Rank.CadetSecondClass, Rank.CadetThirdClass, Rank.CadetFourthClass,
                     Rank.Crewman3rdClass, Rank.Crewman2ndClass, Rank.Crewman1stClass, Rank.PettyOfficer3rdClass, Rank.PettyOfficer2ndClass,
                     Rank.PettyOfficer1stClass, Rank.ChiefPettyOfficer, Rank.SeniorChiefPettyOfficer, Rank.MasterChiefPettyOfficer,
                     Rank.RearAdmiral, Rank.ViceAdmiral, Rank.Admiral

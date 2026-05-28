@@ -218,6 +218,21 @@
     "Home.tokenCreator": "Tokens",
     "Home.otherTools": "Otras Herramientas",
 
+    "MilestonePage.instruction": "Selecciona el tipo de modificación que quieres aplicar para el Hito.",
+
+    "MissionPodSelectionPage.text": "Algunas plantillas de nave tienen la habilidad de encajar con un único módulo de misión, escogido de la lista a continuación. Los talentos proporcionados por el módulo (y todos sus beneficios) normalmente no se pueden intercambiar, pero todo el módulo de misión se podría intercambiar como si fuera un solo talento.",
+    "MissionPodSelectionPage.errorNoSelection": "Selecciona un módulo de misión antes de continuar, por favor.",
+
+    "MissionProfileSelectionPage.text": "El perfil de misión es lo que diferencia a una nave estelar de otra de su misma clase. Determina el equipo especializado que se instala antes de aventurarse hacia lo desconocido, la prioridad de personal que la Flota Estelar proporciona a la nave y el objetivo general de su misión. Todas las plantillas tienen un perfil de misión.",
+    "MissionProfileSelectionPage.errorNoSelection": "Selecciona un perfil de misión antes de continuar, por favor.",
+
+    "MissionProfileTalentSelection.error.talent": "Por favor, selecciona un talento antes de continuar",
+    "MissionProfileTalentSelection.error.system": "Por favor, selecciona un Sistema antes de continuar",
+
+    "MissionProfileTalentSelection.instruction": "Elige 1 talento de la lista de talentos asociados al perfil de misión.",
+
+    "MissionProfileTalentSelection.instruction.system": "Este perfil de misión requiere que selecciones un sistema de la lista de abajo.",
+
     "ModifySupportingCharacter.instruction": "Siempre que un personaje de apoyo es presentado en una aventura, y no es la primera vez que han sido presentado (ej.: han sido presentados antes, reciben una mejora",
     "ModifySupportingCharacter.improvementType": "Tipo de Mejora",
 
@@ -242,21 +257,6 @@
     "ModifySupportingCharacter.noTalent": "Por favor selecciona un talento antes de continuar",
 
     "ModifySupportingCharacter.talentModal.title": "Selecciona un talento",
-
-    "MilestonePage.instruction": "Selecciona el tipo de modificación que quieres aplicar para el Hito.",
-
-    "MissionPodSelectionPage.text": "Algunas plantillas de nave tienen la habilidad de encajar con un único módulo de misión, escogido de la lista a continuación. Los talentos proporcionados por el módulo (y todos sus beneficios) normalmente no se pueden intercambiar, pero todo el módulo de misión se podría intercambiar como si fuera un solo talento.",
-    "MissionPodSelectionPage.errorNoSelection": "Selecciona un módulo de misión antes de continuar, por favor.",
-
-    "MissionProfileSelectionPage.text": "El perfil de misión es lo que diferencia a una nave estelar de otra de su misma clase. Determina el equipo especializado que se instala antes de aventurarse hacia lo desconocido, la prioridad de personal que la Flota Estelar proporciona a la nave y el objetivo general de su misión. Todas las plantillas tienen un perfil de misión.",
-    "MissionProfileSelectionPage.errorNoSelection": "Selecciona un perfil de misión antes de continuar, por favor.",
-
-    "MissionProfileTalentSelection.error.talent": "Por favor, selecciona un talento antes de continuar",
-    "MissionProfileTalentSelection.error.system": "Por favor, selecciona un Sistema antes de continuar",
-
-    "MissionProfileTalentSelection.instruction": "Elige 1 talento de la lista de talentos asociados al perfil de misión.",
-
-    "MissionProfileTalentSelection.instruction.system": "Este perfil de misión requiere que selecciones un sistema de la lista de abajo.",
 
     "ModificationCompletePage.instruction": "El personaje ha sido modificado. Puedes ver el personaje revisado o realizar otra modificación.\n\nEs posible que quieras guardar la URL del personaje revisado.",
 
@@ -414,15 +414,6 @@
     "StarshipPage.whatYear": "¿En que año entró en servicio esta clase de nave?",
     "StarshipPage.class": "Clase",
 
-    "UpbringingDetailPage.text": "¿Aceptas o te rebelas contra tu educación?",
-
-    "UpbringingDetailPage.text.accept": "Aceptar",
-    "UpbringingDetailPage.text.reject": "Rechazar",
-
-    "UpbringingDetailPage.error.discipline": "Debes seleccionar 1 Disciplina a mejorar antes de continuar.",
-    "UpbringingDetailPage.error.talent": "Debes seleccionar un Talento antes de continuar.",
-    "UpbringingDetailPage.error.focus": "Debes elegir una Especialidad. Elige entre las sugerencias o crea la tuya propia.",
-
     "SupportingCharacter.whatType": "Elige un tipo de personaje.",
     "SupportingCharacter.howOld": "¿Que edad tiene tu personaje?",
     "SupportingCharacter.purposeOrDepartment": "Puesto/Departamento",
@@ -455,6 +446,15 @@
     "ToolSelection.randomNpc": "PNJ Aleatorio",
     "ToolSelection.randomStarship": "Nave estelar aleatoria",
     "ToolSelection.randomCreature": "Criatura aleatoria",
+
+    "UpbringingDetailPage.text": "¿Aceptas o te rebelas contra tu educación?",
+
+    "UpbringingDetailPage.text.accept": "Aceptar",
+    "UpbringingDetailPage.text.reject": "Rechazar",
+
+    "UpbringingDetailPage.error.discipline": "Debes seleccionar 1 Disciplina a mejorar antes de continuar.",
+    "UpbringingDetailPage.error.talent": "Debes seleccionar un Talento antes de continuar.",
+    "UpbringingDetailPage.error.focus": "Debes elegir una Especialidad. Elige entre las sugerencias o crea la tuya propia.",
 
     "Common.button.random": "Aleatorio",
     "Common.button.select": "Seleccionar",

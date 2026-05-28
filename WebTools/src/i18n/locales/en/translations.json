@@ -262,6 +262,8 @@
 
     "FinishPage.job.example": "e.g. Junior Engineer",
 
+    "GeneralEditView.instruction": "The general edit function is intended for changes to characters based on the availability of new sourcebooks (for example, given the new _Species Sourcebook_, a player might build the character differently), or, with the GM's permission, tweaking some of the choices made during initial character creation. We treat these changes not as incremental changes, but instead as retroactive changes.",
+
     "Home.title": "STA Character Creator",
     "Home.selection": "Select tool.",
     "Home.characterButton": "Characters & Starships",
@@ -269,6 +271,21 @@
     "Home.tokenCreator": "Tokens",
     "Home.otherTools": "Other Tools",
     "Home.disclaimer": "The character creator is a community-created tool for Star Trek Adventures, and has no official affiliation with Modiphius.",
+
+    "MilestonePage.instruction": "Select what type of modification you want to apply for this milestone.",
+
+    "MissionPodSelectionPage.text": "Certain spaceframes have the ability to be fitted with a single mission pod, chosen from the list below. The talents provided by the pod may not be swapped out normally, but the entire mission pod (and all its benefits) may be swapped out as if it were a single talent.",
+    "MissionPodSelectionPage.errorNoSelection": "Please select a mission pod before proceeding.",
+
+    "MissionProfileSelectionPage.text": "A mission profile is what makes one starship different from another in her same class. It determines the specialized equipment that is installed before venturing into the unknown, the priority in personnel that Starfleet gives the vessel, and its overall mission goal. All spaceframes have a mission profile.",
+    "MissionProfileSelectionPage.errorNoSelection": "Please select a mission profile before proceeding.",
+
+    "MissionProfileTalentSelection.error.talent": "Please select a talent before proceeding.",
+    "MissionProfileTalentSelection.error.system": "Please select a System before proceeding.",
+
+    "MissionProfileTalentSelection.instruction": "Choose 1 talent from the list of talents associated with the mission profile.",
+
+    "MissionProfileTalentSelection.instruction.system": "This mission profile requires you to select 1 system from the below list.",
 
     "ModifySupportingCharacter.instruction": "Whenever a supporting character is introduced to an adventure, and this is _not_ the first time they have been introduced (i.e., they have been introduced before), they receive an improvement. ",
     "ModifySupportingCharacter.improvementType": "Improvement Type",
@@ -294,21 +311,6 @@
     "ModifySupportingCharacter.noTalent": "Please select a talent.",
 
     "ModifySupportingCharacter.talentModal.title": "Select Talent",
-
-    "MilestonePage.instruction": "Select what type of modification you want to apply for this milestone.",
-
-    "MissionPodSelectionPage.text": "Certain spaceframes have the ability to be fitted with a single mission pod, chosen from the list below. The talents provided by the pod may not be swapped out normally, but the entire mission pod (and all its benefits) may be swapped out as if it were a single talent.",
-    "MissionPodSelectionPage.errorNoSelection": "Please select a mission pod before proceeding.",
-
-    "MissionProfileSelectionPage.text": "A mission profile is what makes one starship different from another in her same class. It determines the specialized equipment that is installed before venturing into the unknown, the priority in personnel that Starfleet gives the vessel, and its overall mission goal. All spaceframes have a mission profile.",
-    "MissionProfileSelectionPage.errorNoSelection": "Please select a mission profile before proceeding.",
-
-    "MissionProfileTalentSelection.error.talent": "Please select a talent before proceeding.",
-    "MissionProfileTalentSelection.error.system": "Please select a System before proceeding.",
-
-    "MissionProfileTalentSelection.instruction": "Choose 1 talent from the list of talents associated with the mission profile.",
-
-    "MissionProfileTalentSelection.instruction.system": "This mission profile requires you to select 1 system from the below list.",
 
     "ModificationCompletePage.instruction": "The character has been modified. You can view the revised character, or make another modification.\n\nYou might want to save the URL for the revised character.",
 
@@ -561,15 +563,6 @@
     "StarshipPage.whatYear": "What year did this spaceframe enter service?",
     "StarshipPage.class": "Class",
 
-    "UpbringingDetailPage.text": "Do you Accept or Rebel against your upbringing?",
-
-    "UpbringingDetailPage.text.accept": "Accept",
-    "UpbringingDetailPage.text.reject": "Reject",
-
-    "UpbringingDetailPage.error.discipline": "You must select 1 Discipline to improve before proceeding.",
-    "UpbringingDetailPage.error.talent": "You must select a talent before proceeding.",
-    "UpbringingDetailPage.error.focus": "You need to type in a Focus. Choose from the suggestions if you cannot come up with your own.",
-
     "SupportingCharacter.whatType": "Choose a character type.",
     "SupportingCharacter.howOld": "How old is this character?",
     "SupportingCharacter.purposeOrDepartment": "Purpose/Department",
@@ -602,6 +595,15 @@
     "ToolSelection.randomNpc": "Random NPC",
     "ToolSelection.randomStarship": "Random Starship",
     "ToolSelection.randomCreature": "Random Creature",
+
+    "UpbringingDetailPage.text": "Do you Accept or Rebel against your upbringing?",
+
+    "UpbringingDetailPage.text.accept": "Accept",
+    "UpbringingDetailPage.text.reject": "Reject",
+
+    "UpbringingDetailPage.error.discipline": "You must select 1 Discipline to improve before proceeding.",
+    "UpbringingDetailPage.error.talent": "You must select a talent before proceeding.",
+    "UpbringingDetailPage.error.focus": "You need to type in a Focus. Choose from the suggestions if you cannot come up with your own.",
 
     "Common.button.random": "Random",
     "Common.button.select": "Select",
@@ -1655,6 +1657,8 @@
     "ModificationType.name.reputation": "Reputation",
     "ModificationType.name.milestone": "Milestone",
     "ModificationType.name.characterAdvancement": "Character Advancement",
+    "ModificationType.name.generalEdit": "General Edit",
+    "ModificationType.name.versionUpgrade": "Upgrade to 2nd Edition",
 
     "MilestoneType.name.normalMilestone": "Normal Milestone",
     "MilestoneType.name.spotlightMilestone": "Spotlight Milestone",

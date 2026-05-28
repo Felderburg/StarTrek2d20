@@ -340,15 +340,6 @@
     "StarshipPage.whatYear": "Quel est la date de la mise en service de la classe de vaisseau",
     "StarshipPage.class": "Classe",
 
-    "UpbringingDetailPage.text": "Avez accepté ou rejeté votre éducation ?",
-
-    "UpbringingDetailPage.text.accept": "Accepter",
-    "UpbringingDetailPage.text.reject": "Rejeter",
-
-    "UpbringingDetailPage.error.discipline": "Vous devez choisir 1 Discipline pour continuer.",
-    "UpbringingDetailPage.error.talent": "Vous devez choisir 1 Talent pour continuer.",
-    "UpbringingDetailPage.error.focus": "Vous devez entrer une Spécialité. Choisissez parmi les proposistion ou créez la votre.",
-
     "SupportingCharacter.whatType": "Choisir un type de personnage",
     "SupportingCharacter.howOld": "Quel est l'âge de votre personnage",
     "SupportingCharacter.purposeOrDepartment": "Rôle/Département",
@@ -369,6 +360,15 @@
     "ToolSelection.starship": "Vaisseau spatial",
     "ToolSelection.spaceSector": "Secteur spatial",
     "ToolSelection.randomNpc": "PNJ aléatoire",
+
+    "UpbringingDetailPage.text": "Avez accepté ou rejeté votre éducation ?",
+
+    "UpbringingDetailPage.text.accept": "Accepter",
+    "UpbringingDetailPage.text.reject": "Rejeter",
+
+    "UpbringingDetailPage.error.discipline": "Vous devez choisir 1 Discipline pour continuer.",
+    "UpbringingDetailPage.error.talent": "Vous devez choisir 1 Talent pour continuer.",
+    "UpbringingDetailPage.error.focus": "Vous devez entrer une Spécialité. Choisissez parmi les proposistion ou créez la votre.",
 
     "Common.button.random": "Aléatoire",
     "Common.button.select": "Choisir",

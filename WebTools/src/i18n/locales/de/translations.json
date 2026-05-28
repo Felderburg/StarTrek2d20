@@ -311,15 +311,6 @@
     "StarshipPage.whatYear": "In welchem Jahr wurde diese Schiffsklasse in Dienst gestellt?",
     "StarshipPage.class": "Klasse",
 
-    "UpbringingDetailPage.text": "Akzeptierst du deine Erziehung oder rebellierst du dagegen?",
-
-    "UpbringingDetailPage.text.accept": "Akzeptieren",
-    "UpbringingDetailPage.text.reject": "Zurückweisen",
-
-    "UpbringingDetailPage.error.discipline": "Du musst 1 Disziplin zum verbessern auswählen um fortzufahren.",
-    "UpbringingDetailPage.error.talent": "Du musst ein Talent wählen um fortzufahren.",
-    "UpbringingDetailPage.error.focus": "Du musst einen Fokus eingeben. Wähle aus den Vorschlägen, falls du dir keinen ausdenken kannst.",
-
     "SupportingCharacter.whatType": "Wählen Sie die Art des Charakters.",
     "SupportingCharacter.howOld": "Wie alt ist dieser Charakter?",
     "SupportingCharacter.purposeOrDepartment": "Zweck oder Abteilung",
@@ -340,6 +331,15 @@
     "ToolSelection.starship": "Raumschiff",
     "ToolSelection.spaceSector": "Raumsektor",
     "ToolSelection.randomNpc": "Zufälliger NSC",
+
+    "UpbringingDetailPage.text": "Akzeptierst du deine Erziehung oder rebellierst du dagegen?",
+
+    "UpbringingDetailPage.text.accept": "Akzeptieren",
+    "UpbringingDetailPage.text.reject": "Zurückweisen",
+
+    "UpbringingDetailPage.error.discipline": "Du musst 1 Disziplin zum verbessern auswählen um fortzufahren.",
+    "UpbringingDetailPage.error.talent": "Du musst ein Talent wählen um fortzufahren.",
+    "UpbringingDetailPage.error.focus": "Du musst einen Fokus eingeben. Wähle aus den Vorschlägen, falls du dir keinen ausdenken kannst.",
 
     "Common.button.random": "Zufällig",
     "Common.button.select": "Auswählen",

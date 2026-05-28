@@ -24,11 +24,13 @@ import { CheckBox } from "../../components/checkBox";
 import { Dialog } from "../../components/dialog";
 import { LogEntrySelectionView } from "./logEntrySelectionView";
 import { CharacterAdvancementStep } from "../../common/character";
+import { GeneralEditView } from "./generalEditView";
 
 enum Step {
     Initial,
     LogEntry,
     SelectLog,
+    GeneralEdit,
     SelectCallback,
     ModificationDetails,
     Finish
@@ -150,6 +152,10 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         }, 200);
     }
 
+    const createGeneralEditView = () => {
+        return <GeneralEditView character={character} onNextStep={() => {}} onPreviousStep={previousStep} />;
+    }
+
     const createLogEntryView = () => {
         return (<CharacterLogEntryView onNextStep={nextStep} onPreviousStep={previousStep}
                 character={character} saveLogEntry={(l) => store.dispatch(addCharacterLogEntry(l))} />);
@@ -258,7 +264,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         } else if (modificationType === ModificationType.CharacterAdvancement) {
             return [ Step.Initial, Step.SelectLog, Step.SelectCallback, Step.ModificationDetails, Step.Finish ];
         } else if (modificationType === ModificationType.GeneralEdit) {
-            return [ Step.Initial, Step.Finish ];
+            return [ Step.Initial, Step.GeneralEdit, Step.Finish ];
         } else {
             return [];
         }
@@ -273,6 +279,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                 return createLogEntryView();
             case Step.SelectLog:
                 return createSelectLog();
+            case Step.GeneralEdit:
+                return createGeneralEditView();
             case Step.SelectCallback:
                 return createSelectLogCallback();
             case Step.ModificationDetails:

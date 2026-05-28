@@ -263,6 +263,21 @@
     "Home.otherTools": "Другие инструменты",
     "Home.disclaimer": "Генератор персонажей — это инструмент, созданный сообществом для Star Trek Adventures и не имеющий официального отношения к Модифиусу.",
 
+    "MilestonePage.instruction": "Выберите тип модификации который вы хотите применить к этой вехе",
+
+    "MissionPodSelectionPage.text": "Некоторые силовые каркасы могут быть оснащены одним сменным модулем, выбранным из списка ниже. Таланты, предоставляемые модулем, нельзя заменить обычным способом, но только заменив весь модуль (и все его преимущества), как если бы это был один талант.",
+    "MissionPodSelectionPage.errorNoSelection": "Прежде чем продолжить, выберите сменный модуль.",
+
+    "MissionProfileSelectionPage.text": "Профиль назначения — это то, что отличает один космический корабль от другого того же класса. Он определяет специализированное оборудование, которое устанавливается перед тем, как отправиться в неизведанное, приоритет в личном составе, который Звездный Флот отдает кораблю, и его общую цель миссии. Все силовые каркасы имеют профиль назначения.",
+    "MissionProfileSelectionPage.errorNoSelection": "Прежде чем продолжить, выберите профиль назначения.",
+
+    "MissionProfileTalentSelection.error.talent": "Прежде чем продолжить, выберите талант.",
+    "MissionProfileTalentSelection.error.system": "Прежде чем продолжить, выберите Систему.",
+
+    "MissionProfileTalentSelection.instruction": "Выберите 1 талант из списка талантов, связанного с профилем назначения.",
+
+    "MissionProfileTalentSelection.instruction.system": "Этот профиль назначения требует, чтобы вы выбрали 1 систему из списка ниже.",
+
     "ModifySupportingCharacter.instruction": "Всякий раз, когда второстепенный персонаж вводится в приключение и это _не_ первый раз, когда он используется (т. е. он вводился раньше), он получает улучшение.",
     "ModifySupportingCharacter.improvementType": "Тип улучшения",
 
@@ -287,21 +302,6 @@
     "ModifySupportingCharacter.noTalent": "Пожалуйста, выберите талант.",
 
     "ModifySupportingCharacter.talentModal.title": "Выберите Талант",
-
-    "MilestonePage.instruction": "Выберите тип модификации который вы хотите применить к этой вехе",
-
-    "MissionPodSelectionPage.text": "Некоторые силовые каркасы могут быть оснащены одним сменным модулем, выбранным из списка ниже. Таланты, предоставляемые модулем, нельзя заменить обычным способом, но только заменив весь модуль (и все его преимущества), как если бы это был один талант.",
-    "MissionPodSelectionPage.errorNoSelection": "Прежде чем продолжить, выберите сменный модуль.",
-
-    "MissionProfileSelectionPage.text": "Профиль назначения — это то, что отличает один космический корабль от другого того же класса. Он определяет специализированное оборудование, которое устанавливается перед тем, как отправиться в неизведанное, приоритет в личном составе, который Звездный Флот отдает кораблю, и его общую цель миссии. Все силовые каркасы имеют профиль назначения.",
-    "MissionProfileSelectionPage.errorNoSelection": "Прежде чем продолжить, выберите профиль назначения.",
-
-    "MissionProfileTalentSelection.error.talent": "Прежде чем продолжить, выберите талант.",
-    "MissionProfileTalentSelection.error.system": "Прежде чем продолжить, выберите Систему.",
-
-    "MissionProfileTalentSelection.instruction": "Выберите 1 талант из списка талантов, связанного с профилем назначения.",
-
-    "MissionProfileTalentSelection.instruction.system": "Этот профиль назначения требует, чтобы вы выбрали 1 систему из списка ниже.",
 
     "ModificationCompletePage.instruction": "Персонаж был изменен. Вы можете просмотреть измененного персонажа или внести новую модификацю.\n\nВы можете сохранить URL для измененного персонажа.",
 
@@ -507,15 +507,6 @@
     "StarshipPage.whatClass": "Название класса звездолета?",
     "StarshipPage.whatYear": "В каком году ",
 
-    "UpbringingDetailPage.text": "Персонаж принял или воспротивился своему окружению?",
-
-    "UpbringingDetailPage.text.accept": "Принять",
-    "UpbringingDetailPage.text.reject": "Отвергнуть",
-
-    "UpbringingDetailPage.error.discipline": "Требуется выбрать одно из знаний для продолжения.",
-    "UpbringingDetailPage.error.talent": "Выберите талант для продолжения.",
-    "UpbringingDetailPage.error.focus": "Нужно написать Специализацию. Выберите из предложенных если ничего не приходит в голову.",
-
     "SupportingCharacter.whatType": "Выберите тип персонажа",
     "SupportingCharacter.howOld": "Возраст персонажа",
     "SupportingCharacter.purposeOrDepartment": "Цель/Отдел",
@@ -537,6 +528,15 @@
     "ToolSelection.randomNpc": "Рандомный второстепенный персонаж",
     "ToolSelection.randomStarship": "Рандомный звездолет",
     "ToolSelection.randomCreature": "Рамдомное существо",
+
+    "UpbringingDetailPage.text": "Персонаж принял или воспротивился своему окружению?",
+
+    "UpbringingDetailPage.text.accept": "Принять",
+    "UpbringingDetailPage.text.reject": "Отвергнуть",
+
+    "UpbringingDetailPage.error.discipline": "Требуется выбрать одно из знаний для продолжения.",
+    "UpbringingDetailPage.error.talent": "Выберите талант для продолжения.",
+    "UpbringingDetailPage.error.focus": "Нужно написать Специализацию. Выберите из предложенных если ничего не приходит в голову.",
 
     "Common.button.random": "Случайный выбор",
     "Common.button.select": "Выбрать",
