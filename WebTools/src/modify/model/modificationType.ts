@@ -6,7 +6,9 @@ export enum ModificationType {
     CharacterAdvancement,
     Promotion,
     Demotion,
-    LogEntry
+    LogEntry,
+    GeneralEdit,
+    VersionUpgrade
 }
 
 export class ModificationModel {
@@ -33,6 +35,8 @@ class Modifications {
         new ModificationModel(ModificationType.CharacterAdvancement, "Character Advancement"),
         new ModificationModel(ModificationType.Promotion, "Promotion"),
         new ModificationModel(ModificationType.Demotion, "Demotion"),
+        new ModificationModel(ModificationType.GeneralEdit, "General Edit"),
+        new ModificationModel(ModificationType.VersionUpgrade, "Version Upgrade"),
     ];
 
     static get instance() {

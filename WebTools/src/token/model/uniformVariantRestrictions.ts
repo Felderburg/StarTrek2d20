@@ -58,9 +58,7 @@ export default class UniformVariantRestrictions {
             result.push(UniformVariantType.Variant11);
             result.push(UniformVariantType.Variant12);
             result.push(UniformVariantType.Variant13);
-            if (bodyType === BodyType.AverageFemale) {
-                result.push(UniformVariantType.Variant14);
-            }
+            result.push(UniformVariantType.Variant14);
         } else if (uniformEra === UniformEra.OriginalSeries) {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === "Command" && (rank === Rank.Captain || rank === Rank.Commodore)) {
                 result.push(UniformVariantType.Variant1);

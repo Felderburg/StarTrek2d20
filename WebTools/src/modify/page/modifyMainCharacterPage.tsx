@@ -39,13 +39,18 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
 
     const dropDownItems = () => {
         let result = [];
-        result.push(new DropDownElement(ModificationType.LogEntry, t('ModificationType.name.logEntry')))
-        if (character?.rank != null) {
-            result.push(new DropDownElement(ModificationType.Promotion, t('ModificationType.name.promotion')))
-        }
-        result.push(new DropDownElement(ModificationType.CharacterAdvancement, t('ModificationType.name.characterAdvancement')))
-        if (character?.rank != null) {
-            result.push(new DropDownElement(ModificationType.Demotion, t('ModificationType.name.demotion')))
+        if (character.version === 1) {
+            result.push(new DropDownElement(ModificationType.VersionUpgrade, t('ModificationType.name.versionUpgrade')))
+        } else {
+            result.push(new DropDownElement(ModificationType.LogEntry, t('ModificationType.name.logEntry')))
+            if (character?.rank != null) {
+                result.push(new DropDownElement(ModificationType.Promotion, t('ModificationType.name.promotion')))
+            }
+            result.push(new DropDownElement(ModificationType.CharacterAdvancement, t('ModificationType.name.characterAdvancement')))
+            if (character?.rank != null) {
+                result.push(new DropDownElement(ModificationType.Demotion, t('ModificationType.name.demotion')))
+            }
+            result.push(new DropDownElement(ModificationType.GeneralEdit, t('ModificationType.name.generalEdit')))
         }
         return result;
     }
@@ -252,6 +257,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
             return [ Step.Initial, Step.SelectLog, Step.ModificationDetails, Step.Finish ];
         } else if (modificationType === ModificationType.CharacterAdvancement) {
             return [ Step.Initial, Step.SelectLog, Step.SelectCallback, Step.ModificationDetails, Step.Finish ];
+        } else if (modificationType === ModificationType.GeneralEdit) {
+            return [ Step.Initial, Step.Finish ];
         } else {
             return [];
         }
