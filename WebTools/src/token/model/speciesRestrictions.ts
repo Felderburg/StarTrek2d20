@@ -173,6 +173,8 @@ class SpeciesRestrictions {
         } else if (species === Species.Andorian) {
             // the corn rows don't look right with the Antennae
             return allHairTypes().filter(h => h !== HairType.CornRows);
+        } else if (species === Species.Cardassian) {
+            return allHairTypes().filter(h => !([ HairType.CornRows, HairType.ChinLengthCombBack, HairType.RomulanPeakedHair, HairType.ShoulderLengthBob ].includes(h)));
         } else if (this.isTallForeheaded(species)) {
             return allHairTypes().filter(h => isTallForeheadHair(h));
         } else {
@@ -273,9 +275,7 @@ class SpeciesRestrictions {
     }
 
     static isTallForeheaded(species: Species) {
-        return species === Species.Cardassian
-            // || species === Species.Denobulan
-            || species === Species.Efrosian
+        return species === Species.Efrosian
             || species === Species.Klingon
             || species === Species.Ktarian
             || species === Species.Napean

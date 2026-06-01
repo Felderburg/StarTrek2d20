@@ -160,22 +160,22 @@ const TngCrewman3rdBorder: string = `<g>
 
 const CollarPips = {
 
-    cadet4thClass: `<g>
+    CadetFourthClass: `<g>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#111111;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000" d="m 241.4375,250.57422 c -1.43276,0 -2.58594,1.15318 -2.58594,2.58594 v 5.63281 c 0,1.43276 1.15318,2.58594 2.58594,2.58594 1.43276,0 2.58594,-1.15318 2.58594,-2.58594 v -5.63281 c 0,-1.43276 -1.15318,-2.58594 -2.58594,-2.58594 z" />
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#111111;fill-opacity:1;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000" d="m 241.4375,250.17383 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z" />
     </g>`,
 
-    cadet3rdClass: `<g>
+    CadetThirdClass: `<g>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#111111;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000" d="m 234.89258,248.87305 c -1.43276,0 -2.58594,1.15317 -2.58594,2.58593 v 5.63282 c 0,1.43276 1.15318,2.58593 2.58594,2.58593 1.43276,0 2.58594,-1.15317 2.58594,-2.58593 v -5.63282 c 0,-1.43276 -1.15318,-2.58593 -2.58594,-2.58593 z m 6.54492,1.70117 c -1.43276,0 -2.58594,1.15318 -2.58594,2.58594 v 5.63281 c 0,1.43276 1.15318,2.58594 2.58594,2.58594 1.43276,0 2.58594,-1.15318 2.58594,-2.58594 v -5.63281 c 0,-1.43276 -1.15318,-2.58594 -2.58594,-2.58594 z" sodipodi:nodetypes="ssssssssssssss"/>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#111111;fill-opacity:1;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000" d="m 234.89394,248.47181 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z m 6.54356,0.90124 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z" sodipodi:nodetypes="ssssssssssssssssssssssssssss"/>
     </g>`,
 
-    cadet2ndClass: `<g>
+    CadetSecondClass: `<g>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#111111;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000" d="m 228.47266,246.92188 c -1.43276,0 -2.58594,1.15317 -2.58594,2.58593 v 5.63281 c 0,1.43277 1.15318,2.58594 2.58594,2.58594 1.43276,0 2.58593,-1.15317 2.58593,-2.58594 v -5.63281 c 0,-1.43276 -1.15317,-2.58593 -2.58593,-2.58593 z m 6.41992,1.95117 c -1.43276,0 -2.58594,1.15317 -2.58594,2.58593 v 5.63282 c 0,1.43276 1.15318,2.58593 2.58594,2.58593 1.43276,0 2.58594,-1.15317 2.58594,-2.58593 v -5.63282 c 0,-1.43276 -1.15318,-2.58593 -2.58594,-2.58593 z m 6.54492,1.70117 c -1.43276,0 -2.58594,1.15318 -2.58594,2.58594 v 5.63281 c 0,1.43276 1.15318,2.58594 2.58594,2.58594 1.43276,0 2.58594,-1.15318 2.58594,-2.58594 v -5.63281 c 0,-1.43276 -1.15318,-2.58594 -2.58594,-2.58594 z" sodipodi:nodetypes="sssssssssssssssssssss"/>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#111111;fill-opacity:1;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000" d="m 228.47309,246.52117 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z m 6.42085,1.14986 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z m 6.54356,0.90124 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z" sodipodi:nodetypes="ssssssssssssssssssssssssssssssssssssssssss"/>
     </g>`,
 
-    cadet1stClass: `<g>
+    CadetFirstClass: `<g>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#111111;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000" d="M 222.13281 244.40234 C 220.70005 244.40234 219.54688 245.55552 219.54688 246.98828 L 219.54688 252.62109 C 219.54687 254.05385 220.70005 255.20703 222.13281 255.20703 C 223.56557 255.20703 224.71875 254.05385 224.71875 252.62109 L 224.71875 246.98828 C 224.71875 245.55552 223.56557 244.40234 222.13281 244.40234 z M 228.47266 246.92188 C 227.0399 246.92188 225.88672 248.07505 225.88672 249.50781 L 225.88672 255.14062 C 225.88672 256.57339 227.0399 257.72656 228.47266 257.72656 C 229.90542 257.72656 231.05859 256.57339 231.05859 255.14062 L 231.05859 249.50781 C 231.05859 248.07505 229.90542 246.92188 228.47266 246.92188 z M 234.89258 248.87305 C 233.45982 248.87305 232.30664 250.02622 232.30664 251.45898 L 232.30664 257.0918 C 232.30664 258.52456 233.45982 259.67773 234.89258 259.67773 C 236.32534 259.67773 237.47852 258.52456 237.47852 257.0918 L 237.47852 251.45898 C 237.47852 250.02622 236.32534 248.87305 234.89258 248.87305 z M 241.4375 250.57422 C 240.00474 250.57422 238.85156 251.7274 238.85156 253.16016 L 238.85156 258.79297 C 238.85156 260.22573 240.00474 261.37891 241.4375 261.37891 C 242.87026 261.37891 244.02344 260.22573 244.02344 258.79297 L 244.02344 253.16016 C 244.02344 251.7274 242.87026 250.57422 241.4375 250.57422 z "/>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000;fill:#111111;fill-opacity:1" d="m 222.13351,244.00159 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z m 6.33958,1.7188 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z m 6.42085,1.14986 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z m 6.54356,0.90124 c -1.64744,0 -2.98633,1.33889 -2.98633,2.98633 v 5.63281 c 0,1.64744 1.48257,3.13001 3.13001,3.13001 1.64744,0 2.98633,-1.33889 2.98633,-2.98633 v -5.63281 c 0,-1.64744 -1.48257,-3.13001 -3.13001,-3.13001 z m 0,0.80078 c 1.21808,0 2.18555,0.96747 2.18555,2.18555 v 5.63281 c 0,1.21807 -0.96747,2.18555 -2.18555,2.18555 -1.21808,0 -2.1875,-0.96748 -2.1875,-2.18555 v -5.63281 c 0,-1.21808 0.96942,-2.18555 2.1875,-2.18555 z"/>
     </g>`,
@@ -271,7 +271,7 @@ const BorderIndicator = {
         <path id="path29" style="fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.821181;stroke-linejoin:round;stroke-miterlimit:20;stroke-dasharray:none;stroke-opacity:1" d="m 59.072893,315.11421 c 1.285,1.82319 1.86453,4.13603 1.43787,6.50863 l -2.91198,16.18876 c -0.85253,4.74069 -5.38854,7.87653 -10.171767,7.03158 -2.178603,-0.38484 -4.021997,-1.52764 -5.302363,-3.10563 1.282557,1.81973 3.267464,3.15459 5.656798,3.57666 4.783222,0.84495 9.321232,-2.29289 10.173772,-7.03356 l 2.90997,-16.18876 c 0.46422,-2.58146 -0.26157,-5.09113 -1.7923,-6.97768 z"/>
     </g>`,
 
-    admiral: `<g>
+    Admiral: `<g>
         <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="123.12957" height="30.247999" x="198.5629" y="222.34625" rx="0" ry="0" transform="rotate(34.627047)"/>
         <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="path40811" cx="111.18644" cy="365.93219" r="8.8999996"/>
         <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40813" cx="69.152542" cy="336.27118" r="8.8999996"/>
@@ -279,40 +279,40 @@ const BorderIndicator = {
         <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="use40817" cx="48.135593" cy="321.52542" r="8.8999996"/>
     </g>`,
 
-    viceAdmiral: `<g>
+    ViceAdmiral: `<g>
         <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect13" width="91.35611" height="30.045582" x="230.33636" y="222.54866" rx="0" ry="0" transform="rotate(34.627047)"/>
         <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle13" cx="111.18644" cy="365.93219" r="8.8999996"/>
         <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle14" cx="69.152542" cy="336.27118" r="8.8999996"/>
         <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle15" cx="90.169495" cy="351.01694" r="8.8999996"/>
     </g>`,
 
-    rearAdmiral: `<g>
+    RearAdmiral: `<g>
         <rect style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect16" width="70.543617" height="30.446129" x="251.14888" y="222.14812" rx="0" ry="0" transform="rotate(34.627047)"/>
         <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle16" cx="111.18644" cy="365.93219" r="8.8999996"/>
         <circle style="fill:#fbb03b;fill-opacity:1;fill-rule:evenodd;stroke:#fbb03b;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="circle18" cx="90.169495" cy="351.01694" r="8.8999996"/>
     </g>`,
 
-    captain: `<g>
+    Captain: `<g>
         <path id="path40811" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
         <path id="use40813" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 70.869008,340.34397 a 8.8999996,8.8999996 0 0 1 -9.661258,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067224,9.66126 z"/>
         <path id="use40815" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
         <path id="use40817" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 51.25919,323.77278 a 8.8999996,8.8999996 0 0 1 -9.661258,8.06722 8.8999996,8.8999996 0 0 1 -8.067223,-9.66126 8.8999996,8.8999996 0 0 1 9.661257,-8.06722 8.8999996,8.8999996 0 0 1 8.067224,9.66126 z"/>
     </g>`,
 
-    commander: `<g>
+    Commander: `<g>
         <path id="path1" style="display:inline;fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
         <path id="path2" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 70.869008,340.34397 a 8.8999996,8.8999996 0 0 1 -9.661258,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067224,9.66126 z"/>
         <path id="path3" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
     </g>`,
 
-    ltCommander: `<g>
+    LtCommander: `<g>
         <path id="path8" style="display:inline;fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
         <path id="path9" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 70.869008,340.34397 a 8.8999996,8.8999996 0 0 1 -9.661258,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067224,9.66126 z"/>
         <path id="path10" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
         <path id="path11" style="fill:#000000;fill-rule:evenodd;stroke:none;stroke-width:1.25436;stroke-miterlimit:40;fill-opacity:1" d="m 66.452333,339.94685 a 4.4655076,4.4655076 0 0 1 -4.847463,4.04767 4.4655076,4.4655076 0 0 1 -4.047669,-4.84747 4.4655076,4.4655076 0 0 1 4.847463,-4.04767 4.4655076,4.4655076 0 0 1 4.047669,4.84747 z"/>
     </g>`,
 
-    lieutenant: `<g>
+    Lieutenant: `<g>
         <path id="path4" style="display:inline;fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 110.16301,373.54921 a 8.8999996,8.8999996 0 0 1 -9.66126,8.06722 8.8999996,8.8999996 0 0 1 -8.06722,-9.66126 8.8999996,8.8999996 0 0 1 9.66126,-8.06722 8.8999996,8.8999996 0 0 1 8.06722,9.66126 z"/>
         <path id="path6" style="fill:#fbb03b;fill-rule:evenodd;stroke:#000000;stroke-width:2.5;stroke-miterlimit:40" d="m 90.478817,356.9152 a 8.8999996,8.8999996 0 0 1 -9.661257,8.06722 8.8999996,8.8999996 0 0 1 -8.067224,-9.66126 8.8999996,8.8999996 0 0 1 9.661258,-8.06722 8.8999996,8.8999996 0 0 1 8.067223,9.66126 z"/>
     </g>`,
@@ -355,10 +355,10 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
 
     protected getCadetRankSwatches() {
         return [
-            new Swatch(Rank.CadetFourthClass, "Cadet 4th Class", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.cadet4thClass, Rank.CadetFourthClass, token), "Rank.cadetFourthClass.name"),
-            new Swatch(Rank.CadetThirdClass, "Cadet 3rd Class", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.cadet3rdClass, Rank.CadetThirdClass, token), "Rank.cadetThirdClass.name"),
-            new Swatch(Rank.CadetSecondClass, "Cadet 4th Class", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.cadet2ndClass, Rank.CadetSecondClass, token), "Rank.cadetSecondClass.name"),
-            new Swatch(Rank.CadetFirstClass, "Cadet 4th Class", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.cadet1stClass, Rank.CadetFirstClass, token), "Rank.cadetFirstClass.name"),
+            new Swatch(Rank.CadetFourthClass, "Cadet 4th Class", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.CadetFourthClass, Rank.CadetFourthClass, token), "Rank.cadetFourthClass.name"),
+            new Swatch(Rank.CadetThirdClass, "Cadet 3rd Class", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.CadetThirdClass, Rank.CadetThirdClass, token), "Rank.cadetThirdClass.name"),
+            new Swatch(Rank.CadetSecondClass, "Cadet 4th Class", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.CadetSecondClass, Rank.CadetSecondClass, token), "Rank.cadetSecondClass.name"),
+            new Swatch(Rank.CadetFirstClass, "Cadet 4th Class", (token) => RankIndicatorCatalog.decorateSwatch(CollarPips.CadetFirstClass, Rank.CadetFirstClass, token), "Rank.cadetFirstClass.name"),
 
         ];
     }
@@ -395,24 +395,17 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
             case Rank.CadetSecondClass:
             case Rank.CadetFirstClass:
             case Rank.Ensign:
-            case Rank.LieutenantJG: {
+            case Rank.LieutenantJG:
+            case Rank.Lieutenant:
+            case Rank.LtCommander:
+            case Rank.Commander:
+            case Rank.Captain:
+            case Rank.RearAdmiral:
+            case Rank.ViceAdmiral:
+            case Rank.Admiral: {
                 const rankAsString = Rank[token.rankIndicator];
                 return BorderIndicator[rankAsString];
             }
-            case Rank.Lieutenant:
-                return BorderIndicator.lieutenant;
-            case Rank.LtCommander:
-                return BorderIndicator.ltCommander;
-            case Rank.Commander:
-                return BorderIndicator.commander;
-            case Rank.Captain:
-                return BorderIndicator.captain;
-            case Rank.RearAdmiral:
-                return BorderIndicator.rearAdmiral;
-            case Rank.ViceAdmiral:
-                return BorderIndicator.viceAdmiral;
-            case Rank.Admiral:
-                return BorderIndicator.admiral;
             case Rank.Crewman3rdClass:
                 return TngCrewman3rdBorder;
             case Rank.Crewman2ndClass:
@@ -439,13 +432,12 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
     getRankIndicator(token: TokenModel): string {
         switch (token.rankIndicator) {
             case Rank.CadetFourthClass:
-                return CollarPips.cadet4thClass;
             case Rank.CadetThirdClass:
-                return CollarPips.cadet3rdClass;
             case Rank.CadetSecondClass:
-                return CollarPips.cadet2ndClass;
-            case Rank.CadetFirstClass:
-                return CollarPips.cadet1stClass;
+            case Rank.CadetFirstClass: {
+                const rankAsString = Rank[token.rankIndicator];
+                return CollarPips[rankAsString];
+            }
             case Rank.Ensign:
                 return CollarPips.ensign;
             case Rank.LieutenantJG:

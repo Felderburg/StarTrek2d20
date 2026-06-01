@@ -52,7 +52,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
             if (character?.rank != null) {
                 result.push(new DropDownElement(ModificationType.Demotion, t('ModificationType.name.demotion')))
             }
-            result.push(new DropDownElement(ModificationType.GeneralEdit, t('ModificationType.name.generalEdit')))
+//            result.push(new DropDownElement(ModificationType.GeneralEdit, t('ModificationType.name.generalEdit')))
         }
         return result;
     }

@@ -2,6 +2,7 @@ import i18next from "i18next";
 import { Species } from "./speciesEnum";
 import { makeKey } from "../common/translationKey";
 import { Source } from "./sources";
+import { ITalent } from "./italent";
 
 export enum SpeciesAbilityChoice {
     Choice1,
@@ -37,6 +38,14 @@ export class SpeciesAbility {
 
     get isChoiceRequired() {
         return this.choices.length > 1;
+    }
+
+    isValidTalentSelection(talent: ITalent) {
+        if (talent == null) {
+            return true;
+        } else {
+            return this.isTalentSelectionSupported ? this.talentNames.includes(talent.name) : false;
+        }
     }
 
     public getChoiceName(choice: SpeciesAbilityChoice) {
