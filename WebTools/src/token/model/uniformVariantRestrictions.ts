@@ -45,22 +45,26 @@ export default class UniformVariantRestrictions {
                 result.push(UniformVariantType.Variant1);
             }
         } else if (uniformEra === UniformEra.Civilian) {
-            result.push(UniformVariantType.Variant1);
-            result.push(UniformVariantType.Variant2);
-            result.push(UniformVariantType.Variant3);
-            result.push(UniformVariantType.Variant4);
-            result.push(UniformVariantType.Variant5);
-            result.push(UniformVariantType.Variant6);
-            result.push(UniformVariantType.Variant7);
-            result.push(UniformVariantType.Variant8);
-            result.push(UniformVariantType.Variant9);
-            result.push(UniformVariantType.Variant10);
-            result.push(UniformVariantType.Variant11);
-            result.push(UniformVariantType.Variant12);
-            result.push(UniformVariantType.Variant13);
-            result.push(UniformVariantType.Variant14);
-            if (bodyType === BodyType.AverageMale) {
-                result.push(UniformVariantType.Variant15);
+            if (bodyType === BodyType.AverageNonBinary) {
+
+            } else {
+                result.push(UniformVariantType.Variant1);
+                result.push(UniformVariantType.Variant2);
+                result.push(UniformVariantType.Variant3);
+                result.push(UniformVariantType.Variant4);
+                result.push(UniformVariantType.Variant5);
+                result.push(UniformVariantType.Variant6);
+                result.push(UniformVariantType.Variant7);
+                result.push(UniformVariantType.Variant8);
+                result.push(UniformVariantType.Variant9);
+                result.push(UniformVariantType.Variant10);
+                result.push(UniformVariantType.Variant11);
+                result.push(UniformVariantType.Variant12);
+                result.push(UniformVariantType.Variant13);
+                result.push(UniformVariantType.Variant14);
+                if (bodyType === BodyType.AverageMale) {
+                    result.push(UniformVariantType.Variant15);
+                }
             }
         } else if (uniformEra === UniformEra.OriginalSeries) {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === "Command" && (rank === Rank.Captain || rank === Rank.Commodore)) {
