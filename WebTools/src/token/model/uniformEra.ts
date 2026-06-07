@@ -26,6 +26,7 @@ export enum UniformEra {
     StarTrekOnline,
     RomulanNemesis,
     Tzenkethi,
+    PicardRomulanEvacuation,
     Picard25,
     Discovery32,
 }
@@ -79,6 +80,7 @@ export class UniformEraHelper {
         new UniformEraModel(UniformEra.Suliban, "Suliban"),
         new UniformEraModel(UniformEra.VoyagerDS9, "Voyager/DS9"),
         new UniformEraModel(UniformEra.MonsterMaroon, "The Wrath of Khan and Later Movies"),
+        new UniformEraModel(UniformEra.PicardRomulanEvacuation, "Picard (Romulan Evacuation)"),
         new UniformEraModel(UniformEra.Picard25, "Picard (25th Century)"),
         new UniformEraModel(UniformEra.StarTrekOnline, "Star Trek Online"),
         new UniformEraModel(UniformEra.Tzenkethi, "Tzenkethi"),

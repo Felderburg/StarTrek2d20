@@ -254,7 +254,6 @@ export class SpeciesStep {
     }
 
     get isAttributeSelectionComplete() {
-console.log(this);
         return (this.attributes?.length ?? 0) - (this.decrementAttributes?.length ?? 0) === 3;
     }
 
