@@ -2,12 +2,12 @@ import { D20 } from "../../common/die";
 import { SelectedTalent } from "../../common/selectedTalent";
 import { Era } from "../../helpers/erasEnum";
 import { Department } from "../../helpers/department";
-import { TALENT_NAME_FLIGHT, TALENT_NAME_WEB } from "../../helpers/talents";
+import { TALENT_NAME_FLIGHT, TALENT_NAME_SWARM_X, TALENT_NAME_WEB } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { Creature } from "./creature";
 import { creatureNameGenerator } from "./creatureNameGenerator";
 import { CreatureSize, CreatureSizeHelper, generateRandomCreatureSize } from "./creatureSize";
-import { generateRandomBasicCreatureTalent, generateRandomCreatureDietTalent, generateRandomCreatureTypeTalent } from "./creatureTalents";
+import { determineXIfNecessary, generateRandomBasicCreatureTalent, generateRandomCreatureDietTalent, generateRandomCreatureTypeTalent } from "./creatureTalents";
 import { createRandomCreatureType, CreatureType, CreatureTypeHelper, habitatsByCreatureType } from "./creatureType";
 import { createRandomDiet, DietType, DietTypeHelper } from "./diet";
 import { createRandomHabitat, Habitat, HabitatHelper } from "./habitat";
@@ -47,6 +47,11 @@ export const CreatureGenerator = async (era: Era, habitat?: Habitat, creatureTyp
 
     if (result.creatureType?.id === CreatureType.Bird && D20.roll() <= 15) {
         result.additionalTalents.push(new SelectedTalent(TALENT_NAME_FLIGHT));
+    }
+    if (result.size?.id === CreatureSize.Swarm) {
+        let selectedTalent = new SelectedTalent(TALENT_NAME_SWARM_X);
+        selectedTalent.x = determineXIfNecessary(selectedTalent.talentModel);
+        result.additionalTalents.push(selectedTalent);
     }
 
     let skillImprovements = 3;

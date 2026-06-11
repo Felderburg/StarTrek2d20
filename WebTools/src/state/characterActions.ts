@@ -70,6 +70,7 @@ export const SET_NPC_CHARACTER_TALENTS = "SET_NPC_CHARACTER_TALENTS";
 export const ADD_CHARACTER_LOG_ENTRY = "ADD_CHARACTER_LOG_ENTRY";
 export const REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
 export const ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
+export const UPDATE_CHARACTER_GENERAL_EDIT_VALUE = "UPDATE_CHARACTER_GENERAL_EDIT_VALUE";
 
 export enum StepContext {
     Species,
@@ -327,6 +328,14 @@ export function setCharacterValue(value: string, context: StepContext) {
     let payload = { value: value, context: context };
     return {
        type: SET_CHARACTER_VALUE,
+       payload: payload
+    }
+}
+
+export function updateCharacterGeneralEditValueChange(oldValue: string, newValue: string, index: number = 0) {
+    let payload = { oldValue: oldValue, newValue: newValue, index: index };
+    return {
+       type: UPDATE_CHARACTER_GENERAL_EDIT_VALUE,
        payload: payload
     }
 }

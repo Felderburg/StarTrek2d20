@@ -434,7 +434,7 @@ const determineAttributeIfNecessary = (talent: TalentModel, attribute?: Attribut
     }
 }
 
-const determineXIfNecessary = (talent: TalentModel, x?: number) => {
+export const determineXIfNecessary = (talent: TalentModel, x?: number) => {
     if (talent.isXQualified) {
         if (x != null) {
             return x;

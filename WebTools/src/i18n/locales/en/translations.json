@@ -4126,6 +4126,10 @@
 
     "Talent.durability.description": "Whether through genetic engineering or cybernetic implants, you’re more durable than most people. You gain Protection 2.",
 
+    "Talent.durableSpecialRule": "Durable",
+
+    "Talent.durableSpecialRule.description": "The NPC may spend Threat to Avoid Injury, despite being a Minor NPC.",
+
     "Talent.dutyAndDiscipline": "Duty and Discipline",
 
     "Talent.dutyAndDiscipline.description2e": "When you assist a character who is your superior officer, or when you are assisted by a superior officer, and the task is successful, generate 1 bonus Momentum. Bonus Momentum may not be saved.",
@@ -4756,6 +4760,10 @@
 
     "Talent.martialArtist.description2e": "Your Unarmed Strike Attack may be used to inflict Deadly Injuries as well as Stun Injuries.",
 
+    "Talent.martialArtistSpecialRule": "Martial Artist",
+
+    "Talent.martialArtistSpecialRule.description2e": "The being’s unarmed attacks gain the _Intense_ quality.",
+
     "Talent.massiveBrikar": "Massive",
 
     "Talent.massiveBrikar.description": "See pg. 25 of the _Species Sourcebook_",
@@ -4816,6 +4824,10 @@
 
     "Talent.mindMeld.description": "You have undergone training in telepathic techniques that allow the melding of minds through physical contact. This will always require a Task with a Difficulty of at least 1, which can be opposed by an unwilling participant. If successful, you link minds with the participant, sharing thoughts and memories; Momentum may be spent to gain more information, or perform deeper telepathic exchanges. This link goes both ways, and it is a tiring and potentially hazardous process for you. Complications can result in pain, disorientation, or lingering emotional or behavioral difficulties.",
     "Talent.mindMeld.description2e": "You’ve undergone training in telepathic techniques that allow the melding of minds through physical contact. This always requires a task (normally **Control + Sciences**) with a Difficulty of at least 1, which can be opposed by an unwilling participant. If successful, you link minds with the participant, sharing thoughts and memories. Momentum may be spent to gain more information or perform deeper telepathic exchanges. This link goes both ways, and it is a tiring and potentially hazardous process. Complications can result in taking Stress, pain, disorientation, or lingering emotional or behavioral difficulties.",
+
+    "Talent.mindShieldedSpecialRule": "Mind-Shielded",
+
+    "Talent.mindShieldedSpecialRule.description": "The being is immune to the effects of telepathy and cannot have their thoughts and emotions read by the Telepathy or Empathy talents, nor can they hear or be harmed by projections from the Telepathic Projection talent.",
 
     "Talent.minelayer": "Minelayer",
 
@@ -5404,6 +5416,10 @@
 
     "Talent.shareStrength.description": "See pg. 111 of the _Species Sourcebook_",
 
+    "Talent.shieldBreaker": "Shield Breaker",
+
+    "Talent.shieldBreaker.description2e": "You’ve developed firing solutions designed to overwhelm a target vessel’s shields without harming the ship beneath, ideally as a prelude to boarding or extracting a target using transporters. When you make an attack with a starship’s energy weapons against a target with any shields remaining, you may spend 1 Momentum (Immediate) to target shields. If you do so, then the target ship’s Resistance counts as half (round up) its normal score. This attack cannot cause the target ship to be shaken, nor can it inflict any breaches to the target. The Difficulty of any Regenerate Shields major action the target ship attempts is increased by +1.",
+
     "Talent.shockAssault": "Shock Assault",
 
     "Talent.shockAssault.description": "See pg. 95 of the _Species Sourcebook_",
@@ -5441,6 +5457,10 @@
     "Talent.spikedTail": "Spiked Tail",
 
     "Talent.spikedTail.description2e": "The creature has a spiked tail that can be used for damaging attacks.",
+
+    "Talent.spinedSpecialRule": "Spined",
+
+    "Talent.spinedSpecialRule.description": "Whenever a melee attack against the being fails, the attacker suffers a Stun injury with a Severity of 1.",
 
     "Talent.spiritOfDiscovery": "Spirit of Discovery",
 
@@ -5548,6 +5568,10 @@
     "Talent.suspiciousByNature": "Suspicious by Nature",
 
     "Talent.suspiciousByNature.description2e": "When you attempt a task to detect hidden enemies, traps, or other hazards, you may re-roll one d20.",
+
+    "Talent.swarmX": "Swarm X",
+
+    "Talent.swarmX.description": "The being is a mass of smaller beings or machines. When a Swarm suffers an Injury, it is not Defeated automatically. Rather, each Injury depletes part of the Swarm. When the Swarm has suffered X Injuries, it is Defeated.",
 
     "Talent.swift": "Swift",
 
@@ -5706,6 +5730,10 @@
 
     "Talent.tough.description": "Whenever you Avoid an Injury, the cost is reduced by 1, to a minimum of 1.",
     "Talent.tough.description2e": "Your maximum Stress is increased by 2.",
+
+    "Talent.toughSpecialRule": "Tough",
+
+    "Talent.toughSpecialRule.description": "The NPC has two additional Personal Threat, even if they are a Minor NPC.",
 
     "Talent.toxicPoisonousOrVenomous": "Toxic, Poisonous or Venomous",
 

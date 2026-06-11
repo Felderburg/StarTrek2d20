@@ -68,7 +68,7 @@ export const TALENT_NAME_MINELAYER = "Minelayer";
 export const TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM = "Additional Propulsion System (Talent)";
 export const TALENT_NAME_EXPANDED_MUNITIONS = "Expanded Munitions";
 export const TALENT_NAME_IM_A_DOCTOR_NOT_A = "I’m a Doctor, Not a...";
-
+export const TALENT_NAME_SWARM_X = "Swarm X";
 export const TALENT_NAME_CUSTOM_TALENT = "Custom Talent";
 
 export const talentNameCompare = (t1: TalentModel, t2: TalentModel) => {
@@ -2905,7 +2905,10 @@ export class Talents {
                 "Your telepathic ability is more potent than most, and you are quite accustomed to projecting your thoughts into other minds. You can send your thoughts into the minds of other creatures – other than those immune to telepathy – even if those creatures are not telepathic themselves. You can “hear” their responses by reading their minds as normal. You are also capable of using this ability offensively, overwhelming a target’s mind with pain-inducing psychic noise. This requires a Presence + Security task with a Difficulty of 2 (increasing by 1 for each range category beyond Close), and inflicting [D] Stress equal to your Presence, with the Intense effect.",
                 [
                     new SourcePrerequisite(Source.PlayersGuide, Source.Core2ndEdition),
-                    new TalentPrerequisite("Telepathy2e", "Telepath", "Telepath (Ocampa)", "Telepathy (Anabaj)"),  new GMsDiscretionPrerequisite()
+                    new AnyOfPrerequisite(
+                        new TalentPrerequisite("Telepathy2e", "Telepath", "Telepath (Ocampa)", "Telepathy (Anabaj)"),
+                        new AnySpeciesPrerequisite(false, Species.Deltan, Species.Reman, Species.Vorta, Species.Aenar)
+                    ),
                 ],
                 1,
                 new TalentCategorization(TalentCategory.Esoteric)),
@@ -5161,7 +5164,7 @@ export class Talents {
         new TalentModel(
             "Tough 1",
             "This adversary’s Resistance against melee attacks is increased by 1.",
-            [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false)],
+            [new StereotypePrerequisite(Stereotype.Npc), new SpeciesPrerequisite(Species.Pakled, false), new Version1Prerequisite()],
             1,
             new TalentCategorization(TalentCategory.General), true),
         new TalentModel(
@@ -5470,6 +5473,42 @@ export class Talents {
             TALENT_NAME_WHIP_LIKE_TAIL,
             "",
             [new CreaturePrerequisite(), new Version2Prerequisite()],
+            1,
+            new TalentCategorization(TalentCategory.SpecialRule), true),
+        new TalentModel(
+            "Durable (Special Rule)",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite(), new NpcTypePrerequisite(NpcType.Minor)],
+            1,
+            new TalentCategorization(TalentCategory.SpecialRule), true),
+        new TalentModel(
+            "Martial Artist (Special Rule)",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            new TalentCategorization(TalentCategory.SpecialRule), true),
+        new TalentModel(
+            "Mind-Shielded (Special Rule)",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            new TalentCategorization(TalentCategory.SpecialRule), true),
+        new TalentModel(
+            "Spined (Special Rule)",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            new TalentCategorization(TalentCategory.SpecialRule), true),
+        new TalentModel(
+            "Swarm X",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
+            1,
+            new TalentCategorization(TalentCategory.SpecialRule), true),
+        new TalentModel(
+            "Tough (Special Rule)",
+            "",
+            [new NotPrerequisite(new RandomNpcPrerequisite()), new Version2Prerequisite()],
             1,
             new TalentCategorization(TalentCategory.SpecialRule), true),
     ];

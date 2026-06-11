@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Header } from "../components/header";
-import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_REDUNDANT_SYSTEMS, TALENT_NAME_SWARM_X, TalentsHelper } from "../helpers/talents";
 import replaceDiceWithArrowhead from "../common/arrowhead";
 import { Stereotype } from "../common/construct";
 import { Starship } from "../common/starship";
@@ -36,8 +36,6 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
             if (description.includes(" X ")) {
                 description = description.replace(" X ", " " + x + " ");
             }
-
-            talentName = talentName.substring(0, talentName.lastIndexOf(" X")) + " " + x;
         }
 
         if (description.indexOf(CHALLENGE_DICE_NOTATION) >= 0) {
@@ -191,13 +189,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 if (t.isXQualified) {
                     x = s.x;
                 }
-                let talentName = t.localizedName;
-                if (s.isCustom) {
-                    talentName = s.displayName;
-                }
-                if (t.maxRank > 1) {
-                    talentName += " [x" + s.multiple + "]";
-                }
+                let talentName = s.displayNameWithMultiple;
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
                     {renderDescription(talentName, t, x, s.isCustom ? s.customTalentDescription : undefined)}
                 </div>);
@@ -214,6 +206,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 const temp = creature.talents.filter(t => t.talent === tName);
                 if (temp.length) {
                     const selectedTalent = temp[0];
+                    x = selectedTalent.x;
                     return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
                         {renderDescription(selectedTalent.displayName, TalentsHelper.getTalent(selectedTalent.talent), x)}
                     </div>);

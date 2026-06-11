@@ -21,7 +21,8 @@ import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION, 
     SET_CHARACTER_ENVIRONMENT, SET_CHARACTER_FINISHING_TOUCHES, SET_CHARACTER_FOCUS, SET_CHARACTER_HOUSE,
     SET_CHARACTER_LINEAGE, SET_CHARACTER_NAME, SET_CHARACTER_PASTIME, SET_CHARACTER_PRONOUNS, SET_CHARACTER_RANK,
     SET_CHARACTER_ROLE, SET_CHARACTER_SPECIES, SET_CHARACTER_SPECIES_ABILITY_CHOICE, SET_CHARACTER_TYPE, SET_CHARACTER_VALUE, SET_NPC_CHARACTER_ATTRIBUTES, SET_NPC_CHARACTER_DEPARTMENTS, SET_NPC_CHARACTER_TALENTS, SET_SUPPORTING_CHARACTER_ATTRIBUTES,
-    SET_SUPPORTING_CHARACTER_DISCIPLINES, SET_SUPPORTING_CHARACTER_SUPERVISORY, StepContext } from "./characterActions";
+    SET_SUPPORTING_CHARACTER_DISCIPLINES, SET_SUPPORTING_CHARACTER_SUPERVISORY, StepContext,
+    UPDATE_CHARACTER_GENERAL_EDIT_VALUE} from "./characterActions";
 
 interface CharacterState {
     currentCharacter?: Character;
@@ -765,6 +766,71 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 temp.careerStep.value = action.payload.value;
             } else if (action.payload.context === StepContext.FinishingTouches && temp.finishingStep != null) {
                 temp.finishingStep.value = action.payload.value;
+            }
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case UPDATE_CHARACTER_GENERAL_EDIT_VALUE: {
+            let temp = state.currentCharacter.copy();
+            let index: number = action.payload.index;
+
+            let found = false;
+            for (let i = (temp.improvements?.length ?? 0) -1; !found && i >= 0; i--) {
+                let advancement = temp.improvements[i];
+                if (advancement instanceof CharacterAdvancementStep) {
+                    if (advancement.value === action.payload.oldValue) {
+                        if (index === 0) {
+                            advancement = advancement.copy();
+                            advancement.value = action.payload.newValue;
+                            temp.improvements[i] = advancement;
+                            found = true;
+                        }
+                        index--;
+                    } else if (advancement.value instanceof SelectedTalent &&
+                            advancement.value.value === action.payload.oldValue) {
+                        if (index === 0) {
+                            advancement = advancement.copy();
+                            (advancement.value as SelectedTalent).value = action.payload.newValue;
+                            temp.improvements[i] = advancement;
+                            found = true;
+                        }
+                        index--;
+                    }
+                }
+            }
+
+            if (!found) {
+                if (temp.finishingStep?.value === action.payload.oldValue) {
+                    if (index === 0) {
+                        temp.finishingStep.value = action.payload.newValue;
+                        found = true;
+                    }
+                    index--;
+                }
+                if (temp.careerStep?.value === action.payload.oldValue) {
+                    if (index === 0) {
+                        temp.careerStep.value = action.payload.newValue;
+                        found = true;
+                    }
+                    index--;
+                }
+                if (temp.educationStep?.value === action.payload.oldValue) {
+                    if (index === 0) {
+                        temp.educationStep.value = action.payload.newValue;
+                        found = true;
+                    }
+                    index--;
+                }
+                if (temp.environmentStep?.value === action.payload.oldValue) {
+                    if (index === 0) {
+                        temp.environmentStep.value = action.payload.newValue;
+                        found = true;
+                    }
+                    index--;
+                }
             }
             return {
                 ...state,
