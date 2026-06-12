@@ -804,6 +804,9 @@ class MissionProfiles {
     }
 
     getStationMissionProfileByName(name: string): MissionProfileModel|undefined {
+        if ("PolicalOperationsStation" === name) {
+            name = MissionProfile[MissionProfile.PoliticalOperationsStation];
+        }
         let profiles = [... Object.values(this._stationProfiles)]
             .filter(p => MissionProfile[p.id] === name);
 

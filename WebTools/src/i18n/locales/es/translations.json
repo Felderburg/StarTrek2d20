@@ -2866,8 +2866,7 @@
 
     "Talent.rapidFireTorpedoLauncher": "Lanzador de torpedos de disparo rápido",
     "Talent.reasonedDiscourse": "Discurso fundamentado",
-
-    "Cuando tienes éxito en una Tarea utilizando tu Presencia, puedes gastar Inercia para tranquilizar a tus aliados, siempre que puedan oírte. Puedes gastar 1 punto de Inercia (repetible) para que un aliado que pueda verte y oírte recupere 1 punto de Estrés. Ese aliado no puede recuperar más de 3 puntos de Estrés con un solo uso de este talento.": "Reconfortante",
+    "Talent.reassuring": "Reconfortante",
 
     "Talent.reassuring.description2e": "Cuando tienes éxito en una Tarea utilizando tu Presencia, puedes gastar Inercia para reconfortar a tus aliados, siempre que puedan oírte. Puedes gastar 1 punto de Inercia (repetible) para que un aliado que pueda verte y oírte recupere 1 punto de Estrés. Ese aliado no puede recuperar más de 3 puntos de Estrés con un solo uso de este talento.",
 
