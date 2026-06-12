@@ -41,7 +41,7 @@ export enum MissionProfile {
     EducationTrainingStation,
     IntelligenceSpecialOperationsStation,
     LogisticalAndTacticalSupportStation,
-    PolicalOperationsStation,
+    PoliticalOperationsStation,
     ResearchStation
 }
 
@@ -743,8 +743,8 @@ class MissionProfiles {
                 TalentsHelper.getTalent("Extensive Shuttlebays"),
 
             ]),
-        [MissionProfile.PolicalOperationsStation]: new MissionProfileModel(
-            MissionProfile.PolicalOperationsStation,
+        [MissionProfile.PoliticalOperationsStation]: new MissionProfileModel(
+            MissionProfile.PoliticalOperationsStation,
             "",
             [0, 0, 0, 0, 0, 0],
             [

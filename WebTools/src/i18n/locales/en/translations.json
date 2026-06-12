@@ -515,7 +515,7 @@
     "SpeciesDetails.options": "Species Options",
     "SpeciesDetails.selectThree": "(Select three)",
     "SpeciesDetails.allowCrossSpecies": "Allow cross-species talents (GM's decision)",
-    "SpeciesDetails.allowEsoteric": "Allow esoterric talents (GM's decision)",
+    "SpeciesDetails.allowEsoteric": "Allow esoteric talents (GM's decision)",
 
     "SpeciesPage.selectSpecies": "Select Species",
     "SpeciesPage.standardSpecies": "Standard Species",
@@ -1784,9 +1784,9 @@
 
     "MissionProfile.default.logisticalAndTacticalSupportStation.description": "Whereas tactics is deployment of personnel to execute the strategy, logistics is about making sure that the personnel are where they’re meant to be before the fighting starts and that they have all the support required to conduct their mission successfully. This station may serve as a training facility, supply depot, refueling port, and weapons manufacturer. These stations might be outfitted with advanced weaponry and defense systems to keep them safe, as they are crucial components to an effective war campaign. In addition, stations dedicated to logistics and tactics will provide key intelligence and operational updates to command. Characters with focuses in Energy Weapons, Fleet Formations, Hazardous Environments, Lead by Example, Modeling & Design, Ship Engagement Tactics, and Strategy/Tactics will do well in this setting.\n\nEngineering and Security are good choices for priorities for System Points. High Powered Tractor Beam, Extra Docking Facilities, and Extensive Shuttlebays are all good talents to take for these starbases.",
 
-    "MissionProfile.default.policalOperationsStation": "Policital Operations",
+    "MissionProfile.default.politicalOperationsStation": "Political Operations",
 
-    "MissionProfile.default.policalOperationsStation.description": "Unpopular as they may be, political operations are necessary to ensure that Starfleet’s mission is maintained. Political activity is directed toward the success of the Federation and its member worlds, addition of aligned worlds, and defense from worlds or polities deemed hostile to the Federation’s mission to seek out new life and new civilizations in a peaceful and open manner. Much thought and care must be put into screening candidates for leadership positions, monitoring and validating elections, rallying support for causes voted to be worthy of UFP resources, and determining the proper use of personnel and resources in defending member worlds and Starfleet. Any of the Command focuses would be well-suited to this setting, along with focuses like Cultural Studies or Psychology. \n\nHigh Communications and Structure are good priorities for systems, as are Command and other department that may focus on political operations.  Diplomatic Suites, Command Ship, and Fleet Command are good talents to check out.",
+    "MissionProfile.default.politicalOperationsStation.description": "Unpopular as they may be, political operations are necessary to ensure that Starfleet’s mission is maintained. Political activity is directed toward the success of the Federation and its member worlds, addition of aligned worlds, and defense from worlds or polities deemed hostile to the Federation’s mission to seek out new life and new civilizations in a peaceful and open manner. Much thought and care must be put into screening candidates for leadership positions, monitoring and validating elections, rallying support for causes voted to be worthy of UFP resources, and determining the proper use of personnel and resources in defending member worlds and Starfleet. Any of the Command focuses would be well-suited to this setting, along with focuses like Cultural Studies or Psychology. \n\nHigh Communications and Structure are good priorities for systems, as are Command and other department that may focus on political operations.  Diplomatic Suites, Command Ship, and Fleet Command are good talents to check out.",
 
     "MissionProfile.default.researchStation": "Research Station",
 
@@ -2186,7 +2186,7 @@
 
     "ServiceRecord.luckyShip": "Lucky Ship",
 
-    "ServiceRecord.luckyShip.description": "She's regarded as a lucky ship, a talisman of the fleet. Somehow the ship keeps coming up trumps, even in the stickiest of situations. Her crew has an unshakeable belief in her.",
+    "ServiceRecord.luckyShip.description": "She's regarded as a lucky ship, a talisman of the fleet. Somehow the ship keeps coming up trumps, even in the stickiest of situations. Her crew has an unshakable belief in her.",
 
     "ServiceRecord.majorRefit": "Major Refit",
 
@@ -3560,7 +3560,7 @@
 
     "Talent.agriculturalSpecialist.description2e": "You gain one additional focus, which must relate to some aspects of planetary science, whether agriculture, geology, botany, climatology, etc. In addition, whenever you attempt a task related to that focus, or any other planetary science focus, you score a critical success on any d20 which rolls equal to or under twice the department score you are using.",
 
-    "Talent.airborneAdvantage": "Airborrne Advantage",
+    "Talent.airborneAdvantage": "Airborne Advantage",
 
     "Talent.airborneAdvantage.description": "See pg. 13 of the _Species Sourcebook_",
 
@@ -5259,8 +5259,6 @@
 
     "Talent.reasonedDiscourse.description": "You are precise and succinct with language, allowing you to convey facts and logical arguments effectively and quickly. When you need to communicate complicated information or argue with logic over emotion, reduce the Difficulty of the task by 1.",
 
-    "Cuando tienes éxito en una Tarea utilizando tu Presencia, puedes gastar Inercia para tranquilizar a tus aliados, siempre que puedan oírte. Puedes gastar 1 punto de Inercia (repetible) para que un aliado que pueda verte y oírte recupere 1 punto de Estrés. Ese aliado no puede recuperar más de 3 puntos de Estrés con un solo uso de este talento.": "Reassuring",
-
     "Talent.reassuring.description2e": "When you succeed at a task using your Presence, you may spend Momentum to reassure your allies, so long as they are able to hear you. You may spend 1 Momentum (Repeatable) to allow one ally who can see and hear you to recover 1 Stress. That ally may not recover more than 3 Stress from one use of this talent.",
 
     "Talent.readyForBattle": "Ready for Battle",
@@ -5472,7 +5470,7 @@
 
     "Talent.stinkAttack": "Stink Attack",
 
-    "Talent.stinkAttack.description2e": "Twice a scene, the creature can emit a foul-smelling gas that causes wretching and eye watering to every living thing in the same zone. For game purposes, the zone has the trait \"Disadvantage: Overwhelming Smell\"",
+    "Talent.stinkAttack.description2e": "Twice a scene, the creature can emit a foul-smelling gas that causes retching and eye watering to every living thing in the same zone. For game purposes, the zone has the trait \"Disadvantage: Overwhelming Smell\"",
 
     "Talent.strafingRun": "Strafing Run",
 
