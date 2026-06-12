@@ -176,7 +176,7 @@ export class StationFrameModel {
                     ],
                     new MissionProfileConfiguration(MissionProfile.BorderEnforcementStation, "Electronic Warfare Systems"),
                     new MissionProfileConfiguration(MissionProfile.IntelligenceSpecialOperationsStation, "Electronic Warfare Systems"),
-                    new MissionProfileConfiguration(MissionProfile.PolicalOperationsStation),
+                    new MissionProfileConfiguration(MissionProfile.PoliticalOperationsStation),
                 ),
                 new StationFrameModel(StationFrame.FederationSubspaceCommunicationsRelay, CharacterType.Federation,
                     [14, 11, 7, 8, 6, 4],
