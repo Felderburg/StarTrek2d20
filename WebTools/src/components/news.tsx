@@ -14,6 +14,15 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260612</b>
+            <ul>
+                <li>
+                    Numerous token tweaks and bug fixes. A variety of typo corrections, courtesy of Felderburg.
+                </li>
+                <li>
+                    A few <cite>Player's Guide</cite> / <cite>GM's Guide</cite> version 2 updates.
+                </li>
+            </ul>
             <b>v1.260531</b>
             <ul>
                 <li>
@@ -181,12 +190,6 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
             <ul>
                 <li>
                     New Russian translations, thanks to Hanzo.
-                </li>
-            </ul>
-            <b>v1.260103</b>
-            <ul>
-                <li>
-                    More bug fixes.
                 </li>
             </ul>
 

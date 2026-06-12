@@ -131,6 +131,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
         this.drawArrowHead(page, construct as Character, colour);
 
+        /*
         if ((construct as Character).logEntries?.length && nextArea != null) {
             if (nextArea != null && ![Landscape2eCharacterSheet.page2Column1X, Landscape2eCharacterSheet.page2Column2X, Landscape2eCharacterSheet.page2Column3X, Landscape2eCharacterSheet.page2Column4X].includes(nextArea.column.start.x)) {
                 const page = pdf.addPage(page2);
@@ -143,6 +144,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
             labelWriter(nextArea.page, header, construct.version,
                 this.headingFont, 9, Landscape2eCharacterSheet.greyColour, TextAlign.Left);
         }
+        */
     }
 
     deriveSheetColour(character: Character) {

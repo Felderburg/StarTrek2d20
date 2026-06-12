@@ -53,7 +53,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
             result.push(new DropDownElement(ModificationType.Demotion, t('ModificationType.name.demotion')))
         }
         if (character.version > 1) {
-            result.push(new DropDownElement(ModificationType.GeneralEdit, t('ModificationType.name.generalEdit')))
+//            result.push(new DropDownElement(ModificationType.GeneralEdit, t('ModificationType.name.generalEdit')))
         }
         return result;
     }
