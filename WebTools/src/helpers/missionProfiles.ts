@@ -41,7 +41,7 @@ export enum MissionProfile {
     EducationTrainingStation,
     IntelligenceSpecialOperationsStation,
     LogisticalAndTacticalSupportStation,
-    PolicalOperationsStation,
+    PoliticalOperationsStation,
     ResearchStation
 }
 
