@@ -28,6 +28,11 @@ import { PageArea } from "./pageArea";
 
 export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
+    static readonly page2Column1X = 55.6;
+    static readonly page2Column2X = 226.5;
+    static readonly page2Column3X = 396.1;
+    static readonly page2Column4X = 565.8;
+
     static readonly greyColour: SimpleColor = SimpleColor.from("#979696");
 
     static readonly headingColumn = new Column(73.8, 45, 8.8, 200);
@@ -73,7 +78,11 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         this.fonts.addFont(FontType.Symbol, symbolFont);
     }
 
-    firstColumn(additionalPage: PDFPage, pdf: PDFDocument) {
+    async fixedTextColumns(additionalPages: PDFPage[], pdf: PDFDocument) {
+
+        const logPage2Column2 = new Column(396.1, 72.6, 479.3, 226.5 + 158.1 - 55.6);
+        const logPage2Column1 = new Column(55.6, 72.6, 479.3, 226.5 + 158.1 - 55.6, logPage2Column2);
+
         const page2Column4 = new Column(565.8, 72.6, 479.3, 158.1);
         const page2Column3 = new Column(396.1, 72.6, 479.3, 158.1, page2Column4);
         const page2Column2 = new Column(226.5, 72.6, 479.3, 158.1, page2Column3);
@@ -81,13 +90,17 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
         let talentsColumn3 = new Column(390.6, 361, 200, 162,
             () => {
-                const page = pdf.addPage(additionalPage);
+                const page = pdf.addPage(additionalPages[0]);
                 return new PageArea(page2Column1, page);
             });
         let talentsColumn2 = new Column(221.7, 361, 200, 162, talentsColumn3);
         let talentsColumn1 = new Column(51.5, 361, 200, 162, talentsColumn2);
 
-        return talentsColumn1;
+        return {
+            logColumns: [logPage2Column1, logPage2Column2],
+            firstColumn: talentsColumn1,
+            page2: additionalPages[0]
+        }
     }
 
     async populate(pdf: PDFDocument, construct: Construct) {
@@ -108,7 +121,8 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         this.writeTitle(secondPage, colour);
 
         this.writeLabels(page, construct as Character);
-        await this.writeRoleAndTalents(page, construct as Character, this.firstColumn(secondPage, pdf));
+        let { firstColumn, logColumns, page2 } = await this.fixedTextColumns([ secondPage ], pdf);
+        let nextArea = await this.writeRoleAndTalents(page, construct as Character, firstColumn);
 
         if (construct.stereotype !== Stereotype.Npc) {
             this.createDeterminationBoxes(page, pdf);
@@ -116,6 +130,19 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         this.createStressBoxes(page, pdf, construct as Character);
 
         this.drawArrowHead(page, construct as Character, colour);
+
+        if ((construct as Character).logEntries?.length && nextArea != null) {
+            if (nextArea != null && ![Landscape2eCharacterSheet.page2Column1X, Landscape2eCharacterSheet.page2Column2X, Landscape2eCharacterSheet.page2Column3X, Landscape2eCharacterSheet.page2Column4X].includes(nextArea.column.start.x)) {
+                const page = pdf.addPage(page2);
+                nextArea = new PageArea(logColumns[0], page);
+            }
+
+            let header = {
+                "Sheet.text.log.title": nextArea.column.topBefore(10),
+            }
+            labelWriter(nextArea.page, header, construct.version,
+                this.headingFont, 9, Landscape2eCharacterSheet.greyColour, TextAlign.Left);
+        }
     }
 
     deriveSheetColour(character: Character) {
@@ -457,9 +484,10 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         }
 
         const writer = new TalentWriter(page, this.fonts, character.version);
-        await writer.writeTalents(
+        let lastArea = await writer.writeTalentsPageArea(
             assembleWritableItems(character),
             column, 8);
+        return lastArea;
     }
 
     createDeterminationBoxes(page: PDFPage, pdf: PDFDocument) {

@@ -20,6 +20,7 @@ import { OtherSelection } from "../common/selectedTalent";
 import { System } from "../helpers/systems";
 import { SpeciesAbilityAndOptions } from "./generatedsheet";
 import { TalentModel } from "../helpers/talentModel";
+import { PageArea } from "./pageArea";
 
 export class ReadableTalentModel {
     characterType: CharacterType;
@@ -63,6 +64,46 @@ export class TalentWriter {
     async writeTalents(talents: (ReadableTalentModel|RoleModel|SpeciesAbilityAndOptions)[], column: Column,
             fontSize: number = 9, nameFontSize?: number,
             indent: number = 0, bulletWriter: (paragraph?: Paragraph) => void = (p => {})) {
+
+        let paragraphs = await this.writeTalentsInternal(talents, column, fontSize, nameFontSize, indent, bulletWriter);
+        paragraphs.forEach(p => p.write());
+
+        if (paragraphs.length) {
+            let last = paragraphs.filter(p => p.lines?.length).slice(-1)[0];
+            if (last) {
+                let bottom = last.bottom;
+                return last.endColumn.bottomAfter(bottom.y - last.endColumn.start.y);
+            } else {
+                return column;
+            }
+        } else {
+            return column;
+        }
+    }
+
+    async writeTalentsPageArea(talents: (ReadableTalentModel|RoleModel|SpeciesAbilityAndOptions)[], column: Column,
+            fontSize: number = 9, nameFontSize?: number,
+            indent: number = 0, bulletWriter: (paragraph?: Paragraph) => void = (p => {})) {
+
+        let paragraphs = await this.writeTalentsInternal(talents, column, fontSize, nameFontSize, indent, bulletWriter);
+        paragraphs.forEach(p => p.write());
+
+        if (paragraphs.length) {
+            let last = paragraphs.filter(p => p.lines?.length).slice(-1)[0];
+            if (last) {
+                return last.nextArea(this.page);
+            } else {
+                return new PageArea(column, this.page);
+            }
+        } else {
+            return new PageArea(column, this.page);
+        }
+    }
+
+    private async writeTalentsInternal(talents: (ReadableTalentModel|RoleModel|SpeciesAbilityAndOptions)[], column: Column,
+            fontSize: number = 9, nameFontSize?: number,
+            indent: number = 0, bulletWriter: (paragraph?: Paragraph) => void = (p => {})) {
+
         let paragraphs: Paragraph[] = [];
         let paragraph = new Paragraph(this.page, column, this.fonts);
         paragraph.indent(indent);
@@ -270,18 +311,6 @@ export class TalentWriter {
             }
         });
 
-        paragraphs.forEach(p => p.write());
-
-        if (paragraphs.length) {
-            let last = paragraphs.filter(p => p.lines?.length).slice(-1)[0];
-            if (last) {
-                let bottom = last.bottom;
-                return last.endColumn.bottomAfter(bottom.y - last.endColumn.start.y);
-            } else {
-                return column;
-            }
-        } else {
-            return column;
-        }
+        return paragraphs;
     }
 }
