@@ -17,7 +17,7 @@ import { FontOptions } from "./fontOptions";
 import { FontType } from "./fontLibrary";
 import { cardassianBrownColour2e, ferengiOrangeColour2e, goldColour2e, greyColour2e, klingonRedColour2e, labelColourProvider, orionGreenColour2e, redColour2e, romulanGreenColour2e, tealColour2e } from "./colourProvider2e";
 import { CharacterType } from "../common/characterType";
-import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird } from "./politySymbols";
+import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolCardassianSymbolInner, politySymbolCardassianSymbolOutline, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolFerengiSymbol, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle, politySymbolOrionSymbol, politySymbolRomulanSymbolBackground, politySymbolRomulanSymbolBird } from "./politySymbols";
 import { TalentWriter } from "./talentWriter";
 import { bullet2EWriter } from "./bullet2eWriter";
 import { PortraitSheetDecorations } from "./portraitSheetDecorations";
@@ -383,6 +383,16 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
             page.moveTo(509.5, page.getHeight() - 191.9);
 
             page.drawSvgPath(politySymbolFerengiSymbol, {
+                borderColor: Generated2eStarshipSheet.greyColour.asPdfRbg(),
+                color: colour.asPdfRbg(),
+                borderWidth: 0,
+                scale: 0.6
+            });
+
+        } else if (construct.type === CharacterType.Orion) {
+            page.moveTo(509.5, page.getHeight() - 191.9);
+
+            page.drawSvgPath(politySymbolOrionSymbol, {
                 borderColor: Generated2eStarshipSheet.greyColour.asPdfRbg(),
                 color: colour.asPdfRbg(),
                 borderWidth: 0,

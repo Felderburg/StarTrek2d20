@@ -29,6 +29,7 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Antares, CharacterType.Civilian, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.ClassJCargoShip, CharacterType.Civilian, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.ConestogaType, CharacterType.Civilian, [Era.Enterprise]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Eleos, CharacterType.Civilian, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Freighter, CharacterType.Civilian, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.JovisType, CharacterType.Civilian, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Merchantman, CharacterType.Civilian, [Era.OriginalSeries, Era.NextGeneration]),
@@ -42,6 +43,7 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.RomulanD7, CharacterType.Romulan, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Whitewind, CharacterType.Romulan, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.DDeridex, CharacterType.Romulan, [Era.NextGeneration]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.RomulanScienceVessel, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Mogai, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.RedLadyType, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Snakehead, CharacterType.Romulan, [Era.NextGeneration]),
@@ -55,8 +57,10 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Janeway, CharacterType.Starfleet, [Era.Discovery32]),
 
                 // Orion
-                new SpaceframeAppearanceModel(SpaceframeAppearance.DVar, CharacterType.Orion, [Era.OriginalSeries]),
-                new SpaceframeAppearanceModel(SpaceframeAppearance.Intruder, CharacterType.Orion, [Era.OriginalSeries]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Interceptor, CharacterType.Orion, [Era.Enterprise]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.DVar, CharacterType.Orion, [Era.OriginalSeries, Era.NextGeneration]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Intruder, CharacterType.Orion, [Era.OriginalSeries, Era.NextGeneration]),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Orchid, CharacterType.Orion, [Era.OriginalSeries, Era.NextGeneration]),
             ];
         }
 

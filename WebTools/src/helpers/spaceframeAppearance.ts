@@ -1,6 +1,7 @@
 export enum SpaceframeAppearance {
     Antares,
     ClassJCargoShip,
+    Eleos,
     Freighter,
     JovisType,
     Merchantman,
@@ -15,6 +16,7 @@ export enum SpaceframeAppearance {
     RomulanD7,
     Whitewind,
     DDeridex,
+    RomulanScienceVessel,
     Mogai,
     RedLadyType,
     Snakehead,
@@ -25,6 +27,8 @@ export enum SpaceframeAppearance {
     // Orion
     DVar,
     Intruder,
+    Interceptor,
+    Orchid,
 
     // Discovery-era Federation ships
     Kirk,
