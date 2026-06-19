@@ -189,10 +189,10 @@ const TalentsOverviewPage = () => {
             new DropDownElement("", ""),
             new DropDownElement(Department.Command, t('Construct.discipline.command')),
             new DropDownElement(Department.Conn, t('Construct.discipline.conn')),
-            new DropDownElement(Department.Science, t('Construct.discipline.science')),
-            new DropDownElement(Department.Security, t('Construct.discipline.security')),
+            new DropDownElement(Department.Engineering, t('Construct.discipline.engineering')),
             new DropDownElement(Department.Medicine, t('Construct.discipline.medicine')),
             new DropDownElement(Department.Science, t('Construct.discipline.science')),
+            new DropDownElement(Department.Security, t('Construct.discipline.security')),
         ]
     }
 

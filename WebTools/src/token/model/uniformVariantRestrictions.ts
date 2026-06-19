@@ -18,6 +18,8 @@ export default class UniformVariantRestrictions {
         if (uniformEra === UniformEra.MonsterMaroon) {
             if ("Medical" === DivisionColors.getDivision(uniformEra, divisionColor)) {
                 result.push(UniformVariantType.Variant1); // medical whites
+            } else if ("HelmEngineering" === DivisionColors.getDivision(uniformEra, divisionColor) && bodyType === BodyType.AverageFemale) {
+                result.push(UniformVariantType.Variant1); // engineeing suit
             }
             result.push(UniformVariantType.Variant2);
         } else if (uniformEra === UniformEra.OriginalSeriesKlingon) {

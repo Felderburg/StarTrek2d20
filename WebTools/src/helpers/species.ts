@@ -1,5 +1,4 @@
 ﻿import { Attribute, AttributesHelper } from './attributes';
-import { TalentModel } from './talentModel';
 import { TalentsHelper } from './talents';
 import { AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
@@ -8,8 +7,6 @@ import { Source } from '../helpers/sources';
 import { Species } from './speciesEnum';
 import store from '../state/store';
 import { hasAnySource, hasSource } from '../state/contextFunctions';
-import { makeKey } from '../common/translationKey';
-import i18next from 'i18next';
 import { BasicAttributeHandler, SpeciesModel } from './speciesModel';
 
 export interface NameModel {
@@ -24,9 +21,6 @@ export interface ISpecies {
     name: string;
     nameSuggestions: NameModel[];
 }
-
-
-
 
 class _Species {
     private _species: { [id: number]: SpeciesModel } = {

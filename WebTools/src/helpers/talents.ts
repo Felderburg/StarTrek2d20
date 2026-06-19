@@ -11,7 +11,7 @@ import { Starship } from '../common/starship';
 import store from '../state/store';
 import { centuryToYear } from './weapons';
 import { Spaceframe } from './spaceframeEnum';
-import { AllOfPrerequisite, AnyOfPrerequisite, AnySpeciesPrerequisite, CareersPrerequisite, CharacterTypePrerequisite, ICompositePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, NotPrerequisite, OfficerPrerequisite, RolePrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite, SpeciesPrerequisite, StereotypePrerequisite } from './prerequisite';
+import { AllOfPrerequisite, AnyOfPrerequisite, AnySpeciesPrerequisite, CareersPrerequisite, CharacterTypePrerequisite, IConstructPrerequisite, MainCharacterPrerequisite, NotPrerequisite, OfficerPrerequisite, RolePrerequisite, ServiceYearPrerequisite, SourcePrerequisite, SpecializationPrerequisite, SpeciesPrerequisite, StereotypePrerequisite } from './prerequisite';
 import { NotSourcePrerequisite } from './spaceframes';
 import { Career } from './careerEnum';
 import { hasAnySource, isSecondEdition } from '../state/contextFunctions';
