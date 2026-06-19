@@ -2096,8 +2096,8 @@ MissionProfile.default.researchStation.description,"Research stations are built 
 Science and Medicine are obvious choices for high departments, and Sensors and Computers are also excellent for points in systems. Advanced Research Facilities, High-Resolution Sensors, and Redundant System (Sensors) are all talents that could be seen here.",,,,,,
 Implant.adaptiveShielding,Adaptive Shielding,,,,,,
 Implant.adaptiveShielding.description2e,See pg. 77 the _Species Sourcebook_,,,,,,
-Implant.cardiopulmonaryStrengthener,Cardiopulminary Strengthener,,,,,,
-Implant.cardiopulmonaryStrengthener.2e,Cardiopulminary Reinforcement,,,,,,
+Implant.cardiopulmonaryStrengthener,Cardiopulmonary Strengthener,,,,,,
+Implant.cardiopulmonaryStrengthener.2e,Cardiopulmonary Reinforcement,,,,,,
 Implant.cardiopulmonaryStrengthener.description2e,See pg. 77 the _Species Sourcebook_,,,,,,
 Implant.corticalArrayBioSyntheticGland,Cortical array (bio-synthetic gland),,,,,,
 Implant.corticalArrayBioSyntheticGland.2e,Biosynthetic Gland,,,,,,
@@ -3633,7 +3633,7 @@ Talent.advisor.description,"Whenever you assist another character using your Com
 Talent.advisor.description2e,"Whenever you Assist another character using your Command, the assisted character may re-roll one d20.",,,"Siempre que ayudes a otro personaje usando tu Disciplina de Mando, el personaje ayudado puede volver a tirar un d20.",,,"Sempre que você Auxiliar outra personagem usando seu Comando, a personagem auxiliada poderá rolar novamente um d20."
 Talent.agriculturalSpecialist,Agricultural Specialist,,,,,,
 Talent.agriculturalSpecialist.description2e,"You gain one additional focus, which must relate to some aspects of planetary science, whether agriculture, geology, botany, climatology, etc. In addition, whenever you attempt a task related to that focus, or any other planetary science focus, you score a critical success on any d20 which rolls equal to or under twice the department score you are using.",,,,,,
-Talent.airborneAdvantage,Airborrn Advantage,,,,,,
+Talent.airborneAdvantage,Airborne Advantage,,,,,,
 Talent.airborneAdvantage.description,See pg. 13 of the _Species Sourcebook_,,,,,,
 Talent.aLittleMorePower,More Power,,Etwas mehr Energie,Un poco más de energía,Un peu plus de jus,Выжать еще немного энергии,Um Pouco Mais de Energia
 Talent.aLittleMorePower.description,"Whenever you succeed at an Engineering Task aboard your own ship, you may spend one Momentum to regain one spent Power.",,"Wenn Sie an Bord Ihres Schiffes erfolgreich eine Technik-Aufgabe absolvieren, können Sie einen Punkt Momentum einsetzen, um einen verbrauchten Punkt Energie wiederherzustellen.","Cuando tengas éxito en una Tarea de Ingeniería a bordo de tu propia nave, puedes gastar un punto de Inercia para recuperar 1 punto de Energía gastado previamente.","Quand vous réussissez une Tâche d’Ingénierie à bord de votre vaisseau, vous pouvez dépenser 1 point d’Impulsion pour récupérer 1 point d’Énergie.","Успешно выполнив Задачу на Инженерию на борту своего корабля, сбросьте 1 жетон Импульса, чтобы вернуть 1 потраченную единицу Энергии.","Sempre que for bem-sucedido em uma Tarefa de Engenharia a bordo de sua própria nave, você pode gastar um ponto de Ímpeto para recuperar um ponto de Energia gasto."
