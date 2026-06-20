@@ -97,7 +97,7 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({starship, wo
     const getSpaceframeTalents = () => {
         return starship.spaceframeStep?.model
             ?.talentsEffectiveForDate(starship.serviceYear)
-            ?.filter(t => !t.talentModel.specialRule)
+            ?.filter(t => !t.talentModel.isSpecialRule(starship.version))
             ?.map(t => t.name) ?? [];
     }
 

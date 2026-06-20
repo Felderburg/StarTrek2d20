@@ -3,7 +3,6 @@ import { DominionWarUniformPack } from "./dominionWarUniformPack";
 import { UniformEra } from "./uniformEra";
 import { IUniformPack } from "./uniformPack";
 import { NoneUniformPack } from "./noneUniformPack";
-import { PicardRomulanEvacuationUniformPack } from "./picardRomulanEvacuationUniformPack";
 
 export default class UniformPackCollection {
 
@@ -133,12 +132,12 @@ export default class UniformPackCollection {
                     completion();
                 }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
             } else if (era === UniformEra.Picard25) {
-                import(/* webpackChunkName: 'picard25' */ './picard25thCenturyUniformPack').then(({Picard25thCenturyUniformPack}) => {
+                import(/* webpackChunkName: 'picard' */ './picard25thCenturyUniformPack').then(({Picard25thCenturyUniformPack}) => {
                     this.uniformPacks[era] = new Picard25thCenturyUniformPack();
                     completion();
                 }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
             } else if (era === UniformEra.PicardRomulanEvacuation) {
-                import(/* webpackChunkName: 'picardS1' */ './picardRomulanEvacuationUniformPack').then(({PicardRomulanEvacuationUniformPack}) => {
+                import(/* webpackChunkName: 'picard' */ './picardRomulanEvacuationUniformPack').then(({PicardRomulanEvacuationUniformPack}) => {
                     this.uniformPacks[era] = new PicardRomulanEvacuationUniformPack();
                     completion();
                 }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));

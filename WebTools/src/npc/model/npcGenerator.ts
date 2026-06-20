@@ -747,7 +747,7 @@ export class NpcGenerator {
                     if (roll < 7) {
                         // go for species talents
                         let talentName = species.talents.map(t => t.name);
-                        talentList = talentList.filter(t => talentName.indexOf(t.name) >= 0 || (t.specialRule && (i > 0 || talentName.length === 0)))
+                        talentList = talentList.filter(t => talentName.indexOf(t.name) >= 0 || (t.isSpecialRule(character.version) && (i > 0 || talentName.length === 0)))
                             .filter(t => {
                                 if (t.name === "Potent Pheromones" || t.name === "Pheromones") {
                                     return character.pronouns === "she/her";

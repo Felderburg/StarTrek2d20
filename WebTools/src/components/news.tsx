@@ -14,6 +14,18 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260620</b>
+            <ul>
+                <li>
+                    Various bug fixes.
+                </li>
+                <li>
+                    A few new spaceframe appearances.
+                </li>
+                <li>
+                    Minor tweaks to tokens.
+                </li>
+            </ul>
             <b>v1.260612</b>
             <ul>
                 <li>

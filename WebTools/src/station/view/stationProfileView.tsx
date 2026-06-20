@@ -20,7 +20,7 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({showProfile, c
     let containerClass = showProfile ? "sheet-container sheet-container-visible pe-3" :  "sheet-container sheet-container-hidden pe-3";
     const eraModel = station?.era != null ? Eras.instance.getEra(station?.era) : null;
 
-    const talents = station?.talents.filter(t => !t.talentModel.specialRule).map((t, i) => {
+    const talents = station?.talents.filter(t => !t.talentModel.isSpecialRule(station.version)).map((t, i) => {
         return (<div key={'talent-' + i}>{t.displayName}</div>)
     });
 

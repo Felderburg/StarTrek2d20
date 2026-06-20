@@ -421,8 +421,8 @@ export class Portrait2eStationSheet extends BaseNonForm2eSheet {
         }
     }
 
-    hasSpecialRules(starship: Starship) {
-        return starship.getDistinctTalentNameList().map(t => TalentsHelper.getTalent(t)).filter(t => t.specialRule).length > 0;
+    hasSpecialRules(starship: Station) {
+        return starship.getDistinctTalentNameList().map(t => TalentsHelper.getTalent(t)).filter(t => t.isSpecialRule(starship.version)).length > 0;
     }
 
     writeShieldsBoxes(page: PDFPage, form: PDFForm, station: Station, column: Column) {

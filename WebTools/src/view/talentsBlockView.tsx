@@ -123,7 +123,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
             if (selectedTalent.isCustom) {
                 description = selectedTalent.customTalentDescription;
             }
-            if (t.specialRule) {
+            if (t.isSpecialRule(construct.version)) {
                 return null;
             } else if (construct.stereotype === Stereotype.SoloStarship) {
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>
@@ -146,7 +146,7 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({construct}) => {
                 name += " [" + qualifier + "]";
             }
             let talentName = name + (t.maxRank > 1 ? " [x" + construct.getRankForTalent(t.name) + "]" : "");
-            if (!t.specialRule) {
+            if (!t.isSpecialRule(construct.version)) {
                 return null;
             } else if (construct.stereotype === Stereotype.SoloStarship) {
                 return (<div className="text-white view-border-bottom py-2" key={'talent-' + i}>

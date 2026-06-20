@@ -420,7 +420,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     }
 
     hasSpecialRules(starship: Starship) {
-        return starship.getDistinctTalentNameList().map(t => TalentsHelper.getTalent(t)).filter(t => t.specialRule).length > 0;
+        return starship.getDistinctTalentNameList().map(t => TalentsHelper.getTalent(t)).filter(t => t.isSpecialRule(starship.version)).length > 0;
     }
 
     writeShieldsBoxes(page: PDFPage, form: PDFForm, starship: Starship, column: Column) {

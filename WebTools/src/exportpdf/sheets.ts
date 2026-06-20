@@ -205,8 +205,8 @@ abstract class BasicStarshipSheet extends BasicSheet {
         let talents = starship.rankedTalents.map(t => t.displayNameWithMultiple);
         let specialRules = [];
         if (this.isSpecialRuleSectionAvailable(form)) {
-            talents = starship.rankedTalents.filter(t => !t.talentModel.specialRule).map(t => t.displayNameWithMultiple);
-            specialRules = starship.rankedTalents.filter(t => t.talentModel.specialRule).map(t => t.displayNameWithMultiple);
+            talents = starship.rankedTalents.filter(t => !t.talentModel.isSpecialRule(starship.version)).map(t => t.displayNameWithMultiple);
+            specialRules = starship.rankedTalents.filter(t => t.talentModel.isSpecialRule(starship.version)).map(t => t.displayNameWithMultiple);
         }
 
         let i = 1;

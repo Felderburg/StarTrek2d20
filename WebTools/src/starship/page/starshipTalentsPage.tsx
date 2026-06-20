@@ -96,22 +96,23 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({starship,
             : [];
 
         let rankedTalents = [];
-        talents.forEach(t => {
-            if (t.maxRank > 1 || isMultiSelectionTalent(t)) {
+        talents.filter(t => !t.isSpecialRule(starship.version))
+            .forEach(t => {
+                if (t.maxRank > 1 || isMultiSelectionTalent(t)) {
 
-                let initialCount = starship.talentsWithoutAdditional?.filter(s => s.talent === t.name)?.length ?? 0;
-                let count = starship.talents?.filter(s => s.talent === t.name)?.length ?? 0;
-                for (let i = initialCount; i < count+1; i++) {
-                    rankedTalents.push(new RankedTalent(t, i + 1));
-                }
+                    let initialCount = starship.talentsWithoutAdditional?.filter(s => s.talent === t.name)?.length ?? 0;
+                    let count = starship.talents?.filter(s => s.talent === t.name)?.length ?? 0;
+                    for (let i = initialCount; i < count+1; i++) {
+                        rankedTalents.push(new RankedTalent(t, i + 1));
+                    }
 
-            } else {
-                let count = starship.talentsWithoutAdditional?.filter(s => s.talent === t.name)?.length ?? 0;
-                if (count === 0) {
-                    rankedTalents.push(new RankedTalent(t));
+                } else {
+                    let count = starship.talentsWithoutAdditional?.filter(s => s.talent === t.name)?.length ?? 0;
+                    if (count === 0) {
+                        rankedTalents.push(new RankedTalent(t));
+                    }
                 }
-            }
-        });
+            });
         return rankedTalents;
     }
 

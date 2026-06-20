@@ -249,7 +249,7 @@ export const assembleStarshipTalents = (starship: Starship|Station, includeSpeci
                     readableTalent.system = temp[0].system;
                 }
             }
-            if (talent.specialRule) {
+            if (talent.isSpecialRule(starship.version)) {
                 specialRules.push(readableTalent);
             } else {
                 result.push(readableTalent);

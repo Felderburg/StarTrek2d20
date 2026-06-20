@@ -321,7 +321,7 @@ export class Roll20VttExporter {
         }
         let talents = starship.getDistinctTalentNameList()
             .map(t => TalentsHelper.getTalent(t))
-            .filter(t => t != null && !t.specialRule);
+            .filter(t => t != null && !t.isSpecialRule(starship.version));
         if (talents?.length) {
             result += "<p><strong>" + i18next.t("Construct.other.talents") + "</strong></p>\n<ul>\n";
 
@@ -340,7 +340,7 @@ export class Roll20VttExporter {
 
         let specialRules = starship.getDistinctTalentNameList()
             .map(t => TalentsHelper.getTalent(t))
-            .filter(t => t != null && t.specialRule);
+            .filter(t => t != null && t.isSpecialRule(starship.version));
         if (specialRules?.length) {
             result += "<p><strong>" + i18next.t("Construct.other.specialRules") + "</strong></p>\n<ul>\n";
 

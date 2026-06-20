@@ -20,11 +20,11 @@ export class TalentModel implements ITalent {
     maxRank: number;
     category: TalentCategorization;
     aliases: AliasModel[];
-    specialRule: boolean;
+    _specialRule: (version:number) => boolean;
 
     constructor(name: string, desc: string, prerequisites: IConstructPrerequisite[],
         maxRank: number = 1, category: string|TalentCategorization = new TalentCategorization(TalentCategory.General),
-        specialRule: boolean = false, ...aliases: AliasModel[]) {
+        specialRule: boolean|((version:number) => boolean) = false, ...aliases: AliasModel[]) {
         this.name = name;
         this.description = desc;
         this.prerequisites = prerequisites;
@@ -41,8 +41,17 @@ export class TalentModel implements ITalent {
             }
         }
 
-        this.specialRule = specialRule;
+        if (typeof specialRule == "boolean") {
+            const f = (version: number) => { return specialRule}
+            this._specialRule = f;
+        } else {
+            this._specialRule = specialRule;
+        }
         this.aliases = aliases || AliasModel[0];
+    }
+
+    isSpecialRule(version: number): boolean {
+        return this._specialRule(version);
     }
 
     get isStarshipTalent() {

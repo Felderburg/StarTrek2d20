@@ -354,7 +354,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             if (this.spaceframeModel !== undefined) {
                 numTalents = 1; // count the mission profile talent
 
-                this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => numTalents += (t.talentModel.specialRule ? 0 : (t.multiple ?? 1)));
+                this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => numTalents += (t.talentModel.isSpecialRule(this.version) ? 0 : (t.multiple ?? 1)));
 
                 if (this.spaceframeModel.isMissionPodAvailable) {
                     numTalents += 2; // think about this in the context of the Fleet Carrier pod, which seems to have 3 talents
@@ -576,7 +576,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
 
     get talentsWithoutSpecialRules(): SelectedTalent[] {
-        return this.talents?.filter(t => !t.talentModel.specialRule) ?? [];
+        return this.talents?.filter(t => !t.talentModel.isSpecialRule(this.version)) ?? [];
     }
 
     private getNonSpaceframeTalentSelectionList() {

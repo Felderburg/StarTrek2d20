@@ -24,14 +24,14 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({showProfile, era
     let containerClass = showProfile ? "sheet-container sheet-container-visible pe-3" :  "sheet-container sheet-container-hidden pe-3";
     const eraModel = era != null ? Eras.instance.getEra(era) : null;
 
-    const talents = starship?.talents.filter(t => !t.talentModel.specialRule).map((t, i) => {
+    const talents = starship?.talents.filter(t => !t.talentModel.isSpecialRule(starship.version)).map((t, i) => {
         let name = starship?.stereotype === Stereotype.SoloStarship
             ? t.talentModel.localizedNameForSource(Source.CaptainsLog)
             : t.displayName;
         return (<div key={'talent-' + i}>{name}</div>)
     });
 
-    const specialRules = starship?.talents.filter(t => t.talentModel.specialRule).map((t, i) => {
+    const specialRules = starship?.talents.filter(t => t.talentModel.isSpecialRule(starship.version)).map((t, i) => {
         let name = starship?.stereotype === Stereotype.SoloStarship
             ? t.talentModel.localizedNameForSource(Source.CaptainsLog)
             : t.displayName;
