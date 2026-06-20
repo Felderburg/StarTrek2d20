@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import {Helmet} from "@dr.pogodin/react-helmet";
 import LcarsFrame from '../components/lcarsFrame';
 import { PageIdentity } from '../pages/pageIdentity';
@@ -26,6 +26,8 @@ import UniformPackCollection from './model/uniformPackCollection';
 import HeadCatalog from './model/headCatalog';
 import UniformVariantRestrictions from './model/uniformVariantRestrictions';
 import { TokenModel } from './model/tokenModel';
+import ExtrasCatalog from './model/extrasCatalog';
+import { Spinner } from 'react-bootstrap';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -40,7 +42,7 @@ enum Tab {
     Extras
 }
 
-interface ITokenCreationPageProperties extends WithTranslation {
+interface ITokenCreationPageProperties {
     token: TokenModel;
 }
 
@@ -51,150 +53,68 @@ interface ITokenCreationPageState {
     loadingExtension: boolean;
 }
 
-class TokenCreationPage extends React.Component<ITokenCreationPageProperties, ITokenCreationPageState> {
+const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token}) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            tab: Tab.Species,
-            rounded: false,
-            bordered: false,
-            loadingExtension: false
-        }
+    const { t } = useTranslation();
+    const [ tab, setTab ] = useState<Tab>(Tab.Species);
+    const [ rounded, setRounded ] = useState<boolean>(false);
+    const [ loadingExtension, setLoadingExtension ] = useState<boolean>(false);
+    const [ bordered, setBordered ] = useState<boolean>(false);
+
+    const selectTab = (tab: Tab) => {
+        setTab(tab);
     }
 
-    render() {
-        const { t, token } = this.props;
-        const { tab, rounded, bordered } = this.state;
-        const svg = this.state.loadingExtension
-            ? (<div className="spinner-border text-light" role="status">
-                    <span className="visually-hidden">Loading...</span>
-                </div>)
-            : TokenSvgBuilder.createSvg(token, rounded, bordered && rounded);
-
-        return (<>
-            <Helmet>
-                <title>Star Trek Adventures Token Generator</title>
-                <meta property="og:title" content="Star Trek Adventures Token Generator" />
-                <meta property="og:description" content="A free application that you can use to create downloadable character tokens for Modiphius' Star Trek Adventures Role Playing Game." />
-                <meta property="og:type" content="website" />
-                <meta property="og:image" content="/static/img/bannerImageToken.png" />
-                <meta property="og:url" content="https://sta.bcholmes.org/token" />
-            </Helmet>
-            <LcarsFrame activePage={PageIdentity.TokenCreationPage}>
-                <div id="app">
-
-                    <div className="page container ms-0">
-                        <nav aria-label="breadcrumb">
-                            <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><a href="/index.html">{t('Page.title.home')}</a></li>
-                                <li className="breadcrumb-item active" aria-current="page">{t('Page.title.tokenCreationPage')}</li>
-                            </ol>
-                        </nav>
-
-                        <main>
-
-                            <Header>{t('Page.title.tokenCreationPage')}</Header>
-
-                            <div className="row">
-
-                                <div className="col-lg-4 mt-4">
-                                    <div className="mw-100" style={{width: "400px", aspectRatio: "1" }} dangerouslySetInnerHTML={{ __html: svg as any }}>
-
-                                    </div>
-
-                                    <div className="row">
-                                        <div className="col-6">
-
-                                            <div className="mt-3">
-                                                <CheckBox value="rounded" isChecked={rounded}
-                                                    onChanged={(val) => { this.setState((state) => ({...state, rounded: !state.rounded })) }}
-                                                    text={t('TokenCreator.option.rounded')} />
-                                            </div>
-                                            <div>
-                                                <CheckBox value="fancy" isChecked={bordered && rounded}
-                                                    onChanged={(val) => { this.setState((state) => ({...state, bordered: !state.bordered })) }}
-                                                    text={t('TokenCreator.option.bordered')} disabled={ !rounded } />
-                                            </div>
-                                        </div>
-
-                                        <div className="col-6">
-                                            <div className="mt-4 text-end">
-                                                <Button className='btn-xs mw-100' onClick={() => this.exportPng()}>{t('Common.button.export')}</Button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-
-                                <div className="col-lg-8 mt-4">
-                                    <div className="btn-group w-100" role="group" aria-label="Avatar part types">
-                                        <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Species ? "active" : "")}
-                                            onClick={() => this.selectTab(Tab.Species)}>{t('TokenCreator.section.species')}</button>
-                                        <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Body ? "active" : "")}
-                                            onClick={() => this.selectTab(Tab.Body)}>{t('TokenCreator.section.body')}</button>
-                                        <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Head ? "active" : "")}
-                                            onClick={() => this.selectTab(Tab.Head)}>{t('TokenCreator.section.head')}</button>
-                                        <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Hair ? "active" : "")}
-                                            onClick={() => this.selectTab(Tab.Hair)}>{t('TokenCreator.section.hair')}</button>
-                                        <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Mouth ? "active" : "")}
-                                            onClick={() => this.selectTab(Tab.Mouth)}>{t('TokenCreator.section.mouth')}</button>
-                                        <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Nose ? "active" : "")}
-                                            onClick={() => this.selectTab(Tab.Nose)}>{t('TokenCreator.section.nose')}</button>
-                                        <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Eyes ? "active" : "")}
-                                            onClick={() => this.selectTab(Tab.Eyes)}>{t('TokenCreator.section.eyes')}</button>
-                                        <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Extras ? "active" : "")}
-                                            onClick={() => this.selectTab(Tab.Extras)}>{t('TokenCreator.section.extras')}</button>
-                                    </div>
-                                    {this.renderTab()}
-                                </div>
-                            </div>
-                        </main>
-                    </div>
-                </div>
-            </LcarsFrame>
-        </>)
+    const loadUniformPack = (uniformEra: UniformEra) => {
+        setLoadingExtension(true)
+        UniformPackCollection.instance.loadUniformPack(uniformEra, () => setLoadingExtension(false));
     }
 
-    selectTab(tab: Tab) {
-        this.setState((state) => ({...state, tab: tab}));
+    const loadHeadExtension = () => {
+        setLoadingExtension(true)
+        HeadCatalog.instance.loadRubberHeadExtension(() => setLoadingExtension(false));
     }
 
-    loadUniformPack(uniformEra: UniformEra) {
-        this.setState((state) => ({...state, loadingExtension: true}));
-        UniformPackCollection.instance.loadUniformPack(uniformEra, () => this.setState((state) => ({...state, loadingExtension: false})));
+    const loadExtrasExtension = async () => {
+        setLoadingExtension(true)
+        ExtrasCatalog.instance.loadLibraryExtension(() => setLoadingExtension(false));
     }
 
-    loadHeadExtension() {
-        this.setState((state) => ({...state, loadingExtension: true}));
-        HeadCatalog.instance.loadRubberHeadExtension(() => this.setState((state) => ({...state, loadingExtension: false})));
-    }
-
-    renderTab() {
-        switch (this.state.tab) {
+    const renderTab = () => {
+        switch (tab) {
             case Tab.Species:
-                return (<SpeciesSelectionView isLoading={this.state.loadingExtension} loadExtension={() => this.loadHeadExtension()} token={this.props.token} />);
+                return (<SpeciesSelectionView isLoading={loadingExtension} loadExtension={() => loadHeadExtension()} token={token} />);
             case Tab.Body:
-                return (<UniformSelectionView isLoading={this.state.loadingExtension} loadPack={(uniformEra) => this.loadUniformPack(uniformEra)} token={this.props.token} />);
+                return (<UniformSelectionView isLoading={loadingExtension} loadPack={(uniformEra) => loadUniformPack(uniformEra)} token={token} />);
             case Tab.Head:
-                return (<HeadSelectionView isLoading={this.state.loadingExtension} token={this.props.token} />);
+                return (<HeadSelectionView isLoading={loadingExtension} token={token} />);
             case Tab.Mouth:
-                return (<MouthSelectionView token={this.props.token} />);
+                return (<MouthSelectionView token={token} />);
             case Tab.Nose:
-                return (<NoseSelectionView token={this.props.token} />);
+                return (<NoseSelectionView token={token} />);
             case Tab.Eyes:
-                return (<EyeSelectionView token={this.props.token} />);
+                return (<EyeSelectionView token={token} />);
             case Tab.Hair:
-                return (<HairSelectionView token={this.props.token} />);
+                return (<HairSelectionView token={token} />);
             case Tab.Extras:
-                return (<ExtrasSelectionView token={this.props.token} />);
+                if (ExtrasCatalog.instance.isLibraryLoaded) {
+                    return (<ExtrasSelectionView token={token} />);
+                } else {
+                    if (!loadingExtension) {
+                        loadExtrasExtension();
+                    }
+                    return (<div className="mt-4 text-center">
+                        <Spinner animation="border" className="text-light" role="status">
+                            <span className="visually-hidden">Loading...</span>
+                        </Spinner>
+                    </div>)
+                }
             default:
                 return (<div className="mt-4"><p>Not yet available.</p></div>);
         }
     }
 
-    async toPng(data) {
+    const toPng = async (data) => {
         const preset = presets.offscreen();
         const {
           width,
@@ -212,12 +132,11 @@ class TokenCreationPage extends React.Component<ITokenCreationPageProperties, IT
         return blob.arrayBuffer();
     }
 
-    exportPng() {
-        const { token } = this.props;
-        this.toPng({
+    const exportPng = async () => {
+        toPng({
             width: 400,
             height: 400,
-            svg: TokenSvgBuilder.createSvg(token, this.state.rounded, this.state.bordered && this.state.rounded)
+            svg: TokenSvgBuilder.createSvg(token, rounded, bordered && rounded)
         }).then((png) => {
             let division = DivisionColors.getDivision(token.uniformEra, token.divisionColor);
             let species = SpeciesHelper.getSpeciesByType(token.species);
@@ -231,6 +150,100 @@ class TokenCreationPage extends React.Component<ITokenCreationPageProperties, IT
         });
     }
 
+
+
+    const svg = loadingExtension
+        ? (<div className="spinner-border text-light" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>)
+        : TokenSvgBuilder.createSvg(token, rounded, bordered && rounded);
+
+    return (<>
+        <Helmet>
+            <title>Star Trek Adventures Token Generator</title>
+            <meta property="og:title" content="Star Trek Adventures Token Generator" />
+            <meta property="og:description" content="A free application that you can use to create downloadable character tokens for Modiphius' Star Trek Adventures Role Playing Game." />
+            <meta property="og:type" content="website" />
+            <meta property="og:image" content="/static/img/bannerImageToken.png" />
+            <meta property="og:url" content="https://sta.bcholmes.org/token" />
+        </Helmet>
+        <LcarsFrame activePage={PageIdentity.TokenCreationPage}>
+            <div id="app">
+
+                <div className="page container ms-0">
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><a href="/index.html">{t('Page.title.home')}</a></li>
+                            <li className="breadcrumb-item active" aria-current="page">{t('Page.title.tokenCreationPage')}</li>
+                        </ol>
+                    </nav>
+
+                    <main>
+
+                        <Header>{t('Page.title.tokenCreationPage')}</Header>
+
+                        <div className="row">
+
+                            <div className="col-lg-4 mt-4">
+                                <div className="mw-100" style={{width: "400px", aspectRatio: "1" }} dangerouslySetInnerHTML={{ __html: svg as any }}>
+
+                                </div>
+
+                                <div className="row">
+                                    <div className="col-6">
+
+                                        <div className="mt-3">
+                                            <CheckBox value="rounded" isChecked={rounded}
+                                                onChanged={(val) => { setRounded(!rounded) }}
+                                                text={t('TokenCreator.option.rounded')} />
+                                        </div>
+                                        <div>
+                                            <CheckBox value="fancy" isChecked={bordered && rounded}
+                                                onChanged={(val) => { setBordered(!bordered) }}
+                                                text={t('TokenCreator.option.bordered')} disabled={ !rounded } />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-6">
+                                        <div className="mt-4 text-end">
+                                            <Button className='btn-xs mw-100' onClick={() => exportPng()}>{t('Common.button.export')}</Button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div className="col-lg-8 mt-4">
+                                <div className="btn-group w-100" role="group" aria-label="Avatar part types">
+                                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Species ? "active" : "")}
+                                        onClick={() => selectTab(Tab.Species)}>{t('TokenCreator.section.species')}</button>
+                                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Body ? "active" : "")}
+                                        onClick={() => selectTab(Tab.Body)}>{t('TokenCreator.section.body')}</button>
+                                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Head ? "active" : "")}
+                                        onClick={() => selectTab(Tab.Head)}>{t('TokenCreator.section.head')}</button>
+                                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Hair ? "active" : "")}
+                                        onClick={() => selectTab(Tab.Hair)}>{t('TokenCreator.section.hair')}</button>
+                                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Mouth ? "active" : "")}
+                                        onClick={() => selectTab(Tab.Mouth)}>{t('TokenCreator.section.mouth')}</button>
+                                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Nose ? "active" : "")}
+                                        onClick={() => selectTab(Tab.Nose)}>{t('TokenCreator.section.nose')}</button>
+                                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Eyes ? "active" : "")}
+                                        onClick={() => selectTab(Tab.Eyes)}>{t('TokenCreator.section.eyes')}</button>
+                                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Extras ? "active" : "")}
+                                        onClick={() => selectTab(Tab.Extras)}>{t('TokenCreator.section.extras')}</button>
+                                </div>
+                                {renderTab()}
+                            </div>
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </LcarsFrame>
+    </>)
+
+
+
 }
 
 function mapStateToProps(state, ownProps) {
@@ -239,4 +252,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default withTranslation()(connect(mapStateToProps)(TokenCreationPage));
+export default connect(mapStateToProps)(TokenCreationPage);
