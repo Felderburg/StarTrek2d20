@@ -1,6 +1,8 @@
 import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, NpcGenerationStep } from "../common/character";
+import { AssemblyContext, ValueAssembly } from "../common/characterAssembly";
 import { CharacterType } from "../common/characterType";
 import { Stereotype } from "../common/construct";
+import { LogEntry } from "../common/logEntry";
 import { SelectedTalent } from "../common/selectedTalent";
 import AgeHelper from "../helpers/age";
 import { Department } from "../helpers/department";
@@ -22,6 +24,7 @@ import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION, 
     SET_CHARACTER_LINEAGE, SET_CHARACTER_NAME, SET_CHARACTER_PASTIME, SET_CHARACTER_PRONOUNS, SET_CHARACTER_RANK,
     SET_CHARACTER_ROLE, SET_CHARACTER_SPECIES, SET_CHARACTER_SPECIES_ABILITY_CHOICE, SET_CHARACTER_TYPE, SET_CHARACTER_VALUE, SET_NPC_CHARACTER_ATTRIBUTES, SET_NPC_CHARACTER_DEPARTMENTS, SET_NPC_CHARACTER_TALENTS, SET_SUPPORTING_CHARACTER_ATTRIBUTES,
     SET_SUPPORTING_CHARACTER_DISCIPLINES, SET_SUPPORTING_CHARACTER_SUPERVISORY, StepContext,
+    UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY,
     UPDATE_CHARACTER_GENERAL_EDIT_VALUE} from "./characterActions";
 
 interface CharacterState {
@@ -773,63 +776,38 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 isModified: true
             }
         }
+        case UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY: {
+            let temp = state.currentCharacter.copy();
+            temp.speciesStep.ability = action.payload.ability;
+            temp.speciesStep.talent = undefined;
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
         case UPDATE_CHARACTER_GENERAL_EDIT_VALUE: {
             let temp = state.currentCharacter.copy();
-            let index: number = action.payload.index;
+            let oldValue = action.payload.oldValue as ValueAssembly;
 
-            let found = false;
-            for (let i = (temp.improvements?.length ?? 0) -1; !found && i >= 0; i--) {
-                let advancement = temp.improvements[i];
-                if (advancement instanceof CharacterAdvancementStep) {
-                    if (advancement.value === action.payload.oldValue) {
-                        if (index === 0) {
-                            advancement = advancement.copy();
-                            advancement.value = action.payload.newValue;
-                            temp.improvements[i] = advancement;
-                            found = true;
-                        }
-                        index--;
-                    } else if (advancement.value instanceof SelectedTalent &&
-                            advancement.value.value === action.payload.oldValue) {
-                        if (index === 0) {
-                            advancement = advancement.copy();
-                            (advancement.value as SelectedTalent).value = action.payload.newValue;
-                            temp.improvements[i] = advancement;
-                            found = true;
-                        }
-                        index--;
-                    }
-                }
-            }
-
-            if (!found) {
-                if (temp.finishingStep?.value === action.payload.oldValue) {
-                    if (index === 0) {
-                        temp.finishingStep.value = action.payload.newValue;
-                        found = true;
-                    }
-                    index--;
-                }
-                if (temp.careerStep?.value === action.payload.oldValue) {
-                    if (index === 0) {
-                        temp.careerStep.value = action.payload.newValue;
-                        found = true;
-                    }
-                    index--;
-                }
-                if (temp.educationStep?.value === action.payload.oldValue) {
-                    if (index === 0) {
-                        temp.educationStep.value = action.payload.newValue;
-                        found = true;
-                    }
-                    index--;
-                }
-                if (temp.environmentStep?.value === action.payload.oldValue) {
-                    if (index === 0) {
-                        temp.environmentStep.value = action.payload.newValue;
-                        found = true;
-                    }
-                    index--;
+            if (oldValue.context === AssemblyContext.FinishingTouches && temp.finishingStep) {
+                temp.finishingStep.value = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.Career && temp.careerStep) {
+                temp.careerStep.value = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.Education && temp.educationStep) {
+                temp.educationStep.value = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.Environment && temp.environmentStep) {
+                temp.environmentStep.value = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.Talent) {
+                let talent = temp.talents[oldValue.contextIndex];
+                talent.value = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.Improvement) {
+                let improvement = temp.improvements[oldValue.contextIndex];
+                if (improvement instanceof LogEntry && improvement.valuesUsed?.length && oldValue.index != null) {
+                    let values = improvement.valuesUsed;
+                    values[oldValue.index] = action.payload.newValue;
+                } else if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Value) {
+                    improvement.value = action.payload.newValue;
                 }
             }
             return {

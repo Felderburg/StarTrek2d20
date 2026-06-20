@@ -6,7 +6,12 @@ import { useState } from "react";
 import { Header } from "../../components/header";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import store from "../../state/store";
-import { setCharacterName, setCharacterPronouns, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
+import { setCharacterName, setCharacterPronouns, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
+import { ValueAssembly } from "../../common/characterAssembly";
+import { SpeciesAbilityList } from "../../helpers/speciesAbility";
+import { AttributesHelper } from "../../helpers/attributes";
+import { AttributeView } from "../../components/attribute";
+import { makeKey } from "../../common/translationKey";
 
 interface IGeneralEditViewProperties extends ICharacterProperties {
     onNextStep: () => void;
@@ -16,14 +21,8 @@ interface IGeneralEditViewProperties extends ICharacterProperties {
 enum Tab {
     Species,
     Values,
+    Focuses,
     Final
-}
-
-class ValueHolder {
-    readonly value: string;
-    constructor(value: string) {
-        this.value = value;
-    }
 }
 
 export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character, onNextStep, onPreviousStep}) => {
@@ -32,10 +31,17 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
     const { t } = useTranslation();
 
     const prepareForOnNextStep = () => {
-
+        onNextStep();
     }
 
-    const onValueChanged = (oldValue: string, value: string) => {
+    const addSpeciesAbility = () => {
+        store.dispatch(updateCharacterGeneralEditSpeciesAbility(character.speciesStep.species));
+    }
+
+    const onFocusChanged = (oldFocus: string, focus: string) => {
+    }
+
+    const onValueChanged = (oldValue: ValueAssembly, value: string) => {
         store.dispatch(updateCharacterGeneralEditValueChange(oldValue, value));
     }
 
@@ -63,16 +69,74 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
         </div>)
     }
 
+    const renderSpeciesTab = () => {
+
+        let attributes = AttributesHelper.getAllAttributes()
+            .filter(a => character.speciesStep.attributes.includes(a) || character.speciesStep.decrementAttributes.includes(a))
+            .map(a => {
+                let points = character.speciesStep.attributes.filter(at => at === a).length;
+                if (points === 0) {
+                    points = -character.speciesStep.decrementAttributes.filter(at => at === a).length;
+                }
+                return (<AttributeView
+                    name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(a))) }
+                    points={points} />)
+                });
+
+
+        return (<>
+            <div className="row mt-4">
+                <div className="col-12 col-md-6">
+                    <Header level={2} className="my-4">{character.speciesName}</Header>
+
+                    {attributes}
+
+
+                {SpeciesAbilityList.instance.getBySpecies(character.speciesStep.species) != null
+                ? character.speciesStep?.ability != null
+                    ? (<p className="mt-3">
+                        <b>{t('Construct.other.speciesAbility')}: </b>
+                        <span>{character.speciesStep?.ability?.name}</span>
+                        </p>)
+                    : (<div>
+                        <Markdown>{t("GeneralEditView.speciesAbility.available")}</Markdown>
+                        <div className="mt-3">
+                            <Button size="sm" onClick={addSpeciesAbility}>{t("Common.button.add")}</Button>
+                        </div>
+                    </div>)
+                : undefined}
+                </div>
+            </div>
+        </>);
+    }
+
+
     const renderValuesTab = () => {
 
         return (<>
             <Header level={2} className="my-4">{t('Construct.other.values')}</Header>
             <div className="row mt-4">
 
-                {character.values.map((v,i) =>
+                {character.valueAssemblies.map((v,i) =>
                 (<>
                     <div className="col-12 col-md-6" key={"value-" + i}>
-                        <InputFieldAndLabel labelName={t('Construct.other.value')} id={"value" + i}  onChange={(value) => onValueChanged(v, value)} value={v ?? ""} />
+                        <InputFieldAndLabel labelName={t('Construct.other.value')} id={"value" + i}  onChange={(value) => onValueChanged(v, value)} value={v?.value ?? ""} />
+                    </div>
+                </>))}
+            </div>
+        </>);
+    }
+
+    const renderFocusTab = () => {
+
+        return (<>
+            <Header level={2} className="my-4">{t('Construct.other.focuses')}</Header>
+            <div className="row mt-4">
+
+                {character.focuses.map((f,i) =>
+                (<>
+                    <div className="col-12 col-md-6" key={"focus-" + i}>
+                        <InputFieldAndLabel labelName={t('Construct.other.focus')} id={"focus" + i}  onChange={(value) => onFocusChanged(f, value)} value={f ?? ""} />
                     </div>
                 </>))}
             </div>
@@ -83,6 +147,10 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
     const renderTab = () => {
         if (tab === Tab.Values) {
             return renderValuesTab();
+        } else if (tab === Tab.Focuses) {
+            return renderFocusTab();
+        } else if (tab === Tab.Species) {
+            return renderSpeciesTab();
         } else if (tab === Tab.Final) {
             return renderFinalTab();
         } else {
@@ -97,6 +165,8 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
             <div className="btn-group w-100" role="group" aria-label="Character options">
                 <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Species ? "active" : "")}
                     onClick={() => setTab(Tab.Species)}>{t('Page.title.species')}</button>
+                <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Focuses ? "active" : "")}
+                    onClick={() => setTab(Tab.Focuses)}>{t('Construct.other.focuses')}</button>
                 <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Values ? "active" : "")}
                     onClick={() => setTab(Tab.Values)}>{t('Construct.other.values')}</button>
                 <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Final ? "active" : "")}

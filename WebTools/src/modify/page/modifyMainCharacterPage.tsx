@@ -53,7 +53,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
             result.push(new DropDownElement(ModificationType.Demotion, t('ModificationType.name.demotion')))
         }
         if (character.version > 1) {
-//            result.push(new DropDownElement(ModificationType.GeneralEdit, t('ModificationType.name.generalEdit')))
+            result.push(new DropDownElement(ModificationType.GeneralEdit, t('ModificationType.name.generalEdit')))
         }
         return result;
     }
@@ -154,7 +154,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
     }
 
     const createGeneralEditView = () => {
-        return <GeneralEditView character={character} onNextStep={() => {}} onPreviousStep={previousStep} />;
+        return <GeneralEditView character={character} onNextStep={nextStep} onPreviousStep={previousStep} />;
     }
 
     const createLogEntryView = () => {
@@ -249,8 +249,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                 </div>
             </div>
             <div className="my-3 d-flex justify-content-between">
-                <Button size="sm" onClick={() => previousStep()}>{t('Common.button.previous')}</Button>
-                <Button size="sm" onClick={() => nextStep()}>{t('Common.button.next')}</Button>
+                <Button size="sm" onClick={previousStep}>{t('Common.button.previous')}</Button>
+                <Button size="sm" onClick={nextStep}>{t('Common.button.next')}</Button>
             </div>
         </>);
     }

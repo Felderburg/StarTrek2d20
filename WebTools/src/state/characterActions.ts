@@ -20,6 +20,7 @@ import { PersonalWeaponType } from "../helpers/weapons";
 import { LogEntry } from "../common/logEntry";
 import { SpeciesAbilityChoice, SpeciesAbilityList } from "../helpers/speciesAbility";
 import { hasSource } from "./contextFunctions";
+import { ValueAssembly } from "../common/characterAssembly";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -71,6 +72,7 @@ export const ADD_CHARACTER_LOG_ENTRY = "ADD_CHARACTER_LOG_ENTRY";
 export const REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
 export const ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
 export const UPDATE_CHARACTER_GENERAL_EDIT_VALUE = "UPDATE_CHARACTER_GENERAL_EDIT_VALUE";
+export const UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY = "UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY";
 
 export enum StepContext {
     Species,
@@ -332,10 +334,23 @@ export function setCharacterValue(value: string, context: StepContext) {
     }
 }
 
-export function updateCharacterGeneralEditValueChange(oldValue: string, newValue: string, index: number = 0) {
-    let payload = { oldValue: oldValue, newValue: newValue, index: index };
+export function updateCharacterGeneralEditValueChange(oldValue: ValueAssembly, newValue: string) {
+    let payload = { oldValue: oldValue, newValue: newValue };
     return {
        type: UPDATE_CHARACTER_GENERAL_EDIT_VALUE,
+       payload: payload
+    }
+}
+
+export function updateCharacterGeneralEditSpeciesAbility(species: Species) {
+    let payload = {};
+    let ability = SpeciesAbilityList.instance.getBySpecies(species)
+    if (ability && (ability.source == null || hasSource(ability.source))) {
+        payload["ability"] = ability;
+    }
+
+    return {
+       type: UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY,
        payload: payload
     }
 }

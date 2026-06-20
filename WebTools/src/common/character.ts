@@ -30,6 +30,7 @@ import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_NATURAL_PROTECTION_X, TALENT
 import { SpecialWeapon } from './specialWeapon';
 import { ModificationType } from '../modify/model/modificationType';
 import { LogEntry, ValueUseType } from './logEntry';
+import { AssemblyContext, ValueAssembly } from './characterAssembly';
 
 export enum Division {
     Command,
@@ -983,48 +984,67 @@ export class Character extends Construct implements IWeaponDiceProvider {
         let result =[];
         if (this.stereotype === Stereotype.Npc) {
             return this.npcGenerationStep?.values ?? [];
-        } else if (this.stereotype === Stereotype.SupportingCharacter) {
-            if (this.supportingStep?.value) {
-                result.push(this.supportingStep.value);
-            }
         } else {
+            return this.valueAssemblies.map(a => a.value);
+        }
+    }
+
+    get valueAssemblies() {
+        let result =[];
+        if (this.stereotype === Stereotype.SupportingCharacter) {
+            if (this.supportingStep?.value) {
+                result.push(new ValueAssembly(this.supportingStep.value, AssemblyContext.Supporting));
+            }
+        } else if (this.stereotype !== Stereotype.Npc) {
             if (this.environmentStep?.value) {
-                result.push(this.environmentStep.value);
+                result.push(new ValueAssembly(this.environmentStep.value, AssemblyContext.Environment));
             }
             if (this.educationStep?.value) {
-                result.push(this.educationStep.value);
+                result.push(new ValueAssembly(this.educationStep.value, AssemblyContext.Education));
             }
             if (this.careerStep?.value) {
-                result.push(this.careerStep.value);
+                result.push(new ValueAssembly(this.careerStep.value, AssemblyContext.Career));
             }
             if (this.finishingStep?.value) {
-                result.push(this.finishingStep.value);
+                result.push(new ValueAssembly(this.finishingStep.value, AssemblyContext.FinishingTouches));
             }
 
-            this.talents.forEach(t => {
+            this.talents.forEach((t,i) => {
                 if (t.value) {
-                    result.push(t.value);
+                    result.push(new ValueAssembly(t.value, AssemblyContext.Talent, i));
                 }
             });
         }
 
-        this.improvements?.forEach(i => {
-            if (i instanceof CharacterAdvancementStep && i.choice === CharacterAdvancementChoice.Value) {
-                if (i.removeValue != null && result.includes(i.removeValue as string)) {
-                    let remove = i.removeValue as string;
-                    result.splice(result.indexOf(remove), 1);
+        this.improvements?.forEach((imp,i) => {
+            if (imp instanceof CharacterAdvancementStep && imp.choice === CharacterAdvancementChoice.Value) {
+                if (imp.removeValue != null) {
+                    let index = -1;
+                    result.forEach((v,l) => {
+                        if (v.value === imp.removeValue) {
+                            index = l;
+                        }
+                    });
+                    if (index >= 0) {
+                        result.splice(index, 1);
+                    }
                 }
-                result.push(i.value);
-            } else if (i instanceof LogEntry) {
-                i.valuesUsed?.forEach(v => {
+                result.push(new ValueAssembly(imp.value as string, AssemblyContext.Improvement, i));
+            } else if (imp instanceof LogEntry) {
+                imp.valuesUsed?.forEach((v,l) => {
                     if (v.useType === ValueUseType.Challenged && v.newValue?.length) {
-                        let index = result.indexOf(v.value);
+                        let index = -1;
+                        result.forEach((v,l) => {
+                            if (v.value === v.value) {
+                                index = l;
+                            }
+                        });
                         if (index >= 0) {
                             result.splice(index, 1);
                         }
-                        result.push(v.newValue);
                     }
-                })
+                    result.push(new ValueAssembly(v.newValue as string, AssemblyContext.Improvement, i, l));
+                });
             }
         });
 

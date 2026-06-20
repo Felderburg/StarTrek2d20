@@ -2,7 +2,7 @@
 
 interface IAttributeProperties {
     name: string;
-    value: number;
+    value?: number;
     points: number;
 }
 
@@ -10,6 +10,10 @@ export class AttributeView extends React.Component<IAttributeProperties, {}> {
 
     render() {
         const {name, value, points} = this.props;
+        let pointsAsString = points < 0 ? "-" + Math.abs(points) : ("+" + points);
+        if (value != null) {
+            pointsAsString = "(" + pointsAsString + ")";
+        }
 
         return (
             <div>
@@ -17,8 +21,9 @@ export class AttributeView extends React.Component<IAttributeProperties, {}> {
                     {name}
                 </div>
                 <div className="attribute-value">
-                    (+{points})&nbsp;
-                    {value}
+                    {value != null
+                    ? (<span>{pointsAsString}&nbsp;{value}</span>)
+                    : pointsAsString}
                 </div>
             </div>
         );
