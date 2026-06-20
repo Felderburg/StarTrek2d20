@@ -1,6 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Modal from 'react-bootstrap/Modal';
+import { CloseButton } from 'react-bootstrap';
 
 interface IModalProperties {
     size?: "xl" | "lg" | "sm";
@@ -14,9 +15,9 @@ const ModalBox: React.FC<IModalProperties> = ({size, show, onClose, children, he
 
     return (
         <Modal show={show} size={size}>
-            <Modal.Header className="pt-4 border-bottom-0">
+            <Modal.Header className="pt-3 border-bottom-0">
                 <h5>{header}</h5>
-                <button className="close" onClick={() => onClose() }><img src="/static/img/close.png" style={{height: '24px', width: '24px'}} alt="Close" /></button>
+                <CloseButton onClick={() => onClose() } variant="white"/>
             </Modal.Header>
             <Modal.Body>{children}</Modal.Body>
         </Modal>);

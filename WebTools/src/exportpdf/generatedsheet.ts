@@ -178,7 +178,8 @@ export const assembleWritableItems = (character: Character) => {
                 readableTalent.implants = character.implants.map(implantType =>
                     BorgImplants.instance.getImplantByType(implantType)
                 );
-            } else if (talent.name === TALENT_NAME_UNTAPPED_POTENTIAL && character.version > 1) {
+            } else if (talent.name === TALENT_NAME_UNTAPPED_POTENTIAL && character.version > 1
+                && character.careerStep?.talent?.attribute != null) {
                 readableTalent.attributes = [ character.careerStep?.talent?.attribute ];
             } else if (talent.name === TALENT_NAME_WARRIORS_SPIRIT && t.selection != null) {
                 readableTalent.selection = t.selection;

@@ -974,7 +974,6 @@ class Marshaller {
         }
 
         sheet["improvements"] = this.encodeStarshipImprovements(starship);
-console.log(sheet);
         return this.encode(sheet);
     }
 
@@ -1084,7 +1083,6 @@ console.log(sheet);
     }
 
     decodeStation(json: any): Station {
-console.log(json);
         let result = new Station();
         if (json.version) {
             result.version = json.version;
@@ -1442,6 +1440,7 @@ console.log(json);
     }
 
     decodeCharacter(json: any) {
+console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;

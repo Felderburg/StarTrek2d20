@@ -616,7 +616,6 @@ export class ExtrasLibrary implements IExtendedExtrasLibrary {
         new ExtraItem(ExtraType.BorgEyeImplant4, ExtraCategory.BorgImplant, "Borg Eye Piece 1", BorgImplants.BorgEyeImplant4),
         new ExtraItem(ExtraType.BorgEyeImplant5, ExtraCategory.BorgImplant, "Borg Eye Piece 2", BorgImplants.BorgEyeImplant5),
         new ExtraItem(ExtraType.BorgEyeImplant6, ExtraCategory.BorgImplant, "Borg Eye Piece 3", BorgImplants.BorgEyeImplant6),
-
     ]
 
     isInCategory(type: ExtraType, category: ExtraCategory) {

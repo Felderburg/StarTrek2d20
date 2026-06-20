@@ -212,8 +212,10 @@ export class TalentWriter {
                             paragraphs.push(paragraph);
                             paragraph.indent(indent + 10);
                             paragraph.append(i18next.t("Construct.other.attribute") + ": ", new FontOptions(fontSize, FontType.Bold));
-                            paragraph.append(talent.attributes.map(a =>
-                                i18next.t(makeKey("Construct.attribute.", Attribute[a]))).join(", "), new FontOptions(fontSize));
+                            paragraph.append(talent.attributes
+                                .filter(a => a != null)
+                                .map(a =>
+                                    i18next.t(makeKey("Construct.attribute.", Attribute[a]))).join(", "), new FontOptions(fontSize));
                         }
                     } else if (talent.talent.name === TALENT_NAME_MISSION_POD && talent.missionPod != null) {
                         paragraph = paragraph?.nextParagraph(0);
