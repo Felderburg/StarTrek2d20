@@ -1,14 +1,18 @@
 
 export enum AssemblyContext {
     Species,
+    SpeciesAbility,
     Environment,
     EarlyOutlook,
     Education,
     Career,
+    CareerEvent,
     FinishingTouches,
     Supporting,
     Improvement,
-    Talent
+    Talent,
+    Npc,
+    Legacy,
 }
 
 export class ValueAssembly {
@@ -19,6 +23,20 @@ export class ValueAssembly {
 
     constructor(value: string, context: AssemblyContext, contextIndex: number = 0, index?: number) {
         this.value = value;
+        this.context = context;
+        this.contextIndex = contextIndex;
+        this.index = index;
+    }
+}
+
+export class FocusAssembly {
+    readonly context: AssemblyContext;
+    readonly focus: string;
+    readonly contextIndex: number;
+    readonly index?: number
+
+    constructor(focus: string, context: AssemblyContext, contextIndex: number = 0, index?: number) {
+        this.focus = focus;
         this.context = context;
         this.contextIndex = contextIndex;
         this.index = index;

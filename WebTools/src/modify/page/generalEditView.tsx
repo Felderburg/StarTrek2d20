@@ -6,8 +6,8 @@ import { useState } from "react";
 import { Header } from "../../components/header";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import store from "../../state/store";
-import { setCharacterName, setCharacterPronouns, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
-import { ValueAssembly } from "../../common/characterAssembly";
+import { setCharacterName, setCharacterPronouns, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
+import { FocusAssembly, ValueAssembly } from "../../common/characterAssembly";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
 import { AttributesHelper } from "../../helpers/attributes";
 import { AttributeView } from "../../components/attribute";
@@ -38,7 +38,8 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
         store.dispatch(updateCharacterGeneralEditSpeciesAbility(character.speciesStep.species));
     }
 
-    const onFocusChanged = (oldFocus: string, focus: string) => {
+    const onFocusChanged = (oldFocus: FocusAssembly, focus: string) => {
+        store.dispatch(updateCharacterGeneralEditFocusChange(oldFocus, focus));
     }
 
     const onValueChanged = (oldValue: ValueAssembly, value: string) => {
@@ -133,10 +134,10 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
             <Header level={2} className="my-4">{t('Construct.other.focuses')}</Header>
             <div className="row mt-4">
 
-                {character.focuses.map((f,i) =>
+                {character.focusAssemblies.map((f,i) =>
                 (<>
                     <div className="col-12 col-md-6" key={"focus-" + i}>
-                        <InputFieldAndLabel labelName={t('Construct.other.focus')} id={"focus" + i}  onChange={(value) => onFocusChanged(f, value)} value={f ?? ""} />
+                        <InputFieldAndLabel labelName={t('Construct.other.focus')} id={"focus" + i}  onChange={(value) => onFocusChanged(f, value)} value={f.focus ?? ""} />
                     </div>
                 </>))}
             </div>

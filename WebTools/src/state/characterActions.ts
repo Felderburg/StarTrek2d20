@@ -20,7 +20,7 @@ import { PersonalWeaponType } from "../helpers/weapons";
 import { LogEntry } from "../common/logEntry";
 import { SpeciesAbilityChoice, SpeciesAbilityList } from "../helpers/speciesAbility";
 import { hasSource } from "./contextFunctions";
-import { ValueAssembly } from "../common/characterAssembly";
+import { FocusAssembly, ValueAssembly } from "../common/characterAssembly";
 
 export const SET_CHARACTER = 'SET_CHARACTER';
 export const MODIFY_CHARACTER_REPUTATION = 'MODIFY_CHARACTER_REPUTATION';
@@ -73,6 +73,7 @@ export const REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "REMOVE_CHARACTER_BO
 export const ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION = "ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION";
 export const UPDATE_CHARACTER_GENERAL_EDIT_VALUE = "UPDATE_CHARACTER_GENERAL_EDIT_VALUE";
 export const UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY = "UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY";
+export const UPDATE_CHARACTER_GENERAL_EDIT_FOCUS = "UPDATE_CHARACTER_GENERAL_EDIT_FOCUS";
 
 export enum StepContext {
     Species,
@@ -338,6 +339,14 @@ export function updateCharacterGeneralEditValueChange(oldValue: ValueAssembly, n
     let payload = { oldValue: oldValue, newValue: newValue };
     return {
        type: UPDATE_CHARACTER_GENERAL_EDIT_VALUE,
+       payload: payload
+    }
+}
+
+export function updateCharacterGeneralEditFocusChange(oldValue: FocusAssembly, newValue: string) {
+    let payload = { oldValue: oldValue, newValue: newValue };
+    return {
+       type: UPDATE_CHARACTER_GENERAL_EDIT_FOCUS,
        payload: payload
     }
 }

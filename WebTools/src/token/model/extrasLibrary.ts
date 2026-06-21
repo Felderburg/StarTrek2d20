@@ -2,7 +2,7 @@ import { makeKey } from "../../common/translationKey";
 import { Species } from "../../helpers/speciesEnum";
 import { DivisionColors } from "./divisionColors";
 import EarCatalog from "./earCatalog";
-import ExtrasCatalog, { ExtraItem, IExtendedExtrasLibrary } from "./extrasCatalog";
+import { IExtendedExtrasLibrary } from "./extrasCatalog";
 import { ExtraCategory, ExtraType } from "./extrasTypeEnum";
 import { Eye2StandardBrows } from "./eyeBrowCatalog";
 import { Eye2 } from "./eyeCatalog";
@@ -581,6 +581,23 @@ const BorgImplants = {
         <path d="m 250.26553,126.5873 c -0.316,0 -0.63467,0.052 -0.94267,0.15734 -0.46933,0.16 -1.89867,0.64666 -0.95866,3.40666 0.29733,0.87601 0.67066,1.50267 1.108,1.86667 0.48133,0.39867 1.04533,0.48267 1.73066,0.24667 0.73734,-0.25067 1.33334,-0.77333 1.67601,-1.472 0.344,-0.7 0.396,-1.49067 0.144,-2.228 -0.25067,-0.73734 -0.77334,-1.33334 -1.47334,-1.676 -0.40533,-0.2 -0.84267,-0.30134 -1.284,-0.30134 m 0.22,6.47467 c -0.53067,0 -1.012,-0.17733 -1.44,-0.53066 -0.53333,-0.444 -0.97467,-1.17067 -1.31334,-2.16534 -0.95333,-2.80267 0.22267,-3.86 1.37601,-4.252 0.90666,-0.308 1.87866,-0.24534 2.736,0.176 0.85867,0.42267 1.50267,1.15467 1.81067,2.06 0.308,0.90533 0.24533,1.87734 -0.17734,2.73734 -0.42266,0.85866 -1.15467,1.5 -2.06,1.80933 -0.32533,0.11067 -0.63733,0.16533 -0.932,0.16533" style="fill-rule:nonzero;stroke-width:1.33333;fill:#000000;" id="path148"/>
     </g>`
 }
+
+
+class ExtraItem {
+
+    readonly id: ExtraType;
+    readonly category: ExtraCategory;
+    readonly name: string;
+    readonly svg: string;
+
+    constructor(id: ExtraType, category: ExtraCategory, name: string, svg: string) {
+        this.id = id;
+        this.category = category;
+        this.name = name;
+        this.svg = svg;
+    }
+}
+
 
 export class ExtrasLibrary implements IExtendedExtrasLibrary {
 

@@ -1,39 +1,13 @@
 import toast from "react-hot-toast";
-import { makeKey } from "../../common/translationKey";
-import { Species } from "../../helpers/speciesEnum";
-import { DivisionColors } from "./divisionColors";
-import EarCatalog from "./earCatalog";
 import { ExtraCategory, ExtraType } from "./extrasTypeEnum";
-import { Eye2StandardBrows } from "./eyeBrowCatalog";
-import { Eye2 } from "./eyeCatalog";
 import { HairType } from "./hairTypeEnum";
-import { FerengiForehead, ReferenceHead } from "./headCatalog";
-import SpeciesRestrictions from "./speciesRestrictions";
-import { svgTranslationHelper } from "./svgTranslationHelper";
 import Swatch from "./swatch";
 import { TokenModel } from "./tokenModel";
-import { DefaultRed } from "./uniformCatalog";
-import { UniformEra } from "./uniformEra";
 
 export interface IExtendedExtrasLibrary {
     getExtra(token: TokenModel, category: ExtraCategory, back: boolean, detail?: HairType): string
     getSwatches(token: TokenModel, category: ExtraCategory): Swatch[];
     isInCategory(type: ExtraType, category: ExtraCategory): boolean;
-}
-
-export class ExtraItem {
-
-    readonly id: ExtraType;
-    readonly category: ExtraCategory;
-    readonly name: string;
-    readonly svg: string;
-
-    constructor(id: ExtraType, category: ExtraCategory, name: string, svg: string) {
-        this.id = id;
-        this.category = category;
-        this.name = name;
-        this.svg = svg;
-    }
 }
 
 class ExtrasCatalog {

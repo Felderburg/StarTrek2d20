@@ -46,13 +46,6 @@ interface ITokenCreationPageProperties {
     token: TokenModel;
 }
 
-interface ITokenCreationPageState {
-    tab: Tab;
-    rounded: boolean;
-    bordered: boolean;
-    loadingExtension: boolean;
-}
-
 const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token}) => {
 
     const { t } = useTranslation();

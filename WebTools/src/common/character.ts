@@ -30,7 +30,7 @@ import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_NATURAL_PROTECTION_X, TALENT
 import { SpecialWeapon } from './specialWeapon';
 import { ModificationType } from '../modify/model/modificationType';
 import { LogEntry, ValueUseType } from './logEntry';
-import { AssemblyContext, ValueAssembly } from './characterAssembly';
+import { AssemblyContext, FocusAssembly, ValueAssembly } from './characterAssembly';
 
 export enum Division {
     Command,
@@ -1429,63 +1429,91 @@ export class Character extends Construct implements IWeaponDiceProvider {
         this._focuses.push(focus);
     }
 
-    private getFocusesFromSteps() {
-        let result = [];
-        if (this.speciesStep?.abilityOptions?.focuses?.length) {
-            this.speciesStep?.abilityOptions?.focuses?.filter(f => f?.length).forEach(f => result.push(f));
-        }
-        if (this.upbringingStep?.focus) {
-            result.push(this.upbringingStep.focus);
-        }
-        if (this.educationStep) {
-            this.educationStep.focuses.filter(f => f?.length).forEach(f => result.push(f));
-        }
-        this.careerEvents.filter(e => e?.focus != null).forEach(e => result.push(e.focus));
-        return result;
+    get focuses() {
+        return this.focusAssemblies.map(f => f.focus);
     }
 
-    get focuses() {
-        let allFocuses = [];
-        if (this.stereotype === Stereotype.SoloCharacter) {
-            allFocuses = this.getFocusesFromSteps();
-        } else if (this.stereotype === Stereotype.MainCharacter) {
-            let result = this.getFocusesFromSteps();
-            if (result.length < this._focuses.length || this.legacyMode) {
-                result = [...this._focuses];
-            } else {
-                this.talents.forEach(t => {
-                    t.focuses.filter(f => f != null && f.trim() !== "").forEach(f => result.push(f));
+    get focusAssemblies() {
+        let result: FocusAssembly[] = [];
+        if (this.stereotype === Stereotype.SoloCharacter || this.stereotype === Stereotype.MainCharacter) {
+            if (this.speciesStep?.abilityOptions?.focuses?.length) {
+                this.speciesStep?.abilityOptions?.focuses?.filter(f => f?.length)
+                    .forEach((f, i) =>
+                        result.push(new FocusAssembly(f, AssemblyContext.SpeciesAbility, 0, i)));
+            }
+            if (this.upbringingStep?.focus) {
+                result.push(new FocusAssembly(this.upbringingStep.focus, AssemblyContext.EarlyOutlook));
+            }
+            if (this.educationStep) {
+                this.educationStep.focuses.forEach((f,i) => {
+                    if (f?.length) {
+                        result.push(new FocusAssembly(f, AssemblyContext.Education, 0, i));
+                    }
                 });
-                allFocuses = result;
+            }
+            this.careerEvents.forEach((e, i) => {
+                if (e.focus?.length) {
+                    result.push(new FocusAssembly(e.focus, AssemblyContext.CareerEvent, i))
+                }
+            });
+
+            if (this.legacyMode) {
+                result = this._focuses.map((f,i) => new FocusAssembly(f, AssemblyContext.Legacy, i));
+            } else {
+                this.talents.forEach((t,i) =>
+                    t.focuses.forEach((f,l) => {
+                        if (f != null && f.trim() !== "") {
+                            result.push(new FocusAssembly(f, AssemblyContext.Talent, i, l));
+                        }
+                    }
+                ));
             }
         } else if (this.stereotype === Stereotype.SupportingCharacter) {
             let result = [];
             if (this.speciesStep?.abilityOptions?.focuses?.length) {
-                result.push(...this.speciesStep.abilityOptions.focuses);
+                this.speciesStep?.abilityOptions?.focuses?.filter(f => f?.length)
+                    .forEach((f, i) =>
+                        result.push(new FocusAssembly(f, AssemblyContext.SpeciesAbility, 0, i)));
             }
             if (this.supportingStep?.focuses?.length) {
-                result.push(...this.supportingStep?.focuses?.filter(f => f.trim().length));
+                this.supportingStep?.focuses?.forEach((f,i) => {
+                    if (f.trim().length) {
+                        result.push(new FocusAssembly(f, AssemblyContext.Supporting, i))
+                    }
+                });
             }
-            allFocuses = result;
         } else if (this.stereotype === Stereotype.Npc) {
             if (this.speciesStep?.abilityOptions?.focuses?.length) {
-                allFocuses.push(...this.speciesStep.abilityOptions.focuses);
+                this.speciesStep?.abilityOptions?.focuses?.filter(f => f?.length)
+                    .forEach((f, i) =>
+                        result.push(new FocusAssembly(f, AssemblyContext.SpeciesAbility, 0, i)));
             }
-            allFocuses.push(...(this.npcGenerationStep?.focuses ?? []));
+            this.npcGenerationStep?.focuses?.forEach((f,i) => {
+                if (f.trim().length) {
+                    result.push(new FocusAssembly(f, AssemblyContext.Npc, i))
+                }
+            });
         } else {
-            allFocuses = [...this._focuses];
+            result = this._focuses.map((f,i) => new FocusAssembly(f, AssemblyContext.Legacy, i));
         }
 
-        this.improvements?.filter(i => i instanceof CharacterAdvancementStep)
-            .filter(i => (i as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Focus)
-            .forEach(i => {
-                let a = (i as CharacterAdvancementStep);
-                if (a.removeValue != null && allFocuses.includes(a.removeValue)) {
-                    allFocuses.splice(allFocuses.indexOf(a.removeValue), 1);
+        this.improvements?.forEach((imp,i) => {
+            if (imp instanceof CharacterAdvancementStep && imp.choice === CharacterAdvancementChoice.Focus) {
+                if (imp.removeValue != null) {
+                    let index = -1;
+                    result.forEach((v,l) => {
+                        if (v.focus === imp.removeValue) {
+                            index = l;
+                        }
+                    });
+                    if (index >= 0) {
+                        result.splice(index, 1);
+                    }
                 }
-                allFocuses.push(a.value as string);
-            });
-        return allFocuses;
+                result.push(new FocusAssembly(imp.value as string, AssemblyContext.Improvement, i));
+            }
+        });
+        return result;
     }
 
     isEngineer() {
