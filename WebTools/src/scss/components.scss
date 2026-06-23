@@ -43,7 +43,7 @@ h1 .btn-link {
     min-width: auto;
 }
 
-.btn.btn-sm.btn-primary, .btn.btn-sm.btn-danger {
+.btn.btn-sm.btn-primary, .btn.btn-sm.btn-danger, .btn.btn-sm.btn-outline-primary {
     line-height: 1.2;
 }
 
@@ -64,8 +64,19 @@ h1 .btn-link {
     font-size: large;
 }
 
-.btn-primary {
+.btn-outline-primary {
+    border-color: rgba(181, 179, 216, .8);
+    color: rgba(181, 179, 216, .8);
+}
+
+.btn-outline-primary:active {
+    background-color: #b5b3d8 !important;
+    border-color: #b5b3d8 !important;
+    color: black !important;
+}
+.btn-primary, .btn-outline-primary:hover {
     background-color: rgba(181, 179, 216, .8);
+    border-color: rgba(181, 179, 216, .8);
     color: black;
 }
 

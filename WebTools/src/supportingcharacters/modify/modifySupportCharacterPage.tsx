@@ -37,6 +37,7 @@ import { AugmentedAbilitySelectionView, BoldOrCautiousDepartmentSelectionView, C
 import { SpecialWeapon } from "../../common/specialWeapon";
 import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 import { ModificationType } from "../../modify/model/modificationType";
+import { AdditionalTalentInfo, isAdditionalTalentSupported } from "./additionalTalentInfo";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 
@@ -102,92 +103,9 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     }
 
     const renderAdditionalTalentInfo = () => {
-        if (talentSelection?.talent === TALENT_NAME_COLLABORATION) {
+        if (isAdditionalTalentSupported(talentSelection)) {
             return (<div className="col-12 col-md-6">
-                <CollaborationDepartmentSelectionView onDepartmentSelection={(d) => {
-                    let temp = talentSelection.copy();
-                    if (temp) {
-                        temp.department = d;
-                    }
-                    setTalentSelection(temp);
-                }} character={character}
-                />
-            </div>);
-        } else if (talentSelection?.talent === TALENT_NAME_AUGMENTED_ABILITY) {
-            return (<div className="col-12 col-md-6">
-                <AugmentedAbilitySelectionView onAttributeSelection={(a) => {
-                    let temp = talentSelection.copy();
-                    if (temp) {
-                        temp.attribute = a;
-                    }
-                    setTalentSelection(temp);
-                }} character={character}
-                />
-            </div>);
-        } else if (talentSelection?.talent === TALENT_NAME_VISIT_EVERY_STAR) {
-            return (<div className="col-12 col-md-6">
-                <VisitEveryStarSelectionView onSelection={(f) => {
-                    let temp = talentSelection.copy();
-                    if (temp) {
-                        temp.focuses = f as string[];
-                    }
-                    setTalentSelection(temp);
-                }} character={character}
-                />
-            </div>);
-        } else if (talentSelection?.talent === TALENT_NAME_EXPANDED_PROGRAM) {
-            return (<div className="col-12 col-md-6">
-                <ExpandedProgramSelectionView onSelection={(f) => {
-                    let temp = talentSelection.copy();
-                    if (temp) {
-                        temp.focuses = f as string[];
-                    }
-                    setTalentSelection(temp);
-                }} character={character}
-                />
-            </div>);
-        } else if (talentSelection?.talent === TALENT_NAME_WARRIORS_SPIRIT) {
-            return (<div className="col-12 col-md-6">
-                <WarriorsSpiritSelectionView onSelection={(w) => {
-                    let temp = talentSelection.copy();
-                    if (temp) {
-                        temp.selection = w as SpecialWeapon;
-                    }
-                    setTalentSelection(temp);
-                }} character={character}
-                />
-            </div>);
-        } else if (talentSelection?.talent === TALENT_NAME_WISDOM_OF_YEARS) {
-            return (<div className="col-12 col-md-6">
-                <WisdomOfYearsSelectionView onFocusSelection={(f) => {
-                    let temp = talentSelection.copy();
-                    if (temp) {
-                        temp.focuses = [ f ];
-                    }
-                    setTalentSelection(temp);
-                }}
-                onValueSelection={v => {
-                    let temp = talentSelection.copy();
-                    if (temp) {
-                        temp.value = v;
-                    }
-                    setTalentSelection(temp);
-                }}
-                character={character}
-                />
-            </div>);
-        } else if (talentSelection?.talent === TALENT_NAME_BOLD || talentSelection?.talent === TALENT_NAME_CAUTIOUS) {
-            return (<div className="col-12 col-md-6">
-                <BoldOrCautiousDepartmentSelectionView onDepartmentSelection={(d) => {
-                    let temp = talentSelection?.copy();
-                    if (temp) {
-                        temp.department = d;
-                    }
-                    setTalentSelection(temp);
-                }}
-                talent={talentSelection.talentModel}
-                character={character}
-                />
+                <AdditionalTalentInfo character={character} talentSelection={talentSelection} setTalentSelection={setTalentSelection} />
             </div>);
         } else {
             return undefined;

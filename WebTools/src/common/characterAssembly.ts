@@ -1,3 +1,4 @@
+import { SelectedTalent } from "./selectedTalent";
 
 export enum AssemblyContext {
     Species,
@@ -37,6 +38,20 @@ export class FocusAssembly {
 
     constructor(focus: string, context: AssemblyContext, contextIndex: number = 0, index?: number) {
         this.focus = focus;
+        this.context = context;
+        this.contextIndex = contextIndex;
+        this.index = index;
+    }
+}
+
+export class TalentAssembly {
+    readonly context: AssemblyContext;
+    readonly talent: SelectedTalent;
+    readonly contextIndex: number;
+    readonly index?: number
+
+    constructor(talent: SelectedTalent, context: AssemblyContext, contextIndex: number = 0, index?: number) {
+        this.talent = talent;
         this.context = context;
         this.contextIndex = contextIndex;
         this.index = index;

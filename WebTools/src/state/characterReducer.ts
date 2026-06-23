@@ -1,5 +1,5 @@
 import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, NpcGenerationStep } from "../common/character";
-import { AssemblyContext, FocusAssembly, ValueAssembly } from "../common/characterAssembly";
+import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from "../common/characterAssembly";
 import { CharacterType } from "../common/characterType";
 import { Stereotype } from "../common/construct";
 import { LogEntry } from "../common/logEntry";
@@ -26,6 +26,7 @@ import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION, 
     SET_SUPPORTING_CHARACTER_DISCIPLINES, SET_SUPPORTING_CHARACTER_SUPERVISORY, StepContext,
     UPDATE_CHARACTER_GENERAL_EDIT_FOCUS,
     UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY,
+    UPDATE_CHARACTER_GENERAL_EDIT_TALENT,
     UPDATE_CHARACTER_GENERAL_EDIT_VALUE} from "./characterActions";
 
 interface CharacterState {
@@ -836,6 +837,32 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 let improvement = temp.improvements[oldValue.contextIndex];
                 if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Focus) {
                     improvement.value = action.payload.newValue;
+                }
+            }
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case UPDATE_CHARACTER_GENERAL_EDIT_TALENT: {
+            let temp = state.currentCharacter.copy();
+            let oldValue = action.payload.oldValue as TalentAssembly;
+
+            if (oldValue.context === AssemblyContext.Species && temp.speciesStep) {
+                temp.speciesStep.talent = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.EarlyOutlook && temp.upbringingStep) {
+                temp.upbringingStep.focus = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.Education && temp.educationStep) {
+                temp.educationStep.talent = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.Career && temp.careerStep) {
+                temp.careerStep.talent = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.FinishingTouches && temp.finishingStep) {
+                temp.finishingStep.talent = action.payload.newValue;
+            } else if (oldValue.context === AssemblyContext.Improvement) {
+                let improvement = temp.improvements[oldValue.contextIndex];
+                if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Talent) {
+                    improvement.value = action.payload.newValue as SelectedTalent;
                 }
             }
             return {

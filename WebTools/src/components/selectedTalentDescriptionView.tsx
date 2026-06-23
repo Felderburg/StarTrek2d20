@@ -28,12 +28,16 @@ interface ISelectedTalentDescriptionProperties {
 
 interface ITalentAttributeSelectionProperties {
     character: Character;
+    initialSelection?: Attribute;
     onAttributeSelection: (a: Attribute) => void;
+    simpleHeader?: boolean;
 }
 
 interface ITalentDepartmentSelectionProperties {
     character: Character;
     onDepartmentSelection: (d: Department) => void;
+    initialSelection?: Department;
+    simpleHeader?: boolean;
 }
 
 interface IBoldOrCautiousTalentDepartmentSelectionProperties extends ITalentDepartmentSelectionProperties {
@@ -43,17 +47,20 @@ interface IBoldOrCautiousTalentDepartmentSelectionProperties extends ITalentDepa
 interface ITalentAdditionalSelectionProperties {
     character: Character;
     onSelection: (selection: string[]|SpecialWeapon|AttackType|undefined) => void;
+    simpleHeader?: boolean;
 }
 
 interface ITalentAdditionalFocusAndValueSelectionProperties {
     character: Character;
     onFocusSelection: (selection: string|undefined) => void;
     onValueSelection: (selection: string|undefined) => void;
+    simpleHeader?: boolean;
 }
 
 interface ISelectedTalentBorgImplantProperties {
     character: Character;
     onSelection: (selection: BorgImplantType[]) => void;
+    simpleHeader?: boolean;
 }
 
 
@@ -144,19 +151,23 @@ export const WisdomOfYearsSelectionView: React.FC<ITalentAdditionalFocusAndValue
     );
 }
 
-export const AugmentedAbilitySelectionView: React.FC<ITalentAttributeSelectionProperties> = ({onAttributeSelection, character}) => {
+export const AugmentedAbilitySelectionView: React.FC<ITalentAttributeSelectionProperties> = ({onAttributeSelection, character, initialSelection, simpleHeader}) => {
 
     const { t } = useTranslation();
-    const [ attributeSelection, setAttributeSelection ] = useState<Attribute|undefined>(undefined);
+    const [ attributeSelection, setAttributeSelection ] = useState<Attribute|undefined>(initialSelection);
 
-    let selectedAttributes = character.talents.filter(t => t.talent === TALENT_NAME_AUGMENTED_ABILITY).map(t => t.attribute);
+    let selectedAttributes = character.talents
+        .filter(t => t.talent === TALENT_NAME_AUGMENTED_ABILITY && t.attribute !== initialSelection)
+        .map(t => t.attribute);
 
     return (
         <div>
-            <Header level={2} className="my-4">{t('Talent.augmentedAbility')}</Header>
+            {simpleHeader
+                ? (<Header level={3} className="my-4">{t('Construct.other.attributes')}</Header>)
+                : (<Header level={2} className="my-4">{t('Talent.augmentedAbility')}</Header>)}
             <SimpleAttributeSelector
                 character={character}
-                isChecked={(a) => attributeSelection === a}
+                isChecked={(a) => attributeSelection === a }
                 onSelectAttribute={(a) => {
                     setAttributeSelection(a);
                     onAttributeSelection(a);
@@ -197,16 +208,18 @@ export const DefensiveTrainingAttackTypeSelectionView: React.FC<ITalentAdditiona
     );
 }
 
-export const CollaborationDepartmentSelectionView: React.FC<ITalentDepartmentSelectionProperties> = ({onDepartmentSelection, character}) => {
+export const CollaborationDepartmentSelectionView: React.FC<ITalentDepartmentSelectionProperties> = ({onDepartmentSelection, character, simpleHeader, initialSelection}) => {
 
     const { t } = useTranslation();
-    const [ departmentSelection, setDepartmentSelection ] = useState<Department|undefined>(undefined);
+    const [ departmentSelection, setDepartmentSelection ] = useState<Department|undefined>(initialSelection);
 
-    let selectedDepartments = character.talents.filter(t => t.talent === TALENT_NAME_COLLABORATION).map(t => t.department);
+    let selectedDepartments = character.talents.filter(t => t.talent === TALENT_NAME_COLLABORATION && t.department !== initialSelection).map(t => t.department);
 
     return (
         <div>
-            <Header level={2} className="my-4">{t('Talent.collaboration')}</Header>
+            {simpleHeader
+                ? (<Header level={3} className="my-4">{t('Construct.other.departments')}</Header>)
+                : (<Header level={2} className="my-4">{t('Talent.collaboration')}</Header>)}
             <SimpleDepartmentSelector
                 character={character}
                 isChecked={(a) => departmentSelection === a}
@@ -220,14 +233,17 @@ export const CollaborationDepartmentSelectionView: React.FC<ITalentDepartmentSel
     );
 }
 
-export const BoldOrCautiousDepartmentSelectionView: React.FC<IBoldOrCautiousTalentDepartmentSelectionProperties> = ({onDepartmentSelection, character, talent}) => {
+export const BoldOrCautiousDepartmentSelectionView: React.FC<IBoldOrCautiousTalentDepartmentSelectionProperties> = ({onDepartmentSelection, character, talent, simpleHeader, initialSelection}) => {
 
-    const [ departmentSelection, setDepartmentSelection ] = useState<Department|undefined>(undefined);
+    const { t } = useTranslation();
+    const [ departmentSelection, setDepartmentSelection ] = useState<Department|undefined>(initialSelection);
     let selectedDepartments = character.talents.filter(t => [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(t.talent)).map(t => t.department);
 
     return (
         <div>
-            <Header level={2} className="my-4">{talent.localizedDisplayName}</Header>
+            {simpleHeader
+                ? (<Header level={3} className="my-4">{t('Construct.other.departments')}</Header>)
+                : (<Header level={2} className="my-4">{talent.localizedDisplayName}</Header>)}
             <SimpleDepartmentSelector
                 character={character}
                 isChecked={(a) => departmentSelection === a}

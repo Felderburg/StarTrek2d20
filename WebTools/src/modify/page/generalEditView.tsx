@@ -6,12 +6,22 @@ import { useState } from "react";
 import { Header } from "../../components/header";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import store from "../../state/store";
-import { setCharacterName, setCharacterPronouns, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
-import { FocusAssembly, ValueAssembly } from "../../common/characterAssembly";
+import { setCharacterName, setCharacterPronouns, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditTalentChange, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
+import { FocusAssembly, TalentAssembly, ValueAssembly } from "../../common/characterAssembly";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
 import { AttributesHelper } from "../../helpers/attributes";
 import { AttributeView } from "../../components/attribute";
 import { makeKey } from "../../common/translationKey";
+import { AdditionalTalentInfo } from "../../supportingcharacters/modify/additionalTalentInfo";
+import { SelectedTalentDescriptionView } from "../../components/selectedTalentDescriptionView";
+import { NameGenerator } from "../../npc/nameGenerator";
+import { SpeciesHelper } from "../../helpers/species";
+import D20IconButton from "../../solo/component/d20IconButton";
+import { SpeciesModel } from "../../helpers/speciesModel";
+import { TalentsHelper } from "../../helpers/talents";
+import { ModalControl } from "../../components/modal";
+import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
+import { SelectedTalent } from "../../common/selectedTalent";
 
 interface IGeneralEditViewProperties extends ICharacterProperties {
     onNextStep: () => void;
@@ -22,6 +32,7 @@ enum Tab {
     Species,
     Values,
     Focuses,
+    Talents,
     Final
 }
 
@@ -30,8 +41,31 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
     const [ tab, setTab ] = useState<Tab>(Tab.Species);
     const { t } = useTranslation();
 
+    const closeModal = () => {
+        ModalControl.hide();
+    }
+
+    const showTalentSelectionModal = (talentAssembly: TalentAssembly) => {
+        const talents = TalentsHelper.getAllAvailableTalentsForCharacter(character);
+
+        ModalControl.show("xl", () => closeModal(),
+
+            (<div>
+                <SimpleTalentSelectionList construct={character} talents={talents} onSelection={(t) => onTalentChanged(talentAssembly, t)} />
+                <div className="text-center mt-4">
+                    <Button size="sm" onClick={() => closeModal()}>{t('Common.button.ok')}</Button>
+                </div>
+            </div>),
+
+            t("ModifySupportingCharacter.talentModal.title"));
+    }
+
     const prepareForOnNextStep = () => {
         onNextStep();
+    }
+
+    const onTalentChanged = (oldTalent: TalentAssembly, talent: SelectedTalent) => {
+        store.dispatch(updateCharacterGeneralEditTalentChange(oldTalent, talent));
     }
 
     const addSpeciesAbility = () => {
@@ -55,12 +89,25 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
         store.dispatch(setCharacterPronouns(value));
     }
 
-    const renderFinalTab = () => {
+    const randomName = (species: SpeciesModel) => {
+        let { name, pronouns } = NameGenerator.instance.createName(species);
+        store.dispatch(setCharacterName(name));
+        store.dispatch(setCharacterPronouns(pronouns));
+    }
 
+    const renderFinalTab = () => {
+        const species = SpeciesHelper.getSpeciesByType(character?.speciesStep?.species);
         return (<div className="row mt-4">
             <div className="col-12 col-md-6">
                 <Header level={2} className="mb-3">{t('Construct.other.name')}</Header>
-                <InputFieldAndLabel labelName={t('Construct.other.name')} id="name" onChange={(value) => onNameChanged(value)} value={character.name ?? ""} />
+                <div className="d-flex justify-content-between align-items-center flex-wrap">
+                    <InputFieldAndLabel labelName={t('Construct.other.name')} id="name" onChange={(value) => onNameChanged(value)} value={character.name ?? ""} />
+                    {NameGenerator.instance.isSupported(species)
+                        ? (<div style={{ flexShrink: 0 }} className="mt-1">
+                            <D20IconButton onClick={() => randomName(species)}/>
+                        </div>)
+                        : undefined}
+                </div>
 
                 <div className="mt-3">
                     <InputFieldAndLabel labelName={t('Construct.other.pronouns')} id="pronouns" onChange={(value) => onPronounsChanged(value)} value={character.pronouns ?? ""} />
@@ -144,6 +191,25 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
         </>);
     }
 
+    const renderTalentsTab = () => {
+
+        return (<>
+            <div className="row mt-4">
+                {character.talentAssemblies.map((talent,i) =>
+                (<>
+                    <div className="col-12 col-md-6" key={"talent-" + i}>
+                        <Header level={2} className="my-4">{talent.talent.talentModel.localizedName}</Header>
+                        <div className="text-end">
+                            <Button size="sm" variant="outline-primary" onClick={() => showTalentSelectionModal(talent)}>{t("Common.button.modify")}</Button>
+                        </div>
+                        <SelectedTalentDescriptionView talent={talent.talent} version={character.version} />
+                        <AdditionalTalentInfo character={character} talentSelection={talent.talent}
+                            setTalentSelection={(s) => {}} simpleHeader={true} />
+                    </div>
+                </>))}
+            </div>
+        </>);
+    }
 
     const renderTab = () => {
         if (tab === Tab.Values) {
@@ -152,6 +218,8 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
             return renderFocusTab();
         } else if (tab === Tab.Species) {
             return renderSpeciesTab();
+        } else if (tab === Tab.Talents) {
+            return renderTalentsTab();
         } else if (tab === Tab.Final) {
             return renderFinalTab();
         } else {
@@ -170,6 +238,8 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
                     onClick={() => setTab(Tab.Focuses)}>{t('Construct.other.focuses')}</button>
                 <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Values ? "active" : "")}
                     onClick={() => setTab(Tab.Values)}>{t('Construct.other.values')}</button>
+                <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Talents ? "active" : "")}
+                    onClick={() => setTab(Tab.Talents)}>{t('Construct.other.talents')}</button>
                 <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Final ? "active" : "")}
                     onClick={() => setTab(Tab.Final)}>{t('Page.title.soloFinal')}</button>
             </div>

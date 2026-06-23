@@ -30,7 +30,7 @@ import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_NATURAL_PROTECTION_X, TALENT
 import { SpecialWeapon } from './specialWeapon';
 import { ModificationType } from '../modify/model/modificationType';
 import { LogEntry, ValueUseType } from './logEntry';
-import { AssemblyContext, FocusAssembly, ValueAssembly } from './characterAssembly';
+import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from './characterAssembly';
 
 export enum Division {
     Command,
@@ -577,50 +577,55 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get talents(): SelectedTalent[] {
-        let result = []
+        return this.talentAssemblies.map(a => a.talent);
+    }
+
+    get talentAssemblies() {
+        let result: TalentAssembly[] = []
         if (this.stereotype === Stereotype.Npc) {
-            return this.npcGenerationStep ? [...this.npcGenerationStep.talents] : [];
+            return this.npcGenerationStep ? this.npcGenerationStep.talents.map((t,i) => new TalentAssembly(t, AssemblyContext.Npc, i)) : [];
         } else if (this.stereotype === Stereotype.MainCharacter) {
             if (this.speciesStep?.talent != null) {
-                result.push(this.speciesStep.talent);
+                result.push(new TalentAssembly(this.speciesStep.talent, AssemblyContext.Species));
             }
             if (this.upbringingStep?.talent != null) {
-                result.push(this.upbringingStep.talent);
+                result.push(new TalentAssembly(this.upbringingStep.talent, AssemblyContext.EarlyOutlook));
             }
             if (this.educationStep?.talent != null) {
-                result.push(this.educationStep.talent);
+                result.push(new TalentAssembly(this.educationStep.talent, AssemblyContext.Education));
             }
             if (this.careerStep?.talent != null) {
-                result.push(this.careerStep.talent);
+                result.push(new TalentAssembly(this.careerStep.talent, AssemblyContext.Career));
             }
             if (this.finishingStep?.talent != null) {
-                result.push(this.finishingStep.talent);
+                result.push(new TalentAssembly(this.finishingStep.talent, AssemblyContext.FinishingTouches));
             }
         }
 
-        this.improvements?.filter(s => s instanceof CharacterAdvancementStep)
-            .filter(s => (s as CharacterAdvancementStep).choice === CharacterAdvancementChoice.Talent)
-            ?.forEach(s => {
-                let step = (s as CharacterAdvancementStep);
-                if (step.removeValue != null) {
-                    let index = -1;
-                    result.forEach((t, i) => {
-                        const removeTalent = step.removeValue as SelectedTalent;
-                        if (t.talent === TALENT_NAME_AUGMENTED_ABILITY) {
-                            if (t.talent === removeTalent.talent && t.attribute === removeTalent.attribute && index === -1) {
-                                index = i
+        this.improvements
+            ?.forEach((s,si) => {
+                if (s instanceof CharacterAdvancementStep && s.choice === CharacterAdvancementChoice.Talent) {
+                    let step = (s as CharacterAdvancementStep);
+                    if (step.removeValue != null) {
+                        let index = -1;
+                        result.forEach((t, i) => {
+                            const removeTalent = step.removeValue as SelectedTalent;
+                            if (t.talent.name === TALENT_NAME_AUGMENTED_ABILITY) {
+                                if (t.talent.name === removeTalent.talent && t.talent.attribute === removeTalent.attribute && index === -1) {
+                                    index = i
+                                }
+                            } else {
+                                if (t.talent.name === removeTalent.talent && index === -1) {
+                                    index = i
+                                }
                             }
-                        } else {
-                            if (t.talent === removeTalent.talent && index === -1) {
-                                index = i
-                            }
+                        });
+                        if (index >= 0) {
+                            result.splice(index, 1);
                         }
-                    });
-                    if (index >= 0) {
-                        result.splice(index, 1);
                     }
+                    result.push(new TalentAssembly(step.value as SelectedTalent, AssemblyContext.Improvement, si));
                 }
-                result.push(step.value as SelectedTalent);
             });
         return result;
     }

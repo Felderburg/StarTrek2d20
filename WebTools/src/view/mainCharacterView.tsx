@@ -192,7 +192,9 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
 
         {character.logEntries?.length
             ? (<div className="row align-items-stretch">
-                <Header level={2} className="mt-5">Log Entries</Header>
+                <div className="col-12">
+                    <Header level={2} className="mt-5">Log Entries</Header>
+                </div>
                 {character.logEntries?.map((l,i) => (
                     <div className="col-12 col-md-6 my-3" key={"entry-" + i}>
                         <div  className="pb-3 view-border-bottom h-100">
