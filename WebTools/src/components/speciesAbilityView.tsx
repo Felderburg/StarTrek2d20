@@ -16,6 +16,8 @@ import { BorgImplants, BorgImplantType } from "../helpers/borgImplant";
 import { CheckBox } from "./checkBox";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import Markdown from "react-markdown";
+import { SpeciesAbilityChoiceView } from "./speciesAbilityChoiceView";
+import { BorgImplantSelectionView } from "./borgImplantSelectionView";
 
 interface ISpeciesAbilityProperties{
     character: Character;
@@ -60,75 +62,6 @@ export const SpeciesAbilityView: React.FC<ISpeciesAbilityProperties> = ({charact
 
     }
 
-    const renderBorgImplants = () => {
-        const implants = BorgImplants.instance.implants.map(implant => {
-            const description = character.version === 1 ? implant.localizedDescription : implant.localizedDescription2e
-            return (
-                <tr key={'implant-' + implant.type}>
-                    <td>
-                        <CheckBox
-                            isChecked={character.speciesStep?.abilityOptions?.implants?.includes(implant.type) ?? false}
-                            onChanged={(_) => {
-                                if (character.speciesStep?.abilityOptions?.implants?.includes(implant.type)) {
-                                    store.dispatch(removeCharacterBorgImplantSpeciesOption(implant.type))
-                                } else {
-                                    store.dispatch(addCharacterBorgImplantSpeciesOption(implant.type))
-                                }
-                            }}
-                            value={implant.name} />
-                    </td>
-                    <td>
-                        <div className="selection-header-small"><strong>{character.version === 1 ? implant.localizedName : implant.localizedName2e}</strong></div>
-                        {description.includes(CHALLENGE_DICE_NOTATION)
-                            ? (<div>replaceDiceWithArrowhead(implant.description)</div>)
-                            : (<div><Markdown className="markdown-sm">{description}</Markdown></div>)}
-                    </td>
-                </tr>
-            );
-        });
-
-        return (
-            <table className="selection-list">
-                <tbody>
-                    {implants}
-                </tbody>
-            </table>
-        );
-
-    }
-
-    const renderSpeciesAbilityChoices = () => {
-
-        const choices = character.speciesStep?.ability?.choices?.map(c => (<tr key={'choice-' + c}>
-            <td>
-                <CheckBox
-                    isChecked={character.speciesStep?.abilityOptions?.choice === c}
-                    onChanged={(_) => {
-                        if (character.speciesStep?.abilityOptions?.choice === c) {
-                            store.dispatch(setCharacterSpeciesAbilityChoice(undefined))
-                        } else {
-                            store.dispatch(setCharacterSpeciesAbilityChoice(c))
-                        }
-                    }}
-                    value={c} />
-            </td>
-            <td>
-                <Markdown className="markdown-sm">{
-                    '**' + character.speciesStep?.ability?.getChoiceName(c) + '**: ' +
-                    character.speciesStep?.ability?.getChoiceDescription(c)}
-                </Markdown>
-            </td>
-        </tr>));
-
-        return (
-            <table className="selection-list">
-                <tbody>
-                    {choices}
-                </tbody>
-            </table>
-        );
-    }
-
 
     if (character?.speciesStep?.ability) {
         return (<>
@@ -142,10 +75,10 @@ export const SpeciesAbilityView: React.FC<ISpeciesAbilityProperties> = ({charact
                 ? renderDenobulanFocuses()
                 : undefined}
             {character.speciesStep?.species === Species.LiberatedBorg && hasSource(Source.SpeciesSourcebook)
-                ? renderBorgImplants()
+                ? <BorgImplantSelectionView character={character} />
                 : undefined}
             {character.speciesStep?.ability?.isChoiceRequired
-                ? renderSpeciesAbilityChoices()
+                ? <SpeciesAbilityChoiceView character={character} />
                 : undefined}
         </>);
     } else {

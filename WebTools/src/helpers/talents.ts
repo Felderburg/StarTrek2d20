@@ -5647,6 +5647,21 @@ export class Talents {
         return result;
     }
 
+    getCareerLengthTalents(character: Character): TalentModel[] {
+        if (character.careerStep?.career === Career.Young) {
+            return [ this.getTalent(TALENT_NAME_UNTAPPED_POTENTIAL) ]
+        } else if (character.careerStep?.career === Career.Veteran) {
+            let result = [
+                this.getTalent("Veteran"),
+                this.getTalent("Wrote the Book"),
+                this.getTalent("Life Lessons")
+            ]
+            return result.filter(t => t.isPrerequisiteFulfilled(character));
+        } else {
+            return this.getAllAvailableTalentsForCharacter(character);
+        }
+    }
+
     getSourceForTalent(name: string) {
         const talent = this.getTalent(name);
         return this.getSourceForTalentModel(talent);

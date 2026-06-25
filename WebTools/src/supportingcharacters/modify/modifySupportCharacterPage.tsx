@@ -23,7 +23,6 @@ import { SimpleAttributeSelector } from "../../components/simpleAttributeSelecto
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import D20IconButton from "../../solo/component/d20IconButton";
 import { FocusRandomTable } from "../../solo/table/focusRandomTable";
-import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentsHelper } from "../../helpers/talents";
 import { TalentDescription } from "../../components/talentDescription";
 import { ModalControl } from "../../components/modal";
 import { Promotion, CharacterAdvancementStep } from "../../common/character";
@@ -33,11 +32,10 @@ import { saveCharacterToLocalStorage } from "../../state/savedConstructActions";
 import { CharacterAdvancementChoice } from "../../modify/model/characterAdvancementChoice";
 import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { SelectedTalent } from "../../common/selectedTalent";
-import { AugmentedAbilitySelectionView, BoldOrCautiousDepartmentSelectionView, CollaborationDepartmentSelectionView, ExpandedProgramSelectionView, VisitEveryStarSelectionView, WarriorsSpiritSelectionView, WisdomOfYearsSelectionView } from "../../components/selectedTalentDescriptionView";
-import { SpecialWeapon } from "../../common/specialWeapon";
 import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
 import { ModificationType } from "../../modify/model/modificationType";
 import { AdditionalTalentInfo, isAdditionalTalentSupported } from "./additionalTalentInfo";
+import { TalentsHelper } from "../../helpers/talents";
 
 const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character}) => {
 

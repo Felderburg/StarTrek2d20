@@ -48,6 +48,7 @@ interface ITalentAdditionalSelectionProperties {
     character: Character;
     onSelection: (selection: string[]|SpecialWeapon|AttackType|undefined) => void;
     simpleHeader?: boolean;
+    initialSelection?: string[]|SpecialWeapon|AttackType;
 }
 
 interface ITalentAdditionalFocusAndValueSelectionProperties {
@@ -55,19 +56,22 @@ interface ITalentAdditionalFocusAndValueSelectionProperties {
     onFocusSelection: (selection: string|undefined) => void;
     onValueSelection: (selection: string|undefined) => void;
     simpleHeader?: boolean;
+    initialFocus?: string;
+    initialValue?: string;
 }
 
 interface ISelectedTalentBorgImplantProperties {
     character: Character;
+    initialSelection?: BorgImplantType[];
     onSelection: (selection: BorgImplantType[]) => void;
     simpleHeader?: boolean;
 }
 
 
-export const WarriorsSpiritSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection}) => {
+export const WarriorsSpiritSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, initialSelection}) => {
 
     const { t } = useTranslation();
-    const [ selection, setSelection ] = useState<SpecialWeapon|undefined>(undefined);
+    const [ selection, setSelection ] = useState<SpecialWeapon|undefined>(initialSelection as SpecialWeapon);
 
     const options = () => {
         let result = [];
@@ -95,10 +99,10 @@ export const WarriorsSpiritSelectionView: React.FC<ITalentAdditionalSelectionPro
     );
 }
 
-export const VisitEveryStarSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character}) => {
+export const VisitEveryStarSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character, initialSelection}) => {
 
     const { t } = useTranslation();
-    const [ selection, setSelection ] = useState<string|undefined>(undefined);
+    const [ selection, setSelection ] = useState<string|undefined>((initialSelection as string[])[0]);
 
     return (
         <div>
@@ -122,11 +126,11 @@ const randomValue = (character: Character) => {
     return value;
 }
 
-export const WisdomOfYearsSelectionView: React.FC<ITalentAdditionalFocusAndValueSelectionProperties> = ({onFocusSelection, onValueSelection, character}) => {
+export const WisdomOfYearsSelectionView: React.FC<ITalentAdditionalFocusAndValueSelectionProperties> = ({onFocusSelection, onValueSelection, character, initialFocus, initialValue}) => {
 
     const { t } = useTranslation();
-    const [ focusSelection, setFocusSelection ] = useState<string|undefined>(undefined);
-    const [ valueSelection, setValueSelection ] = useState<string|undefined>(undefined);
+    const [ focusSelection, setFocusSelection ] = useState<string|undefined>(initialFocus);
+    const [ valueSelection, setValueSelection ] = useState<string|undefined>(initialValue);
 
     return (
         <div>
@@ -178,10 +182,32 @@ export const AugmentedAbilitySelectionView: React.FC<ITalentAttributeSelectionPr
     );
 }
 
-export const DefensiveTrainingAttackTypeSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character}) => {
+export const UntappedPotentialSelectionView: React.FC<ITalentAttributeSelectionProperties> = ({onAttributeSelection, character, initialSelection, simpleHeader}) => {
 
     const { t } = useTranslation();
-    const [ attackTypeSelection, setAttackTypeSelection ] = useState<AttackType|undefined>(undefined);
+    const [ attributeSelection, setAttributeSelection ] = useState<Attribute|undefined>(initialSelection);
+
+    return (
+        <div>
+            {simpleHeader
+                ? (<Header level={3} className="my-4">{t('Construct.other.attributes')}</Header>)
+                : (<Header level={2} className="my-4">{t('Talent.untappedPotential')}</Header>)}
+            <SimpleAttributeSelector
+                character={character}
+                isChecked={(a) => attributeSelection === a }
+                onSelectAttribute={(a) => {
+                    setAttributeSelection(a);
+                    onAttributeSelection(a);
+                }}
+                isUpdateable={(a) => true}
+            />
+        </div>
+    );
+}
+export const DefensiveTrainingAttackTypeSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character, initialSelection}) => {
+
+    const { t } = useTranslation();
+    const [ attackTypeSelection, setAttackTypeSelection ] = useState<AttackType|undefined>(initialSelection as AttackType);
     const options = () => {
         let result = [];
         result.push(new DropDownElement("", t('Common.select.choose')));
@@ -237,7 +263,7 @@ export const BoldOrCautiousDepartmentSelectionView: React.FC<IBoldOrCautiousTale
 
     const { t } = useTranslation();
     const [ departmentSelection, setDepartmentSelection ] = useState<Department|undefined>(initialSelection);
-    let selectedDepartments = character.talents.filter(t => [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(t.talent)).map(t => t.department);
+    let selectedDepartments = character.talents.filter(t => [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(t.talent) && t.department !== initialSelection).map(t => t.department);
 
     return (
         <div>
@@ -257,8 +283,8 @@ export const BoldOrCautiousDepartmentSelectionView: React.FC<IBoldOrCautiousTale
     );
 }
 
-export const BorgImplantsSelectionView: React.FC<ISelectedTalentBorgImplantProperties> = ({character, onSelection}) => {
-    const [ implantSelections, setImplantSelections ] = useState<BorgImplantType[]>([]);
+export const BorgImplantsSelectionView: React.FC<ISelectedTalentBorgImplantProperties> = ({character, onSelection, initialSelection}) => {
+    const [ implantSelections, setImplantSelections ] = useState<BorgImplantType[]>(initialSelection ?? []);
 
     const implants = BorgImplants.instance.implants.map(implant => {
         return (

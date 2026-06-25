@@ -6,8 +6,8 @@ import { useState } from "react";
 import { Header } from "../../components/header";
 import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import store from "../../state/store";
-import { setCharacterName, setCharacterPronouns, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditTalentChange, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
-import { FocusAssembly, TalentAssembly, ValueAssembly } from "../../common/characterAssembly";
+import { addCharacterTalent, setCharacterName, setCharacterPronouns, StepContext, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditTalentChange, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
+import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from "../../common/characterAssembly";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
 import { AttributesHelper } from "../../helpers/attributes";
 import { AttributeView } from "../../components/attribute";
@@ -22,6 +22,15 @@ import { TalentsHelper } from "../../helpers/talents";
 import { ModalControl } from "../../components/modal";
 import SimpleTalentSelectionList from "../../components/simpleTalentSelectionList";
 import { SelectedTalent } from "../../common/selectedTalent";
+import { determineSelectedTalentExtraErrors } from "../../common/selectedTalentExtraCheck";
+import { Dialog } from "../../components/dialog";
+import { SpeciesAbilityChoiceView } from "../../components/speciesAbilityChoiceView";
+import { RankedTalent } from "../../helpers/rankedTalent";
+import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
+import { Species } from "../../helpers/speciesEnum";
+import { Source } from "../../helpers/sources";
+import { hasSource } from "../../state/contextFunctions";
+import { BorgImplantSelectionView } from "../../components/borgImplantSelectionView";
 
 interface IGeneralEditViewProperties extends ICharacterProperties {
     onNextStep: () => void;
@@ -46,7 +55,10 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
     }
 
     const showTalentSelectionModal = (talentAssembly: TalentAssembly) => {
-        const talents = TalentsHelper.getAllAvailableTalentsForCharacter(character);
+        let talents = TalentsHelper.getAllAvailableTalentsForCharacter(character);
+        if (talentAssembly.context === AssemblyContext.Career) {
+            talents = TalentsHelper.getCareerLengthTalents(character);
+        }
 
         ModalControl.show("xl", () => closeModal(),
 
@@ -61,7 +73,18 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
     }
 
     const prepareForOnNextStep = () => {
-        onNextStep();
+        let errorMessage = character.talentAssemblies
+            .map(t => determineSelectedTalentExtraErrors(t.talent))
+            .filter(m => m?.length)[0];
+        if (character.version > 1 && character.speciesStep?.species === Species.LiberatedBorg && character.speciesStep.ability != null) {
+            setTab(Tab.Species);
+            Dialog.show(t("SpeciesAbility.liberatedBorg.error"));
+        } else if (errorMessage?.length) {
+            setTab(Tab.Talents);
+            Dialog.show(errorMessage);
+        } else {
+            onNextStep();
+        }
     }
 
     const onTalentChanged = (oldTalent: TalentAssembly, talent: SelectedTalent) => {
@@ -132,20 +155,38 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
                 });
 
 
+        let speciesAbilityTalents = character.speciesStep?.ability?.isTalentSelectionSupported
+            ? character.speciesStep.ability.talentNames
+                .map(t => new RankedTalent(TalentsHelper.getTalent(t)))
+            : [];
         return (<>
-            <div className="row mt-4">
-                <div className="col-12 col-md-6">
-                    <Header level={2} className="my-4">{character.speciesName}</Header>
+                <Header level={2} className="my-4">{character.speciesName}</Header>
 
-                    {attributes}
+                {attributes}
 
 
                 {SpeciesAbilityList.instance.getBySpecies(character.speciesStep.species) != null
                 ? character.speciesStep?.ability != null
-                    ? (<p className="mt-3">
-                        <b>{t('Construct.other.speciesAbility')}: </b>
-                        <span>{character.speciesStep?.ability?.name}</span>
-                        </p>)
+                    ? (<>
+                        <p className="mt-3">
+                            <b>{t('Construct.other.speciesAbility')}: </b>
+                            <span>{character.speciesStep?.ability?.name}</span>
+                        </p>
+                        {character.speciesStep?.species === Species.LiberatedBorg && hasSource(Source.SpeciesSourcebook)
+                            ? <BorgImplantSelectionView character={character} />
+                            : undefined}
+                        {speciesAbilityTalents?.length
+                            ? <SingleTalentSelectionList
+                                construct={character}
+                                initialSelection={character.speciesStep.talent}
+                                talents={speciesAbilityTalents}
+                                onSelection={(t) => store.dispatch(addCharacterTalent(t, StepContext.Species))}
+                             />
+                            : undefined}
+                        {character.speciesStep?.ability?.isChoiceRequired
+                            ? <SpeciesAbilityChoiceView character={character} />
+                            : undefined}
+                    </>)
                     : (<div>
                         <Markdown>{t("GeneralEditView.speciesAbility.available")}</Markdown>
                         <div className="mt-3">
@@ -153,8 +194,6 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
                         </div>
                     </div>)
                 : undefined}
-                </div>
-            </div>
         </>);
     }
 
@@ -195,7 +234,9 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
 
         return (<>
             <div className="row mt-4">
-                {character.talentAssemblies.map((talent,i) =>
+                {character.talentAssemblies
+                    .filter(t => t.context !== AssemblyContext.Species || !character.speciesStep?.ability?.isTalentSelectionSupported)
+                    .map((talent,i) =>
                 (<>
                     <div className="col-12 col-md-6" key={"talent-" + i}>
                         <Header level={2} className="my-4">{talent.talent.talentModel.localizedName}</Header>
@@ -204,7 +245,7 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
                         </div>
                         <SelectedTalentDescriptionView talent={talent.talent} version={character.version} />
                         <AdditionalTalentInfo character={character} talentSelection={talent.talent}
-                            setTalentSelection={(s) => {}} simpleHeader={true} />
+                            setTalentSelection={(s) => onTalentChanged(talent, s)} simpleHeader={true} />
                     </div>
                 </>))}
             </div>

@@ -3414,6 +3414,7 @@ SpeciesAbility.lanthanite,Lived Nearly Forever,,,,,,
 SpeciesAbility.lanthanite.description,See pg. 74 of the _Species Sourcebook_,,,,,,
 SpeciesAbility.liberatedBorg,Borg Implants,,,,,,
 SpeciesAbility.liberatedBorg.description,See pg. 76 of the _Species Sourcebook_,,,,,,
+SpeciesAbility.liberatedBorg.error,This species ability requires you to select at least one Borg Implant.,,,,,,
 SpeciesAbility.lokirrim,Hologram Taskmaster,,,,,,
 SpeciesAbility.lokirrim.description,"In decades past, your people designed and utilized photonics to perform countless tasks. Your ship’s Crew Support is increased by +1 (which does not stack if multiple characters have this talent). Additionally, you may create supporting characters with a species of Hologram for free, costing no Crew Support; these may only remain on the ship, and cannot be improved.",,,,,,
 SpeciesAbility.lurian,Resistant Anatomy,,,,,,
@@ -4900,6 +4901,7 @@ Whenever you succeed at a task for which you bought one or more additional dice 
 Siempre que tengas éxito en una Tarea para la que hayas comprado uno o más dados adicionales (por cualquier medio), tira un d20 después de la tirada. Si obtienes un resultado igual o inferior al atributo elegido, obtienes 1 punto de Inercia adicional; si obtienes un resultado superior, añade 1 punto de Amenaza en su lugar.  No puedes acceder a un rango superior al de teniente júnior mientras poseas este Talento, ni un rango de alistado superior al de Contramaestre.",,,"Selecione um de seus atributos ao receber esse talento. Você é inexperiente, mas talentoso e tem um futuro brilhante. Você não pode ter ou aumentar nenhum atributo para mais de 11 ou nenhum departamento para mais de 4 enquanto tiver esse talento (e pode ter de ajustar os atributos e departamentos de acordo com isso no final da criação do personagem).
 
 Sempre que for bem-sucedido em uma tarefa para a qual comprou um ou mais dados adicionais (por qualquer meio), role um d20 após o lançamento. Se a rolagem for igual ou menor que o atributo escolhido, ganhe 1 Ímpeto de bônus; se a rolagem for maior, adicione 1 Ameaça. Enquanto possuir esse talento, você não poderá obter uma patente mais alta do que a de Tenente (grau júnior) ou um posto de alistamento mais alto do que o de Suboficial."
+Talent.untappedPotential.error,Please select an attribute for the Untapped Potential talent.,,,,,,
 Talent.unwaveringCalm,Unwavering Calm,,,,,,
 Talent.unwaveringCalm.description,See pg. 119 of the _Species Sourcebook_,,,,,,
 Talent.upgradedSystemsServiceRecord,Upgraded Systems,,,,,,
@@ -5010,8 +5012,10 @@ UniformEra.monsterMaroon,The Wrath of Khan,,Der Zorn des Khan,La Ira de Khan,La 
 UniformEra.nextGeneration,The Next Generation,,Das Nächste Jahrhundert,La Nueva Generación,The Next Generation,Новое поколение,A Nova Geração
 UniformEra.originalSeries,Original Series,,Originalserie,Serie Original,Série originale,Оригинальные серии,Série Original
 UniformEra.originalSeriesKlingon,Klingon (Original Series),,Klingonen (Originalserie),Klingon (Serie Original),Klingon (série originale),Клингон (Оригинальные серии),Klingon (Série Original)
+UniformEra.prodigy,Prodigy,,,,,,
 UniformEra.romulan,Romulan,,Romulaner,Romulano,Romulien,Ромуланец,Romulano
 UniformEra.suliban,Suliban,,Suliban,Suliban,Suliban,Сулибан,Suliban
+UniformEra.starfleetAcademy,Starfleet Academy,,,,,,
 UniformEra.starTrekOnline,Star Trek Online,,,Star Trek Online,,,
 UniformEra.strangeNewWorlds,Strange New Worlds,,Strange New Worlds,Strange New Worlds,Strange New Worlds,Странные Новые Миры,Strange New Worlds
 UniformEra.theMotionPicture,The Motion Picture,,,La Película,Star Trek : Le film,,O Filme
