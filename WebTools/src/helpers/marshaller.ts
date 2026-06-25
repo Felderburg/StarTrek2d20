@@ -1612,7 +1612,7 @@ console.log(json);
                                 const ability = SpeciesAbilityList.instance.getBySpecies(speciesCode);
                                 // if the character has a talent, it might have been created before the
                                 // new species abilities were available
-                                if (speciesBlock.talent == null || ability.isValidTalentSelection(speciesBlock.talent)) {
+                                if (speciesBlock.talent == null || ability?.isValidTalentSelection(speciesBlock.talent)) {
                                     result.speciesStep.ability = ability;
                                 }
                             }

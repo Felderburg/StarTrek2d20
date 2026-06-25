@@ -1,7 +1,7 @@
 ,en,en-US,de,es,fr,ru,pt-BR,pl
 LanguageNotice.title,Hello There!,,Willkommen!,¡Hola!,Salut!,Приветствуем Вас!,Olá!,Hej!
 LanguageNotice.text,"We're experimenting with some initial support for national languages. We're in a very preliminary stage, but we hope to be able to support more languages, soon.",,"Wir experimentieren mit einer grundlegenden Unterstützung für Landessprachen. Wir befinden uns in einem sehr frühen Stadium, hoffen aber, bald noch weitere Sprachen unterstützen zu können.","
-Estamos comenzando a implementar soporte para idiomas nacionales. Nos encontramos en una etapa inicial, pero esperamos poder ofrecer compatibilidad con más idiomas próximamente.","Nous expérimentons un support pour les langues nationales. Nous sommes dans une phase très préliminaire, mais nous espérons être en mesure de prendre en charge plus de langues, bientôt.","Мы экспериментируем с базовой поддержкой международных языков. На данный момент это начальная стадия, но мы надеемся добавить больше языков в дальнейшем.","Estamos experimentando algum suporte inicial para idiomas nacionais. Estamos em um estágio muito preliminar, mas esperamos poder oferecer suporte a mais idiomas em breve.","Testujemy dodawanie nowych wersji językowych do aplikacji. Jesteśmy na etapie wstępnym, ale już wkrótce dodamy kolejne języki."
+Estamos comenzando a implementar soporte para idiomas nacionales. Nos encontramos en una etapa inicial, pero esperamos poder ofrecer compatibilidad con más idiomas próximamente.","Nous expérimentons un support pour les langues nationales. Nous sommes dans une phase très préliminaire, mais nous espérons être en mesure de prendre en charge plus de langues, bientôt.","Мы экспериментируем с базовой поддержкой международных языков. На данный момент это начальная стадия, но мы надеемся добавить больше языков в дальнейшем.","Estamos experimentando algum suporte inicial para idiomas nacionais. Estamos em um estágio muito preliminar, mas esperamos poder oferecer suporte a mais idiomas em breve.","Testujemy dodawanie nowych wersji językowych do aplikacji. Jesteśmy na bardzo wstępnym etapie, ale już wkrótce dodamy kolejne języki."
 LanguageNotice.useEnglish,Use English instead,,Stattdessen Englisch verwenden,Usar inglés,Utiliser l'anglais,Пожалуйста используйте Английский вариант,"Em vez disso, use inglês",Wybierz język angielski.
 Lcars.copyright,STAR TREK and related marks and logos are trademarks of CBS Studios Inc. All Rights Reserved.,,STAR TREK and related marks and logos are trademarks of CBS Studios Inc. All Rights Reserved.,STAR TREK y las marcas y logotipos relacionados son marcas comerciales de CBS Studios Inc. Todos los derechos reservados.,STAR TREK et les marques et logos associés sont des marques commerciales de CBS Studios Inc. Tous droits réservés.,STAR TREK и сопутствующие обозначения и логотипы являются товарными знаками CBS Studios. Все права защищены.,STAR TREK e as marcas e os logotipos relacionados são marcas registradas da CBS Studios Inc. Todos os direitos reservados.,STAR TREK i powiązane znaki oraz logotypy są znakami towarowymi należącymi do CBS Studios Inc. Wszelkie prawa zastrzeżone.
 Lcars.credits,Credits,,Danksagungen,Créditos,Crédits,Благодарности,Créditos,Podziękowania
@@ -1729,52 +1729,52 @@ Environment.alternate.occupationOrWar.description,"Though the Federation’s mem
 Environment.special.name,{{name}} ({{species}}),,{{name}} ({{species}}),{{name}} ({{species}}),{{name}} ({{species}}),{{name}} ({{species}}),{{name}} ({{species}}),
 AlliedMilitaryType.name.maco,MACO,,MACO,MACO,MACO,,MACO,MACO
 AlliedMilitaryType.name.andorianImperialGuard,Andorian Imperial Guard,,Andorianische Imperial Garde,Guardia Imperial Andoriana,Garde Impériale Andorienne ,,Guarda Imperial Andoriana,Andoriańska Gwardia Imperialna
-AlliedMilitaryType.name.vulcanHighCommand,Vulcan High Command,,Vulkanisches Oberkommando,Alto Mando Vulcano,Haut Commandement Vulcain,,Alto Comando Vulcano,
-AlliedMilitaryType.name.klingonDefenceForce,Klingon Defense Force,,Klingonische Verteidigungsstreitmacht,Fuerza de Defensa Klingon,Forces de Défense Klingones,,Força de Defesa Klingon,
-AlliedMilitaryType.name.romulanStarEmpire,Romulan Star Empire,,Romulanisches Sternenimperium,Imperio Estelar Romulano,Empire Stellaire Romulien,,Império Estelar Romulano,
-AlliedMilitaryType.name.bajoranMilitia,Bajoran Militia,,Bajoranisches Militär,Milicia Bajorana,Forces de Sécurité Bajoranes,,Milícia Bajorana,
-AlliedMilitaryType.name.cardassianUnion,Cardassian Union,,Cardassianische Union,Unión Cardassiana,Union Cardassienne,,União Cardassiana,
-AlliedMilitaryType.name.dominion,Dominion,,Dominion,El Dominio,Dominion,,Domínio,
-AlliedMilitaryType.name.ferengiMilitary,Ferengi Military,,Ferengi Militär,Militar Ferengi,Armée Ferengi,,Militares Ferengi,
-AlliedMilitaryType.name.other,Other,,Andere,Otro,Autre,,Outro,
-BodyType.averageMale,Average Male,,Durchschnittlicher Mann,Hombre promedio,Male moyen,,Homem Comum,
-BodyType.averageNonBinary,Average Non-Binary,,Durchschnittliche nicht-binäre Person,No binarie promedio,Non binaire moyen/ne,,Não Binário Comum,
-BodyType.averageFemale,Average Female,,Durchschnittliche Frau,Mujer promedio,Femelle moyenne,,Mulher Comum,
-Division.command,Command,,Kommando,Mando,Commandement,Командная,Comando,
-Division.science,Science,,Wissenschaft,Ciencia,Sciences,Оперативная,Ciências,
-Division.operations,Operations,,Operative,Operaciones,Opérations,Научная,Operações,
-Division.discovery23.medical,Medical,,Medizin,Médico,Médical,,Médico,
-Division.monsterMaroon.command,Command,,Kommando,Mando,Commandement,,Comando,
-Division.monsterMaroon.science,Science,,Wissenschaft,Ciencia,Sciences,,Ciências,
-Division.monsterMaroon.helmEngineering,Helm/Engineering,,Steuer/Technik,Timón/Ingeniería,Pilotage/Ingénierie,,Leme/Engenharia,
-Division.monsterMaroon.medical,Medical,,Medizin,Médico,Médical,,Médico,
-Division.monsterMaroon.security,Security,,Sicherheit,Seguridad,Sécurité,,Segurança,
-Division.monsterMaroon.specialServices,Special Services,,Ordonnazen,Servicios Especiales,Services Spéciaux,,Serviços Especiais,
-Division.monsterMaroon.trainee,Trainee,,Rekrut,Aprendiz,Stagiaire,,Estagiário,
-Division.strangeNewWorlds.medical,Medical,,Medizin,Médico,Médical,,Médico,
-Division.strangeNewWorlds.nursing,Nursing,,Pflege,Enfermería,Infirmier,,Enfermagem,
-Division.tmp.medical,Medical,,Medizin,Médico,Médical,,Médico,
-Division.tmp.security,Security,,Sicherheit,Seguridad,Sécurité,,Segurança,
-Division.tmp.engineering,Engineering,,Technik,Ingeniería,Ingénierie,,Engenharia,
-Equipment.uniform,Uniform,,Uniform,Uniforme,Uniforme,Униформа,Uniforme,
-Equipment.clothing,Clothing,,Kleidung,Vestimenta,Vêtement,Одежда,Vestuário,
+AlliedMilitaryType.name.vulcanHighCommand,Vulcan High Command,,Vulkanisches Oberkommando,Alto Mando Vulcano,Haut Commandement Vulcain,,Alto Comando Vulcano,Wolkańskie Najwyższe Dowództwo
+AlliedMilitaryType.name.klingonDefenceForce,Klingon Defense Force,,Klingonische Verteidigungsstreitmacht,Fuerza de Defensa Klingon,Forces de Défense Klingones,,Força de Defesa Klingon,Klingońskie Siły Obronne
+AlliedMilitaryType.name.romulanStarEmpire,Romulan Star Empire,,Romulanisches Sternenimperium,Imperio Estelar Romulano,Empire Stellaire Romulien,,Império Estelar Romulano,Romulańskie Gwiezdne Imperium
+AlliedMilitaryType.name.bajoranMilitia,Bajoran Militia,,Bajoranisches Militär,Milicia Bajorana,Forces de Sécurité Bajoranes,,Milícia Bajorana,Bajorańska Milicja
+AlliedMilitaryType.name.cardassianUnion,Cardassian Union,,Cardassianische Union,Unión Cardassiana,Union Cardassienne,,União Cardassiana,Unia Kardasjańska
+AlliedMilitaryType.name.dominion,Dominion,,Dominion,El Dominio,Dominion,,Domínio,Dominium
+AlliedMilitaryType.name.ferengiMilitary,Ferengi Military,,Ferengi Militär,Militar Ferengi,Armée Ferengi,,Militares Ferengi,Flota Ferengi
+AlliedMilitaryType.name.other,Other,,Andere,Otro,Autre,,Outro,Inne
+BodyType.averageMale,Average Male,,Durchschnittlicher Mann,Hombre promedio,Male moyen,,Homem Comum,Przeciętny męski
+BodyType.averageNonBinary,Average Non-Binary,,Durchschnittliche nicht-binäre Person,No binarie promedio,Non binaire moyen/ne,,Não Binário Comum,Przeciętny niebinarny
+BodyType.averageFemale,Average Female,,Durchschnittliche Frau,Mujer promedio,Femelle moyenne,,Mulher Comum,Przeciętny żeński
+Division.command,Command,,Kommando,Mando,Commandement,Командная,Comando,Dowodzenie
+Division.science,Science,,Wissenschaft,Ciencia,Sciences,Оперативная,Ciências,Naukowy
+Division.operations,Operations,,Operative,Operaciones,Opérations,Научная,Operações,Operacyjny
+Division.discovery23.medical,Medical,,Medizin,Médico,Médical,,Médico,Medyczny
+Division.monsterMaroon.command,Command,,Kommando,Mando,Commandement,,Comando,Dowodzenie
+Division.monsterMaroon.science,Science,,Wissenschaft,Ciencia,Sciences,,Ciências,Nauka
+Division.monsterMaroon.helmEngineering,Helm/Engineering,,Steuer/Technik,Timón/Ingeniería,Pilotage/Ingénierie,,Leme/Engenharia,Stery/Inżynieria
+Division.monsterMaroon.medical,Medical,,Medizin,Médico,Médical,,Médico,Medyczny
+Division.monsterMaroon.security,Security,,Sicherheit,Seguridad,Sécurité,,Segurança,Ochrona
+Division.monsterMaroon.specialServices,Special Services,,Ordonnazen,Servicios Especiales,Services Spéciaux,,Serviços Especiais,Służby specjalne
+Division.monsterMaroon.trainee,Trainee,,Rekrut,Aprendiz,Stagiaire,,Estagiário,Rekrut
+Division.strangeNewWorlds.medical,Medical,,Medizin,Médico,Médical,,Médico,Medyczny
+Division.strangeNewWorlds.nursing,Nursing,,Pflege,Enfermería,Infirmier,,Enfermagem,Pielęgniarski
+Division.tmp.medical,Medical,,Medizin,Médico,Médical,,Médico,Medyczny
+Division.tmp.security,Security,,Sicherheit,Seguridad,Sécurité,,Segurança,Ochrona
+Division.tmp.engineering,Engineering,,Technik,Ingeniería,Ingénierie,,Engenharia,Inżynieria
+Equipment.uniform,Uniform,,Uniform,Uniforme,Uniforme,Униформа,Uniforme,Mundur
+Equipment.clothing,Clothing,,Kleidung,Vestimenta,Vêtement,Одежда,Vestuário,Ubranie
 Equipment.armouredVest,Armoured Vest,Armored Vest,Rüstung,Armadura,Armure,Броня,Armadura,
 Equipment.bodyArmour,Body Armour,Body Armor,,,,,,
-Equipment.environmentSuit,Environment Suit,,,,,,,
-Equipment.personalForceField,Personal Force Field,,,,,,,
-Equipment.communicator,Communicator,,Kommunikator,Comunicador,Communicateur,Коммуникатор,Comunicador,
-Equipment.tricorder,Tricorder,,Trikorder,Tricorder,Tricorder,Трикодер,Tricorder,
-Equipment.medKit,MedKit,,Medkit,Botiquín,Medkit,Медицинский набор,Kit Médico,
-Equipment.engineeringKit,Engineering Kit,,Technischer Werkzeugkasten,Set de herramientas de Ingeniería,Kit d'Ingénierie,Набор инженера,Kit de Engenharia,
-Equipment.orionMultiKey,Orion Multi-Key,,Orionischer Multischlüssel,Multiherramienta Orión,Multiclé Orionne,,Multi-chave Órion,
-Equipment.ushaanTor,Ushaan-Tor ice pick,,Ushaan-tor Eispickel,Picahielos Ushaan-Tor,Pic à Glace Ushaan-Tor,Ледокол Ушаан-Тор,Picador de Gelo Ushaan-Tor,
-Era.name.enterprise,Enterprise (22nd century),,Enterprise (22. Jahrhundert),Enterprise (siglo 22),Enterprise (22ème Siècle),Энтерпрайз (22й век),Enterprise (século 22),
-Era.name.originalSeries,Original Series (23rd century),,Originalserie (23. Jahrhundert),Serie Original (siglo 23),Serie Originale (23ème Siècle),Оригинальные серии (23й век),Série Original (século 23),
-Era.name.nextGeneration,Next Generation (24th century),,Das Nächste Jahrhundert (24. Jahrhundert),Nueva Generación (siglo 24),Nouvelle Génération (24ème Siècle),Новое поколение (24й век),A Nova Geração (século 24),
-Era.name.picardProdigy,"Picard/Prodigy (late 24th century, early 25th century)",,"Picard/Prodigy (spätes 24., frühes 25. Jahrhundert)","Picard/Prodigy (finales siglo 24, principios siglo 25)","Picard/Prodigy (fin 24ème, début 25ème Siècle)",Пикард/Вундеркинды (Поздний 24й и начало 25го века),"Picard/Prodigy (final século 24, início do século 25)",
-Era.name.discovery32,Discovery (32nd century),,Discovery (32. Jahrhundert),Discovery (siglo 32),Discovery (32ème Siècle),Дискавери (32й век),Discovery (século 32),
-ExtraType.none,None,,Nichts,Ninguno,Rien,Отсуствует,Nenhum,
-ExtraType.bajoranEarring,Bajoran Earring,,Bajoranischer Ohrring,Pendiente Bajorano,Boucle d'oreille Brajorane,Баджорская сережка,Brinco Bajoriano,
+Equipment.environmentSuit,Environment Suit,,,,,,,Skafander środowiskowy
+Equipment.personalForceField,Personal Force Field,,,,,,,Osobiste tarcze ochronne
+Equipment.communicator,Communicator,,Kommunikator,Comunicador,Communicateur,Коммуникатор,Comunicador,Komunikator
+Equipment.tricorder,Tricorder,,Trikorder,Tricorder,Tricorder,Трикодер,Tricorder,Trikorder
+Equipment.medKit,MedKit,,Medkit,Botiquín,Medkit,Медицинский набор,Kit Médico,Apteczka
+Equipment.engineeringKit,Engineering Kit,,Technischer Werkzeugkasten,Set de herramientas de Ingeniería,Kit d'Ingénierie,Набор инженера,Kit de Engenharia,Zestaw narzędziowy
+Equipment.orionMultiKey,Orion Multi-Key,,Orionischer Multischlüssel,Multiherramienta Orión,Multiclé Orionne,,Multi-chave Órion,Orioński multiklucz
+Equipment.ushaanTor,Ushaan-Tor ice pick,,Ushaan-tor Eispickel,Picahielos Ushaan-Tor,Pic à Glace Ushaan-Tor,Ледокол Ушаан-Тор,Picador de Gelo Ushaan-Tor,Ostrze do lodu ushaan-tor
+Era.name.enterprise,Enterprise (22nd century),,Enterprise (22. Jahrhundert),Enterprise (siglo 22),Enterprise (22ème Siècle),Энтерпрайз (22й век),Enterprise (século 22),Enterprise (XXII wiek)
+Era.name.originalSeries,Original Series (23rd century),,Originalserie (23. Jahrhundert),Serie Original (siglo 23),Serie Originale (23ème Siècle),Оригинальные серии (23й век),Série Original (século 23),The Original Series (XXIII wiek)
+Era.name.nextGeneration,Next Generation (24th century),,Das Nächste Jahrhundert (24. Jahrhundert),Nueva Generación (siglo 24),Nouvelle Génération (24ème Siècle),Новое поколение (24й век),A Nova Geração (século 24),The Next Generation (XXIV wiek)
+Era.name.picardProdigy,"Picard/Prodigy (late 24th century, early 25th century)",,"Picard/Prodigy (spätes 24., frühes 25. Jahrhundert)","Picard/Prodigy (finales siglo 24, principios siglo 25)","Picard/Prodigy (fin 24ème, début 25ème Siècle)",Пикард/Вундеркинды (Поздний 24й и начало 25го века),"Picard/Prodigy (final século 24, início do século 25)","Picard/Protogwiazda (późny XXIV wiek, wczesny XXV wiek)"
+Era.name.discovery32,Discovery (32nd century),,Discovery (32. Jahrhundert),Discovery (siglo 32),Discovery (32ème Siècle),Дискавери (32й век),Discovery (século 32),Discovery (XXXII wiek)
+ExtraType.none,None,,Nichts,Ninguno,Rien,Отсуствует,Nenhum,Brak
+ExtraType.bajoranEarring,Bajoran Earring,,Bajoranischer Ohrring,Pendiente Bajorano,Boucle d'oreille Brajorane,Баджорская сережка,Brinco Bajoriano,Bajorański kolczyk
 ExtraType.simpleEarring,Simple Stud Earring,,Einfacher Ohrstecker,Pendiente Sencillo,Boucle d'oreille simple,,Brinco Simples,
 ExtraType.hoopEarring,Hoop Earring,,Kreolen-Ohrring,Pendiente de Aro,Créole,,Brinco de Argola,
 ExtraType.smallBindi,Small Bindi,,Kleines Bindi,Bindi Pequeño,Petit Bindi,,Bindi Pequeno,
@@ -1782,80 +1782,80 @@ ExtraType.risanSymbol,Risian Symbol,,Risanisches Symbol,Símbolo Risiano,Symbole
 ExtraType.inuitTattoo,Inuit Tattoo,,Inuit-Tattoo,Tatuaje Inuit,Tatouage Inuit,,Tatuagem Inuit,
 ExtraType.zaraniteMask,Zaranite Breather Mask,,Zaranit-Atemmaske,Respirador Zaranita,Respirateur Zaranite,,Máscara de Respiração Zaranite,
 ExtraType.ferengiHeadFlap,Ferengi Head Flap,,Ferengi-Kopftuch,Velo Ferengi,Voilette Ferengi,,Capa de Cabeça Ferengi,
-Focus.advancedHolograms,Advanced Holograms,,,Hologramas Avanzados,Hologrammes avancés,,Hologramas Avançados,
-Focus.ambushTactics,Ambush Tactics,,,Tácticas de Emboscada,Tactiques d'embuscade,,Táticas de Emboscada,
-Focus.animalHandling,Animal Handling,,Tierführung,Cuidar Animales,Comportement animal,Обращение с животными,Manejo de Animais,
-Focus.anthropology,Anthropology,,Anthropologie,Antropología,Anthropologie,Антропология,Antropologia,
-Focus.art,Art,,,Arte,Art,,Arte,
-Focus.artificialIntelligenceSystems,Artificial Intelligence Systems,,,Sistemas de Inteligencia Artificial,Systèmes d'intelligence artificielle,,Sistemas de Inteligência Artificial,
-Focus.astrometrics,Astrometrics,,Astrometrie,Astrométrica,Astrométrique,Астрометрия,Astrometria,
-Focus.astronavigation,Astronavigation,,Astronavigation,Astronavegación,Astronavigation,Астронавигация,Astronavegação,
-Focus.astronomy,Astronomy,,,Astronomía,Astronomy,,Astronomia,
-Focus.astrophysics,Astrophysics,,Astrophysik,Astrofísica,Astrophysique,Астрофизика,Astrofísica,
-Focus.atmosphericFlight,Atmospheric Flight,,,Vuelo Atmosférico,Vol Atmosphérique,,Voo Atmosférico,
-Focus.attackRun,Attack Run,,,Ataque de pasada,Charge,,Corrida de Ataque,
-Focus.bargain,Bargain,,,Negociar,Marchandage,,Pechinchar,
-Focus.bladeWeapons,Blade Weapons,,,Armas de Filo,Armes tranchantes,,Armas de Lâmina,
-Focus.botany,Botany,,Botanik,Botánica,Botanique,Ботаника,Botânica,
-Focus.boatPilotSubmersibles,Boat Pilot / Submersibles,,,Pilotar Botes/Sumergibles,Pilotage de bateau / sous-marin,,Piloto de Barco / Submersíveis,
-Focus.bureaucracy,Bureaucracy,,Bürokratie,Burocracia,Bureaucracie,Бюрократия,Burocracia,
-Focus.callToAction,Call to Action,,,Llamada a la Acción,Motivation,,Chamado à Ação,
-Focus.camouflage,Camouflage,,,Camuflaje,Camouflage,,Camuflagem,
-Focus.climbing,Climbing,,,Escalada,Escalade,,Escalada,
-Focus.chemicalAndBiologicalWeapons,Chemical and Biological Weapons,,,Armas Biológicas o Químicas,Armes Chimiques et Biologiques,,Armas Químicas e Biológicas,
-Focus.coldReading,Cold Reading,,,Lectura en Frío,Lecture à froid,,Leitura a Frio,
-Focus.combatManeuvers,Combat Maneuvers,,,Maniobras de Combate,Manoeuvres de combat,,Manobras de Combate,
-Focus.combatMedic,Combat Medic,,,Médico de Combate,Medecine de combat,,Médico de Combate,
-Focus.communicationsSystems,Communications Systems,,,Sistemas de Comunicaciones,Systemes de communication,,Sistemas de Comunicação,
-Focus.composure,Composure,,Haltung,Autocontrol,Maitrise de soi,Самообладание,Compostura,
-Focus.computers,Computers,,Computer,Ordenadores,Informatique,Компьютеры,Computadores,
-Focus.computerSecuritySystems,Computer Security Systems,,,Sistemas de Seguridad Informática,Systèmes de sécurité informatique,,Sistemas de Segurança de Computadores,
-Focus.coordinatedEfforts,Coordinated Efforts,,,Esfuerzos Coordinados,Coordination des efforts,,Esforços Coordenados,
-Focus.courtingRituals,Courting Rituals,,,Rituales de Cortejo,Rituels de séduction,,Rituais de Cortejo,
-Focus.coveringAdvance,Covering Advance,,,Cubriendo el avance,Avance de couverture,,Cobertura Avançada,
-Focus.criminalMinds,Criminal Minds,,,Mentes Criminales,Esprits criminels,,Mentes Criminosas,
-Focus.criminalOrganizations,Criminal Organizations,,,Organizaciones Criminales,Organisations criminelles,,Organizações Criminosas,
-Focus.crisisManagement,Crisis Management,,,Gestión de Crisis,Gestion de crise,,Gerenciamento de Crises,
-Focus.culturalExpert,Cultural Expert,,,Experto Cultural,Expert culturel,,Especialista Cultural,
-Focus.culturalStudies,Cultural Studies,,Kulturwissenschaften,Estudios Culturales,Etudes culturelles,Культурология,Estudos Culturais,
-Focus.cybernetics,Cybernetics,,Kybernetik,Cibernética,Cybernetique,Кибернетика,Cibernética,
-Focus.deadeyeMarksman,Deadeye Marksman,,,Francotirador,Tireur d'élite,,Atirador de Elite,
-Focus.debate,Debate,,Debatte,Debate,Débat,Дебаты,Debate,
-Focus.deception,Deception,,,Engaño,Tromperie,,Enganação,
-Focus.decisiveLeadership,Decisive Leadership,,,Liderazgo Decisivo,Commandement décisif,,Liderança Decisiva,
-Focus.deflectorOperations,Deflector Operations,,,Operaciones del Deflector,Utilisation des deflecteurs,,Operações de Defletores,
-Focus.deflectorSystems,Deflector Systems,,,Sistemas del Deflector,Systèmes déflecteurs,,Sistemas de Defletores,
-Focus.demolition,Demolition,,Demolierung,Demolición,Démolition,Снос,Demolição,
-Focus.diagnostics,Diagnostics,,,Diagnósticos,Diagnostics,,Diagnósticos,
-Focus.diplomacy,Diplomacy,,Diplomtie,Diplomacia,Diplomacie,Дипломатия и политика,Diplomacia,
-Focus.disguise,Disguise,,Tarnung,Disfraces,Déguisement,Маскировка,Disfarce,
-Focus.disruptors,Disruptors,,Disruptoren,Disruptores,Disrupteurs,Дистрапторы,Disruptores,
-Focus.efficientEvasion,Efficient Evasion,,,Evasión Eficiente,Efficacité d'évasion,,Evasão Eficiente,
-Focus.electroPlasmaPowerSystems,Electro-Plasma Power Systems,,Elektroplasma-Systeme (EPS),Sistemas de Energía de Electroplasma,Systèmes d'Alimentations Electro-Plasmiques,Электро-плазменные силовые установки,Sistemas de Energia de Eletro-Plasma,
-Focus.emergencyMedicine,Emergency Medicine,,Notfallmedizin,Medicina de Emergencia,Médecine d'Urgence,Неотложная медицинская помощь,Medicina de Emergência,
-Focus.emergencyRepairs,Emergency Repairs,,,Reparaciones de Emergencia,Réparations d'urgence,,Reparos de Emergência,
-Focus.emotionalIntelligence,Emotional Intelligence,,,Inteligencia Emocional,Intelligence émotionnelle,,Inteligência Emocional,
-Focus.energyWeapons,Energy Weapons,,,Armas de Energía,Armes à énergie,,Armas de Energia,
-Focus.espionage,Espionage,,Spionage,Espionaje,Espionnage,Шпионаж,Espionagem,
-Focus.etiquette,Etiquette,,,Etiqueta,Etiquette,,Etiqueta,
-Focus.evacuationProcedures,Evacuation Procedures,,,Procedimientos de Evacuación,Procédures d'évacuation,,Procedimentos de Evacuação,
-Focus.evasiveAction,Evasive Action,,Ausweichmanöver,Acción Evasiva,Action d'évasion,Уклонение,Ações Evasivas,
-Focus.exoTectonics,Exo-tectonics,,Exotektonik,Exotectónica,Exo-tectonique,Экзо-тектоника,Exo-tectônica,
-Focus.extraVehicularActivity,Extra-Vehicular Activity,,Außenbordeinsatz,Actividad Extravehicular,Activités Extra-Vehiculaires ,Внекорабельная деятельность (ВКД),Atividade Extra-Veicular,
-Focus.evaSuits,EVA Suits,,,Trajes Extravehiculares,Combinaisons  Extra-Véhiculaires,,Trajes de Atividade Extraveicular,
-Focus.finances,Finances,,Finanzen,Finanzas,Finances,Финансы,Finanças,
-Focus.fleetFormations,Fleet Formations,,,Formaciones de Flota,Formation en vol,,Formações de Frota,
-Focus.flightController,Flight Controller,,,Controlador de Vuelo,Contrôleur de vol,,Controlador de Voo,
-Focus.forensics,Forensics,,,Forense,Médecine légale,,Ciências Forenses,
-Focus.forgery,Forgery,,,Falsificación,Contrefaçon,,Falsificação,
-Focus.gambling,Gambling,,,Juego,Pari,,Jogos de Azar,
-Focus.genetics,Genetics,,Genetik,Genética,Genetique,Генетика,Genética,
-Focus.geology,Geology,,Geologie,Geología,Géologie,Геология,Geologia,
+Focus.advancedHolograms,Advanced Holograms,,,Hologramas Avanzados,Hologrammes avancés,,Hologramas Avançados,Zaawansowane hologramy
+Focus.ambushTactics,Ambush Tactics,,,Tácticas de Emboscada,Tactiques d'embuscade,,Táticas de Emboscada,Taktyki zasadzek
+Focus.animalHandling,Animal Handling,,Tierführung,Cuidar Animales,Comportement animal,Обращение с животными,Manejo de Animais,Opieka nad zwierzętami
+Focus.anthropology,Anthropology,,Anthropologie,Antropología,Anthropologie,Антропология,Antropologia,Antropologia
+Focus.art,Art,,,Arte,Art,,Arte,Sztuka
+Focus.artificialIntelligenceSystems,Artificial Intelligence Systems,,,Sistemas de Inteligencia Artificial,Systèmes d'intelligence artificielle,,Sistemas de Inteligência Artificial,Systemy sztucznej inteligencji
+Focus.astrometrics,Astrometrics,,Astrometrie,Astrométrica,Astrométrique,Астрометрия,Astrometria,Astrometria
+Focus.astronavigation,Astronavigation,,Astronavigation,Astronavegación,Astronavigation,Астронавигация,Astronavegação,Astronawigacja
+Focus.astronomy,Astronomy,,,Astronomía,Astronomy,,Astronomia,Astronomia
+Focus.astrophysics,Astrophysics,,Astrophysik,Astrofísica,Astrophysique,Астрофизика,Astrofísica,Astrofizyka
+Focus.atmosphericFlight,Atmospheric Flight,,,Vuelo Atmosférico,Vol Atmosphérique,,Voo Atmosférico,Loty atmosferyczne
+Focus.attackRun,Attack Run,,,Ataque de pasada,Charge,,Corrida de Ataque,Naloty bojowe
+Focus.bargain,Bargain,,,Negociar,Marchandage,,Pechinchar,Targowanie się
+Focus.bladeWeapons,Blade Weapons,,,Armas de Filo,Armes tranchantes,,Armas de Lâmina,Broń sieczna
+Focus.botany,Botany,,Botanik,Botánica,Botanique,Ботаника,Botânica,Botanika
+Focus.boatPilotSubmersibles,Boat Pilot / Submersibles,,,Pilotar Botes/Sumergibles,Pilotage de bateau / sous-marin,,Piloto de Barco / Submersíveis,Statki nawodne/podwodne
+Focus.bureaucracy,Bureaucracy,,Bürokratie,Burocracia,Bureaucracie,Бюрократия,Burocracia,Biurokracja
+Focus.callToAction,Call to Action,,,Llamada a la Acción,Motivation,,Chamado à Ação,Motywowanie
+Focus.camouflage,Camouflage,,,Camuflaje,Camouflage,,Camuflagem,Kamuflaż
+Focus.climbing,Climbing,,,Escalada,Escalade,,Escalada,Wspinaczka
+Focus.chemicalAndBiologicalWeapons,Chemical and Biological Weapons,,,Armas Biológicas o Químicas,Armes Chimiques et Biologiques,,Armas Químicas e Biológicas,Broń chemiczna i biologiczna
+Focus.coldReading,Cold Reading,,,Lectura en Frío,Lecture à froid,,Leitura a Frio,Zimny odczyt
+Focus.combatManeuvers,Combat Maneuvers,,,Maniobras de Combate,Manoeuvres de combat,,Manobras de Combate,Manewry bojowe
+Focus.combatMedic,Combat Medic,,,Médico de Combate,Medecine de combat,,Médico de Combate,Medyk bojowy
+Focus.communicationsSystems,Communications Systems,,,Sistemas de Comunicaciones,Systemes de communication,,Sistemas de Comunicação,Systemy komunikacji
+Focus.composure,Composure,,Haltung,Autocontrol,Maitrise de soi,Самообладание,Compostura,Opanowanie
+Focus.computers,Computers,,Computer,Ordenadores,Informatique,Компьютеры,Computadores,Komputery
+Focus.computerSecuritySystems,Computer Security Systems,,,Sistemas de Seguridad Informática,Systèmes de sécurité informatique,,Sistemas de Segurança de Computadores,Komputerowe systemy zabezpieczeń
+Focus.coordinatedEfforts,Coordinated Efforts,,,Esfuerzos Coordinados,Coordination des efforts,,Esforços Coordenados,Koordynacja
+Focus.courtingRituals,Courting Rituals,,,Rituales de Cortejo,Rituels de séduction,,Rituais de Cortejo,Rytuały godowe
+Focus.coveringAdvance,Covering Advance,,,Cubriendo el avance,Avance de couverture,,Cobertura Avançada,Osłona ogniowa
+Focus.criminalMinds,Criminal Minds,,,Mentes Criminales,Esprits criminels,,Mentes Criminosas,Kryminalistyka
+Focus.criminalOrganizations,Criminal Organizations,,,Organizaciones Criminales,Organisations criminelles,,Organizações Criminosas,Organizacje przestępcze
+Focus.crisisManagement,Crisis Management,,,Gestión de Crisis,Gestion de crise,,Gerenciamento de Crises,Zarządzanie kryzysowe
+Focus.culturalExpert,Cultural Expert,,,Experto Cultural,Expert culturel,,Especialista Cultural,Ekspert kulturowy
+Focus.culturalStudies,Cultural Studies,,Kulturwissenschaften,Estudios Culturales,Etudes culturelles,Культурология,Estudos Culturais,Kulturoznawstwo
+Focus.cybernetics,Cybernetics,,Kybernetik,Cibernética,Cybernetique,Кибернетика,Cibernética,Cybernetyka
+Focus.deadeyeMarksman,Deadeye Marksman,,,Francotirador,Tireur d'élite,,Atirador de Elite,Strzelec wyborowy
+Focus.debate,Debate,,Debatte,Debate,Débat,Дебаты,Debate,Debatowanie
+Focus.deception,Deception,,,Engaño,Tromperie,,Enganação,Oszustwo
+Focus.decisiveLeadership,Decisive Leadership,,,Liderazgo Decisivo,Commandement décisif,,Liderança Decisiva,Zdecydowane przywództwo
+Focus.deflectorOperations,Deflector Operations,,,Operaciones del Deflector,Utilisation des deflecteurs,,Operações de Defletores,Operowanie deflektorem
+Focus.deflectorSystems,Deflector Systems,,,Sistemas del Deflector,Systèmes déflecteurs,,Sistemas de Defletores,Systemy deflektora
+Focus.demolition,Demolition,,Demolierung,Demolición,Démolition,Снос,Demolição,Wyburzanie
+Focus.diagnostics,Diagnostics,,,Diagnósticos,Diagnostics,,Diagnósticos,Diagnostyka
+Focus.diplomacy,Diplomacy,,Diplomtie,Diplomacia,Diplomacie,Дипломатия и политика,Diplomacia,Dyplomacja
+Focus.disguise,Disguise,,Tarnung,Disfraces,Déguisement,Маскировка,Disfarce,Zmiana wyglądu
+Focus.disruptors,Disruptors,,Disruptoren,Disruptores,Disrupteurs,Дистрапторы,Disruptores,Dezruptory
+Focus.efficientEvasion,Efficient Evasion,,,Evasión Eficiente,Efficacité d'évasion,,Evasão Eficiente,Uniki
+Focus.electroPlasmaPowerSystems,Electro-Plasma Power Systems,,Elektroplasma-Systeme (EPS),Sistemas de Energía de Electroplasma,Systèmes d'Alimentations Electro-Plasmiques,Электро-плазменные силовые установки,Sistemas de Energia de Eletro-Plasma,Elektroplazmowe systemy zasilania
+Focus.emergencyMedicine,Emergency Medicine,,Notfallmedizin,Medicina de Emergencia,Médecine d'Urgence,Неотложная медицинская помощь,Medicina de Emergência,Medycyna ratunkowa
+Focus.emergencyRepairs,Emergency Repairs,,,Reparaciones de Emergencia,Réparations d'urgence,,Reparos de Emergência,Naprawy awaryjne
+Focus.emotionalIntelligence,Emotional Intelligence,,,Inteligencia Emocional,Intelligence émotionnelle,,Inteligência Emocional,Inteligencja emocjonalna
+Focus.energyWeapons,Energy Weapons,,,Armas de Energía,Armes à énergie,,Armas de Energia,Bronie energetyczne
+Focus.espionage,Espionage,,Spionage,Espionaje,Espionnage,Шпионаж,Espionagem,Szpiegostwo
+Focus.etiquette,Etiquette,,,Etiqueta,Etiquette,,Etiqueta,Etykieta
+Focus.evacuationProcedures,Evacuation Procedures,,,Procedimientos de Evacuación,Procédures d'évacuation,,Procedimentos de Evacuação,Protokoły ewakuacyjne
+Focus.evasiveAction,Evasive Action,,Ausweichmanöver,Acción Evasiva,Action d'évasion,Уклонение,Ações Evasivas,Manewry unikowe
+Focus.exoTectonics,Exo-tectonics,,Exotektonik,Exotectónica,Exo-tectonique,Экзо-тектоника,Exo-tectônica,Egzotektonika
+Focus.extraVehicularActivity,Extra-Vehicular Activity,,Außenbordeinsatz,Actividad Extravehicular,Activités Extra-Vehiculaires ,Внекорабельная деятельность (ВКД),Atividade Extra-Veicular,Skafandry kosmiczne
+Focus.evaSuits,EVA Suits,,,Trajes Extravehiculares,Combinaisons  Extra-Véhiculaires,,Trajes de Atividade Extraveicular,Skafandry kosmiczne
+Focus.finances,Finances,,Finanzen,Finanzas,Finances,Финансы,Finanças,Finanse
+Focus.fleetFormations,Fleet Formations,,,Formaciones de Flota,Formation en vol,,Formações de Frota,Formacje floty
+Focus.flightController,Flight Controller,,,Controlador de Vuelo,Contrôleur de vol,,Controlador de Voo,Kontroler lotu
+Focus.forensics,Forensics,,,Forense,Médecine légale,,Ciências Forenses,Techniki śledcze
+Focus.forgery,Forgery,,,Falsificación,Contrefaçon,,Falsificação,Fałszerstwo
+Focus.gambling,Gambling,,,Juego,Pari,,Jogos de Azar,Hazard
+Focus.genetics,Genetics,,Genetik,Genética,Genetique,Генетика,Genética,Genetyka
+Focus.geology,Geology,,Geologie,Geología,Géologie,Геология,Geologia,Geologia
 Focus.glancingImpact,Glancing Impact,,,Impacto de Refilón,Impact,,Impacto de Relance,
-Focus.groundVehicles,Ground Vehicles,,,Vehículos Terrestres,Véhicules terrestres,,Veículos Terrestres,
-Focus.guidanceSystems,Guidance Systems,,,Sistemas de Guiado,Systèmes de guidage,,Sistemas de Orientação,
-Focus.handPhasers,Hand Phasers,,Handphaser,Fásers de Mano,Phaseurs de Poing,Ручные фазеры,Feiseres de Mão,
-Focus.handToHandCombat,Hand-to-Hand Combat,,Unbewaffneter Nahkampf,Combate Cuerpo a Cuerpo,Combat à mains nues,Рукопашный бой,Combate Corpo a Corpo,
+Focus.groundVehicles,Ground Vehicles,,,Vehículos Terrestres,Véhicules terrestres,,Veículos Terrestres,Pojazdy naziemne
+Focus.guidanceSystems,Guidance Systems,,,Sistemas de Guiado,Systèmes de guidage,,Sistemas de Orientação,Systemy namierzania
+Focus.handPhasers,Hand Phasers,,Handphaser,Fásers de Mano,Phaseurs de Poing,Ручные фазеры,Feiseres de Mão,Fazery ręczne
+Focus.handToHandCombat,Hand-to-Hand Combat,,Unbewaffneter Nahkampf,Combate Cuerpo a Cuerpo,Combat à mains nues,Рукопашный бой,Combate Corpo a Corpo,Walka wręcz
 Focus.hazardousEnvironments,Hazardous Environments,,,Entornos Peligrosos,Environnements dangereux,,Ambientes Perigosos,
 Focus.heavyCover,Heavy Cover,,,Cobertura Pesada,Couverture lourde,,Cobertura Pesada,
 Focus.helmOperation,Helm Operation,,Steuerkontrolle,Operar Timón,Timonerie,Рулевое управление,Operações do Leme,
@@ -2167,33 +2167,33 @@ NpcType.minor.name,Minor NPC,,Einfacher NSC,PNJ Menor,PNJ Mineur,Обычный 
 NpcType.notable.description,"Notable NPCs are more capable than Minor NPCs, and are often lieutenants to Major NPCs. They are comparable to supporting characters, and, if encountered as a group or with several Minor NPCs, can form a more formidable obstacle and drain the player characters’ resources, forcing them to spend Determination or add Threat to overcome them.",,,,,,,
 NpcType.notable.name,Notable NPC,,Bedeutender NSC,PNJ Notable,PNJ Notable,Значимый второстепенный персонаж,PdM Notável,
 NpcType.major.description,"Major NPCs are the gamemaster’s equivalent of a player character. More thought and creativity should be put into creating a Major NPC, giving  them names, backgrounds, and qualities comparable to player characters.",,,,,,,
-NpcType.major.name,Major NPC,,Herausragender NSC,PNJ Mayor,PNJ Majeur,Ключевой второстепенный персонаж,PdM Maior,
+NpcType.major.name,Major NPC,,Herausragender NSC,PNJ Mayor,PNJ Majeur,Ключевой второстепенный персонаж,PdM Maior,Kluczowy BN
 PropulsionSystemType.displacementActivatedSporeHubDrive,Displacement-Activated Spore Hub Drive,,,,,,,
-PropulsionSystemType.protostarDrive,Protostar Drive,,,,,,,
+PropulsionSystemType.protostarDrive,Protostar Drive,,,,,,,Napęd protogwiezdny
 PropulsionSystemType.quantumSlipstreamDrive,Quantum Slipstream Drive,,,,,,,
-PropulsionSystemType.transwarp,Transwarp,,,,,,,
-Rank.admiral.name,Admiral,,,Almirante,Amiral,Адмирал,Almirante,
-Rank.admiral.abbrev,Adm.,,,Alm.,Amir.,Адм.,Alm.,
-Rank.viceAdmiral.name,Vice Admiral,,,Vicealmirante,Vice-Amiral ,Вице-адмирал,Vice Almirante,
-Rank.viceAdmiral.abbrev,VAdm.,,,Vicealm.,V.-Amir.,В.Адм,VAlm.,
-Rank.rearAdmiral.name,Rear Admiral,,,Contraalmirante,Contre-Amiral,,Contra-Almirante,
-Rank.rearAdmiral.abbrev,RAdm.,,,Contralm.,C.-Amir.,,CAlm.,
-Rank.commodore.name,Commodore,,,Comodoro,Commodore,Коммодор,Comodoro,
-Rank.commodore.abbrev,Cdre.,,,Com.,Cdore.,Кмдр,Cmdo.,
-Rank.captain.name,Captain,,Captain,Capitán,Capitaine,Капитан,Capitão,
-Rank.captain.abbrev,Capt.,,Capt.,Cap.,Capt.,Кап.,Cap.,
-Rank.commander.name,Commander,,Commander,Comandante,Commandeur,Коммандер,Comandante,
-Rank.commander.abbrev,Cmdr.,,Cmdr.,Cmte.,Comm.,Ком.,Com.,
-Rank.ltCommander.name,Lt. Commander,,Lt. Commander,Teniente comandante,Lieutenant commandeur,Лейтенант-Коммандер,Ten. Comandante,
-Rank.ltCommander.abbrev,LCdr.,,LCdr.,Tte. comandante,Lt. Com.,Лт.Ком.,TCom,
-Rank.lieutenant.name,Lieutenant,,Lieutenant,Teniente,Lieutenant ,Лейтенант,Tenente,
-Rank.lieutenant.abbrev,Lt.,,Lt.,Tte.,Lt.,Лт.,Ten.,
-Rank.lieutenantJG.name,Lieutenant J.G.,,Lieutenant J.G.,Teniente Jr.,Sous-Lieutenant,Младший Лейтенант,Tenente Jr.,
-Rank.lieutenantJG.abbrev,Lt. (J.G.),,Lt. (J.G.),Tte. Jr.,Ss.-Lt.,Мл.Лт.,Ten. Jr.,
-Rank.ensign.name,Ensign,,Fähnrich,Alférez,Enseigne,Энсин,Alferes,
-Rank.ensign.abbrev,Ens.,,Fr.,Alfz.,Ens.,Энс.,Alf.,
-Rank.other.name,Other,,Sonstiges,Otro,Autre,Другое,Outro,
-Rank.none.name,None,,Ohne,Ninguno,Sans,Отсутствует,Nenhum,
+PropulsionSystemType.transwarp,Transwarp,,,,,,,Transwarp
+Rank.admiral.name,Admiral,,,Almirante,Amiral,Адмирал,Almirante,admirał
+Rank.admiral.abbrev,Adm.,,,Alm.,Amir.,Адм.,Alm.,adm.
+Rank.viceAdmiral.name,Vice Admiral,,,Vicealmirante,Vice-Amiral ,Вице-адмирал,Vice Almirante,wiceadmirał
+Rank.viceAdmiral.abbrev,VAdm.,,,Vicealm.,V.-Amir.,В.Адм,VAlm.,wadm.
+Rank.rearAdmiral.name,Rear Admiral,,,Contraalmirante,Contre-Amiral,,Contra-Almirante,kontradmirał
+Rank.rearAdmiral.abbrev,RAdm.,,,Contralm.,C.-Amir.,,CAlm.,kontradm.
+Rank.commodore.name,Commodore,,,Comodoro,Commodore,Коммодор,Comodoro,komodor
+Rank.commodore.abbrev,Cdre.,,,Com.,Cdore.,Кмдр,Cmdo.,kdr
+Rank.captain.name,Captain,,Captain,Capitán,Capitaine,Капитан,Capitão,kapitan
+Rank.captain.abbrev,Capt.,,Capt.,Cap.,Capt.,Кап.,Cap.,kap.
+Rank.commander.name,Commander,,Commander,Comandante,Commandeur,Коммандер,Comandante,komandor
+Rank.commander.abbrev,Cmdr.,,Cmdr.,Cmte.,Comm.,Ком.,Com.,kmdr
+Rank.ltCommander.name,Lt. Commander,,Lt. Commander,Teniente comandante,Lieutenant commandeur,Лейтенант-Коммандер,Ten. Comandante,komandor porucznik
+Rank.ltCommander.abbrev,LCdr.,,LCdr.,Tte. comandante,Lt. Com.,Лт.Ком.,TCom,kmdr por.
+Rank.lieutenant.name,Lieutenant,,Lieutenant,Teniente,Lieutenant ,Лейтенант,Tenente,porucznik
+Rank.lieutenant.abbrev,Lt.,,Lt.,Tte.,Lt.,Лт.,Ten.,por.
+Rank.lieutenantJG.name,Lieutenant J.G.,,Lieutenant J.G.,Teniente Jr.,Sous-Lieutenant,Младший Лейтенант,Tenente Jr.,podporucznik
+Rank.lieutenantJG.abbrev,Lt. (J.G.),,Lt. (J.G.),Tte. Jr.,Ss.-Lt.,Мл.Лт.,Ten. Jr.,ppor.
+Rank.ensign.name,Ensign,,Fähnrich,Alférez,Enseigne,Энсин,Alferes,chorąży
+Rank.ensign.abbrev,Ens.,,Fr.,Alfz.,Ens.,Энс.,Alf.,chor.
+Rank.other.name,Other,,Sonstiges,Otro,Autre,Другое,Outro,inne
+Rank.none.name,None,,Ohne,Ninguno,Sans,Отсутствует,Nenhum,brak
 Rank.none.abbrev,,,,,-,,,
 Rank.masterChiefPettyOfficer.name,Master Chief Petty Officer,,Master Chief Petty Officer,Contramaestre mayor / jefe especialista mayor.,Premier Maitre,Старший мичман,Suboficial Principal,
 Rank.masterChiefPettyOfficer.abbrev,Chief,,Chief,Jefe,Chef,чиф,Chefe,
@@ -2207,27 +2207,27 @@ Rank.pettyOfficer2ndClass.name,Petty Officer 2nd Class,,Petty Officer 2nd Class,
 Rank.pettyOfficer2ndClass.abbrev,P.O.,,P.O.,S. O.,M. 2 ,спец,S.O.,
 Rank.pettyOfficer3rdClass.name,Petty Officer 3rd Class,,Petty Officer 3rd Class,Suboficial de 3ª Clase / ayudante,Maitre 3ème classe,Старшина 3й статьи,Suboficial de 3ª Classe,
 Rank.pettyOfficer3rdClass.abbrev,P.O.,,P.O.,S. O.,M. 3 ,спец,S.O.,
-Rank.crewman1stClass.name,Crewman 1st Class,,Crewman 1st Class,Tripulante de 1ª Clase,Membre d'équipage 1ère classe,Матрос 1й статьи,Tripulante de 1ª classe,
-Rank.crewman1stClass.abbrev,Crew.,,Crew.,Trip.,M.E. 1,матр.,Trip.,
-Rank.crewman2ndClass.name,Crewman 2nd Class,,Crewman 2nd Class,Tripulante de 2ª Clase,Membre d'équipage 2ème classe,Матрос 2й статьи,Tripulante de 2ª classe,
-Rank.crewman2ndClass.abbrev,Crew.,,Crew.,Trip.,M.E. 2,матр.,Trip.,
-Rank.crewman3rdClass.name,Crewman 3rd Class,,Crewman 3rd Class,Tripulante de 3ª Clase,Membre d'équipage 3ème classe,Матрос 3й статьи,Tripulante de 3ª classe,
-Rank.crewman3rdClass.abbrev,Crew.,,Crew.,Trip.,M.E. 3,матр.,Trip.,
-Rank.sergeant.name,Sergeant,,Sergeant,Sargento,Sergent,Сержант,Sargento,
-Rank.sergeant.abbrev,Sgt.,,Sgt.,Sgto.,Ser.,серж.,Sgt.,
-Rank.corporal.name,Corporal,,Corporal,Cabo,Caporal,Капрал,Cabo,
-Rank.corporal.abbrev,Cpl.,,Cpl.,Cab.,Cap.,капр.,Cb.,
-Rank.private.name,Private,,Private,Soldado raso,Soldat,Рядовой,Soldado,
-Rank.private.abbrev,Pvt.,,Pvt.,Sol.,Sol.,ряд.,Sd.,
-Rank.cadetFirstClass.name,"Cadet, First Class",,,"Cadete, Primera Clase",,,"Cadete, Primeira Classe",
-Rank.cadetFirstClass.abbrev,"Cdt, 1st Cl.",,,"Cdt, 1ª Cl",,,"Cdt, 1ª Cl",
-Rank.cadetSecondClass.name,"Cadet, Second Class",,,"Cadete, Segunda Clase",,,"Cadete, Segunda Classe",
-Rank.cadetSecondClass.abbrev,"Cdt, 2nd Cl.",,,"Cdt, 2ª Cl",,,"Cdt, 2ª Cl",
-Rank.cadetThirdClass.name,"Cadet, Third Class",,,"Cadete, Tercera Clase",,,"Cadete, Terceira Classe",
-Rank.cadetThirdClass.abbrev,"Cdt, 3rd Cl.",,,"Cdt, 3ª Cl",,,"Cdt, 3ª Cl",
-Rank.cadetFourthClass.name,"Cadet, Fourth Class",,,"Cadete, Cuarta Clase",,,"Cadete, Quarta Classe",
-Rank.cadetFourthClass.abbrev,"Cdt, 4th Cl.",,,"Cdt, 4ª Cl",,,"Cdt, 4ª Cl",
-Role.commandingOfficer,Commanding Officer,,Kommandierende/-r Offizier/-in,Oficial al mando,Commandant,Командир,Oficial Comandante,
+Rank.crewman1stClass.name,Crewman 1st Class,,Crewman 1st Class,Tripulante de 1ª Clase,Membre d'équipage 1ère classe,Матрос 1й статьи,Tripulante de 1ª classe,załogant 1. klasy
+Rank.crewman1stClass.abbrev,Crew.,,Crew.,Trip.,M.E. 1,матр.,Trip.,zał.
+Rank.crewman2ndClass.name,Crewman 2nd Class,,Crewman 2nd Class,Tripulante de 2ª Clase,Membre d'équipage 2ème classe,Матрос 2й статьи,Tripulante de 2ª classe,załogant 2. klasy
+Rank.crewman2ndClass.abbrev,Crew.,,Crew.,Trip.,M.E. 2,матр.,Trip.,zał.
+Rank.crewman3rdClass.name,Crewman 3rd Class,,Crewman 3rd Class,Tripulante de 3ª Clase,Membre d'équipage 3ème classe,Матрос 3й статьи,Tripulante de 3ª classe,załogant 3. klasy
+Rank.crewman3rdClass.abbrev,Crew.,,Crew.,Trip.,M.E. 3,матр.,Trip.,zał.
+Rank.sergeant.name,Sergeant,,Sergeant,Sargento,Sergent,Сержант,Sargento,sierżant
+Rank.sergeant.abbrev,Sgt.,,Sgt.,Sgto.,Ser.,серж.,Sgt.,sierż.
+Rank.corporal.name,Corporal,,Corporal,Cabo,Caporal,Капрал,Cabo,kapral
+Rank.corporal.abbrev,Cpl.,,Cpl.,Cab.,Cap.,капр.,Cb.,kpr.
+Rank.private.name,Private,,Private,Soldado raso,Soldat,Рядовой,Soldado,szeregowy
+Rank.private.abbrev,Pvt.,,Pvt.,Sol.,Sol.,ряд.,Sd.,szer.
+Rank.cadetFirstClass.name,"Cadet, First Class",,,"Cadete, Primera Clase",,,"Cadete, Primeira Classe",kadet 1. klasy
+Rank.cadetFirstClass.abbrev,"Cdt, 1st Cl.",,,"Cdt, 1ª Cl",,,"Cdt, 1ª Cl",kadet
+Rank.cadetSecondClass.name,"Cadet, Second Class",,,"Cadete, Segunda Clase",,,"Cadete, Segunda Classe",kadet 2. klasy
+Rank.cadetSecondClass.abbrev,"Cdt, 2nd Cl.",,,"Cdt, 2ª Cl",,,"Cdt, 2ª Cl",kadet
+Rank.cadetThirdClass.name,"Cadet, Third Class",,,"Cadete, Tercera Clase",,,"Cadete, Terceira Classe",kadet 3. klasy
+Rank.cadetThirdClass.abbrev,"Cdt, 3rd Cl.",,,"Cdt, 3ª Cl",,,"Cdt, 3ª Cl",kadet
+Rank.cadetFourthClass.name,"Cadet, Fourth Class",,,"Cadete, Cuarta Clase",,,"Cadete, Quarta Classe",kadet 4. klasy
+Rank.cadetFourthClass.abbrev,"Cdt, 4th Cl.",,,"Cdt, 4ª Cl",,,"Cdt, 4ª Cl",kadet
+Role.commandingOfficer,Commanding Officer,,Kommandierende/-r Offizier/-in,Oficial al mando,Commandant,Командир,Oficial Comandante,Oficer dowodzący
 Role.commandingOfficer.description,"The captain. Even if the commanding officer does not hold the rank of captain, they will be referred to as captain by their subordinates. Every ship must have a commanding officer.",,"Der Captain. Selbst wenn ein Kommandierender Offizier nicht den Rang eines Captain hält, wird er oder sie von Untergebenen dennoch als Captain angesprochen werden. Jedes Schiff muss einen Kommandierenden Offizier besitzen.","El capitán. Aunque el oficial al mando no ostente el rango de capitán, sus subordinados se referirán a él como tal. Toda nave tiene un oficial al mando.","seulement. Le capitaine. Même s’il n’a pas le grade de capitaine, ses subordonnés l’appelleront ainsi. Chaque vaisseau doit avoir un commandant.","Капитан.
 Даже если командир не в звании капитана, подчинённые будут называть его капитаном. Командир должен быть у каждого корабля.","O capitão. Mesmo se o oficial de comando não tiver o posto de capitão, ele será chamado de capitão por seus subordinados. Toda nave precisa ter um oficial comandante.",
 Role.commandingOfficer.description2e,"Even if the commanding officer does not hold the rank of captain, they are usually referred to as captain by their subordinates aboard a starship. Aboard stations, commanding officers are referred to by their rank. Commanding officers are responsible for the ship or facility under their command as well as executing the orders and directives from their leadership.",,,"Aunque el oficial al mando no ostente el rango de capitán, sus subordinados se referirán a él como tal. En las estaciones, a los oficiales al mando se les llama por su rango. Los oficiales al mando son responsables de la nave o instalación bajo su mando, así como de ejecutar las órdenes y directrices de sus superiores.",,,"Mesmo que o oficial de comando não tenha o posto de capitão, ele geralmente é chamado de capitão por seus subordinados a bordo de uma nave estelar. A bordo das estações, os oficiais de comando são chamados por sua patente. Os oficiais de comando são responsáveis pela nave ou instalação sob seu comando, bem como pela execução das ordens e diretrizes de sua liderança.",

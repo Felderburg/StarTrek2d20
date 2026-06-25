@@ -1,6 +1,6 @@
 {
     "LanguageNotice.title": "Hej!",
-    "LanguageNotice.text": "Testujemy dodawanie nowych wersji językowych do aplikacji. Jesteśmy na etapie wstępnym, ale już wkrótce dodamy kolejne języki.",
+    "LanguageNotice.text": "Testujemy dodawanie nowych wersji językowych do aplikacji. Jesteśmy na bardzo wstępnym etapie, ale już wkrótce dodamy kolejne języki.",
     "LanguageNotice.useEnglish": "Wybierz język angielski.",
 
     "Lcars.copyright": "STAR TREK i powiązane znaki oraz logotypy są znakami towarowymi należącymi do CBS Studios Inc. Wszelkie prawa zastrzeżone.",
@@ -648,5 +648,203 @@
     "Page.title.soloConstructType": "Wybór narzędzia",
 
     "AlliedMilitaryType.name.maco": "MACO",
-    "AlliedMilitaryType.name.andorianImperialGuard": "Andoriańska Gwardia Imperialna"
+    "AlliedMilitaryType.name.andorianImperialGuard": "Andoriańska Gwardia Imperialna",
+    "AlliedMilitaryType.name.vulcanHighCommand": "Wolkańskie Najwyższe Dowództwo",
+    "AlliedMilitaryType.name.klingonDefenceForce": "Klingońskie Siły Obronne",
+    "AlliedMilitaryType.name.romulanStarEmpire": "Romulańskie Gwiezdne Imperium",
+    "AlliedMilitaryType.name.bajoranMilitia": "Bajorańska Milicja",
+    "AlliedMilitaryType.name.cardassianUnion": "Unia Kardasjańska",
+    "AlliedMilitaryType.name.dominion": "Dominium",
+    "AlliedMilitaryType.name.ferengiMilitary": "Flota Ferengi",
+    "AlliedMilitaryType.name.other": "Inne",
+
+    "BodyType.averageMale": "Przeciętny męski",
+    "BodyType.averageNonBinary": "Przeciętny niebinarny",
+    "BodyType.averageFemale": "Przeciętny żeński",
+
+    "Division.command": "Dowodzenie",
+    "Division.science": "Naukowy",
+    "Division.operations": "Operacyjny",
+
+    "Division.discovery23.medical": "Medyczny",
+
+    "Division.monsterMaroon.command": "Dowodzenie",
+    "Division.monsterMaroon.science": "Nauka",
+    "Division.monsterMaroon.helmEngineering": "Stery/Inżynieria",
+    "Division.monsterMaroon.medical": "Medyczny",
+    "Division.monsterMaroon.security": "Ochrona",
+    "Division.monsterMaroon.specialServices": "Służby specjalne",
+    "Division.monsterMaroon.trainee": "Rekrut",
+
+    "Division.strangeNewWorlds.medical": "Medyczny",
+    "Division.strangeNewWorlds.nursing": "Pielęgniarski",
+
+    "Division.tmp.medical": "Medyczny",
+    "Division.tmp.security": "Ochrona",
+    "Division.tmp.engineering": "Inżynieria",
+
+    "Equipment.uniform": "Mundur",
+    "Equipment.clothing": "Ubranie",
+    "Equipment.environmentSuit": "Skafander środowiskowy",
+    "Equipment.personalForceField": "Osobiste tarcze ochronne",
+    "Equipment.communicator": "Komunikator",
+    "Equipment.tricorder": "Trikorder",
+    "Equipment.medKit": "Apteczka",
+    "Equipment.engineeringKit": "Zestaw narzędziowy",
+    "Equipment.orionMultiKey": "Orioński multiklucz",
+    "Equipment.ushaanTor": "Ostrze do lodu ushaan-tor",
+
+    "Era.name.enterprise": "Enterprise (XXII wiek)",
+    "Era.name.originalSeries": "The Original Series (XXIII wiek)",
+    "Era.name.nextGeneration": "The Next Generation (XXIV wiek)",
+    "Era.name.picardProdigy": "Picard/Protogwiazda (późny XXIV wiek, wczesny XXV wiek)",
+    "Era.name.discovery32": "Discovery (XXXII wiek)",
+
+    "ExtraType.none": "Brak",
+    "ExtraType.bajoranEarring": "Bajorański kolczyk",
+
+    "Focus.advancedHolograms": "Zaawansowane hologramy",
+    "Focus.ambushTactics": "Taktyki zasadzek",
+    "Focus.animalHandling": "Opieka nad zwierzętami",
+    "Focus.anthropology": "Antropologia",
+    "Focus.art": "Sztuka",
+    "Focus.artificialIntelligenceSystems": "Systemy sztucznej inteligencji",
+    "Focus.astrometrics": "Astrometria",
+    "Focus.astronavigation": "Astronawigacja",
+    "Focus.astronomy": "Astronomia",
+    "Focus.astrophysics": "Astrofizyka",
+    "Focus.atmosphericFlight": "Loty atmosferyczne",
+    "Focus.attackRun": "Naloty bojowe",
+    "Focus.bargain": "Targowanie się",
+    "Focus.bladeWeapons": "Broń sieczna",
+    "Focus.botany": "Botanika",
+    "Focus.boatPilotSubmersibles": "Statki nawodne/podwodne",
+    "Focus.bureaucracy": "Biurokracja",
+    "Focus.callToAction": "Motywowanie",
+    "Focus.camouflage": "Kamuflaż",
+    "Focus.climbing": "Wspinaczka",
+    "Focus.chemicalAndBiologicalWeapons": "Broń chemiczna i biologiczna",
+    "Focus.coldReading": "Zimny odczyt",
+    "Focus.combatManeuvers": "Manewry bojowe",
+    "Focus.combatMedic": "Medyk bojowy",
+    "Focus.communicationsSystems": "Systemy komunikacji",
+    "Focus.composure": "Opanowanie",
+    "Focus.computers": "Komputery",
+    "Focus.computerSecuritySystems": "Komputerowe systemy zabezpieczeń",
+    "Focus.coordinatedEfforts": "Koordynacja",
+    "Focus.courtingRituals": "Rytuały godowe",
+    "Focus.coveringAdvance": "Osłona ogniowa",
+    "Focus.criminalMinds": "Kryminalistyka",
+    "Focus.criminalOrganizations": "Organizacje przestępcze",
+    "Focus.crisisManagement": "Zarządzanie kryzysowe",
+    "Focus.culturalExpert": "Ekspert kulturowy",
+    "Focus.culturalStudies": "Kulturoznawstwo",
+    "Focus.cybernetics": "Cybernetyka",
+    "Focus.deadeyeMarksman": "Strzelec wyborowy",
+    "Focus.debate": "Debatowanie",
+    "Focus.deception": "Oszustwo",
+    "Focus.decisiveLeadership": "Zdecydowane przywództwo",
+    "Focus.deflectorOperations": "Operowanie deflektorem",
+    "Focus.deflectorSystems": "Systemy deflektora",
+    "Focus.demolition": "Wyburzanie",
+    "Focus.diagnostics": "Diagnostyka",
+    "Focus.diplomacy": "Dyplomacja",
+    "Focus.disguise": "Zmiana wyglądu",
+    "Focus.disruptors": "Dezruptory",
+    "Focus.efficientEvasion": "Uniki",
+    "Focus.electroPlasmaPowerSystems": "Elektroplazmowe systemy zasilania",
+    "Focus.emergencyMedicine": "Medycyna ratunkowa",
+    "Focus.emergencyRepairs": "Naprawy awaryjne",
+    "Focus.emotionalIntelligence": "Inteligencja emocjonalna",
+    "Focus.energyWeapons": "Bronie energetyczne",
+    "Focus.espionage": "Szpiegostwo",
+    "Focus.etiquette": "Etykieta",
+    "Focus.evacuationProcedures": "Protokoły ewakuacyjne",
+    "Focus.evasiveAction": "Manewry unikowe",
+    "Focus.exoTectonics": "Egzotektonika",
+    "Focus.extraVehicularActivity": "Skafandry kosmiczne",
+    "Focus.evaSuits": "Skafandry kosmiczne",
+    "Focus.finances": "Finanse",
+    "Focus.fleetFormations": "Formacje floty",
+    "Focus.flightController": "Kontroler lotu",
+    "Focus.forensics": "Techniki śledcze",
+    "Focus.forgery": "Fałszerstwo",
+    "Focus.gambling": "Hazard",
+    "Focus.genetics": "Genetyka",
+    "Focus.geology": "Geologia",
+    "Focus.groundVehicles": "Pojazdy naziemne",
+    "Focus.guidanceSystems": "Systemy namierzania",
+    "Focus.handPhasers": "Fazery ręczne",
+    "Focus.handToHandCombat": "Walka wręcz",
+
+    "NpcType.major.name": "Kluczowy BN",
+
+    "PropulsionSystemType.protostarDrive": "Napęd protogwiezdny",
+    "PropulsionSystemType.transwarp": "Transwarp",
+
+    "Rank.admiral.name": "admirał",
+    "Rank.admiral.abbrev": "adm.",
+
+    "Rank.viceAdmiral.name": "wiceadmirał",
+    "Rank.viceAdmiral.abbrev": "wadm.",
+
+    "Rank.rearAdmiral.name": "kontradmirał",
+    "Rank.rearAdmiral.abbrev": "kontradm.",
+
+    "Rank.commodore.name": "komodor",
+    "Rank.commodore.abbrev": "kdr",
+
+    "Rank.captain.name": "kapitan",
+    "Rank.captain.abbrev": "kap.",
+
+    "Rank.commander.name": "komandor",
+    "Rank.commander.abbrev": "kmdr",
+
+    "Rank.ltCommander.name": "komandor porucznik",
+    "Rank.ltCommander.abbrev": "kmdr por.",
+
+    "Rank.lieutenant.name": "porucznik",
+    "Rank.lieutenant.abbrev": "por.",
+
+    "Rank.lieutenantJG.name": "podporucznik",
+    "Rank.lieutenantJG.abbrev": "ppor.",
+
+    "Rank.ensign.name": "chorąży",
+    "Rank.ensign.abbrev": "chor.",
+
+    "Rank.other.name": "inne",
+
+    "Rank.none.name": "brak",
+
+    "Rank.crewman1stClass.name": "załogant 1. klasy",
+    "Rank.crewman1stClass.abbrev": "zał.",
+
+    "Rank.crewman2ndClass.name": "załogant 2. klasy",
+    "Rank.crewman2ndClass.abbrev": "zał.",
+
+    "Rank.crewman3rdClass.name": "załogant 3. klasy",
+    "Rank.crewman3rdClass.abbrev": "zał.",
+
+    "Rank.sergeant.name": "sierżant",
+    "Rank.sergeant.abbrev": "sierż.",
+
+    "Rank.corporal.name": "kapral",
+    "Rank.corporal.abbrev": "kpr.",
+
+    "Rank.private.name": "szeregowy",
+    "Rank.private.abbrev": "szer.",
+
+    "Rank.cadetFirstClass.name": "kadet 1. klasy",
+    "Rank.cadetFirstClass.abbrev": "kadet",
+
+    "Rank.cadetSecondClass.name": "kadet 2. klasy",
+    "Rank.cadetSecondClass.abbrev": "kadet",
+
+    "Rank.cadetThirdClass.name": "kadet 3. klasy",
+    "Rank.cadetThirdClass.abbrev": "kadet",
+
+    "Rank.cadetFourthClass.name": "kadet 4. klasy",
+    "Rank.cadetFourthClass.abbrev": "kadet",
+
+    "Role.commandingOfficer": "Oficer dowodzący"
 }
