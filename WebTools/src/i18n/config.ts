@@ -53,7 +53,8 @@ export const supportedLanguages = {
     'de': 'Deutsch',
     'fr': 'Français',
     'pt-BR': 'Português (Brasileiro)',
-    'ru': 'Русский'
+    'ru': 'Русский',
+    'pl': 'Polska'
 };
 const supportedLanguagesCodes = Object.keys(supportedLanguages);
 
@@ -61,7 +62,7 @@ const languageDetector = new LanguageDetector();
 languageDetector.addDetector(staDetector);
 
 export const getNavigatorLanguage = () => {
-    let found = staDetector.lookup({})?.filter(l => supportedLanguagesCodes.indexOf(l) >= 0);
+    let found = staDetector.lookup({})?.filter(l => supportedLanguagesCodes.includes(l));
     return found?.length ? found[0] : "en";
 }
 
@@ -74,7 +75,7 @@ export const getCurrentLanguageCode = () => {
     let previousLanguage = window.localStorage.getItem(localStorageKey);
     if (previousLanguage == null) {
         return getNavigatorLanguage();
-    } else if (previousLanguage === "en" && getNavigatorLanguage().indexOf("en") === 0 && supportedLanguagesCodes.indexOf(getNavigatorLanguage()) >= 0) {
+    } else if (previousLanguage === "en" && getNavigatorLanguage().indexOf("en") === 0 && supportedLanguagesCodes.includes(getNavigatorLanguage())) {
         return getNavigatorLanguage();
     } else {
         return previousLanguage;
@@ -82,7 +83,7 @@ export const getCurrentLanguageCode = () => {
 }
 
 export const overrideLanguage = (language: string) => {
-    if (supportedLanguagesCodes.indexOf(language) >= 0) {
+    if (supportedLanguagesCodes.includes(language)) {
         window.localStorage.setItem(localStorageKey, language);
         i18n.changeLanguage(language);
     }

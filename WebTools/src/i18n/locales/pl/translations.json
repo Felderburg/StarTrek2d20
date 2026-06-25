@@ -1,0 +1,652 @@
+{
+    "LanguageNotice.title": "Hej!",
+    "LanguageNotice.text": "Testujemy dodawanie nowych wersji językowych do aplikacji. Jesteśmy na etapie wstępnym, ale już wkrótce dodamy kolejne języki.",
+    "LanguageNotice.useEnglish": "Wybierz język angielski.",
+
+    "Lcars.copyright": "STAR TREK i powiązane znaki oraz logotypy są znakami towarowymi należącymi do CBS Studios Inc. Wszelkie prawa zastrzeżone.",
+    "Lcars.credits": "Podziękowania",
+    "Lcars.feedback": "Feedback",
+    "Lcars.history": "Historia",
+    "Lcars.news": "Aktualności",
+    "Lcars.profile": "Profil",
+
+    "AttributesAndDisciplines.instruction": "Na tym etapie Twoja postać jest już niemal gotowa i wymaga jedynie drobnych poprawek. Ten krok to ostatnia okazja, aby dostosować ją zanim przejdziecie do gry.",
+
+    "EditTablePage.header.createTable": "Stwórz tabelę",
+    "EditTablePage.header.modifyTable": "Modyfikuj tabelę",
+
+    "EraSelectionPage.eraInstruction": "W której erze gracie? Spytaj MG która era jest odpowiednia dla Waszej gry.",
+
+    "Lcars.noHistory": "Brak historii",
+
+    "SourceSelectionPage.editionInstruction": "Wybór edycji systemu",
+    "SourceSelectionPage.sourceInstruction": "Które źródła uwzględnić? Przed dokonaniem wyboru możesz skonsultować się z MG.",
+    "SourceSelectionPage.gameTypeInstruction": "Jaki rodzaj gry gracie?",
+    "SourceSelectionPage.sourceNote": "Niektóre źródła nie są jeszcze wprowadzone, sprawdź wkrótce!",
+    "SourceSelectionPage.standardGameType": "Standardowa gra",
+    "SourceSelectionPage.soloGameType": "Gra solo z wykorzystaniem Captain's Loga",
+
+    "ShareTableModal.instruction": "Respektuj prawa autorskie. Proszę o udostępnianie tylko tabel stworzonych przez Ciebie.",
+
+    "TokenCreator.option.rounded": "Zaokrąglenie",
+    "TokenCreator.option.bordered": "Obramowanie",
+
+    "TokenCreator.section.species": "Gatunek",
+
+    "TokenCreator.section.species.options": "Opcje",
+
+    "TokenCreator.section.body": "Ciało",
+
+    "TokenCreator.section.body.uniform": "Rodzaj munduru",
+    "TokenCreator.section.body.colour": "Kolor sekcji",
+    "TokenCreator.section.body.rank": "Ranga",
+    "TokenCreator.section.body.type": "Typ ciała",
+    "TokenCreator.section.body.uniformVariant": "Wariant munduru",
+
+    "TokenCreator.section.head": "Głowa",
+
+    "TokenCreator.section.head.colour": "Kolor skóry",
+    "TokenCreator.section.head.furColour": "Kolor futra",
+    "TokenCreator.section.head.shape": "Kształt głowy",
+
+    "TokenCreator.section.hair": "Włosy",
+
+    "TokenCreator.section.hair.colour": "Kolor włosów",
+    "TokenCreator.section.hair.style": "Fryzura",
+
+    "TokenCreator.section.mouth": "Usta",
+
+    "TokenCreator.section.mouth.shape": "Kształt ust",
+    "TokenCreator.section.mouth.colour": "Kolor szminki",
+    "TokenCreator.section.mouth.shadow": "Cień",
+    "TokenCreator.section.mouth.moustache": "Wąsy",
+    "TokenCreator.section.mouth.beard": "Broda",
+
+    "TokenCreator.section.nose": "Nos",
+
+    "TokenCreator.section.nose.shape": "Kształt nosa",
+    "TokenCreator.section.nose.nasoLabial": "Bruzda nosowo-wargowa",
+
+    "TokenCreator.section.eyes": "Oczy",
+
+    "TokenCreator.section.eyes.style": "Rodzaj oczu",
+    "TokenCreator.section.eyes.colour": "Kolor oczu",
+
+    "TokenCreator.section.extras": "Dodatki",
+
+    "TokenCreator.section.extras.borgImplants": "Implanty Borg",
+    "TokenCreator.section.extras.ears": "Uszy",
+    "TokenCreator.section.extras.face": "Twarz",
+    "TokenCreator.section.extras.forehead": "Czoło",
+    "TokenCreator.section.extras.headwear": "Nakrycie głowy",
+
+    "ViewPage.viewAsset": "Sprawdź zasób",
+    "ViewPage.viewCreature": "Sprawdź stworzenie",
+    "ViewPage.viewSupportingCharacter": "Sprawdź bohatera wspierającego",
+    "ViewPage.viewNpc": "Sprawdź bohatera niezależnego",
+    "ViewPage.viewMainCharacter": "Sprawdź bohatera głównego",
+    "ViewPage.viewSoloCharacter": "Sprawdź bohatera solo",
+    "ViewPage.viewStarship": "Sprawdź okręt",
+    "ViewPage.viewStation": "Sprawdź stację kosmiczną",
+    "ViewPage.errorMessage": "Coś poszło naprawdę, naprawdę źle. Obawiam się, że jesteśmy w lustrzanym wszechświecie.",
+    "ViewPage.unnamedStarship": "Nienazwany okręt",
+    "ViewPage.unnamedStation": "Nienazwana stacja kosmiczna",
+
+    "CareerEvents.standard": "Standardowe",
+    "CareerEvents.standardAndUnofficial": "Standardowe i fanowskie",
+    "CareerEvents.unofficialNote": "Ta lista zawiera fanowskie dodatki. Sprawdź ze swoim MG czy zgadza się na ich wykorzystanie. [Continuing Missions](https://continuingmissionsta.com/2018/05/09/replicator-resource-expanded-career-events-write-ups/)",
+
+    "CareerEventDetails.errorAttribute": "Proszę wybierz Atrybut",
+    "CareerEventDetails.errorDiscipline": "Proszę wybierz Sekcję",
+    "CareerEventDetails.errorFocus": "Proszę wybierz Biegłość",
+
+    "ChildSelectionPage.instruction": "Dzieci nie uczęszczają do Akademii Gwiezdnej Floty (ani innych placówek oferujących wyższe wykształcenie), bo są na wcześniejszych etapach edukacji.\n\nWybierz wiek swojego bohatera.",
+
+    "GMTracker.title": "Zarządzanie BN",
+    "GMTracker.instruction": "Tutaj możesz zarządzać swoimi bohaterami niezależnymi.",
+    "GMTracker.addCharacterModalTitle": "Dodaj bohatera",
+
+    "AddCharacterView.instruction": "Wklej URL bohatera",
+    "AddCharacterView.errorMessage": "Ten adres URL nie wygląda prawidłowo.",
+    "AddCharacterView.errorCharacterType": "Ups! Obecnie wspieramy tylko bohaterów, a nie okręty!",
+    "AddCharacterView.characterPrefix": "Bohater:",
+
+    "CareerSelectionPage.title": "Wybierz rodzaj kariery",
+    "CareerSelectionPage.selectCareer": "Wybierz rodzaj kariery",
+    "CareerSelectionPage.rollCareer": "Wylosuj rodzaj kariery",
+    "CareerSelectionPage.selectOneTalent": "Dowolny talent",
+
+    "CharacterSheetDialog.title": "Wybierz szablon",
+    "CharacterSheetDialog.thumbnail": "Miniaturka",
+
+    "CustomSpaceframe.systems.instruction": "Pozostałe punkty do rozdzielenia pomiędzy systemy okrętu: {{points}}.",
+
+    "CustomSpaceframe.departments.instruction": "Pozostałe punkty do rozdzielenia pomiędzy sekcje okrętu: {{points}}.",
+
+    "CustomSpeciesDetails.speciesName": "Nazwa",
+    "CustomSpeciesDetails.instruction": "Jak nazywa się ten gatunek?",
+    "CustomSpeciesDetails.speciesTrait": "Każdy gatunek posiada specjalne cechy, zapewniające dodatkowe korzyści w określonych okolicznościach.",
+    "CustomSpeciesDetails.speciesNameWarning": "Proszę wpisz nazwę tego gatunku.",
+
+    "CharacterAdvancementType.choice.instruction": "Skoro wpis do dziennika został stworzony, możesz teraz zmodyfikować swoją postać. Wybierz dowolną opcję z poniższych:",
+
+    "CharacterAdvancementTypeView.adjustment.attribute": "Zabierz 1 punkt z Atrybutu i dodaj go do innego. Atrybut po zmianie nie może być wyższy niż 11 ani niższy niż 7.",
+    "CharacterAdvancementTypeView.adjustment.department": "Zabierz 1 punkt z Sekcji i dodaj go do innej. Sekcja po zmianie nie może być wyżśza niż 4 ani niższa niż 1.",
+    "CharacterAdvancementTypeView.adjustment.focus": "Wybierz jedną biegłość i zamień ją na inną.",
+    "CharacterAdvancementTypeView.adjustment.talent": "Wymień jednej z talentów na inny, o ile postać spełnia jego wymagania wstępne.",
+
+    "CharacterAdvancementTypeView.milestone.attribute": "Wybierz Atrybut i zwiększ go o 1. Nie możesz zwiększyć go powyżej 11. Każdy Atrybut może być zwiększony tylko raz za pomocą kamienia milowego.",
+    "CharacterAdvancementTypeView.milestone.department": "Wybierz Sekcję i zwiększ ją o 1. Nie możesz zwiększyć jej powyżej 4. Każda Sekcja może być zwiększona tylko raz za pomocą kamienia milowego.",
+    "CharacterAdvancementTypeView.milestone.focus": "Dodaj nową biegłość.",
+    "CharacterAdvancementTypeView.milestone.talent": "Dodaj nowy talent.",
+
+    "CharacterAdvancementTypeView.characterArc.attribute": "Wybierz Atrybut i zwiększ go o 1. Nie możesz go zwiększyć powyżej 12.",
+    "CharacterAdvancementTypeView.characterArc.department": "Wybierz Sekcję i zwiększ ją o 1. Nie możesz zwiększyć jej powyżej 5..",
+    "CharacterAdvancementTypeView.characterArc.value": "Dodaj nową Wartość dla swojej postaci.",
+
+    "CharacterAdvancementTypeView.error.twoAttributes": "Wybierz dwa Atrybuty: jeden do redukcji, a drugi do zwiększenia.",
+    "CharacterAdvancementTypeView.error.twoDepartments": "Wybierz dwie Sekcje: jedną do redukcji, a drugą do zwiększenia.",
+    "CharacterAdvancementTypeView.error.twoFocuses": "Wybierz dwie biegłości: jedną do usunięcia, a drugą do dodania.",
+    "CharacterAdvancementTypeView.error.twoTalents": "Wybierz dwa talenty: jeden do usunięcia i drugi do dodania.",
+
+    "CharacterAdvancementTypeView.log.instructions": "Proszę wskaż który wpis do dziennika dotyczy misji, która prowadzi do rozwoju postaci.\n\nNa misji musiało dojść do wykorzystania lub testowania Wartości.",
+
+    "CharacterAdvancementTypeView.logCallback": "Nawiązanie do poprzedniej misji",
+
+    "CharacterAdvancementTypeView.log.notFound": "Ups. Żaden wpis do dziennika nie spełnia kryteriów.",
+
+    "CharacterAdvancementTypeView.error.selectLog": "Proszę wybierz odpowiedni wpis do dziennika.",
+
+    "CharacterLogEntry.instruction": "Proszę opisz krótko ostatnią misję.",
+
+    "CharacterLogEntry.notes.instruction": "Notatki z misji.",
+
+    "CharacterLogEntry.values.instruction": "Których wartości użył bohater w czasie tej misji?",
+
+    "CharacterLogEntry.directives.instruction": "Których dyrektyw misji użył bohater w czasie tej misji?",
+
+    "CharacterTypePage.whatType": "Rodzaj bohatera.",
+    "CharacterTypePage.whatGovernment": "Jaki rząd lub organizację reprezentuje bohater?",
+    "CharacterTypePage.otherGovernmentName": "Jaka jest nazwa rządu lub organizacji?",
+    "CharacterTypePage.whatMilitary": "Którą organizację wojskową reprezentuje bohater?",
+    "CharacterTypePage.otherMilitaryName": "Jaka jest nazwa tej organizacji wojskowej?",
+
+    "DeleteConfirmationModal.instruction": "Czy na pewno chcesz to skasować?",
+    "DeleteConfirmationModal.title": "Skasuj tabelę",
+
+    "EducationPage.type.cadet": "Trening kadeta",
+    "EducationPage.type.starfleet": "Akademia Gwiezdnej Floty",
+    "EducationPage.type.klingonWarrior": "Klingońskie Siły Obronne",
+    "EducationPage.type.civilian": "Szkolenie cywilne",
+    "EducationPage.type.alliedMilitary": "Szkolenie wojskowe sojuszników",
+    "EducationPage.type.ambassadorDiplomat": "Przygotowanie dyplomatyczne",
+
+    "EducationPage.starfleet.academy": "Akademia oficerska",
+    "EducationPage.starfleet.enlisted": "Szkolenie podoficerskie",
+    "EducationPage.starfleet.other": "Inne",
+
+    "EnvironmentPage.showAlt": "Wybierz alternatywne środowisko (decyzja MG)",
+
+    "EnvironmentPage.button.selectEnvironment": "Wybierz środowisko",
+    "EnvironmentPage.button.rollEnvironment": "Losuj środowisko",
+    "EnvironmentPage.button.selectAltEnvironment": "Wybierz alternatywne środowisko",
+    "EnvironmentPage.button.rollAltEnvironment": "Losuj alternatywne środowisko",
+
+    "EnvironmentPage.error.attributes": "Wybierz Atrybut do ulepszenia zanim przejdziesz dalej.",
+    "EnvironmentPage.error.disciplines": "Wybierz Sekcję do ulepszenia zanim przejdziesz dalej.",
+
+    "EnvironmentPage.simple.instruction": "Wybierz lub wylosuj środowisko bohatera.",
+
+    "FinishPage.rank.instruction": "Wybierz rangę postaci",
+
+    "FinishPage.trait.preamble_one": "Twoja postać automatycznie otrzymuje następującą cechę:",
+    "FinishPage.trait.preamble_other": "Twoja postać automatycznie otrzymuje następujące cechy:",
+    "FinishPage.trait.instruction": "Dodaj więcej cech dla postaci:",
+
+    "FinishPage.job.example": "np. młodszy inżynier",
+
+    "Home.title": "STA Generator postaci",
+    "Home.selection": "Wybierz narzędzie",
+    "Home.characterButton": "Bohaterowie i okręty",
+    "Home.talentsButton": "Przegląd talentów",
+    "Home.tokenCreator": "Znaczniki",
+    "Home.otherTools": "Inne narzędzia",
+    "Home.disclaimer": "Generator postaci jest narzędziem stworzonym przez fanów i nie ma oficjalnych powiązań z Modiphiusem.",
+
+    "MilestonePage.instruction": "Wybierz rodzaj modyfikacji kamienia milowego.",
+
+    "ModifySupportingCharacter.error.improvementType": "Wybierz rodzaj ulepszenia.",
+    "ModifySupportingCharacter.error.talent": "Proszę wybierz talent zanim przejdziesz dalej.",
+    "ModifySupportingCharacter.error.value": "Proszę wybierz wartość zanim przejdziesz dalej.",
+
+    "ModifySupportingCharacter.noTalent": "Proszę wybierz talent.",
+
+    "ModifySupportingCharacter.talentModal.title": "Wybierz talent",
+
+    "NpcBuilderPage.text": "Najpierw wybierz rodzaj bohatera niezależnego.",
+
+    "NpcConfigurationPage.option.anyMajorSpecies": "Dowolny z głównych gatunków",
+    "NpcConfigurationPage.option.anySpecialization": "Dowolna specjalizacja",
+
+    "NpcConfigurationPage.npcType": "Rodzaj BN",
+    "NpcConfigurationPage.specialization": "Specjalizacja",
+    "NpcConfigurationPage.text": "Określ rodzaj BN, którego chcesz stworzyć",
+    "NpcConfigurationPage.includeDescription": "Dodaj opis",
+
+    "NpcStatsPage.attributes.error": "Proszę rozdziel wszystkie Atrybuty",
+
+    "NpcStatsPage.departments.error": "Proszę rozdziel wszystkie Sekcje",
+
+    "NpcStatsPage.focuses.error": "Proszę określ więcej biegłości",
+
+    "NpcStatsPage.instruction": "Wybierz odpowiednie statystyki dla tego bohatera niezależnego.",
+
+    "NpcStatsPage.instruction.attribute": "Przypisz Atrybuty postaci. Najwyższą wartość przyznaj najbardziej istotnemu Atrybutowi. Wybierając dwie wartości zamieniasz je miejscami.",
+
+    "NpcStatsPage.instruction.attribute.major": "Przydziel Atrybuty postaci. Najwyższą wartość przyznaj najbardziej istotnemu Atrybutowi.",
+
+    "NpcStatsPage.instruction.department": "Przydziel Sekcje postaci. Najwyższa wartość powinna pasować do roli bohatera. Wybierając dwie różne sekcje zamieniasz je miejscami.",
+
+    "NpcStatsPage.instruction.department.major": "Przydziel Sekcje postaci. Najwyższa wartość powinna pasować do roli bohatera.",
+
+    "NpcStatsPage.instruction.focus.notable": "Wybierz 2 lub 3 biegłości",
+    "NpcStatsPage.instruction.focus.major": "Wybierz do 6 biegłości",
+
+    "NpcStatsPage.instruction.role.minor": "Wybierz rolę, która opisuje zadania BN.",
+    "NpcStatsPage.instruction.role.notable": "Wybierz rolę, która opisuje zadania BN.",
+
+    "NpcStatsPage.instruction.value.notable": "Wybierz wartość, która opisuje głębokie przekonania lub motywacje bohatera niezależnego.",
+    "NpcStatsPage.instruction.value.major": "Wybierz od 2 do 4 wartości.",
+
+    "NpcStatsPage.role.error": "Proszę wybierz rolę bohatera.",
+
+    "NpcStatsPage.values.error": "Proszę określ więcej wartości bohatera.",
+
+    "NpcSpecialRulesPage.instruction.minor": "Dodaj jedną lub dwie zasady specjalne.",
+
+    "NpcSpecialRulesPage.error.talents_other": "Proszę wybierz przynajmniej {{count}} zasad specjalnych.",
+    "NpcSpecialRulesPage.error.talents_one": "Proszę wybierz przynajmniej {{count}} zasadę specjalną.",
+
+    "NpcSpecialRulesPage.instruction.notable": "Dodaj dwie lub trzy specjalne zasady.",
+    "NpcSpecialRulesPage.instruction.major": "Wybierz cztery talenty lub zasady specjalne.",
+
+    "NoviceOrCadetExperiencePage.attribute.instruction": "Wybierz który Atrybut ma być przypisany do tego talentu.",
+    "NoviceOrCadetExperiencePage.attribute.error": "Proszę wybierz Atrybut.",
+
+    "OtherToolsPage.instruction": "Tu znajdziesz różne narzędzia, które mogą być użyteczne w czasie grania w STA.",
+
+    "OtherToolsPage.sector.instruction": "Generator systemów tworzy losowy sektor kosmosu i systemy gwiezdne do eksploracji.",
+
+    "OtherToolsPage.tables.instruction": "Twórz i używaj tabel losowych, aby dodać więcej efektów losowych do swoich kampanii.",
+
+    "PromotionPage.instruction": "Wybierz nową rangę dla tej postaci.",
+
+    "RandomCreatureConfiguration.text": "Wybierz opcje, aby stworzyć losowe stworzenie.",
+    "RandomCreatureConfiguration.anyHabitat": "Dowolne środowisko",
+    "RandomCreatureConfiguration.anyCreatureType": "Dowolny rodzaj stworzenia",
+    "RandomCreatureConfiguration.habitat": "Środowisko",
+    "RandomCreatureConfiguration.creatureType": "Rodzaj stworzenia",
+
+    "RandomStarshipPage.instructions": "Określ rodzaj okrętu, który chcesz stworzyć",
+
+    "RecentCreationsView.title": "Ostatnie",
+    "RecentCreationsView.instruction": "Twoje ostatnie kreacje.",
+
+    "ReputationChangePage.instruction": "Dostosuj poziom reputacji postaci.",
+
+    "ServiceRecordPage.removeTalent": "Talent usunięty",
+    "ServiceRecordPage.replacedTalent": "Talent zastąpiony",
+
+    "ServiceRecordPage.error.talents": "Proszę wybierz dwa talenty -- jeden do usunięcia, a drugi do zastąpienia.",
+
+    "SoloConstructTypePage.character": "Bohater",
+    "SoloConstructTypePage.instruction": "Tworzy postać czy okręt?",
+    "SoloConstructTypePage.starship": "Okręt",
+
+    "SoloEarlyOutlookPage.upbringings": "Wychowanie",
+    "SoloEarlyOutlookPage.castes": "Kasty",
+    "SoloEarlyOutlookPage.aspirations": "Aspiracje",
+
+    "SoloEarlyOutlookDetailsPage.errorDiscipline": "Proszę wybierz Sekcję.",
+
+    "SoloEducationDetailsPage.selectThree": "(Wybierz trzy)",
+    "SoloEducationDetailsPage.primaryDiscipline": "Sekcja główna",
+    "SoloEducationDetailsPage.secondaryDiscipline": "Sekcje pomocnicze",
+    "SoloEducationDetailsPage.errorDisciplines": "Proszę wybierz Sekcję główną oraz dwie Sekcje pomocnicze.",
+    "SoloEducationDetailsPage.errorAttributes": "Proszę wybierz trzy Atrybuty.",
+    "SoloEducationDetailsPage.errorFocuses": "Proszę wybierz biegłości.",
+
+    "SoloEducationPage.type.starfleet": "Akademia Gwiezdnej Floty",
+    "SoloEducationPage.type.cadet": "Trening kadetów",
+    "SoloEducationPage.type.civilian": "Cywilne wyszkolenie",
+    "SoloEducationPage.type.alliedMilitary": "Szkolenie wojsk sojuszniczych",
+    "SoloEducationPage.type.ambassadorDiplomat": "Szkolenie dyplomatyczne",
+
+    "SoloEnvironmentDetailsPage.speciesText": "Wybierz gatunek, wśród którego dorastała Twoja postać.",
+    "SoloEnvironmentDetailsPage.errorAttribute": "Proszę wybierz Atrybut.",
+    "SoloEnvironmentDetailsPage.errorDiscipline": "Proszę wybierz Sekcji.",
+    "SoloEnvironmentDetailsPage.errorValue": "Proszę wybierz wartość.",
+
+    "SoloEnvironmentPage.settings": "Ustawienia",
+    "SoloEnvironmentPage.conditions": "Warunki",
+    "SoloEnvironmentPage.worlds": "Światy",
+
+    "SoloEnvironmentPage.anotherSpeciesWorld.attributeText": "Zgodnie z wybranym gatunkiem.",
+
+    "SoloEraSelectionPage.instruction": "Wybierz lub wylosuj erę gry.",
+
+    "SoloFinishingTouchesPage.select": "(Wybierz {{count}})",
+    "SoloFinishingTouchesPage.errorAttributes": "Brakujące Atrybuty do uzupełnienia: {{count}}.",
+    "SoloFinishingTouchesPage.errorDisciplines": "Brakujące Sekcje do uzupełnienia: {{count}}",
+    "SoloFinishingTouchesPage.errorValue": "Proszę wybierz wartość",
+
+    "SoloSpeciesPage.errorAttributes": "Proszę wybierz 3 Atrybuty.",
+    "SoloSpeciesPage.instruction": "Wybierz lub wylosuj gatunek swojej postaci.",
+
+    "SpaceframeOptionPage.text": "Wybierasz standardowy typ kadłuba okrętu czy chcesz stworzyć nowy?",
+
+    "SpaceframeOptionPage.button.standardSpaceframe": "Standardowy typ kadłuba",
+    "SpaceframeOptionPage.button.customSpaceframe": "Specjalny typ kadłuba",
+
+    "SpaceframeSelectionPage.ignoreEndOfService": "Zignoruj datę wycofania ze służby (decyzja MG)",
+    "SpaceframeSelectionPage.error": "Wybierz proszę typ kadłuba zanim przejdziesz dalej.",
+    "SpaceframeSelectionPage.errata": "Opublikowano erratę, która zmodyfikowała statystyki tego typu kadłuba.",
+    "SpaceframeSelectionPage.variant": "Wariant typu kadłuba",
+
+    "SpeciesDetails.options": "Opcje gatunku",
+    "SpeciesDetails.selectThree": "(Wybierz trzy)",
+    "SpeciesDetails.allowCrossSpecies": "Pozwól na wybieranie innych talentów gatunkowych (decyzja MG)",
+    "SpeciesDetails.allowEsoteric": "Pozwól na wybieranie talentów ezoterycznych (decyzja MG)",
+
+    "SpeciesPage.selectSpecies": "Wybierz gatunek",
+    "SpeciesPage.standardSpecies": "Gatunek standardowy",
+    "SpeciesPage.mixedSpecies": "Pochodzenie mieszane",
+    "SpeciesPage.customSpecies": "Nowy gatunek",
+    "SpeciesPage.primarySpecies": "Wybierz gatunek główny",
+    "SpeciesPage.secondarySpecies": "Wybierz gatunek pomocniczy",
+    "SpeciesPage.selectMixedSpecies": "Wybierz gatunek mieszany",
+    "SpeciesPage.selectCustomSpecies": "Wybierz nowy gatunek",
+    "SpeciesPage.rollCoreSpecies": "Wylosuj z głównych gatunków",
+    "SpeciesPage.rollAlphaSpecies": "Wylosuj z Kwadrantu Alfa",
+    "SpeciesPage.rollBetaSpecies": "Wylosuj z Kwadrantu Beta",
+    "SpeciesPage.rollGammaSpecies": "Wylosuj z Kwadrantu Gamma",
+    "SpeciesPage.rollDeltaSpecies": "Wylosuj z Kwadrantu Delta",
+
+    "SpeciesPage.text.select": "Wybierz lub wylosuj gatunek.",
+
+    "StarshipTalentSelection.instruction_one": "Proszę wybierz {{count}} talent.",
+    "StarshipTalentSelection.instruction_other": "{{count}} talenty do uzupełnienia.",
+
+    "StarshipToolSelection.instruction": "Wybierz opcję",
+
+    "StarshipTypeSelection.year": "Rok",
+    "StarshipTypeSelection.shipPolity": "Typ okrętu",
+    "StarshipTypeSelection.whatShipPolity": "Jakiego typu jest to okręt?",
+    "StarshipTypeSelection.shipBuildType": "Rozmiar okrętu",
+    "StarshipTypeSelection.whatShipBuildType": "Jak duży jest ten okręt?",
+
+    "StarshipPage.whatScale": "Jakiego rozmiaru jest to okręt?",
+    "StarshipPage.whatClass": "Jaka jest klasa okrętu?",
+    "StarshipPage.whatYear": "W którym roku ten typ kadłuba rozpoczął służbę?",
+    "StarshipPage.class": "Klasa",
+
+    "SupportingCharacter.whatType": "Wybierz rodzaj postaci",
+    "SupportingCharacter.howOld": "Jaki jest wiek postaci?",
+    "SupportingCharacter.purposeOrDepartment": "Rola lub sekcja postaci",
+    "SupportingCharacter.speciesAndAttributes": "Gatunek i atrybuty",
+    "SupportingCharacter.numericalValue": "Wartość",
+
+    "SystemGenerationPage.selectQuadrant": "Wybierz kwadrant",
+    "SystemGenerationPage.generateSector": "Generuj sektor",
+
+    "TacticalAssetsPage.instruction": "Dodaj zasób do Twojej listy zasobów.",
+    "TacticalAssetsPage.assets": "Lista zasobów",
+
+    "ToolSelection.instruction": "Co chcesz stworzyć?",
+    "ToolSelection.mainCharacter": "Główny bohater",
+    "ToolSelection.supportingCharacter": "Bohater wspierający",
+    "ToolSelection.npc": "Bohater niezależny",
+    "ToolSelection.starship": "Okręt",
+    "ToolSelection.station": "Stacja kosmiczna",
+    "ToolSelection.spaceSector": "Sektor kosmosu",
+    "ToolSelection.randomNpc": "Losowy BN",
+    "ToolSelection.randomStarship": "Losowy okręt",
+    "ToolSelection.randomCreature": "Losowe stworzenie",
+
+    "UpbringingDetailPage.error.discipline": "Wybierz 1 Sekcję zanim przejdziesz dalej.",
+    "UpbringingDetailPage.error.talent": "Wybierz talent zanim przejdziesz dalej.",
+
+    "Common.button.random": "Losowe",
+    "Common.button.select": "Wybierz",
+    "Common.button.selectAll": "Wybierz wszystkie",
+    "Common.button.selectNone": "Anuluj wybory",
+    "Common.button.showAll": "Pokaż wszystkie",
+    "Common.button.exportJson": "Eksportuj do jsona",
+    "Common.button.export": "Eksportuj",
+    "Common.button.exportVtt": "Eksportuj do VTT",
+    "Common.button.exportPdf": "Eksportuj do pdfa",
+    "Common.button.finish": "Zakończ",
+    "Common.button.ok": "OK",
+    "Common.button.copyToClipboard": "Kopiuj do schowka",
+    "Common.button.add": "Dodaj",
+    "Common.button.cancel": "Anuluj",
+    "Common.button.create": "Stwórz",
+    "Common.button.delete": "Skasuj",
+    "Common.button.modify": "Edytuj",
+    "Common.button.next": "Następne",
+    "Common.button.previous": "Poprzednie",
+    "Common.button.save": "Zapisz",
+    "Common.button.share": "Udostępnij",
+    "Common.button.view": "Podgląd",
+
+    "Common.edition.1": "Pierwsza Edycja",
+    "Common.edition.2": "Druga Edycja",
+
+    "Common.error.focus": "Proszę wybierz biegłość.",
+    "Common.error.value": "Proszę wybierz wartość.",
+    "Common.error.department": "Proszę wybierz Sekcję.",
+    "Common.error.attribute": "Proszę wybierz Atrybut.",
+    "Common.error.system": "Proszę wybierz System.",
+    "Common.error.talent": "Proszę wybierz talent.",
+
+    "Common.text.description": "Opis",
+    "Common.text.none": "Brak",
+    "Common.text.notes": "Notatki",
+    "Common.text.copiedToClipboard": "Skopiowane do schowka",
+    "Common.text.search": "Szukaj...",
+    "Common.text.select": "Wybierz",
+    "Common.text.selectOne": "Wybierz jedno",
+    "Common.text.suggestions": "Sugestie",
+    "Common.text.total": "Podsumowanie",
+    "Common.text.yes": "Tak",
+    "Common.text.modify": "Edytuj",
+    "Common.text.talentName": "Nazwa",
+    "Common.text.new": "Nowy",
+    "Common.text.no": "Nie",
+    "Common.text.other": "Inny",
+    "Common.text.remove": "Usuń",
+    "Common.text.directive": "Dyrektywa",
+    "Common.text.directives": "Dyrektywy",
+
+    "Common.select.choose": "Wybierz...",
+
+    "Construct.creature.creatureType": "Rodzaj stworzenia",
+    "Construct.creature.dietType": "Rodzaj pożywienia",
+    "Construct.creature.form": "Forma",
+    "Construct.creature.habitat": "Środowisko",
+    "Construct.creature.locomotion": "Sposób poruszania się",
+    "Construct.creature.size": "Rozmiar",
+
+    "Construct.other.assetType": "Rodzaj zasobu",
+    "Construct.other.assignment": "Przydział",
+    "Construct.other.attacks": "Ataki",
+    "Construct.other.attackType": "Rodzaje ataków",
+    "Construct.other.appearance": "Wygląd",
+    "Construct.other.attribute": "Atrybut",
+    "Construct.other.attributes": "Atrybuty",
+    "Construct.other.breaches": "Wyłomy",
+    "Construct.other.career": "Kariera",
+    "Construct.other.careerEvent1": "Kluczowe wydarzenie nr 1",
+
+    "Construct.other.careerEvent1.short": "Wydarzenie 1",
+
+    "Construct.other.careerEvent2": "Kluczowe wydarzenie nr 2",
+
+    "Construct.other.careerEvent2.short": "Wydarzenie 2",
+
+    "Construct.other.careerEvents": "Kluczowe wydarzenia",
+    "Construct.other.careerPath": "Ścieżka kariery",
+    "Construct.other.characterRole": "Rola bohatera",
+    "Construct.other.characterType": "Rodzaj bohatera",
+    "Construct.other.crew": "Załoga",
+    "Construct.other.crewSupport": "Wsparcie załogi",
+    "Construct.other.description": "Opis",
+    "Construct.other.department": "Sekcja",
+    "Construct.other.departments": "Sekcje",
+    "Construct.other.determination": "Determinacja",
+    "Construct.other.directive": "Dyrektywa",
+    "Construct.other.discipline": "Sekcja",
+    "Construct.other.disciplines": "Sekcje",
+    "Construct.other.education": "Wykształcenie",
+    "Construct.other.environment": "Środowisko",
+    "Construct.other.equipment": "Wyposażenie",
+    "Construct.other.era": "Era",
+    "Construct.other.experience": "Doświadczenie",
+    "Construct.other.focus": "Biegłość",
+    "Construct.other.focus1": "Biegłość 1",
+    "Construct.other.focus2": "Biegłość 2",
+    "Construct.other.focus3": "Biegłość 3",
+    "Construct.other.focus4": "Biegłość 4",
+    "Construct.other.focus5": "Biegłość 5",
+    "Construct.other.focus6": "Biegłość 6",
+    "Construct.other.focuses": "Biegłości",
+    "Construct.other.house": "Ród",
+    "Construct.other.injuries": "Rany",
+    "Construct.other.job": "Praca",
+    "Construct.other.launchYear": "Rok startu",
+    "Construct.other.missionProfile": "Profil misji",
+    "Construct.other.name": "Nazwa",
+    "Construct.other.numberOfRefits_one": "{{count}} modyfikacja",
+    "Construct.other.numberOfRefits_other": "{{count}} modyfikacje",
+    "Construct.other.pastimes": "Rozrywki",
+    "Construct.other.personalThreat": "Osobiste Zagrożenie",
+    "Construct.other.pronouns": "Zaimki",
+    "Construct.other.protection": "Pancerz",
+    "Construct.other.power": "Moc",
+    "Construct.other.purpose": "Przeznaczenie",
+    "Construct.other.rank": "Ranga",
+    "Construct.other.refits": "Modyfikacje",
+    "Construct.other.role": "Rola",
+    "Construct.other.resistance": "Odporność",
+    "Construct.other.reprimands": "Reprymendy",
+    "Construct.other.reputation": "Reputacja",
+    "Construct.other.scale": "Skala",
+    "Construct.other.serviceDate": "Data wejścia do służby",
+    "Construct.other.serviceRecord": "Zapis służby",
+    "Construct.other.shields": "Tarcze",
+    "Construct.other.ship": "Okręt",
+    "Construct.other.shuttlebay": "Hangar",
+    "Construct.other.smallCraftReadiness": "Gotowość małych statków",
+    "Construct.other.sources": "Źródła",
+    "Construct.other.spaceFrame": "Typ kadłuba",
+    "Construct.other.specialRules": "Specjalne zasady",
+    "Construct.other.species": "Gatunek",
+    "Construct.other.speciesAbility": "Zdolność gatunkowa",
+    "Construct.other.speciesAndTraits": "Gatunek i cechy",
+    "Construct.other.starshipType": "Typ okrętu",
+    "Construct.other.stationType": "Typ stacji",
+    "Construct.other.stats": "Statystyki",
+    "Construct.other.stress": "Stres",
+    "Construct.other.supervisory": "Przełożony",
+    "Construct.other.systems": "Systemy",
+    "Construct.other.talent": "Talent",
+    "Construct.other.talents": "Talenty",
+    "Construct.other.talentOptions": "Opcje talentów",
+    "Construct.other.timeline": "Linia czasu",
+    "Construct.other.training": "Trening",
+    "Construct.other.trait": "Cecha",
+    "Construct.other.traits": "Cechy",
+    "Construct.other.additionalTraits": "Dodatkowe cechy",
+    "Construct.other.unnamedCharacter": "Nienazwana postać",
+    "Construct.other.unnamedCreature": "Nienazwane stworzenie",
+    "Construct.other.upbringing": "Wychowanie",
+    "Construct.other.value": "Wartość",
+    "Construct.other.values": "Wartości",
+    "Construct.other.weapon": "Broń",
+    "Construct.other.weapons": "Uzbrojenie",
+    "Construct.other.yearsOfService_one": "Lata służby: {{count}}",
+    "Construct.other.yearsOfService_other": "Lata służby: {{count}}",
+
+    "Construct.assetStat.medical": "Medyczny",
+    "Construct.assetStat.military": "Wojskowy",
+    "Construct.assetStat.personal": "Osobisty",
+    "Construct.assetStat.science": "Naukowy",
+    "Construct.assetStat.social": "Społeczny",
+
+    "Construct.attribute.control": "Kontrola",
+    "Construct.attribute.daring": "Brawura",
+    "Construct.attribute.fitness": "Sprawność",
+    "Construct.attribute.insight": "Intuicja",
+    "Construct.attribute.presence": "Osobowość",
+    "Construct.attribute.reason": "Rozum",
+
+    "Construct.discipline.command": "Dowodzenie",
+    "Construct.discipline.conn": "Stery",
+    "Construct.discipline.security": "Ochrona",
+    "Construct.discipline.engineering": "Inżynieria",
+    "Construct.discipline.science": "Nauka",
+    "Construct.discipline.medicine": "Medycyna",
+
+    "Construct.department.command": "Dowodzenie",
+    "Construct.department.conn": "Stery",
+    "Construct.department.security": "Ochrona",
+    "Construct.department.engineering": "Inżynieria",
+    "Construct.department.science": "Nauka",
+    "Construct.department.medicine": "Medycyna",
+
+    "Construct.system.comms": "Komunikacja",
+    "Construct.system.computer": "Komputery",
+    "Construct.system.engines": "Napęd",
+    "Construct.system.sensors": "Sensory",
+    "Construct.system.structure": "Poszycie",
+    "Construct.system.weapons": "Uzbrojenie",
+
+    "Page.title.attributesAndDisciplines": "Ostatnie poprawki",
+    "Page.title.career": "Kariera",
+    "Page.title.careerDetails": "Szczegóły służby",
+    "Page.title.careerEvent": "Kluczowe wydarzenie",
+    "Page.title.careerEvent1": "Kluczowe wydarzenie 1",
+    "Page.title.careerEvent2": "Kluczowe wydarzenie 2",
+    "Page.title.careerEventDetails": "Szczegóły kluczowego wydarzenia",
+    "Page.title.careerEventDetails1": "Szczegóły kluczowego wydarzenia 1",
+    "Page.title.careerEventDetails2": "Szczegóły kluczowego wydarzenia 2",
+    "Page.title.careerLength": "Długość służby",
+    "Page.title.careerLengthDetails": "Szczegóły długości służby",
+    "Page.title.characterType": "Typ postaci",
+    "Page.title.creditsPage": "Podziękowania",
+    "Page.title.customSpaceframe": "Personalizacja typu kadłuba",
+    "Page.title.customSpeciesDetails": "Szczegóły personalizacji gatunku",
+    "Page.title.education": "Wykształcenie",
+    "Page.title.educationDetails": "Szczegóły wykształcenia",
+    "Page.title.environment": "Środowisko",
+    "Page.title.environmentDetails": "Szczegóły środowiska",
+    "Page.title.era": "Era",
+    "Page.title.extraTalentDetails": "Dodatkowe szczegóły",
+    "Page.title.finalStarshipDetails": "Końcowe szczegóły okrętu",
+    "Page.title.gamemasterTrackerPage": "Śledzenie",
+    "Page.title.home": "Strona domowa",
+    "Page.title.modifySupportingCharacter": "Modyfikacja bohatera wspierającego",
+    "Page.title.modifyStarship": "Modyfikacja okrętu",
+    "Page.title.otherTools": "Inna narzędzia",
+    "Page.title.randomCreature": "Losowa konfiguracja stworzenia",
+    "Page.title.randomStarship": "Losowa konfiguracja okrętu",
+    "Page.title.safetyChecklist": "Lista bezpieczeństwa",
+    "Page.title.sectorDetails": "Szczegóły sektora",
+    "Page.title.simpleStarship": "Uproszczona konfiguracja okrętu",
+    "Page.title.smallCraftStats": "Statystyki małego statku",
+    "Page.title.soloCareerLength": "Długość służby",
+    "Page.title.soloConstructType": "Wybór narzędzia",
+
+    "AlliedMilitaryType.name.maco": "MACO",
+    "AlliedMilitaryType.name.andorianImperialGuard": "Andoriańska Gwardia Imperialna"
+}
