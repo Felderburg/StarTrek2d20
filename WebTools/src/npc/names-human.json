@@ -1876,6 +1876,14 @@
         ]
     },
     {
+        "name": "Acuña",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Acai",
         "gender": "Unisex",
         "type": "FirstName",
@@ -2145,7 +2153,16 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
+        ]
+    },
+    {
+        "name": "Acquiles",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -3023,6 +3040,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Adelgonda",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -4845,6 +4870,22 @@
         ]
     },
     {
+        "name": "Aguero",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
+        "name": "Aguirre",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Aguillard",
         "type": "LastName",
         "gender": "Unisex",
@@ -6639,7 +6680,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -7342,6 +7384,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Algeria",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -8180,6 +8230,14 @@
         ]
     },
     {
+        "name": "Almara",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Almaric",
         "gender": "Male",
         "type": "FirstName",
@@ -8739,7 +8797,8 @@
         "tags": [
             "Spanish",
             "Mexican",
-            "Brazilian"
+            "Brazilian",
+            "Argentinian"
         ]
     },
     {
@@ -9112,6 +9171,14 @@
         "type": "FirstName",
         "tags": [
             "Jamaican"
+        ]
+    },
+    {
+        "name": "Amancio",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -9956,6 +10023,14 @@
         "type": "FirstName",
         "tags": [
             "Pakistani"
+        ]
+    },
+    {
+        "name": "Anbessa",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -12304,15 +12379,16 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Scottish"
+            "Scottish",
+            "Italian"
         ]
     },
     {
-        "name": "Aria",
-        "gender": "Female",
-        "type": "FirstName",
+        "name": "Arias",
+        "gender": "Unisex",
+        "type": "LastName",
         "tags": [
-            "Italian"
+            "Argentinian"
         ]
     },
     {
@@ -12934,6 +13010,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Arnoll",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -14883,7 +14967,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -15294,7 +15379,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -16356,6 +16442,14 @@
         ]
     },
     {
+        "name": "Balduino",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Baldwin",
         "gender": "Male",
         "type": "FirstName",
@@ -17238,6 +17332,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Barrios",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -18190,6 +18292,14 @@
         ]
     },
     {
+        "name": "Belette",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Belevia",
         "gender": "Female",
         "type": "FirstName",
@@ -18685,6 +18795,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Benitez",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -19329,6 +19447,14 @@
         ]
     },
     {
+        "name": "Bernardina",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Bernardino",
         "gender": "Male",
         "type": "FirstName",
@@ -19399,6 +19525,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Bernette",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -20800,6 +20934,14 @@
         ]
     },
     {
+        "name": "Blanco",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Blandina",
         "gender": "Female",
         "type": "FirstName",
@@ -21690,6 +21832,14 @@
         "type": "FirstName",
         "tags": [
             "Polish"
+        ]
+    },
+    {
+        "name": "Bravo",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -23707,6 +23857,14 @@
         ]
     },
     {
+        "name": "Bustos",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Bushida",
         "type": "LastName",
         "gender": "Unisex",
@@ -23867,11 +24025,35 @@
         ]
     },
     {
+        "name": "Cabrera",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
+        "name": "Caca",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Cace",
         "gender": "Male",
         "type": "FirstName",
         "tags": [
             "Irish"
+        ]
+    },
+    {
+        "name": "Cacares",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -24883,7 +25065,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -25286,6 +25469,14 @@
         "tags": [
             "Italian",
             "German"
+        ]
+    },
+    {
+        "name": "Cardoza",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -26161,6 +26352,14 @@
         ]
     },
     {
+        "name": "Carrizo",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Carrie",
         "gender": "Female",
         "type": "FirstName",
@@ -26570,7 +26769,16 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
+        ]
+    },
+    {
+        "name": "Castro",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -27009,6 +27217,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Ceciliane",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -28199,7 +28415,8 @@
         "type": "FirstName",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -30917,6 +31134,14 @@
         ]
     },
     {
+        "name": "Colas",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Cole",
         "gender": "Male",
         "type": "FirstName",
@@ -31724,6 +31949,14 @@
         ]
     },
     {
+        "name": "Cordoba",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Cordovan",
         "gender": "Male",
         "type": "FirstName",
@@ -31907,6 +32140,22 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Coronel",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
+        "name": "Correa",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -32435,7 +32684,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -32797,6 +33047,14 @@
         "type": "FirstName",
         "tags": [
             "Persian"
+        ]
+    },
+    {
+        "name": "Cyrillus",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -36060,7 +36318,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -37066,7 +37325,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -37951,6 +38211,14 @@
         "gender": "Unisex",
         "tags": [
             "Chinese"
+        ]
+    },
+    {
+        "name": "Duarte",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -42248,6 +42516,14 @@
         ]
     },
     {
+        "name": "Emigdia",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Emigdio",
         "gender": "Male",
         "type": "FirstName",
@@ -42304,6 +42580,14 @@
         "tags": [
             "Italian",
             "Spanish"
+        ]
+    },
+    {
+        "name": "Emilianne",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -44342,6 +44626,14 @@
         "gender": "Unisex",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Escobar",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -46483,6 +46775,14 @@
         ]
     },
     {
+        "name": "Fanuco",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Farage",
         "type": "LastName",
         "gender": "Unisex",
@@ -47477,7 +47777,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -47502,6 +47803,14 @@
         "type": "FirstName",
         "tags": [
             "Greek"
+        ]
+    },
+    {
+        "name": "Ferreyra",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -47771,6 +48080,14 @@
         ]
     },
     {
+        "name": "Fifine",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Figaro",
         "gender": "Male",
         "type": "FirstName",
@@ -47783,7 +48100,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -48447,7 +48765,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -48824,6 +49143,14 @@
         ]
     },
     {
+        "name": "Francique",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Francisca",
         "gender": "Unisex",
         "type": "FirstName",
@@ -48878,7 +49205,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Jewish"
+            "Jewish",
+            "Argentinian"
         ]
     },
     {
@@ -50818,7 +51146,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -53180,6 +53509,14 @@
         ]
     },
     {
+        "name": "Gimenez",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Gimma",
         "gender": "Female",
         "type": "FirstName",
@@ -53828,6 +54165,14 @@
         ]
     },
     {
+        "name": "Godoy",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Goe",
         "type": "LastName",
         "gender": "Unisex",
@@ -53969,7 +54314,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -54015,6 +54361,13 @@
         ]
     },
     {
+        "name": "Gonzalez",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },    {
         "name": "Gonzalo",
         "gender": "Male",
         "type": "FirstName",
@@ -55319,6 +55672,14 @@
         ]
     },
     {
+        "name": "Guga",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Guggul",
         "gender": "Male",
         "type": "FirstName",
@@ -56446,7 +56807,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -56462,7 +56824,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -59783,7 +60146,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -59807,7 +60171,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -62511,6 +62876,14 @@
         ]
     },
     {
+        "name": "Ildefonso",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Ileara",
         "gender": "Female",
         "type": "FirstName",
@@ -63267,7 +63640,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -66458,6 +66832,14 @@
         ]
     },
     {
+        "name": "Joelliane",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Joh",
         "type": "LastName",
         "gender": "Unisex",
@@ -67351,7 +67733,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -67805,6 +68188,14 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Juste",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -70476,18 +70867,18 @@
     },
     {
         "name": "Kebe",
-        "gender": "Unisex",
-        "type": "LastName",
-        "tags": [
-            "Senegalese"
-        ]
-    },
-    {
-        "name": "Kebe",
         "gender": "Female",
         "type": "FirstName",
         "tags": [
             "Nigerian"
+        ]
+    },
+    {
+        "name": "Kebe",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Senegalese"
         ]
     },
     {
@@ -75718,6 +76109,14 @@
         ]
     },
     {
+        "name": "Ledesma",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Lee",
         "type": "FirstName",
         "gender": "Male",
@@ -75839,6 +76238,14 @@
         "gender": "Unisex",
         "tags": [
             "Chinese"
+        ]
+    },
+    {
+        "name": "Leiva",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -76877,6 +77284,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Lichuen",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -78160,7 +78575,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -78887,6 +79303,14 @@
         ]
     },
     {
+        "name": "Lucero",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Lucetta",
         "gender": "Female",
         "type": "FirstName",
@@ -79406,7 +79830,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -81399,6 +81824,14 @@
         ]
     },
     {
+        "name": "Maidana",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Maibrit",
         "gender": "Female",
         "type": "FirstName",
@@ -81428,6 +81861,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Maico",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -82017,7 +82458,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -82754,6 +83196,14 @@
         ]
     },
     {
+        "name": "Manque",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Mansel",
         "gender": "Male",
         "type": "FirstName",
@@ -82767,6 +83217,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Mansilla",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -84691,7 +85149,8 @@
             "German",
             "French",
             "Irish",
-            "African-American"
+            "African-American",
+            "Argentinian"
         ]
     },
     {
@@ -84725,7 +85184,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -84742,6 +85202,14 @@
         "gender": "Unisex",
         "tags": [
             "Italian"
+        ]
+    },
+    {
+        "name": "Martinien",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -86400,7 +86868,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -87136,7 +87605,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -87154,7 +87624,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -88725,7 +89196,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -89655,7 +90127,8 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -90119,7 +90592,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -90192,7 +90666,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -90476,6 +90951,14 @@
         ]
     },
     {
+        "name": "Moyano",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Mozdzierz",
         "gender": "Unisex",
         "type": "LastName",
@@ -90721,6 +91204,14 @@
         "gender": "Unisex",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Muñoz",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -92971,7 +93462,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -93807,6 +94299,14 @@
         ]
     },
     {
+        "name": "Nehuen",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Neil",
         "gender": "Male",
         "type": "FirstName",
@@ -94044,6 +94544,14 @@
         "type": "FirstName",
         "tags": [
             "Greek"
+        ]
+    },
+    {
+        "name": "Neper",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -96656,6 +97164,14 @@
         ]
     },
     {
+        "name": "Nulpi",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Numbi",
         "type": "LastName",
         "gender": "Unisex",
@@ -96676,7 +97192,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -98174,6 +98691,14 @@
         ]
     },
     {
+        "name": "Ojeda",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Ojanomare",
         "gender": "Unisex",
         "type": "FirstName",
@@ -98540,6 +99065,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Olivera",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -99577,7 +100110,8 @@
         "tags": [
             "Spanish",
             "Mexican",
-            "Brazilian"
+            "Brazilian",
+            "Argentinian"
         ]
     },
     {
@@ -100499,6 +101033,14 @@
         ]
     },
     {
+        "name": "Paez",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Paek",
         "type": "LastName",
         "gender": "Unisex",
@@ -101233,6 +101775,14 @@
         ]
     },
     {
+        "name": "Partait",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Parthena",
         "gender": "Female",
         "type": "FirstName",
@@ -101754,6 +102304,14 @@
         ]
     },
     {
+        "name": "Paz",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Pazel",
         "gender": "Male",
         "type": "FirstName",
@@ -101936,6 +102494,14 @@
         "type": "FirstName",
         "tags": [
             "Greek"
+        ]
+    },
+    {
+        "name": "Pehuen",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -102173,6 +102739,14 @@
         ]
     },
     {
+        "name": "Peralta",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Perahta",
         "gender": "Female",
         "type": "FirstName",
@@ -102251,7 +102825,16 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
+        ]
+    },
+    {
+        "name": "Pereyra",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -103224,6 +103807,14 @@
         ]
     },
     {
+        "name": "Pichi",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Piedad",
         "gender": "Female",
         "type": "FirstName",
@@ -103597,6 +104188,14 @@
         ]
     },
     {
+        "name": "Pire",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Pirizzi",
         "gender": "Male",
         "type": "FirstName",
@@ -103899,6 +104498,14 @@
         ]
     },
     {
+        "name": "Ponce",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Poncho",
         "gender": "Male",
         "type": "FirstName",
@@ -104008,6 +104615,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Porfio",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -105870,6 +106485,14 @@
         ]
     },
     {
+        "name": "Quiroga",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Quisha",
         "gender": "Female",
         "type": "FirstName",
@@ -106450,6 +107073,14 @@
         ]
     },
     {
+        "name": "Raiquen",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Raissa",
         "gender": "Female",
         "type": "FirstName",
@@ -106583,7 +107214,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -106656,7 +107288,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -109326,6 +109959,14 @@
         ]
     },
     {
+        "name": "Rios",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Riobard",
         "gender": "Male",
         "type": "FirstName",
@@ -109533,6 +110174,14 @@
         "gender": "Unisex",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Rivero",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -110097,7 +110746,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -110297,7 +110947,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -110370,7 +111021,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -110559,7 +111211,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -112078,7 +112731,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -113466,7 +114120,8 @@
         "tags": [
             "Spanish",
             "Mexican",
-            "Brazilian"
+            "Brazilian",
+            "Argentinian"
         ]
     },
     {
@@ -117819,7 +118474,8 @@
         "gender": "Unisex",
         "type": "LastName",
         "tags": [
-            "Brazilian"
+            "Brazilian",
+            "Argentinian"
         ]
     },
     {
@@ -117828,6 +118484,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Silvaine",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -119077,6 +119741,14 @@
         ]
     },
     {
+        "name": "Soria",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Soriah",
         "gender": "Unisex",
         "type": "FirstName",
@@ -119117,6 +119789,22 @@
         ]
     },
     {
+        "name": "Sosimo",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
+        "name": "Sosa",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Soso",
         "gender": "Male",
         "type": "FirstName",
@@ -119145,7 +119833,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -119852,6 +120541,14 @@
         ]
     },
     {
+        "name": "Suarez",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Subaru",
         "gender": "Unisex",
         "type": "FirstName",
@@ -120261,6 +120958,14 @@
         "type": "FirstName",
         "tags": [
             "Hindi"
+        ]
+    },
+    {
+        "name": "Suyai",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -120930,6 +121635,14 @@
         "type": "FirstName",
         "tags": [
             "Italian"
+        ]
+    },
+    {
+        "name": "Taiel",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -124180,6 +124893,14 @@
         ]
     },
     {
+        "name": "Toledo",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Tolek",
         "gender": "Male",
         "type": "FirstName",
@@ -124621,7 +125342,8 @@
         "type": "FirstName",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -126532,6 +127254,14 @@
         ]
     },
     {
+        "name": "Urbain",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Urbana",
         "gender": "Female",
         "type": "FirstName",
@@ -126747,7 +127477,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -127057,7 +127788,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -127274,7 +128006,8 @@
         "gender": "Unisex",
         "tags": [
             "Spanish",
-            "Mexican"
+            "Mexican",
+            "Argentinian"
         ]
     },
     {
@@ -127315,7 +128048,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -127323,7 +128057,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Spanish"
+            "Spanish",
+            "Argentinian"
         ]
     },
     {
@@ -127411,15 +128146,16 @@
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Russian"
+            "Russian",
+            "Spanish"
         ]
     },
     {
         "name": "Vera",
-        "gender": "Female",
-        "type": "FirstName",
+        "gender": "Unisex",
+        "type": "LastName",
         "tags": [
-            "Spanish"
+            "Argentinian"
         ]
     },
     {
@@ -127633,6 +128369,14 @@
         ]
     },
     {
+        "name": "Villalba",
+        "type": "LastName",
+        "gender": "Unisex",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Villarreal",
         "type": "LastName",
         "gender": "Unisex",
@@ -127703,6 +128447,14 @@
         "gender": "Female",
         "tags": [
             "Russian"
+        ]
+    },
+    {
+        "name": "Virge",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -129701,6 +130453,14 @@
         ]
     },
     {
+        "name": "Yaco",
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Yacova",
         "gender": "Female",
         "type": "FirstName",
@@ -129762,6 +130522,14 @@
         "gender": "Unisex",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Yaima",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {
@@ -130343,6 +131111,14 @@
         ]
     },
     {
+        "name": "Yenien",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
+        ]
+    },
+    {
         "name": "Yeon",
         "type": "LastName",
         "gender": "Unisex",
@@ -130380,6 +131156,14 @@
         "type": "FirstName",
         "tags": [
             "Korean"
+        ]
+    },
+    {
+        "name": "Yerimen",
+        "gender": "Unisex",
+        "type": "FirstName",
+        "tags": [
+            "Argentinian"
         ]
     },
     {

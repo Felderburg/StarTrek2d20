@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "react-bootstrap";
 
 interface IIconButtonProperties {
     onClick: () => void;
@@ -14,5 +15,5 @@ export const IconButton: React.FC<IIconButtonProperties> = ({onClick, icon, vari
         classes = "text-danger";
     }
 
-    return (<button className={"btn btn-link " + classes} onClick={() => onClick()} title={title}><i className={"bi bi-" + icon}></i></button>)
+    return (<Button variant="link" size="lg" className={classes} onClick={() => onClick()} title={title}><i className={"bi bi-" + icon}></i></Button>)
 }

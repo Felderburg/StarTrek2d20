@@ -81,7 +81,7 @@ const CreditsPage = () => {
                     <p className="mx-4"><b>Spanish:</b> <a href="https://github.com/k3ssdev" target="_blank" rel="noreferrer">k3ssdev</a></p>
                     <p className="mx-4"><b>Brazilian Portuguese:</b> <a href="http://adambravo79.ddns.net/" target="_blank" rel="noreferrer">AdamBravo79</a> {' '} (No SSL)</p>
                     <p className="mx-4"><b>Russian:</b> <a href="https://t.me/startrekadventuresru" target="_blank" rel="noreferrer">Hanzo</a></p>
-                    <p className="mx-4"><b>Polish:</b> fluor</p>
+                    <p className="mx-4"><b>Polish:</b> <a href="https://www.facebook.com/PierwszaDyrektywaFluora" target="_blank" rel="noreferrer">fluor</a></p>
                     <p>
                         If you can help, let me know, and I'd welcome any input you can provide.
                     </p>
