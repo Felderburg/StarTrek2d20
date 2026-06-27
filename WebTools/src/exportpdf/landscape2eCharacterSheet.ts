@@ -386,11 +386,11 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
         labelWriter(page, {
             "Construct.other.name": new Column(55.4 + 3, 72.4 + 1, 6, 248.2 - 5),
-            "Construct.other.pronouns": new Column(309.2 + 3, 72.4 + 1, 6, 86.1 - 5),
+            "Construct.other.pronouns": new Column(311 + 3, 72.4 + 1, 6, 86.1 - 5),
             "Construct.other.rank": new Column(55.4 + 3, 102 + 2, 6, 166 - 5),
             "Construct.other.assignment": new Column(227 + 3, 102 + 1, 6, 166 - 5),
             "Construct.other.characterRole": new Column(55.4 + 3, 131.3 + 1, 6, 248.2 - 5),
-            "Construct.other.reputation": new Column(309.2 + 3, 131.3 + 1, 6, 86.1 - 5),
+            "Construct.other.reputation": new Column(311 + 3, 131.3 + 1, 6, 86.1 - 5),
             "Construct.other.speciesAndTraits": new Column(55.4 + 3, 161 + 1, 6, 339.9 - 5),
             "Construct.other.environment": new Column(55.4 + 3, 190.8 + 1, 6, 166 - 5),
             "Construct.other.upbringing": new Column(227 + 3, 190.8 + 1, 6, 166 - 5),
