@@ -9,7 +9,7 @@ import { TalentWriter } from "./talentWriter";
 import { Character, Division } from "../common/character";
 import { assembleWritableItems } from "./generatedsheet";
 import { FontLibrary, FontType } from "./fontLibrary";
-import { labelWriter } from "./labelWriter";
+import { labelWriter, simpleLabelWriter } from "./labelWriter";
 import { TextAlign } from "./textAlign";
 import { CheckMarkMaker } from "./checkMarkMaker";
 import { staTextFieldAppearanceProvider } from "../helpers/pdfTextFieldAppearance";
@@ -25,6 +25,7 @@ import { FontOptions } from "./fontOptions";
 import { LandscapeSheetDecorations } from "./landscapeSheetDecorations";
 import { FontSpecification } from "./fontSpecification";
 import { PageArea } from "./pageArea";
+import { TextBlock } from "./textBlock";
 
 export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
@@ -131,21 +132,91 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
         this.drawArrowHead(page, construct as Character, colour);
 
-        /*
         if ((construct as Character).logEntries?.length && nextArea != null) {
-            if (nextArea != null && ![Landscape2eCharacterSheet.page2Column1X, Landscape2eCharacterSheet.page2Column2X, Landscape2eCharacterSheet.page2Column3X, Landscape2eCharacterSheet.page2Column4X].includes(nextArea.column.start.x)) {
+            let y = undefined;
+            if (nextArea != null && Landscape2eCharacterSheet.page2Column1X === nextArea.column.start.x || Landscape2eCharacterSheet.page2Column3X === nextArea.column.start.x) {
+                y = nextArea.column.start.y;
+                let newLayoutColumn = Landscape2eCharacterSheet.page2Column1X === nextArea.column.start.x ? logColumns[0] : logColumns[1];
+                nextArea = new PageArea(newLayoutColumn.bottomAfter(y - newLayoutColumn.start.y), nextArea.page);
+            } else if (nextArea != null && Landscape2eCharacterSheet.page2Column2X === nextArea.column.start.x) {
+                let newLayoutColumn = logColumns[1];
+                nextArea = new PageArea(newLayoutColumn, nextArea.page);
+            } else if (nextArea != null && ![Landscape2eCharacterSheet.page2Column1X, Landscape2eCharacterSheet.page2Column2X, Landscape2eCharacterSheet.page2Column3X, Landscape2eCharacterSheet.page2Column4X].includes(nextArea.column.start.x)) {
                 const page = pdf.addPage(page2);
                 nextArea = new PageArea(logColumns[0], page);
+            } else {
+                nextArea = undefined;
             }
 
-            let header = {
-                "Sheet.text.log.title": nextArea.column.topBefore(10),
+            if (nextArea != null) {
+                this.writeLogEntries(construct as Character, nextArea.areaWithAtLeast(40), colour);
             }
-            labelWriter(nextArea.page, header, construct.version,
-                this.headingFont, 9, Landscape2eCharacterSheet.greyColour, TextAlign.Left);
         }
-        */
     }
+
+    writeLogEntries(character: Character, nextArea: PageArea, colour: SimpleColor) {
+        let header = {
+            "Sheet.text.log.title": nextArea.column.topBefore(10),
+        }
+        labelWriter(nextArea.page, header, character.version,
+            this.headingFont, 9, Landscape2eCharacterSheet.greyColour, TextAlign.Left);
+        nextArea = nextArea.bottomAfter(23);
+
+        let logEntries = character.logEntries;
+
+        let paragraph = new Paragraph(nextArea.page, nextArea.column, this.fonts);
+        let paragraphs: Paragraph[] = [];
+        paragraphs.push(paragraph);
+        let indent = 0;
+        for (let i = 1; i <= logEntries.length; i++) {
+            let box = TextBlock.create("" + i + ". ", new FontSpecification(this.fonts.fontByType(FontType.Bold), 9), 0);
+            indent = Math.max(box.width, indent);
+        }
+        paragraph.indent(indent);
+
+        logEntries.forEach((l, li) => {
+            if (li > 0) {
+                paragraph = paragraph?.nextParagraph(2);
+                if (paragraph) {
+                    paragraphs.push(paragraph);
+                }
+            }
+            let text = "";
+            if (l.adventureTitle?.trim()?.length) {
+                text += "**" + l.adventureTitle + "**";
+            }
+            if (l.missionDescription?.trim()?.length) {
+                text += "\n" + l.missionDescription;
+            }
+            if (l.notes?.trim().length) {
+                text += "\n**" + i18next.t("Common.text.notes") + ":** " + l.notes;
+            }
+
+            let descriptionParagraphs = text.split('\n');
+            descriptionParagraphs.forEach((p, i) => {
+                if (i > 0) {
+                    paragraph = paragraph?.nextParagraph();
+                    if (paragraph) {
+                        paragraphs.push(paragraph);
+                    }
+                }
+                let temp = paragraph;
+                paragraph?.append(p, new FontOptions(9));
+                if (temp && i === 0) {
+                    let height = temp.lines[0]?.height();
+                    let y = temp.page.getHeight() - temp.lines[0]?.location.y;
+                    let column = temp.lines[0]?.column;
+                    if (height != null && y != null && column != null) {
+                        simpleLabelWriter(temp.page, "" + (li+1) + ".",
+                            column.bottomAfter(y-column.start.y).topBefore(height ?? 9),
+                            this.fonts.fontByType(FontType.Bold), 9, colour);
+                    }
+                }
+            });
+        });
+        paragraphs.forEach(p => p.write());
+    }
+
 
     deriveSheetColour(character: Character) {
         if (character.type === CharacterType.Starfleet || character.type === CharacterType.Cadet) {
