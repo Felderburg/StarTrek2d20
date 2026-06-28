@@ -92,6 +92,7 @@
     "ViewPage.unnamedStarship": "Nienazwany okręt",
     "ViewPage.unnamedStation": "Nienazwana stacja kosmiczna",
 
+    "CareerEvents.instruction": "Twoja kariera utkana jest z wielu zdarzeń i doświadczeń, ale wśród nich tylko kilka jest naprawdę kluczowych. Określ które z nich są najważniejsze, biorąc pod uwagę to, że rzeczy istotne dla młodego chorążego mogą wydawać się bez znaczenia dla tego samego oficera starszego o dekady.",
     "CareerEvents.standard": "Standardowe",
     "CareerEvents.standardAndUnofficial": "Standardowe i fanowskie",
     "CareerEvents.unofficialNote": "Ta lista zawiera fanowskie dodatki. Sprawdź ze swoim MG czy zgadza się na ich wykorzystanie. [Continuing Missions](https://continuingmissionsta.com/2018/05/09/replicator-resource-expanded-career-events-write-ups/)",
@@ -102,7 +103,7 @@
 
     "ChildSelectionPage.instruction": "Dzieci nie uczęszczają do Akademii Gwiezdnej Floty (ani innych placówek oferujących wyższe wykształcenie), bo są na wcześniejszych etapach edukacji.\n\nWybierz wiek swojego bohatera.",
 
-    "GMTracker.title": "Zarządzanie BN",
+    "GMTracker.title": "Lista zapisanych postaci",
     "GMTracker.instruction": "Tutaj możesz zarządzać swoimi bohaterami niezależnymi.",
     "GMTracker.addCharacterModalTitle": "Dodaj bohatera",
 
@@ -114,6 +115,7 @@
     "CareerSelectionPage.title": "Wybierz rodzaj kariery",
     "CareerSelectionPage.selectCareer": "Wybierz rodzaj kariery",
     "CareerSelectionPage.rollCareer": "Wylosuj rodzaj kariery",
+    "CareerSelectionPage.exclusionText": "Twój bohater posiada talent Zaawansowana dynamika zespołu, który uniemożliwia wybór młodszych postaci.",
     "CareerSelectionPage.selectOneTalent": "Dowolny talent",
 
     "CharacterSheetDialog.title": "Wybierz szablon",
@@ -123,7 +125,7 @@
 
     "CustomSpaceframe.departments.instruction": "Pozostałe punkty do rozdzielenia pomiędzy sekcje okrętu: {{points}}.",
 
-    "CustomSpeciesDetails.speciesName": "Nazwa",
+    "CustomSpeciesDetails.speciesName": "Imię",
     "CustomSpeciesDetails.instruction": "Jak nazywa się ten gatunek?",
     "CustomSpeciesDetails.speciesTrait": "Każdy gatunek posiada specjalne cechy, zapewniające dodatkowe korzyści w określonych okolicznościach.",
     "CustomSpeciesDetails.speciesNameWarning": "Proszę wpisz nazwę tego gatunku.",
@@ -153,6 +155,10 @@
 
     "CharacterAdvancementTypeView.logCallback": "Nawiązanie do poprzedniej misji",
 
+    "CharacterAdvancementTypeView.logCallback.milestone.instructions": "Aby wykorzystać kamień milowy lub przemianę postaci, musisz odwołać się do przeszłej misji, w czasie której Twoja postać wykorzystała podobną wartość.\n\nWybierz jedną z przeszłych misji, która została wykorzystana do rozbudowy postaci.",
+
+    "CharacterAdvancementTypeView.logCallback.characterArc.instructions": "Aby wykorzystać kamień milowy lub przemianę postaci, musisz odwołać się do przeszłej misji, w czasie której Twoja postać wykorzystała podobną wartość.\n\nWybierz jedną z przeszłych misji, która została wykorzystana do rozbudowy postaci.",
+
     "CharacterAdvancementTypeView.log.notFound": "Ups. Żaden wpis do dziennika nie spełnia kryteriów.",
 
     "CharacterAdvancementTypeView.error.selectLog": "Proszę wybierz odpowiedni wpis do dziennika.",
@@ -171,8 +177,26 @@
     "CharacterTypePage.whatMilitary": "Którą organizację wojskową reprezentuje bohater?",
     "CharacterTypePage.otherMilitaryName": "Jaka jest nazwa tej organizacji wojskowej?",
 
+    "CareerLength.instruction": "Na tym etapie dokonujesz wyboru: grasz młodszym oficerem, świeżo po Akademii, z całą karierą i wielkim potencjałem czy może służysz już w Gwiezdnej Flocie od lat. A może jesteś weteranem z dekadami doświadczenia?\n\nWybierz lub wylosuj ścieżkę kariery.",
+
+    "CareerLength.instruction.klingon": "Na tym etapie dokonujesz wyboru: grasz młodszym oficerem, żądnym przygód i chwały czy może służysz już w KSO od lat. A może jesteś weteranem z dekadami doświadczenia?\n\nWybierz lub wylosuj ścieżkę kariery.",
+    "CareerLength.instruction.civilian": "Na tym etapie dokonujesz wyboru: grasz młodszym specjalistą, u progu swojej kariery czy może działasz już od lat? A może jesteś weteranem z dekadami doświadczenia?\n\nWybierz lub wylosuj ścieżkę kariery.",
+    "CareerLength.instruction.cadet": "Twoja postać to oficer w trakcie szkolenia, w trakcie studiów na Akademii Gwiezdnej Floty lub w innej podobnej instytucji. Ma wielki potencjał, coś już potrafi, ale brakuje jej doświadczenia, aby wykorzystać swoje zdolności w najlepszy możliwy sposób.",
+    "CareerLength.instruction.child": "Dziecięcy bohater nie ma oczywiście jeszcze zdefiniowanej ścieżki kariery.",
+
     "DeleteConfirmationModal.instruction": "Czy na pewno chcesz to skasować?",
     "DeleteConfirmationModal.title": "Skasuj tabelę",
+
+    "EarlyOutlookPage.instruction": "Rodzina i najbliższe otoczenie potrafią wywrzeć olbrzymi wpływ na naszą postać w momencie dorastania. To czy przyjmiemy ten wpływ, czy będziemy się jemu opierać, może mieć znaczenie do końca życia naszego bohatera.\n\nWybierz lub wylosuj rodzaj tego wpływu.",
+
+    "EarlyOutlookPage.instruction.klingon": "Klingońskie społeczeństwo oparte jest na systemie kastowym, w ramach którego rodziny specjalizują się w pewnych konkretnych dziedzinach działalności i wiedza ta jest przekazywana z pokolenia na pokolenie. W toku historii zmieniała się struktura władzy w państwie, ale kasta wojowników zawsze miała istotną rolę do odegrania.\nW ciągu ostatnich stuleci podziały kastowe słabną, i chociaż wciąż wiele rodzin przestrzega dawnych tradycji, to zdarzają się przypadki, w których Klingoni wyłamują się z wielowiekowych zwyczajów i podążają własną ścieżką.\n\nWybierz lub wylosuj swoją kastę.",
+
+    "EducationPage.instruction.alliedMilitary": "Istnieje wiele innych organizacji obronnych i wojskowych, odmiennych od Gwiezdnej Floty. Zamiast wybierać oficera Gwiezdnej Floty lub klingońskiego, możesz stworzyć historię bajorańskiego bojownika o wolność, członka Andoriańskiej Gwardii Imperialnej lub radykalnie szczerą wojowniczkę Qowat Milat.\n\nWybierz lub wylosuj jedną ze ścieżek alternatywnych wobec Gwiezdnej Floty, określając jaki rodzaj przeszkolenia przeszła Twoja postać.",
+    "EducationPage.instruction.ambassadorDiplomat": "Personel dyplomatyczny często pojawia się na okrętach Gwiezdnej Floty oraz w innych kluczowych sytuacjach. Te postaci nie muszą mieć za sobą pełnego treningu w Gwiezdnej Flocie, ale powinny być wyszkolone i dobrze poinformowane adekwatnie do realizowanych misji. Powinny także potrafić zadbać o siebie w sytuacjach zwiększonego ryzyka.\n\nPostaci w rolach dyplomatów niekoniecznie będą miały rangę w Gwiezdnej Flocie lub innych organizacjach obronnych, chociaż wielu emerytowanych oficerów Gwiezdnej Floty zostawało później dyplomatami.\n\nAby stworzyć postać dyplomaty, wybierz lub wylosuj jeden z rodzajów szkolenia dyplomatycznego.",
+    "EducationPage.instruction.cadet": "Twoja postać to oficer w trakcie szkolenia, w trakcie studiów na Akademii Gwiezdnej Floty lub w innej podobnej instytucji. Ma wielki potencjał, coś już potrafi, ale brakuje jej doświadczenia, aby wykorzystać swoje zdolności w najlepszy możliwy sposób.",
+    "EducationPage.instruction.civilian": "W całym trekowym uniwersum znajdziemy postaci cywilne, udzielające się w mniejszym lub większym stopniu, czy to ambasadora Sareka prowadzącego strategiczne negocjacje czy odkrycie USS Protostar przez łobuzerskiego Dal R'Ela. Skupienie historii w Captain's Logu wokół postaci cywilnej to okazja spojrzenia jak wygląda życie poza Gwiezdną Flotą.\n\nCywile nie posiadają oczywiście żadnej rangi we flocie ani innych organizacjach, chociaż mogą otrzymać rangę honorową.\n\nStwórz postać cywilną, wybierając lub losując jeden z rodzajów poniżej.",
+    "EducationPage.instruction.klingonWarrior": "Poświęcasz swoje życie jako wojownik Imperium Klingońskiego, dołączając do Klingońskich Sił Obronnych, by bronić Imperium i jego interesów. To niebanalne wyzwanie. Dołączenie do załogi okrętu poprzedza intensywny trening, a jeśli chcesz służyć jako oficer a nie bekk (szeregowy załogant), to czekają Ciebie wyczerpujące egzaminy wstępne i zatwierdzenie przez Komisję Nadzorców. Na każdym z ważniejszych światów Imperium znajdują się placówki szkoleniowe, ale najbardziej prestiżowe akademie są na Qo'noS i Ty'Gokor. Młodzi kadeci spędzają znaczną część swojego szkolenia na misjach polowych i manewrach, zyskując w ten sposób praktyczne wyszkolenie.",
+    "EducationPage.instruction.starfleet": "Lata nauki w Akademiii Gwiezdnej Floty definiują przyszłych oficerów, kształtują kierunek ich karier. Najpierw należy przejść przez etap wyczerpujących egzaminów wstępnych, a późniejsza nauka trwa cztery lata. Kadeci ćwiczą intensywnie, studiują i biorą udział w zajęciach praktycznych. Większość aktywności odbywa się na głównym kampusie w San Francisco na Ziemi, ale istnieją też inne kampusy i placówki rozsiane po całej Federacji, więc kadeci mogą podejmować naukę także w innych miejscach.\n\nAbsolwent Akademii otrzymuje przydział oficerski w randze chorążego i po kilku tygodniach lub miesiącach oczekiwania pierwszy przydział służbowy. Niektórzy kadeci, zwłaszcza na ścieżce doktoranckiej, kontynuują naukę przez kolejny rok lub dwa i kończą Akademię w randze podporuczników.\n\nWybierz lub wylosuj ścieżkę nauki w Akademii.",
 
     "EducationPage.type.cadet": "Trening kadeta",
     "EducationPage.type.starfleet": "Akademia Gwiezdnej Floty",
@@ -197,13 +221,50 @@
 
     "EnvironmentPage.simple.instruction": "Wybierz lub wylosuj środowisko bohatera.",
 
+    "EnvironmentPage.starfleet.instruction": "Oficerowie Gwiezdnej Floty niezależnie od swojego gatunku mogą pochodzić z bardzo wielu różnych miejsc i światów. Dla przykładu Ludzie typowo pochodzą z Ziemi, ale jest także wielu urodzonych na wielu różnych koloniach rozsianych po Galaktyce czy też na stacjach kosmicznych lub okrętach.",
+
+    "EnvironmentPage.klingon.instruction": "Imperium Klingońskie jest rozległe, a jego granice rosną z każdym kolejnyn podbojem. Dlatego Klingoni pochodzą z wielu różnych światów, od Qo'noS i Khitomer w sercu państwa po świeżo zdobyte tereny przygraniczne. Dodatkowo niezliczoni Klingoni rodzili się i wychowywali w kosmosie – na stacjach lub okrętach kosmicznych wędrujących po całym Imperium.",
+
+    "EnvironmentPage.civilian.instruction": "Bohaterowie niezależnie od swojego gatunku mogą pochodzić z bardzo wielu różnych miejsc i światów. Dla przykładu Ludzie typowo pochodzą z Ziemi, ale jest także wielu urodzonych na wielu różnych koloniach rozsianych po Galaktyce czy też na stacjach kosmicznych lub okrętach.",
+
+    "EnvironmentPage.ambassador.instruction": "Dyplomaci niezależnie od swojego gatunku mogą pochodzić z bardzo wielu różnych miejsc i światów. Dla przykładu Ludzie typowo pochodzą z Ziemi, ale jest także wielu urodzonych na wielu różnych koloniach rozsianych po Galaktyce czy też na stacjach kosmicznych lub okrętach.",
+
+    "EnvironmentPage.cadet.instruction": "Kadeci z Akademii Gwiezdnej Floty niezależnie od swojego gatunku mogą pochodzić z bardzo wielu różnych miejsc i światów. Dla przykładu Ludzie typowo pochodzą z Ziemi, ale jest także wielu urodzonych na wielu różnych koloniach rozsianych po Galaktyce czy też na stacjach kosmicznych lub okrętach.",
+
+    "EnvironmentPage.child.instruction": "Dzieci niezależnie od swojego gatunku mogą pochodzić z bardzo wielu różnych miejsc i światów. Dla przykładu Ludzie typowo pochodzą z Ziemi, ale jest także wielu urodzonych na wielu różnych koloniach rozsianych po Galaktyce czy też na stacjach kosmicznych lub okrętach.",
+
+    "EnvironmentPage.alliedMilitary.instruction": "Niezależnie od gatunku czy rangi, oficerowie organizacji militarnych mogą pochodzić z wielu miejsc i światów.",
+
+    "ExtraStarshipTalentChoice.instruction": "Ten typ kadłuba wymaga dokonania kilku wyborów ze standardowych talentów okrętów.",
+
+    "FinalStarshipDetails.instruction": "Twój okręt jest niemal gotowy. Wymaga jeszcze kilku drobiazgów.",
+
+    "FinalStarshipDetails.name.instruction": "Każdy okręt potrzebuje nazwy. Nie ma jednej uniwersalnej konwencji nazewnictwa, chociaż często wykorzystuje się nazwy lokacji, ważnych historycznych osobistości (zwykle tylko nazwiska), starożytnych statków, postaci z mitologii czy bardziej abstrakcyjnych pojęć lub idei. Zdarza się, że te konwencje nachodzą na siebie, np. okręt może być nazwany po starożytnym statku, który swoje imię zawdzięcza znaczącej lokacji, ale oczywiście nie jest to regułą.\n\nIdealna nazwa to jedno słowo lub rzadziej dwa.",
+
+    "FinalStarshipDetails.registry.instruction": "Wiele okrętów ma specjalne numery rejestracyjne służące do identyfikacji obok nazwy. Na przykład w Gwiezdnej Flocie używa się numerów z przedrostkiem NCC.",
+
+    "FinalStarshipDetails.traits.instruction": "Teraz możesz określić dodatkowe cechy dla swojego okrętu. W tym momencie okręt posiada takie cechy:",
+    "FinalStarshipDetails.traits.note": "Twój MG może zezwolić na dodanie dodatkowych cech do Waszego okrętu. Przykłady to m.in.: Prototyp, Legendarny, Bogata historia służby, Słynny czy Długotrwała służba.",
+
+    "FinishPage.instruction": "Tworzenie postaci zostało zakończone. Zapisz postać do pdfa lub użyj opcji \"Profil\" w lewej kolumnie menu, aby sprawdzić wybrane opcje i przepisać je ręcznie do karty postaci.",
+
     "FinishPage.rank.instruction": "Wybierz rangę postaci",
 
     "FinishPage.trait.preamble_one": "Twoja postać automatycznie otrzymuje następującą cechę:",
     "FinishPage.trait.preamble_other": "Twoja postać automatycznie otrzymuje następujące cechy:",
     "FinishPage.trait.instruction": "Dodaj więcej cech dla postaci:",
 
+    "FinishPage.role.instruction": "Wybierz rolę postaci oraz okręt, na którym służy. Warto wziąć pod uwagę najwyższą sekcję postaci. Najlepiej dopasowane wybory wyświetlą się na górze listy, ale pozostałe opcje także są dostępne na wypadek, gdyby Twoja postać miała być mniej typowa.",
+
+    "FinishPage.pastime.instruction": "Możesz wybrać rozrywki, czyli hobby lub inne aktywności, które postać lubi realizować gdy jest poza godzinami służby. Powinny być przydatne tylko od czasu do czasu, ale mogą być fajnym pretekstem do rozegrania scenki fabularnej.",
+
+    "FinishPage.values.instruction": "Jeżeli wartości postaci nie zostały zdefiniowane w trakcie tworzenia lub chcesz je zmienić, to teraz jest czas, aby to przemyśleć. Wartości to głębokie przekonania, które żywi Twoja postać o świecie, o sobie i swoim otoczeniu, które definiują jej charakter.",
+
     "FinishPage.job.example": "np. młodszy inżynier",
+
+    "GeneralEditView.instruction": "Znaczące modyfikacje służą do dopasowania postaci na skutek pojawienia się nowych dodatków (np. nowe informacje z _Species Sourcebook_ mogłyby sprawić, że gracz chce zbudować swoją postać nieco inaczej) lub za zgodą MG do zmiany wyborów dokonywanych podczas początkowego tworzenia postaci. Te zmiany mają charakter retroaktywny i nie są częścią standardowego rozwoju postaci.",
+
+    "GeneralEditView.speciesAbility.available": "Ta postać została stworzona, gdy jeszcze nie mieliśmy zdefiniowanej oficjalnej zdolności gatunkowej. Czy chcesz ją dodać teraz?",
 
     "Home.title": "STA Generator postaci",
     "Home.selection": "Wybierz narzędzie",
@@ -215,6 +276,36 @@
 
     "MilestonePage.instruction": "Wybierz rodzaj modyfikacji kamienia milowego.",
 
+    "MissionPodSelectionPage.text": "Niektóre klasy okrętów mają możliwość specjalnej konfiguracji modułów w zależności od charakteru misji. Dodatkowe talenty związane z modułem nie mogą być wymieniane podczas rozwoju, ale cały moduł (i jego właściwości) mogą być wymienione tak, jakby były pojedynczym talentem.",
+    "MissionPodSelectionPage.errorNoSelection": "Wybierz proszę moduł misji zanim przejdziesz dalej.",
+
+    "MissionProfileSelectionPage.text": "Profil misji może się różnić u kilku okrętów tej samej klasy. Określa wcześniej przygotowane wyposażenie, a także specjalistyczny personel, który zostanie przydzielony do jego obsługi. Każda klasa okrętów ma co najmniej jeden możliwy profil misji.",
+    "MissionProfileSelectionPage.errorNoSelection": "Wybierz przeznaczenie okrętu zanim przejdziesz dalej.",
+
+    "MissionProfileTalentSelection.error.talent": "Wybierz proszę talent zanim przejdziesz dalej.",
+    "MissionProfileTalentSelection.error.system": "Wybierz proszę System okrętu zanim przejdziesz dalej.",
+
+    "MissionProfileTalentSelection.instruction": "Wybierz 1 talent z listy talentów związanych z profilem misji.",
+
+    "MissionProfileTalentSelection.instruction.system": "Ten profil misji wymaga wybrania jednego talentu z poniższej listy.",
+
+    "ModifySupportingCharacter.instruction": "Za każdym razem gdy bohater wspierający jest wprowadzany do przygody _ponownie_, otrzymuje rozwinięcie. ",
+    "ModifySupportingCharacter.improvementType": "Rodzaj ulepszenia",
+
+    "ModifySupportingCharacter.improvementType.instruction": "Wybierz rodzaj ulepszenia.",
+
+    "ModifySupportingCharacter.value.instruction": "Bohater wspierający zyskuje jedną wartość. Opcję tę można wybrać maksymalnie cztery razy, za każdym razem dodając jedną nową maksymę, którą kieruje się postać. Gdy bohater wspierający ma co najmniej jedną wartość, zyskuje również możliwość przyjmowania Stresu w celu uniknięcia Ran i innych konsekwencji.",
+
+    "ModifySupportingCharacter.focus.instruction": "Bohater wspierający wybiera jedną dodatkową biegłość. Opcję tę można wybrać trzy razy, za każdym razem uzyskując nową biegłość.",
+
+    "ModifySupportingCharacter.attribute.instruction": "Bohater wspierający zwiększa jeden atrybut o 1. Tę opcję można wybrać tylko raz.",
+
+    "ModifySupportingCharacter.talent.instruction": "Bohater wspierający zyskuje jeden talent, którego wymagania spełnia. Tę opcję można wybrać cztery razy, za każdym razem zdobywając inny talent.",
+
+    "ModifySupportingCharacter.department.instruction": "Bohater wspierający zwiększa pojedynczą sekcję o 1. Tę opcję można wybrać tylko raz.",
+
+    "ModifySupportingCharacter.finish.instruction": "Twój bohater wspierający został zmieniony. Aby obejrzeć lub wydrukować zmienioną postać użyj przycisku poniżej.",
+
     "ModifySupportingCharacter.error.improvementType": "Wybierz rodzaj ulepszenia.",
     "ModifySupportingCharacter.error.talent": "Proszę wybierz talent zanim przejdziesz dalej.",
     "ModifySupportingCharacter.error.value": "Proszę wybierz wartość zanim przejdziesz dalej.",
@@ -222,6 +313,33 @@
     "ModifySupportingCharacter.noTalent": "Proszę wybierz talent.",
 
     "ModifySupportingCharacter.talentModal.title": "Wybierz talent",
+
+    "ModificationCompletePage.instruction": "Postać została zmodyfikowana. Możesz sprawdzić zmienioną postać lub dokonać dodatkowej modyfikacji.\n\nMożesz zapisać adres URL zmienionej postaci.",
+
+    "ModificationTypeSelectionPage.instruction": "Wybierz proszę modyfikacje, które chcesz zastosować do tej postaci.",
+    "ModificationTypeSelectionPage.whatMilestoneType": "Który kamień milowy wybierasz?",
+
+    "ModifyStarship.type.instruction": "Okręty można zmienić, gdy bohater wykorzysta swoje ulepszenie, aby poprawić statek. Określ rodzaj ulepszenia bohatera.",
+
+    "ModifyStarship.advancementChoice.instruction": "Wybierz co zostanie ulepszone na okręcie.",
+
+    "ModifyStarship.complete.instruction": "Okręt został zmodyfikowany. Możesz zobaczyć zmienioną wersję lub dokonywać kolejnych zmian.\n\nWarto zapisać adres URL ulepszonego okrętu.",
+
+    "ModifyStarshipPage.error.twoDepartments": "Wybierz proszę dwie sekcje (jedną do usunięcia i jedną do zastąpienia).",
+    "ModifyStarshipPage.error.twoSystems": "Wybierz proszę dwa systemy (jeden do usunięcia, a drugi do ulepszenia).",
+    "ModifyStarshipPage.error.twoTalents": "Wybierz proszę dwa talenty (jeden do usunięcia, a drugi jako zastępstwo).",
+
+    "ModifyStarshipPage.milestone.department.instruction": "Zmniejsz jedną Sekcję o 1 i zwiększ inną o 1. Żadna sekcja nie może przekroczyć poziomu wyższego niż 4 oraz niższego niż 1.",
+
+    "ModifyStarshipPage.milestone.system.instruction": "Dopasuj jeden z Systemów okrętu. Zmniejsz jeden System o 1 i zwiększ inny o 1. Żaden system nie może przekroczyć poziomu wyższego niż 11 oraz niższego niż 6.",
+
+    "ModifyStarshipPage.milestone.talent.instruction": "Usuń jeden z talentów okrętu (oznacza to usunięcie specjalistycznych instalacji), aby zrobić miejsce dla innego. Wybierz jeden z talentów i zamień go na inny.",
+
+    "ModifyStarshipPage.characterArc.department.instruction": "Wybierz jedną z Sekcji okrętu i zwiększ o 1 poziom, maksymalnie do 5. Każda Sekcja może być zwiększana tylko raz za pomocą tej metody.",
+
+    "ModifyStarshipPage.characterArc.system.instruction": "Wybierz jeden z Systemów okrętu i zwiększ go o 1 poziom. Każdy System może być zwiększony tylko o 1 poziom za pomocą kamienia milowego, niezależnie od tego która postać to robi.",
+
+    "ModifyStarshipPage.characterArc.talent.instruction": "Wybierz jeden dodatkowy talent okrętu, możesz przekroczyć standardowy limit dla liczby posiadanych talentów.",
 
     "NpcBuilderPage.text": "Najpierw wybierz rodzaj bohatera niezależnego.",
 
@@ -254,6 +372,7 @@
 
     "NpcStatsPage.instruction.role.minor": "Wybierz rolę, która opisuje zadania BN.",
     "NpcStatsPage.instruction.role.notable": "Wybierz rolę, która opisuje zadania BN.",
+    "NpcStatsPage.instruction.role.major": "Pomyśl o roli BN-a w całej strukturze i jego randze. Kluczowi BN powinni cechować się autorytetem przywódczym, nawet jeżeli nie pełnią oficjalnej funkcji.",
 
     "NpcStatsPage.instruction.value.notable": "Wybierz wartość, która opisuje głębokie przekonania lub motywacje bohatera niezależnego.",
     "NpcStatsPage.instruction.value.major": "Wybierz od 2 do 4 wartości.",
@@ -274,6 +393,8 @@
     "NoviceOrCadetExperiencePage.attribute.error": "Proszę wybierz Atrybut.",
 
     "OtherToolsPage.instruction": "Tu znajdziesz różne narzędzia, które mogą być użyteczne w czasie grania w STA.",
+
+    "OtherToolsPage.safetyChecklist.instruction": "Ta lista jest pomocą w dyskusjach z graczami na temat ich osobistych preferencji i granic w gotowości do eksplorowania pewnych wrażliwych tematów, które mogą się pojawiać w kampanii. Tematy są pogrupowane w kategorie. Lista bezpieczeństwa w formie online pomoże ocenić możliwe kierunki i motywy oraz preferencje co do tego w jaki sposób mają być wykorzystywane w grze.",
 
     "OtherToolsPage.sector.instruction": "Generator systemów tworzy losowy sektor kosmosu i systemy gwiezdne do eksploracji.",
 
@@ -525,7 +646,7 @@
     "Construct.other.job": "Praca",
     "Construct.other.launchYear": "Rok startu",
     "Construct.other.missionProfile": "Profil misji",
-    "Construct.other.name": "Nazwa",
+    "Construct.other.name": "Imię/nazwa",
     "Construct.other.numberOfRefits_one": "{{count}} modyfikacja",
     "Construct.other.numberOfRefits_other": "{{count}} modyfikacje",
     "Construct.other.pastimes": "Rozrywki",
@@ -724,7 +845,7 @@
     "Focus.camouflage": "Kamuflaż",
     "Focus.climbing": "Wspinaczka",
     "Focus.chemicalAndBiologicalWeapons": "Broń chemiczna i biologiczna",
-    "Focus.coldReading": "Zimny odczyt",
+    "Focus.coldReading": "Chłodna ocena",
     "Focus.combatManeuvers": "Manewry bojowe",
     "Focus.combatMedic": "Medyk bojowy",
     "Focus.communicationsSystems": "Systemy komunikacji",
@@ -776,6 +897,8 @@
     "Focus.guidanceSystems": "Systemy namierzania",
     "Focus.handPhasers": "Fazery ręczne",
     "Focus.handToHandCombat": "Walka wręcz",
+
+    "ModificationType.name.generalEdit": "Znaczące modyfikacje",
 
     "NpcType.major.name": "Kluczowy BN",
 
@@ -846,5 +969,37 @@
     "Rank.cadetFourthClass.name": "kadet 4. klasy",
     "Rank.cadetFourthClass.abbrev": "kadet",
 
-    "Role.commandingOfficer": "Oficer dowodzący"
+    "Role.commandingOfficer": "Oficer dowodzący",
+
+    "ServiceRecord.agingRelic": "Relikt",
+
+    "ServiceRecord.agingRelic.description": "Okręt jest w służbie od dziesięcioleci i był domem dla wielu załóg. Tylko najdłużej służący personel może pamiętać, kiedy statek był nowy.",
+
+    "Talent.abundantPersonnel": "Liczny personel",
+
+    "Talent.abundantPersonnel.description": "Ostateczne Wsparcie Załogi okrętu – po uwzględnieniu wszelkich innych modyfikatorów – zostaje podwojone, a efekty lub zdolności zwiększające Wsparcie Załogi działają z dwukrotnie większą siłą na pokładzie statku objętego tą zasadą specjalną. Ponadto, gdy wprowadzasz bohatera wspierającego, możesz użyć jednego dodatkowego punktu Wsparcia Załogi, aby natychmiast go rozwinąć.",
+
+    "Talent.advancedShields": "Zaawansowane tarcze",
+
+    "Talent.advancedShields.description": "Tarcze okrętu są najnowocześniejsze i wykorzystują unikalne rozwiązania niespotykane u większości kultur lub są o wiele wydajniejsze. Maksymalna wartość Tarcz zostaje zwiększona o 5.",
+    "Talent.advancedShields.description2e": "Tarcze okrętu są najnowocześniejsze i wykorzystują najnowsze rozwiązania. Maksymalna wartość Tarcz zostaje zwiększona o 5.",
+    "Talent.advancedShields.soloDescription": "Tarcze okrętu są najnowocześniejsze i wykorzystują unikalne rozwiązania niespotykane u większości kultur lub są o wiele wydajniejsze. Maksymalna wartość Tarcz zostaje zwiększona o 5.",
+
+    "Talent.advancedTeamDynamics": "Zaawansowana dynamika zespołu",
+
+    "Talent.advancedTeamDynamics.description2e": "Kiedy po raz pierwszy w danej misji wprowadzasz bohatera wspierającego, zyskuje on jedną dodatkową opcję z listy rozwinięć dla tego typu postaci.",
+
+    "Talent.dedicatedFocusX": "Wyjątkowa biegłość (X)",
+
+    "Talent.dedicatedFocusX.description2e": "Kiedy wybierasz ten talent, wskaż jedną ze swoich biegłości. Podczas testów, do których ma ona zastosowanie, uzyskujesz krytyczny sukces na każdej kości, na której wypadła dwukrotność odpowiedniej sekcji albo mniej.",
+
+    "Talent.extensiveAutomation": "Rozległa automatyzacja",
+    "Talent.polarizedHullPlatingSpecialRule": "Spolaryzowane poszycie kadłuba",
+
+    "Talent.polarizedHullPlatingSpecialRule.description": "Okręty tej klasy nie posiadają tarcz deflektorowych typowych dla wielu innych statków, a zamiast tego polegają na polaryzacji poszycia w celu ochrony przed obrażeniami. Tor Tarcz okrętu reprezentuje zatem stan spolaryzowanego kadłuba i równy jest Poszyciu, bez dodatkowych modyfikatorów. Spolaryzowanie kadłuba nie wpływa na możliwości transportera w taki sposób, w jaki czyni to podniesienie tarcz.",
+
+    "Talent.secondaryReactors": "Dodatkowe reaktory",
+
+    "Talent.secondaryReactors.description2e": "Statek posiada dodatkowe reaktory impulsowe i fuzyjne, które pozwalają mu generować znacznie większe ilości energii. Raz na scenę, kiedy postać wykonuje akcję Przekierowania mocy, może wydać 2 punkty Impetu (Natychmiastowe), aby odzyskać możliwość korzystania z Rezerw Mocy.",
+    "Talent.secondaryReactors.soloDescription": "Statek posiada dodatkowe reaktory impulsowe i fuzyjne, które pozwalają mu generować znacznie większe ilości energii."
 }

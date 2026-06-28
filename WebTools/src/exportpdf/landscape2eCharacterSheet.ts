@@ -713,17 +713,17 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     fillFocuses(form: PDFForm, character: Character): void {
-        const focuses = character.focuses.join(", ");
+        const focuses = character.focuses?.sort((a, b) => a.localeCompare(b)).join("\n") ?? "";
         this.fillField(form, "Focuses", focuses);
     }
 
     fillPastimes(form: PDFForm, character: Character): void {
-        const pastime = character.pastime?.join(", ") ?? "";
+        const pastime = character.pastime?.sort((a, b) => a.localeCompare(b)).join("\n") ?? "";
         this.fillField(form, "Pastimes", pastime);
     }
 
     fillValues(form: PDFForm, character: Character): void {
-        const values = character.values.join("\n");
+        const values = character.values.sort((a, b) => a.localeCompare(b)).join("\n") ?? "";
         this.fillField(form, "Values", values);
     }
 
