@@ -663,13 +663,12 @@ export class NpcGenerator {
                 break;
             case NpcCharacterType.RomulanEmpire:
                 if (specialization.id === Specialization.RomulanSenator) {
-                    character.type = CharacterType.Civilian;
+                    character.type = CharacterType.Romulan;
                     character.educationStep = new EducationStep(Track.PoliticianOrBureaucrat);
                 } else if (specialization.id === Specialization.QowatMilat) {
-                    character.type = CharacterType.Civilian;
+                    character.type = CharacterType.Romulan;
                 } else {
-                    character.type = CharacterType.AlliedMilitary;
-                    character.typeDetails = new AlliedMilitaryDetails(AllyHelper.instance.findOption(AlliedMilitaryType.RomulanStarEmpire), "Romulan");
+                    character.type = CharacterType.Romulan;
                 }
                 break;
             case NpcCharacterType.RogueRuffianMercenary:

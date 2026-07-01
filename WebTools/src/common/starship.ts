@@ -19,6 +19,7 @@ import { SpaceframeVariant } from "../helpers/spaceframeVariant";
 import { SpaceframeAppearance } from "../helpers/spaceframeAppearance";
 import { BuildPoints } from "../starship/model/buildPoints";
 import { TalentModel } from "../helpers/talentModel";
+import { ShipBuildType } from "./shipBuildType";
 
 export class SimpleStats {
     departments: number[];
@@ -26,16 +27,25 @@ export class SimpleStats {
     className: string = "";
     scale: number = 0;
     weapons: Weapon[];
+    appearance: SpaceframeAppearance;
 
     constructor() {
         this.departments = [0, 0, 0, 0, 0, 0];
         this.systems = [0, 0, 0, 0, 0, 0];
     }
+
+    copy() {
+        let result = new SimpleStats();
+        result.className = this.className;
+        result.departments = [...this.departments];
+        result.systems = [...this.systems];
+        result.scale = this.scale;
+        result.appearance = this.appearance;
+        return result;
+    }
 }
 
-export enum ShipBuildType {
-    Pod, Shuttlecraft, Runabout, Starship
-}
+
 
 export const refitCalculator = (starship: Starship) => {
     if (starship.buildType === ShipBuildType.Starship && starship?.serviceYear && starship?.spaceframeModel?.serviceYearForRefitCalculation) {
@@ -873,13 +883,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         result.additionalTalents = [...this.additionalTalents];
         result.refits = [...this.refits];
         result.additionalWeapons = [...this.additionalWeapons];
-        if (this.simpleStats != null) {
-            result.simpleStats = new SimpleStats();
-            result.simpleStats.className = this.simpleStats.className;
-            result.simpleStats.departments = [...this.simpleStats.departments];
-            result.simpleStats.systems = [...this.simpleStats.systems];
-            result.simpleStats.scale = this.simpleStats.scale;
-        }
+        result.simpleStats = this.simpleStats?.copy();
         result.serviceRecordStep = this.serviceRecordStep?.copy();
         result.advancementSteps = this.advancementSteps.map(s => s.copy());
         return result;

@@ -1,5 +1,5 @@
 import { CharacterType } from "../../common/characterType";
-import { ShipBuildType } from "../../common/starship";
+import { ShipBuildType } from "../../common/shipBuildType";
 
 export class BuildPoints {
 

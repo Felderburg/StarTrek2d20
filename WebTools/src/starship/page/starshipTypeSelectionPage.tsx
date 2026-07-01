@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { CharacterTypeModel } from "../../common/characterType";
 import { navigateTo, Navigation } from "../../common/navigator";
-import { ShipBuildType, ShipBuildTypeModel, SimpleStats } from "../../common/starship";
+import { ShipBuildTypeModel, SimpleStats } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
 import { Header } from "../../components/header";
@@ -19,6 +19,7 @@ import { withTranslation, WithTranslation } from 'react-i18next';
 import InstructionText from "../../components/instructionText";
 import { ServiceYearSelector } from "../view/serviceYearView";
 import PointAllocator from "../../helpers/pointAllocator";
+import { ShipBuildType } from "../../common/shipBuildType";
 
 interface StarshipTypeSelectionPageProperties extends WithTranslation {
     era: Era

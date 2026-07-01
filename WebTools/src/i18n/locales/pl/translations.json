@@ -103,7 +103,7 @@
 
     "ChildSelectionPage.instruction": "Dzieci nie uczęszczają do Akademii Gwiezdnej Floty (ani innych placówek oferujących wyższe wykształcenie), bo są na wcześniejszych etapach edukacji.\n\nWybierz wiek swojego bohatera.",
 
-    "GMTracker.title": "Lista zapisanych postaci",
+    "GMTracker.title": "Manifest załogi",
     "GMTracker.instruction": "Tutaj możesz zarządzać swoimi bohaterami niezależnymi.",
     "GMTracker.addCharacterModalTitle": "Dodaj bohatera",
 
@@ -400,6 +400,8 @@
 
     "OtherToolsPage.tables.instruction": "Twórz i używaj tabel losowych, aby dodać więcej efektów losowych do swoich kampanii.",
 
+    "OtherToolsPage.tracker.instruction": "Manifest załogi to narzędzie, które pozwala zebrać listę kart postaci i przygotować proste podsumowanie. Jest to pomoc dla MG w grupowym zarządzaniu kartami postaci.",
+
     "PromotionPage.instruction": "Wybierz nową rangę dla tej postaci.",
 
     "RandomCreatureConfiguration.text": "Wybierz opcje, aby stworzyć losowe stworzenie.",
@@ -414,6 +416,12 @@
     "RecentCreationsView.instruction": "Twoje ostatnie kreacje.",
 
     "ReputationChangePage.instruction": "Dostosuj poziom reputacji postaci.",
+
+    "SafetyChecklist.instruction": "Ta lista jest pomocą w dyskusjach z graczami na temat ich osobistych preferencji i granic w gotowości do eksplorowania pewnych wrażliwych tematów, które mogą się pojawiać w kampanii. Tematy są pogrupowane w kategorie. Lista bezpieczeństwa w formie online pomoże ocenić możliwe kierunki i motywy oraz preferencje co do tego w jaki sposób mają być wykorzystywane w grze.\n\n- **Bez ograniczeń** – oznacza że gracz jest otwarty na poruszanie tego motywu w grze, jego opisywanie i rozgrywanie.\n\n- **Żółty alarm** – oznacza, że gracz jest otwarty na poruszanie tego motywu w grze, ale preferuje, aby nie zagłębiać się w szczegółowe opisy.\n\n- **Czerwony alarm** – oznacza, że gracz nie chce, aby ten temat był poruszany w trakcie rozgrywki. Może być wiele przyczyn takiego sprzeciwu: z powodów zasad moralnych, traumatycznych doświadczeń albo niechęci do przedstawienia tematu w trakcie wspólnej rozrywki (sesji). Nie dopytuj o dokładne powody, bo nie chodzi o to, aby graczy namawiać i przekonywać do czegoś. Po prostu zaakceptuj ich opinię i pomińcie ten motyw w trakcie sesji.",
+
+    "ServiceRecordPage.instruction": "Opcjonalnie możesz wybrać dodatkowy zapis, który odda kluczowe wydarzenia z przebiegu służby okrętu. To będzie dodatkowa cecha okrętu.",
+
+    "ServiceRecordPage.survivorOfX.selection": "Ocalały z X",
 
     "ServiceRecordPage.removeTalent": "Talent usunięty",
     "ServiceRecordPage.replacedTalent": "Talent zastąpiony",
@@ -754,7 +762,7 @@
     "Page.title.era": "Era",
     "Page.title.extraTalentDetails": "Dodatkowe szczegóły",
     "Page.title.finalStarshipDetails": "Końcowe szczegóły okrętu",
-    "Page.title.gamemasterTrackerPage": "Śledzenie",
+    "Page.title.gamemasterTrackerPage": "Manifest załogi",
     "Page.title.home": "Strona domowa",
     "Page.title.modifySupportingCharacter": "Modyfikacja bohatera wspierającego",
     "Page.title.modifyStarship": "Modyfikacja okrętu",
@@ -970,6 +978,10 @@
     "Rank.cadetFourthClass.abbrev": "kadet",
 
     "Role.commandingOfficer": "Oficer dowodzący",
+
+    "SafetyEvaluationType.alwaysOk": "Bez ograniczeń",
+    "SafetyEvaluationType.yellowAlert": "Żółty alarm",
+    "SafetyEvaluationType.redAlert": "Czerwony alarm",
 
     "ServiceRecord.agingRelic": "Relikt",
 

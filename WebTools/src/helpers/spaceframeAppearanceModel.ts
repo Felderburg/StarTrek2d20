@@ -3,28 +3,36 @@ import { makeKey } from "../common/translationKey";
 import { SpaceframeAppearance } from "./spaceframeAppearance";
 import { CharacterType } from "../common/characterType";
 import { Era } from "./erasEnum";
+import { ShipBuildType } from "../common/shipBuildType";
 
 export class SpaceframeAppearanceModel {
 
     private static TYPES: SpaceframeAppearanceModel[] = null;
 
-    id: SpaceframeAppearance;
-    type: CharacterType;
-    eras: Era[];
+    readonly id: SpaceframeAppearance;
+    readonly type: CharacterType;
+    readonly eras: Era[];
+    readonly buildType: ShipBuildType;
 
-    constructor(id: SpaceframeAppearance, type: CharacterType, eras: Era[]) {
+    constructor(id: SpaceframeAppearance, type: CharacterType, eras: Era[], buildType: ShipBuildType = ShipBuildType.Starship) {
         this.id = id;
         this.type = type;
         this.eras = eras;
+        this.buildType = buildType;
     }
 
     get localizedName() {
         return i18next.t(makeKey('SpaceframeAppearance.', SpaceframeAppearance[this.id]));
     }
 
-    static getAllAppearanceModels(type: CharacterType, era: Era) {
+    static getAllAppearanceModels(type: CharacterType, era: Era, buildType: ShipBuildType = ShipBuildType.Starship) {
         if (this.TYPES == null) {
             this.TYPES = [
+
+                // Shuttles
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Type6Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Type9Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
+
                 // Civilian
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Antares, CharacterType.Civilian, [Era.OriginalSeries]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.ClassJCargoShip, CharacterType.Civilian, [Era.OriginalSeries]),
@@ -64,7 +72,7 @@ export class SpaceframeAppearanceModel {
             ];
         }
 
-        return this.TYPES.filter(a => a.type === type && a.eras.includes(era));
+        return this.TYPES.filter(a => a.type === type && a.eras.includes(era) && a.buildType === buildType);
     }
 
     static appearanceCodeByName(name: string): SpaceframeAppearance|undefined {

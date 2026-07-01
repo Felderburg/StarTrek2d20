@@ -1,6 +1,7 @@
 import { CharacterType } from "../common/characterType";
 import { SelectedTalent } from "../common/selectedTalent";
-import { ShipBuildType, SimpleStats, Starship } from "../common/starship";
+import { ShipBuildType } from "../common/shipBuildType";
+import { SimpleStats, Starship } from "../common/starship";
 import { StarshipAdvancementChoice } from "../common/starshipAdvancementChoice";
 import { Department } from "../helpers/department";
 import { Era } from "../helpers/erasEnum";

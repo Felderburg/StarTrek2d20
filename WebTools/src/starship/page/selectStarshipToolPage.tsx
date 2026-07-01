@@ -1,7 +1,7 @@
 import React from "react";
 import { CharacterType } from "../../common/characterType";
 import { navigateTo, Navigation } from "../../common/navigator";
-import { ShipBuildType, SimpleStats } from "../../common/starship";
+import { SimpleStats } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Header } from "../../components/header";
 import { PageIdentity } from "../../pages/pageIdentity";
@@ -11,6 +11,7 @@ import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { eraDefaultYear } from "../../helpers/eras";
 import { isSecondEdition } from "../../state/contextFunctions";
+import { ShipBuildType } from "../../common/shipBuildType";
 
 class SelectStarshipToolPage extends React.Component<WithTranslation, {}> {
 

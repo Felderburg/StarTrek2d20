@@ -7,11 +7,14 @@ import { BuildPoints } from "../model/buildPoints";
 import { BaseSimpleStarshipPage } from "./simpleStarshipPage";
 import { withTranslation } from 'react-i18next';
 import { DepartmentsHelper } from "../../helpers/department";
-import { nextStarshipWorkflowStep } from "../../state/starshipActions";
+import { nextStarshipWorkflowStep, setStarshipSpaceframeAppearance } from "../../state/starshipActions";
 import store from "../../state/store";
 import { Navigation } from "../../common/navigator";
-import { ShipBuildType } from "../../common/starship";
+import { ShipBuildType } from "../../common/shipBuildType";
 import { PageIdentity } from "../../pages/pageIdentity";
+import { SpaceframeAppearanceModel } from "../../helpers/spaceframeAppearanceModel";
+import { DropDownElement, DropDownSelect } from "../../components/dropDownInput";
+import { SpaceframeAppearance } from "../../helpers/spaceframeAppearance";
 
 
 class SmallCraftStatsPage extends BaseSimpleStarshipPage {
@@ -63,6 +66,41 @@ class SmallCraftStatsPage extends BaseSimpleStarshipPage {
 
     canIncreaseSystem(system: System) {
         return this.sumTotalSystems() < this.getSystemsPoints() && super.canIncreaseSystem(system);
+    }
+
+    isAppearanceSupported() {
+        return SpaceframeAppearanceModel.getAllAppearanceModels(this.props.starship.type, this.props.starship.era, this.props.starship.buildType)?.length;
+    }
+
+    getAppearanceOptions() {
+        let result = [ new DropDownElement("", "")];
+        result.push(...SpaceframeAppearanceModel.getAllAppearanceModels(this.props.starship.type, this.props.starship.era, this.props.starship.buildType)
+            .map(a => new DropDownElement(a.id, a.localizedName)));
+        return result;
+    }
+
+    onAppearanceChange = (value: number|string) => {
+        if (value === "") {
+            store.dispatch(setStarshipSpaceframeAppearance());
+        } else {
+            store.dispatch(setStarshipSpaceframeAppearance(value as SpaceframeAppearance));
+        }
+    }
+
+
+    renderAppearance() {
+        const { t } = this.props;
+        if (this.isAppearanceSupported()) {
+            return (<div className="my-4">
+                <Header className="mb-4" level={2}>{t('Construct.other.appearance')}</Header>
+
+                <DropDownSelect items={this.getAppearanceOptions()}
+                    defaultValue={this.props.starship.simpleStats?.appearance ?? ""}
+                    onChange={this.onAppearanceChange} />
+            </div>);
+        } else {
+            return undefined;
+        }
     }
 
     nextPage(): void {

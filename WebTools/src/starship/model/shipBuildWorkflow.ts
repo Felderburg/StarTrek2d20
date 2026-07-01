@@ -1,4 +1,4 @@
-import { ShipBuildType } from "../../common/starship";
+import { ShipBuildType } from "../../common/shipBuildType";
 import { PageIdentity } from "../../pages/pageIdentity";
 
 export class ShipBuildWorkflowStep {

@@ -1,6 +1,6 @@
 import { Character } from "../common/character";
 import { CharacterSerializer } from "../common/characterSerializer";
-import { ShipBuildType, Starship } from "../common/starship";
+import { Starship } from "../common/starship";
 import { Attribute, AttributesHelper } from "../helpers/attributes";
 import { Role, RoleModel, RolesHelper } from "../helpers/roles";
 import { DepartmentsHelper, Department } from "../helpers/department";
@@ -24,6 +24,7 @@ import { marshaller } from "../helpers/marshaller";
 import { SelectedTalent } from "../common/selectedTalent";
 import { Station } from "../common/station";
 import { TalentCategory } from "../helpers/talentCategory";
+import { ShipBuildType } from "../common/shipBuildType";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";

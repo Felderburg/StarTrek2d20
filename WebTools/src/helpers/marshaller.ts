@@ -3,7 +3,7 @@ import pako from 'pako';
 import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails, ReputationChangeStep } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Construct, Stereotype } from '../common/construct';
-import { MissionProfileStep, ServiceRecordStep, ShipBuildType, ShipBuildTypeModel, SimpleStats, SpaceframeStep, Starship, StarshipAdvancementStep } from '../common/starship';
+import { MissionProfileStep, ServiceRecordStep, ShipBuildTypeModel, SimpleStats, SpaceframeStep, Starship, StarshipAdvancementStep } from '../common/starship';
 import AgeHelper from './age';
 import { Attribute, AttributesHelper } from './attributes';
 import { Career } from './careerEnum';
@@ -59,6 +59,7 @@ import { StationFrame, StationFrameAppearance } from './stationFrame';
 import { StationFrameAppearanceModel } from './stationFrameAppearanceModel';
 import { SpaceframeAppearance } from './spaceframeAppearance';
 import { SpaceframeAppearanceModel } from './spaceframeAppearanceModel';
+import { ShipBuildType } from '../common/shipBuildType';
 
 class Marshaller {
 
@@ -968,6 +969,10 @@ class Marshaller {
                 "className": starship.simpleStats.className,
                 "scale": starship.simpleStats.scale
             }
+            if (starship.simpleStats.appearance != null) {
+                sheet["simpleStats"]["appearance"] = SpaceframeAppearance[starship.simpleStats.appearance];
+            }
+
         }
         if (starship.additionalWeapons.length > 0) {
             sheet['additionalWeapons'] = starship.additionalWeapons.map(w => this.encodeWeapon(w));
@@ -1278,6 +1283,10 @@ console.log(json);
             result.simpleStats.className = json.simpleStats.className;
             result.simpleStats.systems = [...json.simpleStats.systems];
             result.simpleStats.departments = [...json.simpleStats.departments];
+            if (json.simpleStats.appearance != null) {
+                result.simpleStats.appearance = SpaceframeAppearanceModel.appearanceCodeByName(json.simpleStats.appearance);
+            }
+
         }
 
         if (json.additionalWeapons) {
@@ -1298,6 +1307,7 @@ console.log(json);
         if (json.improvements?.length) {
             result.advancementSteps = this.decodeStarshipImprovement(json.improvements, result.version) ?? [];
         }
+        console.log(result);
         return result;
     }
 

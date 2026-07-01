@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { Navigation } from "../../common/navigator";
-import { ShipBuildType, Starship } from "../../common/starship";
+import { Starship } from "../../common/starship";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
@@ -18,6 +18,7 @@ import CustomSpaceframeView from "../view/customSpaceframeView";
 import PointAllocator from "../../helpers/pointAllocator";
 import { BuildPoints } from "../model/buildPoints";
 import { SpaceframeModel } from "../../helpers/spaceframeModel";
+import { ShipBuildType } from "../../common/shipBuildType";
 
 enum SpaceframeTab {
     Custom,

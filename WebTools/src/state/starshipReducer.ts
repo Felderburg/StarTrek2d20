@@ -368,7 +368,9 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         }
         case SET_STARSHIP_SPACEFRAME_APPEARANCE: {
             let s = state.starship.copy();
-            if (s?.spaceframeModel?.isCustom) {
+            if (s.simpleStats != null) {
+                s.simpleStats.appearance = action.payload.appearance;
+            } else if (s?.spaceframeModel?.isCustom) {
                 s.spaceframeStep.appearance = action.payload.appearance;
             }
             return {

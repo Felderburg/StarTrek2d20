@@ -42,7 +42,7 @@ export class TokenSvgBuilder {
                     `<rect width="400px" height="400px" x="0" y="0" fill="white"/>` +
                     "<g"  + (rounded ? " transform=\"translate(-40,0)\"" : "") + ">" +
                         "<g transform=\"translate(-20,0)\">" +
-                            HairCatalog.instance.getHair(token, HairElement.BehindHead) +
+                            HairCatalog.instance.getHair(token, HairElement.BehindHeadAndBody) +
                             EarCatalog.instance.getHiddenEar(token) +
                         "</g>" +
                         ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.VeryBack) +
@@ -50,6 +50,7 @@ export class TokenSvgBuilder {
                         RankIndicatorCatalog.instance.getRankIndicator(token) +
                         ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.BehindHead) +
                         "<g transform=\"translate(-20,0)\">" +
+                            HairCatalog.instance.getHair(token, HairElement.BehindHead) +
                             HeadCatalog.instance.getHead(token) +
                             ProstheticCatalog.instance.getProsthetic(token, ProstheticPlacement.BaseHead) +
                             NasoLabialFoldCatalog.instance.getNasoLabialFold(token) +

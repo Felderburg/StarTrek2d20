@@ -55,8 +55,11 @@ export class BaseSimpleStarshipPage extends React.Component<ISimpleStarshipPageP
                             type="text"
                             onChange={(ev) => this.setClassName(ev.target.value) }
                             value={this.props.starship.className} />
-                        </div>
                     </div>
+
+                    {this.renderAppearance()}
+                </div>
+
             </section>
 
             <section className="my-5">
@@ -152,6 +155,10 @@ export class BaseSimpleStarshipPage extends React.Component<ISimpleStarshipPageP
     renderHeader() {
         const { t } = this.props;
         return (<Header>{t('Page.title.simpleStarship')}</Header>);
+    }
+
+    renderAppearance() {
+        return undefined;
     }
 
     renderSystemsText() {

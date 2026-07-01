@@ -34,5 +34,9 @@ export enum SpaceframeAppearance {
     Kirk,
     Janeway,
     Friendship,
-    Eisenberg
+    Eisenberg,
+
+    // Shuttles
+    Type6Shuttle,
+    Type9Shuttle,
 }
