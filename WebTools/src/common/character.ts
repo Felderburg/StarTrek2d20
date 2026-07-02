@@ -1047,8 +1047,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
                         if (index >= 0) {
                             result.splice(index, 1);
                         }
+                        result.push(new ValueAssembly(v.newValue as string, AssemblyContext.Improvement, i, l));
                     }
-                    result.push(new ValueAssembly(v.newValue as string, AssemblyContext.Improvement, i, l));
                 });
             }
         });

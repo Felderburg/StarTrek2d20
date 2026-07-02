@@ -5,7 +5,7 @@ import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const tag = "Nigerian";
+const tag = "Argentinian";
 
 const convertDataToNames = async (data) => {
     let directory = __dirname.substring(0, __dirname.lastIndexOf('/'));
@@ -16,7 +16,7 @@ const convertDataToNames = async (data) => {
     for (let i = 0; i < data.length; i++) {
 
         const row = data[i];
-        let name = row[0];
+        let name = row[0]?.trim();
         if (name) {
             if (name.indexOf('(') >= 0) {
                 name = name.substring(0, name.indexOf('(')).trim();

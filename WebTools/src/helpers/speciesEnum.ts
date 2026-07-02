@@ -82,7 +82,7 @@ export enum Species {
     Hologram,
     // Klingon Core
     KlingonQuchHa,
-    // Shakleton Expanse
+    // Shackleton Expanse
     Akaru,
     CalMirran,
     Qofuari,

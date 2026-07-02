@@ -200,6 +200,7 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
 
     const renderValuesTab = () => {
 
+        console.log(character.valueAssemblies);
         return (<>
             <Header level={2} className="my-4">{t('Construct.other.values')}</Header>
             <div className="row mt-4">
