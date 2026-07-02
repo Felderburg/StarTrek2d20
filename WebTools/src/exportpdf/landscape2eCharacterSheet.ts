@@ -134,7 +134,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
         if ((construct as Character).logEntries?.length && nextArea != null) {
             let y = undefined;
-            if (nextArea != null && Landscape2eCharacterSheet.page2Column1X === nextArea.column.start.x || Landscape2eCharacterSheet.page2Column3X === nextArea.column.start.x) {
+            if (nextArea != null && (Landscape2eCharacterSheet.page2Column1X === nextArea.column.start.x || Landscape2eCharacterSheet.page2Column3X === nextArea.column.start.x)) {
                 y = nextArea.column.start.y;
                 let newLayoutColumn = Landscape2eCharacterSheet.page2Column1X === nextArea.column.start.x ? logColumns[0] : logColumns[1];
                 nextArea = new PageArea(newLayoutColumn.bottomAfter(y - newLayoutColumn.start.y), nextArea.page);

@@ -32,6 +32,7 @@ export class SpaceframeAppearanceModel {
                 // Shuttles
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Type6Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Type9Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.ArgoClassShuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
 
                 // Civilian
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Antares, CharacterType.Civilian, [Era.OriginalSeries]),
