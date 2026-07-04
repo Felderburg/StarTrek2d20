@@ -6579,6 +6579,14 @@
         ]
     },
     {
+        "name": "Albury",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Bahamian"
+        ]
+    },
+    {
         "name": "Alburt",
         "gender": "Male",
         "type": "FirstName",
@@ -11355,7 +11363,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -16990,6 +16999,18 @@
         ]
     },
     {
+        "name": "Barbara",
+        "variants": [
+            "Barb"
+        ],
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Bahamian",
+            "Common"
+        ]
+    },
+    {
         "name": "Barbaros",
         "gender": "Male",
         "type": "FirstName",
@@ -19904,6 +19925,14 @@
         "type": "FirstName",
         "tags": [
             "Spanish"
+        ]
+    },
+    {
+        "name": "Bethel",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Bahamian"
         ]
     },
     {
@@ -23122,7 +23151,8 @@
             "African-American",
             "Scottish",
             "Irish",
-            "Jamaican"
+            "Jamaican",
+            "Bahamian"
         ]
     },
     {
@@ -28231,7 +28261,8 @@
         "tags": [
             "British",
             "Common",
-            "Ghanaian"
+            "Ghanaian",
+            "Bahamian"
         ]
     },
     {
@@ -34647,7 +34678,8 @@
             "Spanish",
             "Jewish",
             "Congolese",
-            "Mexican"
+            "Mexican",
+            "Bahamian"
         ]
     },
     {
@@ -37846,10 +37878,14 @@
     },
     {
         "name": "Dorothy",
+        "variants": [
+            "Dot"
+        ],
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Greek"
+            "Greek",
+            "Bahamian"
         ]
     },
     {
@@ -39888,7 +39924,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -41395,7 +41432,8 @@
         "type": "FirstName",
         "tags": [
             "German",
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -47704,7 +47742,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Irish"
+            "Irish",
+            "Bahamian"
         ]
     },
     {
@@ -52095,7 +52134,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -64878,14 +64918,6 @@
     },
     {
         "name": "James",
-        "gender": "Male",
-        "type": "FirstName",
-        "tags": [
-            "Scottish"
-        ]
-    },
-    {
-        "name": "James",
         "variants": [
             "Jim",
             "Jimmy"
@@ -64894,7 +64926,9 @@
         "type": "FirstName",
         "tags": [
             "Irish",
-            "Common"
+            "Scottish",
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -66894,7 +66928,8 @@
         "type": "FirstName",
         "tags": [
             "Ghanaian",
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -66911,7 +66946,8 @@
         "type": "LastName",
         "tags": [
             "British",
-            "African-American"
+            "African-American",
+            "Bahamian"
         ]
     },
     {
@@ -67397,7 +67433,8 @@
             "Common",
             "Jewish",
             "French",
-            "Congolese"
+            "Congolese",
+            "Bahamian"
         ]
     },
     {
@@ -71413,7 +71450,8 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -72913,7 +72951,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "British"
+            "British",
+            "Bahamian"
         ]
     },
     {
@@ -77707,7 +77746,8 @@
         "tags": [
             "Italian",
             "German",
-            "Spanish"
+            "Spanish",
+            "Bahamian"
         ]
     },
     {
@@ -83828,10 +83868,15 @@
     },
     {
         "name": "Margaret",
+        "variants": [
+            "Marg", "Peg", "Peggy"
+        ],
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "Greek"
+            "Greek",
+            "Bahamian",
+            "Common"
         ]
     },
     {
@@ -85317,7 +85362,8 @@
         "tags": [
             "Common",
             "British",
-            "Ghanaian"
+            "Ghanaian",
+            "Bahamian"
         ]
     },
     {
@@ -88159,7 +88205,8 @@
         "tags": [
             "Irish",
             "Common",
-            "Ghanaian"
+            "Ghanaian",
+            "Bahamian"
         ]
     },
     {
@@ -88664,7 +88711,8 @@
         "gender": "Unisex",
         "tags": [
             "British",
-            "African-American"
+            "African-American",
+            "Bahamian"
         ]
     },
     {
@@ -102044,10 +102092,17 @@
     },
     {
         "name": "Patricia",
+        "variants": [
+            "Pat",
+            "Patty",
+            "Patti"
+        ],
         "gender": "Female",
         "type": "FirstName",
         "tags": [
-            "French"
+            "French",
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -102128,7 +102183,8 @@
         "tags": [
             "German",
             "Common",
-            "Congolese"
+            "Congolese",
+            "Bahamian"
         ]
     },
     {
@@ -103157,7 +103213,8 @@
         "type": "FirstName",
         "gender": "Male",
         "tags": [
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -103773,6 +103830,14 @@
         "gender": "Unisex",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Pinder",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Bahamian"
         ]
     },
     {
@@ -109309,7 +109374,8 @@
         "type": "FirstName",
         "tags": [
             "German",
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -110323,14 +110389,25 @@
     },
     {
         "name": "Robert",
+        "variants": [
+            "Rob",
+            "Robby",
+            "Bob",
+            "Bobby"
+        ],
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "German"
+            "German",
+            "Bahamian",
+            "Common"
         ]
     },
     {
         "name": "Roberta",
+        "variants": [
+            "Bobbi"
+        ],
         "gender": "Female",
         "type": "FirstName",
         "tags": [
@@ -110385,7 +110462,8 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "British"
+            "British",
+            "Bahamian"
         ]
     },
     {
@@ -111048,6 +111126,14 @@
         "type": "FirstName",
         "tags": [
             "German"
+        ]
+    },
+    {
+        "name": "Rolle",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Bahamian"
         ]
     },
     {
@@ -112925,15 +113011,9 @@
         "type": "LastName",
         "gender": "Unisex",
         "tags": [
-            "Scottish"
-        ]
-    },
-    {
-        "name": "Russell",
-        "type": "LastName",
-        "gender": "Unisex",
-        "tags": [
-            "British"
+            "Scottish",
+            "British",
+            "Bahamian"
         ]
     },
     {
@@ -112998,7 +113078,8 @@
         "type": "FirstName",
         "tags": [
             "Scandinavian",
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -114039,7 +114120,10 @@
         "gender": "Male",
         "type": "FirstName",
         "tags": [
-            "Italian"
+            "Italian",
+            "Common",
+            "Bahamian",
+            "Jewish"
         ]
     },
     {
@@ -114142,6 +114226,14 @@
         ]
     },
     {
+        "name": "Sands",
+        "gender": "Unisex",
+        "type": "LastName",
+        "tags": [
+            "Bahamian"
+        ]
+    },
+    {
         "name": "Sandara",
         "gender": "Female",
         "type": "FirstName",
@@ -114188,6 +114280,15 @@
         "type": "FirstName",
         "tags": [
             "Italian"
+        ]
+    },
+    {
+        "name": "Sandra",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -116775,6 +116876,15 @@
         ]
     },
     {
+        "name": "Sharon",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Common",
+            "Bahamian"
+        ]
+    },
+    {
         "name": "Sharalyn",
         "gender": "Female",
         "type": "FirstName",
@@ -117444,6 +117554,14 @@
         "type": "FirstName",
         "tags": [
             "Japanese"
+        ]
+    },
+    {
+        "name": "Shirley",
+        "type": "FirstName",
+        "gender": "Female",
+        "tags": [
+            "Bahamian"
         ]
     },
     {
@@ -119023,7 +119141,8 @@
             "Common",
             "British",
             "African-American",
-            "Scottish"
+            "Scottish",
+            "Bahamian"
         ]
     },
     {
@@ -120366,6 +120485,18 @@
         ]
     },
     {
+        "name": "Stephen",
+        "variants": [
+            "Steve"
+        ],
+        "gender": "Male",
+        "type": "FirstName",
+        "tags": [
+            "Common",
+            "Bahamian"
+        ]
+    },
+    {
         "name": "Stevenson",
         "type": "LastName",
         "gender": "Unisex",
@@ -121235,6 +121366,14 @@
         "type": "FirstName",
         "tags": [
             "French"
+        ]
+    },
+    {
+        "name": "Sylvia",
+        "gender": "Female",
+        "type": "FirstName",
+        "tags": [
+            "Bahamian"
         ]
     },
     {
@@ -123978,7 +124117,8 @@
         "type": "FirstName",
         "gender": "Male",
         "tags": [
-            "Common"
+            "Common",
+            "Bahamian"
         ]
     },
     {
@@ -123987,14 +124127,7 @@
         "gender": "Unisex",
         "tags": [
             "French",
-            "African-American"
-        ]
-    },
-    {
-        "name": "Thomas",
-        "type": "LastName",
-        "gender": "Unisex",
-        "tags": [
+            "African-American",
             "German",
             "British"
         ]
@@ -129849,7 +129982,8 @@
         "gender": "Unisex",
         "tags": [
             "British",
-            "African-American"
+            "African-American",
+            "Bahamian"
         ]
     },
     {

@@ -186,7 +186,7 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
                     <div className="lcar-content-action" role="button" tabIndex={0}>
                         <div id="history-button" className="lcar-content-history" onClick={ () => toggleHistory() }>{t('Lcars.history')}</div>
                         <div id="history-container" className="history-container-hidden">
-                            <History showHistory={showHistory} type={historyType()} />
+                            <History showHistory={showHistory} type={historyType()} close={() => toggleHistory()} />
                         </div>
                     </div>
                     <div className="lcar-content-action" role="button" tabIndex={0}>

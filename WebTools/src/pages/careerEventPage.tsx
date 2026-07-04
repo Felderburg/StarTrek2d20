@@ -30,10 +30,14 @@ interface ICareerEventProperties extends ICharacterProperties {
 }
 
 const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context}) => {
+    console.log("re-render");
+
+    let existingEvent = context === StepContext.CareerEvent1 ? character.careerEvents[0] : character.careerEvents[1];
+
     const { t } = useTranslation();
-    const [randomEvent, setRandomEvent] = useState(null);
-    const [randomEventWithUnofficial, setRandomEventWithUnofficial] = useState(null);
-    const [tab, setTab] = useState(EventsTab.Standard);
+    const [randomEvent, setRandomEvent] = useState(existingEvent?.id ?? null);
+    const [randomEventWithUnofficial, setRandomEventWithUnofficial] = useState(existingEvent?.id ?? null);
+    const [tab, setTab] = useState(EventsTab.StandardAndUnofficial);
 
     const careerEventSelected = (careerEvent: CareerEventModel)=> {
         store.dispatch(addCharacterCareerEvent(careerEvent.roll, context, careerEvent.attributes?.length === 1 ? careerEvent.attributes[0] : undefined,

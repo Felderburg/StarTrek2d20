@@ -35,7 +35,6 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
     }
     let lifeLessons = career.id === Career.Veteran ? TalentsHelper.getTalent("Life Lessons") : undefined;
     if (!isSecondEdition() || !hasSource(Source.ExplorationGuide) || !(lifeLessons?.isPrerequisiteFulfilled(character))) {
-        console.log("No life lessons");
         lifeLessons = undefined;
     }
 
