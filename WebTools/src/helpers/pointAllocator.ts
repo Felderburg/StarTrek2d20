@@ -10,4 +10,19 @@ export default class PointAllocator {
         }
         return result;
     }
+
+    static allocatePointsRandomly(points: number) {
+        let result = [0, 0, 0, 0, 0, 0];
+        for (let i = 0; i < points; i++) {
+            let done = false;
+            while (!done) {
+                const index = Math.floor(Math.random() * result.length);
+                if (result[index] < 12) {
+                    result[index] = result[index] + 1;
+                    done = true;
+                }
+            }
+        }
+        return result;
+    }
 }

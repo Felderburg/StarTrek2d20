@@ -230,7 +230,7 @@ class MissionProfiles {
         [MissionProfile.StrategicAndDiplomatic]: new MissionProfileModel(
             MissionProfile.StrategicAndDiplomatic,
             "Strategic and Diplomatic Operations",
-            [2, 2, 2, 1, 3, 2],
+            [3, 1, 2, 2, 2, 2],
             [
                 TalentsHelper.getTalent("Command Ship"),
                 TalentsHelper.getTalent("Diplomatic Suites"),

@@ -367,6 +367,12 @@ class SpaceframeOutlineHelper {
                 this.drawOutline(pdf, outline, options);
             } else if (starship.type === CharacterType.KlingonWarrior) {
                 this.drawOutline(pdf, BIRD_OF_PREY_ELABORATE_CLASS, options);
+            } else if (starship.type === CharacterType.Romulan) {
+                if (this.isPreTngEra(starship.serviceYear)) {
+                    this.drawOutline(pdf, TLISS_CLASS_ELABORATE_OUTLINE, options);
+                } else {
+                    this.drawOutline(pdf, D_DERIDEX_CLASS_ELABORATE_OUTLINE, options);
+                }
             } else if (starship.type === CharacterType.Ferengi) {
                 this.drawOutline(pdf, new Outline(D_KORA_CLASS_ELABORATE_OUTLINE, D_KORA_CLASS_DETAILS), options);
             } else if (starship.isSmallCraft) {

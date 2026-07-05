@@ -1,6 +1,6 @@
 import { CharacterType } from "../../common/characterType";
 import { D20 } from "../../common/die";
-import { MissionProfileStep, ServiceRecordStep, Starship } from "../../common/starship";
+import { MissionProfileStep, ServiceRecordStep, SimpleStats, Starship } from "../../common/starship";
 import RegistryNumber from "../../components/registryNumberGenerator";
 import { Era } from "../../helpers/erasEnum";
 import { MissionPodHelper } from "../../helpers/missionPods";
@@ -14,6 +14,12 @@ import { RandomStarshipCharacterType } from "./randomStarshipCharacterType";
 import { ServiceRecord, ServiceRecordList } from "./serviceRecord";
 import { StarshipRandomNameTable } from "./starshipNameTable";
 import { SelectedTalent } from "../../common/selectedTalent";
+import { BuildPoints } from "./buildPoints";
+import { ShipBuildType } from "../../common/shipBuildType";
+import PointAllocator from "../../helpers/pointAllocator";
+import { Spaceframe } from "../../helpers/spaceframeEnum";
+import { SpaceframeModel } from "../../helpers/spaceframeModel";
+import StarshipWeaponRegistry from "../../helpers/weapons";
 
 export interface IStarshipConfiguration {
     era: Era;
@@ -51,6 +57,24 @@ const determinePrefix = (starship: Starship) => {
 
 export const starshipGenerator = (config: IStarshipConfiguration) => {
 
+    const shuffle = (array: number[]) => {
+        let currentIndex = array.length;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+
+            // Pick a remaining element...
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+
+
     let result = Starship.createStandardStarship(config.era, convertStarshipType(config.type), isSecondEdition() ? 2 : 1);
 
     result.serviceYear = config.campaignYear;
@@ -59,6 +83,22 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
 
     if (frames?.length) {
         result.spaceframeModel = frames[Math.floor(Math.random() * frames.length)];
+    } else {
+        const scales = [3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6];
+        const scale = scales[Math.floor(Math.random() * scales.length)];
+
+        result.spaceframeModel = SpaceframeModel.createCustomSpaceframe(convertStarshipType(config.type), result.serviceYear,
+            shuffle(PointAllocator.allocatePointsRandomly(
+                BuildPoints.systemPointsForType(ShipBuildType.Starship, result.serviceYear, convertStarshipType(config.type), scale))),
+            shuffle(PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(ShipBuildType.Starship))));
+        result.spaceframeModel.name = "Classified/Unknown";
+        if (config.type === RandomStarshipCharacterType.Romulan) {
+            result.spaceframeModel.attacks = [
+                "Disruptor Cannons",
+                "Plasma Torpedoes",
+                "Tractor Beam"
+            ]
+        }
     }
 
     const missionProfiles = MissionProfiles.instance.getMissionProfiles(result);
