@@ -17,9 +17,7 @@ import { SelectedTalent } from "../../common/selectedTalent";
 import { BuildPoints } from "./buildPoints";
 import { ShipBuildType } from "../../common/shipBuildType";
 import PointAllocator from "../../helpers/pointAllocator";
-import { Spaceframe } from "../../helpers/spaceframeEnum";
 import { SpaceframeModel } from "../../helpers/spaceframeModel";
-import StarshipWeaponRegistry from "../../helpers/weapons";
 
 export interface IStarshipConfiguration {
     era: Era;
@@ -54,6 +52,129 @@ const determinePrefix = (starship: Starship) => {
         return "";
     }
 }
+
+const customClassNames: {[id: number] : string[]} = {
+    [CharacterType.Romulan]: [
+        "Alocala",
+        "Amarcan",
+        "Amosarr",
+        "Aye Mosaram",
+        "Baydron",
+        "Caladan",
+        "Comilius",
+        "D'delitham",
+        "D'dredar",
+        "Delitham",
+        "Delon Vastam","Deresus",
+        "D'gerok",
+        "D'Kazanak",
+        "Draconarius",
+        "D'renet",
+        "D'retex",
+        "D'ridren",
+        "D'sera",
+        "D'seren",
+        "D'tavan",
+        "D'theros",
+        "D'valek",
+        "D'vanga",
+        "D'vas",
+        "D'viret",
+        "D'virin",
+        "D'Vorix",
+        "Dhelan",
+        "Ferrax",
+        "Galan Stelri",
+        "Ganum",
+        "Golgaroth",
+        "Graffler",
+        "Hathos",
+        "Horos",
+        "Ivarix",
+        "Kelkarrum",
+        "Khnial",
+        "Klivai Vang'radai",
+        "Lanora",
+        "Llaihr",
+        "Llaiir'Dhael",
+        "Mandukam",
+        "Meret",
+        "Mogai ~ Norexan",
+        "Moorabbin",
+        "Morlasam Cl'vangas",
+        "Morlasasi Stelam",
+        "Mularr",
+        "Narvasam'al",
+        "Nei'hrr",
+        "Nelvek",
+        "Nir'at",
+        "N'renix",
+        "Ocala Sindari",
+        "Phaeros",
+        "Praex",
+        "Prelar",
+        "Ralaaram Ocala",
+        "Ralek",
+        "Ranajmar",
+        "Ras Lovah",
+        "R'daran",
+        "R'derex",
+        "Re'ravsam",
+        "Reemea",
+        "Revastal",
+        "R'tan",
+        "Sehin Morlatta",
+        "Serex",
+        "Sethen",
+        "Shirekral",
+        "Stelai'deletham",
+        "S'ten Vastam",
+        "T'varo",
+        "S'ten Talasam",
+        "Takaan",
+        "Takara Morlatta",
+        "Talas Mosarum",
+        "Temar Vastaram",
+        "Temar Vastari",
+        "Thalan",
+        "Theron",
+        "Tirethi",
+        "T'kairin",
+        "T'kassan",
+        "T'korex",
+        "T'rasus",
+        "T'varo",
+        "Ustalam Stelas",
+        "Vadak",
+        "Vadaso Stelri",
+        "Vas Hatham",
+        "Vas Hatham (scout)",
+        "Vas'deletham",
+        "Vas'kalabam",
+        "Vas'maklaram",
+        "Vas'rosvlai",
+        "Vastagor Lattam",
+        "Vastagor Vastarum",
+        "Vastam Cl'vangas",
+        "Vastari Sanalam",
+        "Vasteme",
+        "Veles",
+        "Venator",
+        "Ventarix",
+        "Veranal",
+        "Vercaal",
+        "Verelan Vastarum",
+        "Vereleus",
+        "Vespin",
+        "Vidian",
+        "Vithrel",
+        "V'geren",
+        "V'gurin",
+        "V'tana",
+        "V'tir"
+    ]
+}
+
 
 export const starshipGenerator = (config: IStarshipConfiguration) => {
 
@@ -92,10 +213,26 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
                 BuildPoints.systemPointsForType(ShipBuildType.Starship, result.serviceYear, convertStarshipType(config.type), scale))),
             shuffle(PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(ShipBuildType.Starship))));
         result.spaceframeModel.name = "Classified/Unknown";
+        if (customClassNames[result.type]?.length) {
+            const names = customClassNames[result.type];
+            result.spaceframeModel.name = names[Math.floor(Math.random() * names.length)] + " Class";
+        }
         if (config.type === RandomStarshipCharacterType.Romulan) {
             result.spaceframeModel.attacks = [
                 "Disruptor Cannons",
                 "Plasma Torpedoes",
+                "Tractor Beam"
+            ]
+        } else if (config.type === RandomStarshipCharacterType.Klingon) {
+            result.spaceframeModel.attacks = [
+                "Disruptor Banks",
+                "Photon Torpedoes",
+                "Tractor Beam"
+            ]
+        } else {
+            result.spaceframeModel.attacks = [
+                "Phaser Banks",
+                "Photon Torpedoes",
                 "Tractor Beam"
             ]
         }
