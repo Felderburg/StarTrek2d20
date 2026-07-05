@@ -7,7 +7,7 @@ import { MissionPodHelper } from "../../helpers/missionPods";
 import MissionProfiles from "../../helpers/missionProfiles";
 import { SpaceframeHelper } from "../../helpers/spaceframes";
 import { allSystems } from "../../helpers/systems";
-import { TalentsHelper } from "../../helpers/talents";
+import { TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM, TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_EXPANDED_MUNITIONS, TALENT_NAME_EXPANSIVE_DEPARTMENT, TALENT_NAME_REDUNDANT_SYSTEMS, TalentsHelper } from "../../helpers/talents";
 import { isSecondEdition } from "../../state/contextFunctions";
 import { randomStarshipEvent } from "./randomStarshipEvent";
 import { RandomStarshipCharacterType } from "./randomStarshipCharacterType";
@@ -18,6 +18,8 @@ import { BuildPoints } from "./buildPoints";
 import { ShipBuildType } from "../../common/shipBuildType";
 import PointAllocator from "../../helpers/pointAllocator";
 import { SpaceframeModel } from "../../helpers/spaceframeModel";
+import { DepartmentsHelper } from "../../helpers/department";
+import { PropulsionSystemModel } from "../../helpers/propulsionSystem";
 
 export interface IStarshipConfiguration {
     era: Era;
@@ -264,10 +266,28 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
     }
 
     for (let i = 0; i < result.freeTalentSlots; i++) {
-        const talents = TalentsHelper.getStarshipOrStationTalents(result);
-        if (talents?.length) {
-            let model = talents[Math.floor(Math.random() * talents.length)];
-            result.additionalTalents.push(new SelectedTalent(model.name));
+        if (i === 0 && (result.type === CharacterType.Romulan || (result.type === CharacterType.KlingonWarrior && result.serviceYear > 2300))) {
+            let talent = TalentsHelper.getTalent("Cloaking Device");
+            result.additionalTalents.push(new SelectedTalent(talent.name));
+        } else {
+            const talents = TalentsHelper.getStarshipOrStationTalents(result);
+            if (talents?.length) {
+                let model = talents[Math.floor(Math.random() * talents.length)];
+                let talent = new SelectedTalent(model.name);
+                if (talent.name === TALENT_NAME_DEDICATED_PERSONNEL || talent.name === TALENT_NAME_EXPANSIVE_DEPARTMENT) {
+                    let departments = DepartmentsHelper.instance.getDepartments();
+                    talent.department = departments[Math.floor(Math.random() * departments.length)];
+                } else if (talent.name === TALENT_NAME_REDUNDANT_SYSTEMS) {
+                    let systems = allSystems();
+                    talent.system = systems[Math.floor(Math.random() * systems.length)];
+                } else if (talent.name === TALENT_NAME_EXPANDED_MUNITIONS) {
+
+                } else if (talent.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {
+                    let systems = PropulsionSystemModel.types;
+                    talent.selection = systems[Math.floor(Math.random() * systems.length)].type;
+                }
+                result.additionalTalents.push(talent);
+            }
         }
     }
 

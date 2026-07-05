@@ -361,7 +361,7 @@ class MissionProfiles {
             "Technical Test-Bed",
             [1, 2, 2, 3, 2, 2],
             [
-                TalentsHelper.getTalent("Additional Propulsion System"),
+                TalentsHelper.getTalent("Additional Propulsion System (Talent)"),
                 TalentsHelper.getTalent("Advanced Shields"),
                 TalentsHelper.getTalent("Backup EPS Conduits"),
                 TalentsHelper.getTalent("High-Resolution Sensors"),
