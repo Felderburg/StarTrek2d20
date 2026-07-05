@@ -1151,7 +1151,6 @@ class Marshaller {
 
     decodeStarship(s: string) {
         let json = this.decode(s);
-console.log(json);
         let result = new Starship();
         if (json.version) {
             result.version = json.version;
@@ -1307,7 +1306,6 @@ console.log(json);
         if (json.improvements?.length) {
             result.advancementSteps = this.decodeStarshipImprovement(json.improvements, result.version) ?? [];
         }
-        console.log(result);
         return result;
     }
 
@@ -1450,7 +1448,6 @@ console.log(json);
     }
 
     decodeCharacter(json: any) {
-console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;

@@ -44,7 +44,9 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
         if (page === this.state.activePage || ([PageIdentity.CareerEvent1, PageIdentity.CareerEvent2].includes(page) && [PageIdentity.CareerEvent1, PageIdentity.CareerEvent2].includes(this.state.activePage))) {
             var pageComponent = document.getElementsByClassName('page')[0];
             pageComponent.classList.remove('page-out');
-            return;
+            if (page === this.state.activePage) {
+                return;
+            }
         }
 
         this.setState({
