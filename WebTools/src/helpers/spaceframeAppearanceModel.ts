@@ -28,7 +28,6 @@ export class SpaceframeAppearanceModel {
     static getAllAppearanceModels(type: CharacterType, era: Era, buildType: ShipBuildType = ShipBuildType.Starship) {
         if (this.TYPES == null) {
             this.TYPES = [
-
                 // Shuttles
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Type6Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Type9Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
@@ -58,6 +57,10 @@ export class SpaceframeAppearanceModel {
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Snakehead, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.ScimitarType, CharacterType.Romulan, [Era.NextGeneration]),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Khnial, CharacterType.Romulan, [Era.NextGeneration]),
+                // Romulan Shuttles
+                new SpaceframeAppearanceModel(SpaceframeAppearance.RomulanShuttle, CharacterType.Romulan, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.RemanScorpionFighter, CharacterType.Romulan, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
+
 
                 // Discovery 32nd century
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Eisenberg, CharacterType.Starfleet, [Era.Discovery32]),

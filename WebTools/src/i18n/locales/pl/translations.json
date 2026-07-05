@@ -428,10 +428,13 @@
 
     "ServiceRecordPage.error.talents": "Proszę wybierz dwa talenty -- jeden do usunięcia, a drugi do zastąpienia.",
 
+    "SoloCareerEvent.instruction": "Twoja kariera utkana jest z wielu zdarzeń i doświadczeń, ale wśród nich tylko kilka jest naprawdę kluczowych. Określ które z nich są najważniejsze, biorąc pod uwagę to, że rzeczy istotne dla młodego chorążego mogą wydawać się bez znaczenia dla tego samego oficera starszego o dekady.\n\nTwoja postać otrzymuje dwa kluczowe wydarzenia, definiujące jej charakter. Wybierz je lub wylosuj z listy i wprowadź odpowiednie modyfikatory.\n\nPostaci z doświadczeniem na poziomie Nowicjusza przeżyją te wydarzenia prawdopodobnie w toku szkolenia w Akademii lub podczas misji polowych.",
+
     "SoloConstructTypePage.character": "Bohater",
     "SoloConstructTypePage.instruction": "Tworzy postać czy okręt?",
     "SoloConstructTypePage.starship": "Okręt",
 
+    "SoloEarlyOutlookPage.instruction": "Wczesne wybory kształtują późniejszy charakter naszej postaci. Możesz dokonać wyboru na trzech różnych wymiarach, każde z nich będzie adekwatne dla tego etapu. Pierwsza z możliwości to wychowanie i decyzja, czy postać akceptowała czy buntowała się przeciwko sugerowanej przez rodziców lub otoczenie ścieżce. Druga możliwość związana jest z postaciami wychowywanymi w kulturze klingońskiej – jest to wybór kasty i tego czy ją przyjęliśmy czy się buntowaliśmy. Trzecia opcja to różne aspiracje, które mogły zainspirować naszą postać. Znów można wybrać czy ulegliśmy im, czy może zostały porzucone.\n\nWybierz to podejście, które ma największy sens dla Twojej postaci i stylu prowadzonej historii. Gdy wybierzesz już właściwy wymiar, wybierz lub wylosuj jedną z opcji do niego przypisanych.",
     "SoloEarlyOutlookPage.upbringings": "Wychowanie",
     "SoloEarlyOutlookPage.castes": "Kasty",
     "SoloEarlyOutlookPage.aspirations": "Aspiracje",
@@ -482,6 +485,21 @@
     "SpaceframeSelectionPage.errata": "Opublikowano erratę, która zmodyfikowała statystyki tego typu kadłuba.",
     "SpaceframeSelectionPage.variant": "Wariant typu kadłuba",
 
+    "SpeciesDetails.originalSpecies": "Rodzaj oryginalnego gatunku",
+
+    "SpeciesDetails.error.originalSpecies": "Proszę wybierz oryginalny gatunek dla tej postaci.",
+
+    "SpeciesDetails.attributes.instruction.kobali": "Proszę wybierz oryginalny gatunek zanim wybierzesz Atrybuty.",
+
+    "SpeciesDetails.error.attributes": "Nie rozdzielono wszystkich punktów na Atrybuty.",
+    "SpeciesDetails.error.implants": "Proszę wybierz do trzech implantów.",
+    "SpeciesDetails.error.choice": "Proszę wybierz jedną z możliwych zdolności gatunkowych.",
+
+    "SpeciesDetails.originalSpecies.instruction.kobali": "Kobali wykorzystują ciała innych gatunków, za pomocą zaawansowanej inżynierii genetycznej ożywiają je i przekształcają w innych Kobali.",
+    "SpeciesDetails.originalSpecies.instruction.borg": "Borg asymiluje jednostki bardzo różnych gatunków. Wybierz oryginalny gatunek swojej postaci, sprzed asymilacji.",
+    "SpeciesDetails.originalSpecies.instruction.liberatedBorg": "Borg asymiluje jednostki bardzo różnych gatunków. Wybierz oryginalny gatunek swojej postaci, sprzed asymilacji.",
+    "SpeciesDetails.originalSpecies.instruction.cyberneticallyEnhanced": "Jaki był oryginalny gatunek postaci, zanim nie została poddana cybernetycznym ulepszeniom?",
+
     "SpeciesDetails.options": "Opcje gatunku",
     "SpeciesDetails.selectThree": "(Wybierz trzy)",
     "SpeciesDetails.allowCrossSpecies": "Pozwól na wybieranie innych talentów gatunkowych (decyzja MG)",
@@ -500,8 +518,13 @@
     "SpeciesPage.rollBetaSpecies": "Wylosuj z Kwadrantu Beta",
     "SpeciesPage.rollGammaSpecies": "Wylosuj z Kwadrantu Gamma",
     "SpeciesPage.rollDeltaSpecies": "Wylosuj z Kwadrantu Delta",
+    "SpeciesPage.text": "Jaki jest Twój gatunek? Możesz wybrać także postać pochodzącą z dwóch różnych gatunków, otrzymując korzyści wynikające z przynależności do obu.",
 
     "SpeciesPage.text.select": "Wybierz lub wylosuj gatunek.",
+
+    "SpeciesPage.textNoRoll": "Jaki jest Twój gatunek? Możesz wybrać także postać pochodzącą z dwóch różnych gatunków, otrzymując korzyści wynikające z przynależności do obu.",
+    "SpeciesPage.mixedSpeciesNote": "Wybierz dwa gatunki. Otrzymujesz obie cechy gatunkowe i możesz wybrać zdolność gatunkową z dowolnego z dwóch gatunków, ale wybierasz tylko jeden gatunek, aby otrzymać rozszerzenie Atrybutów.",
+    "SpeciesPage.selectTwoSpeciesError": "Proszę wybierz główny oraz pomocniczy gatunek.",
 
     "StarshipTalentSelection.instruction_one": "Proszę wybierz {{count}} talent.",
     "StarshipTalentSelection.instruction_other": "{{count}} talenty do uzupełnienia.",
