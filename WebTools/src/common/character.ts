@@ -985,8 +985,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return result.filter(i => i != null);
     }
 
-    get values() {
-        let result =[];
+    get values(): string[] {
         if (this.stereotype === Stereotype.Npc) {
             return this.npcGenerationStep?.values ?? [];
         } else {

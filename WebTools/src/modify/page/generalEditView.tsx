@@ -31,6 +31,8 @@ import { Species } from "../../helpers/speciesEnum";
 import { Source } from "../../helpers/sources";
 import { hasSource } from "../../state/contextFunctions";
 import { BorgImplantSelectionView } from "../../components/borgImplantSelectionView";
+import { FocusSelectionView } from "../../components/focusSelectionView";
+import ValueInputWithRandom from "../../components/valueInputWithRandomOption";
 
 interface IGeneralEditViewProperties extends ICharacterProperties {
     onNextStep: () => void;
@@ -208,7 +210,12 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
                 {character.valueAssemblies.map((v,i) =>
                 (<>
                     <div className="col-12 col-md-6" key={"value-" + i}>
-                        <InputFieldAndLabel labelName={t('Construct.other.value')} id={"value" + i}  onChange={(value) => onValueChanged(v, value)} value={v?.value ?? ""} />
+                        <ValueInputWithRandom labelName={t('Construct.other.value')} id={"value" + i}
+                            onValueChanged={(value) => onValueChanged(v, value)} value={v?.value ?? ""}
+                            character={character}
+                            department={(v.context === AssemblyContext.Education
+                                ? character.educationStep?.primaryDiscipline
+                                : undefined)}/>
                     </div>
                 </>))}
             </div>
@@ -224,7 +231,12 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
                 {character.focusAssemblies.map((f,i) =>
                 (<>
                     <div className="col-12 col-md-6" key={"focus-" + i}>
-                        <InputFieldAndLabel labelName={t('Construct.other.focus')} id={"focus" + i}  onChange={(value) => onFocusChanged(f, value)} value={f.focus ?? ""} />
+                        <FocusSelectionView label={t('Construct.other.focus')} id={"focus" + i}
+                            addFocus={(value) => onFocusChanged(f, value)} value={f.focus ?? ""}
+                            character={character}
+                            randomFocusDepartment={(f.context === AssemblyContext.Education
+                                ? character.educationStep?.primaryDiscipline
+                                : undefined)}/>
                     </div>
                 </>))}
             </div>
