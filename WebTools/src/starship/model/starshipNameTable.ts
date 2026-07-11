@@ -330,7 +330,9 @@ const starshipTosEraName = [
     "Nair",
     "Haipeng",
     "Yipang",
-    "Zhigang"
+    "Zhigang",
+    "Mamdani",
+    "Kutsikitsoq"
 ]
 
 const starshipTngEraNames = [

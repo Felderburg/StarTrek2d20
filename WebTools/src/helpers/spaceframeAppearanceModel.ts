@@ -30,8 +30,11 @@ export class SpaceframeAppearanceModel {
             this.TYPES = [
                 // Shuttles
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Type6Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Type8Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Type9Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Type10Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
                 new SpaceframeAppearanceModel(SpaceframeAppearance.ArgoClassShuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
+                new SpaceframeAppearanceModel(SpaceframeAppearance.Type16Shuttle, CharacterType.Starfleet, [Era.NextGeneration], ShipBuildType.Shuttlecraft),
 
                 // Civilian
                 new SpaceframeAppearanceModel(SpaceframeAppearance.Antares, CharacterType.Civilian, [Era.OriginalSeries]),

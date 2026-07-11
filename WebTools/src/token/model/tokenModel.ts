@@ -74,4 +74,32 @@ export class TokenModel {
 
         return result;
     }
+
+    copy() {
+        let result = new TokenModel();
+
+        result.primarySpecies = this.primarySpecies;
+        result.secondarySpecies = this.secondarySpecies;
+        result.speciesOption = this.speciesOption;
+
+        result.divisionColor = this.divisionColor;
+        result.skinColor = this.skinColor;
+        result.headType = this.headType;
+        result.rankIndicator = this.rankIndicator;
+        result.noseType = this.noseType;
+        result.nasoLabialFold = this.nasoLabialFold;
+        result.hairType = this.hairType;
+        result.uniformEra = this.uniformEra;
+        result.bodyType = this.bodyType;
+        result.hairColor = this.hairColor;
+        result.eyeColor = this.eyeColor;
+        result.eyeType = this.eyeType;
+        result.mouthType = this.mouthType;
+        result.lipstickColor = this.lipstickColor;
+        result.facialHairType = [...this.facialHairType];
+        result.extras = [...this.extras];
+        result.variant = this.variant;
+
+        return result;
+    }
 }

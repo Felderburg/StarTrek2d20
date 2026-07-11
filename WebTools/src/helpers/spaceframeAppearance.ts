@@ -38,7 +38,10 @@ export enum SpaceframeAppearance {
 
     // Shuttles
     Type6Shuttle,
+    Type8Shuttle,
     Type9Shuttle,
+    Type10Shuttle,
+    Type16Shuttle,
     ArgoClassShuttle,
 
     RomulanShuttle,
