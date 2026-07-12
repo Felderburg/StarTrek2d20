@@ -1,6 +1,6 @@
 import { CharacterType } from "../../common/characterType";
 import { D20 } from "../../common/die";
-import { MissionProfileStep, ServiceRecordStep, SimpleStats, Starship } from "../../common/starship";
+import { MissionProfileStep, ServiceRecordStep, Starship } from "../../common/starship";
 import RegistryNumber from "../../components/registryNumberGenerator";
 import { Era } from "../../helpers/erasEnum";
 import { MissionPodHelper } from "../../helpers/missionPods";
@@ -184,7 +184,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
         let currentIndex = array.length;
 
         // While there remain elements to shuffle...
-        while (currentIndex != 0) {
+        while (currentIndex !== 0) {
 
             // Pick a remaining element...
             let randomIndex = Math.floor(Math.random() * currentIndex);

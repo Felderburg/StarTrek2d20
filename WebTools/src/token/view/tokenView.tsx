@@ -49,7 +49,7 @@ const TokenView: React.FC<ITokenViewProperties> = ({tokenConfig, onClick}) => {
     if (loading) {
         return <LoadingSpinnerView />;
     } else {
-        const svg = TokenSvgBuilder.createSvg(tokenConfig.token, tokenConfig.rounded, tokenConfig.bordered);
+        const svg = TokenSvgBuilder.createSvg(tokenConfig.token, tokenConfig.rounded, tokenConfig.bordered && tokenConfig.rounded);
         return (
         <div role={editable ? "button" : undefined} onClick={() => {
             if (editable) {

@@ -133,7 +133,7 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
             <Header>{t('Page.title.careerEvent')}</Header>
             <InstructionText text={t('CareerEvents.instruction')} />
             {hasSource(Source.ContinuingMissions)
-                ? (<div className="btn-group w-100" role="group" aria-label="Environment types">
+                ? (<div className="btn-group w-100 mt-4" role="group" aria-label="Environment types">
                     <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === EventsTab.Standard ? "active" : "")}
                         onClick={() => setTab(EventsTab.Standard)}>{t('CareerEvents.standard')}</button>
                     <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === EventsTab.StandardAndUnofficial ? "active" : "")}

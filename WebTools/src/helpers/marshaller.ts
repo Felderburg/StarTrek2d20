@@ -379,49 +379,55 @@ class Marshaller {
 
         sheet["improvements"] = this.encodeImprovements(character);
 
-        sheet["token"] = this.encodeToken(character.token);
+        if (character.token) {
+            sheet["token"] = this.encodeToken(character.token);
+        }
         return sheet;
     }
 
     encodeToken(tokenConfig: TokenConfig) {
-        let token = {
-            primarySpecies: Species[tokenConfig.token.primarySpecies],
-            speciesOption: SpeciesOption[tokenConfig.token.speciesOption],
-            uniformEra: UniformEra[tokenConfig.token.uniformEra],
-            uniformVariant: UniformVariantType[tokenConfig.token.variant],
-            skinColor: tokenConfig.token.skinColor,
-            headType: HeadType[tokenConfig.token.headType],
-            hairType: HairType[tokenConfig.token.hairType],
-            hairColor: tokenConfig.token.hairColor,
-            noseType: NoseType[tokenConfig.token.noseType],
-            nasoLabialFold: NasoLabialFoldType[tokenConfig.token.nasoLabialFold],
-            bodyType: BodyType[tokenConfig.token.bodyType],
-            eyeType: EyeType[tokenConfig.token.eyeType],
-            eyeColor: tokenConfig.token.eyeColor,
-            mouthType: MouthType[tokenConfig.token.mouthType],
-            lipstickColor: tokenConfig.token.lipstickColor,
-        }
-        if (tokenConfig.token.secondarySpecies != null) {
-            token["secondarySpecies"] = Species[tokenConfig.token.secondarySpecies];
-        }
-        if (tokenConfig.token.divisionColor?.length) {
-            token["divisionColor"] = tokenConfig.token.divisionColor;
-        }
-        if (tokenConfig.token.rankIndicator != null) {
-            token["rankIndicator"] = Rank[tokenConfig.token.rankIndicator];
-        }
-        if (tokenConfig.token.facialHairType?.length) {
-            token["facialHairType"] = tokenConfig.token.facialHairType.map(t => FacialHairType[t]);
-        }
-        if (tokenConfig.token.extras?.length) {
-            token["extras"] = tokenConfig.token.extras.map(e => ExtraType[e]);
-        }
+        if (tokenConfig?.token) {
+            let token = {
+                primarySpecies: Species[tokenConfig.token.primarySpecies],
+                speciesOption: SpeciesOption[tokenConfig.token.speciesOption],
+                uniformEra: UniformEra[tokenConfig.token.uniformEra],
+                uniformVariant: UniformVariantType[tokenConfig.token.variant],
+                skinColor: tokenConfig.token.skinColor,
+                headType: HeadType[tokenConfig.token.headType],
+                hairType: HairType[tokenConfig.token.hairType],
+                hairColor: tokenConfig.token.hairColor,
+                noseType: NoseType[tokenConfig.token.noseType],
+                nasoLabialFold: NasoLabialFoldType[tokenConfig.token.nasoLabialFold],
+                bodyType: BodyType[tokenConfig.token.bodyType],
+                eyeType: EyeType[tokenConfig.token.eyeType],
+                eyeColor: tokenConfig.token.eyeColor,
+                mouthType: MouthType[tokenConfig.token.mouthType],
+                lipstickColor: tokenConfig.token.lipstickColor,
+            }
+            if (tokenConfig.token.secondarySpecies != null) {
+                token["secondarySpecies"] = Species[tokenConfig.token.secondarySpecies];
+            }
+            if (tokenConfig.token.divisionColor?.length) {
+                token["divisionColor"] = tokenConfig.token.divisionColor;
+            }
+            if (tokenConfig.token.rankIndicator != null) {
+                token["rankIndicator"] = Rank[tokenConfig.token.rankIndicator];
+            }
+            if (tokenConfig.token.facialHairType?.length) {
+                token["facialHairType"] = tokenConfig.token.facialHairType.map(t => FacialHairType[t]);
+            }
+            if (tokenConfig.token.extras?.length) {
+                token["extras"] = tokenConfig.token.extras.map(e => ExtraType[e]);
+            }
 
-        return {
-            token: token,
-            rounded: tokenConfig.rounded,
-            bordered: tokenConfig.bordered
-        };
+            return {
+                token: token,
+                rounded: tokenConfig.rounded,
+                bordered: tokenConfig.bordered
+            };
+        } else {
+            return undefined;
+        }
     }
 
     decodeToken(json: any) {
@@ -464,8 +470,8 @@ class Marshaller {
 
         return new TokenConfig(
             token,
-            json["rounded"] === "true",
-            json["bordered"] === true
+            json["rounded"] == true,
+            json["bordered"] == true
         );
     }
 
