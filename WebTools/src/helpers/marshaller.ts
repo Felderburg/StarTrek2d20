@@ -70,8 +70,8 @@ import { allBodyTypes, BodyType } from '../token/model/bodyTypeEnum';
 import { allMouthTypes, MouthType } from '../token/model/mouthTypeEnum';
 import { allEyeTypes, EyeType } from '../token/model/eyeTypeEnum';
 import { allNasoLabialFoldTypes, NasoLabialFoldType } from '../token/model/nasoLabialFoldTypeEnum';
-import { FacialHairType } from '../token/model/facialHairEnum';
-import { ExtraType } from '../token/model/extrasTypeEnum';
+import { allFacialHairTypes, FacialHairType } from '../token/model/facialHairEnum';
+import { allExtraTypes, ExtraType } from '../token/model/extrasTypeEnum';
 import { TokenModel } from '../token/model/tokenModel';
 
 class Marshaller {
@@ -454,6 +454,12 @@ class Marshaller {
         }
         if (tokenJson["rankIndicator"] != null) {
             token.rankIndicator = RanksHelper.instance().getRankByRankName(tokenJson["rankIndicator"]);
+        }
+        if (tokenJson["facialHairType"]?.length) {
+            token.facialHairType = allFacialHairTypes().filter(t => tokenJson["facialHairType"].includes(FacialHairType[t]));
+        }
+        if (tokenJson["extras"]?.length) {
+            token.extras = allExtraTypes().filter(t => tokenJson["extras"].includes(ExtraType[t]));
         }
 
         return new TokenConfig(

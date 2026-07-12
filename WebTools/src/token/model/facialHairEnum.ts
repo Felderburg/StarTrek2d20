@@ -9,3 +9,9 @@ export enum FacialHairType {
 export enum FacialHairCategory {
     Shadow, Moustache, Beard, MoustacheAndBeard
 }
+
+export const allFacialHairTypes = (): FacialHairType[] => {
+    return Object.keys(FacialHairType).filter((item) => {
+        return !isNaN(Number(item));
+    }).map(item => Number(item));
+}

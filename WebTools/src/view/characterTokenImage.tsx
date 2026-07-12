@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router";
-import { Character } from "../common/character";
+import { Character, TokenConfig } from "../common/character";
 import store from "../state/store";
 import { createNewToken } from "../state/tokenActions";
 import { setCharacter } from "../state/characterActions";
 import { lazy, Suspense } from "react";
 import { LoadingSpinnerView } from "../common/loadingSpinnerView";
+import { TokenModel } from "../token/model/tokenModel";
 
 const TokenView = lazy(() => import(/* webpackChunkName: 'token' */ '../token/view/tokenView'));
 
@@ -18,20 +19,20 @@ export const CharacterTokenImage: React.FC<CharacterTokenImageProperties> = ({ch
 
     const navigate = useNavigate();
 
-    const createToken = () => {
+    const createToken = (token?: TokenConfig) => {
         store.dispatch(setCharacter(character));
-        store.dispatch(createNewToken(marshalledCharacter, character.nameAndAbbreviatedRank));
+        store.dispatch(createNewToken(token?.token ?? TokenModel.createDefault(), marshalledCharacter, character.nameAndAbbreviatedRank));
         navigate("/token");
     }
 
     return (<div className="d-flex justify-content-center align-items-center">
         {character.token
             ? (<Suspense fallback={<LoadingSpinnerView />}>
-                    <TokenView tokenConfig={character.token} onClick={createToken} />
+                    <TokenView tokenConfig={character.token} onClick={() => createToken(character.token)} />
                 </Suspense>)
             : (<div style={{aspectRatio: 1, width: "250px", maxWidth: "100%", fontSize: "x-large"}}
                 className="d-flex justify-content-center align-items-center text-secondary border border-secondary rounded"
-                role="button" onClick={createToken}>
+                role="button" onClick={() => createToken()}>
 
             <i className="bi bi-person-square"></i>
 

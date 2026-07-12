@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {Helmet} from "@dr.pogodin/react-helmet";
 import LcarsFrame from '../components/lcarsFrame';
@@ -33,6 +33,7 @@ import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
 import { TokenConfig } from '../common/character';
 import store from '../state/store';
 import { useNavigate } from 'react-router';
+import SpeciesRestrictions from './model/speciesRestrictions';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -59,37 +60,51 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token, chara
     const { t } = useTranslation();
     const [ tab, setTab ] = useState<Tab>(Tab.Species);
     const [ rounded, setRounded ] = useState<boolean>(false);
-    const [ loadingExtension, setLoadingExtension ] = useState<boolean>(false);
+    const [ loadingUniform, setLoadingUniform ] = useState<boolean>(false);
+    const [ loadingRubberHead, setLoadingRubberHead ] = useState<boolean>(false);
+    const [ loadingExtras, setLoadingExtras ] = useState<boolean>(false);
     const [ bordered, setBordered ] = useState<boolean>(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (SpeciesRestrictions.isRubberHeaded(token.species)) {
+            loadHeadExtension();
+        }
+        if (UniformPackCollection.instance.isLoaded(token.uniformEra)) {
+            loadUniformPack(token.uniformEra);
+        }
+        if (token.extras?.length) {
+            loadExtrasExtension();
+        }
+    }, []);
 
     const selectTab = (tab: Tab) => {
         setTab(tab);
     }
 
     const loadUniformPack = (uniformEra: UniformEra) => {
-        setLoadingExtension(true)
-        UniformPackCollection.instance.loadUniformPack(uniformEra, () => setLoadingExtension(false));
+        setLoadingUniform(true)
+        UniformPackCollection.instance.loadUniformPack(uniformEra, () => setLoadingUniform(false));
     }
 
     const loadHeadExtension = () => {
-        setLoadingExtension(true)
-        HeadCatalog.instance.loadRubberHeadExtension(() => setLoadingExtension(false));
+        setLoadingRubberHead(true)
+        HeadCatalog.instance.loadRubberHeadExtension(() => setLoadingRubberHead(false));
     }
 
     const loadExtrasExtension = async () => {
-        setLoadingExtension(true)
-        ExtrasCatalog.instance.loadLibraryExtension(() => setLoadingExtension(false));
+        setLoadingExtras(true);
+        ExtrasCatalog.instance.loadLibraryExtension(() => setLoadingExtras(false));
     }
 
     const renderTab = () => {
         switch (tab) {
             case Tab.Species:
-                return (<SpeciesSelectionView isLoading={loadingExtension} loadExtension={() => loadHeadExtension()} token={token} />);
+                return (<SpeciesSelectionView isLoading={loadingRubberHead} loadExtension={() => loadHeadExtension()} token={token} />);
             case Tab.Body:
-                return (<UniformSelectionView isLoading={loadingExtension} loadPack={(uniformEra) => loadUniformPack(uniformEra)} token={token} />);
+                return (<UniformSelectionView isLoading={loadingUniform} loadPack={(uniformEra) => loadUniformPack(uniformEra)} token={token} />);
             case Tab.Head:
-                return (<HeadSelectionView isLoading={loadingExtension} token={token} />);
+                return (<HeadSelectionView isLoading={loadingExtras} token={token} />);
             case Tab.Mouth:
                 return (<MouthSelectionView token={token} />);
             case Tab.Nose:
@@ -102,7 +117,7 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token, chara
                 if (ExtrasCatalog.instance.isLibraryLoaded) {
                     return (<ExtrasSelectionView token={token} />);
                 } else {
-                    if (!loadingExtension) {
+                    if (!loadingExtras) {
                         loadExtrasExtension();
                     }
                     return (<div className="mt-4 text-center">
@@ -168,7 +183,7 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token, chara
         </div>)
     }
 
-    const svg = loadingExtension
+    const svg = (loadingExtras || loadingRubberHead || loadingUniform)
         ? (<div className="spinner-border text-light" role="status">
                 <span className="visually-hidden">Loading...</span>
             </div>)

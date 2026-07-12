@@ -11,6 +11,7 @@ import { MouthType } from "../token/model/mouthTypeEnum";
 import { NasoLabialFoldType } from "../token/model/nasoLabialFoldTypeEnum";
 import { NoseType } from "../token/model/noseTypeEnum";
 import { SpeciesOption } from "../token/model/speciesOptionEnum";
+import { TokenModel } from "../token/model/tokenModel";
 import { UniformEra } from "../token/model/uniformEra";
 import { UniformVariantType } from "../token/model/uniformVariantTypeEnum";
 
@@ -36,9 +37,9 @@ export const SET_TOKEN_EXTRAS_TYPE = 'SET_TOKEN_EXTRAS_TYPE';
 export const SET_TOKEN_SECONDARY_SPECIES = 'SET_TOKEN_SECONDARY_SPECIES';
 export const CREATE_NEW_TOKEN = "CREATE_NEW_TOKEN";
 
-export function createNewToken(marshalledCharacter?: string, characterName?: string) {
+export function createNewToken(token?: TokenModel, marshalledCharacter?: string, characterName?: string) {
     const hash = marshalledCharacter?.length ? cyrb53(marshalledCharacter) : undefined;
-    let payload = { marshalledCharacter: marshalledCharacter, characterName: characterName, hash: hash };
+    let payload = { token: token, marshalledCharacter: marshalledCharacter, characterName: characterName, hash: hash };
     return {
        type: CREATE_NEW_TOKEN,
        payload: payload

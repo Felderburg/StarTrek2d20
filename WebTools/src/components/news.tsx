@@ -14,6 +14,15 @@ const News: React.FC<INewsProperties> = ({showModal, onClose}) => {
 
     return (
         <Modal size="lg" show={showModal} onClose={() => onClose()} header="What's New?">
+            <b>v1.260712</b>
+            <ul>
+                <li>
+                    Create a mechanism to associate tokens with characters.
+                </li>
+                <li>
+                    A couple of improvement requests.
+                </li>
+            </ul>
             <b>v1.260705</b>
             <ul>
                 <li>
