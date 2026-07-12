@@ -70,6 +70,14 @@ export class CareerEventModel {
         this.prerequisites.forEach(p => result = result && p.isPrerequisiteFulfilled(character));
         return result;
     }
+
+    get sources() {
+        let result: Source[] = [];
+        this.prerequisites.filter(p => p instanceof SourceCharacterPrerequisite)
+            .map(s => s as SourceCharacterPrerequisite)
+            .forEach(p => result.push(...p.getSources()));
+        return result;
+    }
 }
 
 class CareerEvents {
@@ -1094,7 +1102,9 @@ class CareerEvents {
             null,
             21,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Protoype Testing",
@@ -1105,7 +1115,9 @@ class CareerEvents {
             null,
             22,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Colonization Effort",
@@ -1116,7 +1128,9 @@ class CareerEvents {
             null,
             23,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Exchange Program",
@@ -1127,7 +1141,9 @@ class CareerEvents {
             null,
             24,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Lucky Streak",
@@ -1138,7 +1154,9 @@ class CareerEvents {
             null,
             25,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Learned from Significant Blunder",
@@ -1149,7 +1167,9 @@ class CareerEvents {
             null,
             26,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Cultural Observation Post",
@@ -1160,7 +1180,9 @@ class CareerEvents {
             null,
             27,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Struggle with Addiction",
@@ -1171,7 +1193,9 @@ class CareerEvents {
             null,
             28,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Rivalry",
@@ -1182,7 +1206,9 @@ class CareerEvents {
             null,
             29,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Off-Duty Endeavour",
@@ -1193,7 +1219,9 @@ class CareerEvents {
             null,
             30,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Starbase Posting",
@@ -1204,7 +1232,9 @@ class CareerEvents {
             null,
             31,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Planetary Posting",
@@ -1215,7 +1245,9 @@ class CareerEvents {
             null,
             32,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Left Behind",
@@ -1226,7 +1258,9 @@ class CareerEvents {
             null,
             33,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Family Crisis",
@@ -1237,7 +1271,9 @@ class CareerEvents {
             null,
             34,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Satisfactory Performance",
@@ -1248,7 +1284,9 @@ class CareerEvents {
             null,
             35,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Confinement",
@@ -1259,7 +1297,9 @@ class CareerEvents {
             null,
             36,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Terraforming Mission",
@@ -1270,7 +1310,9 @@ class CareerEvents {
             null,
             37,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Leave of Absence",
@@ -1281,7 +1323,9 @@ class CareerEvents {
             null,
             38,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Media Exposure",
@@ -1292,7 +1336,9 @@ class CareerEvents {
             null,
             39,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Clandestine Operation",
@@ -1303,7 +1349,9 @@ class CareerEvents {
             null,
             40,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Fleet Yard Posting",
@@ -1314,7 +1362,9 @@ class CareerEvents {
             null,
             41,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Missing Memories",
@@ -1325,7 +1375,9 @@ class CareerEvents {
             null,
             42,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Teaching Opportunity",
@@ -1336,7 +1388,9 @@ class CareerEvents {
             null,
             43,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Legal Entanglement",
@@ -1347,7 +1401,9 @@ class CareerEvents {
             null,
             44,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Victim of Mind Control",
@@ -1358,7 +1414,9 @@ class CareerEvents {
             null,
             45,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Not Fitting In",
@@ -1369,7 +1427,9 @@ class CareerEvents {
             null,
             46,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Meaningful Memento",
@@ -1380,7 +1440,9 @@ class CareerEvents {
             null,
             47,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Deep Space Assignment",
@@ -1391,7 +1453,9 @@ class CareerEvents {
             null,
             48,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Brush with Temporal Anomaly",
@@ -1402,7 +1466,9 @@ class CareerEvents {
             null,
             49,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
         new CareerEventModel(
             "Medical Facility Posting",
@@ -1413,7 +1479,9 @@ class CareerEvents {
             null,
             50,
             undefined,
-            "unofficial."
+            "unofficial.",
+            [],
+            [new SourceCharacterPrerequisite(Source.ContinuingMissions)]
         ),
     ];
 

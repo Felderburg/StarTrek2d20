@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
 import { StepContext, addCharacterCareerEvent } from "../state/characterActions";
 import { hasSource } from "../state/contextFunctions";
-import { Source } from "../helpers/sources";
+import { Source, SourcesHelper } from "../helpers/sources";
 import ReactMarkdown from "react-markdown";
 import store from "../state/store";
 import { ICharacterProperties, characterMapStateToProperties } from "../solo/page/soloCharacterProperties";
@@ -61,7 +61,10 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
         return (
             <tr key={i}
                 onClick={() => { if (Window.isCompact()) careerEventSelected(careerEvent); } }>
-                <td className="selection-header">{careerEvent.localizedName}</td>
+                <td>
+                    <div className="selection-header">{careerEvent.localizedName}</div>
+                    <div className="text-secondary">{SourcesHelper.getSourceName(careerEvent.sources)}</div>
+                </td>
                 <td>{attributes}</td>
                 <td>{disciplines}</td>
                 <td className="text-end"><Button size="sm" onClick={() => { careerEventSelected(careerEvent) } }>{t('Common.button.select')}</Button></td>
