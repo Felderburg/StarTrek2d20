@@ -13,3 +13,9 @@ export enum EyeType {
     Eye11,
     Eye12
 }
+
+export const allEyeTypes = (): EyeType[] => {
+    return Object.keys(EyeType).filter((item) => {
+        return !isNaN(Number(item));
+    }).map(item => Number(item));
+}

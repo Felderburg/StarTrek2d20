@@ -31,6 +31,7 @@ import { SpecialWeapon } from './specialWeapon';
 import { ModificationType } from '../modify/model/modificationType';
 import { LogEntry, ValueUseType } from './logEntry';
 import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from './characterAssembly';
+import { TokenModel } from '../token/model/tokenModel';
 
 export enum Division {
     Command,
@@ -437,6 +438,22 @@ export class NpcGenerationStep {
     }
 }
 
+export class TokenConfig {
+    readonly token: TokenModel;
+    readonly rounded: boolean;
+    readonly bordered: boolean;
+
+    constructor(token: TokenModel, rounded: boolean = false, bordered: boolean = false) {
+        this.token = token;
+        this.rounded = rounded;
+        this.bordered = bordered;
+    }
+
+    copy() {
+        return new TokenConfig(this.token.copy(), this.rounded, this.bordered);
+    }
+}
+
 export class Character extends Construct implements IWeaponDiceProvider {
 
     public static ABSOLUTE_MAX_ATTRIBUTE = 12;
@@ -477,6 +494,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     public description?: string;
     public legacyMode: boolean;
+    public token?: TokenConfig;
 
     constructor() {
         super(Stereotype.MainCharacter);
@@ -1731,6 +1749,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         character.era = this.era;
         character.pastime = this.pastime == null ? [] : [...this.pastime];
         character.description = this.description;
+        character.token = this.token?.copy();
         return character;
     }
 

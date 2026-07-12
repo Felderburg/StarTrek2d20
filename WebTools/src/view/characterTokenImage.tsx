@@ -1,0 +1,40 @@
+import { useNavigate } from "react-router";
+import { Character } from "../common/character";
+import store from "../state/store";
+import { createNewToken } from "../state/tokenActions";
+import { setCharacter } from "../state/characterActions";
+import { lazy, Suspense } from "react";
+import { LoadingSpinnerView } from "../common/loadingSpinnerView";
+
+const TokenView = lazy(() => import(/* webpackChunkName: 'token' */ '../token/view/tokenView'));
+
+interface CharacterTokenImageProperties {
+    character: Character;
+    marshalledCharacter?: string;
+}
+
+
+export const CharacterTokenImage: React.FC<CharacterTokenImageProperties> = ({character, marshalledCharacter}) => {
+
+    const navigate = useNavigate();
+
+    const createToken = () => {
+        store.dispatch(setCharacter(character));
+        store.dispatch(createNewToken(marshalledCharacter, character.nameAndAbbreviatedRank));
+        navigate("/token");
+    }
+
+    return (<div className="d-flex justify-content-center align-items-center">
+        {character.token
+            ? (<Suspense fallback={<LoadingSpinnerView />}>
+                    <TokenView tokenConfig={character.token} onClick={createToken} />
+                </Suspense>)
+            : (<div style={{aspectRatio: 1, width: "250px", maxWidth: "100%", fontSize: "x-large"}}
+                className="d-flex justify-content-center align-items-center text-secondary border border-secondary rounded"
+                role="button" onClick={createToken}>
+
+            <i className="bi bi-person-square"></i>
+
+        </div>)}
+    </div>);
+}

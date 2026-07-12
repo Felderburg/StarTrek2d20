@@ -9,6 +9,8 @@ import { useNavigate } from 'react-router';
 import { Header } from '../components/header';
 import HomePageAnnouncement from '../components/homePageAnnouncement';
 import RecentCreationsView from '../components/recentCreationsView';
+import store from '../state/store';
+import { createNewToken } from '../state/tokenActions';
 
 enum Tool {
     CharacterGenerator,
@@ -32,6 +34,7 @@ const SelectionPage = () => {
                 break;
             }
             case Tool.TokenCreator: {
+                store.dispatch(createNewToken());
                 navigate("/token");
                 break;
             }

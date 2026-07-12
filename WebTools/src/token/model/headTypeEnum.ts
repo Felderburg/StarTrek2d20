@@ -11,3 +11,9 @@ export enum HeadType {
     PillShaped,
     RoundedHeavy
 }
+
+export const allHeadTypes = (): HeadType[] => {
+    return Object.keys(HeadType).filter((item) => {
+        return !isNaN(Number(item));
+    }).map(item => Number(item));
+}

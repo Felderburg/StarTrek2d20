@@ -28,6 +28,11 @@ import UniformVariantRestrictions from './model/uniformVariantRestrictions';
 import { TokenModel } from './model/tokenModel';
 import ExtrasCatalog from './model/extrasCatalog';
 import { Spinner } from 'react-bootstrap';
+import { marshaller } from '../helpers/marshaller';
+import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
+import { TokenConfig } from '../common/character';
+import store from '../state/store';
+import { useNavigate } from 'react-router';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -44,15 +49,19 @@ enum Tab {
 
 interface ITokenCreationPageProperties {
     token: TokenModel;
+    marshalledCharacter?: string;
+    characterName?: string;
+    replacementHash?: number;
 }
 
-const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token}) => {
+const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token, characterName, marshalledCharacter, replacementHash}) => {
 
     const { t } = useTranslation();
     const [ tab, setTab ] = useState<Tab>(Tab.Species);
     const [ rounded, setRounded ] = useState<boolean>(false);
     const [ loadingExtension, setLoadingExtension ] = useState<boolean>(false);
     const [ bordered, setBordered ] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     const selectTab = (tab: Tab) => {
         setTab(tab);
@@ -143,7 +152,21 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token}) => {
         });
     }
 
+    const returnToViewPage = () => {
+        let json = marshaller.decode(marshalledCharacter);
+        let c = marshaller.decodeCharacter(json);
+        c.token = new TokenConfig(token, rounded, bordered);
+        store.dispatch(saveCharacterToLocalStorage(c, replacementHash));
+        const value = marshaller.encodeMainCharacter(c);
+        navigate('/view?s=' + value);
+    }
 
+    const showCharacterDetails = () => {
+        return (<div className="d-flex mb-5 justify-content-between">
+            <p>Token for {characterName}</p>
+            <Button size='sm' onClick={returnToViewPage}>{t('Common.button.view')}</Button>
+        </div>)
+    }
 
     const svg = loadingExtension
         ? (<div className="spinner-border text-light" role="status">
@@ -208,6 +231,10 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token}) => {
                             </div>
 
                             <div className="col-lg-8 mt-4">
+                                {characterName?.length
+                                    ? showCharacterDetails()
+                                    : undefined}
+
                                 <div className="btn-group w-100" role="group" aria-label="Avatar part types">
                                     <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === Tab.Species ? "active" : "")}
                                         onClick={() => selectTab(Tab.Species)}>{t('TokenCreator.section.species')}</button>
@@ -241,7 +268,10 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token}) => {
 
 function mapStateToProps(state, ownProps) {
     return {
-        token: TokenModel.from(state.token)
+        token: TokenModel.from(state.token.token),
+        marshalledCharacter: state.token.marshalledCharacter,
+        characterName: state.token.characterName,
+        replacementHash: state.token.replacementHash
     };
 }
 

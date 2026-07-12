@@ -18,3 +18,9 @@ export enum UniformVariantType {
     Variant15,
     Variant16,
 }
+
+export const allUniformVariantTypes = (): UniformVariantType[] => {
+    return Object.keys(UniformVariantType).filter((item) => {
+        return !isNaN(Number(item));
+    }).map(item => Number(item));
+}

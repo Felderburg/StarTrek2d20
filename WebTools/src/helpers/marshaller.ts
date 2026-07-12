@@ -1,6 +1,6 @@
 import { Base64 } from 'js-base64';
 import pako from 'pako';
-import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails, ReputationChangeStep } from '../common/character';
+import { AlliedMilitaryDetails, CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, GovernmentDetails, NpcGenerationStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, OtherDetails, ReputationChangeStep, TokenConfig } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Construct, Stereotype } from '../common/construct';
 import { MissionProfileStep, ServiceRecordStep, ShipBuildTypeModel, SimpleStats, SpaceframeStep, Starship, StarshipAdvancementStep } from '../common/starship';
@@ -60,6 +60,19 @@ import { StationFrameAppearanceModel } from './stationFrameAppearanceModel';
 import { SpaceframeAppearance } from './spaceframeAppearance';
 import { SpaceframeAppearanceModel } from './spaceframeAppearanceModel';
 import { ShipBuildType } from '../common/shipBuildType';
+import { allUniformEras, UniformEra } from '../token/model/uniformEra';
+import { allSpeciesOptions, SpeciesOption } from '../token/model/speciesOptionEnum';
+import { allUniformVariantTypes, UniformVariantType } from '../token/model/uniformVariantTypeEnum';
+import { allHeadTypes, HeadType } from '../token/model/headTypeEnum';
+import { allHairTypes, HairType } from '../token/model/hairTypeEnum';
+import { allNoseTypes, NoseType } from '../token/model/noseTypeEnum';
+import { allBodyTypes, BodyType } from '../token/model/bodyTypeEnum';
+import { allMouthTypes, MouthType } from '../token/model/mouthTypeEnum';
+import { allEyeTypes, EyeType } from '../token/model/eyeTypeEnum';
+import { allNasoLabialFoldTypes, NasoLabialFoldType } from '../token/model/nasoLabialFoldTypeEnum';
+import { FacialHairType } from '../token/model/facialHairEnum';
+import { ExtraType } from '../token/model/extrasTypeEnum';
+import { TokenModel } from '../token/model/tokenModel';
 
 class Marshaller {
 
@@ -365,7 +378,89 @@ class Marshaller {
         }
 
         sheet["improvements"] = this.encodeImprovements(character);
+
+        sheet["token"] = this.encodeToken(character.token);
         return sheet;
+    }
+
+    encodeToken(tokenConfig: TokenConfig) {
+        let token = {
+            primarySpecies: Species[tokenConfig.token.primarySpecies],
+            speciesOption: SpeciesOption[tokenConfig.token.speciesOption],
+            uniformEra: UniformEra[tokenConfig.token.uniformEra],
+            uniformVariant: UniformVariantType[tokenConfig.token.variant],
+            skinColor: tokenConfig.token.skinColor,
+            headType: HeadType[tokenConfig.token.headType],
+            hairType: HairType[tokenConfig.token.hairType],
+            hairColor: tokenConfig.token.hairColor,
+            noseType: NoseType[tokenConfig.token.noseType],
+            nasoLabialFold: NasoLabialFoldType[tokenConfig.token.nasoLabialFold],
+            bodyType: BodyType[tokenConfig.token.bodyType],
+            eyeType: EyeType[tokenConfig.token.eyeType],
+            eyeColor: tokenConfig.token.eyeColor,
+            mouthType: MouthType[tokenConfig.token.mouthType],
+            lipstickColor: tokenConfig.token.lipstickColor,
+        }
+        if (tokenConfig.token.secondarySpecies != null) {
+            token["secondarySpecies"] = Species[tokenConfig.token.secondarySpecies];
+        }
+        if (tokenConfig.token.divisionColor?.length) {
+            token["divisionColor"] = tokenConfig.token.divisionColor;
+        }
+        if (tokenConfig.token.rankIndicator != null) {
+            token["rankIndicator"] = Rank[tokenConfig.token.rankIndicator];
+        }
+        if (tokenConfig.token.facialHairType?.length) {
+            token["facialHairType"] = tokenConfig.token.facialHairType.map(t => FacialHairType[t]);
+        }
+        if (tokenConfig.token.extras?.length) {
+            token["extras"] = tokenConfig.token.extras.map(e => ExtraType[e]);
+        }
+
+        return {
+            token: token,
+            rounded: tokenConfig.rounded,
+            bordered: tokenConfig.bordered
+        };
+    }
+
+    decodeToken(json: any) {
+        let tokenJson = json["token"];
+        let token = TokenModel.createDefault();
+        token.primarySpecies = SpeciesHelper.getSpeciesTypeByName(tokenJson["primarySpecies"]);
+        if (json["secondarySpecies"] != null) {
+            token.secondarySpecies = SpeciesHelper.getSpeciesTypeByName(tokenJson["secondarySpecies"]);
+        }
+        token.speciesOption = allSpeciesOptions().filter(s => SpeciesOption[s] === tokenJson["speciesOption"])[0];
+        token.skinColor = tokenJson["skinColor"];
+        token.headType = allHeadTypes().filter(t => HeadType[t] === tokenJson["headType"])[0];
+        token.hairType = allHairTypes().filter(t => HairType[t] === tokenJson["hairType"])[0];
+        token.hairColor = tokenJson["hairColor"];
+        token.noseType = allNoseTypes().filter(t => NoseType[t] === tokenJson["noseType"])[0];
+        token.nasoLabialFold = allNasoLabialFoldTypes().filter(t => NasoLabialFoldType[t] === tokenJson["nasoLabialFold"])[0];
+        token.bodyType = allBodyTypes().filter(t => BodyType[t] === tokenJson["bodyType"])[0];
+
+        token.eyeType = allEyeTypes().filter(t => EyeType[t] === tokenJson["eyeType"])[0];
+        token.eyeColor = tokenJson["eyeColor"];
+
+        token.mouthType = allMouthTypes().filter(t => MouthType[t] === tokenJson["mouthType"])[0];
+        token.lipstickColor = tokenJson["lipstickColor"]
+
+
+        token.uniformEra = allUniformEras().filter(u => UniformEra[u] === tokenJson["uniformEra"])[0];
+        token.variant = allUniformVariantTypes().filter(u => UniformVariantType[u] === tokenJson["uniformVariant"])[0];
+        if (tokenJson["divisionColor"] != null) {
+            token.divisionColor = tokenJson["divisionColor"];
+        }
+        if (tokenJson["rankIndicator"] != null) {
+            token.rankIndicator = RanksHelper.instance().getRankByRankName(tokenJson["rankIndicator"]);
+        }
+
+        return new TokenConfig(
+            token,
+            json["rounded"] === "true",
+            json["bordered"] === true
+        );
     }
 
     encodeStarshipImprovements(starship: Starship) {
@@ -726,6 +821,7 @@ class Marshaller {
         }
 
         sheet["improvements"] = this.encodeImprovements(character);
+        sheet["token"] = this.encodeToken(character.token);
 
         return sheet;
     }
@@ -1448,6 +1544,7 @@ class Marshaller {
     }
 
     decodeCharacter(json: any) {
+console.log(json);
         let result = new Character();
         if (json["stereotype"] === "npc") {
             result.stereotype = Stereotype.Npc;
@@ -1947,6 +2044,10 @@ class Marshaller {
 
         if (json.description?.length) {
             result.description = json.description;
+        }
+
+        if (json.token) {
+            result.token = this.decodeToken(json.token);
         }
 
         return result;

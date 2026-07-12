@@ -20,6 +20,12 @@ export enum ExtraCategory {
     Ear, Forehead, Face, Headwear, BorgImplant
 }
 
+export const allExtraTypes = (): ExtraType[] => {
+    return Object.keys(ExtraType).filter((item) => {
+        return !isNaN(Number(item));
+    }).map(item => Number(item));
+}
+
 export const getExtraCategory = (extraType: ExtraType) => {
 
     switch (extraType) {

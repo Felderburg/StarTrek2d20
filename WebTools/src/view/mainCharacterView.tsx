@@ -22,6 +22,7 @@ import { originalEncodedSheet } from "./originalEncodedSheet";
 import { cyrb53 } from "../common/cyrb53";
 import Markdown from "react-markdown";
 import EquipmentBlockView from "./equipmentBlockView";
+import { CharacterTokenImage } from "./characterTokenImage";
 
 export interface ICharacterViewProperties {
     character: Character;
@@ -156,13 +157,17 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
             <div className="col-xl-6 mt-4">
                 {renderStats()}
 
+                <div className="my-4">
+                    <CharacterTokenImage character={character} marshalledCharacter={originalEncodedSheet()} />
+                </div>
+
                 <SpeciesAbilityBlockView character={character} />
                 <TalentsBlockView construct={character} />
 
             </div>
 
-
             <div className="col-xl-6">
+
                 <div className="row">
 
                     <div className="col-xl-6 mt-4">

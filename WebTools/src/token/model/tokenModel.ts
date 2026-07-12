@@ -1,6 +1,7 @@
 import { Rank } from "../../helpers/ranks";
 import { Species } from "../../helpers/speciesEnum";
 import { BodyType } from "./bodyTypeEnum";
+import { DivisionColors } from "./divisionColors";
 import { ExtraType } from "./extrasTypeEnum";
 import { EyeType } from "./eyeTypeEnum";
 import { FacialHairType } from "./facialHairEnum";
@@ -10,6 +11,7 @@ import { MouthType } from "./mouthTypeEnum";
 import { NasoLabialFoldType } from "./nasoLabialFoldTypeEnum";
 import { NoseType } from "./noseTypeEnum";
 import { SpeciesOption } from "./speciesOptionEnum";
+import SpeciesRestrictions from "./speciesRestrictions";
 import { Token } from "./token";
 import { UniformEra } from "./uniformEra";
 import { UniformVariantType } from "./uniformVariantTypeEnum";
@@ -46,6 +48,30 @@ export class TokenModel {
         } else {
             return this.primarySpecies;
         }
+    }
+
+    static createDefault() {
+        return TokenModel.from({
+            species: Species.Human,
+            divisionColor: DivisionColors.getColors(UniformEra.DominionWar)[0].color,
+            skinColor: SpeciesRestrictions.DEFAULT_SKIN_COLOR,
+            headType: HeadType.SofterNarrow,
+            rankIndicator: Rank.None,
+            hairType: HairType.DeLeve,
+            hairColor: SpeciesRestrictions.DEFAULT_HAIR_COLOR,
+            eyeColor: SpeciesRestrictions.getDefaultEyeColor(Species.Human),
+            eyeType: EyeType.Eye3,
+            noseType: NoseType.StraightBasic,
+            mouthType: MouthType.Mouth2,
+            uniformEra: UniformEra.DominionWar,
+            bodyType: BodyType.AverageMale,
+            nasoLabialFold: NasoLabialFoldType.None,
+            lipstickColor: SpeciesRestrictions.DEFAULT_LIPSTICK_COLOR,
+            facialHairType: [],
+            speciesOption: SpeciesOption.Option1,
+            extras: [],
+            variant: UniformVariantType.Base
+        });
     }
 
     static from(token: Token): TokenModel {
