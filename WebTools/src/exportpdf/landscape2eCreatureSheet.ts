@@ -18,7 +18,6 @@ import { labelWriter, VerticalAlignment } from "./labelWriter";
 import { TextAlign } from "./textAlign";
 import { FontSpecification } from "./fontSpecification";
 import { ReadableTalentModel, TalentWriter } from "./talentWriter";
-import { SpeciesAbility } from "../helpers/speciesAbility";
 import { RoleModel } from "../helpers/roles";
 import { bullet2EWriter } from "./bullet2eWriter";
 import { PageArea } from "./pageArea";

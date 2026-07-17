@@ -12,7 +12,7 @@ import { Sector } from "../table/sector";
 import { StarSystem } from "../table/starSystem";
 import { PDFDocument } from "@cantoo/pdf-lib";
 import { useTranslation } from "react-i18next";
-import { useNavigate, useNavigation } from "react-router";
+import { useNavigate } from "react-router";
 import { LoadingButton } from "../../common/loadingButton";
 import LcarsFrame from "../../components/lcarsFrame";
 import { PageIdentity } from "../../pages/pageIdentity";

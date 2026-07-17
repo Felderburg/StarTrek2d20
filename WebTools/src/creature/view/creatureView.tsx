@@ -7,8 +7,6 @@ import CreatureStatBlock from "./creatureStatBlock";
 import Markdown from "react-markdown";
 import { ExportToPdfButton } from "../../components/exportToPdfButton";
 
-declare function download(bytes: any, fileName: any, contentType: any): any;
-
 export interface ICreatureViewProperties {
     creature: Creature;
 }

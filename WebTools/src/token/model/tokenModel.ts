@@ -94,8 +94,8 @@ export class TokenModel {
         result.eyeType = token.eyeType;
         result.mouthType = token.mouthType;
         result.lipstickColor = token.lipstickColor;
-        result.facialHairType = [...token.facialHairType];
-        result.extras = [...token.extras];
+        result.facialHairType = [...token.facialHairType ?? []];
+        result.extras = [...token.extras ?? []];
         result.variant = token.variant;
 
         return result;

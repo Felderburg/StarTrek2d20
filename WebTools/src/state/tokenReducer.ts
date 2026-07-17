@@ -396,27 +396,28 @@ const token = (state: TokenState = { token: initialState }, action) => {
     case CREATE_NEW_TOKEN: {
         const newToken = action.payload.token;
         let token: Token = { ...initialState };
-        token.species = newToken.primarySpecies;
-        token.secondarySpecies = newToken.secondarySpecies;
-        token.speciesOption = newToken.speciesOption;
-        token.bodyType = newToken.bodyType;
-        token.uniformEra = newToken.uniformEra;
-        token.variant = newToken.variant;
-        token.rankIndicator = newToken.rankIndicator;
-        token.divisionColor = newToken.divisionColor;
-        token.skinColor = newToken.skinColor;
-        token.headType = newToken.headType;
-        token.hairType = newToken.hairType;
-        token.hairColor = newToken.hairColor;
-        token.eyeType = newToken.eyeType;
-        token.eyeColor = newToken.eyeColor;
-        token.noseType = newToken.noseType;
-        token.nasoLabialFold = newToken.nasoLabialFold;
-        token.lipstickColor = newToken.lipstickColor;
-        token.mouthType = newToken.mouthType;
-        token.facialHairType = [...(newToken.facialHairType ?? [])];
-        token.extras = [...(newToken.extras ?? [])];
-
+        if (newToken) {
+            token.species = newToken.primarySpecies;
+            token.secondarySpecies = newToken.secondarySpecies;
+            token.speciesOption = newToken.speciesOption;
+            token.bodyType = newToken.bodyType;
+            token.uniformEra = newToken.uniformEra;
+            token.variant = newToken.variant;
+            token.rankIndicator = newToken.rankIndicator;
+            token.divisionColor = newToken.divisionColor;
+            token.skinColor = newToken.skinColor;
+            token.headType = newToken.headType;
+            token.hairType = newToken.hairType;
+            token.hairColor = newToken.hairColor;
+            token.eyeType = newToken.eyeType;
+            token.eyeColor = newToken.eyeColor;
+            token.noseType = newToken.noseType;
+            token.nasoLabialFold = newToken.nasoLabialFold;
+            token.lipstickColor = newToken.lipstickColor;
+            token.mouthType = newToken.mouthType;
+            token.facialHairType = [...(newToken?.facialHairType ?? [])];
+            token.extras = [...(newToken.extras ?? [])];
+        }
         return {
             ...state,
             token: token,

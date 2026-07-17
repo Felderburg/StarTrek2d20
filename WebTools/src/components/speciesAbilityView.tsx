@@ -8,14 +8,10 @@ import store from "../state/store";
 import D20IconButton from "../solo/component/d20IconButton";
 import { localizedFocus } from "./focusHelper";
 import { FocusRandomTableWithHints } from "../solo/table/focusRandomTable";
-import { addCharacterBorgImplantSpeciesOption, removeCharacterBorgImplantSpeciesOption, setCharacterSpeciesAbilityChoice, setCharacterSpeciesAbilityFocus } from "../state/characterActions";
+import { setCharacterSpeciesAbilityFocus } from "../state/characterActions";
 import { Department } from "../helpers/department";
 import { hasSource } from "../state/contextFunctions";
 import { Source } from "../helpers/sources";
-import { BorgImplants, BorgImplantType } from "../helpers/borgImplant";
-import { CheckBox } from "./checkBox";
-import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
-import Markdown from "react-markdown";
 import { SpeciesAbilityChoiceView } from "./speciesAbilityChoiceView";
 import { BorgImplantSelectionView } from "./borgImplantSelectionView";
 
