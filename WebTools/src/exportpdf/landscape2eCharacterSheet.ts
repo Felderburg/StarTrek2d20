@@ -29,6 +29,7 @@ import { TextBlock } from "./textBlock";
 import UniformPackCollection from "../token/model/uniformPackCollection";
 import SpeciesRestrictions from "../token/model/speciesRestrictions";
 import { Canvg, presets } from "canvg";
+import { TokenHelper } from "./tokenHelper";
 
 export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
@@ -159,37 +160,16 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         }
     }
 
-    async toPng(data) {
-        const preset = presets.offscreen();
-        const {
-          width,
-          height,
-          svg
-        } = data;
-        const canvas = new OffscreenCanvas(width, height)
-        const ctx = canvas.getContext('2d')
-        const v = await Canvg.from(ctx, svg, preset)
-
-        // Render only first frame, ignoring animations and mouse.
-        await v.render()
-
-        const blob = await canvas.convertToBlob();
-        return blob.arrayBuffer();
-    }
-
     async fillCharacterImage(pdf: PDFDocument, character: Character) {
         if (character.token) {
-            let token = character.token.token;
-            const { TokenSvgBuilder } = await import(/* webpackChunkName: 'token' */ '../token/tokenSvgBuilder');
-            const svg = await TokenSvgBuilder.loadDependenciesAndCreateSvg(token, character.token.rounded, character.token.rounded && character.token.bordered);
-
-            let bytes = await this.toPng({
-                width: 800,
-                height: 800,
-                svg: svg
-            });
-            const image = await pdf.embedPng(bytes);
-            pdf.getForm().getButton("Image35_af_image").setImage(image);
+            let tokenBytes = await TokenHelper.renderToken(character.token);
+            const image = await pdf.embedPng(tokenBytes);
+            try {
+                pdf.getForm().getButton("Image35_af_image").setImage(image);
+            } catch (_e) {
+                // name changed...? ignore it.
+                console.log("Image button not found in PDF");
+            }
         }
     }
 

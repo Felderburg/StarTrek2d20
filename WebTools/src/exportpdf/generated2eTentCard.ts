@@ -25,6 +25,7 @@ import { determineIdealFontWidth } from "./fontWidthDeterminer";
 import { CharacterType } from "../common/characterType";
 import { politySymbolArrowHead, politySymbolArrowHeadCommand, politySymbolArrowHeadOperations, politySymbolArrowHeadScience, politySymbolFederationLaurels, politySymbolFederationStarfield, politySymbolKlingonSymbol, politySymbolKlingonSymbolCircle } from "./politySymbols";
 import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_COLLABORATION } from "../helpers/talents";
+import { TokenHelper } from "./tokenHelper";
 
 export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
 
@@ -58,6 +59,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
         const page = pdf.getPage(0);
         let character = construct as Character;
 
+        await this.drawImage(pdf, page, character);
         this.writeFront(page, character);
         this.writeValues(page, character);
         this.writeStatBoxes(page, character);
@@ -66,6 +68,21 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
         this.writeCharacterName(page, character);
 
         this.drawArrowHead(page, character, divisionColour2e(character.era, character.division));
+    }
+
+    async drawImage(pdf: PDFDocument, page: PDFPage, character: Character) {
+        if (character.token) {
+            let tokenBytes = await TokenHelper.renderToken(character.token);
+            const image = await pdf.embedPng(tokenBytes);
+
+            const imageSize = 72 * 1.5;
+            page.moveTo(page.getWidth() - 24, page.getHeight() - (page.getHeight() / 6) + imageSize/2);
+            page.drawImage(image, {
+                width: imageSize,
+                height: imageSize,
+                rotate: degrees(180)
+            });
+        }
     }
 
     writeStatBoxes(page: PDFPage, character: Character) {
