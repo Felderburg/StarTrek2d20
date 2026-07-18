@@ -605,14 +605,17 @@ class HeadCatalog {
         return this.rubberHeadCatalog != null;
     }
 
-    loadRubberHeadExtension(completion: () => void = () => {}) {
+    async loadRubberHeadExtension(completion: () => void = () => {}) {
         if (this.isRubberHeadExtensionLoaded) {
             completion();
         } else {
-            import(/* webpackChunkName: 'rubberHead' */ './rubberHeadCatalog').then(({RubberHeadCatalog}) => {
+            try {
+                const { RubberHeadCatalog } =  await import(/* webpackChunkName: 'extrasLibrary' */ './rubberHeadCatalog');
                 this.rubberHeadCatalog = new RubberHeadCatalog();
                 completion();
-            }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
+            } catch (_e) {
+                toast("Ooops. Something bad happened", { className: 'bg-danger' });
+            }
         }
     }
 

@@ -51,14 +51,17 @@ class ExtrasCatalog {
         return this.extrasLibrary != null;
     }
 
-    loadLibraryExtension(completion: () => void = () => {}) {
+    async loadLibraryExtension(completion: () => void = () => {}) {
         if (this.isLibraryLoaded) {
             completion();
         } else {
-            import(/* webpackChunkName: 'extrasLibrary' */ './extrasLibrary').then(({ExtrasLibrary}) => {
+            try {
+                const { ExtrasLibrary } =  await import(/* webpackChunkName: 'extrasLibrary' */ './extrasLibrary');
                 this.extrasLibrary = new ExtrasLibrary();
                 completion();
-            }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
+            } catch (_e) {
+                toast("Ooops. Something bad happened", { className: 'bg-danger' });
+            }
         }
     }
 

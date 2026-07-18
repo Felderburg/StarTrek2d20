@@ -12,6 +12,7 @@ import NasoLabialFoldCatalog from "./model/nasoLabialFoldCatalog";
 import NoseCatalog from "./model/noseCatalog";
 import ProstheticCatalog, { ProstheticPlacement } from "./model/prostheticCatalog";
 import RankIndicatorCatalog from "./model/rankIndicatorCatalog";
+import SpeciesRestrictions from "./model/speciesRestrictions";
 import { TokenModel } from "./model/tokenModel";
 import UniformCatalog from "./model/uniformCatalog";
 import { UniformEra } from "./model/uniformEra";
@@ -23,6 +24,21 @@ const EnterpriseEraStarfleetLogoGradient = `<radialGradient xmlns="http://www.w3
 </radialGradient>`;
 
 export class TokenSvgBuilder {
+
+    static async loadDependenciesAndCreateSvg(token: TokenModel, rounded: boolean = false, fancyBorder: boolean = false) {
+
+        if (!UniformPackCollection.instance.isLoaded(token.uniformEra)) {
+            await UniformPackCollection.instance.loadUniformPack(token.uniformEra);
+        }
+        if (SpeciesRestrictions.isRubberHeaded(token.species) && !HeadCatalog.instance.isRubberHeadExtensionLoaded) {
+            await HeadCatalog.instance.loadRubberHeadExtension();
+        }
+        if (!ExtrasCatalog.instance.isLibraryLoaded) {
+            await ExtrasCatalog.instance.loadLibraryExtension();
+        }
+
+        return this.createSvg(token, rounded, fancyBorder);
+    }
 
     static createSvg(token: TokenModel, rounded: boolean = false, fancyBorder: boolean = false) {
         return `<?xml version="1.0" encoding="UTF-8"?>
