@@ -918,6 +918,10 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 }
             }
 
+            if (this.isEngineer) {
+                return Division.Operations;
+            }
+
             if (this.educationStep?.track != null) {
                 if (this.educationStep?.track === Track.Command) {
                     return Division.Command;
@@ -1540,15 +1544,15 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     isEngineer() {
         return this.role === Role.ChiefEngineer
-            || (this.jobAssignment && this.jobAssignment?.toLowerCase().indexOf("engineer") >= 0);
+            || this.jobAssignment?.toLowerCase()?.includes("engineer");
     }
 
     isSecurityOrSeniorOfficer() {
         return (this.rank &&
-                (this.rank?.name?.toLowerCase() === "captain" ||
-                 this.rank?.name?.toLowerCase() === "commander" ||
-                 this.rank?.name?.toLowerCase() === "lieutenant commander" ||
-                 this.rank?.name?.toLowerCase().indexOf("admiral") >= 0 ||
+                (this.rank?.id === Rank.Captain ||
+                 this.rank?.id === Rank.Commander ||
+                 this.rank?.id === Rank.LtCommander ||
+                 RanksHelper.instance().isAdmiralty(this.rank?.id) ||
                  (this.role !== undefined && this.role === Role.ChiefOfSecurity))) ||
                  (this.jobAssignment?.toLowerCase() === "security") ||
                  (this.stereotype === Stereotype.SupportingCharacter && this.supportingStep?.disciplines[0] === Department.Security);

@@ -34,6 +34,7 @@ import { TokenConfig } from '../common/character';
 import store from '../state/store';
 import { useNavigate } from 'react-router';
 import SpeciesRestrictions from './model/speciesRestrictions';
+import { setTokenBordered, setTokenRounded } from '../state/tokenActions';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 
@@ -53,17 +54,17 @@ interface ITokenCreationPageProperties {
     marshalledCharacter?: string;
     characterName?: string;
     replacementHash?: number;
+    rounded?: boolean;
+    bordered?: boolean;
 }
 
-const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token, characterName, marshalledCharacter, replacementHash}) => {
+const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token, characterName, marshalledCharacter, replacementHash, rounded, bordered}) => {
 
     const { t } = useTranslation();
     const [ tab, setTab ] = useState<Tab>(Tab.Species);
-    const [ rounded, setRounded ] = useState<boolean>(false);
     const [ loadingUniform, setLoadingUniform ] = useState<boolean>(false);
     const [ loadingRubberHead, setLoadingRubberHead ] = useState<boolean>(false);
     const [ loadingExtras, setLoadingExtras ] = useState<boolean>(false);
-    const [ bordered, setBordered ] = useState<boolean>(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -225,12 +226,12 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token, chara
 
                                         <div className="mt-3">
                                             <CheckBox value="rounded" isChecked={rounded}
-                                                onChanged={(val) => { setRounded(!rounded) }}
+                                                onChanged={(val) => store.dispatch(setTokenRounded(!rounded)) }
                                                 text={t('TokenCreator.option.rounded')} />
                                         </div>
                                         <div>
                                             <CheckBox value="fancy" isChecked={bordered && rounded}
-                                                onChanged={(val) => { setBordered(!bordered) }}
+                                                onChanged={(val) => store.dispatch(setTokenBordered(!bordered))}
                                                 text={t('TokenCreator.option.bordered')} disabled={ !rounded } />
                                         </div>
                                     </div>
@@ -286,7 +287,9 @@ function mapStateToProps(state, ownProps) {
         token: TokenModel.from(state.token.token),
         marshalledCharacter: state.token.marshalledCharacter,
         characterName: state.token.characterName,
-        replacementHash: state.token.replacementHash
+        replacementHash: state.token.replacementHash,
+        rounded: state.token.rounded,
+        bordered: state.token.bordered
     };
 }
 

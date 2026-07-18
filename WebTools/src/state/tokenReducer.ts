@@ -14,7 +14,7 @@ import { Token } from "../token/model/token";
 import { UniformEra } from "../token/model/uniformEra";
 import UniformVariantRestrictions from "../token/model/uniformVariantRestrictions";
 import { UniformVariantType } from "../token/model/uniformVariantTypeEnum";
-import { CREATE_NEW_TOKEN, SET_TOKEN_BODY_TYPE, SET_TOKEN_DIVISION_COLOR, SET_TOKEN_EXTRAS_TYPE, SET_TOKEN_EYE_COLOR, SET_TOKEN_EYE_TYPE, SET_TOKEN_FACIAL_HAIR_TYPE, SET_TOKEN_HAIR_COLOR, SET_TOKEN_HAIR_TYPE, SET_TOKEN_HEAD_TYPE, SET_TOKEN_LIPSTICK_COLOR, SET_TOKEN_MOUTH_TYPE, SET_TOKEN_NASO_LABIAL_FOLD_TYPE, SET_TOKEN_NOSE_TYPE, SET_TOKEN_RANK, SET_TOKEN_SECONDARY_SPECIES, SET_TOKEN_SKIN_COLOR, SET_TOKEN_SPECIES, SET_TOKEN_SPECIES_OPTION, SET_TOKEN_UNIFORM_ERA, SET_TOKEN_UNIFORM_VARIANT_TYPE } from "./tokenActions";
+import { CREATE_NEW_TOKEN, SET_TOKEN_BODY_TYPE, SET_TOKEN_BORDERED, SET_TOKEN_DIVISION_COLOR, SET_TOKEN_EXTRAS_TYPE, SET_TOKEN_EYE_COLOR, SET_TOKEN_EYE_TYPE, SET_TOKEN_FACIAL_HAIR_TYPE, SET_TOKEN_HAIR_COLOR, SET_TOKEN_HAIR_TYPE, SET_TOKEN_HEAD_TYPE, SET_TOKEN_LIPSTICK_COLOR, SET_TOKEN_MOUTH_TYPE, SET_TOKEN_NASO_LABIAL_FOLD_TYPE, SET_TOKEN_NOSE_TYPE, SET_TOKEN_RANK, SET_TOKEN_ROUNDED, SET_TOKEN_SECONDARY_SPECIES, SET_TOKEN_SKIN_COLOR, SET_TOKEN_SPECIES, SET_TOKEN_SPECIES_OPTION, SET_TOKEN_UNIFORM_ERA, SET_TOKEN_UNIFORM_VARIANT_TYPE } from "./tokenActions";
 
 const initialState = {
     species: Species.Human,
@@ -43,6 +43,8 @@ interface TokenState {
     marshalledCharacter?: string;
     characterName?: string;
     replacementHash?: number;
+    rounded?: boolean;
+    bordered?: boolean;
 }
 
 
@@ -421,9 +423,23 @@ const token = (state: TokenState = { token: initialState }, action) => {
         return {
             ...state,
             token: token,
+            rounded: action.payload.rounded,
+            bordered: action.payload.bordered,
             marshalledCharacter: action.payload.marshalledCharacter,
             characterName: action.payload.characterName,
             replacementHash: action.payload.hash
+        }
+    }
+    case SET_TOKEN_ROUNDED: {
+        return {
+            ...state,
+            rounded: action.payload.rounded
+        }
+    }
+    case SET_TOKEN_BORDERED: {
+        return {
+            ...state,
+            bordered: action.payload.bordered
         }
     }
     default:

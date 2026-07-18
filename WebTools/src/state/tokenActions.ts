@@ -36,10 +36,19 @@ export const SET_TOKEN_FACIAL_HAIR_TYPE = 'SET_TOKEN_FACIAL_HAIR_TYPE';
 export const SET_TOKEN_EXTRAS_TYPE = 'SET_TOKEN_EXTRAS_TYPE';
 export const SET_TOKEN_SECONDARY_SPECIES = 'SET_TOKEN_SECONDARY_SPECIES';
 export const CREATE_NEW_TOKEN = "CREATE_NEW_TOKEN";
+export const SET_TOKEN_ROUNDED = "SET_TOKEN_ROUNDED";
+export const SET_TOKEN_BORDERED = "SET_TOKEN_BORDERED";
 
-export function createNewToken(token?: TokenModel, marshalledCharacter?: string, characterName?: string) {
+export function createNewToken(token?: TokenModel, marshalledCharacter?: string, characterName?: string, rounded: boolean = false, bordered: boolean = false) {
     const hash = marshalledCharacter?.length ? cyrb53(marshalledCharacter) : undefined;
-    let payload = { token: token, marshalledCharacter: marshalledCharacter, characterName: characterName, hash: hash };
+    let payload = {
+        token: token,
+        marshalledCharacter: marshalledCharacter,
+        characterName: characterName,
+        hash: hash,
+        rounded: rounded,
+        bordered: bordered
+    };
     return {
        type: CREATE_NEW_TOKEN,
        payload: payload
@@ -202,6 +211,21 @@ export function setTokenSpeciesOption(option: SpeciesOption) {
     let payload = { option: option };
     return {
        type: SET_TOKEN_SPECIES_OPTION,
+       payload: payload
+    }
+}
+
+export function setTokenRounded(rounded: boolean) {
+    let payload = { rounded: rounded };
+    return {
+       type: SET_TOKEN_ROUNDED,
+       payload: payload
+    }
+}
+export function setTokenBordered(bordered: boolean) {
+    let payload = { bordered: bordered };
+    return {
+       type: SET_TOKEN_BORDERED,
        payload: payload
     }
 }

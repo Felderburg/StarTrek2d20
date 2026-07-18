@@ -21,7 +21,7 @@ export const CharacterTokenImage: React.FC<CharacterTokenImageProperties> = ({ch
 
     const createToken = (token?: TokenConfig) => {
         store.dispatch(setCharacter(character));
-        store.dispatch(createNewToken(token?.token ?? TokenModel.createDefault(), marshalledCharacter, character.nameAndAbbreviatedRank));
+        store.dispatch(createNewToken(token?.token ?? TokenModel.createDefault(), marshalledCharacter, character.nameAndAbbreviatedRank, token?.rounded, token?.bordered));
         navigate("/token");
     }
 

@@ -1243,6 +1243,18 @@ export class RanksHelper {
     getAdmiralRanks() {
         return [this.getRank(Rank.Admiral), this.getRank(Rank.ViceAdmiral), this.getRank(Rank.RearAdmiral)];
     }
+
+    isAdmiralty(rankIndicator: Rank) {
+        switch (rankIndicator) {
+            case Rank.Admiral:
+            case Rank.ViceAdmiral:
+            case Rank.RearAdmiral:
+            case Rank.Commodore:
+                return true;
+            default:
+                return false;
+        }
+    }
 }
 
 export const getNameAndShortRankOf = (character: Character) => {
