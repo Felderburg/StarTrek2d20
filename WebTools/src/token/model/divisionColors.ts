@@ -28,7 +28,7 @@ export class DivisionColors {
                 new NamedColor(i18next.t("Division.science"), "#aba7a8"),
                 new NamedColor(i18next.t("Division.operations"), "#d69771"),
                 new NamedColor(i18next.t("Division.discovery23.medical"), "#ffffff")];
-        } else if (era === UniformEra.Discovery32) {
+        } else if ([UniformEra.Discovery32, UniformEra.StarfleetAcademy].includes(era)) {
             return [ new NamedColor(i18next.t("Division.command"), "#821217"),
                 new NamedColor(i18next.t("Division.science"), "#174b89"),
                 new NamedColor(i18next.t("Division.operations"), "#d8a91e"),

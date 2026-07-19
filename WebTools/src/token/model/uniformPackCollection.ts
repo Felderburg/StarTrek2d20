@@ -128,6 +128,10 @@ export default class UniformPackCollection {
                     const { Discovery32UniformPack } = await import(/* webpackChunkName: 'discovery' */ './discovery32UniformPack');
                     this.uniformPacks[era] = new Discovery32UniformPack();
                     completion();
+                } else if (era === UniformEra.StarfleetAcademy) {
+                    const { StarfleetAcademyUniformPack } = await import(/* webpackChunkName: 'starfleetAcademy' */ './starfleetAcademyUniformPack');
+                    this.uniformPacks[era] = new StarfleetAcademyUniformPack();
+                    completion();
                 } else {
                     this.createUniformPack(era);
                     completion();
