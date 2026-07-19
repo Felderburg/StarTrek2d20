@@ -26,9 +26,6 @@ import { LandscapeSheetDecorations } from "./landscapeSheetDecorations";
 import { FontSpecification } from "./fontSpecification";
 import { PageArea } from "./pageArea";
 import { TextBlock } from "./textBlock";
-import UniformPackCollection from "../token/model/uniformPackCollection";
-import SpeciesRestrictions from "../token/model/speciesRestrictions";
-import { Canvg, presets } from "canvg";
 import { TokenHelper } from "./tokenHelper";
 
 export class Landscape2eCharacterSheet extends BaseFormFillingSheet {

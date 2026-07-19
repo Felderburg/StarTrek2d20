@@ -422,8 +422,8 @@ class Marshaller {
 
             return {
                 token: token,
-                rounded: tokenConfig.rounded,
-                bordered: tokenConfig.bordered
+                rounded: tokenConfig.rounded ?? false,
+                bordered: tokenConfig.bordered ?? false
             };
         } else {
             return undefined;
@@ -470,8 +470,8 @@ class Marshaller {
 
         return new TokenConfig(
             token,
-            json["rounded"] == true,
-            json["bordered"] == true
+            json["rounded"] === true,
+            json["bordered"] === true
         );
     }
 

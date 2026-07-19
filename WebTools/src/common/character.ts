@@ -1488,14 +1488,13 @@ export class Character extends Construct implements IWeaponDiceProvider {
             } else {
                 this.talents.forEach((t,i) =>
                     t.focuses.forEach((f,l) => {
-                        if (f != null && f.trim() !== "") {
+                        if (f?.trim()?.length) {
                             result.push(new FocusAssembly(f, AssemblyContext.Talent, i, l));
                         }
                     }
                 ));
             }
         } else if (this.stereotype === Stereotype.SupportingCharacter) {
-            let result = [];
             if (this.speciesStep?.abilityOptions?.focuses?.length) {
                 this.speciesStep?.abilityOptions?.focuses?.filter(f => f?.length)
                     .forEach((f, i) =>
@@ -1503,7 +1502,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
             if (this.supportingStep?.focuses?.length) {
                 this.supportingStep?.focuses?.forEach((f,i) => {
-                    if (f.trim().length) {
+                    if (f?.trim()?.length) {
                         result.push(new FocusAssembly(f, AssemblyContext.Supporting, i))
                     }
                 });
@@ -1539,6 +1538,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 result.push(new FocusAssembly(imp.value as string, AssemblyContext.Improvement, i));
             }
         });
+
         return result;
     }
 

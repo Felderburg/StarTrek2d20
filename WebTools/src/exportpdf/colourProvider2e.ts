@@ -22,12 +22,12 @@ export const labelColourProvider = (era: Era, label: string) => {
         label === "Construct.discipline.conn" ||
         label === "Construct.department.command" ||
         label === "Construct.department.conn") {
-        return era === Era.NextGeneration ? redColour2e : goldColour2e;
+        return [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32].includes(era) ? redColour2e : goldColour2e;
     } else if (label === "Construct.discipline.engineering" ||
             label === "Construct.discipline.security" ||
             label === "Construct.department.engineering" ||
             label === "Construct.department.security") {
-        return era === Era.NextGeneration ? goldColour2e : redColour2e;
+        return [Era.NextGeneration, Era.PicardProdigy, Era.Discovery32].includes(era) ? goldColour2e : redColour2e;
     } else if (label === "Construct.discipline.medicine" ||
             label === "Construct.discipline.science" ||
             label === "Construct.department.medicine" ||

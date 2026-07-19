@@ -795,7 +795,7 @@ class MissionProfiles {
     }
 
     getStationMissionProfiles() {
-        let profiles = [... Object.values(this._stationProfiles)];
+        let profiles = [...Object.values(this._stationProfiles)];
         profiles.sort((p1, p2) => {
             return p1.localizedName.localeCompare(p2.localizedName);
         })
@@ -807,7 +807,7 @@ class MissionProfiles {
         if ("PolicalOperationsStation" === name) {
             name = MissionProfile[MissionProfile.PoliticalOperationsStation];
         }
-        let profiles = [... Object.values(this._stationProfiles)]
+        let profiles = [...Object.values(this._stationProfiles)]
             .filter(p => MissionProfile[p.id] === name);
 
         return profiles?.length ? profiles[0] : undefined;
