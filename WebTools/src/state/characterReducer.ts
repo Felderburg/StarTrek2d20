@@ -1,4 +1,4 @@
-import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, NpcGenerationStep } from "../common/character";
+import { CareerEventStep, CareerStep, Character, CharacterRank, EducationStep, EnvironmentStep, FinishingStep, Promotion, SpeciesAbilityOptions, SpeciesStep, CharacterAdvancementStep, SupportingStep, UpbringingStep, NpcGenerationStep, ReputationChangeStep } from "../common/character";
 import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from "../common/characterAssembly";
 import { CharacterType } from "../common/characterType";
 import { Stereotype } from "../common/construct";
@@ -14,7 +14,7 @@ import { Track } from "../helpers/trackEnum";
 import { CharacterAdvancementChoice } from "../modify/model/characterAdvancementChoice";
 import { ADD_CHARACTER_BORG_IMPLANT, ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION, ADD_CHARACTER_CAREER_EVENT, ADD_CHARACTER_LOG_ENTRY, ADD_CHARACTER_SPECIES_ABILITY_FOCUS, ADD_CHARACTER_TALENT, ADD_CHARACTER_TALENT_FOCUS,
     ADD_CHARACTER_TALENT_VALUE, ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE, ADD_NPC_CHARACTER_EQUIPMENT, ADD_NPC_CHARACTER_VALUE, ADD_NPC_CHARACTER_WEAPON, MODIFY_CHARACTER_ADD_ADVANCEMENT, MODIFY_CHARACTER_ATTRIBUTE,
-    MODIFY_CHARACTER_DISCIPLINE, MODIFY_CHARACTER_RANK, REMOVE_CHARACTER_BORG_IMPLANT,
+    MODIFY_CHARACTER_DISCIPLINE, MODIFY_CHARACTER_RANK, MODIFY_CHARACTER_REPUTATION, REMOVE_CHARACTER_BORG_IMPLANT,
     REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION,
     REMOVE_NPC_CHARACTER_EQUIPMENT,
     REMOVE_NPC_CHARACTER_WEAPON,
@@ -1025,6 +1025,18 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 temp.improvements = [];
             }
             temp.improvements.push(new Promotion(action.payload.rank, action.payload.type));
+            return {
+                ...state,
+                currentCharacter: temp,
+                isModified: true
+            }
+        }
+        case MODIFY_CHARACTER_REPUTATION: {
+            let temp = state.currentCharacter.copy();
+            if (temp.improvements == null) {
+                temp.improvements = [];
+            }
+            temp.improvements.push(new ReputationChangeStep(action.payload.delta));
             return {
                 ...state,
                 currentCharacter: temp,

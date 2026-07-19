@@ -25,6 +25,7 @@ import { Dialog } from "../../components/dialog";
 import { LogEntrySelectionView } from "./logEntrySelectionView";
 import { CharacterAdvancementStep } from "../../common/character";
 import { GeneralEditView } from "./generalEditView";
+import { ReputationChangeView } from "./reputationChangeView";
 
 enum Step {
     Initial,
@@ -33,6 +34,7 @@ enum Step {
     GeneralEdit,
     SelectCallback,
     ModificationDetails,
+    ReputationChange,
     Finish
 }
 
@@ -51,6 +53,9 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
         result.push(new DropDownElement(ModificationType.CharacterAdvancement, t('ModificationType.name.characterAdvancement')))
         if (character?.rank != null) {
             result.push(new DropDownElement(ModificationType.Demotion, t('ModificationType.name.demotion')))
+        }
+        if (character.version > 1) {
+            result.push(new DropDownElement(ModificationType.Reputation, t('ModificationType.name.reputation')))
         }
         if (character.version > 1 && !character.legacyMode) {
             result.push(new DropDownElement(ModificationType.GeneralEdit, t('ModificationType.name.generalEdit')))
@@ -162,6 +167,10 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                 character={character} saveLogEntry={(l) => store.dispatch(addCharacterLogEntry(l))} />);
     }
 
+    const createReputationStepView = () => {
+        return (<ReputationChangeView onNextStep={nextStep} onPreviousStep={previousStep} character={character} />);
+    }
+
     const createFinalView = () => {
         return (<>
             <div className="row">
@@ -266,6 +275,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
             return [ Step.Initial, Step.SelectLog, Step.SelectCallback, Step.ModificationDetails, Step.Finish ];
         } else if (modificationType === ModificationType.GeneralEdit) {
             return [ Step.Initial, Step.GeneralEdit, Step.Finish ];
+        } else if (modificationType === ModificationType.Reputation) {
+            return [ Step.Initial, Step.ReputationChange, Step.Finish ];
         } else {
             return [];
         }
@@ -286,6 +297,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({character}) =>
                 return createSelectLogCallback();
             case Step.ModificationDetails:
                 return createModifcationDataStepView();
+            case Step.ReputationChange:
+                return createReputationStepView();
             case Step.Finish:
             default:
                 return createFinalView();

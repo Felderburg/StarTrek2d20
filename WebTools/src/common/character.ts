@@ -520,14 +520,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 reputation += 1;
             }
 
-            let improvements = this.improvements
+            this.improvements
                 ?.filter(i => i instanceof ReputationChangeStep)
-                ?.map(i => i as ReputationChangeStep);
-            if (improvements?.length) {
-                return improvements[improvements.length-1].reputation;
-            } else {
-                return reputation;
-            }
+                ?.map(i => i as ReputationChangeStep)
+                ?.forEach(r => reputation += r.reputation);
+            return reputation;
         }
     }
 
