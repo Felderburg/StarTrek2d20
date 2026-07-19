@@ -2,10 +2,11 @@ import i18next from "i18next";
 import { Division } from "../../common/character";
 import { NamedColor } from "./namedColour";
 import { UniformEra } from "./uniformEra";
+import { Rank } from "../../helpers/ranks";
 
 export class DivisionColors {
 
-    static getColors(era: UniformEra) {
+    static getColors(era: UniformEra, rank?: Rank) {
         if (era === UniformEra.OriginalSeries) {
             return [ new NamedColor(i18next.t("Division.command"), "#d1bd7f"),
                 new NamedColor(i18next.t("Division.science"), "#718aa3"),
