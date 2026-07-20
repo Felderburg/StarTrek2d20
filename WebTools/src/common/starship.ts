@@ -837,6 +837,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
             if (weapon.type === WeaponType.TORPEDO && this.hasTalent("Rapid-Fire Torpedo Launcher")) {
                 dice += 1;
             }
+            if (weapon.type === WeaponType.ENERGY && this.hasTalent("Independent Phaser Supply")) {
+                dice += 1;
+            }
 
             if (weapon.scaleApplies) {
                 return dice + this.scale;
