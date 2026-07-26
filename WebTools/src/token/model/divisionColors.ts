@@ -2,7 +2,8 @@ import i18next from "i18next";
 import { Division } from "../../common/character";
 import { NamedColor } from "./namedColour";
 import { UniformEra } from "./uniformEra";
-import { Rank } from "../../helpers/ranks";
+import { Rank, RanksHelper } from "../../helpers/ranks";
+import { isCadetRank } from "./rankHelper";
 
 export class DivisionColors {
 
@@ -30,10 +31,16 @@ export class DivisionColors {
                 new NamedColor(i18next.t("Division.operations"), "#d69771"),
                 new NamedColor(i18next.t("Division.discovery23.medical"), "#ffffff")];
         } else if ([UniformEra.Discovery32, UniformEra.StarfleetAcademy].includes(era)) {
-            return [ new NamedColor(i18next.t("Division.command"), "#821217"),
+            let result = [
+                new NamedColor(i18next.t("Division.command"), "#821217"),
                 new NamedColor(i18next.t("Division.science"), "#174b89"),
                 new NamedColor(i18next.t("Division.operations"), "#d8a91e"),
-                new NamedColor(i18next.t("Division.discovery23.medical"), "#ffffff")];
+                new NamedColor(i18next.t("Division.discovery23.medical"), "#ffffff")
+            ];
+            if (isCadetRank(rank)) {
+                result.push(new NamedColor(i18next.t("Division.academy.undeclared"), "#748492"));
+            }
+            return result;
         } else if (era === UniformEra.LowerDecks) {
             return [ new NamedColor(i18next.t("Division.command"), "#e23d41"),
                 new NamedColor(i18next.t("Division.science"), "#2d8ad7"),

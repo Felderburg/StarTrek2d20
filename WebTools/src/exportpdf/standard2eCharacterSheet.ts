@@ -23,6 +23,7 @@ import { Paragraph } from "./paragraph";
 import { FontLibrary, FontType } from "./fontLibrary";
 import { LogEntry } from "../common/logEntry";
 import { FontOptions } from "./fontOptions";
+import { TokenHelper } from "./tokenHelper";
 
 
 export class Standard2eCharacterSheet extends BaseFormFillingSheet {
@@ -81,6 +82,8 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     async populate(pdf: PDFDocument, construct: Construct) {
         await super.populate(pdf, construct);
 
+        await this.fillCharacterImage(pdf, construct as Character);
+
         let character = construct as Character;
         let page2 = null;
         if (character.logEntries?.length) {
@@ -115,6 +118,19 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
         this.writeStress(pdf, page, character);
 
         new CheckMarkMaker(page, pdf).createCheckMarks(this.determinationPills);
+    }
+
+    async fillCharacterImage(pdf: PDFDocument, character: Character) {
+        if (character.token) {
+            let tokenBytes = await TokenHelper.renderToken(character.token);
+            const image = await pdf.embedPng(tokenBytes);
+            try {
+                pdf.getForm().getButton("Image2_af_image").setImage(image);
+            } catch (_e) {
+                // name changed...? ignore it.
+                console.log("Image button not found in PDF");
+            }
+        }
     }
 
     fillLogFields(logEntry: LogEntry, page: PDFPage, index: number) {

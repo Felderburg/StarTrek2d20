@@ -116,7 +116,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
         if (uniforms.indexOf(uniformEra) < 0) {
             uniformEra = uniforms[0];
 
-            let newColourOptions = DivisionColors.getColors(action.payload.era);
+            let newColourOptions = DivisionColors.getColors(action.payload.era, rank);
             let index = DivisionColors.indexOf(token.uniformEra, colour);
             if (index >= 0 && index < newColourOptions.length) {
                 colour = newColourOptions[index].color;
@@ -171,7 +171,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
     case SET_TOKEN_UNIFORM_ERA: {
         let token = state.token;
         let colour = token.divisionColor;
-        let newColourOptions = DivisionColors.getColors(action.payload.era);
+        let newColourOptions = DivisionColors.getColors(action.payload.era, token.rankIndicator);
         let index = DivisionColors.indexOf(token.uniformEra, colour);
         if (index >= 0 && index < newColourOptions.length) {
             colour = newColourOptions[index].color;
@@ -224,19 +224,21 @@ const token = (state: TokenState = { token: initialState }, action) => {
         }
     }
     case SET_TOKEN_RANK: {
-        let token = state.token;
+        let token = { ...state.token };
         let variant = token.variant;
         let variants = UniformVariantRestrictions.getAvailableVariants(token.uniformEra, token.bodyType, token.species, token.divisionColor, action.payload.rank);
         if (variants.indexOf(variant) < 0) {
-            variant = UniformVariantType.Base;
+            token.variant = UniformVariantType.Base;
         }
+        token.rankIndicator = action.payload.rank;
+        let colours = DivisionColors.getColors(token.uniformEra, token.rankIndicator);
+        if (colours.length && !colours.map(c => c.color).includes(token.divisionColor)) {
+            token.divisionColor = colours[0].color;
+        }
+
         return {
             ...state,
-            token: {
-                ...token,
-                variant: variant,
-                rankIndicator: action.payload.rank
-            }
+            token: token
         }
     }
     case SET_TOKEN_HAIR_TYPE: {

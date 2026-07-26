@@ -51,6 +51,8 @@ class SpeciesRestrictions {
             return ["#fbebb7", "#f7d66f", "#e0c167", "#b7d562", "#b6b456", "#b49249", "#87622a"];
         } else if (species === Species.Benzite) {
             return ["#b0c2cc", "#a9d8f4", "#7ca9e0", "#919bd5", "#6e87bf", "#3e8fb8"];
+        } else if (species === Species.BlueOrion) {
+            return ["#b0c2cc", "#a9d8f4", "#7ca9e0", "#919bd5", "#6e87bf", "#3e8fb8"];
         } else if (species === Species.Bynar) {
             return ["#cda3ce"];
         } else if (species === Species.Cardassian) {

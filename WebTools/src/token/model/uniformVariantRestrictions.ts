@@ -69,7 +69,7 @@ export default class UniformVariantRestrictions {
                 }
             }
         } else if (uniformEra === UniformEra.OriginalSeries) {
-            if (DivisionColors.getDivision(uniformEra, divisionColor) === "Command" && (rank === Rank.Captain || rank === Rank.Commodore)) {
+            if (bodyType !== BodyType.AverageNonBinary && DivisionColors.getDivision(uniformEra, divisionColor) === "Command" && (rank === Rank.Captain || rank === Rank.Commodore)) {
                 result.push(UniformVariantType.Variant1);
             }
             if (bodyType === BodyType.AverageMale) {
