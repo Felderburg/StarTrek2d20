@@ -3,7 +3,7 @@ import { Rank } from "../../helpers/ranks";
 import { Species } from "../../helpers/speciesEnum";
 import { BodyType } from "./bodyTypeEnum";
 import { DivisionColors } from "./divisionColors";
-import { isEnlistedRank, isFlagRank } from "./rankHelper";
+import { isCadetRank, isEnlistedRank, isFlagRank } from "./rankHelper";
 import { TokenModel } from "./tokenModel";
 import { UniformEra } from "./uniformEra";
 import { UniformVariantType } from "./uniformVariantTypeEnum";
@@ -33,7 +33,9 @@ export default class UniformVariantRestrictions {
             }
             result.push(UniformVariantType.Variant2); // Klingon vest or Key'lehr
         } else if ([UniformEra.Discovery32, UniformEra.StarfleetAcademy].includes(uniformEra)) {
-            result.push(UniformVariantType.Variant1);
+            if (!isCadetRank(rank)) {
+                result.push(UniformVariantType.Variant1);
+            }
         } else if (uniformEra === UniformEra.StrangeNewWorlds) {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === "Medical") {
                 result.push(UniformVariantType.Variant2);
@@ -161,6 +163,11 @@ export default class UniformVariantRestrictions {
                     Rank.Commodore
                 ].indexOf(rankIndicator) >= 0;
 
+            case UniformEra.StarfleetAcademy:
+                return [
+                    Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain,
+                    Rank.CadetFirstClass, Rank.CadetSecondClass, Rank.CadetThirdClass, Rank.CadetFourthClass
+                ].indexOf(rankIndicator) >= 0;
             default:
                 return [
                         Rank.None, Rank.Ensign, Rank.LieutenantJG, Rank.Lieutenant, Rank.LtCommander, Rank.Commander, Rank.Captain

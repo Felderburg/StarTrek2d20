@@ -38,7 +38,7 @@ export class DivisionColors {
                 new NamedColor(i18next.t("Division.discovery23.medical"), "#ffffff")
             ];
             if (isCadetRank(rank)) {
-                result.push(new NamedColor(i18next.t("Division.academy.undeclared"), "#748492"));
+                result.push(new NamedColor(i18next.t("Division.academy.undeclared"), "#5c6771"));
             }
             return result;
         } else if (era === UniformEra.LowerDecks) {

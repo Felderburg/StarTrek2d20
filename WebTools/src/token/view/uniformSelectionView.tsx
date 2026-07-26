@@ -69,7 +69,7 @@ const UniformSelectionView: React.FC<IUniformSelectionViewProperties> = ({token,
                     {DivisionColors.isDivisionColorsSupported(token.uniformEra) ?
                     (<>
                         <p>{t('TokenCreator.section.body.colour')}:</p>
-                        <ColorSelection colors={DivisionColors.getColors(token.uniformEra)} onSelection={(c) => store.dispatch(setTokenDivisionColor(c))} />
+                        <ColorSelection colors={DivisionColors.getColors(token.uniformEra, token.rankIndicator)} onSelection={(c) => store.dispatch(setTokenDivisionColor(c))} />
                     </>)
                     : undefined}
                 </div>
