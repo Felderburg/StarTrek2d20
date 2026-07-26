@@ -490,11 +490,14 @@
     "SpaceframeOptionPage.button.standardSpaceframe": "Standardowy typ kadłuba",
     "SpaceframeOptionPage.button.customSpaceframe": "Specjalny typ kadłuba",
 
+    "SpaceframeSelectionPage.text": "Typ kadłuba to projekt i podstawowa konstrukcja okrętu, która zostanie wypełniona w zależności od potrzeb. Na tym etapie gracze wybierają klasę okrętu (z właściwymi dla niej parametrami Systemów okrętu) oraz Skalę i uzbrojenie. Klasy okrętów mają różne daty wejścia do służby, dlatego ich dostępność może się zmieniać w zależności od tego jaki jest rok Waszej kampani.",
     "SpaceframeSelectionPage.note": "Uwaga: niektóre klasy okrętów zostały zaktualizowane po tym jak dodatek Utopia Planitia ustalił spójne zasady, wg których rozdzielane są punkty na Systemy okrętów. Te modyfikacje zostały już uwzględnione.",
     "SpaceframeSelectionPage.ignoreEndOfService": "Zignoruj datę wycofania ze służby (decyzja MG)",
     "SpaceframeSelectionPage.error": "Wybierz proszę typ kadłuba zanim przejdziesz dalej.",
     "SpaceframeSelectionPage.errata": "Opublikowano erratę, która zmodyfikowała statystyki tego typu kadłuba.",
     "SpaceframeSelectionPage.variant": "Wariant typu kadłuba",
+
+    "SpeciesAbilityView.instruction": "Każdy gatunek ma zapewniony jeden specjalny talent w postaci Zdolności gatunkowej. Oddaje on specyficzne uwarunkowania fizyczne, psychiczne lub kulturowe. Otrzymujesz go automatycznie na początku tworzenia postaci i później nie można dobierać nowych zdolności gatunkowych. Niezależnie od tego możesz opcjonalnie dobierać talenty gatunkowe i kulturowe, czyli takie, które posiadają w opisie wymagań, że przeznaczone są dla postaci należących do konkretnego gatunku.",
 
     "SpeciesDetails.originalSpecies": "Rodzaj oryginalnego gatunku",
 
@@ -568,7 +571,13 @@
     "SupportingCharacter.whatPurpose": "Określ funkcję bohatera wspierającego, np. inżynier, lekarz, oficer ochrony.",
     "SupportingCharacter.speciesAndAttributes": "Gatunek i atrybuty",
     "SupportingCharacter.speciesAndAttributesInstruction": "Przydziel punkty Atrybutów i korzyści wynikające z wyboru gatunku. \nWybierz dwie różne wartości, aby zamienić je miejscami.",
+    "SupportingCharacter.supervisoryNote": "Przełożeni bohaterowie wspierający to szefowie wydziałów lub w przypadku kampanii w stylu _Lower Decks_, starsi oficerowie, którzy mają wyższą rangę niż nasi bohaterowie.",
+    "SupportingCharacter.disciplineInstruction": "Przydziel Sekcje postaci. Najwyższa wartość powinna pasować do jej roli w załodze. Zaznacz dwie wartości, aby wymienić je miejscami.",
+    "SupportingCharacter.focusInstruction": "Wybierz trzy biegłości postaci. Przynajmniej jedna z nich powinna pasować do jej roli w załodze.",
+    "SupportingCharacter.additionalFocusInstruction": "Przełożeni otrzymują jedną dodatkową biegłość.",
+    "SupportingCharacter.valueInstruction": "Przełożeni rozpoczynają grę z jedną wartością.",
     "SupportingCharacter.nameAndRank": "Imię i ranga",
+    "SupportingCharacter.nameAndRankInstruction": "Nazwij postać i nadaj jej odpowiednią rangę. Postaci wspierający nie powinni mieć nigdy rangi powyżej porucznika, a często będą należeć do grona podoficerów lub załogantów.",
     "SupportingCharacter.numericalValue": "Wartość",
     "SupportingCharacter.speciesBonus": "Korzyści wynikające z gatunku",
 
@@ -689,6 +698,8 @@
     "Construct.other.directive": "Dyrektywa",
     "Construct.other.discipline": "Sekcja",
     "Construct.other.disciplines": "Sekcje",
+    "Construct.other.dockingPorts": "Port dokowania",
+    "Construct.other.dockingScale": "Skala dokowania",
     "Construct.other.education": "Wykształcenie",
     "Construct.other.environment": "Środowisko",
     "Construct.other.equipment": "Wyposażenie",
@@ -836,6 +847,8 @@
     "Page.title.smallCraftStats": "Statystyki małego statku",
     "Page.title.soloCareerLength": "Długość służby",
     "Page.title.soloConstructType": "Wybór narzędzia",
+    "Page.title.soloEarlyOutlook": "Wczesne perspektywy",
+    "Page.title.soloEarlyOutlookDetails": "Opis wczesnych perspektyw",
     "Page.title.soloEducationType": "Rodzaj wykształcenia",
     "Page.title.soloEducation": "Wykształcenie",
     "Page.title.soloFinishingTouches": "Ostatnie poprawki",
@@ -878,11 +891,114 @@
     "Page.title.stationWeapons": "Uzbrojenie stacji",
     "Page.title.stationFinal": "Ostatnie poprawki",
     "Page.title.tokenCreationPage": "Tworzenie żetonów",
+    "Page.title.upbringing": "Wczesne perspektywy",
+    "Page.title.upbringingDetails": "Opis wczesnych perspektyw",
     "Page.title.viewTable": "Zobacz tabelę",
 
     "Page.breadcrumb.characterCreation": "Tworzenie postaci",
     "Page.breadcrumb.starshipCreation": "Tworzenie okrętu",
     "Page.breadcrumb.supportingCharacterCreation": "Tworzenie bohatera wspierającego",
+
+    "CareerEvent.common.1.name": "Zniszczenie okrętu",
+    "CareerEvent.common.1.description": "Okręt, na którym służyła Twoja postać uległ zniszczeniu lub zaginął w trakcie misji. Przeżyło niewielu.\n\nNa czym polegała misja okrętu? Czy doszło do katastrofalnego wypadku w trakcie rutynowych czynności, czy może misja związała się z dużym ryzykiem? Co spowodowało zniszczenie okrętu?\nIle osób przetrwało wypadek? Jak długo dochodziły do siebie po tym, co się wydarzyło?",
+    "CareerEvent.common.1.focusSuggestion": "Postać otrzymuje biegłość, która oddaje jej doświadczenia. Przykłady to m.in.: Skafandry środowiskowe, Małe statki lub Przetrwanie.",
+
+    "CareerEvent.common.2.name": "Śmierć przyjaciela",
+    "CareerEvent.common.2.description": "Podczas ważnej misji Twoja postać straciła swojego przyjaciela.\n\nKim był ten przyjaciel? W jaki sposób się poznaliście?\nNa czym polegała misja? W jaki sposób przyjaciel zginął? Czy ktoś ponosi za to winę?",
+    "CareerEvent.common.2.focusSuggestion": "Postać otrzymuje biegłość, która oddaje jej doświadczenia. Przykłady to m.in.: Doradztwo, ale może być inna umiejętność albo aktywność, którą postać podejmuje, aby uczcić pamięć przyjaciela lub zapobiec podobnemu wypadkowi w przyszłości.",
+
+    "CareerEvent.common.3.name": "Doceniony przez inną kulturę",
+    "CareerEvent.common.3.description": "Twoja postać brała udział w misji, co zostało później docenione i wyróżnione przez przedstawicieli obcej, niefederacyjnej kultury. Zyskujesz status przyjaciela tego ludu.\n\nJaka to była kultura i na czym polegała misja? Skąd pojawiło się to specjalne wyróżnienie?\nCzy postać zawarła jakieś przyjaźnie lub znajomości z przedstawicielem tej kultury, z którymi może się kontaktować w przyszłości i prosić o pomoc?",
+    "CareerEvent.common.3.focusSuggestion": "Postać otrzymuje biegłość, która oddaje jej doświadczenia z wybraną kulturą. Biegłość Kultura X, gdzie X należy zamienić na nazwę kultury, to dobry przykład, który może reprezentować umiejętności i zdolności adekwatne dla opisywanej kultury.",
+    "CareerEvent.common.3.traitDescription": "Postać może otrzymać cechę, która wynika z tego zdarzenia. Dobrym przykładem może być Przyjaciel X, gdzie X oznacza nazwę kultury. Opisuje to renomę postaci wśród tej kultury oraz różne pozytywne i negatywne efekty, jakie mogą się z nią wiązać.",
+
+    "CareerEvent.common.4.name": "Wynegocjowanie traktatu",
+    "CareerEvent.common.4.description": "Postać była częścią delegacji negocjującej sojusz, traktat lub porozumienie z inną niefederacyjną kulturą. Z kim toczono negocjacje i jaki był ich cel?",
+    "CareerEvent.common.4.focusSuggestion": "Postać otrzymuje biegłość, która oddaje jej doświadczenia z negocjacji. Przykłady to np.: Dyplomacja, Negocjacje, Polityka Galaktyczna.",
+
+    "CareerEvent.common.5.name": "Zmuszenie do przejęcia dowodzenia",
+    "CareerEvent.common.5.focusSuggestion": "Postać otrzymuje biegłość, która oddaje jej doświadczenia z przeżytej sytuacji kryzysowej. Przykłady to np.: Inspiracja, Zimna Krew, Za moim przewodem.",
+
+    "CareerEvent.common.6.name": "Napotkanie prawdziwie obcej istoty",
+    "CareerEvent.common.6.focusSuggestion": "Postać otrzymuje biegłość, która oddaje jej doświadczenia ze spotkania z istotą. Przykłady to m.in.: Empatia, Filozofia, Ksenobiologia.",
+
+    "CareerEvent.common.7.name": "Poważna rana",
+    "CareerEvent.common.7.focusSuggestion": "Postać otrzymuje biegłość, która związana jest z okolicznościami zranienia bohatera, czymś co pomogło w jej powrocie do zdrowia lub czym się zajęła po okresie rekonwalescencji. Przykłady: Atletyka, Sztuka, Filozofia.",
+    "CareerEvent.common.7.traitDescription": "Postać może otrzymać cechę opisującą długotrwałe efekty otrzymanej rany lub związane z jej niepełnym powrotem do zdrowia. Przykłady: Implant protetyczny lub określona forma niepełnosprawności.",
+
+    "CareerEvent.common.8.name": "Konflikt z wrogą kulturą",
+    "CareerEvent.common.8.focusSuggestion": "Postać otrzymuje biegłość związaną z umiejętnościami, które udoskonaliła w czasie starcia. Przykłady: Fazery ręczne, Walka wręcz, Pokładowe systemy taktyczne.",
+
+    "CareerEvent.common.9.name": "Posiadanie mentora",
+    "CareerEvent.common.9.focusSuggestion": "Postać otrzymuje biegłość związaną z naukami mentora. Przykłady: Zimna krew, Etykieta albo dowolna inna biegłość, która odzwierciedla specjalność tego oficera.",
+
+    "CareerEvent.common.10.name": "Wypadek transportera",
+    "CareerEvent.common.10.focusSuggestion": "Postać otrzymuje biegłość, która odzwierciedla coś, czego nauczyła się z powodu wypadku lub w wyniku jego następstw. Przykłady: Transportery i replikatory, Małe statki, Mechanika kwantowa.",
+
+    "CareerEvent.common.11.name": "Zaradzenie zarazie",
+    "CareerEvent.common.11.focusSuggestion": "Postać otrzymuje biegłość, która odzwierciedla jej doświadczenia z kryzysu medycznego. Przykłady: Choroby zakaźne, Medycyna ratunkowa, Triaż polowy.",
+
+    "CareerEvent.common.12.name": "Zdradzenie ideałów dla przełożonego",
+    "CareerEvent.common.12.focusSuggestion": "Postać otrzymuje biegłość, związaną ze zdarzeniem lub jego następstwami. Przykłady: Inspiracja, Perswazja, Śledztwo.",
+
+    "CareerEvent.common.13.name": "Sprzeciw wobec zwierzchnika",
+    "CareerEvent.common.13.focusSuggestion": "Postać otrzymuje biegłość związaną ze zdarzeniem lub jego następstwami. Przykłady: Historia, Jednolity Kodeks Sprawiedliwości, Protokoły Gwiezdnej Floty.",
+
+    "CareerEvent.common.14.name": "Nowa taktyka bitewna",
+    "CareerEvent.common.14.focusSuggestion": "Postać otrzymuje biegłość związaną z jej skutecznym działaniem w boju. Przykłady: Taktyka, Ocena ryzyka, Za moim przewodem.",
+
+    "CareerEvent.common.15.name": "Nauczenie się unikatowego języka",
+    "CareerEvent.common.15.focusSuggestion": "Postać otrzymuje biegłość, która odzwierciedla czego się nauczyła w czasie zdarzenia. Przykłady: Kulturoznawstwo, Lingwistyka, Negocjacje.",
+
+    "CareerEvent.common.16.name": "Odkrycie artefaktu",
+    "CareerEvent.common.16.focusSuggestion": "Postać otrzymuje biegłość, związaną ze zdarzeniem lub jego następstwami. Przykłady: Komputery, Inżynieria wsteczna, Starożytna technologia.",
+
+    "CareerEvent.common.17.name": "Specjalne wyróżnienie",
+    "CareerEvent.common.17.focusSuggestion": "Postać otrzymuje biegłość, związaną ze zdarzeniem lub jego następstwami. Przykłady: Atletyka, Medycyna ratunkowa, Sztuka przetrwania.",
+
+    "CareerEvent.common.18.name": "Zaradzenie kryzysowi inżynieryjnemu",
+    "CareerEvent.common.18.focusSuggestion": "Postać otrzymuje biegłość związaną z techniką wykorzystaną podczas incydentu. Przykłady: Elektro-plazmowe systemy zasilania, Napędy warp, Reaktory fuzyjne.",
+
+    "CareerEvent.common.19.name": "Przełom lub wynalazek",
+    "CareerEvent.common.19.focusSuggestion": "Postać otrzymuje biegłość odzwierciedlającą jej osiągnięcia lub zdolności. Przykłady: Improwizacja, Inwencja, Technika eksperymentalna.",
+
+    "CareerEvent.common.20.name": "Pierwszy kontakt",
+    "CareerEvent.common.20.focusSuggestion": "Postać otrzymuje biegłość oddającą charakter misji. Przykłady: Dyplomacja, Infiltracja, Kulturoznawstwo.",
+
+    "CareerEvent.unofficial.22.name": "Testowanie prototypu",
+    "CareerEvent.unofficial.22.focusDescription": "Postać otrzymuje biegłość związaną z nauką i techniką prototypowanego urządzenia. Przykłady: Sensory, Cybernetyka, Nanotechnologia.",
+
+    "CareerEvent.unofficial.23.name": "Misja kolonizacyjna",
+    "CareerEvent.unofficial.23.focusDescription": "Postać otrzymuje biegłość związaną z umiejętnościami, które nabyła w czasie misji kolonizacyjnej. Przykłady: Górnictwo, Silniki impulsowe, Pojazdy naziemne.",
+
+    "CareerEvent.unofficial.24.name": "Program wymiany oficerów",
+    "CareerEvent.unofficial.24.focusDescription": "Postać otrzymuje biegłość związaną z jej doświadczeniami i naukami, które zyskała dzięki udziałowi w programie. Przykłady: Obserwacja, Protokoły międzygatunkowe, Socjologia.",
+
+    "CareerEvent.unofficial.25.name": "Szczęśliwa passa",
+    "CareerEvent.unofficial.25.focusDescription": "Postać otrzymuje biegłość, która odzwierciedla w jaki sposób ryzykowała lub oceniała swoje szanse. Przykłady: Hazard, Manewry unikowe, Matematyka.",
+
+    "CareerEvent.unofficial.26.name": "Nauczka z poważnego błędu",
+    "CareerEvent.unofficial.26.focusDescription": "Postać otrzymuje biegłość, któa powinna odzwierciedlać sposób w jaki unika podobnych błędów w przyszłości lub dodatkowy wysiłek związany z zapobieganiem ryzykownym aktywnościom. Przykłady: Analiza, Sterowanie, Systemy komunikacji.",
+
+    "CharacterAdvancementType.adjustment": "Dopasowanie",
+    "CharacterAdvancementType.milestone": "Kamień milowy",
+    "CharacterAdvancementType.characterArc": "Przemiana bohatera",
+
+    "CharacterType.name.starfleet": "Gwiezdna Flota",
+    "CharacterType.name.federation": "Federacja",
+    "CharacterType.name.klingonWarrior": "Klingońskie Siły Obronne",
+    "CharacterType.name.civilian": "Cywil",
+    "CharacterType.name.alliedMilitary": "Sojusznicze wojsko",
+    "CharacterType.name.ambassadorDiplomat": "Ambasador lub dyplomata",
+    "CharacterType.name.cadet": "Kadet",
+    "CharacterType.name.child": "Dziecko",
+    "CharacterType.name.other": "Inne",
+    "CharacterType.name.cardassian": "Unia Kardasjańska",
+    "CharacterType.name.romulan": "Gwiezdne Imperium Romulan",
+    "CharacterType.name.orion": "Orionici",
+    "CharacterType.name.ferengi": "Sojusz Ferengi",
+
+    "EarlyOutlook.MilitaryOrExploration": "Gwiezdna Flota",
 
     "Environment.special.name": "{{name}} ({{species}})",
 

@@ -985,7 +985,7 @@
     "CareerEvent.unofficial.21.description": "The character took a specialized course in advanced tactical and intelligence techniques.\n\n- Where was the course taught? Who recommended the character for the course?\n- Did the character pass the course? How did the character rank in the various subjects?",
     "CareerEvent.unofficial.21.focusDescription": "The character gains a focus, which should reflect the special training they received. Examples include: Guerilla Tactics, Strategic Defense, or Combat Maneuvers.",
 
-    "CareerEvent.unofficial.22.name": "Protoype Testing",
+    "CareerEvent.unofficial.22.name": "Prototype Testing",
     "CareerEvent.unofficial.22.description": "The character was involved in the testing of a prototype device, a new treatment, or experimental starship\n\n- What was the device, treatment, or ship, and what made it unique or experimental?\n- Was the project classified? Was the prototype scrapped or successful?",
     "CareerEvent.unofficial.22.focusDescription": "The character gains a focus, which should reflect something connected to the science and technology behind the prototype. Examples include: Sensors, Cybernetics, or Nanotechnology.",
 
@@ -1393,6 +1393,8 @@
     "Division.command": "Command",
     "Division.science": "Science",
     "Division.operations": "Operations",
+
+    "Division.academy.undeclared": "Undeclared",
 
     "Division.discovery23.medical": "Medical",
 

@@ -109,6 +109,9 @@ export class DivisionColors {
         } else if (era === UniformEra.Discovery32) {
             let colours = ["Command", "Science", "Operations", "Medical"];
             return index >= 0 ? colours[index] : null;
+        } else if (era === UniformEra.StarfleetAcademy) {
+            let colours = ["Command", "Science", "Operations", "Medical", "Undeclared"];
+            return index >= 0 ? colours[index] : null;
         } else if (era === UniformEra.StrangeNewWorlds) {
             let colours = ["Command", "Science", "Medical", "Nursing", "Operations"];
             return index >= 0 ? colours[index] : null;

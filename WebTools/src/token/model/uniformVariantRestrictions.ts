@@ -69,11 +69,15 @@ export default class UniformVariantRestrictions {
                 }
             }
         } else if (uniformEra === UniformEra.OriginalSeries) {
-            if (bodyType !== BodyType.AverageNonBinary && DivisionColors.getDivision(uniformEra, divisionColor) === "Command" && (rank === Rank.Captain || rank === Rank.Commodore)) {
-                result.push(UniformVariantType.Variant1);
-            }
-            if (bodyType === BodyType.AverageMale) {
-                result.push(UniformVariantType.Variant2);
+            if (species === Species.Edosian) {
+
+            } else {
+                if (bodyType !== BodyType.AverageNonBinary && DivisionColors.getDivision(uniformEra, divisionColor) === "Command" && (rank === Rank.Captain || rank === Rank.Commodore)) {
+                    result.push(UniformVariantType.Variant1);
+                }
+                if (bodyType === BodyType.AverageMale) {
+                    result.push(UniformVariantType.Variant2);
+                }
             }
         }
         return result;
@@ -167,7 +171,8 @@ export default class UniformVariantRestrictions {
     static getSupportedBodyTypes(uniformEra: UniformEra) {
         if (uniformEra === UniformEra.Civilian ||
             uniformEra === UniformEra.DominionWar ||
-            uniformEra === UniformEra.Picard25) {
+            uniformEra === UniformEra.Picard25 ||
+            uniformEra === UniformEra.OriginalSeries) {
             return [ BodyType.AverageMale, BodyType.AverageFemale, BodyType.AverageNonBinary ];
         } else {
             return [ BodyType.AverageMale, BodyType.AverageFemale ];

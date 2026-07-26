@@ -30,7 +30,7 @@ class SpeciesRestrictions {
         if (species === Species.Cetacean) {
             return [ UniformEra.DominionWar, UniformEra.LowerDecks ];
         } else if (species === Species.Edosian) {
-            return [ UniformEra.DominionWar, UniformEra.Picard25 ];
+            return [ UniformEra.DominionWar, UniformEra.Picard25, UniformEra.OriginalSeries ];
         } else if (species === Species.Tholian) {
             return [ UniformEra.None ];
         } else if (species === Species.Tzenkethi) {
