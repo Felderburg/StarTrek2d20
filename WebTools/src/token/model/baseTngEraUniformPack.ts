@@ -158,7 +158,7 @@ const TngCrewman3rdBorder: string = `<g>
 </g>`;
 
 
-const CollarPips = {
+export const CollarPips = {
 
     CadetFourthClass: `<g>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;vector-effect:none;fill:#111111;fill-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:20;enable-background:accumulate;stop-color:#000000" d="m 241.4375,250.57422 c -1.43276,0 -2.58594,1.15318 -2.58594,2.58594 v 5.63281 c 0,1.43276 1.15318,2.58594 2.58594,2.58594 1.43276,0 2.58594,-1.15318 2.58594,-2.58594 v -5.63281 c 0,-1.43276 -1.15318,-2.58594 -2.58594,-2.58594 z" />
