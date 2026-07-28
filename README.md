@@ -36,6 +36,8 @@ I tend to use [VS Code](https://code.visualstudio.com/) on my Mac.
 If you are making changes to the code, your browser should automatically reload, and you'll see the updates
 reflected there.
 
+The test suite is run with `npm test` inside `WebTools`.
+
 ## Building the Production Version
 
 1. If you're building a new version to deploy to a server, you should open up the `package.json`
