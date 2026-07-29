@@ -2,7 +2,16 @@ import { test, expect, describe } from '@jest/globals';
 import { IWeaponDiceProvider } from '../../src/common/iWeaponDiceProvider';
 import { PersonalWeapons, Weapon } from '../../src/helpers/weapons';
 import { WeaponDescriber } from '../../src/exportpdf/weaponDescriber';
-import '../../src/i18n/config';
+
+jest.mock('i18next', () => {
+    const mockI18n: any = (key: string) => key;
+    mockI18n.t = (key: string) => key;
+    mockI18n.use = function () { return this; };
+    mockI18n.init = function () { return this; };
+    mockI18n.on = function () { return this; };
+    mockI18n.changeLanguage = function () { return Promise.resolve(); };
+    return mockI18n;
+});
 
 class MockWeaponDiceProvider implements IWeaponDiceProvider {
     getDiceForWeapon(weapon: Weapon): number {
