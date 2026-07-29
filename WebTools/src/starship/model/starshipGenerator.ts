@@ -212,7 +212,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
 
         result.spaceframeModel = SpaceframeModel.createCustomSpaceframe(convertStarshipType(config.type), result.serviceYear,
             shuffle(PointAllocator.allocatePointsRandomly(
-                BuildPoints.systemPointsForType(ShipBuildType.Starship, result.serviceYear, convertStarshipType(config.type), scale))),
+                BuildPoints.systemPointsForType(ShipBuildType.Starship, result.serviceYear, convertStarshipType(config.type), scale, result.version))),
             shuffle(PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(ShipBuildType.Starship))));
         result.spaceframeModel.name = "Classified/Unknown";
         if (customClassNames[result.type]?.length) {

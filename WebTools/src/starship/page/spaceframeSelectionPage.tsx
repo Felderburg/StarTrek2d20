@@ -42,7 +42,7 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
             if (!starship.spaceframeModel?.isCustom) {
                 let scale = 3;
                 let systems = PointAllocator.allocatePointsEvenly(BuildPoints.systemPointsForType(
-                    ShipBuildType.Starship, starship.serviceYear, starship.type, scale));
+                    ShipBuildType.Starship, starship.serviceYear, starship.type, scale, starship.version));
                 let departments = PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(
                     ShipBuildType.Starship))
                 let spaceframe = SpaceframeModel.createCustomSpaceframe(starship?.type, starship?.serviceYear, systems, departments, scale);

@@ -34,9 +34,9 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({starship}) => {
         let systems = [...starship.systems];
         let sum = starship.spaceframeModel?.sumSystemPoints ?? 0;
         let newTotalPoints = BuildPoints.systemPointsForType(starship.buildType, starship.spaceframeModel.serviceYear,
-            starship.type, newScale);
+            starship.type, newScale, starship.version);
         let systemDelta = newTotalPoints - BuildPoints.systemPointsForType(starship.buildType, starship.spaceframeModel.serviceYear,
-                starship.type, starship.scale);
+                starship.type, starship.scale, starship.version);
         store.dispatch(changeStarshipSpaceframeScale(delta));
         if (delta < 0 && sum > newTotalPoints) {
             let max = 0;
@@ -75,10 +75,10 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({starship}) => {
         let year = parseInt(serviceYear);
         let systems = getCurrentSystemValuesSortedMaxToMin();
         let newTotalPoints = BuildPoints.systemPointsForType(starship.buildType, year,
-            starship.type, starship.scale);
+            starship.type, starship.scale, starship.version);
         let systemDelta = newTotalPoints - BuildPoints.systemPointsForType(starship.buildType,
             starship.spaceframeModel.serviceYear,
-            starship.type, starship.scale);
+            starship.type, starship.scale, starship.version);
 
         store.dispatch(changeStarshipSpaceframeServiceYear(year));
 

@@ -3,7 +3,7 @@ import { ShipBuildType } from "../../common/shipBuildType";
 
 export class BuildPoints {
 
-    static systemPointsForType(buildType: ShipBuildType, serviceYear: number, characterType: CharacterType, scale: number) {
+    static systemPointsForType(buildType: ShipBuildType, serviceYear: number, characterType: CharacterType, scale: number, version: number) {
         if (buildType === ShipBuildType.Pod) {
             let base = 16;
             let improvement = Math.floor((serviceYear - 2200) / 25);
@@ -17,8 +17,8 @@ export class BuildPoints {
             let improvement = Math.floor((serviceYear - 2200) / 10);
             return base + improvement;
         } else {
-            let base = (serviceYear > 2400) ? 60 : 40;
-            let improvement = (serviceYear > 2400) ? Math.floor((serviceYear - 2400) / 50) :  Math.floor((serviceYear - 2200) / 10);
+            let base = version === 1 ? ((serviceYear > 2400) ? 60 : 40) : 40;
+            let improvement = version === 1 ? ((serviceYear > 2400) ? Math.floor((serviceYear - 2400) / 50) :  Math.floor((serviceYear - 2200) / 10)) : Math.floor((serviceYear - 2200) / 10);
             if (scale === 2) {
                 improvement -= 2;
             } else if (scale === 3) {

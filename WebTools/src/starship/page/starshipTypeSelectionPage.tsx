@@ -111,7 +111,7 @@ class StarshipTypeSelectionPage extends React.Component<StarshipTypeSelectionPag
             let stats = new SimpleStats();
             stats.scale = this.state.buildType.type === ShipBuildType.Runabout ? 2 : 1;
             stats.systems = PointAllocator.allocatePointsEvenly(BuildPoints.systemPointsForType(
-                this.state.buildType.type, this.state.campaignYear, this.state.type.type, stats.scale));
+                this.state.buildType.type, this.state.campaignYear, this.state.type.type, stats.scale, isSecondEdition() ? 2 : 1));
             stats.departments = PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(
                 this.state.buildType.type));
             store.dispatch(createNewStarship(this.state.type.type, this.props.era, this.state.campaignYear, stats, workflow, this.state.buildType.type, isSecondEdition() ? 2 : 1));

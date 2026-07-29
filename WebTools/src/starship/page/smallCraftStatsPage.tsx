@@ -37,7 +37,7 @@ class SmallCraftStatsPage extends BaseSimpleStarshipPage {
     }
 
     getSystemsPoints() {
-        return BuildPoints.systemPointsForType(this.props.starship.buildType, this.props.starship.serviceYear, this.props.starship.type, this.props.starship.scale);
+        return BuildPoints.systemPointsForType(this.props.starship.buildType, this.props.starship.serviceYear, this.props.starship.type, this.props.starship.scale, this.props.starship.version);
     }
 
     renderSystemsText() {

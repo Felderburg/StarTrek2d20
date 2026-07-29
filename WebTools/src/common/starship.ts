@@ -866,7 +866,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     }
 
     get totalAvailableSystemPoints(): number {
-        return BuildPoints.systemPointsForType(this.buildType, this.spaceframeModel.serviceYear, this.type, this.scale);
+        return BuildPoints.systemPointsForType(this.buildType, this.spaceframeModel.serviceYear, this.type, this.scale, this.version);
     }
 
     public copy(): Starship {
