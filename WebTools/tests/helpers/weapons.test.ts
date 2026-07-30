@@ -18,4 +18,12 @@ describe('testing weapons', () => {
         expect(phaser1.dice).toBe(3);
     });
 
+    test('ushaan-tor has correct base damage per edition', () => {
+        let v1 = PersonalWeapons.instance(1).ushaanTor;
+        expect(v1.dice).toBe(2);
+
+        let v2 = PersonalWeapons.instance(2).ushaanTor;
+        expect(v2.dice).toBe(3);
+    });
+
 });
