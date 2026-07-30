@@ -309,6 +309,18 @@ class Upbringings {
             "The character’s Focus should relate to the character’s preferred way of applying their skills.",
             ["Composure", "Debate", "Diplomacy", "Espionage", "Interrogation", "Law", "Philosophy", "Starfleet Protocol"]
         ),
+        new EarlyOutlookModel(
+            EarlyOutlook.HardshipAndSubjugation,
+            "Hardship and Subjugation",
+            "The character grew up under the yoke of oppression. Though their people had proud traditions, they were under the control of others and either served a specific purpose or hungered for freedom from hardship.",
+            Attribute.Control,
+            Attribute.Presence,
+            Attribute.Daring,
+            Attribute.Fitness,
+            [Department.Command, Department.Security, Department.Medicine],
+            "The character's focus should relate to their hardened existence, and the skills they learned to stay alive.",
+            ["Emergency Medicine", "Endurance", "Guerrilla Tactics", "Stealth", "Survival Training"]
+        ),
     ];
 
     private _castes: EarlyOutlookModel[] = [
