@@ -48,9 +48,9 @@ describe('Refits', () => {
     });
 
     describe('showIncrease', () => {
-        test('returns true when system below max and refit points remain', () => {
+        test('returns true when system refit count below 2 and points remain', () => {
             const starship = createMockStarship([0, 0, 0, 0, 0, 0], [5, 0, 0, 0, 0, 0]);
-            const refits = createRefits(starship, [], 3);
+            const refits = createRefits(starship, [System.Computer], 3);
             expect(refits.showIncrease(System.Comms)).toBe(true);
         });
 
@@ -60,16 +60,24 @@ describe('Refits', () => {
             expect(refits.showIncrease(System.Comms)).toBe(false);
         });
 
-        test('returns false when system reaches absolute max', () => {
-            const starship = createMockStarship([0, 0, 0, 0, 0, 0], [12, 0, 0, 0, 0, 0]);
-            const refits = createRefits(starship, [], 3);
+        test('returns false when system already has 2 refits', () => {
+            const starship = createMockStarship([0, 0, 0, 0, 0, 0], [11, 0, 0, 0, 0, 0]);
+            const refits = createRefits(starship, [System.Comms, System.Comms], 3);
             expect(refits.showIncrease(System.Comms)).toBe(false);
         });
 
-        test('allows increase when points remain and below max', () => {
-            const starship = createMockStarship([0, 0, 0, 0, 0, 0], [3, 3, 3, 3, 3, 3]);
+        test('allows increase with 1 refit already on the system', () => {
+            const starship = createMockStarship([0, 0, 0, 0, 0, 0], [10, 3, 3, 3, 3, 3]);
             const refits = createRefits(starship, [System.Comms], 3);
             expect(refits.showIncrease(System.Comms)).toBe(true);
+        });
+
+        test('allows increase on different systems independently', () => {
+            const starship = createMockStarship([0, 0, 0, 0, 0, 0], [5, 5, 5, 5, 5, 5]);
+            const refits = createRefits(starship, [System.Comms, System.Comms], 3);
+            expect(refits.showIncrease(System.Comms)).toBe(false);
+            expect(refits.showIncrease(System.Weapons)).toBe(true);
+            expect(refits.showIncrease(System.Engines)).toBe(true);
         });
     });
 });

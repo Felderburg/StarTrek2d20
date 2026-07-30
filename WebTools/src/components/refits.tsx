@@ -85,7 +85,8 @@ export class Refits extends React.Component<IRefitsProperties, {}> {
     }
 
     showIncrease(system: System) {
-        return this.currentValue(system) < this._absoluteMax && this.props.refits.length < this.props.points;
+        const refitCount = this.props.refits.filter(r => r === system).length;
+        return refitCount < 2 && this.props.refits.length < this.props.points;
     }
 
     currentValue(s: System) {
