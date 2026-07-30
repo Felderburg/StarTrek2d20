@@ -56,7 +56,7 @@ interface IRefitsProperties extends WithTranslation {
     onDecrease?: (system: System) => void;
 }
 
-class Refits extends React.Component<IRefitsProperties, {}> {
+export class Refits extends React.Component<IRefitsProperties, {}> {
     private _absoluteMax: number = 12;
 
     render() {
