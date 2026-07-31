@@ -44,7 +44,7 @@ class SpeciesRestrictions {
         if (species === Species.Orion) {
             return ["#a2b152", "#8e932f", "#8f8f0b", "#838218", "#7a863a", "#6f7f36", "#6b764c", "#697543", "#5d6937", "#5a6135", "#4c4c1a", "#414b26"];
         } else if (species === Species.Aenar) {
-            return ["#adaaa9", "#bbb6c7", "#bcbcc4", "#DDDBE3", "#E4E2E9", "#F1F0F4"];
+            return ["#F1F0F4", "#E4E2E9", "#DDDBE3", "#bcbcc4", "#bbb6c7"];
         } else if (species === Species.Andorian) {
             return ["#bbb6c7", "#b0c2cc", "#a9d8f4", "#7ca9e0", "#919bd5", "#6e87bf", "#3e8fb8", "#0068a5"];
         } else if (species === Species.Ariolo) {
