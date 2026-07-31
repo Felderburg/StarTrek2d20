@@ -60,7 +60,7 @@ export class SelectedTalent implements ITalent {
         result.system = this.system;
         result.customTalentName = this.customTalentName;
         result.customTalentDescription = this.customTalentDescription;
-        if (this.weapon != null || this.weapon instanceof Weapon) {
+        if (this.weapon instanceof Weapon) {
             result.weapon = (this.weapon as Weapon).copy();
         } else {
             result.weapon = this.weapon;
