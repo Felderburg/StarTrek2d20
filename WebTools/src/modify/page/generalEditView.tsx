@@ -4,8 +4,8 @@ import Markdown from "react-markdown";
 import { Button } from "react-bootstrap";
 import { useState } from "react";
 import { Header } from "../../components/header";
-import { InputFieldAndLabel } from "../../common/inputFieldAndLabel";
 import store from "../../state/store";
+import { FinalDetailsView } from "./finalDetailsView";
 import { addCharacterTalent, setCharacterName, setCharacterPronouns, StepContext, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditTalentChange, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
 import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from "../../common/characterAssembly";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
@@ -16,7 +16,6 @@ import { AdditionalTalentInfo } from "../../supportingcharacters/modify/addition
 import { SelectedTalentDescriptionView } from "../../components/selectedTalentDescriptionView";
 import { NameGenerator } from "../../npc/nameGenerator";
 import { SpeciesHelper } from "../../helpers/species";
-import D20IconButton from "../../solo/component/d20IconButton";
 import { SpeciesModel } from "../../helpers/speciesModel";
 import { TalentsHelper } from "../../helpers/talents";
 import { ModalControl } from "../../components/modal";
@@ -122,24 +121,12 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
 
     const renderFinalTab = () => {
         const species = SpeciesHelper.getSpeciesByType(character?.speciesStep?.species);
-        return (<div className="row mt-4">
-            <div className="col-12 col-md-6">
-                <Header level={2} className="mb-3">{t('Construct.other.name')}</Header>
-                <div className="d-flex justify-content-between align-items-center flex-wrap">
-                    <InputFieldAndLabel labelName={t('Construct.other.name')} id="name" onChange={(value) => onNameChanged(value)} value={character.name ?? ""} />
-                    {NameGenerator.instance.isSupported(species)
-                        ? (<div style={{ flexShrink: 0 }} className="mt-1">
-                            <D20IconButton onClick={() => randomName(species)}/>
-                        </div>)
-                        : undefined}
-                </div>
-
-                <div className="mt-3">
-                    <InputFieldAndLabel labelName={t('Construct.other.pronouns')} id="pronouns" onChange={(value) => onPronounsChanged(value)} value={character.pronouns ?? ""} />
-                    <div className="text-white mt-1"><small><b>{t('Common.text.suggestions')}: </b> <i>she/her, they/them, etc.</i></small></div>
-                </div>
-            </div>
-        </div>)
+        return (<FinalDetailsView character={character}
+            t={t}
+            showRandomName={NameGenerator.instance.isSupported(species)}
+            onNameChanged={(value) => onNameChanged(value)}
+            onPronounsChanged={(value) => onPronounsChanged(value)}
+            onRandomName={() => randomName(species)} />);
     }
 
     const renderSpeciesTab = () => {
