@@ -14,7 +14,7 @@ export class BuildPoints {
             return base + improvement;
         } else if (buildType === ShipBuildType.Runabout) {
             let base = 29;
-            let improvement = Math.floor((serviceYear - 2150) / 10);
+            let improvement = Math.floor((serviceYear - 2200) / 10);
             return base + improvement;
         } else {
             let base = (serviceYear > 2400) ? 60 : 40;
