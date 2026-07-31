@@ -69,6 +69,9 @@ export abstract class BasicGeneratedSheet implements ICharacterSheet {
 
     async populate(pdf: PDFDocument, construct: Construct) {
         await this.initializeFonts(pdf);
+        if (construct.name) {
+            pdf.setTitle(construct.name);
+        }
     }
 
     createFileName(suffix: string, construct: Construct): string {
