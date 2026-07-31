@@ -14,7 +14,7 @@ import { SupportingCharacterModificationType } from "./supportingCharacterModifi
 import ValueInput from "../../components/valueInput";
 import { useNavigate } from "react-router";
 import { Dialog } from "../../components/dialog";
-import { ValueRandomTable } from "../../solo/table/valueRandomTable";
+import { randomUniqueValue } from "../../solo/table/valueRandomTable";
 import store from "../../state/store";
 import { marshaller } from "../../helpers/marshaller";
 import { modifyCharacterAddAdvancement } from "../../state/characterActions";
@@ -155,14 +155,8 @@ const ModifySupportingCharacterPage : React.FC<ICharacterPageProperties> = ({cha
     }
 
     const randomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character?.speciesStep?.species);
-            if (!character?.values?.includes(value)) {
-                done = true;
-                setValueSelection(value);
-            }
-        }
+        let value = randomUniqueValue(character?.values ?? [], character?.speciesStep?.species);
+        setValueSelection(value);
     }
 
     const randomFocus = () => {

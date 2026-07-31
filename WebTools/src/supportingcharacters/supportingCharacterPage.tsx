@@ -23,7 +23,7 @@ import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import D20IconButton from '../solo/component/d20IconButton';
 import { CheckBox } from '../components/checkBox';
 import ReactMarkdown from 'react-markdown';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
 import { LoadingButton } from '../common/loadingButton';
 import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
@@ -139,14 +139,8 @@ const SupportingCharacterPage : React.FC<ICharacterPageProperties> = ({character
     }
 
     const selectRandomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character.speciesStep?.species, character.supportingStep?.disciplines[0]);
-            if (character.values.indexOf(value) < 0) {
-                done = true;
-                store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
-            }
-        }
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.supportingStep?.disciplines[0]);
+        store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
     }
 
     useEffect(() => {

@@ -11,7 +11,7 @@ import { Species } from '../helpers/speciesEnum';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import store from '../state/store';
 import { StepContext, modifyCharacterAttribute, modifyCharacterDiscipline, setCharacterEnvironment, setCharacterValue } from '../state/characterActions';
 import { IAttributeController } from '../components/attributeController';
@@ -153,14 +153,8 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({character}) => 
     }
 
     const randomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character.speciesStep?.species, character.environmentStep?.discipline);
-            if (character.values.indexOf(value) < 0) {
-                done = true;
-                store.dispatch(setCharacterValue(value, StepContext.Environment));
-            }
-        }
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.environmentStep?.discipline);
+        store.dispatch(setCharacterValue(value, StepContext.Environment));
     }
 
     const isSpeciesSelectionNeeded = () => {

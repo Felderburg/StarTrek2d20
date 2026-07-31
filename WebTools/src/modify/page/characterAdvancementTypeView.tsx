@@ -15,7 +15,7 @@ import { SimpleDepartmentSelector } from "../../components/simpleDepartmentSelec
 import store from "../../state/store";
 import { modifyCharacterAddAdvancement } from "../../state/characterActions";
 import { Dialog } from "../../components/dialog";
-import { ValueRandomTable } from "../../solo/table/valueRandomTable";
+import { randomUniqueValue } from "../../solo/table/valueRandomTable";
 import ValueInput from "../../components/valueInput";
 import { ModalControl } from "../../components/modal";
 import { TALENT_NAME_AUGMENTED_ABILITY, TALENT_NAME_BOLD, TALENT_NAME_BORG_IMPLANTS, TALENT_NAME_CAUTIOUS, TALENT_NAME_COLLABORATION, TALENT_NAME_CUSTOM_TALENT, TALENT_NAME_DEFENSIVE_TRAINING, TALENT_NAME_EXPANDED_PROGRAM, TALENT_NAME_IM_A_DOCTOR_NOT_A, TALENT_NAME_VISIT_EVERY_STAR, TALENT_NAME_WARRIORS_SPIRIT, TALENT_NAME_WISDOM_OF_YEARS, TalentsHelper } from "../../helpers/talents";
@@ -59,14 +59,8 @@ export const CharacterAdvancementTypeView: React.FC<ICharacterAdvancementTypeVie
     useEffect(() => setChoice(undefined), [type]);
 
     const randomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character?.speciesStep?.species);
-            if (!character?.values?.includes(value)) {
-                done = true;
-                setValueSelection(value);
-            }
-        }
+        let value = randomUniqueValue(character?.values ?? [], character?.speciesStep?.species);
+        setValueSelection(value);
     }
 
     const dropDownChoices = () => {

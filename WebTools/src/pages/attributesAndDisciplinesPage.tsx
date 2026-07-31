@@ -9,7 +9,7 @@ import ValueInput from '../components/valueInput';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { CharacterType } from '../common/characterType';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
 import InstructionText from '../components/instructionText';
@@ -30,14 +30,8 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
     const { t } = useTranslation();
 
     const randomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-            if (character.values.indexOf(value) < 0) {
-                done = true;
-                store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
-            }
-        }
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
     }
 
     const filterTalentList = () => {

@@ -17,7 +17,7 @@ import DisciplineListComponent from "../../components/disciplineListComponent";
 import { Dialog } from "../../components/dialog";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
 import D20IconButton from "../component/d20IconButton";
-import { ValueRandomTable } from "../table/valueRandomTable";
+import { randomUniqueValue } from "../table/valueRandomTable";
 import { FocusRandomTable } from "../table/focusRandomTable";
 import { EducationAttributeController, EducationPrimaryDisciplineController, EducationSecondaryDisciplineController } from "../../components/educationControllers";
 import { localizedFocus } from "../../components/focusHelper";
@@ -46,14 +46,8 @@ const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({character}) =
     }
 
     const randomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-            if (character.values.indexOf(value) < 0) {
-                done = true;
-                store.dispatch(setCharacterValue(value, StepContext.Education));
-            }
-        }
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        store.dispatch(setCharacterValue(value, StepContext.Education));
     }
 
 

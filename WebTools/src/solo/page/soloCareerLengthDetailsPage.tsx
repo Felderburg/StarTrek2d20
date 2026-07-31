@@ -14,7 +14,7 @@ import { makeKey } from "../../common/translationKey";
 import { Career } from "../../helpers/careerEnum";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
 import D20IconButton from "../component/d20IconButton";
-import { ValueRandomTable } from "../table/valueRandomTable";
+import { randomUniqueValue } from "../table/valueRandomTable";
 
 const SoloCareerLengthDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
     const { t } = useTranslation();
@@ -30,14 +30,8 @@ const SoloCareerLengthDetailsPage: React.FC<ICharacterProperties> = ({character}
     }
 
     const randomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-            if (character.values.indexOf(value) < 0) {
-                done = true;
-                store.dispatch(setCharacterValue(value, StepContext.Career));
-            }
-        }
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        store.dispatch(setCharacterValue(value, StepContext.Career));
     }
 
     return (

@@ -11,7 +11,7 @@ import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcr
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { Career } from '../helpers/careerEnum';
 import store from '../state/store';
 import { StepContext, addCharacterTalent, setCharacterValue } from '../state/characterActions';
@@ -47,7 +47,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
     )
 
     const randomValue = () => {
-        let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
         onValueChanged(value);
     }
 

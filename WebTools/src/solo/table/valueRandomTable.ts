@@ -32,6 +32,14 @@ export const ValueRandomTable = (species?: Species, skill?: Department) => {
     }
 }
 
+export const randomUniqueValue = (existingValues: string[], species?: Species, skill?: Department) => {
+    let value = ValueRandomTable(species, skill);
+    while (existingValues.includes(value)) {
+        value = ValueRandomTable(species, skill);
+    }
+    return value;
+}
+
 const StandardValuesTable = () => {
     let roll = D20.roll();
     switch (roll) {

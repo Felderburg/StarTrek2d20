@@ -11,7 +11,7 @@ import ReactMarkdown from 'react-markdown';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import store from '../state/store';
 import { StepContext, modifyCharacterAttribute, modifyCharacterDiscipline, setCharacterFocus, setCharacterValue } from '../state/characterActions';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import AttributeListComponent from '../components/attributeListComponent';
 import { IAttributeController } from '../components/attributeController';
 import { Character } from '../common/character';
@@ -225,7 +225,7 @@ const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({characte
     const secondaryDisciplineController = new ChildSecondaryDisciplineController(character);
 
     const randomValue = () => {
-        let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
         onValueChanged(value);
     }
 

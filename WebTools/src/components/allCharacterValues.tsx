@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { CharacterType } from "../common/characterType";
 import { Header } from "./header";
 import { StepContext, setCharacterValue } from "../state/characterActions";
-import { ValueRandomTable } from "../solo/table/valueRandomTable";
+import { randomUniqueValue } from "../solo/table/valueRandomTable";
 import store from "../state/store";
 import ValueInput from "./valueInput";
 import { makeKey } from "../common/translationKey";
@@ -15,7 +15,7 @@ const AllCharacterValues: React.FC<ICharacterProperties> = ({character}) => {
 
 
     const randomValue = (context: StepContext) => {
-        let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
         onValueChanged(value, context);
     }
 
