@@ -14,7 +14,7 @@ import { PageIdentity } from './pageIdentity';
 import store from '../state/store';
 import { StepContext, addCharacterTalent, addCharacterUntappedPotentialAttribute, setCharacterValue } from '../state/characterActions';
 import { CharacterType } from '../common/characterType';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { CheckBox } from '../components/checkBox';
 import { makeKey } from '../common/translationKey';
@@ -36,7 +36,7 @@ const NoviceOrCadetExperiencePage: React.FC<ICharacterProperties> = ({character}
     }
 
     const randomValue = () => {
-        let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
         onValueChanged(value);
     }
 

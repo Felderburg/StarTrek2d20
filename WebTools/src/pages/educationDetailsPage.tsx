@@ -12,7 +12,7 @@ import { Header } from '../components/header';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { Track } from '../helpers/trackEnum';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { useTranslation } from 'react-i18next';
 import InstructionText from '../components/instructionText';
 import ReactMarkdown from 'react-markdown';
@@ -46,7 +46,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
     const secondaryDisciplineController = new EducationSecondaryDisciplineController(character, track);
 
     const randomValue = () => {
-        let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
         onValueChanged(value);
     }
 

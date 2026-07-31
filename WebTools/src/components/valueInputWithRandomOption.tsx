@@ -1,6 +1,6 @@
 import { Character } from "../common/character";
 import { Department } from "../helpers/department";
-import { ValueRandomTable } from "../solo/table/valueRandomTable";
+import { randomUniqueValue } from "../solo/table/valueRandomTable";
 import ValueInput from "./valueInput";
 
 export interface IValueInputWithRandom {
@@ -17,14 +17,8 @@ export interface IValueInputWithRandom {
 const ValueInputWithRandom: React.FC<IValueInputWithRandom> = ({textDescription, id, value, onValueChanged, character, department, labelName}) => {
 
     const randomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character.speciesStep?.species, department);
-            if (!character.values.includes(value)) {
-                onValueChanged(value);
-                done = true;
-            }
-        }
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, department);
+        onValueChanged(value);
     }
 
     return (<ValueInput value={value} id={id ?? "value"}

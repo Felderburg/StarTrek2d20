@@ -12,7 +12,7 @@ import { Dialog } from "../../components/dialog";
 import DisciplineListComponent from "../../components/disciplineListComponent";
 import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
 import AttributeListComponent from "../../components/attributeListComponent";
-import { ValueRandomTable } from "../table/valueRandomTable";
+import { randomUniqueValue } from "../table/valueRandomTable";
 import D20IconButton from "../component/d20IconButton";
 import { FinishingTouchesAttributeController, FinishingTouchesDisciplineController } from "../../components/finishingTouchesControllers";
 
@@ -47,14 +47,8 @@ const SoloFinishingTouchesPage: React.FC<ICharacterProperties> = ({character}) =
     }
 
     const randomValue = () => {
-        let done = false;
-        while (!done) {
-            let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-            if (character.values.indexOf(value) < 0) {
-                done = true;
-                store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
-            }
-        }
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
     }
 
     return (

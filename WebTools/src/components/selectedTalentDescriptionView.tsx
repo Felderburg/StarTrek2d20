@@ -10,7 +10,7 @@ import { DropDownElement, DropDownSelect } from './dropDownInput';
 import { FocusSelectionView } from './focusSelectionView';
 import { Character } from '../common/character';
 import ValueInput from './valueInput';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { BorgImplants, BorgImplantType } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';
 import { Attribute } from '../helpers/attributes';
@@ -119,11 +119,7 @@ export const VisitEveryStarSelectionView: React.FC<ITalentAdditionalSelectionPro
 }
 
 const randomValue = (character: Character) => {
-    let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-    while (character.values.includes(value)) {
-        value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-    }
-    return value;
+    return randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
 }
 
 export const WisdomOfYearsSelectionView: React.FC<ITalentAdditionalFocusAndValueSelectionProperties> = ({onFocusSelection, onValueSelection, character, initialFocus, initialValue}) => {

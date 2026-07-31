@@ -10,7 +10,7 @@ import { FocusSelectionView } from './focusSelectionView';
 import { Character } from '../common/character';
 import { Department } from '../helpers/department';
 import ValueInput from './valueInput';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { Construct } from '../common/construct';
 import { BorgImplants } from '../helpers/borgImplant';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
@@ -581,7 +581,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({tal
                             onSelection(temp);
                         }}
                         onRandomClicked={() => {
-                            let value = ValueRandomTable((construct as Character).speciesStep?.species, (construct as Character).educationStep?.primaryDiscipline);
+                            let value = randomUniqueValue((construct as Character).values ?? [], (construct as Character).speciesStep?.species, (construct as Character).educationStep?.primaryDiscipline);
                             let temp = selection?.copy();
                             if (temp) {
                                 temp.value = value;

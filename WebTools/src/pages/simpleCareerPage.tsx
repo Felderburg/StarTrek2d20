@@ -14,7 +14,7 @@ import { PageIdentity } from './pageIdentity';
 import store from '../state/store';
 import { StepContext, addCharacterTalent, setCharacterValue } from '../state/characterActions';
 import { CharacterType } from '../common/characterType';
-import { ValueRandomTable } from '../solo/table/valueRandomTable';
+import { randomUniqueValue } from '../solo/table/valueRandomTable';
 
 interface ISimpleCareerPageProperties extends ICharacterProperties {
     talent: string;
@@ -31,7 +31,7 @@ const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({character, tal
     }
 
     const randomValue = () => {
-        let value = ValueRandomTable(character.speciesStep?.species, character.educationStep?.primaryDiscipline);
+        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
         onValueChanged(value);
     }
 
