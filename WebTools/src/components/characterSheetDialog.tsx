@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import i18n from 'i18next';
 import { PDFDocument } from '@cantoo/pdf-lib'
-import Button from 'react-bootstrap/button';
+import Button from 'react-bootstrap/Button';
 import { ModalControl } from './modal';
 import { Construct } from '../common/construct';
 import { getNavigatorLanguage } from '../i18n/config';
