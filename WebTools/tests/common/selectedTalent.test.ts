@@ -23,6 +23,12 @@ jest.mock('../../src/state/store', () => {
 
 describe('SelectedTalent', () => {
     describe('copy', () => {
+        test('copies a string weapon without throwing', () => {
+            const talent = SelectedTalent.createWithWeapon("Expanded Munitions", "Phaser Cannons");
+            const result = talent.copy();
+            expect(result.weapon).toBe("Phaser Cannons");
+        });
+
         test('deep-copies a Weapon instance', () => {
             const talent = new SelectedTalent("Expanded Munitions");
             talent.weapon = Weapon.createStarshipWeapon('', WeaponType.TORPEDO,
