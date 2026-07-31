@@ -32,8 +32,8 @@ describe('BuildPoints', () => {
         });
 
         test('runabout returns base 29 plus improvement', () => {
-            const points = BuildPoints.systemPointsForType(ShipBuildType.Runabout, 2160, CharacterType.Starfleet, 1);
-            expect(points).toBe(30);
+            const points = BuildPoints.systemPointsForType(ShipBuildType.Runabout, 2370, CharacterType.Starfleet, 1);
+            expect(points).toBe(46);
         });
     });
 
