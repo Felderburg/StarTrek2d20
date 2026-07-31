@@ -9,15 +9,17 @@ interface IFinalDetailsViewProperties {
     character: Character;
     t: TFunction;
     showRandomName: boolean;
+    showPastime: boolean;
     onNameChanged: (value: string) => void;
     onPronounsChanged: (value: string) => void;
+    onPasttimeChanged: (value: string) => void;
     onRandomName: () => void;
 }
 
 export class FinalDetailsView extends React.Component<IFinalDetailsViewProperties, {}> {
 
     render() {
-        const { character, t, showRandomName } = this.props;
+        const { character, t, showRandomName, showPastime } = this.props;
         return (<div className="row mt-4">
             <div className="col-12 col-md-6">
                 <Header level={2} className="mb-3">{t('Construct.other.name')}</Header>
@@ -34,6 +36,13 @@ export class FinalDetailsView extends React.Component<IFinalDetailsViewPropertie
                     <InputFieldAndLabel labelName={t('Construct.other.pronouns')} id="pronouns" onChange={(value) => this.props.onPronounsChanged(value)} value={character.pronouns ?? ""} />
                     <div className="text-white mt-1"><small><b>{t('Common.text.suggestions')}: </b> <i>she/her, they/them, etc.</i></small></div>
                 </div>
+
+                {showPastime
+                    ? (<div className="mt-3">
+                        <InputFieldAndLabel labelName={t('Construct.other.pastimes')} id="pastimes" onChange={(value) => this.props.onPasttimeChanged(value)} value={character.pastime?.join(', ') ?? ""} />
+                        <div className="text-white mt-1"><small>{t('FinishPage.pastime.instruction')}</small></div>
+                    </div>)
+                    : undefined}
             </div>
         </div>)
     }

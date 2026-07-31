@@ -15,8 +15,10 @@ function createFinalDetailsView(character: Character, overrides?: any) {
         character,
         t: ((key: string) => key) as any,
         showRandomName: false,
+        showPastime: false,
         onNameChanged: jest.fn(),
         onPronounsChanged: jest.fn(),
+        onPasttimeChanged: jest.fn(),
         onRandomName: jest.fn(),
         ...overrides,
     };
@@ -117,11 +119,38 @@ describe('FinalDetailsView', () => {
     });
 
     describe('pastime field', () => {
-        test('does not render a pastime field', () => {
+        test('renders pastimes as a comma-separated string when shown', () => {
             const character = createMockCharacter();
-            const instance = createFinalDetailsView(character);
+            character.pastime = ["Chess", "Golf"];
+            const instance = createFinalDetailsView(character, { showPastime: true });
+            const pastimeInput = findInputs(instance.render()).find(e => e.props.id === 'pastimes');
+            expect(pastimeInput.props.value).toBe("Chess, Golf");
+        });
+
+        test('renders an empty value when the character has no pastimes', () => {
+            const character = createMockCharacter();
+            character.pastime = [];
+            const instance = createFinalDetailsView(character, { showPastime: true });
+            const pastimeInput = findInputs(instance.render()).find(e => e.props.id === 'pastimes');
+            expect(pastimeInput.props.value).toBe("");
+        });
+
+        test('does not render a pastime field when hidden', () => {
+            const character = createMockCharacter();
+            character.pastime = ["Chess"];
+            const instance = createFinalDetailsView(character, { showPastime: false });
             const pastimeInput = findInputs(instance.render()).find(e => e.props.id === 'pastimes');
             expect(pastimeInput).toBeUndefined();
+        });
+
+        test('fires onPasttimeChanged when edited', () => {
+            const character = createMockCharacter();
+            character.pastime = ["Chess"];
+            const onPasttimeChanged = jest.fn();
+            const instance = createFinalDetailsView(character, { showPastime: true, onPasttimeChanged });
+            const pastimeInput = findInputs(instance.render()).find(e => e.props.id === 'pastimes');
+            pastimeInput.props.onChange("Reading, Chess");
+            expect(onPasttimeChanged).toHaveBeenCalledWith("Reading, Chess");
         });
     });
 });

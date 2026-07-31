@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Header } from "../../components/header";
 import store from "../../state/store";
 import { FinalDetailsView } from "./finalDetailsView";
-import { addCharacterTalent, setCharacterName, setCharacterPronouns, StepContext, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditTalentChange, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
+import { addCharacterTalent, setCharacterName, setCharacterPastime, setCharacterPronouns, StepContext, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditTalentChange, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
 import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from "../../common/characterAssembly";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
 import { AttributesHelper } from "../../helpers/attributes";
@@ -113,6 +113,10 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
         store.dispatch(setCharacterPronouns(value));
     }
 
+    const onPasttimeChanged = (value: string) => {
+        store.dispatch(setCharacterPastime(value));
+    }
+
     const randomName = (species: SpeciesModel) => {
         let { name, pronouns } = NameGenerator.instance.createName(species);
         store.dispatch(setCharacterName(name));
@@ -124,8 +128,10 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
         return (<FinalDetailsView character={character}
             t={t}
             showRandomName={NameGenerator.instance.isSupported(species)}
+            showPastime={character.version > 1}
             onNameChanged={(value) => onNameChanged(value)}
             onPronounsChanged={(value) => onPronounsChanged(value)}
+            onPasttimeChanged={(value) => onPasttimeChanged(value)}
             onRandomName={() => randomName(species)} />);
     }
 
