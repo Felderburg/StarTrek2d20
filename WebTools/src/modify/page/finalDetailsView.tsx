@@ -20,8 +20,8 @@ export class FinalDetailsView extends React.Component<IFinalDetailsViewPropertie
 
     render() {
         const { character, t, showRandomName, showPastime } = this.props;
-        return (<div className="row mt-4">
-            <div className="col-12 col-md-6">
+        return (<div className="row">
+            <div className="col-12 col-md-6 mt-4">
                 <Header level={2} className="mb-3">{t('Construct.other.name')}</Header>
                 <div className="d-flex justify-content-between align-items-center flex-wrap">
                     <InputFieldAndLabel labelName={t('Construct.other.name')} id="name" onChange={(value) => this.props.onNameChanged(value)} value={character.name ?? ""} />
@@ -36,14 +36,17 @@ export class FinalDetailsView extends React.Component<IFinalDetailsViewPropertie
                     <InputFieldAndLabel labelName={t('Construct.other.pronouns')} id="pronouns" onChange={(value) => this.props.onPronounsChanged(value)} value={character.pronouns ?? ""} />
                     <div className="text-white mt-1"><small><b>{t('Common.text.suggestions')}: </b> <i>she/her, they/them, etc.</i></small></div>
                 </div>
+            </div>
 
-                {showPastime
-                    ? (<div className="mt-3">
+            {showPastime
+                ? (<div className="col-12 col-md-6 mt-4">
+                    <Header level={2} className="mb-3">{t('Construct.other.pastimes')}</Header>
+                    <div className="mt-3">
                         <InputFieldAndLabel labelName={t('Construct.other.pastimes')} id="pastimes" onChange={(value) => this.props.onPasttimeChanged(value)} value={character.pastime?.join(', ') ?? ""} />
                         <div className="text-white mt-1"><small>{t('FinishPage.pastime.instruction')}</small></div>
-                    </div>)
-                    : undefined}
-            </div>
+                    </div>
+                </div>)
+                : undefined}
         </div>)
     }
 }
