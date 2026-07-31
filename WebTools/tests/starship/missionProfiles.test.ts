@@ -38,11 +38,11 @@ describe('MissionProfiles', () => {
         });
 
         test('returns the Starfleet 2e profiles for a 2e Klingon Warrior ship', () => {
-            const starfleetProfiles = MissionProfiles.instance.getMissionProfiles(createStarship(CharacterType.Starfleet, 2));
             const klingonProfiles = MissionProfiles.instance.getMissionProfiles(createStarship(CharacterType.KlingonWarrior, 2));
 
-            expect(klingonProfiles.map(p => p.id)).toEqual(starfleetProfiles.map(p => p.id));
-            expect(klingonProfiles.some(p => p.type === CharacterType.KlingonWarrior)).toBe(false);
+            expect(klingonProfiles.length).toBeGreaterThan(0);
+            expect(klingonProfiles.every(p => p.type === CharacterType.KlingonWarrior)).toBe(true);
+            expect(klingonProfiles.every(p => p.systems.length > 0)).toBe(true);
         });
 
         test('returns Klingon Core profiles without systems for a 1e Klingon Warrior ship', () => {
@@ -58,6 +58,37 @@ describe('MissionProfiles', () => {
 
             expect(profiles.length).toBeGreaterThan(0);
             expect(profiles.some(p => p.type === CharacterType.KlingonWarrior)).toBe(false);
+        });
+    });
+
+    describe('getMissionProfileByName', () => {
+        test('returns a Klingon Core profile for a 2e Klingon Warrior ship', () => {
+            const profile = MissionProfiles.instance.getMissionProfileByName("Warship", CharacterType.KlingonWarrior, 2);
+
+            expect(profile).toBeDefined();
+            expect(profile.type).toBe(CharacterType.KlingonWarrior);
+            expect(profile.systems.length).toBeGreaterThan(0);
+        });
+
+        test('does not return a Starfleet 2e profile for a 2e Klingon Warrior ship', () => {
+            const profile = MissionProfiles.instance.getMissionProfileByName("Tactical", CharacterType.KlingonWarrior, 2);
+
+            expect(profile).toBeNull();
+        });
+
+        test('returns a Starfleet 2e profile for a 2e Starfleet ship', () => {
+            const profile = MissionProfiles.instance.getMissionProfileByName("Tactical", CharacterType.Starfleet, 2);
+
+            expect(profile).toBeDefined();
+            expect(profile.type).not.toBe(CharacterType.KlingonWarrior);
+        });
+
+        test('returns a Klingon Core profile without systems for a 1e Klingon Warrior ship', () => {
+            const profile = MissionProfiles.instance.getMissionProfileByName("Warship", CharacterType.KlingonWarrior, 1);
+
+            expect(profile).toBeDefined();
+            expect(profile.type).toBe(CharacterType.KlingonWarrior);
+            expect(profile.systems.length).toBe(0);
         });
     });
 });

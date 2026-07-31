@@ -659,6 +659,115 @@ class MissionProfiles {
         //    []),
     };
 
+    private _klingonProfiles2e: { [id: number]: MissionProfileModel } = {
+        [MissionProfile.CrisisAndEmergencyResponse]: new MissionProfileModel(
+            MissionProfile.CrisisAndEmergencyResponse,
+            "Crisis Response and Interception",
+            [2, 2, 2, 3, 1, 2],
+            [
+                TalentsHelper.getTalent("Advanced Medical Ward"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Improved Impulse Drive"),
+                TalentsHelper.getTalent("Improved Warp Drive")
+            ],
+            CharacterType.KlingonWarrior,
+            [System.Sensors],
+            undefined,
+            undefined,
+            new SourcePrerequisite(Source.Core2ndEdition)),
+        [MissionProfile.MultiroleExplorer]: new MissionProfileModel(
+            MissionProfile.MultiroleExplorer,
+            "Multirole Battle Cruiser",
+            [2, 2, 2, 2, 2, 2],
+            [
+                TalentsHelper.getTalent("Improved Damage Control"),
+                TalentsHelper.getTalent("Improved Hull Integrity"),
+                TalentsHelper.getTalent("Redundant Systems"),
+                TalentsHelper.getTalent("Secondary Reactors")
+            ],
+            CharacterType.KlingonWarrior,
+            [...allSystems()],
+            undefined,
+            undefined,
+            new SourcePrerequisite(Source.Core2ndEdition)),
+        [MissionProfile.PathfinderAndReconaissance]: new MissionProfileModel(
+            MissionProfile.PathfinderAndReconaissance,
+            "Intelligence and Reconnaissance Operations",
+            [2, 2, 2, 2, 3, 1],
+            [
+                TalentsHelper.getTalent("Electronic Warfare Systems"),
+                TalentsHelper.getTalent("Improved Reaction Control System"),
+                TalentsHelper.getTalent("Improved Warp Drive"),
+                TalentsHelper.getTalent("High-Resolution Sensors")
+            ],
+            CharacterType.KlingonWarrior,
+            [System.Sensors],
+            undefined,
+            undefined,
+            new SourcePrerequisite(Source.Core2ndEdition)),
+        [MissionProfile.ScientificAndSurvey]: new MissionProfileModel(
+            MissionProfile.ScientificAndSurvey,
+            "Scientific and Survey Operations",
+            [2, 1, 2, 2, 3, 2],
+            [
+                TalentsHelper.getTalent("Advanced Medical Ward"),
+                TalentsHelper.getTalent("Advanced Research Facilities"),
+                TalentsHelper.getTalent("Advanced Sensor Suites"),
+                TalentsHelper.getTalent("Modular Laboratories")
+            ],
+            CharacterType.KlingonWarrior,
+            [System.Computer],
+            undefined,
+            undefined,
+            new SourcePrerequisite(Source.Core2ndEdition)),
+        [MissionProfile.StrategicAndDiplomatic]: new MissionProfileModel(
+            MissionProfile.StrategicAndDiplomatic,
+            "Strategic and Diplomatic Operations",
+            [3, 1, 2, 2, 2, 2],
+            [
+                TalentsHelper.getTalent("Command Ship"),
+                TalentsHelper.getTalent("Extensive Shuttlebays"),
+                TalentsHelper.getTalent("Rugged Design")
+            ],
+            CharacterType.KlingonWarrior,
+            [System.Comms],
+            undefined,
+            undefined,
+            new SourcePrerequisite(Source.Core2ndEdition)),
+        [MissionProfile.Warship]: new MissionProfileModel(
+            MissionProfile.Warship,
+            "Warship",
+            [2, 2, 3, 3, 1, 1],
+            [
+                TalentsHelper.getTalent("Ablative Armor"),
+                TalentsHelper.getTalent("Fast Targeting Systems"),
+                TalentsHelper.getTalent("Improved Damage Control"),
+                TalentsHelper.getTalent("Quantum Torpedoes"),
+                TalentsHelper.getTalent("Rapid-Fire Torpedo Launcher"),
+                TalentsHelper.getTalent("Expanded Munitions")
+            ],
+            CharacterType.KlingonWarrior,
+            [System.Weapons],
+            undefined,
+            undefined,
+            new SourcePrerequisite(Source.Core2ndEdition)),
+        [MissionProfile.HouseGuard]: new MissionProfileModel(
+            MissionProfile.HouseGuard,
+            "House Guard",
+            [2, 2, 2, 3, 2, 1],
+            [
+                TalentsHelper.getTalent("Backup EPS Conduits"),
+                TalentsHelper.getTalent("Improved Power Systems"),
+                TalentsHelper.getTalent("Redundant Systems"),
+                TalentsHelper.getTalent("Rugged Design")
+            ],
+            CharacterType.KlingonWarrior,
+            [System.Structure],
+            undefined,
+            undefined,
+            new SourcePrerequisite(Source.Core2ndEdition)),
+    };
+
 
     private _stationProfiles: { [id: number]: MissionProfileModel } = {
         [MissionProfile.AdministrationAndBureaucracyStation]: new MissionProfileModel(
@@ -771,6 +880,8 @@ class MissionProfiles {
             list = (starship.type === CharacterType.KlingonWarrior && starship.version === 1)
                 ? this._klingonProfiles
                 : this._profiles;
+        } else if (starship.type === CharacterType.KlingonWarrior) {
+            list = this._klingonProfiles2e;
         } else if (starship.type === CharacterType.Civilian) {
             list = {
                 [MissionProfile.CrisisAndEmergencyResponse]: this._profiles2e[MissionProfile.CrisisAndEmergencyResponse],
@@ -823,6 +934,8 @@ class MissionProfiles {
             list = (type === CharacterType.KlingonWarrior && version === 1)
                 ? this._klingonProfiles
                 : this._profiles;
+        } else if (type === CharacterType.KlingonWarrior) {
+            list = this._klingonProfiles2e;
         }
         let result = null;
         for (let id in list) {
