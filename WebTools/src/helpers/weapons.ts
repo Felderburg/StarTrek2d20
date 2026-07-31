@@ -1072,6 +1072,6 @@ class PersonalWeaponsVersion1 extends PersonalWeapons {
     }
 
     get ushaanTor() {
-        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.ushaantor.name'), InjuryType.Deadly, 1, [new WeaponQuality(Quality.Vicious, 1)], [], WeaponType.MELEE);
+        return Weapon.createCharacterWeapon(i18next.t('Weapon.personal.ushaantor.name'), InjuryType.Deadly, 2, [], [], WeaponType.MELEE);
     }
 }
