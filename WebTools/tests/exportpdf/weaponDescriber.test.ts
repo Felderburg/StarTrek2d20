@@ -1,4 +1,4 @@
-import { test, expect, describe } from '@jest/globals';
+import { test, expect, describe, jest } from '@jest/globals';
 import { IWeaponDiceProvider } from '../../src/common/iWeaponDiceProvider';
 import { PersonalWeapons, Weapon } from '../../src/helpers/weapons';
 import { WeaponDescriber } from '../../src/exportpdf/weaponDescriber';
