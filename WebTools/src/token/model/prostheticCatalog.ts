@@ -317,7 +317,7 @@ class ProstheticCatalog {
     }
 
     getProsthetic(token: TokenModel, placement: ProstheticPlacement) {
-        if (token.species === Species.Andorian) {
+        if (token.species === Species.Andorian || token.species === Species.Aenar) {
             switch (placement) {
                 case ProstheticPlacement.BehindHead:
                     return AndorianAntenna.back.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);

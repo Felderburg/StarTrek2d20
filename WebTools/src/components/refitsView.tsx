@@ -5,7 +5,7 @@ import { withTranslation, WithTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 
 interface IRefitImprovementProperties {
-    controller: Refits;
+    controller: RefitsView;
     system: System;
     value: number;
     name: string;
@@ -48,7 +48,7 @@ export class Refit extends React.Component<IRefitImprovementProperties, {}> {
     }
 }
 
-interface IRefitsProperties extends WithTranslation {
+interface IRefitsViewProperties extends WithTranslation {
     starship: Starship;
     points: number;
     refits: System[]
@@ -56,7 +56,7 @@ interface IRefitsProperties extends WithTranslation {
     onDecrease?: (system: System) => void;
 }
 
-export class Refits extends React.Component<IRefitsProperties, {}> {
+export class RefitsView extends React.Component<IRefitsViewProperties, {}> {
     private _absoluteMax: number = 12;
 
     render() {
@@ -85,8 +85,9 @@ export class Refits extends React.Component<IRefitsProperties, {}> {
     }
 
     showIncrease(system: System) {
+        const version = this.props.starship.version;
         const refitCount = this.props.refits.filter(r => r === system).length;
-        return refitCount < 2 && this.props.refits.length < this.props.points;
+        return (version === 1 || refitCount < 2) && this.props.refits.length < this.props.points;
     }
 
     currentValue(s: System) {
@@ -104,4 +105,4 @@ export class Refits extends React.Component<IRefitsProperties, {}> {
     }
 }
 
-export default withTranslation()(Refits);
+export default withTranslation()(RefitsView);

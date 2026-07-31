@@ -40,7 +40,8 @@ const SpeciesSelectionView: React.FC<ISpeciesSelectionProperties> = ({token, isL
     }
 
     const speciesList = () => {
-        return [Species.Andorian,
+        return [Species.Aenar,
+                Species.Andorian,
                 Species.Ariolo,
                 Species.Aurelian, Species.Bajoran, Species.Benzite, Species.Betazoid,
                 Species.BlueOrion,

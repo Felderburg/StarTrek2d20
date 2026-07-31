@@ -502,7 +502,7 @@ class HeadCatalog {
         }
         if (token.species === Species.Trill) {
             return result + Trill.headOnly;
-        } else if (token.species === Species.Andorian) {
+        } else if (token.species === Species.Andorian || token.species === Species.Aenar) {
             return result + AndorianForehead.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
         } else if (token.species === Species.Cardassian) {
             let chin = "";

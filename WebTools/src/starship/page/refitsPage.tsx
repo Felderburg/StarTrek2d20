@@ -4,7 +4,7 @@ import { Navigation } from "../../common/navigator";
 import Button from "react-bootstrap/Button";
 import { Dialog } from "../../components/dialog";
 import { Header } from "../../components/header";
-import Refits from "../../components/refits";
+import RefitsView from "../../components/refitsView";
 import { System } from "../../helpers/systems";
 import { addStarshipRefit, deleteStarshipRefit, nextStarshipWorkflowStep } from "../../state/starshipActions";
 import store from "../../state/store";
@@ -43,7 +43,7 @@ const RefitPage: React.FC<IStarshipProperties> = ({starship}) => {
 
         <ReactMarkdown>{t('StarshipRefits.instruction', {count: refitCount})}</ReactMarkdown>
 
-        <Refits refits={starship.refits} points={refitCount} starship={starship}
+        <RefitsView refits={starship.refits} points={refitCount} starship={starship}
                     onIncrease={(s) => { addRefit(s)} } onDecrease={(s) => { removeRefit(s); } }/>
 
         <div className="text-end">
