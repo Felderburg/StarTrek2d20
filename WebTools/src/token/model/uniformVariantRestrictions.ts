@@ -39,8 +39,6 @@ export default class UniformVariantRestrictions {
         } else if ([UniformEra.StarfleetAcademy].includes(uniformEra)) {
             if (!isCadetRank(rank)) {
                 result.push(UniformVariantType.Variant1);
-            }
-            if (bodyType === BodyType.AverageFemale) {
                 result.push(UniformVariantType.Variant2);
             }
         } else if (uniformEra === UniformEra.StrangeNewWorlds) {
