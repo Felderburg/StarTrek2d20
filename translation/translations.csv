@@ -645,7 +645,7 @@ SpeciesPage.text.select,Either select or roll your Species.,,Bitte wählen oder 
 SpeciesPage.textNoRoll,"To what species do you belong? You may also create a character of mixed species, gaining benefits from both.",,Zu welcher Spezies gehören Sie? Sie können auch einen Charakter von gemischter Herkunft erstellen und Boni von beiden erhalten.,"¿A qué especie perteneces? Puedes crear un personaje mestizo, por lo que ganaría beneficios de ambas especies.","A quelle espèce appartenez-vous ? Vous pouvez également creer un personnage métissé, tirant bénéfice des deux espèces","К какой расе Вы относитесь? Вы также можете создать персонажа смешанной расы, получая выгоду от обеих.","A que espécie você pertence? Você também pode criar uma personagem de espécies miscigenadas, obtendo benefícios de ambas.","Jaki jest Twój gatunek? Możesz wybrać także postać pochodzącą z dwóch różnych gatunków, otrzymując korzyści wynikające z przynależności do obu."
 SpeciesPage.mixedSpeciesNote,"Select two species. You will gain Traits from both species and may select from both species' Talents, but only the primary species gives you Attribute bonuses.",,"Wählen Sie zwei Spezies. Sie erhalten Merkmale von beiden Spezies und können auf die Talente beider Spezies zugreifen, erhalten jedoch nur die Attributsboni der primären Spezies.","Selecciona dos especies. Obtendrás Rasgos de ambas especies y podrás seleccionar Talentos de las dos especies, pero solo la principal te proporciona los beneficios de Atributo.","Choisissez deux espèces. vousobtiendrez des Traits et pourrez choisir parmi les talents de chaque espèce, mais seule votre espèce primaire vous accordera un bonus d'Attributs.",Выберите две расы. Вы получите Черты обеих и сможете выбирать Таланты с обеих сторон. Но только первичная раса даёт бонусы к Качествам.,"Selecione duas espécies. Você ganhará Traços de ambas as espécies e poderá selecionar os Talentos de ambas as espécies, mas apenas a espécie primária lhe dará bônus de Atributo.","Wybierz dwa gatunki. Otrzymujesz obie cechy gatunkowe i możesz wybrać zdolność gatunkową z dowolnego z dwóch gatunków, ale wybierasz tylko jeden gatunek, aby otrzymać rozszerzenie Atrybutów."
 SpeciesPage.selectTwoSpeciesError,Please select both a primary and secondary species,,Bitte wähle eine primäre und eine sekundäre Spezies.,"Selecciona la especie primaria y secundaria, por favor.","Choisissez une espèce primaire et une secondaire, SVP",,"Por favor, selecione uma espécie primária e uma secundária",Proszę wybierz główny oraz pomocniczy gatunek.
-StarshipRefits.instruction_one,"Ships are improved over time. Every ten years from the date of launch, a ship receives a refit, which improves the ship's systems.
+StarshipRefits.instruction_one,"Ships are improved over time. Every ten years from the date of launch, a ship receives a refit, which improves the ship's systems. The number of refits is determined by subtracting the spaceframe's launch year from the ship's year of service.
 
 You have {{count}} point to allocate.",,,"
 Las naves se actualizan con el paso de los años. Reciben una modificación por cada 10 años de diferencia entre el año en que se juega y el año en que entró en servicio.
@@ -655,7 +655,7 @@ Tienes {{count}} puntos para asignar.",,,"As naves são aprimoradas com o tempo.
 Você tem {{count}} ponto para alocar.","Z biegiem czasu okręty wymagają utrzymania i aktualizacji systemów. Licząc od daty rozpoczęcia służby, co pełne 10 lat okręt otrzymuje 1 ulepszenie, zwiększające wybrany System okrętu o 1 poziom.
 
 Punkty ulepszeń do rozdzielenia: {{count}}."
-StarshipRefits.instruction_other,"Ships are improved over time. Every ten years from the date of launch, a ship receives a refit, which improves the ship's systems.
+StarshipRefits.instruction_other,"Ships are improved over time. Every ten years from the date of launch, a ship receives a refit, which improves the ship's systems. The number of refits is determined by subtracting the spaceframe's launch year from the ship's year of service.
 
 You have {{count}} points to allocate.",,,"Las naves se actualizan con el paso de los años. Reciben una modificación por cada 10 años de diferencia entre el año en que se juega y el año en que entró en servicio.
 
@@ -1083,7 +1083,10 @@ CareerEvent.common.5.description,"During a mission, a crisis left the mission’
 лидера?","Durante uma missão, uma crise deixou o líder dela incapaz de liderar. Isto exigiu que a personagem assumisse o comando, algo para o qual talvez não estivesse preparada.
 
 - Qual foi a missão? O que deu errado?
-- A missão foi bem-sucedida apesar da perda do líder?",
+- A missão foi bem-sucedida apesar da perda do líder?","W czasie misji doszło do sytuacji utraty możliwości dowodzenia przez jej lidera. Z tego powodu Twoja postać przejęła kontrolę, chociaż nie była do tego przygotowana.
+
+Co to była za misja? Co poszło nie tak?
+Czy udało się zakończyć misję pozytywnie, pomimo braku lidera?"
 CareerEvent.common.5.focusSuggestion,"The character gains a Focus, which should reflect the character’s experiences during the crisis. Examples include: Lead by Example, Inspiration, or Composure.",,,"El personaje recibe una Especialidad, que debería reflejar las experiencias vividas durante la crisis. Como ejemplos se ofrecen: Liderar con el Ejemplo, Inspiración o Autocontrol.","Le personnage gagne une Spécialisation reflétant les expériences qu’il a vécues pendant cette crise. Par exemple, Donner l’exemple, Sang-froid ou Source d’inspiration","Персонаж получает Специализацию, отражающую опыт кризисной ситуации. Например: Воодушевление, Подавать пример или Хладнокровие","O personagem recebe um Foco, que deve refletir as experiências da personagem durante a crise. Os exemplos incluem: Liderar Pelo Exemplo, Inspiração ou Compostura.","Postać otrzymuje biegłość, która oddaje jej doświadczenia z przeżytej sytuacji kryzysowej. Przykłady to np.: Inspiracja, Zimna Krew, Za moim przewodem."
 CareerEvent.common.6.name,Encounter with a Truly Alien Being,,Begegnung mit einem fremdartigen Wesen,Encuentro con un ser realmente alienígena,Rencontre avec une créature vraiment étrange,Встреча с по-настоящему чуждым существом,Encontro Com um Ser Verdadeiramente Alienígena,Napotkanie prawdziwie obcej istoty
 CareerEvent.common.6.description,"The character encountered a life-form which is truly alien, something barely within the comprehension of humanoid life. It might have been some godlike entity, or a creature that swims through space, but whatever it was, it was not life as we know it.
@@ -1362,7 +1365,7 @@ CareerEvent.unofficial.27.description,"The character was assigned to a cultural 
 - Que civilização pré-dobra estava sendo observada pelo personagem?
 - Alguma coisa deu errado na missão?",
 CareerEvent.unofficial.27.focusDescription,"The character gains a focus, reflecting something they studied of the culture under observation, or skills they honed while operating the duck blind. Examples include: Anthropology, Ethnomusicology, or Covert Operations.",,,,,,"A personagem recebe um Foco, refletindo algo que estudou sobre a cultura sob observação ou as habilidades que aperfeiçoou enquanto operava o abrigo camuflado. Exemplos incluem: Antropologia, Etnomusicologia ou Operações Clandestinas.",
-CareerEvent.unofficial.28.name,Struggle with Addiction,,Kampf mit der Sucht,Lucha contra la adición,,,Luta Contra Adicção,
+CareerEvent.unofficial.28.name,Struggle with Addiction,,Kampf mit der Sucht,Lucha contra la adición,,,Luta Contra Adicção,Zmagania z nałogiem
 CareerEvent.unofficial.28.description,"The character struggled with a type of addiction, which could range from holo-addiction, to drugs, to alcohol, among others.
 
 - What was the nature of the addiction? How did it affect the character's performance?
@@ -1371,7 +1374,7 @@ CareerEvent.unofficial.28.description,"The character struggled with a type of ad
 - Qual era a natureza do vício? Como isso afetou o desempenho da personagem?
 - O que iniciou a recuperação da personagem? Ela dependia de alguém?",
 CareerEvent.unofficial.28.focusDescription,"The character gains a focus, reflecting coping mechanisms or expertise on the object of their addiction. Examples include: Holodecks, Mental Discipline, or Alcoholic Beverages.",,,,,,"A personagem recebe um foco, refletindo mecanismos de enfrentamento ou conhecimento sobre o objeto de seu vício. Exemplos incluem: Holodecks, Disciplina Mental ou Bebidas Alcoólicas.",
-CareerEvent.unofficial.29.name,Rivalry,,Rivalität,Rivalidad,,,Rivalidade,
+CareerEvent.unofficial.29.name,Rivalry,,Rivalität,Rivalidad,,,Rivalidade,Rywalizacja
 CareerEvent.unofficial.29.description,"The character had a significant rivalry with someone.
 
 - Who is the character's rival? What do they compete over?
@@ -1380,7 +1383,7 @@ CareerEvent.unofficial.29.description,"The character had a significant rivalry w
 - Quem é o rival da personagem? Por que eles competem?
 - Era uma competição amigável ou impiedosa? A rivalidade era pública ou reservada?",
 CareerEvent.unofficial.29.focusDescription,"The character gains a focus, reflecting the nature of the rivalry. Examples include: Debate, Fencing, or Boasting.",,,,,,"A personagem recebe um Foco, refletindo a natureza da rivalidade. Exemplos incluem: Debate, Esgrima ou Fanfarronice.",
-CareerEvent.unofficial.30.name,Off-Duty Endeavour,,,Actividad fuera de servicio,,,Empreendimento Fora de Expediente,
+CareerEvent.unofficial.30.name,Off-Duty Endeavour,,,Actividad fuera de servicio,,,Empreendimento Fora de Expediente,Projekty prywatne
 CareerEvent.unofficial.30.description,"The character pursued an off-duty interest with great energy and talent, possibly taking part in competitions or organizing group activities locally.
 
 - What is the endeavour that the character pursued off-duty?
@@ -1389,7 +1392,7 @@ CareerEvent.unofficial.30.description,"The character pursued an off-duty interes
 - Qual é o empreendimento que a personagem buscou fora do trabalho?
 - Quão bom é a personagem na atividade? A personagem recebeu elogios por esse empreendimento?",
 CareerEvent.unofficial.30.focusDescription,"The character gains a focus, which should reflect the off-duty endeavour that they participate in. Examples include: Music, Dance, Boxing, Cooking, or Singing.",,,,,,"A personagem recebe um Foco, que deve refletir o empreendimento fora de serviço do qual participa. Exemplos incluem: Música, Dança, Boxe, Culinária ou Canto.",
-CareerEvent.unofficial.31.name,Starbase Posting,,,Destacamento en Base Estelar,,,Destacamento em Base Estelar,
+CareerEvent.unofficial.31.name,Starbase Posting,,,Destacamento en Base Estelar,,,Destacamento em Base Estelar,Służba na stacji kosmicznej
 CareerEvent.unofficial.31.description,"The character was assigned to a starbase or space station.
 
 - Which starbase did the character work at? Were there any social or political issues that affected the starbase during the posting?
@@ -1407,7 +1410,7 @@ CareerEvent.unofficial.32.description,"The character was assigned to a particula
 - Em que planeta a personagem trabalhou? Qual era a natureza do trabalho?
 - O que havia de único no planeta? Que tipo de interação a personagem teve com a população local?",
 CareerEvent.unofficial.32.focusDescription,"The character gains a focus, reflecting their knowledge of the planet they were assigned to, or skills they picked up while working on-planet. Examples include: Meteorology, Atmospheric Flight, or Geology.",,,,,,"A personagem ganha um Foco que reflete seu conhecimento do planeta para o qual foi designada ou as habilidades que adquiriu enquanto trabalhava no planeta. Exemplos incluem: Meteorologia, Voo Atmosférico ou Geologia.",
-CareerEvent.unofficial.33.name,Left Behind,,,Dejado atras,,,Deixado Para Trás,
+CareerEvent.unofficial.33.name,Left Behind,,,Dejado atras,,,Deixado Para Trás,Pozostawiona z tyłu
 CareerEvent.unofficial.33.description,"The character (or their team) was left behind to fend for themselves.
 
 - Why was the character left behind? Did they come back for the character?
@@ -1416,7 +1419,7 @@ CareerEvent.unofficial.33.description,"The character (or their team) was left be
 - Por que a personagem foi deixada para trás? Eles voltaram para buscar a personagem?
 - Quais foram as ameaças que a personagem teve de enfrentar? Como a personagem sobreviveu por conta própria?",
 CareerEvent.unofficial.33.focusDescription,"The character gains a focus, reflecting skills or knowledge they learned during or after the ordeal. Examples include: Botany, Toxicology, or Physics.",,,,,,"A personagem recebe um Foco, refletindo as habilidades ou o conhecimento que aprendeu durante ou após a provação. Exemplos incluem: Botânica, Toxicologia ou Física.",
-CareerEvent.unofficial.34.name,Family Crisis,,,Crisis Familiar,,,Crise Familiar,
+CareerEvent.unofficial.34.name,Family Crisis,,,Crisis Familiar,,,Crise Familiar,Kryzys rodzinny
 CareerEvent.unofficial.34.description,"A family crisis required the character to intervene.
 
 - Which family member was in crisis? What was the nature of the distress?
@@ -1434,7 +1437,7 @@ CareerEvent.unofficial.35.description,"The character worked hard to get a satisf
 - A personagem apenas se saiu bem ou brilhou? Em que área ele se destacou?
 - Quem avaliou a personagem? Que elogios ou críticas o personagem recebeu?",
 CareerEvent.unofficial.35.focusDescription,"The character gains a focus, reflecting the skills they used to obtain a satisfactory performance review. Examples include: Ethics, Bureaucracy, or Team Dynamics.",,,,,,"A personagem recebe um Foco, refletindo as habilidades usadas para obter uma avaliação de desempenho satisfatória. Exemplos incluem: Ética, Burocracia ou Dinâmicas de Equipe.",
-CareerEvent.unofficial.36.name,Confinement,,,Confinamiento,,,Confinamento,
+CareerEvent.unofficial.36.name,Confinement,,,Confinamiento,,,Confinamento,Uwięzienie
 CareerEvent.unofficial.36.description,"The character was confined in a prison, asylum, or trap.
 
 - Who captured the character, how, where, and why? Was it just incarceration or illegal confinement?
@@ -1443,7 +1446,7 @@ CareerEvent.unofficial.36.description,"The character was confined in a prison, a
 - Quem capturou a personagem, como, onde e por quê? Foi apenas um encarceramento ou um confinamento ilegal?
 - Como a personagem se saiu no confinamento? Ele escapou ou foi liberto?",
 CareerEvent.unofficial.36.focusDescription,"The character gains a focus, reflecting skills they developed while incarcerated or in the process of escape. Examples include: Escape Techniques, Resilience, or Deception.",,,,,,"A personagem recebe um Foco, refletindo as habilidades que desenvolveu enquanto estava presa ou no processo de fuga. Exemplos incluem: Técnicas de Evasão, Resiliência ou Dissimulação.",
-CareerEvent.unofficial.37.name,Terraforming Mission,,,Misión de Terraformación,,,Missão de Terraformação,
+CareerEvent.unofficial.37.name,Terraforming Mission,,,Misión de Terraformación,,,Missão de Terraformação,Misja terraformacyjna
 CareerEvent.unofficial.37.description,"The character was part of a terraforming mission, transforming an uninhabitable planet to one that can sustain life.
 
 - Which planet was being terraformed? Where was it?
@@ -1452,7 +1455,7 @@ CareerEvent.unofficial.37.description,"The character was part of a terraforming 
 - Que planeta estava sendo terraformado? Onde ele estava?
 - Quem estava na equipe? Qual foi a contribuição da personagem?",
 CareerEvent.unofficial.37.focusDescription,"The character gains a focus, reflecting their terraforming specialty. Examples include: Ecology, Oceanography, or Exo-Tectonics.",,,,,,"A personagem recebe um Foco que reflete sua especialidade em terraformação. Exemplos incluem: Ecologia, Oceanografia ou Exo-Tectônica.",
-CareerEvent.unofficial.38.name,Leave of Absence,,,Licenciado temporalmente,,,Licença,
+CareerEvent.unofficial.38.name,Leave of Absence,,,Licenciado temporalmente,,,Licença,Urlop
 CareerEvent.unofficial.38.description,"The character had to ask time off from their regular duty to deal with a personal issue or pursue a special project.
 
 - What prompted the character to go on leave? How long did the character ask for?
@@ -1461,7 +1464,7 @@ CareerEvent.unofficial.38.description,"The character had to ask time off from th
 - O que levou a personagem a sair de licença? Por quanto tempo a personagem pediu licença?
 - O que ele fez durante a licença? Por que a personagem retornou ao seu trabalho regular?",
 CareerEvent.unofficial.38.focusDescription,"The character gains a focus, which should reflect what they did on their leave. Examples include: Religion, Politics, or Industry.",,,,,,"A personagem recebe um Foco, que deve refletir o que ela fez em sua licença. Exemplos incluem: Religião, Política ou Indústria.",
-CareerEvent.unofficial.39.name,Media Exposure,,,Exposición en los Medios,,,Exposição na Mídia,
+CareerEvent.unofficial.39.name,Media Exposure,,,Exposición en los Medios,,,Exposição na Mídia,Występy medialne
 CareerEvent.unofficial.39.description,"The character was featured in the media, either voluntarily or involuntarily.
 
 - Why did the media focus on the character? Did the character gain fame or infamy from the media exposure?
@@ -1488,7 +1491,7 @@ CareerEvent.unofficial.41.description,"The character was assigned to a shipyard,
 - A personagem estava envolvido com a construção de navios ou tinha outras tarefas?
 - Quais naves ele ajudou a construir ou consertar?",
 CareerEvent.unofficial.41.focusDescription,"The character gains a focus, reflecting a skill they honed while serving at the shipyard. Examples include: Starship Design, Starship Propulsion, or Starship Recognition.",,,,,,"A personagem recebe um Foco, refletindo uma habilidade que aperfeiçoou enquanto servia no estaleiro. Exemplos incluem: Design de Nave Estelar, Propulsão de Nave Estelar ou Reconhecimento de Nave Estelar.",
-CareerEvent.unofficial.42.name,Missing Memories,,,Recuerdos perdidos,,,Memórias Perdidas,
+CareerEvent.unofficial.42.name,Missing Memories,,,Recuerdos perdidos,,,Memórias Perdidas,Brakujące wspomnienia
 CareerEvent.unofficial.42.description,"The character isn't sure why there are gaps in their memory.
 
 - How much time is the character missing? What happened before and after the gaps in their memory?
@@ -1515,7 +1518,7 @@ CareerEvent.unofficial.44.description,"The character became embroiled in a legal
 - Trata-se de uma questão criminal ou civil? Quem são os principais participantes da disputa legal?
 - Qual foi a sentença final? A personagem concordou com o julgamento?",
 CareerEvent.unofficial.44.focusDescription,"The character gains a focus, reflecting a skill or area of knowledge they acquired during the legal proceedings. Examples include: Law, Criminology, or Interrogation.",,,,,,"A personagem recebe um Foco, que reflete uma habilidade ou área de conhecimento adquirida durante os procedimentos legais. Exemplos incluem: Direito, Criminologia ou Interrogatório.",
-CareerEvent.unofficial.45.name,Victim of Mind Control,,,Victima de control mental,,,Vítima de Controle Mental,
+CareerEvent.unofficial.45.name,Victim of Mind Control,,,Victima de control mental,,,Vítima de Controle Mental,Poddana kontroli umysłu
 CareerEvent.unofficial.45.description,"The character's mind was altered against their will, either by a telepathic attack, possession by a creature or non-corporeal intelligence, or brainwashing.
 
 - What took over the character's mind, and how? What was the character forced to do while mind-controlled?
@@ -1524,7 +1527,7 @@ CareerEvent.unofficial.45.description,"The character's mind was altered against 
 - O que assumiu o controle da mente da personagem e como? O que a personagem foi forçada a fazer enquanto estava com a mente controlada?
 - Como a personagem se libertou do controle mental? Como a personagem reagiu às coisas que fez enquanto estava sob controle mental?",
 CareerEvent.unofficial.45.focusDescription,"The character gains a focus, reflecting their attempts to understand the phenomenon of mind control, the enemy responsible for the mind control, or how to prevent their minds from being taken over again. Examples include: Psychiatry, Willpower, or Non-Corporeal Lifeforms.",,,,,,"A personagem recebe um Foco, refletindo suas tentativas de entender o fenômeno do controle mental, o inimigo responsável pelo controle mental ou como evitar que suas mentes sejam tomadas novamente. Exemplos incluem: Psiquiatria, Força de Vontade ou Formas de Vida Não-Corpóreas.",
-CareerEvent.unofficial.46.name,Not Fitting In,,,Inadaptado,,,Não Integração,
+CareerEvent.unofficial.46.name,Not Fitting In,,,Inadaptado,,,Não Integração,Niedopasowanie do grupy
 CareerEvent.unofficial.46.description,"The character was assigned to a team or environment where they didn't fit in, resulting in friction in the group or being left out.
 
 - Who didn't the character fit in with? Why didn't they fit in?
@@ -1542,7 +1545,7 @@ CareerEvent.unofficial.47.description,"The character acquired a unique item that
 - O que é esse item? Foi um presente, uma criação ou foi tirado de algum lugar?
 - O que o item significa para a personagem? Ele tem algum valor para outra pessoa?",
 CareerEvent.unofficial.47.focusDescription,"The character gains a focus, reflecting the method they obtained the memento, or an area of expertise related to the nature of the memento. Examples include: Acquisition, Mythology, or Xeno- Archaeology.",,,,,,"A personagem recebe um Foco, refletindo o método pelo qual obteve o item, ou uma área de especialização relacionada à natureza do item. Exemplos incluem: Aquisição, Mitologia ou Xeno-arqueologia.",
-CareerEvent.unofficial.48.name,Deep Space Assignment,,,Destacamento en Espacio Profundo,,,Destacamento no Espaço Profundo,
+CareerEvent.unofficial.48.name,Deep Space Assignment,,,Destacamento en Espacio Profundo,,,Destacamento no Espaço Profundo,Misja w głębokiej przestrzeni kosmicznej
 CareerEvent.unofficial.48.description,"The character was on a deep space mission.
 
 - What part of the galaxy did the character go? What ship were they on?
@@ -1551,7 +1554,7 @@ CareerEvent.unofficial.48.description,"The character was on a deep space mission
 - Para que parte da galáxia a personagem foi? Em que nave ela estava?
 - A nave da personagem descobriu algo digno de nota durante a missão no espaço profundo?",
 CareerEvent.unofficial.48.focusDescription,"The character gains a focus, reflecting a skill or area of knowledge they learned while in deep space. Examples include: Astrophysics, Astronavigation, or Spatial Phenomena.",,,,,,"A personagem recebe um Foco, refletindo uma habilidade ou área de conhecimento que aprendeu durante o período no espaço profundo. Exemplos incluem: Astrofísica, Astronavegação ou Fenômenos Espaciais.",
-CareerEvent.unofficial.49.name,Brush with Temporal Anomaly,,,Afectado por anomalia temporal,,,Flerte Com Anomalia Temporal,
+CareerEvent.unofficial.49.name,Brush with Temporal Anomaly,,,Afectado por anomalia temporal,,,Flerte Com Anomalia Temporal,Kontakt z anomalią temporalną
 CareerEvent.unofficial.49.description,"The character had been caught in a temporal anomaly, or encountered someone or something that traveled through time.
 
 - What was the temporal anomaly? Did it involve the future, the past, loops or paradoxes?
@@ -1560,7 +1563,7 @@ CareerEvent.unofficial.49.description,"The character had been caught in a tempor
 - Qual foi a anomalia temporal? Ela envolveu o futuro, o passado, ciclos ou paradoxos?
 - A personagem alterou a linha do tempo ou violou a Diretiva Principal Temporal? O Departamento de Investigações Temporais se envolveu?",
 CareerEvent.unofficial.49.focusDescription,"The character gains a focus, reflecting their attempt to understand what the temporal anomaly was. Examples include: Temporal Mechanics, Parapsychology, or Particle Physics.",,,,,,"A personagem recebe um Foco, refletindo sua tentativa de entender o que era a anomalia temporal. Exemplos incluem: Mecânica Temporal, Parapsicologia ou Física de Partículas.",
-CareerEvent.unofficial.50.name,Medical Facility Posting,,,Destacamento en Instalación Médica,,,Destacamento em Instalação Médica,
+CareerEvent.unofficial.50.name,Medical Facility Posting,,,Destacamento en Instalación Médica,,,Destacamento em Instalação Médica,Zadanie w placówce medycznej
 CareerEvent.unofficial.50.description,"The character's assignment was to a medical facility or ship.
 
 - Where was the medical facility? Did it specialize in a particular kind of medicine?
@@ -1569,14 +1572,14 @@ CareerEvent.unofficial.50.description,"The character's assignment was to a medic
 - Onde ficava a instalação médica? Ela era especializada em um tipo específico de medicina?
 - Para qual departamento a personagem foi designada na instalação médica? Quem eram os pacientes?",
 CareerEvent.unofficial.50.focusDescription,"The character gains a focus, reflecting something they picked up while surrounded by medical staff. Examples include: Comparative Humanoid Anatomy, Surgery, or Virology.",,,,,,"A personagem recebe um Foco, que reflete algo que ela adquiriu enquanto estava envolvida com a equipe médica. Exemplos incluem: Anatomia Humanoide Comparada, Cirurgia ou Virologia.",
-CareerEvent.common.57.name,Encountered a Rogue AI,,,,,,,
+CareerEvent.common.57.name,Encountered a Rogue AI,,,,,,,Spotkanie z niekontrolowaną AI
 CareerEvent.common.57.description,"Ancient civilizations, cutting-edge science, and even accidental creation can all result in true artificial intelligence (AI), and encounters with these AIs are often eventful and unpredictable situations. The character encountered one such AI, perhaps discovering it ruling over a primitive society, or attempting to override the ship’s computer, or just carrying out its programming in a strange or dangerous manner.",,,,,,,
-CareerEvent.common.58.name,Encountered a Spatial Anomaly,,,,,,,
+CareerEvent.common.58.name,Encountered a Spatial Anomaly,,,,,,,Kontakt z anomalią przestrzenną
 CareerEvent.common.58.description,"The term ‘spatial anomaly’ describes any unusual disruption in the normal fabric of space-time, ranging from gravitational irregularities, locations where the laws of physics are altered, or even wormholes across space.",,,,,,,
-CareerEvent.common.59.name,Encountered a Temporal Anomaly,,,,,,,
+CareerEvent.common.59.name,Encountered a Temporal Anomaly,,,,,,,Kontakt z anomalią temporalną
 CareerEvent.common.59.description,"The character experienced events or phenomena outside the natural passage of time. Perhaps they were trapped in a temporal loop, experiencing the same events over and over until they escaped. Perhaps they crossed paths with a time traveler, or travelled to the past or future. Perhaps they grew up in a different era or a different timeline, and found themselves stranded in our own.",,,,,,,
 CareerEvent.common.59.traitDescription,"The character may take a trait to reflect the lasting effect of their experiences, such as Seen the Future, Trans-temporal Awareness, or Time-Displaced.",,,,,,,
-CareerEvent.common.60.name,Experienced an Alternate Dimension,,,,,,,
+CareerEvent.common.60.name,Experienced an Alternate Dimension,,,,,,,Doświadczenie z alternatywnego wymiaru
 CareerEvent.common.60.description,"The universe is far more than what can normally be seen or experienced, and there are many layers of reality rarely interacted with, such as fluidic space, the Q Continuum, and innumerable subspace domains, as well as parallel universes such as the Terran Universe. The character has encountered or experienced some phenomena originating in another dimension, or even visited an alternate dimension personally.",,,,,,,
 CareerEvent.common.61.name,Fellowship at an Elite Institution,,,,,,,
 CareerEvent.common.61.description,"There are countless prestigious scientific and academic institutions across the Galaxy, such as the Daystrom Institute in Okinawa on Earth, or the Vulcan Science Academy in ShiKahr on Vulcan. The character studied at one such institution for several months or even a few years, carrying out important research and making a name for themselves within the scientific community.",,,,,,,
@@ -1593,50 +1596,50 @@ CareerEvent.common.66.name,Worked on a Transwarp Project,,,,,,,
 CareerEvent.common.66.description,"‘Transwarp’ is a catch-all term for a variety of faster-than-warp propulsion technologies and projects. The character was involved in one of these projects, whether studying new propulsion theories or developing new technologies for testing.",,,,,,,
 CareerEvent.common.67.name,Charting Unexplored Space,,,,,,,
 CareerEvent.common.67.description,"You served on a vessel which was assigned to chart a region of space which your culture has never previously explored. You may have charted habitable—or even inhabited—worlds, resource-bearing planets and asteroid fields, unusual spatial phenomena, stable passages through space, and more.",,,,,,,
-CareerEvent.common.68.name,Cultural Exchange Program,,,,,,,
+CareerEvent.common.68.name,Cultural Exchange Program,,,,,,,Program wymiany kulturalnej
 CareerEvent.common.68.description,"You spent some time serving among a different culture and a different service. Starfleet routinely carries out these programs with their allies to develop a better understanding of methods, practices, and culture. These postings can also occur due to liaison programs where multiple fleets are cooperating, which was common during the Dominion War.",,,,,,,
 CareerEvent.common.68.focusDescription,Choose or create a focus that relates to the culture you served with.,,,,,,,
-CareerEvent.common.69.name,Encountered a New Species,,,,,,,
+CareerEvent.common.69.name,Encountered a New Species,,,,,,,Spotkanie z nowym gatunkiem
 CareerEvent.common.69.description,"Strictly speaking, any encounter with a new species is a **first contact**, but there’s a difference between a formal first contact made with preparation and planning, and simply crossing paths with a previously-unencountered species aboard a ship in deep space. Such impromptu encounters are a common way to meet other spacefaring civilizations, especially for ships out on the frontiers of explored space. Such encounters can end  peacefully, but they can also end in violence that may take years or longer to resolve.",,,,,,,
-CareerEvent.common.70.name,Encountered a Spaceborne Organism,,,,,,,
+CareerEvent.common.70.name,Encountered a Spaceborne Organism,,,,,,,Spotkanie z organizmem żyjącym w kosmosie
 CareerEvent.common.70.description,"Spaceborne organisms, also commonly referred to as **cosmozoans**, are living creatures adapted to exist in the vacuum of space, outside of planetary environments or atmospheres. While some of these are recognizable animals—such as gormaganders, also known as ‘space whales’, verugament, and macroscopic tardigrades—others may take many forms, from masses of interstellar plasma, clouds of gas, or incorporeal energy beings. These creatures are uncommon, but not so rare as to be unknown, and they are common subjects of study.",,,,,,,
-CareerEvent.common.71.name,Galactic Mystery,,,,,,,
+CareerEvent.common.71.name,Galactic Mystery,,,,,,,Galaktyczna zagadka
 CareerEvent.common.71.description,"The Galaxy is full of phenomena that have not yet been explained, and great mysteries that have not yet been answered. You encountered such a mystery, and while you may not have the answers, you have a few theories.",,,,,,,
-CareerEvent.common.72.name,Historical Exploration,,,,,,,
+CareerEvent.common.72.name,Historical Exploration,,,,,,,Ekspedycja historyczna
 CareerEvent.common.72.description,"While rare, there are instances of deliberate time travel missions made to covertly study historical events. Starfleet engages in a small number of these missions periodically, under strict orders to maintain secrecy and avoid interference in historical events. Some of these missions are even organized or coordinated by future versions of Starfleet for which time travel is a routine operation.",,,,,,,
-CareerEvent.common.73.name,Invited to Witness Cultural Event,,,,,,,
+CareerEvent.common.73.name,Invited to Witness Cultural Event,,,,,,,Obserwacja wydarzenia kulturalnego
 CareerEvent.common.73.description,"You were asked to bear witness to a major event from another culture: some festival, ceremony, or cultural ritual with great significance. This could be a solemn event or a joyous one, and it may be a grand event with thousands or millions of participants, or a private affair seen only by a few.",,,,,,,
-CareerEvent.common.74.name,Long-Term Deep Space Mission,,,,,,,
+CareerEvent.common.74.name,Long-Term Deep Space Mission,,,,,,,Długotrwała misja w dalekim kosmosie
 CareerEvent.common.74.description,"You were assigned to a lengthy mission aboard a ship or remote station, conducting long-term research or exploration. The most famous of these are the five-year missions conducted by Constitution-class starships in the mid-23rd century. These can be difficult, dangerous, and highly stressful missions due to operating for years without direct support, but they’ve also proven to have been some of the most important and impactful missions Starfleet has ever undertaken. Personnel with these experiences often go on to accomplish great things.",,,,,,,
-CareerEvent.common.75.name,Planetary Survey,,,,,,,
+CareerEvent.common.75.name,Planetary Survey,,,,,,,Zwiad planetarny
 CareerEvent.common.75.description,"You participated in an extensive survey of an uninhabited planet. This normally involves Class-M planets to determine their suitability for colonization, or other types of planet to determine the presence of valuable resources or the viability of terraforming efforts.",,,,,,,
-CareerEvent.common.76.name,Studied a Pre-Warp Culture,,,,,,,
+CareerEvent.common.76.name,Studied a Pre-Warp Culture,,,,,,,Badanie kultury prewarp
 CareerEvent.common.76.description,"You participated in a study of an inhabited planet and its Indigenous pre-warp society. This may be done from afar, with orbital scans, or up-close observation from concealed ‘duck blind’ outposts and disguised personnel. Starfleet routinely conducts these operations to study primitive societies to gain insight into Federation cultures’ history, and to evaluate the development and technological progress of civilizations that are close to developing spaceflight and who may become warp-capable within a few generations.",,,,,,,
-CareerEvent.common.77.name,Invention of Duotronic Computing,,,,,,,
+CareerEvent.common.77.name,Invention of Duotronic Computing,,,,,,,Wynalezienie komputera duotronicznego
 CareerEvent.common.77.description,"Richard Daystrom and his team invented duotronic computers in 2243, prompting a major leap forwards in computing technology, and earning Daystrom the Nobel and Zee-Magnees prizes. This breakthrough would be introduced to starship designs over the following years, with the Federation’s Constitution-class starships being among the first to be built around duotronic computer cores. These revolutions would not be confined to the Federation, either: despite Starfleet’s best efforts, the Klingons and Romulans quickly obtained the technology through a mixture of espionage and salvage, and incorporated it into new generations of their own ships, such as the Klingon D7 battle cruiser.",,,,,,,
-CareerEvent.common.78.name,Logic Extremist Attacks,,,,,,,
+CareerEvent.common.78.name,Logic Extremist Attacks,,,,,,,Atak logicznych ekstremistów
 CareerEvent.common.78.description,"Even before the Vulcan reformation in 2155, the presence of non-Vulcans—and especially Humans—on Vulcan, and their influence on Vulcan culture, was controversial among many Vulcans. Over the decades, this resentment grew, and many concluded the only logical way to display their dissent was through political violence. Reaching a head with a series of attacks between the 2230s and 2250s, this led to a string of terrorist attacks against non-Vulcan targets and Vulcan political figures such as Ambassador Sarek. This movement became less prominent in later decades, but isolationist groups persisted within Vulcan culture for a long time afterward.",,,,,,,
-CareerEvent.common.79.name,Tarsus IV Massacre,,,,,,,
+CareerEvent.common.79.name,Tarsus IV Massacre,,,,,,,Masakra na Tarsus IV
 CareerEvent.common.79.description,"In 2246, an invasive fungal infestation destroyed the food supply of the Tarsus IV colony, threatening starvation for the colonists living there. The colonial governor, Adrian Kodos, declared martial law and had half of the population executed so the rest would live, according to his eugenicist beliefs. A supply ship arrived soon after, but too late to save those that Kodos killed. Kodos faked his own death and fled before United Earth colonial authorities could bring him to justice.",,,,,,,
-CareerEvent.common.80.name,Gorn Conflict,,,,,,,
+CareerEvent.common.80.name,Gorn Conflict,,,,,,,Konflikt z Gornami
 CareerEvent.common.80.description,"While the United Federation of Planets and the Gorn Hegemony had very little formal contact with one another, the mid-23rd century saw a major escalation in encounters between the two civilizations, and a great many grievous misunderstandings. Many early first encounters took place with Human colony vessels near the border of Gorn territory, and left few Human survivors. As the Federation began to push back in the 2260s, and the Gorn in turn escalated their expansion, this resulted in increased loss of life along the border.",,,,,,,
-CareerEvent.common.81.name,Federation-Klingon War,,,,,,,
+CareerEvent.common.81.name,Federation-Klingon War,,,,,,,Wojna federacyjno-klingońska
 CareerEvent.common.81.description,"Relations between Earth and Qo’noS had never been cordial, but tension between the Federation and the Klingon Empire grew after 2223. Outright hostilities were rare, but the two nations remained in a state of cold war with intermittent skirmishes. That changed in mid-2256: a zealot by the name of T’Kuvma sought to rally the disparate Great Houses of the Klingon Empire against the Federation, which he perceived to be a threat to Klingon culture and identity. Though T’Kuvma died during the ensuing battle, he managed to provoke the start of a conflict that raged for nearly a year. Starfleet lost a third of its strength, and a hundred million Federation citizens were killed; Klingon casualties were unknown, but were likely comparable. In the wake of the war, which ended in a ceasefire after Chancellor L’Rell came to power, tensions remained high between the Federation and the Klingons for more than 30 years.",,,,,,,
-CareerEvent.common.82.name,Romulan Border Skirmishes,,,,,,,
+CareerEvent.common.82.name,Romulan Border Skirmishes,,,,,,,Przygraniczne starcia z Romulanami
 CareerEvent.common.82.description,"The Earth-Romulan War ended in 2160 and resulted in the formation of the Romulan Neutral Zone and more than a century of silence. The Romulans focused their attentions elsewhere, including numerous skirmishes with the Klingons and other neighboring civilizations. In 2266, that changed: a state-of-the-art bird-of-prey violated the Neutral Zone and attacked Federation outposts. Though this attack resulted in a standoff between the Romulan vessel and the U.S.S. Enterprise, it was followed by a series of skirmishes and minor clashes, but also led to a tenuous opening of diplomatic channels between the Federation and the Romulan Star Empire.",,,,,,,
-CareerEvent.common.83.name,Treaty of Organia,,,,,,,
+CareerEvent.common.83.name,Treaty of Organia,,,,,,,Traktat organiański
 CareerEvent.common.83.description,"A decade after the end of the Federation-Klingon War, tensions between the Federation and the Klingon Empire had steadily increased, and a  second war seemed inevitable… and would have been, but for outside intervention. When the U.S.S. Enterprise encountered the I.K.S. Klothos leading a squadron of other Klingon cruisers above the seemingly low-tech world of Organia, it was the Organians—energy beings with phenomenal powers, merely disguised as a low-tech culture—who prevented hostilities. Using their powers, the Organians appeared to the leaders of both the Federation and the Klingon Empire, while also preventing any Starfleet or Klingon ships or personnel from taking any hostile action. They forced the two sides to sign a peace treaty, establishing the Klingon Neutral Zone and imposing assorted restrictions that prevented outright war.",,,,,,,
-CareerEvent.common.84.name,Establishment of the Nimbus III Colony,,,,,,,
+CareerEvent.common.84.name,Establishment of the Nimbus III Colony,,,,,,,Założenie kolonii na Nimbus III
 CareerEvent.common.84.description,"Amid rising tensions, the United Federation of Planets, the Klingon Empire, and the Romulan Star Empire came to an agreement to jointly develop a colony on a single planet—Nimbus III—close to the territories of all three nations. Those who wished to settle Nimbus III would receive support, and each nation would send a permanent diplomatic mission to represent them. Nimbus III was presented to the Galaxy as “the planet of galactic peace.” Political will to support Nimbus III did not last, however—indeed, many in each polity regarded the idea as something of a joke from the outset—and it quickly fell to neglect and apathy.",,,,,,,
-CareerEvent.common.85.name,The Babel Conference,,,,,,,
+CareerEvent.common.85.name,The Babel Conference,,,,,,,Konferencja na Babel
 CareerEvent.common.85.description,"A major diplomatic conference for member worlds of the United Federation of Planets, the Babel Conference was held to discuss a number of pressing matters in Federation politics, among them the admission of Coridan III into the Federation. Previously, the Coridanites had been poised to join the Coalition of Planets that eventually became the Federation, but withdrew in the wake of Romulan aggression, instead remaining isolated for over a century before applying to join the Federation. There were 114 delegates in attendance, 32 of them prominent ambassadors, including Sarek of Vulcan. Despite attempts by the Orion Syndicate to sabotage the conference, it would have major political ramifications for decades to come.",,,,,,,
-CareerEvent.common.86.name,Memory Alpha Disaster,,,,,,,
+CareerEvent.common.86.name,Memory Alpha Disaster,,,,,,,Katastrofa Memory Alpha
 CareerEvent.common.86.description,"Memory Alpha is a repository of Federation research and knowledge, intended to hold copies of the collected cultural, historical, and scientific knowledge of every member world, located upon an uninhabited planetoid in the heart of the Federation. At any given moment, it is occupied by a permanent staff of technicians, as well as visiting scholars, researchers, and scientists from across the Federation and allied civilizations. In 2269, the facility was attacked by noncorporeal entities, which also caused extensive damage to the complex and the archives there, and killed the staff and visitors. The resulting loss of knowledge and the deaths of dozens of prominent scholars and scientists was a major blow to Federation academia that took many years to recover from.",,,,,,,
-CareerEvent.common.87.name,Whale Probe Crisis,,,,,,,
+CareerEvent.common.87.name,Whale Probe Crisis,,,,,,,Kryzys z sondą wielorybią
 CareerEvent.common.87.description,"An unidentified probe, immense and cylindrical but of unknown origin, entered Federation space across the Klingon Neutral Zone in 2286. The probe was broadcasting a communications signal of overwhelming power, which disrupted the systems of at least seven vessels—both Starfleet and Klingon—as the probe made its way towards Earth. In Earth orbit, its broadcast disabled all local defenses, including Spacedock and the U.S.S. Excelsior, and disrupted Earth’s atmosphere and global power grids. It was subsequently determined—by the command crew of the U.S.S. Enterprise, travelling aboard a captured Klingon bird-of-prey—that the probe was seeking a response from aquatic life, namely an extinct cetacean species, the humpback whale. The crisis was resolved by retrieving a pair of humpback whales from 300 years in the past; the restoration of the humpback whale species was a major scientific endeavor over the following decades.",,,,,,,
-CareerEvent.common.88.name,Destruction of Praxis and the Khitomer Accords,,,,,,,
+CareerEvent.common.88.name,Destruction of Praxis and the Khitomer Accords,,,,,,,Zniszczenie Praxis i Porozumienie Khitomerskie
 CareerEvent.common.88.description,"In 2293, Praxis, a moon orbiting the Klingon homeworld of Qo’noS, was destroyed by a massive explosion caused by overmining of the volatile mineral resources found there. This caused massive damage and lasting pollution to the atmosphere of Qo’noS, and produced a subspace shockwave which was felt as far away as the Klingon Neutral Zone. The resulting devastation, and the loss of one of the primary energy sources for the Klingon Empire, was seen as a death knell for the Empire: it would collapse within 50 years without intervention. This forced a major political change within the Empire, with many—including then-Chancellor Gorkon—believing that only making peace with the Federation could prevent the end of Klingon civilization. Despite the assassination of Chancellor Gorkon, a peace conference was held on the Klingon world of Khitomer, which led to the first Khitomer Accords, marking a turning point in Klingon-Federation diplomatic relations.",,,,,,,
-CareerEvent.common.99.name,Recruited to Starfleet Intelligence,,Rekrutiert vom Sternenflottengeheimdienst,Reclutado para la Inteligencia de la Flota Estelar,,,Recrutado pela Inteligência da Frota Estelar,
+CareerEvent.common.99.name,Recruited to Starfleet Intelligence,,Rekrutiert vom Sternenflottengeheimdienst,Reclutado para la Inteligencia de la Flota Estelar,,,Recrutado pela Inteligência da Frota Estelar,Rekrutacja do Wywiadu Gwiezdnej Floty
 CareerType.core.young.name,Young Officer,,Grünschnabel,Joven oficial,Jeune Officier,Молодой офицер,Oficial Jovem,
 CareerType.core.young.description,The character is defined by their potential more than their skill. Their raw talent and their expectations of what the universe is like have not yet been tempered by reality.,,Der Charakter wird durch das Potential und weniger die Fähigkeiten definiert. Das rohe Talent und die Erwartungen an das Universum müssen noch durch die Realität abgeschwächt werden.,El personaje se distingue por su potencial más que por su habilidad. La realidad aún no ha templado su talento en bruto y sus expectativas sobre el universo.,Le personnage est défini plus par son potentiel que par ses compétences. leur talent brut et leurs espérances sur ce que à quoi l'univers ressemble n'ont pas encore été altéré par la réalité.,"Персонаж обладает скорее потенциальными, чем конкретными навыками. Его пока неразвитые способности и представления о Вселенной не прошли испытания реальностью.",A personagem é definida mais por seu potencial que por sua habilidade. Seu talento bruto e expectativas de como é o universo ainda não foram impactados pela realidade.,
 CareerType.core.young.valueInstruction,"The character receives a Value, which must reflect the character’s inexperience and naivete in some way.",,"Der Charakter erhält eine Überzeugung, welche die Unerfahrenheit und Naivität in irgendeiner Art widerspiegelt.","El personaje recibe un Valor, que debe reflejar de algún modo la inexperiencia del personaje y su ingenuidad.","Le personnage reçoit une Valueur, qui doit,d'une certaine manière refléter l'inexperience et la naïveté du personnage.","Персонаж получает Ценность, которая должна

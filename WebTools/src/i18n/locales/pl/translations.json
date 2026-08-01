@@ -917,6 +917,7 @@
     "CareerEvent.common.4.focusSuggestion": "Postać otrzymuje biegłość, która oddaje jej doświadczenia z negocjacji. Przykłady to np.: Dyplomacja, Negocjacje, Polityka Galaktyczna.",
 
     "CareerEvent.common.5.name": "Zmuszenie do przejęcia dowodzenia",
+    "CareerEvent.common.5.description": "W czasie misji doszło do sytuacji utraty możliwości dowodzenia przez jej lidera. Z tego powodu Twoja postać przejęła kontrolę, chociaż nie była do tego przygotowana.\n\nCo to była za misja? Co poszło nie tak?\nCzy udało się zakończyć misję pozytywnie, pomimo braku lidera?",
     "CareerEvent.common.5.focusSuggestion": "Postać otrzymuje biegłość, która oddaje jej doświadczenia z przeżytej sytuacji kryzysowej. Przykłady to np.: Inspiracja, Zimna Krew, Za moim przewodem.",
 
     "CareerEvent.common.6.name": "Napotkanie prawdziwie obcej istoty",
@@ -979,6 +980,90 @@
 
     "CareerEvent.unofficial.26.name": "Nauczka z poważnego błędu",
     "CareerEvent.unofficial.26.focusDescription": "Postać otrzymuje biegłość, któa powinna odzwierciedlać sposób w jaki unika podobnych błędów w przyszłości lub dodatkowy wysiłek związany z zapobieganiem ryzykownym aktywnościom. Przykłady: Analiza, Sterowanie, Systemy komunikacji.",
+
+    "CareerEvent.unofficial.28.name": "Zmagania z nałogiem",
+
+    "CareerEvent.unofficial.29.name": "Rywalizacja",
+
+    "CareerEvent.unofficial.30.name": "Projekty prywatne",
+
+    "CareerEvent.unofficial.31.name": "Służba na stacji kosmicznej",
+
+    "CareerEvent.unofficial.33.name": "Pozostawiona z tyłu",
+
+    "CareerEvent.unofficial.34.name": "Kryzys rodzinny",
+
+    "CareerEvent.unofficial.36.name": "Uwięzienie",
+
+    "CareerEvent.unofficial.37.name": "Misja terraformacyjna",
+
+    "CareerEvent.unofficial.38.name": "Urlop",
+
+    "CareerEvent.unofficial.39.name": "Występy medialne",
+
+    "CareerEvent.unofficial.42.name": "Brakujące wspomnienia",
+
+    "CareerEvent.unofficial.45.name": "Poddana kontroli umysłu",
+
+    "CareerEvent.unofficial.46.name": "Niedopasowanie do grupy",
+
+    "CareerEvent.unofficial.48.name": "Misja w głębokiej przestrzeni kosmicznej",
+
+    "CareerEvent.unofficial.49.name": "Kontakt z anomalią temporalną",
+
+    "CareerEvent.unofficial.50.name": "Zadanie w placówce medycznej",
+
+    "CareerEvent.common.57.name": "Spotkanie z niekontrolowaną AI",
+
+    "CareerEvent.common.58.name": "Kontakt z anomalią przestrzenną",
+
+    "CareerEvent.common.59.name": "Kontakt z anomalią temporalną",
+
+    "CareerEvent.common.60.name": "Doświadczenie z alternatywnego wymiaru",
+
+    "CareerEvent.common.68.name": "Program wymiany kulturalnej",
+
+    "CareerEvent.common.69.name": "Spotkanie z nowym gatunkiem",
+
+    "CareerEvent.common.70.name": "Spotkanie z organizmem żyjącym w kosmosie",
+
+    "CareerEvent.common.71.name": "Galaktyczna zagadka",
+
+    "CareerEvent.common.72.name": "Ekspedycja historyczna",
+
+    "CareerEvent.common.73.name": "Obserwacja wydarzenia kulturalnego",
+
+    "CareerEvent.common.74.name": "Długotrwała misja w dalekim kosmosie",
+
+    "CareerEvent.common.75.name": "Zwiad planetarny",
+
+    "CareerEvent.common.76.name": "Badanie kultury prewarp",
+
+    "CareerEvent.common.77.name": "Wynalezienie komputera duotronicznego",
+
+    "CareerEvent.common.78.name": "Atak logicznych ekstremistów",
+
+    "CareerEvent.common.79.name": "Masakra na Tarsus IV",
+
+    "CareerEvent.common.80.name": "Konflikt z Gornami",
+
+    "CareerEvent.common.81.name": "Wojna federacyjno-klingońska",
+
+    "CareerEvent.common.82.name": "Przygraniczne starcia z Romulanami",
+
+    "CareerEvent.common.83.name": "Traktat organiański",
+
+    "CareerEvent.common.84.name": "Założenie kolonii na Nimbus III",
+
+    "CareerEvent.common.85.name": "Konferencja na Babel",
+
+    "CareerEvent.common.86.name": "Katastrofa Memory Alpha",
+
+    "CareerEvent.common.87.name": "Kryzys z sondą wielorybią",
+
+    "CareerEvent.common.88.name": "Zniszczenie Praxis i Porozumienie Khitomerskie",
+
+    "CareerEvent.common.99.name": "Rekrutacja do Wywiadu Gwiezdnej Floty",
 
     "CharacterAdvancementType.adjustment": "Dopasowanie",
     "CharacterAdvancementType.milestone": "Kamień milowy",
