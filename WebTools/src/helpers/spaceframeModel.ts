@@ -68,7 +68,7 @@ export class SpaceframeModel implements IServiceYearProvider {
     }
 
     get serviceYearForRefitCalculation() {
-        if (this.id === Spaceframe.Miranda_2E) {
+        if (this.id === Spaceframe.Miranda_2E || this.id === Spaceframe.Miranda_UP) {
             return this.serviceYear + 10;
         } else {
             return this.serviceYear;
