@@ -540,8 +540,8 @@
     "SpeciesPage.mixedSpeciesNote": "Select two species. You will gain Traits from both species and may select from both species' Talents, but only the primary species gives you Attribute bonuses.",
     "SpeciesPage.selectTwoSpeciesError": "Please select both a primary and secondary species",
 
-    "StarshipRefits.instruction_one": "Ships are improved over time. Every ten years from the date of launch, a ship receives a refit, which improves the ship's systems.\n\nYou have {{count}} point to allocate.",
-    "StarshipRefits.instruction_other": "Ships are improved over time. Every ten years from the date of launch, a ship receives a refit, which improves the ship's systems.\n\nYou have {{count}} points to allocate.",
+    "StarshipRefits.instruction_one": "Ships are improved over time. Every ten years from the date of launch, a ship receives a refit, which improves the ship's systems. The number of refits is determined by subtracting the spaceframe's launch year from the ship's year of service.\n\nYou have {{count}} point to allocate.",
+    "StarshipRefits.instruction_other": "Ships are improved over time. Every ten years from the date of launch, a ship receives a refit, which improves the ship's systems. The number of refits is determined by subtracting the spaceframe's launch year from the ship's year of service.\n\nYou have {{count}} points to allocate.",
 
     "StarshipTalentSelection.instruction_one": "Please select {{count}} talent.",
     "StarshipTalentSelection.instruction_other": "Please select {{count}} talents.",
