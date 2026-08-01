@@ -125,6 +125,7 @@ export abstract class BaseNeckProvider {
 
     private isLowerShoulders(uniformEra: UniformEra, uniformVariant: UniformVariantType) {
         return uniformEra === UniformEra.Suliban
+            || uniformEra === UniformEra.Bynar
             || uniformEra === UniformEra.OriginalSeries
             || uniformEra === UniformEra.StrangeNewWorlds
             || uniformEra === UniformEra.JemHadar

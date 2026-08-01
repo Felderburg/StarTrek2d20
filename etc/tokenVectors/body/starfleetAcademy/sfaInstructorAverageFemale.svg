@@ -12,7 +12,6 @@
    xml:space="preserve"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><defs
      id="defs282018"><inkscape:path-effect
@@ -236,17 +235,4 @@
          d="m 267.58872,293.19033 -6.2434,0.18377 -2.83349,-11.71828 0.66786,-0.0194 0.53714,2.22126 c 0.0767,0.31865 0.36498,0.56641 0.67849,0.62344 -0.28161,0.0736 -0.44737,0.33386 -0.36968,0.65385 l 1.5878,6.56646 c 0.0893,0.36799 0.45633,0.65701 0.82359,0.6473 l 3.58261,-0.10637 c 0.36608,-0.009 0.59103,-0.31667 0.50149,-0.68599 l -1.58781,-6.56646 c -0.0767,-0.31866 -0.36499,-0.56642 -0.67821,-0.62211 0.28131,-0.075 0.44707,-0.33519 0.36968,-0.65385 l -0.53743,-2.2226 0.66785,-0.0194 z m -7.97391,-15.27245 2.25917,-0.0663 1.26466,5.23449 -2.25784,0.0663 z m 4.15578,7.77743 1.26467,5.23449 -2.25918,0.0663 -1.26467,-5.23449 z m 1.32509,-5.5759 -1.33011,0.0401 -0.72888,-3.01324 c -0.0872,-0.36799 -0.45632,-0.65699 -0.82197,-0.64596 l -3.58422,0.10503 c -0.36609,0.009 -0.5897,0.31669 -0.50148,0.686 l 0.7286,3.0119 -1.3304,0.0387 c -0.36562,0.0111 -0.59075,0.31802 -0.50148,0.686 l 3.15558,13.05158 c 0.0893,0.36799 0.45766,0.657 0.8233,0.64597 l 7.56875,-0.22114 c 0.36563,-0.0111 0.58941,-0.31802 0.50149,-0.68601 l -3.15558,-13.05157 c -0.0893,-0.36799 -0.45766,-0.65702 -0.82359,-0.6473"
          style="clip-rule:evenodd;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke-width:1.33333;stroke-miterlimit:10"
          id="path328"
-         sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccc" /></g></g><g
-     inkscape:groupmode="layer"
-     id="layer19"
-     inkscape:label="Image"
-     sodipodi:insensitive="true"
-     style="display:none"><image
-       width="400"
-       height="400"
-       preserveAspectRatio="none"
-       xlink:href="../../../../../../../Pictures/STA%20Miniature%20Maker/AcademyInstructorFemal.png"
-       id="image1"
-       x="0"
-       y="0"
-       style="opacity:0.369" /></g></svg>
+         sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccccc" /></g></g></svg>
