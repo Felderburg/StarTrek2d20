@@ -3,7 +3,8 @@ import '../../src/helpers/species';
 import { Starship } from '../../src/common/starship';
 import { CharacterType } from '../../src/common/characterType';
 import { Era } from '../../src/helpers/erasEnum';
-import MissionProfiles from '../../src/helpers/missionProfiles';
+import MissionProfiles, { MissionProfile } from '../../src/helpers/missionProfiles';
+import { Department } from '../../src/helpers/department';
 
 jest.mock('i18next', () => {
     const mockI18n: any = (key: string) => key;
@@ -90,5 +91,38 @@ describe('MissionProfiles', () => {
             expect(profile.type).toBe(CharacterType.KlingonWarrior);
             expect(profile.systems.length).toBe(0);
         });
+    });
+});
+
+describe('Strategic and Diplomatic Operations mission profile (#342)', () => {
+    function strategicDiplomaticProfile(type: CharacterType, version: number) {
+        const starship = createStarship(type, version);
+        return MissionProfiles.instance.getMissionProfiles(starship)
+            .find(p => p.id === MissionProfile.StrategicAndDiplomatic);
+    }
+
+    test('grants a Command bonus rather than a Science bonus for a 2e Starfleet ship', () => {
+        const profile = strategicDiplomaticProfile(CharacterType.Starfleet, 2);
+
+        expect(profile).toBeDefined();
+        expect(profile.departments[Department.Command]).toBe(3);
+        expect(profile.departments[Department.Science]).toBe(2);
+        expect(profile.departments[Department.Command]).toBeGreaterThan(profile.departments[Department.Science]);
+    });
+
+    test('matches the errata departments for every edition and faction', () => {
+        const expectedDepartments = [3, 1, 2, 2, 2, 2];
+        const editionsAndFactions = [
+            [CharacterType.Starfleet, 1],
+            [CharacterType.Starfleet, 2],
+            [CharacterType.KlingonWarrior, 1],
+            [CharacterType.KlingonWarrior, 2],
+        ];
+
+        for (const [type, version] of editionsAndFactions) {
+            const profile = strategicDiplomaticProfile(type, version);
+            expect(profile).toBeDefined();
+            expect(profile.departments).toEqual(expectedDepartments);
+        }
     });
 });
