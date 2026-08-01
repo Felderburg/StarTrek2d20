@@ -49,9 +49,9 @@ describe('Miranda class refit schedule', () => {
         expect(createMiranda(Spaceframe.Miranda, 2371, 1).numberOfRefits).toBe(9);
     });
 
-    test('Utopia Planitia Miranda uses the 2264 launch date as its refit baseline', () => {
-        expect(mirandaSpaceframe(Spaceframe.Miranda_UP).serviceYearForRefitCalculation).toBe(2264);
-        expect(createMiranda(Spaceframe.Miranda_UP, 2371, 1).numberOfRefits).toBe(10);
+    test('Utopia Planitia Miranda uses the 2274 redesign date as its refit baseline', () => {
+        expect(mirandaSpaceframe(Spaceframe.Miranda_UP).serviceYearForRefitCalculation).toBe(2274);
+        expect(createMiranda(Spaceframe.Miranda_UP, 2371, 1).numberOfRefits).toBe(9);
     });
 
     test('non-Miranda spaceframes use their service year as the refit baseline', () => {
