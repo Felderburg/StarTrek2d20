@@ -26,10 +26,15 @@ describe('testing weapons', () => {
         expect(v2.dice).toBe(3);
     });
 
-    test('2e quantum torpedo uses Vicious rather than Intense (#303)', () => {
+    test('2e quantum torpedo has Intense instead of Vicious (#303)', () => {
+        let v1 = TorpedoLoadTypeModel.getTorpedoLoadTypeModelByType(TorpedoLoadType.Quantum, 1);
+        expect(v1.effectAndQualities.some(q => q.quality === Quality.Vicious)).toBeTruthy();
+
         let v2 = TorpedoLoadTypeModel.getTorpedoLoadTypeModelByType(TorpedoLoadType.Quantum, 2);
-        expect(v2.effectAndQualities.some(q => q.quality === Quality.Vicious)).toBeTruthy();
-        expect(v2.effectAndQualities.some(q => q.quality === Quality.Intense)).toBeFalsy();
+        expect(v2.effectAndQualities.some(q => q.quality === Quality.Intense)).toBeTruthy();
+        expect(v2.effectAndQualities.some(q => q.quality === Quality.Vicious)).toBeFalsy();
+        expect(v2.effectAndQualities.some(q => q.quality === Quality.Calibration)).toBeTruthy();
+        expect(v2.effectAndQualities.some(q => q.quality === Quality.HighYield)).toBeTruthy();
     });
 
 });
