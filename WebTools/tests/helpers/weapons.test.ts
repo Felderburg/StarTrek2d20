@@ -1,5 +1,5 @@
 import { test, expect, describe } from '@jest/globals'
-import { PersonalWeapons } from '../../src/helpers/weapons';
+import { PersonalWeapons, TorpedoLoadType, TorpedoLoadTypeModel, Quality } from '../../src/helpers/weapons';
 
 describe('testing weapons', () => {
     test('should find 1e weapons', () => {
@@ -24,6 +24,12 @@ describe('testing weapons', () => {
 
         let v2 = PersonalWeapons.instance(2).ushaanTor;
         expect(v2.dice).toBe(3);
+    });
+
+    test('2e quantum torpedo uses Vicious rather than Intense (#303)', () => {
+        let v2 = TorpedoLoadTypeModel.getTorpedoLoadTypeModelByType(TorpedoLoadType.Quantum, 2);
+        expect(v2.effectAndQualities.some(q => q.quality === Quality.Vicious)).toBeTruthy();
+        expect(v2.effectAndQualities.some(q => q.quality === Quality.Intense)).toBeFalsy();
     });
 
 });
