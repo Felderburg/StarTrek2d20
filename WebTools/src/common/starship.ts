@@ -51,7 +51,7 @@ export const refitCalculator = (starship: Starship) => {
     if (starship.buildType === ShipBuildType.Starship && starship?.serviceYear && starship?.spaceframeModel?.serviceYearForRefitCalculation) {
         if (starship.serviceYear >= 2400 && starship.spaceframeModel.serviceYearForRefitCalculation >= 2400) {
             return Math.max(0, Math.floor((starship.serviceYear - starship.spaceframeModel.serviceYearForRefitCalculation) / 50));
-        } else if (starship.serviceYear < 2400 && starship.spaceframeModel.serviceYearForRefitCalculation < 2400) {
+        } else if (starship.version !== 1 || (starship.serviceYear < 2400 && starship.spaceframeModel.serviceYearForRefitCalculation < 2400)) {
             return Math.max(0, Math.floor((starship.serviceYear - starship.spaceframeModel.serviceYearForRefitCalculation) / 10));
         } else if (starship.serviceYear > starship.spaceframeModel.serviceYearForRefitCalculation) {
             let remainder = starship.spaceframeModel.serviceYearForRefitCalculation % 10;

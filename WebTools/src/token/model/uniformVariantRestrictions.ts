@@ -32,9 +32,16 @@ export default class UniformVariantRestrictions {
                 result.push(UniformVariantType.Variant3); // Kruge
             }
             result.push(UniformVariantType.Variant2); // Klingon vest or Key'lehr
-        } else if ([UniformEra.Discovery32, UniformEra.StarfleetAcademy].includes(uniformEra)) {
+        } else if ([UniformEra.Discovery32].includes(uniformEra)) {
             if (!isCadetRank(rank)) {
                 result.push(UniformVariantType.Variant1);
+            }
+        } else if ([UniformEra.StarfleetAcademy].includes(uniformEra)) {
+            if (!isCadetRank(rank)) {
+                result.push(UniformVariantType.Variant1);
+            }
+            if (bodyType === BodyType.AverageFemale) {
+                result.push(UniformVariantType.Variant2);
             }
         } else if (uniformEra === UniformEra.StrangeNewWorlds) {
             if (DivisionColors.getDivision(uniformEra, divisionColor) === "Medical") {
