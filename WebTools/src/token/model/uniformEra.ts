@@ -82,6 +82,7 @@ export class UniformEraHelper {
         new UniformEraModel(UniformEra.Suliban, "Suliban"),
         new UniformEraModel(UniformEra.VoyagerDS9, "Voyager/DS9"),
         new UniformEraModel(UniformEra.MonsterMaroon, "The Wrath of Khan and Later Movies"),
+        new UniformEraModel(UniformEra.Prodigy, "Prodigy"),
         new UniformEraModel(UniformEra.PicardRomulanEvacuation, "Picard (Romulan Evacuation)"),
         new UniformEraModel(UniformEra.Picard25, "Picard (25th Century)"),
         new UniformEraModel(UniformEra.StarfleetAcademy, "Starfleet Academy"),

@@ -139,6 +139,7 @@ export abstract class BaseNeckProvider {
             || uniformEra === UniformEra.PicardRomulanEvacuation
             || uniformEra === UniformEra.StarTrekOnline
             || uniformEra === UniformEra.Klingon
+            || uniformEra === UniformEra.Prodigy
             || uniformEra === UniformEra.Discovery32
             || uniformEra === UniformEra.StarfleetAcademy
             || (uniformEra === UniformEra.Civilian && ![
