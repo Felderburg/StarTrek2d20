@@ -16,9 +16,14 @@ function createFinalDetailsView(character: Character, overrides?: any) {
         t: ((key: string) => key) as any,
         showRandomName: false,
         showPastime: false,
+        showLineageAndHouse: false,
+        showAdditionalTraits: false,
         onNameChanged: jest.fn(),
         onPronounsChanged: jest.fn(),
         onPasttimeChanged: jest.fn(),
+        onLineageChanged: jest.fn(),
+        onHouseChanged: jest.fn(),
+        onAdditionalTraitsChanged: jest.fn(),
         onRandomName: jest.fn(),
         ...overrides,
     };
@@ -151,6 +156,108 @@ describe('FinalDetailsView', () => {
             const pastimeInput = findInputs(instance.render()).find(e => e.props.id === 'pastimes');
             pastimeInput.props.onChange("Reading, Chess");
             expect(onPasttimeChanged).toHaveBeenCalledWith("Reading, Chess");
+        });
+    });
+
+    describe('lineage field', () => {
+        test('renders the character lineage when shown', () => {
+            const character = createMockCharacter();
+            character.lineage = "Daughter of Martok";
+            const instance = createFinalDetailsView(character, { showLineageAndHouse: true });
+            const lineageInput = findInputs(instance.render()).find(e => e.props.id === 'lineage');
+            expect(lineageInput.props.value).toBe("Daughter of Martok");
+        });
+
+        test('renders an empty value when the character has no lineage', () => {
+            const character = createMockCharacter();
+            const instance = createFinalDetailsView(character, { showLineageAndHouse: true });
+            const lineageInput = findInputs(instance.render()).find(e => e.props.id === 'lineage');
+            expect(lineageInput.props.value).toBe("");
+        });
+
+        test('does not render a lineage field when hidden', () => {
+            const character = createMockCharacter();
+            character.lineage = "Daughter of Martok";
+            const instance = createFinalDetailsView(character, { showLineageAndHouse: false });
+            const lineageInput = findInputs(instance.render()).find(e => e.props.id === 'lineage');
+            expect(lineageInput).toBeUndefined();
+        });
+
+        test('fires onLineageChanged when edited', () => {
+            const character = createMockCharacter();
+            const onLineageChanged = jest.fn();
+            const instance = createFinalDetailsView(character, { showLineageAndHouse: true, onLineageChanged });
+            const lineageInput = findInputs(instance.render()).find(e => e.props.id === 'lineage');
+            lineageInput.props.onChange("Child of Koloth");
+            expect(onLineageChanged).toHaveBeenCalledWith("Child of Koloth");
+        });
+    });
+
+    describe('house field', () => {
+        test('renders the character house when shown', () => {
+            const character = createMockCharacter();
+            character.house = "House Duras";
+            const instance = createFinalDetailsView(character, { showLineageAndHouse: true });
+            const houseInput = findInputs(instance.render()).find(e => e.props.id === 'house');
+            expect(houseInput.props.value).toBe("House Duras");
+        });
+
+        test('renders an empty value when the character has no house', () => {
+            const character = createMockCharacter();
+            const instance = createFinalDetailsView(character, { showLineageAndHouse: true });
+            const houseInput = findInputs(instance.render()).find(e => e.props.id === 'house');
+            expect(houseInput.props.value).toBe("");
+        });
+
+        test('does not render a house field when hidden', () => {
+            const character = createMockCharacter();
+            character.house = "House Kor";
+            const instance = createFinalDetailsView(character, { showLineageAndHouse: false });
+            const houseInput = findInputs(instance.render()).find(e => e.props.id === 'house');
+            expect(houseInput).toBeUndefined();
+        });
+
+        test('fires onHouseChanged when edited', () => {
+            const character = createMockCharacter();
+            const onHouseChanged = jest.fn();
+            const instance = createFinalDetailsView(character, { showLineageAndHouse: true, onHouseChanged });
+            const houseInput = findInputs(instance.render()).find(e => e.props.id === 'house');
+            houseInput.props.onChange("House Martok");
+            expect(onHouseChanged).toHaveBeenCalledWith("House Martok");
+        });
+    });
+
+    describe('additional traits field', () => {
+        test('renders the character additional traits when shown', () => {
+            const character = createMockCharacter();
+            character.additionalTraits = "Veteran";
+            const instance = createFinalDetailsView(character, { showAdditionalTraits: true });
+            const traitsInput = findInputs(instance.render()).find(e => e.props.id === 'traits');
+            expect(traitsInput.props.value).toBe("Veteran");
+        });
+
+        test('renders an empty value when the character has no additional traits', () => {
+            const character = createMockCharacter();
+            const instance = createFinalDetailsView(character, { showAdditionalTraits: true });
+            const traitsInput = findInputs(instance.render()).find(e => e.props.id === 'traits');
+            expect(traitsInput.props.value).toBe("");
+        });
+
+        test('does not render an additional traits field when hidden', () => {
+            const character = createMockCharacter();
+            character.additionalTraits = "Veteran";
+            const instance = createFinalDetailsView(character, { showAdditionalTraits: false });
+            const traitsInput = findInputs(instance.render()).find(e => e.props.id === 'traits');
+            expect(traitsInput).toBeUndefined();
+        });
+
+        test('fires onAdditionalTraitsChanged when edited', () => {
+            const character = createMockCharacter();
+            const onAdditionalTraitsChanged = jest.fn();
+            const instance = createFinalDetailsView(character, { showAdditionalTraits: true, onAdditionalTraitsChanged });
+            const traitsInput = findInputs(instance.render()).find(e => e.props.id === 'traits');
+            traitsInput.props.onChange("Veteran, Bold");
+            expect(onAdditionalTraitsChanged).toHaveBeenCalledWith("Veteran, Bold");
         });
     });
 });

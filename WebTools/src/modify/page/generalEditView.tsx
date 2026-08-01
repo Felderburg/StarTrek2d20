@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Header } from "../../components/header";
 import store from "../../state/store";
 import { FinalDetailsView } from "./finalDetailsView";
-import { addCharacterTalent, setCharacterName, setCharacterPastime, setCharacterPronouns, StepContext, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditTalentChange, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
+import { addCharacterTalent, setCharacterAdditionalTraits, setCharacterHouse, setCharacterLineage, setCharacterName, setCharacterPastime, setCharacterPronouns, StepContext, updateCharacterGeneralEditFocusChange, updateCharacterGeneralEditSpeciesAbility, updateCharacterGeneralEditTalentChange, updateCharacterGeneralEditValueChange } from "../../state/characterActions";
 import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from "../../common/characterAssembly";
 import { SpeciesAbilityList } from "../../helpers/speciesAbility";
 import { AttributesHelper } from "../../helpers/attributes";
@@ -117,6 +117,18 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
         store.dispatch(setCharacterPastime(value));
     }
 
+    const onLineageChanged = (value: string) => {
+        store.dispatch(setCharacterLineage(value));
+    }
+
+    const onHouseChanged = (value: string) => {
+        store.dispatch(setCharacterHouse(value));
+    }
+
+    const onAdditionalTraitsChanged = (value: string) => {
+        store.dispatch(setCharacterAdditionalTraits(value));
+    }
+
     const randomName = (species: SpeciesModel) => {
         let { name, pronouns } = NameGenerator.instance.createName(species);
         store.dispatch(setCharacterName(name));
@@ -129,9 +141,14 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({character
             t={t}
             showRandomName={NameGenerator.instance.isSupported(species)}
             showPastime={character.version > 1}
+            showLineageAndHouse={character.isKlingonImperialCitizen}
+            showAdditionalTraits={true}
             onNameChanged={(value) => onNameChanged(value)}
             onPronounsChanged={(value) => onPronounsChanged(value)}
             onPasttimeChanged={(value) => onPasttimeChanged(value)}
+            onLineageChanged={(value) => onLineageChanged(value)}
+            onHouseChanged={(value) => onHouseChanged(value)}
+            onAdditionalTraitsChanged={(value) => onAdditionalTraitsChanged(value)}
             onRandomName={() => randomName(species)} />);
     }
 
