@@ -13,7 +13,7 @@ describe('Character', () => {
             expect(result.role).toBe(Role.ScienceOfficer);
         });
 
-        test('drops the secondary role', () => {
+        test('copies the secondary role', () => {
             const character = new Character();
             character.role = Role.ScienceOfficer;
             character.secondaryRole = Role.ChiefMedicalOfficer;
@@ -21,7 +21,7 @@ describe('Character', () => {
             const result = character.copy();
 
             expect(result.role).toBe(Role.ScienceOfficer);
-            expect(result.secondaryRole).toBeUndefined();
+            expect(result.secondaryRole).toBe(Role.ChiefMedicalOfficer);
         });
     });
 });

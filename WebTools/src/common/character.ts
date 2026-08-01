@@ -1705,6 +1705,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         character.assignedShip = this.assignedShip;
         character._rank = this._rank;
         character.role = this.role;
+        character.secondaryRole = this.secondaryRole;
         if (this.speciesStep) {
             character.speciesStep = this.speciesStep.copy();
         }
