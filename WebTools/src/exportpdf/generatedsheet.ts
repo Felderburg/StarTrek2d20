@@ -225,7 +225,9 @@ export const assembleStarshipTalents = (starship: Starship|Station, includeSpeci
     starship.talents.forEach(t => {
         const talent = t.talentModel;
         if (talent && !handledTalents.includes(t.talent)) {
-            handledTalents.push(talent.name);
+            if (!t.isCustom) {
+                handledTalents.push(t.talent);
+            }
             const readableTalent = new ReadableTalentModel(starship.type, talent);
 
             if (talent.maxRank > 1) {
