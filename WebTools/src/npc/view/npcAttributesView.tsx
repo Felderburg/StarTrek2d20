@@ -18,7 +18,7 @@ export const NpcAttributesView: React.FC<ICharacterProperties> = ({character}) =
             const initialAttributes = NpcTypes.attributePoints(character.npcGenerationStep?.type).map(a => a - 7);
             store.dispatch(setNpcCharacterAttributes(initialAttributes));
         }
-    }, [])
+    }, [character.npcGenerationStep?.attributes, character.npcGenerationStep?.type])
 
     const selectAttributeValue = (index: Attribute) => {
         if (index > -1) {

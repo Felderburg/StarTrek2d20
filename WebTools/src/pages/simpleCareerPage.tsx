@@ -41,7 +41,7 @@ const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({character, tal
 
     useEffect(() => {
         store.dispatch(addCharacterTalent(talentModel, StepContext.Career));
-    }, [talent]);
+    }, [talent, talentModel]);
 
     let instruction = character.type === CharacterType.Child ? "CareerLength.instruction.child" : "CareerLength.instruction.cadet";
     let valueText = character.type === CharacterType.Child ? "Value.childEducation.text" : "Value.careerLength.young.text";

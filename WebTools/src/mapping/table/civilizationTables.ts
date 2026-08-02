@@ -38,11 +38,11 @@ export const governmentTypeTable: TableRoll<GovernmentType> = () => {
         case 15:
             return GovernmentType.Oligarchy;
 
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
         default:
             return GovernmentType.Monarchy;
     }
@@ -72,11 +72,11 @@ export const polityTypeTable: TableRoll<PolityType> = () => {
         case 15:
             return PolityType.Empire;
 
-        case 11:
-        case 12:
-        case 13:
-        case 14:
-        case 15:
+        case 16:
+        case 17:
+        case 18:
+        case 19:
+        case 20:
         default:
             return PolityType.Federation;
     }

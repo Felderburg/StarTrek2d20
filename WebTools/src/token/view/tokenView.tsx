@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TokenConfig } from "../../common/character"
 import { LoadingSpinnerView } from "../../common/loadingSpinnerView";
 import SpeciesRestrictions from "../model/speciesRestrictions";
@@ -18,33 +18,33 @@ const TokenView: React.FC<ITokenViewProperties> = ({tokenConfig, onClick}) => {
     const [loading, setLoading] = useState<boolean>(true);
     const editable = onClick != null;
 
-    const loadExtras = () => {
+    const loadExtras = useCallback(() => {
         if (!ExtrasCatalog.instance.isLibraryLoaded) {
             ExtrasCatalog.instance.loadLibraryExtension(() => setLoading(false));
         } else {
             setLoading(false);
         }
-    }
+    }, []);
 
-    const loadUniformEra = () => {
+    const loadUniformEra = useCallback(() => {
         if (!UniformPackCollection.instance.isLoaded(tokenConfig.token.uniformEra)) {
             UniformPackCollection.instance.loadUniformPack(tokenConfig.token.uniformEra, loadExtras);
         } else {
             loadExtras();
         }
-    }
+    }, [tokenConfig.token.uniformEra, loadExtras]);
 
-    const loadDependencies = async () => {
+    const loadDependencies = useCallback(async () => {
         if (SpeciesRestrictions.isRubberHeaded(tokenConfig.token.species)) {
             HeadCatalog.instance.loadRubberHeadExtension(loadUniformEra)
         } else {
             loadUniformEra();
         }
-    }
+    }, [tokenConfig.token.species, loadUniformEra])
 
     useEffect(() => {
         loadDependencies()
-    }, [])
+    }, [loadDependencies])
 
     if (loading) {
         return <LoadingSpinnerView />;

@@ -77,7 +77,7 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({token, chara
         if (token.extras?.length) {
             loadExtrasExtension();
         }
-    }, []);
+    }, [token.extras?.length, token.species, token.uniformEra]);
 
     const selectTab = (tab: Tab) => {
         setTab(tab);

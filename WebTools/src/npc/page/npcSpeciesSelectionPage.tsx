@@ -15,7 +15,7 @@ const NpcSpeciesSelectionPage: React.FC<ICharacterProperties> = ({character}) =>
         if (character == null) {
             navigate("/npc");
         }
-    }, [character]);
+    }, [character, navigate]);
 
     if (character) {
         return (<LcarsFrame activePage={PageIdentity.NpcSpeciesSelection}>

@@ -6,7 +6,6 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Dialog } from "../../components/dialog";
 import store from "../../state/store";
-import { ModificationType } from "../model/modificationType";
 import { NumericValueChangeView } from "./numericValueChangeView";
 import { modifyCharacterReputation } from "../../state/characterActions";
 

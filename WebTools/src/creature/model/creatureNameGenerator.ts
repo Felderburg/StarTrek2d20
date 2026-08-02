@@ -31,10 +31,10 @@ export const creatureNameGenerator = () => {
         const options = [type1Name, type2Name, type3Name];
         const nameParts = options[Math.floor(Math.random() * options.length)];
 
-        nameParts.forEach(a => {
+        for (const a of nameParts) {
             const index = Math.floor(Math.random() * a.length);
             result += a[index];
-        });
+        }
 
         if (isBadWord(encode(result.toLocaleLowerCase()))) {
             retry = true;

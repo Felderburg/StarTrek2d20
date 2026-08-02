@@ -66,7 +66,7 @@ const FinalStarshipDetailsPage: React.FC<IFinalStarshipDetailsPageProperties> = 
                 starship.spaceframeModel);
                 store.dispatch(setStarshipRegistry(registry));
         }
-    }, []);
+    }, [starship.type, starship.serviceYear, starship.registry, starship.spaceframeModel]);
 
     return (<div className="page container ms-0">
             <ShipBuildingBreadcrumbs />

@@ -23,7 +23,7 @@ export const NpcAddWeaponView: React.FC<IAddWeaponViewProperties> = ({character,
         if (existingTypes.includes(selectedType)) {
             setSelectedType(undefined);
         }
-    }, [existingTypes]);
+    }, [existingTypes, selectedType]);
 
     const items = PersonalWeapons.instance(character.version).allTypes()
         .filter(t  => !existingTypes.includes(t))

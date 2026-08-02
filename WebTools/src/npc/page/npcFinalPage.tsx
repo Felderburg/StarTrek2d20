@@ -32,7 +32,7 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({character}) => {
         if (character == null) {
             navigate("/npc");
         }
-    }, [character]);
+    }, [character, navigate]);
 
     const showViewPage = () => {
         setTimeout(() => {

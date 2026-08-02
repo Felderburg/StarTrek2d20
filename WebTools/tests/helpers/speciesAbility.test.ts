@@ -1,5 +1,5 @@
 import { test, expect, describe } from '@jest/globals'
-import { SpeciesAbilityList, SpeciesAbility, SpeciesAbilityChoice } from '../../src/helpers/speciesAbility';
+import { SpeciesAbilityList } from '../../src/helpers/speciesAbility';
 import { Species } from '../../src/helpers/speciesEnum';
 
 describe('SpeciesAbilityList', () => {
