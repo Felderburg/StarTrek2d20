@@ -5,6 +5,7 @@ import { CharacterType } from '../../src/common/characterType';
 import { Era } from '../../src/helpers/erasEnum';
 import MissionProfiles, { MissionProfile } from '../../src/helpers/missionProfiles';
 import { Department } from '../../src/helpers/department';
+import { Source } from '../../src/helpers/sources';
 
 jest.mock('i18next', () => {
     const mockI18n: any = (key: string) => key;
@@ -16,13 +17,11 @@ jest.mock('i18next', () => {
     return mockI18n;
 });
 
-jest.mock('../../src/state/store', () => {
-    const core2ndEdition = 1; // Source.Core2ndEdition
-    return {
-        getState: () => ({ context: { sources: [core2ndEdition] } }),
-        dispatch: () => undefined,
-    };
-});
+const mockStoreState: { context: { sources: number[] } } = { context: { sources: [Source.Core2ndEdition] } };
+jest.mock('../../src/state/store', () => ({
+    getState: () => mockStoreState,
+    dispatch: () => undefined,
+}));
 
 function createStarship(type: CharacterType, version: number) {
     return Starship.createStandardStarship(Era.NextGeneration, type, version);
@@ -124,5 +123,49 @@ describe('Strategic and Diplomatic Operations mission profile (#342)', () => {
             expect(profile).toBeDefined();
             expect(profile.departments).toEqual(expectedDepartments);
         }
+    });
+});
+
+describe('Mission profiles from Utopia Planitia (#115)', () => {
+    function starfleet1eProfiles() {
+        return MissionProfiles.instance.getMissionProfiles(createStarship(CharacterType.Starfleet, 1));
+    }
+
+    afterEach(() => {
+        mockStoreState.context.sources = [Source.Core2ndEdition];
+    });
+
+    test('offers the Warship profile to a 1e Starfleet ship when the Utopia Planitia source is enabled', () => {
+        mockStoreState.context.sources = [Source.Core, Source.UtopiaPlanitia];
+
+        const warship = starfleet1eProfiles().find(p => p.id === MissionProfile.Warship);
+
+        expect(warship).toBeDefined();
+    });
+
+    test('does not offer the Warship profile to a 1e Starfleet ship without the Utopia Planitia source', () => {
+        mockStoreState.context.sources = [Source.Core];
+
+        const warship = starfleet1eProfiles().find(p => p.id === MissionProfile.Warship);
+
+        expect(warship).toBeUndefined();
+    });
+
+    test('gives the Warship profile Expanded Munitions in place of Quantum Torpedoes', () => {
+        mockStoreState.context.sources = [Source.Core, Source.UtopiaPlanitia];
+
+        const warship = starfleet1eProfiles().find(p => p.id === MissionProfile.Warship);
+
+        expect(warship).toBeDefined();
+        const talents = warship.talents.map(t => t.name);
+        expect(talents).toContain('Expanded Munitions');
+        expect(talents).not.toContain('Quantum Torpedoes');
+    });
+
+    test('gives the 1e Tactical Operations profile the Expanded Munitions talent', () => {
+        const tacOps = starfleet1eProfiles().find(p => p.id === MissionProfile.Tactical);
+
+        expect(tacOps).toBeDefined();
+        expect(tacOps.talents.map(t => t.name)).toContain('Expanded Munitions');
     });
 });
