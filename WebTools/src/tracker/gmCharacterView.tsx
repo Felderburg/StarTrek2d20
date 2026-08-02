@@ -7,7 +7,7 @@ import { Attribute } from "../helpers/attributes";
 import { marshaller } from "../helpers/marshaller";
 import { getNameAndShortRankOf } from "../helpers/ranks";
 import { Department } from "../helpers/department";
-import { removeGMTrackedCharacter, setGMTrackedCharacterNotes, setGMTrackedCharacterStress } from "../state/gmTrackerActions";
+import { removeGMTrackedCharacter, setGMTrackedCharacterStress } from "../state/gmTrackerActions";
 import store from "../state/store";
 import { CharacterWithTracking } from "./model/characterWithTracking";
 import { IconButton } from "../components/iconButton";
@@ -79,10 +79,6 @@ const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({tracking}) => {
             stress--;
         }
         store.dispatch(setGMTrackedCharacterStress(tracking, stress));
-    }
-
-    const changeNotes = (notes: string) => {
-        store.dispatch(setGMTrackedCharacterNotes(tracking, notes));
     }
 
     const viewCharacter = () => {

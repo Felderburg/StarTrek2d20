@@ -929,7 +929,7 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
             onSelection(undefined);
         }
 
-    }, [talents]);
+    }, [talents, selection, onSelection]);
 
     const updateSelection = (selection: SelectedTalent) => {
         setSelection(selection);

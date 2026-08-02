@@ -35,7 +35,7 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({character}) => {
         if (character == null) {
             navigate("/npc");
         }
-    }, [character]);
+    }, [character, navigate]);
 
     const renderValues = () => {
         if (character.npcGenerationStep?.type === NpcType.Minor) {

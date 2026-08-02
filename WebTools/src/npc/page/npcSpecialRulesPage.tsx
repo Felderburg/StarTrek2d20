@@ -42,7 +42,7 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({character}) => {
         if (character == null) {
             navigate("/npc");
         }
-    }, [character]);
+    }, [character, navigate]);
 
     const onNext = () => {
         const numberOfTalents = ranges[character.npcGenerationStep?.type ?? 0];

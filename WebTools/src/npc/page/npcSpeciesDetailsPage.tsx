@@ -14,7 +14,7 @@ const NpcSpeciesDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
         if (character == null) {
             navigate("/npc");
         }
-    }, [character]);
+    }, [character, navigate]);
 
     return (<LcarsFrame activePage={PageIdentity.NpcSpeciesSelectionDetails}>
         <div id="app">

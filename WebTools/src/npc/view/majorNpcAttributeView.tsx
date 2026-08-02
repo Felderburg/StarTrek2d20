@@ -18,7 +18,7 @@ const MajorNpcAttributeView: React.FC<ICharacterProperties> = ({character}) => {
         if (!(character.npcGenerationStep?.attributes?.filter(d => !d)?.length)) {
             store.dispatch(setNpcCharacterAttributes(NpcTypes.attributePoints(character.npcGenerationStep?.type, true).map(v => v - 7)));
         }
-    }, [])
+    }, [character.npcGenerationStep?.attributes, character.npcGenerationStep?.type])
 
 
     const getAttribute = (attribute: Attribute) => {

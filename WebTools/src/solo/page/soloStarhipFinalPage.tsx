@@ -27,7 +27,7 @@ const SoloStarshipFinalPage: React.FC<ISoloStarshipFinalProperties> = ({starship
         if (!starship?.registry) {
             store.dispatch(setStarshipRegistry(RegistryNumber.generate(starship.serviceYear, CharacterType.Starfleet, starship.spaceframeModel)))
         }
-    } , []);
+    } , [starship?.registry, starship.serviceYear, starship.spaceframeModel]);
 
 
     const showDialog = () => {

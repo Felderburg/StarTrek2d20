@@ -167,14 +167,14 @@ export class GmTrackerPdfSheet {
                     paragraph?.append(i18next.t("Construct.other.values").toLocaleUpperCase() + ":", new FontOptions(9, FontType.Bold), tealColour2e);
                     paragraph?.write();
 
-                    c.values.forEach((v, i) => {
+                    for (const v of c.values) {
                         paragraph = paragraph?.nextParagraph(0.2);
                         paragraph?.indent(15);
                         paragraph?.append(v, new FontOptions(9));
                         paragraph?.write();
 
                         bullet2EWriter(page, paragraph, tealColour2e);
-                    })
+                    }
                 }
             }
         }

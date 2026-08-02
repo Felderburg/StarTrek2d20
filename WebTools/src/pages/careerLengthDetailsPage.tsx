@@ -43,7 +43,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
                 store.dispatch(addCharacterTalent(career.talent, StepContext.Career));
                 setTalentName(career.talent.name);
             }
-        }, [career.id]
+        }, [career.id, career.talent, wroteTheBook]
     )
 
     const randomValue = () => {

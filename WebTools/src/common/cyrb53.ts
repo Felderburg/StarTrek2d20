@@ -26,7 +26,7 @@ export const cyrb53 = function(str, seed = 0) {
       This doesn't affect collision rate, but I want to try to improve it.
       This new version has preliminary improvements in avalanche behavior.
   */
-  const cyrb53a_beta = function(str, seed = 0) {
+  export const cyrb53a_beta = function(str, seed = 0) {
     let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
     for(let i = 0, ch; i < str.length; i++) {
       ch = str.charCodeAt(i);

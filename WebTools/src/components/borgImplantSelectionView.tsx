@@ -1,4 +1,3 @@
-import { useTranslation } from "react-i18next";
 import { CHALLENGE_DICE_NOTATION } from "../common/challengeDiceNotation";
 import { ICharacterPageProperties } from "../common/iCharacterPageProperties";
 import { BorgImplants } from "../helpers/borgImplant";
@@ -8,7 +7,6 @@ import { addCharacterBorgImplantSpeciesOption, removeCharacterBorgImplantSpecies
 import Markdown from "react-markdown";
 
 export const BorgImplantSelectionView: React.FC<ICharacterPageProperties> = ({character}) => {
-    const { t } = useTranslation();
 
     const implants = BorgImplants.instance.implants.map(implant => {
         const description = character.version === 1 ? implant.localizedDescription : implant.localizedDescription2e

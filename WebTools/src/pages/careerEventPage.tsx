@@ -40,7 +40,7 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context})
     useEffect(() => {
         setRandomEvent(existingEvent?.id ?? null);
         setRandomEventWithUnofficial(existingEvent?.id ?? null);
-    }, [context]);
+    }, [context, existingEvent?.id]);
 
     const careerEventSelected = (careerEvent: CareerEventModel)=> {
         store.dispatch(addCharacterCareerEvent(careerEvent.roll, context, careerEvent.attributes?.length === 1 ? careerEvent.attributes[0] : undefined,

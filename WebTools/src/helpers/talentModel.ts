@@ -34,7 +34,7 @@ export class TalentModel implements ITalent {
         } else {
             let species = Object.keys(Species).filter((item) =>
                     !isNaN(Number(item)) && Species[item] === category);
-            if (species?.length == 0) {
+            if (species?.length === 0) {
                 console.log("Talent category " + category);
             } else {
                 this.category = new TalentCategorization(TalentCategory.Species, parseInt(species[0]));

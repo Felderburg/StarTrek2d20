@@ -1057,8 +1057,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 imp.valuesUsed?.forEach((v,l) => {
                     if (v.useType === ValueUseType.Challenged && v.newValue?.length) {
                         let index = -1;
-                        result.forEach((v,l) => {
-                            if (v.value === v.value) {
+                        result.forEach((r,l) => {
+                            if (r.value === v.value) {
                                 index = l;
                             }
                         });

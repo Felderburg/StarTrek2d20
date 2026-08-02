@@ -28,7 +28,7 @@ const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
             onSelection(undefined);
         }
 
-    }, [talents]);
+    }, [talents, selection, onSelection]);
 
     talents = talents.sort((t1, t2) => {
         if (t1.name === TALENT_NAME_CUSTOM_TALENT) {

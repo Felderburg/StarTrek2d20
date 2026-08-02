@@ -49,7 +49,7 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
         if (starship == null) {
             navigate("/");
         }
-    }, [starship]);
+    }, [starship, navigate]);
 
     const milestoneTypesDropDownItems = () => {
         let result = [];

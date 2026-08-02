@@ -18,7 +18,7 @@ const MajorNpcDepartmentView: React.FC<ICharacterProperties> = ({character}) => 
         if (!(character.npcGenerationStep?.departments?.filter(d => !d)?.length)) {
             store.dispatch(setNpcCharacterDepartments(NpcTypes.departmentPoints(character.npcGenerationStep?.type, true)));
         }
-    }, [])
+    }, [character.npcGenerationStep?.departments, character.npcGenerationStep?.type])
 
 
     const getDepartment = (department: Department) => {

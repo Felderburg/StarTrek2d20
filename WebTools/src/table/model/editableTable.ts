@@ -139,12 +139,12 @@ export class EditableTable {
         let done = false;
         while (!done) {
             done = true;
-            this.rows.forEach(r => {
+            for (const r of this.rows) {
                 if (r.result.name === ("Option " + this.suffixValue)) {
                     this.suffixValue += 1;
                     done = false;
                 }
-            })
+            }
         }
     }
 

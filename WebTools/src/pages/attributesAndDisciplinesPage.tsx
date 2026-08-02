@@ -121,7 +121,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
         if (character.finishingStep == null) {
             store.dispatch(setCharacterFinishingTouches());
         }
-    }, []);
+    }, [character.finishingStep]);
 
 
     let value = (character.type !== CharacterType.Child && character.type !== CharacterType.Cadet)

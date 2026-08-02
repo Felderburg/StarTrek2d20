@@ -56,7 +56,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({character}) => {
                 }
             }
         }
-    }, [currentRole]);
+    }, [currentRole, character, roleList, rankList]);
 
     const showViewPage = () => {
         setTimeout(() => {
