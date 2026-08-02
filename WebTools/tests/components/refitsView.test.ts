@@ -1,5 +1,5 @@
 import { test, expect, describe, jest } from '@jest/globals'
-import { RefitsView, Refit } from '../../src/components/refitsView';
+import { RefitsView } from '../../src/components/refitsView';
 import { System } from '../../src/helpers/systems';
 
 function createMockStarship(baseValues: number[], currentValues: number[]) {
