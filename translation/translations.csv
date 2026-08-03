@@ -3609,6 +3609,7 @@ StationFrame.federationSubspaceCommunicationsRelay,Federation Subspace Communica
 StationFrame.custom,Custom,,,,,,,
 StationFrameAppearance.internationalSpaceStation,International Space Station,,,,,,,
 StationFrameAppearance.drydock,Drydock,,,,,,,
+StationFrameAppearance.fontanaStation,Fontana Station,,,,,,,
 StationFrameAppearance.kClassBorderOutpost,K-Class Border Outpost,,,,,,,
 StationFrameAppearance.regulaClassMultipurposeStation,Regula-Class Multipurpose Station,,,,,,,
 StationFrameAppearance.spacedock,Spacedock,,,,,,,

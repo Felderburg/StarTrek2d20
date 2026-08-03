@@ -144,7 +144,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({mode = AddWeaponMode
             <p>What type of technology is used to capture/ensnare other vessels?</p>
             <DropDownSelect
                 items={ getCaptureTypes().map(t => new DropDownElement(t.type, t.description)) }
-                defaultValue={ loadType?.description }
+                defaultValue={ loadType?.type }
                 onChange={(index) => selectLoadType(CaptureTypeModel.getCaptureTypeModelByType(index as CaptureType)) }/>
         </div>);
     } else if (weaponType?.type === WeaponType.MINE) {

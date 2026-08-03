@@ -20,6 +20,7 @@ export enum StationFrameAppearance {
     VanguardType,
     StarbaseOneType,
     RegulaClassMultipurposeStation,
+    FontanaStation,
     JupiterStation,
     Spacedock,
     SpacedockRevised,
