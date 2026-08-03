@@ -240,6 +240,20 @@ const starshipReducer = (state: StarshipState = { starship: undefined, workflow:
         case SET_STARSHIP_MISSION_POD: {
             let s = state.starship.copy();
             s.missionPodModel = action.payload.missionPod;
+            if (s.missionPodModel == null) {
+                s.missionPodReplacements = [];
+            } else {
+                let replacements = (action.payload.replacements ?? []).map(r => r?.copy());
+                while (replacements.length < s.missionPodModel.talents.length) {
+                    replacements.push(undefined);
+                }
+                s.missionPodReplacements = replacements;
+            }
+            if (s.missionPodModel) {
+                const podTalentNames = s.missionPodModel.talents.map(t => t.name);
+                s.additionalTalents = s.additionalTalents.filter(t => !podTalentNames.includes(t.name));
+                s.pruneExcessTalents();
+            }
             return {
                 ...state,
                 starship: s

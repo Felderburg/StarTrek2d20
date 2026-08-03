@@ -9,6 +9,7 @@ import { nextStarshipWorkflowStep, setStarshipMissionPod } from "../../state/sta
 import store from "../../state/store";
 import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
 import MissionPodSelection from "../view/missionPodSelection";
+import MissionPodReplacementSelection from "../view/missionPodReplacementSelection";
 import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
 import { withTranslation, WithTranslation } from 'react-i18next';
 
@@ -29,6 +30,7 @@ class MissionPodSelectionPage extends React.Component<IMissionPodSelectionPagePr
                 initialSelection={this.props.starship.missionPodModel}
                 starship={this.props.starship}
                 onSelection={(missionPod) => store.dispatch(setStarshipMissionPod(missionPod))} />
+            <MissionPodReplacementSelection starship={this.props.starship} />
             <div className="text-end mt-4">
                 <Button onClick={() => this.nextPage()}>{t('Common.button.next')}</Button>
             </div>
@@ -39,6 +41,8 @@ class MissionPodSelectionPage extends React.Component<IMissionPodSelectionPagePr
         const { t } = this.props;
         if (this.props.starship.missionPodModel == null) {
             Dialog.show(t('MissionPodSelectionPage.errorNoSelection'));
+        } else if (this.props.starship.hasUnreplacedMissionPodOverlaps()) {
+            Dialog.show(t('MissionPodReplacement.errorMissing'));
         } else {
             let step = this.props.workflow.peekNextStep();
             store.dispatch(nextStarshipWorkflowStep());

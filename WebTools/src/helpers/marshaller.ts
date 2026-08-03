@@ -1049,6 +1049,9 @@ class Marshaller {
             sheet['missionPod'] = {
                 "name": MissionPod[starship.missionPodModel.id]
             }
+            if (starship.missionPodReplacements?.length) {
+                sheet['missionPod']['replacements'] = starship.missionPodReplacements.map(r => r == null ? null : this.talentToJson(r));
+            }
         }
         if (starship.serviceRecordStep) {
             sheet["serviceRecord"] = {
@@ -1344,6 +1347,9 @@ class Marshaller {
         }
         if (json.missionPod) {
             result.missionPodModel = MissionPodHelper.instance().getMissionPodByName(json.missionPod.name, result.version);
+            if (json.missionPod.replacements?.length) {
+                result.missionPodReplacements = json.missionPod.replacements.map(t => t == null ? undefined : this.hydrateTalent(t, result.version));
+            }
         }
         if (json.serviceRecord) {
             let types = allServiceRecords().filter(t => ServiceRecord[t] === json.serviceRecord.type);

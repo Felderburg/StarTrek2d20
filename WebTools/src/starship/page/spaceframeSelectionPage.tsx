@@ -73,8 +73,6 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
                 Dialog.show("Please select a spaceframe before proceeding.");
             } else if (requiresDedicatedPersonnelSelection() || requiresRedundantSystemsSelection()) {
                 Navigation.navigateToPage(PageIdentity.ExtraStarshipTalentChoice);
-            } else if (starship.spaceframeModel.isMissionPodAvailable) {
-                Navigation.navigateToPage(PageIdentity.MissionPodSelection);
             } else {
                 let step = workflow.peekNextStep();
                 store.dispatch(nextStarshipWorkflowStep());

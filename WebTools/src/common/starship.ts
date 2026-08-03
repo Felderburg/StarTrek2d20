@@ -4,7 +4,7 @@ import { MissionPodModel } from "../helpers/missionPods";
 import { MissionProfileModel } from "../helpers/missionProfiles";
 import { SpaceframeModel } from "../helpers/spaceframeModel";
 import { allSystems, System } from "../helpers/systems";
-import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MINELAYER, TALENT_NAME_MISSION_POD } from "../helpers/talents";
+import { TALENT_NAME_ABLATIVE_ARMOUR, TALENT_NAME_ABUNDANT_PERSONNEL, TALENT_NAME_IMPROVED_HULL_INTEGRITY, TALENT_NAME_MINELAYER, TALENT_NAME_MISSION_POD, TalentsHelper } from "../helpers/talents";
 import StarshipWeaponRegistry, { Weapon, WeaponType } from "../helpers/weapons";
 import { CharacterType } from "./characterType";
 import { Construct, Stereotype } from "./construct";
@@ -197,6 +197,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     serviceYear?: number;
     spaceframeStep?: SpaceframeStep;
     missionPodModel?: MissionPodModel;
+    missionPodReplacements: (SelectedTalent|undefined)[] = [];
     missionProfileStep?: MissionProfileStep;
     additionalTalents: SelectedTalent[] = [];
     refits: System[] = [];
@@ -235,6 +236,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         this.spaceframeStep = new SpaceframeStep(spaceframe);
         if (!spaceframe?.isMissionPodAvailable) {
             this.missionPodModel = undefined;
+            this.missionPodReplacements = [];
         }
         if (original?.model?.isCustom && spaceframe.isCustom && original?.appearance != null) {
             this.spaceframeStep.appearance = original.appearance;
@@ -490,6 +492,51 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         }
     }
 
+    getMissionPodOverlapTalents() {
+        const grantedTalentNames = new Set<string>();
+        if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
+            this.spaceframeModel.talentsEffectiveForDate(this.serviceYear).forEach(t => grantedTalentNames.add(t.name));
+        }
+        if (this.missionProfileStep?.talent && this.stereotype !== Stereotype.SoloStarship) {
+            grantedTalentNames.add(this.missionProfileStep.talent.name);
+        }
+
+        let result: SelectedTalent[] = [];
+        this.missionPodModel?.talents.forEach(t => {
+            if (grantedTalentNames.has(t.name)) {
+                result.push(t instanceof SelectedTalent ? t as SelectedTalent : new SelectedTalent(t.name));
+            }
+        });
+        return result;
+    }
+
+    getValidMissionPodReplacementTalents() {
+        if (!this.getMissionPodOverlapTalents().length) {
+            return [];
+        }
+
+        const grantedTalentNames = new Set<string>();
+        this.talentsWithoutAdditional.forEach(t => grantedTalentNames.add(t.name));
+        this.additionalTalents.forEach(t => grantedTalentNames.add(t.name));
+
+        this.missionPodReplacements.forEach(r => {
+            if (r != null) {
+                grantedTalentNames.delete(r.name);
+            }
+        });
+
+        return TalentsHelper.getStarshipOrStationTalents(this, true)
+            .filter(t => !t.isSpecialRule(this.version))
+            .filter(t => !grantedTalentNames.has(t.name));
+    }
+
+    hasUnreplacedMissionPodOverlaps() {
+        return this.getMissionPodOverlapTalents().some(t => {
+            const index = this.missionPodModel?.talents.findIndex(p => p.name === t.name) ?? -1;
+            return index >= 0 && this.missionPodReplacements?.[index] == null;
+        });
+    }
+
     get talentsWithoutAdditional() {
         let result: SelectedTalent[] = [];
         if (this.spaceframeModel && this.stereotype !== Stereotype.SoloStarship) {
@@ -514,8 +561,14 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         }
 
         if (this.missionPodModel && this.stereotype !== Stereotype.SoloStarship) {
-            this.missionPodModel.talents.forEach(t => {
-                if (t instanceof SelectedTalent) {
+            const overlappingTalentNames = this.getMissionPodOverlapTalents().map(t => t.name);
+            this.missionPodModel.talents.forEach((t, i) => {
+                if (overlappingTalentNames.includes(t.name)) {
+                    let replacement = this.missionPodReplacements[i];
+                    if (replacement != null) {
+                        result.push(replacement);
+                    }
+                } else if (t instanceof SelectedTalent) {
                     result.push(t as SelectedTalent);
                 } else {
                     result.push(new SelectedTalent(t.name));
@@ -882,6 +935,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
         result.serviceYear = this.serviceYear;
         result.spaceframeStep = this.spaceframeStep?.copy();
         result.missionPodModel = this.missionPodModel;
+        result.missionPodReplacements = this.missionPodReplacements.map(r => r?.copy());
         result.missionProfileStep = this.missionProfileStep?.copy();
         result.additionalTalents = [...this.additionalTalents];
         result.refits = [...this.refits];
