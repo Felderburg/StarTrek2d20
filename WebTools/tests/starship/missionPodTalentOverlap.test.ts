@@ -6,6 +6,7 @@ import { Era } from '../../src/helpers/erasEnum';
 import MissionProfiles from '../../src/helpers/missionProfiles';
 import { MissionPodHelper } from '../../src/helpers/missionPods';
 import { SelectedTalent } from '../../src/common/selectedTalent';
+import { marshaller } from '../../src/helpers/marshaller';
 
 jest.mock('i18next', () => {
     const mockI18n: any = (key: string) => key;
@@ -34,12 +35,12 @@ function shipWithRuggedDesignFromProfileAndPod() {
     return starship;
 }
 
-describe('Mission pod and mission profile talent overlap (#112)', () => {
-    test('a Mobile Drydock pod and a Logistical/Quartermaster profile both grant Rugged Design', () => {
+describe('Mission pod and mission profile talent overlap (#345)', () => {
+    test('an overlapping mission pod talent is not granted twice', () => {
         const starship = shipWithRuggedDesignFromProfileAndPod();
 
         const ruggedDesign = starship.talentsWithoutAdditional.filter(s => s.talent === 'Rugged Design');
-        expect(ruggedDesign.length).toBe(2);
+        expect(ruggedDesign.length).toBe(1);
     });
 
     test('Rugged Design is not offered again as an additional talent when already granted', () => {
@@ -49,5 +50,61 @@ describe('Mission pod and mission profile talent overlap (#112)', () => {
         const isOffered = count === 0;
 
         expect(isOffered).toBe(false);
+    });
+});
+
+describe('Mission pod talent replacement rule (#345)', () => {
+    test('an overlapping mission pod talent is dropped when no replacement is chosen', () => {
+        const starship = shipWithRuggedDesignFromProfileAndPod();
+
+        const ruggedDesign = starship.talentsWithoutAdditional.filter(s => s.talent === 'Rugged Design');
+        expect(ruggedDesign.length).toBe(1);
+    });
+
+    test('an overlapping mission pod talent is replaced when a replacement is chosen', () => {
+        const starship = shipWithRuggedDesignFromProfileAndPod();
+        const replacement = new SelectedTalent(starship.getValidMissionPodReplacementTalents()[0].name);
+
+        starship.missionPodReplacements[1] = replacement;
+
+        const ruggedDesign = starship.talentsWithoutAdditional.filter(s => s.talent === 'Rugged Design');
+        expect(ruggedDesign.length).toBe(1);
+        expect(starship.talentsWithoutAdditional.filter(s => s.name === replacement.name).length).toBe(1);
+    });
+
+    test('overlapping mission pod talents are identified', () => {
+        const starship = shipWithRuggedDesignFromProfileAndPod();
+
+        const overlaps = starship.getMissionPodOverlapTalents();
+        expect(overlaps.map(t => t.name)).toEqual(['Rugged Design']);
+    });
+
+    test('the replacement pool excludes already-granted talents and special rules', () => {
+        const starship = shipWithRuggedDesignFromProfileAndPod();
+
+        const pool = starship.getValidMissionPodReplacementTalents();
+        expect(pool.length).toBeGreaterThan(0);
+        expect(pool.some(t => t.name === 'Rugged Design')).toBe(false);
+        expect(pool.some(t => t.isSpecialRule(2))).toBe(false);
+    });
+
+    test('a ship with an unreplaced overlap cannot proceed until a replacement is chosen', () => {
+        const starship = shipWithRuggedDesignFromProfileAndPod();
+        expect(starship.hasUnreplacedMissionPodOverlaps()).toBe(true);
+
+        starship.missionPodReplacements[1] = new SelectedTalent(starship.getValidMissionPodReplacementTalents()[0].name);
+        expect(starship.hasUnreplacedMissionPodOverlaps()).toBe(false);
+    });
+
+    test('mission pod replacements survive an encode/decode round-trip', () => {
+        const starship = shipWithRuggedDesignFromProfileAndPod();
+        const replacement = new SelectedTalent(starship.getValidMissionPodReplacementTalents()[0].name);
+        starship.missionPodReplacements[1] = replacement;
+
+        const encoded = marshaller.encodeStarship(starship);
+        const decoded = marshaller.decodeStarship(encoded);
+
+        expect(decoded.missionPodModel?.name).toBe('Mobile Drydock');
+        expect(decoded.missionPodReplacements?.[1]?.name).toBe(replacement.name);
     });
 });

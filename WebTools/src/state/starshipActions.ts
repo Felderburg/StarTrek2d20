@@ -163,8 +163,8 @@ export function setStarshipMissionProfileTalent(talent: SelectedTalent) {
     }
 }
 
-export function setStarshipMissionPod(missionPod: MissionPodModel) {
-    let payload = { missionPod: missionPod };
+export function setStarshipMissionPod(missionPod: MissionPodModel, replacements?: (SelectedTalent|undefined)[]) {
+    let payload = { missionPod: missionPod, replacements: replacements ?? [] };
     return {
        type: SET_STARSHIP_MISSION_POD,
        payload: payload

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import { PageIdentity } from '../../pages/pageIdentity';
 import { Navigation } from '../../common/navigator';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
@@ -39,8 +38,6 @@ const ExtraStarshipTalentChoicesPage : React.FC<IExtraStarshipTalentChoicesPrope
             Dialog.show(t('Common.error.system'));
         } else if (selection.name === TALENT_NAME_DEDICATED_PERSONNEL && selection.department == null) {
             Dialog.show(t('Common.error.department'));
-        } else if (starship.spaceframeModel.isMissionPodAvailable) {
-            Navigation.navigateToPage(PageIdentity.MissionPodSelection);
         } else {
             let step = workflow.peekNextStep();
             store.dispatch(nextStarshipWorkflowStep());

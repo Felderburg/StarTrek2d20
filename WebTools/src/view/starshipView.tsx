@@ -107,6 +107,12 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
         navigate("/modify/starship");
     }
 
+    function navigateToMissionPodSwap() {
+        const hash = cyrb53(originalEncodedSheet());
+        store.dispatch(createStarship(starship, hash));
+        navigate("/modify/starship/pod");
+    }
+
     const { t } = useTranslation();
 
     let name = "";
@@ -199,10 +205,12 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
                 <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
             </div>
 
-            {starship.version === 1 ? undefined :
+            {starship.spaceframeModel?.isMissionPodAvailable || starship.version > 1 ?
             (<div className="mt-5 mb-3">
-                <Button size="sm" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>
-            </div>)}
+                {starship.spaceframeModel?.isMissionPodAvailable ? (<Button size="sm" className="me-3" onClick={() => navigateToMissionPodSwap() }>{t('Common.button.swapMissionPod')}</Button>) : undefined}
+                {starship.version === 1 ? undefined :
+                (<Button size="sm" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>)}
+            </div>) : undefined}
         </div>)
 
     </main>);

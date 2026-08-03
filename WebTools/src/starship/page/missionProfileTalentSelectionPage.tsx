@@ -21,6 +21,7 @@ import { CheckBox } from "../../components/checkBox";
 import { SelectedTalent } from "../../common/selectedTalent";
 import SingleTalentSelectionList from "../../components/singleTalentSelectionList";
 import { RankedTalent } from "../../helpers/rankedTalent";
+import { PageIdentity } from "../../pages/pageIdentity";
 
 interface IMissionProfileTalentSelectionPageProperties {
     starship: Starship;
@@ -58,6 +59,8 @@ const MissionProfileTalentSelectionPage: React.FC<IMissionProfileTalentSelection
             Dialog.show(t('MissionProfileTalentSelection.error.talent'));
         } else if (starship.version > 1 && starship.missionProfileStep?.system == null) {
             Dialog.show(t("MissionProfileTalentSelection.error.system"));
+        } else if (starship.spaceframeModel?.isMissionPodAvailable) {
+            Navigation.navigateToPage(PageIdentity.MissionPodSelection);
         } else {
             let step = workflow.peekNextStep();
             store.dispatch(nextStarshipWorkflowStep());

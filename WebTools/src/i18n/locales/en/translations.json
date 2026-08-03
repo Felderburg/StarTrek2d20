@@ -279,6 +279,14 @@
     "MissionPodSelectionPage.text": "Certain spaceframes have the ability to be fitted with a single mission pod, chosen from the list below. The talents provided by the pod may not be swapped out normally, but the entire mission pod (and all its benefits) may be swapped out as if it were a single talent.",
     "MissionPodSelectionPage.errorNoSelection": "Please select a mission pod before proceeding.",
 
+    "MissionPodReplacement.title": "Replace Overlapping Mission Pod Talent",
+    "MissionPodReplacement.instruction": "The mission pod provides a talent that the spaceframe or mission profile already grants. That talent is lost, so choose a replacement talent that the ship meets the requirements for.",
+    "MissionPodReplacement.forTalent": "Replacement for {{talent}}:",
+    "MissionPodReplacement.errorMissing": "Please choose a replacement talent for every talent the mission pod duplicates.",
+
+    "SwapMissionPodPage.instruction": "Swap the ship's current mission pod for a new one. The new pod's benefits replace the old pod's, and any talent it duplicates (from the spaceframe or mission profile) must be replaced with another talent.",
+    "SwapMissionPodPage.errorNoSelection": "Please select a mission pod before proceeding.",
+
     "MissionProfileSelectionPage.text": "A mission profile is what makes one starship different from another in her same class. It determines the specialized equipment that is installed before venturing into the unknown, the priority in personnel that Starfleet gives the vessel, and its overall mission goal. All spaceframes have a mission profile.",
     "MissionProfileSelectionPage.errorNoSelection": "Please select a mission profile before proceeding.",
 
@@ -624,6 +632,7 @@
     "Common.button.create": "Create",
     "Common.button.delete": "Delete",
     "Common.button.modify": "Modify",
+    "Common.button.swapMissionPod": "Swap Mission Pod",
     "Common.button.next": "Next",
     "Common.button.previous": "Previous",
     "Common.button.save": "Save",
@@ -834,6 +843,7 @@
     "Page.title.home": "Home",
     "Page.title.modifySupportingCharacter": "Modify Supporting Character",
     "Page.title.modifyStarship": "Modify Starship",
+    "Page.title.swapMissionPod": "Swap Mission Pod",
     "Page.title.missionPodSelection": "Mission Pod Selection",
     "Page.title.missionProfileSelection": "Mission Profile Selection",
     "Page.title.missionProfileTalentSelection": "Mission Profile Talent",
