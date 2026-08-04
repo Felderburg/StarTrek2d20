@@ -200,7 +200,7 @@ export const UntappedPotentialSelectionView: React.FC<ITalentAttributeSelectionP
         </div>
     );
 }
-export const DefensiveTrainingAttackTypeSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, character, initialSelection}) => {
+export const DefensiveTrainingAttackTypeSelectionView: React.FC<ITalentAdditionalSelectionProperties> = ({onSelection, simpleHeader, initialSelection}) => {
 
     const { t } = useTranslation();
     const [ attackTypeSelection, setAttackTypeSelection ] = useState<AttackType|undefined>(initialSelection as AttackType);
@@ -214,7 +214,9 @@ export const DefensiveTrainingAttackTypeSelectionView: React.FC<ITalentAdditiona
 
     return (
         <div>
-            <Header level={2} className="my-4">{t('Talent.defensiveTraining')}</Header>
+            {simpleHeader
+                ? (<Header level={3} className="my-4">{t('Construct.other.attackType')}</Header>)
+                : (<Header level={2} className="my-4">{t('Talent.defensiveTraining')}</Header>)}
             <DropDownSelect items={options()}
                 defaultValue={attackTypeSelection ?? ""}
                 onChange={(value) => {
