@@ -105,11 +105,14 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({starship}) => {
             if (advancementType === CharacterAdvancementType.Milestone) {
                 if (selectedTalent == null || removedTalentIndex == null) {
                     Dialog.show(t('ModifyStarshipPage.error.twoTalents'));
-                } else if (determineSelectedTalentExtraErrors(selectedTalent) != null) {
-                    Dialog.show(determineSelectedTalentExtraErrors(selectedTalent, starship));
                 } else {
-                    store.dispatch(modifyStarshipAddAdvancement(choice, selectedTalent, starship.talentsWithoutSpecialRules[removedTalentIndex]));
-                    nextStep();
+                    const talentError = determineSelectedTalentExtraErrors(selectedTalent, starship);
+                    if (talentError != null) {
+                        Dialog.show(talentError);
+                    } else {
+                        store.dispatch(modifyStarshipAddAdvancement(choice, selectedTalent, starship.talentsWithoutSpecialRules[removedTalentIndex]));
+                        nextStep();
+                    }
                 }
             } else {
                 if (selectedTalent == null) {
