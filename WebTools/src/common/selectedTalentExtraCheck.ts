@@ -47,7 +47,7 @@ export const determineSelectedTalentExtraErrors = (talent: SelectedTalent, const
     } else if (talent?.talent === TALENT_NAME_EXPANDED_MUNITIONS && talent.weapon == null) {
         return i18next.t("Talent.expandedMunitions.error");
     } else if (talent?.talent === TALENT_NAME_EXPANDED_MUNITIONS) {
-        const minelayer = (construct as Starship).isMineLayer;
+        const minelayer = (construct as Starship)?.isMineLayer;
         if (!minelayer && talent.weapon instanceof Weapon && (talent.weapon as Weapon).type === WeaponType.MINE) {
             return i18next.t("Talent.expandedMunitions.errorMines");
         } else {
