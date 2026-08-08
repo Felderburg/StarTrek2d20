@@ -1,4 +1,4 @@
-﻿import i18next from 'i18next';
+import i18next from 'i18next';
 import { CharacterType } from '../common/characterType';
 import { makeKey } from '../common/translationKey';
 import {Attribute} from './attributes';

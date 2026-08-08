@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Character } from '../common/character';
 import {CharacterType, CharacterTypeModel } from '../common/characterType';
 import {SpeciesHelper} from '../helpers/species';

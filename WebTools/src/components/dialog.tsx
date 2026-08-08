@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { createRoot } from 'react-dom/client';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';

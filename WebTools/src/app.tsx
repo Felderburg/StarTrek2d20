@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {Helmet} from "@dr.pogodin/react-helmet";
 import { Events, EventIdentity } from './common/eventChannel';
 import { PageFactory } from './pages/pageFactory';

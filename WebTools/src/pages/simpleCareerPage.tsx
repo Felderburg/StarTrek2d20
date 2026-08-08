@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {Navigation} from '../common/navigator';
 import Button from 'react-bootstrap/Button';
 import {TalentDescription} from '../components/talentDescription';

@@ -1,4 +1,4 @@
-﻿import {Character} from './character';
+import {Character} from './character';
 import { CharacterType } from '../common/characterType';
 import {SpeciesHelper} from '../helpers/species';
 import {EnvironmentsHelper, Environment} from '../helpers/environments';

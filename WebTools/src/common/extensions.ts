@@ -1,4 +1,4 @@
-﻿export function CopyObject(target: {}, ...sources: Array<{}>) {
+export function CopyObject(target: {}, ...sources: Array<{}>) {
     if (target === undefined || target === null) {
         throw new TypeError('CopyObject failed due to inconsistent cast.');
     }

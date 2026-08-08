@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import i18n from 'i18next';
 import {Character} from '../common/character';
 import {Attribute} from '../helpers/attributes';

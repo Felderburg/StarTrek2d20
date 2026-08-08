@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {PageIdentity} from './pageIdentity';
 import MixedSpeciesSelection from '../components/mixedSpeciesSelection';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Window } from '../common/window';

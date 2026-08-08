@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {SpeciesHelper} from '../helpers/species';
 import {Attribute, AttributesHelper} from '../helpers/attributes';
 import {CheckBox} from '../components/checkBox';

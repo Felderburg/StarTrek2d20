@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {CheckBox} from './checkBox';
 import {TalentModel} from '../helpers/talentModel';
 import {TALENT_NAME_CUSTOM_TALENT} from '../helpers/talents';

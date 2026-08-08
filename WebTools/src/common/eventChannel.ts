@@ -1,4 +1,4 @@
-﻿export enum EventIdentity {
+export enum EventIdentity {
     ShowPage,
     HistoryBack,
     UpdateCharacter

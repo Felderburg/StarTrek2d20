@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {AlliedMilitaryDetails, Character} from '../common/character';
 import {CharacterType} from '../common/characterType';
 import Button from 'react-bootstrap/Button';

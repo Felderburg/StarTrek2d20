@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Department, DepartmentsHelper } from '../helpers/department';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';

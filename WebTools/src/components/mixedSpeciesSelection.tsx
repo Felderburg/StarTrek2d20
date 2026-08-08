@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {Window} from '../common/window';
 import {SpeciesHelper} from '../helpers/species';
 import {AttributesHelper} from '../helpers/attributes';

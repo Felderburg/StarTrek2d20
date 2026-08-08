@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {TrackModel, TracksHelper} from '../helpers/tracks';

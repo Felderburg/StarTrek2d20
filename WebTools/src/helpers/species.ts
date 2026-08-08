@@ -1,4 +1,4 @@
-﻿import { Attribute, AttributesHelper } from './attributes';
+import { Attribute, AttributesHelper } from './attributes';
 import { TalentsHelper } from './talents';
 import { AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';

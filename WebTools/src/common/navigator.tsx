@@ -1,4 +1,4 @@
-﻿import { PageIdentity } from '../pages/pageIdentity';
+import { PageIdentity } from '../pages/pageIdentity';
 import { Events, EventIdentity } from './eventChannel';
 
 export class Navigator {
