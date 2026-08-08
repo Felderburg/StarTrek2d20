@@ -6,7 +6,8 @@ import { RankedTalent } from './rankedTalent';
 import { TALENT_NAME_BRAK_LUL, TalentsHelper } from './talents';
 
 export function getEarlyOutlookTalents(character: Character): RankedTalent[] {
-    if (character.type === CharacterType.KlingonWarrior && character.speciesStep?.species === Species.Klingon && character.version === 1) {
+    if (character.type === CharacterType.KlingonWarrior && character.speciesStep?.species === Species.Klingon
+            && character.version === 1 && !character.hasTalent(TALENT_NAME_BRAK_LUL)) {
         return [ new RankedTalent( TalentsHelper.getTalent(TALENT_NAME_BRAK_LUL)) ];
     } else {
         return TalentsHelper.getAllAvailableTalentsForCharacter(character)

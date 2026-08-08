@@ -36,10 +36,10 @@ describe('Early outlook talents for a 1st-edition Klingon Warrior', () => {
         expect(talents[0].name).toBe(TALENT_NAME_BRAK_LUL);
     });
 
-    test('still forces Brak’lul when it has already been selected', () => {
+    test('does not force Brak’lul when it has already been selected', () => {
         const character = klingonWarriorHelper(true);
         const talents = getEarlyOutlookTalents(character);
-        expect(talents).toHaveLength(1);
-        expect(talents[0].name).toBe(TALENT_NAME_BRAK_LUL);
+        expect(talents.some(t => t.name === TALENT_NAME_BRAK_LUL)).toBe(false);
+        expect(talents.length).toBeGreaterThan(1);
     });
 });
