@@ -1,4 +1,4 @@
-﻿import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {CareerEventModel, CareerEventsHelper} from '../helpers/careerEvents';

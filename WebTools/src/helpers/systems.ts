@@ -1,4 +1,4 @@
-﻿export enum System {
+export enum System {
     Comms,
     Computer,
     Engines,

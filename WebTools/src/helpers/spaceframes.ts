@@ -1,4 +1,4 @@
-﻿import { Character } from '../common/character';
+import { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';

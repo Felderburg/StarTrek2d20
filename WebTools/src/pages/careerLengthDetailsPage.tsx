@@ -1,4 +1,4 @@
-﻿import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {CareerModel, CareersHelper} from '../helpers/careers';

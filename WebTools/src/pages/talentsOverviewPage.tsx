@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { DropDownElement, DropDownSelect } from "../components/dropDownInput";
 import { Department } from "../helpers/department";
 import { TalentModel } from "../helpers/talentModel";

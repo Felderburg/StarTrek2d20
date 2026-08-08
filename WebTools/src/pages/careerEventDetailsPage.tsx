@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {Navigation} from '../common/navigator';
 import {PageIdentity} from './pageIdentity';
 import {CareerEventsHelper} from '../helpers/careerEvents';

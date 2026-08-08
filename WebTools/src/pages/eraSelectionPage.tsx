@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {Era} from '../helpers/erasEnum';
 import Eras from '../helpers/eras';
 import {navigateTo, Navigation} from '../common/navigator';

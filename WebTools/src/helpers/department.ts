@@ -1,4 +1,4 @@
-﻿export enum Department {
+export enum Department {
     Command,
     Conn,
     Security,

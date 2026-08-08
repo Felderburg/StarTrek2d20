@@ -1,4 +1,4 @@
-﻿System.config({
+System.config({
     baseURL: "/",
     defaultJSExtensions: true,
     transpiler: false,

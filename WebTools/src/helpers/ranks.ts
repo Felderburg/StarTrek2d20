@@ -1,4 +1,4 @@
-﻿import {Career} from './careerEnum';
+import {Career} from './careerEnum';
 import {Role} from './roles';
 import {Era} from './erasEnum';
 import {Source} from './sources';

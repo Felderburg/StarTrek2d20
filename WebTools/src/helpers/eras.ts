@@ -1,4 +1,4 @@
-﻿import i18n from "i18next";
+import i18n from "i18next";
 import { makeKey } from "../common/translationKey";
 import { isSecondEdition } from "../state/contextFunctions";
 import { Era } from "./erasEnum";

@@ -1,4 +1,4 @@
-﻿export class DiceRollResult {
+export class DiceRollResult {
     targetValue: number;
     numDice: number;
     difficulty: number;

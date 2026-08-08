@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import {Character} from '../common/character';
 import { CharacterType } from '../common/characterType';
 import {navigateTo, Navigation} from '../common/navigator';

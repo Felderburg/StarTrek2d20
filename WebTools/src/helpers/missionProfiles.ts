@@ -1,4 +1,4 @@
-﻿import i18next from 'i18next';
+import i18next from 'i18next';
 import { CharacterType } from '../common/characterType';
 import { Starship } from '../common/starship';
 import { IConstructPrerequisite, SourcePrerequisite } from './prerequisite';

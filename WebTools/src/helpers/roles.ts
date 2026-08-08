@@ -1,4 +1,4 @@
-﻿import {DepartmentsHelper, Department} from './department';
+import {DepartmentsHelper, Department} from './department';
 import {Source} from './sources';
 import {Character} from '../common/character';
 import { CharacterType } from '../common/characterType';

@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {Navigation} from '../common/navigator';
 import {AttributesHelper} from '../helpers/attributes';
 import {AttributeView} from '../components/attribute';

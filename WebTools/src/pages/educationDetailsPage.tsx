@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {CharacterType} from '../common/characterType';
 import {Navigation} from '../common/navigator';
 import {TrackModel, TracksHelper} from '../helpers/tracks';

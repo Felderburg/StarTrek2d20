@@ -1,4 +1,4 @@
-﻿import {Attribute, AttributesHelper} from './attributes';
+import {Attribute, AttributesHelper} from './attributes';
 import {Department} from './department';
 import {SpeciesHelper} from './species';
 import {Character } from '../common/character';

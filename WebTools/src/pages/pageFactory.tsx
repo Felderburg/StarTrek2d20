@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import EraSelectionPage from './eraSelectionPage';
 import ToolSelectionPage from './toolSelectionPage';
 import SpeciesPage from './speciesPage';

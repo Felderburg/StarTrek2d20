@@ -1,4 +1,4 @@
-﻿import {TalentsHelper} from './talents';
+import {TalentsHelper} from './talents';
 import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Career } from './careerEnum';
