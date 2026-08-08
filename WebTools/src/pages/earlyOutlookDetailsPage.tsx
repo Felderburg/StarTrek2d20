@@ -5,7 +5,6 @@ import {AttributeView} from '../components/attribute';
 import Button from 'react-bootstrap/Button';
 import {Dialog} from '../components/dialog';
 import {CheckBox} from '../components/checkBox';
-import { TALENT_NAME_BRAK_LUL, TalentsHelper } from '../helpers/talents';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import InstructionText from '../components/instructionText';
@@ -19,15 +18,13 @@ import { connect } from 'react-redux';
 import { EarlyOutlookDiscplineController } from '../components/earlyOutlookControllers';
 import DisciplineListComponent from '../components/disciplineListComponent';
 import { CharacterType } from '../common/characterType';
-import { Species } from '../helpers/speciesEnum';
 import { makeKey } from '../common/translationKey';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import TalentSettingsView from '../components/talentSettingsView';
 import { SelectedTalent } from '../common/selectedTalent';
 import { FocusSelectionView } from '../components/focusSelectionView';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
-import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
-import { RankedTalent } from '../helpers/rankedTalent';
+import { getEarlyOutlookTalents } from '../helpers/earlyOutlookTalents';
 
 const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -62,30 +59,6 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
         store.dispatch(addCharacterTalent(talent, StepContext.EarlyOutlook));
     }
 
-    const filterTalentList = (): RankedTalent[] => {
-        if (character.type === CharacterType.KlingonWarrior && character.speciesStep?.species === Species.Klingon && character.version === 1) {
-            return [ new RankedTalent( TalentsHelper.getTalent(TALENT_NAME_BRAK_LUL)) ];
-        } else {
-            return TalentsHelper.getAllAvailableTalentsForCharacter(character)
-                .filter(
-                    t => !character.hasTalent(t.name)
-                        || (character.upbringingStep?.talent?.talent === t.name)
-                        || t.maxRank > 1
-                        || isMultiSelectionTalent(t))
-                .map(t => {
-                    if (t.maxRank > 1) {
-                        if (character.upbringingStep?.talent?.talent === t.name) {
-                            return new RankedTalent(t, character.getRankForTalent(t.name));
-                        } else {
-                            return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
-                        }
-                    } else {
-                        return new RankedTalent(t);
-                    }
-                });
-        }
-    }
-
     const attributes = character.upbringingStep?.acceptedUpbringing
         ? (<div>
             <AttributeView name={t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(earlyOutlook.attributeAcceptPlus2))) } points={2} value={character.attributes[earlyOutlook.attributeAcceptPlus2]}/>
@@ -97,7 +70,7 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({character}) =>
         </div>);
 
 
-    let talents = filterTalentList()
+    let talents = getEarlyOutlookTalents(character)
 
     return (
         <div className="page container ms-0">
