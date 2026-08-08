@@ -10,6 +10,7 @@ class RegistryNumberGenerator {
         638: "Grissom",
         1031: "Discovery",
         1017: "Constellation",
+        1067: "Griffin",
         1227: "Shenzhou",
         1255: "Kerala",
         1309: "Gagarin",
@@ -26,6 +27,8 @@ class RegistryNumberGenerator {
         1975: "New Jersey",
         2000: "Excelsior",
         2893: "Stargazer",
+        10367: "Constance",
+        42037: "Excelsior",
         42296: "Hood",
         53847: "Pegasus",
         65420: "Phoenix",
@@ -42,9 +45,14 @@ class RegistryNumberGenerator {
         74913: "Prometheus",
         75567: "Cerritos",
         76884: "Protostar",
+        79520: "Intrepid",
+        80101: "Luna",
         80102: "Titan",
         82893: "Stargazer",
-        86505: "Zheng He"
+        86505: "Zheng He",
+        86516: "Cochrane",
+        92420: "Hikaru Sulu",
+        392023: "Athena"
     }
 
     serviceYearRegistryNumbers: { [year: number]: number } = {
@@ -59,7 +67,8 @@ class RegistryNumberGenerator {
         2385: 76800,
         2400: 82900,
         2409: 97000,
-        2450: 120000 // ??? Maybe ????
+        2450: 120000, // ??? Maybe ????
+        3195: 392000
     }
 
     generate(serviceYear: number, type: CharacterType, spaceframe: SpaceframeModel) {
