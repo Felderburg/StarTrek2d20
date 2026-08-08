@@ -989,9 +989,13 @@
 
     "CareerEvent.unofficial.31.name": "Służba na stacji kosmicznej",
 
+    "CareerEvent.unofficial.32.name": "Służba na planecie",
+
     "CareerEvent.unofficial.33.name": "Pozostawiona z tyłu",
 
     "CareerEvent.unofficial.34.name": "Kryzys rodzinny",
+
+    "CareerEvent.unofficial.35.name": "Pozytywna ocena pracy",
 
     "CareerEvent.unofficial.36.name": "Uwięzienie",
 
@@ -1001,11 +1005,21 @@
 
     "CareerEvent.unofficial.39.name": "Występy medialne",
 
+    "CareerEvent.unofficial.40.name": "Sekretna misja",
+
+    "CareerEvent.unofficial.41.name": "Służba w doku kosmicznym",
+
     "CareerEvent.unofficial.42.name": "Brakujące wspomnienia",
+
+    "CareerEvent.unofficial.43.name": "Praca jako nauczyciel",
+
+    "CareerEvent.unofficial.44.name": "Batalia prawna",
 
     "CareerEvent.unofficial.45.name": "Poddana kontroli umysłu",
 
     "CareerEvent.unofficial.46.name": "Niedopasowanie do grupy",
+
+    "CareerEvent.unofficial.47.name": "Wyjątkowa pamiątka",
 
     "CareerEvent.unofficial.48.name": "Misja w głębokiej przestrzeni kosmicznej",
 
@@ -1020,6 +1034,20 @@
     "CareerEvent.common.59.name": "Kontakt z anomalią temporalną",
 
     "CareerEvent.common.60.name": "Doświadczenie z alternatywnego wymiaru",
+
+    "CareerEvent.common.61.name": "Stypendium w elitarnej instytucji",
+
+    "CareerEvent.common.62.name": "Studia archeotechniczne",
+
+    "CareerEvent.common.63.name": "Badanie nowego rodzaju źródła mocy",
+
+    "CareerEvent.common.64.name": "Udział w katastrofie technicznej",
+
+    "CareerEvent.common.65.name": "Testy ulepszeń transporterów",
+
+    "CareerEvent.common.66.name": "Praca w Projekcie Transwarp",
+
+    "CareerEvent.common.67.name": "Misja kartograficzna",
 
     "CareerEvent.common.68.name": "Program wymiany kulturalnej",
 
@@ -1085,6 +1113,44 @@
 
     "EarlyOutlook.MilitaryOrExploration": "Gwiezdna Flota",
 
+    "Environment.common.anotherSpeciesWorld.name": "Świat innej cywilizacji",
+
+    "Environment.common.andoria23rd.name": "Andoria",
+
+    "Environment.common.betazed23rd.name": "Betazed",
+
+    "Environment.common.denobula23rd.name": "Denobula",
+
+    "Environment.common.earth23rd.name": "Ziemia",
+
+    "Environment.common.qonos23rd.name": "Qo'noS",
+
+    "Environment.common.risa23rd.name": "Risa",
+
+    "Environment.common.romulus23rd.name": "Romulus",
+
+    "Environment.common.tellarPrime23rd.name": "Tellar Prime",
+
+    "Environment.common.trill23rd.name": "Trill",
+
+    "Environment.common.vulcan23rd.name": "Wolkan",
+
+    "Environment.klingon.homeworld.name": "Qo'noS",
+
+    "Environment.klingon.anotherSpeciesWorld.name": "Świat innej cywilizacji",
+
+    "Environment.alternate.utopianParadise.name": "Utopijny raj",
+
+    "Environment.alternate.cosmopolitan.name": "Kosmpolityzm",
+
+    "Environment.alternate.rigorousDiscipline.name": "Ścisła dyscyplina",
+
+    "Environment.alternate.ascetismAndIntrospection.name": "Ascetyzm i introspekcja",
+
+    "Environment.alternate.struggleAndHardship.name": "Wyzwanie i niedostatek",
+
+    "Environment.alternate.occupationOrWar.name": "Okupacja lub wojna",
+
     "Environment.special.name": "{{name}} ({{species}})",
 
     "AlliedMilitaryType.name.maco": "MACO",
@@ -1105,6 +1171,8 @@
     "Division.command": "Dowodzenie",
     "Division.science": "Naukowy",
     "Division.operations": "Operacyjny",
+
+    "Division.academy.undeclared": "Ogólny",
 
     "Division.discovery23.medical": "Medyczny",
 
