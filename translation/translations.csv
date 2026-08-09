@@ -2521,6 +2521,7 @@ Source.type.crewBook,Crew Books,,Spielercharakter-Spielhilfen,Libros de Tripulac
 Source.type.campaignBook,Campaign Books,,Kampagnenbände,Libros de Campaña,Livres de Campagne,,Suplementos de Campanhas,Dodatki kampanijne
 Source.type.expansion,Expansion Books,,Wichtige Erweiterungsbände,Libros de Expansión,Livres d'Extensions,,Livros de Expansão Principais,Rozszerzenia
 Source.type.expansion2e,Expansion Books for 2E,,,,,,,Rozszerzenia (2. edycja)
+Source.type.eraBook,Era Book,,,,,,,
 Source.type.misc,Misc/Other Books,,Sonstige Bände,Varios/Otros Libros,Divers/Autres,,Misc/Outros Livros,Inne
 Source.type.unofficial,Unofficial Sources,,Inoffizielle Quellen,Fuentes No Oficiales,Sources non officielles,Неофициальные ресурсы,Fontes Não-Oficiais,Nieoficjalne (fanowskie) źródła
 Source.book.core,Core,,Grundregelwerk,Reglas Básicas,Règles de Base,Основная книга,Básico,Podręcznik główny
@@ -5105,6 +5106,8 @@ UniformEra.monsterMaroon,The Wrath of Khan,,Der Zorn des Khan,La Ira de Khan,La 
 UniformEra.nextGeneration,The Next Generation,,Das Nächste Jahrhundert,La Nueva Generación,The Next Generation,Новое поколение,A Nova Geração,
 UniformEra.originalSeries,Original Series,,Originalserie,Serie Original,Série originale,Оригинальные серии,Série Original,
 UniformEra.originalSeriesKlingon,Klingon (Original Series),,Klingonen (Originalserie),Klingon (Serie Original),Klingon (série originale),Клингон (Оригинальные серии),Klingon (Série Original),
+UniformEra.picardRomulanEvacuation,Picard/Prodigy (Romulan Evacuation),,,,,,,
+UniformEra.picard25,Picard (25th Century),,,,,,,
 UniformEra.prodigy,Prodigy,,,,,,,
 UniformEra.romulan,Romulan,,Romulaner,Romulano,Romulien,Ромуланец,Romulano,
 UniformEra.suliban,Suliban,,Suliban,Suliban,Suliban,Сулибан,Suliban,

@@ -35,6 +35,7 @@ export enum Source {
     Century23,
     SpeciesSourcebook,
     AlliesAndAdversaries,
+    Century24,
 
     ContinuingMissions,
 
@@ -49,6 +50,7 @@ export enum SourceType {
     CampaignBook,
     Expansion,
     Expansion2e,
+    EraBook,
     Misc,
     Unofficial
 }
@@ -94,6 +96,7 @@ class Sources {
     private types: SourceTypeModel[] = [
         new SourceTypeModel(SourceType.CoreBook, "Core Rulebooks"),
         new SourceTypeModel(SourceType.Expansion2e, "Expansion Books for 2E"),
+        new SourceTypeModel(SourceType.EraBook, "Era Books"),
         new SourceTypeModel(SourceType.Expansion, "Expansion Books"),
         new SourceTypeModel(SourceType.CrewBook, "Crew Books"),
         new SourceTypeModel(SourceType.QuadrantBook, "Quadrant Books"),
@@ -135,9 +138,10 @@ class Sources {
         [Source.GmToolkit2e]: new SourceViewModel(Source.GmToolkit2e, SourceType.Expansion2e, "GM Toolkit 2e", 2),
         [Source.TechnicalManual]: new SourceViewModel(Source.TechnicalManual, SourceType.Expansion2e, "Technical Manual", 2),
         [Source.ExplorationGuide]: new SourceViewModel(Source.ExplorationGuide, SourceType.Expansion2e, "Exploration Guide", 2),
-        [Source.Century23]: new SourceViewModel(Source.Century23, SourceType.Expansion2e, "23rd Century Campaign", 2, true),
+        [Source.Century23]: new SourceViewModel(Source.Century23, SourceType.EraBook, "23rd Century Campaign", 2, true),
         [Source.SpeciesSourcebook]: new SourceViewModel(Source.SpeciesSourcebook, SourceType.Expansion2e, "Species Sourcebook", 2, true),
         [Source.AlliesAndAdversaries]: new SourceViewModel(Source.AlliesAndAdversaries, SourceType.Expansion2e, "Allies and Adversaries", 2, false),
+        [Source.Century24]: new SourceViewModel(Source.Century24, SourceType.EraBook, "24th Century Campaign", 2, false),
     };
 
     getSources() {
