@@ -624,6 +624,7 @@ h2.header-text {
     margin-bottom: 4px;
 }
 
+.lcar-content-back,
 .lcar-content-history,
 .lcar-content-profile,
 .lcar-content-feedback,
@@ -658,6 +659,11 @@ h2.header-text {
         background-color: #9999FF !important;
         animation: fadein .5s ease;
         animation-delay: .4s !important;
+    }
+
+    .lcar-content-back {
+        padding: 3px 11px 8px 0px;
+        background-color: #99CCFF !important;
     }
 
     .lcar-content-credits {

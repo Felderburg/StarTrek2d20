@@ -1,14 +1,18 @@
 import React from 'react';
 import {Helmet} from "@dr.pogodin/react-helmet";
 import { Events, EventIdentity } from './common/eventChannel';
+import { popPage, pushPage, workflowStepIndexForPage } from './common/pageHistory';
 import { PageFactory } from './pages/pageFactory';
 import { PageIdentity } from './pages/pageIdentity';
 import LcarsFrame from './components/lcarsFrame';
+import { rewindToStarshipWorkflowStep } from './state/starshipActions';
+import store from './state/store';
 
 import './scss/main.scss';
 
 interface IAppState {
     activePage: PageIdentity;
+    pageHistory: PageIdentity[];
 }
 
 export class CharacterCreationApp extends React.Component<{}, IAppState> {
@@ -17,18 +21,19 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
         super(props);
 
         this.state = {
-            activePage: PageIdentity.Home
+            activePage: PageIdentity.Home,
+            pageHistory: []
         };
     }
 
     componentDidMount() {
 
         Events.listen(EventIdentity.ShowPage, (page: any) => {
-            this.activatePage(page as PageIdentity, false);
+            this.goForward(page as PageIdentity);
         });
 
         Events.listen(EventIdentity.HistoryBack, (page: any) => {
-            this.activatePage(page as PageIdentity, true);
+            this.goForward(page as PageIdentity);
         });
 
         document.title = "STAR TREK ADVENTURES";
@@ -38,9 +43,7 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
         Events.removeAllListeners();
     }
 
-    private activatePage(page: PageIdentity, isHistory: boolean) {
-        document.getElementById("app")!.scrollTop = 0;
-
+    private goForward(page: PageIdentity) {
         if (page === this.state.activePage || ([PageIdentity.CareerEvent1, PageIdentity.CareerEvent2].includes(page) && [PageIdentity.CareerEvent1, PageIdentity.CareerEvent2].includes(this.state.activePage))) {
             var pageComponent = document.getElementsByClassName('page')[0];
             pageComponent.classList.remove('page-out');
@@ -49,10 +52,38 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
             }
         }
 
+        this.activatePage(page, pushPage(this.state.pageHistory, this.state.activePage, page));
+    }
+
+    private goBack() {
+        const previous = popPage(this.state.pageHistory);
+        if (previous == null) {
+            return;
+        }
+
+        this.activatePage(previous.page, previous.history, true);
+    }
+
+    private activatePage(page: PageIdentity, pageHistory: PageIdentity[], syncWorkflow: boolean = false) {
+        document.getElementById("app")!.scrollTop = 0;
+
         this.setState({
             ...this.state,
-            activePage: page
-        })
+            activePage: page,
+            pageHistory
+        });
+
+        if (syncWorkflow) {
+            this.syncWorkflowStep(page);
+        }
+    }
+
+    private syncWorkflowStep(page: PageIdentity) {
+        const workflow = store.getState().starship?.workflow;
+        const index = workflowStepIndexForPage(workflow, page);
+        if (index != null) {
+            store.dispatch(rewindToStarshipWorkflowStep(index));
+        }
     }
 
     render() {
@@ -67,7 +98,7 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
                 <meta property="og:image" content="/static/img/bannerImage.png" />
                 <meta property="og:url" content="https://sta.bcholmes.org" />
             </Helmet>
-            <LcarsFrame activePage={this.state.activePage}>
+            <LcarsFrame activePage={this.state.activePage} canGoBack={this.state.pageHistory.length > 0} onBack={() => this.goBack()}>
                 <div id="app">{page}</div>
             </LcarsFrame>
         </>);

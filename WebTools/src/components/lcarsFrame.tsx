@@ -14,10 +14,12 @@ import StationProfileView from "../station/view/stationProfileView";
 
 interface ILcarsFrameProperties {
     activePage: PageIdentity;
+    canGoBack?: boolean;
+    onBack?: () => void;
     children: React.ReactNode;
 }
 
-const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) => {
+const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, canGoBack, onBack, children}) => {
 
     document.title = "STAR TREK ADVENTURES";
 
@@ -147,6 +149,15 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
         navigate("/credits");
     }
 
+    const goBack = () => {
+        setShowNews(false);
+        setShowProfile(false);
+        setShowHistory(false);
+        if (onBack) {
+            onBack();
+        }
+    }
+
 
     const historyType = () => {
         if (isStarshipPage()) {
@@ -182,6 +193,9 @@ const LcarsFrame: React.FC<ILcarsFrameProperties>  = ({activePage, children}) =>
             <div className="lcar-content">
                 <div className="lcar-content-start">
                     <div className="lcar-content-start-top">
+                    </div>
+                    <div className="lcar-content-action" role="button" tabIndex={0}>
+                        <div id="back-button" className={'lcar-content-back ' + (canGoBack ? '' : 'd-none')} onClick={() => goBack()}>{t('Lcars.back')}</div>
                     </div>
                     <div className="lcar-content-action" role="button" tabIndex={0}>
                         <div id="history-button" className="lcar-content-history" onClick={ () => toggleHistory() }>{t('Lcars.history')}</div>
