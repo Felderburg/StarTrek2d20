@@ -15,7 +15,7 @@ const MajorNpcAttributeView: React.FC<ICharacterProperties> = ({character}) => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        if (!(character.npcGenerationStep?.attributes?.filter(d => !d)?.length)) {
+        if (!(character.npcGenerationStep?.attributes?.filter(d => d != null)?.length)) {
             store.dispatch(setNpcCharacterAttributes(NpcTypes.attributePoints(character.npcGenerationStep?.type, true).map(v => v - 7)));
         }
     }, [character.npcGenerationStep?.attributes, character.npcGenerationStep?.type])
