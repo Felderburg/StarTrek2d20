@@ -59,3 +59,21 @@ describe('Miranda class refit schedule', () => {
             .toBe(mirandaSpaceframe(Spaceframe.Oberth).serviceYear);
     });
 });
+
+describe('Refit pacing for post-2400 service years', () => {
+    test('2e spaceframe launched before 2400 gets one refit per 10 years after 2400', () => {
+        expect(createMiranda(Spaceframe.Galaxy, 2410, 2).numberOfRefits).toBe(5);
+    });
+
+    test('2e spaceframe launched at or after 2400 gets one refit per 10 years', () => {
+        expect(createMiranda(Spaceframe.Odyssey, 2451, 2).numberOfRefits).toBe(5);
+    });
+
+    test('1e spaceframe launched at or after 2400 keeps the 50-year pacing', () => {
+        expect(createMiranda(Spaceframe.Odyssey, 2451, 1).numberOfRefits).toBe(1);
+    });
+
+    test('1e spaceframe launched before 2400 uses the 50-year inflection pacing after 2400', () => {
+        expect(createMiranda(Spaceframe.Galaxy, 2410, 1).numberOfRefits).toBe(4);
+    });
+});
