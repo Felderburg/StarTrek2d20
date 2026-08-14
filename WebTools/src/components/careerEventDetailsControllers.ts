@@ -21,7 +21,7 @@ export class CareerEventDisciplineController implements IDisciplineController {
     }
 
     isShown(discipline: Department) {
-        return this.disciplines.indexOf(discipline) >= 0;
+        return this.disciplines.includes(discipline);
     }
     isEditable(discipline: Department): boolean {
         return true;
@@ -30,8 +30,7 @@ export class CareerEventDisciplineController implements IDisciplineController {
         return this.character.departments[discipline];
     }
     canIncrease(discipline: Department): boolean {
-        return this.getValue(discipline) < Character.maxDepartment(this.character) &&
-            (this.getValue(discipline) < (Character.maxDepartment(this.character) - 1) || !this.character.hasMaxedDepartment())
+        return this.character.canRaiseDepartmentValue(this.getValue(discipline))
             && this.careerEventStep.discipline == null;
     }
     canDecrease(discipline: Department): boolean {
@@ -60,7 +59,7 @@ export class CareerEventAttributeController implements IAttributeController {
     }
 
     isShown(attribute: Attribute) {
-        return this.attributes.indexOf(attribute) >= 0;
+        return this.attributes.includes(attribute);
     }
     isEditable(attribute: Attribute): boolean {
         return true;
@@ -72,8 +71,7 @@ export class CareerEventAttributeController implements IAttributeController {
         return undefined;
     }
     canIncrease(attribute: Attribute): boolean {
-        return this.getValue(attribute) < Character.maxAttribute(this.character) &&
-            (this.getValue(attribute) < (Character.maxAttribute(this.character) - 1) || !this.character.hasMaxedAttribute())
+        return this.character.canRaiseAttributeValue(this.getValue(attribute))
             && this.careerEventStep.attribute == null;
     }
     canDecrease(attribute: Attribute): boolean {

@@ -1,10 +1,10 @@
 import {Character} from './character';
-import { CharacterType } from '../common/characterType';
 import {SpeciesHelper} from '../helpers/species';
 import {EnvironmentsHelper, Environment} from '../helpers/environments';
 import { Species } from '../helpers/speciesEnum';
 import i18next from 'i18next';
 import { Construct } from './construct';
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 export interface ICharacterData {
     name: string;
@@ -13,7 +13,7 @@ export interface ICharacterData {
 
 export class CharacterSerializer {
     public static serializeName(character: Character) {
-        if (character.type === CharacterType.KlingonWarrior) {
+        if (isKlingonWarriorType(character.type)) {
             var result = character.name;
             if (character.lineage) {
                 result += (", " + character.lineage);

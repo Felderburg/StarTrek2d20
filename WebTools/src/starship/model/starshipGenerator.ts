@@ -20,6 +20,7 @@ import PointAllocator from "../../helpers/pointAllocator";
 import { SpaceframeModel } from "../../helpers/spaceframeModel";
 import { DepartmentsHelper } from "../../helpers/department";
 import { PropulsionSystemModel } from "../../helpers/propulsionSystem";
+import { isKlingonWarriorType } from "../../helpers/klingonWarrior";
 
 export interface IStarshipConfiguration {
     era: Era;
@@ -44,11 +45,11 @@ const convertStarshipType = (type: RandomStarshipCharacterType) => {
 const determinePrefix = (starship: Starship) => {
     if (starship.type === CharacterType.Starfleet) {
         return "USS ";
-    } else if (starship.type === CharacterType.KlingonWarrior) {
+    } else if (isKlingonWarriorType(starship.type)) {
         return "IKS ";
     } else if (starship.type === CharacterType.Romulan) {
         return "IRW ";
-    } else if (starship.type === CharacterType.Civilian && starship.spaceframeModel?.type !== CharacterType.KlingonWarrior) {
+    } else if (starship.type === CharacterType.Civilian && !isKlingonWarriorType(starship.spaceframeModel?.type)) {
         return "SS ";
     } else {
         return "";
@@ -266,7 +267,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
     }
 
     for (let i = 0; i < result.freeTalentSlots; i++) {
-        if (i === 0 && (result.type === CharacterType.Romulan || (result.type === CharacterType.KlingonWarrior && result.serviceYear > 2300))) {
+        if (i === 0 && (result.type === CharacterType.Romulan || (isKlingonWarriorType(result.type) && result.serviceYear > 2300))) {
             let talent = TalentsHelper.getTalent("Cloaking Device");
             result.additionalTalents.push(new SelectedTalent(talent.name));
         } else {

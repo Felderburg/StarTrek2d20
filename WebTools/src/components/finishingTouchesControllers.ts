@@ -28,13 +28,12 @@ export class FinishingTouchesAttributeController implements IAttributeController
         return undefined;
     }
     canIncrease(attribute: Attribute): boolean {
-        return this.getValue(attribute) < Character.maxAttribute(this.character) &&
-            (this.getValue(attribute) < (Character.maxAttribute(this.character) - 1) || !this.character.hasMaxedAttribute())
+        return this.character.canRaiseAttributeValue(this.getValue(attribute))
             && (this.character.finishingStep?.attributes.length < this.count)
             && (this.character.finishingStep?.attributes.filter(a => a === attribute).length < (this.count - 1));
     }
     canDecrease(attribute: Attribute): boolean {
-        return this.character.finishingStep?.attributes.indexOf(attribute) >= 0;
+        return this.character.finishingStep?.attributes.includes(attribute);
     }
     onIncrease(attribute: Attribute): void {
         store.dispatch(modifyCharacterAttribute(attribute, StepContext.FinishingTouches, true));
@@ -67,13 +66,12 @@ export class FinishingTouchesDisciplineController implements IDisciplineControll
         return this.character.departments[discipline];
     }
     canIncrease(discipline: Department): boolean {
-        return this.getValue(discipline) < Character.maxDepartment(this.character) &&
-            (this.getValue(discipline) < (Character.maxDepartment(this.character) - 1) || !this.character.hasMaxedDepartment())
+        return this.character.canRaiseDepartmentValue(this.getValue(discipline))
             && (this.character.finishingStep?.disciplines.length < this.count)
             && (this.character.finishingStep?.disciplines.filter(d => d === discipline).length < (this.count - 1));
     }
     canDecrease(discipline: Department): boolean {
-        return this.character.finishingStep?.disciplines.indexOf(discipline) >= 0;
+        return this.character.finishingStep?.disciplines.includes(discipline);
     }
     onIncrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.FinishingTouches, true));

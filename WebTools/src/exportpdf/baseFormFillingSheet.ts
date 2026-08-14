@@ -55,7 +55,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
         this.fillEquipment(form, character);
         this.fillWeapons(form, character);
 
-        if (character.careerEvents && character.careerEvents.length > 0) {
+        if (character.hasCareerEvents) {
             let event1 = CareerEventsHelper.getCareerEvent(character.careerEvents[0]?.id, character.type, character.version);
             if (event1) {
                 this.fillField(form, 'Career Event 1', event1.localizedName);

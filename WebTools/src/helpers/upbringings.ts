@@ -3,6 +3,7 @@ import { CharacterType } from '../common/characterType';
 import { makeKey } from '../common/translationKey';
 import {Attribute} from './attributes';
 import {Department} from './department';
+import { isKlingonWarriorType } from './klingonWarrior';
 
 export enum EarlyOutlook {
     // Core
@@ -403,7 +404,7 @@ class Upbringings {
             return this._alternateUpbringings;
         } else if (type === CharacterType.Starfleet) {
             return this._upbringings;
-        } else if (type === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(type)) {
             return this._castes;
         } else {
             return this._genericUpbringings;
@@ -494,7 +495,7 @@ class Upbringings {
             Academic: EarlyOutlook[EarlyOutlook.AcademicCaste]
         }
 
-        if (type === CharacterType.KlingonWarrior) {
+        if (isKlingonWarriorType(type)) {
             let compat = mapping[typeName];
             if (compat) {
                 typeName = compat;

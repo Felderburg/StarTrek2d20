@@ -35,19 +35,21 @@ function shipWithRuggedDesignFromProfileAndPod() {
     return starship;
 }
 
+function countTalentNamed(starship: Starship, name: string): number {
+    return starship.talentsWithoutAdditional.filter(s => s.talent === name).length;
+}
+
 describe('Mission pod and mission profile talent overlap (#345)', () => {
     test('an overlapping mission pod talent is not granted twice', () => {
         const starship = shipWithRuggedDesignFromProfileAndPod();
 
-        const ruggedDesign = starship.talentsWithoutAdditional.filter(s => s.talent === 'Rugged Design');
-        expect(ruggedDesign.length).toBe(1);
+        expect(countTalentNamed(starship, 'Rugged Design')).toBe(1);
     });
 
     test('Rugged Design is not offered again as an additional talent when already granted', () => {
         const starship = shipWithRuggedDesignFromProfileAndPod();
 
-        const count = starship.talentsWithoutAdditional.filter(s => s.talent === 'Rugged Design').length;
-        const isOffered = count === 0;
+        const isOffered = countTalentNamed(starship, 'Rugged Design') === 0;
 
         expect(isOffered).toBe(false);
     });
@@ -57,8 +59,7 @@ describe('Mission pod talent replacement rule (#345)', () => {
     test('an overlapping mission pod talent is dropped when no replacement is chosen', () => {
         const starship = shipWithRuggedDesignFromProfileAndPod();
 
-        const ruggedDesign = starship.talentsWithoutAdditional.filter(s => s.talent === 'Rugged Design');
-        expect(ruggedDesign.length).toBe(1);
+        expect(countTalentNamed(starship, 'Rugged Design')).toBe(1);
     });
 
     test('an overlapping mission pod talent is replaced when a replacement is chosen', () => {
@@ -67,9 +68,8 @@ describe('Mission pod talent replacement rule (#345)', () => {
 
         starship.missionPodReplacements[1] = replacement;
 
-        const ruggedDesign = starship.talentsWithoutAdditional.filter(s => s.talent === 'Rugged Design');
-        expect(ruggedDesign.length).toBe(1);
-        expect(starship.talentsWithoutAdditional.filter(s => s.name === replacement.name).length).toBe(1);
+        expect(countTalentNamed(starship, 'Rugged Design')).toBe(1);
+        expect(countTalentNamed(starship, replacement.name)).toBe(1);
     });
 
     test('overlapping mission pod talents are identified', () => {

@@ -36,6 +36,7 @@ import { Landscape2eCreatureSheet } from './landscape2eCreatureSheet';
 import { Station } from '../common/station';
 import { Portrait2eStationSheet } from './portrait2eStationSheet';
 import { Implant } from '../helpers/borgImplant';
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 
 abstract class BasicSheet implements ICharacterSheet {
@@ -152,7 +153,7 @@ abstract class BasicStarshipSheet extends BasicSheet {
         if (starship.serviceYear != null) {
             this.fillField(form, 'Service Date', starship.serviceYear.toString());
         }
-        if (starship.type === CharacterType.KlingonWarrior) {
+        if (isKlingonWarriorType(starship.type)) {
             this.fillField(form, 'Designation', 'N/A');
         } else {
             this.fillField(form, 'Designation', starship.registry);
@@ -803,7 +804,7 @@ class TwoPageTngCharacterSheet extends BaseTextCharacterSheet {
         super.populateForm(form, construct);
         const character = construct as Character;
 
-        if (character.careerEvents && character.careerEvents.length > 0) {
+        if (character.hasCareerEvents) {
             let event1 = CareerEventsHelper.getCareerEvent(character.careerEvents[0]?.id, character.type, character.version);
             if (event1) {
                 this.fillField(form, 'Career Event 1', event1.localizedName);
@@ -913,7 +914,7 @@ class TwoPageTngLandscapeCharacterSheet extends BaseTextCharacterSheet {
         const character = construct as Character;
 
         this.fillField(form, "Pronouns", character.pronouns);
-        if (character.careerEvents && character.careerEvents.length > 0) {
+        if (character.hasCareerEvents) {
             let event1 = CareerEventsHelper.getCareerEvent(character.careerEvents[0]?.id, character.type, character.version);
             if (event1) {
                 this.fillField(form, 'Career Event 1', event1.localizedName);
@@ -996,7 +997,7 @@ class TwoPageKlingonCharacterSheet extends BaseTextCharacterSheet {
         super.populateForm(form, construct);
         const character = construct as Character;
 
-        if (character.careerEvents && character.careerEvents.length > 0) {
+        if (character.hasCareerEvents) {
             let event1 = CareerEventsHelper.getCareerEvent(character.careerEvents[0]?.id, character.type, character.version);
             if (event1) {
                 this.fillField(form, 'Career Event 1', event1.localizedName);
@@ -1085,7 +1086,7 @@ class CaptainsLogCharacterSheet extends BasicFullCharacterSheet {
 
         this.fillField(form, "Pronouns", character.pronouns);
 
-        if (character.careerEvents && character.careerEvents.length > 0) {
+        if (character.hasCareerEvents) {
             let event1 = CareerEventsHelper.getCareerEvent(character.careerEvents[0]?.id, character.type, character.version);
             if (event1) {
                 this.fillField(form, 'Career Event 1', event1.localizedName);
@@ -1180,7 +1181,7 @@ class CharacterSheets {
     public getStarshipSheets(starship: Starship): ICharacterSheet[] {
         if (starship.stereotype === Stereotype.SoloStarship) {
             return [ new CaptainsLogStarshipSheet() ];
-        } else if (starship.type === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(starship.type)) {
             return [ new StandardKlingonStarshipSheet(), new StandardTngStarshipSheet(), new Generated2eStarshipSheet(), new Standard2eStarshipSheet(), new StandardTosStarshipSheet() ];
         } else if (starship.version > 1) {
             return [ new Standard2eStarshipSheet(), new Generated2eStarshipSheet(), new StandardTngStarshipSheet(), new StandardTosStarshipSheet(), new StandardKlingonStarshipSheet() ];

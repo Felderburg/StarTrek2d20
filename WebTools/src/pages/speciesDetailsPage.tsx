@@ -22,12 +22,12 @@ import { StepContext, addCharacterTalent, setCharacterSpecies } from '../state/c
 import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { SpeciesAttributeController } from '../components/speciesController';
 import { Stereotype } from '../common/construct';
-import { CharacterType } from '../common/characterType';
+
 import ReactMarkdown from 'react-markdown';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
-import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { isTalentSelectable } from '../helpers/talentSelection';
 import { useNavigate } from 'react-router';
 import { Species } from '../helpers/speciesEnum';
 import Markdown from 'react-markdown';
@@ -35,6 +35,7 @@ import { makeKey } from '../common/translationKey';
 import { ModalControl } from '../components/modal';
 import { SimpleSpeciesSelection } from '../components/simpleSpeciesSelection';
 import { RankedTalent } from '../helpers/rankedTalent';
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 interface ISpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -53,7 +54,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
     const isTalentSelectionRequired = () => {
         if (character.stereotype === Stereotype.SoloCharacter || character.stereotype === Stereotype.Npc) {
             return false;
-        } else if (character.version === 1 && character.type !== CharacterType.KlingonWarrior) {
+        } else if (character.version === 1 && !isKlingonWarriorType(character.type)) {
             return true;
         } else if (character.speciesStep?.ability == null) {
             return true;
@@ -86,10 +87,7 @@ const SpeciesDetailsPage : React.FC<ISpeciesDetailsProperties> = ({character, al
 
     const filterTalentList = () => {
         return TalentsHelper.getAllAvailableTalentsForCharacter(character)
-            .filter(t => !character.hasTalent(t.name)
-                || (character.speciesStep?.talent?.talent === t.name)
-                || t.maxRank > 1
-                || isMultiSelectionTalent(t))
+            .filter(t => isTalentSelectable(character, t, character.speciesStep))
             .map(t => {
                 if (t.maxRank > 1) {
                     if (character.speciesStep?.talent?.talent === t.name) {

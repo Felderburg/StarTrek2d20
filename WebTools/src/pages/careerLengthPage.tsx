@@ -19,6 +19,7 @@ import { CharacterType } from "../common/characterType";
 import { ADVANCED_TEAM_DYNAMICS } from "../helpers/talents";
 import { Career } from "../helpers/careerEnum";
 import { D20 } from "../common/die";
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 const CareerLengthPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -66,7 +67,7 @@ const CareerLengthPage: React.FC<ICharacterProperties> = ({character}) => {
                 .map((c, i) => toTableRow(c, i)));
 
     let instructionKey = "CareerLength.instruction";
-    if (character.type === CharacterType.KlingonWarrior) {
+    if (isKlingonWarriorType(character.type)) {
         instructionKey = "CareerLength.instruction.klingon";
     } else if (character.type === CharacterType.Civilian || character.type === CharacterType.AmbassadorDiplomat) {
         instructionKey = "CareerLength.instruction.civilian";

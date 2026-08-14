@@ -18,7 +18,7 @@ export class SpeciesAttributeController implements IAttributeController {
     }
 
     isShown(attribute: Attribute) {
-        return this.species.attributes.indexOf(attribute) >= 0;
+        return this.species.attributes.includes(attribute);
     }
     isEditable(attribute: Attribute): boolean {
         return this.species.attributes.length > 3;
@@ -31,10 +31,10 @@ export class SpeciesAttributeController implements IAttributeController {
             - (this.character.speciesStep?.decrementAttributes?.filter(a => a === attribute)?.length ?? 0);
     }
     canIncrease(attribute: Attribute): boolean {
-        return this.isEditable(attribute) && this.character.speciesStep?.attributes?.length < 3 && this.character.speciesStep?.attributes?.indexOf(attribute) < 0;
+        return this.isEditable(attribute) && this.character.speciesStep?.attributes?.length < 3 && !this.character.speciesStep?.attributes?.includes(attribute);
     }
     canDecrease(attribute: Attribute): boolean {
-        return this.isEditable(attribute) && this.character.speciesStep?.attributes?.indexOf(attribute) >= 0;
+        return this.isEditable(attribute) && this.character.speciesStep?.attributes?.includes(attribute);
     }
     onIncrease(attribute: Attribute): void {
         store.dispatch(modifyCharacterAttribute(attribute, StepContext.Species));
@@ -80,10 +80,10 @@ export class CustomSpeciesAttributeController implements IAttributeController {
             - (this.character.speciesStep?.decrementAttributes?.filter(a => a === attribute)?.length ?? 0);
     }
     canIncrease(attribute: Attribute): boolean {
-        return this.isEditable(attribute) && this.character.speciesStep?.attributes?.length < 3 && this.character.speciesStep?.attributes?.indexOf(attribute) < 0;
+        return this.isEditable(attribute) && this.character.speciesStep?.attributes?.length < 3 && !this.character.speciesStep?.attributes?.includes(attribute);
     }
     canDecrease(attribute: Attribute): boolean {
-        return this.isEditable(attribute) && this.character.speciesStep?.attributes?.indexOf(attribute) >= 0;
+        return this.isEditable(attribute) && this.character.speciesStep?.attributes?.includes(attribute);
     }
     onIncrease(attribute: Attribute): void {
         store.dispatch(modifyCharacterAttribute(attribute, StepContext.Species));
@@ -100,10 +100,10 @@ class KtarianSpeciesAttributeController extends SpeciesAttributeController {
 
     isShown(attribute: Attribute) {
         return super.isShown(attribute)
-            || this.species.secondaryAttributes.indexOf(attribute) >= 0;
+            || this.species.secondaryAttributes.includes(attribute);
     }
     isEditable(attribute: Attribute) {
-        return this.species.secondaryAttributes.indexOf(attribute) >= 0;
+        return this.species.secondaryAttributes.includes(attribute);
     }
 }
 
@@ -114,7 +114,7 @@ class NapeanSpeciesAttributeController extends SpeciesAttributeController {
     }
 
     isShown(attribute: Attribute) {
-        return [Attribute.Control, Attribute.Insight, Attribute.Presence, Attribute.Reason].indexOf(attribute) >= 0;
+        return [Attribute.Control, Attribute.Insight, Attribute.Presence, Attribute.Reason].includes(attribute);
     }
 }
 
@@ -128,9 +128,9 @@ class KobaliSpeciesAttributeController extends SpeciesAttributeController {
     }
 
     isShown(attribute: Attribute) {
-        return this.species.secondaryAttributes.indexOf(attribute) >= 0
-            || this.originalSpecies.attributes.indexOf(attribute) >= 0
-            || this.originalSpecies.secondaryAttributes.indexOf(attribute) >= 0;
+        return this.species.secondaryAttributes.includes(attribute)
+            || this.originalSpecies.attributes.includes(attribute)
+            || this.originalSpecies.secondaryAttributes.includes(attribute);
     }
 
     isEditable(attribute: Attribute) {
@@ -139,7 +139,7 @@ class KobaliSpeciesAttributeController extends SpeciesAttributeController {
 
     countOriginalSpeciesAttributes() {
         let result = 0;
-        this.originalSpecies.attributes.forEach(a => result += (this.character.speciesStep.attributes.indexOf(a) >= 0) ? 1 : 0);
+        this.originalSpecies.attributes.forEach(a => result += (this.character.speciesStep.attributes.includes(a)) ? 1 : 0);
         return result;
     }
 
@@ -147,14 +147,14 @@ class KobaliSpeciesAttributeController extends SpeciesAttributeController {
         if (this.character.speciesStep.attributes.length === 3) {
             return false;
         } else {
-            return this.character.speciesStep.attributes.indexOf(attribute) < 0;
+            return !this.character.speciesStep.attributes.includes(attribute);
         }
     }
 
     canDecrease(attribute: Attribute) {
-        if (this.originalSpecies.attributes.indexOf(attribute) >= 0 && this.countOriginalSpeciesAttributes() >= 3) {
-            return this.isEditable(attribute) && this.character.speciesStep.attributes.indexOf(attribute) >= 0;
-        } else if (this.originalSpecies.attributes.indexOf(attribute) >= 0) {
+        if (this.originalSpecies.attributes.includes(attribute) && this.countOriginalSpeciesAttributes() >= 3) {
+            return this.isEditable(attribute) && this.character.speciesStep.attributes.includes(attribute);
+        } else if (this.originalSpecies.attributes.includes(attribute)) {
             return false;
         } else {
             return super.canDecrease(attribute);

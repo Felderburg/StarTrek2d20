@@ -18,14 +18,14 @@ import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import { Stereotype } from '../common/construct';
-import { CharacterType } from '../common/characterType';
 import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { addCharacterTalent, setCharacterSpecies, StepContext } from '../state/characterActions';
 import { CustomSpeciesAttributeController } from '../components/speciesController';
 import { SelectedTalent } from '../common/selectedTalent';
 import { RankedTalent } from '../helpers/rankedTalent';
-import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { isTalentSelectable } from '../helpers/talentSelection';
 import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
     allowCrossSpeciesTalents: boolean;
@@ -41,10 +41,7 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
         if (character.stereotype !== Stereotype.SoloCharacter) {
             let talents: RankedTalent[] = [];
             talents.push(...TalentsHelper.getAllAvailableTalentsForCharacter(character)
-                .filter(t => !character.hasTalent(t.name)
-                            || (character.speciesStep?.talent?.talent === t.name)
-                            || t.maxRank > 1
-                            || isMultiSelectionTalent(t))
+                .filter(t => isTalentSelectable(character, t, character.speciesStep))
                 .map(t => {
                     if (t.maxRank > 1) {
                         if (character.speciesStep?.talent?.talent === t.name) {
@@ -104,7 +101,7 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({ch
 
     const isTalentSelectionRequired = () => {
         return character.stereotype !== Stereotype.SoloCharacter
-            && (character.type !== CharacterType.KlingonWarrior || character.version > 1);
+            && (!isKlingonWarriorType(character.type) || character.version > 1);
     }
 
     const onNext = () => {

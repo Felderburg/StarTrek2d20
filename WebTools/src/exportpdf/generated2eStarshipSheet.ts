@@ -23,6 +23,7 @@ import { bullet2EWriter } from "./bullet2eWriter";
 import { PortraitSheetDecorations } from "./portraitSheetDecorations";
 import { assembleStarshipTalents } from "./generatedsheet";
 import { PageArea } from "./pageArea";
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
 
@@ -311,7 +312,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
                 borderWidth: 0,
                 scale: 0.6
             });
-        } else if (construct.type === CharacterType.KlingonWarrior || (construct as Starship).spaceframeModel?.type === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(construct.type) || isKlingonWarriorType((construct as Starship).spaceframeModel?.type)) {
             page.moveTo(513.5, page.getHeight() - 185.9);
 
             page.drawSvgPath(politySymbolKlingonSymbolCircle, {
@@ -404,7 +405,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     deriveSheetColour(construct: Construct) {
         if (construct.type === CharacterType.Starfleet) {
             return tealColour2e;
-        } else if (construct.type === CharacterType.KlingonWarrior || (construct as Starship).spaceframeModel?.type === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(construct.type) || isKlingonWarriorType((construct as Starship).spaceframeModel?.type)) {
             return klingonRedColour2e;
         } else if (construct.type === CharacterType.Romulan) {
             return romulanGreenColour2e;

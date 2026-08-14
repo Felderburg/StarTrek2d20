@@ -22,8 +22,9 @@ import store from '../state/store';
 import { addCharacterTalent, setCharacterFinishingTouches, setCharacterValue, StepContext } from '../state/characterActions';
 import { isSecondEdition } from '../state/contextFunctions';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
-import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { isTalentSelectable } from '../helpers/talentSelection';
 import { RankedTalent } from '../helpers/rankedTalent';
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character})  => {
 
@@ -36,10 +37,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
 
     const filterTalentList = () => {
         return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-            t => !character.hasTalent(t.name)
-                || (character.finishingStep?.talent?.talent === t.name)
-                || t.maxRank > 1
-                || isMultiSelectionTalent(t))
+            t => isTalentSelectable(character, t, character.finishingStep))
             .map(t => {
                 if (t.maxRank > 1) {
                     if (character.finishingStep?.talent?.talent === t.name) {
@@ -54,7 +52,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
     }
 
     const isTalentSelectionNeeded = () => {
-        return isSecondEdition() || character.type === CharacterType.KlingonWarrior;
+        return isSecondEdition() || isKlingonWarriorType(character.type);
     }
 
     const navigateToNextPage = () => {
@@ -89,7 +87,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character
 
     let talents = filterTalentList();
 
-    const talentSelection = (character.type === CharacterType.KlingonWarrior || character.version > 1)
+    const talentSelection = (isKlingonWarriorType(character.type) || character.version > 1)
         ? (<div className="my-4">
             <Header level={2}>{t('Construct.other.talents')}</Header>
             <SingleTalentSelectionList talents={talents} construct={character}
