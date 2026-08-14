@@ -8,6 +8,7 @@ import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
 import { AllOfCharacterPrerequisite, AnyEraCharacterPrerequisite, AnyOfCharacterPrerequisite, CadetPrerequisite, CareersCharacterPrerequisite, CharacterTypePrerequisite, EnlistedCharacterPrerequisite, ICharacterPrerequisite, KlingonCharacterPrerequisite, NotCharacterPrerequisite, SourceCharacterPrerequisite } from './characterPrerequisite';
 import { Track } from './trackEnum';
+import { isKlingonWarriorType } from './klingonWarrior';
 
 export enum Role {
     // Core
@@ -89,7 +90,7 @@ class NotKlingonPrerequisite implements ICharacterPrerequisite {
 class MilitaryPrerequisite implements ICharacterPrerequisite {
     isPrerequisiteFulfilled(character: Character): boolean {
         return character.type === CharacterType.Starfleet ||
-            character.type === CharacterType.KlingonWarrior ||
+            isKlingonWarriorType(character.type) ||
             character.type === CharacterType.AlliedMilitary ||
             character.type === CharacterType.Cadet;
     }
@@ -113,7 +114,7 @@ class CivilianPrerequisite implements ICharacterPrerequisite {
                 (character.type === CharacterType.Starfleet
                     && (character.educationStep?.track === Track.UniversityAlumni
                         || character.educationStep?.track === Track.ResearchInternship)) ||
-                (character.type === CharacterType.KlingonWarrior
+                (isKlingonWarriorType(character.type)
                     && character.educationStep?.track === Track.Laborer);
         } else {
             return true;
@@ -810,8 +811,8 @@ export class RolesHelper {
         } else if (roles.length === 1) {
             return roles[0];
         } else {
-            let typeRoles = roles.filter(r => (r.isKlingonRole() && characterType === CharacterType.KlingonWarrior)
-                || (!r.isKlingonRole() && characterType !== CharacterType.KlingonWarrior));
+            let typeRoles = roles.filter(r => (r.isKlingonRole() && isKlingonWarriorType(characterType))
+                || (!r.isKlingonRole() && !isKlingonWarriorType(characterType)));
             if (typeRoles.length === 1) {
                 return typeRoles[0];
             } else if (typeRoles.length > 1)  {

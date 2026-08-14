@@ -19,7 +19,7 @@ import { ICharacterProperties, characterMapStateToProperties } from '../solo/pag
 import { connect } from 'react-redux';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
-import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { isTalentSelectable } from '../helpers/talentSelection';
 import { hasSource, isSecondEdition } from '../state/contextFunctions';
 import { Source } from '../helpers/sources';
 import { RankedTalent } from '../helpers/rankedTalent';
@@ -112,10 +112,7 @@ const CareerLengthDetailsPage : React.FC<ICharacterProperties> = ({character}) =
             return result;
         } else {
             return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-                t => !character.hasTalent(t.name)
-                    || (character.careerStep?.talent?.talent === t.name)
-                    || t.maxRank > 1
-                    || isMultiSelectionTalent(t))
+                t => isTalentSelectable(character, t, character.careerStep))
                 .map(t => {
                     if (t.maxRank > 1) {
                         if (character.careerStep?.talent?.talent === t.name) {

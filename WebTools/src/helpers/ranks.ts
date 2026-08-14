@@ -153,7 +153,7 @@ class NoCareerEventsPrerequisite implements ICharacterPrerequisite {
 class HasCareerEventsPrerequisite implements ICharacterPrerequisite {
 
     isPrerequisiteFulfilled(character: Character) {
-        return character.careerEvents != null && character.careerEvents.length > 0;
+        return character.hasCareerEvents;
     }
 
 }

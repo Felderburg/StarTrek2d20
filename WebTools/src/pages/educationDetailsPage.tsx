@@ -31,9 +31,10 @@ import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { localizedFocus } from '../components/focusHelper';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
-import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
+import { isTalentSelectable } from '../helpers/talentSelection';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
@@ -68,7 +69,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
     const renderFocuses = (track: TrackModel) => {
         let training = "Select three focuses for your character, at least one reflecting the time at Starfleet Academy.";
-        if (character.type === CharacterType.KlingonWarrior) {
+        if (isKlingonWarriorType(character.type)) {
             if (character.enlisted) {
                 training = "Select three focuses for your character, at least one reflecting their time training.";
             } else {
@@ -176,10 +177,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
 
     const filterTalentList = (): RankedTalent[] => {
         return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-            t => !character.hasTalent(t.name)
-                || (character.educationStep?.talent?.talent === t.name)
-                || t.maxRank > 1
-                || isMultiSelectionTalent(t))
+            t => isTalentSelectable(character, t, character.educationStep))
             .map(t => {
                 if (t.maxRank > 1) {
                     if (character.educationStep?.talent?.talent === t.name) {
@@ -205,8 +203,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({character}) => {
     const navigateToNextPage = () => {
         if (character.educationStep?.attributes?.length < 3) {
             Dialog.show(t("SoloEducationDetailsPage.errorAttributes"));
-        } else if (character.educationStep?.disciplines?.length < 2 || character.educationStep?.primaryDiscipline == null ||
-            (character.educationStep?.decrementDisciplines.length > 0 && character.educationStep?.disciplines?.length < 3)) {
+        } else if (character.isEducationDisciplinesIncomplete) {
             Dialog.show(t("SoloEducationDetailsPage.errorDisciplines"));
         } else if (character.educationStep?.focuses?.filter(f => !!f).length < 3) {
             Dialog.show(t("SoloEducationDetailsPage.errorFocuses"));

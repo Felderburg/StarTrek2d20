@@ -3,6 +3,7 @@ import {Department} from './department';
 import {SpeciesHelper} from './species';
 import {Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
+import { isKlingonWarrior1e, isKlingonWarriorType } from './klingonWarrior';
 import { Species } from './speciesEnum';
 import i18next from 'i18next';
 import { makeKey } from '../common/translationKey';
@@ -332,7 +333,7 @@ class Environments {
         if (construct.stereotype === Stereotype.SoloCharacter) {
             result.push(...Object.values(this._environments));
         } else {
-            let list = (construct.type === CharacterType.KlingonWarrior && construct.version === 1)
+            let list = isKlingonWarrior1e(construct.type, construct.version)
                 ? this._klingonEnvironments
                 : this._environments;
             for (let environment in list) {
@@ -350,7 +351,7 @@ class Environments {
 
     getEnvironments(type: CharacterType) {
         let environments: EnvironmentModel[] = [];
-        let environmentList = type === CharacterType.KlingonWarrior ? this._klingonEnvironments : this._environments;
+        let environmentList = isKlingonWarriorType(type) ? this._klingonEnvironments : this._environments;
         for (let environment in environmentList) {
             let env = environmentList[environment];
             if (env.id !== Environment.AnotherSpeciesWorld) {
@@ -382,7 +383,7 @@ class Environments {
     }
 
     getEnvironmentByTypeName(typeName: string, type: CharacterType, version: number) {
-        let list = (version === 1 && type === CharacterType.KlingonWarrior) ? Object.values(this._klingonEnvironments) : Object.values(this._environments);
+        let list = isKlingonWarrior1e(type, version) ? Object.values(this._klingonEnvironments) : Object.values(this._environments);
         let filtered = list.filter(e => Environment[e.id] === typeName);
         if (filtered.length === 0) {
             filtered = Object.values(this._alternateEnvironments).filter(e => Environment[e.id] === typeName);

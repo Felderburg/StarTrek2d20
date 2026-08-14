@@ -6,6 +6,7 @@ import i18next from 'i18next';
 import { makeKey } from '../common/translationKey';
 import { Stereotype } from '../common/construct';
 import { TalentModel } from './talentModel';
+import { isKlingonWarriorType } from './klingonWarrior';
 
 
 export class CareerModel {
@@ -125,7 +126,7 @@ export class CareersHelper {
     ];
 
     private getBaseList(type: CharacterType) {
-        if (type === CharacterType.KlingonWarrior) {
+        if (isKlingonWarriorType(type)) {
             return this._klingonCareers;
         } else if (type === CharacterType.Starfleet) {
             return this._careers;

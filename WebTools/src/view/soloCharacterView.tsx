@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import Button from "react-bootstrap/Button";
 import { Header } from "../components/header";
 import { CharacterSerializer } from "../common/characterSerializer";
-import { CharacterType, CharacterTypeModel } from "../common/characterType";
+import { CharacterTypeModel } from "../common/characterType";
 import { useTranslation } from 'react-i18next';
 import { getNameAndShortRankOf } from "../helpers/ranks";
 import { StatView } from "../components/StatView";
@@ -19,6 +19,7 @@ import WeaponBlockView from "./weaponBlockView";
 import { VttSelectionDialog } from "../vtt/view/VttSelectionDialog";
 import { TracksHelper } from "../helpers/tracks";
 import { LoadingButton } from "../common/loadingButton";
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 export interface ICharacterViewProperties {
     character: Character;
@@ -111,7 +112,7 @@ const SoloCharacterView: React.FC<ICharacterViewProperties> = ({character, showB
 
 
     function renderKlingonFields() {
-        if (character.type === CharacterType.KlingonWarrior) {
+        if (isKlingonWarriorType(character.type)) {
             return (<div className="row" style={{alignItems: "baseline"}}>
                     <div className="col-md-2 view-field-label pb-2">Lineage:</div>
                     <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{character.lineage}</div></div>

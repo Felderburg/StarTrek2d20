@@ -32,6 +32,7 @@ import { ModificationType } from '../modify/model/modificationType';
 import { LogEntry, ValueUseType } from './logEntry';
 import { AssemblyContext, FocusAssembly, TalentAssembly, ValueAssembly } from './characterAssembly';
 import { TokenModel } from '../token/model/tokenModel';
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 export enum Division {
     Command,
@@ -664,7 +665,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get attributes(): number[] {
         let result = [];
-        if (this.stereotype === Stereotype.SoloCharacter || (this.stereotype === Stereotype.MainCharacter && !this.legacyMode)) {
+        if (this.isSoloOrNonLegacyMainCharacter) {
             result = [7, 7, 7, 7, 7, 7];
             this.speciesStep?.attributes?.forEach(a => result[a] = result[a] + 1);
             this.speciesStep?.decrementAttributes?.forEach(a => result[a] = result[a] - 1);
@@ -696,7 +697,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = this.age.attributes;
-            if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {
+            if (this.isSupervisorySupportingCharacter) {
                 values = [10, 10, 9, 9, 8, 8];
             }
             result = AttributesHelper.getAllAttributes().map(a => {
@@ -730,7 +731,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get departments(): number[] {
         let result = [];
-        if (this.stereotype === Stereotype.SoloCharacter || (this.stereotype === Stereotype.MainCharacter && !this.legacyMode)) {
+        if (this.isSoloOrNonLegacyMainCharacter) {
             result = [1, 1, 1, 1, 1, 1];
             if (this.environmentStep?.discipline != null) {
                 result[this.environmentStep.discipline] += 1;
@@ -751,7 +752,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = [...this.age.disciplines];
-            if (this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory) {
+            if (this.isSupervisorySupportingCharacter) {
                 values = [4, 4, 3, 2, 2, 1];
             }
             result = DepartmentsHelper.instance.getDepartments().map(s => {
@@ -953,7 +954,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             result.push(EquipmentHelper.instance.findByType(EquipmentType.Clothing));
         } else if (this.isCivilian()) {
             result.push(EquipmentHelper.instance.findByType(EquipmentType.Clothing));
-        } else if (this.type === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(this.type)) {
             result.push(EquipmentHelper.instance.findByType(EquipmentType.ArmouredVest));
             result.push(EquipmentHelper.instance.findByType(EquipmentType.Communicator));
             result.push(EquipmentHelper.instance.findByType(EquipmentType.Tricorder));
@@ -1420,7 +1421,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
             }
             this.npcGenerationStep.talents.push(selectedTalent);
         } else {
-            if (this.speciesStep != null && this.speciesStep.talent == null && this.type !== CharacterType.KlingonWarrior) {
+            if (this.speciesStep != null && this.speciesStep.talent == null && !isKlingonWarriorType(this.type)) {
                 this.speciesStep.talent = selectedTalent;
             } else if (this.upbringingStep != null && this.upbringingStep.talent == null) {
                 this.upbringingStep.talent = selectedTalent;
@@ -1434,7 +1435,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
                     this.careerStep = new CareerStep();
                 }
                 this.careerStep.talent = selectedTalent;
-            } else if (this.finishingStep?.talent == null && this.type === CharacterType.KlingonWarrior) {
+            } else if (this.finishingStep?.talent == null && isKlingonWarriorType(this.type)) {
                 if (this.finishingStep == null) {
                     this.finishingStep = new FinishingStep();
                 }
@@ -1564,9 +1565,24 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     isKlingonWarrior() {
-        return this.type === CharacterType.KlingonWarrior ||
+        return isKlingonWarriorType(this.type) ||
             (this.type === CharacterType.AlliedMilitary &&
                 (this.typeDetails as AlliedMilitaryDetails)?.alliedMilitary.type === AlliedMilitaryType.KlingonDefenceForce);
+    }
+
+    get isSoloOrNonLegacyMainCharacter() {
+        return this.stereotype === Stereotype.SoloCharacter ||
+            (this.stereotype === Stereotype.MainCharacter && !this.legacyMode);
+    }
+
+    get isSupervisorySupportingCharacter() {
+        return this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory;
+    }
+
+    get isEducationDisciplinesIncomplete() {
+        return this.educationStep?.disciplines?.length < 2
+            || this.educationStep?.primaryDiscipline == null
+            || (this.educationStep?.decrementDisciplines?.length > 0 && this.educationStep?.disciplines?.length < 3);
     }
 
     get rank() {
@@ -1644,6 +1660,16 @@ export class Character extends Construct implements IWeaponDiceProvider {
         return this.departments.some(s => s === max);
     }
 
+    canRaiseAttributeValue(value: number) {
+        const max = Character.maxAttribute(this);
+        return value < max && (value < (max - 1) || !this.hasMaxedAttribute());
+    }
+
+    canRaiseDepartmentValue(value: number) {
+        const max = Character.maxDepartment(this);
+        return value < max && (value < (max - 1) || !this.hasMaxedDepartment());
+    }
+
     addValue(value: string) {
         if (this.stereotype === Stereotype.Npc) {
             if (this.npcGenerationStep == null) {
@@ -1677,7 +1703,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     get isSeniorCadet() {
-        return this.type === CharacterType.Cadet && this.careerEvents.length > 0;
+        return this.type === CharacterType.Cadet && this.hasCareerEvents;
+    }
+
+    get hasCareerEvents() {
+        return (this.careerEvents?.length ?? 0) > 0;
     }
 
     public copy(): Character {
@@ -1776,7 +1806,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     public static isSpeciesListLimited(character) {
-        return character.type === CharacterType.KlingonWarrior ||
+        return isKlingonWarriorType(character.type) ||
             (character.type === CharacterType.AlliedMilitary
                 && character.typeDetails != null && character.typeDetails instanceof AlliedMilitaryDetails
                 && (character.typeDetails as AlliedMilitaryDetails).alliedMilitary?.species?.length > 0);

@@ -2,6 +2,7 @@ import { CharacterType } from "../../common/characterType";
 import { Era } from "../../helpers/erasEnum"
 import { Spaceframe } from "../../helpers/spaceframeEnum";
 import { RandomStarshipCharacterType } from "./randomStarshipCharacterType"
+import { isKlingonWarriorType } from "../../helpers/klingonWarrior";
 
 const starshipRomulanNames = [
 
@@ -522,7 +523,7 @@ const starshipCivilianNames = [
 ]
 
 const chooseOptions = (era: Era, type: RandomStarshipCharacterType, spaceframeType?: CharacterType, spaceframe?: Spaceframe) => {
-    if (type === RandomStarshipCharacterType.Klingon || spaceframeType === CharacterType.KlingonWarrior) {
+    if (type === RandomStarshipCharacterType.Klingon || isKlingonWarriorType(spaceframeType)) {
         let result = [...klingonEnterpriseEraNames];
         switch (era) {
             case Era.NextGeneration:

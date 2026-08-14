@@ -47,12 +47,12 @@ class ChildDecrementAttributeController implements IAttributeController {
         return undefined;
     }
     canIncrease(attribute: Attribute): boolean {
-        return this.character.educationStep?.decrementAttributes?.indexOf(attribute) >= 0;
+        return this.character.educationStep?.decrementAttributes?.includes(attribute);
     }
     canDecrease(attribute: Attribute): boolean {
         return this.isEditable(attribute)
             && this.character.educationStep?.decrementAttributes?.length < this.count
-            && this.character.educationStep?.decrementAttributes?.indexOf(attribute) < 0;
+            && !this.character.educationStep?.decrementAttributes?.includes(attribute);
     }
     onIncrease(attribute: Attribute): void {
         store.dispatch(modifyCharacterAttribute(attribute, StepContext.Education, true, true));
@@ -86,13 +86,12 @@ export class ChildIncrementAttributeController implements IAttributeController {
         return undefined;
     }
     canIncrease(attribute: Attribute): boolean {
-        return this.getValue(attribute) < Character.maxAttribute(this.character)
-            && (this.getValue(attribute) < (Character.maxAttribute(this.character) - 1) || !this.character.hasMaxedAttribute())
+        return this.character.canRaiseAttributeValue(this.getValue(attribute))
             && this.isEditable(attribute) && this.character.educationStep?.attributes?.length < 3
             && this.character.educationStep.attributes.filter(a => a === attribute).length < 2;
     }
     canDecrease(attribute: Attribute): boolean {
-        return this.isEditable(attribute) && this.character.educationStep?.attributes?.indexOf(attribute) >= 0;
+        return this.isEditable(attribute) && this.character.educationStep?.attributes?.includes(attribute);
     }
     onIncrease(attribute: Attribute): void {
         store.dispatch(modifyCharacterAttribute(attribute, StepContext.Education));
@@ -125,12 +124,12 @@ class ChildDecrementDisciplineController implements IDisciplineController {
         return this.character.departments[discipline];
     }
     canIncrease(discipline: Department): boolean {
-        return this.character.educationStep?.decrementDisciplines?.indexOf(discipline) >= 0;
+        return this.character.educationStep?.decrementDisciplines?.includes(discipline);
     }
     canDecrease(discipline: Department): boolean {
         return this.isEditable(discipline)
             && this.character.educationStep?.decrementDisciplines?.length < this.count
-            && this.character.educationStep?.decrementDisciplines?.indexOf(discipline) < 0;
+            && !this.character.educationStep?.decrementDisciplines?.includes(discipline);
     }
     onIncrease(discipline: Department): void {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, true, [], true));
@@ -189,22 +188,20 @@ class ChildSecondaryDisciplineController implements IDisciplineController {
         return this.character.departments[discipline];
     }
     canIncrease(discipline: Department) {
-        if (this.getValue(discipline) === Character.maxDepartment(this.character)) {
+        if (!this.character.canRaiseDepartmentValue(this.getValue(discipline))) {
             return false;
         } else if (this.character.educationStep?.primaryDiscipline === discipline) {
             return false;
-        } else if (this.getValue(discipline) === (Character.maxDepartment(this.character) - 1) && this.character.hasMaxedDepartment()) {
-            return false;
         } else if (this.character.educationStep?.disciplines.length === 2) {
             return false;
-        } else if (this.character.educationStep.disciplines.indexOf(discipline) >= 0) {
+        } else if (this.character.educationStep.disciplines.includes(discipline)) {
             return false;
         } else {
             return true;
         }
     }
     canDecrease(discipline: Department) {
-        return this.character.educationStep?.disciplines.indexOf(discipline) >= 0;
+        return this.character.educationStep?.disciplines.includes(discipline);
     }
     onIncrease(discipline: Department) {
         store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, true));

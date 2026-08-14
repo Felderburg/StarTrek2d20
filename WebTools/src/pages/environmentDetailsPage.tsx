@@ -40,7 +40,7 @@ class EnvironmentAttributeController implements IAttributeController {
     }
 
     isShown(attribute: Attribute) {
-        return this.attributes.indexOf(attribute) >= 0;
+        return this.attributes.includes(attribute);
     }
     isEditable(attribute: Attribute): boolean {
         return this.isShown(attribute);
@@ -79,7 +79,7 @@ class SoloEnvironmentDisciplineController implements IDisciplineController {
     }
 
     isShown(discipline: Department) {
-        return this.disciplines.indexOf(discipline) >= 0;
+        return this.disciplines.includes(discipline);
     }
     isEditable(discipline: Department): boolean {
         return this.isShown(discipline);

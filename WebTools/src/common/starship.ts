@@ -20,6 +20,7 @@ import { SpaceframeAppearance } from "../helpers/spaceframeAppearance";
 import { BuildPoints } from "../starship/model/buildPoints";
 import { TalentModel } from "../helpers/talentModel";
 import { ShipBuildType } from "./shipBuildType";
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 export class SimpleStats {
     departments: number[];
@@ -312,7 +313,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
     get defaultTraits() {
         let trait = [];
-        if (this.type === CharacterType.KlingonWarrior && this.buildType === ShipBuildType.Starship) {
+        if (isKlingonWarriorType(this.type) && this.buildType === ShipBuildType.Starship) {
             trait.push("Klingon Starship");
         } else if (this.type === CharacterType.Starfleet && this.buildType === ShipBuildType.Starship) {
             trait.push("Federation Starship");

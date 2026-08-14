@@ -15,7 +15,7 @@ import { EquipmentModel } from "../helpers/equipment";
 import { Construct } from "../common/construct";
 import { CareerEventsHelper } from "../helpers/careerEvents";
 import { CareersHelper } from "../helpers/careers";
-import { CharacterType, CharacterTypeModel } from "../common/characterType";
+import { CharacterTypeModel } from "../common/characterType";
 import { TracksHelper } from "../helpers/tracks";
 import { SpeciesAbility } from "../helpers/speciesAbility";
 import { markupToHtml } from "./markupToHtml";
@@ -25,6 +25,7 @@ import { SelectedTalent } from "../common/selectedTalent";
 import { Station } from "../common/station";
 import { TalentCategory } from "../helpers/talentCategory";
 import { ShipBuildType } from "../common/shipBuildType";
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 const DEFAULT_STARSHIP_ICON = "systems/sta/assets/icons/ship_icon.png";
 const DEFAULT_EQUIPMENT_ICON = "systems/sta/assets/icons/voyagercombadgeicon.svg";
@@ -625,7 +626,7 @@ export class FoundryVttExporter {
         }
         result.system["species"] = character.speciesName;
         if (type === FoundryPluginType.Standard) {
-            if (character.type === CharacterType.KlingonWarrior && character.house?.length) {
+            if (isKlingonWarriorType(character.type) && character.house?.length) {
                 result.system["house"] = character.house;
             }
         }

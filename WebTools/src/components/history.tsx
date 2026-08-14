@@ -63,7 +63,7 @@ class History extends React.Component<IHistoryProperties, {}> {
                     ? (character.type === CharacterType.Child ? this.renderPageTitleLink(PageIdentity.ChildEducationPage) : this.renderPageTitleLink(PageIdentity.Career))
                     : undefined}
                 {character?.careerStep != null ? this.renderPageTitleLink(PageIdentity.CareerLength) : undefined}
-                {character?.careerEvents?.length > 0 ? this.renderPageTitleLink(PageIdentity.CareerEvent1) : undefined}
+                {character?.hasCareerEvents ? this.renderPageTitleLink(PageIdentity.CareerEvent1) : undefined}
                 {character?.careerEvents?.length > 1 ? this.renderPageTitleLink(PageIdentity.CareerEvent2) : undefined}
                 {character?.finishingStep ? this.renderPageTitleLink(PageIdentity.AttributesAndDisciplines) : undefined}
             </>);
@@ -87,7 +87,7 @@ class History extends React.Component<IHistoryProperties, {}> {
             {character?.upbringingStep ? this.renderPageTitleLink(PageIdentity.SoloEarlyOutlook) : undefined}
             {character?.educationStep ? this.renderPageTitleLink(PageIdentity.SoloEducationType) : undefined}
             {character?.careerStep != null ? this.renderPageTitleLink(PageIdentity.CareerLength) : undefined}
-            {character?.careerEvents?.length > 0 ? this.renderPageTitleLink(PageIdentity.SoloCareerEvent1) : undefined}
+            {character?.hasCareerEvents ? this.renderPageTitleLink(PageIdentity.SoloCareerEvent1) : undefined}
             {character?.careerEvents?.length > 1 ? this.renderPageTitleLink(PageIdentity.SoloCareerEvent2) : undefined}
             {character?.finishingStep ? this.renderPageTitleLink(PageIdentity.SoloFinishingTouches) : undefined}
         </>);

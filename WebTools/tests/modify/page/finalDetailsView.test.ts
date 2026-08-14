@@ -3,6 +3,14 @@ import { FinalDetailsView } from '../../../src/modify/page/finalDetailsView';
 import { Character } from '../../../src/common/character';
 import D20IconButton from '../../../src/solo/component/d20IconButton';
 
+function isLeafNode(node: any): boolean {
+    return node == null || typeof node === 'string' || typeof node === 'number';
+}
+
+function hasChildren(children: any): boolean {
+    return children != null && typeof children === 'object';
+}
+
 function createMockCharacter(name?: string, pronouns?: string) {
     const character = new Character();
     character.name = name ?? "Jim";
@@ -35,7 +43,7 @@ function createFinalDetailsView(character: Character, overrides?: any) {
 function findInputs(element: any): any[] {
     const results: any[] = [];
     const walk = (node: any) => {
-        if (node == null || typeof node === 'string' || typeof node === 'number') {
+        if (isLeafNode(node)) {
             return;
         }
         if (node.props?.id != null && node.props?.onChange != null) {
@@ -44,7 +52,7 @@ function findInputs(element: any): any[] {
         const children = node.props?.children;
         if (Array.isArray(children)) {
             children.forEach(walk);
-        } else if (children != null && typeof children === 'object') {
+        } else if (hasChildren(children)) {
             walk(children);
         }
     };
@@ -265,7 +273,7 @@ describe('FinalDetailsView', () => {
 function findRandomNameButtons(element: any): any[] {
     const results: any[] = [];
     const walk = (node: any) => {
-        if (node == null || typeof node === 'string' || typeof node === 'number') {
+        if (isLeafNode(node)) {
             return;
         }
         if (node.type === D20IconButton) {
@@ -274,7 +282,7 @@ function findRandomNameButtons(element: any): any[] {
         const children = node.props?.children;
         if (Array.isArray(children)) {
             children.forEach(walk);
-        } else if (children != null && typeof children === 'object') {
+        } else if (hasChildren(children)) {
             walk(children);
         }
     };

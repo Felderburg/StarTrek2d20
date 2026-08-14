@@ -233,7 +233,7 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                         attributes.splice(0, attributes.length - 3);
                         temp.speciesStep.attributes = attributes;
                     }
-                } else if (temp.speciesStep.attributes.indexOf(action.payload.attribute) >= 0) {
+                } else if (temp.speciesStep.attributes.includes(action.payload.attribute)) {
                     let attributes = [...temp.speciesStep.attributes];
                     attributes.splice(temp.speciesStep.attributes.indexOf(action.payload.attribute), 1);
                     temp.speciesStep.attributes = attributes;
@@ -254,11 +254,11 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 } else {
                     if (positive) {
                         temp.educationStep.attributes.push(action.payload.attribute)
-                    } else if (temp.educationStep.attributes.indexOf(action.payload.attribute) >= 0) {
+                    } else if (temp.educationStep.attributes.includes(action.payload.attribute)) {
                         temp.educationStep.attributes.splice(temp.educationStep.attributes.indexOf(action.payload.attribute), 1);
                     }
                 }
-            } else if (action.payload.context === StepContext.CareerEvent1 && temp.careerEvents?.length > 0) {
+            } else if (action.payload.context === StepContext.CareerEvent1 && temp.hasCareerEvents) {
                 temp.careerEvents[0].attribute = positive ? attribute : undefined;
             } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents?.length > 1) {
                 temp.careerEvents[1].attribute = positive ? attribute : undefined;
@@ -961,7 +961,7 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                         // if we're no longer decrementing a discipline that could only be incremented because of
                         // the previous decrement, then remove the increment
                         if (temp.departments[discipline] === value) {
-                            if (temp.educationStep.disciplines.indexOf(discipline) >= 0) {
+                            if (temp.educationStep.disciplines.includes(discipline)) {
                                 temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(discipline), 1);
                             } else if (temp.educationStep.primaryDiscipline === discipline) {
                                 temp.educationStep.primaryDiscipline = undefined;
@@ -975,11 +975,11 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                         if (action.payload.primaryDisciplines.length > 0) {
                             temp.educationStep.primaryDiscipline = discipline;
                             action.payload.primaryDisciplines.forEach(d => {
-                                if (temp.educationStep.disciplines.indexOf(d) >= 0) {
+                                if (temp.educationStep.disciplines.includes(d)) {
                                     temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(d), 1);
                                 }
                             });
-                        } else if (temp.educationStep.decrementDisciplines.indexOf(discipline) >= 0 && temp.type !== CharacterType.Child) {
+                        } else if (temp.educationStep.decrementDisciplines.includes(discipline) && temp.type !== CharacterType.Child) {
                             temp.educationStep.decrementDisciplines.splice(temp.educationStep.decrementDisciplines.indexOf(discipline), 1);
                         } else {
                             temp.educationStep.disciplines.push(discipline);
@@ -988,18 +988,18 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                         if (temp.educationStep.primaryDiscipline === discipline) {
                             temp.educationStep.primaryDiscipline = null;
                             action.payload.primaryDisciplines.forEach(d => {
-                                if (temp.educationStep.disciplines.indexOf(d) >= 0) {
+                                if (temp.educationStep.disciplines.includes(d)) {
                                     temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(d), 1);
                                 }
                             });
-                        } else if (temp.educationStep.disciplines.indexOf(discipline) >= 0) {
+                        } else if (temp.educationStep.disciplines.includes(discipline)) {
                             temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(discipline), 1);
                         } else if (temp.type !== CharacterType.Child) {
                             temp.educationStep.decrementDisciplines.push(discipline);
                         }
                     }
                 }
-            } else if (action.payload.context === StepContext.CareerEvent1 && temp.careerEvents?.length > 0) {
+            } else if (action.payload.context === StepContext.CareerEvent1 && temp.hasCareerEvents) {
                 temp.careerEvents[0].discipline = positive ? discipline : undefined;
             } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents?.length > 1) {
                 temp.careerEvents[1].discipline = positive ? discipline : undefined;

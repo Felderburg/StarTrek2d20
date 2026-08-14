@@ -16,7 +16,7 @@ export class EarlyOutlookDiscplineController implements IDisciplineController {
     }
 
     isShown(discipline: Department) {
-        return this.earlyOutlook.disciplines.indexOf(discipline) >= 0;
+        return this.earlyOutlook.disciplines.includes(discipline);
     }
     isEditable(discipline: Department)  {
         return this.earlyOutlook.disciplines.length >= 1;

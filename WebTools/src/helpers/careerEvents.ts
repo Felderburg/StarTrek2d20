@@ -1,6 +1,7 @@
 import {DepartmentsHelper, Department} from './department';
 import {Attribute, AttributesHelper} from './attributes';
 import { CharacterType } from '../common/characterType';
+import { isKlingonWarrior1e, isKlingonWarriorType } from './klingonWarrior';
 import i18next from 'i18next';
 import { Source } from './sources';
 import { ICharacterPrerequisite, SourceCharacterPrerequisite } from './characterPrerequisite';
@@ -1495,7 +1496,7 @@ class CareerEvents {
     }
 
     getCareerEvents(character: Character) {
-        let list = (character.type === CharacterType.KlingonWarrior && character.version === 1) ? this._klingonEvents : this._events;
+        let list = isKlingonWarrior1e(character.type, character.version) ? this._klingonEvents : this._events;
         list = list.filter(e => e.isPrerequisiteFulfilled(character));
         return [...list].sort((e1, e2) => {
             return e1.localizedName.localeCompare(e2.localizedName);
@@ -1513,7 +1514,7 @@ class CareerEvents {
     getCareerEvent(id: number, type: CharacterType, version: number): CareerEventModel {
         let event = undefined;
 
-        let list = (type === CharacterType.KlingonWarrior && version === 1) ? this._klingonEvents : this._events;
+        let list = isKlingonWarrior1e(type, version) ? this._klingonEvents : this._events;
         list.forEach(ev => {
             if (ev.roll === id) {
                 event = ev;
@@ -1531,11 +1532,11 @@ class CareerEvents {
     }
 
     generateEvent(character: Character): CareerEventModel {
-        if (character.version === 1 || character.type === CharacterType.KlingonWarrior) {
+        if (character.version === 1 || isKlingonWarriorType(character.type)) {
             let roll = Math.floor(Math.random() * 20) + 1;
             let event = undefined;
 
-            let list = (character.version === 1 && character.type === CharacterType.KlingonWarrior) ? this._klingonEvents : this._events;
+            let list = isKlingonWarrior1e(character.type, character.version) ? this._klingonEvents : this._events;
             list.forEach(ev => {
                 if (ev.roll === roll) {
                     event = ev;

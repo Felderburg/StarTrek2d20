@@ -30,23 +30,22 @@ export class EducationAttributeController implements IAttributeController {
         return undefined;
     }
     canIncrease(attribute: Attribute): boolean {
-        return this.getValue(attribute) < Character.maxAttribute(this.character)
-            && (this.getValue(attribute) < (Character.maxAttribute(this.character) - 1) || !this.character.hasMaxedAttribute())
+        return this.character.canRaiseAttributeValue(this.getValue(attribute))
             && this.isEditable(attribute) && this.character.educationStep?.attributes?.length < 3
-            && (this.isRequiredAttributeRuleSatisfied() || this.character.educationStep?.attributes?.length < 2 || this.track.attributesRule?.attributes?.indexOf(attribute) >= 0)
+            && (this.isRequiredAttributeRuleSatisfied() || this.character.educationStep?.attributes?.length < 2 || this.track.attributesRule?.attributes?.includes(attribute))
             && this.character.educationStep.attributes.filter(a => a === attribute).length < 2;
     }
     isRequiredAttributeRuleSatisfied() {
         if (this.track.attributesRule) {
             let result = false;
-            this.track.attributesRule.attributes.forEach(a => result = result || (this.character.educationStep.attributes.indexOf(a) >= 0));
+            this.track.attributesRule.attributes.forEach(a => result = result || (this.character.educationStep.attributes.includes(a)));
             return result;
         } else {
             return true;
         }
     }
     canDecrease(attribute: Attribute): boolean {
-        return this.isEditable(attribute) && this.character.educationStep?.attributes?.indexOf(attribute) >= 0;
+        return this.isEditable(attribute) && this.character.educationStep?.attributes?.includes(attribute);
     }
     onIncrease(attribute: Attribute): void {
         store.dispatch(modifyCharacterAttribute(attribute, StepContext.Education));
@@ -70,7 +69,7 @@ export class EducationPrimaryDisciplineController implements IDisciplineControll
     }
 
     isShown(discipline: Department) {
-        return this.track.majorDisciplines.indexOf(discipline) >= 0;
+        return this.track.majorDisciplines.includes(discipline);
     }
     isEditable(discipline: Department)  {
         return true;
@@ -106,7 +105,7 @@ export class EducationSecondaryDisciplineController implements IDisciplineContro
         if (this.character.educationStep?.primaryDiscipline != null) {
             return discipline !== this.character.educationStep?.primaryDiscipline;
         } else {
-            return this.track.majorDisciplines.indexOf(discipline) < 0;
+            return !this.track.majorDisciplines.includes(discipline);
         }
     }
     isEditable(discipline: Department)  {
@@ -116,19 +115,17 @@ export class EducationSecondaryDisciplineController implements IDisciplineContro
         return this.character.departments[discipline];
     }
     canIncrease(discipline: Department) {
-        if (this.getValue(discipline) === Character.maxDepartment(this.character)) {
-            return false;
-        } else if (this.getValue(discipline) === (Character.maxDepartment(this.character) - 1) && this.character.hasMaxedDepartment()) {
+        if (!this.character.canRaiseDepartmentValue(this.getValue(discipline))) {
             return false;
         } else if (this.character.educationStep?.disciplines.length === 3 && this.character.educationStep?.decrementDisciplines?.length === 1) {
             return false;
         } else if (this.character.educationStep?.disciplines.length === 2 && this.character.educationStep?.decrementDisciplines?.length === 0) {
             return false;
-        } else if (this.character.educationStep.disciplines.indexOf(discipline) >= 0) {
+        } else if (this.character.educationStep.disciplines.includes(discipline)) {
             return false;
         } else if (this.isRequiredDisciplineRuleSatisfied()) {
             return true;
-        } else if (this.track.skillsRule?.skills.indexOf(discipline) >= 0) {
+        } else if (this.track.skillsRule?.skills.includes(discipline)) {
             return true;
         } else  if (this.track.skillsRule?.type === ImprovementRuleType.AT_LEAST_ONE) {
             return this.character.educationStep?.disciplines.length === 0;
@@ -138,7 +135,7 @@ export class EducationSecondaryDisciplineController implements IDisciplineContro
         }
     }
     canDecrease(discipline: Department) {
-        return this.character.educationStep?.disciplines.indexOf(discipline) >= 0
+        return this.character.educationStep?.disciplines.includes(discipline)
             || (this.track.skillsRule?.type === ImprovementRuleType.MAY_DECREMENT_ONE && this.character.educationStep?.decrementDisciplines?.length === 0);
     }
     isRequiredDisciplineRuleSatisfied() {
@@ -151,8 +148,8 @@ export class EducationSecondaryDisciplineController implements IDisciplineContro
         }
     }
     countRequiredDisciplines() {
-        let count = this.track.skillsRule.skills.indexOf(this.character.educationStep.primaryDiscipline) >= 0 ? 1 : 0;
-        count += this.character.educationStep.disciplines.filter(d => this.track.skillsRule.skills.indexOf(d) >= 0).length;
+        let count = this.track.skillsRule.skills.includes(this.character.educationStep.primaryDiscipline) ? 1 : 0;
+        count += this.character.educationStep.disciplines.filter(d => this.track.skillsRule.skills.includes(d)).length;
         return count;
     }
     onIncrease(discipline: Department) {

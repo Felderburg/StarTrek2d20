@@ -8,6 +8,7 @@ import { Species } from './speciesEnum';
 import store from '../state/store';
 import { hasAnySource, hasSource } from '../state/contextFunctions';
 import { BasicAttributeHandler, SpeciesModel } from './speciesModel';
+import { isKlingonWarriorType } from './klingonWarrior';
 
 export interface NameModel {
     type: string;
@@ -2457,7 +2458,7 @@ class _Species {
         for (let archetype in this._species) {
             let spec = this._species[archetype];
 
-            const hasEra = (spec.eras.indexOf(store.getState().context.era) > -1) || (spec.id === Species.Klingon && characterType === CharacterType.KlingonWarrior);
+            const hasEra = (spec.eras.indexOf(store.getState().context.era) > -1) || (spec.id === Species.Klingon && isKlingonWarriorType(characterType));
             const isSourceAvailable = hasAnySource(spec.sources);
 
             if (hasEra && isSourceAvailable && !this.ignoreSpecies(spec.id)) {
@@ -2471,7 +2472,7 @@ class _Species {
     }
 
     getPrimarySpecies(type: CharacterType, excludeSpeciesBasedOnOtherSpecies: boolean, character: Character) {
-        if (type === CharacterType.KlingonWarrior) {
+        if (isKlingonWarriorType(type)) {
             var species: SpeciesModel[] = [];
 
             var klingonSpecies = store.getState().context.era === Era.NextGeneration ? [
@@ -2536,9 +2537,9 @@ class _Species {
     }
 
     generateSpecies(characterType: CharacterType = CharacterType.Starfleet): Species {
-        if (characterType === CharacterType.KlingonWarrior && store.getState().context.era === Era.NextGeneration) {
+        if (isKlingonWarriorType(characterType) && store.getState().context.era === Era.NextGeneration) {
             return Species.Klingon;
-        } else if (characterType === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(characterType)) {
             let roll = Math.floor(Math.random() * 20) + 1;
             // it doesn't appear that there are any real rules for this.
             if (hasSource(Source.SpeciesSourcebook)) {

@@ -1,6 +1,7 @@
 import { Source } from "../helpers/sources";
 import i18next from "i18next";
 import { makeKey } from "./translationKey";
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 export enum CharacterType {
     Starfleet = 0,
@@ -77,7 +78,7 @@ export class CharacterTypeModel {
 
     private static filterBySources(types: CharacterTypeModel[], sources: Source[]) {
         return types.filter(t => {
-            if (t.type === CharacterType.KlingonWarrior) {
+            if (isKlingonWarriorType(t.type)) {
                 return sources.indexOf(Source.KlingonCore) >= 0;
             } else if (t.type === CharacterType.Starfleet) {
                 return true;

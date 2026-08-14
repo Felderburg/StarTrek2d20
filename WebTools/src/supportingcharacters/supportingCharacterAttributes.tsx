@@ -49,7 +49,7 @@ const SupportingCharacterAttributes: React.FC<ICharacterProperties> = ({characte
     }
 
     const toggleSpeciesAttribute = (attribute: Attribute) => {
-        if (character?.speciesStep?.attributes?.indexOf(attribute) >= 0) {
+        if (character?.speciesStep?.attributes?.includes(attribute)) {
             store.dispatch(modifyCharacterAttribute(attribute, StepContext.Species, false));
         } else {
             store.dispatch(modifyCharacterAttribute(attribute, StepContext.Species, true));
@@ -68,7 +68,7 @@ const SupportingCharacterAttributes: React.FC<ICharacterProperties> = ({characte
         }
 
         if (character?.speciesStep?.species === Species.Custom || speciesModel?.isAttributeSelectionRequired) {
-            const isChecked = character?.speciesStep?.attributes?.indexOf(a) >= 0;
+            const isChecked = character?.speciesStep?.attributes?.includes(a);
             return (
                 <tr key={i}>
                     <td className="selection-header">{t(makeKey('Construct.attribute.', Attribute[a]))}</td>
@@ -108,11 +108,11 @@ const SupportingCharacterAttributes: React.FC<ICharacterProperties> = ({characte
                 </tr>
             );
         } else { // Ktarians have two attributes pre-defined, and can choose from Secondary Attributes as a third attribute
-            const speciesHasAttribute = speciesModel?.attributes?.indexOf(a) > -1;
-            const isChecked = character?.speciesStep?.attributes?.indexOf(a) > -1;
+            const speciesHasAttribute = speciesModel?.attributes?.includes(a);
+            const isChecked = character?.speciesStep?.attributes?.includes(a);
 
             let checkBox = (<td></td>);
-            if (speciesModel?.secondaryAttributes?.indexOf(a) >= 0) {
+            if (speciesModel?.secondaryAttributes?.includes(a)) {
                 checkBox = ( <td>
                     <CheckBox
                         text=""

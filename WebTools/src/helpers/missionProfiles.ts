@@ -1,6 +1,7 @@
 import i18next from 'i18next';
 import { CharacterType } from '../common/characterType';
 import { Starship } from '../common/starship';
+import { isKlingonWarrior1e, isKlingonWarriorType } from './klingonWarrior';
 import { IConstructPrerequisite, SourcePrerequisite } from './prerequisite';
 import { Source } from './sources';
 import {TalentModel} from './talentModel';
@@ -80,14 +81,14 @@ export class MissionProfileModel {
     }
 
     get localizedName() {
-        const prefix = this.type === CharacterType.KlingonWarrior ? "MissionProfile.klingon." : "MissionProfile.default.";
+        const prefix = isKlingonWarriorType(this.type) ? "MissionProfile.klingon." : "MissionProfile.default.";
         const key = makeKey(prefix, MissionProfile[this.id]);
         let result = i18next.t(key);
         return result === key ? this.name : result;
     }
 
     get localizedDescription() {
-        const prefix = this.type === CharacterType.KlingonWarrior ? "MissionProfile.klingon." : "MissionProfile.default.";
+        const prefix = isKlingonWarriorType(this.type) ? "MissionProfile.klingon." : "MissionProfile.default.";
         const key = makeKey(prefix, MissionProfile[this.id], ".description");
         let result = i18next.t(key);
         return result === key ? "" : result;
@@ -877,10 +878,10 @@ class MissionProfiles {
         let profiles: MissionProfileModel[] = [];
         let list = this._profiles2e;
         if (starship.version === 1) {
-            list = (starship.type === CharacterType.KlingonWarrior && starship.version === 1)
+            list = isKlingonWarrior1e(starship.type, starship.version)
                 ? this._klingonProfiles
                 : this._profiles;
-        } else if (starship.type === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(starship.type)) {
             list = this._klingonProfiles2e;
         } else if (starship.type === CharacterType.Civilian) {
             list = {
@@ -931,10 +932,10 @@ class MissionProfiles {
     getMissionProfileByName(profile: string, type: CharacterType, version: number) {
         let list = this._profiles2e;
         if (version === 1) {
-            list = (type === CharacterType.KlingonWarrior && version === 1)
+            list = isKlingonWarrior1e(type, version)
                 ? this._klingonProfiles
                 : this._profiles;
-        } else if (type === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(type)) {
             list = this._klingonProfiles2e;
         }
         let result = null;

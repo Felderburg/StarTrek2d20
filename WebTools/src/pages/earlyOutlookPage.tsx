@@ -17,10 +17,10 @@ import { AttributesHelper } from '../helpers/attributes';
 import { EarlyOutlookAspirationRandomTable, EarlyOutlookCasteRandomTable, EarlyOutlookUpbringingRandomTable } from '../solo/table/earlyOutlookRandomTable';
 import { connect } from 'react-redux';
 import { Stereotype } from '../common/construct';
-import { CharacterType } from '../common/characterType';
 import { hasSource } from '../state/contextFunctions';
 import { Source } from '../helpers/sources';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
+import { isKlingonWarriorType } from "../helpers/klingonWarrior";
 
 enum EarlyOutlookTab {
     Upbringings,
@@ -31,7 +31,7 @@ enum EarlyOutlookTab {
 const EarlyOutlookPage : React.FC<ICharacterProperties> = ({character}) => {
 
     const determineInitialTab = (outlook?: EarlyOutlook) => {
-        if (outlook == null && character.type !== CharacterType.KlingonWarrior) {
+        if (outlook == null && !isKlingonWarriorType(character.type)) {
             return EarlyOutlookTab.Upbringings;
         } else if (outlook == null) {
             return EarlyOutlookTab.Castes;
@@ -218,14 +218,14 @@ const EarlyOutlookPage : React.FC<ICharacterProperties> = ({character}) => {
             <CharacterCreationBreadcrumbs pageIdentity={PageIdentity.Upbringing} />
             <Header>{t('Page.title.soloEarlyOutlook')}</Header>
 
-            <InstructionText text={character.type === CharacterType.KlingonWarrior ? t('EarlyOutlookPage.instruction.klingon') : t('EarlyOutlookPage.instruction')} />
+            <InstructionText text={isKlingonWarriorType(character.type) ? t('EarlyOutlookPage.instruction.klingon') : t('EarlyOutlookPage.instruction')} />
 
             <div className="btn-group w-100" role="group" aria-label="Early Outlook Types">
-                {(character.stereotype === Stereotype.SoloCharacter || character.type !== CharacterType.KlingonWarrior)
+                {(character.stereotype === Stereotype.SoloCharacter || !isKlingonWarriorType(character.type))
                     ?  (<button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === EarlyOutlookTab.Upbringings ? "active" : "")}
                             onClick={() => setTab(EarlyOutlookTab.Upbringings)}>{t('SoloEarlyOutlookPage.upbringings')}</button>)
                     : undefined}
-                {(character.stereotype === Stereotype.SoloCharacter || character.type === CharacterType.KlingonWarrior)
+                {(character.stereotype === Stereotype.SoloCharacter || isKlingonWarriorType(character.type))
                     ? (<button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === EarlyOutlookTab.Castes ? "active" : "")}
                         onClick={() => setTab(EarlyOutlookTab.Castes)}>{t('SoloEarlyOutlookPage.castes')}</button>)
                     : undefined}

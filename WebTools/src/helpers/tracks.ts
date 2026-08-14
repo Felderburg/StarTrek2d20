@@ -6,6 +6,7 @@ import { hasAnySource, hasSource } from '../state/contextFunctions';
 import { Track } from './trackEnum';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
+import { isKlingonWarriorType } from './klingonWarrior';
 
 export enum ImprovementRuleType {
     AT_LEAST_ONE, MUST_INCLUDE_ALL, MAY_DECREMENT_ONE
@@ -530,7 +531,7 @@ export class TracksHelper {
             return this._ambassardorTracks;
         } else if (type === CharacterType.Civilian) {
             return this._civilianTracks;
-        } else if (type === CharacterType.KlingonWarrior) {
+        } else if (isKlingonWarriorType(type)) {
             return this._klingonTracks;
         } else if (type === CharacterType.Cadet && version === 1) {
             return [ this._tracks[0], this._tracks[1], this._tracks[2] ];
