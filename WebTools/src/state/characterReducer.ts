@@ -59,6 +59,16 @@ const trackDefaults = (track: Track, step: EducationStep) => {
     }
 }
 
+const withCharacter = (state: CharacterState, action: any, mutate: (temp: Character, action: any) => void): CharacterState => {
+    let temp = state.currentCharacter.copy();
+    mutate(temp, action);
+    return {
+        ...state,
+        currentCharacter: temp,
+        isModified: true
+    }
+}
+
 const characterReducer = (state: CharacterState = { currentCharacter: undefined, isModified: false }, action) => {
     switch (action.type) {
 
@@ -71,1006 +81,746 @@ const characterReducer = (state: CharacterState = { currentCharacter: undefined,
                 replacementHash: action.payload.replacementHash
             }
         }
-        case SET_CHARACTER_SPECIES: {
-            let temp = state.currentCharacter.copy();
-            let originalStep = temp.speciesStep;
-            temp.speciesStep = new SpeciesStep(action.payload.species);
-            if (action.payload.attributes) {
-                temp.speciesStep.attributes = [...action.payload.attributes];
-            }
-            if (action.payload.decrementAttributes?.length) {
-                temp.speciesStep.decrementAttributes = [...action.payload.decrementAttributes];
-            }
-            if (originalStep) {
-                if (originalStep.species === temp.speciesStep.species) {
-                    if (originalStep.attributes?.length) {
-                        if (originalStep.originalSpecies != null && originalStep.originalSpecies === action.payload.originalSpecies) {
-                            temp.speciesStep.attributes = [...originalStep.attributes];
-                        } else if (originalStep.mixedSpecies != null && originalStep.mixedSpecies === action.payload.mixedSpecies) {
-                            temp.speciesStep.attributes = [...originalStep.attributes];
-                        }
-                    }
-                    if (temp.speciesStep.species === Species.Custom) {
-                        temp.speciesStep.customSpeciesName = originalStep.customSpeciesName;
-                    }
-                    temp.speciesStep.mixedSpecies = originalStep.mixedSpecies;
-                    temp.speciesStep.originalSpecies = originalStep.originalSpecies;
-                    temp.speciesStep.talent = originalStep.talent?.copy();
-                    temp.speciesStep.abilityOptions = originalStep.abilityOptions?.copy();
+        case SET_CHARACTER_SPECIES:
+            return withCharacter(state, action, (temp, action) => {
+                let originalStep = temp.speciesStep;
+                temp.speciesStep = new SpeciesStep(action.payload.species);
+                if (action.payload.attributes) {
+                    temp.speciesStep.attributes = [...action.payload.attributes];
                 }
-            }
-            if (temp.version > 1) {
-                let ability = action.payload.ability;
-                if (ability) {
-                    temp.speciesStep.ability = ability;
+                if (action.payload.decrementAttributes?.length) {
+                    temp.speciesStep.decrementAttributes = [...action.payload.decrementAttributes];
                 }
-            }
-
-            temp.speciesStep.mixedSpecies = action.payload.mixedSpecies;
-            temp.speciesStep.originalSpecies = action.payload.originalSpecies;
-            if (temp.speciesStep.species === Species.Custom && action.payload.customSpeciesName) {
-                temp.speciesStep.customSpeciesName = action.payload.customSpeciesName;
-            }
-
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_AGE: {
-            let temp = state.currentCharacter.copy();
-            temp.age = action.payload.age;
-            if (temp.educationStep == null) {
-                temp.educationStep = new EducationStep();
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_CAREER_LENGTH: {
-            let temp = state.currentCharacter.copy();
-            temp.careerStep = new CareerStep(action.payload.careerLength);
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_EDUCATION: {
-            let temp = state.currentCharacter.copy();
-            let originalStep = temp.educationStep;
-            temp.educationStep = new EducationStep(action.payload.track, action.payload.enlisted);
-            trackDefaults(action.payload.track, temp.educationStep);
-            if (originalStep) {
-                if (originalStep.track === temp.educationStep.track) {
-                    temp.educationStep.attributes = [...originalStep.attributes];
-                    temp.educationStep.primaryDiscipline = originalStep.primaryDiscipline;
-                    temp.educationStep.decrementDisciplines = [...originalStep.decrementDisciplines];
-                    temp.educationStep.disciplines = [...originalStep.disciplines];
-                    temp.educationStep.focuses = [...originalStep.focuses];
-                    temp.educationStep.value = originalStep.value;
-                    temp.educationStep.talent = originalStep.talent?.copy();
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_FINISHING_TOUCHES: {
-            let temp = state.currentCharacter.copy();
-            let originalStep = temp.finishingStep;
-            temp.finishingStep = new FinishingStep();
-            if (originalStep) {
-                temp.finishingStep.attributes = [...originalStep.attributes];
-                temp.finishingStep.disciplines = [...originalStep.disciplines];
-                temp.finishingStep.value = originalStep.value;
-                temp.finishingStep.talent = originalStep.talent?.copy();
-
-                if (temp.attributeTotal < Character.totalAttributeSum(temp)) {
-                    temp.finishingStep.attributes = [];
-                }
-                if (temp.skillTotal < Character.totalDepartmentSum(temp)) {
-                    temp.finishingStep.disciplines = [];
-                }
-            }
-
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_ENVIRONMENT: {
-            let temp = state.currentCharacter.copy();
-            let originalStep = temp.environmentStep;
-            temp.environmentStep = new EnvironmentStep(action.payload.environment, action.payload.otherSpecies);
-            if (originalStep) {
-                if (originalStep.environment === temp.environmentStep.environment) {
-                    temp.environmentStep.discipline = originalStep.discipline;
-                    if (originalStep.otherSpecies === temp.environmentStep.otherSpecies) {
-                        temp.environmentStep.attribute = originalStep.attribute;
-                    }
-                    temp.environmentStep.value = originalStep.value;
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_EARLY_OUTLOOK: {
-            let temp = state.currentCharacter.copy();
-            let originalStep = temp.upbringingStep;
-            temp.upbringingStep = new UpbringingStep(action.payload.earlyOutlook, action.payload.accepted);
-            if (originalStep) {
-                if (originalStep.upbringing?.id === temp.upbringingStep.upbringing?.id) {
-                    temp.upbringingStep.discipline = originalStep.discipline;
-                }
-                temp.upbringingStep.focus = originalStep.focus;
-                temp.upbringingStep.talent = originalStep.talent?.copy();
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case MODIFY_CHARACTER_ATTRIBUTE: {
-            let temp = state.currentCharacter.copy();
-            const attribute = action.payload.attribute;
-            const positive = action.payload.positive;
-            if (action.payload.context === StepContext.Species && temp.speciesStep) {
-                if (positive) {
-                    temp.speciesStep.attributes.push(action.payload.attribute);
-                    if (temp.speciesStep.attributes.length > 3) {
-                        let attributes = [...temp.speciesStep.attributes];
-                        attributes.splice(0, attributes.length - 3);
-                        temp.speciesStep.attributes = attributes;
-                    }
-                } else if (temp.speciesStep.attributes.includes(action.payload.attribute)) {
-                    let attributes = [...temp.speciesStep.attributes];
-                    attributes.splice(temp.speciesStep.attributes.indexOf(action.payload.attribute), 1);
-                    temp.speciesStep.attributes = attributes;
-                }
-            } else if (action.payload.context === StepContext.Environment && temp.environmentStep) {
-                if (positive) {
-                    temp.environmentStep.attribute = action.payload.attribute;
-                } else if (temp.environmentStep.attribute === action.payload.attribute) {
-                    temp.environmentStep.attribute = undefined;
-                }
-            } else if (action.payload.context === StepContext.Education && temp.educationStep) {
-                if (action.payload.forceDecrement && temp.type === CharacterType.Child) {
-                    if (positive) {
-                        temp.educationStep.decrementAttributes.splice(temp.educationStep.decrementAttributes.indexOf(action.payload.attribute), 1);
-                    } else {
-                        temp.educationStep.decrementAttributes.push(action.payload.attribute)
-                    }
-                } else {
-                    if (positive) {
-                        temp.educationStep.attributes.push(action.payload.attribute)
-                    } else if (temp.educationStep.attributes.includes(action.payload.attribute)) {
-                        temp.educationStep.attributes.splice(temp.educationStep.attributes.indexOf(action.payload.attribute), 1);
-                    }
-                }
-            } else if (action.payload.context === StepContext.CareerEvent1 && temp.hasCareerEvents) {
-                temp.careerEvents[0].attribute = positive ? attribute : undefined;
-            } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents?.length > 1) {
-                temp.careerEvents[1].attribute = positive ? attribute : undefined;
-            } else if (action.payload.context === StepContext.FinishingTouches && temp.finishingStep) {
-                if (positive) {
-                    temp.finishingStep.attributes.push(attribute);
-                } else {
-                    let index = temp.finishingStep.attributes.indexOf(attribute);
-                    if (index >= 0) {
-                        temp.finishingStep.attributes.splice(index, 1);
-                    }
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_SUPPORTING_CHARACTER_SUPERVISORY: {
-            let temp = state.currentCharacter.copy();
-            if (temp.supportingStep == null) {
-                temp.supportingStep = new SupportingStep();
-            }
-            temp.supportingStep.supervisory = action.payload.supervisory;
-            if (!temp.supportingStep.supervisory && temp.supportingStep.value?.length) {
-                temp.supportingStep.value = null;
-            }
-            if (!temp.supportingStep.supervisory && temp.supportingStep.focuses.length > 3) {
-                temp.supportingStep.focuses.splice(3);
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_SUPPORTING_CHARACTER_DISCIPLINES: {
-            let temp = state.currentCharacter.copy();
-            if (temp.supportingStep == null) {
-                temp.supportingStep = new SupportingStep();
-            }
-            temp.supportingStep.disciplines = [...action.payload.disciplines];
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_NPC_CHARACTER_DEPARTMENTS: {
-            let temp = state.currentCharacter.copy();
-            if (temp.npcGenerationStep == null) {
-                temp.npcGenerationStep = new NpcGenerationStep();
-            }
-            temp.npcGenerationStep.departments = [...action.payload.departments];
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_NPC_CHARACTER_ATTRIBUTES: {
-            let temp = state.currentCharacter.copy();
-            if (temp.npcGenerationStep == null) {
-                temp.npcGenerationStep = new NpcGenerationStep();
-            }
-            temp.npcGenerationStep.attributes = [...action.payload.attributes];
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_NPC_CHARACTER_TALENTS: {
-            let temp = state.currentCharacter.copy();
-            if (temp.npcGenerationStep == null) {
-                temp.npcGenerationStep = new NpcGenerationStep();
-            }
-            temp.npcGenerationStep.talents = [...action.payload.talents.map(t => t.copy())];
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_LOG_ENTRY: {
-            let temp = state.currentCharacter.copy();
-            if (temp.improvements == null) {
-                temp.improvements = [];
-            }
-            temp.improvements.push(action.payload.logEntry);
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_NPC_CHARACTER_EQUIPMENT: {
-            let temp = state.currentCharacter.copy();
-            if (temp.npcGenerationStep == null) {
-                temp.npcGenerationStep = new NpcGenerationStep();
-            }
-
-            temp.npcGenerationStep.equipment.push(action.payload.equipment);
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_NPC_CHARACTER_WEAPON: {
-            let temp = state.currentCharacter.copy();
-            if (temp.npcGenerationStep == null) {
-                temp.npcGenerationStep = new NpcGenerationStep();
-            }
-
-            temp.npcGenerationStep.weapons.push(action.payload.weapon);
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case REMOVE_NPC_CHARACTER_EQUIPMENT: {
-            let temp = state.currentCharacter.copy();
-            let equipment = action.payload.equipment;
-            if (temp.npcGenerationStep?.equipment != null) {
-                temp.npcGenerationStep.equipment = temp.npcGenerationStep.equipment
-                    .filter(e => {
-                        if (e instanceof EquipmentModel && equipment instanceof EquipmentModel) {
-                            return !(e.type === equipment.type
-                                && e.name === equipment.name
-                                && e.protection === equipment.protection);
-                        } else {
-                            return e !== equipment;
-                        }
-                    });
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case REMOVE_NPC_CHARACTER_WEAPON: {
-            let temp = state.currentCharacter.copy();
-            let weapon = action.payload.weapon;
-            if (temp.npcGenerationStep?.weapons != null) {
-                temp.npcGenerationStep.weapons = temp.npcGenerationStep.weapons
-                    .filter(e => e !== weapon );
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_SUPPORTING_CHARACTER_ATTRIBUTES: {
-            let temp = state.currentCharacter.copy();
-            if (temp.supportingStep == null) {
-                temp.supportingStep = new SupportingStep();
-            }
-            temp.supportingStep.attributes = [...action.payload.attributes];
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_CAREER_EVENT: {
-            let temp = state.currentCharacter.copy();
-            let event = new CareerEventStep(action.payload.eventId);
-            if (action.payload.attribute != null) {
-                event.attribute = action.payload.attribute;
-            }
-            if (action.payload.discipline != null) {
-                event.discipline = action.payload.discipline;
-            }
-
-            if (action.payload.context === StepContext.CareerEvent1) {
-                if (temp.careerEvents?.length) {
-                    if (event.id === temp.careerEvents[0].id) {
-                        event.focus = temp.careerEvents[0].focus;
-                    }
-                    temp.careerEvents[0] = event;
-                } else {
-                    temp.careerEvents.push(event);
-                }
-            } else if (action.payload.context === StepContext.CareerEvent2) {
-                if (temp.careerEvents?.length > 1) {
-                    if (event.id === temp.careerEvents[1].id) {
-                        event.focus = temp.careerEvents[1].focus;
-                    }
-                    temp.careerEvents[1] = event;
-                } else if (temp.careerEvents?.length === 1) {
-                    temp.careerEvents.push(event);
-                }
-            }
-
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_TYPE: {
-            let temp = state.currentCharacter.copy();
-            let originalType = temp.type;
-            temp.type = action.payload.type;
-            if (temp.type !== originalType) {
-                if (temp.educationStep) {
-                    temp.educationStep = undefined;
-                }
-
-                if (originalType === CharacterType.Child && temp.type !== CharacterType.Child) {
-                    temp.age = AgeHelper.getAdultAge();
-                } else if (originalType !== CharacterType.Child && temp.type === CharacterType.Child) {
-                    temp.age = AgeHelper.getAllChildAges()[0];
-                }
-            }
-            if (temp.type === CharacterType.Child && temp.supportingStep) {
-                temp.supportingStep.supervisory = false;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE: {
-            let temp = state.currentCharacter.copy();
-            let talent = temp.getTalentByName(TALENT_NAME_UNTAPPED_POTENTIAL);
-            if (talent) {
-                talent.attribute = action.payload.attribute;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_BORG_IMPLANT: {
-            let temp = state.currentCharacter.copy();
-            let talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
-            if (talent) {
-                talent.implants.push(action.payload.type);
-                while (talent.implants.length > 3) {
-                    talent.implants.splice(0, 1);
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION: {
-            let temp = state.currentCharacter.copy();
-            if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
-                temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
-            }
-            temp.speciesStep?.abilityOptions?.implants.push(action.payload.type);
-            while (temp.speciesStep?.abilityOptions?.implants.length > 3) {
-                temp.speciesStep?.abilityOptions?.implants.splice(0, 1);
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case REMOVE_CHARACTER_BORG_IMPLANT: {
-            let temp = state.currentCharacter.copy();
-            let talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
-            if (talent) {
-                const index = talent.implants.indexOf(action.payload.type);
-                if (index >= 0) {
-                    talent.implants.splice(index, 1);
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION: {
-            let temp = state.currentCharacter.copy();
-            if (temp.speciesStep != null && temp.speciesStep?.abilityOptions != null) {
-                const index = temp.speciesStep?.abilityOptions?.implants?.indexOf(action.payload.type);
-                if (index >= 0) {
-                    temp.speciesStep?.abilityOptions?.implants?.splice(index, 1);
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_SPECIES_ABILITY_FOCUS: {
-            let temp = state.currentCharacter.copy();
-            if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
-                temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
-            }
-            if (temp.speciesStep?.abilityOptions != null) {
-                let index = action.payload.index;
-                let focus = action.payload.focus;
-                while (temp.speciesStep.abilityOptions.focuses.length < index) {
-                    temp.speciesStep.abilityOptions.focuses[temp.speciesStep.abilityOptions.focuses.length] = "";
-                }
-                temp.speciesStep.abilityOptions.focuses[index] = focus;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_SPECIES_ABILITY_CHOICE: {
-            let temp = state.currentCharacter.copy();
-            if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
-                temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
-            }
-            if (temp.speciesStep?.abilityOptions != null) {
-                temp.speciesStep.abilityOptions.choice = action.payload.choice;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_TALENT_FOCUS: {
-            let temp = state.currentCharacter.copy();
-            let talent = temp.getTalentByName(action.payload.talent);
-            if (talent) {
-                const index = action.payload.index;
-                for (let i = talent.focuses.length; i <= index; i++) {
-                    talent.focuses.push("");
-                }
-                talent.focuses[index] = action.payload.focus;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_TALENT_VALUE: {
-            let temp = state.currentCharacter.copy();
-            let talent = temp.getTalentByName(action.payload.talent);
-            if (talent) {
-                talent.value = action.payload.value;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_CHARACTER_TALENT: {
-            let temp = state.currentCharacter.copy();
-            let t = action.payload.talent;
-            let talent = undefined;
-            if (t != null && t instanceof SelectedTalent) {
-                talent = (t as SelectedTalent).copy();
-            } else if (t != null) {
-                talent = new SelectedTalent((t as ITalent).name);
-            }
-            if (action.payload.context === StepContext.Species) {
-                temp.speciesStep.talent = talent;
-            } else if (action.payload.context === StepContext.EarlyOutlook) {
-                temp.upbringingStep.talent = talent;
-            } else if (action.payload.context === StepContext.Education) {
-                temp.educationStep.talent = talent;
-            } else if (action.payload.context === StepContext.Career) {
-                let original = temp.careerStep;
-                if (temp.careerStep == null) {
-                    temp.careerStep = new CareerStep();
-                }
-                temp.careerStep.talent = talent;
-                if (original?.talent?.talent === talent?.talent && talent != null) {
-                    temp.careerStep.talent.attribute = original?.talent?.attribute;
-                }
-            } else if (action.payload.context === StepContext.FinishingTouches) {
-                if (temp.finishingStep == null) {
-                    temp.finishingStep = new FinishingStep();
-                }
-                temp.finishingStep.talent = talent;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_NAME: {
-            let temp = state.currentCharacter.copy();
-            temp.name = action.payload.name;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_PASTIME: {
-            let temp = state.currentCharacter.copy();
-            temp.pastime = [ action.payload.pastime ];
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_LINEAGE: {
-            let temp = state.currentCharacter.copy();
-            temp.lineage = action.payload.lineage;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_HOUSE: {
-            let temp = state.currentCharacter.copy();
-            temp.house = action.payload.house;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_ASSIGNED_SHIP: {
-            let temp = state.currentCharacter.copy();
-            temp.assignedShip = action.payload.assignedShip;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_ADDITIONAL_TRAITS: {
-            let temp = state.currentCharacter.copy();
-            temp.additionalTraits = action.payload.traits;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_RANK: {
-            let temp = state.currentCharacter.copy();
-            temp._rank = new CharacterRank(action.payload.name, action.payload.rank ?? undefined);
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_ROLE: {
-            let temp = state.currentCharacter.copy();
-            if (action.payload.role != null) {
-                if (typeof action.payload.role === 'string') {
-                    temp.role = undefined;
-                    temp.secondaryRole = undefined;
-                    temp.jobAssignment = action.payload.role;
-                } else {
-                    temp.role = action.payload.role;
-                    temp.jobAssignment = undefined;
-
-                    if (action.payload.secondaryRole != null) {
-                        temp.secondaryRole = action.payload.secondaryRole;
-                    } else {
-                        temp.secondaryRole = undefined;
-                    }
-                }
-            } else {
-                temp.role = undefined;
-                temp.secondaryRole = undefined;
-                temp.jobAssignment = undefined;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_PRONOUNS: {
-            let temp = state.currentCharacter.copy();
-            temp.pronouns = action.payload.pronouns;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_VALUE: {
-            let temp = state.currentCharacter.copy();
-            if (temp.stereotype === Stereotype.SupportingCharacter) {
-                if (temp.supportingStep == null) {
-                    temp.supportingStep = new SupportingStep();
-                }
-                temp.supportingStep.value = action.payload.value;
-            } else if (action.payload.context === StepContext.Environment && temp.environmentStep != null) {
-                temp.environmentStep.value = action.payload.value;
-            } else if (action.payload.context === StepContext.Education && temp.educationStep != null) {
-                temp.educationStep.value = action.payload.value;
-            } else if (action.payload.context === StepContext.Career && temp.careerStep != null) {
-                temp.careerStep.value = action.payload.value;
-            } else if (action.payload.context === StepContext.FinishingTouches && temp.finishingStep != null) {
-                temp.finishingStep.value = action.payload.value;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY: {
-            let temp = state.currentCharacter.copy();
-            temp.speciesStep.ability = action.payload.ability;
-            temp.speciesStep.talent = undefined;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case UPDATE_CHARACTER_GENERAL_EDIT_VALUE: {
-            let temp = state.currentCharacter.copy();
-            let oldValue = action.payload.oldValue as ValueAssembly;
-
-            if (oldValue.context === AssemblyContext.FinishingTouches && temp.finishingStep) {
-                temp.finishingStep.value = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Career && temp.careerStep) {
-                temp.careerStep.value = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Education && temp.educationStep) {
-                temp.educationStep.value = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Environment && temp.environmentStep) {
-                temp.environmentStep.value = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Talent) {
-                let talent = temp.talents[oldValue.contextIndex];
-                talent.value = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Improvement) {
-                let improvement = temp.improvements[oldValue.contextIndex];
-                if (improvement instanceof LogEntry && improvement.valuesUsed?.length && oldValue.index != null) {
-                    let values = improvement.valuesUsed;
-                    values[oldValue.index] = action.payload.newValue;
-                } else if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Value) {
-                    improvement.value = action.payload.newValue;
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case UPDATE_CHARACTER_GENERAL_EDIT_FOCUS: {
-            let temp = state.currentCharacter.copy();
-            let oldValue = action.payload.oldValue as FocusAssembly;
-
-            if (oldValue.context === AssemblyContext.CareerEvent && temp.careerEvents) {
-                temp.careerEvents[oldValue.contextIndex].focus = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Education && temp.educationStep) {
-                temp.educationStep.focuses[oldValue.index] = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.EarlyOutlook && temp.upbringingStep) {
-                temp.upbringingStep.focus = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.SpeciesAbility && temp.speciesStep?.abilityOptions) {
-                temp.speciesStep.abilityOptions.focuses[oldValue.index] = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Talent) {
-                let talent = temp.talents[oldValue.contextIndex];
-                talent.focuses[oldValue.index] = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Improvement) {
-                let improvement = temp.improvements[oldValue.contextIndex];
-                if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Focus) {
-                    improvement.value = action.payload.newValue;
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case UPDATE_CHARACTER_GENERAL_EDIT_TALENT: {
-            let temp = state.currentCharacter.copy();
-            let oldValue = action.payload.oldValue as TalentAssembly;
-
-            if (oldValue.context === AssemblyContext.Species && temp.speciesStep) {
-                temp.speciesStep.talent = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.EarlyOutlook && temp.upbringingStep) {
-                temp.upbringingStep.focus = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Education && temp.educationStep) {
-                temp.educationStep.talent = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Career && temp.careerStep) {
-                temp.careerStep.talent = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.FinishingTouches && temp.finishingStep) {
-                temp.finishingStep.talent = action.payload.newValue;
-            } else if (oldValue.context === AssemblyContext.Improvement) {
-                let improvement = temp.improvements[oldValue.contextIndex];
-                if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Talent) {
-                    improvement.value = action.payload.newValue as SelectedTalent;
-                }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case ADD_NPC_CHARACTER_VALUE: {
-            let temp = state.currentCharacter.copy();
-            if (temp.stereotype === Stereotype.Npc) {
-                if (temp.npcGenerationStep == null) {
-                    temp.npcGenerationStep = new NpcGenerationStep();
-                }
-                let index = action.payload.index ?? 0;
-                for (let i = temp.npcGenerationStep.values.length; i <= index; i++) {
-                    temp.npcGenerationStep.values.push("");
-                }
-                temp.npcGenerationStep.values[index] = action.payload.value;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_FOCUS: {
-            let temp = state.currentCharacter.copy();
-            if (temp.stereotype === Stereotype.SupportingCharacter) {
-                if (temp.supportingStep == null) {
-                    temp.supportingStep = new SupportingStep();
-                }
-                let index = action.payload.index ?? 0;
-                for (let i = temp.supportingStep.focuses.length; i <= index; i++) {
-                    temp.supportingStep.focuses.push("");
-                }
-                temp.supportingStep.focuses[index] = action.payload.focus;
-            } else if (temp.stereotype === Stereotype.Npc) {
-                if (temp.npcGenerationStep == null) {
-                    temp.npcGenerationStep = new NpcGenerationStep();
-                }
-                let index = action.payload.index ?? 0;
-                for (let i = temp.npcGenerationStep.focuses.length; i <= index; i++) {
-                    temp.npcGenerationStep.focuses.push("");
-                }
-                temp.npcGenerationStep.focuses[index] = action.payload.focus;
-            } else if (action.payload.context === StepContext.EarlyOutlook && temp.upbringingStep) {
-                temp.upbringingStep.focus = action.payload.focus;
-            } else if (action.payload.context === StepContext.Education && temp.educationStep && action.payload.index <= 2) {
-                temp.educationStep.focuses[action.payload.index] = action.payload.focus;
-            } else if (action.payload.context === StepContext.CareerEvent1 && temp.careerEvents[0]) {
-                temp.careerEvents[0].focus = action.payload.focus;
-            } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents[1]) {
-                temp.careerEvents[1].focus = action.payload.focus;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case SET_CHARACTER_CAREER_EVENT_TRAIT: {
-            let temp = state.currentCharacter.copy();
-            if (action.payload.context === StepContext.CareerEvent1 && temp.careerEvents[0]) {
-                temp.careerEvents[0].trait = action.payload.trait;
-            } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents[1]) {
-                temp.careerEvents[1].trait = action.payload.trait;
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case MODIFY_CHARACTER_DISCIPLINE: {
-            let temp = state.currentCharacter.copy();
-            const discipline = action.payload.discipline;
-            const positive = action.payload.positive;
-            if (action.payload.context === StepContext.Environment && temp.environmentStep) {
-                if (action.payload.positive) {
-                    temp.environmentStep.discipline = action.payload.discipline;
-                } else if (temp.environmentStep.discipline === action.payload.discipline) {
-                    temp.environmentStep.discipline = undefined;
-                }
-            } else if (action.payload.context === StepContext.EarlyOutlook && temp.upbringingStep) {
-                if (action.payload.positive) {
-                    temp.upbringingStep.discipline = action.payload.discipline;
-                } else if (temp.upbringingStep.discipline === action.payload.discipline) {
-                    temp.upbringingStep.discipline = undefined;
-                }
-            } else if (action.payload.context === StepContext.Education && temp.educationStep) {
-                if (action.payload.forceDecrement) {
-                    if (positive) {
-                        let value = temp.departments[discipline];
-                        temp.educationStep.decrementDisciplines.splice(temp.educationStep.decrementDisciplines.indexOf(discipline), 1);
-                        // if we're no longer decrementing a discipline that could only be incremented because of
-                        // the previous decrement, then remove the increment
-                        if (temp.departments[discipline] === value) {
-                            if (temp.educationStep.disciplines.includes(discipline)) {
-                                temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(discipline), 1);
-                            } else if (temp.educationStep.primaryDiscipline === discipline) {
-                                temp.educationStep.primaryDiscipline = undefined;
+                if (originalStep) {
+                    if (originalStep.species === temp.speciesStep.species) {
+                        if (originalStep.attributes?.length) {
+                            if (originalStep.originalSpecies != null && originalStep.originalSpecies === action.payload.originalSpecies) {
+                                temp.speciesStep.attributes = [...originalStep.attributes];
+                            } else if (originalStep.mixedSpecies != null && originalStep.mixedSpecies === action.payload.mixedSpecies) {
+                                temp.speciesStep.attributes = [...originalStep.attributes];
                             }
                         }
-                    } else {
-                        temp.educationStep.decrementDisciplines.push(discipline)
+                        if (temp.speciesStep.species === Species.Custom) {
+                            temp.speciesStep.customSpeciesName = originalStep.customSpeciesName;
+                        }
+                        temp.speciesStep.mixedSpecies = originalStep.mixedSpecies;
+                        temp.speciesStep.originalSpecies = originalStep.originalSpecies;
+                        temp.speciesStep.talent = originalStep.talent?.copy();
+                        temp.speciesStep.abilityOptions = originalStep.abilityOptions?.copy();
                     }
-                } else {
-                    if (action.payload.positive) {
-                        if (action.payload.primaryDisciplines.length > 0) {
-                            temp.educationStep.primaryDiscipline = discipline;
-                            action.payload.primaryDisciplines.forEach(d => {
-                                if (temp.educationStep.disciplines.includes(d)) {
-                                    temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(d), 1);
-                                }
-                            });
-                        } else if (temp.educationStep.decrementDisciplines.includes(discipline) && temp.type !== CharacterType.Child) {
-                            temp.educationStep.decrementDisciplines.splice(temp.educationStep.decrementDisciplines.indexOf(discipline), 1);
+                }
+                if (temp.version > 1) {
+                    let ability = action.payload.ability;
+                    if (ability) {
+                        temp.speciesStep.ability = ability;
+                    }
+                }
+
+                temp.speciesStep.mixedSpecies = action.payload.mixedSpecies;
+                temp.speciesStep.originalSpecies = action.payload.originalSpecies;
+                if (temp.speciesStep.species === Species.Custom && action.payload.customSpeciesName) {
+                    temp.speciesStep.customSpeciesName = action.payload.customSpeciesName;
+                }
+
+            });
+        case SET_CHARACTER_AGE:
+            return withCharacter(state, action, (temp, action) => {
+                temp.age = action.payload.age;
+                if (temp.educationStep == null) {
+                    temp.educationStep = new EducationStep();
+                }
+            });
+        case SET_CHARACTER_CAREER_LENGTH:
+            return withCharacter(state, action, (temp, action) => {
+                temp.careerStep = new CareerStep(action.payload.careerLength);
+            });
+        case SET_CHARACTER_EDUCATION:
+            return withCharacter(state, action, (temp, action) => {
+                let originalStep = temp.educationStep;
+                temp.educationStep = new EducationStep(action.payload.track, action.payload.enlisted);
+                trackDefaults(action.payload.track, temp.educationStep);
+                if (originalStep) {
+                    if (originalStep.track === temp.educationStep.track) {
+                        temp.educationStep.attributes = [...originalStep.attributes];
+                        temp.educationStep.primaryDiscipline = originalStep.primaryDiscipline;
+                        temp.educationStep.decrementDisciplines = [...originalStep.decrementDisciplines];
+                        temp.educationStep.disciplines = [...originalStep.disciplines];
+                        temp.educationStep.focuses = [...originalStep.focuses];
+                        temp.educationStep.value = originalStep.value;
+                        temp.educationStep.talent = originalStep.talent?.copy();
+                    }
+                }
+            });
+        case SET_CHARACTER_FINISHING_TOUCHES:
+            return withCharacter(state, action, (temp, action) => {
+                let originalStep = temp.finishingStep;
+                temp.finishingStep = new FinishingStep();
+                if (originalStep) {
+                    temp.finishingStep.attributes = [...originalStep.attributes];
+                    temp.finishingStep.disciplines = [...originalStep.disciplines];
+                    temp.finishingStep.value = originalStep.value;
+                    temp.finishingStep.talent = originalStep.talent?.copy();
+
+                    if (temp.attributeTotal < Character.totalAttributeSum(temp)) {
+                        temp.finishingStep.attributes = [];
+                    }
+                    if (temp.skillTotal < Character.totalDepartmentSum(temp)) {
+                        temp.finishingStep.disciplines = [];
+                    }
+                }
+
+            });
+        case SET_CHARACTER_ENVIRONMENT:
+            return withCharacter(state, action, (temp, action) => {
+                let originalStep = temp.environmentStep;
+                temp.environmentStep = new EnvironmentStep(action.payload.environment, action.payload.otherSpecies);
+                if (originalStep) {
+                    if (originalStep.environment === temp.environmentStep.environment) {
+                        temp.environmentStep.discipline = originalStep.discipline;
+                        if (originalStep.otherSpecies === temp.environmentStep.otherSpecies) {
+                            temp.environmentStep.attribute = originalStep.attribute;
+                        }
+                        temp.environmentStep.value = originalStep.value;
+                    }
+                }
+            });
+        case SET_CHARACTER_EARLY_OUTLOOK:
+            return withCharacter(state, action, (temp, action) => {
+                let originalStep = temp.upbringingStep;
+                temp.upbringingStep = new UpbringingStep(action.payload.earlyOutlook, action.payload.accepted);
+                if (originalStep) {
+                    if (originalStep.upbringing?.id === temp.upbringingStep.upbringing?.id) {
+                        temp.upbringingStep.discipline = originalStep.discipline;
+                    }
+                    temp.upbringingStep.focus = originalStep.focus;
+                    temp.upbringingStep.talent = originalStep.talent?.copy();
+                }
+            });
+        case MODIFY_CHARACTER_ATTRIBUTE:
+            return withCharacter(state, action, (temp, action) => {
+                const attribute = action.payload.attribute;
+                const positive = action.payload.positive;
+                if (action.payload.context === StepContext.Species && temp.speciesStep) {
+                    if (positive) {
+                        temp.speciesStep.attributes.push(action.payload.attribute);
+                        if (temp.speciesStep.attributes.length > 3) {
+                            let attributes = [...temp.speciesStep.attributes];
+                            attributes.splice(0, attributes.length - 3);
+                            temp.speciesStep.attributes = attributes;
+                        }
+                    } else if (temp.speciesStep.attributes.includes(action.payload.attribute)) {
+                        let attributes = [...temp.speciesStep.attributes];
+                        attributes.splice(temp.speciesStep.attributes.indexOf(action.payload.attribute), 1);
+                        temp.speciesStep.attributes = attributes;
+                    }
+                } else if (action.payload.context === StepContext.Environment && temp.environmentStep) {
+                    if (positive) {
+                        temp.environmentStep.attribute = action.payload.attribute;
+                    } else if (temp.environmentStep.attribute === action.payload.attribute) {
+                        temp.environmentStep.attribute = undefined;
+                    }
+                } else if (action.payload.context === StepContext.Education && temp.educationStep) {
+                    if (action.payload.forceDecrement && temp.type === CharacterType.Child) {
+                        if (positive) {
+                            temp.educationStep.decrementAttributes.splice(temp.educationStep.decrementAttributes.indexOf(action.payload.attribute), 1);
                         } else {
-                            temp.educationStep.disciplines.push(discipline);
+                            temp.educationStep.decrementAttributes.push(action.payload.attribute)
                         }
                     } else {
-                        if (temp.educationStep.primaryDiscipline === discipline) {
-                            temp.educationStep.primaryDiscipline = null;
-                            action.payload.primaryDisciplines.forEach(d => {
-                                if (temp.educationStep.disciplines.includes(d)) {
-                                    temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(d), 1);
-                                }
-                            });
-                        } else if (temp.educationStep.disciplines.includes(discipline)) {
-                            temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(discipline), 1);
-                        } else if (temp.type !== CharacterType.Child) {
-                            temp.educationStep.decrementDisciplines.push(discipline);
+                        if (positive) {
+                            temp.educationStep.attributes.push(action.payload.attribute)
+                        } else if (temp.educationStep.attributes.includes(action.payload.attribute)) {
+                            temp.educationStep.attributes.splice(temp.educationStep.attributes.indexOf(action.payload.attribute), 1);
+                        }
+                    }
+                } else if (action.payload.context === StepContext.CareerEvent1 && temp.hasCareerEvents) {
+                    temp.careerEvents[0].attribute = positive ? attribute : undefined;
+                } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents?.length > 1) {
+                    temp.careerEvents[1].attribute = positive ? attribute : undefined;
+                } else if (action.payload.context === StepContext.FinishingTouches && temp.finishingStep) {
+                    if (positive) {
+                        temp.finishingStep.attributes.push(attribute);
+                    } else {
+                        let index = temp.finishingStep.attributes.indexOf(attribute);
+                        if (index >= 0) {
+                            temp.finishingStep.attributes.splice(index, 1);
                         }
                     }
                 }
-            } else if (action.payload.context === StepContext.CareerEvent1 && temp.hasCareerEvents) {
-                temp.careerEvents[0].discipline = positive ? discipline : undefined;
-            } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents?.length > 1) {
-                temp.careerEvents[1].discipline = positive ? discipline : undefined;
-            } else if (action.payload.context === StepContext.FinishingTouches && temp.finishingStep) {
-                if (positive) {
-                    temp.finishingStep.disciplines.push(discipline);
-                } else {
-                    let index = temp.finishingStep.disciplines.indexOf(discipline);
-                    if (index >= 0) {
-                        temp.finishingStep.disciplines.splice(index, 1);
+            });
+        case SET_SUPPORTING_CHARACTER_SUPERVISORY:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.supportingStep == null) {
+                    temp.supportingStep = new SupportingStep();
+                }
+                temp.supportingStep.supervisory = action.payload.supervisory;
+                if (!temp.supportingStep.supervisory && temp.supportingStep.value?.length) {
+                    temp.supportingStep.value = null;
+                }
+                if (!temp.supportingStep.supervisory && temp.supportingStep.focuses.length > 3) {
+                    temp.supportingStep.focuses.splice(3);
+                }
+            });
+        case SET_SUPPORTING_CHARACTER_DISCIPLINES:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.supportingStep == null) {
+                    temp.supportingStep = new SupportingStep();
+                }
+                temp.supportingStep.disciplines = [...action.payload.disciplines];
+            });
+        case SET_NPC_CHARACTER_DEPARTMENTS:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.npcGenerationStep == null) {
+                    temp.npcGenerationStep = new NpcGenerationStep();
+                }
+                temp.npcGenerationStep.departments = [...action.payload.departments];
+            });
+        case SET_NPC_CHARACTER_ATTRIBUTES:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.npcGenerationStep == null) {
+                    temp.npcGenerationStep = new NpcGenerationStep();
+                }
+                temp.npcGenerationStep.attributes = [...action.payload.attributes];
+            });
+        case SET_NPC_CHARACTER_TALENTS:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.npcGenerationStep == null) {
+                    temp.npcGenerationStep = new NpcGenerationStep();
+                }
+                temp.npcGenerationStep.talents = [...action.payload.talents.map(t => t.copy())];
+            });
+        case ADD_CHARACTER_LOG_ENTRY:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.improvements == null) {
+                    temp.improvements = [];
+                }
+                temp.improvements.push(action.payload.logEntry);
+            });
+        case ADD_NPC_CHARACTER_EQUIPMENT:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.npcGenerationStep == null) {
+                    temp.npcGenerationStep = new NpcGenerationStep();
+                }
+
+                temp.npcGenerationStep.equipment.push(action.payload.equipment);
+            });
+        case ADD_NPC_CHARACTER_WEAPON:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.npcGenerationStep == null) {
+                    temp.npcGenerationStep = new NpcGenerationStep();
+                }
+
+                temp.npcGenerationStep.weapons.push(action.payload.weapon);
+            });
+        case REMOVE_NPC_CHARACTER_EQUIPMENT:
+            return withCharacter(state, action, (temp, action) => {
+                let equipment = action.payload.equipment;
+                if (temp.npcGenerationStep?.equipment != null) {
+                    temp.npcGenerationStep.equipment = temp.npcGenerationStep.equipment
+                        .filter(e => {
+                            if (e instanceof EquipmentModel && equipment instanceof EquipmentModel) {
+                                return !(e.type === equipment.type
+                                    && e.name === equipment.name
+                                    && e.protection === equipment.protection);
+                            } else {
+                                return e !== equipment;
+                            }
+                        });
+                }
+            });
+        case REMOVE_NPC_CHARACTER_WEAPON:
+            return withCharacter(state, action, (temp, action) => {
+                let weapon = action.payload.weapon;
+                if (temp.npcGenerationStep?.weapons != null) {
+                    temp.npcGenerationStep.weapons = temp.npcGenerationStep.weapons
+                        .filter(e => e !== weapon );
+                }
+            });
+        case SET_SUPPORTING_CHARACTER_ATTRIBUTES:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.supportingStep == null) {
+                    temp.supportingStep = new SupportingStep();
+                }
+                temp.supportingStep.attributes = [...action.payload.attributes];
+            });
+        case ADD_CHARACTER_CAREER_EVENT:
+            return withCharacter(state, action, (temp, action) => {
+                let event = new CareerEventStep(action.payload.eventId);
+                if (action.payload.attribute != null) {
+                    event.attribute = action.payload.attribute;
+                }
+                if (action.payload.discipline != null) {
+                    event.discipline = action.payload.discipline;
+                }
+
+                if (action.payload.context === StepContext.CareerEvent1) {
+                    if (temp.careerEvents?.length) {
+                        if (event.id === temp.careerEvents[0].id) {
+                            event.focus = temp.careerEvents[0].focus;
+                        }
+                        temp.careerEvents[0] = event;
+                    } else {
+                        temp.careerEvents.push(event);
+                    }
+                } else if (action.payload.context === StepContext.CareerEvent2) {
+                    if (temp.careerEvents?.length > 1) {
+                        if (event.id === temp.careerEvents[1].id) {
+                            event.focus = temp.careerEvents[1].focus;
+                        }
+                        temp.careerEvents[1] = event;
+                    } else if (temp.careerEvents?.length === 1) {
+                        temp.careerEvents.push(event);
                     }
                 }
-            }
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case MODIFY_CHARACTER_RANK: {
-            let temp = state.currentCharacter.copy();
-            if (temp.improvements == null) {
-                temp.improvements = [];
-            }
-            temp.improvements.push(new Promotion(action.payload.rank, action.payload.type));
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case MODIFY_CHARACTER_REPUTATION: {
-            let temp = state.currentCharacter.copy();
-            if (temp.improvements == null) {
-                temp.improvements = [];
-            }
-            temp.improvements.push(new ReputationChangeStep(action.payload.delta));
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
-        case MODIFY_CHARACTER_ADD_ADVANCEMENT: {
-            let temp = state.currentCharacter.copy();
-            if (temp.improvements == null) {
-                temp.improvements = [];
-            }
-            let improvement = new CharacterAdvancementStep();
-            improvement.choice = action.payload.type;
-            if (action.payload.type === CharacterAdvancementChoice.Talent) {
-                improvement.value = (action.payload.value as SelectedTalent).copy();
-                if (action.payload.remove != null) {
-                    improvement.removeValue = (action.payload.remove as SelectedTalent).copy();
+
+            });
+        case SET_CHARACTER_TYPE:
+            return withCharacter(state, action, (temp, action) => {
+                let originalType = temp.type;
+                temp.type = action.payload.type;
+                if (temp.type !== originalType) {
+                    if (temp.educationStep) {
+                        temp.educationStep = undefined;
+                    }
+
+                    if (originalType === CharacterType.Child && temp.type !== CharacterType.Child) {
+                        temp.age = AgeHelper.getAdultAge();
+                    } else if (originalType !== CharacterType.Child && temp.type === CharacterType.Child) {
+                        temp.age = AgeHelper.getAllChildAges()[0];
+                    }
                 }
-                temp.improvements.push(improvement);
-            } else {
-                improvement.value = action.payload.value;
-                if (action.payload.remove != null) {
-                    improvement.removeValue = action.payload.remove;
+                if (temp.type === CharacterType.Child && temp.supportingStep) {
+                    temp.supportingStep.supervisory = false;
                 }
-                temp.improvements.push(improvement);
-            }
-            improvement.log = action.payload.logEntry?.id;
-            improvement.logCallback = action.payload.logEntryCallback?.id;
-            return {
-                ...state,
-                currentCharacter: temp,
-                isModified: true
-            }
-        }
+            });
+        case ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE:
+            return withCharacter(state, action, (temp, action) => {
+                let talent = temp.getTalentByName(TALENT_NAME_UNTAPPED_POTENTIAL);
+                if (talent) {
+                    talent.attribute = action.payload.attribute;
+                }
+            });
+        case ADD_CHARACTER_BORG_IMPLANT:
+            return withCharacter(state, action, (temp, action) => {
+                let talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
+                if (talent) {
+                    talent.implants.push(action.payload.type);
+                    while (talent.implants.length > 3) {
+                        talent.implants.splice(0, 1);
+                    }
+                }
+            });
+        case ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
+                    temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
+                }
+                temp.speciesStep?.abilityOptions?.implants.push(action.payload.type);
+                while (temp.speciesStep?.abilityOptions?.implants.length > 3) {
+                    temp.speciesStep?.abilityOptions?.implants.splice(0, 1);
+                }
+            });
+        case REMOVE_CHARACTER_BORG_IMPLANT:
+            return withCharacter(state, action, (temp, action) => {
+                let talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
+                if (talent) {
+                    const index = talent.implants.indexOf(action.payload.type);
+                    if (index >= 0) {
+                        talent.implants.splice(index, 1);
+                    }
+                }
+            });
+        case REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.speciesStep != null && temp.speciesStep?.abilityOptions != null) {
+                    const index = temp.speciesStep?.abilityOptions?.implants?.indexOf(action.payload.type);
+                    if (index >= 0) {
+                        temp.speciesStep?.abilityOptions?.implants?.splice(index, 1);
+                    }
+                }
+            });
+        case ADD_CHARACTER_SPECIES_ABILITY_FOCUS:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
+                    temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
+                }
+                if (temp.speciesStep?.abilityOptions != null) {
+                    let index = action.payload.index;
+                    let focus = action.payload.focus;
+                    while (temp.speciesStep.abilityOptions.focuses.length < index) {
+                        temp.speciesStep.abilityOptions.focuses[temp.speciesStep.abilityOptions.focuses.length] = "";
+                    }
+                    temp.speciesStep.abilityOptions.focuses[index] = focus;
+                }
+            });
+        case SET_CHARACTER_SPECIES_ABILITY_CHOICE:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.speciesStep != null && temp.speciesStep?.abilityOptions == null) {
+                    temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
+                }
+                if (temp.speciesStep?.abilityOptions != null) {
+                    temp.speciesStep.abilityOptions.choice = action.payload.choice;
+                }
+            });
+        case ADD_CHARACTER_TALENT_FOCUS:
+            return withCharacter(state, action, (temp, action) => {
+                let talent = temp.getTalentByName(action.payload.talent);
+                if (talent) {
+                    const index = action.payload.index;
+                    for (let i = talent.focuses.length; i <= index; i++) {
+                        talent.focuses.push("");
+                    }
+                    talent.focuses[index] = action.payload.focus;
+                }
+            });
+        case ADD_CHARACTER_TALENT_VALUE:
+            return withCharacter(state, action, (temp, action) => {
+                let talent = temp.getTalentByName(action.payload.talent);
+                if (talent) {
+                    talent.value = action.payload.value;
+                }
+            });
+        case ADD_CHARACTER_TALENT:
+            return withCharacter(state, action, (temp, action) => {
+                let t = action.payload.talent;
+                let talent = undefined;
+                if (t != null && t instanceof SelectedTalent) {
+                    talent = (t as SelectedTalent).copy();
+                } else if (t != null) {
+                    talent = new SelectedTalent((t as ITalent).name);
+                }
+                if (action.payload.context === StepContext.Species) {
+                    temp.speciesStep.talent = talent;
+                } else if (action.payload.context === StepContext.EarlyOutlook) {
+                    temp.upbringingStep.talent = talent;
+                } else if (action.payload.context === StepContext.Education) {
+                    temp.educationStep.talent = talent;
+                } else if (action.payload.context === StepContext.Career) {
+                    let original = temp.careerStep;
+                    if (temp.careerStep == null) {
+                        temp.careerStep = new CareerStep();
+                    }
+                    temp.careerStep.talent = talent;
+                    if (original?.talent?.talent === talent?.talent && talent != null) {
+                        temp.careerStep.talent.attribute = original?.talent?.attribute;
+                    }
+                } else if (action.payload.context === StepContext.FinishingTouches) {
+                    if (temp.finishingStep == null) {
+                        temp.finishingStep = new FinishingStep();
+                    }
+                    temp.finishingStep.talent = talent;
+                }
+            });
+        case SET_CHARACTER_NAME:
+            return withCharacter(state, action, (temp, action) => {
+                temp.name = action.payload.name;
+            });
+        case SET_CHARACTER_PASTIME:
+            return withCharacter(state, action, (temp, action) => {
+                temp.pastime = [ action.payload.pastime ];
+            });
+        case SET_CHARACTER_LINEAGE:
+            return withCharacter(state, action, (temp, action) => {
+                temp.lineage = action.payload.lineage;
+            });
+        case SET_CHARACTER_HOUSE:
+            return withCharacter(state, action, (temp, action) => {
+                temp.house = action.payload.house;
+            });
+        case SET_CHARACTER_ASSIGNED_SHIP:
+            return withCharacter(state, action, (temp, action) => {
+                temp.assignedShip = action.payload.assignedShip;
+            });
+        case SET_CHARACTER_ADDITIONAL_TRAITS:
+            return withCharacter(state, action, (temp, action) => {
+                temp.additionalTraits = action.payload.traits;
+            });
+        case SET_CHARACTER_RANK:
+            return withCharacter(state, action, (temp, action) => {
+                temp._rank = new CharacterRank(action.payload.name, action.payload.rank ?? undefined);
+            });
+        case SET_CHARACTER_ROLE:
+            return withCharacter(state, action, (temp, action) => {
+                if (action.payload.role != null) {
+                    if (typeof action.payload.role === 'string') {
+                        temp.role = undefined;
+                        temp.secondaryRole = undefined;
+                        temp.jobAssignment = action.payload.role;
+                    } else {
+                        temp.role = action.payload.role;
+                        temp.jobAssignment = undefined;
+
+                        if (action.payload.secondaryRole != null) {
+                            temp.secondaryRole = action.payload.secondaryRole;
+                        } else {
+                            temp.secondaryRole = undefined;
+                        }
+                    }
+                } else {
+                    temp.role = undefined;
+                    temp.secondaryRole = undefined;
+                    temp.jobAssignment = undefined;
+                }
+            });
+        case SET_CHARACTER_PRONOUNS:
+            return withCharacter(state, action, (temp, action) => {
+                temp.pronouns = action.payload.pronouns;
+            });
+        case SET_CHARACTER_VALUE:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.stereotype === Stereotype.SupportingCharacter) {
+                    if (temp.supportingStep == null) {
+                        temp.supportingStep = new SupportingStep();
+                    }
+                    temp.supportingStep.value = action.payload.value;
+                } else if (action.payload.context === StepContext.Environment && temp.environmentStep != null) {
+                    temp.environmentStep.value = action.payload.value;
+                } else if (action.payload.context === StepContext.Education && temp.educationStep != null) {
+                    temp.educationStep.value = action.payload.value;
+                } else if (action.payload.context === StepContext.Career && temp.careerStep != null) {
+                    temp.careerStep.value = action.payload.value;
+                } else if (action.payload.context === StepContext.FinishingTouches && temp.finishingStep != null) {
+                    temp.finishingStep.value = action.payload.value;
+                }
+            });
+        case UPDATE_CHARACTER_GENERAL_EDIT_SPECIES_ABILITY:
+            return withCharacter(state, action, (temp, action) => {
+                temp.speciesStep.ability = action.payload.ability;
+                temp.speciesStep.talent = undefined;
+            });
+        case UPDATE_CHARACTER_GENERAL_EDIT_VALUE:
+            return withCharacter(state, action, (temp, action) => {
+                let oldValue = action.payload.oldValue as ValueAssembly;
+
+                if (oldValue.context === AssemblyContext.FinishingTouches && temp.finishingStep) {
+                    temp.finishingStep.value = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Career && temp.careerStep) {
+                    temp.careerStep.value = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Education && temp.educationStep) {
+                    temp.educationStep.value = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Environment && temp.environmentStep) {
+                    temp.environmentStep.value = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Talent) {
+                    let talent = temp.talents[oldValue.contextIndex];
+                    talent.value = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Improvement) {
+                    let improvement = temp.improvements[oldValue.contextIndex];
+                    if (improvement instanceof LogEntry && improvement.valuesUsed?.length && oldValue.index != null) {
+                        let values = improvement.valuesUsed;
+                        values[oldValue.index] = action.payload.newValue;
+                    } else if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Value) {
+                        improvement.value = action.payload.newValue;
+                    }
+                }
+            });
+        case UPDATE_CHARACTER_GENERAL_EDIT_FOCUS:
+            return withCharacter(state, action, (temp, action) => {
+                let oldValue = action.payload.oldValue as FocusAssembly;
+
+                if (oldValue.context === AssemblyContext.CareerEvent && temp.careerEvents) {
+                    temp.careerEvents[oldValue.contextIndex].focus = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Education && temp.educationStep) {
+                    temp.educationStep.focuses[oldValue.index] = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.EarlyOutlook && temp.upbringingStep) {
+                    temp.upbringingStep.focus = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.SpeciesAbility && temp.speciesStep?.abilityOptions) {
+                    temp.speciesStep.abilityOptions.focuses[oldValue.index] = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Talent) {
+                    let talent = temp.talents[oldValue.contextIndex];
+                    talent.focuses[oldValue.index] = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Improvement) {
+                    let improvement = temp.improvements[oldValue.contextIndex];
+                    if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Focus) {
+                        improvement.value = action.payload.newValue;
+                    }
+                }
+            });
+        case UPDATE_CHARACTER_GENERAL_EDIT_TALENT:
+            return withCharacter(state, action, (temp, action) => {
+                let oldValue = action.payload.oldValue as TalentAssembly;
+
+                if (oldValue.context === AssemblyContext.Species && temp.speciesStep) {
+                    temp.speciesStep.talent = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.EarlyOutlook && temp.upbringingStep) {
+                    temp.upbringingStep.focus = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Education && temp.educationStep) {
+                    temp.educationStep.talent = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Career && temp.careerStep) {
+                    temp.careerStep.talent = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.FinishingTouches && temp.finishingStep) {
+                    temp.finishingStep.talent = action.payload.newValue;
+                } else if (oldValue.context === AssemblyContext.Improvement) {
+                    let improvement = temp.improvements[oldValue.contextIndex];
+                    if (improvement instanceof CharacterAdvancementStep && improvement.choice === CharacterAdvancementChoice.Talent) {
+                        improvement.value = action.payload.newValue as SelectedTalent;
+                    }
+                }
+            });
+        case ADD_NPC_CHARACTER_VALUE:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.stereotype === Stereotype.Npc) {
+                    if (temp.npcGenerationStep == null) {
+                        temp.npcGenerationStep = new NpcGenerationStep();
+                    }
+                    let index = action.payload.index ?? 0;
+                    for (let i = temp.npcGenerationStep.values.length; i <= index; i++) {
+                        temp.npcGenerationStep.values.push("");
+                    }
+                    temp.npcGenerationStep.values[index] = action.payload.value;
+                }
+            });
+        case SET_CHARACTER_FOCUS:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.stereotype === Stereotype.SupportingCharacter) {
+                    if (temp.supportingStep == null) {
+                        temp.supportingStep = new SupportingStep();
+                    }
+                    let index = action.payload.index ?? 0;
+                    for (let i = temp.supportingStep.focuses.length; i <= index; i++) {
+                        temp.supportingStep.focuses.push("");
+                    }
+                    temp.supportingStep.focuses[index] = action.payload.focus;
+                } else if (temp.stereotype === Stereotype.Npc) {
+                    if (temp.npcGenerationStep == null) {
+                        temp.npcGenerationStep = new NpcGenerationStep();
+                    }
+                    let index = action.payload.index ?? 0;
+                    for (let i = temp.npcGenerationStep.focuses.length; i <= index; i++) {
+                        temp.npcGenerationStep.focuses.push("");
+                    }
+                    temp.npcGenerationStep.focuses[index] = action.payload.focus;
+                } else if (action.payload.context === StepContext.EarlyOutlook && temp.upbringingStep) {
+                    temp.upbringingStep.focus = action.payload.focus;
+                } else if (action.payload.context === StepContext.Education && temp.educationStep && action.payload.index <= 2) {
+                    temp.educationStep.focuses[action.payload.index] = action.payload.focus;
+                } else if (action.payload.context === StepContext.CareerEvent1 && temp.careerEvents[0]) {
+                    temp.careerEvents[0].focus = action.payload.focus;
+                } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents[1]) {
+                    temp.careerEvents[1].focus = action.payload.focus;
+                }
+            });
+        case SET_CHARACTER_CAREER_EVENT_TRAIT:
+            return withCharacter(state, action, (temp, action) => {
+                if (action.payload.context === StepContext.CareerEvent1 && temp.careerEvents[0]) {
+                    temp.careerEvents[0].trait = action.payload.trait;
+                } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents[1]) {
+                    temp.careerEvents[1].trait = action.payload.trait;
+                }
+            });
+        case MODIFY_CHARACTER_DISCIPLINE:
+            return withCharacter(state, action, (temp, action) => {
+                const discipline = action.payload.discipline;
+                const positive = action.payload.positive;
+                if (action.payload.context === StepContext.Environment && temp.environmentStep) {
+                    if (action.payload.positive) {
+                        temp.environmentStep.discipline = action.payload.discipline;
+                    } else if (temp.environmentStep.discipline === action.payload.discipline) {
+                        temp.environmentStep.discipline = undefined;
+                    }
+                } else if (action.payload.context === StepContext.EarlyOutlook && temp.upbringingStep) {
+                    if (action.payload.positive) {
+                        temp.upbringingStep.discipline = action.payload.discipline;
+                    } else if (temp.upbringingStep.discipline === action.payload.discipline) {
+                        temp.upbringingStep.discipline = undefined;
+                    }
+                } else if (action.payload.context === StepContext.Education && temp.educationStep) {
+                    if (action.payload.forceDecrement) {
+                        if (positive) {
+                            let value = temp.departments[discipline];
+                            temp.educationStep.decrementDisciplines.splice(temp.educationStep.decrementDisciplines.indexOf(discipline), 1);
+                            // if we're no longer decrementing a discipline that could only be incremented because of
+                            // the previous decrement, then remove the increment
+                            if (temp.departments[discipline] === value) {
+                                if (temp.educationStep.disciplines.includes(discipline)) {
+                                    temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(discipline), 1);
+                                } else if (temp.educationStep.primaryDiscipline === discipline) {
+                                    temp.educationStep.primaryDiscipline = undefined;
+                                }
+                            }
+                        } else {
+                            temp.educationStep.decrementDisciplines.push(discipline)
+                        }
+                    } else {
+                        if (action.payload.positive) {
+                            if (action.payload.primaryDisciplines.length > 0) {
+                                temp.educationStep.primaryDiscipline = discipline;
+                                action.payload.primaryDisciplines.forEach(d => {
+                                    if (temp.educationStep.disciplines.includes(d)) {
+                                        temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(d), 1);
+                                    }
+                                });
+                            } else if (temp.educationStep.decrementDisciplines.includes(discipline) && temp.type !== CharacterType.Child) {
+                                temp.educationStep.decrementDisciplines.splice(temp.educationStep.decrementDisciplines.indexOf(discipline), 1);
+                            } else {
+                                temp.educationStep.disciplines.push(discipline);
+                            }
+                        } else {
+                            if (temp.educationStep.primaryDiscipline === discipline) {
+                                temp.educationStep.primaryDiscipline = null;
+                                action.payload.primaryDisciplines.forEach(d => {
+                                    if (temp.educationStep.disciplines.includes(d)) {
+                                        temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(d), 1);
+                                    }
+                                });
+                            } else if (temp.educationStep.disciplines.includes(discipline)) {
+                                temp.educationStep.disciplines.splice(temp.educationStep.disciplines.indexOf(discipline), 1);
+                            } else if (temp.type !== CharacterType.Child) {
+                                temp.educationStep.decrementDisciplines.push(discipline);
+                            }
+                        }
+                    }
+                } else if (action.payload.context === StepContext.CareerEvent1 && temp.hasCareerEvents) {
+                    temp.careerEvents[0].discipline = positive ? discipline : undefined;
+                } else if (action.payload.context === StepContext.CareerEvent2 && temp.careerEvents?.length > 1) {
+                    temp.careerEvents[1].discipline = positive ? discipline : undefined;
+                } else if (action.payload.context === StepContext.FinishingTouches && temp.finishingStep) {
+                    if (positive) {
+                        temp.finishingStep.disciplines.push(discipline);
+                    } else {
+                        let index = temp.finishingStep.disciplines.indexOf(discipline);
+                        if (index >= 0) {
+                            temp.finishingStep.disciplines.splice(index, 1);
+                        }
+                    }
+                }
+            });
+        case MODIFY_CHARACTER_RANK:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.improvements == null) {
+                    temp.improvements = [];
+                }
+                temp.improvements.push(new Promotion(action.payload.rank, action.payload.type));
+            });
+        case MODIFY_CHARACTER_REPUTATION:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.improvements == null) {
+                    temp.improvements = [];
+                }
+                temp.improvements.push(new ReputationChangeStep(action.payload.delta));
+            });
+        case MODIFY_CHARACTER_ADD_ADVANCEMENT:
+            return withCharacter(state, action, (temp, action) => {
+                if (temp.improvements == null) {
+                    temp.improvements = [];
+                }
+                let improvement = new CharacterAdvancementStep();
+                improvement.choice = action.payload.type;
+                if (action.payload.type === CharacterAdvancementChoice.Talent) {
+                    improvement.value = (action.payload.value as SelectedTalent).copy();
+                    if (action.payload.remove != null) {
+                        improvement.removeValue = (action.payload.remove as SelectedTalent).copy();
+                    }
+                    temp.improvements.push(improvement);
+                } else {
+                    improvement.value = action.payload.value;
+                    if (action.payload.remove != null) {
+                        improvement.removeValue = action.payload.remove;
+                    }
+                    temp.improvements.push(improvement);
+                }
+                improvement.log = action.payload.logEntry?.id;
+                improvement.logCallback = action.payload.logEntryCallback?.id;
+            });
 
         default:
             return state;
