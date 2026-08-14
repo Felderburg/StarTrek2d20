@@ -665,7 +665,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get attributes(): number[] {
         let result = [];
-        if (this.isSoloStyleCharacter()) {
+        if (this.isSoloOrNonLegacyMainCharacter) {
             result = [7, 7, 7, 7, 7, 7];
             this.speciesStep?.attributes?.forEach(a => result[a] = result[a] + 1);
             this.speciesStep?.decrementAttributes?.forEach(a => result[a] = result[a] - 1);
@@ -697,7 +697,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = this.age.attributes;
-            if (this.isSupervisorySupportingCharacter()) {
+            if (this.isSupervisorySupportingCharacter) {
                 values = [10, 10, 9, 9, 8, 8];
             }
             result = AttributesHelper.getAllAttributes().map(a => {
@@ -731,7 +731,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     get departments(): number[] {
         let result = [];
-        if (this.stereotype === Stereotype.SoloCharacter || (this.stereotype === Stereotype.MainCharacter && !this.legacyMode)) {
+        if (this.isSoloOrNonLegacyMainCharacter) {
             result = [1, 1, 1, 1, 1, 1];
             if (this.environmentStep?.discipline != null) {
                 result[this.environmentStep.discipline] += 1;
@@ -752,7 +752,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
         } else if (this.stereotype === Stereotype.SupportingCharacter && !this.legacyMode) {
             let values = [...this.age.disciplines];
-            if (this.isSupervisorySupportingCharacter()) {
+            if (this.isSupervisorySupportingCharacter) {
                 values = [4, 4, 3, 2, 2, 1];
             }
             result = DepartmentsHelper.instance.getDepartments().map(s => {
@@ -1570,16 +1570,16 @@ export class Character extends Construct implements IWeaponDiceProvider {
                 (this.typeDetails as AlliedMilitaryDetails)?.alliedMilitary.type === AlliedMilitaryType.KlingonDefenceForce);
     }
 
-    isSoloStyleCharacter() {
+    get isSoloOrNonLegacyMainCharacter() {
         return this.stereotype === Stereotype.SoloCharacter ||
             (this.stereotype === Stereotype.MainCharacter && !this.legacyMode);
     }
 
-    isSupervisorySupportingCharacter() {
+    get isSupervisorySupportingCharacter() {
         return this.version > 1 && this.type !== CharacterType.Child && this.supportingStep?.supervisory;
     }
 
-    isEducationDisciplinesIncomplete() {
+    get isEducationDisciplinesIncomplete() {
         return this.educationStep?.disciplines?.length < 2
             || this.educationStep?.primaryDiscipline == null
             || (this.educationStep?.decrementDisciplines?.length > 0 && this.educationStep?.disciplines?.length < 3);

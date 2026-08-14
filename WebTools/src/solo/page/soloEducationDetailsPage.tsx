@@ -33,7 +33,7 @@ const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({character}) =
     const navigateToNextPage = () => {
         if (character.educationStep?.attributes?.length < 3) {
             Dialog.show(t("SoloEducationDetailsPage.errorAttributes"));
-        } else if (character.isEducationDisciplinesIncomplete()) {
+        } else if (character.isEducationDisciplinesIncomplete) {
             Dialog.show(t("SoloEducationDetailsPage.errorDisciplines"));
         } else if (character.educationStep?.focuses?.filter(f => !!f).length < 3) {
             Dialog.show(t("SoloEducationDetailsPage.errorFocuses"));
