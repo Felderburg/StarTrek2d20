@@ -205,7 +205,6 @@ const ToolSelectionPage = () => {
                   {t('ToolSelection.station')}
                 </Button>
               ) : undefined}
-
             </div>
             <div className="col-md-6 button-column">
               <LoadingButton
