@@ -74,7 +74,7 @@ export class TokenModel {
   }
 
   static from(token: Token): TokenModel {
-    let result = new TokenModel();
+    const result = new TokenModel();
     result.primarySpecies = token.species;
     result.secondarySpecies = token.secondarySpecies;
     result.speciesOption = token.speciesOption;
@@ -101,7 +101,7 @@ export class TokenModel {
   }
 
   copy() {
-    let result = new TokenModel();
+    const result = new TokenModel();
 
     result.primarySpecies = this.primarySpecies;
     result.secondarySpecies = this.secondarySpecies;

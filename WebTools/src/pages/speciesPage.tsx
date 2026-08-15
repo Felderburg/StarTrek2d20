@@ -88,7 +88,7 @@ const SpeciesPage: React.FC<ICharacterProperties> = ({ character }) => {
   };
 
   const selectStandardSpecies = (species: Species) => {
-    let speciesModel = SpeciesHelper.getSpeciesByType(species);
+    const speciesModel = SpeciesHelper.getSpeciesByType(species);
     if (speciesModel.isAttributeSelectionRequired) {
       store.dispatch(setCharacterSpecies(speciesModel.id));
     } else {

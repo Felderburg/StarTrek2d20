@@ -59,7 +59,7 @@ export class SpaceframeVariantModel {
   }
 
   static variantCodeByName(name: string): SpaceframeVariant | undefined {
-    let result = this.ALL.filter((v) => SpaceframeVariant[v.id] === name);
+    const result = this.ALL.filter((v) => SpaceframeVariant[v.id] === name);
     return result?.length ? result[0].id : undefined;
   }
 

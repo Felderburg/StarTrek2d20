@@ -21,8 +21,8 @@ const gmTracker = (state: IGMTrackerState = { characters: [] }, action) => {
         ],
       };
     case REMOVE_GM_TRACKED_CHARACTER: {
-      let characters = [...state.characters];
-      let index = characters
+      const characters = [...state.characters];
+      const index = characters
         .map((c, i) => (c.id === action.payload.character?.id ? i : -1))
         .filter((index) => index !== -1);
       if (index.length) {
@@ -34,13 +34,13 @@ const gmTracker = (state: IGMTrackerState = { characters: [] }, action) => {
       };
     }
     case SET_GM_TRACKED_CHARACTER_STRESS: {
-      let characters = [...state.characters];
-      let index = characters
+      const characters = [...state.characters];
+      const index = characters
         .map((c, i) => (c.id === action.payload.character?.id ? i : -1))
         .filter((index) => index !== -1);
       if (index.length) {
-        let existing = characters[index[0]];
-        let tracking = new CharacterWithTracking(existing.character);
+        const existing = characters[index[0]];
+        const tracking = new CharacterWithTracking(existing.character);
         tracking.id = existing.id;
         tracking.currentStress = action.payload.stress;
         tracking.notes = existing.notes;
@@ -52,13 +52,13 @@ const gmTracker = (state: IGMTrackerState = { characters: [] }, action) => {
       };
     }
     case SET_GM_TRACKED_CHARACTER_NOTES: {
-      let characters = [...state.characters];
-      let index = characters
+      const characters = [...state.characters];
+      const index = characters
         .map((c, i) => (c.id === action.payload.character?.id ? i : -1))
         .filter((index) => index !== -1);
       if (index.length) {
-        let existing = characters[index[0]];
-        let tracking = new CharacterWithTracking(existing.character);
+        const existing = characters[index[0]];
+        const tracking = new CharacterWithTracking(existing.character);
         tracking.id = existing.id;
         tracking.currentStress = existing.currentStress;
         tracking.notes = action.payload.notes;

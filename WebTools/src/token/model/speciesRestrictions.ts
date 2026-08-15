@@ -299,7 +299,7 @@ class SpeciesRestrictions {
   }
 
   static getDefaultEyeColor(species: Species) {
-    let colours = SpeciesRestrictions.getEyeColors(species);
+    const colours = SpeciesRestrictions.getEyeColors(species);
     return colours[Math.floor(colours.length / 2)];
   }
 
@@ -625,8 +625,8 @@ class SpeciesRestrictions {
   }
 
   static isHumanLikeSkinColouring(species: Species) {
-    let colours = SpeciesRestrictions.getSkinColors(species);
-    let humanSkinColours = SpeciesRestrictions.getSkinColors(Species.Human);
+    const colours = SpeciesRestrictions.getSkinColors(species);
+    const humanSkinColours = SpeciesRestrictions.getSkinColors(Species.Human);
     let result = colours.length === humanSkinColours.length;
     if (result) {
       colours.forEach((c, i) => (result = result && c === humanSkinColours[i]));
@@ -636,8 +636,8 @@ class SpeciesRestrictions {
 
   static isDarkSkinned(species: Species, skinColor: string) {
     if (this.isHumanLikeSkinColouring(species)) {
-      let skinColours = SpeciesRestrictions.getSkinColors(species);
-      let index = skinColours.indexOf(skinColor);
+      const skinColours = SpeciesRestrictions.getSkinColors(species);
+      const index = skinColours.indexOf(skinColor);
       return index >= Math.floor(skinColours.length / 2);
     } else {
       return false;

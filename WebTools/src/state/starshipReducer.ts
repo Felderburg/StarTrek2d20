@@ -55,7 +55,7 @@ const withStarship = (
   action: any,
   mutate: (s: Starship, action: any) => void,
 ): StarshipState => {
-  let s = state.starship.copy();
+  const s = state.starship.copy();
   mutate(s, action);
   return {
     ...state,
@@ -73,8 +73,8 @@ const starshipReducer = (
 ) => {
   switch (action.type) {
     case CREATE_STARSHIP: {
-      let s = action.payload.starship;
-      let hash = action.payload.hash;
+      const s = action.payload.starship;
+      const hash = action.payload.hash;
       return {
         ...state,
         starship: s.copy(),
@@ -83,8 +83,8 @@ const starshipReducer = (
     }
 
     case MODIFY_STARSHIP_ADD_ADVANCEMENT: {
-      let temp = state.starship.copy();
-      let improvement = new StarshipAdvancementStep();
+      const temp = state.starship.copy();
+      const improvement = new StarshipAdvancementStep();
       improvement.choice = action.payload.type;
       if (action.payload.type === StarshipAdvancementChoice.Talent) {
         improvement.value = (action.payload.value as SelectedTalent).copy();
@@ -108,7 +108,7 @@ const starshipReducer = (
     }
 
     case CREATE_NEW_STARSHIP: {
-      let s = Starship.createStandardStarship(
+      const s = Starship.createStandardStarship(
         action.payload.era,
         action.payload.type,
         action.payload.version,
@@ -143,8 +143,8 @@ const starshipReducer = (
     case CHANGE_STARSHIP_SPACEFRAME_SCALE:
       return withStarship(state, action, (s, action) => {
         if (s?.spaceframeModel?.isCustom) {
-          let original = s.spaceframeStep;
-          let spaceframe = s.spaceframeModel.copy();
+          const original = s.spaceframeStep;
+          const spaceframe = s.spaceframeModel.copy();
           spaceframe.scale += action.payload.delta;
           s.spaceframeStep = new SpaceframeStep(spaceframe);
           if (original?.appearance != null) {
@@ -156,8 +156,8 @@ const starshipReducer = (
     case CHANGE_STARSHIP_SPACEFRAME_SERVICE_YEAR:
       return withStarship(state, action, (s, action) => {
         if (s?.spaceframeModel?.isCustom) {
-          let original = s.spaceframeStep;
-          let spaceframe = s.spaceframeModel.copy();
+          const original = s.spaceframeStep;
+          const spaceframe = s.spaceframeModel.copy();
           spaceframe.serviceYear = action.payload.serviceYear;
           s.spaceframeStep = new SpaceframeStep(spaceframe);
           if (original?.appearance != null) {
@@ -172,8 +172,8 @@ const starshipReducer = (
     case CHANGE_STARSHIP_SPACEFRAME_CLASS_NAME:
       return withStarship(state, action, (s, action) => {
         if (s?.spaceframeModel?.isCustom) {
-          let original = s.spaceframeStep;
-          let spaceframe = s.spaceframeModel.copy();
+          const original = s.spaceframeStep;
+          const spaceframe = s.spaceframeModel.copy();
           spaceframe.name = action.payload.className;
           s.spaceframeStep = new SpaceframeStep(spaceframe);
           if (original?.appearance != null) {
@@ -197,7 +197,7 @@ const starshipReducer = (
         if (action.payload.serviceRecord == null) {
           s.serviceRecordStep = null;
         } else {
-          let original = s.serviceRecordStep;
+          const original = s.serviceRecordStep;
           s.serviceRecordStep = new ServiceRecordStep(
             action.payload.serviceRecord,
           );
@@ -225,7 +225,7 @@ const starshipReducer = (
       });
     case SET_STARSHIP_SPACEFRAME:
       return withStarship(state, action, (s, action) => {
-        let original = s.spaceframeModel;
+        const original = s.spaceframeModel;
         s.spaceframeStep = new SpaceframeStep(action.payload.spaceframe);
         if (original != null && s.spaceframeModel?.scale < original?.scale) {
           s.pruneExcessTalents();
@@ -234,7 +234,7 @@ const starshipReducer = (
       });
     case SET_STARSHIP_SPACEFRAME_TALENTS:
       return withStarship(state, action, (s, action) => {
-        let newStep = s.spaceframeStep.copy();
+        const newStep = s.spaceframeStep.copy();
         newStep.talents = action.payload.talents;
         s.spaceframeStep = newStep;
       });
@@ -264,7 +264,7 @@ const starshipReducer = (
         if (s.missionPodModel == null) {
           s.missionPodReplacements = [];
         } else {
-          let replacements = (action.payload.replacements ?? []).map((r) =>
+          const replacements = (action.payload.replacements ?? []).map((r) =>
             r?.copy(),
           );
           while (replacements.length < s.missionPodModel.talents.length) {
@@ -282,7 +282,7 @@ const starshipReducer = (
       });
     case ADD_STARSHIP_REFIT:
       return withStarship(state, action, (s, action) => {
-        let refits = [...s.refits, action.payload.refit];
+        const refits = [...s.refits, action.payload.refit];
         while (refits.length > s.numberOfRefits) {
           refits.splice(0, 1);
         }
@@ -290,8 +290,8 @@ const starshipReducer = (
       });
     case DELETE_STARSHIP_REFIT:
       return withStarship(state, action, (s, action) => {
-        let refits = [...s.refits];
-        let index = refits.indexOf(action.payload.refit);
+        const refits = [...s.refits];
+        const index = refits.indexOf(action.payload.refit);
         if (index >= 0) {
           refits.splice(index, 1);
         }
@@ -333,8 +333,8 @@ const starshipReducer = (
     case CHANGE_STARSHIP_SPACEFRAME_SYSTEM:
       return withStarship(state, action, (s, action) => {
         if (s?.spaceframeModel?.isCustom) {
-          let original = s.spaceframeStep;
-          let spaceframe = s.spaceframeModel.copy();
+          const original = s.spaceframeStep;
+          const spaceframe = s.spaceframeModel.copy();
           spaceframe.systems[action.payload.system] += action.payload.delta;
           s.spaceframeStep = new SpaceframeStep(spaceframe);
           if (original?.appearance != null) {
@@ -353,8 +353,8 @@ const starshipReducer = (
     case CHANGE_STARSHIP_SPACEFRAME_DEPARTMENT:
       return withStarship(state, action, (s, action) => {
         if (s?.spaceframeModel?.isCustom) {
-          let original = s.spaceframeStep;
-          let spaceframe = s.spaceframeModel.copy();
+          const original = s.spaceframeStep;
+          const spaceframe = s.spaceframeModel.copy();
           spaceframe.departments[action.payload.department] +=
             action.payload.delta;
           s.spaceframeStep = new SpaceframeStep(spaceframe);
@@ -373,7 +373,7 @@ const starshipReducer = (
       });
     case NEXT_STARSHIP_WORKFLOW_STEP: {
       if (state.workflow) {
-        let w = new ShipBuildWorkflow(state.workflow.steps);
+        const w = new ShipBuildWorkflow(state.workflow.steps);
         w.currentStepIndex = state.workflow.currentStepIndex + 1;
         return {
           ...state,
@@ -385,7 +385,7 @@ const starshipReducer = (
     }
     case REWIND_TO_STARSHIP_WORKFLOW_STEP: {
       if (state.workflow) {
-        let w = new ShipBuildWorkflow(state.workflow.steps);
+        const w = new ShipBuildWorkflow(state.workflow.steps);
         w.currentStepIndex = action.payload.index;
         return {
           ...state,

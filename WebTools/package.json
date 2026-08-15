@@ -112,7 +112,9 @@
     "extends": "react-app",
     "rules": {
       "unicode-bom": 0,
-      "semi": "error"
+      "semi": "error",
+      "no-var": "error",
+      "prefer-const": "error"
     }
   },
   "browserslist": {

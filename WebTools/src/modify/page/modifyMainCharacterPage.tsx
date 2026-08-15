@@ -48,7 +48,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const dropDownItems = () => {
-    let result = [];
+    const result = [];
     if (character.version === 1) {
       //            result.push(new DropDownElement(ModificationType.VersionUpgrade, t('ModificationType.name.versionUpgrade')))
     }
@@ -115,7 +115,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
   const navigate = useNavigate();
 
   const milestoneTypesDropDownItems = () => {
-    let result = [];
+    const result = [];
     result.push(
       new DropDownElement(
         CharacterAdvancementType.Adjustment,
@@ -144,7 +144,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
   };
 
   const nextStep = () => {
-    let step = getSteps(modificationType)[carouselIndex];
+    const step = getSteps(modificationType)[carouselIndex];
     if (carouselIndex === 0) {
       setCarouselIndex(carouselIndex + 1);
     } else if (step === Step.SelectLog) {
@@ -242,8 +242,8 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
 
   const viewCharacter = () => {
     setTimeout(() => {
-      let c = store.getState().character.currentCharacter;
-      let hash = store.getState().character.replacementHash;
+      const c = store.getState().character.currentCharacter;
+      const hash = store.getState().character.replacementHash;
       store.dispatch(saveCharacterToLocalStorage(c, hash));
       const value = marshaller.encodeMainCharacter(c);
       navigate('/view?s=' + value);
@@ -303,7 +303,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
   };
 
   const createSelectLog = () => {
-    let logs = character.logEntries
+    const logs = character.logEntries
       ?.filter((l) => l.valuesUsed?.length)
       ?.map((l) => (
         <LogEntrySelectionView
@@ -354,7 +354,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
   };
 
   const createSelectLogCallback = () => {
-    let ids = character.improvements
+    const ids = character.improvements
       ?.filter((i) => i instanceof CharacterAdvancementStep)
       ?.map((i) => i as CharacterAdvancementStep)
       ?.filter((i) => i.log != null)
@@ -365,7 +365,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
       )
       ?.map((i) => i.log);
 
-    let logs = character.logEntries?.filter(
+    const logs = character.logEntries?.filter(
       (l) => l.valuesUsed?.length && ids.includes(l.id),
     );
 
@@ -470,7 +470,7 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
   };
 
   const showStep = (step: number) => {
-    let steps = getSteps(modificationType);
+    const steps = getSteps(modificationType);
     switch (steps[step]) {
       case Step.Initial:
         return createCharacterAdvancementTypeView();

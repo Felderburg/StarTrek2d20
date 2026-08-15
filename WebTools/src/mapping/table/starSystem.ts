@@ -59,7 +59,7 @@ export class StarSystem {
   }
 
   clone() {
-    let result = new StarSystem(this.star);
+    const result = new StarSystem(this.star);
     result.id = this.id;
     result.sectorCoordinates = this.sectorCoordinates;
     result.worlds = this.worlds;
@@ -96,7 +96,7 @@ export class StarSystem {
   }
 
   get plainText() {
-    let worlds = this.worlds.map((w) => w.plainText).join('\n\n');
+    const worlds = this.worlds.map((w) => w.plainText).join('\n\n');
 
     return (
       'Star System: ' +
@@ -116,11 +116,11 @@ export class StarSystem {
   }
 
   get worldsAndSatelliteWorlds() {
-    let result = [];
+    const result = [];
     this.worlds.forEach((w) => {
       result.push(w);
       if (w.worldDetails != null && w.worldDetails instanceof GasGiantDetails) {
-        let details = w.worldDetails as GasGiantDetails;
+        const details = w.worldDetails as GasGiantDetails;
         details.ecosphereWorlds.forEach((e) => result.push(e));
       }
     });

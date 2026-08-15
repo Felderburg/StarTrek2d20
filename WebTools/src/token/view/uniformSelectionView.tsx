@@ -71,7 +71,7 @@ const UniformSelectionView: React.FC<IUniformSelectionViewProperties> = ({
   };
 
   const uniformErasList = () => {
-    let uniformTypes = SpeciesRestrictions.getUniformTypes(token.species);
+    const uniformTypes = SpeciesRestrictions.getUniformTypes(token.species);
     return UniformEraHelper.instance.types
       .filter((u) => uniformTypes.indexOf(u.id) >= 0)
       .map((u) => new DropDownElement(u.id, u.localizedName));

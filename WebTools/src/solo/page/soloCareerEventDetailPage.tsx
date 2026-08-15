@@ -73,7 +73,9 @@ const SoloCareerEventDetailsPage: React.FC<ISoloCareerEventProperties> = ({
   const selectRandomFocus = () => {
     let done = false;
     while (!done) {
-      let focus = localizedFocus(FocusRandomTable(careerEventStep.discipline));
+      const focus = localizedFocus(
+        FocusRandomTable(careerEventStep.discipline),
+      );
       if (character.focuses.indexOf(focus) < 0) {
         done = true;
         store.dispatch(setCharacterFocus(focus, context));

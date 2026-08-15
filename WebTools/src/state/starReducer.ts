@@ -23,18 +23,20 @@ const star = (
         sector: action.payload.sector,
       };
     case SET_SECTOR_NAME: {
-      let name = action.payload.name;
-      let systems = state.sector.systems.map((s) => {
-        let system = s.clone();
+      const name = action.payload.name;
+      const systems = state.sector.systems.map((s) => {
+        const system = s.clone();
         system.rootName = name;
         return system;
       });
-      let sector = new Sector(state.sector.prefix);
+      const sector = new Sector(state.sector.prefix);
       sector.id = state.sector.id;
       sector.simpleName = name;
       sector.systems = systems;
 
-      let starSystem = state.starSystem ? state.starSystem.clone() : undefined;
+      const starSystem = state.starSystem
+        ? state.starSystem.clone()
+        : undefined;
       if (starSystem) {
         starSystem.rootName = name;
       }
@@ -45,17 +47,19 @@ const star = (
       };
     }
     case SET_STAR_SYSTEM_NAME: {
-      let starSystem = state.starSystem ? state.starSystem.clone() : undefined;
+      const starSystem = state.starSystem
+        ? state.starSystem.clone()
+        : undefined;
       if (starSystem) {
         starSystem.friendlyName = action.payload.name;
-        let systems = state.sector.systems.map((s) => {
+        const systems = state.sector.systems.map((s) => {
           if (s.id === starSystem.id) {
             return starSystem;
           } else {
             return s;
           }
         });
-        let sector = new Sector(state.sector.prefix);
+        const sector = new Sector(state.sector.prefix);
         sector.id = state.sector.id;
         sector.simpleName = state.sector.simpleName;
         sector.systems = systems;

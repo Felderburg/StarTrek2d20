@@ -24,15 +24,15 @@ export class Roller {
       numDice = 2;
     }
 
-    var result = new DiceRollResult();
+    const result = new DiceRollResult();
     result.targetValue = targetValue;
     result.numDice = numDice;
     result.difficulty = difficulty;
     result.successes = 0;
     result.hasRepercusions = false;
 
-    for (var i = 0; i < numDice; i++) {
-      var roll = Math.floor(Math.random() * 20) + 1;
+    for (let i = 0; i < numDice; i++) {
+      const roll = Math.floor(Math.random() * 20) + 1;
       if (roll <= targetValue) {
         result.successes++;
 
@@ -50,13 +50,13 @@ export class Roller {
   }
 
   rollSpecial(numDice: number, bonus: number) {
-    var result = new SpecialDiceRollResult();
+    const result = new SpecialDiceRollResult();
     result.numDice = numDice;
     result.bonus = bonus;
     result.hits = 0;
     result.special = 0;
 
-    for (var i = 0; i < numDice; i++) {
+    for (let i = 0; i < numDice; i++) {
       switch (Math.floor(Math.random() * 6) + 1) {
         case 1:
           result.hits++;

@@ -97,7 +97,7 @@ export class GmTrackerPdfSheet {
   async populate(pdf: PDFDocument, characters: Character[]) {
     await this.initializeFonts(pdf);
     let page = pdf.getPage(0);
-    let decorations = new PortraitSheetDecorations();
+    const decorations = new PortraitSheetDecorations();
     decorations.drawSheetDecorations(page, tealColour2e);
     decorations.writeName(
       page,
@@ -110,14 +110,14 @@ export class GmTrackerPdfSheet {
     let blankCopy = await pdf.copyPages(pdf, [0]);
 
     for (let i = 0; i < characters.length; i++) {
-      let c = characters[i];
-      let column = GmTrackerPdfSheet.COLUMNS[i % 3];
+      const c = characters[i];
+      const column = GmTrackerPdfSheet.COLUMNS[i % 3];
       if (i > 0 && i % 3 === 0) {
         page = pdf.addPage(blankCopy[0]);
         blankCopy = await pdf.copyPages(pdf, [pdf.getPages().length - 1]);
       }
 
-      let headerColumn = column.topBefore(13);
+      const headerColumn = column.topBefore(13);
       let name = c.nameAndAbbreviatedRank;
       if (
         c.stereotype === Stereotype.Npc &&
@@ -132,7 +132,7 @@ export class GmTrackerPdfSheet {
       }
       this.writeSubTitle(new PageArea(headerColumn, page), name);
       let column1 = column.bottomAfter(13);
-      let column2 = new Column(
+      const column2 = new Column(
         column1.start.x + column1.width - 220,
         column1.start.y,
         column1.height,
@@ -146,7 +146,7 @@ export class GmTrackerPdfSheet {
         column2,
       );
 
-      let descriptionParagraph = new Paragraph(page, column1, this.fonts);
+      const descriptionParagraph = new Paragraph(page, column1, this.fonts);
       descriptionParagraph.append(
         c.speciesName + (c.assignment?.length ? ',' : ''),
         new FontOptions(9),
@@ -156,11 +156,11 @@ export class GmTrackerPdfSheet {
       }
       descriptionParagraph.write();
 
-      let statArea = descriptionParagraph.nextArea(page).bottomAfter(10);
+      const statArea = descriptionParagraph.nextArea(page).bottomAfter(10);
       column1 = this.writeStatBoxes(statArea, c).column;
 
       if (c.isStressTrackPresent) {
-        let heading = new Paragraph(page, column1, this.fonts);
+        const heading = new Paragraph(page, column1, this.fonts);
         heading.append(
           i18next.t('Construct.other.stress').toLocaleUpperCase() + ':',
           new FontOptions(9, FontType.Bold),
@@ -176,7 +176,7 @@ export class GmTrackerPdfSheet {
         );
         column1 = column1.bottomAfter(8, page);
       } else if (c.isPersonalThreatTrackPresent) {
-        let heading = new Paragraph(page, column1, this.fonts);
+        const heading = new Paragraph(page, column1, this.fonts);
         heading.append(
           i18next.t('Construct.other.personalThreat').toLocaleUpperCase() + ':',
           new FontOptions(9, FontType.Bold),
@@ -194,7 +194,7 @@ export class GmTrackerPdfSheet {
       }
 
       column1 = column1.columnWithAtLeast(20, page)?.column;
-      let heading = new Paragraph(page, column1, this.fonts);
+      const heading = new Paragraph(page, column1, this.fonts);
       heading.append(
         i18next.t('Construct.other.attacks').toLocaleUpperCase() + ':',
         new FontOptions(9, FontType.Bold),
@@ -258,7 +258,7 @@ export class GmTrackerPdfSheet {
       'M 2.835,0 C 1.269,0 0,1.269 0,2.835 V 9 c 0,1.565 1.269,2.835 2.835,2.835 h 66.567 c 1.565,0 2.835,-1.27 2.835,-2.835 V 2.835 C 72.237,1.269 70.967,0 69.402,0 Z';
 
     const rowHeight = 16;
-    let labels = {};
+    const labels = {};
     [
       Attribute.Control,
       Attribute.Fitness,
@@ -267,11 +267,11 @@ export class GmTrackerPdfSheet {
       Attribute.Insight,
       Attribute.Reason,
     ].forEach((a, i) => {
-      let location = new XYLocation(
+      const location = new XYLocation(
         boxes.x + (i % 3) * 81,
         boxes.y + Math.floor(i / 3) * rowHeight,
       );
-      let x = location.x;
+      const x = location.x;
       const y = area.page.getHeight() - location.y;
       area.page.moveTo(x, y);
       area.page.drawSvgPath(statFrame, {
@@ -279,7 +279,7 @@ export class GmTrackerPdfSheet {
         borderWidth: 0.5,
       });
 
-      let labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
+      const labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
       const key = i18next.t(makeKey('Construct.attribute.', Attribute[a]));
       labels[key] = labelColumn;
 
@@ -302,11 +302,11 @@ export class GmTrackerPdfSheet {
       Department.Security,
       Department.Science,
     ].forEach((s, i) => {
-      let location = new XYLocation(
+      const location = new XYLocation(
         boxes.x + (i % 3) * 81,
         boxes.y + Math.floor(i / 3) * rowHeight,
       );
-      let x = location.x;
+      const x = location.x;
       const y = area.page.getHeight() - location.y;
       area.page.moveTo(x, y);
       area.page.drawSvgPath(statFrame, {
@@ -314,7 +314,7 @@ export class GmTrackerPdfSheet {
         borderWidth: 0.5,
       });
 
-      let labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
+      const labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
       const key = makeKey('Construct.discipline.', Department[s]);
       labels[key] = labelColumn;
 
@@ -353,8 +353,8 @@ export class GmTrackerPdfSheet {
     let lead = (block.width - textBlock.width) / 2;
     lead = Math.min(12, lead - 4);
 
-    let x = block.start.x + lead + 4;
-    let y = block.end.y - 1 - (block.height - textBlock.height) / 2;
+    const x = block.start.x + lead + 4;
+    const y = block.end.y - 1 - (block.height - textBlock.height) / 2;
     textBlock.writeToPage(
       x,
       area.page.getHeight() - y,
@@ -375,7 +375,7 @@ export class GmTrackerPdfSheet {
       color: greyColour2e.asPdfRbg(),
     });
 
-    let end = block.start.x + lead + 4 + textBlock.width + 4;
+    const end = block.start.x + lead + 4 + textBlock.width + 4;
     if (end < block.end.x) {
       area.page.drawLine({
         start: {
@@ -418,8 +418,8 @@ export class GmTrackerPdfSheet {
       textBlock = TextBlock.create(text, font, false);
     }
 
-    let y = column.end.y - 1 - (column.height - textBlock.height) / 2;
-    let x = column.start.x + (column.width - textBlock.width);
+    const y = column.end.y - 1 - (column.height - textBlock.height) / 2;
+    const x = column.start.x + (column.width - textBlock.width);
     textBlock.writeToPage(x, page.getHeight() - y, page, colour);
   }
 
@@ -429,7 +429,7 @@ export class GmTrackerPdfSheet {
     stress: number,
     index: number,
   ) {
-    let stressBox =
+    const stressBox =
       'm 1,0 h 7.5 c 0.554,0 1,0.446 1,1 v 7.5 c 0,0.554 -0.446,1 -1,1 H 1 C 0.446,9.5 0,9.054 0,8.5 V 1 C 0,0.446 0.446,0 1,0 Z';
 
     let x = area.column.translatedStart(area.page).x;
@@ -441,7 +441,7 @@ export class GmTrackerPdfSheet {
         borderWidth: 0.5,
       });
 
-      let checkbox = form.createCheckBox(
+      const checkbox = form.createCheckBox(
         'Stress-' + (index + 1) + ' ' + (i + 1),
       );
       checkbox.addToPage(area.page, {
@@ -476,8 +476,8 @@ export class GmTrackerPdfSheet {
     column: Column,
     colour: SimpleColor = tealColour2e,
   ) {
-    let bold = new FontOptions(9, FontType.Bold);
-    let standard = new FontOptions(9);
+    const bold = new FontOptions(9, FontType.Bold);
+    const standard = new FontOptions(9);
     let paragraph = null;
     let bottom = column;
 

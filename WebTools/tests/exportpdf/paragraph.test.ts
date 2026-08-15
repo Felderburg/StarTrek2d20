@@ -11,7 +11,7 @@ describe('testing line functions', () => {
   test('should append block', async () => {
     const pdf = await PDFDocument.create();
     const helvetica = await pdf.embedFont(StandardFonts.Helvetica);
-    let line = new Line(
+    const line = new Line(
       new XYLocation(0, 0),
       pdf.getPage(0),
       new Column(0, 0, 500, 100),
@@ -30,7 +30,7 @@ describe('testing line functions', () => {
   test('should not append different block (colour)', async () => {
     const pdf = await PDFDocument.create();
     const helvetica = await pdf.embedFont(StandardFonts.Helvetica);
-    let line = new Line(
+    const line = new Line(
       new XYLocation(0, 0),
       pdf.getPage(0),
       new Column(0, 0, 500, 100),
@@ -54,7 +54,7 @@ describe('testing line functions', () => {
   test('should not append different block (font size)', async () => {
     const pdf = await PDFDocument.create();
     const helvetica = await pdf.embedFont(StandardFonts.Helvetica);
-    let line = new Line(
+    const line = new Line(
       new XYLocation(0, 0),
       pdf.getPage(0),
       new Column(0, 0, 500, 100),

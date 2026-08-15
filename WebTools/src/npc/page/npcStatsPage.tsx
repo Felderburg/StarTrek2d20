@@ -52,7 +52,7 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({ character }) => {
     if (character.npcGenerationStep?.type === NpcType.Minor) {
       return undefined;
     } else {
-      let department = primaryDepartment();
+      const department = primaryDepartment();
       return (
         <div className="col-12 col-md-6 mt-4">
           <Header level={2} className="my-3">
@@ -111,7 +111,7 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({ character }) => {
 
   const primaryDepartment = () => {
     let department = undefined;
-    let departments = character.npcGenerationStep?.departments;
+    const departments = character.npcGenerationStep?.departments;
     DepartmentsHelper.instance.getDepartments().forEach((d) => {
       if (department === undefined) {
         department = d;
@@ -126,7 +126,7 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({ character }) => {
     if (character.npcGenerationStep?.type === NpcType.Minor) {
       return undefined;
     } else {
-      let department = primaryDepartment();
+      const department = primaryDepartment();
 
       return (
         <div className="col-12 col-md-6 mt-4">
@@ -255,7 +255,7 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({ character }) => {
   };
 
   const getRanks = () => {
-    let ranks = [new DropDownElement('', '')];
+    const ranks = [new DropDownElement('', '')];
     ranks.push(
       ...RanksHelper.instance()
         .getRanksByType(character.type, character.version)
@@ -268,7 +268,7 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({ character }) => {
     if (rank === '') {
       store.dispatch(setCharacterRank(''));
     } else {
-      let model = RanksHelper.instance().getRank(rank as Rank);
+      const model = RanksHelper.instance().getRank(rank as Rank);
       store.dispatch(
         setCharacterRank(model?.localizedName ?? '', rank as Rank),
       );

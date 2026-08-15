@@ -195,8 +195,8 @@ interface IWorldViewProperties extends IPageProperties {
 
 class WorldView extends React.Component<IWorldViewProperties, {}> {
   render() {
-    let { world } = this.props;
-    let attributes = world.attributeList;
+    const { world } = this.props;
+    const attributes = world.attributeList;
     return (
       <div>
         <WorldViewThumbnail world={world} system={this.props.system} />

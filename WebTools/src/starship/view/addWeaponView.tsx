@@ -160,7 +160,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({
 
   const addWeaponFunction = () => {
     if (weaponType.type === WeaponType.ENERGY) {
-      let weapon = Weapon.createStarshipWeapon(
+      const weapon = Weapon.createStarshipWeapon(
         '',
         weaponType.type,
         loadType,
@@ -168,7 +168,7 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({
       );
       addWeapon(weapon);
     } else {
-      let weapon = Weapon.createStarshipWeapon('', weaponType.type, loadType);
+      const weapon = Weapon.createStarshipWeapon('', weaponType.type, loadType);
       addWeapon(weapon);
     }
     onClose();

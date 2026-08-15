@@ -55,7 +55,7 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({
     } else if (message) {
       Dialog.show(message);
     } else {
-      let step = workflow.peekNextStep();
+      const step = workflow.peekNextStep();
       store.dispatch(nextStarshipWorkflowStep());
       Navigation.navigateToPage(step.page);
     }
@@ -72,7 +72,7 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({
       } else {
         let count = 0;
         temp = temp.filter((t) => {
-          let result =
+          const result =
             t.talent !== rankedTalent.name || count + 1 !== rankedTalent.rank;
           if (t.name === rankedTalent.name) {
             count++;
@@ -114,26 +114,26 @@ const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({
   };
 
   const talentList = () => {
-    let talents = starship
+    const talents = starship
       ? TalentsHelper.getStarshipOrStationTalents(starship, true)
       : [];
 
-    let rankedTalents = [];
+    const rankedTalents = [];
     talents
       .filter((t) => !t.isSpecialRule(starship.version))
       .forEach((t) => {
         if (t.maxRank > 1 || isMultiSelectionTalent(t)) {
-          let initialCount =
+          const initialCount =
             starship.talentsWithoutAdditional?.filter(
               (s) => s.talent === t.name,
             )?.length ?? 0;
-          let count =
+          const count =
             starship.talents?.filter((s) => s.talent === t.name)?.length ?? 0;
           for (let i = initialCount; i < count + 1; i++) {
             rankedTalents.push(new RankedTalent(t, i + 1));
           }
         } else {
-          let count =
+          const count =
             starship.talentsWithoutAdditional?.filter(
               (s) => s.talent === t.name,
             )?.length ?? 0;

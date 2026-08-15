@@ -38,7 +38,7 @@ export const FocusSelectionView: React.FC<IFocusSelectionProperties> = ({
   const selectRandomFocus = () => {
     let done = false;
     while (!done) {
-      let focus =
+      const focus =
         hints != null
           ? localizedFocus(
               FocusRandomTableWithHints(randomFocusDepartment, hints),

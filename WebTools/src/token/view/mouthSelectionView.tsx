@@ -86,13 +86,13 @@ const MouthSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
     type: FacialHairType,
     category: FacialHairCategory,
   ) => {
-    let newTypes = [];
+    const newTypes = [];
     if (type !== FacialHairType.None) {
       category = FacialHairCatalog.instance.getCategoryForType(type);
     }
     token.facialHairType
       .filter((t) => {
-        let p = FacialHairCatalog.instance.getCategoryForType(t);
+        const p = FacialHairCatalog.instance.getCategoryForType(t);
         if (category === FacialHairCategory.MoustacheAndBeard) {
           return p === FacialHairCategory.Shadow;
         } else {
@@ -108,7 +108,7 @@ const MouthSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
   };
 
   const getShadowType = () => {
-    let type = token.facialHairType.filter(
+    const type = token.facialHairType.filter(
       (f) =>
         FacialHairCatalog.instance.getCategoryForType(f) ===
         FacialHairCategory.Shadow,
@@ -117,7 +117,7 @@ const MouthSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
   };
 
   const getMoustacheType = () => {
-    let type = token.facialHairType.filter(
+    const type = token.facialHairType.filter(
       (f) =>
         FacialHairCatalog.instance.getCategoryForType(f) ===
         FacialHairCategory.Moustache,
@@ -126,7 +126,7 @@ const MouthSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
   };
 
   const getBeardTypes = () => {
-    let types = token.facialHairType.filter(
+    const types = token.facialHairType.filter(
       (f) =>
         FacialHairCatalog.instance.getCategoryForType(f) ===
           FacialHairCategory.Beard ||

@@ -67,8 +67,8 @@ class TalentViewModel {
     );
   }
   matchesAlias(term) {
-    var result = false;
-    for (var i = 0; i < this.aliases.length; i++) {
+    let result = false;
+    for (let i = 0; i < this.aliases.length; i++) {
       const alias = this.aliases[i];
       result = alias.name.toLowerCase().replace('’', "'").indexOf(term) >= 0;
       if (result) {
@@ -81,10 +81,10 @@ class TalentViewModel {
   get version() {
     let first = false;
     let second = this.talent.is2eSupported;
-    let sources = SourcesHelper.getSources();
+    const sources = SourcesHelper.getSources();
 
     this.talent.sources.forEach((s) => {
-      let source = sources.filter((src) => src.id === s)[0];
+      const source = sources.filter((src) => src.id === s)[0];
       if (source.version === 1) {
         first = true;
       } else if (source.version === 2) {
@@ -103,7 +103,7 @@ class TalentViewModel {
   static from(talent: TalentModel) {
     let prerequisites = '';
     talent.prerequisites.forEach((p) => {
-      let desc = p.describe();
+      const desc = p.describe();
       if (desc) {
         if (prerequisites === '') {
           prerequisites = desc;
@@ -123,7 +123,7 @@ class TalentViewModel {
 }
 
 const TalentsOverviewPage = () => {
-  let _allTalents: TalentViewModel[] = [];
+  const _allTalents: TalentViewModel[] = [];
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [search, setSearch] = useState('');
   const [version, setVersion] = useState<TalentVersion>(TalentVersion.Both);
@@ -139,7 +139,7 @@ const TalentsOverviewPage = () => {
   const { t } = useTranslation();
 
   const selectTalents = () => {
-    let talents = [];
+    const talents = [];
     for (let i = 0; i < _allTalents.length; i++) {
       const talent = _allTalents[i];
       if (search.length && !talent.matches(search)) {
@@ -268,7 +268,7 @@ const TalentsOverviewPage = () => {
   };
 
   const getSpecies = () => {
-    let speciesList: Species[] = [];
+    const speciesList: Species[] = [];
     _allTalents.forEach((t) => {
       if (t.talent.category.category === TalentCategory.Species) {
         t.talent.category.type.forEach((s) => {
@@ -278,7 +278,7 @@ const TalentsOverviewPage = () => {
         });
       }
     });
-    let dropDowns = speciesList.map(
+    const dropDowns = speciesList.map(
       (s) =>
         new DropDownElement(s, SpeciesHelper.getSpeciesByType(s).localizedName),
     );
@@ -291,13 +291,13 @@ const TalentsOverviewPage = () => {
 
   const loadTalents = () => {
     const talentsList = TalentsHelper.getTalents();
-    for (var i = 0; i < talentsList.length; i++) {
+    for (let i = 0; i < talentsList.length; i++) {
       const talent = talentsList[i];
       const sources = TalentsHelper.getSourceForTalent(talent.name);
 
       let available = sources && sources.length > 0 ? false : true;
       sources.forEach((s) => {
-        let source = SourcesHelper.getSources()[s];
+        const source = SourcesHelper.getSources()[s];
         available = available || source.available;
       });
 
@@ -335,12 +335,12 @@ const TalentsOverviewPage = () => {
       );
     }
 
-    let description =
+    const description =
       hasSource(Source.Core2ndEdition) && version !== TalentVersion.FirstEdition
         ? t.talent.localizedDescription2e
         : t.talent.localizedDescription;
 
-    let lines = description.includes(CHALLENGE_DICE_NOTATION) ? (
+    const lines = description.includes(CHALLENGE_DICE_NOTATION) ? (
       description.split('\n').map((l, i) => {
         return (
           <div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>

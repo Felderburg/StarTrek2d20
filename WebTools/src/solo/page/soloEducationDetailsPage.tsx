@@ -68,7 +68,7 @@ const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({
   };
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,
@@ -79,7 +79,7 @@ const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({
   const selectRandomFocus = (index: number) => {
     let done = false;
     while (!done) {
-      let focus = localizedFocus(
+      const focus = localizedFocus(
         FocusRandomTable(character.educationStep?.primaryDiscipline),
       );
       if (character.focuses.indexOf(focus) < 0) {

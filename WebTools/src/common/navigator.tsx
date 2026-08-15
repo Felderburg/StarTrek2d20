@@ -3,7 +3,7 @@ import { Events, EventIdentity } from './eventChannel';
 
 export class Navigator {
   navigateToPage(pageId: PageIdentity) {
-    var page = document.getElementsByClassName('page')[0];
+    const page = document.getElementsByClassName('page')[0];
     page.classList.add('page-out');
 
     setTimeout(() => {
@@ -12,7 +12,7 @@ export class Navigator {
   }
 
   navigateToHistoryPage(pageId: PageIdentity) {
-    var page = document.getElementsByClassName('page')[0];
+    const page = document.getElementsByClassName('page')[0];
     page.classList.add('page-out');
 
     setTimeout(() => {

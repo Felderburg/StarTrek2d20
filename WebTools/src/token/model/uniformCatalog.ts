@@ -27,7 +27,7 @@ class UniformCatalog {
   }
 
   getUniformVariantSwatches(token: TokenModel) {
-    let uniformPack = this.getUniformPack(token.uniformEra);
+    const uniformPack = this.getUniformPack(token.uniformEra);
     if (uniformPack != null) {
       return uniformPack.getUniformVariantSwatches(token);
     } else {
@@ -40,7 +40,7 @@ class UniformCatalog {
   }
 
   static decorateSwatch(svg: string, clipPathId: number, token: TokenModel) {
-    let result =
+    const result =
       `<svg viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <clipPath id="clipPath` +

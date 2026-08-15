@@ -92,7 +92,7 @@ export abstract class BasicGeneratedSheet implements ICharacterSheet {
     if (construct.name == null || construct.name.length === 0) {
       return suffix + '.pdf';
     } else {
-      var escaped = construct.name
+      const escaped = construct.name
         .replace(/\\/g, '_')
         .replace(/\//g, '_')
         .replace(/\s/g, '_');
@@ -134,21 +134,22 @@ export abstract class BasicGeneratedSheet implements ICharacterSheet {
         new FontSpecification(headingFont, 10),
         false,
       );
-      let y = nameColumn.end.y - 3 - (nameColumn.height - textBlock.height) / 2;
-      let x = nameColumn.start.x;
+      const y =
+        nameColumn.end.y - 3 - (nameColumn.height - textBlock.height) / 2;
+      const x = nameColumn.start.x;
 
       const triangle =
         'M 59.14167,59.12397 V 49.110298 l 8.671875,5.009766 z m 0.580078,-1.001953 6.9375,-4.001953 -6.9375,-4.007813 z';
 
-      let width = textBlock.width;
-      let widthOfTab = Math.max(120, width + 50);
-      let startOffset = 42.537;
+      const width = textBlock.width;
+      const widthOfTab = Math.max(120, width + 50);
+      const startOffset = 42.537;
 
-      let farthestEdge = widthOfTab + startOffset;
-      let circle1 = farthestEdge - (226.5918 - 221.51591);
-      let circle2 = farthestEdge - (226.5918 - 215.25391);
+      const farthestEdge = widthOfTab + startOffset;
+      const circle1 = farthestEdge - (226.5918 - 221.51591);
+      const circle2 = farthestEdge - (226.5918 - 215.25391);
 
-      let curvePath =
+      const curvePath =
         'M 53.876953 44.523438 C 47.614953 44.523438 42.537109 49.601281 42.537109 55.863281 L 42.537109 83.523438 L 42.958984 83.523438 L 42.958984 74.53125 C 42.958984 68.55425 47.821828 63.693359 53.798828 63.693359 ' +
         'L ' +
         farthestEdge +
@@ -185,17 +186,17 @@ export abstract class BasicGeneratedSheet implements ICharacterSheet {
 }
 
 export const assembleWritableItems = (character: Character) => {
-  let result: (ReadableTalentModel | RoleModel | SpeciesAbilityAndOptions)[] =
+  const result: (ReadableTalentModel | RoleModel | SpeciesAbilityAndOptions)[] =
     [];
 
   if (character.role != null) {
-    let role = RolesHelper.instance.getRole(character.role, character.type);
+    const role = RolesHelper.instance.getRole(character.role, character.type);
     if (role) {
       result.push(role);
     }
 
     if (character.secondaryRole != null) {
-      let role = RolesHelper.instance.getRole(
+      const role = RolesHelper.instance.getRole(
         character.secondaryRole,
         character.type,
       );
@@ -218,7 +219,7 @@ export const assembleWritableItems = (character: Character) => {
     );
   }
 
-  let handledTalents = [];
+  const handledTalents = [];
   character.talents.forEach((t) => {
     const talent = t.talentModel;
     if (talent && !handledTalents.includes(t.talent)) {
@@ -271,14 +272,14 @@ export const assembleWritableItems = (character: Character) => {
         readableTalent.attributes = character.talents
           .filter((s) => s.talent === talent.name && s.attribute != null)
           .map((s) => s.attribute);
-        let temp = character.talents.filter(
+        const temp = character.talents.filter(
           (s) => s.talent === talent.name && s.x != null,
         );
         if (temp.length) {
           readableTalent.x = temp[0].x;
         }
       } else if (talent.isXQualified) {
-        let temp = character.talents.filter(
+        const temp = character.talents.filter(
           (s) => s.talent === talent.name && s.x != null,
         );
         if (temp.length) {
@@ -296,13 +297,13 @@ export const assembleStarshipTalents = (
   starship: Starship | Station,
   includeSpecialRules: boolean = false,
 ) => {
-  let result: (ReadableTalentModel | RoleModel | SpeciesAbilityAndOptions)[] =
+  const result: (ReadableTalentModel | RoleModel | SpeciesAbilityAndOptions)[] =
     [];
-  let specialRules: (
+  const specialRules: (
     ReadableTalentModel | RoleModel | SpeciesAbilityAndOptions
   )[] = [];
 
-  let handledTalents = [];
+  const handledTalents = [];
   starship.talents.forEach((t) => {
     const talent = t.talentModel;
     if (talent && !handledTalents.includes(t.talent)) {
@@ -344,7 +345,7 @@ export const assembleStarshipTalents = (
           'Upgraded Systems (Service Record)',
         ].includes(talent.name)
       ) {
-        let temp = starship.talents.filter(
+        const temp = starship.talents.filter(
           (s) => s.talent === talent.name && s.system != null,
         );
         if (temp.length) {

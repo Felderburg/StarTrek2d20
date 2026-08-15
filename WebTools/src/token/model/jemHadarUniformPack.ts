@@ -180,7 +180,7 @@ export class JemHadarUniformPack
 
   getUniformAndVariantBody(token: TokenModel) {
     let result = '';
-    let neck = this.getNeck(
+    const neck = this.getNeck(
       BodyType.AverageMale,
       token.skinColor,
       token.species,

@@ -44,7 +44,7 @@ export class AtmosphereDetails {
   }
 
   get attributeList(): WorldAttribute[] {
-    let result = [];
+    const result = [];
     result.push(
       new WorldAttribute(
         i18next.t('World.attribute.atmosphereType'),
@@ -129,7 +129,9 @@ const atmosphereTableClassE = () => {
 };
 
 const atmosphereTableClassK = () => {
-  let result = new AtmosphereDetails(AtmosphereType.StandardOxygenNitrogenMix);
+  const result = new AtmosphereDetails(
+    AtmosphereType.StandardOxygenNitrogenMix,
+  );
   result.density =
     D20.roll() <= 10
       ? AtmosphericDensityType.VeryThin
@@ -138,7 +140,7 @@ const atmosphereTableClassK = () => {
 };
 
 const atmosphereTableClassL = () => {
-  let result = new AtmosphereDetails(AtmosphereType.OxygenArgonMix);
+  const result = new AtmosphereDetails(AtmosphereType.OxygenArgonMix);
   result.density =
     D20.roll() <= 10
       ? AtmosphericDensityType.VeryThin
@@ -147,7 +149,9 @@ const atmosphereTableClassL = () => {
 };
 
 const atmosphereTableClassM = () => {
-  let result = new AtmosphereDetails(AtmosphereType.StandardOxygenNitrogenMix);
+  const result = new AtmosphereDetails(
+    AtmosphereType.StandardOxygenNitrogenMix,
+  );
 
   switch (D20.roll()) {
     case 1:
@@ -220,8 +224,8 @@ const atmosphericContaminantTable = () => {
     case 19:
       return [AtmosphericContaminantType.IrritantPollens];
     case 20:
-      let result = atmosphericContaminantTable();
-      let more = atmosphericContaminantTable();
+      const result = atmosphericContaminantTable();
+      const more = atmosphericContaminantTable();
       more.forEach((c) => {
         if (result.indexOf(c) < 0) {
           if (

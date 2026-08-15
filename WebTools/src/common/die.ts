@@ -33,7 +33,7 @@ class D6RollResult {
 
 class D6Dice {
   rollFace() {
-    let result = Math.floor(Math.random() * 6) + 1;
+    const result = Math.floor(Math.random() * 6) + 1;
     return new D6RollResult(result);
   }
 }

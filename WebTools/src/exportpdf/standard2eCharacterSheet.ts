@@ -95,7 +95,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
     await this.fillCharacterImage(pdf, construct as Character);
 
-    let character = construct as Character;
+    const character = construct as Character;
     let page2 = null;
     if (character.logEntries?.length) {
       const pdfBytes = await fetch(
@@ -109,11 +109,11 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
       if (page2) {
         for (let i = 0; i < Math.ceil(character.logEntries?.length / 18); i++) {
-          let tempPage = pdf.addPage(page2);
+          const tempPage = pdf.addPage(page2);
           const [newPage] = await pdf.copyPages(pdf, [pdf.getPageCount() - 1]);
           page2 = newPage;
 
-          let logEntries = character.logEntries;
+          const logEntries = character.logEntries;
           for (let j = i * 18; j < (i + 1) * 18 && j < logEntries.length; j++) {
             this.fillLogFields(logEntries[j], tempPage, j % 18);
           }
@@ -134,7 +134,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
   async fillCharacterImage(pdf: PDFDocument, character: Character) {
     if (character.token) {
-      let tokenBytes = await TokenHelper.renderToken(character.token);
+      const tokenBytes = await TokenHelper.renderToken(character.token);
       const image = await pdf.embedPng(tokenBytes);
       try {
         pdf.getForm().getButton('Image2_af_image').setImage(image);
@@ -146,21 +146,21 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
   }
 
   fillLogFields(logEntry: LogEntry, page: PDFPage, index: number) {
-    let height = 31;
-    let gap = 134 - 97 - height;
+    const height = 31;
+    const gap = 134 - 97 - height;
 
-    let y = 97 + index * (height + gap);
+    const y = 97 + index * (height + gap);
 
     if (logEntry.id != null) {
-      let column = new Column(32.9, y, height, 43.1);
-      let paragraph = new Paragraph(page, column, this.fonts);
+      const column = new Column(32.9, y, height, 43.1);
+      const paragraph = new Paragraph(page, column, this.fonts);
       paragraph.textAlignment = TextAlign.Centre;
       paragraph.append(logEntry.id, new FontOptions(9, FontType.Bold));
       paragraph.write();
     }
 
     if (logEntry.adventureTitle?.length) {
-      let column = new Column(81.4, y, height, 176);
+      const column = new Column(81.4, y, height, 176);
       let paragraph = new Paragraph(page, column, this.fonts);
       paragraph.append(
         logEntry.adventureTitle,
@@ -178,7 +178,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     if (logEntry.valuesUsed?.length || logEntry.directivesUsed?.length) {
-      let column = new Column(264.7, y, height, 92.2);
+      const column = new Column(264.7, y, height, 92.2);
       let paragraph = new Paragraph(page, column, this.fonts);
       logEntry.valuesUsed?.forEach((v) => {
         if (paragraph) {
@@ -197,8 +197,8 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     if (logEntry.notes?.length) {
-      let column = new Column(365.8, y, height, 212.7);
-      let paragraph = new Paragraph(page, column, this.fonts);
+      const column = new Column(365.8, y, height, 212.7);
+      const paragraph = new Paragraph(page, column, this.fonts);
       paragraph.append(logEntry.notes, new FontOptions(9));
       paragraph.write();
     }
@@ -300,7 +300,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
       new Column(360.6, 78.3, 15.8, 552.1 + 29.9 - 360.6),
     ];
 
-    let heading1 = new Paragraph(page, headerLabels[0], new FontLibrary());
+    const heading1 = new Paragraph(page, headerLabels[0], new FontLibrary());
     heading1.textAlignment = TextAlign.Centre;
     heading1.append(
       i18next.t('Sheet.text.log.entryNumber').toLocaleUpperCase(),
@@ -309,7 +309,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     );
     heading1.write();
 
-    let heading2 = new Paragraph(page, headerLabels[1], new FontLibrary());
+    const heading2 = new Paragraph(page, headerLabels[1], new FontLibrary());
     heading2.textAlignment = TextAlign.Centre;
     heading2.append(
       i18next.t('Sheet.text.log.adventureTitle').toLocaleUpperCase(),
@@ -318,7 +318,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     );
     heading2.write();
 
-    let heading3 = new Paragraph(page, headerLabels[2], new FontLibrary());
+    const heading3 = new Paragraph(page, headerLabels[2], new FontLibrary());
     heading3.textAlignment = TextAlign.Centre;
     heading3.append(
       i18next.t('Sheet.text.log.valuesOrDirectivesUsed').toLocaleUpperCase(),
@@ -327,7 +327,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     );
     heading3.write();
 
-    let heading4 = new Paragraph(page, headerLabels[3], new FontLibrary());
+    const heading4 = new Paragraph(page, headerLabels[3], new FontLibrary());
     heading4.textAlignment = TextAlign.Centre;
     heading4.append(
       i18next.t('Sheet.text.log.notes').toLocaleUpperCase(),
@@ -360,13 +360,13 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     const table = this.subTitleLocations;
     Object.keys(table).forEach((key) => {
       let fontSize = originalFontSize;
-      let block = table[key];
+      const block = table[key];
       if (key === 'Construct.other.departments' && construct.version === 1) {
         key = 'Construct.other.disciplines';
       }
 
       const originalText = i18next.t(key).toLocaleUpperCase();
-      let text = originalText;
+      const text = originalText;
       let width = this.headingFont.widthOfTextAtSize(text, fontSize);
       while (width > block.width) {
         fontSize -= 0.25;
@@ -411,8 +411,10 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
 
     text += suffix;
 
-    let height = this.headingFont.heightAtSize(fontSize, { descender: false });
-    let offset = Math.max(0, block.height - height) / 2;
+    const height = this.headingFont.heightAtSize(fontSize, {
+      descender: false,
+    });
+    const offset = Math.max(0, block.height - height) / 2;
 
     page.drawText(text, {
       x: rightJustify ? block.end.x - width - 2 : block.start.x,
@@ -447,7 +449,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     page: PDFPage,
     colour: SimpleColor = Standard2eCharacterSheet.labelColour,
   ) {
-    let fontSize = this.determineIdealFontWidthForVariableWidth(
+    const fontSize = this.determineIdealFontWidthForVariableWidth(
       Object.keys(this.detailLabels).map((key) =>
         i18next.t(key).toLocaleUpperCase(),
       ),
@@ -457,7 +459,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     );
 
     Object.keys(this.detailLabels).forEach((key) => {
-      let block = this.detailLabels[key];
+      const block = this.detailLabels[key];
       const originalText = i18next.t(key).toLocaleUpperCase();
       this.writeLabel(page, originalText, fontSize, block, colour);
     });
@@ -484,12 +486,12 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
       text += '...';
     }
 
-    let block = TextBlock.create(
+    const block = TextBlock.create(
       text,
       new FontSpecification(this.headingFont, fontSize),
       false,
     );
-    let y = column.end.y - 1 - (column.height - block.height) / 2;
+    const y = column.end.y - 1 - (column.height - block.height) / 2;
 
     page.drawText(text, {
       x: column.start.x,
@@ -521,12 +523,12 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
       text += '...';
     }
 
-    let block = TextBlock.create(
+    const block = TextBlock.create(
       text,
       new FontSpecification(this.headingFont, fontSize),
       false,
     );
-    let y = column.end.y - 1 - (column.height - block.height) / 2;
+    const y = column.end.y - 1 - (column.height - block.height) / 2;
 
     page.drawText(text, {
       x: column.start.x,
@@ -552,7 +554,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
   populateForm(form: PDFForm, character: Character) {
     form.getFields().forEach((f) => {
       if (f instanceof PDFTextField) {
-        let textField = f as PDFTextField;
+        const textField = f as PDFTextField;
         if (
           textField.isMultiline() &&
           (textField.getText() == null || textField.getText().length === 0)
@@ -589,8 +591,8 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     character: Character,
     colour: SimpleColor = Standard2eCharacterSheet.labelColour,
   ) {
-    let form = pdf.getForm();
-    let { height, width } = this.pillSize;
+    const form = pdf.getForm();
+    const { height, width } = this.pillSize;
     this.stressPillLocations.forEach((pill, i) => {
       if (i >= character.stress) {
         page.moveTo(pill.x, page.getHeight() - pill.y);
@@ -600,7 +602,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
           borderWidth: 1,
         });
       } else {
-        let checkbox = form.createCheckBox('Stress ' + (i + 1));
+        const checkbox = form.createCheckBox('Stress ' + (i + 1));
         checkbox.addToPage(page, {
           x: pill.x + (width - 9.5) / 2,
           y: page.getHeight() - pill.y - (height - 3),
@@ -667,7 +669,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     const describer = new WeaponDescriber(construct.version, true);
 
     if (construct instanceof Character) {
-      let attacks = construct
+      const attacks = construct
         .determineWeapons()
         .map(
           (w) =>

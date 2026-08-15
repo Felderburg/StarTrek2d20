@@ -155,7 +155,7 @@ class AllyHelper {
   }
 
   findOption(type: AlliedMilitaryType) {
-    let temp = this.options.filter((o) => o.type === type);
+    const temp = this.options.filter((o) => o.type === type);
     return temp ? temp[0] : null;
   }
 

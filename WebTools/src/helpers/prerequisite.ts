@@ -56,7 +56,7 @@ export class RolePrerequisite implements IConstructPrerequisite {
         character.role === this.role || character.secondaryRole === this.role
       );
     } else if (character.stereotype === Stereotype.MainCharacter) {
-      let roles = character.talents
+      const roles = character.talents
         .map((t) => t.talentModel.prerequisites)
         .flat()
         .filter((p) => p instanceof RolePrerequisite)
@@ -165,7 +165,7 @@ export class AnyOfPrerequisite
     if (this.prerequisites.length === 0) {
       return true;
     } else {
-      var result = false;
+      let result = false;
       this.prerequisites.forEach((req) => {
         result = result || req.isPrerequisiteFulfilled(character);
       });

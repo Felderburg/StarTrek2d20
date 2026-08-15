@@ -316,7 +316,7 @@ const tableCollection2 = new TableCollection(
 );
 
 const persistTables = (tables: TableCollection[]) => {
-  let data = {
+  const data = {
     collections: tables?.length
       ? tables.map((s) => TableMarshaller.instance.marshall(s))
       : [],
@@ -331,7 +331,7 @@ let initialData: {
 } = null;
 
 const getInitialData = () => {
-  let base = {
+  const base = {
     selection: null,
     collections: [tableCollection, tableCollection2],
   };
@@ -340,7 +340,7 @@ const getInitialData = () => {
     initialData = { ...base };
   }
 
-  let temp =
+  const temp =
     typeof window !== 'undefined' && window?.localStorage
       ? window.localStorage.getItem('settings.tableData')
       : null;
@@ -363,8 +363,8 @@ const tableReducer = (state = getInitialData(), action) => {
   switch (action.type) {
     case IMPORT_TABLE_COLLECTION:
     case ADD_TABLE_COLLECTION: {
-      let collections = [...state.collections];
-      let collection = action.payload.collection;
+      const collections = [...state.collections];
+      const collection = action.payload.collection;
       collections.push(collection);
       persistTables(collections);
       return {
@@ -373,13 +373,13 @@ const tableReducer = (state = getInitialData(), action) => {
       };
     }
     case SET_TABLE_COLLECTION_SELECTION: {
-      let temp = { ...state };
+      const temp = { ...state };
       temp.selection = action.payload.selection;
       return temp;
     }
     case DELETE_TABLE_COLLECTION: {
-      let temp = { ...state };
-      let tableCollection = action.payload.collection;
+      const temp = { ...state };
+      const tableCollection = action.payload.collection;
       temp.collections = temp.collections.filter(
         (t) => t.uuid !== tableCollection.uuid,
       );
@@ -387,13 +387,13 @@ const tableReducer = (state = getInitialData(), action) => {
       return temp;
     }
     case SET_TABLE_FOR_EDITING: {
-      let temp = { ...state };
+      const temp = { ...state };
       temp.editing = action.payload.collection;
       return temp;
     }
     case REPLACE_TABLE_COLLECTION: {
-      let temp = { ...state };
-      let tableCollection = action.payload.collection;
+      const temp = { ...state };
+      const tableCollection = action.payload.collection;
       temp.collections = temp.collections.filter(
         (t) => t.uuid !== action.payload.uuid,
       );

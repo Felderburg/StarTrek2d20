@@ -662,12 +662,12 @@ export class NpcGenerator {
     era: Era,
     includeDescription: boolean,
   ) {
-    let character = Character.createNpcCharacter(
+    const character = Character.createNpcCharacter(
       era,
       hasSource(Source.Core2ndEdition) ? 2 : 1,
     );
     if (specialization == null) {
-      let specializations =
+      const specializations =
         Specializations.instance.getSpecializations(characterType);
       specialization =
         specializations[Math.floor(Math.random() * specializations.length)];
@@ -677,7 +677,7 @@ export class NpcGenerator {
     character.jobAssignment = specialization.localizedName;
     character.speciesStep = new SpeciesStep(species.id);
     if (species.id === Species.CyberneticallyEnhanced) {
-      let originalSpecies = SpeciesHelper.generateSpecies(
+      const originalSpecies = SpeciesHelper.generateSpecies(
         CharacterType.Starfleet,
       );
       character.speciesStep.originalSpecies = originalSpecies;
@@ -694,8 +694,8 @@ export class NpcGenerator {
       character.speciesStep.attributes = [];
     }
     while (character.speciesStep.attributes.length < 3) {
-      let all = AttributesHelper.getAllAttributes();
-      let attribute = all[Math.floor(all.length * Math.random())];
+      const all = AttributesHelper.getAllAttributes();
+      const attribute = all[Math.floor(all.length * Math.random())];
       if (!character.speciesStep.attributes.includes(attribute)) {
         character.speciesStep.attributes.push(attribute);
       }
@@ -723,7 +723,7 @@ export class NpcGenerator {
       gender = 'Female';
     }
 
-    let { name, pronouns, nameOrigin } = NameGenerator.instance.createName(
+    const { name, pronouns, nameOrigin } = NameGenerator.instance.createName(
       nameSpecies,
       gender,
     );
@@ -734,8 +734,8 @@ export class NpcGenerator {
     character.npcGenerationStep.specialization = specialization.id;
     NpcGenerator.assignAttributes(npcType, character, species, specialization);
 
-    let disciplines = DepartmentsHelper.instance.getDepartments();
-    let disciplinePoints = NpcTypes.departmentPoints(npcType);
+    const disciplines = DepartmentsHelper.instance.getDepartments();
+    const disciplinePoints = NpcTypes.departmentPoints(npcType);
 
     for (let i = 0; i < disciplinePoints.length; i++) {
       let a = disciplines[Math.floor(Math.random() * disciplines.length)];
@@ -746,7 +746,7 @@ export class NpcGenerator {
       disciplines.splice(disciplines.indexOf(a), 1);
     }
 
-    let aspects = [];
+    const aspects = [];
     let careers = [
       Career.Young,
       Career.Young,
@@ -834,10 +834,12 @@ export class NpcGenerator {
     nameOrigin: string,
     aspects: string[],
   ) {
-    let species = SpeciesHelper.getSpeciesByType(character.speciesStep.species);
-    let speciesName = species.name;
+    const species = SpeciesHelper.getSpeciesByType(
+      character.speciesStep.species,
+    );
+    const speciesName = species.name;
 
-    let data = {
+    const data = {
       name: character.name,
       species: speciesName,
       specialization: Specialization[specialization.id],
@@ -849,7 +851,7 @@ export class NpcGenerator {
     };
 
     if (species.id === Species.CyberneticallyEnhanced) {
-      let original = SpeciesHelper.getSpeciesByType(
+      const original = SpeciesHelper.getSpeciesByType(
         character.speciesStep.originalSpecies,
       )?.name;
 
@@ -883,11 +885,11 @@ export class NpcGenerator {
       specialization.primaryFocuses.includes(f),
     );
 
-    let textEncoder = new TextEncoder();
-    let body = textEncoder.encode(JSON.stringify(data));
+    const textEncoder = new TextEncoder();
+    const body = textEncoder.encode(JSON.stringify(data));
 
     try {
-      let response = await fetch('/api/character_description', {
+      const response = await fetch('/api/character_description', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -896,7 +898,7 @@ export class NpcGenerator {
       });
 
       if (response.status === 200) {
-        let responseJson = await response.json();
+        const responseJson = await response.json();
         return responseJson?.description;
       } else {
         return undefined;
@@ -1012,7 +1014,7 @@ export class NpcGenerator {
           );
         } else if (specialization.id === Specialization.Child) {
           character.type = CharacterType.Child;
-          let ages = AgeHelper.getAllChildAges();
+          const ages = AgeHelper.getAllChildAges();
           character.age = ages[Math.floor(Math.random() * ages.length)];
         } else {
           character.type = CharacterType.Civilian;
@@ -1081,11 +1083,11 @@ export class NpcGenerator {
         while (!done) {
           let talentList =
             TalentsHelper.getAllAvailableTalentsForCharacter(character);
-          let specializationSkill = specialization.primaryDiscipline;
-          let roll = D20.roll();
+          const specializationSkill = specialization.primaryDiscipline;
+          const roll = D20.roll();
           if (roll < 7) {
             // go for species talents
-            let talentName = species.talents.map((t) => t.name);
+            const talentName = species.talents.map((t) => t.name);
             talentList = talentList
               .filter(
                 (t) =>
@@ -1132,9 +1134,9 @@ export class NpcGenerator {
           }
 
           if (talentList.length) {
-            let talent =
+            const talent =
               talentList[Math.floor(Math.random() * talentList.length)];
-            let selectedTalent = new SelectedTalent(talent.name);
+            const selectedTalent = new SelectedTalent(talent.name);
             if (talent.name === TALENT_NAME_WARRIORS_SPIRIT) {
               selectedTalent.selection =
                 D20.roll() <= 10
@@ -1160,7 +1162,7 @@ export class NpcGenerator {
               if (specialization.primaryDiscipline != null) {
                 selectedTalent.department = specialization.primaryDiscipline;
               } else {
-                let departments = DepartmentsHelper.instance.getDepartments();
+                const departments = DepartmentsHelper.instance.getDepartments();
                 selectedTalent.department =
                   departments[Math.floor(Math.random() * departments.length)];
               }
@@ -1186,9 +1188,9 @@ export class NpcGenerator {
     species: SpeciesModel,
     specialization: SpecializationModel,
   ) {
-    let attributes = AttributesHelper.getAllAttributes();
-    let attributePoints = NpcTypes.attributePoints(npcType);
-    let chances = [20, 14, 8];
+    const attributes = AttributesHelper.getAllAttributes();
+    const attributePoints = NpcTypes.attributePoints(npcType);
+    const chances = [20, 14, 8];
 
     character.npcGenerationStep.attributes = [0, 0, 0, 0, 0, 0];
     for (let i = 0; i < attributePoints.length; i++) {
@@ -1198,7 +1200,7 @@ export class NpcGenerator {
         i < chances.length &&
         D20.roll() <= chances[i]
       ) {
-        let temp =
+        const temp =
           specialization.primaryAttributes[
             Math.floor(Math.random() * specialization.primaryAttributes.length)
           ];
@@ -1227,8 +1229,8 @@ export class NpcGenerator {
     character: Character,
     specialization: SpecializationModel,
   ) {
-    let count = NpcTypes.numberOfValues(npcType);
-    let valueOptions = [];
+    const count = NpcTypes.numberOfValues(npcType);
+    const valueOptions = [];
     valueOptions.push.apply(valueOptions, specialization.values ?? []);
     valueOptions.push.apply(
       valueOptions,
@@ -1248,12 +1250,14 @@ export class NpcGenerator {
       ] ?? [],
     );
 
-    let species = SpeciesHelper.getSpeciesByType(character.speciesStep.species);
+    const species = SpeciesHelper.getSpeciesByType(
+      character.speciesStep.species,
+    );
     if (species.exampleValues?.length) {
       valueOptions.push(...species.exampleValues);
     }
 
-    let aspects = [];
+    const aspects = [];
     for (let i = 0; i < count; i++) {
       let done = false;
       while (!done) {
@@ -1283,9 +1287,9 @@ export class NpcGenerator {
     character: Character,
     specialization: SpecializationModel,
   ) {
-    let numberOfFocuses = NpcTypes.numberOfFocuses(npcType);
-    let primaryChances = [20, 12, 8, 6, 4, 2];
-    let secondaryChances = [17, 15, 11, 9, 6, 3];
+    const numberOfFocuses = NpcTypes.numberOfFocuses(npcType);
+    const primaryChances = [20, 12, 8, 6, 4, 2];
+    const secondaryChances = [17, 15, 11, 9, 6, 3];
     let specialtyCategory = undefined;
 
     for (let i = 0; i < numberOfFocuses; i++) {
@@ -1314,7 +1318,7 @@ export class NpcGenerator {
         }
 
         if (focuses?.length) {
-          let focus = focuses[Math.floor(Math.random() * focuses.length)];
+          const focus = focuses[Math.floor(Math.random() * focuses.length)];
           if (character.focuses.indexOf(focus) < 0) {
             character.npcGenerationStep.focuses.push(focus);
             done = true;
@@ -1369,10 +1373,10 @@ export class NpcGenerator {
     if (ranks.length > 0) {
       // by using a logarithmic scale, I'm biasing the random values in favour
       // of the ranks at the higher end of the list (which are the more junior ranks)
-      let maxValue = Math.pow(Math.E, ranks.length + 1);
-      let random = Math.log1p(Math.random() * maxValue);
-      let index = Math.min(ranks.length - 1, Math.max(0, Math.floor(random)));
-      let rank = ranks[index];
+      const maxValue = Math.pow(Math.E, ranks.length + 1);
+      const random = Math.log1p(Math.random() * maxValue);
+      const index = Math.min(ranks.length - 1, Math.max(0, Math.floor(random)));
+      const rank = ranks[index];
 
       if (
         specialization.id === Specialization.MedicalDoctor &&

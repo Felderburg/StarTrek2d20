@@ -31,7 +31,7 @@ export const SpeciesAbilityView: React.FC<ISpeciesAbilityProperties> = ({
   const selectRandomFocus = (index: number) => {
     let done = false;
     while (!done) {
-      let focus = localizedFocus(FocusRandomTableWithHints(skill));
+      const focus = localizedFocus(FocusRandomTableWithHints(skill));
       if (character.focuses.indexOf(focus) < 0) {
         done = true;
         store.dispatch(setCharacterSpeciesAbilityFocus(focus, index));

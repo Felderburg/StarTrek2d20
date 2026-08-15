@@ -508,7 +508,7 @@ export class StarfleetAcademyUniformPack
     if (isCadetRank(token.rankIndicator)) {
       return [];
     } else {
-      let variants = [
+      const variants = [
         new Swatch(UniformVariantType.Base, 'Base', (token) =>
           UniformCatalog.decorateSwatch(
             this.getUniformAndVariantByBodyType(
@@ -564,7 +564,7 @@ export class StarfleetAcademyUniformPack
     bodyType: BodyType,
   ) {
     let base = '';
-    let divisionColour = token.divisionColor;
+    const divisionColour = token.divisionColor;
     if (isCadetRank(token.rankIndicator)) {
       if (bodyType === BodyType.AverageMale) {
         base = StarfleetAcademyUniform.maleBodyCadetVariant;

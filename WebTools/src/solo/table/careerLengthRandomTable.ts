@@ -2,7 +2,7 @@ import { D20 } from '../../common/die';
 import { Career } from '../../helpers/careerEnum';
 
 export const CareerLengthRandomTable = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
     case 2:

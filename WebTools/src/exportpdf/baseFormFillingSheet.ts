@@ -20,7 +20,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
 
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
-    let character = construct as Character;
+    const character = construct as Character;
 
     this.populateForm(pdf.getForm(), character);
   }
@@ -61,7 +61,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
     this.fillWeapons(form, character);
 
     if (character.hasCareerEvents) {
-      let event1 = CareerEventsHelper.getCareerEvent(
+      const event1 = CareerEventsHelper.getCareerEvent(
         character.careerEvents[0]?.id,
         character.type,
         character.version,
@@ -71,7 +71,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
       }
 
       if (character.careerEvents && character.careerEvents.length > 1) {
-        let event2 = CareerEventsHelper.getCareerEvent(
+        const event2 = CareerEventsHelper.getCareerEvent(
           character.careerEvents[1]?.id,
           character.type,
           character.version,
@@ -114,7 +114,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
   }
 
   fillSkills(form: PDFForm, character: Character) {
-    let departments = character.departments;
+    const departments = character.departments;
     DepartmentsHelper.instance.getDepartments().forEach((d, i) => {
       this.fillField(form, Department[d], '' + departments[d]);
     });
@@ -241,12 +241,12 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
     minFontSize: number = 8,
   ) {
     Object.keys(this.statLocations).forEach((key) => {
-      let block = this.statLocations[key];
+      const block = this.statLocations[key];
       if (key === 'Construct.other.protection' && character.version === 1) {
         key = 'Construct.other.resistance';
       }
       const originalText = i18next.t(key).toLocaleUpperCase();
-      let text = originalText;
+      const text = originalText;
       let width = this.headingFont.widthOfTextAtSize(text, fontSize);
       while (width > block.width) {
         fontSize -= 0.25;
@@ -258,7 +258,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
     });
 
     Object.keys(this.statLocations).forEach((key) => {
-      let block = this.statLocations[key];
+      const block = this.statLocations[key];
       if (key === 'Construct.other.protection' && character.version === 1) {
         key = 'Construct.other.resistance';
       }
@@ -274,10 +274,10 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
         text += '...';
       }
 
-      let height = this.headingFont.heightAtSize(fontSize, {
+      const height = this.headingFont.heightAtSize(fontSize, {
         descender: false,
       });
-      let offset = Math.max(0, block.height - height) / 2;
+      const offset = Math.max(0, block.height - height) / 2;
 
       let x = block.start.x;
       if (textAlign === TextAlign.Right) {

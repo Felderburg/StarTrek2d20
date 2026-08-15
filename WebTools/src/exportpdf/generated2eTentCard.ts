@@ -80,7 +80,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
     const page = pdf.getPage(0);
-    let character = construct as Character;
+    const character = construct as Character;
 
     await this.drawImage(pdf, page, character);
     this.writeFront(page, character);
@@ -99,7 +99,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
 
   async drawImage(pdf: PDFDocument, page: PDFPage, character: Character) {
     if (character.token) {
-      let tokenBytes = await TokenHelper.renderToken(character.token);
+      const tokenBytes = await TokenHelper.renderToken(character.token);
       const image = await pdf.embedPng(tokenBytes);
 
       const imageSize = 72 * 1.5;
@@ -139,7 +139,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
       );
     }
 
-    let columns = {
+    const columns = {
       'Construct.attribute.control': new Column(211.6, 235.4, 18.1, 60),
       'Construct.attribute.daring': new Column(211.6, 258.2, 18.1, 60),
       'Construct.attribute.fitness': new Column(294.6, 235.4, 18.1, 60),
@@ -179,14 +179,14 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
 
       let text = '';
       if (key.includes('Construct.attribute.')) {
-        let attribute = AttributesHelper.getAttributeByName(
+        const attribute = AttributesHelper.getAttributeByName(
           key.substring('Construct.attribute.'.length),
         );
         text = '' + character.attributes[attribute];
       }
 
       if (key.includes('Construct.discipline.')) {
-        let department = DepartmentsHelper.instance.getDepartmentByName(
+        const department = DepartmentsHelper.instance.getDepartmentByName(
           key.substring('Construct.discipline.'.length),
         );
         text = '' + character.departments[department];
@@ -206,7 +206,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
   }
 
   writeStressBoxes(page: PDFPage, character: Character, column: Column) {
-    let stressBox =
+    const stressBox =
       'm 1,0 h 7.5 c 0.554,0 1,0.446 1,1 v 7.5 c 0,0.554 -0.446,1 -1,1 H 1 C 0.446,9.5 0,9.054 0,8.5 V 1 C 0,0.446 0.446,0 1,0 Z';
 
     let x = column.translatedStart(page).x;
@@ -271,7 +271,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
         }
 
         if (talent && talent.talent.maxRank > 1) {
-          let rank = talent.rank;
+          const rank = talent.rank;
           talentName = i18next.t('Talent.text.rank', {
             talentName: talentName,
             rank: rank,
@@ -301,7 +301,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
     paragraph?.append(i18next.t('Construct.other.values') + ':', bold);
     paragraph?.write();
 
-    let values = character.values;
+    const values = character.values;
     values.forEach((value) => {
       paragraph = paragraph?.nextParagraph();
 
@@ -361,8 +361,8 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
       name = i18next.t('Construct.other.unnamedCharacter').toLocaleUpperCase();
     }
 
-    let divisionColour = divisionColour2e(character.era, character.division);
-    let fontSize = determineIdealFontWidth(
+    const divisionColour = divisionColour2e(character.era, character.division);
+    const fontSize = determineIdealFontWidth(
       [name],
       this.frontNameColumn.width,
       55,
@@ -370,7 +370,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
       this.fonts.fontByType(FontType.Bold),
     );
 
-    let nameBlock = TextBlock.create(
+    const nameBlock = TextBlock.create(
       name ?? '',
       new FontSpecification(this.fonts.fontByType(FontType.Bold), fontSize),
       false,
@@ -385,7 +385,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
     );
 
     if (character.rank?.localizedName != null) {
-      let rankBlock = TextBlock.create(
+      const rankBlock = TextBlock.create(
         character.rank?.localizedName?.toLocaleUpperCase() ?? '',
         new FontSpecification(this.fonts.fontByType(FontType.Bold), 35),
         false,
@@ -400,7 +400,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
     }
 
     if (character.pronouns?.length) {
-      let pronounsBlock = TextBlock.create(
+      const pronounsBlock = TextBlock.create(
         character.pronouns ?? '',
         new FontSpecification(this.fonts.fontByType(FontType.Bold), 30),
         false,
@@ -428,7 +428,7 @@ export class BasicGeneratedTentCardCharacterSheet extends BaseNonForm2eSheet {
     let name = i18next.t('Construct.other.unnamedCharacter');
     if (character.name?.length) {
       name = character.name;
-      let rank = character.rank?.localizedAbbreviation;
+      const rank = character.rank?.localizedAbbreviation;
       if (rank) {
         name = rank + ' ' + name;
       }

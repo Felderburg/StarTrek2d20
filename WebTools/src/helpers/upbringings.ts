@@ -74,24 +74,24 @@ export class EarlyOutlookModel {
   }
 
   get localizedName() {
-    let key = makeKey(this.keyPrefix, EarlyOutlook[this.id], '.name');
-    let result = i18next.t(key);
+    const key = makeKey(this.keyPrefix, EarlyOutlook[this.id], '.name');
+    const result = i18next.t(key);
     return result === key ? this.name : result;
   }
 
   get localizedDescription() {
-    let key = makeKey(this.keyPrefix, EarlyOutlook[this.id], '.description');
-    let result = i18next.t(key);
+    const key = makeKey(this.keyPrefix, EarlyOutlook[this.id], '.description');
+    const result = i18next.t(key);
     return result === key ? this.description : result;
   }
 
   get localizedFocusDescription() {
-    let key = makeKey(
+    const key = makeKey(
       this.keyPrefix,
       EarlyOutlook[this.id],
       '.focusDescription',
     );
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.focusDescription : result;
   }
 }
@@ -701,12 +701,12 @@ class Upbringings {
   }
 
   getCastes() {
-    let list = this.getEarlyOutlooksList(CharacterType.KlingonWarrior, false);
+    const list = this.getEarlyOutlooksList(CharacterType.KlingonWarrior, false);
     return this.toList(list);
   }
 
   getCaste(caste: EarlyOutlook) {
-    var list = this.getEarlyOutlooksList(
+    const list = this.getEarlyOutlooksList(
       CharacterType.KlingonWarrior,
       false,
     ).filter((o) => o.id === caste);
@@ -714,7 +714,7 @@ class Upbringings {
   }
 
   getAspirations() {
-    let list = this.getEarlyOutlooksList(CharacterType.Starfleet, true);
+    const list = this.getEarlyOutlooksList(CharacterType.Starfleet, true);
     return this.toList(list);
   }
 
@@ -757,9 +757,10 @@ class Upbringings {
     );
   }
   getAspiration(aspiration: EarlyOutlook) {
-    var list = this.getEarlyOutlooksList(CharacterType.Starfleet, true).filter(
-      (o) => o.id === aspiration,
-    );
+    const list = this.getEarlyOutlooksList(
+      CharacterType.Starfleet,
+      true,
+    ).filter((o) => o.id === aspiration);
     return list ? list[0] : undefined;
   }
 
@@ -770,30 +771,31 @@ class Upbringings {
   }
 
   getUpbringings() {
-    var list = this.getEarlyOutlooksList(CharacterType.Starfleet, false);
+    const list = this.getEarlyOutlooksList(CharacterType.Starfleet, false);
     return this.toList(list);
   }
 
   getUpbringing(upbringing: EarlyOutlook) {
-    var list = this.getEarlyOutlooksList(CharacterType.Starfleet, false).filter(
-      (o) => o.id === upbringing,
-    );
+    const list = this.getEarlyOutlooksList(
+      CharacterType.Starfleet,
+      false,
+    ).filter((o) => o.id === upbringing);
     return list ? list[0] : undefined;
   }
 
   getAllUpbringings(characterType: CharacterType, alternate: boolean = false) {
-    var list = this.getEarlyOutlooksList(characterType, alternate);
+    const list = this.getEarlyOutlooksList(characterType, alternate);
     return this.toList(list);
   }
 
   generateUpbringing(characterType: CharacterType, alternate: boolean) {
-    let list = this.getEarlyOutlooksList(characterType, alternate);
-    var roll = Math.floor(Math.random() * list.length);
+    const list = this.getEarlyOutlooksList(characterType, alternate);
+    const roll = Math.floor(Math.random() * list.length);
     return list[roll];
   }
 
   getUpbringingByTypeName(typeName: string, type: CharacterType) {
-    let mapping = {
+    const mapping = {
       MilitaryOrExploration: EarlyOutlook[EarlyOutlook.WarriorCaste],
       BusinessOrTrade: EarlyOutlook[EarlyOutlook.MerchantCaste],
       AgricultureOrRural: EarlyOutlook[EarlyOutlook.AgriculturalCaste],
@@ -803,7 +805,7 @@ class Upbringings {
     };
 
     if (isKlingonWarriorType(type)) {
-      let compat = mapping[typeName];
+      const compat = mapping[typeName];
       if (compat) {
         typeName = compat;
       }

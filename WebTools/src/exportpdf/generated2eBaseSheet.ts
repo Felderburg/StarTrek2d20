@@ -89,13 +89,13 @@ export abstract class BaseNonForm2eSheet extends BasicGeneratedSheet {
       textBlock = TextBlock.create(text, font, false);
     }
 
-    let y = column.end.y - 1 - (column.height - textBlock.height) / 2;
-    let x = column.start.x + (column.width - textBlock.width);
+    const y = column.end.y - 1 - (column.height - textBlock.height) / 2;
+    const x = column.start.x + (column.width - textBlock.width);
     textBlock.writeToPage(x, page.getHeight() - y, page, colour);
   }
 
   determineAllStatLabels(construct: Construct) {
-    let text = [];
+    const text = [];
     if (construct instanceof Character) {
       DepartmentsHelper.instance
         .getDepartments()
@@ -123,7 +123,7 @@ export abstract class BaseNonForm2eSheet extends BasicGeneratedSheet {
     for (let i = 8.5; i >= 5.5; i -= 0.25) {
       let ok = true;
       for (const t of text) {
-        let block = TextBlock.create(
+        const block = TextBlock.create(
           t,
           new FontSpecification(this.boldFont, i),
         );
@@ -151,8 +151,8 @@ export abstract class BaseNonForm2eSheet extends BasicGeneratedSheet {
     let lead = (block.width - textBlock.width) / 2;
     lead = Math.min(12, lead - 4);
 
-    let x = block.start.x + lead + 4;
-    let y = block.end.y - 1 - (block.height - textBlock.height) / 2;
+    const x = block.start.x + lead + 4;
+    const y = block.end.y - 1 - (block.height - textBlock.height) / 2;
     textBlock.writeToPage(
       x,
       page.getHeight() - y,
@@ -173,7 +173,7 @@ export abstract class BaseNonForm2eSheet extends BasicGeneratedSheet {
       color: BaseNonForm2eSheet.greyColour.asPdfRbg(),
     });
 
-    let end = block.start.x + lead + 4 + textBlock.width + 4;
+    const end = block.start.x + lead + 4 + textBlock.width + 4;
     if (end < block.end.x) {
       page.drawLine({
         start: { x: end, y: page.getHeight() - (y + 3 - block.height / 2) },
@@ -197,8 +197,8 @@ export abstract class BaseNonForm2eSheet extends BasicGeneratedSheet {
     column: Column,
     colour: SimpleColor = tealColour2e,
   ) {
-    let bold = new FontOptions(9, FontType.Bold);
-    let standard = new FontOptions(9);
+    const bold = new FontOptions(9, FontType.Bold);
+    const standard = new FontOptions(9);
     let paragraph = null;
     let bottom = column.start;
 

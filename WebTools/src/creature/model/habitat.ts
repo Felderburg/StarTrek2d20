@@ -59,12 +59,12 @@ export class HabitatHelper {
   }
 
   getTypeById(id: Habitat) {
-    let items = this.items.filter((h) => h.id === id);
+    const items = this.items.filter((h) => h.id === id);
     return items?.length ? items[0] : undefined;
   }
 
   getTypeByIdName(name: string) {
-    let items = this.items.filter((h) => Habitat[h.id] === name);
+    const items = this.items.filter((h) => Habitat[h.id] === name);
     return items?.length ? items[0] : undefined;
   }
 }

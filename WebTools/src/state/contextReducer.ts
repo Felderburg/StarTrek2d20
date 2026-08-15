@@ -10,7 +10,7 @@ import {
 } from './contextActions';
 
 const persistContext = (sources: Source[]) => {
-  let contextData = {
+  const contextData = {
     sources: sources?.length ? sources.map((s) => Source[s]) : [],
   };
   window.localStorage.setItem(
@@ -22,7 +22,7 @@ const persistContext = (sources: Source[]) => {
 let initialData = null;
 
 const getInitialData = () => {
-  let base = {
+  const base = {
     sources: [Source.Core],
     era: Era.NextGeneration,
     allowCrossSpeciesTalents: false,
@@ -31,10 +31,10 @@ const getInitialData = () => {
   if (initialData == null) {
     initialData = { ...base };
     try {
-      let dataJson = window.localStorage.getItem('settings.contextData');
+      const dataJson = window.localStorage.getItem('settings.contextData');
       if (dataJson) {
-        let data = JSON.parse(dataJson);
-        let selectedSources = [];
+        const data = JSON.parse(dataJson);
+        const selectedSources = [];
         if (data?.sources?.length) {
           SourcesHelper.getSources().forEach((s) => {
             if (data.sources.indexOf(Source[s.id]) >= 0) {
@@ -62,7 +62,7 @@ const getInitialData = () => {
 const contextReducer = (state = getInitialData(), action) => {
   switch (action.type) {
     case SET_SOURCES: {
-      let newSources = action.payload;
+      const newSources = action.payload;
       if (
         newSources.indexOf(Source.Core2ndEdition) >= 0 &&
         state.sources.indexOf(Source.Core) >= 0
@@ -84,8 +84,8 @@ const contextReducer = (state = getInitialData(), action) => {
       if (state.sources.indexOf(action.payload) >= 0) {
         return state;
       } else {
-        let newSource = action.payload;
-        let existing = [...state.sources];
+        const newSource = action.payload;
+        const existing = [...state.sources];
         if (
           newSource === Source.Core2ndEdition &&
           existing.indexOf(Source.Core) >= 0
@@ -123,7 +123,7 @@ const contextReducer = (state = getInitialData(), action) => {
         ) {
           return state;
         } else {
-          let sources = [...state.sources];
+          const sources = [...state.sources];
           sources.splice(state.sources.indexOf(action.payload), 1);
           persistContext(sources);
           return {

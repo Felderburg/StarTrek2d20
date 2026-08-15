@@ -30,7 +30,7 @@ const withStation = (
   action: any,
   mutate: (s: Station, action: any) => void,
 ): StationState => {
-  let s = state.station?.copy();
+  const s = state.station?.copy();
   if (s) {
     mutate(s, action);
   }
@@ -46,7 +46,7 @@ const stationReducer = (
 ) => {
   switch (action.type) {
     case CREATE_STATION: {
-      let s = action.payload.station;
+      const s = action.payload.station;
       console.log('Create a station');
       return {
         ...state,
@@ -139,7 +139,7 @@ const stationReducer = (
         ) {
           s.stationFrameStep = new CustomStationSpaceframeStep();
         }
-        let system = action.payload.system;
+        const system = action.payload.system;
         s.stationFrameStep.systems[system] += action.payload.delta;
         if (s.stationFrameStep.systems[system] > s.maxSystemValue) {
           s.stationFrameStep.systems[system] = s.maxSystemValue;
@@ -153,7 +153,7 @@ const stationReducer = (
         ) {
           s.stationFrameStep = new CustomStationSpaceframeStep();
         }
-        let department = action.payload.department;
+        const department = action.payload.department;
         s.stationFrameStep.departments[department] += action.payload.delta;
         if (s.stationFrameStep.departments[department] > s.maxDepartmentValue) {
           s.stationFrameStep.departments[department] = s.maxDepartmentValue;
@@ -191,12 +191,12 @@ const stationReducer = (
     case SET_STATION_FRAME:
       return withStation(state, action, (s, action) => {
         if (action.payload.frame === StationFrame.Custom) {
-          let scale = s.scale;
+          const scale = s.scale;
           s.stationFrameStep = CustomStationSpaceframeStep.create(scale);
         } else {
-          let temp = new StandardStationSpaceframeStep(action.payload.frame);
+          const temp = new StandardStationSpaceframeStep(action.payload.frame);
           s.stationFrameStep = temp;
-          let frameModel = temp.model;
+          const frameModel = temp.model;
           if (frameModel.missionProfiles?.length === 1) {
             s.missionProfileStep = new StationMissionProfileStep(
               temp.model.missionProfiles[0].profile,

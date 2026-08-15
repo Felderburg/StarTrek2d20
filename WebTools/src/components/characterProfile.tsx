@@ -71,7 +71,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
       return <div key={i}>{st.displayName}</div>;
     });
 
-    let equipment = c.equipmentAndImplants.map((e, i) => {
+    const equipment = c.equipmentAndImplants.map((e, i) => {
       if (c.version > 1 && e instanceof Implant) {
         return <div key={i}>{e.localizedName2e}</div>;
       } else {
@@ -91,7 +91,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
       }
     }
 
-    let careerEvents = c.careerEvents.map((e, i) => {
+    const careerEvents = c.careerEvents.map((e, i) => {
       return (
         <div key={i}>
           {
@@ -102,7 +102,7 @@ class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
       );
     });
 
-    let containerClass = this.props.showProfile
+    const containerClass = this.props.showProfile
       ? 'sheet-container sheet-container-visible pe-3'
       : 'sheet-container sheet-container-hidden pe-3';
     const era = c.era == null ? null : Eras.instance.getEra(c.era);

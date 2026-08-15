@@ -69,9 +69,9 @@ export class SimpleColor {
     if (hex.length !== 6) {
       return undefined;
     } else {
-      let red = parseInt(hex.substring(0, 2), 16);
-      let green = parseInt(hex.substring(2, 4), 16);
-      let blue = parseInt(hex.substring(4), 16);
+      const red = parseInt(hex.substring(0, 2), 16);
+      const green = parseInt(hex.substring(2, 4), 16);
+      const blue = parseInt(hex.substring(4), 16);
       return new SimpleColor(red, green, blue);
     }
   }

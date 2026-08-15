@@ -41,12 +41,12 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({ starship }) => {
   });
 
   const refitAsString = () => {
-    let refitString = starship.refitsAsString();
+    const refitString = starship.refitsAsString();
     return refitString === '' ? NBSP : refitString;
   };
 
   const getAllTraits = () => {
-    let traits = starship.getAllTraits();
+    const traits = starship.getAllTraits();
     return traits === '' ? NBSP : traits;
   };
 
@@ -55,10 +55,10 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({ starship }) => {
   };
 
   const renderShields = () => {
-    let shield = starship.shields;
+    const shield = starship.shields;
     if (shield) {
-      let iterator = [];
-      let iterator2 = [];
+      const iterator = [];
+      const iterator2 = [];
       for (let i = 1; i <= Math.max(30, Math.ceil(shield / 10) * 10); i++) {
         if (i % 10 > 5 || i % 10 === 0) {
           iterator2.push(i);

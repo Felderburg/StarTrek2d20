@@ -5,9 +5,9 @@ import { Species } from '../../helpers/speciesEnum';
 import { hasSource } from '../../state/contextFunctions';
 
 export const ValueRandomTable = (species?: Species, skill?: Department) => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   if (roll <= 15 && hasSource(Source.ContinuingMissions)) {
-    let subRoll = D20.roll();
+    const subRoll = D20.roll();
     if (subRoll <= 10) {
       if (
         species != null &&
@@ -50,7 +50,7 @@ export const randomUniqueValue = (
 };
 
 const StandardValuesTable = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
       return 'A good mystery is irresistible';
@@ -97,7 +97,7 @@ const StandardValuesTable = () => {
 };
 
 const VulcanValuesTable = (): string => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
       return 'A logical mind is a focused mind';
@@ -144,7 +144,7 @@ const VulcanValuesTable = (): string => {
 };
 
 const KlingonValuesTable = (): string => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
       return 'Warriors are judged by their deeds';
@@ -195,7 +195,7 @@ const speciesRandomValues: { [species: number]: () => string } = {
   [Species.Klingon]: KlingonValuesTable,
 };
 const ConnValuesTable = () => {
-  let roll = D20.roll() + D20.roll() + D20.roll();
+  const roll = D20.roll() + D20.roll() + D20.roll();
   switch (roll) {
     case 3:
       return 'In space, speed is life';
@@ -318,7 +318,7 @@ const ConnValuesTable = () => {
 };
 
 const EngineeringValuesTable = () => {
-  let roll = D20.roll() + D20.roll() + D20.roll();
+  const roll = D20.roll() + D20.roll() + D20.roll();
   switch (roll) {
     case 3:
       return 'A place for everything and everything in its place';
@@ -441,7 +441,7 @@ const EngineeringValuesTable = () => {
 };
 
 const ScienceValuesTable = () => {
-  let roll = D20.roll() + D20.roll() + D20.roll();
+  const roll = D20.roll() + D20.roll() + D20.roll();
   switch (roll) {
     case 3:
       return 'The universe is a cosmic laboratory';
@@ -564,7 +564,7 @@ const ScienceValuesTable = () => {
 };
 
 const MedicineValuesTable = () => {
-  let roll = D20.roll() + D20.roll() + D20.roll();
+  const roll = D20.roll() + D20.roll() + D20.roll();
   switch (roll) {
     case 3:
       return 'A good physician treats the disease; a great physician treats the patient';
@@ -687,7 +687,7 @@ const MedicineValuesTable = () => {
 };
 
 const SecurityValuesTable = () => {
-  let roll = D20.roll() + D20.roll() + D20.roll();
+  const roll = D20.roll() + D20.roll() + D20.roll();
   switch (roll) {
     case 3:
       return 'A good defense is the best offense';
@@ -810,7 +810,7 @@ const SecurityValuesTable = () => {
 };
 
 const CommandValuesTable = () => {
-  let roll = D20.roll() + D20.roll() + D20.roll();
+  const roll = D20.roll() + D20.roll() + D20.roll();
   switch (roll) {
     case 3:
       return "A captain's place is on the bridge";
@@ -942,7 +942,7 @@ const disciplineRandomValues: { [species: number]: () => string } = {
 };
 
 const GeneralValuesTable = () => {
-  let roll = D20.roll() + D20.roll() + D20.roll();
+  const roll = D20.roll() + D20.roll() + D20.roll();
   switch (roll) {
     case 3:
       return 'Infinite diversity in infinite combinations';

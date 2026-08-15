@@ -286,7 +286,7 @@ const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({
   );
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,
@@ -346,7 +346,7 @@ const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({
     }
   };
 
-  let focuses =
+  const focuses =
     character.age.options.numberOfFocuses === 1 ? (
       <div className="col-lg-6 my-3">
         <Header level={2}>{t('Construct.other.focus')}</Header>

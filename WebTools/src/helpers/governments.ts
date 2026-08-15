@@ -96,12 +96,12 @@ class _Governments {
   }
 
   findOption(type: Polity) {
-    let temp = this.options.filter((o) => o.type === type);
+    const temp = this.options.filter((o) => o.type === type);
     return temp ? temp[0] : null;
   }
 
   findTypeByName(name: string) {
-    let results = this.options.filter((o) => Polity[o.type] === name);
+    const results = this.options.filter((o) => Polity[o.type] === name);
     return results.length === 0 ? undefined : results[0].type;
   }
 }

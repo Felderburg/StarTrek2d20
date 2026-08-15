@@ -56,7 +56,9 @@ const SpeciesDetailsPage: React.FC<ISpeciesDetailsProperties> = ({
 }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  let species = SpeciesHelper.getSpeciesByType(character.speciesStep?.species);
+  const species = SpeciesHelper.getSpeciesByType(
+    character.speciesStep?.species,
+  );
   const controller = SpeciesAttributeController.create(character, species);
 
   const selectDesc =
@@ -81,7 +83,7 @@ const SpeciesDetailsPage: React.FC<ISpeciesDetailsProperties> = ({
   };
 
   const renderTraitSection = (species: SpeciesModel) => {
-    let mixed =
+    const mixed =
       character.speciesStep?.mixedSpecies != null
         ? SpeciesHelper.getSpeciesByType(character.speciesStep?.mixedSpecies)
         : null;
@@ -143,7 +145,7 @@ const SpeciesDetailsPage: React.FC<ISpeciesDetailsProperties> = ({
   const renderVersion2TalentsSection = () => {
     let talents = [];
     if (character.speciesStep?.ability == null) {
-      let species = SpeciesHelper.getSpeciesByType(
+      const species = SpeciesHelper.getSpeciesByType(
         character.speciesStep?.species,
       );
       species.talents
@@ -177,7 +179,7 @@ const SpeciesDetailsPage: React.FC<ISpeciesDetailsProperties> = ({
   };
 
   const renderVersion1TalentsSection = () => {
-    let talents: RankedTalent[] = [];
+    const talents: RankedTalent[] = [];
     talents.push(
       ...TalentsHelper.getAllAvailableTalentsForCharacter(character).map(
         (t) => new RankedTalent(t),

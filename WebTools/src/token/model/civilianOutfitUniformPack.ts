@@ -1451,7 +1451,7 @@ export class CivilianOutfitUniformPack
   }
 
   getUniformVariantSwatches(token: TokenModel) {
-    let swatches = [];
+    const swatches = [];
     if (token.bodyType === BodyType.AverageMale) {
       swatches.push(
         new Swatch(UniformVariantType.Base, 'Default Outfit', (token) =>

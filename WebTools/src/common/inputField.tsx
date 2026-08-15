@@ -43,7 +43,7 @@ export class InputField extends React.Component<
   }
 
   render() {
-    let additionalProps = {};
+    const additionalProps = {};
     if (this.props.type === 'number' && this.props.max != null) {
       additionalProps['max'] = this.props.max;
     }

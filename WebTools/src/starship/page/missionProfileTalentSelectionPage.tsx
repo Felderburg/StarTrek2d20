@@ -46,9 +46,9 @@ const MissionProfileTalentSelectionPage: React.FC<
   };
 
   const getTalents = () => {
-    let talents: RankedTalent[] = [];
+    const talents: RankedTalent[] = [];
     starship?.missionProfileStep?.type?.talents?.forEach((t) => {
-      let talent =
+      const talent =
         t instanceof SelectedTalent
           ? (t as SelectedTalent).talentModel
           : (t as TalentModel);
@@ -78,7 +78,7 @@ const MissionProfileTalentSelectionPage: React.FC<
     } else if (starship.spaceframeModel?.isMissionPodAvailable) {
       Navigation.navigateToPage(PageIdentity.MissionPodSelection);
     } else {
-      let step = workflow.peekNextStep();
+      const step = workflow.peekNextStep();
       store.dispatch(nextStarshipWorkflowStep());
       Navigation.navigateToPage(step.page);
     }

@@ -67,7 +67,7 @@ class CharacterTypePage extends React.Component<
             <input
               value={this.state.otherName}
               onChange={(e) => {
-                let value = e.target.value;
+                const value = e.target.value;
                 this.setState((state) => ({ ...state, otherName: value }));
               }}
             />
@@ -109,7 +109,7 @@ class CharacterTypePage extends React.Component<
             <input
               value={this.state.otherName}
               onChange={(e) => {
-                let value = e.target.value;
+                const value = e.target.value;
                 this.setState((state) => ({ ...state, otherName: value }));
               }}
             />
@@ -176,7 +176,7 @@ class CharacterTypePage extends React.Component<
   }
 
   private selectType(typeAsString: string) {
-    let type = parseInt(typeAsString) as CharacterType;
+    const type = parseInt(typeAsString) as CharacterType;
     this.setState((state) => ({
       ...state,
       type: type,
@@ -184,7 +184,7 @@ class CharacterTypePage extends React.Component<
   }
 
   private selectAlliedMilitaryType(typeAsString: string) {
-    let type = parseInt(typeAsString) as AlliedMilitaryType;
+    const type = parseInt(typeAsString) as AlliedMilitaryType;
     this.setState((state) => ({
       ...state,
       alliedMilitary: type,
@@ -200,7 +200,7 @@ class CharacterTypePage extends React.Component<
 
   private startWorkflow() {
     const { era } = this.props;
-    let character = Character.createMainCharacter(
+    const character = Character.createMainCharacter(
       this.state.type,
       era,
       hasSource(Source.Core2ndEdition) ? 2 : 1,

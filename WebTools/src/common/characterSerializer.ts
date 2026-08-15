@@ -14,7 +14,7 @@ export interface ICharacterData {
 export class CharacterSerializer {
   public static serializeName(character: Character) {
     if (isKlingonWarriorType(character.type)) {
-      var result = character.name;
+      let result = character.name;
       if (character.lineage) {
         result += ', ' + character.lineage;
       }
@@ -51,7 +51,7 @@ export class CharacterSerializer {
     otherSpecies: Species,
     construct: Construct,
   ) {
-    let environmentModel =
+    const environmentModel =
       environment == null /* or, implicitly, undefined */
         ? undefined
         : EnvironmentsHelper.getEnvironment(environment, construct);
@@ -61,7 +61,7 @@ export class CharacterSerializer {
         environment === Environment.AnotherSpeciesWorld &&
         otherSpecies != null
       ) {
-        let other = SpeciesHelper.getSpeciesByType(otherSpecies);
+        const other = SpeciesHelper.getSpeciesByType(otherSpecies);
         result = i18next.t('Environment.special.name', {
           name: result,
           species: other.localizedName,

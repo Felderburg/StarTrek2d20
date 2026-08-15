@@ -13,8 +13,8 @@ const WeaponBlockView: React.FC<IWeaponBlockViewProperties> = ({
   const { t } = useTranslation();
 
   if (construct.determineWeapons().length) {
-    let weapons = construct.determineWeapons().map((w, i) => {
-      let dice = construct.getDiceForWeapon(w);
+    const weapons = construct.determineWeapons().map((w, i) => {
+      const dice = construct.getDiceForWeapon(w);
       return (
         <WeaponView
           key={'weapon-' + i}

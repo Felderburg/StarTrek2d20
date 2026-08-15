@@ -35,7 +35,7 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({
   );
 
   useEffect(() => {
-    let dataJson = window.localStorage.getItem('settings.vttOptions');
+    const dataJson = window.localStorage.getItem('settings.vttOptions');
     let data = {};
     try {
       data = dataJson ? JSON.parse(dataJson) : {};
@@ -43,11 +43,11 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({
       // ignore
     }
 
-    let type = VttTypes.instance.getTypeByTypeName(data['vttType'])?.type;
+    const type = VttTypes.instance.getTypeByTypeName(data['vttType'])?.type;
     if (type != null) {
       setVttType(type);
     }
-    let pluginType = data['foundryPluginType'] ?? FoundryPluginType.Standard;
+    const pluginType = data['foundryPluginType'] ?? FoundryPluginType.Standard;
     setFoundryPluginType(pluginType);
   }, []);
 
@@ -105,7 +105,7 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({
     if (p == null) {
       p = foundryPluginType;
     }
-    let newState = {
+    const newState = {
       vttType: t,
       foundryPluginType: p,
     };
@@ -208,7 +208,7 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({
   };
 
   const persistVtt = (state: IVttSelectionState) => {
-    let data = {
+    const data = {
       vttType: VttType[state.vttType],
     };
     if (state.foundryPluginType != null) {

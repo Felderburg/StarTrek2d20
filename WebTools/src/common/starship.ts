@@ -46,7 +46,7 @@ export class SimpleStats {
   }
 
   copy() {
-    let result = new SimpleStats();
+    const result = new SimpleStats();
     result.className = this.className;
     result.departments = [...this.departments];
     result.systems = [...this.systems];
@@ -92,10 +92,10 @@ export const refitCalculator = (starship: Starship) => {
       starship.serviceYear >
       starship.spaceframeModel.serviceYearForRefitCalculation
     ) {
-      let remainder =
+      const remainder =
         starship.spaceframeModel.serviceYearForRefitCalculation % 10;
-      let inflectionYear = 2400 + (remainder === 0 ? 0 : remainder - 10);
-      let result =
+      const inflectionYear = 2400 + (remainder === 0 ? 0 : remainder - 10);
+      const result =
         Math.floor((starship.serviceYear - inflectionYear) / 50) +
         Math.floor(
           (inflectionYear -
@@ -121,7 +121,7 @@ export class MissionProfileStep {
   }
 
   copy() {
-    let result = new MissionProfileStep(this.type);
+    const result = new MissionProfileStep(this.type);
     result.system = this.system;
     result.talent = this.talent?.copy();
     return result;
@@ -165,7 +165,7 @@ export class ServiceRecordStep {
       ServiceRecord[this.type.type],
       '.trait',
     );
-    let result = i18next.t(key, {
+    const result = i18next.t(key, {
       X: this.selection?.length ? this.selection : 'X',
     });
     if (result === key) {
@@ -176,7 +176,7 @@ export class ServiceRecordStep {
   }
 
   copy() {
-    let result = new ServiceRecordStep(this.type);
+    const result = new ServiceRecordStep(this.type);
     result.specialRule = this.specialRule;
     result.selection = this.selection;
     result.system = this.system;
@@ -224,7 +224,7 @@ export class StarshipAdvancementStep {
   removeValue: System | Department | SelectedTalent;
 
   copy() {
-    let result = new StarshipAdvancementStep();
+    const result = new StarshipAdvancementStep();
     result.choice = this.choice;
     if (this.value instanceof SelectedTalent) {
       result.value = (this.value as SelectedTalent).copy();
@@ -287,7 +287,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   set spaceframeModel(spaceframe: SpaceframeModel) {
-    let original = this.spaceframeStep;
+    const original = this.spaceframeStep;
     this.spaceframeStep = new SpaceframeStep(spaceframe);
     if (!spaceframe?.isMissionPodAvailable) {
       this.missionPodModel = undefined;
@@ -333,7 +333,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     if (this.buildType !== ShipBuildType.Starship) {
       power = Math.ceil(power / 2);
     }
-    let bonus = this.talents.filter((t) => t.name === 'Secondary Reactors');
+    const bonus = this.talents.filter((t) => t.name === 'Secondary Reactors');
     if (power != null && bonus.length > 0) {
       power += 5 * bonus.length;
     }
@@ -352,7 +352,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
       return base;
     } else {
       let base = Math.ceil(this.scale / 2);
-      let structure = this.systems[System.Structure];
+      const structure = this.systems[System.Structure];
       if (this.hasTalent(TALENT_NAME_ABLATIVE_ARMOUR)) {
         base += 2;
       }
@@ -374,7 +374,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   get defaultTraits() {
-    let trait = [];
+    const trait = [];
     if (
       isKlingonWarriorType(this.type) &&
       this.buildType === ShipBuildType.Starship
@@ -521,7 +521,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   get allTraitsAsArray() {
-    let traits = this.getAllTraits();
+    const traits = this.getAllTraits();
     return traits
       .split(',')
       .map((t) => t.trim())
@@ -555,7 +555,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   getDistinctTalentNameList() {
-    let result = [];
+    const result = [];
     this.talents.forEach((t) => {
       if (result.indexOf(t.name) < 0) {
         result.push(t.name);
@@ -585,7 +585,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     ) {
       return this.missionPodModel.localizedName;
     } else {
-      let shortenedList = this.talents.filter((t) => t.name === talentName);
+      const shortenedList = this.talents.filter((t) => t.name === talentName);
       return shortenedList.length > 0
         ? shortenedList[0].additionalInformation
         : undefined;
@@ -606,7 +606,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
       grantedTalentNames.add(this.missionProfileStep.talent.name);
     }
 
-    let result: SelectedTalent[] = [];
+    const result: SelectedTalent[] = [];
     this.missionPodModel?.talents.forEach((t) => {
       if (grantedTalentNames.has(t.name)) {
         result.push(
@@ -655,7 +655,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
       this.spaceframeModel
         .talentsEffectiveForDate(this.serviceYear)
         .forEach((t) => {
-          let overrides = this.spaceframeStep.talents.filter(
+          const overrides = this.spaceframeStep.talents.filter(
             (st) => st.name === t.name,
           );
           if (overrides?.length) {
@@ -686,7 +686,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
       );
       this.missionPodModel.talents.forEach((t, i) => {
         if (overlappingTalentNames.includes(t.name)) {
-          let replacement = this.missionPodReplacements[i];
+          const replacement = this.missionPodReplacements[i];
           if (replacement != null) {
             result.push(replacement);
           }
@@ -699,7 +699,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
     }
 
     if (this.serviceRecordStep?.specialRule) {
-      let talent = new SelectedTalent(this.serviceRecordStep?.specialRule.name);
+      const talent = new SelectedTalent(
+        this.serviceRecordStep?.specialRule.name,
+      );
       if (this.serviceRecordStep?.system != null) {
         talent.system = this.serviceRecordStep?.system;
       }
@@ -713,7 +715,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   get talents(): SelectedTalent[] {
-    let result = this.talentsWithoutAdditional;
+    const result = this.talentsWithoutAdditional;
     this.additionalTalents.forEach((t) => {
       result.push(t);
     });
@@ -724,7 +726,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
       )
       .forEach((s) => {
         if (s.removeValue != null) {
-          let removedTalent = s.removeValue as SelectedTalent;
+          const removedTalent = s.removeValue as SelectedTalent;
           let index = -1;
           result.forEach((t, i) => {
             if (
@@ -747,12 +749,12 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   get rankedTalents(): SelectedTalent[] {
-    let talents = this.talents;
-    let duplicates = [];
-    let result = [];
+    const talents = this.talents;
+    const duplicates = [];
+    const result = [];
     talents.forEach((t) => {
       if (t.talentModel.maxRank > 1 && !duplicates.includes(t.name)) {
-        let temp = t.copy();
+        const temp = t.copy();
         temp.multiple = this.getRankForTalent(t.name);
         duplicates.push(t.name);
         result.push(temp);
@@ -771,7 +773,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   private getNonSpaceframeTalentSelectionList() {
-    let talents: Map<string, SelectedTalent> = new Map();
+    const talents: Map<string, SelectedTalent> = new Map();
     if (
       this.missionProfileStep?.talent &&
       this.stereotype !== Stereotype.SoloStarship
@@ -791,26 +793,26 @@ export class Starship extends Construct implements IWeaponDiceProvider {
       });
     }
 
-    let result: SelectedTalent[] = [];
+    const result: SelectedTalent[] = [];
     talents.forEach((value: SelectedTalent) => result.push(value));
     return result;
   }
 
   hasNonSpaceframeTalent(talentName: string) {
-    let talents = this.getNonSpaceframeTalentSelectionList().filter(
+    const talents = this.getNonSpaceframeTalentSelectionList().filter(
       (t) => t.name === talentName,
     );
     return talents.length > 0;
   }
 
   hasTalent(talentName: string) {
-    let talents = this.talents.filter((t) => t.name === talentName);
+    const talents = this.talents.filter((t) => t.name === talentName);
     return talents.length > 0;
   }
 
   private addTalent(t: SelectedTalent, talents: Map<string, SelectedTalent>) {
     if (talents.get(t.name) != null) {
-      let temp = talents.get(t.name);
+      const temp = talents.get(t.name);
       talents.set(t.name, new SelectedTalent(temp.talent));
     } else {
       talents.set(t.name, t);
@@ -828,7 +830,9 @@ export class Starship extends Construct implements IWeaponDiceProvider {
       if (this.buildType !== ShipBuildType.Starship) {
         base = this.power;
       }
-      let advanced = this.talents.filter((t) => t.name === 'Advanced Shields');
+      const advanced = this.talents.filter(
+        (t) => t.name === 'Advanced Shields',
+      );
       if (advanced.length > 0) {
         base += 5 * advanced.length;
       }
@@ -841,18 +845,18 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   pruneExcessTalents() {
     if (this.stereotype === Stereotype.SoloStarship) {
       if (this.additionalTalents.length > this.spaceframeModel?.scale) {
-        let excess =
+        const excess =
           this.additionalTalents.length - this.spaceframeModel?.scale;
         this.additionalTalents.splice(0, excess);
       }
     } else if (this.freeTalentSlots < this.additionalTalents.length) {
-      let excess = this.additionalTalents.length - this.freeTalentSlots;
+      const excess = this.additionalTalents.length - this.freeTalentSlots;
       this.additionalTalents.splice(0, excess);
     }
   }
 
   refitsAsString() {
-    let systems: System[] = allSystems();
+    const systems: System[] = allSystems();
     let refitString = '';
     if (this.refits) {
       systems.forEach((s) => {
@@ -878,16 +882,16 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   determineWeapons(): Weapon[] {
-    let result = [];
+    const result = [];
     const spaceframe = this.spaceframeModel;
     const weaponNames = this.additionalTalents
       .filter((t) => t.weapon != null && typeof t.weapon === 'string')
       .map((t) => t.weapon);
 
-    let secondary = [];
+    const secondary = [];
     if (spaceframe) {
-      for (var attack of spaceframe.attacks) {
-        for (let weapon of this.version === 1
+      for (const attack of spaceframe.attacks) {
+        for (const weapon of this.version === 1
           ? StarshipWeaponRegistry.list
           : StarshipWeaponRegistry.list2e) {
           if (
@@ -921,8 +925,8 @@ export class Starship extends Construct implements IWeaponDiceProvider {
 
     result.push(...secondary);
 
-    let names = [];
-    let weapons = [];
+    const names = [];
+    const weapons = [];
     result.forEach((w) => {
       if (names.indexOf(w.name) >= 0) {
         // skip it
@@ -936,7 +940,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   get systems() {
-    let result = [0, 0, 0, 0, 0, 0];
+    const result = [0, 0, 0, 0, 0, 0];
 
     allSystems().forEach((system) => {
       let base = this.getBaseSystem(system);
@@ -961,7 +965,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   get departments() {
-    let result = [0, 0, 0, 0, 0, 0];
+    const result = [0, 0, 0, 0, 0, 0];
     if (this.spaceframeModel !== undefined) {
       const frame = this.spaceframeModel;
       const missionPod = this.missionPodModel;
@@ -1028,7 +1032,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
       }
       return dice;
     } else if (this.version === 1) {
-      let security = this.departments[Department.Security];
+      const security = this.departments[Department.Security];
       let dice = weapon.dice + security;
       if (weapon.scaleApplies) {
         dice += this.scale;
@@ -1095,7 +1099,7 @@ export class Starship extends Construct implements IWeaponDiceProvider {
   }
 
   public copy(): Starship {
-    let result = new Starship();
+    const result = new Starship();
     result.version = this.version;
     result.era = this.era;
     result.type = this.type;

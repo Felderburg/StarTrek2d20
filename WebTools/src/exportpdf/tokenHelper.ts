@@ -17,7 +17,7 @@ export class TokenHelper {
   }
 
   static async createTokenSvg(tokenConfig: TokenConfig) {
-    let token = tokenConfig.token;
+    const token = tokenConfig.token;
     const { TokenSvgBuilder } = await import(
       /* webpackChunkName: 'token' */ '../token/tokenSvgBuilder'
     );
@@ -31,7 +31,7 @@ export class TokenHelper {
   static async renderToken(tokenConfig: TokenConfig) {
     const svg = await TokenHelper.createTokenSvg(tokenConfig);
 
-    let bytes = await TokenHelper.toPngBytes({
+    const bytes = await TokenHelper.toPngBytes({
       width: 800,
       height: 800,
       svg: svg,

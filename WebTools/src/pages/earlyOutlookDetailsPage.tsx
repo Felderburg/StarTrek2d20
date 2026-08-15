@@ -122,7 +122,7 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({
     </div>
   );
 
-  let talents = getEarlyOutlookTalents(character);
+  const talents = getEarlyOutlookTalents(character);
 
   return (
     <div className="page container ms-0">

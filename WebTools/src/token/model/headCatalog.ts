@@ -793,7 +793,7 @@ class HeadCatalog {
   }
 
   static decorateSwatch(svg: string, skinColor: string) {
-    let result =
+    const result =
       `<svg viewBox="0 0 275 275" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g transform="translate(-135, 10)">` +
       SimpleNeck.replace(

@@ -72,7 +72,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({
     new EducationSecondaryDisciplineController(character, track);
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,
@@ -83,7 +83,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({
   const selectRandomFocus = (index: number) => {
     let done = false;
     while (!done) {
-      let focus = localizedFocus(
+      const focus = localizedFocus(
         FocusRandomTableWithHints(
           character.educationStep?.primaryDiscipline,
           track.focuses.focusSuggestions,

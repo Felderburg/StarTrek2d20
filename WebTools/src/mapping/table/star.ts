@@ -32,7 +32,7 @@ export class SpecialSectorTypeModel {
   }
 }
 
-let sectorsTypes = [
+const sectorsTypes = [
   new SpecialSectorTypeModel(SpecialSectors.PinwheelSector, 'Pinwheel Sector'),
   new SpecialSectorTypeModel(
     SpecialSectors.EnduranceDivide,
@@ -63,13 +63,13 @@ export class SpaceRegionModel {
   }
 
   get localizedName() {
-    let key = makeKey('SpaceRegion.', SpaceRegion[this.id]);
-    let localName = i18next.t(key);
+    const key = makeKey('SpaceRegion.', SpaceRegion[this.id]);
+    const localName = i18next.t(key);
     return localName === key ? this.name : localName;
   }
 }
 
-let regions = [
+const regions = [
   new SpaceRegionModel(SpaceRegion.AlphaQuadrant, 'Alpha Quadrant', 'AL'),
   new SpaceRegionModel(SpaceRegion.BetaQuadrant, 'Beta Quadrant', 'BE'),
   new SpaceRegionModel(SpaceRegion.GammaQuadrant, 'Gamma Quadrant', 'GA'),
@@ -161,13 +161,13 @@ export class Star {
     ) {
       return this.spectralClass.description;
     } else {
-      let designation =
+      const designation =
         this.spectralClass.description +
         this.subClass +
         (this.luminosityClass != null
           ? LuminosityClass[this.luminosityClass.id]
           : '');
-      let description =
+      const description =
         this.spectralClass.colourDescription +
         (this.luminosityClass != null
           ? ' / ' + this.luminosityClass.description

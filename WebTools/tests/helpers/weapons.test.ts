@@ -8,31 +8,31 @@ import {
 
 describe('testing weapons', () => {
   test('should find 1e weapons', () => {
-    let strike = PersonalWeapons.instance(1).unarmedStrike;
+    const strike = PersonalWeapons.instance(1).unarmedStrike;
     expect(strike.dice).toBe(1);
 
-    let phaser1 = PersonalWeapons.instance(1).phaser1;
+    const phaser1 = PersonalWeapons.instance(1).phaser1;
     expect(phaser1.dice).toBe(2);
   });
 
   test('should find 2e weapons', () => {
-    let strike = PersonalWeapons.instance(2).unarmedStrike;
+    const strike = PersonalWeapons.instance(2).unarmedStrike;
     expect(strike.dice).toBe(2);
 
-    let phaser1 = PersonalWeapons.instance(2).phaser1;
+    const phaser1 = PersonalWeapons.instance(2).phaser1;
     expect(phaser1.dice).toBe(3);
   });
 
   test('ushaan-tor has correct base damage per edition', () => {
-    let v1 = PersonalWeapons.instance(1).ushaanTor;
+    const v1 = PersonalWeapons.instance(1).ushaanTor;
     expect(v1.dice).toBe(2);
 
-    let v2 = PersonalWeapons.instance(2).ushaanTor;
+    const v2 = PersonalWeapons.instance(2).ushaanTor;
     expect(v2.dice).toBe(3);
   });
 
   test('2e quantum torpedo has Intense instead of Vicious (#303)', () => {
-    let v1 = TorpedoLoadTypeModel.getTorpedoLoadTypeModelByType(
+    const v1 = TorpedoLoadTypeModel.getTorpedoLoadTypeModelByType(
       TorpedoLoadType.Quantum,
       1,
     );
@@ -40,7 +40,7 @@ describe('testing weapons', () => {
       v1.effectAndQualities.some((q) => q.quality === Quality.Vicious),
     ).toBeTruthy();
 
-    let v2 = TorpedoLoadTypeModel.getTorpedoLoadTypeModelByType(
+    const v2 = TorpedoLoadTypeModel.getTorpedoLoadTypeModelByType(
       TorpedoLoadType.Quantum,
       2,
     );

@@ -10,19 +10,19 @@ export class BuildPoints {
     version: number,
   ) {
     if (buildType === ShipBuildType.Pod) {
-      let base = 16;
-      let improvement = Math.floor((serviceYear - 2200) / 25);
+      const base = 16;
+      const improvement = Math.floor((serviceYear - 2200) / 25);
       return base + improvement;
     } else if (buildType === ShipBuildType.Shuttlecraft) {
-      let base = 19;
-      let improvement = Math.floor((serviceYear - 2200) / 10);
+      const base = 19;
+      const improvement = Math.floor((serviceYear - 2200) / 10);
       return base + improvement;
     } else if (buildType === ShipBuildType.Runabout) {
-      let base = 29;
-      let improvement = Math.floor((serviceYear - 2200) / 10);
+      const base = 29;
+      const improvement = Math.floor((serviceYear - 2200) / 10);
       return base + improvement;
     } else {
-      let base = version === 1 ? (serviceYear > 2400 ? 60 : 40) : 40;
+      const base = version === 1 ? (serviceYear > 2400 ? 60 : 40) : 40;
       let improvement =
         version === 1
           ? serviceYear > 2400

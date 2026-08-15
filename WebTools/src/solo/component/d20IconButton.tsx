@@ -5,9 +5,9 @@ interface ID20IconButton {
 }
 
 const D20IconButton: React.FC<ID20IconButton> = ({ onClick }) => {
-  let defaultPurple = '#de84b7';
-  let highlightColour = '#e59dc5';
-  let [colour, setColour] = useState(defaultPurple);
+  const defaultPurple = '#de84b7';
+  const highlightColour = '#e59dc5';
+  const [colour, setColour] = useState(defaultPurple);
 
   return (
     <button

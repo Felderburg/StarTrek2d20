@@ -655,7 +655,7 @@ const appendWithNoDuplicates = (
   array1: SelectedTalent[],
   array2: SelectedTalent[],
 ) => {
-  let result = [...array1];
+  const result = [...array1];
 
   array2.forEach((t) => {
     if (result.filter((i) => i.talent === t.talent).length) {

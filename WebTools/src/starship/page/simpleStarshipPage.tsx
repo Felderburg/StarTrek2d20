@@ -344,12 +344,12 @@ export class BaseSimpleStarshipPage extends React.Component<
   }
 
   getSystem(system: System) {
-    let result = this.props.starship.getSystemValue(system);
+    const result = this.props.starship.getSystemValue(system);
     return result == null ? 0 : result;
   }
 
   getDepartment(department: Department) {
-    let result = this.props.starship.departments[department];
+    const result = this.props.starship.departments[department];
     return result == null ? 0 : result;
   }
 
@@ -373,7 +373,7 @@ export class BaseSimpleStarshipPage extends React.Component<
     if (!this.props.starship.className) {
       Dialog.show('Please provide a name for this class of ship.');
     } else {
-      let step = this.props.workflow.peekNextStep();
+      const step = this.props.workflow.peekNextStep();
       store.dispatch(nextStarshipWorkflowStep());
       Navigation.navigateToPage(step.page);
     }

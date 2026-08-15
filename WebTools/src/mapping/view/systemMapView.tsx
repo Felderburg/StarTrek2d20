@@ -15,13 +15,13 @@ export class SystemMapView extends React.Component<
   static DISPLAY_WIDTH = 970 - SystemMapView.START_X;
 
   findAllOrbits() {
-    let { system } = this.props;
+    const { system } = this.props;
     let orbits = system.worlds?.map((w) => w.orbitalRadius) ?? [];
     if (
       system.worlds?.length &&
       system.worlds[0].worldClass.id === WorldClass.AsteroidBelt
     ) {
-      let belt = system.worlds[0];
+      const belt = system.worlds[0];
       if (belt.worldDetails instanceof AsteroidBeltDetails) {
         orbits.push(
           belt.orbitalRadius -
@@ -34,7 +34,7 @@ export class SystemMapView extends React.Component<
       system.worlds[system.worlds.length - 1].worldClass.id ===
         WorldClass.AsteroidBelt
     ) {
-      let belt = system.worlds[system.worlds.length - 1];
+      const belt = system.worlds[system.worlds.length - 1];
       if (belt.worldDetails instanceof AsteroidBeltDetails) {
         orbits.push(
           belt.orbitalRadius +
@@ -60,9 +60,9 @@ export class SystemMapView extends React.Component<
 
   calculateOrbitX(orbitInAus: number, orbits: number[]) {
     if (orbits?.length) {
-      let firstOrbitInAus = orbits[0];
-      let firstOrbit = Math.log1p(firstOrbitInAus);
-      let lastOrbit = Math.log1p(orbits[orbits.length - 1]);
+      const firstOrbitInAus = orbits[0];
+      const firstOrbit = Math.log1p(firstOrbitInAus);
+      const lastOrbit = Math.log1p(orbits[orbits.length - 1]);
 
       return (
         SystemMapView.START_X +

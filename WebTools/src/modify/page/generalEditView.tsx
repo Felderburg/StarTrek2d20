@@ -103,7 +103,7 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({
   };
 
   const prepareForOnNextStep = () => {
-    let errorMessage = character.talentAssemblies
+    const errorMessage = character.talentAssemblies
       .map((t) => determineSelectedTalentExtraErrors(t.talent))
       .filter((m) => m?.length)[0];
     if (
@@ -167,7 +167,7 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({
   };
 
   const randomName = (species: SpeciesModel) => {
-    let { name, pronouns } = NameGenerator.instance.createName(species);
+    const { name, pronouns } = NameGenerator.instance.createName(species);
     store.dispatch(setCharacterName(name));
     store.dispatch(setCharacterPronouns(pronouns));
   };
@@ -196,7 +196,7 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({
   };
 
   const renderSpeciesTab = () => {
-    let attributes = AttributesHelper.getAllAttributes()
+    const attributes = AttributesHelper.getAllAttributes()
       .filter(
         (a) =>
           character.speciesStep.attributes.includes(a) ||
@@ -224,7 +224,7 @@ export const GeneralEditView: React.FC<IGeneralEditViewProperties> = ({
         );
       });
 
-    let speciesAbilityTalents = character.speciesStep?.ability
+    const speciesAbilityTalents = character.speciesStep?.ability
       ?.isTalentSelectionSupported
       ? character.speciesStep.ability.talentNames.map(
           (t) => new RankedTalent(TalentsHelper.getTalent(t)),

@@ -86,7 +86,7 @@ export class SpeciesModel implements ISpecies {
   }
 
   get isAttributeSelectionRequired() {
-    let definedAttributeCount =
+    const definedAttributeCount =
       this.attributes?.length - this.decrementAttributes?.length;
     if (definedAttributeCount <= 3) {
       return false;

@@ -294,13 +294,13 @@ export class StationFrameModel {
 
   public static getById(type: StationFrame) {
     this.initializeType();
-    let frames = StationFrameModel.TYPES.filter((f) => type === f.id);
+    const frames = StationFrameModel.TYPES.filter((f) => type === f.id);
     return frames?.length ? frames[0] : undefined;
   }
 
   public static getByIdName(typeName: string) {
     this.initializeType();
-    let frames = StationFrameModel.TYPES.filter(
+    const frames = StationFrameModel.TYPES.filter(
       (f) => typeName === StationFrame[f.id],
     );
     return frames?.length ? frames[0] : undefined;

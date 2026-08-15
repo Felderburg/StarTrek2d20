@@ -59,7 +59,7 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <CollaborationDepartmentSelectionView
         onDepartmentSelection={(d) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.department = d;
           }
@@ -74,7 +74,7 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <DefensiveTrainingAttackTypeSelectionView
         onSelection={(a) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.selection = a as AttackType;
           }
@@ -89,7 +89,7 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <AugmentedAbilitySelectionView
         onAttributeSelection={(a) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.attribute = a;
           }
@@ -104,7 +104,7 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <UntappedPotentialSelectionView
         onAttributeSelection={(a) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.attribute = a;
           }
@@ -119,7 +119,7 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <VisitEveryStarSelectionView
         onSelection={(f) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.focuses = f as string[];
           }
@@ -134,7 +134,7 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <ExpandedProgramSelectionView
         onSelection={(f) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.focuses = f as string[];
           }
@@ -148,7 +148,7 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <WarriorsSpiritSelectionView
         onSelection={(w) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.selection = w as SpecialWeapon;
           }
@@ -162,14 +162,14 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <WisdomOfYearsSelectionView
         onFocusSelection={(f) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.focuses = [f];
           }
           setTalentSelection(temp);
         }}
         onValueSelection={(v) => {
-          let temp = talentSelection.copy();
+          const temp = talentSelection.copy();
           if (temp) {
             temp.value = v;
           }
@@ -185,7 +185,7 @@ export const AdditionalTalentInfo: React.FC<
     return (
       <BoldOrCautiousDepartmentSelectionView
         onDepartmentSelection={(d) => {
-          let temp = talentSelection?.copy();
+          const temp = talentSelection?.copy();
           if (temp) {
             temp.department = d;
           }

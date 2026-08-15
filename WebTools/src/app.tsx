@@ -53,7 +53,7 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
           this.state.activePage,
         ))
     ) {
-      var pageComponent = document.getElementsByClassName('page')[0];
+      const pageComponent = document.getElementsByClassName('page')[0];
       pageComponent.classList.remove('page-out');
       if (page === this.state.activePage) {
         return;

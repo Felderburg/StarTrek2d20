@@ -23,7 +23,7 @@ const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({
   tracking,
 }) => {
   const { t } = useTranslation();
-  let character = tracking.character;
+  const character = tracking.character;
 
   const renderJob = () => {
     let result = '';
@@ -34,9 +34,9 @@ const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({
   };
 
   const renderStress = () => {
-    let stress = tracking?.character?.stress;
+    const stress = tracking?.character?.stress;
     if (character.isStressTrackPresent && stress) {
-      let iterator = [];
+      const iterator = [];
       for (let i = 1; i <= stress; i++) {
         iterator.push(i);
       }
@@ -64,7 +64,7 @@ const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({
         </div>
       );
     } else if (character.isPersonalThreatTrackPresent) {
-      let iterator = [];
+      const iterator = [];
       for (let i = 1; i <= character.personalThreat; i++) {
         iterator.push(i);
       }

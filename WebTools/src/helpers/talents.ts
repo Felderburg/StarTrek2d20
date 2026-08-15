@@ -237,8 +237,8 @@ class RandomNpcPrerequisite implements IConstructPrerequisite {
 
 class ScientistPrerequisite implements IConstructPrerequisite {
   isPrerequisiteFulfilled(c: Character | Starship | Creature | Station) {
-    let science = c.departments[Department.Science];
-    let temp = c.departments.filter((d) => d > science);
+    const science = c.departments[Department.Science];
+    const temp = c.departments.filter((d) => d > science);
     return temp.length === 0;
   }
 
@@ -249,8 +249,8 @@ class ScientistPrerequisite implements IConstructPrerequisite {
 
 class SecurityPrerequisite implements IConstructPrerequisite {
   isPrerequisiteFulfilled(c: Character | Starship | Creature | Station) {
-    let security = c.departments[Department.Security];
-    let temp = c.departments.filter((d) => d > security);
+    const security = c.departments[Department.Security];
+    const temp = c.departments.filter((d) => d > security);
     return temp.length === 0;
   }
 
@@ -261,8 +261,8 @@ class SecurityPrerequisite implements IConstructPrerequisite {
 
 class CommandPrerequisite implements IConstructPrerequisite {
   isPrerequisiteFulfilled(c: Character | Starship | Creature | Station) {
-    let command = c.departments[Department.Command];
-    let temp = c.departments.filter((d) => d > command);
+    const command = c.departments[Department.Command];
+    const temp = c.departments.filter((d) => d > command);
     return temp.length === 0;
   }
 
@@ -392,7 +392,7 @@ class FocusPrerequisite implements IConstructPrerequisite {
     if (!(c instanceof Character)) {
       return false;
     } else {
-      let localizedFocuses = this.focuses.map((f) => localizedFocus(f));
+      const localizedFocuses = this.focuses.map((f) => localizedFocus(f));
       return (
         c.focuses.filter(
           (f) => this.focuses.includes(f) || localizedFocuses.includes(f),
@@ -532,13 +532,13 @@ export class CenturyPrerequisite implements IConstructPrerequisite {
   }
 
   isPrerequisiteFulfilled(s: Character | Starship | Creature | Station) {
-    let year = centuryToYear(this.century);
+    const year = centuryToYear(this.century);
     if (!(s instanceof Starship)) {
       return false;
     } else if (this.toCentury == null) {
       return s != null && s.serviceYear != null && s.serviceYear >= year;
     } else {
-      let toYear = centuryToYear(this.toCentury + 1) + 1;
+      const toYear = centuryToYear(this.toCentury + 1) + 1;
       return (
         s != null &&
         s.serviceYear != null &&
@@ -562,7 +562,9 @@ export class CenturyPrerequisite implements IConstructPrerequisite {
   }
 
   addSuffix(century: number) {
-    let lastDigit = century.toString().substring(century.toString().length - 1);
+    const lastDigit = century
+      .toString()
+      .substring(century.toString().length - 1);
     if (lastDigit === '1') {
       return this.century + 'st';
     } else if (lastDigit === '2') {
@@ -9404,7 +9406,7 @@ export class Talents {
   customTalent = new TalentModel(TALENT_NAME_CUSTOM_TALENT, '', []);
 
   getTalents(): TalentModel[] {
-    let result = [];
+    const result = [];
     this._talents.forEach((t) => result.push(t));
     this._starshipTalents.forEach((t) => result.push(t));
     return result;
@@ -9419,7 +9421,7 @@ export class Talents {
 
     if (talent == null) {
       for (let i = 0; i < this._talents.length; i++) {
-        let t = this._talents[i];
+        const t = this._talents[i];
         if (t.matches(name)) {
           talent = t;
           break;
@@ -9429,7 +9431,7 @@ export class Talents {
 
     if (talent == null) {
       for (let i = 0; i < this._starshipTalents.length; i++) {
-        let t = this._starshipTalents[i];
+        const t = this._starshipTalents[i];
         if (t.matches(name)) {
           talent = t;
           break;
@@ -9439,7 +9441,7 @@ export class Talents {
 
     if (talent == null) {
       for (let i = 0; i < this._specialRules.length; i++) {
-        let t = this._specialRules[i];
+        const t = this._specialRules[i];
         if (t.matches(name)) {
           talent = t;
           break;
@@ -9448,7 +9450,7 @@ export class Talents {
     }
 
     if (talent == null && name.indexOf(' [') >= 0) {
-      let tempName = name.substring(0, name.indexOf(' ['));
+      const tempName = name.substring(0, name.indexOf(' ['));
       talent = this.getTalent(tempName);
     }
 
@@ -9489,12 +9491,12 @@ export class Talents {
     ) {
       return [this.getTalent('Morphogenic Matrix')];
     } else {
-      let result = this._talents.filter((t) =>
+      const result = this._talents.filter((t) =>
         t.isPrerequisiteFulfilled(character),
       );
 
       if (character.stereotype === Stereotype.Npc) {
-        let rules = this._specialRules.filter(
+        const rules = this._specialRules.filter(
           (t) =>
             t.isPrerequisiteFulfilled(character) &&
             !character.hasTalent(t.name),
@@ -9515,7 +9517,7 @@ export class Talents {
   ) {
     const talents: TalentModel[] = [];
     for (let i = 0; i < this._starshipTalents.length; i++) {
-      let talent = this._starshipTalents[i];
+      const talent = this._starshipTalents[i];
       let include = talent.isStarshipTalent;
       if (starship instanceof Station) {
         include = include || talent.isStarbaseTalent;
@@ -9544,7 +9546,7 @@ export class Talents {
   }
 
   getAllAvailableTalentsForNpc(character: Character): TalentModel[] {
-    let result = this._talents.filter((t) =>
+    const result = this._talents.filter((t) =>
       t.isPrerequisiteFulfilled(character),
     );
     result.push(
@@ -9558,7 +9560,7 @@ export class Talents {
     if (character.careerStep?.career === Career.Young) {
       return [this.getTalent(TALENT_NAME_UNTAPPED_POTENTIAL)];
     } else if (character.careerStep?.career === Career.Veteran) {
-      let result = [
+      const result = [
         this.getTalent('Veteran'),
         this.getTalent('Wrote the Book'),
         this.getTalent('Life Lessons'),

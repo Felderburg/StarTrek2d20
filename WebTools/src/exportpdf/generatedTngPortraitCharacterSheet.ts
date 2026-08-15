@@ -199,7 +199,7 @@ export class GeneratedTngPortraitCharacterSheet extends BaseTNGGeneratedCharacte
   }
 
   writeWeaponLabels(page: PDFPage) {
-    let fontSize = this.determineIdealFontWidth(
+    const fontSize = this.determineIdealFontWidth(
       [
         i18next.t('Weapon.common.name').toLocaleUpperCase(),
         i18next.t('Weapon.common.qualities').toLocaleUpperCase(),
@@ -210,9 +210,9 @@ export class GeneratedTngPortraitCharacterSheet extends BaseTNGGeneratedCharacte
       this.headingFont,
     );
 
-    let offset = 680.6 - 626.1;
+    const offset = 680.6 - 626.1;
     for (let i = 0; i < 4; i++) {
-      let block = new Column(173.3, 626.1 + offset * i, 10.1, 41.5);
+      const block = new Column(173.3, 626.1 + offset * i, 10.1, 41.5);
       this.writeLabel(
         page,
         i18next.t('Weapon.common.name').toLocaleUpperCase(),
@@ -223,7 +223,7 @@ export class GeneratedTngPortraitCharacterSheet extends BaseTNGGeneratedCharacte
         true,
       );
 
-      let block2 = new Column(173.3, 650.6 + offset * i, 10.1, 41.5);
+      const block2 = new Column(173.3, 650.6 + offset * i, 10.1, 41.5);
       this.writeLabel(
         page,
         i18next.t('Weapon.common.qualities').toLocaleUpperCase(),
@@ -238,9 +238,9 @@ export class GeneratedTngPortraitCharacterSheet extends BaseTNGGeneratedCharacte
 
   fillTalents(form: PDFForm, character: Character) {
     let i = 1;
-    let handledTalents = [];
+    const handledTalents = [];
     character.talents.forEach((t) => {
-      let talent = t.talentModel;
+      const talent = t.talentModel;
       if (handledTalents.includes(talent.name)) {
         // skip it
       } else if (talent && talent.maxRank > 1) {

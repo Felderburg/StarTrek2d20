@@ -85,7 +85,7 @@ export class NameGenerator {
 
   isSupported(species: ISpecies) {
     let result = false;
-    for (let name of names) {
+    for (const name of names) {
       if (name.species === species.name) {
         result = true;
         break;
@@ -107,9 +107,9 @@ export class NameGenerator {
   ) {
     let result = { name: '', pronouns: '', nameOrigin: undefined };
     let found = false;
-    for (let name of names) {
+    for (const name of names) {
       if (name.species === species.name) {
-        let lastNames = name.names
+        const lastNames = name.names
           .filter((n) => n.type === 'LastName')
           .filter(
             (n) =>
@@ -117,23 +117,23 @@ export class NameGenerator {
           );
         let lastName = null;
         if (lastNames.length > 0) {
-          let r = Math.floor(Math.random() * lastNames.length);
+          const r = Math.floor(Math.random() * lastNames.length);
           lastName = lastNames[r];
         }
-        let firstNames = name.names
+        const firstNames = name.names
           .filter((n) => n.type === 'FirstName')
           .filter((n) => gender == null || gender === n.gender)
           .filter((n) => {
             if (lastName == null) {
               return true;
             } else {
-              let ok =
+              const ok =
                 n.gender === lastName.gender ||
                 n.gender === 'Unisex' ||
                 lastName.gender === 'Unisex';
               if (ok) {
                 let found = n.tags.indexOf('Common') >= 0;
-                for (let tag of lastName.tags) {
+                for (const tag of lastName.tags) {
                   if (n.tags.indexOf(tag) >= 0) {
                     found = true;
                     break;
@@ -147,7 +147,7 @@ export class NameGenerator {
           });
         let firstName = null;
         if (firstNames.length > 0) {
-          let r = Math.floor(Math.random() * firstNames.length);
+          const r = Math.floor(Math.random() * firstNames.length);
           firstName = firstNames[r];
         }
 
@@ -161,7 +161,7 @@ export class NameGenerator {
               ];
           }
         }
-        let pronouns = this.derivePronouns(firstName.gender, gender != null);
+        const pronouns = this.derivePronouns(firstName.gender, gender != null);
 
         let nameOrigin = undefined;
         if (species.id === Species.Human) {
@@ -185,10 +185,10 @@ export class NameGenerator {
     }
 
     if (!found) {
-      let names = species.nameSuggestions;
+      const names = species.nameSuggestions;
 
       let lastName = null;
-      let lastNames = names.filter(
+      const lastNames = names.filter(
         (n) =>
           n.type === 'Family' ||
           n.type === 'Family Name' ||
@@ -196,13 +196,13 @@ export class NameGenerator {
           n.type === 'Clan Names',
       );
       if (lastNames.length > 0) {
-        let parts = lastNames[0].suggestions.split(',');
+        const parts = lastNames[0].suggestions.split(',');
         lastName = parts[Math.floor(Math.random() * parts.length)].trim();
       }
 
       let firstName = null;
       let gender = 'Unisex';
-      let firstNames = names.filter(
+      const firstNames = names.filter(
         (n) =>
           n.type !== 'Family' &&
           n.type !== 'Family Name' &&
@@ -210,14 +210,14 @@ export class NameGenerator {
           n.type !== 'Clan Names',
       );
       if (firstNames.length > 0) {
-        let nameModel =
+        const nameModel =
           firstNames[Math.floor(Math.random() * firstNames.length)];
         gender = nameModel.type;
-        let parts = nameModel.suggestions.split(',');
+        const parts = nameModel.suggestions.split(',');
         firstName = parts[Math.floor(Math.random() * parts.length)].trim();
       }
 
-      let pronouns = this.derivePronouns(gender, gender != null);
+      const pronouns = this.derivePronouns(gender, gender != null);
       result = {
         name: this.combineParts(firstName, lastName, species, pronouns),
         pronouns: pronouns,
@@ -229,10 +229,10 @@ export class NameGenerator {
   }
 
   private determineNameOrigin(firstName: any, lastName: any) {
-    let tags = lastName.tags.filter(
+    const tags = lastName.tags.filter(
       (t) => firstName.tags.includes('Common') || firstName.tags.includes(t),
     );
-    let result = tags.length
+    const result = tags.length
       ? tags[Math.floor(Math.random() * tags.length)]
       : undefined;
     return result === 'Common' ? undefined : result;
@@ -245,7 +245,7 @@ export class NameGenerator {
     pronouns: string,
     names: [] = [],
   ) {
-    let parts = [];
+    const parts = [];
 
     if (species.id === Species.Bajoran) {
       if (lastName) {
@@ -255,7 +255,7 @@ export class NameGenerator {
         parts.push(firstName);
       }
     } else if (species.id === Species.Andorian) {
-      let clanNamePrefix = this.determineAndorianPrefix(pronouns);
+      const clanNamePrefix = this.determineAndorianPrefix(pronouns);
 
       if (firstName) {
         parts.push(firstName);
@@ -269,8 +269,8 @@ export class NameGenerator {
         }
       }
     } else if (species.id === Species.Tellarite && D20.roll() <= 5) {
-      let interstitials = names.filter((n) => n['type'] === 'Interstitial');
-      let interstitial =
+      const interstitials = names.filter((n) => n['type'] === 'Interstitial');
+      const interstitial =
         interstitials[Math.floor(Math.random() * interstitials.length)];
 
       if (firstName) {

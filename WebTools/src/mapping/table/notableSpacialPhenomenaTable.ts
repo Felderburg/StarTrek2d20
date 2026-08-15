@@ -10,7 +10,7 @@ export const notableSpatialPhenomenaTable = (
   spectralClass: SpectralClass,
   sector?: SpecialSectors,
 ) => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   let result = [];
   if (sector === null) {
     switch (spectralClass) {

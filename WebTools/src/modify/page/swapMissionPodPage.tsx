@@ -29,8 +29,8 @@ const SwapMissionPodPage: React.FC<IStarshipProperties> = ({ starship }) => {
 
   const viewStarship = () => {
     setTimeout(() => {
-      let c = store.getState().starship.starship;
-      let hash = store.getState().starship.hash;
+      const c = store.getState().starship.starship;
+      const hash = store.getState().starship.hash;
       store.dispatch(saveStarshipToLocalStorage(c, hash));
       const value = marshaller.encodeStarship(c);
       navigate('/view?s=' + value);

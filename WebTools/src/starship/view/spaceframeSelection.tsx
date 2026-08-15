@@ -45,7 +45,7 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({
     }
   };
 
-  let overrideCheckbox = (
+  const overrideCheckbox = (
     <CheckBox
       isChecked={allowAllFrames}
       text={t('SpaceframeSelectionPage.ignoreEndOfService')}
@@ -54,7 +54,7 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({
     />
   );
 
-  let spaceframes = SpaceframeHelper.instance().getSpaceframes(
+  const spaceframes = SpaceframeHelper.instance().getSpaceframes(
     starship,
     allowAllFrames,
   );
@@ -68,7 +68,7 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({
 
   const chooseDefaultVariant = (spaceframe: Spaceframe) => {
     if (SpaceframeVariantModel.hasVariants(spaceframe)) {
-      let variants = SpaceframeVariantModel.variantsBySpaceframe(spaceframe);
+      const variants = SpaceframeVariantModel.variantsBySpaceframe(spaceframe);
       return variants?.length ? variants[0]?.id : undefined;
     } else {
       return undefined;

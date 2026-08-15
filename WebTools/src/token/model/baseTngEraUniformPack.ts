@@ -523,7 +523,7 @@ export abstract class BaseTngEraUniformPack extends BaseNeckProvider {
   }
 
   getRankSwatches() {
-    let result = [
+    const result = [
       new Swatch(
         Rank.None,
         'None',

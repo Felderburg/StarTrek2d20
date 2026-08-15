@@ -23,7 +23,7 @@ export const ServiceYearSelector: React.FC<IServiceYearProperties> = ({
           type="number"
           defaultValue={campaignYear.toString()}
           onChange={(e) => {
-            let value = e.target.value;
+            const value = e.target.value;
             onChange(parseInt(value));
           }}
         />

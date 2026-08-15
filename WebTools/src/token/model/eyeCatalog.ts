@@ -218,7 +218,7 @@ class EyeCatalog {
   }
 
   getEyes(token: TokenModel) {
-    let result = this.getEyeAndNoseEdge(
+    const result = this.getEyeAndNoseEdge(
       token.eyeType,
       token.species,
       token.skinColor,
@@ -370,7 +370,7 @@ class EyeCatalog {
   }
 
   private static decorateSwatch(eyeType: EyeType, token: TokenModel) {
-    let result =
+    const result =
       `<svg viewBox="0 0 110 110" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <clipPath id="eyeType` +

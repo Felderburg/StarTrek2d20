@@ -28,7 +28,7 @@ const SystemGenerationPage = () => {
 
   const renderSectorTypeSection = () => {
     if (region === SpaceRegion.ShackletonExpanse) {
-      let options = SpecialSectorTypeModel.allSpecialSectorTypes().map(
+      const options = SpecialSectorTypeModel.allSpecialSectorTypes().map(
         (s) => new DropDownElement(s.id, s.name),
       );
       return (

@@ -21,8 +21,8 @@ const OutlineImage: React.FC<IOutlineImageProperties> = ({
     dimensionY = 260;
   }
 
-  let width = size === 'lg' ? dimensionX * 1.8 : dimensionX;
-  let height = size === 'lg' ? dimensionY * 1.8 : dimensionY;
+  const width = size === 'lg' ? dimensionX * 1.8 : dimensionX;
+  const height = size === 'lg' ? dimensionY * 1.8 : dimensionY;
 
   if (starship) {
     const svg = SpaceframeOutline.renderFullSvg(starship);

@@ -63,7 +63,7 @@ const ExtraStarshipTalentChoicesPage: React.FC<
     ) {
       Dialog.show(t('Common.error.department'));
     } else {
-      let step = workflow.peekNextStep();
+      const step = workflow.peekNextStep();
       store.dispatch(nextStarshipWorkflowStep());
       Navigation.navigateToPage(step.page);
     }
@@ -79,7 +79,7 @@ const ExtraStarshipTalentChoicesPage: React.FC<
             starship={starship}
             isChecked={(d) => selection.department === d}
             onSelectDepartment={(d) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.department = d;
               }
@@ -102,7 +102,7 @@ const ExtraStarshipTalentChoicesPage: React.FC<
             starship={starship}
             isChecked={(s) => selection.system === s}
             onSelectSystem={(s) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.system = s;
               }

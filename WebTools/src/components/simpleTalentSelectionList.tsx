@@ -58,7 +58,7 @@ const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
   const talentList = talents.map((t, i) => {
     let prerequisites = undefined;
     t.prerequisites.forEach((p) => {
-      let desc = p.describe();
+      const desc = p.describe();
       if (desc) {
         if (prerequisites == null) {
           prerequisites = desc;
@@ -71,11 +71,11 @@ const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
       prerequisites = <div style={{ fontWeight: 'bold' }}>{prerequisites}</div>;
     }
 
-    let description =
+    const description =
       construct.version === 1
         ? (t as TalentModel).localizedDescription
         : (t as TalentModel).localizedDescription2e;
-    let lines = description.split('\n').map((l, i) => {
+    const lines = description.split('\n').map((l, i) => {
       return (
         <div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>
           {replaceDiceWithArrowhead(l)}

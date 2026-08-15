@@ -3,7 +3,7 @@ import { creatureNameGenerator } from '../../../src/creature/model/creatureNameG
 
 describe('test name generation', () => {
   test('should generate a name', () => {
-    let name = creatureNameGenerator();
+    const name = creatureNameGenerator();
 
     expect(name?.length).toBeGreaterThan(0);
   });

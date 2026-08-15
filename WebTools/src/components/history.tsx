@@ -64,7 +64,7 @@ class History extends React.Component<IHistoryProperties, {}> {
 
   renderCharacterHistory() {
     const { t } = this.props;
-    let character = store.getState().character.currentCharacter as Character;
+    const character = store.getState().character.currentCharacter as Character;
     if (character == null) {
       return <div>{t('Lcars.noHistory')}</div>;
     } else {
@@ -104,7 +104,7 @@ class History extends React.Component<IHistoryProperties, {}> {
   }
 
   renderPageTitleLink(page: PageIdentity) {
-    let { t } = this.props;
+    const { t } = this.props;
     return (
       <div
         className="history-item"
@@ -117,7 +117,7 @@ class History extends React.Component<IHistoryProperties, {}> {
   }
 
   renderSoloCharacterHistory() {
-    let character = store.getState().character.currentCharacter as Character;
+    const character = store.getState().character.currentCharacter as Character;
     return (
       <>
         {character?.speciesStep

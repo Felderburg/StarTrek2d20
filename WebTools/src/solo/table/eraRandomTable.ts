@@ -40,7 +40,7 @@ export const eraRandomTable: TableRoll<Era> = () => {
 };
 
 export const eraRandomTableForStarships: TableRoll<Era> = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   let era = null;
 
   while (era == null) {

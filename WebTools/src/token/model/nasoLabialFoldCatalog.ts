@@ -102,7 +102,7 @@ class NasoLabialFoldCatalog {
   }
 
   private static decorateSwatch(svg: string) {
-    let result =
+    const result =
       `<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g transform="translate(-255, -140)">` +
       svg +

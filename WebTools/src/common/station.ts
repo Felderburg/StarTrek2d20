@@ -27,7 +27,7 @@ export class CustomStationSpaceframeStep {
   }
 
   copy() {
-    let result = new CustomStationSpaceframeStep();
+    const result = new CustomStationSpaceframeStep();
     result.scale = this.scale;
     result.appearance = this.appearance;
     result.departments = [...this.departments];
@@ -36,7 +36,7 @@ export class CustomStationSpaceframeStep {
   }
 
   static create(scale: number = CustomStationSpaceframeStep.MIN_SCALE) {
-    let frameStep = new CustomStationSpaceframeStep();
+    const frameStep = new CustomStationSpaceframeStep();
     frameStep.scale = scale;
     frameStep.systems = PointAllocator.allocatePointsEvenly(
       Station.totalAvailableSystemPointsForScale(frameStep.scale),
@@ -112,7 +112,7 @@ export class StationMissionProfileStep {
   }
 
   copy() {
-    let result = new StationMissionProfileStep(this.type);
+    const result = new StationMissionProfileStep(this.type);
     result.talent = this.talent?.copy();
     return result;
   }
@@ -138,7 +138,7 @@ export class Station extends Construct {
     version: number,
     era: Era,
   ): Station {
-    let result = new Station();
+    const result = new Station();
     result.version = version;
     result.era = era;
     result.type = type;
@@ -148,7 +148,7 @@ export class Station extends Construct {
   }
 
   public copy() {
-    let result = new Station();
+    const result = new Station();
     result.type = this.type;
     result.version = this.version;
     result.era = this.era;
@@ -181,7 +181,7 @@ export class Station extends Construct {
       return base;
     } else {
       let base = Math.ceil(this.scale / 2);
-      let structure = this.systems[System.Structure];
+      const structure = this.systems[System.Structure];
       if (this.hasTalent(TALENT_NAME_ABLATIVE_ARMOUR)) {
         base += 2;
       }
@@ -203,7 +203,7 @@ export class Station extends Construct {
   }
 
   get baseTraits(): string[] {
-    let type = CharacterTypeModel.getByType(this.type);
+    const type = CharacterTypeModel.getByType(this.type);
     if (type != null) {
       return [type.name + ' Station'];
     } else {
@@ -229,7 +229,9 @@ export class Station extends Construct {
       if (this.hasTalent('Enhanced Defense Grid')) {
         base += Math.floor(this.scale / 2);
       }
-      let advanced = this.talents.filter((t) => t.name === 'Advanced Shields');
+      const advanced = this.talents.filter(
+        (t) => t.name === 'Advanced Shields',
+      );
       if (advanced.length > 0) {
         base += 5 * advanced.length;
       }
@@ -241,7 +243,7 @@ export class Station extends Construct {
 
   get power() {
     let power = this.systems[System.Engines];
-    let bonus = this.talents.filter((t) => t.name === 'Secondary Reactors');
+    const bonus = this.talents.filter((t) => t.name === 'Secondary Reactors');
     if (power != null && bonus.length > 0) {
       power += 5 * bonus.length;
     }
@@ -289,7 +291,7 @@ export class Station extends Construct {
     if (this.stationFrameStep?.type === StationFrame.Custom) {
       slots -= 1;
     } else {
-      let model = (this.stationFrameStep as StandardStationSpaceframeStep)
+      const model = (this.stationFrameStep as StandardStationSpaceframeStep)
         .model;
       slots -= model.talents.length;
     }
@@ -297,9 +299,9 @@ export class Station extends Construct {
   }
 
   get baseTalents(): SelectedTalent[] {
-    let result = [];
+    const result = [];
     if (this.stationFrameStep instanceof StandardStationSpaceframeStep) {
-      let model = this.stationFrameStep.model;
+      const model = this.stationFrameStep.model;
       model.talents.forEach((t) => {
         if (t instanceof SelectedTalent) {
           result.push(t);
@@ -315,12 +317,12 @@ export class Station extends Construct {
   }
 
   hasBaseTalent(talentName: string) {
-    let talents = this.baseTalents.filter((t) => t.name === talentName);
+    const talents = this.baseTalents.filter((t) => t.name === talentName);
     return talents.length > 0;
   }
 
   hasTalent(talentName: string) {
-    let talents = this.talents.filter((t) => t.name === talentName);
+    const talents = this.talents.filter((t) => t.name === talentName);
     return talents.length > 0;
   }
 
@@ -333,12 +335,12 @@ export class Station extends Construct {
   }
 
   determineWeapons() {
-    let result = [];
+    const result = [];
     if (this.stationFrameStep instanceof StandardStationSpaceframeStep) {
-      let model = this.stationFrameStep.model;
+      const model = this.stationFrameStep.model;
       result.push(...model.weapons);
     }
-    let talentWeapons = this.additionalTalents
+    const talentWeapons = this.additionalTalents
       .filter((t) => t.weapon != null)
       .map((t) => t.weapon);
 
@@ -349,7 +351,7 @@ export class Station extends Construct {
   }
 
   get talents(): SelectedTalent[] {
-    let result = this.baseTalents;
+    const result = this.baseTalents;
     result.push(...this.additionalTalents);
     return result;
   }
@@ -373,12 +375,12 @@ export class Station extends Construct {
   }
 
   get rankedTalents(): SelectedTalent[] {
-    let talents = this.talents;
-    let duplicates = [];
-    let result = [];
+    const talents = this.talents;
+    const duplicates = [];
+    const result = [];
     talents.forEach((t) => {
       if (t.talentModel.maxRank > 1 && !duplicates.includes(t.name)) {
-        let temp = t.copy();
+        const temp = t.copy();
         temp.multiple = this.getRankForTalent(t.name);
         duplicates.push(t.name);
         result.push(temp);
@@ -390,7 +392,7 @@ export class Station extends Construct {
   }
 
   getDistinctTalentNameList() {
-    let result = [];
+    const result = [];
     this.talents.forEach((t) => {
       if (!result.includes(t.name)) {
         result.push(t.name);
@@ -408,7 +410,7 @@ export class Station extends Construct {
       }
       return dice;
     } else if (this.version === 1) {
-      let security = this.departments[Department.Security];
+      const security = this.departments[Department.Security];
       let dice = weapon.dice + security;
       if (weapon.scaleApplies) {
         dice += this.scale;
@@ -449,7 +451,7 @@ export class Station extends Construct {
       let ports = Math.floor(this.scale / 2);
 
       if (this.hasTalent('Docking Capacity')) {
-        let rank = this.getRankForTalent('Docking Capacity');
+        const rank = this.getRankForTalent('Docking Capacity');
         ports = 1 + Math.floor((rank * this.scale) / 2);
       }
 
@@ -464,7 +466,7 @@ export class Station extends Construct {
       let scale = Math.floor(this.scale / 2);
 
       if (this.hasTalent('Docking Capacity')) {
-        let rank = this.getRankForTalent('Docking Capacity');
+        const rank = this.getRankForTalent('Docking Capacity');
         scale += 2 * rank;
       }
 

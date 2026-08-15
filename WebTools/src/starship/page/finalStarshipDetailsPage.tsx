@@ -86,7 +86,7 @@ const FinalStarshipDetailsPage: React.FC<
       starship.serviceYear &&
       (starship.registry == null || starship.registry.length === 0)
     ) {
-      let registry = RegistryNumber.generate(
+      const registry = RegistryNumber.generate(
         starship.serviceYear,
         starship.type,
         starship.spaceframeModel,
@@ -150,7 +150,7 @@ const FinalStarshipDetailsPage: React.FC<
               store.dispatch(setStarshipTraits(ev.target.value))
             }
             onBlur={(ev) => {
-              let temp = ev.target.value.replace(/\n/g, ', ');
+              const temp = ev.target.value.replace(/\n/g, ', ');
               store.dispatch(setStarshipTraits(temp));
             }}
             value={starship.traits}

@@ -8,7 +8,7 @@ import { Spaceframe } from '../../../src/helpers/spaceframeEnum';
 describe('testing name generator', () => {
   test('should produce name', () => {
     for (let i = 0; i < 100; i++) {
-      let name = StarshipRandomNameTable(
+      const name = StarshipRandomNameTable(
         Era.NextGeneration,
         RandomStarshipCharacterType.Starfleet,
         CharacterType.Starfleet,

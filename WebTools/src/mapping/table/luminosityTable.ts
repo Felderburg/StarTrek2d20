@@ -199,16 +199,16 @@ class LuminosityTableImpl {
         l.spectralClass === star.spectralClass.id,
     );
 
-    let exactMatch = this.selectOption(options, star.subClass);
+    const exactMatch = this.selectOption(options, star.subClass);
     if (exactMatch != null) {
       return addNoiseToValue(exactMatch.luminosity);
     } else {
       let o9 = this.selectOption(options, 9);
       if (o9 == null) {
-        let o5 = this.selectOption(options, 5);
-        let o0 = this.selectOption(options, 0);
+        const o5 = this.selectOption(options, 5);
+        const o0 = this.selectOption(options, 0);
 
-        let delta = o0.luminosity - o5.luminosity;
+        const delta = o0.luminosity - o5.luminosity;
 
         let o9Value = o5.luminosity - 0.67 * delta;
         if (o9Value <= 0) {
@@ -227,14 +227,14 @@ class LuminosityTableImpl {
       if (star.subClass === 9) {
         return addNoiseToValue(o9.luminosity);
       } else {
-        let result = this.interpolateSelection(options, star.subClass);
+        const result = this.interpolateSelection(options, star.subClass);
         return addNoiseToValue(result);
       }
     }
   }
 
   selectOption(options: LuminosityCrossReference[], value: number) {
-    let match = options.filter((l) => l.subSpectralClass === value);
+    const match = options.filter((l) => l.subSpectralClass === value);
     if (match.length === 1) {
       return match[0];
     } else {
@@ -245,7 +245,7 @@ class LuminosityTableImpl {
   interpolateSelection(options: LuminosityCrossReference[], subClass: number) {
     let lower = options[0];
     for (let i = 0; i < options.length; i++) {
-      let o = options[i];
+      const o = options[i];
       if (o.subSpectralClass < subClass) {
         lower = o;
       } else {
@@ -254,7 +254,7 @@ class LuminosityTableImpl {
     }
     let upper = options[options.length - 1];
     for (let i = options.length - 1; i >= 0; i--) {
-      let o = options[i];
+      const o = options[i];
       if (o.subSpectralClass > subClass) {
         upper = o;
       } else {
@@ -262,7 +262,7 @@ class LuminosityTableImpl {
       }
     }
 
-    let ratio =
+    const ratio =
       1 -
       (subClass - lower.subSpectralClass) /
         (upper.subSpectralClass - lower.subSpectralClass);

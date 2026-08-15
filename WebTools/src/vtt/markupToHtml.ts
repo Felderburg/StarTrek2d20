@@ -6,7 +6,7 @@ export const markupToHtml = (description: string) => {
     : description
         .split('\n')
         .map((d) => {
-          let parts = textTokenizer(d);
+          const parts = textTokenizer(d);
           let result = '<p>';
           let style = '';
           parts.forEach((p) => {

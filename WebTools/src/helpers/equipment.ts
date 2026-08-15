@@ -42,8 +42,8 @@ export class EquipmentModel {
     if (this.type === EquipmentType.Other) {
       return this.name;
     } else {
-      let key = makeKey('Equipment.', EquipmentType[this.type]);
-      let result = i18next.t(key);
+      const key = makeKey('Equipment.', EquipmentType[this.type]);
+      const result = i18next.t(key);
       return result === key ? this.name : result;
     }
   }
@@ -119,12 +119,12 @@ export class EquipmentHelper {
   ];
 
   public findByType(type: EquipmentType): EquipmentModel | undefined {
-    let results = this.items.filter((e) => e.type === type);
+    const results = this.items.filter((e) => e.type === type);
     return results.length > 0 ? results[0] : undefined;
   }
 
   public findByTypeName(type: string): EquipmentModel | undefined {
-    let results = this.items.filter((e) => EquipmentType[e.type] === type);
+    const results = this.items.filter((e) => EquipmentType[e.type] === type);
     return results.length > 0 ? results[0] : undefined;
   }
 }

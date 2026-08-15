@@ -231,8 +231,8 @@ const ModifySupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
 
   const viewCharacter = () => {
     setTimeout(() => {
-      let c = store.getState().character.currentCharacter;
-      let hash = store.getState().character.replacementHash;
+      const c = store.getState().character.currentCharacter;
+      const hash = store.getState().character.replacementHash;
       store.dispatch(saveCharacterToLocalStorage(c, hash));
       const value = marshaller.encodeSupportingCharacter(c);
       navigate('/view?s=' + value);
@@ -240,7 +240,7 @@ const ModifySupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   };
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character?.values ?? [],
       character?.speciesStep?.species,
     );
@@ -250,7 +250,7 @@ const ModifySupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   const randomFocus = () => {
     let done = false;
     while (!done) {
-      let f = FocusRandomTable();
+      const f = FocusRandomTable();
       if (!character?.focuses?.includes(f)) {
         done = true;
         setFocusSelection(f);

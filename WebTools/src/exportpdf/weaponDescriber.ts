@@ -44,7 +44,7 @@ export class WeaponDescriber {
     }
     const dice = diceProvider.getDiceForWeapon(weapon);
 
-    let text =
+    const text =
       type +
       ', ' +
       injuryType +

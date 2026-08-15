@@ -24,7 +24,7 @@ const MissionPodReplacementSelection: React.FC<
   }
 
   const setReplacement = (podIndex: number, talent?: SelectedTalent) => {
-    let replacements = [...(starship.missionPodReplacements ?? [])];
+    const replacements = [...(starship.missionPodReplacements ?? [])];
     while (replacements.length <= podIndex) {
       replacements.push(undefined);
     }

@@ -181,8 +181,8 @@ const SourceSelectionPage: React.FC<ISourceSelectionPageProperties> = ({
 
   const toggleSources = (selectAll: boolean) => {
     if (selectAll) {
-      let version = isSecondEdition() ? 2 : 1;
-      let sources = SourcesHelper.getSources()
+      const version = isSecondEdition() ? 2 : 1;
+      const sources = SourcesHelper.getSources()
         .filter((s) => s.available && (s.version === 1 || version === 2))
         .filter((s) => {
           if (s.id === Source.Core) {

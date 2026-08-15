@@ -67,12 +67,12 @@ export class LocomotionTypeHelper {
   }
 
   getTypeById(id: LocomotionType) {
-    let items = this.items.filter((h) => h.id === id);
+    const items = this.items.filter((h) => h.id === id);
     return items?.length ? items[0] : undefined;
   }
 
   getTypeByIdName(name: string) {
-    let items = this.items.filter((h) => LocomotionType[h.id] === name);
+    const items = this.items.filter((h) => LocomotionType[h.id] === name);
     return items?.length ? items[0] : undefined;
   }
 }

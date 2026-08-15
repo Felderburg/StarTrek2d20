@@ -9,7 +9,7 @@ const safety = (state: any = initialState, action) => {
       const category = action.payload.category;
       const evaluation = action.payload.evaluation;
 
-      let temp = { ...state };
+      const temp = { ...state };
       temp[category] = evaluation;
 
       return temp;

@@ -52,7 +52,7 @@ const SoloEarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({
   const selectRandomFocus = () => {
     let done = false;
     while (!done) {
-      let focus = localizedFocus(
+      const focus = localizedFocus(
         FocusRandomTable(character.upbringingStep?.discipline),
       );
       if (character.focuses.indexOf(focus) < 0) {

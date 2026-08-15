@@ -49,7 +49,7 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({
 
   const renderTalentsSection = () => {
     if (character.stereotype !== Stereotype.SoloCharacter) {
-      let talents: RankedTalent[] = [];
+      const talents: RankedTalent[] = [];
       talents.push(
         ...TalentsHelper.getAllAvailableTalentsForCharacter(character)
           .filter((t) =>

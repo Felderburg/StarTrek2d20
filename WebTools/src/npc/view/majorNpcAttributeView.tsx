@@ -61,7 +61,7 @@ const MajorNpcAttributeView: React.FC<ICharacterProperties> = ({
   };
 
   const setAttribute = (attribute: Attribute, delta: number) => {
-    let attributes = [...character.npcGenerationStep?.attributes];
+    const attributes = [...character.npcGenerationStep?.attributes];
     attributes[attribute] = attributes[attribute] + delta;
     store.dispatch(setNpcCharacterAttributes(attributes));
   };

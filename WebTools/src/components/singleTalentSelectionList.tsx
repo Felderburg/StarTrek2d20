@@ -133,7 +133,7 @@ const XSelectionView: React.FC<IXSelectedTalentChoiceProperties> = ({
   const [x, setX] = useState<number | undefined>(selection.x);
 
   const assignX = (x: number) => {
-    let temp = selection?.copy();
+    const temp = selection?.copy();
     if (temp) {
       temp.x = x;
     }
@@ -172,7 +172,7 @@ export const DepartmentSelectedTalentChoice: React.FC<
       character={construct as Character}
       isChecked={(d) => selection.department === d}
       onSelectDepartment={(d) => {
-        let temp = selection?.copy();
+        const temp = selection?.copy();
         if (temp) {
           temp.department = d;
         }
@@ -182,7 +182,7 @@ export const DepartmentSelectedTalentChoice: React.FC<
         if (d === selection.department) {
           return true;
         } else {
-          let departments = (construct as Character).talents
+          const departments = (construct as Character).talents
             .filter(
               (t) => talentNames?.includes(t.talent) && t.department != null,
             )
@@ -202,7 +202,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
 }) => {
   let prerequisites = undefined;
   talent.talentModel.prerequisites.forEach((p) => {
-    let desc = p.describe();
+    const desc = p.describe();
     if (desc) {
       if (prerequisites == null) {
         prerequisites = desc;
@@ -224,7 +224,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
   };
 
   const specialWeaponOptions = () => {
-    let result = [];
+    const result = [];
     result.push(new DropDownElement('', t('Common.select.choose')));
     result.push(new DropDownElement(SpecialWeapon.BatLeth, "Bat'leth"));
     result.push(new DropDownElement(SpecialWeapon.MekLeth, "Mek'leth"));
@@ -257,7 +257,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             character={construct as Character}
             isChecked={(a) => selection.department === a}
             onSelectDepartment={(d) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.department = d;
               }
@@ -269,7 +269,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
               } else if (d === selection.department) {
                 return true;
               } else {
-                let departments = (construct as Character).talents
+                const departments = (construct as Character).talents
                   .filter(
                     (t) =>
                       t.talent === TALENT_NAME_IM_A_DOCTOR_NOT_A &&
@@ -293,7 +293,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             character={construct as Character}
             isChecked={(a) => selection.attribute === a}
             onSelectAttribute={(a) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.attribute = a;
               }
@@ -303,7 +303,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
               if (a === selection.attribute) {
                 return true;
               } else {
-                let attributes = (construct as Character).talents
+                const attributes = (construct as Character).talents
                   .filter(
                     (t) =>
                       t.talent === TALENT_NAME_AUGMENTED_ABILITY &&
@@ -343,7 +343,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             character={construct as Character}
             isChecked={(a) => selection.attribute === a}
             onSelectAttribute={(a) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.attribute = a;
               }
@@ -379,7 +379,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             starship={construct as Starship}
             isChecked={(d) => selection.department === d}
             onSelectDepartment={(d) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.department = d;
               }
@@ -400,7 +400,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             starship={starship}
             isChecked={(d) => selection.department === d}
             onSelectDepartment={(d) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.department = d;
               }
@@ -422,7 +422,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             starship={starship}
             isChecked={(s) => selection.system === s}
             onSelectSystem={(s) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.system = s;
               }
@@ -444,7 +444,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
               id="customName"
               value={selection.customTalentName}
               onChange={(n) => {
-                let temp = selection?.copy();
+                const temp = selection?.copy();
                 if (temp) {
                   temp.customTalentName = n;
                 }
@@ -459,8 +459,8 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
               value={selection.customTalentDescription}
               placeholder={t('Common.text.description')}
               onChange={(e) => {
-                let description = e.target.value;
-                let temp = selection?.copy();
+                const description = e.target.value;
+                const temp = selection?.copy();
                 if (temp) {
                   temp.customTalentDescription = description;
                 }
@@ -475,7 +475,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
 
   const renderAdditionalPropulsionSystem = () => {
     const getItems = () => {
-      let result = [new DropDownElement('', '')];
+      const result = [new DropDownElement('', '')];
       result.push(
         ...PropulsionSystemModel.types.map(
           (t) => new DropDownElement(t.type, t.localizedName),
@@ -491,7 +491,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             items={getItems()}
             defaultValue={selection.selection as PropulsionSystemType}
             onChange={(s) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 if (s === '') {
                   temp.selection = undefined;
@@ -522,7 +522,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
     };
 
     const showModal = () => {
-      let starship = construct as Starship;
+      const starship = construct as Starship;
       let mode =
         starship.version === 1
           ? AddWeaponMode.IncludeMines
@@ -539,7 +539,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
           onClose={() => closeModal()}
           version={construct.version}
           addWeapon={(w) => {
-            let temp = selection?.copy();
+            const temp = selection?.copy();
             if (temp) {
               temp.weapon = w;
               onSelection(temp);
@@ -573,7 +573,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             character={construct as Character}
             isChecked={(d) => selection.department === d}
             onSelectDepartment={(d) => {
-              let temp = selection?.copy();
+              const temp = selection?.copy();
               if (temp) {
                 temp.department = d;
               }
@@ -583,7 +583,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
               if (d === selection.department) {
                 return true;
               } else {
-                let departments = (construct as Character).talents
+                const departments = (construct as Character).talents
                   .filter(
                     (t) =>
                       [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(
@@ -601,7 +601,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
   };
 
   const renderDefensiveTrainingSelection = () => {
-    let options = [];
+    const options = [];
     options.push(new DropDownElement('', t('Common.select.choose')));
     options.push(
       new DropDownElement(AttackType.Melee, t('Weapon.common.melee')),
@@ -614,7 +614,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
         items={options}
         defaultValue={selection?.selection ?? ''}
         onChange={(value) => {
-          let temp = selection?.copy();
+          const temp = selection?.copy();
           if (temp) {
             temp.selection = value as AttackType;
           }
@@ -636,7 +636,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             <CheckBox
               isChecked={selection.implants.includes(implant.type)}
               onChanged={(val) => {
-                let temp = selection.copy();
+                const temp = selection.copy();
                 if (temp.implants?.includes(implant.type)) {
                   temp.implants.splice(temp.implants.indexOf(implant.type), 1);
                 } else {
@@ -692,7 +692,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             <FocusSelectionView
               value={selection.focuses[0] ?? ''}
               addFocus={(f) => {
-                let temp = selection?.copy();
+                const temp = selection?.copy();
                 if (temp) {
                   if (temp.focuses?.length) {
                     temp.focuses[0] = f;
@@ -707,19 +707,19 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
             <ValueInput
               value={selection.value ?? ''}
               onValueChanged={(v) => {
-                let temp = selection?.copy();
+                const temp = selection?.copy();
                 if (temp) {
                   temp.value = v;
                 }
                 onSelection(temp);
               }}
               onRandomClicked={() => {
-                let value = randomUniqueValue(
+                const value = randomUniqueValue(
                   (construct as Character).values ?? [],
                   (construct as Character).speciesStep?.species,
                   (construct as Character).educationStep?.primaryDiscipline,
                 );
-                let temp = selection?.copy();
+                const temp = selection?.copy();
                 if (temp) {
                   temp.value = value;
                 }
@@ -741,7 +741,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
               label={t('Construct.other.focus1')}
               value={selection.focuses[0] ?? ''}
               addFocus={(f) => {
-                let temp = selection?.copy();
+                const temp = selection?.copy();
                 if (temp) {
                   if (temp.focuses?.length) {
                     temp.focuses[0] = f;
@@ -757,7 +757,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
               label={t('Construct.other.focus2')}
               value={selection.focuses[1] ?? ''}
               addFocus={(f) => {
-                let temp = selection?.copy();
+                const temp = selection?.copy();
                 if (temp) {
                   if (!temp.focuses?.length) {
                     temp.focuses = ['', f];
@@ -813,7 +813,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
               items={specialWeaponOptions()}
               defaultValue={selection?.selection ?? ''}
               onChange={(value) => {
-                let temp = selection?.copy();
+                const temp = selection?.copy();
                 if (temp) {
                   temp.selection = value as SpecialWeapon;
                 }
@@ -833,7 +833,7 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
                 <FocusSelectionView
                   character={construct as Character}
                   addFocus={(f) => {
-                    let temp = selection?.copy();
+                    const temp = selection?.copy();
                     if (temp) {
                       temp.focuses = [f];
                     }

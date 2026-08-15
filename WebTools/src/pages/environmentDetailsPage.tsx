@@ -136,7 +136,7 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({
   const { t } = useTranslation();
 
   const distinctValues = (attributes: Attribute[]) => {
-    let result = [];
+    const result = [];
     attributes.forEach((a) => {
       if (!result.includes(a)) {
         result.push(a);
@@ -151,11 +151,11 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({
   );
   let attributes = environment.attributes;
   if (environment.id === Environment.Homeworld) {
-    let speciesType = character.speciesStep?.species;
+    const speciesType = character.speciesStep?.species;
     if (speciesType === Species.Custom) {
       attributes = AttributesHelper.getAllAttributes();
     } else {
-      let species = SpeciesHelper.getSpeciesByType(
+      const species = SpeciesHelper.getSpeciesByType(
         character.speciesStep?.species,
       );
       attributes = species.attributes;
@@ -164,7 +164,7 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({
     environment.id === Environment.AnotherSpeciesWorld &&
     character.environmentStep?.otherSpecies != null
   ) {
-    let species = SpeciesHelper.getSpeciesByType(
+    const species = SpeciesHelper.getSpeciesByType(
       character.environmentStep?.otherSpecies,
     );
     attributes = species?.attributes;
@@ -200,7 +200,7 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({
   };
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.environmentStep?.discipline,
@@ -215,7 +215,7 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({
     );
   };
 
-  let speciesList = SpeciesHelper.getCaptainsLogSpecies()
+  const speciesList = SpeciesHelper.getCaptainsLogSpecies()
     .filter((s) => s.id !== character.speciesStep?.species)
     .map((s) => new DropDownElement(s.id, s.localizedName));
   speciesList.unshift(new DropDownElement('', t('Common.text.select')));

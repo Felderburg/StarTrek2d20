@@ -278,12 +278,12 @@ export class Picard25thCenturyUniformPack
   }
 
   getRankIndicator(token: TokenModel): string {
-    let result = super.getRankIndicator(token);
+    const result = super.getRankIndicator(token);
     return result.replace(/#fbb03b/g, '#fddfb1');
   }
 
   getRankBorderIndicator(token: TokenModel): string {
-    let result = super.getRankBorderIndicator(token);
+    const result = super.getRankBorderIndicator(token);
     return result.replace(/#fbb03b/g, '#fddfb1');
   }
 }

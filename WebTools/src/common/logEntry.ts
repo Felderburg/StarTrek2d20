@@ -27,7 +27,7 @@ export class ValueUseTypeModel {
   }
 
   static findTypeByTypeName(typeName: string) {
-    let result = this.types.filter((t) => ValueUseType[t.type] === typeName);
+    const result = this.types.filter((t) => ValueUseType[t.type] === typeName);
     return result?.length ? result[0].type : undefined;
   }
 }
@@ -74,7 +74,7 @@ export class LogEntry {
   }
 
   copy() {
-    let result = new LogEntry(this.id);
+    const result = new LogEntry(this.id);
     result.adventureTitle = this.adventureTitle;
     result.missionDescription = this.missionDescription;
     result.notes = this.notes;

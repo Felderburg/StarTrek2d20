@@ -129,7 +129,7 @@ export class SpaderCard {
     if (asset.name == null || asset.name.length === 0) {
       return 'spader-card.pdf';
     } else {
-      var escaped = asset.name
+      const escaped = asset.name
         .replace(/\\/g, '_')
         .replace(/\//g, '_')
         .replace(/\s/g, '_');

@@ -4199,18 +4199,18 @@ class _Species {
   };
 
   getAllSpecies() {
-    let result = [];
-    for (let archetype in this._species) {
-      let spec = this._species[archetype];
+    const result = [];
+    for (const archetype in this._species) {
+      const spec = this._species[archetype];
       result.push(spec);
     }
     return result;
   }
 
   getSpecies(characterType: CharacterType) {
-    let species: SpeciesModel[] = [];
-    for (let archetype in this._species) {
-      let spec = this._species[archetype];
+    const species: SpeciesModel[] = [];
+    for (const archetype in this._species) {
+      const spec = this._species[archetype];
 
       const hasEra =
         spec.eras.indexOf(store.getState().context.era) > -1 ||
@@ -4233,14 +4233,14 @@ class _Species {
     character: Character,
   ) {
     if (isKlingonWarriorType(type)) {
-      var species: SpeciesModel[] = [];
+      const species: SpeciesModel[] = [];
 
-      var klingonSpecies =
+      const klingonSpecies =
         store.getState().context.era === Era.NextGeneration
           ? [Species.Klingon]
           : [Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E];
-      for (let archetype of klingonSpecies) {
-        let spec = this._species[archetype];
+      for (const archetype of klingonSpecies) {
+        const spec = this._species[archetype];
         const hasSource = hasAnySource(spec.sources);
 
         if (hasSource && !this.ignoreSpecies(archetype)) {
@@ -4256,16 +4256,16 @@ class _Species {
       Character.isSpeciesListLimited(character) &&
       character.typeDetails != null
     ) {
-      let alliedMilitary = (character.typeDetails as AlliedMilitaryDetails)
+      const alliedMilitary = (character.typeDetails as AlliedMilitaryDetails)
         .alliedMilitary;
-      let species = alliedMilitary.species
+      const species = alliedMilitary.species
         .map((s) => this._species[s])
         .filter((s) => hasAnySource(s.sources) && !this.ignoreSpecies(s.id));
       return species.sort((a, b) => {
         return a.localizedName.localeCompare(b.localizedName);
       });
     } else {
-      let candidates = this.getSpecies(character.type);
+      const candidates = this.getSpecies(character.type);
       return excludeSpeciesBasedOnOtherSpecies
         ? candidates.filter((s) => s.isMixedSpeciesAllowed)
         : candidates;
@@ -4273,13 +4273,13 @@ class _Species {
   }
 
   getSpeciesByType(species: Species): SpeciesModel {
-    let model = this._species[species];
+    const model = this._species[species];
     return model;
   }
 
   getSpeciesByName(name: string) {
-    for (var sp in this._species) {
-      var spec = this._species[sp];
+    for (const sp in this._species) {
+      const spec = this._species[sp];
 
       if (spec.name === name) {
         return spec.id;
@@ -4290,9 +4290,9 @@ class _Species {
 
   getSpeciesTypeByName(name: string): Species {
     let result = undefined;
-    for (let species in this._species) {
+    for (const species in this._species) {
       if (name === Species[species]) {
-        let speciesModel = this._species[species];
+        const speciesModel = this._species[species];
         result = speciesModel.id;
         break;
       }
@@ -4316,7 +4316,7 @@ class _Species {
     ) {
       return Species.Klingon;
     } else if (isKlingonWarriorType(characterType)) {
-      let roll = Math.floor(Math.random() * 20) + 1;
+      const roll = Math.floor(Math.random() * 20) + 1;
       // it doesn't appear that there are any real rules for this.
       if (hasSource(Source.SpeciesSourcebook)) {
         return roll <= 5 ? Species.KlingonQuchHa_2E : Species.Klingon;
@@ -4324,7 +4324,7 @@ class _Species {
         return roll <= 5 ? Species.KlingonQuchHa : Species.Klingon;
       }
     } else {
-      let roll = Math.floor(Math.random() * 20) + 1;
+      const roll = Math.floor(Math.random() * 20) + 1;
       let species = Species.Human;
 
       switch (store.getState().context.era) {
@@ -4513,8 +4513,8 @@ class _Species {
   }
 
   generateFromAlphaQuadrantTable(): Species {
-    var roll = Math.floor(Math.random() * 20) + 1;
-    var species = Species.Human;
+    const roll = Math.floor(Math.random() * 20) + 1;
+    let species = Species.Human;
 
     switch (store.getState().context.era) {
       case Era.Enterprise: {
@@ -4635,8 +4635,8 @@ class _Species {
   }
 
   generateFromBetaQuadrantTable(): Species {
-    var roll = Math.floor(Math.random() * 20) + 1;
-    var species = Species.Human;
+    const roll = Math.floor(Math.random() * 20) + 1;
+    let species = Species.Human;
 
     switch (store.getState().context.era) {
       case Era.Enterprise: {
@@ -4755,20 +4755,20 @@ class _Species {
   }
 
   generateRandomSpeciesForQuadrant(source: Source): Species | null {
-    let quadrantSpecies = this.getSpecies(CharacterType.Starfleet).filter(
+    const quadrantSpecies = this.getSpecies(CharacterType.Starfleet).filter(
       (s) => s.sources.indexOf(source) >= 0,
     );
     if (quadrantSpecies.length === 0) {
       return null;
     } else {
-      let roll = Math.floor(Math.random() * quadrantSpecies.length);
+      const roll = Math.floor(Math.random() * quadrantSpecies.length);
       return quadrantSpecies[roll].id;
     }
   }
 
   getCaptainsLogSpecies() {
-    let result: SpeciesModel[] = [];
-    for (let id in this._species) {
+    const result: SpeciesModel[] = [];
+    for (const id in this._species) {
       const species = this._species[id];
       if (species.sources.indexOf(Source.CaptainsLog) >= 0) {
         result.push(species);

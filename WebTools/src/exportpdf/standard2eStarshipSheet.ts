@@ -159,7 +159,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
   populateForm(page: PDFPage, form: PDFForm, starship: Starship) {
     form.getFields().forEach((f) => {
       if (f instanceof PDFTextField) {
-        let textField = f as PDFTextField;
+        const textField = f as PDFTextField;
         if (
           textField.isMultiline() &&
           (textField.getText() == null || textField.getText().length === 0)
@@ -256,7 +256,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
       new XYLocation(233, 316.9),
       new XYLocation(242.6, 316.9),
     ].forEach((c, i) => {
-      let checkbox = form.createCheckBox('Breach ' + (i + 1));
+      const checkbox = form.createCheckBox('Breach ' + (i + 1));
       checkbox.addToPage(page, {
         x: c.x + 1,
         y: page.getHeight() - c.y - (height - 0.5),
@@ -432,8 +432,8 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
     column: Column,
     colour: SimpleColor,
   ) {
-    let talents = assembleStarshipTalents(starship, false);
-    let writer = new TalentWriter(
+    const talents = assembleStarshipTalents(starship, false);
+    const writer = new TalentWriter(
       page,
       this.fonts,
       starship.version,
@@ -449,8 +449,8 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
     column: Column,
     colour: SimpleColor,
   ) {
-    let talents = assembleStarshipTalents(starship, true);
-    let writer = new TalentWriter(
+    const talents = assembleStarshipTalents(starship, true);
+    const writer = new TalentWriter(
       page,
       this.fonts,
       starship.version,
@@ -483,12 +483,12 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
       text += '...';
     }
 
-    let block = TextBlock.create(
+    const block = TextBlock.create(
       text,
       new FontSpecification(this.headingFont, fontSize),
       false,
     );
-    let y = column.end.y - 1 - (column.height - block.height) / 2;
+    const y = column.end.y - 1 - (column.height - block.height) / 2;
 
     page.drawText(text, {
       x: column.start.x,
@@ -556,8 +556,8 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
     starship: Starship,
     colour: SimpleColor = blueColour2e,
   ) {
-    let form = pdf.getForm();
-    let { height, width } = this.pillSize;
+    const form = pdf.getForm();
+    const { height, width } = this.pillSize;
     this.shieldPillLocations.forEach((pill, i) => {
       if (i >= starship.shields) {
         page.moveTo(pill.x, page.getHeight() - pill.y);
@@ -567,7 +567,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
           borderWidth: 1,
         });
       } else {
-        let checkbox = form.createCheckBox('Shield ' + (i + 1));
+        const checkbox = form.createCheckBox('Shield ' + (i + 1));
         checkbox.addToPage(page, {
           x: pill.x + (width - 9.5) / 2,
           y: page.getHeight() - pill.y - (height - 3),
@@ -584,7 +584,7 @@ export class Standard2eStarshipSheet extends BasicGeneratedSheet {
     const describer = new WeaponDescriber(construct.version, true);
 
     if (construct instanceof Starship) {
-      let attacks = construct
+      const attacks = construct
         .determineWeapons()
         .map(
           (w) =>

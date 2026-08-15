@@ -91,8 +91,8 @@ class SourceViewModel {
   }
 
   get localizedName() {
-    let key = makeKey('Source.book.', Source[this.id]);
-    let result = i18n.t(key);
+    const key = makeKey('Source.book.', Source[this.id]);
+    const result = i18n.t(key);
     return result === key ? this.name : result;
   }
 }
@@ -294,9 +294,9 @@ class Sources {
   };
 
   getSources() {
-    let sources: SourceViewModel[] = [];
-    for (let source in this._sources) {
-      let src = this._sources[source];
+    const sources: SourceViewModel[] = [];
+    for (const source in this._sources) {
+      const src = this._sources[source];
       sources.push(src);
     }
     return sources;

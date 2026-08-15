@@ -52,7 +52,7 @@ const SoloStarshipFinalPage: React.FC<ISoloStarshipFinalProperties> = ({
           setLoadingExport(false);
 
           setTimeout(() => {
-            let s = store.getState().starship?.starship;
+            const s = store.getState().starship?.starship;
             CharacterSheetDialog.show(
               CharacterSheetRegistry.getStarshipSheets(s),
               'sta-solo-starship',
@@ -123,7 +123,7 @@ const SoloStarshipFinalPage: React.FC<ISoloStarshipFinalProperties> = ({
               store.dispatch(setStarshipTraits(ev.target.value))
             }
             onBlur={(ev) => {
-              let temp = ev.target.value.replace(/\n/g, ', ');
+              const temp = ev.target.value.replace(/\n/g, ', ');
               store.dispatch(setStarshipTraits(temp));
             }}
             value={starship.traits}

@@ -117,7 +117,7 @@ export class CharacterTypeModel {
   }
 
   public static getCharacterTypeByTypeName(name: String) {
-    let matches = CharacterTypeModel.TYPES.filter(
+    const matches = CharacterTypeModel.TYPES.filter(
       (t) => CharacterType[t.type] === name,
     );
     return matches.length === 0 ? undefined : matches[0];

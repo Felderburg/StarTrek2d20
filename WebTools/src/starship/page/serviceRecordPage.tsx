@@ -143,7 +143,7 @@ const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({
     );
   };
 
-  let serviceRecords = ServiceRecordList.instance.records
+  const serviceRecords = ServiceRecordList.instance.records
     .filter((r) => hasSource(r.source))
     .filter((r) => r.starshipType == null || r.starshipType === starship.type);
   serviceRecords.sort((r1, r2) => {

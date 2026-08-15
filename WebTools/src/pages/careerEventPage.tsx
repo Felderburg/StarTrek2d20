@@ -39,7 +39,7 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({
   character,
   context,
 }) => {
-  let existingEvent =
+  const existingEvent =
     context === StepContext.CareerEvent1
       ? character.careerEvents[0]
       : character.careerEvents[1];

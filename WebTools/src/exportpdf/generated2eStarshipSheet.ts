@@ -104,7 +104,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     previousParagraph: Paragraph,
     colour: SimpleColor,
   ) {
-    let resistanceParagraph = previousParagraph.nextParagraph(1);
+    const resistanceParagraph = previousParagraph.nextParagraph(1);
     resistanceParagraph.append(
       i18next.t('Construct.other.resistance').toLocaleUpperCase() + ': ',
       new FontSpecification(this.boldFont, 9),
@@ -126,7 +126,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       new FontSpecification(this.textFont, 9),
     );
 
-    let crewParagraph = previousParagraph.nextParagraph(1);
+    const crewParagraph = previousParagraph.nextParagraph(1);
     crewParagraph.append(
       i18next.t('Construct.other.crewSupport').toLocaleUpperCase() + ': ',
       new FontSpecification(this.boldFont, 9),
@@ -147,15 +147,16 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
         30 <
         previousParagraph.column.width
     ) {
-      let availableMiddleSpace =
+      const availableMiddleSpace =
         previousParagraph.column.width -
         resistanceParagraph.lines[0].width -
         crewParagraph.lines[0].width;
-      let centreX =
+      const centreX =
         resistanceParagraph.lines[0].width +
         availableMiddleSpace / 2 -
         scaleParagraph.lines[0].width / 2;
-      let endX = previousParagraph.column.width - crewParagraph.lines[0].width;
+      const endX =
+        previousParagraph.column.width - crewParagraph.lines[0].width;
 
       resistanceParagraph.write();
 
@@ -189,7 +190,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       );
       scaleParagraph.write();
 
-      let crewParagraph = scaleParagraph.nextParagraph(0);
+      const crewParagraph = scaleParagraph.nextParagraph(0);
       crewParagraph.append(
         i18next.t('Construct.other.crewSupport').toLocaleUpperCase() + ': ',
         new FontSpecification(this.boldFont, 9),
@@ -232,7 +233,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
 
-    let starship = construct as Starship;
+    const starship = construct as Starship;
     let page = pdf.getPage(0);
 
     const colour = this.deriveSheetColour(construct);
@@ -283,14 +284,14 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       starship.spaceframeModel?.serviceYear != null &&
       starship.serviceYear != null
     ) {
-      let yearsOfService = i18next.t('Construct.other.yearsOfService', {
+      const yearsOfService = i18next.t('Construct.other.yearsOfService', {
         count: Math.max(
           0,
           starship.serviceYear - starship.spaceframeModel.serviceYear,
         ),
         interpolation: { escapeValue: false },
       });
-      let numberOfRefits = i18next.t('Construct.other.numberOfRefits', {
+      const numberOfRefits = i18next.t('Construct.other.numberOfRefits', {
         count: starship.numberOfRefits,
         interpolation: { escapeValue: false },
       });
@@ -346,14 +347,14 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     paragraph.append(starship.getAllTraits(), new FontOptions(9));
     paragraph.write();
 
-    let bottom = this.writeThreeColumnDerivedStats(
+    const bottom = this.writeThreeColumnDerivedStats(
       page,
       starship,
       paragraph,
       colour,
     );
 
-    let statFontSize = this.determineFontSizeForWidth(
+    const statFontSize = this.determineFontSizeForWidth(
       this.determineAllStatLabels(starship),
       72.2 * 0.8 - 2,
     );
@@ -364,7 +365,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       new Column(bottom.x, bottom.y + 16, 13, column.width),
     );
 
-    let systemsBoxes = new XYLocation(bottom.x, bottom.y + 16 + 13 + 4);
+    const systemsBoxes = new XYLocation(bottom.x, bottom.y + 16 + 13 + 4);
     // these sheets use an unusual order
     [
       System.Comms,
@@ -374,11 +375,11 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       System.Sensors,
       System.Weapons,
     ].forEach((s, i) => {
-      let location = new XYLocation(
+      const location = new XYLocation(
         systemsBoxes.x + (i % 3) * 77.9,
         systemsBoxes.y + Math.floor(i / 3) * 15.4,
       );
-      let x = location.x;
+      const x = location.x;
       const y = page.getHeight() - location.y;
       page.moveTo(x, y);
       page.drawSvgPath(Generated2eStarshipSheet.starshipStatFrame, {
@@ -386,7 +387,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
         borderWidth: 0.5,
       });
 
-      let column = new Column(x, location.y, 11.8, 72.2 * 0.8);
+      const column = new Column(x, location.y, 11.8, 72.2 * 0.8);
       this.writeLabel(
         page,
         i18next.t(makeKey('Construct.system.', System[s])),
@@ -414,7 +415,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
         column.width,
       ),
     );
-    let departmentBoxes = new XYLocation(
+    const departmentBoxes = new XYLocation(
       systemsBoxes.x,
       systemsBoxes.y + 15.4 * 2 + 16 + 13 + 4,
     );
@@ -428,11 +429,11 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       Department.Security,
       Department.Science,
     ].forEach((d, i) => {
-      let location = new XYLocation(
+      const location = new XYLocation(
         departmentBoxes.x + (i % 3) * 77.9,
         departmentBoxes.y + Math.floor(i / 3) * 15.4,
       );
-      let x = location.x;
+      const x = location.x;
       const y = page.getHeight() - location.y;
       page.moveTo(x, y);
       page.drawSvgPath(Generated2eStarshipSheet.starshipStatFrame, {
@@ -440,7 +441,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
         borderWidth: 0.5,
       });
 
-      let column = new Column(x, location.y, 11.8, 72.2 * 0.8);
+      const column = new Column(x, location.y, 11.8, 72.2 * 0.8);
       const key = makeKey('Construct.department.', Department[d]);
       this.writeLabel(
         page,
@@ -459,7 +460,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       );
     });
 
-    let attacksArea = new XYLocation(
+    const attacksArea = new XYLocation(
       departmentBoxes.x,
       departmentBoxes.y + 15.4 * 2 + 16,
     );
@@ -482,7 +483,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       remainingColumn.bottomAfter(16).topBefore(13),
     );
     remainingColumn = remainingColumn.bottomAfter(16 + 13 + 4);
-    let bottomOfShields = this.writeShieldsBoxes(
+    const bottomOfShields = this.writeShieldsBoxes(
       page,
       pdf.getForm(),
       starship,
@@ -498,7 +499,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
       remainingColumn,
     );
 
-    let talentsColumn = remainingColumn.bottomAfter(13 + 4);
+    const talentsColumn = remainingColumn.bottomAfter(13 + 4);
 
     let finalColumn = await this.writeTalents(
       page,
@@ -509,7 +510,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
 
     if (this.hasSpecialRules(starship) && finalColumn) {
       if (finalColumn.height <= 50 && finalColumn.isNextColumnAvailable) {
-        let newColumn = finalColumn.advanceToNextColumn(page);
+        const newColumn = finalColumn.advanceToNextColumn(page);
         page = newColumn.page;
         finalColumn = newColumn.column;
       } else {
@@ -672,7 +673,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     starship: Starship,
     column: Column,
   ) {
-    let stressBox =
+    const stressBox =
       'm 1,0 h 7.5 c 0.554,0 1,0.446 1,1 v 7.5 c 0,0.554 -0.446,1 -1,1 H 1 C 0.446,9.5 0,9.054 0,8.5 V 1 C 0,0.446 0.446,0 1,0 Z';
 
     let x = column.translatedStart(page).x;
@@ -698,7 +699,7 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
         borderWidth: borderWidth,
       });
 
-      let checkbox = form.createCheckBox('Shield ' + (i + 1));
+      const checkbox = form.createCheckBox('Shield ' + (i + 1));
       checkbox.addToPage(page, {
         x: x + 0.5,
         y: y - 9,
@@ -729,8 +730,8 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     column: Column,
     colour: SimpleColor,
   ) {
-    let talents = assembleStarshipTalents(starship, false);
-    let writer = new TalentWriter(
+    const talents = assembleStarshipTalents(starship, false);
+    const writer = new TalentWriter(
       page,
       this.fonts,
       starship.version,
@@ -748,8 +749,8 @@ export class Generated2eStarshipSheet extends BaseNonForm2eSheet {
     column: Column,
     colour: SimpleColor,
   ) {
-    let talents = assembleStarshipTalents(starship, true);
-    let writer = new TalentWriter(
+    const talents = assembleStarshipTalents(starship, true);
+    const writer = new TalentWriter(
       page,
       this.fonts,
       starship.version,

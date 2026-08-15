@@ -2,11 +2,11 @@ const replaceDiceWithArrowhead = (description: string) => {
   if (description.indexOf('[D]') < 0) {
     return <span>{description}</span>;
   } else {
-    let parts = [];
+    const parts = [];
     while (description.indexOf('[D]') >= 0) {
-      let index = description.indexOf('[D]');
+      const index = description.indexOf('[D]');
       if (index > 0) {
-        let part = description.substring(0, index);
+        const part = description.substring(0, index);
         parts.push(part);
       }
       parts.push('[D]');
@@ -15,7 +15,7 @@ const replaceDiceWithArrowhead = (description: string) => {
     if (description.length > 0) {
       parts.push(description);
     }
-    let content = parts.map((p, i) =>
+    const content = parts.map((p, i) =>
       p === '[D]' ? (
         <span className="delta" key={'part' + i}>
           {p}

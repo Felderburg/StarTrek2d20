@@ -52,12 +52,12 @@ export class CreatureTypeHelper {
   }
 
   getTypeById(id: CreatureType) {
-    let items = this.items.filter((h) => h.id === id);
+    const items = this.items.filter((h) => h.id === id);
     return items?.length ? items[0] : undefined;
   }
 
   getTypeByIdName(name: string) {
-    let items = this.items.filter((h) => CreatureType[h.id] === name);
+    const items = this.items.filter((h) => CreatureType[h.id] === name);
     return items?.length ? items[0] : undefined;
   }
 }

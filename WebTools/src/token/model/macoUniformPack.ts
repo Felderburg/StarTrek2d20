@@ -493,7 +493,7 @@ export class MacoUniformPack extends BaseNeckProvider implements IUniformPack {
     if (token.rankIndicator === Rank.None) {
       return '';
     } else {
-      let rank = this.getRankBorderIndicator(token);
+      const rank = this.getRankBorderIndicator(token);
       if (token.bodyType === BodyType.AverageFemale) {
         return (
           MacoUniforms.averageFemaleRankBelowShadow +

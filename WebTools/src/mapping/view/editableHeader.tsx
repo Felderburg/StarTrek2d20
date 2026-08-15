@@ -77,7 +77,7 @@ export class EditableHeader extends React.Component<
   }
 
   toggleEditMode() {
-    let editMode = !this.state.editMode;
+    const editMode = !this.state.editMode;
     if (editMode) {
       this.setState((state) => ({
         ...state,

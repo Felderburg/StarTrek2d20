@@ -24,7 +24,9 @@ const ExtraSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
   };
 
   const addExtra = (extraType: ExtraType, category: ExtraCategory) => {
-    let current = token.extras.filter((e) => getExtraCategory(e) !== category);
+    const current = token.extras.filter(
+      (e) => getExtraCategory(e) !== category,
+    );
     if (extraType !== ExtraType.None) {
       current.push(extraType);
     }

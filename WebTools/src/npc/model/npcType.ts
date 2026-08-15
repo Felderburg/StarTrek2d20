@@ -43,11 +43,11 @@ export class NpcTypes {
     } else if (simple) {
       return [10, 10, 9, 9, 9, 9];
     } else {
-      let result = [7, 7, 7, 7, 7, 7];
+      const result = [7, 7, 7, 7, 7, 7];
       for (let i = 0; i < 14; i++) {
         let done = false;
         while (!done) {
-          let attr = Math.floor(Math.random() * 6);
+          const attr = Math.floor(Math.random() * 6);
           if (result[attr] < 12) {
             result[attr] = result[attr] + 1;
             done = true;
@@ -79,11 +79,11 @@ export class NpcTypes {
     } else if (simple) {
       return [3, 3, 3, 3, 2, 2];
     } else {
-      let result = [1, 1, 1, 1, 1, 1];
+      const result = [1, 1, 1, 1, 1, 1];
       for (let i = 0; i < 10; i++) {
         let done = false;
         while (!done) {
-          let disc = Math.floor(Math.random() * 6);
+          const disc = Math.floor(Math.random() * 6);
           if (result[disc] < 5) {
             result[disc] = result[disc] + 1;
             done = true;
@@ -101,7 +101,7 @@ export class NpcTypes {
     } else if (type === NpcType.Notable) {
       return D20.roll() >= 10 ? 2 : 3;
     } else {
-      let distribution = [
+      const distribution = [
         3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6,
       ];
       return distribution[D20.roll() - 1];
@@ -129,7 +129,7 @@ export class NpcTypes {
   }
 
   static getNpcTypeByName(name: string) {
-    let all = [
+    const all = [
       NpcType[NpcType.Minor],
       NpcType[NpcType.Notable],
       NpcType[NpcType.Major],

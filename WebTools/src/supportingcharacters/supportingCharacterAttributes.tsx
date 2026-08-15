@@ -43,8 +43,8 @@ const SupportingCharacterAttributes: React.FC<ICharacterProperties> = ({
   };
 
   const swapAttributeValues = (from: Attribute, to: Attribute) => {
-    let attributeList = [...character.supportingStep?.attributes];
-    let newList = attributeList.map((d) => {
+    const attributeList = [...character.supportingStep?.attributes];
+    const newList = attributeList.map((d) => {
       if (d === from) {
         return to;
       } else if (d === to) {

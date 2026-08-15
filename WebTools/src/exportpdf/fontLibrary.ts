@@ -15,7 +15,7 @@ export class FontLibrary {
   }
 
   fontByType(type: FontType) {
-    let result = this.fonts[type];
+    const result = this.fonts[type];
     if (result == null) {
       console.log('Cannot find ' + FontType[type]);
       console.log(Object.keys(this.fonts));

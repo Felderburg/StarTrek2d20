@@ -96,8 +96,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
         TALENT_NAME_EXTRAORDINARY_ATTRIBUTE_X,
       ].includes(talent.name)
     ) {
-      let character = construct as Character;
-      let selectedAttributes = character.talents
+      const character = construct as Character;
+      const selectedAttributes = character.talents
         .filter((s) => s.talent === talent.name && s.attribute != null)
         .map((s) => t(makeKey('Construct.attribute.', Attribute[s.attribute])))
         .join(', ');
@@ -115,8 +115,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
         TALENT_NAME_IM_A_DOCTOR_NOT_A,
       ].includes(talent.name)
     ) {
-      let character = construct as Character;
-      let selectedAttributes = character.talents
+      const character = construct as Character;
+      const selectedAttributes = character.talents
         .filter((s) => s.talent === talent.name && s.department != null)
         .map((s) =>
           t(makeKey('Construct.discipline.', Department[s.department])),
@@ -131,8 +131,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
     } else if (
       [TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM].includes(talent.name)
     ) {
-      let starship = construct as Starship;
-      let propulsion = starship.talents
+      const starship = construct as Starship;
+      const propulsion = starship.talents
         .filter((s) => s.talent === talent.name && s.selection != null)
         .map(
           (s) =>
@@ -142,8 +142,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
         .join(', ');
       return <div className="text-sm px-4">{propulsion}</div>;
     } else if ([TALENT_NAME_EXPANDED_MUNITIONS].includes(talent.name)) {
-      let starship = construct as Starship;
-      let propulsion = starship.talents
+      const starship = construct as Starship;
+      const propulsion = starship.talents
         .filter((s) => s.talent === talent.name && s.weapon != null)
         .map((s) =>
           s.weapon instanceof Weapon
@@ -163,8 +163,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
         TALENT_NAME_EXPANSIVE_DEPARTMENT,
       ].includes(talent.name)
     ) {
-      let starship = construct as Starship;
-      let selectedAttributes = starship.talents
+      const starship = construct as Starship;
+      const selectedAttributes = starship.talents
         .filter((s) => s.talent === talent.name && s.department != null)
         .map((s) =>
           t(makeKey('Construct.department.', Department[s.department])),
@@ -177,8 +177,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
         </div>
       );
     } else if ([TALENT_NAME_REDUNDANT_SYSTEMS].includes(talent.name)) {
-      let starship = construct as Starship;
-      let selectedAttributes = starship.talents
+      const starship = construct as Starship;
+      const selectedAttributes = starship.talents
         .filter((s) => s.talent === talent.name && s.system != null)
         .map((s) => t(makeKey('Construct.system.', System[s.system])))
         .join(', ');
@@ -195,8 +195,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
         'Upgraded Systems (Service Record)',
       ].includes(talent.name)
     ) {
-      let starship = construct as Starship;
-      let selectedAttributes = starship.talents
+      const starship = construct as Starship;
+      const selectedAttributes = starship.talents
         .filter((s) => s.talent === talent.name && s.system != null)
         .map((s) => t(makeKey('Construct.system.', System[s.system])))
         .join(', ');
@@ -213,8 +213,8 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
 
   const renderStarshipTalents = (construct: Station | Starship) => {
     const talents = construct?.rankedTalents.map((selectedTalent, i) => {
-      let t = selectedTalent.talentModel;
-      let name = selectedTalent.displayNameWithMultiple;
+      const t = selectedTalent.talentModel;
+      const name = selectedTalent.displayNameWithMultiple;
       let description = undefined;
       if (selectedTalent.isCustom) {
         description = selectedTalent.customTalentDescription;
@@ -252,14 +252,14 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
     const specialRules = construct
       ?.getDistinctTalentNameList()
       .map((tName, i) => {
-        let t = TalentsHelper.getTalent(tName);
+        const t = TalentsHelper.getTalent(tName);
         let name = t.localizedName;
-        let starship = construct as Starship;
-        let qualifier = starship.getQualifierForTalent(tName);
+        const starship = construct as Starship;
+        const qualifier = starship.getQualifierForTalent(tName);
         if (qualifier?.length) {
           name += ' [' + qualifier + ']';
         }
-        let talentName =
+        const talentName =
           name +
           (t.maxRank > 1
             ? ' [x' + construct.getRankForTalent(t.name) + ']'
@@ -326,11 +326,11 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
         </Header>
         {(construct as Character)?.rankedTalents.map((s, i) => {
           let x = undefined;
-          let t = s.talentModel;
+          const t = s.talentModel;
           if (t.isXQualified) {
             x = s.x;
           }
-          let talentName = s.displayNameWithMultiple;
+          const talentName = s.displayNameWithMultiple;
           return (
             <div
               className="text-white view-border-bottom py-2"

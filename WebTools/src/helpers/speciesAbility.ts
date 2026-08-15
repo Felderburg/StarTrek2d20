@@ -28,12 +28,16 @@ export class SpeciesAbility {
   }
 
   get name() {
-    let key = makeKey('SpeciesAbility.', Species[this.species]);
+    const key = makeKey('SpeciesAbility.', Species[this.species]);
     return i18next.t(key);
   }
 
   get description() {
-    let key = makeKey('SpeciesAbility.', Species[this.species], '.description');
+    const key = makeKey(
+      'SpeciesAbility.',
+      Species[this.species],
+      '.description',
+    );
     return i18next.t(key);
   }
 
@@ -56,7 +60,7 @@ export class SpeciesAbility {
   }
 
   public getChoiceName(choice: SpeciesAbilityChoice) {
-    let key = makeKey(
+    const key = makeKey(
       'SpeciesAbility.',
       Species[this.species],
       '.',
@@ -66,7 +70,7 @@ export class SpeciesAbility {
   }
 
   public getChoiceDescription(choice: SpeciesAbilityChoice) {
-    let key = makeKey(
+    const key = makeKey(
       'SpeciesAbility.',
       Species[this.species],
       '.',

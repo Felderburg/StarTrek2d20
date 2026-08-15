@@ -200,7 +200,7 @@ export class RoleModel {
   }
 
   get isKlingon() {
-    let prerequisites = this.prerequisites.filter(
+    const prerequisites = this.prerequisites.filter(
       (p) => p instanceof KlingonCharacterPrerequisite,
     );
     return prerequisites.length > 0;
@@ -900,10 +900,10 @@ export class RolesHelper {
   ];
 
   getRoles(character: Character) {
-    var departments = this.determineHighestDiscipline(character);
-    var roles: RoleModel[] = [];
-    var list = this._roles;
-    for (var r of list) {
+    const departments = this.determineHighestDiscipline(character);
+    const roles: RoleModel[] = [];
+    const list = this._roles;
+    for (const r of list) {
       if (r.isPrerequisitesFilled(character)) {
         if (
           character.hasTalent('Multi-Discipline') &&
@@ -915,7 +915,7 @@ export class RolesHelper {
       }
     }
 
-    let temp = roles.sort((a, b) => {
+    const temp = roles.sort((a, b) => {
       if (a.department == null && b.department == null) {
         return a.id - b.id;
       } else if (
@@ -949,8 +949,8 @@ export class RolesHelper {
   }
 
   getRoleModelByName(role: string, type: CharacterType) {
-    var list = this._roles;
-    for (var r of list) {
+    const list = this._roles;
+    for (const r of list) {
       if (r.name === role) {
         return r;
       }
@@ -960,13 +960,13 @@ export class RolesHelper {
   }
 
   getRole(role: Role, characterType: CharacterType) {
-    let roles = this._roles.filter((r) => r.id === role);
+    const roles = this._roles.filter((r) => r.id === role);
     if (roles.length === 0) {
       return undefined;
     } else if (roles.length === 1) {
       return roles[0];
     } else {
-      let typeRoles = roles.filter(
+      const typeRoles = roles.filter(
         (r) =>
           (r.isKlingonRole() && isKlingonWarriorType(characterType)) ||
           (!r.isKlingonRole() && !isKlingonWarriorType(characterType)),
@@ -992,8 +992,8 @@ export class RolesHelper {
   }
 
   getRoleByName(role: string): Role {
-    var list = this._roles;
-    for (var r of list) {
+    const list = this._roles;
+    for (const r of list) {
       if (r.name === role) {
         return r.id;
       }
@@ -1003,8 +1003,8 @@ export class RolesHelper {
   }
 
   getRoleByTypeName(role: string) {
-    var list = this._roles;
-    for (var r of list) {
+    const list = this._roles;
+    for (const r of list) {
       if (Role[r.id] === role) {
         return r.id;
       }
@@ -1014,7 +1014,7 @@ export class RolesHelper {
   }
 
   private determineHighestDiscipline(character: Character) {
-    let departments = character.departments;
+    const departments = character.departments;
     let maxDepartment = [];
     let maxDepartmentValue = 0;
     DepartmentsHelper.instance.getDepartments().forEach((s) => {

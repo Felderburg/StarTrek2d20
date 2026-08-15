@@ -199,7 +199,7 @@ class Marshaller {
   }
 
   encodeStation(station: Station) {
-    let sheet = {
+    const sheet = {
       stereotype: 'station',
       type: CharacterType[station.type],
       era: Era[station.era],
@@ -208,7 +208,7 @@ class Marshaller {
     };
 
     if (station.missionProfileStep?.type) {
-      let temp = {
+      const temp = {
         name: MissionProfile[station.missionProfileStep?.type],
       };
 
@@ -257,7 +257,7 @@ class Marshaller {
   }
 
   encodeCreature(creature: Creature) {
-    let sheet = {
+    const sheet = {
       stereotype: 'creature',
       type: CharacterType[creature.type],
       era: Era[creature.era],
@@ -301,7 +301,7 @@ class Marshaller {
 
     if (creature.locomotion?.length) {
       sheet['locomotion'] = creature.locomotion.map((l) => {
-        let result = {
+        const result = {
           type: LocomotionType[l.type.id],
         };
         if (l.count != null) {
@@ -343,7 +343,7 @@ class Marshaller {
   }
 
   encodeAsset(asset: Asset) {
-    let sheet = {
+    const sheet = {
       stereotype: 'asset',
       type: AssetType[asset.type],
       name: asset.name,
@@ -376,7 +376,7 @@ class Marshaller {
     stereotype: string,
     character: Character,
   ) {
-    let sheet = {
+    const sheet = {
       stereotype: stereotype,
       type: CharacterType[character.type],
       era: Era[character.era],
@@ -447,7 +447,7 @@ class Marshaller {
       };
     }
 
-    let additionalTraits = this.parseTraits(character.additionalTraits);
+    const additionalTraits = this.parseTraits(character.additionalTraits);
     if (additionalTraits?.length) {
       sheet['traits'] = additionalTraits;
     }
@@ -457,12 +457,12 @@ class Marshaller {
 
     if (character.stereotype === Stereotype.Npc) {
       if (character.npcGenerationStep) {
-        let block = {};
+        const block = {};
         if (character.npcGenerationStep.values.length) {
           block['values'] = character.values;
         }
 
-        let talents = this.toTalentList(character.npcGenerationStep.talents);
+        const talents = this.toTalentList(character.npcGenerationStep.talents);
         if (talents?.length) {
           block['talents'] = talents;
         }
@@ -528,7 +528,7 @@ class Marshaller {
 
   encodeToken(tokenConfig: TokenConfig) {
     if (tokenConfig?.token) {
-      let token = {
+      const token = {
         primarySpecies: Species[tokenConfig.token.primarySpecies],
         speciesOption: SpeciesOption[tokenConfig.token.speciesOption],
         uniformEra: UniformEra[tokenConfig.token.uniformEra],
@@ -574,8 +574,8 @@ class Marshaller {
   }
 
   decodeToken(json: any) {
-    let tokenJson = json['token'];
-    let token = TokenModel.createDefault();
+    const tokenJson = json['token'];
+    const token = TokenModel.createDefault();
     token.primarySpecies = SpeciesHelper.getSpeciesTypeByName(
       tokenJson['primarySpecies'],
     );
@@ -649,8 +649,8 @@ class Marshaller {
 
   encodeStarshipImprovements(starship: Starship) {
     if (starship.advancementSteps?.length) {
-      let json = starship.advancementSteps?.map((i) => {
-        let result = { type: 'advancement' };
+      const json = starship.advancementSteps?.map((i) => {
+        const result = { type: 'advancement' };
         result['choice'] = StarshipAdvancementChoice[i.choice];
         if (i.choice === StarshipAdvancementChoice.Department) {
           result['value'] = Department[i.value as Department];
@@ -680,9 +680,9 @@ class Marshaller {
   }
 
   decodeLogEntry(j: any): LogEntry {
-    let id = j.id;
+    const id = j.id;
 
-    let entry = new LogEntry(id);
+    const entry = new LogEntry(id);
     entry.adventureTitle = j.adventureTitle;
     entry.missionDescription = j.missionDescription;
     entry.notes = j.notes;
@@ -692,9 +692,9 @@ class Marshaller {
     }
     if (j.valuesUsed) {
       entry.valuesUsed = j.valuesUsed.map((json) => {
-        let value = json.value;
-        let newValue = json.newValue;
-        let type = ValueUseTypeModel.findTypeByTypeName(json.useType);
+        const value = json.value;
+        const newValue = json.newValue;
+        const type = ValueUseTypeModel.findTypeByTypeName(json.useType);
         return new LogValueEntry(value, type, newValue);
       });
     }
@@ -725,9 +725,9 @@ class Marshaller {
 
   encodeImprovements(character: Character) {
     if (character.improvements?.length) {
-      let json = character.improvements?.map((i) => {
+      const json = character.improvements?.map((i) => {
         if (i instanceof CharacterAdvancementStep) {
-          let result = { type: 'advancement' };
+          const result = { type: 'advancement' };
           result['choice'] = CharacterAdvancementChoice[i.choice];
           if (
             i.choice === CharacterAdvancementChoice.Focus ||
@@ -763,7 +763,7 @@ class Marshaller {
           }
           return result;
         } else if (i instanceof Promotion) {
-          let result = { type: 'promotion' };
+          const result = { type: 'promotion' };
           result['rank'] = {
             name: i.rank.name,
             id: i.rank.id,
@@ -771,7 +771,7 @@ class Marshaller {
           result['modificationType'] = ModificationType[i.type];
           return result;
         } else if (i instanceof ReputationChangeStep) {
-          let result = { type: 'reputation' };
+          const result = { type: 'reputation' };
           result['reputation'] = i.reputation;
           return result;
         } else if (i instanceof LogEntry) {
@@ -804,8 +804,8 @@ class Marshaller {
       character.typeDetails != null &&
       character.typeDetails instanceof AlliedMilitaryDetails
     ) {
-      let typeDetails = character.typeDetails as AlliedMilitaryDetails;
-      let details = {
+      const typeDetails = character.typeDetails as AlliedMilitaryDetails;
+      const details = {
         type: AlliedMilitaryType[typeDetails.alliedMilitary.type],
         typeName: typeDetails.alliedMilitary.name,
         name: typeDetails.name,
@@ -816,8 +816,8 @@ class Marshaller {
       character.typeDetails != null &&
       character.typeDetails instanceof GovernmentDetails
     ) {
-      let typeDetails = character.typeDetails as GovernmentDetails;
-      let details = {
+      const typeDetails = character.typeDetails as GovernmentDetails;
+      const details = {
         type: Polity[typeDetails.government.type],
         typeName: typeDetails.government.name,
         name: typeDetails.name,
@@ -828,8 +828,8 @@ class Marshaller {
       character.typeDetails != null &&
       character.typeDetails instanceof OtherDetails
     ) {
-      let typeDetails = character.typeDetails as OtherDetails;
-      let details = {
+      const typeDetails = character.typeDetails as OtherDetails;
+      const details = {
         name: typeDetails.name,
       };
       return details;
@@ -839,7 +839,7 @@ class Marshaller {
   }
 
   private encodeFullCharacterAsJson(character: Character, stereotype: string) {
-    let sheet = {
+    const sheet = {
       stereotype: stereotype,
       type: CharacterType[character.type],
       era: Era[character.era],
@@ -848,7 +848,7 @@ class Marshaller {
     };
 
     if (character.upbringingStep) {
-      let upbringing = {
+      const upbringing = {
         id: EarlyOutlook[character.upbringingStep.upbringing?.id],
         accepted: character.upbringingStep.acceptedUpbringing,
       };
@@ -909,7 +909,7 @@ class Marshaller {
 
     if (character.careerEvents) {
       sheet['careerEvents'] = character.careerEvents.map((c) => {
-        let e = { id: c.id };
+        const e = { id: c.id };
         if (c.focus) {
           e['focus'] = c.focus;
         }
@@ -938,7 +938,7 @@ class Marshaller {
     }
 
     if (character.educationStep != null) {
-      let education = {};
+      const education = {};
       if (character.educationStep?.track != null) {
         education['track'] = Track[character.educationStep.track];
       }
@@ -984,13 +984,13 @@ class Marshaller {
       sheet['training'] = education;
     }
 
-    let additionalTraits = this.parseTraits(character.additionalTraits);
+    const additionalTraits = this.parseTraits(character.additionalTraits);
     if (additionalTraits?.length) {
       sheet['traits'] = additionalTraits;
     }
 
     if (character.environmentStep != null) {
-      let environment = {
+      const environment = {
         id: Environment[character.environmentStep.environment],
       };
       if (character.environmentStep.otherSpecies != null) {
@@ -1047,7 +1047,7 @@ class Marshaller {
       sheet['house'] = character.house;
     }
     if (character.role != null) {
-      let role = { id: Role[character.role] };
+      const role = { id: Role[character.role] };
       if (character.secondaryRole != null) {
         role['secondaryId'] = Role[character.secondaryRole];
       }
@@ -1062,7 +1062,7 @@ class Marshaller {
   }
 
   toSpeciesJson(character: Character) {
-    let json = { primary: Species[character.speciesStep.species] };
+    const json = { primary: Species[character.speciesStep.species] };
 
     if (
       character.speciesStep.customSpeciesName &&
@@ -1087,7 +1087,7 @@ class Marshaller {
     }
 
     if (character.speciesStep.abilityOptions) {
-      let options = {};
+      const options = {};
       if (character.speciesStep.abilityOptions.focuses?.length) {
         options['focuses'] = [...character.speciesStep.abilityOptions.focuses];
       }
@@ -1114,12 +1114,12 @@ class Marshaller {
   }
 
   toTalentList(talents: SelectedTalent[]) {
-    let result = talents.map((t) => this.talentToJson(t));
+    const result = talents.map((t) => this.talentToJson(t));
     return result;
   }
 
   talentToJson(t: SelectedTalent) {
-    let talent = { name: t.talent };
+    const talent = { name: t.talent };
 
     if (t.isCustom) {
       talent['customTalentName'] = t.customTalentName;
@@ -1184,7 +1184,7 @@ class Marshaller {
   }
 
   toAttributeObject(attributes: number[]) {
-    let result = {};
+    const result = {};
     AttributesHelper.getAllAttributes().forEach((a) => {
       result[Attribute[a]] = attributes[a];
     });
@@ -1192,7 +1192,7 @@ class Marshaller {
   }
 
   getDepartmentByNameObject(departments: number[]) {
-    let result = {};
+    const result = {};
     DepartmentsHelper.instance
       .getDepartments()
       .forEach((d) => (result[Department[d]] = departments[d]));
@@ -1200,7 +1200,7 @@ class Marshaller {
   }
 
   toDepartmentObject(departments: number[]) {
-    let result = {};
+    const result = {};
     DepartmentsHelper.instance
       .getDepartments()
       .forEach((d) => (result[Department[d]] = departments[d]));
@@ -1208,7 +1208,7 @@ class Marshaller {
   }
 
   toSystemsObject(systems: number[]) {
-    let result = {};
+    const result = {};
     allSystems().forEach((s) => (result[System[s]] = systems[s]));
     return result;
   }
@@ -1233,7 +1233,7 @@ class Marshaller {
   }
 
   encodeStarship(starship: Starship) {
-    let sheet = {
+    const sheet = {
       stereotype: this.encodeStarshipStereoType(starship.stereotype),
       type: CharacterType[starship.type],
       era: Era[starship.era],
@@ -1287,7 +1287,7 @@ class Marshaller {
       }
     }
     if (starship.missionProfileStep?.type) {
-      let temp = {
+      const temp = {
         name: MissionProfile[starship.missionProfileStep?.type?.id],
       };
       if (starship.missionProfileStep.system != null) {
@@ -1391,16 +1391,16 @@ class Marshaller {
     if (loadType == null) {
       return null;
     } else if (loadType instanceof EnergyLoadTypeModel) {
-      let temp = loadType as EnergyLoadTypeModel;
+      const temp = loadType as EnergyLoadTypeModel;
       return EnergyLoadType[temp.type];
     } else if (loadType instanceof TorpedoLoadTypeModel) {
-      let temp = loadType as TorpedoLoadTypeModel;
+      const temp = loadType as TorpedoLoadTypeModel;
       return TorpedoLoadType[temp.type];
     } else if (loadType instanceof CaptureTypeModel) {
-      let temp = loadType as CaptureTypeModel;
+      const temp = loadType as CaptureTypeModel;
       return CaptureType[temp.type];
     } else if (loadType instanceof MineTypeModel) {
-      let temp = loadType as MineTypeModel;
+      const temp = loadType as MineTypeModel;
       return MineType[temp.type];
     } else {
       return null;
@@ -1408,17 +1408,17 @@ class Marshaller {
   }
 
   encode(json: any) {
-    let text = JSON.stringify(json);
-    let encoded = pako.deflate(new TextEncoder().encode(text));
-    let result = Base64.fromUint8Array(encoded, true);
+    const text = JSON.stringify(json);
+    const encoded = pako.deflate(new TextEncoder().encode(text));
+    const result = Base64.fromUint8Array(encoded, true);
     return result;
   }
 
   decode(s: string) {
     if (s) {
       try {
-        let encoded = Base64.toUint8Array(s);
-        let text = new TextDecoder().decode(pako.inflate(encoded));
+        const encoded = Base64.toUint8Array(s);
+        const text = new TextDecoder().decode(pako.inflate(encoded));
         return JSON.parse(text);
       } catch (e) {
         return undefined;
@@ -1429,24 +1429,24 @@ class Marshaller {
   }
 
   decodeAsset(s: string): Asset {
-    let json = this.decode(s);
+    const json = this.decode(s);
     let type = null;
     [AssetType.Character, AssetType.Ship, AssetType.Resource].forEach((a) => {
       if (AssetType[a] === json.type) {
         type = a;
       }
     });
-    let name = json.name;
-    let stats = [null, null, null, null, null];
+    const name = json.name;
+    const stats = [null, null, null, null, null];
     if (json.stats) {
       allAssetStatTypes().forEach((a) => {
-        let statName = AssetStatType[a];
-        let s = json.stats[statName];
+        const statName = AssetStatType[a];
+        const s = json.stats[statName];
         if (s === '-') {
           stats[a] = new AssetStat();
         } else if (s?.length && s?.indexOf('/') >= 0) {
-          let base = parseInt(s.substring(0, s.indexOf('/')));
-          let critical = parseInt(s.substring(s.indexOf('/') + 1));
+          const base = parseInt(s.substring(0, s.indexOf('/')));
+          const critical = parseInt(s.substring(s.indexOf('/') + 1));
 
           stats[a] = new AssetStat(base, critical);
         }
@@ -1476,7 +1476,7 @@ class Marshaller {
   }
 
   decodeStation(json: any): Station {
-    let result = new Station();
+    const result = new Station();
     if (json.version) {
       result.version = json.version;
     }
@@ -1488,7 +1488,7 @@ class Marshaller {
     result.name = json.name;
 
     if (json['missionProfile']) {
-      let profile = MissionProfiles.instance.getStationMissionProfileByName(
+      const profile = MissionProfiles.instance.getStationMissionProfileByName(
         json['missionProfile']['name'],
       );
       if (profile != null) {
@@ -1504,9 +1504,9 @@ class Marshaller {
     }
 
     if (json['frame']) {
-      let frame: any = json['frame'];
+      const frame: any = json['frame'];
       if (frame['type'] === 'Custom') {
-        let step = new CustomStationSpaceframeStep();
+        const step = new CustomStationSpaceframeStep();
         allSystems().forEach(
           (s) => (step.systems[s] = frame.systems[System[s]]),
         );
@@ -1525,8 +1525,8 @@ class Marshaller {
         }
         result.stationFrameStep = step;
       } else {
-        let type = frame['type'];
-        let profile = StationFrameModel.getByIdName(type);
+        const type = frame['type'];
+        const profile = StationFrameModel.getByIdName(type);
         if (profile) {
           result.stationFrameStep = new StandardStationSpaceframeStep(
             profile.id,
@@ -1555,8 +1555,8 @@ class Marshaller {
   }
 
   decodeStarship(s: string) {
-    let json = this.decode(s);
-    let result = new Starship();
+    const json = this.decode(s);
+    const result = new Starship();
     if (json.version) {
       result.version = json.version;
     }
@@ -1567,7 +1567,7 @@ class Marshaller {
       result.stereotype = Stereotype.SimpleStarship;
     }
     if (json.era) {
-      let era = Eras.instance.getEraByName(json.era);
+      const era = Eras.instance.getEraByName(json.era);
       if (era != null) {
         result.era = era;
       }
@@ -1587,7 +1587,7 @@ class Marshaller {
     });
     if (json.spaceframe) {
       if (json.spaceframe.custom) {
-        let frame = SpaceframeModel.createCustomSpaceframe(
+        const frame = SpaceframeModel.createCustomSpaceframe(
           result.type,
           json.spaceframe.custom.serviceYear,
         );
@@ -1608,7 +1608,7 @@ class Marshaller {
 
         if (json.spaceframe.custom.talents) {
           json.spaceframe.custom.talents.forEach((t) => {
-            let model = new SelectedTalent(t);
+            const model = new SelectedTalent(t);
             if (model) {
               frame.talents.push(model);
             }
@@ -1627,7 +1627,7 @@ class Marshaller {
         );
         if (json.spaceframe.talents) {
           json.spaceframe.talents.forEach((t) => {
-            let talent = this.hydrateTalent(t, result.version);
+            const talent = this.hydrateTalent(t, result.version);
             if (talent != null) {
               result.spaceframeStep.talents.push(talent);
             }
@@ -1656,7 +1656,7 @@ class Marshaller {
       }
 
       if (json.missionProfile.talent) {
-        let talent = this.hydrateTalent(
+        const talent = this.hydrateTalent(
           json.missionProfile.talent,
           result.version,
         );
@@ -1677,7 +1677,7 @@ class Marshaller {
       }
     }
     if (json.serviceRecord) {
-      let types = allServiceRecords().filter(
+      const types = allServiceRecords().filter(
         (t) => ServiceRecord[t] === json.serviceRecord.type,
       );
       if (types.length === 1) {
@@ -1747,10 +1747,10 @@ class Marshaller {
 
     if (json.talentDetails) {
       json.talentDetails.forEach((detail) => {
-        let w = detail.weapon;
-        let weapon = this.decodeWeapon(w, result.version);
+        const w = detail.weapon;
+        const weapon = this.decodeWeapon(w, result.version);
 
-        let talent = result.additionalTalents.filter(
+        const talent = result.additionalTalents.filter(
           (t) => t.name === TALENT_NAME_EXPANDED_MUNITIONS && t.weapon == null,
         );
         if (talent?.length) {
@@ -1771,8 +1771,8 @@ class Marshaller {
       if (UsageCategory[c] === json['usageCategory']) usageCategory = c;
     });
 
-    let name = json['name'];
-    let baseDice = json['baseDice'];
+    const name = json['name'];
+    const baseDice = json['baseDice'];
 
     let weaponType = null;
     [
@@ -1832,7 +1832,7 @@ class Marshaller {
   }
 
   decodeCreature(json: any) {
-    let result = new Creature();
+    const result = new Creature();
     result.stereotype = Stereotype.Creature;
     if (json.name?.length) {
       result.name = json.name;
@@ -1843,7 +1843,7 @@ class Marshaller {
     }
 
     if (json.era) {
-      let era = Eras.instance.getEraByName(json.era);
+      const era = Eras.instance.getEraByName(json.era);
       if (era != null) {
         result.era = era;
       }
@@ -1878,7 +1878,7 @@ class Marshaller {
 
     if (json.locomotion) {
       result.locomotion = json.locomotion.map((l) => {
-        let type = LocomotionTypeHelper.instance.getTypeByIdName(l.type);
+        const type = LocomotionTypeHelper.instance.getTypeByIdName(l.type);
         let count = undefined;
         if (l.count != null) {
           count = l.count;
@@ -1889,7 +1889,7 @@ class Marshaller {
 
     if (json.talents) {
       json.talents.forEach((t) => {
-        let talent = this.hydrateTalent(t, result.version);
+        const talent = this.hydrateTalent(t, result.version);
         if (talent != null) {
           result.additionalTalents.push(talent);
         }
@@ -1922,7 +1922,7 @@ class Marshaller {
   }
 
   decodeCharacter(json: any) {
-    let result = new Character();
+    const result = new Character();
     if (json['stereotype'] === 'npc') {
       result.stereotype = Stereotype.Npc;
     } else if (json['stereotype'] === 'supportingCharacter') {
@@ -1930,19 +1930,19 @@ class Marshaller {
     } else if (json['stereotype'] === 'soloCharacter') {
       result.stereotype = Stereotype.SoloCharacter;
     }
-    let type = CharacterTypeModel.getCharacterTypeByTypeName(json.type);
+    const type = CharacterTypeModel.getCharacterTypeByTypeName(json.type);
     if (type) {
       result.type = type.type;
     }
     if (json.era) {
-      let era = Eras.instance.getEraByName(json.era);
+      const era = Eras.instance.getEraByName(json.era);
       if (era != null) {
         result.era = era;
       }
     }
     result.name = json.name;
     result.additionalTraits = json.traits ? json.traits.join(', ') : '';
-    let rank = json.rank;
+    const rank = json.rank;
     if (rank) {
       if (typeof rank === 'string') {
         result._rank = new CharacterRank(rank as string);
@@ -1981,25 +1981,25 @@ class Marshaller {
     }
 
     if (json.role != null) {
-      let role = json.role;
+      const role = json.role;
       if (typeof role === 'string') {
-        let roleType = RolesHelper.instance.getRoleByName(role);
+        const roleType = RolesHelper.instance.getRoleByName(role);
         if (roleType != null) {
           result.role = roleType;
         } else {
           result.jobAssignment = role;
         }
       } else {
-        let roleId = role['id'];
+        const roleId = role['id'];
         if (roleId != null) {
-          let r = RolesHelper.instance.getRoleByTypeName(roleId, result.type);
+          const r = RolesHelper.instance.getRoleByTypeName(roleId, result.type);
           if (r != null) {
             result.role = r;
           }
         }
         if (role['secondaryId'] != null) {
-          let secondaryId = role['secondaryId'];
-          let r = RolesHelper.instance.getRoleByTypeName(
+          const secondaryId = role['secondaryId'];
+          const r = RolesHelper.instance.getRoleByTypeName(
             secondaryId,
             result.type,
           );
@@ -2017,7 +2017,7 @@ class Marshaller {
         if (typeof e === 'number') {
           return new CareerEventStep(e);
         } else {
-          let step = new CareerEventStep(e['id']);
+          const step = new CareerEventStep(e['id']);
           if (e['attribute']) {
             step.attribute = AttributesHelper.getAttributeByName(
               e['attribute'],
@@ -2049,7 +2049,7 @@ class Marshaller {
       result.pastime = [...json.pastime];
     }
     if (json.age) {
-      let age = AgeHelper.getAge(json.age);
+      const age = AgeHelper.getAge(json.age);
       if (age) {
         result.age = age;
       }
@@ -2057,9 +2057,9 @@ class Marshaller {
     if (json.species != null) {
       if (typeof json.species === 'string') {
         // backward compatibility
-        let speciesCode = SpeciesHelper.getSpeciesTypeByName(json.species);
+        const speciesCode = SpeciesHelper.getSpeciesTypeByName(json.species);
 
-        let species = SpeciesHelper.getSpeciesByType(speciesCode);
+        const species = SpeciesHelper.getSpeciesByType(speciesCode);
         if (species != null) {
           result.speciesStep = new SpeciesStep(speciesCode);
 
@@ -2069,7 +2069,7 @@ class Marshaller {
           }
 
           if (json.mixedSpecies != null) {
-            let speciesCode = SpeciesHelper.getSpeciesTypeByName(
+            const speciesCode = SpeciesHelper.getSpeciesTypeByName(
               json.mixedSpecies,
             );
             if (speciesCode != null) {
@@ -2077,7 +2077,7 @@ class Marshaller {
             }
           }
           if (json.originalSpecies != null) {
-            let speciesCode = SpeciesHelper.getSpeciesTypeByName(
+            const speciesCode = SpeciesHelper.getSpeciesTypeByName(
               json.originalSpecies,
             );
             if (speciesCode != null) {
@@ -2086,9 +2086,9 @@ class Marshaller {
           }
         }
       } else {
-        let speciesBlock = json.species;
+        const speciesBlock = json.species;
         if (speciesBlock.primary != null) {
-          let speciesCode = SpeciesHelper.getSpeciesTypeByName(
+          const speciesCode = SpeciesHelper.getSpeciesTypeByName(
             speciesBlock.primary,
           );
 
@@ -2098,7 +2098,7 @@ class Marshaller {
               result.speciesStep.customSpeciesName = speciesBlock.customName;
             }
           } else {
-            let species = SpeciesHelper.getSpeciesByType(speciesCode);
+            const species = SpeciesHelper.getSpeciesByType(speciesCode);
 
             if (species != null) {
               result.speciesStep = new SpeciesStep(speciesCode);
@@ -2120,7 +2120,7 @@ class Marshaller {
           }
 
           if (speciesBlock.mixed != null) {
-            let speciesCode = SpeciesHelper.getSpeciesTypeByName(
+            const speciesCode = SpeciesHelper.getSpeciesTypeByName(
               speciesBlock.mixed,
             );
             if (speciesCode != null) {
@@ -2128,7 +2128,7 @@ class Marshaller {
             }
           }
           if (speciesBlock.original != null) {
-            let speciesCode = SpeciesHelper.getSpeciesTypeByName(
+            const speciesCode = SpeciesHelper.getSpeciesTypeByName(
               speciesBlock.original,
             );
             if (speciesCode != null) {
@@ -2169,7 +2169,7 @@ class Marshaller {
                   .filter((i) => i != null);
             }
             if (speciesBlock.abilityOptions.choice != null) {
-              let choices = Object.keys(SpeciesAbilityChoice)
+              const choices = Object.keys(SpeciesAbilityChoice)
                 .filter((item) => {
                   return !isNaN(Number(item));
                 })
@@ -2187,9 +2187,9 @@ class Marshaller {
       }
     }
     if (json.career) {
-      let temp = json.career;
+      const temp = json.career;
       if (typeof temp === 'string') {
-        let career = CareersHelper.instance.getCareerByTypeName(
+        const career = CareersHelper.instance.getCareerByTypeName(
           temp,
           result.type,
           result.version,
@@ -2200,9 +2200,9 @@ class Marshaller {
           result.careerStep = new CareerStep(career?.id);
         }
       } else {
-        let length = temp.length;
+        const length = temp.length;
         if (length != null) {
-          let career = CareersHelper.instance.getCareerByTypeName(
+          const career = CareersHelper.instance.getCareerByTypeName(
             length,
             result.type,
             result.version,
@@ -2228,8 +2228,8 @@ class Marshaller {
       }
     }
     if (json.training != null) {
-      let trackAsString = json.training.track;
-      let tracks = getAllTracks().filter((t) => Track[t] === trackAsString);
+      const trackAsString = json.training.track;
+      const tracks = getAllTracks().filter((t) => Track[t] === trackAsString);
 
       result.educationStep = new EducationStep(
         tracks.length ? tracks[0] : undefined,
@@ -2270,13 +2270,13 @@ class Marshaller {
         result.educationStep.value = json.training.value;
       }
       if (json.training.talent != null) {
-        let talent = this.hydrateTalent(json.training.talent, result.version);
+        const talent = this.hydrateTalent(json.training.talent, result.version);
         if (talent != null) {
           result.educationStep.talent = talent;
         }
       }
     } else {
-      let rank =
+      const rank =
         result._rank == null
           ? null
           : RanksHelper.instance().getRankByName(result._rank?.name);
@@ -2288,7 +2288,7 @@ class Marshaller {
       }
     }
     if (json.focuses) {
-      let focuses = [...json.focuses];
+      const focuses = [...json.focuses];
       if (result.stereotype === Stereotype.MainCharacter) {
         result.legacyMode = true;
         result._focuses = focuses;
@@ -2306,7 +2306,7 @@ class Marshaller {
     }
     if (json.attributes) {
       AttributesHelper.getAllAttributes().forEach((a) => {
-        let value = json.attributes[Attribute[a]];
+        const value = json.attributes[Attribute[a]];
         if (value != null) {
           result._attributes[a] = value;
         }
@@ -2333,7 +2333,7 @@ class Marshaller {
       }
     }
     if (json.environment) {
-      let environment = EnvironmentsHelper.getEnvironmentByTypeName(
+      const environment = EnvironmentsHelper.getEnvironmentByTypeName(
         json.environment.id,
         result.type,
         result.version,
@@ -2375,11 +2375,11 @@ class Marshaller {
     }
 
     if (json.upbringing) {
-      let upbringing = UpbringingsHelper.getUpbringingByTypeName(
+      const upbringing = UpbringingsHelper.getUpbringingByTypeName(
         json.upbringing.id,
         result.type,
       );
-      let step = new UpbringingStep(upbringing, json.upbringing.accepted);
+      const step = new UpbringingStep(upbringing, json.upbringing.accepted);
       if (json.upbringing.focus) {
         step.focus = json.upbringing.focus;
       }
@@ -2427,7 +2427,7 @@ class Marshaller {
 
     if (json.talents) {
       json.talents.forEach((t) => {
-        let talent = this.hydrateTalent(t, result.version);
+        const talent = this.hydrateTalent(t, result.version);
         if (talent != null) {
           result.addTalent(talent);
         }
@@ -2536,7 +2536,7 @@ class Marshaller {
 
     // backward compatibility
     if (json.implants) {
-      let talent = result.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
+      const talent = result.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
       talent.implants = json.implants
         .map((i) => BorgImplants.instance.getImplantByTypeName(i)?.type)
         .filter((i) => i != null);
@@ -2571,7 +2571,7 @@ class Marshaller {
       return Object.values(json)
         .map((j) => {
           if (j['type'] === 'advancement') {
-            let improvement = new StarshipAdvancementStep();
+            const improvement = new StarshipAdvancementStep();
             allStarshipAdvancementChoices().forEach((c) => {
               if (StarshipAdvancementChoice[c] === j['choice']) {
                 improvement.choice = c;
@@ -2620,7 +2620,7 @@ class Marshaller {
         .map((j) => {
           if (j['type'] === 'supporting') {
             // backward compatibility
-            let improvement = new CharacterAdvancementStep();
+            const improvement = new CharacterAdvancementStep();
             if (j['value'] != null) {
               improvement.value = j['value'];
               improvement.choice = CharacterAdvancementChoice.Value;
@@ -2642,7 +2642,7 @@ class Marshaller {
             }
             return improvement;
           } else if (j['type'] === 'advancement') {
-            let improvement = new CharacterAdvancementStep();
+            const improvement = new CharacterAdvancementStep();
             allCharacterAdvancementChoices().forEach((c) => {
               if (CharacterAdvancementChoice[c] === j['choice']) {
                 improvement.choice = c;
@@ -2785,9 +2785,9 @@ class Marshaller {
     ) {
       talentName = 'Dedicated Personnel';
     }
-    let talent = TalentsHelper.getTalent(talentName);
+    const talent = TalentsHelper.getTalent(talentName);
     if (talent) {
-      let selectedTalent = new SelectedTalent(talent.name);
+      const selectedTalent = new SelectedTalent(talent.name);
 
       if (t.name === 'Augmented Ability (Control)') {
         selectedTalent.attribute = Attribute.Control;

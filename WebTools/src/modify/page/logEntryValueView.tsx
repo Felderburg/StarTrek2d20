@@ -30,12 +30,12 @@ export const LogEntryValueView: React.FC<ILogEntryValueProperties> = ({
   };
 
   const modifyValueUseType = (type: ValueUseType) => {
-    let entry = new LogValueEntry(value.value, type, value.newValue);
+    const entry = new LogValueEntry(value.value, type, value.newValue);
     onChange(entry);
   };
 
   const modifyNewValue = (newValue: string) => {
-    let entry = new LogValueEntry(value.value, value.useType, newValue);
+    const entry = new LogValueEntry(value.value, value.useType, newValue);
     onChange(entry);
   };
 

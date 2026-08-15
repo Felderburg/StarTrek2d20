@@ -8,10 +8,10 @@ const indexOfToken = (text: string, token: string, start: number) => {
 };
 
 export const textTokenizer = (text: string) => {
-  let result = [];
+  const result = [];
   let start = 0;
   while (start < text?.length) {
-    let indices = [];
+    const indices = [];
     indices.push(indexOfToken(text, CHALLENGE_DICE_NOTATION, start));
     indices.push(indexOfToken(text, '_', start));
     indices.push(indexOfToken(text, '**', start));
@@ -28,7 +28,7 @@ export const textTokenizer = (text: string) => {
       }
     });
 
-    let index = indices[0];
+    const index = indices[0];
 
     if (index.index >= start) {
       if (index.index > start) {

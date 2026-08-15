@@ -41,9 +41,9 @@ export const NpcAttributesView: React.FC<ICharacterProperties> = ({
   };
 
   const swapAttributeValues = (from: Attribute, to: Attribute) => {
-    let attributes = [...character.npcGenerationStep?.attributes];
-    let fromValue = attributes[from];
-    let toValue = attributes[to];
+    const attributes = [...character.npcGenerationStep?.attributes];
+    const fromValue = attributes[from];
+    const toValue = attributes[to];
     attributes[from] = toValue;
     attributes[to] = fromValue;
 
@@ -52,7 +52,7 @@ export const NpcAttributesView: React.FC<ICharacterProperties> = ({
   };
 
   const attributes = AttributesHelper.getAllAttributes().map((a, i) => {
-    let val = (character?.npcGenerationStep?.attributes[a] ?? 0) + 7;
+    const val = (character?.npcGenerationStep?.attributes[a] ?? 0) + 7;
     const isChecked = character.speciesStep?.attributes?.includes(a);
 
     return (

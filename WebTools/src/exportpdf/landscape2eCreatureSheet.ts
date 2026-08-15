@@ -62,7 +62,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
 
-    let page = pdf.getPage(0);
+    const page = pdf.getPage(0);
 
     new LandscapeSheetDecorations().drawSheetDecorations(page, tealColour2e);
     this.writeTitle(construct.name, page, tealColour2e);
@@ -200,7 +200,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
       'M 2.835,0 C 1.269,0 0,1.269 0,2.835 V 9 c 0,1.565 1.269,2.835 2.835,2.835 h 60.567 c 1.565,0 2.835,-1.27 2.835,-2.835 V 2.835 C 66.237,1.269 64.967,0 63.402,0 Z';
 
     const rowHeight = 16;
-    let labels = {};
+    const labels = {};
     const width = 74;
     [
       Attribute.Control,
@@ -210,11 +210,11 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
       Attribute.Insight,
       Attribute.Reason,
     ].forEach((a, i) => {
-      let location = new XYLocation(
+      const location = new XYLocation(
         boxes.x + (i % 3) * width,
         boxes.y + Math.floor(i / 3) * rowHeight,
       );
-      let x = location.x;
+      const x = location.x;
       const y = area.page.getHeight() - location.y;
       area.page.moveTo(x, y);
       area.page.drawSvgPath(statFrame, {
@@ -222,7 +222,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
         borderWidth: 0.5,
       });
 
-      let labelColumn = new Column(x + 2, location.y, 11.8, 64.5 * 0.8);
+      const labelColumn = new Column(x + 2, location.y, 11.8, 64.5 * 0.8);
       const key = i18next.t(makeKey('Construct.attribute.', Attribute[a]));
       labels[key] = labelColumn;
 
@@ -260,11 +260,11 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
       Department.Security,
       Department.Science,
     ].forEach((s, i) => {
-      let location = new XYLocation(
+      const location = new XYLocation(
         boxes.x + (i % 3) * width,
         boxes.y + Math.floor(i / 3) * rowHeight,
       );
-      let x = location.x;
+      const x = location.x;
       const y = area.page.getHeight() - location.y;
       area.page.moveTo(x, y);
       area.page.drawSvgPath(statFrame, {
@@ -272,7 +272,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
         borderWidth: 0.5,
       });
 
-      let labelColumn = new Column(x + 2, location.y, 11.8, 64.5 * 0.8);
+      const labelColumn = new Column(x + 2, location.y, 11.8, 64.5 * 0.8);
       const key = makeKey('Construct.discipline.', Department[s]);
       labels[key] = labelColumn;
 
@@ -303,8 +303,8 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
   writeDescription(area: PageArea, creature: Creature): PageArea {
     if (creature.description?.length) {
       let paragraph = new Paragraph(area.page, area.column, this.fonts);
-      let descriptionParagraphs = creature.description.split('\n');
-      let paragraphs = [paragraph];
+      const descriptionParagraphs = creature.description.split('\n');
+      const paragraphs = [paragraph];
       descriptionParagraphs.forEach((p, i) => {
         if (i > 0) {
           paragraph = paragraph?.nextParagraph();
@@ -318,7 +318,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
       paragraphs.forEach((p) => p.write());
 
       if (paragraphs.length) {
-        let last = paragraphs.filter((p) => p.lines?.length).slice(-1)[0];
+        const last = paragraphs.filter((p) => p.lines?.length).slice(-1)[0];
         if (last) {
           area = paragraph.nextArea(area.page).bottomAfter(10);
         }
@@ -352,12 +352,12 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
     const triangle =
       'M 60.232529,54.856579 V 44.842907 l 8.671875,5.009766 z m 0.580078,-1.001953 6.9375,-4.001953 -6.9375,-4.007813 z';
 
-    let widthOfTab = Math.max(146.205, width + 35);
-    let startOffset = 54.966797;
+    const widthOfTab = Math.max(146.205, width + 35);
+    const startOffset = 54.966797;
 
-    let farthestEdge = widthOfTab + startOffset;
-    let circle1 = farthestEdge - (189.83203 - 184.75613);
-    let circle2 = farthestEdge - (189.83203 - 178.49414);
+    const farthestEdge = widthOfTab + startOffset;
+    const circle1 = farthestEdge - (189.83203 - 184.75613);
+    const circle2 = farthestEdge - (189.83203 - 178.49414);
 
     const tab =
       'M 54.966797 40.257812 ' +
@@ -407,7 +407,7 @@ export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
 }
 
 export const assembleCreatureTalents = (creature: Creature) => {
-  let result: (ReadableTalentModel | RoleModel | SpeciesAbilityAndOptions)[] =
+  const result: (ReadableTalentModel | RoleModel | SpeciesAbilityAndOptions)[] =
     [];
 
   creature.talents.forEach((t) => {

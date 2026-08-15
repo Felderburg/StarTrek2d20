@@ -106,7 +106,7 @@ const CareerLengthPage: React.FC<ICharacterProperties> = ({ character }) => {
     instructionKey = 'CareerLength.instruction.civilian';
   }
 
-  let message = character.hasTalent(ADVANCED_TEAM_DYNAMICS) ? (
+  const message = character.hasTalent(ADVANCED_TEAM_DYNAMICS) ? (
     <div className="page-text">{t('CareerSelectionPage.exclusionText')}</div>
   ) : undefined;
 

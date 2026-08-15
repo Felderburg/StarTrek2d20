@@ -47,12 +47,12 @@ export class CreatureSizeHelper {
   }
 
   getTypeById(id: CreatureSize) {
-    let items = this.items.filter((h) => h.id === id);
+    const items = this.items.filter((h) => h.id === id);
     return items?.length ? items[0] : undefined;
   }
 
   getTypeByIdName(name: string) {
-    let items = this.items.filter((h) => CreatureSize[h.id] === name);
+    const items = this.items.filter((h) => CreatureSize[h.id] === name);
     return items?.length ? items[0] : undefined;
   }
 }

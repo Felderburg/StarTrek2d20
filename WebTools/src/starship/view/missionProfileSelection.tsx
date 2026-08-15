@@ -29,7 +29,7 @@ class MissionProfileSelection extends React.Component<
       .getMissionProfiles(this.props.starship)
       .map((m, i) => {
         const talents = m.talents.map((talent, ti) => {
-          let t =
+          const t =
             talent instanceof SelectedTalent
               ? (talent as SelectedTalent).talentModel
               : (talent as TalentModel);

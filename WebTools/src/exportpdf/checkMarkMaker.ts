@@ -20,7 +20,7 @@ export class CheckMarkMaker {
     colour: SimpleColor,
   ) {
     pills.forEach((column) => {
-      let x = column.translatedStart(this.page).x;
+      const x = column.translatedStart(this.page).x;
       const y = column.translatedStart(this.page).y;
 
       this.page.moveTo(x, y);
@@ -34,9 +34,9 @@ export class CheckMarkMaker {
   }
 
   createCheckMarks(pills: Column[], prefix: string = 'Determination ') {
-    let form = this.pdf.getForm();
+    const form = this.pdf.getForm();
     pills.forEach((block, i) => {
-      let checkbox = form.createCheckBox(prefix + (i + 1));
+      const checkbox = form.createCheckBox(prefix + (i + 1));
       checkbox.addToPage(this.page, {
         x: block.start.x + 2,
         y: this.page.getHeight() - block.start.y - (block.height - 1),

@@ -140,7 +140,7 @@ export class LandscapeGeneratedCharacterSheet extends BaseTNGGeneratedCharacterS
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
 
-    let character = construct as Character;
+    const character = construct as Character;
 
     const page = pdf.getPage(0);
 
@@ -191,7 +191,7 @@ export class LandscapeGeneratedCharacterSheet extends BaseTNGGeneratedCharacterS
   }
 
   writeWeaponLabels(page: PDFPage) {
-    let fontSize = this.determineIdealFontWidth(
+    const fontSize = this.determineIdealFontWidth(
       [
         i18next.t('Weapon.common.name').toLocaleUpperCase(),
         i18next.t('Weapon.common.qualities').toLocaleUpperCase(),
@@ -202,9 +202,9 @@ export class LandscapeGeneratedCharacterSheet extends BaseTNGGeneratedCharacterS
       this.headingFont,
     );
 
-    let offset = 460.3 - 414.6;
+    const offset = 460.3 - 414.6;
     for (let i = 0; i < 4; i++) {
-      let block = new Column(32.5, 414.6 + offset * i, 10.1, 38.1);
+      const block = new Column(32.5, 414.6 + offset * i, 10.1, 38.1);
       this.writeLabel(
         page,
         i18next.t('Weapon.common.name').toLocaleUpperCase(),
@@ -215,7 +215,7 @@ export class LandscapeGeneratedCharacterSheet extends BaseTNGGeneratedCharacterS
         true,
       );
 
-      let block2 = new Column(32.5, 434.6 + offset * i, 10.1, 38.1);
+      const block2 = new Column(32.5, 434.6 + offset * i, 10.1, 38.1);
       this.writeLabel(
         page,
         i18next.t('Weapon.common.qualities').toLocaleUpperCase(),

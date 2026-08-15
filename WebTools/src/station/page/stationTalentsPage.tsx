@@ -66,7 +66,7 @@ const StationTalentsPage: React.FC<IStationPageProperties> = ({ station }) => {
       } else {
         let count = 0;
         temp = temp.filter((t) => {
-          let result =
+          const result =
             t.talent !== rankedTalent.name || count + 1 !== rankedTalent.rank;
           if (t.name === rankedTalent.name) {
             count++;
@@ -108,22 +108,22 @@ const StationTalentsPage: React.FC<IStationPageProperties> = ({ station }) => {
   };
 
   const talentList = () => {
-    let talents = station
+    const talents = station
       ? TalentsHelper.getStarshipOrStationTalents(station, true)
       : [];
 
-    let rankedTalents = [];
+    const rankedTalents = [];
     talents.forEach((t) => {
       if (t.maxRank > 1 || isMultiSelectionTalent(t)) {
-        let initialCount =
+        const initialCount =
           station.baseTalents?.filter((s) => s.talent === t.name)?.length ?? 0;
-        let count =
+        const count =
           station.talents?.filter((s) => s.talent === t.name)?.length ?? 0;
         for (let i = initialCount; i < count + 1; i++) {
           rankedTalents.push(new RankedTalent(t, i + 1));
         }
       } else if (!station.hasBaseTalent(t.name)) {
-        let count =
+        const count =
           station.baseTalents?.filter((s) => s.talent === t.name)?.length ?? 0;
         if (count === 0) {
           rankedTalents.push(new RankedTalent(t));

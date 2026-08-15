@@ -9,7 +9,7 @@ export const SelectablePill: React.FC<ISelectablePillProperties> = ({
   name,
   onClick,
 }) => {
-  let [active, setActive] = useState(false);
+  const [active, setActive] = useState(false);
 
   return (
     <button

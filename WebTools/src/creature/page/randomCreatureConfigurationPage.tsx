@@ -38,7 +38,7 @@ const RandomCreatureConfigurationPage: React.FC<
   const [includeDescription, setIncludeDescription] = useState<boolean>(true);
 
   useEffect(() => {
-    let value = window.localStorage.getItem('settings.ai');
+    const value = window.localStorage.getItem('settings.ai');
     setIncludeDescription(value !== 'false');
   }, []);
 
@@ -48,7 +48,7 @@ const RandomCreatureConfigurationPage: React.FC<
   };
 
   const getHabitatTypes = () => {
-    let result = [
+    const result = [
       new DropDownElement('', t('RandomCreatureConfiguration.anyHabitat')),
     ];
     result.push(
@@ -65,7 +65,7 @@ const RandomCreatureConfigurationPage: React.FC<
   };
 
   const getCreatureTypes = () => {
-    let result = [
+    const result = [
       new DropDownElement('', t('RandomCreatureConfiguration.anyCreatureType')),
     ];
     result.push(
@@ -78,7 +78,7 @@ const RandomCreatureConfigurationPage: React.FC<
 
   const createCreature = async () => {
     setLoading(true);
-    let creature = await CreatureGenerator(
+    const creature = await CreatureGenerator(
       era,
       habitat,
       creatureType,

@@ -45,10 +45,10 @@ export const labelWriter = (
   let fontSize = originalFontSize;
 
   Object.keys(locations).forEach((key) => {
-    let block = locations[key];
+    const block = locations[key];
     key = changeLabelForVersion(key, version);
     const originalText = i18next.t(key).toLocaleUpperCase();
-    let text = originalText + suffix;
+    const text = originalText + suffix;
     let width = font.widthOfTextAtSize(text, fontSize);
     while (width > block.width) {
       fontSize -= 0.25;
@@ -60,7 +60,7 @@ export const labelWriter = (
   });
 
   Object.keys(locations).forEach((key) => {
-    let column = locations[key];
+    const column = locations[key];
     key = changeLabelForVersion(key, version);
 
     const originalText = i18next.t(key).toLocaleUpperCase();
@@ -100,7 +100,7 @@ export const simpleLabelWriter = (
   textAlign: TextAlign = TextAlign.Left,
   verticalAlignment: VerticalAlignment = VerticalAlignment.Baseline,
 ) => {
-  let width = font.widthOfTextAtSize(text, fontSize);
+  const width = font.widthOfTextAtSize(text, fontSize);
   let x = column.start.x;
   if (textAlign === TextAlign.Centre) {
     x = column.start.x + (column.width - width) / 2;

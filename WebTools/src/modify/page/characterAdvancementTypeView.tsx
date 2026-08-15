@@ -113,7 +113,7 @@ export const CharacterAdvancementTypeView: React.FC<
   useEffect(() => setChoice(undefined), [type]);
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character?.values ?? [],
       character?.speciesStep?.species,
     );
@@ -121,7 +121,7 @@ export const CharacterAdvancementTypeView: React.FC<
   };
 
   const dropDownChoices = () => {
-    let result = [];
+    const result = [];
     if (character?.rank != null) {
       result.push(new DropDownElement('', ''));
     }
@@ -329,7 +329,7 @@ export const CharacterAdvancementTypeView: React.FC<
   };
 
   const isAttributeIncrementable = (a: Attribute, c: Character) => {
-    let value = c.attributes[a];
+    const value = c.attributes[a];
     if (
       a === removeAttributeSelection &&
       type === CharacterAdvancementType.Adjustment
@@ -352,7 +352,7 @@ export const CharacterAdvancementTypeView: React.FC<
   };
 
   const isDepartmentIncrementable = (d: Department, c: Character) => {
-    let value = c.departments[d];
+    const value = c.departments[d];
     if (
       d === removeDepartmentSelection &&
       type === CharacterAdvancementType.Adjustment
@@ -376,7 +376,7 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <WarriorsSpiritSelectionView
             onSelection={(selection) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.selection = selection as SpecialWeapon;
               setTalentSelection(temp);
             }}
@@ -389,7 +389,7 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <VisitEveryStarSelectionView
             onSelection={(selection) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.focuses = selection == null ? [] : (selection as string[]);
               setTalentSelection(temp);
             }}
@@ -406,7 +406,7 @@ export const CharacterAdvancementTypeView: React.FC<
               id="customName"
               value={talentSelection.customTalentName}
               onChange={(n) => {
-                let temp = talentSelection?.copy();
+                const temp = talentSelection?.copy();
                 if (temp) {
                   temp.customTalentName = n;
                 }
@@ -420,8 +420,8 @@ export const CharacterAdvancementTypeView: React.FC<
               value={talentSelection.customTalentDescription}
               placeholder={t('Common.text.description')}
               onChange={(e) => {
-                let description = e.target.value;
-                let temp = talentSelection?.copy();
+                const description = e.target.value;
+                const temp = talentSelection?.copy();
                 if (temp) {
                   temp.customTalentDescription = description;
                 }
@@ -436,7 +436,7 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <ExpandedProgramSelectionView
             onSelection={(selection) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.focuses = selection == null ? [] : (selection as string[]);
               setTalentSelection(temp);
             }}
@@ -449,7 +449,7 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <BorgImplantsSelectionView
             onSelection={(selection) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.implants = selection;
               setTalentSelection(temp);
             }}
@@ -462,7 +462,7 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <AugmentedAbilitySelectionView
             onAttributeSelection={(a) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.attribute = a;
               setTalentSelection(temp);
             }}
@@ -475,7 +475,7 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <CollaborationDepartmentSelectionView
             onDepartmentSelection={(d) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.department = d;
               setTalentSelection(temp);
             }}
@@ -492,7 +492,7 @@ export const CharacterAdvancementTypeView: React.FC<
             character={character}
             isChecked={(d) => talentSelection.department === d}
             onSelectDepartment={(d) => {
-              let temp = talentSelection?.copy();
+              const temp = talentSelection?.copy();
               if (temp) {
                 temp.department = d;
               }
@@ -504,7 +504,7 @@ export const CharacterAdvancementTypeView: React.FC<
               } else if (d === talentSelection.department) {
                 return true;
               } else {
-                let departments = character.talents
+                const departments = character.talents
                   .filter(
                     (t) =>
                       t.talent === TALENT_NAME_IM_A_DOCTOR_NOT_A &&
@@ -524,7 +524,7 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <BoldOrCautiousDepartmentSelectionView
             onDepartmentSelection={(d) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.department = d;
               setTalentSelection(temp);
             }}
@@ -538,7 +538,7 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <DefensiveTrainingAttackTypeSelectionView
             onSelection={(t) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.selection = t as AttackType;
               setTalentSelection(temp);
             }}
@@ -551,12 +551,12 @@ export const CharacterAdvancementTypeView: React.FC<
         <div className="col-12 col-md-6">
           <WisdomOfYearsSelectionView
             onFocusSelection={(selection) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.focuses = selection == null ? [] : [selection];
               setTalentSelection(temp);
             }}
             onValueSelection={(value) => {
-              let temp = talentSelection.copy();
+              const temp = talentSelection.copy();
               temp.value = value;
               setTalentSelection(temp);
             }}

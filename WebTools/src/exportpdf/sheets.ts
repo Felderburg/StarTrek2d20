@@ -112,7 +112,7 @@ abstract class BasicSheet implements ICharacterSheet {
     if (construct.name == null || construct.name.length === 0) {
       return suffix + '.pdf';
     } else {
-      var escaped = construct.name
+      const escaped = construct.name
         .replace(/\\/g, '_')
         .replace(/\//g, '_')
         .replace(/\s/g, '_');
@@ -121,7 +121,7 @@ abstract class BasicSheet implements ICharacterSheet {
   }
 
   fillWeapons(form: PDFForm, construct: Construct) {
-    var weapons = construct.determineWeapons();
+    const weapons = construct.determineWeapons();
     weapons.forEach((w, i) => {
       this.fillWeapon(form, w, i + 1, construct);
     });
@@ -168,7 +168,7 @@ abstract class BasicSheet implements ICharacterSheet {
 
 abstract class BasicStarshipSheet extends BasicSheet {
   populateForm(form: PDFForm, construct: Construct) {
-    let starship = construct as Starship;
+    const starship = construct as Starship;
     this.fillField(form, 'Name', starship.name);
     if (starship.serviceYear != null) {
       this.fillField(form, 'Service Date', starship.serviceYear.toString());
@@ -189,7 +189,7 @@ abstract class BasicStarshipSheet extends BasicSheet {
       this.fillField(form, 'Mission Profile', missionProfile.localizedName);
     }
 
-    let power = starship.power;
+    const power = starship.power;
     if (power) {
       this.fillField(
         form,
@@ -239,13 +239,13 @@ abstract class BasicStarshipSheet extends BasicSheet {
     }
 
     let i = 1;
-    for (let t of talents) {
+    for (const t of talents) {
       this.fillField(form, 'Talent ' + i, t);
       i++;
     }
 
     i = 1;
-    for (let s of specialRules) {
+    for (const s of specialRules) {
       if (s === 'Mission Pod' && starship.missionPodModel != null) {
         this.fillField(
           form,
@@ -260,13 +260,13 @@ abstract class BasicStarshipSheet extends BasicSheet {
   }
 
   fillShields(form: PDFForm, shields: number) {
-    for (var i = 1; i <= 30; i++) {
+    for (let i = 1; i <= 30; i++) {
       this.fillCheckbox(form, 'Shields ' + i, i > shields);
     }
   }
 
   fillSystems(form: PDFForm, construct: Construct) {
-    let starship = construct as Starship;
+    const starship = construct as Starship;
     this.fillFieldWithNumber(
       form,
       'Engines',
@@ -300,7 +300,7 @@ abstract class BasicStarshipSheet extends BasicSheet {
   }
 
   fillDepartments(form: PDFForm, construct: Construct) {
-    let starship = construct as Starship;
+    const starship = construct as Starship;
     this.fillFieldWithNumber(
       form,
       'Command',
@@ -372,7 +372,7 @@ class CaptainsLogStarshipSheet extends BasicStarshipSheet {
 
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
-    let starship = construct as Starship;
+    const starship = construct as Starship;
 
     const { SheetOutlineOptions, SpaceframeOutline } = await import(
       /* webpackChunkName: 'spaceframeOutline' */ '../helpers/spaceframeOutlineHelper'
@@ -407,7 +407,7 @@ class StandardTngStarshipSheet extends BasicStarshipSheet {
 
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
-    let starship = construct as Starship;
+    const starship = construct as Starship;
 
     const { SheetOutlineOptions, SpaceframeOutline } = await import(
       /* webpackChunkName: 'spaceframeOutline' */ '../helpers/spaceframeOutlineHelper'
@@ -440,7 +440,7 @@ class StandardTosStarshipSheet extends BasicStarshipSheet {
 
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
-    let starship = construct as Starship;
+    const starship = construct as Starship;
 
     const { SheetOutlineOptions, SpaceframeOutline } = await import(
       /* webpackChunkName: 'spaceframeOutline' */ '../helpers/spaceframeOutlineHelper'
@@ -518,13 +518,13 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
   }
 
   populateForm(form: PDFForm, construct: Construct) {
-    let character = construct as Character;
+    const character = construct as Character;
     this.fillName(form, character);
     this.fillField(form, 'Department', this.serializeAssignment(character));
     this.fillField(form, 'Purpose', this.serializeAssignment(character));
     this.fillRank(form, character);
     this.fillSpecies(form, character);
-    let traits = character.baseTraits;
+    const traits = character.baseTraits;
     if (character.additionalTraits) {
       traits.push(character.additionalTraits);
     }
@@ -565,8 +565,8 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
   }
 
   fillStress(form: PDFForm, character: Character) {
-    var stress = character.stress;
-    for (var i = 1; i <= 30; i++) {
+    const stress = character.stress;
+    for (let i = 1; i <= 30; i++) {
       this.fillCheckbox(form, 'Stress ' + i, i > stress);
     }
   }
@@ -652,10 +652,10 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
 
 abstract class BasicFullCharacterSheet extends BasicShortCharacterSheet {
   populateForm(form: PDFForm, construct: Construct) {
-    let character = construct as Character;
+    const character = construct as Character;
     super.populateForm(form, construct);
 
-    let upbringing = character.upbringingStep;
+    const upbringing = character.upbringingStep;
     if (upbringing != null) {
       this.fillUpbringing(form, character);
     }
@@ -699,7 +699,7 @@ abstract class BasicFullCharacterSheet extends BasicShortCharacterSheet {
   fillTalents(form: PDFForm, character: Character) {
     let i = 1;
     character.rankedTalents.forEach((t) => {
-      let talent = t.talentModel;
+      const talent = t.talentModel;
       if (talent && talent.maxRank > 1) {
         this.fillField(form, 'Talent ' + i, t.displayNameWithMultiple);
       } else {
@@ -863,7 +863,7 @@ class KlingonCharacterSheet extends BasicFullCharacterSheet {
   }
 
   formatNameWithoutPronouns(character) {
-    var result = character.name;
+    let result = character.name;
     if (character.lineage) {
       result += ', ' + character.lineage;
     }
@@ -942,10 +942,10 @@ class TwoPageTngCharacterSheet extends BaseTextCharacterSheet {
     // pdf-lib does awful things to empty multi-line fields
     // See: https://github.com/Hopding/pdf-lib/discussions/1196
     const helvetica = await pdf.embedFont(StandardFonts.Helvetica);
-    let form = pdf.getForm();
+    const form = pdf.getForm();
     form.getFields().forEach((f) => {
       if (f instanceof PDFTextField) {
-        let textField = f as PDFTextField;
+        const textField = f as PDFTextField;
         if (
           textField.isMultiline() &&
           (textField.getText() == null || textField.getText().length === 0)
@@ -964,7 +964,7 @@ class TwoPageTngCharacterSheet extends BaseTextCharacterSheet {
     const character = construct as Character;
 
     if (character.hasCareerEvents) {
-      let event1 = CareerEventsHelper.getCareerEvent(
+      const event1 = CareerEventsHelper.getCareerEvent(
         character.careerEvents[0]?.id,
         character.type,
         character.version,
@@ -974,7 +974,7 @@ class TwoPageTngCharacterSheet extends BaseTextCharacterSheet {
       }
 
       if (character.careerEvents && character.careerEvents.length > 1) {
-        let event2 = CareerEventsHelper.getCareerEvent(
+        const event2 = CareerEventsHelper.getCareerEvent(
           character.careerEvents[1]?.id,
           character.type,
           character.version,
@@ -1019,8 +1019,8 @@ class TwoPageTngCharacterSheet extends BaseTextCharacterSheet {
     const paragraphStyle = new FontSpecification(helvetica, 10);
     const symbolStyle = new FontSpecification(symbolFont, 10);
 
-    let column1 = new Column(369, 40, 774 - 40, 585 - 369);
-    let currentColumn = column1;
+    const column1 = new Column(369, 40, 774 - 40, 585 - 369);
+    const currentColumn = column1;
 
     await this.writeRoleAndTalents(
       page2,
@@ -1073,10 +1073,10 @@ class TwoPageTngLandscapeCharacterSheet extends BaseTextCharacterSheet {
 
     // pdf-lib does awful things to empty multi-line fields
     // See: https://github.com/Hopding/pdf-lib/discussions/1196
-    let form = pdf.getForm();
+    const form = pdf.getForm();
     form.getFields().forEach((f) => {
       if (f instanceof PDFTextField) {
-        let textField = f as PDFTextField;
+        const textField = f as PDFTextField;
         if (
           textField.isMultiline() &&
           (textField.getText() == null || textField.getText().length === 0)
@@ -1095,7 +1095,7 @@ class TwoPageTngLandscapeCharacterSheet extends BaseTextCharacterSheet {
     const paragraphStyle = new FontSpecification(helvetica, 8);
     const symbolStyle = new FontSpecification(symbolFont, 8);
 
-    let currentColumn = new Column(573, 45, 563 - 45, 757 - 573);
+    const currentColumn = new Column(573, 45, 563 - 45, 757 - 573);
 
     await this.writeRoleAndTalents(
       page,
@@ -1113,7 +1113,7 @@ class TwoPageTngLandscapeCharacterSheet extends BaseTextCharacterSheet {
 
     this.fillField(form, 'Pronouns', character.pronouns);
     if (character.hasCareerEvents) {
-      let event1 = CareerEventsHelper.getCareerEvent(
+      const event1 = CareerEventsHelper.getCareerEvent(
         character.careerEvents[0]?.id,
         character.type,
         character.version,
@@ -1123,7 +1123,7 @@ class TwoPageTngLandscapeCharacterSheet extends BaseTextCharacterSheet {
       }
 
       if (character.careerEvents && character.careerEvents.length > 1) {
-        let event2 = CareerEventsHelper.getCareerEvent(
+        const event2 = CareerEventsHelper.getCareerEvent(
           character.careerEvents[1]?.id,
           character.type,
           character.version,
@@ -1209,11 +1209,11 @@ class TwoPageKlingonCharacterSheet extends BaseTextCharacterSheet {
 
     // pdf-lib does awful things to empty multi-line fields
     // See: https://github.com/Hopding/pdf-lib/discussions/1196
-    let form = pdf.getForm();
+    const form = pdf.getForm();
     const helvetica = this.formFont;
     form.getFields().forEach((f) => {
       if (f instanceof PDFTextField) {
-        let textField = f as PDFTextField;
+        const textField = f as PDFTextField;
         if (
           textField.isMultiline() &&
           (textField.getText() == null || textField.getText().length === 0)
@@ -1232,7 +1232,7 @@ class TwoPageKlingonCharacterSheet extends BaseTextCharacterSheet {
     const character = construct as Character;
 
     if (character.hasCareerEvents) {
-      let event1 = CareerEventsHelper.getCareerEvent(
+      const event1 = CareerEventsHelper.getCareerEvent(
         character.careerEvents[0]?.id,
         character.type,
         character.version,
@@ -1242,7 +1242,7 @@ class TwoPageKlingonCharacterSheet extends BaseTextCharacterSheet {
       }
 
       if (character.careerEvents && character.careerEvents.length > 1) {
-        let event2 = CareerEventsHelper.getCareerEvent(
+        const event2 = CareerEventsHelper.getCareerEvent(
           character.careerEvents[1]?.id,
           character.type,
           character.version,
@@ -1274,7 +1274,7 @@ class TwoPageKlingonCharacterSheet extends BaseTextCharacterSheet {
   }
 
   formatNameWithoutPronouns(character) {
-    var result = character.name;
+    let result = character.name;
     if (character.lineage) {
       result += ', ' + character.lineage;
     }
@@ -1307,8 +1307,8 @@ class TwoPageKlingonCharacterSheet extends BaseTextCharacterSheet {
     const paragraphStyle = new FontSpecification(helvetica, 10);
     const symbolStyle = new FontSpecification(symbolFont, 10);
 
-    let column1 = new Column(318, 105, 702 - 105, 551 - 318);
-    let currentColumn = column1;
+    const column1 = new Column(318, 105, 702 - 105, 551 - 318);
+    const currentColumn = column1;
 
     await this.writeRoleAndTalents(
       page2,
@@ -1337,13 +1337,13 @@ class CaptainsLogCharacterSheet extends BasicFullCharacterSheet {
   }
 
   populateForm(form: PDFForm, construct: Construct): void {
-    let character = construct as Character;
+    const character = construct as Character;
     super.populateForm(form, construct);
 
     this.fillField(form, 'Pronouns', character.pronouns);
 
     if (character.hasCareerEvents) {
-      let event1 = CareerEventsHelper.getCareerEvent(
+      const event1 = CareerEventsHelper.getCareerEvent(
         character.careerEvents[0]?.id,
         character.type,
         character.version,
@@ -1353,7 +1353,7 @@ class CaptainsLogCharacterSheet extends BasicFullCharacterSheet {
       }
 
       if (character.careerEvents && character.careerEvents.length > 1) {
-        let event2 = CareerEventsHelper.getCareerEvent(
+        const event2 = CareerEventsHelper.getCareerEvent(
           character.careerEvents[1]?.id,
           character.type,
           character.version,

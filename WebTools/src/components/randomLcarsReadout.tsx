@@ -11,7 +11,7 @@ export class RandomLcarsReadout extends React.Component<
   {}
 > {
   render() {
-    let value = createRandomValue(5) + '-' + createRandomValue(6);
+    const value = createRandomValue(5) + '-' + createRandomValue(6);
     return (
       <div className="lcar-text" aria-hidden="true">
         {value}

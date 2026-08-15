@@ -128,7 +128,7 @@ const withCharacter = (
   action: any,
   mutate: (temp: Character, action: any) => void,
 ): CharacterState => {
-  let temp = state.currentCharacter.copy();
+  const temp = state.currentCharacter.copy();
   mutate(temp, action);
   return {
     ...state,
@@ -143,7 +143,7 @@ const characterReducer = (
 ) => {
   switch (action.type) {
     case SET_CHARACTER: {
-      let temp = action.payload.character.copy();
+      const temp = action.payload.character.copy();
       return {
         ...state,
         currentCharacter: temp,
@@ -153,7 +153,7 @@ const characterReducer = (
     }
     case SET_CHARACTER_SPECIES:
       return withCharacter(state, action, (temp, action) => {
-        let originalStep = temp.speciesStep;
+        const originalStep = temp.speciesStep;
         temp.speciesStep = new SpeciesStep(action.payload.species);
         if (action.payload.attributes) {
           temp.speciesStep.attributes = [...action.payload.attributes];
@@ -190,7 +190,7 @@ const characterReducer = (
           }
         }
         if (temp.version > 1) {
-          let ability = action.payload.ability;
+          const ability = action.payload.ability;
           if (ability) {
             temp.speciesStep.ability = ability;
           }
@@ -218,7 +218,7 @@ const characterReducer = (
       });
     case SET_CHARACTER_EDUCATION:
       return withCharacter(state, action, (temp, action) => {
-        let originalStep = temp.educationStep;
+        const originalStep = temp.educationStep;
         temp.educationStep = new EducationStep(
           action.payload.track,
           action.payload.enlisted,
@@ -241,7 +241,7 @@ const characterReducer = (
       });
     case SET_CHARACTER_FINISHING_TOUCHES:
       return withCharacter(state, action, (temp, action) => {
-        let originalStep = temp.finishingStep;
+        const originalStep = temp.finishingStep;
         temp.finishingStep = new FinishingStep();
         if (originalStep) {
           temp.finishingStep.attributes = [...originalStep.attributes];
@@ -259,7 +259,7 @@ const characterReducer = (
       });
     case SET_CHARACTER_ENVIRONMENT:
       return withCharacter(state, action, (temp, action) => {
-        let originalStep = temp.environmentStep;
+        const originalStep = temp.environmentStep;
         temp.environmentStep = new EnvironmentStep(
           action.payload.environment,
           action.payload.otherSpecies,
@@ -278,7 +278,7 @@ const characterReducer = (
       });
     case SET_CHARACTER_EARLY_OUTLOOK:
       return withCharacter(state, action, (temp, action) => {
-        let originalStep = temp.upbringingStep;
+        const originalStep = temp.upbringingStep;
         temp.upbringingStep = new UpbringingStep(
           action.payload.earlyOutlook,
           action.payload.accepted,
@@ -304,14 +304,14 @@ const characterReducer = (
           if (positive) {
             temp.speciesStep.attributes.push(action.payload.attribute);
             if (temp.speciesStep.attributes.length > 3) {
-              let attributes = [...temp.speciesStep.attributes];
+              const attributes = [...temp.speciesStep.attributes];
               attributes.splice(0, attributes.length - 3);
               temp.speciesStep.attributes = attributes;
             }
           } else if (
             temp.speciesStep.attributes.includes(action.payload.attribute)
           ) {
-            let attributes = [...temp.speciesStep.attributes];
+            const attributes = [...temp.speciesStep.attributes];
             attributes.splice(
               temp.speciesStep.attributes.indexOf(action.payload.attribute),
               1,
@@ -378,7 +378,7 @@ const characterReducer = (
           if (positive) {
             temp.finishingStep.attributes.push(attribute);
           } else {
-            let index = temp.finishingStep.attributes.indexOf(attribute);
+            const index = temp.finishingStep.attributes.indexOf(attribute);
             if (index >= 0) {
               temp.finishingStep.attributes.splice(index, 1);
             }
@@ -459,7 +459,7 @@ const characterReducer = (
       });
     case REMOVE_NPC_CHARACTER_EQUIPMENT:
       return withCharacter(state, action, (temp, action) => {
-        let equipment = action.payload.equipment;
+        const equipment = action.payload.equipment;
         if (temp.npcGenerationStep?.equipment != null) {
           temp.npcGenerationStep.equipment =
             temp.npcGenerationStep.equipment.filter((e) => {
@@ -480,7 +480,7 @@ const characterReducer = (
       });
     case REMOVE_NPC_CHARACTER_WEAPON:
       return withCharacter(state, action, (temp, action) => {
-        let weapon = action.payload.weapon;
+        const weapon = action.payload.weapon;
         if (temp.npcGenerationStep?.weapons != null) {
           temp.npcGenerationStep.weapons =
             temp.npcGenerationStep.weapons.filter((e) => e !== weapon);
@@ -495,7 +495,7 @@ const characterReducer = (
       });
     case ADD_CHARACTER_CAREER_EVENT:
       return withCharacter(state, action, (temp, action) => {
-        let event = new CareerEventStep(action.payload.eventId);
+        const event = new CareerEventStep(action.payload.eventId);
         if (action.payload.attribute != null) {
           event.attribute = action.payload.attribute;
         }
@@ -525,7 +525,7 @@ const characterReducer = (
       });
     case SET_CHARACTER_TYPE:
       return withCharacter(state, action, (temp, action) => {
-        let originalType = temp.type;
+        const originalType = temp.type;
         temp.type = action.payload.type;
         if (temp.type !== originalType) {
           if (temp.educationStep) {
@@ -550,14 +550,14 @@ const characterReducer = (
       });
     case ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE:
       return withCharacter(state, action, (temp, action) => {
-        let talent = temp.getTalentByName(TALENT_NAME_UNTAPPED_POTENTIAL);
+        const talent = temp.getTalentByName(TALENT_NAME_UNTAPPED_POTENTIAL);
         if (talent) {
           talent.attribute = action.payload.attribute;
         }
       });
     case ADD_CHARACTER_BORG_IMPLANT:
       return withCharacter(state, action, (temp, action) => {
-        let talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
+        const talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
         if (talent) {
           talent.implants.push(action.payload.type);
           while (talent.implants.length > 3) {
@@ -580,7 +580,7 @@ const characterReducer = (
       });
     case REMOVE_CHARACTER_BORG_IMPLANT:
       return withCharacter(state, action, (temp, action) => {
-        let talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
+        const talent = temp.getTalentByName(TALENT_NAME_BORG_IMPLANTS);
         if (talent) {
           const index = talent.implants.indexOf(action.payload.type);
           if (index >= 0) {
@@ -611,8 +611,8 @@ const characterReducer = (
           temp.speciesStep.abilityOptions = new SpeciesAbilityOptions();
         }
         if (temp.speciesStep?.abilityOptions != null) {
-          let index = action.payload.index;
-          let focus = action.payload.focus;
+          const index = action.payload.index;
+          const focus = action.payload.focus;
           while (temp.speciesStep.abilityOptions.focuses.length < index) {
             temp.speciesStep.abilityOptions.focuses[
               temp.speciesStep.abilityOptions.focuses.length
@@ -635,7 +635,7 @@ const characterReducer = (
       });
     case ADD_CHARACTER_TALENT_FOCUS:
       return withCharacter(state, action, (temp, action) => {
-        let talent = temp.getTalentByName(action.payload.talent);
+        const talent = temp.getTalentByName(action.payload.talent);
         if (talent) {
           const index = action.payload.index;
           for (let i = talent.focuses.length; i <= index; i++) {
@@ -646,14 +646,14 @@ const characterReducer = (
       });
     case ADD_CHARACTER_TALENT_VALUE:
       return withCharacter(state, action, (temp, action) => {
-        let talent = temp.getTalentByName(action.payload.talent);
+        const talent = temp.getTalentByName(action.payload.talent);
         if (talent) {
           talent.value = action.payload.value;
         }
       });
     case ADD_CHARACTER_TALENT:
       return withCharacter(state, action, (temp, action) => {
-        let t = action.payload.talent;
+        const t = action.payload.talent;
         let talent = undefined;
         if (t != null && t instanceof SelectedTalent) {
           talent = (t as SelectedTalent).copy();
@@ -667,7 +667,7 @@ const characterReducer = (
         } else if (action.payload.context === StepContext.Education) {
           temp.educationStep.talent = talent;
         } else if (action.payload.context === StepContext.Career) {
-          let original = temp.careerStep;
+          const original = temp.careerStep;
           if (temp.careerStep == null) {
             temp.careerStep = new CareerStep();
           }
@@ -776,7 +776,7 @@ const characterReducer = (
       });
     case UPDATE_CHARACTER_GENERAL_EDIT_VALUE:
       return withCharacter(state, action, (temp, action) => {
-        let oldValue = action.payload.oldValue as ValueAssembly;
+        const oldValue = action.payload.oldValue as ValueAssembly;
 
         if (
           oldValue.context === AssemblyContext.FinishingTouches &&
@@ -799,16 +799,16 @@ const characterReducer = (
         ) {
           temp.environmentStep.value = action.payload.newValue;
         } else if (oldValue.context === AssemblyContext.Talent) {
-          let talent = temp.talents[oldValue.contextIndex];
+          const talent = temp.talents[oldValue.contextIndex];
           talent.value = action.payload.newValue;
         } else if (oldValue.context === AssemblyContext.Improvement) {
-          let improvement = temp.improvements[oldValue.contextIndex];
+          const improvement = temp.improvements[oldValue.contextIndex];
           if (
             improvement instanceof LogEntry &&
             improvement.valuesUsed?.length &&
             oldValue.index != null
           ) {
-            let values = improvement.valuesUsed;
+            const values = improvement.valuesUsed;
             values[oldValue.index] = action.payload.newValue;
           } else if (
             improvement instanceof CharacterAdvancementStep &&
@@ -820,7 +820,7 @@ const characterReducer = (
       });
     case UPDATE_CHARACTER_GENERAL_EDIT_FOCUS:
       return withCharacter(state, action, (temp, action) => {
-        let oldValue = action.payload.oldValue as FocusAssembly;
+        const oldValue = action.payload.oldValue as FocusAssembly;
 
         if (
           oldValue.context === AssemblyContext.CareerEvent &&
@@ -845,10 +845,10 @@ const characterReducer = (
           temp.speciesStep.abilityOptions.focuses[oldValue.index] =
             action.payload.newValue;
         } else if (oldValue.context === AssemblyContext.Talent) {
-          let talent = temp.talents[oldValue.contextIndex];
+          const talent = temp.talents[oldValue.contextIndex];
           talent.focuses[oldValue.index] = action.payload.newValue;
         } else if (oldValue.context === AssemblyContext.Improvement) {
-          let improvement = temp.improvements[oldValue.contextIndex];
+          const improvement = temp.improvements[oldValue.contextIndex];
           if (
             improvement instanceof CharacterAdvancementStep &&
             improvement.choice === CharacterAdvancementChoice.Focus
@@ -859,7 +859,7 @@ const characterReducer = (
       });
     case UPDATE_CHARACTER_GENERAL_EDIT_TALENT:
       return withCharacter(state, action, (temp, action) => {
-        let oldValue = action.payload.oldValue as TalentAssembly;
+        const oldValue = action.payload.oldValue as TalentAssembly;
 
         if (oldValue.context === AssemblyContext.Species && temp.speciesStep) {
           temp.speciesStep.talent = action.payload.newValue;
@@ -884,7 +884,7 @@ const characterReducer = (
         ) {
           temp.finishingStep.talent = action.payload.newValue;
         } else if (oldValue.context === AssemblyContext.Improvement) {
-          let improvement = temp.improvements[oldValue.contextIndex];
+          const improvement = temp.improvements[oldValue.contextIndex];
           if (
             improvement instanceof CharacterAdvancementStep &&
             improvement.choice === CharacterAdvancementChoice.Talent
@@ -899,7 +899,7 @@ const characterReducer = (
           if (temp.npcGenerationStep == null) {
             temp.npcGenerationStep = new NpcGenerationStep();
           }
-          let index = action.payload.index ?? 0;
+          const index = action.payload.index ?? 0;
           for (let i = temp.npcGenerationStep.values.length; i <= index; i++) {
             temp.npcGenerationStep.values.push('');
           }
@@ -912,7 +912,7 @@ const characterReducer = (
           if (temp.supportingStep == null) {
             temp.supportingStep = new SupportingStep();
           }
-          let index = action.payload.index ?? 0;
+          const index = action.payload.index ?? 0;
           for (let i = temp.supportingStep.focuses.length; i <= index; i++) {
             temp.supportingStep.focuses.push('');
           }
@@ -921,7 +921,7 @@ const characterReducer = (
           if (temp.npcGenerationStep == null) {
             temp.npcGenerationStep = new NpcGenerationStep();
           }
-          let index = action.payload.index ?? 0;
+          const index = action.payload.index ?? 0;
           for (let i = temp.npcGenerationStep.focuses.length; i <= index; i++) {
             temp.npcGenerationStep.focuses.push('');
           }
@@ -996,7 +996,7 @@ const characterReducer = (
         ) {
           if (action.payload.forceDecrement) {
             if (positive) {
-              let value = temp.departments[discipline];
+              const value = temp.departments[discipline];
               temp.educationStep.decrementDisciplines.splice(
                 temp.educationStep.decrementDisciplines.indexOf(discipline),
                 1,
@@ -1079,7 +1079,7 @@ const characterReducer = (
           if (positive) {
             temp.finishingStep.disciplines.push(discipline);
           } else {
-            let index = temp.finishingStep.disciplines.indexOf(discipline);
+            const index = temp.finishingStep.disciplines.indexOf(discipline);
             if (index >= 0) {
               temp.finishingStep.disciplines.splice(index, 1);
             }
@@ -1107,7 +1107,7 @@ const characterReducer = (
         if (temp.improvements == null) {
           temp.improvements = [];
         }
-        let improvement = new CharacterAdvancementStep();
+        const improvement = new CharacterAdvancementStep();
         improvement.choice = action.payload.type;
         if (action.payload.type === CharacterAdvancementChoice.Talent) {
           improvement.value = (action.payload.value as SelectedTalent).copy();

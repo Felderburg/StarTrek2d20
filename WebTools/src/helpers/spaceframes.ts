@@ -3246,9 +3246,9 @@ export class SpaceframeHelper {
   };
 
   getSpaceframes(starship: Starship, ignoreMaxServiceYear: boolean = false) {
-    let frames: SpaceframeModel[] = [];
-    for (var frame in this._frames) {
-      let f = this._frames[frame];
+    const frames: SpaceframeModel[] = [];
+    for (const frame in this._frames) {
+      const f = this._frames[frame];
       if (
         f.serviceYear <= starship.serviceYear &&
         (f.maxServiceYear >= starship.serviceYear || ignoreMaxServiceYear)
@@ -3273,7 +3273,7 @@ export class SpaceframeHelper {
 
   getSpaceframeByName(name: string) {
     let result = undefined;
-    for (let id in this._frames) {
+    for (const id in this._frames) {
       if (Spaceframe[id] === name) {
         result = this._frames[id];
         break;

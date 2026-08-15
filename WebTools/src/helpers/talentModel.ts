@@ -49,7 +49,7 @@ export class TalentModel implements ITalent {
     if (category instanceof TalentCategorization) {
       this.category = category;
     } else {
-      let species = Object.keys(Species).filter(
+      const species = Object.keys(Species).filter(
         (item) => !isNaN(Number(item)) && Species[item] === category,
       );
       if (species?.length === 0) {
@@ -95,9 +95,9 @@ export class TalentModel implements ITalent {
 
   get is2eSupported() {
     let result = false;
-    let sources = SourcesHelper.getSources();
+    const sources = SourcesHelper.getSources();
     this.sources.forEach((s) => {
-      let source = sources.filter((src) => src.id === s)[0];
+      const source = sources.filter((src) => src.id === s)[0];
       if (source.version === 2) {
         result = true;
       }
@@ -106,8 +106,8 @@ export class TalentModel implements ITalent {
   }
 
   get is2eDescriptionPresent() {
-    let key = 'Talent.' + this.rootKey + '.description2e';
-    let result = i18next.t(key);
+    const key = 'Talent.' + this.rootKey + '.description2e';
+    const result = i18next.t(key);
     return result !== key;
   }
 
@@ -125,11 +125,11 @@ export class TalentModel implements ITalent {
   }
 
   get localizedDisplayName() {
-    let key = 'Talent.' + this.rootKey;
-    let result = i18next.t(key);
+    const key = 'Talent.' + this.rootKey;
+    const result = i18next.t(key);
 
     if (result === key) {
-      let name = this.localizedName;
+      const name = this.localizedName;
       if (this.category) {
         const suffix = ' (' + this.category + ')';
         if (name.indexOf(suffix) >= 0) {
@@ -146,14 +146,14 @@ export class TalentModel implements ITalent {
   }
 
   get localizedDescription() {
-    let key = 'Talent.' + this.rootKey + '.description';
-    let result = i18next.t(key);
+    const key = 'Talent.' + this.rootKey + '.description';
+    const result = i18next.t(key);
     return result === key ? this.description : result;
   }
 
   get localizedDescription2e() {
-    let key = 'Talent.' + this.rootKey + '.description2e';
-    let result = i18next.t(key);
+    const key = 'Talent.' + this.rootKey + '.description2e';
+    const result = i18next.t(key);
     return result === key ? this.localizedDescription : result;
   }
 
@@ -162,8 +162,8 @@ export class TalentModel implements ITalent {
   }
 
   get localizedName() {
-    let key = 'Talent.' + this.rootKey;
-    let result = i18next.t(key);
+    const key = 'Talent.' + this.rootKey;
+    const result = i18next.t(key);
     return result === key ? this.name : result;
   }
 
@@ -180,21 +180,21 @@ export class TalentModel implements ITalent {
   }
 
   localizedNameForSource(source: Source): string {
-    let result = this.localizedDisplayName;
-    let alias = this.aliases.filter((a) => a.source === source);
+    const result = this.localizedDisplayName;
+    const alias = this.aliases.filter((a) => a.source === source);
     return alias?.length ? alias[0].localizedName : result;
   }
 
   get localizedSoloDescription(): string {
     // for Starship talents, this is the short, abbreviated description of the talent
-    let key = 'Talent.' + this.rootKey + '.soloDescription';
-    let result = i18next.t(key);
+    const key = 'Talent.' + this.rootKey + '.soloDescription';
+    const result = i18next.t(key);
     return result === key ? '' : result;
   }
 
   private sourcesFromPrerequsite(prerequisite: ICompositePrerequisite) {
-    let result = [];
-    let subList = prerequisite.prerequisites;
+    const result = [];
+    const subList = prerequisite.prerequisites;
     subList.forEach((p) => {
       if (p instanceof SourcePrerequisite) {
         Array.prototype.push.apply(
@@ -296,7 +296,7 @@ export class TalentModel implements ITalent {
 
   nameForSource(source: Source) {
     let result = this.name;
-    for (let a of this.aliases) {
+    for (const a of this.aliases) {
       if (a.source === source) {
         result = a.name;
         break;
@@ -328,7 +328,7 @@ export class TalentModel implements ITalent {
   get requirement() {
     let prerequisites = undefined;
     this.prerequisites.forEach((p) => {
-      let desc = p.describe();
+      const desc = p.describe();
       if (desc) {
         if (prerequisites == null) {
           prerequisites = desc;

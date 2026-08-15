@@ -26,8 +26,8 @@ export class SafetySection {
 
   get localizedCategories() {
     return this.categories.map((c) => {
-      let key = makeKey('SafetySection.category.', c);
-      let result = i18next.t(key);
+      const key = makeKey('SafetySection.category.', c);
+      const result = i18next.t(key);
       return result === key ? c : result;
     });
   }

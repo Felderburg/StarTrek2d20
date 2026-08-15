@@ -71,10 +71,10 @@ class IdHelper {
   }
 
   private incrementId(id: string) {
-    let base = id.substring(0, id.length - 1);
-    let lastDigit = id.substring(id.length - 1).toLocaleLowerCase();
+    const base = id.substring(0, id.length - 1);
+    const lastDigit = id.substring(id.length - 1).toLocaleLowerCase();
 
-    let index = IdHelper.ID_PARTS.indexOf(lastDigit);
+    const index = IdHelper.ID_PARTS.indexOf(lastDigit);
     if (index >= IdHelper.ID_PARTS.length - 1) {
       return this.incrementId(base) + IdHelper.ID_PARTS[0];
     } else {
@@ -94,9 +94,9 @@ export class Roll20VttExporter {
   }
 
   exportStarship(starship: Starship) {
-    let id = new IdHelper();
-    let name = starship.name || 'Unnamed Starship';
-    let result: IRoll20Json = {
+    const id = new IdHelper();
+    const name = starship.name || 'Unnamed Starship';
+    const result: IRoll20Json = {
       schema_version: 3,
       type: 'character',
       character: {
@@ -263,7 +263,7 @@ export class Roll20VttExporter {
   }
 
   exportStarshipAsHandout(starship: Starship) {
-    let starshipClass = starship.className ?? '';
+    const starshipClass = starship.className ?? '';
     let name =
       starship.name?.length > 0
         ? starship.name
@@ -275,7 +275,7 @@ export class Roll20VttExporter {
       name += ', ' + starship.registry;
     }
 
-    let result = {
+    const result = {
       schema_version: 3,
       type: 'handout',
       handout: {
@@ -296,7 +296,7 @@ export class Roll20VttExporter {
   createStarshipNotes(starship: Starship) {
     let result = '';
 
-    let description = starship.spaceframeModel?.localizedDescription;
+    const description = starship.spaceframeModel?.localizedDescription;
     if (description) {
       description
         .split('\n')
@@ -395,7 +395,7 @@ export class Roll20VttExporter {
 
       result += '</ul>\n';
     }
-    let talents = starship
+    const talents = starship
       .getDistinctTalentNameList()
       .map((t) => TalentsHelper.getTalent(t))
       .filter((t) => t != null && !t.isSpecialRule(starship.version));
@@ -406,7 +406,7 @@ export class Roll20VttExporter {
         '</strong></p>\n<ul>\n';
 
       talents.forEach((t) => {
-        let qualifier = starship.getQualifierForTalent(t.name);
+        const qualifier = starship.getQualifierForTalent(t.name);
         result +=
           '<li><p><b>' +
           t.localizedName +
@@ -422,7 +422,7 @@ export class Roll20VttExporter {
       result += '</ul>\n';
     }
 
-    let specialRules = starship
+    const specialRules = starship
       .getDistinctTalentNameList()
       .map((t) => TalentsHelper.getTalent(t))
       .filter((t) => t != null && t.isSpecialRule(starship.version));
@@ -433,7 +433,7 @@ export class Roll20VttExporter {
         '</strong></p>\n<ul>\n';
 
       specialRules.forEach((t) => {
-        let qualifier = starship.getQualifierForTalent(t.name);
+        const qualifier = starship.getQualifierForTalent(t.name);
         result +=
           '<li><p><b>' +
           t.localizedName +
@@ -452,12 +452,12 @@ export class Roll20VttExporter {
   }
 
   exportCharacter(character: Character) {
-    let id = new IdHelper();
+    const id = new IdHelper();
     let name = character.name || 'Unnamed Character';
     if (character.pronouns) {
       name += ' (' + character.pronouns + ')';
     }
-    let result: IRoll20Json = {
+    const result: IRoll20Json = {
       schema_version: 3,
       type: 'character',
       character: {
@@ -612,7 +612,7 @@ export class Roll20VttExporter {
       ),
     );
     character.implants.forEach((e) => {
-      let implant = BorgImplants.instance.getImplantByType(e);
+      const implant = BorgImplants.instance.getImplantByType(e);
       Array.prototype.push.apply(
         result.character.attribs,
         this.convertEquipment(character, implant, id),
@@ -623,7 +623,7 @@ export class Roll20VttExporter {
       result.character.attribs.push(...this.convertTalent(character, t, id));
     });
 
-    let traits = [...character.baseTraits];
+    const traits = [...character.baseTraits];
     character.additionalTraits
       .split(',')
       .map((t) => t.trim())
@@ -635,7 +635,7 @@ export class Roll20VttExporter {
       if (i === 0) {
         // species trait
         if (character.speciesStep?.species !== Species.Custom) {
-          let species = SpeciesHelper.getSpeciesByType(
+          const species = SpeciesHelper.getSpeciesByType(
             character?.speciesStep?.species,
           );
           description = species.localizedTraitDescription;
@@ -915,7 +915,7 @@ export class Roll20VttExporter {
     id: IdHelper,
   ) {
     const rowId = id.nextId();
-    let result = [
+    const result = [
       {
         name: 'repeating_equipmentks_' + rowId + '_equipment_name',
         current: equipment.name,
@@ -957,12 +957,12 @@ export class Roll20VttExporter {
   ) {
     const rowId = id.nextId();
 
-    let talent = selectedTalent.talentModel;
-    let category = this.determineCategoryType(talent);
+    const talent = selectedTalent.talentModel;
+    const category = this.determineCategoryType(talent);
 
     let name = selectedTalent.displayNameWithMultiple;
 
-    let qualifier = starship.getQualifierForTalent(talent.name);
+    const qualifier = starship.getQualifierForTalent(talent.name);
     if (qualifier?.length) {
       name += ': ' + qualifier;
     }
@@ -1012,10 +1012,10 @@ export class Roll20VttExporter {
   ) {
     const rowId = id.nextId();
 
-    let talent = selectedTalent.talentModel;
-    let category = this.determineCategoryType(talent);
+    const talent = selectedTalent.talentModel;
+    const category = this.determineCategoryType(talent);
 
-    let name = selectedTalent.displayNameWithMultiple;
+    const name = selectedTalent.displayNameWithMultiple;
 
     return [
       {
@@ -1168,7 +1168,7 @@ export class Roll20VttExporter {
     description?: string,
   ) {
     const rowId = id.nextId();
-    let result = [
+    const result = [
       {
         name: 'repeating_traits_' + rowId + '_trait_name',
         current: trait,
@@ -1195,7 +1195,7 @@ export class Roll20VttExporter {
 
   convertStarshipTrait(starship: Starship, trait: string, id: IdHelper) {
     const rowId = id.nextId();
-    let result = [
+    const result = [
       {
         name: 'repeating_straits_' + rowId + '_strait_name',
         current: trait,

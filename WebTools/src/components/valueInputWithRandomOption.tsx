@@ -23,7 +23,7 @@ const ValueInputWithRandom: React.FC<IValueInputWithRandom> = ({
   labelName,
 }) => {
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       department,

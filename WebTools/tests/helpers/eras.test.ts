@@ -4,10 +4,10 @@ import { Era } from '../../src/helpers/erasEnum';
 
 describe('testing era helper', () => {
   test('should find era by name', () => {
-    let era = Eras.instance.getEraByName('NextGeneration');
+    const era = Eras.instance.getEraByName('NextGeneration');
     expect(era).toBe(Era.NextGeneration);
 
-    let era2 = Eras.instance.getEraByName('Enterprise');
+    const era2 = Eras.instance.getEraByName('Enterprise');
     expect(era2).toBe(Era.Enterprise);
   });
 });

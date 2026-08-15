@@ -93,7 +93,7 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({
   };
 
   const getAppearanceItems = () => {
-    let result = StationFrameAppearanceModel.getAllAppearanceModels().map(
+    const result = StationFrameAppearanceModel.getAllAppearanceModels().map(
       (m) => new DropDownElement(m.id, m.localizedName),
     );
     result.unshift(new DropDownElement('', t('Common.text.select')));
@@ -142,12 +142,12 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({
   };
 
   const getSystem = (system: System) => {
-    let result = station.systems[system];
+    const result = station.systems[system];
     return result == null ? 0 : result;
   };
 
   const getDepartment = (department: Department) => {
-    let result = station.departments[department];
+    const result = station.departments[department];
     return result == null ? 0 : result;
   };
 

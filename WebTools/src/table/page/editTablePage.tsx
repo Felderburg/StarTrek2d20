@@ -47,7 +47,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({
   );
 
   const categoryItems = () => {
-    let sorted = categories.sort().map((v, i) => new DropDownElement(i, v));
+    const sorted = categories.sort().map((v, i) => new DropDownElement(i, v));
     sorted.push(new DropDownElement(OTHER, 'Other'));
     sorted.unshift(new DropDownElement(NO_SELECTION, ''));
     return sorted;
@@ -67,19 +67,19 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({
   };
 
   const selectCategoryValue = (category: string) => {
-    let collection = tableCollection.copy();
+    const collection = tableCollection.copy();
     collection.category = category;
     setTableCollection(collection);
   };
 
   const selectTableName = (name: string) => {
-    let collection = tableCollection.copy();
+    const collection = tableCollection.copy();
     collection.mainTable.name = name;
     setTableCollection(collection);
   };
 
   const selectTableDescription = (description: string) => {
-    let collection = tableCollection.copy();
+    const collection = tableCollection.copy();
     collection.description = description;
     setTableCollection(collection);
   };
@@ -170,7 +170,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({
 
   const isErrorPresent = () => {
     let error = false;
-    let rows = tableCollection.mainTable.rows;
+    const rows = tableCollection.mainTable.rows;
     rows.forEach(
       (r) =>
         (error =

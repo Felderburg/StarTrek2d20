@@ -61,11 +61,11 @@ class AddCharacterView extends React.Component<
     if (urlString) {
       const { t } = this.props;
       try {
-        let url = new URL(urlString);
-        let query = new URLSearchParams(url.search);
-        let encodedSheet = query.get('s');
+        const url = new URL(urlString);
+        const query = new URLSearchParams(url.search);
+        const encodedSheet = query.get('s');
 
-        let json = marshaller.decode(encodedSheet);
+        const json = marshaller.decode(encodedSheet);
         if (json == null) {
           this.setState((state) => ({
             ...state,
@@ -85,7 +85,7 @@ class AddCharacterView extends React.Component<
             characterString: undefined,
           }));
         } else {
-          let character = marshaller.decodeCharacter(json);
+          const character = marshaller.decodeCharacter(json);
           this.setState((state) => ({
             ...state,
             enabled: true,
@@ -113,9 +113,9 @@ class AddCharacterView extends React.Component<
   }
 
   addCharacter() {
-    let json = marshaller.decode(this.state.characterString);
+    const json = marshaller.decode(this.state.characterString);
     if (json) {
-      let character = marshaller.decodeCharacter(json);
+      const character = marshaller.decodeCharacter(json);
       store.dispatch(addGMTrackedCharacter(character));
       this.props.onDone();
     } else {

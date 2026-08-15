@@ -22,8 +22,8 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({
   close,
 }) => {
   const { t } = useTranslation();
-  let station = store.getState().station?.station as Station;
-  let containerClass = showProfile
+  const station = store.getState().station?.station as Station;
+  const containerClass = showProfile
     ? 'sheet-container sheet-container-visible pe-3'
     : 'sheet-container sheet-container-hidden pe-3';
   const eraModel =

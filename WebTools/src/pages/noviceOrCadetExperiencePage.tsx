@@ -51,7 +51,7 @@ const NoviceOrCadetExperiencePage: React.FC<ICharacterProperties> = ({
   };
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,
@@ -71,7 +71,7 @@ const NoviceOrCadetExperiencePage: React.FC<ICharacterProperties> = ({
     store.dispatch(addCharacterTalent(talentModel, StepContext.Career));
   }, [talentModel]);
 
-  let instruction =
+  const instruction =
     character.type === CharacterType.Cadet
       ? 'CareerLength.instruction.cadet'
       : 'CareerType.core.young.description';

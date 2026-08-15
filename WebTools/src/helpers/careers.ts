@@ -139,9 +139,9 @@ export class CareersHelper {
     ) {
       return this.getSoloCareerLengths();
     } else {
-      let careers: CareerModel[] = [];
-      let list = this.getList(character.type);
-      for (let career of list) {
+      const careers: CareerModel[] = [];
+      const list = this.getList(character.type);
+      for (const career of list) {
         careers.push(career);
       }
 
@@ -150,7 +150,7 @@ export class CareersHelper {
   }
 
   getSoloCareerLength(careerLength: Career) {
-    let result = this._soloCareerLengths.filter((c) => c.id === careerLength);
+    const result = this._soloCareerLengths.filter((c) => c.id === careerLength);
     return result ? result[0] : undefined;
   }
 
