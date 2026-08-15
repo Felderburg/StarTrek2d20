@@ -6,6 +6,17 @@ interface StationState {
     station?: Station;
 }
 
+const withStation = (state: StationState, action: any, mutate: (s: Station, action: any) => void): StationState => {
+    let s = state.station?.copy();
+    if (s) {
+        mutate(s, action);
+    }
+    return {
+        ...state,
+        station: s
+    }
+}
+
 const stationReducer = (state: StationState = { station: undefined }, action) => {
     switch (action.type) {
         case CREATE_STATION: {
@@ -16,51 +27,34 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 station: s.copy()
             }
         }
-        case SET_STATION_MISSION_PROFILE: {
-            let s = state.station?.copy();
-            if (s) {
+        case SET_STATION_MISSION_PROFILE:
+            return withStation(state, action, (s, action) => {
                 const original = s.missionProfileStep;
                 s.missionProfileStep = new StationMissionProfileStep(action.payload.missionProfile);
                 if (original?.type === s.missionProfileStep?.type) {
                     s.missionProfileStep.talent = original?.talent?.copy();
                 }
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
-        case SET_STATION_MISSION_PROFILE_TALENT: {
-            let s = state.station.copy();
-            if (s.missionProfileStep) {
-                s.missionProfileStep.talent = action.payload.talent;
-            }
-            for (let i = 0; i < s.additionalTalents.length; ) {
-                if (s.hasBaseTalent(s.additionalTalents[i].name) && s.additionalTalents[i].talentModel.maxRank === 1) {
-                    s.additionalTalents.splice(i, 1);
-                } else {
-                    i++;
+            });
+        case SET_STATION_MISSION_PROFILE_TALENT:
+            return withStation(state, action, (s, action) => {
+                if (s.missionProfileStep) {
+                    s.missionProfileStep.talent = action.payload.talent;
                 }
-            }
+                for (let i = 0; i < s.additionalTalents.length; ) {
+                    if (s.hasBaseTalent(s.additionalTalents[i].name) && s.additionalTalents[i].talentModel.maxRank === 1) {
+                        s.additionalTalents.splice(i, 1);
+                    } else {
+                        i++;
+                    }
+                }
 
-            return {
-                ...state,
-                station: s
-            }
-        }
-        case SET_STATION_NAME: {
-            let s = state.station?.copy();
-            if (s) {
+            });
+        case SET_STATION_NAME:
+            return withStation(state, action, (s, action) => {
                 s.name = action.payload.name;
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
-        case SET_STATION_CUSTOM_SCALE: {
-            let s = state.station?.copy();
-            if (s) {
+            });
+        case SET_STATION_CUSTOM_SCALE:
+            return withStation(state, action, (s, action) => {
                 if (s.stationFrameStep == null || !(s.stationFrameStep instanceof CustomStationSpaceframeStep)) {
                     s.stationFrameStep = new CustomStationSpaceframeStep();
                 }
@@ -91,15 +85,9 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 for (let i = s.additionalTalents.length; i > s.freeTalentSlots; i = s.additionalTalents.length) {
                     s.additionalTalents.splice(0, 1);
                 }
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
-        case MODIFY_STATION_CUSTOM_FRAME_SYSTEM: {
-            let s = state.station?.copy();
-            if (s) {
+            });
+        case MODIFY_STATION_CUSTOM_FRAME_SYSTEM:
+            return withStation(state, action, (s, action) => {
                 if (s.stationFrameStep == null || !(s.stationFrameStep instanceof CustomStationSpaceframeStep)) {
                     s.stationFrameStep = new CustomStationSpaceframeStep();
                 }
@@ -108,16 +96,9 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 if (s.stationFrameStep.systems[system] > s.maxSystemValue) {
                     s.stationFrameStep.systems[system] = s.maxSystemValue;
                 }
-
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
-        case MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT: {
-            let s = state.station?.copy();
-            if (s) {
+            });
+        case MODIFY_STATION_CUSTOM_FRAME_DEPARTMENT:
+            return withStation(state, action, (s, action) => {
                 if (s.stationFrameStep == null || !(s.stationFrameStep instanceof CustomStationSpaceframeStep)) {
                     s.stationFrameStep = new CustomStationSpaceframeStep();
                 }
@@ -126,65 +107,37 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 if (s.stationFrameStep.departments[department] > s.maxDepartmentValue) {
                     s.stationFrameStep.departments[department] = s.maxDepartmentValue;
                 }
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
-        case ADD_STATION_WEAPON: {
-            let s = state.station?.copy();
-            s.weapons.push(action.payload.weapon);
-            return {
-                ...state,
-                station: s
-            }
-        }
-        case DELETE_STATION_WEAPON: {
-            let s = state.station?.copy();
-            if (s.weapons.indexOf(action.payload.weapon) >= 0) {
-                s.weapons.splice(s.weapons.indexOf(action.payload.weapon), 1);
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
+            });
+        case ADD_STATION_WEAPON:
+            return withStation(state, action, (s, action) => {
+                s.weapons.push(action.payload.weapon);
+            });
+        case DELETE_STATION_WEAPON:
+            return withStation(state, action, (s, action) => {
+                if (s.weapons.indexOf(action.payload.weapon) >= 0) {
+                    s.weapons.splice(s.weapons.indexOf(action.payload.weapon), 1);
+                }
+            });
 
-        case SET_STATION_ADDITIONAL_TALENTS: {
-            let s = state.station.copy();
-            s.additionalTalents = action.payload.talents?.map(t => t.copy()) ?? [];
-            return {
-                ...state,
-                station: s
-            }
-        }
+        case SET_STATION_ADDITIONAL_TALENTS:
+            return withStation(state, action, (s, action) => {
+                s.additionalTalents = action.payload.talents?.map(t => t.copy()) ?? [];
+            });
 
 
-        case SET_STATION_TRAITS: {
-            let s = state.station?.copy();
-            if (s) {
+        case SET_STATION_TRAITS:
+            return withStation(state, action, (s, action) => {
                 s.traits = action.payload.traits;
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
+            });
 
-        case SET_STATION_FRAME_APPEARANCE: {
-            let s = state.station?.copy();
-            if (s?.stationFrameStep?.type === StationFrame.Custom) {
-                (s.stationFrameStep as CustomStationSpaceframeStep).appearance = action.payload.appearance;
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
-        case SET_STATION_FRAME: {
-            let s = state.station?.copy();
-            if (s) {
+        case SET_STATION_FRAME_APPEARANCE:
+            return withStation(state, action, (s, action) => {
+                if (s?.stationFrameStep?.type === StationFrame.Custom) {
+                    (s.stationFrameStep as CustomStationSpaceframeStep).appearance = action.payload.appearance;
+                }
+            });
+        case SET_STATION_FRAME:
+            return withStation(state, action, (s, action) => {
                 if (action.payload.frame === StationFrame.Custom) {
                     let scale = s.scale;
                     s.stationFrameStep = CustomStationSpaceframeStep.create(scale);
@@ -210,12 +163,7 @@ const stationReducer = (state: StationState = { station: undefined }, action) =>
                 for (let i = s.additionalTalents.length; i > s.freeTalentSlots; i = s.additionalTalents.length) {
                     s.additionalTalents.splice(0, 1);
                 }
-            }
-            return {
-                ...state,
-                station: s
-            }
-        }
+            });
 
         default:
            return state;
