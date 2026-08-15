@@ -1,108 +1,133 @@
 import React from 'react';
-import {System} from '../helpers/systems';
-import {Starship} from '../common/starship';
+import { System } from '../helpers/systems';
+import { Starship } from '../common/starship';
 import { withTranslation, WithTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 
 interface IRefitImprovementProperties {
-    controller: RefitsView;
-    system: System;
-    value: number;
-    name: string;
-    showIncrease: boolean;
-    showDecrease: boolean;
+  controller: RefitsView;
+  system: System;
+  value: number;
+  name: string;
+  showIncrease: boolean;
+  showDecrease: boolean;
 }
 
 export class Refit extends React.Component<IRefitImprovementProperties, {}> {
-    render() {
-        const {value, name, showDecrease, showIncrease} = this.props;
+  render() {
+    const { value, name, showDecrease, showIncrease } = this.props;
 
-        const dec = showDecrease
-            ? (<img style={{ float: "left" }} height="20" src="static/img/dec.png" onClick={ () => { this.onDecrease() } } alt="-"/>)
-            : undefined;
+    const dec = showDecrease ? (
+      <img
+        style={{ float: 'left' }}
+        height="20"
+        src="static/img/dec.png"
+        onClick={() => {
+          this.onDecrease();
+        }}
+        alt="-"
+      />
+    ) : undefined;
 
-        const inc = showIncrease
-            ? (<img style={{ float: "right" }} height="20" src="static/img/inc.png" onClick={ () => { this.onIncrease() } } alt="+"/>)
-            : undefined;
+    const inc = showIncrease ? (
+      <img
+        style={{ float: 'right' }}
+        height="20"
+        src="static/img/inc.png"
+        onClick={() => {
+          this.onIncrease();
+        }}
+        alt="+"
+      />
+    ) : undefined;
 
-        return (
-            <div>
-                <div className="attribute-container">
-                    {name}
-                </div>
-                <div className="attribute-value">
-                    {dec}
-                    {value}
-                    {inc}
-                </div>
-            </div>
-        );
-    }
+    return (
+      <div>
+        <div className="attribute-container">{name}</div>
+        <div className="attribute-value">
+          {dec}
+          {value}
+          {inc}
+        </div>
+      </div>
+    );
+  }
 
-    private onDecrease() {
-        this.props.controller.onDecrease(this.props.system);
-    }
+  private onDecrease() {
+    this.props.controller.onDecrease(this.props.system);
+  }
 
-    private onIncrease() {
-        this.props.controller.onIncrease(this.props.system);
-    }
+  private onIncrease() {
+    this.props.controller.onIncrease(this.props.system);
+  }
 }
 
 interface IRefitsViewProperties extends WithTranslation {
-    starship: Starship;
-    points: number;
-    refits: System[]
-    onIncrease?: (system: System) => void;
-    onDecrease?: (system: System) => void;
+  starship: Starship;
+  points: number;
+  refits: System[];
+  onIncrease?: (system: System) => void;
+  onDecrease?: (system: System) => void;
 }
 
 export class RefitsView extends React.Component<IRefitsViewProperties, {}> {
-    private _absoluteMax: number = 12;
+  private _absoluteMax: number = 12;
 
-    render() {
-        const {t} = this.props;
-        const systems: System[] = [ System.Comms, System.Computer, System.Engines, System.Sensors, System.Structure, System.Weapons ];
-        const attributes = systems.map((a, i) => {
-            return <Refit
-                key={i}
-                controller={this}
-                system={a}
-                name={t(makeKey('Construct.system.', System[a]))}
-                value={this.currentValue(a)}
-                showIncrease={this.showIncrease(a)}
-                showDecrease={this.showDecrease(a)} />
-        });
+  render() {
+    const { t } = this.props;
+    const systems: System[] = [
+      System.Comms,
+      System.Computer,
+      System.Engines,
+      System.Sensors,
+      System.Structure,
+      System.Weapons,
+    ];
+    const attributes = systems.map((a, i) => {
+      return (
+        <Refit
+          key={i}
+          controller={this}
+          system={a}
+          name={t(makeKey('Construct.system.', System[a]))}
+          value={this.currentValue(a)}
+          showIncrease={this.showIncrease(a)}
+          showDecrease={this.showDecrease(a)}
+        />
+      );
+    });
 
-        return (
-            <div>
-                {attributes}
-            </div>
-        );
-    }
+    return <div>{attributes}</div>;
+  }
 
-    showDecrease(system: System) {
-        return this.currentValue(system) > this.props.starship.getBaseSystem(system);
-    }
+  showDecrease(system: System) {
+    return (
+      this.currentValue(system) > this.props.starship.getBaseSystem(system)
+    );
+  }
 
-    showIncrease(system: System) {
-        const version = this.props.starship.version;
-        const refitCount = this.props.refits.filter(r => r === system).length;
-        return (version === 1 || refitCount < 2) && this.props.refits.length < this.props.points;
-    }
+  showIncrease(system: System) {
+    const version = this.props.starship.version;
+    const refitCount = this.props.refits.filter((r) => r === system).length;
+    return (
+      (version === 1 || refitCount < 2) &&
+      this.props.refits.length < this.props.points
+    );
+  }
 
-    currentValue(s: System) {
-        return this.props.starship.getSystemValue(s);
-    }
+  currentValue(s: System) {
+    return this.props.starship.getSystemValue(s);
+  }
 
-    onDecrease(attr: System) {
-        this.props.onDecrease(attr);
-        this.forceUpdate();
-    }
+  onDecrease(attr: System) {
+    this.props.onDecrease(attr);
+    this.forceUpdate();
+  }
 
-    onIncrease(attr: System) {
-        this.props.onIncrease(attr);
-        this.forceUpdate();
-    }
+  onIncrease(attr: System) {
+    this.props.onIncrease(attr);
+    this.forceUpdate();
+  }
 }
 
 export default withTranslation()(RefitsView);

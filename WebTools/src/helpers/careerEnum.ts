@@ -1,6 +1,6 @@
 export enum Career {
-    // Core
-    Young,
-    Experienced,
-    Veteran
+  // Core
+  Young,
+  Experienced,
+  Veteran,
 }

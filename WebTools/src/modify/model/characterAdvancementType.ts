@@ -1,46 +1,56 @@
-import i18next from "i18next";
-import { makeKey } from "../../common/translationKey";
+import i18next from 'i18next';
+import { makeKey } from '../../common/translationKey';
 
 export enum CharacterAdvancementType {
-    Adjustment,
-    Milestone,
-    CharacterArc,
+  Adjustment,
+  Milestone,
+  CharacterArc,
 }
 
 export class CharacterAdvancementModel {
+  readonly name: string;
+  readonly type: CharacterAdvancementType;
 
-    readonly name: string;
-    readonly type: CharacterAdvancementType;
+  constructor(type: CharacterAdvancementType, name: string) {
+    this.name = name;
+    this.type = type;
+  }
 
-    constructor(type: CharacterAdvancementType, name: string) {
-        this.name = name;
-        this.type = type;
-    }
-
-    get localizedName() {
-        return i18next.t(makeKey('CharacterAdvancementType.', CharacterAdvancementType[this.type]));
-    }
+  get localizedName() {
+    return i18next.t(
+      makeKey('CharacterAdvancementType.', CharacterAdvancementType[this.type]),
+    );
+  }
 }
 
 class CharacterAdvancements {
-    static _instance:CharacterAdvancements;
+  static _instance: CharacterAdvancements;
 
-    private items: CharacterAdvancementModel[] = [
-        new CharacterAdvancementModel(CharacterAdvancementType.Adjustment, "Adjustment"),
-        new CharacterAdvancementModel(CharacterAdvancementType.Milestone, "Milestone"),
-        new CharacterAdvancementModel(CharacterAdvancementType.CharacterArc, "Character Arc"),
-    ];
+  private items: CharacterAdvancementModel[] = [
+    new CharacterAdvancementModel(
+      CharacterAdvancementType.Adjustment,
+      'Adjustment',
+    ),
+    new CharacterAdvancementModel(
+      CharacterAdvancementType.Milestone,
+      'Milestone',
+    ),
+    new CharacterAdvancementModel(
+      CharacterAdvancementType.CharacterArc,
+      'Character Arc',
+    ),
+  ];
 
-    static get instance() {
-        if (CharacterAdvancements._instance == null) {
-            CharacterAdvancements._instance = new CharacterAdvancements();
-        }
-        return CharacterAdvancements._instance;
+  static get instance() {
+    if (CharacterAdvancements._instance == null) {
+      CharacterAdvancements._instance = new CharacterAdvancements();
     }
+    return CharacterAdvancements._instance;
+  }
 
-    getItems() {
-        return [ this.items[0] ];
-    }
+  getItems() {
+    return [this.items[0]];
+  }
 }
 
 export default CharacterAdvancements;

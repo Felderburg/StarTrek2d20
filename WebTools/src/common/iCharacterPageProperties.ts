@@ -1,5 +1,5 @@
-import { Character } from "./character";
+import { Character } from './character';
 
 export interface ICharacterPageProperties {
-    character: Character;
+  character: Character;
 }

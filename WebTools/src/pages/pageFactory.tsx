@@ -31,106 +31,156 @@ import ExtraTalentChoicesPage from '../starship/page/extraStarshipTalentChoicesP
 import NoviceOrCadetExperiencePage from './noviceOrCadetExperiencePage';
 
 export interface IPageFactoryRegistry {
-    findFactory(page: PageIdentity);
+  findFactory(page: PageIdentity);
 }
 
 export class PageFactory {
+  private static _instance;
 
-    private static _instance;
+  static get instance() {
+    if (PageFactory._instance == null) {
+      PageFactory._instance = new PageFactory();
+    }
+    return PageFactory._instance;
+  }
 
-    static get instance() {
-        if (PageFactory._instance == null) {
-            PageFactory._instance = new PageFactory();
-        }
-        return PageFactory._instance;
+  private factories = {};
+  private pageFactories = {};
+
+  constructor() {
+    this.factories = {};
+
+    this.factories[PageIdentity.Home] = () => <SelectionPage />;
+    this.factories[PageIdentity.SourceSelection] = () => (
+      <SourceSelectionPage />
+    );
+    this.factories[PageIdentity.Era] = () => <EraSelectionPage />;
+    this.factories[PageIdentity.ToolSelection] = () => <ToolSelectionPage />;
+    this.factories[PageIdentity.CharacterType] = () => <CharacterTypePage />;
+    this.factories[PageIdentity.Species] = () => <SpeciesPage />;
+    this.factories[PageIdentity.SpeciesDetails] = () => <SpeciesDetailsPage />;
+    this.factories[PageIdentity.CustomSpeciesDetails] = () => (
+      <CustomSpeciesDetailsPage />
+    );
+    this.factories[PageIdentity.Environment] = () => <EnvironmentPage />;
+    this.factories[PageIdentity.EnvironmentDetails] = () => (
+      <EnvironmentDetailsPage />
+    );
+    this.factories[PageIdentity.Upbringing] = () => <EarlyOutlookPage />;
+    this.factories[PageIdentity.UpbringingDetails] = () => (
+      <EarlyOutlookDetailsPage />
+    );
+    this.factories[PageIdentity.Career] = () => <EducationPage />;
+    this.factories[PageIdentity.CareerDetails] = () => <EducationDetailsPage />;
+    this.factories[PageIdentity.CareerLength] = () => <CareerLengthPage />;
+    this.factories[PageIdentity.CareerLengthDetails] = () => (
+      <CareerLengthDetailsPage />
+    );
+    this.factories[PageIdentity.CareerEvent1] = () => (
+      <CareerEventPage context={StepContext.CareerEvent1} />
+    );
+    this.factories[PageIdentity.CareerEvent1Details] = () => (
+      <CareerEventDetailsPage context={StepContext.CareerEvent1} />
+    );
+    this.factories[PageIdentity.CareerEvent2] = () => (
+      <CareerEventPage context={StepContext.CareerEvent2} />
+    );
+    this.factories[PageIdentity.CareerEvent2Details] = () => (
+      <CareerEventDetailsPage context={StepContext.CareerEvent2} />
+    );
+    this.factories[PageIdentity.ChildCareer] = () => (
+      <SimpleCareerPage
+        talent="Childhood Insight"
+        nextPage={PageIdentity.AttributesAndDisciplines}
+      />
+    );
+    this.factories[PageIdentity.NoviceOrCadetExperience] = () => (
+      <NoviceOrCadetExperiencePage />
+    );
+    this.factories[PageIdentity.CadetSeniority] = () => <CadetSeniorityPage />;
+    this.factories[PageIdentity.ChildEducationPage] = () => (
+      <ChildEducationPage />
+    );
+    this.factories[PageIdentity.ChildEducationDetailsPage] = () => (
+      <ChildEducationDetailsPage />
+    );
+    this.factories[PageIdentity.AttributesAndDisciplines] = () => (
+      <AttributesAndDisciplinesPage />
+    );
+    this.factories[PageIdentity.ExtraTalentDetails] = () => (
+      <ExtraTalentChoicesPage />
+    );
+    this.factories[PageIdentity.Finish] = () => <FinishPage />;
+    this.factories[PageIdentity.SupportingCharacter] = () => (
+      <SupportingCharacterPage />
+    );
+  }
+
+  createPage(page: PageIdentity) {
+    let factory = this.factories[page];
+
+    for (let key of Object.keys(this.pageFactories)) {
+      let pageFactory = this.pageFactories[key];
+      let temp = pageFactory.findFactory(page);
+      if (temp != null) {
+        factory = temp;
+        break;
+      }
     }
 
-    private factories = {};
-    private pageFactories = {};
-
-    constructor() {
-        this.factories = {};
-
-        this.factories[PageIdentity.Home] = () => <SelectionPage />;
-        this.factories[PageIdentity.SourceSelection] = () => <SourceSelectionPage/>;
-        this.factories[PageIdentity.Era] = () => <EraSelectionPage/>;
-        this.factories[PageIdentity.ToolSelection] = () => <ToolSelectionPage/>;
-        this.factories[PageIdentity.CharacterType] = () => <CharacterTypePage/>;
-        this.factories[PageIdentity.Species] = () => <SpeciesPage/>;
-        this.factories[PageIdentity.SpeciesDetails] = () => <SpeciesDetailsPage/>;
-        this.factories[PageIdentity.CustomSpeciesDetails] = () => <CustomSpeciesDetailsPage/>;
-        this.factories[PageIdentity.Environment] = () => <EnvironmentPage/>;
-        this.factories[PageIdentity.EnvironmentDetails] = () => <EnvironmentDetailsPage/>;
-        this.factories[PageIdentity.Upbringing] = () => <EarlyOutlookPage/>;
-        this.factories[PageIdentity.UpbringingDetails] = () => <EarlyOutlookDetailsPage/>;
-        this.factories[PageIdentity.Career] = () => <EducationPage/>;
-        this.factories[PageIdentity.CareerDetails] = () => <EducationDetailsPage/>;
-        this.factories[PageIdentity.CareerLength] = () => <CareerLengthPage/>;
-        this.factories[PageIdentity.CareerLengthDetails] = () => <CareerLengthDetailsPage/>;
-        this.factories[PageIdentity.CareerEvent1] = () => <CareerEventPage context={StepContext.CareerEvent1}/>;
-        this.factories[PageIdentity.CareerEvent1Details] = () => <CareerEventDetailsPage context={StepContext.CareerEvent1}/>;
-        this.factories[PageIdentity.CareerEvent2] = () => <CareerEventPage context={StepContext.CareerEvent2}/>;
-        this.factories[PageIdentity.CareerEvent2Details] = () => <CareerEventDetailsPage context={StepContext.CareerEvent2}/>;
-        this.factories[PageIdentity.ChildCareer] = () => <SimpleCareerPage talent="Childhood Insight" nextPage={PageIdentity.AttributesAndDisciplines}/>;
-        this.factories[PageIdentity.NoviceOrCadetExperience] = () => <NoviceOrCadetExperiencePage />;
-        this.factories[PageIdentity.CadetSeniority] = () => <CadetSeniorityPage />;
-        this.factories[PageIdentity.ChildEducationPage] = () => <ChildEducationPage/>;
-        this.factories[PageIdentity.ChildEducationDetailsPage] = () => <ChildEducationDetailsPage/>;
-        this.factories[PageIdentity.AttributesAndDisciplines] = () => <AttributesAndDisciplinesPage />;
-        this.factories[PageIdentity.ExtraTalentDetails] = () => <ExtraTalentChoicesPage />;
-        this.factories[PageIdentity.Finish] = () => <FinishPage/>;
-        this.factories[PageIdentity.SupportingCharacter] = () => <SupportingCharacterPage />;
+    if (!factory) {
+      console.error(`Unable to find a page factory for ${PageIdentity[page]}`);
     }
 
-    createPage(page: PageIdentity) {
-        let factory = this.factories[page];
+    return factory ? factory() : undefined;
+  }
 
-        for (let key of Object.keys(this.pageFactories)) {
-            let pageFactory = this.pageFactories[key];
-            let temp = pageFactory.findFactory(page);
-            if (temp != null) {
-                factory = temp;
-                break;
-            }
-        }
-
-        if (!factory) {
-            console.error(`Unable to find a page factory for ${PageIdentity[page]}`);
-        }
-
-        return factory ? factory() : undefined;
+  loadStarshipFactory(completion: () => void = () => {}) {
+    if (this.pageFactories['starship'] == null) {
+      import(
+        /* webpackChunkName: 'starship' */ '../starship/page/starshipPageFactory'
+      )
+        .then(({ StarshipPageFactory }) => {
+          this.pageFactories['starship'] = StarshipPageFactory.instance;
+          completion();
+        })
+        .catch((error) =>
+          toast('Ooops. Something bad happened', { className: 'bg-danger' }),
+        );
+    } else {
+      completion();
     }
+  }
 
-    loadStarshipFactory(completion: () => void = () => {}) {
-        if (this.pageFactories["starship"] == null) {
-            import(/* webpackChunkName: 'starship' */'../starship/page/starshipPageFactory').then(({StarshipPageFactory}) => {
-                this.pageFactories["starship"] = StarshipPageFactory.instance;
-                completion();
-            }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
-        } else {
-            completion();
-        }
+  loadNpcFactory(completion: () => void = () => {}) {
+    if (this.pageFactories['npc'] == null) {
+      import(/* webpackChunkName: 'npc' */ '../npc/page/npcPageFactory')
+        .then(({ NpcPageFactory }) => {
+          this.pageFactories['npc'] = NpcPageFactory.instance;
+          completion();
+        })
+        .catch((error) =>
+          toast('Ooops. Something bad happened', { className: 'bg-danger' }),
+        );
+    } else {
+      completion();
     }
+  }
 
-    loadNpcFactory(completion: () => void = () => {}) {
-        if (this.pageFactories["npc"] == null) {
-            import(/* webpackChunkName: 'npc' */ '../npc/page/npcPageFactory').then(({NpcPageFactory}) => {
-                this.pageFactories["npc"] = NpcPageFactory.instance;
-                completion();
-            }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
-        } else {
-            completion();
-        }
+  loadCaptainsLogFactory(completion: () => void = () => {}) {
+    if (this.pageFactories['captainsLog'] == null) {
+      import(
+        /* webpackChunkName: 'captainsLog' */ '../solo/page/captainsLogPageFactory'
+      )
+        .then(({ CaptainsLogPageFactory }) => {
+          this.pageFactories['captainsLog'] = CaptainsLogPageFactory.instance;
+          completion();
+        })
+        .catch((error) =>
+          toast('Ooops. Something bad happened', { className: 'bg-danger' }),
+        );
+    } else {
+      completion();
     }
-
-    loadCaptainsLogFactory(completion: () => void = () => {}) {
-        if (this.pageFactories["captainsLog"] == null) {
-            import(/* webpackChunkName: 'captainsLog' */ '../solo/page/captainsLogPageFactory').then(({CaptainsLogPageFactory}) => {
-                this.pageFactories["captainsLog"] = CaptainsLogPageFactory.instance;
-                completion();
-            }).catch((error) => toast("Ooops. Something bad happened", { className: 'bg-danger' }));
-        } else {
-            completion();
-        }
-    }
+  }
 }

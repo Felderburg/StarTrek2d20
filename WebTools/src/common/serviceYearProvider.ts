@@ -1,3 +1,3 @@
 export interface IServiceYearProvider {
-    serviceYear: number;
+  serviceYear: number;
 }

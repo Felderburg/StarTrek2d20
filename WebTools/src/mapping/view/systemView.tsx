@@ -1,27 +1,38 @@
-import React from "react";
-import { Window } from "../../common/window";
-import Button from "react-bootstrap/Button";
-import { StarSystem } from "../table/starSystem";
-import { withTranslation, WithTranslation } from "react-i18next";
+import React from 'react';
+import { Window } from '../../common/window';
+import Button from 'react-bootstrap/Button';
+import { StarSystem } from '../table/starSystem';
+import { withTranslation, WithTranslation } from 'react-i18next';
 
 interface ISystemViewProperties extends WithTranslation {
-    system?: StarSystem;
-    onClick: {() : void }
+  system?: StarSystem;
+  onClick: { (): void };
 }
 
 class SystemView extends React.Component<ISystemViewProperties, {}> {
-
-    render() {
-        const { t } = this.props;
-        return  this.props.system ? (<tr  onClick={() => { if (Window.isCompact()) this.props.onClick(); }}>
-            <td className="selection-header">{this.props.system.name}</td>
-            <td>{this.props.system.star ? this.props.system.star.description : ""}</td>
-            <td className="text-center">{this.props.system.worlds ? this.props.system.worlds.length : ""}</td>
-            <td className="text-end">
-                <Button size="sm" onClick={() => this.props.onClick()}>{t('Common.button.view')}</Button>
-            </td>
-        </tr>) : null;
-    }
+  render() {
+    const { t } = this.props;
+    return this.props.system ? (
+      <tr
+        onClick={() => {
+          if (Window.isCompact()) this.props.onClick();
+        }}
+      >
+        <td className="selection-header">{this.props.system.name}</td>
+        <td>
+          {this.props.system.star ? this.props.system.star.description : ''}
+        </td>
+        <td className="text-center">
+          {this.props.system.worlds ? this.props.system.worlds.length : ''}
+        </td>
+        <td className="text-end">
+          <Button size="sm" onClick={() => this.props.onClick()}>
+            {t('Common.button.view')}
+          </Button>
+        </td>
+      </tr>
+    ) : null;
+  }
 }
 
 export default withTranslation()(SystemView);

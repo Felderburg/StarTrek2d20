@@ -1,19 +1,21 @@
-import { Source } from "../helpers/sources";
-import store from "./store";
+import { Source } from '../helpers/sources';
+import store from './store';
 
 export function isSecondEdition() {
-    return hasSource(Source.Core2ndEdition);
+  return hasSource(Source.Core2ndEdition);
 }
 
 export function hasSource(s: Source) {
-    return store.getState().context.sources.indexOf(s) >= 0;
+  return store.getState().context.sources.indexOf(s) >= 0;
 }
 
 export function hasAnySource(sources: Source[]) {
-    var result: boolean = false;
-    for (var s of sources) {
-        result = result || hasSource(s) ||
-            (isSecondEdition() ? s === Source.Core2ndEdition : s === Source.Core);
-    }
-    return result;
+  var result: boolean = false;
+  for (var s of sources) {
+    result =
+      result ||
+      hasSource(s) ||
+      (isSecondEdition() ? s === Source.Core2ndEdition : s === Source.Core);
+  }
+  return result;
 }

@@ -1,6 +1,6 @@
 export interface ILocalStorageConstructRecord {
-    type: "Character"|"Starship";
-    name: string;
-    marshalled: string;
-    hash: number;
+  type: 'Character' | 'Starship';
+  name: string;
+  marshalled: string;
+  hash: number;
 }

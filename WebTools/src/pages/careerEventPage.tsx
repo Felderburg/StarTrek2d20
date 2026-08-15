@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import {Navigation} from '../common/navigator';
-import {PageIdentity} from './pageIdentity';
-import {CareerEventModel, CareerEventsHelper} from '../helpers/careerEvents';
+import { useEffect, useState } from 'react';
+import { Navigation } from '../common/navigator';
+import { PageIdentity } from './pageIdentity';
+import { CareerEventModel, CareerEventsHelper } from '../helpers/careerEvents';
 import Button from 'react-bootstrap/Button';
 import InstructionText from '../components/instructionText';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
@@ -10,142 +10,286 @@ import { DepartmentsHelper } from '../helpers/department';
 import { Window } from '../common/window';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
-import { StepContext, addCharacterCareerEvent } from "../state/characterActions";
-import { hasSource } from "../state/contextFunctions";
-import { Source, SourcesHelper } from "../helpers/sources";
-import ReactMarkdown from "react-markdown";
-import store from "../state/store";
-import { ICharacterProperties, characterMapStateToProperties } from "../solo/page/soloCharacterProperties";
-import { connect } from "react-redux";
-import { makeKey } from "../common/translationKey";
+import {
+  StepContext,
+  addCharacterCareerEvent,
+} from '../state/characterActions';
+import { hasSource } from '../state/contextFunctions';
+import { Source, SourcesHelper } from '../helpers/sources';
+import ReactMarkdown from 'react-markdown';
+import store from '../state/store';
+import {
+  ICharacterProperties,
+  characterMapStateToProperties,
+} from '../solo/page/soloCharacterProperties';
+import { connect } from 'react-redux';
+import { makeKey } from '../common/translationKey';
 import rehypeExternalLinks from 'rehype-external-links';
 
 enum EventsTab {
-    Standard,
-    StandardAndUnofficial
+  Standard,
+  StandardAndUnofficial,
 }
 
 interface ICareerEventProperties extends ICharacterProperties {
-    context: StepContext;
+  context: StepContext;
 }
 
-const CareerEventPage: React.FC<ICareerEventProperties> = ({character, context}) => {
-    let existingEvent = (context === StepContext.CareerEvent1) ? character.careerEvents[0] : character.careerEvents[1];
+const CareerEventPage: React.FC<ICareerEventProperties> = ({
+  character,
+  context,
+}) => {
+  let existingEvent =
+    context === StepContext.CareerEvent1
+      ? character.careerEvents[0]
+      : character.careerEvents[1];
 
-    const { t } = useTranslation();
-    const [randomEvent, setRandomEvent] = useState(existingEvent?.id ?? null);
-    const [randomEventWithUnofficial, setRandomEventWithUnofficial] = useState(existingEvent?.id ?? null);
-    const [tab, setTab] = useState(EventsTab.StandardAndUnofficial);
+  const { t } = useTranslation();
+  const [randomEvent, setRandomEvent] = useState(existingEvent?.id ?? null);
+  const [randomEventWithUnofficial, setRandomEventWithUnofficial] = useState(
+    existingEvent?.id ?? null,
+  );
+  const [tab, setTab] = useState(EventsTab.StandardAndUnofficial);
 
-    useEffect(() => {
-        setRandomEvent(existingEvent?.id ?? null);
-        setRandomEventWithUnofficial(existingEvent?.id ?? null);
-    }, [context, existingEvent?.id]);
+  useEffect(() => {
+    setRandomEvent(existingEvent?.id ?? null);
+    setRandomEventWithUnofficial(existingEvent?.id ?? null);
+  }, [context, existingEvent?.id]);
 
-    const careerEventSelected = (careerEvent: CareerEventModel)=> {
-        store.dispatch(addCharacterCareerEvent(careerEvent.roll, context, careerEvent.attributes?.length === 1 ? careerEvent.attributes[0] : undefined,
-            careerEvent.disciplines?.length === 1 ? careerEvent.disciplines[0] : undefined));
+  const careerEventSelected = (careerEvent: CareerEventModel) => {
+    store.dispatch(
+      addCharacterCareerEvent(
+        careerEvent.roll,
+        context,
+        careerEvent.attributes?.length === 1
+          ? careerEvent.attributes[0]
+          : undefined,
+        careerEvent.disciplines?.length === 1
+          ? careerEvent.disciplines[0]
+          : undefined,
+      ),
+    );
 
-        Navigation.navigateToPage(context === StepContext.CareerEvent2 ? PageIdentity.CareerEvent2Details : PageIdentity.CareerEvent1Details);
-    }
+    Navigation.navigateToPage(
+      context === StepContext.CareerEvent2
+        ? PageIdentity.CareerEvent2Details
+        : PageIdentity.CareerEvent1Details,
+    );
+  };
 
-    const toTableRow = (careerEvent: CareerEventModel, i: number) => {
-        const attributes = careerEvent.attributes.map((a, i) => {
-            return <div key={i}>{t(makeKey('Construct.attribute.', AttributesHelper.getAttributeName(a))) }</div>
-        });
+  const toTableRow = (careerEvent: CareerEventModel, i: number) => {
+    const attributes = careerEvent.attributes.map((a, i) => {
+      return (
+        <div key={i}>
+          {t(
+            makeKey(
+              'Construct.attribute.',
+              AttributesHelper.getAttributeName(a),
+            ),
+          )}
+        </div>
+      );
+    });
 
-        const disciplines = careerEvent.disciplines.map((d, i) => {
-            return <div key={i}>{t(makeKey('Construct.discipline.', DepartmentsHelper.instance.getDepartmentName(d))) }</div>;
-        });
-
-        return (
-            <tr key={i}
-                onClick={() => { if (Window.isCompact()) careerEventSelected(careerEvent); } }>
-                <td>
-                    <div className="selection-header">{careerEvent.localizedName}</div>
-                    <div className="text-secondary">{SourcesHelper.getSourceName(careerEvent.sources)}</div>
-                </td>
-                <td>{attributes}</td>
-                <td>{disciplines}</td>
-                <td className="text-end"><Button size="sm" onClick={() => { careerEventSelected(careerEvent) } }>{t('Common.button.select')}</Button></td>
-            </tr>
-        )
-    }
-
-    const generateRandomEvent = (includeUnofficial: boolean) => {
-        if (includeUnofficial) {
-            return Math.floor(Math.random() * 50) + 1;
-        } else {
-            return CareerEventsHelper.generateEvent(character).roll;
-        }
-    }
-
-    const renderStandardTab = () => {
-
-        const events = randomEvent != null
-            ? toTableRow(CareerEventsHelper.getCareerEvent(randomEvent, character.type, character.version) , 0)
-            : CareerEventsHelper.getCareerEvents(character).map((c, i) => toTableRow(c, i));
-
-        return (<>
-            <div className="my-4">
-                <Button size="sm" className="me-3" onClick={() => setRandomEvent( generateRandomEvent(false)) }>
-                    <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
-                </Button>
-                {randomEvent != null ? (<Button size="sm" className="me-3" onClick={() => setRandomEvent(null)} >{t('Common.button.showAll')}</Button>) : undefined}
-            </div>
-
-            <table className="selection-list">
-                <tbody>
-                    {events}
-                </tbody>
-            </table>
-        </>);
-    }
-
-    const renderStandardAndUnofficialTab = () => {
-
-        const events = randomEventWithUnofficial != null
-            ? toTableRow(CareerEventsHelper.getCareerEvent(randomEventWithUnofficial, character.type, character.version) , 0)
-            : CareerEventsHelper.getCareerEventsIncludingUnofficial(character).map((c, i) => toTableRow(c, i));
-
-        return (<>
-            <div className="mt-4">
-                <ReactMarkdown children={t('CareerEvents.unofficialNote')} rehypePlugins={[[rehypeExternalLinks, { target: '_blank' }]]} />
-            </div>
-            <div className="my-4">
-                <Button size="sm" className="me-3" onClick={() => setRandomEventWithUnofficial( generateRandomEvent(true)) }>
-                    <><img src="/static/img/d20.svg" style={{height: "24px", aspectRatio: "1"}} className="me-1" alt={t('Common.button.random')}/> {t('Common.button.random')}</>
-                </Button>
-                {randomEventWithUnofficial != null ? (<Button size="sm" className="me-3" onClick={() => setRandomEventWithUnofficial(null)} >{t('Common.button.showAll')}</Button>) : undefined}
-            </div>
-
-            <table className="selection-list">
-                <tbody>
-                    {events}
-                </tbody>
-            </table>
-        </>);
-    }
+    const disciplines = careerEvent.disciplines.map((d, i) => {
+      return (
+        <div key={i}>
+          {t(
+            makeKey(
+              'Construct.discipline.',
+              DepartmentsHelper.instance.getDepartmentName(d),
+            ),
+          )}
+        </div>
+      );
+    });
 
     return (
-        <div className="page container ms-0">
-            <CharacterCreationBreadcrumbs />
-            <Header>{t('Page.title.careerEvent')}</Header>
-            <InstructionText text={t('CareerEvents.instruction')} />
-            {hasSource(Source.ContinuingMissions)
-                ? (<div className="btn-group w-100 mt-4" role="group" aria-label="Environment types">
-                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === EventsTab.Standard ? "active" : "")}
-                        onClick={() => setTab(EventsTab.Standard)}>{t('CareerEvents.standard')}</button>
-                    <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === EventsTab.StandardAndUnofficial ? "active" : "")}
-                        onClick={() => setTab(EventsTab.StandardAndUnofficial)}>{t('CareerEvents.standardAndUnofficial')}</button>
-                </div>)
-                : undefined}
+      <tr
+        key={i}
+        onClick={() => {
+          if (Window.isCompact()) careerEventSelected(careerEvent);
+        }}
+      >
+        <td>
+          <div className="selection-header">{careerEvent.localizedName}</div>
+          <div className="text-secondary">
+            {SourcesHelper.getSourceName(careerEvent.sources)}
+          </div>
+        </td>
+        <td>{attributes}</td>
+        <td>{disciplines}</td>
+        <td className="text-end">
+          <Button
+            size="sm"
+            onClick={() => {
+              careerEventSelected(careerEvent);
+            }}
+          >
+            {t('Common.button.select')}
+          </Button>
+        </td>
+      </tr>
+    );
+  };
 
-            {tab === EventsTab.Standard
-                ? renderStandardTab()
-                : renderStandardAndUnofficialTab()}
+  const generateRandomEvent = (includeUnofficial: boolean) => {
+    if (includeUnofficial) {
+      return Math.floor(Math.random() * 50) + 1;
+    } else {
+      return CareerEventsHelper.generateEvent(character).roll;
+    }
+  };
 
-        </div>);
-}
+  const renderStandardTab = () => {
+    const events =
+      randomEvent != null
+        ? toTableRow(
+            CareerEventsHelper.getCareerEvent(
+              randomEvent,
+              character.type,
+              character.version,
+            ),
+            0,
+          )
+        : CareerEventsHelper.getCareerEvents(character).map((c, i) =>
+            toTableRow(c, i),
+          );
+
+    return (
+      <>
+        <div className="my-4">
+          <Button
+            size="sm"
+            className="me-3"
+            onClick={() => setRandomEvent(generateRandomEvent(false))}
+          >
+            <>
+              <img
+                src="/static/img/d20.svg"
+                style={{ height: '24px', aspectRatio: '1' }}
+                className="me-1"
+                alt={t('Common.button.random')}
+              />{' '}
+              {t('Common.button.random')}
+            </>
+          </Button>
+          {randomEvent != null ? (
+            <Button
+              size="sm"
+              className="me-3"
+              onClick={() => setRandomEvent(null)}
+            >
+              {t('Common.button.showAll')}
+            </Button>
+          ) : undefined}
+        </div>
+
+        <table className="selection-list">
+          <tbody>{events}</tbody>
+        </table>
+      </>
+    );
+  };
+
+  const renderStandardAndUnofficialTab = () => {
+    const events =
+      randomEventWithUnofficial != null
+        ? toTableRow(
+            CareerEventsHelper.getCareerEvent(
+              randomEventWithUnofficial,
+              character.type,
+              character.version,
+            ),
+            0,
+          )
+        : CareerEventsHelper.getCareerEventsIncludingUnofficial(character).map(
+            (c, i) => toTableRow(c, i),
+          );
+
+    return (
+      <>
+        <div className="mt-4">
+          <ReactMarkdown
+            children={t('CareerEvents.unofficialNote')}
+            rehypePlugins={[[rehypeExternalLinks, { target: '_blank' }]]}
+          />
+        </div>
+        <div className="my-4">
+          <Button
+            size="sm"
+            className="me-3"
+            onClick={() =>
+              setRandomEventWithUnofficial(generateRandomEvent(true))
+            }
+          >
+            <>
+              <img
+                src="/static/img/d20.svg"
+                style={{ height: '24px', aspectRatio: '1' }}
+                className="me-1"
+                alt={t('Common.button.random')}
+              />{' '}
+              {t('Common.button.random')}
+            </>
+          </Button>
+          {randomEventWithUnofficial != null ? (
+            <Button
+              size="sm"
+              className="me-3"
+              onClick={() => setRandomEventWithUnofficial(null)}
+            >
+              {t('Common.button.showAll')}
+            </Button>
+          ) : undefined}
+        </div>
+
+        <table className="selection-list">
+          <tbody>{events}</tbody>
+        </table>
+      </>
+    );
+  };
+
+  return (
+    <div className="page container ms-0">
+      <CharacterCreationBreadcrumbs />
+      <Header>{t('Page.title.careerEvent')}</Header>
+      <InstructionText text={t('CareerEvents.instruction')} />
+      {hasSource(Source.ContinuingMissions) ? (
+        <div
+          className="btn-group w-100 mt-4"
+          role="group"
+          aria-label="Environment types"
+        >
+          <button
+            type="button"
+            className={
+              'btn btn-info btn-sm p-2 text-center ' +
+              (tab === EventsTab.Standard ? 'active' : '')
+            }
+            onClick={() => setTab(EventsTab.Standard)}
+          >
+            {t('CareerEvents.standard')}
+          </button>
+          <button
+            type="button"
+            className={
+              'btn btn-info btn-sm p-2 text-center ' +
+              (tab === EventsTab.StandardAndUnofficial ? 'active' : '')
+            }
+            onClick={() => setTab(EventsTab.StandardAndUnofficial)}
+          >
+            {t('CareerEvents.standardAndUnofficial')}
+          </button>
+        </div>
+      ) : undefined}
+
+      {tab === EventsTab.Standard
+        ? renderStandardTab()
+        : renderStandardAndUnofficialTab()}
+    </div>
+  );
+};
 
 export default connect(characterMapStateToProperties)(CareerEventPage);

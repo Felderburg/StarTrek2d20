@@ -1,4 +1,4 @@
-import { test, expect, describe } from '@jest/globals'
+import { test, expect, describe } from '@jest/globals';
 import { Era } from '../../../src/helpers/erasEnum';
 import { StarshipRandomNameTable } from '../../../src/starship/model/starshipNameTable';
 import { RandomStarshipCharacterType } from '../../../src/starship/model/randomStarshipCharacterType';
@@ -6,10 +6,15 @@ import { CharacterType } from '../../../src/common/characterType';
 import { Spaceframe } from '../../../src/helpers/spaceframeEnum';
 
 describe('testing name generator', () => {
-    test('should produce name', () => {
-        for (let i = 0; i < 100; i++) {
-            let name = StarshipRandomNameTable(Era.NextGeneration, RandomStarshipCharacterType.Starfleet, CharacterType.Starfleet, Spaceframe.Akira);
-            expect(name).toBeDefined();
-        }
-    });
+  test('should produce name', () => {
+    for (let i = 0; i < 100; i++) {
+      let name = StarshipRandomNameTable(
+        Era.NextGeneration,
+        RandomStarshipCharacterType.Starfleet,
+        CharacterType.Starfleet,
+        Spaceframe.Akira,
+      );
+      expect(name).toBeDefined();
+    }
+  });
 });

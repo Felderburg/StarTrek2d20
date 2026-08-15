@@ -1,2 +1,1 @@
-export interface IPageProperties {
-}
+export interface IPageProperties {}

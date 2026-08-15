@@ -1,7 +1,6 @@
 export enum RandomStarshipCharacterType {
-    Starfleet,
-    Klingon,
-    Romulan,
-    Civilian
+  Starfleet,
+  Klingon,
+  Romulan,
+  Civilian,
 }
-

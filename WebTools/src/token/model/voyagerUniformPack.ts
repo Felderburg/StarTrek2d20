@@ -1,15 +1,15 @@
-import { BaseTngEraUniformPack } from "./baseTngEraUniformPack";
-import { BodyType } from "./bodyTypeEnum";
-import { isFlagRank } from "./rankHelper";
-import SpeciesRestrictions from "./speciesRestrictions";
-import Swatch from "./swatch";
-import { TokenModel } from "./tokenModel";
-import UniformCatalog, { DefaultRed } from "./uniformCatalog";
-import { UniformEra } from "./uniformEra";
-import { IUniformPack } from "./uniformPack";
+import { BaseTngEraUniformPack } from './baseTngEraUniformPack';
+import { BodyType } from './bodyTypeEnum';
+import { isFlagRank } from './rankHelper';
+import SpeciesRestrictions from './speciesRestrictions';
+import Swatch from './swatch';
+import { TokenModel } from './tokenModel';
+import UniformCatalog, { DefaultRed } from './uniformCatalog';
+import { UniformEra } from './uniformEra';
+import { IUniformPack } from './uniformPack';
 
 const VoyagerUniforms = {
-    averageMale: `<g>
+  averageMale: `<g>
         <path d="m 365.87434,352.66964 4.27392,9.63196 14.532,6.804 -0.87067,-26.57333 c -1.52533,-11.00267 -6.34267,-44.99867 -8.672,-52.57067 -2.78933,-9.06533 -4.292,-11.15866 -12.44533,-16.04 -8.15467,-4.88133 -35.12696,-17.13294 -45.54933,-21.61866 -9.84366,-4.23665 -26.816,-12.736 -37.04,-17.07867 l -6.6229,-1.6766 3.8589,8.04993 -0.29867,2.28667 c 0,0 4.84133,12.76133 6.26133,16.736 1.42,3.976 -3.40666,11.07333 -3.40666,11.07333 0,0 -6.92729,7.8901 -17.17567,7.90526 -9.22088,0.0136 -24.56167,-6.76926 -24.56167,-6.76926 l -3.40666,-4.54266 c 0,0 -15.332,-8.51734 -37.47733,-27.54 -22.14667,-19.024 -19.15963,-32.33064 -19.15963,-32.33064 l -3.70437,-1.44403 -40.91334,21.15467 -38.587996,22.548 -11.855999,6.044 -6.741334,6.27733 -9.459999,6.824 C 55.016154,282.27116 47.655892,295.12361 41.88121,310.7319 l -15.188357,70.92406 c 0,0 13.150519,7.02942 18.678216,6.85125 10.293721,-0.3318 56.340821,-19.53208 76.376951,-36.7507" style="fill:#d30000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path171958"/>
         <path d="M 384.67959,369.10547 385.69026,399.9668 25.664768,400 28.615936,377.28917 c 0,0 14.160212,9.93945 16.700145,10.05346 3.543486,0.15905 49.717495,-21.35514 77.030069,-36.66409 0,0 76.78507,-8.29453 152.63707,-6.7252 75.85333,1.56933 91.1313,6.68157 91.1313,6.68157 l 4.51211,5.43902 z" style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path171962"/>
         <path d="m 196.9892,241.882 c 22.14533,19.02267 37.47733,27.54 37.47733,27.54 l 3.408,4.54267 38.00505,87.09109 3.73095,-88.22576 c 0,0 4.82666,-7.09866 3.40666,-11.07333 -1.42,-3.97467 -6.26,-16.73733 -6.26,-16.73733 l 0.29734,-2.28534 -4.08517,-7.17743 -0.56469,0.152 -5.72492,8.00014 -3.40129,1.93677 c -2.41514,0.68458 -5.01712,0.36506 -7.46167,0.11901 -10.87333,-1.412 -25.2316,-9.19582 -34.26893,-15.83315 -9.03867,-6.63734 -26.53474,-28.71611 -26.53474,-28.71611 -0.49631,-1.4612 -1.31557,-3.67235 -2.24533,-4.86756 -5.09909,4.58971 -9.6614,8.17182 -14.80947,12.70966 l 0.0893,0.68667 c 0,0 -3.20379,13.11534 18.94155,32.138" style="fill:#7d7d7d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path171966"/>
@@ -32,7 +32,7 @@ const VoyagerUniforms = {
         </g>
     </g>`,
 
-    averageMaleFlagOfficer: `<g>
+  averageMaleFlagOfficer: `<g>
         <path d="M 384.67959,369.10547 385.69026,399.9668 25.664768,400 35.482889,333.94153 c 0,0 13.301843,17.23559 15.841776,17.3496 3.543486,0.15905 35.879451,-14.97391 64.102465,-28.15851 0,0 81.61182,-9.82586 157.46382,-8.25653 75.85333,1.56933 96.76434,4.88962 96.76434,4.88962 l 11.82508,8.54139 z" style="fill:#d30000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path171962" />
         <path id="path171958" style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" d="m 191.48003,198.27899 c -4.82761,3.95585 -5.26984,8.6245 -10.27524,19.62585 l -45.73608,16.89865 -40.712247,17.38969 -11.703729,4.52557 -6.742187,6.27734 -9.458985,6.82422 c -11.834754,12.45087 -19.196031,25.30386 -24.970703,40.91211 l -7.462178,22.85516 17.819366,19.29791 c 0,0 25.749784,-12.61177 63.147543,-30.62662 40.60417,-3.98679 105.83255,-6.51141 161.39962,-8.01417 l 90.80653,4.94883 3.09318,1.36905 10.99048,6.91199 c -1.21253,-12.5683 -3.41046,-22.47421 -6.53868,-37.51363 -2.78933,-9.06531 -4.292,-11.15774 -12.44531,-16.03906 -8.15467,-4.88133 -35.88518,-14.40212 -46.30753,-18.88784 -9.84364,-4.23663 -27.72552,-8.63848 -37.9495,-12.98115 l -4.95391,-8.50601 c -2.64213,3.06419 -4.412,6.82385 -6.80078,10.1621 l -3.40039,1.93555 c -0.69719,0.19762 -1.30276,2.4575 -2.02296,2.51371 -1.77464,0.1385 -3.70108,-2.21955 -5.43993,-2.39457 -10.87331,-1.412 -25.23027,-9.19472 -34.26758,-15.83203 -9.03865,-6.63732 -26.53516,-28.7168 -26.53516,-28.7168 -0.49631,-1.46118 -2.60388,-1.74064 -3.53364,-2.93585 z" />
         <path d="m 179.81154,217.96614 c -14.59807,5.14857 -31.24974,13.41454 -46.61806,18.65808 l -38.285852,14.05192 -11.854667,6.044 -6.742666,6.276 -9.458667,6.824 -8.589333,6.69866 -18.386504,37.68383 C 33.495726,340.01066 28.912069,364.86061 26.4841,391.98601 L 26.678065,400 H 62.401 c 10.895089,-62.95662 27.966123,-92.52242 34.705153,-98.36756 6.739027,-5.84515 15.611687,-9.92638 23.283687,-12.71571 67.72267,-24.62667 99.84217,-27.94269 99.84217,-27.94269 -23.41857,-16.92422 -29.44454,-24.11106 -40.42047,-43.0079 z" style="display:inline;opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path172176" />
@@ -53,7 +53,7 @@ const VoyagerUniforms = {
         </g>
     </g>`,
 
-    averageFemale: `<g>
+  averageFemale: `<g>
         <path d="m 277.37403,342.78554 c 14.22266,0.29467 24.3939,2.42727 34.19524,2.9206 6.65093,0.55874 13.32763,-0.13617 19.98,0.34908 3.55333,0.276 26.74875,3.99882 26.74875,3.99882 0,0 11.77009,5.34116 20.26952,9.27056 0.97066,-10.13866 0.31474,-12.73116 0.0954,-16.135 -1.22133,-4.10533 -3.55466,-13.66133 -4.772,-17.768 -6.204,-24.60533 -15.37627,-42.72423 -34.7911,-53.43536 -12.8914,-3.90462 -24.58732,-9.43526 -36.99303,-10.87425 -5.24834,-0.67437 -13.24154,-7.73644 -17.09354,-9.26711 -4.1026,-3.17146 -3.03009,-1.02294 -7.12616,-5.58947 0,0 0.36384,0.81953 1.75184,4.50619 0.85333,2.26934 2.54666,5.052 2.72133,7.436 0.21333,2.88934 -0.85467,6.19734 -1.51333,8.98267 -0.71334,3.00933 -8.50659,10.69647 -10.95418,12.62687 0.21638,3.7679 0.44718,5.4025 1.22345,11.83805 1.67196,21.4335 3.10006,45.91774 3.10006,45.91774 l -36.05867,-64.73333 -4.42286,-2.00216 c 0,0 -13.2996,-4.79126 -35.44493,-23.81392 -2.768,-2.37867 -6.10687,-7.24125 -8.05087,-9.59058 -1.94267,-2.34934 -3.50933,-4.592 -4.76267,-6.70534 -4.14266,-6.31866 -3.66362,1.74521 -3.66362,-6.25479 -14.34654,6.4495 -26.45614,10.66893 -50.14814,24.25293 -16.34721,4.40719 -36.792236,9.01386 -54.478902,19.41653 -3.369333,1.98133 -12.235784,6.10027 -15.737253,8.22656 -9.936686,13.29958 -9.370619,20.97003 -15.103952,36.71669 -0.656343,2.91272 -1.569301,6.39781 -3.567864,12.57231 -4.402769,16.19096 -7.370155,25.5266 -8.899488,40.02126 -0.958667,5.632 -0.927074,10.69138 -1.843138,18.00355 -0.31846,4.11347 -0.340886,11.04639 -0.965118,14.37798 2.922667,0.34 10.975002,-5.10458 13.848335,-5.73258 8.405333,-1.84 16.507145,-7.14177 24.723145,-9.76444 9.216,-2.94133 18.306666,-6.41867 27.011999,-10.76667 4.298666,-2.148 8.507996,-4.50533 12.545336,-7.15733 2.42666,-1.59467 7.98933,-7.792 10.564,-8.08267" style="fill:#d30000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path283350"/>
         <path d="m 31.482052,395.28734 c 0.446666,2.49334 1.180614,2.08466 1.540614,4.67933 h 20.166666 c 0.196,-3.43334 -0.168,-7.00134 -0.09067,-10.296 0.142667,-6.028 1.809568,-11.8813 2.717568,-17.83597 1.664043,-10.89316 4.390792,-21.53944 8.717099,-31.40937 5.682623,-10.91971 7.04473,-14.96286 12.227828,-24.25379 8.061621,-9.83474 8.681112,-10.66445 17.276729,-16.04664 9.830784,-5.05831 15.433984,-7.8084 26.708774,-12.5209 12.06134,-4.93733 26.01867,-8.93733 38.75867,-12.128 2.82667,-0.80533 5.532,-1.54666 8.11733,-2.22666 28.43467,-7.48134 48.85975,-10.78844 48.85975,-10.78844 0,0 -11.6028,-5.51607 -20.87346,-16.6534 -3.08933,-3.71334 -5.02725,-4.512 -7.25392,-8.99734 -2.228,-4.484 -3.54315,-5.33167 -8.02103,-10.32829 -6.75333,2.5483 -26.119,9.03784 -47.707,21.33251 -18.69995,5.86575 -35.845712,11.49837 -55.441672,20.31762 -6.939001,2.88838 -12.359196,4.7333 -15.263196,7.33997 -9.815593,11.6216 -13.675677,21.85662 -18.57202,40.35778 -3.949413,17.25627 -7.765364,34.88594 -9.352248,49.71932 -1.108,6.50533 -0.995824,8.39911 -2.471784,17.39312 0.117676,5.33145 -0.859554,8.65545 -0.283552,11.86611" style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path283392"/>
         <path d="m 378.5229,400.13516 c -0.70621,-4.19803 -0.88217,-3.75852 -1.04504,-12.47663 0.229,-3.81117 0.24635,-5.9358 0.66697,-9.49263 0.67403,-5.69974 1.99809,-16.06407 -0.20288,-18.07669 -2.21467,-1.17867 -8.80026,-5.6689 -11.20826,-6.40357 -5.82996,-2.46016 -12.45137,-3.69306 -18.709,-4.88466 -12.27936,-1.91114 -24.11856,-3.76594 -36.65766,-4.40283 -9.8,-0.49333 -21.88234,-1.11717 -36.10501,-1.41184 -75.85333,-1.56933 -158.11535,6.31812 -158.11535,6.31812 -16.51462,8.44767 -31.124903,17.03323 -48.913148,27.07651 -8.295313,4.68355 -11.789229,6.55141 -21.033724,12.6993 -3.287657,-1.72028 -11.684619,-10.11223 -14.028619,-8.60157 -2.472,1.59467 -1.46398,15.66382 -1.28398,18.75449 0.01467,0.24667 0.03333,0.48933 0.052,0.73333 z" style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path283402"/>
@@ -80,7 +80,7 @@ const VoyagerUniforms = {
         <path style="color:#000000;fill:#000000;-inkscape-stroke:none" d="m 355.50776,301.23235 c 2.68191,13.35551 4.06488,25.64683 5.25396,39.18367 0.57146,6.50567 0.5039,19.92187 0.5039,19.92187 l 2.4004,0.0137 c 0,0 0.0839,-13.34164 -0.51368,-20.14453 -1.19973,-13.65819 -3.43801,-27.21312 -6.13086,-40.62305 -0.89026,-4.43336 -5.57805,-15.94122 -5.57805,-15.94122 0,0 3.21975,13.3837 4.06433,17.58956 z" id="path2"/>
     </g>`,
 
-    averageFemaleFlagOfficer: `<g>
+  averageFemaleFlagOfficer: `<g>
         <path id="path283350" style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" d="m 193.08008,202.94531 c -2.51861,5.31765 -2.82016,5.73971 -5.07617,9.83789 -3.00937,4.71927 -4.23154,7.9528 -6.19141,11.67969 -14.34653,6.44949 -26.45646,10.66797 -50.14844,24.25195 -16.34719,4.40719 -36.791865,9.01531 -54.478513,19.41797 -3.36933,1.98133 -12.234863,6.10028 -15.736328,8.22657 -9.936676,13.29956 -9.372142,20.97015 -15.105469,36.71679 -4.528166,14.93918 -6.127282,22.48621 -8.525628,33.70263 2.922664,0.34 8.805707,11.51278 11.679037,10.88478 19.406523,-12.5474 33.122769,-21.85347 57.396871,-34.41919 17.87664,-0.78348 160.13869,-2.8764 164.40247,-2.72136 30.162,1.09674 61.42049,2.95395 91.85819,5.13747 0,0 7.2251,6.85673 14.67105,14.89207 -0.74884,-4.7991 -1.47751,-8.20007 -2.12019,-11.54987 -0.80702,-4.20643 -2.24143,-6.7801 -3.45877,-10.88676 -6.20399,-24.60531 -13.73236,-35.41849 -33.14717,-46.12961 -12.89139,-3.90462 -24.58649,-9.43601 -36.99219,-10.875 -5.24833,-0.67437 -12.25435,-7.05271 -15.81521,-9.17431 -6.37982,-3.80115 -8.82454,-6.17628 -11.24141,-8.26905 L 274.9883,240.66602 270.709,235 l -3.2207,8.06836 c -1.53936,0.88783 -2.94755,2.05369 -4.61719,2.66211 -0.8425,0.30701 -1.3636,4.64645 -2.3232,4.67941 -1.34112,0.0461 -3.19049,-4.31495 -4.8975,-4.50949 -10.62185,-1.78919 -26.68533,-8.38611 -35.72266,-15.02344 -7.43374,-5.45879 -23.211,-21.6259 -26.84765,-27.93164 z" />
         <path d="m 380.04463,399.96653 c -0.3133,-6.08854 -1.45178,-8.00321 -1.81746,-18.53235 -0.19921,-5.736 1.35581,-40.30781 -0.84521,-42.32043 -2.21467,-1.17867 -11.48825,-14.43071 -13.99326,-14.68194 -25.56155,-2.5636 -62.78281,-6.03798 -93.81097,-6.76019 -75.85333,-1.56933 -163.34314,4.08738 -163.34314,4.08738 -24.379393,11.17444 -33.620793,17.31697 -56.474883,28.74093 -4.558918,-3.09473 -11.255697,-7.46904 -11.225268,-7.41956 0,0 -6.82726,53.06212 -6.64726,56.15279 0.01467,0.24667 0.03333,0.48933 0.052,0.73333 z" style="fill:#d30000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path283402" />
         <path d="m 199.85386,247.78521 c -2.93665,-2.47779 -7.28168,-7.44446 -10.22639,-11.3595 -5.69208,-7.56772 -7.29436,-11.28257 -0.41891,-24.25333 3.46894,-6.54427 4.74293,-10.62513 4.74293,-10.62513 l 0.67141,4.26669 c 7.96762,12.63941 11.92435,16.15759 20.26837,24.38157 7.41065,7.30402 11.63496,10.0071 24.00893,16.26979 3.86892,1.95813 4.27646,12.0527 4.06046,14.43004 -0.216,2.37733 -8.33269,9.49419 -23.27996,0.78187 -7.33325,-4.27433 -13.15973,-8.26665 -19.82684,-13.892 z" style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path283456" />
@@ -103,55 +103,134 @@ const VoyagerUniforms = {
             <path d="m 326.25613,376.3148 c 0,0 -4.35067,0.21867 -5.28267,0.21867 -0.93333,0 -0.688,-1.972 0.0573,-1.972 0.74667,0 5.47067,-0.21867 5.47067,-0.21867 l -0.14,-0.876 c 0,0 -5.268,0.31867 -6.012,0.328 -0.74533,0.009 -0.67733,2.19067 -0.47867,2.84933 0.19867,0.65734 1.784,0.65734 2.624,0.65734 0.84,0 3.808,-0.11067 3.808,-0.11067 z" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path283550"/>
         </g>
     </g>`,
-}
+};
 
+export class VoyagerUniformPack
+  extends BaseTngEraUniformPack
+  implements IUniformPack
+{
+  constructor() {
+    super(UniformEra.VoyagerDS9);
+  }
 
-export class VoyagerUniformPack extends BaseTngEraUniformPack implements IUniformPack {
+  getUniformSwatches() {
+    return [
+      new Swatch(
+        BodyType.AverageMale,
+        'Average Male',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageMale,
+              token.skinColor,
+              undefined,
+              UniformEra.VoyagerDS9,
+            ) +
+              (isFlagRank(token.rankIndicator)
+                ? VoyagerUniforms.averageMaleFlagOfficer
+                : VoyagerUniforms.averageMale),
+            BodyType.AverageMale,
+            token,
+          ),
+        'BodyType.averageMale',
+      ),
+      new Swatch(
+        BodyType.AverageFemale,
+        'Average Female',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageFemale,
+              token.skinColor,
+              undefined,
+              UniformEra.VoyagerDS9,
+            ) +
+              (isFlagRank(token.rankIndicator)
+                ? VoyagerUniforms.averageFemaleFlagOfficer
+                : VoyagerUniforms.averageFemale),
+            BodyType.AverageFemale,
+            token,
+          ),
+        'BodyType.averageFemale',
+      ),
+    ];
+  }
 
-    constructor() {
-        super(UniformEra.VoyagerDS9);
+  getUniformVariantSwatches(token: TokenModel) {
+    return [];
+  }
+
+  getUniformAndVariantBody(token: TokenModel) {
+    if (token.bodyType === BodyType.AverageMale) {
+      if (isFlagRank(token.rankIndicator)) {
+        return (
+          this.getNeck(
+            token.bodyType,
+            token.skinColor,
+            token.species,
+            UniformEra.VoyagerDS9,
+          ) +
+          VoyagerUniforms.averageMaleFlagOfficer
+            .replace(DefaultRed, token.divisionColor)
+            .replace(
+              SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+              token.skinColor,
+            )
+        );
+      } else {
+        return (
+          this.getNeck(
+            token.bodyType,
+            token.skinColor,
+            token.species,
+            UniformEra.VoyagerDS9,
+          ) +
+          VoyagerUniforms.averageMale
+            .replace(DefaultRed, token.divisionColor)
+            .replace(
+              SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+              token.skinColor,
+            )
+        );
+      }
+    } else {
+      if (isFlagRank(token.rankIndicator)) {
+        return (
+          this.getNeck(
+            token.bodyType,
+            token.skinColor,
+            token.species,
+            UniformEra.VoyagerDS9,
+          ) +
+          VoyagerUniforms.averageFemaleFlagOfficer
+            .replace(DefaultRed, token.divisionColor)
+            .replace(
+              SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+              token.skinColor,
+            )
+        );
+      } else {
+        return (
+          this.getNeck(
+            token.bodyType,
+            token.skinColor,
+            token.species,
+            UniformEra.VoyagerDS9,
+          ) +
+          VoyagerUniforms.averageFemale
+            .replace(DefaultRed, token.divisionColor)
+            .replace(
+              SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+              token.skinColor,
+            )
+        );
+      }
     }
+  }
 
-    getUniformSwatches() {
-        return [
-            new Swatch(BodyType.AverageMale, "Average Male",
-                (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.VoyagerDS9)
-                    + (isFlagRank(token.rankIndicator) ? VoyagerUniforms.averageMaleFlagOfficer : VoyagerUniforms.averageMale),
-                    BodyType.AverageMale, token), "BodyType.averageMale"),
-            new Swatch(BodyType.AverageFemale, "Average Female",
-                (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.VoyagerDS9)
-                    + (isFlagRank(token.rankIndicator) ? VoyagerUniforms.averageFemaleFlagOfficer : VoyagerUniforms.averageFemale),
-                    BodyType.AverageFemale, token), "BodyType.averageFemale"),
-        ];
-    }
-
-    getUniformVariantSwatches(token: TokenModel) {
-        return [];
-    }
-
-    getUniformAndVariantBody(token: TokenModel) {
-        if (token.bodyType === BodyType.AverageMale) {
-            if (isFlagRank(token.rankIndicator)) {
-                return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.VoyagerDS9)
-                   + VoyagerUniforms.averageMaleFlagOfficer.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-            } else {
-                return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.VoyagerDS9)
-                   + VoyagerUniforms.averageMale.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-            }
-        } else {
-            if (isFlagRank(token.rankIndicator)) {
-                return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.VoyagerDS9)
-                    + VoyagerUniforms.averageFemaleFlagOfficer.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-            } else {
-                return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.VoyagerDS9)
-                    + VoyagerUniforms.averageFemale.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-            }
-        }
-    }
-
-    getRankIndicator(token: TokenModel) {
-        let result = super.getRankIndicator(token);
-        result = `<g transform="translate(3, 5)">` + result + `</g>`;
-        return result;
-    }
+  getRankIndicator(token: TokenModel) {
+    let result = super.getRankIndicator(token);
+    result = `<g transform="translate(3, 5)">` + result + `</g>`;
+    return result;
+  }
 }

@@ -1,5 +1,4 @@
-
 export enum AttackType {
-    Melee,
-    Ranged
+  Melee,
+  Ranged,
 }

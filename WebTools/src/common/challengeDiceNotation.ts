@@ -1,1 +1,1 @@
-export const CHALLENGE_DICE_NOTATION = "[D]";
+export const CHALLENGE_DICE_NOTATION = '[D]';

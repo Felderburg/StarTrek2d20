@@ -1,128 +1,198 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
-import { Navigation } from "../../common/navigator";
-import { Starship } from "../../common/starship";
-import Button from "react-bootstrap/Button";
-import { Dialog } from "../../components/dialog";
-import { Header } from "../../components/header";
-import { PageIdentity } from "../../pages/pageIdentity";
-import { nextStarshipWorkflowStep, setStarshipSpaceframe } from "../../state/starshipActions";
-import store from "../../state/store";
-import { ShipBuildWorkflow } from "../model/shipBuildWorkflow";
-import ShipBuildingBreadcrumbs from "../view/shipBuildingBreadcrumbs";
-import SpaceframeSelection from "../view/spaceframeSelection";
+import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { Navigation } from '../../common/navigator';
+import { Starship } from '../../common/starship';
+import Button from 'react-bootstrap/Button';
+import { Dialog } from '../../components/dialog';
+import { Header } from '../../components/header';
+import { PageIdentity } from '../../pages/pageIdentity';
+import {
+  nextStarshipWorkflowStep,
+  setStarshipSpaceframe,
+} from '../../state/starshipActions';
+import store from '../../state/store';
+import { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
+import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import SpaceframeSelection from '../view/spaceframeSelection';
 import { useTranslation } from 'react-i18next';
-import InstructionText from "../../components/instructionText";
-import { TALENT_NAME_DEDICATED_PERSONNEL, TALENT_NAME_REDUNDANT_SYSTEMS } from "../../helpers/talents";
-import CustomSpaceframeView from "../view/customSpaceframeView";
-import PointAllocator from "../../helpers/pointAllocator";
-import { BuildPoints } from "../model/buildPoints";
-import { SpaceframeModel } from "../../helpers/spaceframeModel";
-import { ShipBuildType } from "../../common/shipBuildType";
+import InstructionText from '../../components/instructionText';
+import {
+  TALENT_NAME_DEDICATED_PERSONNEL,
+  TALENT_NAME_REDUNDANT_SYSTEMS,
+} from '../../helpers/talents';
+import CustomSpaceframeView from '../view/customSpaceframeView';
+import PointAllocator from '../../helpers/pointAllocator';
+import { BuildPoints } from '../model/buildPoints';
+import { SpaceframeModel } from '../../helpers/spaceframeModel';
+import { ShipBuildType } from '../../common/shipBuildType';
 
 enum SpaceframeTab {
-    Custom,
-    Standard
+  Custom,
+  Standard,
 }
 
 interface ISpaceframeSelectionPageProperties {
-    starship: Starship;
-    workflow: ShipBuildWorkflow;
+  starship: Starship;
+  workflow: ShipBuildWorkflow;
 }
 
-const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({starship, workflow}) => {
+const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
+  starship,
+  workflow,
+}) => {
+  const { t } = useTranslation();
+  const [tab, setTab] = useState<SpaceframeTab>(
+    starship?.spaceframeStep?.model?.isCustom
+      ? SpaceframeTab.Custom
+      : SpaceframeTab.Standard,
+  );
 
-    const { t } = useTranslation();
-    const [tab, setTab] = useState<SpaceframeTab>(starship?.spaceframeStep?.model?.isCustom ? SpaceframeTab.Custom : SpaceframeTab.Standard);
-
-    const onChangeTab = (newTab: SpaceframeTab) => {
-        if (newTab === tab) {
-            // no change
-        } else if (newTab === SpaceframeTab.Custom) {
-            if (!starship.spaceframeModel?.isCustom) {
-                let scale = 3;
-                let systems = PointAllocator.allocatePointsEvenly(BuildPoints.systemPointsForType(
-                    ShipBuildType.Starship, starship.serviceYear, starship.type, scale, starship.version));
-                let departments = PointAllocator.allocatePointsEvenly(BuildPoints.departmentPointsForType(
-                    ShipBuildType.Starship))
-                let spaceframe = SpaceframeModel.createCustomSpaceframe(starship?.type, starship?.serviceYear, systems, departments, scale);
-                store.dispatch(setStarshipSpaceframe(spaceframe));
-            }
-            setTab(newTab);
-        } else {
-            setTab(newTab);
-        }
+  const onChangeTab = (newTab: SpaceframeTab) => {
+    if (newTab === tab) {
+      // no change
+    } else if (newTab === SpaceframeTab.Custom) {
+      if (!starship.spaceframeModel?.isCustom) {
+        let scale = 3;
+        let systems = PointAllocator.allocatePointsEvenly(
+          BuildPoints.systemPointsForType(
+            ShipBuildType.Starship,
+            starship.serviceYear,
+            starship.type,
+            scale,
+            starship.version,
+          ),
+        );
+        let departments = PointAllocator.allocatePointsEvenly(
+          BuildPoints.departmentPointsForType(ShipBuildType.Starship),
+        );
+        let spaceframe = SpaceframeModel.createCustomSpaceframe(
+          starship?.type,
+          starship?.serviceYear,
+          systems,
+          departments,
+          scale,
+        );
+        store.dispatch(setStarshipSpaceframe(spaceframe));
+      }
+      setTab(newTab);
+    } else {
+      setTab(newTab);
     }
+  };
 
-    const requiresDedicatedPersonnelSelection = () => {
-        const talents = starship.spaceframeModel.talents
-            .filter(t => t.name === TALENT_NAME_DEDICATED_PERSONNEL && t.department == null);
-        return talents?.length;
+  const requiresDedicatedPersonnelSelection = () => {
+    const talents = starship.spaceframeModel.talents.filter(
+      (t) => t.name === TALENT_NAME_DEDICATED_PERSONNEL && t.department == null,
+    );
+    return talents?.length;
+  };
+
+  const requiresRedundantSystemsSelection = () => {
+    const talents = starship.spaceframeModel.talents.filter(
+      (t) =>
+        t.name === TALENT_NAME_REDUNDANT_SYSTEMS &&
+        t.system == null &&
+        t.selection == null,
+    );
+    return talents?.length;
+  };
+
+  const nextPage = () => {
+    if (tab === SpaceframeTab.Standard) {
+      if (
+        starship.spaceframeModel == null ||
+        starship.spaceframeModel.isCustom
+      ) {
+        Dialog.show('Please select a spaceframe before proceeding.');
+      } else if (
+        requiresDedicatedPersonnelSelection() ||
+        requiresRedundantSystemsSelection()
+      ) {
+        Navigation.navigateToPage(PageIdentity.ExtraStarshipTalentChoice);
+      } else {
+        let step = workflow.peekNextStep();
+        store.dispatch(nextStarshipWorkflowStep());
+        Navigation.navigateToPage(step.page);
+      }
+    } else {
+      if (!starship.className) {
+        Dialog.show('Please provide a name for this class of ship.');
+      } else if (
+        starship.spaceframeModel.sumSystemPoints <
+        starship.totalAvailableSystemPoints
+      ) {
+        Dialog.show('You have not distributed all the Systems Points');
+      } else if (
+        starship.spaceframeModel.sumDepartmentPoints <
+        starship.totalAvailableDepartmentPoints
+      ) {
+        Dialog.show('You have not distributed all the Department Points');
+      } else {
+        Navigation.navigateToPage(PageIdentity.StarshipWeaponsSelection);
+      }
     }
+  };
 
-    const requiresRedundantSystemsSelection = () => {
-        const talents = starship.spaceframeModel.talents
-            .filter(t => t.name === TALENT_NAME_REDUNDANT_SYSTEMS &&
-                (t.system == null && t.selection == null));
-        return talents?.length;
-    }
+  return (
+    <div className="page container ms-0">
+      <ShipBuildingBreadcrumbs />
+      <Header>{t('Page.title.spaceframeSelection')}</Header>
+      <InstructionText text={t('SpaceframeSelectionPage.text')} />
 
-    const nextPage = () => {
-        if (tab === SpaceframeTab.Standard) {
-            if (starship.spaceframeModel == null || starship.spaceframeModel.isCustom) {
-                Dialog.show("Please select a spaceframe before proceeding.");
-            } else if (requiresDedicatedPersonnelSelection() || requiresRedundantSystemsSelection()) {
-                Navigation.navigateToPage(PageIdentity.ExtraStarshipTalentChoice);
-            } else {
-                let step = workflow.peekNextStep();
-                store.dispatch(nextStarshipWorkflowStep());
-                Navigation.navigateToPage(step.page);
-            }
-        } else {
-            if (!(starship.className)) {
-                Dialog.show("Please provide a name for this class of ship.");
-            } else if (starship.spaceframeModel.sumSystemPoints < starship.totalAvailableSystemPoints) {
-                Dialog.show("You have not distributed all the Systems Points");
-            } else if (starship.spaceframeModel.sumDepartmentPoints < starship.totalAvailableDepartmentPoints) {
-                Dialog.show("You have not distributed all the Department Points");
-            } else {
-                Navigation.navigateToPage(PageIdentity.StarshipWeaponsSelection);
-            }
-        }
-    }
+      <div
+        className="btn-group w-100 mb-4"
+        role="group"
+        aria-label={t('StationSpaceframePage.frameType')}
+      >
+        <button
+          type="button"
+          className={
+            'btn btn-info btn-sm p-2 text-center ' +
+            (tab === SpaceframeTab.Standard ? 'active' : '')
+          }
+          onClick={() => onChangeTab(SpaceframeTab.Standard)}
+        >
+          {t('StationSpaceframePage.standard')}
+        </button>
+        <button
+          type="button"
+          className={
+            'btn btn-info btn-sm p-2 text-center ' +
+            (tab === SpaceframeTab.Custom ? 'active' : '')
+          }
+          onClick={() => onChangeTab(SpaceframeTab.Custom)}
+        >
+          {t('StationSpaceframePage.custom')}
+        </button>
+      </div>
 
-    return (<div className="page container ms-0">
-        <ShipBuildingBreadcrumbs />
-        <Header>{t('Page.title.spaceframeSelection')}</Header>
-        <InstructionText text={t('SpaceframeSelectionPage.text')} />
-
-        <div className="btn-group w-100 mb-4" role="group" aria-label={t('StationSpaceframePage.frameType')}>
-            <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === SpaceframeTab.Standard ? "active" : "")}
-                    onClick={() => onChangeTab(SpaceframeTab.Standard)}>{t('StationSpaceframePage.standard')}</button>
-            <button type="button" className={'btn btn-info btn-sm p-2 text-center ' + (tab === SpaceframeTab.Custom ? "active" : "")}
-                    onClick={() => onChangeTab(SpaceframeTab.Custom)}>{t('StationSpaceframePage.custom')}</button>
-        </div>
-
-
-        {tab === SpaceframeTab.Standard
-            ? (<SpaceframeSelection
-                initialSelection={starship.spaceframeModel}
-                starship={starship}
-                serviceYear={starship.serviceYear}
-                type={starship.type}
-                onSelection={(spaceframe, variant) => store.dispatch(setStarshipSpaceframe(spaceframe, variant))} />)
-            : (<CustomSpaceframeView starship={starship} />)}
-        <div className="text-end">
-            <Button className="mt-4" onClick={() => nextPage()}>{t('Common.button.next')}</Button>
-        </div>
-    </div>);
-}
+      {tab === SpaceframeTab.Standard ? (
+        <SpaceframeSelection
+          initialSelection={starship.spaceframeModel}
+          starship={starship}
+          serviceYear={starship.serviceYear}
+          type={starship.type}
+          onSelection={(spaceframe, variant) =>
+            store.dispatch(setStarshipSpaceframe(spaceframe, variant))
+          }
+        />
+      ) : (
+        <CustomSpaceframeView starship={starship} />
+      )}
+      <div className="text-end">
+        <Button className="mt-4" onClick={() => nextPage()}>
+          {t('Common.button.next')}
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 function mapStateToProps(state, ownProps) {
-    return {
-        starship: state.starship.starship,
-        workflow: state.starship.workflow
-    };
+  return {
+    starship: state.starship.starship,
+    workflow: state.starship.workflow,
+  };
 }
 
 export default connect(mapStateToProps)(SpaceframeSelectionPage);

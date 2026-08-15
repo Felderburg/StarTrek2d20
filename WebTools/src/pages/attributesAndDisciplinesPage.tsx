@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import {Character} from '../common/character';
-import {Navigation} from '../common/navigator';
-import {PageIdentity} from './pageIdentity';
+import { Character } from '../common/character';
+import { Navigation } from '../common/navigator';
+import { PageIdentity } from './pageIdentity';
 import { TalentsHelper } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
-import {Dialog} from '../components/dialog';
+import { Dialog } from '../components/dialog';
 import ValueInput from '../components/valueInput';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { CharacterType } from '../common/characterType';
@@ -13,149 +13,224 @@ import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
 import InstructionText from '../components/instructionText';
-import { FinishingTouchesAttributeController, FinishingTouchesDisciplineController } from '../components/finishingTouchesControllers';
-import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
+import {
+  FinishingTouchesAttributeController,
+  FinishingTouchesDisciplineController,
+} from '../components/finishingTouchesControllers';
+import {
+  ICharacterProperties,
+  characterMapStateToProperties,
+} from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import AttributeListComponent from '../components/attributeListComponent';
 import DisciplineListComponent from '../components/disciplineListComponent';
 import store from '../state/store';
-import { addCharacterTalent, setCharacterFinishingTouches, setCharacterValue, StepContext } from '../state/characterActions';
+import {
+  addCharacterTalent,
+  setCharacterFinishingTouches,
+  setCharacterValue,
+  StepContext,
+} from '../state/characterActions';
 import { isSecondEdition } from '../state/contextFunctions';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isTalentSelectable } from '../helpers/talentSelection';
 import { RankedTalent } from '../helpers/rankedTalent';
-import { isKlingonWarriorType } from "../helpers/klingonWarrior";
+import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 
-const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({character})  => {
+const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
+  const { t } = useTranslation();
 
-    const { t } = useTranslation();
-
-    const randomValue = () => {
-        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-        store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
-    }
-
-    const filterTalentList = () => {
-        return TalentsHelper.getAllAvailableTalentsForCharacter(character).filter(
-            t => isTalentSelectable(character, t, character.finishingStep))
-            .map(t => {
-                if (t.maxRank > 1) {
-                    if (character.finishingStep?.talent?.talent === t.name) {
-                        return new RankedTalent(t, character.getRankForTalent(t.name));
-                    } else {
-                        return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
-                    }
-                } else {
-                    return new RankedTalent(t);
-                }
-            });
-    }
-
-    const isTalentSelectionNeeded = () => {
-        return isSecondEdition() || isKlingonWarriorType(character.type);
-    }
-
-    const navigateToNextPage = () => {
-        if (character.finishingStep?.attributes.length !== attributeCount) {
-            Dialog.show(t('SoloFinishingTouchesPage.errorAttributes', { count: attributeCount}));
-        } else if (character.finishingStep?.disciplines.length !== disciplineCount) {
-            Dialog.show(t('SoloFinishingTouchesPage.errorDisciplines', { count: disciplineCount}));
-        } else if (!character.finishingStep?.value == null) {
-            Dialog.show(t('SoloFinishingTouchesPage.errorValue'));
-        } else if (isTalentSelectionNeeded() && character?.finishingStep?.talent == null) {
-            Dialog.show(t('SoloFinishingTouchesPage.errorTalent'));
-        } else if (isTalentSelectionNeeded() && determineSelectedTalentExtraErrors(character.finishingStep.talent) != null) {
-            Dialog.show(determineSelectedTalentExtraErrors(character.finishingStep.talent));
-        } else {
-            Navigation.navigateToPage(PageIdentity.Finish);
-        }
-    }
-
-    let attributeTotal = 0;
-    character.attributes.forEach(a => attributeTotal += a);
-    attributeTotal -= (character.finishingStep?.attributes?.length ?? 0);
-    const attributeCount = Character.totalAttributeSum(character) - attributeTotal;
-
-    let disciplineTotal = 0;
-    character.departments.forEach(a => disciplineTotal += a);
-    disciplineTotal -= (character.finishingStep?.disciplines?.length ?? 0);
-
-    const disciplineCount = Character.totalDepartmentSum(character) - disciplineTotal;
-
-    const attributeController = new FinishingTouchesAttributeController(character, attributeCount);
-    const disciplineController = new FinishingTouchesDisciplineController(character, disciplineCount);
-
-    let talents = filterTalentList();
-
-    const talentSelection = (isKlingonWarriorType(character.type) || character.version > 1)
-        ? (<div className="my-4">
-            <Header level={2}>{t('Construct.other.talents')}</Header>
-            <SingleTalentSelectionList talents={talents} construct={character}
-                initialSelection={character.finishingStep?.talent}
-                onSelection={talent => {
-                    store.dispatch(addCharacterTalent(talent, StepContext.FinishingTouches));
-                } } />
-        </div>)
-        : undefined;
-
-
-    const excessAttrPoints = attributeCount - 2;
-    const attributeText = excessAttrPoints > 0 ? (
-        <p>
-            The point total includes {excessAttrPoints} excess {excessAttrPoints > 1 ? ' Points ' : ' Point '} that could not
-            be automatically added to your attributes without exceeding maximum values.
-        </p>
-    ) : undefined;
-
-    const excessSkillPoints = disciplineCount - 2;
-    const disciplinesText = excessSkillPoints > 0 ? (
-        <p>
-            The point total includes {excessSkillPoints} excess {excessSkillPoints > 1 ? ' Points ' : ' Point '} that could not
-            be automatically added to your dsciplines without exceeding maximum values.
-        </p>
-    ) : undefined;
-
-    useEffect(() => {
-        if (character.finishingStep == null) {
-            store.dispatch(setCharacterFinishingTouches());
-        }
-    }, [character.finishingStep]);
-
-
-    let value = (character.type !== CharacterType.Child && character.type !== CharacterType.Cadet)
-        ? (<div className="col-lg-6 mt-4">
-                <Header level={2}>{t('Construct.other.value')}</Header>
-                <ValueInput value={character.finishingStep?.value ?? ""} onValueChanged={(value) => store.dispatch(setCharacterValue(value, StepContext.FinishingTouches))}
-                        onRandomClicked={() => randomValue()} textDescription={t('Value.final.text')} />
-            </div>)
-        : undefined;
-
-
-    return (
-        <div className="page container ms-0">
-            <CharacterCreationBreadcrumbs pageIdentity={PageIdentity.AttributesAndDisciplines} />
-            <Header>{t('Page.title.finish')}</Header>
-            <InstructionText text={t('AttributesAndDisciplines.instruction')} />
-            <div className="row">
-                <div className="col-lg-6 my-3">
-                    <Header level={2} className="mb-3"><>{t('Construct.other.attribute')} {t('SoloFinishingTouchesPage.select', {count: attributeCount})}</></Header>
-                    {attributeText}
-                    <AttributeListComponent controller={attributeController} />
-                </div>
-                <div className="col-lg-6 my-3">
-                    <Header level={2} className="mb-3"><>{t('Construct.other.discipline')}  {t('SoloFinishingTouchesPage.select', {count: disciplineCount})}</></Header>
-                    {disciplinesText}
-                    <DisciplineListComponent controller={disciplineController} />
-                </div>
-                {value}
-            </div>
-
-            {talentSelection}
-            <div className="text-end mt-4">
-                <Button onClick={() => navigateToNextPage() }>{t('Common.button.finish')}</Button>
-            </div>
-        </div>
+  const randomValue = () => {
+    let value = randomUniqueValue(
+      character.values,
+      character.speciesStep?.species,
+      character.educationStep?.primaryDiscipline,
     );
-}
+    store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
+  };
 
-export default connect(characterMapStateToProperties)(AttributesAndDisciplinesPage);
+  const filterTalentList = () => {
+    return TalentsHelper.getAllAvailableTalentsForCharacter(character)
+      .filter((t) => isTalentSelectable(character, t, character.finishingStep))
+      .map((t) => {
+        if (t.maxRank > 1) {
+          if (character.finishingStep?.talent?.talent === t.name) {
+            return new RankedTalent(t, character.getRankForTalent(t.name));
+          } else {
+            return new RankedTalent(t, character.getRankForTalent(t.name) + 1);
+          }
+        } else {
+          return new RankedTalent(t);
+        }
+      });
+  };
+
+  const isTalentSelectionNeeded = () => {
+    return isSecondEdition() || isKlingonWarriorType(character.type);
+  };
+
+  const navigateToNextPage = () => {
+    if (character.finishingStep?.attributes.length !== attributeCount) {
+      Dialog.show(
+        t('SoloFinishingTouchesPage.errorAttributes', {
+          count: attributeCount,
+        }),
+      );
+    } else if (
+      character.finishingStep?.disciplines.length !== disciplineCount
+    ) {
+      Dialog.show(
+        t('SoloFinishingTouchesPage.errorDisciplines', {
+          count: disciplineCount,
+        }),
+      );
+    } else if (!character.finishingStep?.value == null) {
+      Dialog.show(t('SoloFinishingTouchesPage.errorValue'));
+    } else if (
+      isTalentSelectionNeeded() &&
+      character?.finishingStep?.talent == null
+    ) {
+      Dialog.show(t('SoloFinishingTouchesPage.errorTalent'));
+    } else if (
+      isTalentSelectionNeeded() &&
+      determineSelectedTalentExtraErrors(character.finishingStep.talent) != null
+    ) {
+      Dialog.show(
+        determineSelectedTalentExtraErrors(character.finishingStep.talent),
+      );
+    } else {
+      Navigation.navigateToPage(PageIdentity.Finish);
+    }
+  };
+
+  let attributeTotal = 0;
+  character.attributes.forEach((a) => (attributeTotal += a));
+  attributeTotal -= character.finishingStep?.attributes?.length ?? 0;
+  const attributeCount =
+    Character.totalAttributeSum(character) - attributeTotal;
+
+  let disciplineTotal = 0;
+  character.departments.forEach((a) => (disciplineTotal += a));
+  disciplineTotal -= character.finishingStep?.disciplines?.length ?? 0;
+
+  const disciplineCount =
+    Character.totalDepartmentSum(character) - disciplineTotal;
+
+  const attributeController = new FinishingTouchesAttributeController(
+    character,
+    attributeCount,
+  );
+  const disciplineController = new FinishingTouchesDisciplineController(
+    character,
+    disciplineCount,
+  );
+
+  let talents = filterTalentList();
+
+  const talentSelection =
+    isKlingonWarriorType(character.type) || character.version > 1 ? (
+      <div className="my-4">
+        <Header level={2}>{t('Construct.other.talents')}</Header>
+        <SingleTalentSelectionList
+          talents={talents}
+          construct={character}
+          initialSelection={character.finishingStep?.talent}
+          onSelection={(talent) => {
+            store.dispatch(
+              addCharacterTalent(talent, StepContext.FinishingTouches),
+            );
+          }}
+        />
+      </div>
+    ) : undefined;
+
+  const excessAttrPoints = attributeCount - 2;
+  const attributeText =
+    excessAttrPoints > 0 ? (
+      <p>
+        The point total includes {excessAttrPoints} excess{' '}
+        {excessAttrPoints > 1 ? ' Points ' : ' Point '} that could not be
+        automatically added to your attributes without exceeding maximum values.
+      </p>
+    ) : undefined;
+
+  const excessSkillPoints = disciplineCount - 2;
+  const disciplinesText =
+    excessSkillPoints > 0 ? (
+      <p>
+        The point total includes {excessSkillPoints} excess{' '}
+        {excessSkillPoints > 1 ? ' Points ' : ' Point '} that could not be
+        automatically added to your dsciplines without exceeding maximum values.
+      </p>
+    ) : undefined;
+
+  useEffect(() => {
+    if (character.finishingStep == null) {
+      store.dispatch(setCharacterFinishingTouches());
+    }
+  }, [character.finishingStep]);
+
+  let value =
+    character.type !== CharacterType.Child &&
+    character.type !== CharacterType.Cadet ? (
+      <div className="col-lg-6 mt-4">
+        <Header level={2}>{t('Construct.other.value')}</Header>
+        <ValueInput
+          value={character.finishingStep?.value ?? ''}
+          onValueChanged={(value) =>
+            store.dispatch(
+              setCharacterValue(value, StepContext.FinishingTouches),
+            )
+          }
+          onRandomClicked={() => randomValue()}
+          textDescription={t('Value.final.text')}
+        />
+      </div>
+    ) : undefined;
+
+  return (
+    <div className="page container ms-0">
+      <CharacterCreationBreadcrumbs
+        pageIdentity={PageIdentity.AttributesAndDisciplines}
+      />
+      <Header>{t('Page.title.finish')}</Header>
+      <InstructionText text={t('AttributesAndDisciplines.instruction')} />
+      <div className="row">
+        <div className="col-lg-6 my-3">
+          <Header level={2} className="mb-3">
+            <>
+              {t('Construct.other.attribute')}{' '}
+              {t('SoloFinishingTouchesPage.select', { count: attributeCount })}
+            </>
+          </Header>
+          {attributeText}
+          <AttributeListComponent controller={attributeController} />
+        </div>
+        <div className="col-lg-6 my-3">
+          <Header level={2} className="mb-3">
+            <>
+              {t('Construct.other.discipline')}{' '}
+              {t('SoloFinishingTouchesPage.select', { count: disciplineCount })}
+            </>
+          </Header>
+          {disciplinesText}
+          <DisciplineListComponent controller={disciplineController} />
+        </div>
+        {value}
+      </div>
+
+      {talentSelection}
+      <div className="text-end mt-4">
+        <Button onClick={() => navigateToNextPage()}>
+          {t('Common.button.finish')}
+        </Button>
+      </div>
+    </div>
+  );
+};
+
+export default connect(characterMapStateToProperties)(
+  AttributesAndDisciplinesPage,
+);

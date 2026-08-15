@@ -1,26 +1,27 @@
-
 export enum UniformVariantType {
-    Base,
-    Variant1,
-    Variant2,
-    Variant3,
-    Variant4,
-    Variant5,
-    Variant6,
-    Variant7,
-    Variant8,
-    Variant9,
-    Variant10,
-    Variant11,
-    Variant12,
-    Variant13,
-    Variant14,
-    Variant15,
-    Variant16,
+  Base,
+  Variant1,
+  Variant2,
+  Variant3,
+  Variant4,
+  Variant5,
+  Variant6,
+  Variant7,
+  Variant8,
+  Variant9,
+  Variant10,
+  Variant11,
+  Variant12,
+  Variant13,
+  Variant14,
+  Variant15,
+  Variant16,
 }
 
 export const allUniformVariantTypes = (): UniformVariantType[] => {
-    return Object.keys(UniformVariantType).filter((item) => {
-        return !isNaN(Number(item));
-    }).map(item => Number(item));
-}
+  return Object.keys(UniformVariantType)
+    .filter((item) => {
+      return !isNaN(Number(item));
+    })
+    .map((item) => Number(item));
+};

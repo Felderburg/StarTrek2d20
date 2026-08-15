@@ -1,17 +1,17 @@
-import { Character } from "../../common/character";
+import { Character } from '../../common/character';
 
 export interface ICharacterProperties {
-    character: Character;
+  character: Character;
 }
 
 export const characterMapStateToProperties = (state, ownProps) => {
-    return {
-        character: state.character?.currentCharacter
-    };
-}
+  return {
+    character: state.character?.currentCharacter,
+  };
+};
 
 export const starshipMapStateToProperties = (state, ownProps) => {
-    return {
-        starship: state.starship?.starship
-    };
-}
+  return {
+    starship: state.starship?.starship,
+  };
+};

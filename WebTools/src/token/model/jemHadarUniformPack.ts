@@ -1,15 +1,14 @@
-import { BaseNeckProvider } from "./baseNeckProvider";
-import { BodyType } from "./bodyTypeEnum"
-import SpeciesRestrictions from "./speciesRestrictions";
-import Swatch from "./swatch"
-import { TokenModel } from "./tokenModel";
-import UniformCatalog from "./uniformCatalog"
-import { UniformEra } from "./uniformEra";
-import { IUniformPack } from "./uniformPack";
-
+import { BaseNeckProvider } from './baseNeckProvider';
+import { BodyType } from './bodyTypeEnum';
+import SpeciesRestrictions from './speciesRestrictions';
+import Swatch from './swatch';
+import { TokenModel } from './tokenModel';
+import UniformCatalog from './uniformCatalog';
+import { UniformEra } from './uniformEra';
+import { IUniformPack } from './uniformPack';
 
 const Uniform = {
-    averageMaleBody: `<g>
+  averageMaleBody: `<g>
         <path d="m 386.03399,347.12442 c 0,0 6.084,-0.68605 6.65467,0.51514 0.57066,1.20119 1.14,24.88553 0.95066,27.11699 -0.19066,2.23147 -9.50666,3.94659 -9.50666,3.94659 z" style="fill:#3c3c3c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.2668" id="path155346"/>
         <path d="m 387.93679,348.77925 -1.66133,27.60084 c 2.54266,-0.63791 4.76933,-1.44192 5.384,-1.98835 0.144,-3.07036 -0.36134,-21.61175 -0.78667,-25.59324 -0.66133,-0.077 -1.764,-0.0819 -2.936,-0.0192 m -3.804,31.73037 c -0.47467,0 -0.94,-0.15285 -1.30667,-0.4381 -0.46933,-0.36589 -0.724,-0.90631 -0.69066,-1.46598 l 1.90133,-31.57993 c 0.052,-0.8714 0.78933,-1.58393 1.74933,-1.69226 7.576,-0.85454 8.42267,0.92436 8.74,1.59477 0.96534,2.03046 1.12534,27.75008 1.10667,27.96673 -0.20267,2.38192 -3.93733,4.25833 -11.1,5.57866 -0.13333,0.0241 -0.26667,0.0361 -0.4,0.0361" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.2668" id="path155350"/>
         <path d="m 380.52626,400.05215 h 5.09066 l -2.06933,-92.4036 -2.24267,-7.59227 -7.42933,-5.31508 -5.18533,35.5566 c 0,0 2.66266,12.39944 4.90533,21.25669 2.128,8.4035 6.272,43.99982 6.93067,48.49766" style="fill:#754324;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.2668" id="path155354"/>
@@ -127,8 +126,8 @@ const Uniform = {
         <path d="m 113.5164,266.99869 c 0.71466,2.2748 -0.048,4.46293 -1.704,4.8866 l 16.25466,-4.48219 c -0.28533,0.28044 -0.62933,0.48506 -1.02533,0.58616 l 12.156,-3.10889 c 0.53467,-0.13721 0.97333,-0.45857 1.30133,-0.9051 l 4.124,-1.1374 c 0.65067,-0.17934 1.128,-0.68124 1.40534,-1.34803 l 5.48533,-2.06536 c 1.624,-0.41524 2.66,-1.64051 2.316,-2.73698 z" style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.2668" id="path155988"/>
         <path d="m 128.788,267.14734 10.296,-2.63346 c 1.404,-0.35988 2.05066,-2.38192 1.412,-4.41599 -0.63867,-2.03528 -2.364,-3.45071 -3.76934,-3.09083 l -10.29466,2.63346 c 1.17866,0.56448 2.22666,1.79095 2.71866,3.35923 0.49334,1.56829 0.31334,3.10768 -0.36266,4.14759 m 10.52533,-1.90168 -12.15733,3.11009 c -0.224,0.0578 -0.456,-0.0602 -0.52,-0.26238 -0.064,-0.20221 0.0667,-0.41283 0.29066,-0.46941 1.40534,-0.35987 2.052,-2.38191 1.41334,-4.41719 -0.63867,-2.03408 -2.36534,-3.44951 -3.77067,-3.09083 -0.224,0.0578 -0.456,-0.0602 -0.52,-0.26239 -0.064,-0.2022 0.0667,-0.41163 0.29067,-0.4694 l 12.15733,-3.11008 c 1.876,-0.47904 4.03333,1.1422 4.81067,3.61559 0.776,2.47339 -0.11867,4.87697 -1.99467,5.356" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.2668" id="path155998"/>
         <path d="m 68.631865,242.73675 c -2.393333,1.04111 -2.169333,4.53755 -2.174667,6.60894 -0.0067,3.15222 1.109334,6.94955 -0.125333,9.92605 1.572,0.10952 3.144,-0.0578 4.714667,-0.0987 1.704,-0.0433 3.211999,0.32979 4.881333,0.64393 6.493333,1.22284 14.166666,2.25553 19.910666,5.44265 3.402667,1.88844 9.815999,8.61774 14.567999,6.04326 4.44667,-2.40961 -0.528,-7.53692 -2.18533,-9.96216 -2.00934,-2.93918 -4.15334,-6.06733 -6.42267,-8.85486 -0.68,-0.83409 -1.40267,-1.53578 -2.350666,-2.14359 -2.673333,-1.71031 -5.553333,-4.07779 -8.889333,-4.7542 -5.292,-1.07361 -10.729333,-1.87881 -16.076,-2.47941 -1.473333,-0.1661 -3.307999,-0.7005 -5.850666,-0.37191" style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.2668" id="path156008"/>
-    </g>`
-}
+    </g>`,
+};
 
 const DominionSymbol = `<g>
     <path style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:2.88936;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 272.40725,330.78824 60.42937,-60.42936 10.7255,10.79095 h 13.01461 v 12.58946 l 37.04896,36.88596 -61.05741,60.23266 z" id="path8"/>
@@ -138,62 +137,84 @@ const DominionSymbol = `<g>
     <path id="rect14" style="fill:#a89bb4;fill-opacity:1;fill-rule:evenodd;stroke:#5e5e5e;stroke-width:0.722341;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" d="m 316.58806,327.78159 a 6.9344715,6.9344715 0 0 1 -6.84672,6.74655 v 2.95567 a 6.9344715,6.9344715 0 0 1 6.8058,6.38538 h 3.97711 a 6.9344715,6.9344715 0 0 1 6.51235,-6.35152 v -3.02339 a 6.9344715,6.9344715 0 0 1 -6.55326,-6.71269 z"/>
 </g>`;
 
-export class JemHadarUniformPack extends BaseNeckProvider implements IUniformPack {
+export class JemHadarUniformPack
+  extends BaseNeckProvider
+  implements IUniformPack
+{
+  getUniformSwatches() {
+    return [
+      new Swatch(
+        BodyType.AverageMale,
+        'Average Male',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageMale,
+              token.skinColor,
+              undefined,
+              UniformEra.JemHadar,
+            ) + Uniform.averageMaleBody,
+            BodyType.AverageMale,
+            token,
+          ),
+        'BodyType.averageMale',
+      ),
+    ];
+  }
 
-    getUniformSwatches() {
-        return [
-            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(
-                this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.JemHadar) + Uniform.averageMaleBody, BodyType.AverageMale, token),
-                "BodyType.averageMale"),
-        ];
+  getRankSwatches() {
+    return [];
+  }
+
+  getRankIndicator(token: TokenModel) {
+    return '';
+  }
+
+  getRankBorderIndicator(token: TokenModel) {
+    return '';
+  }
+
+  getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
+    return '';
+  }
+
+  getUniformAndVariantBody(token: TokenModel) {
+    let result = '';
+    let neck = this.getNeck(
+      BodyType.AverageMale,
+      token.skinColor,
+      token.species,
+      UniformEra.JemHadar,
+    );
+    switch (token.bodyType) {
+      case BodyType.AverageMale:
+      default:
+        result = Uniform.averageMaleBody;
     }
 
-    getRankSwatches() {
-        return [
-        ];
-    }
+    return (neck + result).replace(
+      SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+      token.skinColor,
+    );
+  }
 
-    getRankIndicator(token: TokenModel) {
-        return "";
-    }
+  getBorderColor(token: TokenModel) {
+    return '#a89bb4';
+  }
 
-    getRankBorderIndicator(token: TokenModel) {
-        return "";
-    }
+  getUniformVariantSwatches(token: TokenModel) {
+    return [];
+  }
 
-    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
-        return "";
-    }
+  getBorderLogo(token: TokenModel): string {
+    return DominionSymbol;
+  }
 
-    getUniformAndVariantBody(token: TokenModel) {
-        let result = "";
-        let neck = this.getNeck(BodyType.AverageMale, token.skinColor, token.species, UniformEra.JemHadar)
-        switch (token.bodyType) {
-            case BodyType.AverageMale:
-            default:
-                result = Uniform.averageMaleBody;
-        }
+  isDivisionColorSupported(token: TokenModel): boolean {
+    return false;
+  }
 
-        return (neck + result).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-    }
-
-    getBorderColor(token: TokenModel) {
-        return "#a89bb4";
-    }
-
-    getUniformVariantSwatches(token: TokenModel) {
-        return [];
-    }
-
-    getBorderLogo(token: TokenModel): string {
-        return DominionSymbol;
-    }
-
-    isDivisionColorSupported(token: TokenModel): boolean {
-        return false;
-    }
-
-    getRankIndicatorExtra(token: TokenModel): string {
-        return "";
-    }
+  getRankIndicatorExtra(token: TokenModel): string {
+    return '';
+  }
 }
