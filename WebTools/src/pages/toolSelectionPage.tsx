@@ -182,6 +182,7 @@ const ToolSelectionPage = () => {
               </Button>
               {isSecondEdition() ? (
                 <Button
+                  size="lg"
                   className="mt-4"
                   onClick={() => {
                     loadNpcAndGoToPage();
@@ -201,7 +202,9 @@ const ToolSelectionPage = () => {
                 {t('ToolSelection.starship')}
               </LoadingButton>
               {isSecondEdition() && hasSource(Source.UtopiaPlanitia) ? (
-                <Button className="mt-4" onClick={() => navigate('/station')}>
+                <Button
+                  size="lg"
+                  className="mt-4" onClick={() => navigate('/station')}>
                   {t('ToolSelection.station')}
                 </Button>
               ) : undefined}

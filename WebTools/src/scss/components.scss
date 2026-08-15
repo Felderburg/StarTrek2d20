@@ -20,7 +20,7 @@ h1 .btn-link {
     font-family: Roboto;
 }
 
-.btn.btn-lg {
+.btn.btn-lg:not(.btn-link) {
     min-width: 250px;
 }
 
