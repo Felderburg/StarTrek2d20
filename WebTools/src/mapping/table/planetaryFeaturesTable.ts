@@ -83,7 +83,7 @@ export class ColonyFeatureModel implements PlanetaryFeature {
 }
 
 class ColonyFeatureRegistry {
-  private static _instance: ColonyFeatureRegistry;
+  private static singleton: ColonyFeatureRegistry;
 
   private items: ColonyFeatureModel[] = [
     new ColonyFeatureModel(
@@ -123,10 +123,10 @@ class ColonyFeatureRegistry {
   ];
 
   static get instance() {
-    if (ColonyFeatureRegistry._instance == null) {
-      ColonyFeatureRegistry._instance = new ColonyFeatureRegistry();
+    if (ColonyFeatureRegistry.singleton == null) {
+      ColonyFeatureRegistry.singleton = new ColonyFeatureRegistry();
     }
-    return ColonyFeatureRegistry._instance;
+    return ColonyFeatureRegistry.singleton;
   }
 
   getByType(type: ColonyFeature) {

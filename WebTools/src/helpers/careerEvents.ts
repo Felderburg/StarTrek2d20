@@ -102,7 +102,7 @@ export class CareerEventModel {
 }
 
 class CareerEvents {
-  private _events: CareerEventModel[] = [
+  private events: CareerEventModel[] = [
     new CareerEventModel(
       'Ship Destroyed',
       'The ship the character was serving on was lost, destroyed during a mission, and the character was one of the few who survived.\n\n- What was the ship’s mission? Was it something routine that went horribly wrong, or was it something perilous? What destroyed the ship?\n- How many survivors were there? How long did it take before they were recovered?',
@@ -909,7 +909,7 @@ class CareerEvents {
     ),
   ];
 
-  private _klingonEvents: CareerEventModel[] = [
+  private klingonEvents: CareerEventModel[] = [
     new CareerEventModel(
       'Ship Destroyed',
       'The ship you were serving on was lost, destroyed during a mission, and you were one of the few who survived. What was the ship’s mission? Was it something routine that went horribly wrong, or was it something perilous? What destroyed the ship? How many survivors were there? How long did it take before they were recovered?',
@@ -1145,7 +1145,7 @@ class CareerEvents {
     ),
   ];
 
-  private _unofficialEvents: CareerEventModel[] = [
+  private unofficialEvents: CareerEventModel[] = [
     new CareerEventModel(
       'Advanced Tactical Training',
       'The character took a specialized course in advanced tactical and intelligence techniques.\n\n- Where was the course taught? Who recommended the character for the course?\n- Did the character pass the course? How did the character rank in the various subjects?',
@@ -1541,15 +1541,15 @@ class CareerEvents {
   getSoloCareerEvents() {
     const result = [];
     for (let i = 0; i < 20; i++) {
-      result.push(this._events[i]);
+      result.push(this.events[i]);
     }
     return result;
   }
 
   getCareerEvents(character: Character) {
     let list = isKlingonWarrior1e(character.type, character.version)
-      ? this._klingonEvents
-      : this._events;
+      ? this.klingonEvents
+      : this.events;
     list = list.filter((e) => e.isPrerequisiteFulfilled(character));
     return [...list].sort((e1, e2) => {
       return e1.localizedName.localeCompare(e2.localizedName);
@@ -1558,7 +1558,7 @@ class CareerEvents {
 
   getCareerEventsIncludingUnofficial(character: Character) {
     const list = this.getCareerEvents(character);
-    this._unofficialEvents.forEach((e) => list.push(e));
+    this.unofficialEvents.forEach((e) => list.push(e));
     return list.sort((e1, e2) => {
       return e1.localizedName.localeCompare(e2.localizedName);
     });
@@ -1572,8 +1572,8 @@ class CareerEvents {
     let event = undefined;
 
     const list = isKlingonWarrior1e(type, version)
-      ? this._klingonEvents
-      : this._events;
+      ? this.klingonEvents
+      : this.events;
     list.forEach((ev) => {
       if (ev.roll === id) {
         event = ev;
@@ -1581,7 +1581,7 @@ class CareerEvents {
     });
 
     if (event == null) {
-      const items = this._unofficialEvents.filter((e) => e.roll === id);
+      const items = this.unofficialEvents.filter((e) => e.roll === id);
       if (items.length === 1) {
         event = items[0];
       }
@@ -1596,8 +1596,8 @@ class CareerEvents {
       let event = undefined;
 
       const list = isKlingonWarrior1e(character.type, character.version)
-        ? this._klingonEvents
-        : this._events;
+        ? this.klingonEvents
+        : this.events;
       list.forEach((ev) => {
         if (ev.roll === roll) {
           event = ev;

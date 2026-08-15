@@ -20,13 +20,13 @@ export enum NaturalAttacks {
 }
 
 export class NaturalAttacksHelper {
-  private static _instance: NaturalAttacksHelper;
+  private static singleton: NaturalAttacksHelper;
 
   static get instance() {
-    if (NaturalAttacksHelper._instance == null) {
-      NaturalAttacksHelper._instance = new NaturalAttacksHelper();
+    if (NaturalAttacksHelper.singleton == null) {
+      NaturalAttacksHelper.singleton = new NaturalAttacksHelper();
     }
-    return NaturalAttacksHelper._instance;
+    return NaturalAttacksHelper.singleton;
   }
 
   allAttackTypes(): NaturalAttacks[] {

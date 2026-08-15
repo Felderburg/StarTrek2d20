@@ -33,16 +33,16 @@ export const eraDefaultYear = (era: Era) => {
 };
 
 class Eras {
-  private static _instance: Eras;
+  private static singleton: Eras;
 
   static get instance() {
-    if (Eras._instance == null) {
-      Eras._instance = new Eras();
+    if (Eras.singleton == null) {
+      Eras.singleton = new Eras();
     }
-    return Eras._instance;
+    return Eras.singleton;
   }
 
-  private _eras: { [id: number]: EraModel } = {
+  private eras: { [id: number]: EraModel } = {
     [Era.Enterprise]: new EraModel(
       Era.Enterprise,
       'Enterprise (mid-22nd century)',
@@ -68,24 +68,24 @@ class Eras {
   getBasicEras() {
     if (isSecondEdition()) {
       return [
-        this._eras[Era.Enterprise],
-        this._eras[Era.OriginalSeries],
-        this._eras[Era.NextGeneration],
-        this._eras[Era.Discovery32],
+        this.eras[Era.Enterprise],
+        this.eras[Era.OriginalSeries],
+        this.eras[Era.NextGeneration],
+        this.eras[Era.Discovery32],
       ];
     } else {
       return [
-        this._eras[Era.Enterprise],
-        this._eras[Era.OriginalSeries],
-        this._eras[Era.NextGeneration],
+        this.eras[Era.Enterprise],
+        this.eras[Era.OriginalSeries],
+        this.eras[Era.NextGeneration],
       ];
     }
   }
 
   getEras() {
     const eras: EraModel[] = [];
-    for (const era in this._eras) {
-      const er = this._eras[era];
+    for (const era in this.eras) {
+      const er = this.eras[era];
       eras.push(er);
     }
 
@@ -93,11 +93,11 @@ class Eras {
   }
 
   getEra(era: Era) {
-    return this._eras[era];
+    return this.eras[era];
   }
   getEraByName(name: string): Era | null {
-    const results = Object.keys(this._eras)
-      .map((e) => this._eras[e].id)
+    const results = Object.keys(this.eras)
+      .map((e) => this.eras[e].id)
       .filter((e) => Era[e] === name);
     if (results.length === 1) {
       return results[0];

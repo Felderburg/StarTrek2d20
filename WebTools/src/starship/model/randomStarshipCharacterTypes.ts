@@ -31,17 +31,17 @@ export class RandomStarshipCharacterTypeModel {
 }
 
 export class RandomStarshipCharacterTypes {
-  private static _instance: RandomStarshipCharacterTypes;
+  private static singleton: RandomStarshipCharacterTypes;
 
   static get instance() {
-    if (RandomStarshipCharacterTypes._instance == null) {
-      RandomStarshipCharacterTypes._instance =
+    if (RandomStarshipCharacterTypes.singleton == null) {
+      RandomStarshipCharacterTypes.singleton =
         new RandomStarshipCharacterTypes();
     }
-    return RandomStarshipCharacterTypes._instance;
+    return RandomStarshipCharacterTypes.singleton;
   }
 
-  private _types = [
+  private typeValues = [
     new RandomStarshipCharacterTypeModel(
       RandomStarshipCharacterType.Starfleet,
       'Starfleet',
@@ -61,7 +61,7 @@ export class RandomStarshipCharacterTypes {
   ];
 
   get types() {
-    return this._types.filter((t) => {
+    return this.typeValues.filter((t) => {
       if (t.type === RandomStarshipCharacterType.Starfleet) {
         return true;
       } else if (t.type === RandomStarshipCharacterType.Romulan) {

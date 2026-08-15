@@ -265,16 +265,16 @@ export class RoleModel {
 }
 
 export class RolesHelper {
-  private static _instance;
+  private static singleton;
 
   static get instance() {
-    if (RolesHelper._instance == null) {
-      RolesHelper._instance = new RolesHelper();
+    if (RolesHelper.singleton == null) {
+      RolesHelper.singleton = new RolesHelper();
     }
-    return RolesHelper._instance;
+    return RolesHelper.singleton;
   }
 
-  private _roles: RoleModel[] = [
+  private roles: RoleModel[] = [
     new RoleModel(
       Role.CommandingOfficer,
       'Commanding Officer',
@@ -902,7 +902,7 @@ export class RolesHelper {
   getRoles(character: Character) {
     const departments = this.determineHighestDiscipline(character);
     const roles: RoleModel[] = [];
-    const list = this._roles;
+    const list = this.roles;
     for (const r of list) {
       if (r.isPrerequisitesFilled(character)) {
         if (
@@ -949,7 +949,7 @@ export class RolesHelper {
   }
 
   getRoleModelByName(role: string, type: CharacterType) {
-    const list = this._roles;
+    const list = this.roles;
     for (const r of list) {
       if (r.name === role) {
         return r;
@@ -960,7 +960,7 @@ export class RolesHelper {
   }
 
   getRole(role: Role, characterType: CharacterType) {
-    const roles = this._roles.filter((r) => r.id === role);
+    const roles = this.roles.filter((r) => r.id === role);
     if (roles.length === 0) {
       return undefined;
     } else if (roles.length === 1) {
@@ -983,7 +983,7 @@ export class RolesHelper {
 
   getSoloRole(role: Role) {
     let result = undefined;
-    this._roles.forEach((r) => {
+    this.roles.forEach((r) => {
       if (r.id === role && result == null) {
         result = r;
       }
@@ -992,7 +992,7 @@ export class RolesHelper {
   }
 
   getRoleByName(role: string): Role {
-    const list = this._roles;
+    const list = this.roles;
     for (const r of list) {
       if (r.name === role) {
         return r.id;
@@ -1003,7 +1003,7 @@ export class RolesHelper {
   }
 
   getRoleByTypeName(role: string) {
-    const list = this._roles;
+    const list = this.roles;
     for (const r of list) {
       if (Role[r.id] === role) {
         return r.id;

@@ -346,7 +346,7 @@ export class EnergyLoadTypeModel {
 
   readonly type: EnergyLoadType;
   readonly description: string;
-  readonly _qualities: WeaponQuality[];
+  readonly qualities: WeaponQuality[];
   readonly effects: WeaponQuality[];
   readonly century: number;
 
@@ -359,7 +359,7 @@ export class EnergyLoadTypeModel {
   ) {
     this.type = type;
     this.description = description;
-    this._qualities = quality;
+    this.qualities = quality;
     this.effects = effect;
     this.century = century;
   }
@@ -377,7 +377,7 @@ export class EnergyLoadTypeModel {
   }
 
   get effectsAndQualities() {
-    return [...this._qualities].concat(this.effects);
+    return [...this.qualities].concat(this.effects);
   }
 
   static getEnergyLoadTypeModelByType(type: EnergyLoadType, version: number) {
@@ -682,8 +682,8 @@ export class TorpedoLoadTypeModel {
   readonly type: TorpedoLoadType;
   readonly description: string;
   readonly dice: number;
-  readonly _weaponEffects: WeaponQuality[];
-  readonly _weaponQualities: WeaponQuality[];
+  readonly weaponEffects: WeaponQuality[];
+  readonly weaponQualities: WeaponQuality[];
   readonly century: number;
 
   constructor(
@@ -697,8 +697,8 @@ export class TorpedoLoadTypeModel {
     this.type = type;
     this.description = description;
     this.dice = dice;
-    this._weaponEffects = effect;
-    this._weaponQualities = quality;
+    this.weaponEffects = effect;
+    this.weaponQualities = quality;
     this.century = century;
   }
 
@@ -716,8 +716,8 @@ export class TorpedoLoadTypeModel {
 
   get effectAndQualities() {
     const result = [];
-    this._weaponEffects.forEach((e) => result.push(e));
-    this._weaponQualities.forEach((q) => result.push(q));
+    this.weaponEffects.forEach((e) => result.push(e));
+    this.weaponQualities.forEach((q) => result.push(q));
     return result;
   }
 
@@ -748,8 +748,8 @@ export class MineTypeModel {
   readonly type: MineType;
   readonly description: string;
   readonly dice: number;
-  readonly _weaponEffects: WeaponQuality[];
-  readonly _weaponQualities: WeaponQuality[];
+  readonly weaponEffects: WeaponQuality[];
+  readonly weaponQualities: WeaponQuality[];
   readonly century: number;
 
   static readonly TYPES = [
@@ -994,8 +994,8 @@ export class MineTypeModel {
     this.type = type;
     this.description = description;
     this.dice = dice;
-    this._weaponEffects = effect;
-    this._weaponQualities = quality;
+    this.weaponEffects = effect;
+    this.weaponQualities = quality;
     this.century = century;
   }
 
@@ -1011,8 +1011,8 @@ export class MineTypeModel {
 
   get effectAndQualities(): WeaponQuality[] {
     const result = [];
-    result.push(...this._weaponEffects);
-    result.push(...this._weaponQualities);
+    result.push(...this.weaponEffects);
+    result.push(...this.weaponQualities);
     return result;
   }
 
@@ -1029,12 +1029,12 @@ export class MineTypeModel {
   }
 
   get effect() {
-    const result = this._weaponEffects.map((q) => q.localizedDescription);
+    const result = this.weaponEffects.map((q) => q.localizedDescription);
     return result.join(', ');
   }
 
   get qualities() {
-    const result = this._weaponQualities.map((q) => q.localizedDescription);
+    const result = this.weaponQualities.map((q) => q.localizedDescription);
     return result.join(', ');
   }
 
@@ -1098,7 +1098,7 @@ export class DeliverySystemModel {
 
 export class Weapon {
   usageCategory: UsageCategory;
-  _name: string;
+  nameValue: string;
   readonly baseDice: number;
   type: WeaponType;
   eras: Era[][];
@@ -1109,8 +1109,8 @@ export class Weapon {
     | TorpedoLoadTypeModel
     | MineTypeModel;
   deliveryType?: DeliverySystemModel;
-  _qualities: WeaponQuality[];
-  _effects: WeaponQuality[];
+  qualityValues: WeaponQuality[];
+  effectValues: WeaponQuality[];
   hands?: number;
   injuryType?: InjuryType;
   personalWeaponType?: PersonalWeaponType;
@@ -1133,7 +1133,7 @@ export class Weapon {
     requiresTalent: boolean = false,
   ) {
     this.usageCategory = usage;
-    this._name = name;
+    this.nameValue = name;
     this.baseDice = dice;
     this.type = type;
     this.eras = eras;
@@ -1145,7 +1145,7 @@ export class Weapon {
   copy() {
     const result = new Weapon(
       this.usageCategory,
-      this._name,
+      this.nameValue,
       this.baseDice,
       this.type,
       this.loadType,
@@ -1153,8 +1153,8 @@ export class Weapon {
       this.eras,
       this.requiresTalent,
     );
-    result._qualities = this._qualities;
-    result._effects = this._effects;
+    result.qualityValues = this.qualityValues;
+    result.effectValues = this.effectValues;
     result.hands = this.hands;
     result.injuryType = this.injuryType;
     result.personalWeaponType = this.personalWeaponType;
@@ -1202,7 +1202,7 @@ export class Weapon {
       }
       return quality;
     } else if (this.loadType instanceof TorpedoLoadTypeModel) {
-      return (this.loadType as TorpedoLoadTypeModel)._weaponQualities;
+      return (this.loadType as TorpedoLoadTypeModel).weaponQualities;
     } else {
       return [];
     }
@@ -1251,10 +1251,13 @@ export class Weapon {
   }
 
   get name() {
-    if (this.usageCategory === UsageCategory.Character && this._name?.length) {
-      return this._name;
-    } else if (this._name?.length) {
-      return this._name;
+    if (
+      this.usageCategory === UsageCategory.Character &&
+      this.nameValue?.length
+    ) {
+      return this.nameValue;
+    } else if (this.nameValue?.length) {
+      return this.nameValue;
     } else if (this.deliveryType != null) {
       return this.loadType.description + ' ' + this.deliveryType.description;
     } else if (this.type === WeaponType.TORPEDO) {
@@ -1269,12 +1272,12 @@ export class Weapon {
   // returns qualities without effects
   get qualities() {
     if (this.usageCategory === UsageCategory.Character) {
-      return this._qualities;
+      return this.qualityValues;
     } else if (
       this.loadType != null &&
       this.loadType instanceof EnergyLoadTypeModel
     ) {
-      return (this.loadType as EnergyLoadTypeModel)._qualities;
+      return (this.loadType as EnergyLoadTypeModel).qualities;
     } else {
       let result = [];
       if (
@@ -1282,13 +1285,13 @@ export class Weapon {
         this.loadType instanceof TorpedoLoadTypeModel
       ) {
         const torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
-        result = [...torpedoLoadType._weaponQualities];
+        result = [...torpedoLoadType.weaponQualities];
       } else if (
         this.loadType != null &&
         this.loadType instanceof MineTypeModel
       ) {
         const mineType = this.loadType as MineTypeModel;
-        result = [...mineType._weaponQualities];
+        result = [...mineType.weaponQualities];
       }
 
       return result;
@@ -1297,7 +1300,7 @@ export class Weapon {
 
   get effects() {
     if (this.usageCategory === UsageCategory.Character) {
-      return this._effects;
+      return this.effectValues;
     } else {
       let result = [];
       if (
@@ -1310,13 +1313,13 @@ export class Weapon {
         this.loadType instanceof TorpedoLoadTypeModel
       ) {
         const torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
-        result = [...torpedoLoadType._weaponEffects];
+        result = [...torpedoLoadType.weaponEffects];
       } else if (
         this.loadType != null &&
         this.loadType instanceof MineTypeModel
       ) {
         const mineType = this.loadType as MineTypeModel;
-        result = [...mineType._weaponEffects];
+        result = [...mineType.weaponEffects];
       }
 
       if (this.deliveryType?.additionalQuality != null) {
@@ -1395,8 +1398,8 @@ export class Weapon {
     personalWeaponType?: PersonalWeaponType,
   ) {
     const result = new Weapon(UsageCategory.Character, name, dice, type);
-    result._qualities = qualities;
-    result._effects = effects;
+    result.qualityValues = qualities;
+    result.effectValues = effects;
     result.hands = hands;
     result.injuryType = injuryType;
     result.personalWeaponType = personalWeaponType;
@@ -1723,8 +1726,8 @@ export enum PersonalWeaponType {
 }
 
 export class PersonalWeapons {
-  private static _instanceVersion1: PersonalWeaponsVersion1;
-  private static _instance: PersonalWeapons;
+  private static instanceVersion1: PersonalWeaponsVersion1;
+  private static singleton: PersonalWeapons;
 
   allTypes(): PersonalWeaponType[] {
     return Object.keys(PersonalWeaponType)
@@ -2077,15 +2080,15 @@ export class PersonalWeapons {
 
   static instance(version: number) {
     if (version === 1) {
-      if (PersonalWeapons._instanceVersion1 == null) {
-        PersonalWeapons._instanceVersion1 = new PersonalWeaponsVersion1();
+      if (PersonalWeapons.instanceVersion1 == null) {
+        PersonalWeapons.instanceVersion1 = new PersonalWeaponsVersion1();
       }
-      return PersonalWeapons._instanceVersion1;
+      return PersonalWeapons.instanceVersion1;
     } else {
-      if (PersonalWeapons._instance == null) {
-        PersonalWeapons._instance = new PersonalWeapons();
+      if (PersonalWeapons.singleton == null) {
+        PersonalWeapons.singleton = new PersonalWeapons();
       }
-      return PersonalWeapons._instance;
+      return PersonalWeapons.singleton;
     }
   }
 }

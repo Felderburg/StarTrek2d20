@@ -71,7 +71,7 @@ interface IRefitsViewProperties extends WithTranslation {
 }
 
 export class RefitsView extends React.Component<IRefitsViewProperties, {}> {
-  private _absoluteMax: number = 12;
+  private absoluteMax: number = 12;
 
   render() {
     const { t } = this.props;

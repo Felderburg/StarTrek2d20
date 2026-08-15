@@ -1219,7 +1219,7 @@ export class NpcGenerator {
         }
       }
       character.npcGenerationStep.attributes[a] = attributePoints[i] - 7;
-      character._attributes[a] = attributePoints[i];
+      character.attributeValues[a] = attributePoints[i];
       attributes.splice(attributes.indexOf(a), 1);
     }
   }
@@ -1385,7 +1385,7 @@ export class NpcGenerator {
         character.jobAssignment = specialization.localizedName + ' (Resident)';
       }
 
-      character._rank = new CharacterRank(rank.name, rank.id);
+      character.rankValue = new CharacterRank(rank.name, rank.id);
     }
   }
 }

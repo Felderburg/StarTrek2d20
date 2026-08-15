@@ -15,7 +15,7 @@ export class VttTypeModel {
 }
 
 export class VttTypes {
-  private static _instance: VttTypes;
+  private static singleton: VttTypes;
 
   private readonly types: VttTypeModel[] = [
     new VttTypeModel(VttType.FantasyGrounds, 'Fantasy Grounds'),
@@ -24,10 +24,10 @@ export class VttTypes {
   ];
 
   static get instance() {
-    if (VttTypes._instance == null) {
-      VttTypes._instance = new VttTypes();
+    if (VttTypes.singleton == null) {
+      VttTypes.singleton = new VttTypes();
     }
-    return VttTypes._instance;
+    return VttTypes.singleton;
   }
 
   public getTypes() {

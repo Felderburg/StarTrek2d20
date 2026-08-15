@@ -31,7 +31,7 @@ export class Government {
   }
 }
 
-class _Governments {
+class GovernmentRepository {
   options: Government[] = [
     new Government('Andorian', Polity.Andorian, Era.Enterprise),
     new Government(
@@ -106,6 +106,6 @@ class _Governments {
   }
 }
 
-const Governments = new _Governments();
+const Governments = new GovernmentRepository();
 
 export default Governments;

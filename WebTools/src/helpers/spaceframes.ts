@@ -49,16 +49,16 @@ export class NotSourcePrerequisite implements IConstructPrerequisite {
 }
 
 export class SpaceframeHelper {
-  private static _instance;
+  private static singleton;
 
   static instance(): SpaceframeHelper {
-    if (SpaceframeHelper._instance == null) {
-      SpaceframeHelper._instance = new SpaceframeHelper();
+    if (SpaceframeHelper.singleton == null) {
+      SpaceframeHelper.singleton = new SpaceframeHelper();
     }
-    return SpaceframeHelper._instance;
+    return SpaceframeHelper.singleton;
   }
 
-  private _frames: { [id: number]: SpaceframeModel } = {
+  private frames: { [id: number]: SpaceframeModel } = {
     [Spaceframe.Akira]: new SpaceframeModel(
       Spaceframe.Akira,
       CharacterType.Starfleet,
@@ -3247,8 +3247,8 @@ export class SpaceframeHelper {
 
   getSpaceframes(starship: Starship, ignoreMaxServiceYear: boolean = false) {
     const frames: SpaceframeModel[] = [];
-    for (const frame in this._frames) {
-      const f = this._frames[frame];
+    for (const frame in this.frames) {
+      const f = this.frames[frame];
       if (
         f.serviceYear <= starship.serviceYear &&
         (f.maxServiceYear >= starship.serviceYear || ignoreMaxServiceYear)
@@ -3267,15 +3267,15 @@ export class SpaceframeHelper {
   }
 
   getSpaceframe(frame: Spaceframe) {
-    const result = this._frames[frame];
+    const result = this.frames[frame];
     return result ? result : undefined;
   }
 
   getSpaceframeByName(name: string) {
     let result = undefined;
-    for (const id in this._frames) {
+    for (const id in this.frames) {
       if (Spaceframe[id] === name) {
-        result = this._frames[id];
+        result = this.frames[id];
         break;
       }
     }

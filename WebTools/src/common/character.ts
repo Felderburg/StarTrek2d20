@@ -75,11 +75,11 @@ export class OtherDetails {
 
 export class AlliedMilitaryDetails {
   readonly alliedMilitary: AlliedMilitary;
-  readonly _name: string;
+  readonly nameValue: string;
 
   constructor(alliedMilitary: AlliedMilitary, name: string) {
     this.alliedMilitary = alliedMilitary;
-    this._name = name;
+    this.nameValue = name;
   }
 
   get type() {
@@ -90,9 +90,9 @@ export class AlliedMilitaryDetails {
     if (
       this.alliedMilitary &&
       this.alliedMilitary.type === AlliedMilitaryType.Other &&
-      this._name
+      this.nameValue
     ) {
-      return this._name;
+      return this.nameValue;
     } else if (this.alliedMilitary) {
       return this.alliedMilitary.name;
     } else {
@@ -103,20 +103,20 @@ export class AlliedMilitaryDetails {
 
 export class GovernmentDetails {
   readonly government: Government;
-  readonly _name: string;
+  readonly nameValue: string;
 
   constructor(government: Government, name: string) {
     this.government = government;
-    this._name = name;
+    this.nameValue = name;
   }
 
   get name() {
     if (
       this.government &&
       this.government.type === Polity.Other &&
-      this._name
+      this.nameValue
     ) {
-      return this._name;
+      return this.nameValue;
     } else if (this.government) {
       return this.government.name;
     } else {
@@ -514,23 +514,23 @@ export class Character extends Construct implements IWeaponDiceProvider {
   public static ABSOLUTE_MAX_ATTRIBUTE = 12;
   public static ABSOLUTE_MAX_DEPARTMENT = 5;
 
-  private _attributeInitialValue: number = 7;
+  private attributeInitialValue: number = 7;
 
   public reprimands = 0;
-  public _attributes: number[] = [];
-  public _skills: number[] = [];
+  public attributeValues: number[] = [];
+  public skills: number[] = [];
   public traits: string[];
   public additionalTraits: string;
   public age: Age;
   public lineage?: string;
   public house?: string;
   public careerEvents: CareerEventStep[];
-  public _rank?: CharacterRank;
+  public rankValue?: CharacterRank;
   public role?: Role;
   public jobAssignment?: string;
   public assignedShip?: string;
   public secondaryRole?: Role;
-  public _focuses: string[];
+  public focusValues: string[];
   public typeDetails: AlliedMilitaryDetails | GovernmentDetails | OtherDetails;
   public pronouns: string = '';
   public pastime: string[];
@@ -555,21 +555,21 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
   constructor() {
     super(Stereotype.MainCharacter);
-    this._attributes = [
-      this._attributeInitialValue,
-      this._attributeInitialValue,
-      this._attributeInitialValue,
-      this._attributeInitialValue,
-      this._attributeInitialValue,
-      this._attributeInitialValue,
+    this.attributeValues = [
+      this.attributeInitialValue,
+      this.attributeInitialValue,
+      this.attributeInitialValue,
+      this.attributeInitialValue,
+      this.attributeInitialValue,
+      this.attributeInitialValue,
     ];
 
     for (let i = 0; i <= Department.Medicine; i++) {
-      this._skills.push(0);
+      this.skills.push(0);
     }
 
     this.traits = [];
-    this._focuses = [];
+    this.focusValues = [];
     this.careerEvents = [];
     this.age = AgeHelper.getAdultAge();
   }
@@ -832,7 +832,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
       });
       return result;
     } else {
-      result = [...this._attributes];
+      result = [...this.attributeValues];
     }
 
     this.improvements?.forEach((i) => {
@@ -901,7 +901,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
       result =
         this.stereotype === Stereotype.Npc
           ? [...this.npcGenerationStep?.departments]
-          : [...this._skills];
+          : [...this.skills];
       if (this.hasTalent('Intensive Training (Special Rule)')) {
         result = result.map((d) => (d === 0 ? 1 : d));
       }
@@ -1765,7 +1765,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   addFocus(focus: string) {
-    this._focuses.push(focus);
+    this.focusValues.push(focus);
   }
 
   get focuses() {
@@ -1811,7 +1811,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
       });
 
       if (this.legacyMode) {
-        result = this._focuses.map(
+        result = this.focusValues.map(
           (f, i) => new FocusAssembly(f, AssemblyContext.Legacy, i),
         );
       } else {
@@ -1856,7 +1856,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         }
       });
     } else {
-      result = this._focuses.map(
+      result = this.focusValues.map(
         (f, i) => new FocusAssembly(f, AssemblyContext.Legacy, i),
       );
     }
@@ -1962,7 +1962,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
       const promotion = promotions[promotions.length - 1] as Promotion;
       return promotion.rank;
     } else {
-      return this._rank;
+      return this.rankValue;
     }
   }
 
@@ -2127,8 +2127,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
     character.stereotype = this.stereotype;
     character.typeDetails = this.typeDetails;
     character.version = this.version;
-    character._attributes = [...this._attributes];
-    character._skills = [...this._skills];
+    character.attributeValues = [...this.attributeValues];
+    character.skills = [...this.skills];
     this.traits.forEach((t) => {
       character.traits.push(t);
     });
@@ -2143,7 +2143,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     });
     character.jobAssignment = this.jobAssignment;
     character.assignedShip = this.assignedShip;
-    character._rank = this._rank;
+    character.rankValue = this.rankValue;
     character.role = this.role;
     character.secondaryRole = this.secondaryRole;
     if (this.speciesStep) {
@@ -2195,8 +2195,8 @@ export class Character extends Construct implements IWeaponDiceProvider {
     character.finishingStep = this.finishingStep?.copy();
     character.npcGenerationStep = this.npcGenerationStep?.copy();
     character.supportingStep = this.supportingStep?.copy();
-    this._focuses.forEach((f) => {
-      character._focuses.push(f);
+    this.focusValues.forEach((f) => {
+      character.focusValues.push(f);
     });
     character.improvements = this.improvements?.map((i) => i.copy());
     character.pronouns = this.pronouns;
@@ -2293,7 +2293,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
     result.supportingStep = new SupportingStep();
     const rank = RanksHelper.instance().getRank(Rank.Ensign);
-    result._rank = new CharacterRank(rank.localizedName, rank.id);
+    result.rankValue = new CharacterRank(rank.localizedName, rank.id);
     return result;
   }
 

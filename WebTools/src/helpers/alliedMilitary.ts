@@ -55,13 +55,13 @@ export class AlliedMilitary {
 }
 
 class AllyHelper {
-  static _instance: AllyHelper;
+  static singleton: AllyHelper;
 
   static get instance() {
-    if (AllyHelper._instance == null) {
-      AllyHelper._instance = new AllyHelper();
+    if (AllyHelper.singleton == null) {
+      AllyHelper.singleton = new AllyHelper();
     }
-    return AllyHelper._instance;
+    return AllyHelper.singleton;
   }
 
   options: AlliedMilitary[] = [

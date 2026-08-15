@@ -1,5 +1,5 @@
 class StationScale {
-  private static _instance?: StationScale;
+  private static singleton?: StationScale;
 
   private scales = {
     1: 'Smaller than the International Space Station',
@@ -17,10 +17,10 @@ class StationScale {
   };
 
   public static instance() {
-    if (StationScale._instance == null) {
-      StationScale._instance = new StationScale();
+    if (StationScale.singleton == null) {
+      StationScale.singleton = new StationScale();
     }
-    return StationScale._instance;
+    return StationScale.singleton;
   }
 
   public getTextHint(scale: number) {

@@ -88,13 +88,13 @@ export class SpectralClassModel {
 }
 
 export class SpectralClassRegistry {
-  static _instance: SpectralClassRegistry;
+  static singleton: SpectralClassRegistry;
 
   static get instance() {
-    if (SpectralClassRegistry._instance == null) {
-      SpectralClassRegistry._instance = new SpectralClassRegistry();
+    if (SpectralClassRegistry.singleton == null) {
+      SpectralClassRegistry.singleton = new SpectralClassRegistry();
     }
-    return SpectralClassRegistry._instance;
+    return SpectralClassRegistry.singleton;
   }
 
   readonly classes: SpectralClassModel[] = [

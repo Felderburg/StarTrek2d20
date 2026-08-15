@@ -178,10 +178,10 @@ export class AnyOfPrerequisite
 }
 
 export class CareersPrerequisite implements IConstructPrerequisite {
-  private _careers: Career[];
+  private careers: Career[];
 
   constructor(...careers: Career[]) {
-    this._careers = careers;
+    this.careers = careers;
   }
 
   isPrerequisiteFulfilled(
@@ -190,13 +190,13 @@ export class CareersPrerequisite implements IConstructPrerequisite {
     return (
       character instanceof Character &&
       character.careerStep?.career != null &&
-      this._careers.indexOf(character.careerStep?.career) > -1
+      this.careers.indexOf(character.careerStep?.career) > -1
     );
   }
   describe(): string {
     return (
       'Only available to ' +
-      this._careers.map((c) => Career[c]).join(', ') +
+      this.careers.map((c) => Career[c]).join(', ') +
       ' characters'
     );
   }

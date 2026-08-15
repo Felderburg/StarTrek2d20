@@ -239,13 +239,13 @@ export const KlingonForehead7 = `<g>
 </g>`;
 
 class SpeciesOptionCatalog {
-  private static _instance: SpeciesOptionCatalog;
+  private static singleton: SpeciesOptionCatalog;
 
   public static get instance() {
-    if (SpeciesOptionCatalog._instance == null) {
-      SpeciesOptionCatalog._instance = new SpeciesOptionCatalog();
+    if (SpeciesOptionCatalog.singleton == null) {
+      SpeciesOptionCatalog.singleton = new SpeciesOptionCatalog();
     }
-    return SpeciesOptionCatalog._instance;
+    return SpeciesOptionCatalog.singleton;
   }
 
   getSwatches(token: TokenModel) {

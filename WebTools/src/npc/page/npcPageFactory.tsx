@@ -3,13 +3,13 @@ import { PageIdentity } from '../../pages/pageIdentity';
 import NpcConfigurationPage from './npcConfigurationPage';
 
 export class NpcPageFactory implements IPageFactoryRegistry {
-  private static _instance;
+  private static singleton;
 
   static get instance() {
-    if (NpcPageFactory._instance == null) {
-      NpcPageFactory._instance = new NpcPageFactory();
+    if (NpcPageFactory.singleton == null) {
+      NpcPageFactory.singleton = new NpcPageFactory();
     }
-    return NpcPageFactory._instance;
+    return NpcPageFactory.singleton;
   }
 
   private factories = {};

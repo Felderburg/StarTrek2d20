@@ -43,7 +43,7 @@ export class LocomotionModel {
 }
 
 export class LocomotionTypeHelper {
-  private static _instance: LocomotionTypeHelper;
+  private static singleton: LocomotionTypeHelper;
 
   private items = [
     new LocomotionTypeModel(LocomotionType.Legs, 'Legs'),
@@ -56,10 +56,10 @@ export class LocomotionTypeHelper {
   ];
 
   static get instance() {
-    if (LocomotionTypeHelper._instance == null) {
-      LocomotionTypeHelper._instance = new LocomotionTypeHelper();
+    if (LocomotionTypeHelper.singleton == null) {
+      LocomotionTypeHelper.singleton = new LocomotionTypeHelper();
     }
-    return LocomotionTypeHelper._instance;
+    return LocomotionTypeHelper.singleton;
   }
 
   getTypes() {

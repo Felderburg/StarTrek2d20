@@ -250,7 +250,7 @@ const CardassianNose1 = `<g>
 </g>`;
 
 class NoseCatalog {
-  private static _instance: NoseCatalog;
+  private static singleton: NoseCatalog;
 
   private swatches = [
     new Swatch(
@@ -328,10 +328,10 @@ class NoseCatalog {
   ];
 
   public static get instance() {
-    if (NoseCatalog._instance == null) {
-      NoseCatalog._instance = new NoseCatalog();
+    if (NoseCatalog.singleton == null) {
+      NoseCatalog.singleton = new NoseCatalog();
     }
-    return NoseCatalog._instance;
+    return NoseCatalog.singleton;
   }
 
   getNose(token: TokenModel) {

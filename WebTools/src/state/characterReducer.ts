@@ -708,7 +708,7 @@ const characterReducer = (
       });
     case SET_CHARACTER_RANK:
       return withCharacter(state, action, (temp, action) => {
-        temp._rank = new CharacterRank(
+        temp.rankValue = new CharacterRank(
           action.payload.name,
           action.payload.rank ?? undefined,
         );

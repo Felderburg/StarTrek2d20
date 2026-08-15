@@ -1,5 +1,5 @@
 class ServiceYear {
-  private static _instance?: ServiceYear;
+  private static singleton?: ServiceYear;
 
   private years = {
     2024: 'The Bell Riots, the Irish Reunification, the Europa Mission is launched',
@@ -91,10 +91,10 @@ class ServiceYear {
   };
 
   public static instance() {
-    if (ServiceYear._instance == null) {
-      ServiceYear._instance = new ServiceYear();
+    if (ServiceYear.singleton == null) {
+      ServiceYear.singleton = new ServiceYear();
     }
-    return ServiceYear._instance;
+    return ServiceYear.singleton;
   }
 
   public getTextHint(serviceYear: number) {

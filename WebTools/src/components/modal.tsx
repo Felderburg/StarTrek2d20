@@ -32,7 +32,7 @@ const ModalBox: React.FC<IModalProperties> = ({
 export default ModalBox;
 
 class ModalDialogControl {
-  static _root;
+  static rootElement;
 
   size?: 'xl' | 'lg' | 'sm';
   onClose?: () => void;
@@ -40,10 +40,12 @@ class ModalDialogControl {
   header: string;
 
   static get root() {
-    if (ModalDialogControl._root == null) {
-      ModalDialogControl._root = createRoot(document.getElementById('dialog'));
+    if (ModalDialogControl.rootElement == null) {
+      ModalDialogControl.rootElement = createRoot(
+        document.getElementById('dialog'),
+      );
     }
-    return ModalDialogControl._root;
+    return ModalDialogControl.rootElement;
   }
 
   show(
@@ -79,7 +81,7 @@ class ModalDialogControl {
       );
     } else {
       ModalDialogControl.root.unmount();
-      ModalDialogControl._root = null;
+      ModalDialogControl.rootElement = null;
     }
   }
 }

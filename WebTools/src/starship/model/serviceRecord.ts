@@ -73,7 +73,7 @@ export class ServiceRecordModel {
 }
 
 export class ServiceRecordList {
-  private static _instance: ServiceRecordList;
+  private static singleton: ServiceRecordList;
 
   readonly records: ServiceRecordModel[] = [
     new ServiceRecordModel(ServiceRecord.AgingRelic, 'Larger Crew'),
@@ -156,10 +156,10 @@ export class ServiceRecordList {
   ];
 
   static get instance() {
-    if (ServiceRecordList._instance == null) {
-      ServiceRecordList._instance = new ServiceRecordList();
+    if (ServiceRecordList.singleton == null) {
+      ServiceRecordList.singleton = new ServiceRecordList();
     }
-    return ServiceRecordList._instance;
+    return ServiceRecordList.singleton;
   }
 
   getByType(type: ServiceRecord) {

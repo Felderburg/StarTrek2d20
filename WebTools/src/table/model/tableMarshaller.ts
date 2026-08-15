@@ -3,13 +3,13 @@ import pako from 'pako';
 import { Table, TableCollection, TableRow, ValueResult } from './table';
 
 class TableMarshaller {
-  private static _instance: TableMarshaller;
+  private static singleton: TableMarshaller;
 
   static get instance() {
-    if (TableMarshaller._instance == null) {
-      TableMarshaller._instance = new TableMarshaller();
+    if (TableMarshaller.singleton == null) {
+      TableMarshaller.singleton = new TableMarshaller();
     }
-    return TableMarshaller._instance;
+    return TableMarshaller.singleton;
   }
 
   marshall(tableCollection: TableCollection) {

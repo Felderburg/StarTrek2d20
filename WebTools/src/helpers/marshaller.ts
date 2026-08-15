@@ -399,7 +399,7 @@ class Marshaller {
     sheet['typeDetails'] = this.encodeTypeDetails(character);
 
     if (character.legacyMode) {
-      sheet['attributes'] = this.toAttributeObject(character._attributes);
+      sheet['attributes'] = this.toAttributeObject(character.attributeValues);
     }
 
     if (character.legacyMode) {
@@ -440,10 +440,10 @@ class Marshaller {
       sheet['jobAssignment'] = character.jobAssignment;
     }
 
-    if (character._rank) {
+    if (character.rankValue) {
       sheet['rank'] = {
-        name: character._rank?.name,
-        id: character._rank?.id,
+        name: character.rankValue?.name,
+        id: character.rankValue?.id,
       };
     }
 
@@ -875,7 +875,7 @@ class Marshaller {
       character.legacyMode
     ) {
       sheet['focuses'] = [...character.focuses];
-      sheet['attributes'] = this.toAttributeObject(character._attributes);
+      sheet['attributes'] = this.toAttributeObject(character.attributeValues);
       sheet['disciplines'] = this.getDepartmentByNameObject(
         character.departments,
       );
@@ -926,10 +926,10 @@ class Marshaller {
       });
     }
 
-    if (character._rank) {
+    if (character.rankValue) {
       sheet['rank'] = {
-        name: character._rank?.name,
-        id: character._rank?.id,
+        name: character.rankValue?.name,
+        id: character.rankValue?.id,
       };
     }
 
@@ -1945,9 +1945,9 @@ class Marshaller {
     const rank = json.rank;
     if (rank) {
       if (typeof rank === 'string') {
-        result._rank = new CharacterRank(rank as string);
+        result.rankValue = new CharacterRank(rank as string);
       } else if (rank.name) {
-        result._rank = new CharacterRank(rank.name, rank.id);
+        result.rankValue = new CharacterRank(rank.name, rank.id);
       }
     }
     if (json.version) {
@@ -2277,9 +2277,9 @@ class Marshaller {
       }
     } else {
       const rank =
-        result._rank == null
+        result.rankValue == null
           ? null
-          : RanksHelper.instance().getRankByName(result._rank?.name);
+          : RanksHelper.instance().getRankByName(result.rankValue?.name);
       if (rank && result.stereotype === Stereotype.Npc) {
         if (result.npcGenerationStep == null) {
           result.npcGenerationStep = new NpcGenerationStep();
@@ -2291,7 +2291,7 @@ class Marshaller {
       const focuses = [...json.focuses];
       if (result.stereotype === Stereotype.MainCharacter) {
         result.legacyMode = true;
-        result._focuses = focuses;
+        result.focusValues = focuses;
       } else if (result.stereotype === Stereotype.SupportingCharacter) {
         if (result.supportingStep == null) {
           result.supportingStep = new SupportingStep();
@@ -2308,7 +2308,7 @@ class Marshaller {
       AttributesHelper.getAllAttributes().forEach((a) => {
         const value = json.attributes[Attribute[a]];
         if (value != null) {
-          result._attributes[a] = value;
+          result.attributeValues[a] = value;
         }
       });
     }
@@ -2327,9 +2327,7 @@ class Marshaller {
       } else {
         DepartmentsHelper.instance
           .getDepartments()
-          .forEach(
-            (d) => (result._skills[d] = json.disciplines[Department[d]]),
-          );
+          .forEach((d) => (result.skills[d] = json.disciplines[Department[d]]));
       }
     }
     if (json.environment) {

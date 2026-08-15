@@ -16,15 +16,15 @@ export interface IExtendedExtrasLibrary {
 }
 
 class ExtrasCatalog {
-  private static _instance: ExtrasCatalog;
+  private static singleton: ExtrasCatalog;
 
   private extrasLibrary: IExtendedExtrasLibrary;
 
   public static get instance() {
-    if (ExtrasCatalog._instance == null) {
-      ExtrasCatalog._instance = new ExtrasCatalog();
+    if (ExtrasCatalog.singleton == null) {
+      ExtrasCatalog.singleton = new ExtrasCatalog();
     }
-    return ExtrasCatalog._instance;
+    return ExtrasCatalog.singleton;
   }
 
   isInCategory(type: ExtraType, category: ExtraCategory) {
@@ -70,7 +70,7 @@ class ExtrasCatalog {
         );
         this.extrasLibrary = new ExtrasLibrary();
         completion();
-      } catch (_e) {
+      } catch {
         toast('Ooops. Something bad happened', { className: 'bg-danger' });
       }
     }

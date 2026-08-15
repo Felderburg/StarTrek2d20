@@ -29,7 +29,7 @@ export class TalentModel implements ITalent {
   maxRank: number;
   category: TalentCategorization;
   aliases: AliasModel[];
-  _specialRule: (version: number) => boolean;
+  specialRule: (version: number) => boolean;
 
   constructor(
     name: string,
@@ -66,15 +66,15 @@ export class TalentModel implements ITalent {
       const f = (version: number) => {
         return specialRule;
       };
-      this._specialRule = f;
+      this.specialRule = f;
     } else {
-      this._specialRule = specialRule;
+      this.specialRule = specialRule;
     }
     this.aliases = aliases || AliasModel[0];
   }
 
   isSpecialRule(version: number): boolean {
-    return this._specialRule(version);
+    return this.specialRule(version);
   }
 
   get isStarshipTalent() {

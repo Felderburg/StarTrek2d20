@@ -44,13 +44,13 @@ const DEFAULT_EQUIPMENT_ICON =
 const SYSTEM_VERSION = '2.4.2';
 
 export class FoundryVttExporter {
-  private static _instance: FoundryVttExporter;
+  private static singleton: FoundryVttExporter;
 
   static get instance() {
-    if (FoundryVttExporter._instance == null) {
-      FoundryVttExporter._instance = new FoundryVttExporter();
+    if (FoundryVttExporter.singleton == null) {
+      FoundryVttExporter.singleton = new FoundryVttExporter();
     }
-    return FoundryVttExporter._instance;
+    return FoundryVttExporter.singleton;
   }
 
   exportStarship(starship: Starship, type: FoundryPluginType) {

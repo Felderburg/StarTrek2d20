@@ -24,7 +24,7 @@ export class CreatureSizeModel {
 }
 
 export class CreatureSizeHelper {
-  private static _instance: CreatureSizeHelper;
+  private static singleton: CreatureSizeHelper;
 
   private items = [
     new CreatureSizeModel(CreatureSize.Swarm, 'Swarm'),
@@ -36,10 +36,10 @@ export class CreatureSizeHelper {
   ];
 
   static get instance() {
-    if (CreatureSizeHelper._instance == null) {
-      CreatureSizeHelper._instance = new CreatureSizeHelper();
+    if (CreatureSizeHelper.singleton == null) {
+      CreatureSizeHelper.singleton = new CreatureSizeHelper();
     }
-    return CreatureSizeHelper._instance;
+    return CreatureSizeHelper.singleton;
   }
 
   getTypes() {

@@ -261,13 +261,13 @@ export class SpecializationModel {
 }
 
 export class Specializations {
-  private static _instance: Specializations;
+  private static singleton: Specializations;
 
   static get instance() {
-    if (Specializations._instance == null) {
-      Specializations._instance = new Specializations();
+    if (Specializations.singleton == null) {
+      Specializations.singleton = new Specializations();
     }
-    return Specializations._instance;
+    return Specializations.singleton;
   }
 
   specializations: SpecializationModel[];

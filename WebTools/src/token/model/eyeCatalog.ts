@@ -208,13 +208,13 @@ const PakledBelowEyeProsthetic = `<g>
 </g>`;
 
 class EyeCatalog {
-  private static _instance: EyeCatalog;
+  private static singleton: EyeCatalog;
 
   public static get instance() {
-    if (EyeCatalog._instance == null) {
-      EyeCatalog._instance = new EyeCatalog();
+    if (EyeCatalog.singleton == null) {
+      EyeCatalog.singleton = new EyeCatalog();
     }
-    return EyeCatalog._instance;
+    return EyeCatalog.singleton;
   }
 
   getEyes(token: TokenModel) {

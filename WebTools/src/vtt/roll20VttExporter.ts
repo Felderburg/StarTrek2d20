@@ -84,13 +84,13 @@ class IdHelper {
 }
 
 export class Roll20VttExporter {
-  private static _instance: Roll20VttExporter;
+  private static singleton: Roll20VttExporter;
 
   static get instance() {
-    if (Roll20VttExporter._instance == null) {
-      Roll20VttExporter._instance = new Roll20VttExporter();
+    if (Roll20VttExporter.singleton == null) {
+      Roll20VttExporter.singleton = new Roll20VttExporter();
     }
-    return Roll20VttExporter._instance;
+    return Roll20VttExporter.singleton;
   }
 
   exportStarship(starship: Starship) {

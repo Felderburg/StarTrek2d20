@@ -252,7 +252,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
       const image = await pdf.embedPng(tokenBytes);
       try {
         pdf.getForm().getButton('Image35_af_image').setImage(image);
-      } catch (_e) {
+      } catch {
         // name changed...? ignore it.
         console.log('Image button not found in PDF');
       }

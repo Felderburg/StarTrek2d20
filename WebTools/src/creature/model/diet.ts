@@ -24,7 +24,7 @@ export class DietTypeModel {
 }
 
 export class DietTypeHelper {
-  private static _instance: DietTypeHelper;
+  private static singleton: DietTypeHelper;
 
   private items = [
     new DietTypeModel(DietType.Herbivore, 'Herbivore'),
@@ -36,10 +36,10 @@ export class DietTypeHelper {
   ];
 
   static get instance() {
-    if (DietTypeHelper._instance == null) {
-      DietTypeHelper._instance = new DietTypeHelper();
+    if (DietTypeHelper.singleton == null) {
+      DietTypeHelper.singleton = new DietTypeHelper();
     }
-    return DietTypeHelper._instance;
+    return DietTypeHelper.singleton;
   }
 
   getTypes() {

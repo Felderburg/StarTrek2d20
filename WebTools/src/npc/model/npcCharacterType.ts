@@ -49,16 +49,16 @@ export class NpcCharacterTypeModel {
 }
 
 export class NpcCharacterTypes {
-  private static _instance: NpcCharacterTypes;
+  private static singleton: NpcCharacterTypes;
 
   static get instance() {
-    if (NpcCharacterTypes._instance == null) {
-      NpcCharacterTypes._instance = new NpcCharacterTypes();
+    if (NpcCharacterTypes.singleton == null) {
+      NpcCharacterTypes.singleton = new NpcCharacterTypes();
     }
-    return NpcCharacterTypes._instance;
+    return NpcCharacterTypes.singleton;
   }
 
-  private _types = [
+  private typeValues = [
     new NpcCharacterTypeModel(NpcCharacterType.Starfleet, 'Starfleet'),
     new NpcCharacterTypeModel(
       NpcCharacterType.KlingonDefenseForces,
@@ -87,7 +87,7 @@ export class NpcCharacterTypes {
   }
 
   get types() {
-    return this._types.filter((t) => {
+    return this.typeValues.filter((t) => {
       if (t.type === NpcCharacterType.Starfleet) {
         return true;
       } else if (t.type === NpcCharacterType.KlingonDefenseForces) {

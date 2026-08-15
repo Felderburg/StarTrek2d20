@@ -23,33 +23,33 @@ export class KlingonCharacterPrerequisite implements ICharacterPrerequisite {
 }
 
 export class CareersCharacterPrerequisite implements ICharacterPrerequisite {
-  private _careers: Career[];
+  private careers: Career[];
 
   constructor(...careers: Career[]) {
-    this._careers = careers;
+    this.careers = careers;
   }
 
   isPrerequisiteFulfilled(character: Character) {
     return (
       character.careerStep?.career != null &&
-      this._careers.indexOf(character.careerStep?.career) > -1
+      this.careers.indexOf(character.careerStep?.career) > -1
     );
   }
 }
 
 export class NotRolesCharacterPrerequisite implements ICharacterPrerequisite {
-  private _roles: Role[];
+  private roles: Role[];
 
   constructor(roles: Role[]) {
-    this._roles = roles;
+    this.roles = roles;
   }
 
   isPrerequisiteFulfilled(character: Character) {
     return (
       character.role == null ||
-      (this._roles.indexOf(character.role) < 0 &&
+      (this.roles.indexOf(character.role) < 0 &&
         (character.secondaryRole == null ||
-          this._roles.indexOf(character.secondaryRole) < 0))
+          this.roles.indexOf(character.secondaryRole) < 0))
     );
   }
 }
@@ -101,18 +101,18 @@ export class AllOfCharacterPrerequisite implements ICharacterPrerequisite {
 }
 
 export class AnyOfCharacterPrerequisite implements ICharacterPrerequisite {
-  private _prequisites: ICharacterPrerequisite[];
+  private prequisites: ICharacterPrerequisite[];
 
   constructor(...prequisites: ICharacterPrerequisite[]) {
-    this._prequisites = prequisites;
+    this.prequisites = prequisites;
   }
 
   isPrerequisiteFulfilled(character: Character) {
-    if (this._prequisites.length === 0) {
+    if (this.prequisites.length === 0) {
       return true;
     } else {
       let result = false;
-      this._prequisites.forEach((req) => {
+      this.prequisites.forEach((req) => {
         result = result || req.isPrerequisiteFulfilled(character);
       });
       return result;

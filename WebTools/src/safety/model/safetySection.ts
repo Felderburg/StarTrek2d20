@@ -34,7 +34,7 @@ export class SafetySection {
 }
 
 export class SafetySections {
-  private static _instance: SafetySections;
+  private static singleton: SafetySections;
 
   sections = [
     new SafetySection(
@@ -80,9 +80,9 @@ export class SafetySections {
   ];
 
   static get instance() {
-    if (SafetySections._instance == null) {
-      SafetySections._instance = new SafetySections();
+    if (SafetySections.singleton == null) {
+      SafetySections.singleton = new SafetySections();
     }
-    return SafetySections._instance;
+    return SafetySections.singleton;
   }
 }

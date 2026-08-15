@@ -432,7 +432,7 @@ export const ReferenceHead = StandardHeads.Head3;
 class HeadCatalog {
   private rubberHeadCatalog: IExtendedHeadCatalog;
 
-  private static _instance: HeadCatalog;
+  private static singleton: HeadCatalog;
 
   swatches = [
     new Swatch(
@@ -505,10 +505,10 @@ class HeadCatalog {
   ];
 
   public static get instance() {
-    if (HeadCatalog._instance == null) {
-      HeadCatalog._instance = new HeadCatalog();
+    if (HeadCatalog.singleton == null) {
+      HeadCatalog.singleton = new HeadCatalog();
     }
-    return HeadCatalog._instance;
+    return HeadCatalog.singleton;
   }
 
   getHead(token: TokenModel) {
@@ -772,7 +772,7 @@ class HeadCatalog {
         );
         this.rubberHeadCatalog = new RubberHeadCatalog();
         completion();
-      } catch (_e) {
+      } catch {
         toast('Ooops. Something bad happened', { className: 'bg-danger' });
       }
     }

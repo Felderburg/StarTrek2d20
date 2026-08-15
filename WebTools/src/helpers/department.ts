@@ -8,13 +8,13 @@ export enum Department {
 }
 
 export class DepartmentsHelper {
-  private static _instance: DepartmentsHelper;
+  private static singleton: DepartmentsHelper;
 
   static get instance(): DepartmentsHelper {
-    if (DepartmentsHelper._instance == null) {
-      DepartmentsHelper._instance = new DepartmentsHelper();
+    if (DepartmentsHelper.singleton == null) {
+      DepartmentsHelper.singleton = new DepartmentsHelper();
     }
-    return DepartmentsHelper._instance;
+    return DepartmentsHelper.singleton;
   }
 
   getDepartments() {
