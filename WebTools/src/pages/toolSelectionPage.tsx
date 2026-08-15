@@ -30,6 +30,7 @@ const ToolSelectionPage = () => {
     if (hasAnySource([Source.ShackletonExpanse, Source.ExplorationGuide])) {
       return (
         <Button
+          size="lg"
           className="mt-4"
           onClick={() => navigate('/tools/sector/generator')}
         >
@@ -45,6 +46,7 @@ const ToolSelectionPage = () => {
     if (hasSource(Source.FederationKlingonWar)) {
       return (
         <Button
+          size="lg"
           className="mt-4"
           onClick={() => goToPage(PageIdentity.TacticalAssets)}
         >
@@ -158,10 +160,10 @@ const ToolSelectionPage = () => {
         <main>
           <Header>{t('Page.title.toolSelection')}</Header>
           <InstructionText text={t('ToolSelection.instruction')} />
-
           <div className="row">
             <div className="col-md-6 button-column">
               <Button
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   startCharacterCreation();
@@ -170,6 +172,7 @@ const ToolSelectionPage = () => {
                 {t('ToolSelection.mainCharacter')}
               </Button>
               <Button
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   goToPage(PageIdentity.SupportingCharacter);
@@ -188,6 +191,7 @@ const ToolSelectionPage = () => {
                 </Button>
               ) : undefined}
               <LoadingButton
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   loadStarshipAndGoToPage();
@@ -201,9 +205,11 @@ const ToolSelectionPage = () => {
                   {t('ToolSelection.station')}
                 </Button>
               ) : undefined}
+
             </div>
             <div className="col-md-6 button-column">
               <LoadingButton
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   loadRandomNpcAndGoToPage();
@@ -213,6 +219,7 @@ const ToolSelectionPage = () => {
                 {t('ToolSelection.randomNpc')}
               </LoadingButton>
               <LoadingButton
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   loadRandomStarshipAndGoToPage();
@@ -223,6 +230,7 @@ const ToolSelectionPage = () => {
               </LoadingButton>
               {isSecondEdition() ? (
                 <Button
+                  size="lg"
                   className="mt-4"
                   onClick={() => {
                     goToPage(PageIdentity.RandomCreature);

@@ -21,6 +21,7 @@ import { setCharacter } from '../state/characterActions';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
 import type { Era } from '../helpers/erasEnum';
 import { connect } from 'react-redux';
+import { PreviousButton } from '../components/previousButton';
 
 interface ICharacterTypeProperties extends WithTranslation {
   era: Era;
@@ -167,7 +168,8 @@ class CharacterTypePage extends React.Component<
         {alliedMilitary}
         {governments}
 
-        <div className="mt-4">
+        <div className="mt-4 d-flex justify-content-between">
+          <PreviousButton onClick={() => {}} />
           <Button onClick={() => this.startWorkflow()}>
             {t('Common.button.create')}
           </Button>
