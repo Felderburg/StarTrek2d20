@@ -204,7 +204,9 @@ const ToolSelectionPage = () => {
               {isSecondEdition() && hasSource(Source.UtopiaPlanitia) ? (
                 <Button
                   size="lg"
-                  className="mt-4" onClick={() => navigate('/station')}>
+                  className="mt-4"
+                  onClick={() => navigate('/station')}
+                >
                   {t('ToolSelection.station')}
                 </Button>
               ) : undefined}
