@@ -2,7 +2,7 @@ import { D20 } from '../../common/die';
 import { Environment } from '../../helpers/environments';
 
 export const EnvironmentSettingRandomTable = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
     case 2:
@@ -33,7 +33,7 @@ export const EnvironmentSettingRandomTable = () => {
 };
 
 export const EnvironmentConditionRandomTable = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
     case 2:

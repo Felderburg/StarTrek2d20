@@ -49,7 +49,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
     evaluation: { [category: string]: SafetyEvaluationType },
   ) {
     await this.initializeFonts(pdf);
-    let page = pdf.getPage(0);
+    const page = pdf.getPage(0);
 
     new PortraitSheetDecorations().drawSheetDecorations(page, tealColour2e);
     this.writeName(
@@ -64,9 +64,9 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
     column = column.bottomAfter(20);
 
     SafetySections.instance.sections.forEach((section) => {
-      let temp = column.columnWithAtLeast(60, page);
+      const temp = column.columnWithAtLeast(60, page);
       column = temp.column;
-      let heading = new Paragraph(page, column, this.fonts);
+      const heading = new Paragraph(page, column, this.fonts);
       heading.append(
         section.localizedName.toLocaleUpperCase(),
         new FontSpecification(this.headingFont, 9),
@@ -86,7 +86,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
     column: Column,
   ) {
     const evaluationColumnWidth = 30;
-    let th1 = new Paragraph(
+    const th1 = new Paragraph(
       page,
       new Column(
         column.start.x + column.width - 3 * evaluationColumnWidth,
@@ -96,7 +96,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
       ),
       this.fonts,
     );
-    let th2 = new Paragraph(
+    const th2 = new Paragraph(
       page,
       new Column(
         column.start.x + column.width - 2 * evaluationColumnWidth,
@@ -106,7 +106,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
       ),
       this.fonts,
     );
-    let th3 = new Paragraph(
+    const th3 = new Paragraph(
       page,
       new Column(
         column.start.x + column.width - 1 * evaluationColumnWidth,
@@ -139,7 +139,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
 
     this.writeLine(page, column.start.x, th1.bottom.y + 5, column.width);
 
-    let columnWidth = column.width - 3 * evaluationColumnWidth;
+    const columnWidth = column.width - 3 * evaluationColumnWidth;
     column = column.bottomAfter(25);
     let paragraphColumn = new Column(
       column.start.x,
@@ -150,24 +150,24 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
     );
 
     section.categories.forEach((c) => {
-      let paragraph = new Paragraph(page, paragraphColumn, this.fonts);
+      const paragraph = new Paragraph(page, paragraphColumn, this.fonts);
       paragraph.append(
         i18next.t(makeKey('SafetySection.category.', c)),
         new FontOptions(8),
       );
       paragraph.write();
 
-      let type = evaluation[c];
+      const type = evaluation[c];
       switch (type) {
         case SafetyEvaluationType.AlwaysOk:
           {
-            let tempColumn = new Column(
+            const tempColumn = new Column(
               paragraphColumn.start.x + paragraphColumn.width,
               paragraphColumn.start.y,
               20,
               evaluationColumnWidth,
             );
-            let evaluationParagraph = new Paragraph(
+            const evaluationParagraph = new Paragraph(
               page,
               tempColumn,
               this.fonts,
@@ -183,7 +183,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
           break;
         case SafetyEvaluationType.YellowAlert:
           {
-            let tempColumn = new Column(
+            const tempColumn = new Column(
               paragraphColumn.start.x +
                 paragraphColumn.width +
                 evaluationColumnWidth,
@@ -191,7 +191,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
               20,
               evaluationColumnWidth,
             );
-            let evaluationParagraph = new Paragraph(
+            const evaluationParagraph = new Paragraph(
               page,
               tempColumn,
               this.fonts,
@@ -206,7 +206,7 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
           }
           break;
         case SafetyEvaluationType.RedAlert: {
-          let tempColumn = new Column(
+          const tempColumn = new Column(
             paragraphColumn.start.x +
               paragraphColumn.width +
               2 * evaluationColumnWidth,
@@ -214,7 +214,11 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
             20,
             evaluationColumnWidth,
           );
-          let evaluationParagraph = new Paragraph(page, tempColumn, this.fonts);
+          const evaluationParagraph = new Paragraph(
+            page,
+            tempColumn,
+            this.fonts,
+          );
           evaluationParagraph.textAlignment = TextAlign.Centre;
           evaluationParagraph.append(
             CHALLENGE_DICE_NOTATION,
@@ -264,10 +268,12 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
   }
 
   writePreamble(page: PDFPage, column: Column) {
-    let preambleText = i18next.t('SafetyChecklist.instruction');
-    let preambleParagraphs = preambleText.split('\n').filter((t) => t?.length);
+    const preambleText = i18next.t('SafetyChecklist.instruction');
+    const preambleParagraphs = preambleText
+      .split('\n')
+      .filter((t) => t?.length);
     let paragraph = new Paragraph(page, column, this.fonts);
-    let paragraphs = [paragraph];
+    const paragraphs = [paragraph];
     preambleParagraphs.forEach((p, i) => {
       if (i > 0) {
         paragraph = paragraph?.nextParagraph();

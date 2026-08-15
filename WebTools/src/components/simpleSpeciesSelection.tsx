@@ -24,7 +24,7 @@ export class SimpleSpeciesSelection extends React.Component<
   }
 
   render() {
-    var species = this.props.species.map((s, i) => {
+    const species = this.props.species.map((s, i) => {
       const attributes =
         s.id === Species.Ktarian ? (
           <div key={'species-' + s.id}>

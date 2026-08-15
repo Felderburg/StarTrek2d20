@@ -75,39 +75,39 @@ const token = (state: TokenState = { token: initialState }, action) => {
   switch (action.type) {
     case SET_TOKEN_SECONDARY_SPECIES:
     case SET_TOKEN_SPECIES: {
-      let token = state.token;
+      const token = state.token;
       let newSpecies = action.payload.species;
       let skinColor = token.skinColor;
-      let palette = SpeciesRestrictions.getSkinColors(newSpecies);
+      const palette = SpeciesRestrictions.getSkinColors(newSpecies);
       if (palette.indexOf(skinColor) < 0) {
         skinColor = palette[Math.floor(palette.length / 2)];
       }
       let hairColour = token.hairColor;
-      let hairColours = SpeciesRestrictions.getHairColors(newSpecies);
+      const hairColours = SpeciesRestrictions.getHairColors(newSpecies);
       if (hairColours.indexOf(hairColour) < 0) {
         hairColour = hairColours[0];
       }
 
       let hairType = token.hairType;
-      let hairTypes = SpeciesRestrictions.getHairTypes(newSpecies);
+      const hairTypes = SpeciesRestrictions.getHairTypes(newSpecies);
       if (hairTypes.indexOf(hairType) < 0) {
         hairType = SpeciesRestrictions.getDefaultHairType(newSpecies);
       }
 
       let noseType = token.noseType;
-      let noseTypes = SpeciesRestrictions.getNoseTypes(newSpecies);
+      const noseTypes = SpeciesRestrictions.getNoseTypes(newSpecies);
       if (noseTypes.indexOf(noseType) < 0) {
         noseType = noseTypes[0];
       }
 
       let headType = token.headType;
-      let headTypes = SpeciesRestrictions.getHeadTypes(newSpecies);
+      const headTypes = SpeciesRestrictions.getHeadTypes(newSpecies);
       if (headTypes.indexOf(headType) < 0) {
         headType = headTypes[0];
       }
 
       let mouthType = token.mouthType;
-      let mouthTypes = SpeciesRestrictions.getMouthTypes(newSpecies);
+      const mouthTypes = SpeciesRestrictions.getMouthTypes(newSpecies);
       if (mouthTypes.indexOf(mouthType) < 0) {
         mouthType = mouthTypes[0];
       }
@@ -118,18 +118,18 @@ const token = (state: TokenState = { token: initialState }, action) => {
       }
 
       let eyeColor = token.eyeColor;
-      let speciesEyeColours = SpeciesRestrictions.getEyeColors(
+      const speciesEyeColours = SpeciesRestrictions.getEyeColors(
         action.payload.species,
       );
       if (speciesEyeColours.indexOf(eyeColor) < 0) {
         eyeColor = speciesEyeColours[Math.floor(speciesEyeColours.length / 2)];
       }
       let option = token.speciesOption;
-      let options = SpeciesRestrictions.getSpeciesOptions(newSpecies);
+      const options = SpeciesRestrictions.getSpeciesOptions(newSpecies);
       if (options.indexOf(option) < 0) {
         option = SpeciesOption.Option1;
       }
-      let extras = token.extras.filter((e) =>
+      const extras = token.extras.filter((e) =>
         action.type === SET_TOKEN_SECONDARY_SPECIES
           ? SpeciesRestrictions.isExtraAvailableFor(
               e,
@@ -148,15 +148,15 @@ const token = (state: TokenState = { token: initialState }, action) => {
       let uniformEra = token.uniformEra;
       let colour = token.divisionColor;
       let rank = token.rankIndicator;
-      let uniforms = SpeciesRestrictions.getUniformTypes(newSpecies);
+      const uniforms = SpeciesRestrictions.getUniformTypes(newSpecies);
       if (uniforms.indexOf(uniformEra) < 0) {
         uniformEra = uniforms[0];
 
-        let newColourOptions = DivisionColors.getColors(
+        const newColourOptions = DivisionColors.getColors(
           action.payload.era,
           rank,
         );
-        let index = DivisionColors.indexOf(token.uniformEra, colour);
+        const index = DivisionColors.indexOf(token.uniformEra, colour);
         if (index >= 0 && index < newColourOptions.length) {
           colour = newColourOptions[index].color;
         } else {
@@ -170,7 +170,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       }
 
       let variant = token.variant;
-      let variants = UniformVariantRestrictions.getAvailableVariants(
+      const variants = UniformVariantRestrictions.getAvailableVariants(
         uniformEra,
         token.bodyType,
         newSpecies,
@@ -219,13 +219,13 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_UNIFORM_ERA: {
-      let token = state.token;
+      const token = state.token;
       let colour = token.divisionColor;
-      let newColourOptions = DivisionColors.getColors(
+      const newColourOptions = DivisionColors.getColors(
         action.payload.era,
         token.rankIndicator,
       );
-      let index = DivisionColors.indexOf(token.uniformEra, colour);
+      const index = DivisionColors.indexOf(token.uniformEra, colour);
       if (index >= 0 && index < newColourOptions.length) {
         colour = newColourOptions[index].color;
       } else {
@@ -248,7 +248,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
         )[0];
       }
       let variant = token.variant;
-      let variants = UniformVariantRestrictions.getAvailableVariants(
+      const variants = UniformVariantRestrictions.getAvailableVariants(
         action.payload.era,
         bodyType,
         token.species,
@@ -258,7 +258,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       if (variants.indexOf(variant) < 0) {
         variant = UniformVariantType.Base;
       }
-      let extras = token.extras.filter((e) =>
+      const extras = token.extras.filter((e) =>
         SpeciesRestrictions.isExtraAvailableFor(
           e,
           token.species,
@@ -281,9 +281,9 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_DIVISION_COLOR: {
-      let token = state.token;
+      const token = state.token;
       let variant = token.variant;
-      let variants = UniformVariantRestrictions.getAvailableVariants(
+      const variants = UniformVariantRestrictions.getAvailableVariants(
         token.uniformEra,
         token.bodyType,
         token.species,
@@ -304,9 +304,9 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_RANK: {
-      let token = { ...state.token };
-      let variant = token.variant;
-      let variants = UniformVariantRestrictions.getAvailableVariants(
+      const token = { ...state.token };
+      const variant = token.variant;
+      const variants = UniformVariantRestrictions.getAvailableVariants(
         token.uniformEra,
         token.bodyType,
         token.species,
@@ -317,7 +317,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
         token.variant = UniformVariantType.Base;
       }
       token.rankIndicator = action.payload.rank;
-      let colours = DivisionColors.getColors(
+      const colours = DivisionColors.getColors(
         token.uniformEra,
         token.rankIndicator,
       );
@@ -334,7 +334,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_HAIR_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -344,7 +344,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_HEAD_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -354,7 +354,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_NOSE_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -364,7 +364,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_NASO_LABIAL_FOLD_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -374,9 +374,9 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_BODY_TYPE: {
-      let token = state.token;
+      const token = state.token;
       let variant = token.variant;
-      let variants = UniformVariantRestrictions.getAvailableVariants(
+      const variants = UniformVariantRestrictions.getAvailableVariants(
         token.uniformEra,
         action.payload.type,
         token.species,
@@ -396,7 +396,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_UNIFORM_VARIANT_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -406,7 +406,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_EYE_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -416,7 +416,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_MOUTH_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -426,7 +426,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_FACIAL_HAIR_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -436,7 +436,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_EXTRAS_TYPE: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -446,7 +446,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_EYE_COLOR: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -456,7 +456,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_HAIR_COLOR: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -466,7 +466,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_LIPSTICK_COLOR: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -476,7 +476,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_SKIN_COLOR: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -486,7 +486,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
       };
     }
     case SET_TOKEN_SPECIES_OPTION: {
-      let token = state.token;
+      const token = state.token;
       return {
         ...state,
         token: {
@@ -497,7 +497,7 @@ const token = (state: TokenState = { token: initialState }, action) => {
     }
     case CREATE_NEW_TOKEN: {
       const newToken = action.payload.token;
-      let token: Token = { ...initialState };
+      const token: Token = { ...initialState };
       if (newToken) {
         token.species = newToken.primarySpecies;
         token.secondarySpecies = newToken.secondarySpecies;

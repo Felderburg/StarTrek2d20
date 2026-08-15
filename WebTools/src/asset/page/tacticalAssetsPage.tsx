@@ -30,7 +30,7 @@ const TacticalAssetsPage = () => {
   const [assets, setAssets] = useState([]);
 
   const getAssetTypes = () => {
-    let result = [new DropDownElement('', 'Any')];
+    const result = [new DropDownElement('', 'Any')];
     AssetTypes.instance
       .getTypes()
       .forEach((t) => result.push(new DropDownElement(t.type, t.name)));
@@ -44,7 +44,7 @@ const TacticalAssetsPage = () => {
 
   const getSpaceframe = (asset: Asset) => {
     if (asset.type === AssetType.Ship) {
-      let spaceframe = SpaceframeHelper.instance().getSpaceframe(
+      const spaceframe = SpaceframeHelper.instance().getSpaceframe(
         asset.additionalInformation as Spaceframe,
       );
       return (
@@ -61,7 +61,7 @@ const TacticalAssetsPage = () => {
   };
 
   const generateAsset = () => {
-    let newAssets = [...assets];
+    const newAssets = [...assets];
     let options = [];
     if (type === AssetType.Character) {
       options = [...characterAssets];
@@ -75,11 +75,11 @@ const TacticalAssetsPage = () => {
       options.push(...resourceAssets);
     }
 
-    let names = newAssets.map((a) => a.name);
+    const names = newAssets.map((a) => a.name);
     options = options.filter((a) => !names.includes(a.name));
 
     if (options.length > 0) {
-      let asset = options[Math.floor(Math.random() * options.length)];
+      const asset = options[Math.floor(Math.random() * options.length)];
       newAssets.push(asset);
       setAssets(newAssets);
     } else {

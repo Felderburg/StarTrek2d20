@@ -71,7 +71,7 @@ const CareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
   }, [career.id, career.talent, wroteTheBook]);
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,
@@ -150,7 +150,7 @@ const CareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
 
   const filterTalentList = (): RankedTalent[] => {
     if (career.id === Career.Veteran) {
-      let result = [new RankedTalent(TalentsHelper.getTalent('Veteran'))];
+      const result = [new RankedTalent(TalentsHelper.getTalent('Veteran'))];
 
       if (wroteTheBook != null) {
         result.push(new RankedTalent(wroteTheBook));

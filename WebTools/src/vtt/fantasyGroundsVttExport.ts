@@ -26,7 +26,7 @@ export class FantasyGroupsVttExporter {
   }
 
   private exportNpc(character: Character) {
-    let characterNode = {
+    const characterNode = {
       type: 'element',
       name: 'npc',
       elements: [
@@ -157,7 +157,7 @@ export class FantasyGroupsVttExporter {
   }
 
   private exportMainCharacter(character: Character) {
-    let characterNode = {
+    const characterNode = {
       type: 'element',
       name: 'character',
       elements: [
@@ -458,7 +458,7 @@ export class FantasyGroupsVttExporter {
   nodesToXml(characterNode: any) {
     characterNode.elements = characterNode.elements.filter((e) => e != null);
 
-    let result = {
+    const result = {
       declaration: { attributes: { version: '1.0', encoding: 'utf-8' } },
       elements: [
         {
@@ -479,7 +479,7 @@ export class FantasyGroupsVttExporter {
 
   convertCharacterDescription(character: Character) {
     if (character.description?.length) {
-      let paragraphs = character.description
+      const paragraphs = character.description
         .split('\n')
         .filter((s) => s?.length)
         .map((s) => {
@@ -508,7 +508,7 @@ export class FantasyGroupsVttExporter {
   }
 
   convertUpbringingLink(character: Character) {
-    let implementedUpbringings = [
+    const implementedUpbringings = [
       EarlyOutlook.MilitaryOrExploration,
       EarlyOutlook.BusinessOrTrade,
       EarlyOutlook.AgricultureOrRural,
@@ -613,15 +613,15 @@ export class FantasyGroupsVttExporter {
   }
 
   convertWeaponsAndEquipment(character: Character) {
-    let equipment = this.convertEquipment(character);
-    let weapons = this.convertWeapons(character, equipment.length);
+    const equipment = this.convertEquipment(character);
+    const weapons = this.convertWeapons(character, equipment.length);
     return equipment.concat(weapons);
   }
 
   convertNpcWeapons(character: Character, start: number = 0) {
-    let result = [];
+    const result = [];
     character.determineWeapons().forEach((w, i) => {
-      let weapon = {
+      const weapon = {
         name: this.createNumberedId(start + i + 1),
         type: 'element',
         elements: [
@@ -761,9 +761,9 @@ export class FantasyGroupsVttExporter {
   }
 
   convertWeapons(character: Character, start: number = 0) {
-    let result = [];
+    const result = [];
     character.determineWeapons().forEach((w, i) => {
-      let weapon = {
+      const weapon = {
         name: this.createNumberedId(start + i + 1),
         type: 'element',
         elements: [
@@ -971,7 +971,7 @@ export class FantasyGroupsVttExporter {
 
   convertWeaponAttributes(tagName: string, attributes: WeaponQuality[]) {
     let index = 1;
-    let result = {
+    const result = {
       name: tagName,
       type: 'element',
       elements: [],
@@ -1016,15 +1016,15 @@ export class FantasyGroupsVttExporter {
   }
 
   convertDisciplines(character: Character) {
-    let result = {
+    const result = {
       name: 'disciplines',
       type: 'element',
       elements: [],
     };
 
     DepartmentsHelper.instance.getDepartments().forEach((d) => {
-      let name = Department[d].toLowerCase();
-      let discipline = {
+      const name = Department[d].toLowerCase();
+      const discipline = {
         name: name,
         type: 'element',
         elements: [
@@ -1141,7 +1141,7 @@ export class FantasyGroupsVttExporter {
   }
 
   convertCareer(character: Character) {
-    let career =
+    const career =
       character.careerStep?.career != null
         ? CareersHelper.instance.getCareer(
             character.careerStep.career,
@@ -1169,7 +1169,7 @@ export class FantasyGroupsVttExporter {
   }
 
   convertUpbringing(character: Character) {
-    let upbringing = character.upbringingStep?.upbringing;
+    const upbringing = character.upbringingStep?.upbringing;
     if (upbringing) {
       return {
         name: 'upbringing',
@@ -1190,7 +1190,7 @@ export class FantasyGroupsVttExporter {
   }
 
   convertTraining(character: Character) {
-    let training = character.educationStep?.track
+    const training = character.educationStep?.track
       ? TracksHelper.instance.getTrack(
           character.educationStep?.track,
           character.type,
@@ -1217,7 +1217,7 @@ export class FantasyGroupsVttExporter {
   }
 
   convertEnvironment(character: Character) {
-    let environment = character.environmentStep
+    const environment = character.environmentStep
       ? CharacterSerializer.serializeEnvironment(
           character.environmentStep.environment,
           character.environmentStep.otherSpecies,
@@ -1245,7 +1245,7 @@ export class FantasyGroupsVttExporter {
 
   convertRank(character: Character) {
     if (character.rank != null && character.type === CharacterType.Starfleet) {
-      let rank = RanksHelper.instance().getRankByName(character.rank.name);
+      const rank = RanksHelper.instance().getRankByName(character.rank.name);
       if (rank) {
         let rankNumber = undefined;
         switch (rank.id) {
@@ -1302,15 +1302,15 @@ export class FantasyGroupsVttExporter {
   }
 
   convertAttributes(character: Character) {
-    let result = {
+    const result = {
       name: 'attributes',
       type: 'element',
       elements: [],
     };
 
     AttributesHelper.getAllAttributes().forEach((a) => {
-      let name = Attribute[a].toLowerCase();
-      let attribute = {
+      const name = Attribute[a].toLowerCase();
+      const attribute = {
         name: name,
         type: 'element',
         elements: [
@@ -1490,7 +1490,7 @@ export class FantasyGroupsVttExporter {
 
   convertNotes(character: Character) {
     let index = 1;
-    let result = {
+    const result = {
       name: 'notes',
       type: 'element',
       elements: [],
@@ -1641,7 +1641,7 @@ export class FantasyGroupsVttExporter {
 
   convertCareerEvents(character: Character) {
     if (character.careerEvents?.length) {
-      let result = {
+      const result = {
         name: 'careerevent',
         type: 'element',
         elements: [],
@@ -1649,13 +1649,13 @@ export class FantasyGroupsVttExporter {
 
       let index = 1;
       character.careerEvents.forEach((e) => {
-        let event = CareerEventsHelper.getCareerEvent(
+        const event = CareerEventsHelper.getCareerEvent(
           e.id,
           character.type,
           character.version,
         );
         if (event) {
-          let key = this.createNumberedId(index++);
+          const key = this.createNumberedId(index++);
           result.elements.push({
             name: key,
             type: 'element',
@@ -1827,7 +1827,7 @@ export class FantasyGroupsVttExporter {
   }
 
   convertEquipment(character: Character, start: number = 0) {
-    let result = [];
+    const result = [];
 
     character.equipmentAndImplants?.forEach((e, i) => {
       result.push({
@@ -1959,7 +1959,7 @@ export class FantasyGroupsVttExporter {
   }
 
   convertToFormattedText(tagName: string, header: string, paragraphs: string) {
-    let result = {
+    const result = {
       name: tagName,
       attributes: {
         type: 'formattedtext',
@@ -1982,8 +1982,8 @@ export class FantasyGroupsVttExporter {
     }
 
     paragraphs?.split('\n')?.forEach((p) => {
-      let tokens = textTokenizer(p);
-      let parents = [
+      const tokens = textTokenizer(p);
+      const parents = [
         {
           type: 'element',
           name: 'p',
@@ -1997,8 +1997,8 @@ export class FantasyGroupsVttExporter {
           if (parents.length && parents[parents.length - 1].name === 'b') {
             parents.pop();
           } else {
-            let parent = parents[parents.length - 1];
-            let element = {
+            const parent = parents[parents.length - 1];
+            const element = {
               type: 'element',
               name: 'b',
               elements: [],
@@ -2010,8 +2010,8 @@ export class FantasyGroupsVttExporter {
           if (parents.length && parents[parents.length - 1].name === 'i') {
             parents.pop();
           } else {
-            let parent = parents[parents.length - 1];
-            let element = {
+            const parent = parents[parents.length - 1];
+            const element = {
               type: 'element',
               name: 'i',
               elements: [],
@@ -2020,7 +2020,7 @@ export class FantasyGroupsVttExporter {
             parents.push(element);
           }
         } else {
-          let parent = parents[parents.length - 1];
+          const parent = parents[parents.length - 1];
           parent.elements.push({
             type: 'text',
             text: t,
@@ -2034,14 +2034,14 @@ export class FantasyGroupsVttExporter {
 
   convertNpcTalents(character: Character) {
     let index = 1;
-    let result = {
+    const result = {
       name: 'specialrules',
       type: 'element',
       elements: [],
     };
 
     character.rankedTalents.forEach((selectedTalent) => {
-      let talent = selectedTalent.talentModel;
+      const talent = selectedTalent.talentModel;
       if (talent) {
         let name = selectedTalent.displayName;
         if (talent.maxRank > 1) {
@@ -2089,14 +2089,14 @@ export class FantasyGroupsVttExporter {
 
   convertTalents(character: Character) {
     let index = 1;
-    let result = {
+    const result = {
       name: 'talent',
       type: 'element',
       elements: [],
     };
 
     character.rankedTalents.forEach((s) => {
-      let talent = s.talentModel;
+      const talent = s.talentModel;
       if (talent) {
         result.elements.push({
           name: this.createNumberedId(index++),

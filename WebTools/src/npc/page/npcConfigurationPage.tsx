@@ -48,7 +48,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
   const [includeDescription, setIncludeDescription] = useState<boolean>(true);
 
   useEffect(() => {
-    let value = window.localStorage.getItem('settings.ai');
+    const value = window.localStorage.getItem('settings.ai');
     setIncludeDescription(value !== 'false');
   }, []);
 
@@ -58,7 +58,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
   };
 
   const getSpecializations = () => {
-    let result = [
+    const result = [
       new DropDownElement(
         null,
         t('NpcConfigurationPage.option.anySpecialization'),
@@ -124,7 +124,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
       selectedType?.type === NpcCharacterType.RogueRuffianMercenary ||
       selectedType?.type === NpcCharacterType.MinorPolity
     ) {
-      let items = [];
+      const items = [];
       Specializations.instance
         .getSpecializations(selectedType?.type)
         .forEach((s) => {
@@ -132,7 +132,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
             selectedSpecialization == null ||
             selectedSpecialization?.id === s.id
           ) {
-            let speciesList = s.species?.length
+            const speciesList = s.species?.length
               ? s.species
               : getStandardFederationSpeciesListAsTypes();
             speciesList.forEach((s) => {
@@ -168,7 +168,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
   };
 
   const getSpeciesDropDownList = () => {
-    let result = [
+    const result = [
       new DropDownElement(
         null,
         t('NpcConfigurationPage.option.anyMajorSpecies'),
@@ -214,7 +214,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
       selectedType.type === NpcCharacterType.MinorPolity ||
       selectedType.type === NpcCharacterType.RomulanEmpire
     ) {
-      let list = getSpeciesList();
+      const list = getSpeciesList();
       return list[Math.floor(Math.random() * list.length)].id;
     } else {
       return SpeciesHelper.generateSpecies();
@@ -225,7 +225,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
     setLoading(true);
     let specialization = selectedSpecialization;
     if (specialization == null) {
-      let specializations = Specializations.instance.getSpecializations(
+      const specializations = Specializations.instance.getSpecializations(
         selectedType.type,
       );
       specialization =
@@ -233,7 +233,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
     }
     let species = selectedSpecies;
     if (species == null && specialization.species?.length) {
-      let list = specialization.species
+      const list = specialization.species
         .map((s) => SpeciesHelper.getSpeciesByType(s))
         .filter((s) => s.eras.includes(era));
       species = list[Math.floor(Math.random() * list.length)].id;

@@ -338,7 +338,7 @@ export class StrangeNewWorldsUniformPack
   }
 
   getUniformAndVariantBody(token: TokenModel) {
-    let division = DivisionColors.getDivision(
+    const division = DivisionColors.getDivision(
       token.uniformEra,
       token.divisionColor,
     );
@@ -478,7 +478,7 @@ export class StrangeNewWorldsUniformPack
       default:
     }
 
-    let finalResult =
+    const finalResult =
       this.getNeck(
         token.bodyType,
         token.skinColor,
@@ -771,12 +771,12 @@ export class StrangeNewWorldsUniformPack
   }
 
   static getRankIndicatorColor(divisionColor: string) {
-    let base = SimpleColor.from(divisionColor);
+    const base = SimpleColor.from(divisionColor);
     return base.isDark ? base.lighten(0.4).asHex() : base.darken(0.25).asHex();
   }
 
   getBorderLogo(token: TokenModel): string {
-    let division = DivisionColors.getDivision(
+    const division = DivisionColors.getDivision(
       token.uniformEra,
       token.divisionColor,
     );

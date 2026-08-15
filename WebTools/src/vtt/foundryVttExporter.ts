@@ -54,9 +54,9 @@ export class FoundryVttExporter {
   }
 
   exportStarship(starship: Starship, type: FoundryPluginType) {
-    let now = Date.now();
+    const now = Date.now();
 
-    let result = {
+    const result = {
       name: starship.name || 'Unnamed Starship',
       type:
         type === FoundryPluginType.Standard && starship.isSmallCraft
@@ -109,7 +109,7 @@ export class FoundryVttExporter {
     };
 
     DepartmentsHelper.instance.getDepartments().forEach((d) => {
-      let name = Department[d].toLowerCase();
+      const name = Department[d].toLowerCase();
       result.system.departments[name] = {
         label: 'sta.actor.starship.department.' + name,
         value: '' + starship.departments[d],
@@ -262,9 +262,9 @@ export class FoundryVttExporter {
   }
 
   exportStation(station: Station, type: FoundryPluginType) {
-    let now = Date.now();
+    const now = Date.now();
 
-    let result = {
+    const result = {
       name: station.name || 'Unnamed Station',
       type: 'starship',
       img: 'systems/sta/assets/icons/VoyagerCombadgeIcon.png',
@@ -314,7 +314,7 @@ export class FoundryVttExporter {
     };
 
     DepartmentsHelper.instance.getDepartments().forEach((d) => {
-      let name = Department[d].toLowerCase();
+      const name = Department[d].toLowerCase();
       result.system.departments[name] = {
         label: 'sta.actor.starship.department.' + name,
         value: '' + station.departments[d],
@@ -571,8 +571,8 @@ export class FoundryVttExporter {
   }
 
   exportCharacter(character: Character, type: FoundryPluginType) {
-    let now = Date.now();
-    let result = {
+    const now = Date.now();
+    const result = {
       name: character.name || 'Unnamed Character',
       type: 'character',
       img: 'icons/svg/mystery-man.svg',
@@ -638,7 +638,7 @@ export class FoundryVttExporter {
     };
 
     DepartmentsHelper.instance.getDepartments().forEach((d) => {
-      let name = Department[d].toLowerCase();
+      const name = Department[d].toLowerCase();
       result.system.disciplines[name] = {
         label: 'sta.actor.character.discipline.' + name,
         value: '' + character.departments[d],
@@ -647,7 +647,7 @@ export class FoundryVttExporter {
     });
 
     AttributesHelper.getAllAttributes().forEach((a) => {
-      let name = Attribute[a].toLowerCase();
+      const name = Attribute[a].toLowerCase();
       result.system.attributes[name] = {
         label: 'sta.actor.character.attribute.' + name,
         value: '' + character.attributes[a],
@@ -766,7 +766,7 @@ export class FoundryVttExporter {
     }
 
     character.equipmentAndImplants?.forEach((e) => {
-      let item = {
+      const item = {
         name: e.name,
         type: e instanceof EquipmentModel && e.isArmour ? 'armor' : 'item',
         img: this.determineItemIcon(e.name),
@@ -801,7 +801,7 @@ export class FoundryVttExporter {
     });
 
     if (character.role != null) {
-      let role = RolesHelper.instance.getRoleModelByName(
+      const role = RolesHelper.instance.getRoleModelByName(
         character.role,
         character.type,
       );
@@ -838,9 +838,9 @@ export class FoundryVttExporter {
       }
     }
 
-    let talents = character.rankedTalents;
+    const talents = character.rankedTalents;
     talents.forEach((s) => {
-      let talent = s.talentModel;
+      const talent = s.talentModel;
       if (talent) {
         result.items.push({
           name: s.displayNameWithMultiple,
@@ -971,7 +971,7 @@ export class FoundryVttExporter {
   convertCharacterDescription(character: Character) {
     let result = '';
     if (character.description?.length) {
-      let paragraphs = character.description
+      const paragraphs = character.description
         .split('\n')
         .filter((s) => s?.length);
       paragraphs.forEach((p) => {
@@ -1263,7 +1263,8 @@ export class FoundryVttExporter {
             );
     }
 
-    let prerequisites = talent instanceof TalentModel ? talent.requirement : '';
+    const prerequisites =
+      talent instanceof TalentModel ? talent.requirement : '';
     return (
       markupToHtml(description) +
       (prerequisites ? '<p><strong>' + prerequisites + '</strong></p>' : '')

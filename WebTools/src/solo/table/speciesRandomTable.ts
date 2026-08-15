@@ -3,12 +3,12 @@ import { Era } from '../../helpers/erasEnum';
 import { Species } from '../../helpers/speciesEnum';
 
 export const SpeciesRandomTable = (era: Era) => {
-  let tables = [
+  const tables = [
     EnterpriseSpeciesRandomTable,
     OriginalSeriesSpeciesRandomTable,
     NextGenerationSpeciesRandomTable,
   ];
-  let table =
+  const table =
     tables[Math.min(tables.length - 1, Math.floor(Math.random() * (era + 1)))];
 
   return table();

@@ -75,8 +75,8 @@ class SelectStarshipToolPage extends React.Component<WithTranslation, {}> {
   }
 
   startSimplifiedWorkflow() {
-    let workflow = ShipBuildWorkflow.createSimpleBuildWorkflow();
-    let stats = new SimpleStats();
+    const workflow = ShipBuildWorkflow.createSimpleBuildWorkflow();
+    const stats = new SimpleStats();
     stats.systems = [7, 7, 7, 7, 7, 7];
     stats.scale = 3;
     store.dispatch(
@@ -90,7 +90,7 @@ class SelectStarshipToolPage extends React.Component<WithTranslation, {}> {
         isSecondEdition() ? 2 : 1,
       ),
     );
-    let page = workflow.currentStep().page;
+    const page = workflow.currentStep().page;
     this.goToPage(page);
   }
 

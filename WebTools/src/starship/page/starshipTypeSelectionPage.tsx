@@ -48,7 +48,7 @@ class StarshipTypeSelectionPage extends React.Component<
 
   render() {
     const { t } = this.props;
-    let typeSelection = hasSource(Source.KlingonCore) ? (
+    const typeSelection = hasSource(Source.KlingonCore) ? (
       <div className="col-lg-6">
         <div className="my-3">
           <Header level={2}>{t('StarshipTypeSelection.shipPolity')}</Header>
@@ -68,7 +68,7 @@ class StarshipTypeSelectionPage extends React.Component<
       </div>
     ) : undefined;
 
-    let buildTypeSelection = (
+    const buildTypeSelection = (
       <div className="my-3">
         <Header level={2}>{t('StarshipTypeSelection.shipBuildType')}</Header>
         <p>{t('StarshipTypeSelection.whatShipBuildType')}</p>
@@ -134,10 +134,10 @@ class StarshipTypeSelectionPage extends React.Component<
       this.state.buildType != null &&
       this.state.buildType.type !== ShipBuildType.Starship
     ) {
-      let workflow = ShipBuildWorkflow.createSmallCraftBuildWorkflow(
+      const workflow = ShipBuildWorkflow.createSmallCraftBuildWorkflow(
         this.state.buildType.type,
       );
-      let stats = new SimpleStats();
+      const stats = new SimpleStats();
       stats.scale =
         this.state.buildType.type === ShipBuildType.Runabout ? 2 : 1;
       stats.systems = PointAllocator.allocatePointsEvenly(
@@ -165,7 +165,7 @@ class StarshipTypeSelectionPage extends React.Component<
       );
       Navigation.navigateToPage(PageIdentity.SmallCraftStats);
     } else if (this.state.type != null) {
-      let workflow = ShipBuildWorkflow.createStarshipBuildWorkflow(
+      const workflow = ShipBuildWorkflow.createStarshipBuildWorkflow(
         isSecondEdition() ? 2 : 1,
       );
       store.dispatch(

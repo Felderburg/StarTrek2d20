@@ -146,12 +146,12 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     const page2Column2 = new Column(226.5, 72.6, 479.3, 158.1, page2Column3);
     const page2Column1 = new Column(55.6, 72.6, 479.3, 158.1, page2Column2);
 
-    let talentsColumn3 = new Column(390.6, 361, 200, 162, () => {
+    const talentsColumn3 = new Column(390.6, 361, 200, 162, () => {
       const page = pdf.addPage(additionalPages[0]);
       return new PageArea(page2Column1, page);
     });
-    let talentsColumn2 = new Column(221.7, 361, 200, 162, talentsColumn3);
-    let talentsColumn1 = new Column(51.5, 361, 200, 162, talentsColumn2);
+    const talentsColumn2 = new Column(221.7, 361, 200, 162, talentsColumn3);
+    const talentsColumn1 = new Column(51.5, 361, 200, 162, talentsColumn2);
 
     return {
       logColumns: [logPage2Column1, logPage2Column2],
@@ -182,7 +182,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     this.writeTitle(secondPage, colour);
 
     this.writeLabels(page, construct as Character);
-    let { firstColumn, logColumns, page2 } = await this.fixedTextColumns(
+    const { firstColumn, logColumns, page2 } = await this.fixedTextColumns(
       [secondPage],
       pdf,
     );
@@ -207,7 +207,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
           Landscape2eCharacterSheet.page2Column3X === nextArea.column.start.x)
       ) {
         y = nextArea.column.start.y;
-        let newLayoutColumn =
+        const newLayoutColumn =
           Landscape2eCharacterSheet.page2Column1X === nextArea.column.start.x
             ? logColumns[0]
             : logColumns[1];
@@ -219,7 +219,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         nextArea != null &&
         Landscape2eCharacterSheet.page2Column2X === nextArea.column.start.x
       ) {
-        let newLayoutColumn = logColumns[1];
+        const newLayoutColumn = logColumns[1];
         nextArea = new PageArea(newLayoutColumn, nextArea.page);
       } else if (
         nextArea != null &&
@@ -248,7 +248,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
 
   async fillCharacterImage(pdf: PDFDocument, character: Character) {
     if (character.token) {
-      let tokenBytes = await TokenHelper.renderToken(character.token);
+      const tokenBytes = await TokenHelper.renderToken(character.token);
       const image = await pdf.embedPng(tokenBytes);
       try {
         pdf.getForm().getButton('Image35_af_image').setImage(image);
@@ -264,7 +264,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     nextArea: PageArea,
     colour: SimpleColor,
   ) {
-    let header = {
+    const header = {
       'Sheet.text.log.title': nextArea.column.topBefore(10),
     };
     labelWriter(
@@ -278,14 +278,14 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     );
     nextArea = nextArea.bottomAfter(23);
 
-    let logEntries = character.logEntries;
+    const logEntries = character.logEntries;
 
     let paragraph = new Paragraph(nextArea.page, nextArea.column, this.fonts);
-    let paragraphs: Paragraph[] = [];
+    const paragraphs: Paragraph[] = [];
     paragraphs.push(paragraph);
     let indent = 0;
     for (let i = 1; i <= logEntries.length; i++) {
-      let box = TextBlock.create(
+      const box = TextBlock.create(
         '' + i + '. ',
         new FontSpecification(this.fonts.fontByType(FontType.Bold), 9),
         0,
@@ -312,7 +312,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         text += '\n**' + i18next.t('Common.text.notes') + ':** ' + l.notes;
       }
 
-      let descriptionParagraphs = text.split('\n');
+      const descriptionParagraphs = text.split('\n');
       descriptionParagraphs.forEach((p, i) => {
         if (i > 0) {
           paragraph = paragraph?.nextParagraph();
@@ -320,12 +320,12 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
             paragraphs.push(paragraph);
           }
         }
-        let temp = paragraph;
+        const temp = paragraph;
         paragraph?.append(p, new FontOptions(9));
         if (temp && i === 0) {
-          let height = temp.lines[0]?.height();
-          let y = temp.page.getHeight() - temp.lines[0]?.location.y;
-          let column = temp.lines[0]?.column;
+          const height = temp.lines[0]?.height();
+          const y = temp.page.getHeight() - temp.lines[0]?.location.y;
+          const column = temp.lines[0]?.column;
           if (height != null && y != null && column != null) {
             simpleLabelWriter(
               temp.page,
@@ -691,7 +691,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     );
 
     if (construct.stereotype === Stereotype.Npc && construct.version !== 1) {
-      let paragraph = new Paragraph(
+      const paragraph = new Paragraph(
         page,
         new Column(411.2, 220.6, 12, 41.4),
         this.fonts,
@@ -751,7 +751,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     column: Column,
   ) {
     if (character.description?.length) {
-      let subHeadings = {
+      const subHeadings = {
         'Construct.other.description': column.topBefore(9.5),
       };
       column = column.bottomAfter(12);
@@ -766,8 +766,8 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
       );
 
       let paragraph = new Paragraph(page, column, this.fonts);
-      let descriptionParagraphs = character.description.split('\n');
-      let paragraphs = [paragraph];
+      const descriptionParagraphs = character.description.split('\n');
+      const paragraphs = [paragraph];
       descriptionParagraphs.forEach((p, i) => {
         if (i > 0) {
           paragraph = paragraph?.nextParagraph();
@@ -781,9 +781,9 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
       paragraphs.forEach((p) => p.write());
 
       if (paragraphs.length) {
-        let last = paragraphs.filter((p) => p.lines?.length).slice(-1)[0];
+        const last = paragraphs.filter((p) => p.lines?.length).slice(-1)[0];
         if (last) {
-          let bottom = last.bottom;
+          const bottom = last.bottom;
           column = last.endColumn.bottomAfter(
             bottom.y - last.endColumn.start.y,
           );
@@ -795,7 +795,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
       }
     }
 
-    let temp = column.columnWithAtLeast(35, page);
+    const temp = column.columnWithAtLeast(35, page);
     column = temp.column;
     page = temp.page;
 
@@ -803,7 +803,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
       character.stereotype === Stereotype.Npc ||
       character.stereotype === Stereotype.SupportingCharacter
     ) {
-      let subHeadings = {
+      const subHeadings = {
         'Construct.other.specialRules': column.topBefore(9.5),
       };
       column = column.bottomAfter(12);
@@ -817,7 +817,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
         TextAlign.Centre,
       );
     } else {
-      let subHeadings = { 'Construct.other.talents': column.topBefore(9.5) };
+      const subHeadings = { 'Construct.other.talents': column.topBefore(9.5) };
       column = column.bottomAfter(12);
       labelWriter(
         page,
@@ -831,7 +831,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     }
 
     const writer = new TalentWriter(page, this.fonts, character.version);
-    let lastArea = await writer.writeTalentsPageArea(
+    const lastArea = await writer.writeTalentsPageArea(
       assembleWritableItems(character),
       column,
       8,
@@ -852,20 +852,20 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
   }
 
   createStressBoxes(page: PDFPage, pdf: PDFDocument, character: Character) {
-    let columns = [];
-    let startX = 464.9;
-    let startY = 221.3;
-    let gap = 478.8 - startX;
+    const columns = [];
+    const startX = 464.9;
+    const startY = 221.3;
+    const gap = 478.8 - startX;
 
-    let availableVerticalSpace = 4 * gap;
+    const availableVerticalSpace = 4 * gap;
     if (character.isStressTrackPresent) {
-      let numberOfLines = Math.ceil(character.stress / 5);
+      const numberOfLines = Math.ceil(character.stress / 5);
 
-      let verticalOffset = (availableVerticalSpace - numberOfLines * gap) / 2;
+      const verticalOffset = (availableVerticalSpace - numberOfLines * gap) / 2;
 
       for (let i = 0; i < character.stress; i++) {
-        let x = startX + gap * (i % 5);
-        let y = startY + gap * Math.floor(i / 5) + verticalOffset;
+        const x = startX + gap * (i % 5);
+        const y = startY + gap * Math.floor(i / 5) + verticalOffset;
         columns.push(new Column(x, y, 9.5, 9.5));
       }
 
@@ -878,12 +878,12 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
       character.stereotype === Stereotype.Npc &&
       character.version !== 1
     ) {
-      let numberOfLines = Math.ceil(character.personalThreat / 5);
+      const numberOfLines = Math.ceil(character.personalThreat / 5);
 
-      let verticalOffset = (availableVerticalSpace - numberOfLines * gap) / 2;
+      const verticalOffset = (availableVerticalSpace - numberOfLines * gap) / 2;
       for (let i = 0; i < character.personalThreat; i++) {
-        let x = startX + gap * (i % 5);
-        let y = startY + gap * Math.floor(i / 5) + verticalOffset;
+        const x = startX + gap * (i % 5);
+        const y = startY + gap * Math.floor(i / 5) + verticalOffset;
         columns.push(new Column(x, y, 9.5, 9.5));
       }
 
@@ -919,12 +919,12 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     const triangle =
       'M 60.232529,54.856579 V 44.842907 l 8.671875,5.009766 z m 0.580078,-1.001953 6.9375,-4.001953 -6.9375,-4.007813 z';
 
-    let widthOfTab = Math.max(146.205, width + 35);
-    let startOffset = 54.966797;
+    const widthOfTab = Math.max(146.205, width + 35);
+    const startOffset = 54.966797;
 
-    let farthestEdge = widthOfTab + startOffset;
-    let circle1 = farthestEdge - (189.83203 - 184.75613);
-    let circle2 = farthestEdge - (189.83203 - 178.49414);
+    const farthestEdge = widthOfTab + startOffset;
+    const circle1 = farthestEdge - (189.83203 - 184.75613);
+    const circle2 = farthestEdge - (189.83203 - 178.49414);
 
     const tab =
       'M 54.966797 40.257812 ' +
@@ -975,7 +975,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
   populateForm(form: PDFForm, character: Character) {
     form.getFields().forEach((f) => {
       if (f instanceof PDFTextField) {
-        let textField = f as PDFTextField;
+        const textField = f as PDFTextField;
         if (
           textField.isMultiline() &&
           (textField.getText() == null || textField.getText().length === 0)
@@ -1052,7 +1052,7 @@ export class Landscape2eCharacterSheet extends BaseFormFillingSheet {
     const describer = new WeaponDescriber(construct.version, true);
 
     if (construct instanceof Character) {
-      let attacks = construct
+      const attacks = construct
         .determineWeapons()
         .map(
           (w) =>

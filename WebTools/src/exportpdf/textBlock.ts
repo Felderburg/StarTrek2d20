@@ -26,7 +26,7 @@ export class TextBlock {
       weight = descender;
     }
 
-    let textBlock = new TextBlock();
+    const textBlock = new TextBlock();
     textBlock.text = text;
     const textWidth = fontSpec.font.widthOfTextAtSize(text, fontSpec.size);
     const textHeight =

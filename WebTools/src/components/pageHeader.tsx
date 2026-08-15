@@ -8,7 +8,7 @@ interface IPageHeaderProperties extends WithTranslation {
 }
 
 export const getPageTitle = (t, page) => {
-  let key = makeKey('Page.title.', PageIdentity[page]);
+  const key = makeKey('Page.title.', PageIdentity[page]);
 
   if (key !== t(key)) {
     return t(key);

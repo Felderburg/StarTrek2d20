@@ -200,7 +200,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
     // While there remain elements to shuffle...
     while (currentIndex !== 0) {
       // Pick a remaining element...
-      let randomIndex = Math.floor(Math.random() * currentIndex);
+      const randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
       // And swap it with the current element.
@@ -212,7 +212,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
     return array;
   };
 
-  let result = Starship.createStandardStarship(
+  const result = Starship.createStandardStarship(
     config.era,
     convertStarshipType(config.type),
     isSecondEdition() ? 2 : 1,
@@ -294,7 +294,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
           result.spaceframeModel.talents.map((t) => t.name).indexOf(t.name) < 0,
       );
     if (missionProfileTalents?.length) {
-      let talent =
+      const talent =
         missionProfileTalents[
           Math.floor(Math.random() * missionProfileTalents.length)
         ];
@@ -303,14 +303,14 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
   }
 
   if (result.spaceframeModel?.isMissionPodAvailable) {
-    let pods = MissionPodHelper.instance().getMissionPods(result);
+    const pods = MissionPodHelper.instance().getMissionPods(result);
     if (pods?.length) {
       result.missionPodModel = pods[Math.floor(Math.random() * pods.length)];
     }
   }
 
   for (let i = 0; i < result.numberOfRefits; i++) {
-    let systems = allSystems().filter((s) => result.getSystemValue(s) < 12);
+    const systems = allSystems().filter((s) => result.getSystemValue(s) < 12);
     result.refits.push(systems[Math.floor(Math.random() * systems.length)]);
   }
 
@@ -320,26 +320,26 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
       (result.type === CharacterType.Romulan ||
         (isKlingonWarriorType(result.type) && result.serviceYear > 2300))
     ) {
-      let talent = TalentsHelper.getTalent('Cloaking Device');
+      const talent = TalentsHelper.getTalent('Cloaking Device');
       result.additionalTalents.push(new SelectedTalent(talent.name));
     } else {
       const talents = TalentsHelper.getStarshipOrStationTalents(result);
       if (talents?.length) {
-        let model = talents[Math.floor(Math.random() * talents.length)];
-        let talent = new SelectedTalent(model.name);
+        const model = talents[Math.floor(Math.random() * talents.length)];
+        const talent = new SelectedTalent(model.name);
         if (
           talent.name === TALENT_NAME_DEDICATED_PERSONNEL ||
           talent.name === TALENT_NAME_EXPANSIVE_DEPARTMENT
         ) {
-          let departments = DepartmentsHelper.instance.getDepartments();
+          const departments = DepartmentsHelper.instance.getDepartments();
           talent.department =
             departments[Math.floor(Math.random() * departments.length)];
         } else if (talent.name === TALENT_NAME_REDUNDANT_SYSTEMS) {
-          let systems = allSystems();
+          const systems = allSystems();
           talent.system = systems[Math.floor(Math.random() * systems.length)];
         } else if (talent.name === TALENT_NAME_EXPANDED_MUNITIONS) {
         } else if (talent.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM) {
-          let systems = PropulsionSystemModel.types;
+          const systems = PropulsionSystemModel.types;
           talent.selection =
             systems[Math.floor(Math.random() * systems.length)].type;
         }
@@ -351,7 +351,7 @@ export const starshipGenerator = (config: IStarshipConfiguration) => {
   if (result.version > 1) {
     if (result.type === CharacterType.Starfleet && D20.roll() > 12) {
       const records = ServiceRecordList.instance.records;
-      let record = records[Math.floor(Math.random() * records.length)];
+      const record = records[Math.floor(Math.random() * records.length)];
 
       if (
         record.type !== ServiceRecord.AgingRelic ||

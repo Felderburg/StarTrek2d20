@@ -5,8 +5,8 @@ export const isTableCollectionAlreadyImported = (
   uuid: string,
   encodedCollection: string,
 ) => {
-  let collections = store.getState().table?.collections;
-  let matches = collections
+  const collections = store.getState().table?.collections;
+  const matches = collections
     .filter((c) => c.uuid === uuid)
     .filter((c) => TableMarshaller.instance.marshall(c) === encodedCollection);
   return matches.length > 0;

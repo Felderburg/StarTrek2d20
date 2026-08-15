@@ -10,7 +10,7 @@ class SystemMapLowerView extends SystemMapView {
     const { system } = this.props;
     const purple = '#906F9A';
 
-    let r = Math.max(
+    const r = Math.max(
       2,
       Math.sqrt(system.star?.spectralClass?.radius?.midpoint * 200),
     );
@@ -21,7 +21,7 @@ class SystemMapLowerView extends SystemMapView {
 
     if (system.companionStar) {
       if (system.companionType === CompanionType.Close) {
-        let r2 = Math.max(
+        const r2 = Math.max(
           2,
           Math.sqrt(
             system.companionStar?.spectralClass?.radius?.midpoint * 200,
@@ -139,7 +139,7 @@ class SystemMapLowerView extends SystemMapView {
       }
     }
 
-    let orbits = this.findAllOrbits();
+    const orbits = this.findAllOrbits();
 
     let maxWorldDiameter = 50000;
     system.worlds
@@ -153,17 +153,17 @@ class SystemMapLowerView extends SystemMapView {
       .forEach(
         (w) => (smallWorldDiameter = Math.min(w.diameter, smallWorldDiameter)),
       );
-    let factor =
+    const factor =
       18 / Math.sqrt(maxWorldDiameter / 1000 - smallWorldDiameter / 1000);
 
-    let worldGradients = system.worlds?.map((w, i) => {
-      let r = Math.max(
+    const worldGradients = system.worlds?.map((w, i) => {
+      const r = Math.max(
         2,
         w.diameter == null
           ? 10
           : Math.sqrt(w.diameter / 1000 - smallWorldDiameter / 1000) * factor,
       );
-      let orbitalX = this.calculateOrbitX(w.orbitalRadius, orbits);
+      const orbitalX = this.calculateOrbitX(w.orbitalRadius, orbits);
 
       return (
         <radialGradient
@@ -180,24 +180,24 @@ class SystemMapLowerView extends SystemMapView {
       );
     });
 
-    let worlds = system.worlds?.map((w, i) => {
-      let r = Math.max(
+    const worlds = system.worlds?.map((w, i) => {
+      const r = Math.max(
         2,
         w.diameter == null
           ? 10
           : Math.sqrt(w.diameter / 1000 - smallWorldDiameter / 1000) * factor,
       );
-      let orbitalX = this.calculateOrbitX(w.orbitalRadius, orbits);
-      let prevOrbitalX =
+      const orbitalX = this.calculateOrbitX(w.orbitalRadius, orbits);
+      const prevOrbitalX =
         i === 0
           ? 0
           : this.calculateOrbitX(system.worlds[i - 1].orbitalRadius, orbits) +
             2;
-      let auWidth = orbitalX - 2 - prevOrbitalX;
+      const auWidth = orbitalX - 2 - prevOrbitalX;
 
       let axis = null;
       if (w.worldDetails instanceof StandardWorldDetails) {
-        let details = w.worldDetails as StandardWorldDetails;
+        const details = w.worldDetails as StandardWorldDetails;
         axis = (
           <path
             d={
@@ -232,13 +232,13 @@ class SystemMapLowerView extends SystemMapView {
       }
 
       if (w.worldClass.id === WorldClass.AsteroidBelt) {
-        let details = w.worldDetails as AsteroidBeltDetails;
+        const details = w.worldDetails as AsteroidBeltDetails;
 
-        let beltWidth = details.depth;
-        let beltStart = w.orbitalRadius - beltWidth * 0.5;
-        let beltStartMidway = w.orbitalRadius - beltWidth * 0.25;
-        let beltEnd = w.orbitalRadius + beltWidth * 0.5;
-        let beltEndMidway = w.orbitalRadius + beltWidth * 0.25;
+        const beltWidth = details.depth;
+        const beltStart = w.orbitalRadius - beltWidth * 0.5;
+        const beltStartMidway = w.orbitalRadius - beltWidth * 0.25;
+        const beltEnd = w.orbitalRadius + beltWidth * 0.5;
+        const beltEndMidway = w.orbitalRadius + beltWidth * 0.25;
 
         return (
           <g key={'world-' + i}>
@@ -515,12 +515,12 @@ class SystemMapLowerView extends SystemMapView {
   renderTrackers(orbits: number[], offset: number) {
     const { system } = this.props;
     if (orbits?.length && system?.worlds?.length) {
-      let inner = this.calculateOrbitX(system.gardenZoneInnerRadius, orbits);
-      let outer = this.calculateOrbitX(system.gardenZoneOuterRadius, orbits);
+      const inner = this.calculateOrbitX(system.gardenZoneInnerRadius, orbits);
+      const outer = this.calculateOrbitX(system.gardenZoneOuterRadius, orbits);
 
-      let ecoWidth = outer - 2 - (inner + 2);
+      const ecoWidth = outer - 2 - (inner + 2);
 
-      let lastAuMarker = system.worlds
+      const lastAuMarker = system.worlds
         ? this.calculateOrbitX(
             system.worlds[system.worlds.length - 1].orbitalRadius,
             orbits,

@@ -111,7 +111,7 @@ export enum StepContext {
 }
 
 export function setCharacter(character: Character, replacementHash?: number) {
-  let payload = { character: character, replacementHash: replacementHash };
+  const payload = { character: character, replacementHash: replacementHash };
   return {
     type: SET_CHARACTER,
     payload: payload,
@@ -119,7 +119,7 @@ export function setCharacter(character: Character, replacementHash?: number) {
 }
 
 export function addCharacterBorgImplant(type: BorgImplantType) {
-  let payload = { type: type };
+  const payload = { type: type };
   return {
     type: ADD_CHARACTER_BORG_IMPLANT,
     payload: payload,
@@ -127,7 +127,7 @@ export function addCharacterBorgImplant(type: BorgImplantType) {
 }
 
 export function addCharacterBorgImplantSpeciesOption(type: BorgImplantType) {
-  let payload = { type: type };
+  const payload = { type: type };
   return {
     type: ADD_CHARACTER_BORG_IMPLANT_SPECIES_OPTION,
     payload: payload,
@@ -135,7 +135,7 @@ export function addCharacterBorgImplantSpeciesOption(type: BorgImplantType) {
 }
 
 export function addCharacterUntappedPotentialAttribute(attribute: Attribute) {
-  let payload = { attribute: attribute };
+  const payload = { attribute: attribute };
   return {
     type: ADD_CHARACTER_UNTAPPED_POTENTIAL_ATTRIBUTE,
     payload: payload,
@@ -143,7 +143,7 @@ export function addCharacterUntappedPotentialAttribute(attribute: Attribute) {
 }
 
 export function removeCharacterBorgImplant(type: BorgImplantType) {
-  let payload = { type: type };
+  const payload = { type: type };
   return {
     type: REMOVE_CHARACTER_BORG_IMPLANT,
     payload: payload,
@@ -151,7 +151,7 @@ export function removeCharacterBorgImplant(type: BorgImplantType) {
 }
 
 export function removeCharacterBorgImplantSpeciesOption(type: BorgImplantType) {
-  let payload = { type: type };
+  const payload = { type: type };
   return {
     type: REMOVE_CHARACTER_BORG_IMPLANT_SPECIES_OPTION,
     payload: payload,
@@ -166,7 +166,7 @@ export function setCharacterSpecies(
   customSpeciesName?: string,
   decrementAttributes: Attribute[] = [],
 ) {
-  let payload = {
+  const payload = {
     species: species,
     attributes: attributes,
     mixedSpecies: mixedSpecies,
@@ -174,7 +174,7 @@ export function setCharacterSpecies(
     customSpeciesName: customSpeciesName,
     decrementAttributes: decrementAttributes,
   };
-  let ability = SpeciesAbilityList.instance.getBySpecies(species);
+  const ability = SpeciesAbilityList.instance.getBySpecies(species);
   if (ability && (ability.source == null || hasSource(ability.source))) {
     payload['ability'] = ability;
   }
@@ -185,7 +185,7 @@ export function setCharacterSpecies(
 }
 
 export function setSupportingCharacterSupervisory(supervisory: boolean) {
-  let payload = { supervisory: supervisory };
+  const payload = { supervisory: supervisory };
   return {
     type: SET_SUPPORTING_CHARACTER_SUPERVISORY,
     payload: payload,
@@ -193,7 +193,7 @@ export function setSupportingCharacterSupervisory(supervisory: boolean) {
 }
 
 export function setSupportingCharacterDepartments(disciplines: Department[]) {
-  let payload = { disciplines: disciplines };
+  const payload = { disciplines: disciplines };
   return {
     type: SET_SUPPORTING_CHARACTER_DISCIPLINES,
     payload: payload,
@@ -201,7 +201,7 @@ export function setSupportingCharacterDepartments(disciplines: Department[]) {
 }
 
 export function setNpcCharacterDepartments(departments: number[]) {
-  let payload = { departments: departments };
+  const payload = { departments: departments };
   return {
     type: SET_NPC_CHARACTER_DEPARTMENTS,
     payload: payload,
@@ -209,7 +209,7 @@ export function setNpcCharacterDepartments(departments: number[]) {
 }
 
 export function setNpcCharacterAttributes(attributes: number[]) {
-  let payload = { attributes: attributes };
+  const payload = { attributes: attributes };
   return {
     type: SET_NPC_CHARACTER_ATTRIBUTES,
     payload: payload,
@@ -217,7 +217,7 @@ export function setNpcCharacterAttributes(attributes: number[]) {
 }
 
 export function setNpcCharacterTalents(talents: SelectedTalent[]) {
-  let payload = { talents: talents };
+  const payload = { talents: talents };
   return {
     type: SET_NPC_CHARACTER_TALENTS,
     payload: payload,
@@ -227,7 +227,7 @@ export function setNpcCharacterTalents(talents: SelectedTalent[]) {
 export function addNpcCharacterEquipment(
   equipment: EquipmentType | EquipmentModel,
 ) {
-  let payload = { equipment: equipment };
+  const payload = { equipment: equipment };
   return {
     type: ADD_NPC_CHARACTER_EQUIPMENT,
     payload: payload,
@@ -235,7 +235,7 @@ export function addNpcCharacterEquipment(
 }
 
 export function addNpcCharacterWeapon(weapon: PersonalWeaponType) {
-  let payload = { weapon: weapon };
+  const payload = { weapon: weapon };
   return {
     type: ADD_NPC_CHARACTER_WEAPON,
     payload: payload,
@@ -245,7 +245,7 @@ export function addNpcCharacterWeapon(weapon: PersonalWeaponType) {
 export function removeNpcCharacterEquipment(
   equipment: EquipmentType | EquipmentModel,
 ) {
-  let payload = { equipment: equipment };
+  const payload = { equipment: equipment };
   return {
     type: REMOVE_NPC_CHARACTER_EQUIPMENT,
     payload: payload,
@@ -253,7 +253,7 @@ export function removeNpcCharacterEquipment(
 }
 
 export function removeNpcCharacterWeapon(weapon: PersonalWeaponType) {
-  let payload = { weapon: weapon };
+  const payload = { weapon: weapon };
   return {
     type: REMOVE_NPC_CHARACTER_WEAPON,
     payload: payload,
@@ -261,7 +261,7 @@ export function removeNpcCharacterWeapon(weapon: PersonalWeaponType) {
 }
 
 export function setSupportingCharacterAttributes(attributes: Attribute[]) {
-  let payload = { attributes: attributes };
+  const payload = { attributes: attributes };
   return {
     type: SET_SUPPORTING_CHARACTER_ATTRIBUTES,
     payload: payload,
@@ -272,7 +272,7 @@ export function setCharacterEnvironment(
   environment: Environment,
   otherSpecies?: Species,
 ) {
-  let payload = { environment: environment, otherSpecies: otherSpecies };
+  const payload = { environment: environment, otherSpecies: otherSpecies };
   return {
     type: SET_CHARACTER_ENVIRONMENT,
     payload: payload,
@@ -280,7 +280,7 @@ export function setCharacterEnvironment(
 }
 
 export function setCharacterEducation(track: Track, enlisted: boolean = false) {
-  let payload = { track: track, enlisted: enlisted };
+  const payload = { track: track, enlisted: enlisted };
   return {
     type: SET_CHARACTER_EDUCATION,
     payload: payload,
@@ -299,7 +299,7 @@ export function addCharacterCareerEvent(
   attribute?: Attribute,
   discipline?: Department,
 ) {
-  let payload = {
+  const payload = {
     eventId: eventId,
     attribute: attribute,
     discipline: discipline,
@@ -315,7 +315,7 @@ export function setCharacterEarlyOutlook(
   earlyOutlook: EarlyOutlookModel,
   accepted: boolean = true,
 ) {
-  let payload = { earlyOutlook: earlyOutlook, accepted: accepted };
+  const payload = { earlyOutlook: earlyOutlook, accepted: accepted };
   return {
     type: SET_CHARACTER_EARLY_OUTLOOK,
     payload: payload,
@@ -327,7 +327,7 @@ export function setCharacterFocus(
   context: StepContext,
   index: number = 0,
 ) {
-  let payload = { focus: focus, context: context, index: index };
+  const payload = { focus: focus, context: context, index: index };
   return {
     type: SET_CHARACTER_FOCUS,
     payload: payload,
@@ -339,7 +339,7 @@ export function addCharacterTalentFocus(
   talent: string,
   index: number = 0,
 ) {
-  let payload = { focus: focus, talent: talent, index: index };
+  const payload = { focus: focus, talent: talent, index: index };
   return {
     type: ADD_CHARACTER_TALENT_FOCUS,
     payload: payload,
@@ -350,7 +350,7 @@ export function setCharacterSpeciesAbilityFocus(
   focus: string,
   index: number = 0,
 ) {
-  let payload = { focus: focus, index: index };
+  const payload = { focus: focus, index: index };
   return {
     type: ADD_CHARACTER_SPECIES_ABILITY_FOCUS,
     payload: payload,
@@ -360,7 +360,7 @@ export function setCharacterSpeciesAbilityFocus(
 export function setCharacterSpeciesAbilityChoice(
   choice?: SpeciesAbilityChoice,
 ) {
-  let payload = { choice: choice };
+  const payload = { choice: choice };
   return {
     type: SET_CHARACTER_SPECIES_ABILITY_CHOICE,
     payload: payload,
@@ -368,7 +368,7 @@ export function setCharacterSpeciesAbilityChoice(
 }
 
 export function addCharacterLogEntry(logEntry: LogEntry) {
-  let payload = { logEntry: logEntry };
+  const payload = { logEntry: logEntry };
   return {
     type: ADD_CHARACTER_LOG_ENTRY,
     payload: payload,
@@ -379,9 +379,9 @@ export function addCharacterTalentValue(
   value: string,
   talent: string | ITalent,
 ) {
-  let talentName =
+  const talentName =
     typeof talent === 'string' ? (talent as string) : (talent as ITalent).name;
-  let payload = { value: value, talent: talentName };
+  const payload = { value: value, talent: talentName };
   return {
     type: ADD_CHARACTER_TALENT_VALUE,
     payload: payload,
@@ -392,7 +392,7 @@ export function addCharacterTalent(
   talent: ITalent | SelectedTalent,
   context: StepContext,
 ) {
-  let payload = { talent: talent, context: context };
+  const payload = { talent: talent, context: context };
   return {
     type: ADD_CHARACTER_TALENT,
     payload: payload,
@@ -400,7 +400,7 @@ export function addCharacterTalent(
 }
 
 export function setCharacterValue(value: string, context: StepContext) {
-  let payload = { value: value, context: context };
+  const payload = { value: value, context: context };
   return {
     type: SET_CHARACTER_VALUE,
     payload: payload,
@@ -411,7 +411,7 @@ export function updateCharacterGeneralEditValueChange(
   oldValue: ValueAssembly,
   newValue: string,
 ) {
-  let payload = { oldValue: oldValue, newValue: newValue };
+  const payload = { oldValue: oldValue, newValue: newValue };
   return {
     type: UPDATE_CHARACTER_GENERAL_EDIT_VALUE,
     payload: payload,
@@ -422,7 +422,7 @@ export function updateCharacterGeneralEditFocusChange(
   oldValue: FocusAssembly,
   newValue: string,
 ) {
-  let payload = { oldValue: oldValue, newValue: newValue };
+  const payload = { oldValue: oldValue, newValue: newValue };
   return {
     type: UPDATE_CHARACTER_GENERAL_EDIT_FOCUS,
     payload: payload,
@@ -433,7 +433,7 @@ export function updateCharacterGeneralEditTalentChange(
   oldValue: TalentAssembly,
   newValue: SelectedTalent,
 ) {
-  let payload = { oldValue: oldValue, newValue: newValue };
+  const payload = { oldValue: oldValue, newValue: newValue };
   return {
     type: UPDATE_CHARACTER_GENERAL_EDIT_TALENT,
     payload: payload,
@@ -441,8 +441,8 @@ export function updateCharacterGeneralEditTalentChange(
 }
 
 export function updateCharacterGeneralEditSpeciesAbility(species: Species) {
-  let payload = {};
-  let ability = SpeciesAbilityList.instance.getBySpecies(species);
+  const payload = {};
+  const ability = SpeciesAbilityList.instance.getBySpecies(species);
   if (ability && (ability.source == null || hasSource(ability.source))) {
     payload['ability'] = ability;
   }
@@ -454,7 +454,7 @@ export function updateCharacterGeneralEditSpeciesAbility(species: Species) {
 }
 
 export function addNpcCharacterValue(value: string, index: number) {
-  let payload = { value: value, index: index };
+  const payload = { value: value, index: index };
   return {
     type: ADD_NPC_CHARACTER_VALUE,
     payload: payload,
@@ -462,7 +462,7 @@ export function addNpcCharacterValue(value: string, index: number) {
 }
 
 export function setCharacterName(name: string) {
-  let payload = { name: name };
+  const payload = { name: name };
   return {
     type: SET_CHARACTER_NAME,
     payload: payload,
@@ -470,7 +470,7 @@ export function setCharacterName(name: string) {
 }
 
 export function setCharacterPastime(pastime: string) {
-  let payload = { pastime: pastime };
+  const payload = { pastime: pastime };
   return {
     type: SET_CHARACTER_PASTIME,
     payload: payload,
@@ -478,7 +478,7 @@ export function setCharacterPastime(pastime: string) {
 }
 
 export function setCharacterAge(age: Age) {
-  let payload = { age: age };
+  const payload = { age: age };
   return {
     type: SET_CHARACTER_AGE,
     payload: payload,
@@ -486,7 +486,7 @@ export function setCharacterAge(age: Age) {
 }
 
 export function setCharacterLineage(lineage: string) {
-  let payload = { lineage: lineage };
+  const payload = { lineage: lineage };
   return {
     type: SET_CHARACTER_LINEAGE,
     payload: payload,
@@ -494,7 +494,7 @@ export function setCharacterLineage(lineage: string) {
 }
 
 export function setCharacterHouse(house: string) {
-  let payload = { house: house };
+  const payload = { house: house };
   return {
     type: SET_CHARACTER_HOUSE,
     payload: payload,
@@ -505,7 +505,7 @@ export function setCharacterCareerEventTrait(
   trait: string,
   context: StepContext,
 ) {
-  let payload = { trait: trait, context: context };
+  const payload = { trait: trait, context: context };
   return {
     type: SET_CHARACTER_CAREER_EVENT_TRAIT,
     payload: payload,
@@ -513,7 +513,7 @@ export function setCharacterCareerEventTrait(
 }
 
 export function setCharacterAdditionalTraits(traits: string) {
-  let payload = { traits: traits };
+  const payload = { traits: traits };
   return {
     type: SET_CHARACTER_ADDITIONAL_TRAITS,
     payload: payload,
@@ -521,7 +521,7 @@ export function setCharacterAdditionalTraits(traits: string) {
 }
 
 export function setCharacterRank(name: string, rank?: Rank) {
-  let payload = { name: name, rank: rank };
+  const payload = { name: name, rank: rank };
   return {
     type: SET_CHARACTER_RANK,
     payload: payload,
@@ -532,7 +532,7 @@ export function setCharacterAssignment(
   role?: string | Role,
   secondaryRole?: Role,
 ) {
-  let payload = { role: role, secondaryRole: secondaryRole };
+  const payload = { role: role, secondaryRole: secondaryRole };
   return {
     type: SET_CHARACTER_ROLE,
     payload: payload,
@@ -540,7 +540,7 @@ export function setCharacterAssignment(
 }
 
 export function setCharacterAssignedShip(assignedShip: string) {
-  let payload = { assignedShip: assignedShip };
+  const payload = { assignedShip: assignedShip };
   return {
     type: SET_CHARACTER_ASSIGNED_SHIP,
     payload: payload,
@@ -548,7 +548,7 @@ export function setCharacterAssignedShip(assignedShip: string) {
 }
 
 export function setCharacterPronouns(pronouns: string) {
-  let payload = { pronouns: pronouns };
+  const payload = { pronouns: pronouns };
   return {
     type: SET_CHARACTER_PRONOUNS,
     payload: payload,
@@ -556,7 +556,7 @@ export function setCharacterPronouns(pronouns: string) {
 }
 
 export function setCharacterType(type: CharacterType) {
-  let payload = { type: type };
+  const payload = { type: type };
   return {
     type: SET_CHARACTER_TYPE,
     payload: payload,
@@ -564,7 +564,7 @@ export function setCharacterType(type: CharacterType) {
 }
 
 export function setCharacterCareerLength(careerLength: Career) {
-  let payload = { careerLength: careerLength };
+  const payload = { careerLength: careerLength };
   return {
     type: SET_CHARACTER_CAREER_LENGTH,
     payload: payload,
@@ -577,7 +577,7 @@ export function modifyCharacterAttribute(
   positive: boolean = true,
   forceDecrement: boolean = false,
 ) {
-  let payload = {
+  const payload = {
     attribute: attribute,
     context: context,
     positive: positive,
@@ -596,7 +596,7 @@ export function modifyCharacterDiscipline(
   primaryDisciplines: Department[] = [],
   forceDecrement: boolean = false,
 ) {
-  let payload = {
+  const payload = {
     discipline: discipline,
     context: context,
     positive: positive,
@@ -610,7 +610,7 @@ export function modifyCharacterDiscipline(
 }
 
 export function modifyCharacterReputation(delta: number) {
-  let payload = { delta: delta };
+  const payload = { delta: delta };
   return {
     type: MODIFY_CHARACTER_REPUTATION,
     payload: payload,
@@ -621,7 +621,7 @@ export function modifyCharacterRank(
   rank: CharacterRank,
   type: ModificationType.Promotion | ModificationType.Demotion,
 ) {
-  let payload = { rank: rank, type: type };
+  const payload = { rank: rank, type: type };
   return {
     type: MODIFY_CHARACTER_RANK,
     payload: payload,
@@ -635,7 +635,7 @@ export function modifyCharacterAddAdvancement(
   logEntry?: LogEntry,
   logEntryCallback?: LogEntry,
 ) {
-  let payload = {
+  const payload = {
     type: type,
     value: value,
     logEntry: logEntry,

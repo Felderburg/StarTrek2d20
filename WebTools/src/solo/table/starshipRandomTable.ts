@@ -4,7 +4,7 @@ import { Era } from '../../helpers/erasEnum';
 import { Spaceframe } from '../../helpers/spaceframeEnum';
 
 export const SpaceframeRandomTable = (era: Era) => {
-  let tables = [
+  const tables = [
     EnterpriseSpaceframeRandomTable,
     OriginalSeriesSpaceframeRandomTable,
     NextGenerationSpaceframeRandomTable,

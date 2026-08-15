@@ -150,7 +150,7 @@ export class Creature extends Construct {
   }
 
   getAllTraits() {
-    let result = [...this.additionalTraits];
+    const result = [...this.additionalTraits];
     if (this.creatureType?.id === CreatureType.Plant) {
       result.push('Flora');
     } else {

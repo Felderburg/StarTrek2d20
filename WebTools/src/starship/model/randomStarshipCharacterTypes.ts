@@ -79,7 +79,7 @@ export class RandomStarshipCharacterTypes {
   }
 
   getType(type: RandomStarshipCharacterType) {
-    let types = this.types.filter((t) => t.type === type);
+    const types = this.types.filter((t) => t.type === type);
     return types.length === 1 ? types[0] : null;
   }
 }

@@ -78,7 +78,7 @@ export class WeaponQuality {
         { rank: this.rank },
       );
     } else {
-      let key = makeKey('Weapon.quality.', Quality[this.quality], '.name');
+      const key = makeKey('Weapon.quality.', Quality[this.quality], '.name');
       return i18next.t(key, { rank: '' }) === key
         ? Quality[this.quality]
         : i18next.t(key, { rank: '' });
@@ -381,7 +381,7 @@ export class EnergyLoadTypeModel {
   }
 
   static getEnergyLoadTypeModelByType(type: EnergyLoadType, version: number) {
-    let result = this.allTypes(version).filter((e) => e.type === type)[0];
+    const result = this.allTypes(version).filter((e) => e.type === type)[0];
     return result;
   }
 }
@@ -715,14 +715,14 @@ export class TorpedoLoadTypeModel {
   }
 
   get effectAndQualities() {
-    let result = [];
+    const result = [];
     this._weaponEffects.forEach((e) => result.push(e));
     this._weaponQualities.forEach((q) => result.push(q));
     return result;
   }
 
   static getTorpedoLoadTypeModelByType(type: TorpedoLoadType, version: number) {
-    let result = this.allTypes(version).filter((e) => e.type === type)[0];
+    const result = this.allTypes(version).filter((e) => e.type === type)[0];
     return result;
   }
 }
@@ -1010,18 +1010,18 @@ export class MineTypeModel {
   }
 
   get effectAndQualities(): WeaponQuality[] {
-    let result = [];
+    const result = [];
     result.push(...this._weaponEffects);
     result.push(...this._weaponQualities);
     return result;
   }
 
   get effectAndQualitiesAsString(): string {
-    let result: string[] = [];
+    const result: string[] = [];
     if (this.effect) {
       result.push(this.effect);
     }
-    let qualities = this.qualities;
+    const qualities = this.qualities;
     if (qualities) {
       result.push(qualities);
     }
@@ -1029,17 +1029,19 @@ export class MineTypeModel {
   }
 
   get effect() {
-    let result = this._weaponEffects.map((q) => q.localizedDescription);
+    const result = this._weaponEffects.map((q) => q.localizedDescription);
     return result.join(', ');
   }
 
   get qualities() {
-    let result = this._weaponQualities.map((q) => q.localizedDescription);
+    const result = this._weaponQualities.map((q) => q.localizedDescription);
     return result.join(', ');
   }
 
   static getMineTypeById(type: MineType, version: number) {
-    let types = MineTypeModel.allTypes(version).filter((t) => t.type === type);
+    const types = MineTypeModel.allTypes(version).filter(
+      (t) => t.type === type,
+    );
     return types?.length ? types[0] : null;
   }
 }
@@ -1141,7 +1143,7 @@ export class Weapon {
   }
 
   copy() {
-    let result = new Weapon(
+    const result = new Weapon(
       this.usageCategory,
       this._name,
       this.baseDice,
@@ -1192,7 +1194,7 @@ export class Weapon {
     if (this.usageCategory === UsageCategory.Character) {
       return this.effects.concat(this.qualities);
     } else if (this.loadType instanceof EnergyLoadTypeModel) {
-      let quality = [
+      const quality = [
         ...(this.loadType as EnergyLoadTypeModel).effectsAndQualities,
       ];
       if (this.deliveryType?.additionalQuality != null) {
@@ -1279,13 +1281,13 @@ export class Weapon {
         this.loadType != null &&
         this.loadType instanceof TorpedoLoadTypeModel
       ) {
-        let torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
+        const torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
         result = [...torpedoLoadType._weaponQualities];
       } else if (
         this.loadType != null &&
         this.loadType instanceof MineTypeModel
       ) {
-        let mineType = this.loadType as MineTypeModel;
+        const mineType = this.loadType as MineTypeModel;
         result = [...mineType._weaponQualities];
       }
 
@@ -1307,13 +1309,13 @@ export class Weapon {
         this.loadType != null &&
         this.loadType instanceof TorpedoLoadTypeModel
       ) {
-        let torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
+        const torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
         result = [...torpedoLoadType._weaponEffects];
       } else if (
         this.loadType != null &&
         this.loadType instanceof MineTypeModel
       ) {
-        let mineType = this.loadType as MineTypeModel;
+        const mineType = this.loadType as MineTypeModel;
         result = [...mineType._weaponEffects];
       }
 
@@ -1325,13 +1327,13 @@ export class Weapon {
     }
   }
   get injuryTypeEffectsAndQualities() {
-    let result = [];
+    const result = [];
     if (this.injuryType != null) {
       result.push(
         i18next.t(makeKey('InjuryType.', InjuryType[this.injuryType])),
       );
     }
-    let temp = this.effectsAndQualitiesAsString;
+    const temp = this.effectsAndQualitiesAsString;
     if (temp.length) {
       result.push(temp);
     }
@@ -1342,7 +1344,7 @@ export class Weapon {
     if (this.usageCategory === UsageCategory.Character) {
       return [...this.weaponQualities];
     } else {
-      let result = [];
+      const result = [];
       if (
         this.loadType != null &&
         this.loadType instanceof EnergyLoadTypeModel
@@ -1354,13 +1356,13 @@ export class Weapon {
         this.loadType != null &&
         this.loadType instanceof TorpedoLoadTypeModel
       ) {
-        let torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
+        const torpedoLoadType = this.loadType as TorpedoLoadTypeModel;
         result.push(...torpedoLoadType.effectAndQualities);
       } else if (
         this.loadType != null &&
         this.loadType instanceof MineTypeModel
       ) {
-        let torpedoLoadType = this.loadType as MineTypeModel;
+        const torpedoLoadType = this.loadType as MineTypeModel;
         result.push(...torpedoLoadType.effectAndQualities);
       }
 
@@ -1392,7 +1394,7 @@ export class Weapon {
     hands: number = 1,
     personalWeaponType?: PersonalWeaponType,
   ) {
-    let result = new Weapon(UsageCategory.Character, name, dice, type);
+    const result = new Weapon(UsageCategory.Character, name, dice, type);
     result._qualities = qualities;
     result._effects = effects;
     result.hands = hands;
@@ -1686,8 +1688,8 @@ class StarshipWeaponList {
   }
 
   getWeaponByName(name: string, version: number) {
-    let list = version === 1 ? this.list : this.list2e;
-    let filteredList = list.filter((w) => w.name === name);
+    const list = version === 1 ? this.list : this.list2e;
+    const filteredList = list.filter((w) => w.name === name);
     return filteredList?.length ? filteredList[0] : undefined;
   }
 }

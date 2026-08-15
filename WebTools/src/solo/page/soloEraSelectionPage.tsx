@@ -33,13 +33,13 @@ const SoloEraSelectionPage: React.FC<ISoloEraSelectionPage> = ({
   const eraSelected = (era: Era) => {
     store.dispatch(setEra(era));
     if (stereotype === Stereotype.SoloStarship) {
-      let starship = store.getState().starship?.starship;
-      let serviceYear = eraDefaultYear(era);
+      const starship = store.getState().starship?.starship;
+      const serviceYear = eraDefaultYear(era);
       if (
         starship?.serviceYear != null &&
         starship?.serviceYear !== serviceYear
       ) {
-        let newStarship = Starship.createSoloStarship(era);
+        const newStarship = Starship.createSoloStarship(era);
         newStarship.serviceYear = serviceYear;
         store.dispatch(createStarship(newStarship));
       } else {

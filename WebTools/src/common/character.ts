@@ -140,8 +140,8 @@ export class CharacterRank {
 
   get localizedName() {
     if (this.id != null) {
-      let key = makeKey('Rank.', Rank[this.id], '.name');
-      let result = i18next.t(key);
+      const key = makeKey('Rank.', Rank[this.id], '.name');
+      const result = i18next.t(key);
       return key === result ? this.name : result;
     } else {
       return this.name;
@@ -150,8 +150,8 @@ export class CharacterRank {
 
   get localizedAbbreviation() {
     if (this.id != null) {
-      let key = makeKey('Rank.', Rank[this.id], '.abbrev');
-      let result = i18next.t(key);
+      const key = makeKey('Rank.', Rank[this.id], '.abbrev');
+      const result = i18next.t(key);
       return key === result ? this.name : result;
     } else {
       return this.localizedName;
@@ -192,7 +192,7 @@ export class SupportingStep {
   }
 
   copy() {
-    let result = new SupportingStep();
+    const result = new SupportingStep();
     result.focuses = [...this.focuses];
     result.attributes = [...this.attributes];
     result.disciplines = [...this.disciplines];
@@ -222,7 +222,7 @@ export class CharacterAdvancementStep {
   logCallback?: number;
 
   copy() {
-    let result = new CharacterAdvancementStep();
+    const result = new CharacterAdvancementStep();
     result.choice = this.choice;
     if (this.value instanceof SelectedTalent) {
       result.value = (this.value as SelectedTalent).copy();
@@ -263,7 +263,7 @@ export class SpeciesAbilityOptions {
   implants?: BorgImplantType[] = [];
 
   copy() {
-    let result = new SpeciesAbilityOptions();
+    const result = new SpeciesAbilityOptions();
     result.focuses = [...this.focuses];
     result.implants = [...this.implants];
     result.choice = this.choice;
@@ -299,14 +299,14 @@ export class SpeciesStep {
     if (this.species === Species.Custom) {
       return this.customSpeciesName || '';
     } else {
-      let species = SpeciesHelper.getSpeciesByType(this.species);
+      const species = SpeciesHelper.getSpeciesByType(this.species);
       let result = species.name;
       if (this.mixedSpecies != null) {
-        let mixedSpecies = SpeciesHelper.getSpeciesByType(this.mixedSpecies);
+        const mixedSpecies = SpeciesHelper.getSpeciesByType(this.mixedSpecies);
         result += ' / ' + mixedSpecies.name;
       }
       if (this.originalSpecies != null) {
-        let orginalSpecies = SpeciesHelper.getSpeciesByType(
+        const orginalSpecies = SpeciesHelper.getSpeciesByType(
           this.originalSpecies,
         );
         result += ' (originally ' + orginalSpecies.name + ')';
@@ -331,7 +331,7 @@ export class SpeciesStep {
   }
 
   copy() {
-    let result = new SpeciesStep(this.species);
+    const result = new SpeciesStep(this.species);
     result.mixedSpecies = this.mixedSpecies;
     result.originalSpecies = this.originalSpecies;
     result.customSpeciesName = this.customSpeciesName;
@@ -435,7 +435,7 @@ export class FinishingStep {
   }
 
   copy() {
-    let result = new FinishingStep();
+    const result = new FinishingStep();
     result.attributes = [...this.attributes];
     result.disciplines = [...this.disciplines];
     result.value = this.value;
@@ -475,7 +475,7 @@ export class NpcGenerationStep {
   }
 
   copy() {
-    let result = new NpcGenerationStep();
+    const result = new NpcGenerationStep();
     result.type = this.type;
     result.specialization = this.specialization;
     result.values = [...this.values];
@@ -564,7 +564,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
       this._attributeInitialValue,
     ];
 
-    for (var i = 0; i <= Department.Medicine; i++) {
+    for (let i = 0; i <= Department.Medicine; i++) {
       this._skills.push(0);
     }
 
@@ -604,7 +604,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     if (this.role != null) {
       result = RolesHelper.instance.getRole(this.role, this.type)?.name ?? '';
       if (this.secondaryRole != null) {
-        let secondary =
+        const secondary =
           RolesHelper.instance.getRole(this.secondaryRole, this.type)?.name ??
           '';
         result = result + ' / ' + secondary;
@@ -645,7 +645,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
       result =
         RolesHelper.instance.getRole(this.role, this.type)?.localizedName ?? '';
       if (this.secondaryRole != null) {
-        let secondary =
+        const secondary =
           RolesHelper.instance.getRole(this.secondaryRole, this.type)
             ?.localizedName ?? '';
         result = result + ' / ' + secondary;
@@ -664,7 +664,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   get talentAssemblies() {
-    let result: TalentAssembly[] = [];
+    const result: TalentAssembly[] = [];
     if (this.stereotype === Stereotype.Npc) {
       return this.npcGenerationStep
         ? this.npcGenerationStep.talents.map(
@@ -713,7 +713,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         s instanceof CharacterAdvancementStep &&
         s.choice === CharacterAdvancementChoice.Talent
       ) {
-        let step = s as CharacterAdvancementStep;
+        const step = s as CharacterAdvancementStep;
         if (step.removeValue != null) {
           let index = -1;
           result.forEach((t, i) => {
@@ -749,12 +749,12 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   get rankedTalents(): SelectedTalent[] {
-    let talents = this.talents;
-    let duplicates = [];
-    let result = [];
+    const talents = this.talents;
+    const duplicates = [];
+    const result = [];
     talents.forEach((t) => {
       if (t.talentModel.maxRank > 1 && !duplicates.includes(t.name)) {
-        let temp = t.copy();
+        const temp = t.copy();
         temp.multiple = this.getRankForTalent(t.name);
         duplicates.push(t.name);
         result.push(temp);
@@ -778,7 +778,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
           result[this.environmentStep.attribute] + 1;
       }
       if (this.upbringingStep != null) {
-        let earlyOutlook = this.upbringingStep.upbringing;
+        const earlyOutlook = this.upbringingStep.upbringing;
         if (this.upbringingStep.acceptedUpbringing) {
           result[earlyOutlook.attributeAcceptPlus2] =
             result[earlyOutlook.attributeAcceptPlus2] + 2;
@@ -821,11 +821,11 @@ export class Character extends Construct implements IWeaponDiceProvider {
         values = [10, 10, 9, 9, 8, 8];
       }
       result = AttributesHelper.getAllAttributes().map((a) => {
-        let index = this.supportingStep?.attributes?.indexOf(a);
-        let speciesBonus = this.speciesStep?.attributes?.filter(
+        const index = this.supportingStep?.attributes?.indexOf(a);
+        const speciesBonus = this.speciesStep?.attributes?.filter(
           (att) => att === a,
         ).length;
-        let speciesminuses = this.speciesStep?.decrementAttributes?.filter(
+        const speciesminuses = this.speciesStep?.decrementAttributes?.filter(
           (att) => att === a,
         ).length;
         return values[index] + speciesBonus - speciesminuses;
@@ -894,7 +894,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         values = [4, 4, 3, 2, 2, 1];
       }
       result = DepartmentsHelper.instance.getDepartments().map((s) => {
-        let index = this.supportingStep?.disciplines?.indexOf(s);
+        const index = this.supportingStep?.disciplines?.indexOf(s);
         return values[index];
       });
     } else {
@@ -1092,7 +1092,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   get equipmentModels(): EquipmentModel[] {
-    let base = this.baseEquipmentModels;
+    const base = this.baseEquipmentModels;
     this.npcGenerationStep?.equipment?.forEach((e) => {
       if (e instanceof EquipmentModel) {
         base.push(e);
@@ -1104,7 +1104,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   get baseEquipmentModels(): EquipmentModel[] {
-    let result = [];
+    const result = [];
     if (this.age.isChild) {
       result.push(EquipmentHelper.instance.findByType(EquipmentType.Clothing));
     } else if (this.isCivilian()) {
@@ -1167,7 +1167,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   get equipmentAndImplants(): (EquipmentModel | Implant)[] {
-    let result: (EquipmentModel | Implant)[] = [...this.equipmentModels];
+    const result: (EquipmentModel | Implant)[] = [...this.equipmentModels];
     if (this.implants?.length) {
       this.implants.forEach((i) =>
         result.push(BorgImplants.instance.getImplantByType(i)),
@@ -1185,7 +1185,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   get valueAssemblies() {
-    let result = [];
+    const result = [];
     if (this.stereotype === Stereotype.SupportingCharacter) {
       if (this.supportingStep?.value) {
         result.push(
@@ -1305,7 +1305,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   get implants(): BorgImplantType[] {
-    let result = [];
+    const result = [];
     this.speciesStep?.abilityOptions?.implants?.forEach((i) => result.push(i));
     this.talents.forEach((t) => result.push(...t.implants));
     return result;
@@ -1324,15 +1324,15 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   getTalentNameList() {
-    let consolidatedTalents = {};
+    const consolidatedTalents = {};
     this.talents.forEach((t) => {
-      let rank = consolidatedTalents[t.talent] ?? 0;
+      const rank = consolidatedTalents[t.talent] ?? 0;
       consolidatedTalents[t.talent] = rank + 1;
     });
 
-    let result = [];
-    for (let name in consolidatedTalents) {
-      let rank = consolidatedTalents[name];
+    const result = [];
+    for (const name in consolidatedTalents) {
+      const rank = consolidatedTalents[name];
       result.push(rank === 1 ? name : name + ' [Rank ' + rank + ']');
     }
     return result;
@@ -1340,7 +1340,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
 
   /* returns the "official" name of the talent */
   getDistinctTalentNameList(): string[] {
-    let result = [];
+    const result = [];
     this.talents.forEach((t) => {
       if (result.indexOf(t.talent) < 0) {
         result.push(t.talent);
@@ -1351,7 +1351,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   determineWeapons() {
-    let result: Weapon[] = [];
+    const result: Weapon[] = [];
 
     if (this.hasTalent('Mean Right Hook')) {
       result.push(PersonalWeapons.instance(this.version).unarmedStrikeMean);
@@ -1372,7 +1372,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     if (this.hasTalent(TALENT_NAME_WARRIORS_SPIRIT)) {
-      let talent = this.talents.filter(
+      const talent = this.talents.filter(
         (t) => t.talent === TALENT_NAME_WARRIORS_SPIRIT,
       )[0];
       if (talent.selection === SpecialWeapon.MekLeth) {
@@ -1445,7 +1445,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     this.npcGenerationStep?.weapons?.forEach((t) => {
-      let weapon = PersonalWeapons.instance(this.version).getWeaponByType(t);
+      const weapon = PersonalWeapons.instance(this.version).getWeaponByType(t);
       if (weapon) {
         result.push(weapon);
       }
@@ -1584,9 +1584,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
     } else if (this.speciesStep.species === Species.Custom) {
       return this.speciesStep.customSpeciesName || '';
     } else {
-      let species = SpeciesHelper.getSpeciesByType(this.speciesStep.species);
+      const species = SpeciesHelper.getSpeciesByType(this.speciesStep.species);
       if (this.speciesStep.mixedSpecies != null) {
-        let mixedSpecies = SpeciesHelper.getSpeciesByType(
+        const mixedSpecies = SpeciesHelper.getSpeciesByType(
           this.speciesStep.mixedSpecies,
         );
         return i18next.t('Species.mixedSpecies.text', {
@@ -1595,7 +1595,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
         });
       }
       if (this.speciesStep.originalSpecies != null) {
-        let originalSpecies = SpeciesHelper.getSpeciesByType(
+        const originalSpecies = SpeciesHelper.getSpeciesByType(
           this.speciesStep.originalSpecies,
         );
         return i18next.t('Species.formerSpecies.text', {
@@ -1609,9 +1609,9 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   get baseTraits() {
-    let traits = [...this.traits];
+    const traits = [...this.traits];
     if (this.speciesStep != null) {
-      let species = SpeciesHelper.getSpeciesByType(this.speciesStep?.species);
+      const species = SpeciesHelper.getSpeciesByType(this.speciesStep?.species);
       if (species != null && traits.indexOf(species.name) >= 0) {
         traits.splice(traits.indexOf(species.name), 1);
       }
@@ -1679,7 +1679,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
     if (this.role === Role.Ambassador) {
       if (this.type === CharacterType.AmbassadorDiplomat && this.typeDetails) {
-        let details = this.typeDetails as GovernmentDetails;
+        const details = this.typeDetails as GovernmentDetails;
         traits.push(details.name ? details.name + ' Ambassador' : 'Ambassador');
       } else {
         traits.push('Ambassador');
@@ -1698,7 +1698,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   getAllTraits() {
-    let traits = this.baseTraits;
+    const traits = this.baseTraits;
     if (this.additionalTraits) {
       traits.push(this.additionalTraits);
     }
@@ -1711,12 +1711,12 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   getTalentByName(talentName: string): SelectedTalent | undefined {
-    let result = this.talents.filter((t) => t.talent === talentName);
+    const result = this.talents.filter((t) => t.talent === talentName);
     return result.length > 0 ? result[0] : undefined;
   }
 
   addTalent(talentModel: ITalent | SelectedTalent) {
-    let selectedTalent =
+    const selectedTalent =
       talentModel instanceof SelectedTalent
         ? (talentModel as SelectedTalent)
         : new SelectedTalent(talentModel.name);
@@ -1760,7 +1760,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   hasTalent(name: string) {
-    let found = this.talents.filter((t) => t.talent === name);
+    const found = this.talents.filter((t) => t.talent === name);
     return found.length > 0;
   }
 
@@ -2121,7 +2121,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   public copy(): Character {
-    var character = new Character();
+    const character = new Character();
 
     character.type = this.type;
     character.stereotype = this.stereotype;
@@ -2134,7 +2134,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     });
     character.age = this.age;
     this.careerEvents.forEach((e) => {
-      let event = new CareerEventStep(e.id);
+      const event = new CareerEventStep(e.id);
       event.attribute = e.attribute;
       event.discipline = e.discipline;
       event.focus = e.focus;
@@ -2243,7 +2243,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   public static createSoloCharacter(era: Era) {
-    let result = new Character();
+    const result = new Character();
     result.stereotype = Stereotype.SoloCharacter;
     result.era = era;
     return result;
@@ -2255,7 +2255,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     npcType?: NpcType,
     type: CharacterType = CharacterType.Starfleet,
   ) {
-    let result = new Character();
+    const result = new Character();
     result.stereotype = Stereotype.Npc;
     result.era = era;
     result.type = type;
@@ -2271,7 +2271,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     era: Era,
     version: 1 | 2 = 1,
   ) {
-    let result = new Character();
+    const result = new Character();
     result.type = type;
     result.version = version;
     result.era = era;
@@ -2280,7 +2280,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
   }
 
   public static createSupportingCharacter(era: Era, version: 1 | 2 = 1) {
-    let result = new Character();
+    const result = new Character();
     result.version = version;
     result.stereotype = Stereotype.SupportingCharacter;
     result.era = era;
@@ -2292,7 +2292,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
     }
 
     result.supportingStep = new SupportingStep();
-    let rank = RanksHelper.instance().getRank(Rank.Ensign);
+    const rank = RanksHelper.instance().getRank(Rank.Ensign);
     result._rank = new CharacterRank(rank.localizedName, rank.id);
     return result;
   }

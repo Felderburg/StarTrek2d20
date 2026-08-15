@@ -58,12 +58,12 @@ export class ServiceRecordModel {
   }
 
   get name() {
-    let key = makeKey('ServiceRecord.', ServiceRecord[this.type]);
+    const key = makeKey('ServiceRecord.', ServiceRecord[this.type]);
     return i18next.t(key);
   }
 
   get description() {
-    let key = makeKey(
+    const key = makeKey(
       'ServiceRecord.',
       ServiceRecord[this.type],
       '.description',
@@ -163,7 +163,7 @@ export class ServiceRecordList {
   }
 
   getByType(type: ServiceRecord) {
-    let result = this.records.filter((s) => s.type === type);
+    const result = this.records.filter((s) => s.type === type);
     return result.length > 0 ? result[0] : undefined;
   }
 }

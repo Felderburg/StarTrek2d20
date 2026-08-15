@@ -92,7 +92,7 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
 
-    let character = construct as Character;
+    const character = construct as Character;
 
     const page = pdf.getPage(0);
 
@@ -107,9 +107,9 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
   }
 
   createDeterminationCheckmarks(pdf: PDFDocument, page: PDFPage) {
-    let form = pdf.getForm();
+    const form = pdf.getForm();
     this.determinationPills.forEach((block, i) => {
-      let checkbox = form.createCheckBox('Determination ' + (i + 1));
+      const checkbox = form.createCheckBox('Determination ' + (i + 1));
       checkbox.addToPage(page, {
         x: block.start.x + 4,
         y: page.getHeight() - block.start.y - (block.height - 1),
@@ -153,8 +153,10 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
 
     text += suffix;
 
-    let height = this.headingFont.heightAtSize(fontSize, { descender: false });
-    let offset = Math.max(0, block.height - height) / 2;
+    const height = this.headingFont.heightAtSize(fontSize, {
+      descender: false,
+    });
+    const offset = Math.max(0, block.height - height) / 2;
 
     page.drawText(text, {
       x: rightJustify ? block.end.x - width - 2 : block.start.x,
@@ -170,11 +172,11 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
     construct: Construct,
     colour: SimpleColor = BaseTNGGeneratedCharacterSheet.darkPurpleColour,
   ) {
-    let minWidth = Math.min.apply(
+    const minWidth = Math.min.apply(
       Math,
       Object.keys(this.detailLabels).map((key) => this.detailLabels[key].width),
     );
-    let fontSize = this.determineIdealFontWidth(
+    const fontSize = this.determineIdealFontWidth(
       Object.keys(this.detailLabels).map((key) =>
         i18next.t(key).toLocaleUpperCase(),
       ),
@@ -211,8 +213,8 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
     character: Character,
     colour: SimpleColor = BaseTNGGeneratedCharacterSheet.purpleColour,
   ) {
-    let form = pdf.getForm();
-    let { height, width } = this.pillSize;
+    const form = pdf.getForm();
+    const { height, width } = this.pillSize;
     let amount = character.stress;
 
     if (character.stereotype === Stereotype.Npc && character.version !== 1) {
@@ -228,7 +230,7 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
           borderWidth: 1,
         });
       } else {
-        let checkbox = form.createCheckBox('Stress ' + (i + 1));
+        const checkbox = form.createCheckBox('Stress ' + (i + 1));
         checkbox.addToPage(page, {
           x: pill.x + (width - 9.5) / 2,
           y: page.getHeight() - pill.y - (height - 0.6),
@@ -247,7 +249,7 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
     const table = this.subTitleLocations;
     Object.keys(table).forEach((key) => {
       let fontSize = originalFontSize;
-      let block = table[key];
+      const block = table[key];
       if (key === 'departments' && character.version === 1) {
         key = 'disciplines';
       } else if (key === 'talents' && character.stereotype === Stereotype.Npc) {
@@ -263,7 +265,7 @@ export abstract class BaseTNGGeneratedCharacterSheet extends BaseFormFillingShee
       const originalText = i18next
         .t('Construct.other.' + key)
         .toLocaleUpperCase();
-      let text = originalText;
+      const text = originalText;
       let width = this.headingFont.widthOfTextAtSize(text, fontSize);
       while (width > block.width) {
         fontSize -= 0.25;

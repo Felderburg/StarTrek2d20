@@ -49,7 +49,7 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({
   const [mode, setMode] = useState(RandomMode.All);
   const [searchTerm, setSearchTerm] = useState<string>();
 
-  let overrideCheckbox = Character.isSpeciesListLimited(character) ? (
+  const overrideCheckbox = Character.isSpeciesListLimited(character) ? (
     <CheckBox
       isChecked={allowAllSpecies}
       text="Allow any species (GM's decision)"
@@ -63,29 +63,29 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({
     false,
     character,
   );
-  let visibleSpeciesOptions =
+  const visibleSpeciesOptions =
     randomSpecies != null
       ? [SpeciesHelper.getSpeciesByType(randomSpecies)]
       : speciesOptions;
 
   const determineRandomSpecies = (mode: RandomMode): Species => {
     if (mode === RandomMode.Core) {
-      let speciesSelection = SpeciesHelper.generateSpecies();
+      const speciesSelection = SpeciesHelper.generateSpecies();
       return speciesSelection;
     } else if (mode === RandomMode.AlphaQuadrant) {
-      let speciesSelection = SpeciesHelper.generateFromAlphaQuadrantTable();
+      const speciesSelection = SpeciesHelper.generateFromAlphaQuadrantTable();
       return speciesSelection;
     } else if (mode === RandomMode.BetaQuadrant) {
-      let speciesSelection = SpeciesHelper.generateFromBetaQuadrantTable();
+      const speciesSelection = SpeciesHelper.generateFromBetaQuadrantTable();
       return speciesSelection;
     } else if (mode === RandomMode.GammaQuadrant) {
-      let speciesSelection = SpeciesHelper.generateFromGammaQuadrantTable();
+      const speciesSelection = SpeciesHelper.generateFromGammaQuadrantTable();
       return speciesSelection;
     } else if (mode === RandomMode.DeltaQuadrant) {
-      let speciesSelection = SpeciesHelper.generateFromDeltaQuadrantTable();
+      const speciesSelection = SpeciesHelper.generateFromDeltaQuadrantTable();
       return speciesSelection;
     } else {
-      let speciesSelection =
+      const speciesSelection =
         speciesOptions[Math.floor(speciesOptions.length * Math.random())];
       return speciesSelection.id;
     }
@@ -109,7 +109,7 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({
     }
   };
 
-  let species = visibleSpeciesOptions
+  const species = visibleSpeciesOptions
     .filter(
       (s) =>
         searchTerm == null ||
@@ -148,7 +148,7 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({
 
       let speciesAbility = null;
       if (character.version > 1) {
-        let ability = SpeciesAbilityList.instance.getBySpecies(s.id);
+        const ability = SpeciesAbilityList.instance.getBySpecies(s.id);
         if (
           ability != null &&
           (ability.source == null || hasSource(ability.source))

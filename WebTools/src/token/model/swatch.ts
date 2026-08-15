@@ -23,7 +23,7 @@ class Swatch {
     if (this.localizationKey == null) {
       return this.name;
     } else {
-      let result = i18next.t(this.localizationKey);
+      const result = i18next.t(this.localizationKey);
       return result === this.localizationKey
         ? this.name
         : i18next.t(this.localizationKey);

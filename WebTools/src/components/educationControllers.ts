@@ -172,7 +172,7 @@ export class EducationSecondaryDisciplineController implements IDisciplineContro
     ) {
       return this.character.educationStep?.disciplines.length === 0;
     } else {
-      let need =
+      const need =
         this.track.skillsRule.skills.length - this.countRequiredDisciplines();
       return 2 - this.character.educationStep.disciplines.length > need;
     }

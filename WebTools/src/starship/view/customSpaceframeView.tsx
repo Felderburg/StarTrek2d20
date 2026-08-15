@@ -39,17 +39,17 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
   const { t } = useTranslation();
 
   const setScale = (delta: number) => {
-    let newScale = starship.scale + delta;
-    let systems = [...starship.systems];
-    let sum = starship.spaceframeModel?.sumSystemPoints ?? 0;
-    let newTotalPoints = BuildPoints.systemPointsForType(
+    const newScale = starship.scale + delta;
+    const systems = [...starship.systems];
+    const sum = starship.spaceframeModel?.sumSystemPoints ?? 0;
+    const newTotalPoints = BuildPoints.systemPointsForType(
       starship.buildType,
       starship.spaceframeModel.serviceYear,
       starship.type,
       newScale,
       starship.version,
     );
-    let systemDelta =
+    const systemDelta =
       newTotalPoints -
       BuildPoints.systemPointsForType(
         starship.buildType,
@@ -86,7 +86,7 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
   };
 
   const getCurrentSystemValuesSortedMaxToMin = () => {
-    let result = [];
+    const result = [];
     allSystems().forEach((s) =>
       result.push(new SystemValue(s, starship.systems[s])),
     );
@@ -100,16 +100,16 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
   };
 
   const setServiceYear = (serviceYear: string) => {
-    let year = parseInt(serviceYear);
-    let systems = getCurrentSystemValuesSortedMaxToMin();
-    let newTotalPoints = BuildPoints.systemPointsForType(
+    const year = parseInt(serviceYear);
+    const systems = getCurrentSystemValuesSortedMaxToMin();
+    const newTotalPoints = BuildPoints.systemPointsForType(
       starship.buildType,
       year,
       starship.type,
       starship.scale,
       starship.version,
     );
-    let systemDelta =
+    const systemDelta =
       newTotalPoints -
       BuildPoints.systemPointsForType(
         starship.buildType,
@@ -122,7 +122,7 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
     store.dispatch(changeStarshipSpaceframeServiceYear(year));
 
     if (systemDelta !== 0) {
-      let deltas = [0, 0, 0, 0, 0, 0];
+      const deltas = [0, 0, 0, 0, 0, 0];
       let sumOfDeltas = 0;
       for (let i = 0; i < 5; i++) {
         deltas[i] = systems[5].value - systems[i].value;
@@ -130,7 +130,7 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
       }
 
       if (systemDelta !== sumOfDeltas) {
-        let distribution = PointAllocator.allocatePointsEvenly(
+        const distribution = PointAllocator.allocatePointsEvenly(
           systemDelta - sumOfDeltas,
         );
         for (let i = 0; i < distribution.length; i++) {
@@ -139,14 +139,14 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
       }
 
       for (let i = 0; i < deltas.length; i++) {
-        let system = systems[i].system;
+        const system = systems[i].system;
         store.dispatch(changeStarshipSpaceframeSystem(deltas[i], system));
       }
     }
   };
 
   const getSystem = (system: System) => {
-    let result = starship.getSystemValue(system);
+    const result = starship.getSystemValue(system);
     return result == null ? 0 : result;
   };
 
@@ -174,7 +174,7 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
   };
 
   const getDepartment = (department: Department) => {
-    let result = starship.departments[department];
+    const result = starship.departments[department];
     return result == null ? 0 : result;
   };
 
@@ -201,7 +201,7 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
   };
 
   const getAppearanceOptions = () => {
-    let result = [new DropDownElement('', '')];
+    const result = [new DropDownElement('', '')];
     result.push(
       ...SpaceframeAppearanceModel.getAllAppearanceModels(
         starship.type,

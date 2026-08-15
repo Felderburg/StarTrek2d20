@@ -76,7 +76,7 @@ export const StarshipFreeformTalentSelectionView: React.FC<
             starship={starship}
             isChecked={(d) => selectedTalent.department === d}
             onSelectDepartment={(d) => {
-              let temp = selectedTalent?.copy();
+              const temp = selectedTalent?.copy();
               if (temp) {
                 temp.department = d;
               }
@@ -94,7 +94,7 @@ export const StarshipFreeformTalentSelectionView: React.FC<
               id="customName"
               value={selectedTalent.customTalentName}
               onChange={(n) => {
-                let temp = selectedTalent?.copy();
+                const temp = selectedTalent?.copy();
                 if (temp) {
                   temp.customTalentName = n;
                 }
@@ -108,8 +108,8 @@ export const StarshipFreeformTalentSelectionView: React.FC<
               value={selectedTalent.customTalentDescription}
               placeholder={t('Common.text.description')}
               onChange={(e) => {
-                let description = e.target.value;
-                let temp = selectedTalent?.copy();
+                const description = e.target.value;
+                const temp = selectedTalent?.copy();
                 if (temp) {
                   temp.customTalentDescription = description;
                 }
@@ -126,7 +126,7 @@ export const StarshipFreeformTalentSelectionView: React.FC<
             starship={starship}
             isChecked={(d) => selectedTalent.department === d}
             onSelectDepartment={(d) => {
-              let temp = selectedTalent?.copy();
+              const temp = selectedTalent?.copy();
               if (temp) {
                 temp.department = d;
               }
@@ -143,7 +143,7 @@ export const StarshipFreeformTalentSelectionView: React.FC<
             starship={starship}
             isChecked={(d) => selectedTalent.system === d}
             onSelectSystem={(s) => {
-              let temp = selectedTalent?.copy();
+              const temp = selectedTalent?.copy();
               if (temp) {
                 temp.system = s;
               }
@@ -156,7 +156,7 @@ export const StarshipFreeformTalentSelectionView: React.FC<
       selectedTalent?.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM
     ) {
       const getItems = () => {
-        let result = [new DropDownElement('', '')];
+        const result = [new DropDownElement('', '')];
         result.push(
           ...PropulsionSystemModel.types.map(
             (t) => new DropDownElement(t.type, t.localizedName),
@@ -171,7 +171,7 @@ export const StarshipFreeformTalentSelectionView: React.FC<
             items={getItems()}
             defaultValue={selectedTalent.selection as PropulsionSystemType}
             onChange={(s) => {
-              let temp = selectedTalent?.copy();
+              const temp = selectedTalent?.copy();
               if (temp) {
                 if (s === '') {
                   temp.selection = undefined;
@@ -219,7 +219,7 @@ export const StarshipFreeformTalentSelectionView: React.FC<
             onClose={() => closeModal()}
             version={starship.version}
             addWeapon={(w) => {
-              let temp = selectedTalent?.copy();
+              const temp = selectedTalent?.copy();
               if (temp) {
                 temp.weapon = w;
                 setSelectedTalent(temp);

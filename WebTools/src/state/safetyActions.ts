@@ -6,7 +6,7 @@ export function setSafetyEvaluation(
   category: string,
   evaluation: SafetyEvaluationType,
 ) {
-  let payload = { category: category, evaluation: evaluation };
+  const payload = { category: category, evaluation: evaluation };
   return {
     type: SET_SAFETY_EVALUATION,
     payload: payload,

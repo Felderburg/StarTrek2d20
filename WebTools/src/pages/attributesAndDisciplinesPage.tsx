@@ -43,7 +43,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({
   const { t } = useTranslation();
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,
@@ -127,7 +127,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({
     disciplineCount,
   );
 
-  let talents = filterTalentList();
+  const talents = filterTalentList();
 
   const talentSelection =
     isKlingonWarriorType(character.type) || character.version > 1 ? (
@@ -172,7 +172,7 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({
     }
   }, [character.finishingStep]);
 
-  let value =
+  const value =
     character.type !== CharacterType.Child &&
     character.type !== CharacterType.Cadet ? (
       <div className="col-lg-6 mt-4">

@@ -117,7 +117,7 @@ export class SpaceframeModel implements IServiceYearProvider {
     if (serviceYear != null) {
       return this.talents.filter((t) => {
         let result = true;
-        let model = t instanceof SelectedTalent ? t.talentModel : t;
+        const model = t instanceof SelectedTalent ? t.talentModel : t;
         model.prerequisites.forEach((p) => {
           if (p instanceof MaxServiceYearPrerequisite) {
             result =
@@ -184,9 +184,9 @@ export class SpaceframeModel implements IServiceYearProvider {
   }
 
   get localizedName() {
-    let key = this.key;
+    const key = this.key;
     if (key != null) {
-      let local = i18next.t(key);
+      const local = i18next.t(key);
       return local === key ? this.name : local;
     } else {
       return this.name;
@@ -197,7 +197,7 @@ export class SpaceframeModel implements IServiceYearProvider {
     let key = this.key;
     if (key != null) {
       key += '.description';
-      let local = i18next.t(key);
+      const local = i18next.t(key);
       return local === key ? undefined : local;
     } else {
       return undefined;
@@ -237,8 +237,8 @@ export class SpaceframeModel implements IServiceYearProvider {
     soloStats?: SoloSpaceframeStats,
     errata: boolean = false,
   ) {
-    let sourcePrerequisite = new SourcePrerequisite(...source);
-    let prerequisites: IConstructPrerequisite[] = [
+    const sourcePrerequisite = new SourcePrerequisite(...source);
+    const prerequisites: IConstructPrerequisite[] = [
       sourcePrerequisite,
       new StarshipTypePrerequisite(type),
       new ServiceYearPrerequisite(serviceYear),

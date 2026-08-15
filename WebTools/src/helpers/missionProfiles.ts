@@ -91,7 +91,7 @@ export class MissionProfileModel {
       ? 'MissionProfile.klingon.'
       : 'MissionProfile.default.';
     const key = makeKey(prefix, MissionProfile[this.id]);
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.name : result;
   }
 
@@ -100,7 +100,7 @@ export class MissionProfileModel {
       ? 'MissionProfile.klingon.'
       : 'MissionProfile.default.';
     const key = makeKey(prefix, MissionProfile[this.id], '.description');
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? '' : result;
   }
 }
@@ -953,7 +953,7 @@ class MissionProfiles {
   };
 
   getMissionProfiles(starship: Starship) {
-    let profiles: MissionProfileModel[] = [];
+    const profiles: MissionProfileModel[] = [];
     let list = this._profiles2e;
     if (starship.version === 1) {
       list = isKlingonWarrior1e(starship.type, starship.version)
@@ -977,7 +977,7 @@ class MissionProfiles {
           this._profiles2e[MissionProfile.ScientificAndSurvey],
       };
     }
-    for (let profile of Object.values(list)) {
+    for (const profile of Object.values(list)) {
       if (profile && profile.isPrerequisitesFulfilled(starship)) {
         profiles.push(profile);
       }
@@ -991,7 +991,7 @@ class MissionProfiles {
   }
 
   getStationMissionProfiles() {
-    let profiles = [...Object.values(this._stationProfiles)];
+    const profiles = [...Object.values(this._stationProfiles)];
     profiles.sort((p1, p2) => {
       return p1.localizedName.localeCompare(p2.localizedName);
     });
@@ -1005,7 +1005,7 @@ class MissionProfiles {
     if ('PolicalOperationsStation' === name) {
       name = MissionProfile[MissionProfile.PoliticalOperationsStation];
     }
-    let profiles = [...Object.values(this._stationProfiles)].filter(
+    const profiles = [...Object.values(this._stationProfiles)].filter(
       (p) => MissionProfile[p.id] === name,
     );
 
@@ -1032,7 +1032,7 @@ class MissionProfiles {
       list = this._klingonProfiles2e;
     }
     let result = null;
-    for (let id in list) {
+    for (const id in list) {
       if (profile === MissionProfile[id]) {
         result = list[id];
         break;

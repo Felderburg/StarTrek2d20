@@ -31,7 +31,7 @@ const RandomStarshipPage: React.FC<IRandomStarshipProperties> = ({ era }) => {
   const [campaignYear, setCampaignYear] = useState(eraDefaultYear(era));
 
   const createStarship = () => {
-    let starship = starshipGenerator({
+    const starship = starshipGenerator({
       era: era,
       campaignYear: campaignYear,
       type: type,

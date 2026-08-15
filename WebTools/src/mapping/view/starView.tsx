@@ -79,7 +79,7 @@ class StarView extends React.Component<IStarViewProperties, {}> {
   }
 
   renderMassInKg() {
-    let mass = (1.98847 * this.props.star.mass).toFixed(4);
+    const mass = (1.98847 * this.props.star.mass).toFixed(4);
     return (
       <span>
         {mass} x 10<sup>30</sup>

@@ -629,7 +629,7 @@ export class StoUniformPack
   }
 
   getUniformAndVariantBody(token: TokenModel) {
-    let division = DivisionColors.getDivision(
+    const division = DivisionColors.getDivision(
       token.uniformEra,
       token.divisionColor,
     );
@@ -822,7 +822,7 @@ export class StoUniformPack
   }
 
   getRankSwatches() {
-    let result = [
+    const result = [
       new Swatch(
         Rank.None,
         'None',
@@ -968,7 +968,7 @@ export class StoUniformPack
   }
 
   getBorderLogo(token: TokenModel): string {
-    let division = DivisionColors.getDivision(
+    const division = DivisionColors.getDivision(
       token.uniformEra,
       token.divisionColor,
     );

@@ -179,13 +179,13 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({
       height: 400,
       svg: TokenSvgBuilder.createSvg(token, rounded, bordered && rounded),
     }).then((png) => {
-      let division = DivisionColors.getDivision(
+      const division = DivisionColors.getDivision(
         token.uniformEra,
         token.divisionColor,
       );
-      let species = SpeciesHelper.getSpeciesByType(token.species);
-      let speciesName = species.name.replace(/[ ()’']/g, '');
-      let name =
+      const species = SpeciesHelper.getSpeciesByType(token.species);
+      const speciesName = species.name.replace(/[ ()’']/g, '');
+      const name =
         'token-' +
         speciesName +
         '-' +
@@ -202,8 +202,8 @@ const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({
   };
 
   const returnToViewPage = () => {
-    let json = marshaller.decode(marshalledCharacter);
-    let c = marshaller.decodeCharacter(json);
+    const json = marshaller.decode(marshalledCharacter);
+    const c = marshaller.decodeCharacter(json);
     c.token = new TokenConfig(token, rounded, bordered);
     store.dispatch(saveCharacterToLocalStorage(c, replacementHash));
     const value = marshaller.encodeMainCharacter(c);

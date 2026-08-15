@@ -45,7 +45,7 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
 
   const showViewPage = () => {
     setTimeout(() => {
-      let c = store.getState().character.currentCharacter;
+      const c = store.getState().character.currentCharacter;
       const value = marshaller.encodeCharacter(c);
       store.dispatch(saveCharacterToLocalStorage(c));
       window.open('/view?s=' + value, '_blank');
@@ -169,7 +169,7 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
     });
 
   const randomName = () => {
-    let { name, pronouns } = NameGenerator.instance.createName(species);
+    const { name, pronouns } = NameGenerator.instance.createName(species);
     store.dispatch(setCharacterName(name));
     store.dispatch(setCharacterPronouns(pronouns));
   };

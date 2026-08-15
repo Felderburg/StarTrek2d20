@@ -62,19 +62,19 @@ const languageDetector = new LanguageDetector();
 languageDetector.addDetector(staDetector);
 
 export const getNavigatorLanguage = () => {
-  let found = staDetector
+  const found = staDetector
     .lookup({})
     ?.filter((l) => supportedLanguagesCodes.includes(l));
   return found?.length ? found[0] : 'en';
 };
 
 export const isEnglishDefault = () => {
-  let language = getNavigatorLanguage();
+  const language = getNavigatorLanguage();
   return language.indexOf('en') === 0;
 };
 
 export const getCurrentLanguageCode = () => {
-  let previousLanguage = window.localStorage.getItem(localStorageKey);
+  const previousLanguage = window.localStorage.getItem(localStorageKey);
   if (previousLanguage == null) {
     return getNavigatorLanguage();
   } else if (
@@ -101,7 +101,7 @@ export const clearLanguageOverride = () => {
 };
 
 export const isLanguageOverridePresent = () => {
-  let value = window.localStorage.getItem(localStorageKey);
+  const value = window.localStorage.getItem(localStorageKey);
   return value === 'en';
 };
 

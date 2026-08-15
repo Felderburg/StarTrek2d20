@@ -12,7 +12,7 @@ export function saveCharacterToLocalStorage(
 ) {
   const name = character.nameAndAbbreviatedRank;
   const marshalled = marshaller.encodeCharacter(character);
-  let payload = {
+  const payload = {
     type: 'Character',
     name: name,
     marshalled: marshalled,
@@ -31,7 +31,7 @@ export function saveStarshipToLocalStorage(
 ) {
   const name = starship.name;
   const marshalled = marshaller.encodeStarship(starship);
-  let payload = {
+  const payload = {
     type: 'Starship',
     name: name,
     marshalled: marshalled,

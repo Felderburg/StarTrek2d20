@@ -100,7 +100,7 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({ character }) => {
   };
 
   const chooseRandomEnvironment = () => {
-    let environments = EnvironmentsHelper.getEnvironmentOptions(character);
+    const environments = EnvironmentsHelper.getEnvironmentOptions(character);
 
     return environments[Math.floor(Math.random() * environments.length)].id;
   };
@@ -113,13 +113,13 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({ character }) => {
       ];
     }
 
-    let settings = environments.filter((e) =>
+    const settings = environments.filter((e) =>
       EnvironmentsHelper.isSetting(e.id),
     );
-    let conditions = environments.filter((e) =>
+    const conditions = environments.filter((e) =>
       EnvironmentsHelper.isCondition(e.id),
     );
-    let homeworlds = environments.filter((e) =>
+    const homeworlds = environments.filter((e) =>
       EnvironmentsHelper.isHomeworld(e.id),
     );
 

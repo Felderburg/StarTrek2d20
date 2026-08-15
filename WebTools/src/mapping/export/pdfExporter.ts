@@ -39,7 +39,7 @@ class TextBlock {
       this.text = [text];
     } else {
       this.text = [];
-      let parts = text.split(' ');
+      const parts = text.split(' ');
       let currentText = '';
       parts.forEach((p) => {
         if (
@@ -73,7 +73,7 @@ class TextBlock {
   ) {
     this.text.forEach((t) => {
       if (alignment === TextAlignment.Center) {
-        let width = this.font.widthOfTextAtSize(t, this.fontSize);
+        const width = this.font.widthOfTextAtSize(t, this.fontSize);
         page.drawText(t, {
           x: column - width / 2,
           y: page.getHeight() - currentLine,
@@ -82,7 +82,7 @@ class TextBlock {
           color: this.color,
         });
       } else if (alignment === TextAlignment.Right) {
-        let width = this.font.widthOfTextAtSize(t, this.fontSize);
+        const width = this.font.widthOfTextAtSize(t, this.fontSize);
         page.drawText(t, {
           x: column - width,
           y: page.getHeight() - currentLine,
@@ -208,7 +208,7 @@ export class PdfExporter {
       sector,
     );
 
-    let systems = sector.systems;
+    const systems = sector.systems;
     for (let i = 0; i < systems.length; i++) {
       await this.populateSystemPage(
         pdf,
@@ -224,7 +224,7 @@ export class PdfExporter {
   }
 
   async createStarSystemPdf(system: StarSystem) {
-    let pdf = await PDFDocument.create();
+    const pdf = await PDFDocument.create();
     pdf.registerFontkit(fontkit);
     const lcarsFontBytes = await fetch('/static/font/lcars_font.TTF').then(
       (res) => res.arrayBuffer(),
@@ -289,7 +289,7 @@ export class PdfExporter {
       font,
     );
 
-    let lineHeight = font.heightAtSize(12, { descender: true });
+    const lineHeight = font.heightAtSize(12, { descender: true });
     let currentLine = 60 + lineHeight;
 
     this.addLabelAndValue(
@@ -310,7 +310,7 @@ export class PdfExporter {
     this.renderPlanetsLower(page, font, system);
 
     currentLine = 215;
-    let blockLine = currentLine;
+    const blockLine = currentLine;
 
     if (system.star) {
       this.addPillHeader(
@@ -355,7 +355,7 @@ export class PdfExporter {
         PdfExporter.COLUMN_ONE,
         currentLine,
       );
-      let offset = light.widthOfTextAtSize(
+      const offset = light.widthOfTextAtSize(
         system.star.massInKgs.toFixed(4) + ' x 10',
         10.0,
       );
@@ -451,7 +451,7 @@ export class PdfExporter {
         PdfExporter.COLUMN_TWO,
         currentLine,
       );
-      let offset = light.widthOfTextAtSize(
+      const offset = light.widthOfTextAtSize(
         system.companionStar.massInKgs.toFixed(4) + ' x 10',
         10.0,
       );
@@ -491,34 +491,34 @@ export class PdfExporter {
     currentLine += 20;
 
     if (system.worlds?.length) {
-      let innerWorlds = system.worldsAndSatelliteWorlds.filter(
+      const innerWorlds = system.worldsAndSatelliteWorlds.filter(
         (w) => w.orbitalRadius < system.gardenZoneInnerRadius,
       );
-      let ecosphereWorlds = system.worldsAndSatelliteWorlds.filter(
+      const ecosphereWorlds = system.worldsAndSatelliteWorlds.filter(
         (w) =>
           w.orbitalRadius >= system.gardenZoneInnerRadius &&
           w.orbitalRadius < system.gardenZoneOuterRadius,
       );
-      let outerWorlds = system.worldsAndSatelliteWorlds.filter(
+      const outerWorlds = system.worldsAndSatelliteWorlds.filter(
         (w) => w.orbitalRadius >= system.gardenZoneOuterRadius,
       );
 
-      let titles = [
+      const titles = [
         i18next.t('StarSystem.common.innerZone'),
         i18next.t('StarSystem.common.ecosphere'),
         i18next.t('StarSystem.common.outerZone'),
       ];
-      let worldLists = [innerWorlds, ecosphereWorlds, outerWorlds];
+      const worldLists = [innerWorlds, ecosphereWorlds, outerWorlds];
 
       for (let i = 0; i < titles.length; i++) {
-        let worlds = worldLists[i];
-        let title = titles[i];
+        const worlds = worldLists[i];
+        const title = titles[i];
         let titleWritten = false;
 
         for (let j = 0; j < worlds.length; j++) {
-          let attributes = worlds[j].attributeList;
+          const attributes = worlds[j].attributeList;
           if (attributes.length) {
-            let block = new AttributeTwoColumnBlock(
+            const block = new AttributeTwoColumnBlock(
               attributes.map(
                 (a) =>
                   new AttributeDataValue(
@@ -612,16 +612,16 @@ export class PdfExporter {
       PdfExporter.LCARS_BLACK,
     ).writeOnPage(page, 533, 114);
 
-    let r = Math.max(
+    const r = Math.max(
       2,
       Math.sqrt(system.star?.spectralClass?.radius?.midpoint * 60),
     );
-    let starColor = rgb(
+    const starColor = rgb(
       system.star.spectralClass.colour.red / 255.0,
       system.star.spectralClass.colour.green / 255.0,
       system.star.spectralClass.colour.blue / 255.0,
     );
-    let borderColor = system.star.spectralClass.colour.isApproximatelyWhite
+    const borderColor = system.star.spectralClass.colour.isApproximatelyWhite
       ? PdfExporter.LCARS_BLACK
       : PdfExporter.LCARS_WHITE;
     page.drawCircle({
@@ -670,16 +670,16 @@ export class PdfExporter {
     }
 
     if (system.companionStar && system.companionType === CompanionType.Close) {
-      let r2 = Math.max(
+      const r2 = Math.max(
         2,
         Math.sqrt(system.companionStar?.spectralClass?.radius?.midpoint * 60),
       );
-      let starColor2 = rgb(
+      const starColor2 = rgb(
         system.companionStar.spectralClass.colour.red / 255.0,
         system.companionStar.spectralClass.colour.green / 255.0,
         system.companionStar.spectralClass.colour.blue / 255.0,
       );
-      let borderColor2 = system.companionStar.spectralClass.colour
+      const borderColor2 = system.companionStar.spectralClass.colour
         .isApproximatelyWhite
         ? PdfExporter.LCARS_BLACK
         : PdfExporter.LCARS_WHITE;
@@ -731,7 +731,7 @@ export class PdfExporter {
       }
     }
 
-    let orbits = this.findAllOrbits(system);
+    const orbits = this.findAllOrbits(system);
     let maxWorldDiameter = 50000;
     system.worlds
       ?.filter((w) => w.diameter != null)
@@ -744,23 +744,23 @@ export class PdfExporter {
       .forEach(
         (w) => (smallWorldDiameter = Math.min(w.diameter, smallWorldDiameter)),
       );
-    let factor =
+    const factor =
       10 / Math.sqrt(maxWorldDiameter / 1000 - smallWorldDiameter / 1000);
 
     system.worlds?.forEach((w, i) => {
-      let r = Math.max(
+      const r = Math.max(
         1,
         w.diameter == null
           ? 10
           : Math.sqrt(w.diameter / 1500 - smallWorldDiameter / 1500) * factor,
       );
-      let orbitalX = this.calculateOrbitX(w.orbitalRadius, orbits);
-      let prevOrbitalX =
+      const orbitalX = this.calculateOrbitX(w.orbitalRadius, orbits);
+      const prevOrbitalX =
         i === 0
           ? PdfExporter.COLUMN_ONE
           : this.calculateOrbitX(system.worlds[i - 1].orbitalRadius, orbits) +
             1;
-      let auWidth = orbitalX - 1 - prevOrbitalX;
+      const auWidth = orbitalX - 1 - prevOrbitalX;
 
       if (auWidth > 0) {
         page.drawSvgPath(
@@ -774,7 +774,7 @@ export class PdfExporter {
             borderWidth: 0,
           },
         );
-        let label = new TextBlock(
+        const label = new TextBlock(
           w.orbitalRadius.toFixed(2) + ' AU',
           8,
           font,
@@ -787,8 +787,8 @@ export class PdfExporter {
 
       if (w.worldClass.id === WorldClass.AsteroidBelt) {
         if (w.worldDetails instanceof AsteroidBeltDetails) {
-          let details = w.worldDetails as AsteroidBeltDetails;
-          let innermostRadius = w.orbitalRadius - details.depth / 2;
+          const details = w.worldDetails as AsteroidBeltDetails;
+          const innermostRadius = w.orbitalRadius - details.depth / 2;
           page.drawCircle({
             x: this.calculateOrbitX(innermostRadius, orbits),
             y: page.getHeight() - 130.5,
@@ -796,7 +796,7 @@ export class PdfExporter {
             color: PdfExporter.LCARS_PURPLE,
           });
 
-          let innerMidRadius = w.orbitalRadius - details.depth / 4;
+          const innerMidRadius = w.orbitalRadius - details.depth / 4;
           page.drawCircle({
             x: this.calculateOrbitX(innerMidRadius, orbits),
             y: page.getHeight() - 134.5,
@@ -804,7 +804,7 @@ export class PdfExporter {
             color: PdfExporter.LCARS_PURPLE,
           });
 
-          let outermostRadius = w.orbitalRadius + details.depth / 2;
+          const outermostRadius = w.orbitalRadius + details.depth / 2;
           page.drawCircle({
             x: this.calculateOrbitX(outermostRadius, orbits),
             y: page.getHeight() - 133.5,
@@ -812,7 +812,7 @@ export class PdfExporter {
             color: PdfExporter.LCARS_PURPLE,
           });
 
-          let outerMidRadius = w.orbitalRadius + details.depth / 4;
+          const outerMidRadius = w.orbitalRadius + details.depth / 4;
           page.drawCircle({
             x: this.calculateOrbitX(outerMidRadius, orbits),
             y: page.getHeight() - 130.5,
@@ -873,7 +873,7 @@ export class PdfExporter {
     });
 
     if (system.worlds?.length) {
-      let x =
+      const x =
         this.calculateOrbitX(
           system.worlds[system.worlds.length - 1].orbitalRadius,
           orbits,
@@ -897,8 +897,8 @@ export class PdfExporter {
       system.gardenZoneInnerRadius &&
       system.gardenZoneOuterRadius
     ) {
-      let innerX = this.calculateOrbitX(system.gardenZoneInnerRadius, orbits);
-      let outerX = this.calculateOrbitX(system.gardenZoneOuterRadius, orbits);
+      const innerX = this.calculateOrbitX(system.gardenZoneInnerRadius, orbits);
+      const outerX = this.calculateOrbitX(system.gardenZoneOuterRadius, orbits);
       page.drawSvgPath(
         'M 167.999,180.000 V 168 H' + (innerX - 1).toFixed(2) + ' V 180 z',
         {
@@ -906,7 +906,7 @@ export class PdfExporter {
           borderWidth: 0,
         },
       );
-      let innerText = new TextBlock(
+      const innerText = new TextBlock(
         'INNER ZONE',
         6,
         font,
@@ -927,7 +927,7 @@ export class PdfExporter {
           borderWidth: 0,
         },
       );
-      let ecoText = new TextBlock(
+      const ecoText = new TextBlock(
         'ECOSPHERE',
         6,
         font,
@@ -949,7 +949,7 @@ export class PdfExporter {
           borderWidth: 0,
         },
       );
-      let outerText = new TextBlock(
+      const outerText = new TextBlock(
         'OUTER ZONE',
         6,
         font,
@@ -972,7 +972,7 @@ export class PdfExporter {
       system.worlds?.length &&
       system.worlds[0].worldClass.id === WorldClass.AsteroidBelt
     ) {
-      let belt = system.worlds[0];
+      const belt = system.worlds[0];
       if (belt.worldDetails instanceof AsteroidBeltDetails) {
         orbits.push(
           belt.orbitalRadius -
@@ -985,7 +985,7 @@ export class PdfExporter {
       system.worlds[system.worlds.length - 1].worldClass.id ===
         WorldClass.AsteroidBelt
     ) {
-      let belt = system.worlds[system.worlds.length - 1];
+      const belt = system.worlds[system.worlds.length - 1];
       if (belt.worldDetails instanceof AsteroidBeltDetails) {
         orbits.push(
           belt.orbitalRadius +
@@ -1011,9 +1011,9 @@ export class PdfExporter {
 
   calculateOrbitX(orbitInAus: number, orbits: number[]) {
     if (orbits?.length) {
-      let firstOrbitInAus = orbits[0];
-      let firstOrbit = Math.log1p(firstOrbitInAus);
-      let lastOrbit = Math.log1p(orbits[orbits.length - 1]);
+      const firstOrbitInAus = orbits[0];
+      const firstOrbit = Math.log1p(firstOrbitInAus);
+      const lastOrbit = Math.log1p(orbits[orbits.length - 1]);
 
       return (
         PdfExporter.COLUMN_ONE +
@@ -1034,10 +1034,10 @@ export class PdfExporter {
     start: number,
     end: number,
   ) {
-    let lineHeight = 18;
-    let textWidth = font.widthOfTextAtSize(headerText.toUpperCase(), 18);
-    let r = lineHeight / 2;
-    let offset = r * 1.2;
+    const lineHeight = 18;
+    const textWidth = font.widthOfTextAtSize(headerText.toUpperCase(), 18);
+    const r = lineHeight / 2;
+    const offset = r * 1.2;
 
     page.drawCircle({
       x: start + r,
@@ -1106,7 +1106,7 @@ export class PdfExporter {
 
   async addLcarsHeaderToPage(page: PDFPage, text: string, font: PDFFont) {
     text = text.toLocaleUpperCase();
-    let width = font.widthOfTextAtSize(text, 18.0);
+    const width = font.widthOfTextAtSize(text, 18.0);
     page.drawRectangle({
       x: 564 - (width + 8),
       y: page.getHeight() - 45,
@@ -1144,11 +1144,11 @@ export class PdfExporter {
       color: PdfExporter.LCARS_PURPLE,
     });
 
-    let systems = sector.sortedSystems;
+    const systems = sector.sortedSystems;
     systems.forEach((s) => {
-      let z = (s.sectorCoordinates.z / 20) * 0.6 + 0.4;
-      let baseColour = s.star.spectralClass.colour;
-      let colour = baseColour.blend(new SimpleColor(255, 255, 255), 1 - z);
+      const z = (s.sectorCoordinates.z / 20) * 0.6 + 0.4;
+      const baseColour = s.star.spectralClass.colour;
+      const colour = baseColour.blend(new SimpleColor(255, 255, 255), 1 - z);
       let borderColour = colour;
       if (colour.isApproximatelyWhite) {
         borderColour = SimpleColor.from('#666666').blend(
@@ -1160,10 +1160,13 @@ export class PdfExporter {
       let r = Math.max(1, Math.sqrt(s.star.spectralClass.radius.midpoint * 35));
 
       if (s.isBinary) {
-        let r1 = r * 0.75;
+        const r1 = r * 0.75;
 
-        let baseColour2 = s.companionStar.spectralClass.colour;
-        let colour2 = baseColour2.blend(new SimpleColor(255, 255, 255), 1 - z);
+        const baseColour2 = s.companionStar.spectralClass.colour;
+        const colour2 = baseColour2.blend(
+          new SimpleColor(255, 255, 255),
+          1 - z,
+        );
         let borderColour2 = colour2;
         if (colour2.isApproximatelyWhite) {
           borderColour2 = SimpleColor.from('#666666').blend(
@@ -1250,7 +1253,7 @@ export class PdfExporter {
         borderWidth: 0.75,
       });
 
-      let sectorText = s.friendlyName
+      const sectorText = s.friendlyName
         ? s.friendlyName.toLocaleUpperCase()
         : s.id;
       page.drawText(sectorText, {

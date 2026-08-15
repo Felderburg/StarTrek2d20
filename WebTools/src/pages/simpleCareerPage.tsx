@@ -41,7 +41,7 @@ const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({
   };
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,
@@ -57,11 +57,11 @@ const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({
     store.dispatch(addCharacterTalent(talentModel, StepContext.Career));
   }, [talent, talentModel]);
 
-  let instruction =
+  const instruction =
     character.type === CharacterType.Child
       ? 'CareerLength.instruction.child'
       : 'CareerLength.instruction.cadet';
-  let valueText =
+  const valueText =
     character.type === CharacterType.Child
       ? 'Value.childEducation.text'
       : 'Value.careerLength.young.text';

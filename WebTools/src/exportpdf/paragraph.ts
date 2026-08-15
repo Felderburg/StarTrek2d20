@@ -59,14 +59,14 @@ export class Line {
   }
   append(block: TextBlock) {
     if (this.blocks.length) {
-      let lastBlock = this.blocks[this.blocks.length - 1];
+      const lastBlock = this.blocks[this.blocks.length - 1];
       if (
         block.font === lastBlock.font &&
         block.fontSize === lastBlock.fontSize &&
         block.colour?.asHex() === lastBlock.colour?.asHex() &&
         block.descender === lastBlock.descender
       ) {
-        let newBlock = TextBlock.create(
+        const newBlock = TextBlock.create(
           lastBlock.text + block.text,
           new FontSpecification(block.font, block.fontSize),
           block.descender,
@@ -102,7 +102,7 @@ export class Line {
     } else {
       const result = this.column.advanceToNextColumn(this.page);
       if (result) {
-        let location = result.column.translatedStart(result.page);
+        const location = result.column.translatedStart(result.page);
         return new Line(
           location,
           result.page,
@@ -158,7 +158,7 @@ export class Paragraph {
 
   get startColumn(): Column {
     if (this.lines?.length) {
-      let firstLine = this.lines[0];
+      const firstLine = this.lines[0];
       return firstLine.column;
     } else {
       return this.column;
@@ -167,7 +167,7 @@ export class Paragraph {
 
   get endColumn(): Column {
     if (this.lines?.length) {
-      let lastLine = this.lines[this.lines.length - 1];
+      const lastLine = this.lines[this.lines.length - 1];
       return lastLine.column;
     } else {
       return this.column;
@@ -176,7 +176,7 @@ export class Paragraph {
 
   get endPage(): PDFPage {
     if (this.lines?.length) {
-      let lastLine = this.lines[this.lines.length - 1];
+      const lastLine = this.lines[this.lines.length - 1];
       return lastLine.page;
     } else {
       return this.page;
@@ -185,7 +185,7 @@ export class Paragraph {
 
   private currentLine() {
     if (this.lines.length === 0) {
-      let column = this.column;
+      const column = this.column;
       let start = this.start;
       if (start == null) {
         start = column.translatedStart(this.page);
@@ -200,8 +200,8 @@ export class Paragraph {
     if (this.lines?.length === 1) {
       return false;
     } else if (this.lines?.length) {
-      let firstLine = this.lines[0];
-      let lastLine = this.lines[this.lines.length - 1];
+      const firstLine = this.lines[0];
+      const lastLine = this.lines[this.lines.length - 1];
 
       return !(
         firstLine.column.start.x === lastLine.column.start.x &&
@@ -229,7 +229,7 @@ export class Paragraph {
       fontSpecification = font as FontSpecification;
     } else {
       options = font as FontOptions;
-      let pdfFont = this.fontLibrary.fontByType(options.fontType);
+      const pdfFont = this.fontLibrary.fontByType(options.fontType);
       fontSpecification = new FontSpecification(pdfFont, options.size);
     }
     this.lines = this.createLines(
@@ -253,15 +253,15 @@ export class Paragraph {
 
   // Provide the remaining column area "underneath" the paragraph.
   nextColumn() {
-    let bottom = this.bottom;
-    let column = this.endColumn;
+    const bottom = this.bottom;
+    const column = this.endColumn;
     return column?.bottomAfter(bottom.y - column.start.y);
   }
 
   nextArea(currentPage: PDFPage, minimumHeight?: number): PageArea | undefined {
     if (this.lines?.length) {
-      let column = this.nextColumn();
-      let page = this.lines[this.lines.length - 1].page;
+      const column = this.nextColumn();
+      const page = this.lines[this.lines.length - 1].page;
 
       if (minimumHeight != null) {
         return column.columnWithAtLeast(minimumHeight, page);
@@ -284,8 +284,8 @@ export class Paragraph {
       );
 
       if (newLocation && line.column) {
-        let currentColumn = line.column;
-        let newLine = new Line(
+        const currentColumn = line.column;
+        const newLine = new Line(
           newLocation,
           this.endPage,
           currentColumn,
@@ -316,7 +316,7 @@ export class Paragraph {
 
   get bottom() {
     if (this.lines.length > 0) {
-      let line = this.lines[this.lines.length - 1];
+      const line = this.lines[this.lines.length - 1];
       return this.column.untranslateLocation(this.page, line.bottom());
     } else {
       return this.column.start;
@@ -330,11 +330,11 @@ export class Paragraph {
     page: PDFPage,
     colour?: SimpleColor,
   ) {
-    let result: Line[] = [...this.lines];
+    const result: Line[] = [...this.lines];
     let fontSpec = initialFont;
     let fontType = options?.fontType;
     if (result.length === 0) {
-      let temp = this.currentLine();
+      const temp = this.currentLine();
       if (temp != null) {
         result.push(temp);
       }
@@ -343,7 +343,7 @@ export class Paragraph {
     let tokens = textTokenizer(text);
     let skipSpace = false;
     for (let t = 0; t < tokens.length; t++) {
-      let token = tokens[t];
+      const token = tokens[t];
       if (token === '_' || token === '**') {
         skipSpace = true;
         if (options != null) {
@@ -351,13 +351,13 @@ export class Paragraph {
             fontType = options.fontType;
             fontSpec = initialFont;
           } else if (token === '**') {
-            let font = this.fontLibrary.fontByType(FontType.Bold);
+            const font = this.fontLibrary.fontByType(FontType.Bold);
             if (font != null) {
               fontType = FontType.Bold;
               fontSpec = new FontSpecification(font, options.size);
             }
           } else if (token === '_') {
-            let font = this.fontLibrary.fontByType(FontType.Italic);
+            const font = this.fontLibrary.fontByType(FontType.Italic);
             if (font != null) {
               fontType = FontType.Italic;
               fontSpec = new FontSpecification(font, options.size);
@@ -365,7 +365,7 @@ export class Paragraph {
           }
         }
       } else if (token === CHALLENGE_DICE_NOTATION) {
-        let block = TextBlock.create(
+        const block = TextBlock.create(
           'A',
           new FontSpecification(
             this.fontLibrary.fontByType(FontType.Symbol),
@@ -384,7 +384,7 @@ export class Paragraph {
             line.append(block);
 
             // maybe the latest changes required a column change
-            let newLine = line.moveToNextColumnIfNecessary();
+            const newLine = line.moveToNextColumnIfNecessary();
             if (newLine == null) {
               // skip it
             } else if (newLine !== line) {
@@ -395,7 +395,7 @@ export class Paragraph {
           }
         }
       } else {
-        let words = token.split(/\s+/);
+        const words = token.split(/\s+/);
         for (let i = 0; i < words.length; i++) {
           let line = result[result.length - 1];
 
@@ -406,7 +406,7 @@ export class Paragraph {
             } else {
               skipSpace = false;
             }
-            let block = TextBlock.create(word, fontSpec, false, colour);
+            const block = TextBlock.create(word, fontSpec, false, colour);
 
             if (block.width < line.availableWidth()) {
               line.append(block);
@@ -425,7 +425,7 @@ export class Paragraph {
             }
 
             // maybe the latest changes required a column change
-            let newLine = line.moveToNextColumnIfNecessary();
+            const newLine = line.moveToNextColumnIfNecessary();
             if (newLine != null && newLine !== line) {
               result[result.length - 1] = newLine;
             }

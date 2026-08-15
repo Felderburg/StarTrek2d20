@@ -680,7 +680,7 @@ class EyeBrowCatalog {
   }
 
   getEyeBrows(token: TokenModel) {
-    let result = this.getBrow(
+    const result = this.getBrow(
       token.eyeType,
       token.species,
       token.skinColor,

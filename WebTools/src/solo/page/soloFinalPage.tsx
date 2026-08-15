@@ -53,7 +53,7 @@ const SoloFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
   }
 
   const assignmentOptions = () => {
-    let result = [
+    const result = [
       new DropDownElement('', t('Common.text.select')),
       new DropDownElement('other', 'Other'),
     ];
@@ -85,7 +85,7 @@ const SoloFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
           setLoadingExport(false);
 
           setTimeout(() => {
-            let c = store.getState().character.currentCharacter;
+            const c = store.getState().character.currentCharacter;
             CharacterSheetDialog.show(
               CharacterSheetRegistry.getCharacterSheets(c),
               'sta-solo-character',
@@ -98,7 +98,7 @@ const SoloFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
   };
 
   const rankOptions = () => {
-    let result = [
+    const result = [
       new DropDownElement('', t('Common.text.select')),
       new DropDownElement('other', 'Other'),
     ];
@@ -122,7 +122,7 @@ const SoloFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
       setShowRankOther(true);
     } else {
       if (id !== '') {
-        let rank = RanksHelper.instance().getRank(id as Rank);
+        const rank = RanksHelper.instance().getRank(id as Rank);
         store.dispatch(setCharacterRank(rank.name, id as Rank));
       }
 
@@ -145,7 +145,7 @@ const SoloFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
       if (showAssignmentOther) {
         setShowAssignmentOther(false);
       }
-      let role = RolesHelper.instance.getSoloRole(assignment as Role);
+      const role = RolesHelper.instance.getSoloRole(assignment as Role);
       if (role) {
         store.dispatch(setCharacterAssignment(assignment as Role));
       }
@@ -158,7 +158,7 @@ const SoloFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
 
   const showViewPage = () => {
     setTimeout(() => {
-      let c = store.getState().character.currentCharacter;
+      const c = store.getState().character.currentCharacter;
       const value = marshaller.encodeSoloCharacter(c);
       window.open('/view?s=' + value, '_blank');
     });

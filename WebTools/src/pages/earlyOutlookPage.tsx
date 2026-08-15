@@ -221,7 +221,7 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
     if (randomUpbringing != null) {
       settingsList = [UpbringingsHelper.getUpbringing(randomUpbringing)];
     }
-    let settingRows = settingsList.map((e, i) => toTableRow(e, i));
+    const settingRows = settingsList.map((e, i) => toTableRow(e, i));
 
     return (
       <>
@@ -281,7 +281,7 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
     if (randomCaste != null) {
       settingsList = [UpbringingsHelper.getCaste(randomCaste)];
     }
-    let settingRows = settingsList.map((e, i) => toTableRow(e, i));
+    const settingRows = settingsList.map((e, i) => toTableRow(e, i));
 
     return (
       <>
@@ -337,7 +337,7 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
     if (randomAsperation != null) {
       settingsList = [UpbringingsHelper.getAspiration(randomAsperation)];
     }
-    let settingRows = settingsList.map((e, i) => toTableRow(e, i));
+    const settingRows = settingsList.map((e, i) => toTableRow(e, i));
 
     return (
       <>

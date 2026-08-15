@@ -16,7 +16,10 @@ export class PropulsionSystemModel {
   }
 
   get localizedName() {
-    let key = makeKey('PropulsionSystemType.', PropulsionSystemType[this.type]);
+    const key = makeKey(
+      'PropulsionSystemType.',
+      PropulsionSystemType[this.type],
+    );
     return i18next.t(key);
   }
   static readonly types = [
@@ -29,12 +32,12 @@ export class PropulsionSystemModel {
   ];
 
   static getByType(type: PropulsionSystemType) {
-    let result = this.types.filter((t) => t.type === type);
+    const result = this.types.filter((t) => t.type === type);
     return result.length ? result[0] : undefined;
   }
 
   static getByTypeName(type: string) {
-    let result = this.types.filter(
+    const result = this.types.filter(
       (t) => PropulsionSystemType[t.type] === type,
     );
     return result.length ? result[0] : undefined;

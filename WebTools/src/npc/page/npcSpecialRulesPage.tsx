@@ -89,7 +89,7 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({ character }) => {
       } else {
         let count = 0;
         temp = temp.filter((t) => {
-          let result =
+          const result =
             t.talent !== rankedTalent.name || count + 1 !== rankedTalent.rank;
           if (t.name === rankedTalent.name) {
             count++;
@@ -130,14 +130,14 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({ character }) => {
     store.dispatch(setNpcCharacterTalents(temp));
   };
 
-  let talents = character
+  const talents = character
     ? TalentsHelper.getAllAvailableTalentsForNpc(character)
     : [];
 
-  let rankedTalents = [];
+  const rankedTalents = [];
   talents.forEach((t) => {
     if (t.maxRank > 1 || isMultiSelectionTalent(t)) {
-      let count =
+      const count =
         character.npcGenerationStep?.talents?.filter((s) => s.talent === t.name)
           ?.length ?? 0;
       for (let i = 0; i < count + 1; i++) {

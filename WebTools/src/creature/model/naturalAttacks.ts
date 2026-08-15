@@ -176,7 +176,9 @@ export class NaturalAttacksHelper {
   }
 
   getTypeByIdName(name: string) {
-    let item = this.allAttackTypes().filter((a) => NaturalAttacks[a] === name);
+    const item = this.allAttackTypes().filter(
+      (a) => NaturalAttacks[a] === name,
+    );
     return item?.length ? item[0] : undefined;
   }
 }

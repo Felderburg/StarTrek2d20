@@ -11,7 +11,7 @@ class SystemMapUpperView extends SystemMapView {
     const { system } = this.props;
     const purple = '#906F9A';
 
-    let r = Math.max(
+    const r = Math.max(
       2,
       Math.sqrt(system.star?.spectralClass?.radius?.midpoint * 200),
     );
@@ -19,11 +19,11 @@ class SystemMapUpperView extends SystemMapView {
     let star2 = null;
     let companionGradient = null;
 
-    let orbits = this.findAllOrbits();
+    const orbits = this.findAllOrbits();
 
     if (system.companionStar) {
       if (system.companionType === CompanionType.Close) {
-        let r2 = Math.max(
+        const r2 = Math.max(
           2,
           Math.sqrt(
             system.companionStar?.spectralClass?.radius?.midpoint * 200,
@@ -157,13 +157,13 @@ class SystemMapUpperView extends SystemMapView {
       .forEach(
         (w) => (smallWorldDiameter = Math.min(w.diameter, smallWorldDiameter)),
       );
-    let factor =
+    const factor =
       18 / Math.sqrt(maxWorldDiameter / 1000 - smallWorldDiameter / 1000);
 
-    let verticalLines = system.worlds?.map((w, i) => {
-      let x = this.calculateOrbitX(w.orbitalRadius, orbits);
-      let y1 = this.calculateThirtyDegreeY(x);
-      let y2 = 620;
+    const verticalLines = system.worlds?.map((w, i) => {
+      const x = this.calculateOrbitX(w.orbitalRadius, orbits);
+      const y1 = this.calculateThirtyDegreeY(x);
+      const y2 = 620;
       return (
         <path
           d={
@@ -182,17 +182,17 @@ class SystemMapUpperView extends SystemMapView {
       );
     });
 
-    let worldGradients = system.worlds
+    const worldGradients = system.worlds
       ?.filter((w) => w.worldClass.id !== WorldClass.AsteroidBelt)
       .map((w, i) => {
-        let r = Math.max(
+        const r = Math.max(
           2,
           w.diameter == null
             ? 10
             : Math.sqrt(w.diameter / 1000 - smallWorldDiameter / 1000) * factor,
         );
-        let orbitalX = this.calculateOrbitX(w.orbitalRadius, orbits);
-        let y = this.calculateThirtyDegreeY(orbitalX);
+        const orbitalX = this.calculateOrbitX(w.orbitalRadius, orbits);
+        const y = this.calculateThirtyDegreeY(orbitalX);
 
         return (
           <radialGradient
@@ -209,37 +209,37 @@ class SystemMapUpperView extends SystemMapView {
         );
       });
 
-    let orbitalArcs = system.worlds?.map((w, i) => {
-      let x = this.calculateOrbitX(w.orbitalRadius, orbits);
-      let y = this.calculateThirtyDegreeY(x);
+    const orbitalArcs = system.worlds?.map((w, i) => {
+      const x = this.calculateOrbitX(w.orbitalRadius, orbits);
+      const y = this.calculateThirtyDegreeY(x);
 
-      let radiusY = this.calculateArcRadiusY(x - 35, y - 35);
-      let radiusX = radiusY * 5;
+      const radiusY = this.calculateArcRadiusY(x - 35, y - 35);
+      const radiusX = radiusY * 5;
 
       if (w.worldClass.id === WorldClass.AsteroidBelt) {
-        let details = w.worldDetails as AsteroidBeltDetails;
+        const details = w.worldDetails as AsteroidBeltDetails;
 
-        let beltWidth = details.depth;
-        let beltStartX = this.calculateOrbitX(
+        const beltWidth = details.depth;
+        const beltStartX = this.calculateOrbitX(
           w.orbitalRadius - beltWidth * 0.5,
           orbits,
         );
-        let beltEndX = this.calculateOrbitX(
+        const beltEndX = this.calculateOrbitX(
           w.orbitalRadius + beltWidth * 0.5,
           orbits,
         );
 
-        let allX = [beltStartX, beltEndX];
+        const allX = [beltStartX, beltEndX];
         if (beltEndX - beltStartX > 5) {
           for (let i = beltStartX + 2; i < beltEndX; i += 2) {
             allX.push(i);
           }
         }
 
-        let arcs = allX.map((x1, index) => {
-          let y1 = this.calculateThirtyDegreeY(x1);
-          let radiusY1 = this.calculateArcRadiusY(x1 - 35, y1 - 35);
-          let radiusX1 = radiusY1 * 5;
+        const arcs = allX.map((x1, index) => {
+          const y1 = this.calculateThirtyDegreeY(x1);
+          const radiusY1 = this.calculateArcRadiusY(x1 - 35, y1 - 35);
+          const radiusX1 = radiusY1 * 5;
 
           return (
             <path
@@ -283,12 +283,12 @@ class SystemMapUpperView extends SystemMapView {
       }
     });
 
-    let worldsCircles = system.worlds
+    const worldsCircles = system.worlds
       ?.filter((w) => w.worldClass.id !== WorldClass.AsteroidBelt)
       .map((w, i) => {
-        let x = this.calculateOrbitX(w.orbitalRadius, orbits);
-        let y = this.calculateThirtyDegreeY(x);
-        let r = Math.max(
+        const x = this.calculateOrbitX(w.orbitalRadius, orbits);
+        const y = this.calculateThirtyDegreeY(x);
+        const r = Math.max(
           2,
           w.diameter == null
             ? 10
@@ -451,8 +451,8 @@ class SystemMapUpperView extends SystemMapView {
   }
 
   createRandomDashPattern() {
-    let dashCount = Math.round(Math.random() * 10) + 5;
-    let dashNumbers = [];
+    const dashCount = Math.round(Math.random() * 10) + 5;
+    const dashNumbers = [];
     for (let i = 0; i < dashCount; i++) {
       dashNumbers.push(2);
       dashNumbers.push(Math.round(Math.random() * 19) * 3);
@@ -461,17 +461,17 @@ class SystemMapUpperView extends SystemMapView {
   }
 
   calculateArcY(x: number, radiusX: number, radiusY: number) {
-    let ySquared = radiusY * radiusY * (1 - (x * x) / (radiusX * radiusX));
+    const ySquared = radiusY * radiusY * (1 - (x * x) / (radiusX * radiusX));
     return Math.sqrt(ySquared);
   }
 
   calculateArcX(y: number, radiusX: number, radiusY: number) {
-    let xSquared = radiusX * radiusX * (1 - (y * y) / (radiusY * radiusY));
+    const xSquared = radiusX * radiusX * (1 - (y * y) / (radiusY * radiusY));
     return Math.sqrt(xSquared);
   }
 
   createArcPath(radiusX: number, radiusY: number) {
-    let y = Math.abs(this.calculateArcY(7 - 35, radiusX, radiusY));
+    const y = Math.abs(this.calculateArcY(7 - 35, radiusX, radiusY));
     let y2 = 9;
     let x2 = Math.abs(this.calculateArcX(y2 - 35, radiusX, radiusY)) + 35;
 

@@ -45,7 +45,7 @@ export class DivisionColors {
     } else if (
       [UniformEra.Discovery32, UniformEra.StarfleetAcademy].includes(era)
     ) {
-      let result = [
+      const result = [
         new NamedColor(i18next.t('Division.command'), '#821217'),
         new NamedColor(i18next.t('Division.science'), '#174b89'),
         new NamedColor(i18next.t('Division.operations'), '#d8a91e'),
@@ -140,11 +140,11 @@ export class DivisionColors {
   }
 
   static getDivision(era: UniformEra, color: string) {
-    let index = this.indexOf(era, color);
+    const index = this.indexOf(era, color);
     if (!this.isDivisionColorsSupported(era)) {
       return null;
     } else if (era === UniformEra.MonsterMaroon) {
-      let colours = [
+      const colours = [
         'Command',
         'Science',
         'HelmEngineering',
@@ -155,13 +155,13 @@ export class DivisionColors {
       ];
       return index >= 0 ? colours[index] : null;
     } else if (era === UniformEra.Discovery23) {
-      let colours = ['Command', 'Science', 'Operations', 'Medical'];
+      const colours = ['Command', 'Science', 'Operations', 'Medical'];
       return index >= 0 ? colours[index] : null;
     } else if (era === UniformEra.Discovery32) {
-      let colours = ['Command', 'Science', 'Operations', 'Medical'];
+      const colours = ['Command', 'Science', 'Operations', 'Medical'];
       return index >= 0 ? colours[index] : null;
     } else if (era === UniformEra.StarfleetAcademy) {
-      let colours = [
+      const colours = [
         'Command',
         'Science',
         'Operations',
@@ -170,7 +170,13 @@ export class DivisionColors {
       ];
       return index >= 0 ? colours[index] : null;
     } else if (era === UniformEra.StrangeNewWorlds) {
-      let colours = ['Command', 'Science', 'Medical', 'Nursing', 'Operations'];
+      const colours = [
+        'Command',
+        'Science',
+        'Medical',
+        'Nursing',
+        'Operations',
+      ];
       return index >= 0 ? colours[index] : null;
     } else {
       return index >= 0 ? Division[index] : null;

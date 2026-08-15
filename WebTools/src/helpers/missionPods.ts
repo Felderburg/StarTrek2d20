@@ -332,7 +332,7 @@ export class MissionPodHelper {
   getMissionPodByName(name: string, version: number) {
     let result = undefined;
     const list = version === 1 ? this._missionPods : this._missionPods2e;
-    for (let id in list) {
+    for (const id in list) {
       if (MissionPod[id] === name) {
         result = list[id];
         break;
@@ -342,12 +342,12 @@ export class MissionPodHelper {
   }
 
   getMissionPods(starship: Starship) {
-    let missionPods: MissionPodModel[] = [];
+    const missionPods: MissionPodModel[] = [];
 
     const list =
       starship.version === 1 ? this._missionPods : this._missionPods2e;
-    for (var pod in list) {
-      let p = list[pod];
+    for (const pod in list) {
+      const p = list[pod];
       if (p.isPrerequisitesFulfilled(starship)) {
         missionPods.push(p);
       }

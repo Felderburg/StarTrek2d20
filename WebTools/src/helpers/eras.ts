@@ -83,9 +83,9 @@ class Eras {
   }
 
   getEras() {
-    let eras: EraModel[] = [];
-    for (let era in this._eras) {
-      let er = this._eras[era];
+    const eras: EraModel[] = [];
+    for (const era in this._eras) {
+      const er = this._eras[era];
       eras.push(er);
     }
 
@@ -96,7 +96,7 @@ class Eras {
     return this._eras[era];
   }
   getEraByName(name: string): Era | null {
-    let results = Object.keys(this._eras)
+    const results = Object.keys(this._eras)
       .map((e) => this._eras[e].id)
       .filter((e) => Era[e] === name);
     if (results.length === 1) {

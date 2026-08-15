@@ -35,7 +35,7 @@ export class AssetTypes {
   }
 
   getTypeByTypeName(name: string) {
-    let results = this.types.filter((t) => AssetType[t.type] === name);
+    const results = this.types.filter((t) => AssetType[t.type] === name);
     return results.length === 1 ? results[0] : null;
   }
 }

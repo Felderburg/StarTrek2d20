@@ -56,22 +56,22 @@ const _CharacterSheetDialog: React.FC<ICharacterSheetDialogProperties> = ({
   const toggleTag = (tag: SheetTag, active: boolean) => {
     if (active) {
       if (tags.indexOf(tag) < 0) {
-        let newTags = [...tags];
+        const newTags = [...tags];
         newTags.push(tag);
         setTags(newTags);
 
-        let sheets = filteredSheets(newTags);
+        const sheets = filteredSheets(newTags);
         if (sheets.length && sheets.indexOf(selection) < 0) {
           setSelection(sheets[0]);
         }
       }
     } else {
       if (tags.indexOf(tag) >= 0) {
-        let newTags = [...tags];
+        const newTags = [...tags];
         newTags.splice(newTags.indexOf(tag), 1);
         setTags(newTags);
 
-        let sheets = filteredSheets(newTags);
+        const sheets = filteredSheets(newTags);
         if (sheets.length && sheets.indexOf(selection) < 0) {
           setSelection(sheets[0]);
         }
@@ -89,7 +89,7 @@ const _CharacterSheetDialog: React.FC<ICharacterSheetDialogProperties> = ({
     });
   };
 
-  let allTags = [];
+  const allTags = [];
   sheets.forEach((s) =>
     s.getTags().forEach((t) => {
       if (allTags.indexOf(t) < 0) {
@@ -102,7 +102,7 @@ const _CharacterSheetDialog: React.FC<ICharacterSheetDialogProperties> = ({
       t(makeKey('SheetTag.', SheetTag[t2])),
     ),
   );
-  let filtered = filteredSheets(tags);
+  const filtered = filteredSheets(tags);
 
   const sheetList = filtered.map((s, i) => {
     const selected =
@@ -167,8 +167,8 @@ const _CharacterSheetDialog: React.FC<ICharacterSheetDialogProperties> = ({
 
 class CharacterSheetDialogControl {
   show(sheets: ICharacterSheet[], suffix: string, c: Construct) {
-    let browserLanguage = getNavigatorLanguage();
-    let filteredSheets = sheets.filter(
+    const browserLanguage = getNavigatorLanguage();
+    const filteredSheets = sheets.filter(
       (s) =>
         s.getLanguage() === 'en' ||
         browserLanguage.indexOf(s.getLanguage()) === 0,

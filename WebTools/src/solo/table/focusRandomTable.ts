@@ -3,7 +3,7 @@ import { Department } from '../../helpers/department';
 
 const FocusCommandRandomTable = () => {
   const tableRoll = D20.roll();
-  let roll = D20.roll();
+  const roll = D20.roll();
 
   if (tableRoll <= 10) {
     switch (roll) {
@@ -98,7 +98,7 @@ const FocusCommandRandomTable = () => {
 
 const FocusConnRandomTable = () => {
   const tableRoll = D20.roll();
-  let roll = D20.roll();
+  const roll = D20.roll();
 
   if (tableRoll <= 10) {
     switch (roll) {
@@ -193,7 +193,7 @@ const FocusConnRandomTable = () => {
 
 const FocusSecurityRandomTable = () => {
   const tableRoll = D20.roll();
-  let roll = D20.roll();
+  const roll = D20.roll();
 
   if (tableRoll <= 10) {
     switch (roll) {
@@ -288,7 +288,7 @@ const FocusSecurityRandomTable = () => {
 
 const FocusEngineeringRandomTable = () => {
   const tableRoll = D20.roll();
-  let roll = D20.roll();
+  const roll = D20.roll();
 
   if (tableRoll <= 10) {
     switch (roll) {
@@ -383,7 +383,7 @@ const FocusEngineeringRandomTable = () => {
 
 const FocusScienceRandomTable = () => {
   const tableRoll = D20.roll();
-  let roll = D20.roll();
+  const roll = D20.roll();
 
   if (tableRoll <= 10) {
     switch (roll) {
@@ -478,7 +478,7 @@ const FocusScienceRandomTable = () => {
 
 const FocusMedicineRandomTable = () => {
   const tableRoll = D20.roll();
-  let roll = D20.roll();
+  const roll = D20.roll();
 
   if (tableRoll <= 10) {
     switch (roll) {
@@ -576,7 +576,7 @@ export const FocusRandomTableWithHints = (
   hints: string[] = [],
 ) => {
   if (D20.roll() <= 10 && hints.length > 0) {
-    let i = Math.floor(hints.length * Math.random());
+    const i = Math.floor(hints.length * Math.random());
     return hints[i];
   } else {
     return FocusRandomTable(skill);

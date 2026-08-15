@@ -276,14 +276,14 @@ export class RankModel {
   }
 
   get localizedName() {
-    let key = makeKey('Rank.', Rank[this.id], '.name');
-    let result = i18next.t(key);
+    const key = makeKey('Rank.', Rank[this.id], '.name');
+    const result = i18next.t(key);
     return key === result ? this.name : result;
   }
 
   get localizedAbbreviation() {
-    let key = makeKey('Rank.', Rank[this.id], '.abbrev');
-    let result = i18next.t(key);
+    const key = makeKey('Rank.', Rank[this.id], '.abbrev');
+    const result = i18next.t(key);
     return key === result ? this.abbreviation : result;
   }
 }
@@ -1527,7 +1527,7 @@ export class RanksHelper {
   }
 
   getSortedRanks(character: Character, ignorePrerequisites?: boolean) {
-    let result = this.getRanks(character, ignorePrerequisites);
+    const result = this.getRanks(character, ignorePrerequisites);
 
     result.sort((r1, r2) => {
       return r2.levelValue - r1.levelValue;
@@ -1537,7 +1537,7 @@ export class RanksHelper {
   }
 
   getRank(rank: Rank) {
-    let ranks = this._ranks.filter((r) => r.id === rank);
+    const ranks = this._ranks.filter((r) => r.id === rank);
     return ranks?.length ? ranks[0] : null;
   }
 
@@ -1586,11 +1586,11 @@ export class RanksHelper {
 
 export const getNameAndShortRankOf = (character: Character) => {
   if (character.rank) {
-    let rank =
+    const rank =
       character.rank.id != null
         ? RanksHelper.instance().getRank(character.rank.id)
         : RanksHelper.instance().getRankByName(character.rank?.name);
-    let abbreviation =
+    const abbreviation =
       rank && rank.localizedAbbreviation ? rank.localizedAbbreviation : '';
     return abbreviation + ' ' + character.name;
   } else {

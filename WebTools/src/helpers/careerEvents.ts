@@ -61,25 +61,25 @@ export class CareerEventModel {
 
   get localizedName() {
     const key = 'CareerEvent.' + this.prefix + this.roll + '.name';
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.name : result;
   }
 
   get localizedDescription() {
     const key = 'CareerEvent.' + this.prefix + this.roll + '.description';
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.description : result;
   }
 
   get localizedFocusSuggestion() {
     const key = 'CareerEvent.' + this.prefix + this.roll + '.focusSuggestion';
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.focusSuggestions : result;
   }
 
   get localizedTraitDescription() {
     const key = 'CareerEvent.' + this.prefix + this.roll + '.traitDescription';
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.traitDescription : result;
   }
 
@@ -92,7 +92,7 @@ export class CareerEventModel {
   }
 
   get sources() {
-    let result: Source[] = [];
+    const result: Source[] = [];
     this.prerequisites
       .filter((p) => p instanceof SourceCharacterPrerequisite)
       .map((s) => s as SourceCharacterPrerequisite)
@@ -1539,7 +1539,7 @@ class CareerEvents {
   ];
 
   getSoloCareerEvents() {
-    let result = [];
+    const result = [];
     for (let i = 0; i < 20; i++) {
       result.push(this._events[i]);
     }
@@ -1557,7 +1557,7 @@ class CareerEvents {
   }
 
   getCareerEventsIncludingUnofficial(character: Character) {
-    let list = this.getCareerEvents(character);
+    const list = this.getCareerEvents(character);
     this._unofficialEvents.forEach((e) => list.push(e));
     return list.sort((e1, e2) => {
       return e1.localizedName.localeCompare(e2.localizedName);
@@ -1571,7 +1571,7 @@ class CareerEvents {
   ): CareerEventModel {
     let event = undefined;
 
-    let list = isKlingonWarrior1e(type, version)
+    const list = isKlingonWarrior1e(type, version)
       ? this._klingonEvents
       : this._events;
     list.forEach((ev) => {
@@ -1592,10 +1592,10 @@ class CareerEvents {
 
   generateEvent(character: Character): CareerEventModel {
     if (character.version === 1 || isKlingonWarriorType(character.type)) {
-      let roll = Math.floor(Math.random() * 20) + 1;
+      const roll = Math.floor(Math.random() * 20) + 1;
       let event = undefined;
 
-      let list = isKlingonWarrior1e(character.type, character.version)
+      const list = isKlingonWarrior1e(character.type, character.version)
         ? this._klingonEvents
         : this._events;
       list.forEach((ev) => {
@@ -1606,8 +1606,8 @@ class CareerEvents {
       });
       return event;
     } else {
-      let events = this.getCareerEvents(character);
-      let roll = Math.floor(Math.random() * events.length);
+      const events = this.getCareerEvents(character);
+      const roll = Math.floor(Math.random() * events.length);
       return events[roll];
     }
   }

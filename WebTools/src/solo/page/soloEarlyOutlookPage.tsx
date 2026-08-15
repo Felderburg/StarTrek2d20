@@ -161,7 +161,7 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({
     if (randomUpbringing != null) {
       settingsList = [UpbringingsHelper.getUpbringing(randomUpbringing)];
     }
-    let settingRows = settingsList.map((e, i) => toTableRow(e, i));
+    const settingRows = settingsList.map((e, i) => toTableRow(e, i));
 
     return (
       <>
@@ -218,7 +218,7 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({
     if (randomCaste != null) {
       settingsList = [UpbringingsHelper.getCaste(randomCaste)];
     }
-    let settingRows = settingsList.map((e, i) => toTableRow(e, i));
+    const settingRows = settingsList.map((e, i) => toTableRow(e, i));
 
     return (
       <>
@@ -273,7 +273,7 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({
     if (randomAsperation != null) {
       settingsList = [UpbringingsHelper.getAspiration(randomAsperation)];
     }
-    let settingRows = settingsList.map((e, i) => toTableRow(e, i));
+    const settingRows = settingsList.map((e, i) => toTableRow(e, i));
 
     return (
       <>

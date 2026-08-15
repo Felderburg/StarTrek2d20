@@ -10,8 +10,8 @@ export function hasSource(s: Source) {
 }
 
 export function hasAnySource(sources: Source[]) {
-  var result: boolean = false;
-  for (var s of sources) {
+  let result: boolean = false;
+  for (const s of sources) {
     result =
       result ||
       hasSource(s) ||

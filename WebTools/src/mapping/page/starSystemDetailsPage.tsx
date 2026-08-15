@@ -31,11 +31,11 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({
   const navigate = useNavigate();
 
   const renderWorlds = (title: string, from: number, to?: number) => {
-    let worlds = starSystem.worldsAndSatelliteWorlds.filter(
+    const worlds = starSystem.worldsAndSatelliteWorlds.filter(
       (w) => w.orbitalRadius >= from && (to == null || w.orbitalRadius < to),
     );
     if (worlds.length > 0) {
-      let list = worlds.map((w, i) => (
+      const list = worlds.map((w, i) => (
         <WorldView world={w} system={starSystem} key={'world-' + w.orbitId} />
       ));
       return (
@@ -57,7 +57,7 @@ const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({
       async ({ PdfExporter }) => {
         setLoadingExport(false);
 
-        let pdfDoc = await new PdfExporter().createStarSystemPdf(starSystem);
+        const pdfDoc = await new PdfExporter().createStarSystemPdf(starSystem);
 
         const pdfBytes = await pdfDoc.save();
         download(

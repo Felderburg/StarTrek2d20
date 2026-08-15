@@ -18,7 +18,7 @@ export default class UniformVariantRestrictions {
     divisionColor: string,
     rank: Rank,
   ) {
-    let result = [UniformVariantType.Base];
+    const result = [UniformVariantType.Base];
 
     if (uniformEra === UniformEra.MonsterMaroon) {
       if ('Medical' === DivisionColors.getDivision(uniformEra, divisionColor)) {

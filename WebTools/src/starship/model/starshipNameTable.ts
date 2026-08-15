@@ -524,7 +524,7 @@ const chooseOptions = (
     type === RandomStarshipCharacterType.Klingon ||
     isKlingonWarriorType(spaceframeType)
   ) {
-    let result = [...klingonEnterpriseEraNames];
+    const result = [...klingonEnterpriseEraNames];
     switch (era) {
       case Era.NextGeneration:
         Array.prototype.push.apply(result, klingonTngEraNames);
@@ -533,13 +533,13 @@ const chooseOptions = (
     }
     return result;
   } else if (type === RandomStarshipCharacterType.Romulan) {
-    let result = [...starshipRomulanNames];
+    const result = [...starshipRomulanNames];
     return result;
   } else if (type === RandomStarshipCharacterType.Civilian) {
-    let result = [...starshipCivilianNames];
+    const result = [...starshipCivilianNames];
     return result;
   } else {
-    let result = [...starshipEnterpriseEraNames];
+    const result = [...starshipEnterpriseEraNames];
     switch (era) {
       case Era.OriginalSeries:
         Array.prototype.push.apply(result, starshipTosEraName);
@@ -565,8 +565,8 @@ export const StarshipRandomNameTable = (
   spaceframeType?: CharacterType,
   spaceframe?: Spaceframe,
 ) => {
-  let options = chooseOptions(era, type, spaceframeType, spaceframe);
-  let index = Math.floor(Math.random() * options.length);
+  const options = chooseOptions(era, type, spaceframeType, spaceframe);
+  const index = Math.floor(Math.random() * options.length);
 
   return options[index];
 };

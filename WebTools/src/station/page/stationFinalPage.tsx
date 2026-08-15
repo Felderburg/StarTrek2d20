@@ -57,11 +57,11 @@ const StationFinalPage: React.FC<IStationPageProperties> = ({ station }) => {
                   className="w-100"
                   rows={8}
                   onChange={(ev) => {
-                    let temp = ev.target.value.split(',');
+                    const temp = ev.target.value.split(',');
                     store.dispatch(setStationTraits(temp));
                   }}
                   onBlur={(ev) => {
-                    let temp = ev.target.value.split(',');
+                    const temp = ev.target.value.split(',');
                     store.dispatch(setStationTraits(temp));
                   }}
                   value={station.traits}

@@ -19,6 +19,6 @@ export function allSystems() {
 }
 
 export function systemByName(name: string) {
-  let result = allSystems().filter((s) => System[s] === name);
+  const result = allSystems().filter((s) => System[s] === name);
   return result?.length ? result[0] : undefined;
 }

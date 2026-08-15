@@ -501,8 +501,8 @@ export class FerengiUniformPack
   }
 
   getUniformAndVariantBody(token: TokenModel) {
-    let result = FerengiBody;
-    let neck = this.getNeck(
+    const result = FerengiBody;
+    const neck = this.getNeck(
       BodyType.AverageFemale,
       token.skinColor,
       token.species,

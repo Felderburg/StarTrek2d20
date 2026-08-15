@@ -640,7 +640,7 @@ class SystemGeneration {
   };
 
   private orbitalEccentricity = () => {
-    let roll = D20.roll();
+    const roll = D20.roll();
     switch (roll) {
       case 1:
       case 2:
@@ -761,17 +761,17 @@ class SystemGeneration {
   ];
 
   generateSector(region: SpaceRegionModel, sectorType?: SpecialSectors) {
-    let count = notableSystemTable();
-    let sector = new Sector(region.prefix);
+    const count = notableSystemTable();
+    const sector = new Sector(region.prefix);
     for (let i = 0; i < count; i++) {
-      let system = this.generateStarSystem(region, sectorType);
+      const system = this.generateStarSystem(region, sectorType);
       if (system) {
         sector.systems.push(system);
       }
     }
 
-    let maxId = 250;
-    let interval = Math.round(maxId / sector.systems.length);
+    const maxId = 250;
+    const interval = Math.round(maxId / sector.systems.length);
 
     let start = 1;
     sector.systems.forEach((s) => {
@@ -824,14 +824,14 @@ class SystemGeneration {
     }
 
     if (star != null) {
-      let starSystem = new StarSystem(star);
+      const starSystem = new StarSystem(star);
       starSystem.phenomenon = phenomenon;
       starSystem.sectorCoordinates = this.generateCoordinates();
 
       if (D6.rollFace().isEffect) {
         let tries = 10;
         while (tries-- > 0) {
-          let companion = this.generateStar();
+          const companion = this.generateStar();
           if (companion != null && companion instanceof Star) {
             if ((companion as Star).mass <= star.mass) {
               starSystem.companionStar = companion;
@@ -855,7 +855,7 @@ class SystemGeneration {
   }
 
   generateStar() {
-    let spectralClass = this.rollSpectralClass();
+    const spectralClass = this.rollSpectralClass();
     if (spectralClass != null) {
       return this.generateStarDetails(spectralClass);
     } else {
@@ -864,7 +864,7 @@ class SystemGeneration {
   }
 
   generateStarDetails(spectralClass: SpectralClassModel) {
-    let subClass = this.rollSubSpectralClass();
+    const subClass = this.rollSubSpectralClass();
     let mass = null;
     let luminosity = null;
     while (mass == null) {
@@ -874,9 +874,9 @@ class SystemGeneration {
           : undefined;
       mass = this.determineMass(spectralClass, luminosity);
     }
-    let star = new Star(spectralClass, subClass, luminosity, mass);
+    const star = new Star(spectralClass, subClass, luminosity, mass);
     if (!star.spectralClass.isDwarf) {
-      let luminosityValue = LuminosityTable.generateLuminosity(star);
+      const luminosityValue = LuminosityTable.generateLuminosity(star);
       star.luminosityValue = luminosityValue;
     }
 
@@ -888,25 +888,25 @@ class SystemGeneration {
     luminosityClass: LuminosityClassModel,
   ) {
     for (let i = 0; i < this.stellarMassTable.length; i++) {
-      let mass = this.stellarMassTable[i];
+      const mass = this.stellarMassTable[i];
       if (
         mass.spectralClass === spectralClass.id &&
         ((luminosityClass == null && mass.luminosityClass == null) ||
           (luminosityClass != null &&
             luminosityClass.id === mass.luminosityClass))
       ) {
-        let baseMass = mass.mass;
+        const baseMass = mass.mass;
 
-        let roll = (D20.roll() - 10) / 10;
+        const roll = (D20.roll() - 10) / 10;
         if (roll < 0) {
           let delta = Math.min(baseMass / 2, 10);
           if (i > 0) {
-            let previous = this.stellarMassTable[i - 1];
+            const previous = this.stellarMassTable[i - 1];
             if (previous.spectralClass === spectralClass.id) {
               delta = previous.mass - baseMass;
             }
           }
-          let result = baseMass - (roll * delta) / 2;
+          const result = baseMass - (roll * delta) / 2;
           if (result < 0) {
             console.log('Weird! ' + roll + ' ' + baseMass + ' ' + delta);
           }
@@ -914,7 +914,7 @@ class SystemGeneration {
         } else {
           let delta = Math.min(baseMass / 2, 0.1);
           if (i < this.stellarMassTable.length - 1) {
-            let next = this.stellarMassTable[i + 1];
+            const next = this.stellarMassTable[i + 1];
             if (next.spectralClass === spectralClass.id) {
               delta = baseMass - next.mass;
             }
@@ -927,14 +927,14 @@ class SystemGeneration {
   }
 
   generateCoordinates() {
-    let x = D20.roll() - D20.roll() / 20.0;
-    let y = D20.roll() - D20.roll() / 20.0;
-    let z = D20.roll() - D20.roll() / 20.0;
+    const x = D20.roll() - D20.roll() / 20.0;
+    const y = D20.roll() - D20.roll() / 20.0;
+    const z = D20.roll() - D20.roll() / 20.0;
     return new SectorCoordinates(x, y, z);
   }
 
   rollWorldType(table: TableRoll<WorldClass>) {
-    let worldType = table();
+    const worldType = table();
     return worldClasses[worldType];
   }
 
@@ -944,14 +944,14 @@ class SystemGeneration {
         world.worldClass.id === WorldClass.D ||
         world.worldClass.id === WorldClass.Y
       ) {
-        let feature = isolatedColonyFeaturesOfInterest();
+        const feature = isolatedColonyFeaturesOfInterest();
         world.features.push(feature.localizedDescription);
       } else if (world.worldClass.id === WorldClass.L && D20.roll() < 14) {
-        let feature = isolatedColonyFeaturesOfInterest();
+        const feature = isolatedColonyFeaturesOfInterest();
         world.features.push(feature.localizedDescription);
       } else {
         world.features.push(planetaryFeaturesOfInterest().localizedDescription);
-        let feature2 = planetaryFeaturesOfInterest().localizedDescription;
+        const feature2 = planetaryFeaturesOfInterest().localizedDescription;
         if (world.features.indexOf(feature2) < 0) {
           world.features.push(feature2);
         }
@@ -976,10 +976,10 @@ class SystemGeneration {
         (orbit.radius < starSystem.gardenZoneOuterRadius &&
           orbit.radius >= starSystem.gardenZoneInnerRadius))
     ) {
-      let roll = D20.roll() + D20.roll();
-      let type = this.generalPlanetaryType[roll];
+      const roll = D20.roll() + D20.roll();
+      const type = this.generalPlanetaryType[roll];
 
-      let world = this.createBasicWorldAttributes(
+      const world = this.createBasicWorldAttributes(
         type.worldClass,
         orbit,
         romanNumeral,
@@ -1019,9 +1019,9 @@ class SystemGeneration {
         }
       }
 
-      let worldType = this.rollWorldType(table);
+      const worldType = this.rollWorldType(table);
 
-      let world = this.createBasicWorldAttributes(
+      const world = this.createBasicWorldAttributes(
         worldType,
         orbit,
         romanNumeral,
@@ -1041,7 +1041,7 @@ class SystemGeneration {
     romanNumeral: number,
     starSystem: StarSystem,
   ) {
-    let world = new World(
+    const world = new World(
       worldType,
       worldType.id === WorldClass.AsteroidBelt ? undefined : romanNumeral,
     );
@@ -1062,20 +1062,20 @@ class SystemGeneration {
       this.numberOfPlanetsModifiers.forEach((mod) => (roll += mod(starSystem)));
       roll = Math.max(1, Math.min(20, roll));
 
-      let worldCount = this.numberOfPlanetsTable[roll];
-      let orbits = Orbits.createOrbits(worldCount, starSystem);
-      let primaryWorldOrbit = orbits.primaryWorldOrbit;
+      const worldCount = this.numberOfPlanetsTable[roll];
+      const orbits = Orbits.createOrbits(worldCount, starSystem);
+      const primaryWorldOrbit = orbits.primaryWorldOrbit;
 
       let romanNumeralId = 0;
 
       for (let i = 0; i < worldCount; i++) {
-        let orbit = orbits.orbits[i];
+        const orbit = orbits.orbits[i];
         let world = null;
         if (
           i === primaryWorldOrbit - 1 &&
           orbit.radius > starSystem.gardenZoneOuterRadius
         ) {
-          let roll = D20.roll();
+          const roll = D20.roll();
           let worldClass = worldClasses[WorldClass.J];
           if (roll >= 9) {
             worldClass = worldClasses[WorldClass.I];
@@ -1103,7 +1103,7 @@ class SystemGeneration {
           } else {
             romanNumeralId++;
             if (!world.worldClass.isGasGiant) {
-              let moons = numberOfMoonsTable();
+              const moons = numberOfMoonsTable();
               let modifier = 0;
               if (starSystem.star?.spectralClass?.id === SpectralClass.M) {
                 modifier += 1;
@@ -1116,7 +1116,7 @@ class SystemGeneration {
           }
 
           if (world.worldClass.id === WorldClass.AsteroidBelt) {
-            let details = new AsteroidBeltDetails();
+            const details = new AsteroidBeltDetails();
 
             let roll = Math.ceil((D20.roll() + D20.roll()) / 2);
             details.asteroidSize = this.asteroidSizeTable[roll];
@@ -1184,8 +1184,8 @@ class SystemGeneration {
             } else if (orbit.radius >= starSystem.gardenZoneOuterRadius) {
               zoneRoll = Math.min(20, zoneRoll + 5);
             }
-            let zone = this.asteroidBeltZoneDominance(zoneRoll);
-            let { nZone, mZone, cZone } = this.asteroidBeltZoneDepths(
+            const zone = this.asteroidBeltZoneDominance(zoneRoll);
+            const { nZone, mZone, cZone } = this.asteroidBeltZoneDepths(
               zone,
               D20.roll(),
             );
@@ -1227,7 +1227,7 @@ class SystemGeneration {
     }
     this.gasGiantSatellitesTable[forceEcosphere ? 23 : detailsRoll](world);
     this.calculateGasGiantSize(world);
-    let details = world.worldDetails as GasGiantDetails;
+    const details = world.worldDetails as GasGiantDetails;
     if (details.ecosphere) {
       details.ecosphereWorlds = [
         this.createSatelliteWorld(
@@ -1248,7 +1248,7 @@ class SystemGeneration {
     region: SpaceRegionModel,
     isPrimary: boolean,
   ) {
-    let details = gasGiant.worldDetails as GasGiantDetails;
+    const details = gasGiant.worldDetails as GasGiantDetails;
     let moonWorld = this.createBasicWorld(
       isPrimary,
       orbit,
@@ -1278,7 +1278,7 @@ class SystemGeneration {
         this.calculateStandardPlanetSize(moonWorld, starSystem);
         moonWorld.worldDetails = this.deriveStandardWorldDetails(moonWorld);
 
-        let orbitalRadius = (D20.roll() * D20.roll()) / 4 + D20.roll();
+        const orbitalRadius = (D20.roll() * D20.roll()) / 4 + D20.roll();
         moonWorld.satelliteOrbitalRadius = orbitalRadius * gasGiant.diameter;
         moonWorld.period =
           Math.sqrt(
@@ -1301,13 +1301,13 @@ class SystemGeneration {
   }
 
   deriveStandardWorldDetails(world: World) {
-    let result = new StandardWorldDetails();
+    const result = new StandardWorldDetails();
     if (world.orbitalRadius != null) {
-      let period =
+      const period =
         D20.roll() + D20.roll() + 5 + world.mass / world.orbitalRadius;
 
       if (period > 40) {
-        let specialRoll = Math.ceil(D20.roll() / 2);
+        const specialRoll = Math.ceil(D20.roll() / 2);
         switch (specialRoll) {
           case 1:
             result.rotationPeriod = addNoiseToValue(D20.roll() * 3) * 24;
@@ -1366,7 +1366,7 @@ class SystemGeneration {
       );
     }
 
-    let roll = D20.roll();
+    const roll = D20.roll();
     switch (roll) {
       case 1:
       case 2:
@@ -1399,7 +1399,7 @@ class SystemGeneration {
         break;
 
       case 20:
-        let subRoll = Math.ceil(D20.roll() / 5) * 10 + 40;
+        const subRoll = Math.ceil(D20.roll() / 5) * 10 + 40;
         result.axialTilt = Math.min(
           90,
           addNoiseToValue(D20.roll() / 2 + subRoll),
@@ -1429,10 +1429,10 @@ class SystemGeneration {
       maximumDiameter = 120000000;
     }
 
-    let delta = (maximumDiameter - minimumDiameter) / (40 - 1);
-    let roll = D20.roll() + D20.roll();
+    const delta = (maximumDiameter - minimumDiameter) / (40 - 1);
+    const roll = D20.roll() + D20.roll();
 
-    let diameter = (roll - 2) * delta + minimumDiameter;
+    const diameter = (roll - 2) * delta + minimumDiameter;
     world.diameter = addNoiseToValue(diameter);
     world.density = addNoiseToValue(
       ((D20.roll() + D20.roll()) / 2) * 0.01 + 0.1,
@@ -1460,9 +1460,9 @@ class SystemGeneration {
       minimumDiameter = 100;
       maximumDiameter = 10000;
     }
-    let delta = (maximumDiameter - minimumDiameter) / (40 - 1);
-    let roll = D20.roll() + D20.roll();
-    let diameter = (roll - 2) * delta + minimumDiameter;
+    const delta = (maximumDiameter - minimumDiameter) / (40 - 1);
+    const roll = D20.roll() + D20.roll();
+    const diameter = (roll - 2) * delta + minimumDiameter;
     world.diameter = addNoiseToValue(diameter);
 
     let core = D20.roll() > 2 ? WorldCoreType.Molten : WorldCoreType.Heavy;
@@ -1491,7 +1491,7 @@ class SystemGeneration {
       world.diameter < 6400 &&
       starSystem.gardenZoneOuterRadius < world.orbitalRadius
     ) {
-      let temp = D20.roll();
+      const temp = D20.roll();
       if (temp >= 14) {
         core = WorldCoreType.Icy;
       } else if (temp >= 8) {
@@ -1517,14 +1517,14 @@ class SystemGeneration {
   }
 
   rollSpectralClass() {
-    let roll1 = D20.roll();
+    const roll1 = D20.roll();
 
     if (roll1 === 20) {
-      let roll2 = D20.roll();
+      const roll2 = D20.roll();
       if (roll2 === 20) {
         return undefined;
       } else {
-        let spectralClasses = this.specialSpectraTable[roll2];
+        const spectralClasses = this.specialSpectraTable[roll2];
         let spectralClass = spectralClasses[0];
         if (spectralClasses.length > 1) {
           spectralClass =
@@ -1533,13 +1533,13 @@ class SystemGeneration {
         return spectralClass;
       }
     } else {
-      let spectralClass = this.spectralClassTable[roll1];
+      const spectralClass = this.spectralClassTable[roll1];
       return spectralClass;
     }
   }
 
   rollSubSpectralClass() {
-    let roll = D20.roll();
+    const roll = D20.roll();
     if (roll === 20) {
       return 0;
     } else {
@@ -1550,8 +1550,8 @@ class SystemGeneration {
   rollLuminosity(spectralClass: SpectralClassModel) {
     let luminosity = undefined;
     while (true) {
-      let roll = D20.roll();
-      let lumens = this.luminosityClassTable[roll];
+      const roll = D20.roll();
+      const lumens = this.luminosityClassTable[roll];
       luminosity = lumens[0];
       if (lumens.length > 1) {
         luminosity = lumens[Math.floor(Math.random() * lumens.length)];

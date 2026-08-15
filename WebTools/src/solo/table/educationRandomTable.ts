@@ -3,7 +3,7 @@ import { D20 } from '../../common/die';
 import { Track } from '../../helpers/trackEnum';
 
 export const EducationCategoryRandomTable = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
     case 2:

@@ -5,7 +5,7 @@ import { TableRoll } from '../../common/tableRoll';
 // This table has really changed since the original version in
 // the Shackleton Expanse book
 export const notableSystemTable: TableRoll<number> = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
 
   switch (roll) {
     case 1:

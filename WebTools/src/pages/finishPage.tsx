@@ -45,8 +45,8 @@ const FinishPage: React.FC<IFinishPageProperties> = ({ character }) => {
 
   const currentRole = character.role;
 
-  let roleList = RolesHelper.instance.getRoles(character);
-  let rankList = RanksHelper.instance().getSortedRanks(character, false);
+  const roleList = RolesHelper.instance.getRoles(character);
+  const rankList = RanksHelper.instance().getSortedRanks(character, false);
 
   useEffect(() => {
     if (character.role == null && !character.jobAssignment) {
@@ -58,7 +58,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({ character }) => {
         setRoleSelectionAllowed(false);
       }
     } else if (!character.isCivilian() && rankList?.length > 0) {
-      let existingRank = rankList.filter((r) => r.id === character.rank?.id);
+      const existingRank = rankList.filter((r) => r.id === character.rank?.id);
       if (character.rank == null || existingRank.length === 0) {
         const rank = rankList[rankList.length - 1];
         if (rank) {
@@ -70,7 +70,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({ character }) => {
 
   const showViewPage = () => {
     setTimeout(() => {
-      let c = store.getState().character.currentCharacter;
+      const c = store.getState().character.currentCharacter;
       const value = marshaller.encodeMainCharacter(c);
       store.dispatch(saveCharacterToLocalStorage(c));
       window.open('/view?s=' + value, '_blank');
@@ -314,7 +314,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({ character }) => {
         ({ CharacterSheetRegistry }) => {
           setLoadingExport(false);
           setTimeout(() => {
-            let c = store.getState().character.currentCharacter;
+            const c = store.getState().character.currentCharacter;
             store.dispatch(saveCharacterToLocalStorage(c));
             CharacterSheetDialog.show(
               CharacterSheetRegistry.getCharacterSheets(c),
@@ -355,7 +355,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({ character }) => {
     if (typeof rank === 'string') {
       store.dispatch(setCharacterRank(rank as string));
     } else {
-      let r = rank as RankModel;
+      const r = rank as RankModel;
       store.dispatch(setCharacterRank(r.name, r.id));
     }
   };
@@ -404,7 +404,7 @@ const FinishPage: React.FC<IFinishPageProperties> = ({ character }) => {
       : species.localizedNameDescription;
 
   const nameSuggestions = species?.nameSuggestions ?? ANY_NAMES;
-  let names = [];
+  const names = [];
 
   nameSuggestions?.forEach((n) => {
     names.push(`${n.type}: ${n.suggestions}`);

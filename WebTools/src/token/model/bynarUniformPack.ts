@@ -88,8 +88,8 @@ export class BynarUniformPack extends BaseNeckProvider implements IUniformPack {
   }
 
   getUniformAndVariantBody(token: TokenModel) {
-    let result = BynarBody;
-    let neck = this.getNeck(
+    const result = BynarBody;
+    const neck = this.getNeck(
       BodyType.AverageFemale,
       token.skinColor,
       token.species,

@@ -1087,7 +1087,7 @@ class HairCatalog {
   }
 
   getHair(token: TokenModel, element: HairElement) {
-    let hair = this.items.filter((i) => i.id === token.hairType)[0];
+    const hair = this.items.filter((i) => i.id === token.hairType)[0];
 
     if (
       token.extras.indexOf(ExtraType.SecurityHelmet) >= 0 ||
@@ -1103,7 +1103,7 @@ class HairCatalog {
   }
 
   getSwatches(token: TokenModel) {
-    let hairTypes = SpeciesRestrictions.getHairTypes(token.species);
+    const hairTypes = SpeciesRestrictions.getHairTypes(token.species);
     return this.items
       .filter((i) => hairTypes.indexOf(i.id) >= 0)
       .map(
@@ -1118,7 +1118,7 @@ class HairCatalog {
   }
 
   private static decorateSwatch(hair: HairItem, token: TokenModel) {
-    let result =
+    const result =
       `<svg viewBox="0 0 280 280" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <clipPath id="hairClipPath` +

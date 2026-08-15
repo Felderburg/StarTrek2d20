@@ -30,8 +30,8 @@ const SupportingCharacterDisciplines: React.FC<ICharacterProperties> = ({
   };
 
   const swapValues = (from: Department, to: Department) => {
-    let disciplineList = [...character.supportingStep?.disciplines];
-    let newList = disciplineList.map((d) => {
+    const disciplineList = [...character.supportingStep?.disciplines];
+    const newList = disciplineList.map((d) => {
       if (d === from) {
         return to;
       } else if (d === to) {

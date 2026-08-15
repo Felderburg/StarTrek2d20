@@ -83,7 +83,7 @@ export const WarriorsSpiritSelectionView: React.FC<
   );
 
   const options = () => {
-    let result = [];
+    const result = [];
     result.push(new DropDownElement('', t('Common.select.choose')));
     result.push(new DropDownElement(SpecialWeapon.BatLeth, "Bat'leth"));
     result.push(new DropDownElement(SpecialWeapon.MekLeth, "Mek'leth"));
@@ -194,7 +194,7 @@ export const WisdomOfYearsSelectionView: React.FC<
         }}
         value={valueSelection ?? ''}
         onRandomClicked={() => {
-          let value = randomValue(character);
+          const value = randomValue(character);
           setValueSelection(value);
           onValueSelection(value);
         }}
@@ -211,7 +211,7 @@ export const AugmentedAbilitySelectionView: React.FC<
     Attribute | undefined
   >(initialSelection);
 
-  let selectedAttributes = character.talents
+  const selectedAttributes = character.talents
     .filter(
       (t) =>
         t.talent === TALENT_NAME_AUGMENTED_ABILITY &&
@@ -282,7 +282,7 @@ export const DefensiveTrainingAttackTypeSelectionView: React.FC<
     AttackType | undefined
   >(initialSelection as AttackType);
   const options = () => {
-    let result = [];
+    const result = [];
     result.push(new DropDownElement('', t('Common.select.choose')));
     result.push(
       new DropDownElement(AttackType.Melee, t('Weapon.common.melee')),
@@ -329,7 +329,7 @@ export const CollaborationDepartmentSelectionView: React.FC<
     Department | undefined
   >(initialSelection);
 
-  let selectedDepartments = character.talents
+  const selectedDepartments = character.talents
     .filter(
       (t) =>
         t.talent === TALENT_NAME_COLLABORATION &&
@@ -374,7 +374,7 @@ export const BoldOrCautiousDepartmentSelectionView: React.FC<
   const [departmentSelection, setDepartmentSelection] = useState<
     Department | undefined
   >(initialSelection);
-  let selectedDepartments = character.talents
+  const selectedDepartments = character.talents
     .filter(
       (t) =>
         [TALENT_NAME_BOLD, TALENT_NAME_CAUTIOUS].includes(t.talent) &&
@@ -420,7 +420,7 @@ export const BorgImplantsSelectionView: React.FC<
           <CheckBox
             isChecked={implantSelections.includes(implant.type)}
             onChanged={(val) => {
-              let temp = [...implantSelections];
+              const temp = [...implantSelections];
               if (temp.includes(implant.type)) {
                 temp.splice(temp.indexOf(implant.type), 1);
               } else {
@@ -472,7 +472,7 @@ export const ExpandedProgramSelectionView: React.FC<
         label={t('Construct.other.focus1')}
         value={selection[0] ?? ''}
         addFocus={(f) => {
-          let temp = [...selection];
+          const temp = [...selection];
           if (temp?.length) {
             temp[0] = f;
           } else {

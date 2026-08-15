@@ -202,7 +202,7 @@ export class TosKlingonUniformPack
 
   getUniformAndVariantBody(token: TokenModel) {
     let result = '';
-    let neck = this.getNeck(
+    const neck = this.getNeck(
       token.bodyType,
       token.skinColor,
       token.species,
@@ -264,7 +264,7 @@ export class TosKlingonUniformPack
   }
 
   getRankIndicator(token: TokenModel) {
-    let borderRank = this.getRankBorderIndicator(token);
+    const borderRank = this.getRankBorderIndicator(token);
     if (token.bodyType === BodyType.AverageMale) {
       if (token.variant === UniformVariantType.Variant1) {
         return (

@@ -77,11 +77,11 @@ class RegistryNumberGenerator {
     let lower = 0;
     let upper = 999999;
 
-    let keys = Object.keys(this.serviceYearRegistryNumbers);
+    const keys = Object.keys(this.serviceYearRegistryNumbers);
     keys.sort();
 
-    for (let key of keys) {
-      let year = parseInt(key);
+    for (const key of keys) {
+      const year = parseInt(key);
       if (serviceYear > year) {
         lower = this.serviceYearRegistryNumbers[key];
       }
@@ -93,7 +93,7 @@ class RegistryNumberGenerator {
 
     let result = null;
     while (result == null) {
-      let temp = Math.floor(Math.random() * (upper - lower)) + lower;
+      const temp = Math.floor(Math.random() * (upper - lower)) + lower;
       if (this.importantRegistryNumbers[temp] == null) {
         result = temp;
       }
@@ -109,9 +109,9 @@ class RegistryNumberGenerator {
   generateRandom(numberOfDigits: number) {
     let result = '';
     while (result.length < numberOfDigits) {
-      let random = Math.floor(Math.random() * 10);
+      const random = Math.floor(Math.random() * 10);
       if (!(random === 0 && result.length === 0)) {
-        let digit = RegistryNumberGenerator.NUMBERS.substring(
+        const digit = RegistryNumberGenerator.NUMBERS.substring(
           random,
           random + 1,
         );

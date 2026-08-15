@@ -91,7 +91,7 @@ export class TalentWriter {
     indent: number = 0,
     bulletWriter: (paragraph?: Paragraph) => void = (p) => {},
   ) {
-    let paragraphs = await this.writeTalentsInternal(
+    const paragraphs = await this.writeTalentsInternal(
       talents,
       column,
       fontSize,
@@ -102,9 +102,9 @@ export class TalentWriter {
     paragraphs.forEach((p) => p.write());
 
     if (paragraphs.length) {
-      let last = paragraphs.filter((p) => p.lines?.length).slice(-1)[0];
+      const last = paragraphs.filter((p) => p.lines?.length).slice(-1)[0];
       if (last) {
-        let bottom = last.bottom;
+        const bottom = last.bottom;
         return last.endColumn.bottomAfter(bottom.y - last.endColumn.start.y);
       } else {
         return column;
@@ -122,7 +122,7 @@ export class TalentWriter {
     indent: number = 0,
     bulletWriter: (paragraph?: Paragraph) => void = (p) => {},
   ) {
-    let paragraphs = await this.writeTalentsInternal(
+    const paragraphs = await this.writeTalentsInternal(
       talents,
       column,
       fontSize,
@@ -133,7 +133,7 @@ export class TalentWriter {
     paragraphs.forEach((p) => p.write());
 
     if (paragraphs.length) {
-      let last = paragraphs.filter((p) => p.lines?.length).slice(-1)[0];
+      const last = paragraphs.filter((p) => p.lines?.length).slice(-1)[0];
       if (last) {
         return last.nextArea(this.page);
       } else {
@@ -152,7 +152,7 @@ export class TalentWriter {
     indent: number = 0,
     bulletWriter: (paragraph?: Paragraph) => void = (p) => {},
   ) {
-    let paragraphs: Paragraph[] = [];
+    const paragraphs: Paragraph[] = [];
     let paragraph = new Paragraph(this.page, column, this.fonts);
     paragraph.indent(indent);
     paragraphs.push(paragraph);
@@ -251,7 +251,7 @@ export class TalentWriter {
             talentName = talentName.toLocaleUpperCase();
           }
           if (talent && talent.talent.maxRank > 1) {
-            let rank = talent.rank;
+            const rank = talent.rank;
             talentName = i18next.t('Talent.text.rank', {
               talentName: talentName,
               rank: rank,
@@ -259,7 +259,7 @@ export class TalentWriter {
           }
           if (talent.talent.isXQualified) {
             if (talent.x != null) {
-              let xLocation = talentName.lastIndexOf(' X');
+              const xLocation = talentName.lastIndexOf(' X');
               talentName =
                 talentName.substring(0, xLocation + 1) +
                 talent.x +
@@ -277,7 +277,7 @@ export class TalentWriter {
             this.headingColour,
           );
 
-          let descriptionParagraphs = description.split('\n');
+          const descriptionParagraphs = description.split('\n');
           descriptionParagraphs.forEach((p, i) => {
             if (i > 0) {
               paragraph = paragraph?.nextParagraph();
@@ -356,7 +356,7 @@ export class TalentWriter {
             talent.talent.name === TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM &&
             talent.selection != null
           ) {
-            let propulsion = PropulsionSystemModel.getByType(
+            const propulsion = PropulsionSystemModel.getByType(
               talent.selection as PropulsionSystemType,
             );
             paragraph = paragraph?.nextParagraph(0);

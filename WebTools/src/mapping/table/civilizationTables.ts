@@ -29,7 +29,7 @@ export enum ReligionType {
 }
 
 export const governmentTypeTable: TableRoll<GovernmentType> = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
     case 2:
@@ -63,7 +63,7 @@ export const governmentTypeTable: TableRoll<GovernmentType> = () => {
 };
 
 export const polityTypeTable: TableRoll<PolityType> = () => {
-  let roll = D20.roll();
+  const roll = D20.roll();
   switch (roll) {
     case 1:
     case 2:

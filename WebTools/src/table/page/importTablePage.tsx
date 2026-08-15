@@ -14,11 +14,11 @@ import {
 const ImportTablePage = () => {
   const navigate = useNavigate();
 
-  let url = new URL(window.location.href);
-  let query = new URLSearchParams(url.search);
-  let encodedTable = query.get('table');
+  const url = new URL(window.location.href);
+  const query = new URLSearchParams(url.search);
+  const encodedTable = query.get('table');
 
-  let collection = TableMarshaller.instance.unmarshall(encodedTable);
+  const collection = TableMarshaller.instance.unmarshall(encodedTable);
 
   if (isTableCollectionAlreadyImported(collection.uuid, encodedTable)) {
     setTimeout(() => {

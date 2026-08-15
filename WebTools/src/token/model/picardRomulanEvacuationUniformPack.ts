@@ -114,7 +114,7 @@ export class PicardRomulanEvacuationUniformPack
     bodyType: BodyType,
   ) {
     let base = '';
-    let divisionColour = token.divisionColor;
+    const divisionColour = token.divisionColor;
     if (bodyType === BodyType.AverageMale) {
       base = Discovery32CenturyUniform.maleBody;
     } else {
@@ -140,7 +140,7 @@ export class PicardRomulanEvacuationUniformPack
   }
 
   getRankBorderIndicator(token: TokenModel): string {
-    let result = super.getRankBorderIndicator(token);
+    const result = super.getRankBorderIndicator(token);
     return result.replace(/#fbb03b/g, '#fddfb1');
   }
 }

@@ -10,8 +10,11 @@ export const bullet2EWriter = (
   paragraph: Paragraph,
   colour: SimpleColor = SimpleColor.from('#000000'),
 ) => {
-  let column = paragraph.startColumn;
-  let location = column.untranslateLocation(page, paragraph.lines[0].location);
+  const column = paragraph.startColumn;
+  const location = column.untranslateLocation(
+    page,
+    paragraph.lines[0].location,
+  );
 
   page.moveTo(column.start.x, page.getHeight() - (location.y + 3));
   page.drawSvgPath(bulletPath, {

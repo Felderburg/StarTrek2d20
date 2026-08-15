@@ -13,7 +13,7 @@ class TableMarshaller {
   }
 
   marshall(tableCollection: TableCollection) {
-    let json = { mainTable: this.marshallTable(tableCollection.mainTable) };
+    const json = { mainTable: this.marshallTable(tableCollection.mainTable) };
     if (tableCollection.uuid) {
       json['uuid'] = tableCollection.uuid;
     }
@@ -27,7 +27,7 @@ class TableMarshaller {
   }
 
   unmarshall(encodedCollection: string) {
-    let json = this.decode(encodedCollection);
+    const json = this.decode(encodedCollection);
 
     if (json['mainTable']) {
       const mainTable = this.unmarshallTable(json['mainTable']);
@@ -48,7 +48,7 @@ class TableMarshaller {
 
   private unmarshallTable(json: any) {
     const name = json['name'];
-    let rows = [];
+    const rows = [];
     if (json['rows']) {
       json.rows
         ?.map((r) => {
@@ -69,8 +69,8 @@ class TableMarshaller {
   decode(s: string) {
     if (s) {
       try {
-        let encoded = Base64.toUint8Array(s);
-        let text = new TextDecoder().decode(pako.inflate(encoded));
+        const encoded = Base64.toUint8Array(s);
+        const text = new TextDecoder().decode(pako.inflate(encoded));
         return JSON.parse(text);
       } catch (e) {
         return undefined;
@@ -81,7 +81,7 @@ class TableMarshaller {
   }
 
   private marshallTable(table: Table) {
-    let json = {};
+    const json = {};
     if (table.name) {
       json['name'] = table.name;
     }
@@ -101,9 +101,9 @@ class TableMarshaller {
   }
 
   private encode(json: any) {
-    let text = JSON.stringify(json);
-    let encoded = pako.deflate(new TextEncoder().encode(text));
-    let result = Base64.fromUint8Array(encoded, true);
+    const text = JSON.stringify(json);
+    const encoded = pako.deflate(new TextEncoder().encode(text));
+    const result = Base64.fromUint8Array(encoded, true);
     return result;
   }
 }

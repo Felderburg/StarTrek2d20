@@ -375,14 +375,14 @@ class Environments {
   };
 
   getEnvironmentOptions(construct: Construct) {
-    let result = [];
+    const result = [];
     if (construct.stereotype === Stereotype.SoloCharacter) {
       result.push(...Object.values(this._environments));
     } else {
-      let list = isKlingonWarrior1e(construct.type, construct.version)
+      const list = isKlingonWarrior1e(construct.type, construct.version)
         ? this._klingonEnvironments
         : this._environments;
-      for (let environment in list) {
+      for (const environment in list) {
         result.push(list[environment]);
       }
       if (
@@ -401,11 +401,11 @@ class Environments {
 
   getEnvironments(type: CharacterType) {
     let environments: EnvironmentModel[] = [];
-    let environmentList = isKlingonWarriorType(type)
+    const environmentList = isKlingonWarriorType(type)
       ? this._klingonEnvironments
       : this._environments;
-    for (let environment in environmentList) {
-      let env = environmentList[environment];
+    for (const environment in environmentList) {
+      const env = environmentList[environment];
       if (env.id !== Environment.AnotherSpeciesWorld) {
         environments.push(env);
       }
@@ -436,8 +436,8 @@ class Environments {
   }
 
   getEnvironment(env: Environment, construct: Construct) {
-    let environmentList = this.getEnvironmentOptions(construct);
-    let matches = environmentList.filter((e) => e.id === env);
+    const environmentList = this.getEnvironmentOptions(construct);
+    const matches = environmentList.filter((e) => e.id === env);
     return matches?.length ? matches[0] : undefined;
   }
 
@@ -446,7 +446,7 @@ class Environments {
     type: CharacterType,
     version: number,
   ) {
-    let list = isKlingonWarrior1e(type, version)
+    const list = isKlingonWarrior1e(type, version)
       ? Object.values(this._klingonEnvironments)
       : Object.values(this._environments);
     let filtered = list.filter((e) => Environment[e.id] === typeName);
@@ -511,7 +511,7 @@ class Environments {
   }
 
   generateAlternateEnvironment() {
-    let roll = Math.floor(Math.random() * 6);
+    const roll = Math.floor(Math.random() * 6);
     return roll + 6;
   }
 }

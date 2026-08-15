@@ -23,7 +23,7 @@ interface ITrackSelectionProperties {
 const AgeSelection: React.FC<ITrackSelectionProperties> = ({ onSelection }) => {
   const { t } = useTranslation();
 
-  let ages = AgeHelper.getAllChildAges().map((a, i) => {
+  const ages = AgeHelper.getAllChildAges().map((a, i) => {
     return (
       <tr
         key={i}

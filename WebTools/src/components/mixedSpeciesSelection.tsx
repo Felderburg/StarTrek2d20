@@ -36,8 +36,8 @@ const MixedSpeciesSelection: React.FC<ICharacterProperties> = ({
     setSecondarySpecies(species);
 
     if (primarySpecies != null) {
-      let speciesModel = SpeciesHelper.getSpeciesByType(primarySpecies);
-      let attributes = speciesModel.isAttributeSelectionRequired
+      const speciesModel = SpeciesHelper.getSpeciesByType(primarySpecies);
+      const attributes = speciesModel.isAttributeSelectionRequired
         ? undefined
         : speciesModel.attributes;
       store.dispatch(
@@ -56,8 +56,8 @@ const MixedSpeciesSelection: React.FC<ICharacterProperties> = ({
   const assignPrimarySepecies = (species: Species) => {
     setPrimarySpecies(species);
 
-    let speciesModel = SpeciesHelper.getSpeciesByType(species);
-    let attributes = speciesModel.isAttributeSelectionRequired
+    const speciesModel = SpeciesHelper.getSpeciesByType(species);
+    const attributes = speciesModel.isAttributeSelectionRequired
       ? undefined
       : speciesModel.attributes;
     store.dispatch(

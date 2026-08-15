@@ -34,10 +34,10 @@ const StationView: React.FC<IStationViewProperties> = ({ station }) => {
   });
 
   const renderShields = () => {
-    let shield = station.shields;
+    const shield = station.shields;
     if (shield) {
-      let iterator = [];
-      let iterator2 = [];
+      const iterator = [];
+      const iterator2 = [];
       for (let i = 1; i <= Math.max(30, Math.ceil(shield / 10) * 10); i++) {
         if (i % 10 > 5 || i % 10 === 0) {
           iterator2.push(i);

@@ -66,7 +66,7 @@ export class SelectedTalent implements ITalent {
   }
 
   copy() {
-    let result = new SelectedTalent(this.talent);
+    const result = new SelectedTalent(this.talent);
     result.implants = [...this.implants];
     result.focuses = [...this.focuses];
     result.value = this.value;
@@ -88,31 +88,31 @@ export class SelectedTalent implements ITalent {
   }
 
   static createWithDepartment(talentName: string, department: Department) {
-    let result = new SelectedTalent(talentName);
+    const result = new SelectedTalent(talentName);
     result.department = department;
     return result;
   }
 
   static createWithSystem(talentName: string, system: System) {
-    let result = new SelectedTalent(talentName);
+    const result = new SelectedTalent(talentName);
     result.system = system;
     return result;
   }
 
   static createWithMultiple(talentName: string, multiple: number) {
-    let result = new SelectedTalent(talentName);
+    const result = new SelectedTalent(talentName);
     result.multiple = multiple;
     return result;
   }
 
   static createWithSelection(talentName: string, selection: string) {
-    let result = new SelectedTalent(talentName);
+    const result = new SelectedTalent(talentName);
     result.selection = selection;
     return result;
   }
 
   static createWithWeapon(talentName: string, weapon: string) {
-    let result = new SelectedTalent(talentName);
+    const result = new SelectedTalent(talentName);
     result.weapon = weapon;
     return result;
   }
@@ -134,7 +134,7 @@ export class SelectedTalent implements ITalent {
 
       if (talentModel.isXQualified) {
         if (this.x != null) {
-          let xLocation = name.lastIndexOf(' X');
+          const xLocation = name.lastIndexOf(' X');
           name =
             name.substring(0, xLocation + 1) +
             this.x +

@@ -60,7 +60,7 @@ const MajorNpcDepartmentView: React.FC<ICharacterProperties> = ({
   };
 
   const setDepartment = (department: Department, delta: number) => {
-    let departments = [...character.npcGenerationStep?.departments];
+    const departments = [...character.npcGenerationStep?.departments];
     departments[department] = departments[department] + delta;
     store.dispatch(setNpcCharacterDepartments(departments));
   };

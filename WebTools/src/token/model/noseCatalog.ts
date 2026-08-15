@@ -471,7 +471,7 @@ class NoseCatalog {
   }
 
   private static decorateSwatch(svg: string, token: TokenModel) {
-    let result =
+    const result =
       `<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g transform="translate(-260, -100)">` +
       svg +

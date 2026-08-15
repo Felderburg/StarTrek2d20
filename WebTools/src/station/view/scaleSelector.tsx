@@ -27,7 +27,7 @@ export const ScaleSelector: React.FC<IScaleSelectorProperties> = ({
           max={25}
           defaultValue={scale.toString()}
           onChange={(e) => {
-            let value = e.target.value;
+            const value = e.target.value;
             onChange(parseInt(value));
           }}
         />

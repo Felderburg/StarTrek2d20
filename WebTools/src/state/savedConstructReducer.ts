@@ -2,7 +2,7 @@ import { ILocalStorageConstructRecord } from '../common/iLocalStorageConstructRe
 import { SAVE_CONSTRUCT_TO_LOCAL_STORAGE } from './savedConstructActions';
 
 const persistItems = (records: ILocalStorageConstructRecord[]) => {
-  let data = {
+  const data = {
     records: records ?? [],
   };
   window.localStorage.setItem('constructs.records', JSON.stringify(data));
@@ -10,11 +10,11 @@ const persistItems = (records: ILocalStorageConstructRecord[]) => {
 
 const getInitialData = () => {
   const base = { records: [] };
-  let initialData = { ...base };
+  const initialData = { ...base };
   try {
-    let dataJson = window.localStorage.getItem('constructs.records');
+    const dataJson = window.localStorage.getItem('constructs.records');
     if (dataJson) {
-      let data = JSON.parse(dataJson);
+      const data = JSON.parse(dataJson);
       if (data.records) {
         initialData.records = data.records;
       }
@@ -29,7 +29,7 @@ const savedConstructReducer = (state = getInitialData(), action) => {
   switch (action.type) {
     case SAVE_CONSTRUCT_TO_LOCAL_STORAGE: {
       let records = [...state.records];
-      let hash = action.payload.hash;
+      const hash = action.payload.hash;
       if (action.payload.replacementHash != null) {
         records = records.filter(
           (r) => r.hash !== action.payload.replacementHash,

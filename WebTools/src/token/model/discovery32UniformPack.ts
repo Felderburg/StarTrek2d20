@@ -271,7 +271,7 @@ export class Discovery32UniformPack
     bodyType: BodyType,
   ) {
     let base = '';
-    let divisionColour = token.divisionColor;
+    const divisionColour = token.divisionColor;
     if (bodyType === BodyType.AverageMale) {
       base = Discovery32CenturyUniform.maleBody;
     } else {
@@ -332,7 +332,7 @@ export class Discovery32UniformPack
   }
 
   getBorderLogo(token: TokenModel): string {
-    let base = borderInsignia.base;
+    const base = borderInsignia.base;
     return base + borderInsignia.shine;
   }
 

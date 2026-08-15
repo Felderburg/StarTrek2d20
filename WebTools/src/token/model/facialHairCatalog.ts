@@ -241,8 +241,8 @@ class FacialHairCatalog {
         let svg = i.svg;
 
         if (i.id === FacialHairType.FiveOclockShadow) {
-          let key = 'Head' + (token.headType + 1);
-          let temp = FiveOclockShadow[key];
+          const key = 'Head' + (token.headType + 1);
+          const temp = FiveOclockShadow[key];
           if (temp) {
             svg = temp;
           }
@@ -285,7 +285,7 @@ class FacialHairCatalog {
   }
 
   getCategoryForType(type: FacialHairType) {
-    let types = this.items.filter((i) => i.id === type);
+    const types = this.items.filter((i) => i.id === type);
     return types?.length
       ? types[0].category
       : FacialHairCategory.MoustacheAndBeard;
@@ -293,7 +293,7 @@ class FacialHairCatalog {
 
   private static decorateSwatch(item: FacialHairItem, token: TokenModel) {
     if (item.category === FacialHairCategory.Moustache) {
-      let result =
+      const result =
         `<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <g transform="translate(-255, -140)">` +
         DefaultLip.replace(
@@ -308,7 +308,7 @@ class FacialHairCatalog {
                 </svg>`;
       return result;
     } else if (item.category === FacialHairCategory.Shadow) {
-      let result =
+      const result =
         `<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <g>
                     <g transform="translate(-255, -150)">` +
@@ -325,7 +325,7 @@ class FacialHairCatalog {
                 </svg>`;
       return result;
     } else {
-      let result =
+      const result =
         `<svg viewBox="0 0 150 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <clipPath id="facialHairClipPath` +

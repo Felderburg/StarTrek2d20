@@ -1319,7 +1319,7 @@ export class KlingonArmorUniformPack
   implements IUniformPack
 {
   getRankIndicator(token: TokenModel) {
-    let borderRank = this.getRankBorderIndicator(token);
+    const borderRank = this.getRankBorderIndicator(token);
     if (
       token.bodyType === BodyType.AverageMale &&
       UniformVariantType.Variant3 === token.variant
@@ -1414,7 +1414,7 @@ export class KlingonArmorUniformPack
 
   getUniformAndVariantBody(token: TokenModel) {
     let result = '';
-    let seam = '';
+    const seam = '';
     let neck = '';
     switch (token.bodyType) {
       case BodyType.AverageMale:

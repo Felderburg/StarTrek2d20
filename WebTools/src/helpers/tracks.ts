@@ -121,20 +121,20 @@ export class TrackModel {
   }
 
   get localizedName() {
-    let key = makeKey(this.prefix, Track[this.id]);
-    let result = i18next.t(key);
+    const key = makeKey(this.prefix, Track[this.id]);
+    const result = i18next.t(key);
     return result === key ? this.name : result;
   }
 
   get localizedName2e() {
-    let key = makeKey(this.prefix, Track[this.id], '.2e');
-    let result = i18next.t(key);
+    const key = makeKey(this.prefix, Track[this.id], '.2e');
+    const result = i18next.t(key);
     return result === key ? this.localizedName : result;
   }
 
   get localizedDescription() {
-    let key = makeKey(this.prefix, Track[this.id], '.description');
-    let result = i18next.t(key);
+    const key = makeKey(this.prefix, Track[this.id], '.description');
+    const result = i18next.t(key);
     return result === key ? this.description : result;
   }
 }
@@ -1100,9 +1100,9 @@ export class TracksHelper {
   }
 
   getTracks(type: CharacterType, version: number) {
-    var tracks: TrackModel[] = [];
-    var list = this.chooseList(type, version);
-    for (let model of list) {
+    const tracks: TrackModel[] = [];
+    const list = this.chooseList(type, version);
+    for (const model of list) {
       if (hasAnySource(model.sources)) {
         if (model.id === Track.EnlistedSecurityTraining) {
           continue;
@@ -1136,7 +1136,7 @@ export class TracksHelper {
       this._ambassardorTracks,
       this._civilianTracks,
     ];
-    let result = tracks
+    const result = tracks
       .map((list) => list.filter((t) => t.id === track))
       .filter((list) => list.length > 0)
       .map((list) => list[0]);
@@ -1144,12 +1144,12 @@ export class TracksHelper {
   }
 
   getTrack(track: Track, type: CharacterType, version: number): TrackModel {
-    let list =
+    const list =
       type === CharacterType.Starfleet && version > 1
         ? this._version2Tracks
         : this.chooseList(type, version);
     let result = null;
-    for (let t of list) {
+    for (const t of list) {
       if (t.id === track) {
         result = t;
         break;
@@ -1199,16 +1199,16 @@ export class TracksHelper {
 
   generateTrack(characterType: CharacterType, version: number): Track {
     if (characterType === CharacterType.Starfleet && version === 1) {
-      let tracks = [Track.Command, Track.Operations, Track.Sciences];
-      let roll = Math.floor(Math.random() * tracks.length);
+      const tracks = [Track.Command, Track.Operations, Track.Sciences];
+      const roll = Math.floor(Math.random() * tracks.length);
       return tracks[roll];
     } else if (characterType === CharacterType.Starfleet) {
-      let list = this._version2Tracks;
-      let roll = Math.floor(Math.random() * list.length);
+      const list = this._version2Tracks;
+      const roll = Math.floor(Math.random() * list.length);
       return list[roll].id;
     } else {
-      let list = this.chooseList(characterType, version);
-      let roll = Math.floor(Math.random() * list.length);
+      const list = this.chooseList(characterType, version);
+      const roll = Math.floor(Math.random() * list.length);
       return list[roll].id;
     }
   }

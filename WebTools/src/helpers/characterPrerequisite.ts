@@ -111,7 +111,7 @@ export class AnyOfCharacterPrerequisite implements ICharacterPrerequisite {
     if (this._prequisites.length === 0) {
       return true;
     } else {
-      var result = false;
+      let result = false;
       this._prequisites.forEach((req) => {
         result = result || req.isPrerequisiteFulfilled(character);
       });

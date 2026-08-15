@@ -1112,7 +1112,7 @@ export class MonsterMaroonUniformPack
 
   getUniformAndVariantBody(token: TokenModel) {
     let result = '';
-    let neck = this.getNeck(
+    const neck = this.getNeck(
       token.bodyType,
       token.skinColor,
       token.species,
@@ -1156,7 +1156,7 @@ export class MonsterMaroonUniformPack
             : MonsterMaroon.averageFemaleBody;
       }
     }
-    let finalResult = (neck + result)
+    const finalResult = (neck + result)
       .replace(DefaultRed, token.divisionColor)
       .replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
     return DivisionColors.getDivision(
@@ -1169,7 +1169,7 @@ export class MonsterMaroonUniformPack
 
   getUniformVariantSwatches(token: TokenModel) {
     if (token.bodyType === BodyType.AverageFemale) {
-      let result = [
+      const result = [
         new Swatch(UniformVariantType.Base, 'Base', (token) =>
           UniformCatalog.decorateSwatch(
             this.getNeck(
@@ -1243,7 +1243,7 @@ export class MonsterMaroonUniformPack
       );
       return result;
     } else if (token.bodyType === BodyType.AverageMale) {
-      let result = [
+      const result = [
         new Swatch(UniformVariantType.Base, 'Base', (token) =>
           UniformCatalog.decorateSwatch(
             this.getNeck(
@@ -1325,7 +1325,7 @@ export class MonsterMaroonUniformPack
       divisionSvg = divisionSvg.replace(/#2d2d2d/g, token.divisionColor);
     }
 
-    let result =
+    const result =
       `<svg viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <defs>
                     <clipPath id="clipPath` +
@@ -1355,7 +1355,7 @@ export class MonsterMaroonUniformPack
     token: TokenModel,
     gradient: string = '',
   ) {
-    let gradientKey = 'rank' + Rank[rankIndicator] + 'Gradient';
+    const gradientKey = 'rank' + Rank[rankIndicator] + 'Gradient';
     return (
       `<svg viewBox="0 0 130 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>` +

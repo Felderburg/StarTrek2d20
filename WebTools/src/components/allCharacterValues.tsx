@@ -16,7 +16,7 @@ import InstructionText from './instructionText';
 
 const AllCharacterValues: React.FC<ICharacterProperties> = ({ character }) => {
   const randomValue = (context: StepContext) => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,

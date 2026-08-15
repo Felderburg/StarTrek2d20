@@ -11,7 +11,7 @@ interface IStatViewProperties {
 
 export class StatView extends React.Component<IStatViewProperties, {}> {
   render() {
-    let value =
+    const value =
       this.props.value || this.props.showZero ? (
         <div
           className={

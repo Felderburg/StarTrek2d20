@@ -119,9 +119,9 @@ export class PageFactory {
   createPage(page: PageIdentity) {
     let factory = this.factories[page];
 
-    for (let key of Object.keys(this.pageFactories)) {
-      let pageFactory = this.pageFactories[key];
-      let temp = pageFactory.findFactory(page);
+    for (const key of Object.keys(this.pageFactories)) {
+      const pageFactory = this.pageFactories[key];
+      const temp = pageFactory.findFactory(page);
       if (temp != null) {
         factory = temp;
         break;

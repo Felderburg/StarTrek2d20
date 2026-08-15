@@ -16,7 +16,7 @@ const WeaponView: React.FC<IWeaponViewProperties> = ({
   const { t } = useTranslation();
 
   const renderInjuryAndDetails = () => {
-    let result =
+    const result =
       version > 1
         ? weapon.injuryTypeEffectsAndQualities
         : weapon.effectsAndQualitiesAsString;

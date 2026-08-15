@@ -231,7 +231,7 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({
 
   function renderPastimes() {
     if (character.pastime) {
-      let result = character.pastime.map((p, i) => (
+      const result = character.pastime.map((p, i) => (
         <div
           className="text-white view-border-bottom py-2"
           key={'pastime-' + i}

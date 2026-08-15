@@ -107,7 +107,7 @@ class SmallCraftStatsPage extends BaseSimpleStarshipPage {
   }
 
   getAppearanceOptions() {
-    let result = [new DropDownElement('', '')];
+    const result = [new DropDownElement('', '')];
     result.push(
       ...SpaceframeAppearanceModel.getAllAppearanceModels(
         this.props.starship.type,
@@ -155,7 +155,7 @@ class SmallCraftStatsPage extends BaseSimpleStarshipPage {
     } else if (this.sumTotalDepartments() < this.getDepartmentPoints()) {
       Dialog.show('You have not distributed all the Department Points');
     } else {
-      let { starship } = this.props;
+      const { starship } = this.props;
       store.dispatch(nextStarshipWorkflowStep());
       if (starship.buildType === ShipBuildType.Pod) {
         Navigation.navigateToPage(PageIdentity.StarshipWeaponsSelection);

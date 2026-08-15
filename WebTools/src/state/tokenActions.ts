@@ -50,7 +50,7 @@ export function createNewToken(
   const hash = marshalledCharacter?.length
     ? cyrb53(marshalledCharacter)
     : undefined;
-  let payload = {
+  const payload = {
     token: token,
     marshalledCharacter: marshalledCharacter,
     characterName: characterName,
@@ -65,7 +65,7 @@ export function createNewToken(
 }
 
 export function setTokenSpecies(species: Species) {
-  let payload = { species: species };
+  const payload = { species: species };
   return {
     type: SET_TOKEN_SPECIES,
     payload: payload,
@@ -73,7 +73,7 @@ export function setTokenSpecies(species: Species) {
 }
 
 export function setTokenSecondarySpecies(species: Species) {
-  let payload = { species: species };
+  const payload = { species: species };
   return {
     type: SET_TOKEN_SECONDARY_SPECIES,
     payload: payload,
@@ -81,7 +81,7 @@ export function setTokenSecondarySpecies(species: Species) {
 }
 
 export function setUniformEra(era: UniformEra) {
-  let payload = { era: era };
+  const payload = { era: era };
   return {
     type: SET_TOKEN_UNIFORM_ERA,
     payload: payload,
@@ -89,7 +89,7 @@ export function setUniformEra(era: UniformEra) {
 }
 
 export function setTokenDivisionColor(color: string) {
-  let payload = { color: color };
+  const payload = { color: color };
   return {
     type: SET_TOKEN_DIVISION_COLOR,
     payload: payload,
@@ -97,7 +97,7 @@ export function setTokenDivisionColor(color: string) {
 }
 
 export function setTokenRank(rank: Rank) {
-  let payload = { rank: rank };
+  const payload = { rank: rank };
   return {
     type: SET_TOKEN_RANK,
     payload: payload,
@@ -105,7 +105,7 @@ export function setTokenRank(rank: Rank) {
 }
 
 export function setTokenSkinColor(color: string) {
-  let payload = { color: color };
+  const payload = { color: color };
   return {
     type: SET_TOKEN_SKIN_COLOR,
     payload: payload,
@@ -113,7 +113,7 @@ export function setTokenSkinColor(color: string) {
 }
 
 export function setTokenEyeColor(color: string) {
-  let payload = { color: color };
+  const payload = { color: color };
   return {
     type: SET_TOKEN_EYE_COLOR,
     payload: payload,
@@ -121,7 +121,7 @@ export function setTokenEyeColor(color: string) {
 }
 
 export function setTokenHairColor(color: string) {
-  let payload = { color: color };
+  const payload = { color: color };
   return {
     type: SET_TOKEN_HAIR_COLOR,
     payload: payload,
@@ -129,7 +129,7 @@ export function setTokenHairColor(color: string) {
 }
 
 export function setTokenLipstickColor(color: string) {
-  let payload = { color: color };
+  const payload = { color: color };
   return {
     type: SET_TOKEN_LIPSTICK_COLOR,
     payload: payload,
@@ -137,7 +137,7 @@ export function setTokenLipstickColor(color: string) {
 }
 
 export function setTokenHairType(hairType: HairType) {
-  let payload = { hairType: hairType };
+  const payload = { hairType: hairType };
   return {
     type: SET_TOKEN_HAIR_TYPE,
     payload: payload,
@@ -145,7 +145,7 @@ export function setTokenHairType(hairType: HairType) {
 }
 
 export function setTokenHeadType(headType: HeadType) {
-  let payload = { headType: headType };
+  const payload = { headType: headType };
   return {
     type: SET_TOKEN_HEAD_TYPE,
     payload: payload,
@@ -153,7 +153,7 @@ export function setTokenHeadType(headType: HeadType) {
 }
 
 export function setTokenMouthType(mouthType: MouthType) {
-  let payload = { mouthType: mouthType };
+  const payload = { mouthType: mouthType };
   return {
     type: SET_TOKEN_MOUTH_TYPE,
     payload: payload,
@@ -161,7 +161,7 @@ export function setTokenMouthType(mouthType: MouthType) {
 }
 
 export function setTokenEyeType(eyeType: EyeType) {
-  let payload = { eyeType: eyeType };
+  const payload = { eyeType: eyeType };
   return {
     type: SET_TOKEN_EYE_TYPE,
     payload: payload,
@@ -169,7 +169,7 @@ export function setTokenEyeType(eyeType: EyeType) {
 }
 
 export function setTokenNoseType(noseType: NoseType) {
-  let payload = { noseType: noseType };
+  const payload = { noseType: noseType };
   return {
     type: SET_TOKEN_NOSE_TYPE,
     payload: payload,
@@ -177,7 +177,7 @@ export function setTokenNoseType(noseType: NoseType) {
 }
 
 export function setTokenBodyType(type: BodyType) {
-  let payload = { type: type };
+  const payload = { type: type };
   return {
     type: SET_TOKEN_BODY_TYPE,
     payload: payload,
@@ -185,7 +185,7 @@ export function setTokenBodyType(type: BodyType) {
 }
 
 export function setTokenUniformVariantType(type: UniformVariantType) {
-  let payload = { type: type };
+  const payload = { type: type };
   return {
     type: SET_TOKEN_UNIFORM_VARIANT_TYPE,
     payload: payload,
@@ -193,7 +193,7 @@ export function setTokenUniformVariantType(type: UniformVariantType) {
 }
 
 export function setTokenFacialHairTypes(types: FacialHairType[]) {
-  let payload = { types: types };
+  const payload = { types: types };
   return {
     type: SET_TOKEN_FACIAL_HAIR_TYPE,
     payload: payload,
@@ -201,7 +201,7 @@ export function setTokenFacialHairTypes(types: FacialHairType[]) {
 }
 
 export function setTokenExtrasTypes(types: ExtraType[]) {
-  let payload = { types: types };
+  const payload = { types: types };
   return {
     type: SET_TOKEN_EXTRAS_TYPE,
     payload: payload,
@@ -209,7 +209,7 @@ export function setTokenExtrasTypes(types: ExtraType[]) {
 }
 
 export function setTokenNasoLabialFoldType(type: NasoLabialFoldType) {
-  let payload = { type: type };
+  const payload = { type: type };
   return {
     type: SET_TOKEN_NASO_LABIAL_FOLD_TYPE,
     payload: payload,
@@ -217,7 +217,7 @@ export function setTokenNasoLabialFoldType(type: NasoLabialFoldType) {
 }
 
 export function setTokenSpeciesOption(option: SpeciesOption) {
-  let payload = { option: option };
+  const payload = { option: option };
   return {
     type: SET_TOKEN_SPECIES_OPTION,
     payload: payload,
@@ -225,14 +225,14 @@ export function setTokenSpeciesOption(option: SpeciesOption) {
 }
 
 export function setTokenRounded(rounded: boolean) {
-  let payload = { rounded: rounded };
+  const payload = { rounded: rounded };
   return {
     type: SET_TOKEN_ROUNDED,
     payload: payload,
   };
 }
 export function setTokenBordered(bordered: boolean) {
-  let payload = { bordered: bordered };
+  const payload = { bordered: bordered };
   return {
     type: SET_TOKEN_BORDERED,
     payload: payload,

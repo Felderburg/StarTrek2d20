@@ -32,15 +32,15 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({
 
   const randomTalents = () => {
     let talents = [];
-    let count = starship.additionalTalents?.length;
+    const count = starship.additionalTalents?.length;
     if (count > 0 && count < starship?.spaceframeModel?.scale) {
       talents = starship.additionalTalents.map((t) => t.name);
     }
 
     while (talents.length < starship?.spaceframeModel?.scale) {
-      let name = StarshipRandomTalentTable();
+      const name = StarshipRandomTalentTable();
       if (talents.indexOf(name) < 0) {
-        let talent = TalentsHelper.getTalent(name);
+        const talent = TalentsHelper.getTalent(name);
         if (talent != null && isTalentAllowed(talent)) {
           talents.push(name);
         } else if (talent == null) {
@@ -49,7 +49,7 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({
       }
     }
 
-    let selectedTalents = talents.map((n) => new SelectedTalent(n));
+    const selectedTalents = talents.map((n) => new SelectedTalent(n));
     store.dispatch(setAdditionalTalents(selectedTalents));
   };
 
@@ -106,7 +106,7 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({
   const talentRows = talents.map((t, i) => {
     let prerequisites = undefined;
     t.prerequisites.forEach((p) => {
-      let desc = p.describe();
+      const desc = p.describe();
       if (desc) {
         if (prerequisites == null) {
           prerequisites = desc;
@@ -116,12 +116,12 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({
       }
     });
 
-    let description =
+    const description =
       starship.version === 1
         ? t.localizedDescription
         : t.localizedDescription2e;
 
-    let lines = description.split('\n').map((l, i) => {
+    const lines = description.split('\n').map((l, i) => {
       return (
         <div className={i === 0 ? '' : 'mt-2'} key={'d-' + i}>
           {replaceDiceWithArrowhead(l)}

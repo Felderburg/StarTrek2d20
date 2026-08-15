@@ -692,7 +692,7 @@ class SpaceframeOutlineHelper {
   }
 
   getOutline(starship: Starship): string | Outline {
-    let spaceframe = starship.spaceframeModel;
+    const spaceframe = starship.spaceframeModel;
     if (
       starship.spaceframeStep?.appearance != null ||
       starship.simpleStats?.appearance != null

@@ -58,7 +58,7 @@ const ToolSelectionPage = () => {
 
   const startCharacterCreation = () => {
     if (hasSource(Source.Core2ndEdition)) {
-      let character = Character.createMainCharacter(
+      const character = Character.createMainCharacter(
         CharacterType.Starfleet,
         store.getState().context.era,
         2,
@@ -71,7 +71,7 @@ const ToolSelectionPage = () => {
     ) {
       goToPage(PageIdentity.CharacterType);
     } else {
-      let character = Character.createMainCharacter(
+      const character = Character.createMainCharacter(
         CharacterType.Starfleet,
         store.getState().context.era,
       );

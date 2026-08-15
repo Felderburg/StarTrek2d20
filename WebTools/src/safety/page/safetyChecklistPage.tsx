@@ -54,7 +54,7 @@ const SafetySectionView: React.FC<ISafetySectionViewProperties> = ({
         </thead>
         <tbody>
           {section.localizedCategories.map((c, i) => {
-            let category = section.categories[i];
+            const category = section.categories[i];
             return (
               <tr key={'section-category-' + category}>
                 <td>{c}</td>

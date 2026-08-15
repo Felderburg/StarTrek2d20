@@ -45,9 +45,9 @@ const NpcDepartmentView: React.FC<ICharacterProperties> = ({ character }) => {
   };
 
   const swapValues = (from: Department, to: Department) => {
-    let departments = [...character.npcGenerationStep?.departments];
-    let fromValue = departments[from];
-    let toValue = departments[to];
+    const departments = [...character.npcGenerationStep?.departments];
+    const fromValue = departments[from];
+    const toValue = departments[to];
     departments[from] = toValue;
     departments[to] = fromValue;
     store.dispatch(setNpcCharacterDepartments(departments));

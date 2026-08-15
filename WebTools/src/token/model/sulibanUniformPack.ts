@@ -442,7 +442,7 @@ export class SulibanUniformPack
 
   getUniformAndVariantBody(token: TokenModel) {
     let result = '';
-    let neck = this.getNeck(
+    const neck = this.getNeck(
       token.bodyType,
       token.skinColor,
       token.species,

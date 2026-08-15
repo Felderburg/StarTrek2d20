@@ -37,7 +37,7 @@ const SoloCareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
   };
 
   const randomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.educationStep?.primaryDiscipline,

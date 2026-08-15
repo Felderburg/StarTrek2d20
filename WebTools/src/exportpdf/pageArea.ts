@@ -11,7 +11,7 @@ export class PageArea {
   }
 
   bottomAfter(deltaY: number) {
-    let column = this.column.bottomAfter(deltaY, this.page);
+    const column = this.column.bottomAfter(deltaY, this.page);
     return column == null ? null : new PageArea(column, this.page);
   }
 

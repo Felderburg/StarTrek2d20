@@ -12,7 +12,7 @@ export class Orbit {
   public slot: number;
 
   static createStandardOrbit(index: number, radius: number, slot: number) {
-    let result = new Orbit();
+    const result = new Orbit();
     result.index = index;
     result.radius = radius;
     result.slot = radius;
@@ -29,7 +29,7 @@ export class Orbits {
   }
 
   static createOrbits(numberOfWorlds: number, system: StarSystem) {
-    let orbits = new Orbits();
+    const orbits = new Orbits();
     let initialOrbit = this.determineInitialOrbit(system);
     if (
       initialOrbit < LuminosityTable.tenabilityRadius(system.luminosityValue)
@@ -46,7 +46,7 @@ export class Orbits {
     );
 
     if (orbits.primaryWorldOrbit > 1) {
-      let idealBode =
+      const idealBode =
         (system.gardenZoneIdealRadius - initialOrbit) /
         Math.pow(BLAGG_CONSTANT, orbits.primaryWorldOrbit - 1);
       if (idealBode < 0.001 || system.gardenZoneIdealRadius < 0.05) {
@@ -56,7 +56,7 @@ export class Orbits {
           orbits.primaryWorldOrbit = 1;
           initialOrbit = system.gardenZoneIdealRadius;
 
-          let orderOfMagnitude = Math.max(
+          const orderOfMagnitude = Math.max(
             0,
             Math.floor(Math.log(system.gardenZoneIdealRadius) / Math.log(10)),
           );
@@ -67,7 +67,7 @@ export class Orbits {
       }
     } else {
       initialOrbit = system.gardenZoneIdealRadius;
-      let orderOfMagnitude = Math.max(
+      const orderOfMagnitude = Math.max(
         0,
         Math.round(Math.log(system.gardenZoneIdealRadius) / Math.log(10)),
       );
@@ -109,7 +109,7 @@ export class Orbits {
       system.companionStar != null &&
       system.companionType === CompanionType.Distant
     ) {
-      let orbitalRadius = this.determineRadius(
+      const orbitalRadius = this.determineRadius(
         bodeIndex + 2,
         initialOrbit,
         bodeConstant,

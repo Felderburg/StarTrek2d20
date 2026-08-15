@@ -388,7 +388,7 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
   }
 
   getUniformAndVariantBody(token: TokenModel) {
-    let division = DivisionColors.getDivision(
+    const division = DivisionColors.getDivision(
       token.uniformEra,
       token.divisionColor,
     );
@@ -485,7 +485,7 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
   }
 
   getUniformVariantSwatches(token: TokenModel) {
-    let swatches = [];
+    const swatches = [];
     if (token.bodyType === BodyType.AverageMale) {
       swatches.push(
         new Swatch(UniformVariantType.Base, 'Standard Uniform', (token) =>
@@ -752,7 +752,7 @@ export class TosUniformPack extends BaseNeckProvider implements IUniformPack {
   }
 
   getBorderLogo(token: TokenModel): string {
-    let division = DivisionColors.getDivision(
+    const division = DivisionColors.getDivision(
       token.uniformEra,
       token.divisionColor,
     );

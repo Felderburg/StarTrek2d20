@@ -51,8 +51,8 @@ export class UniformEraModel {
   }
 
   get localizedName() {
-    let key = makeKey('UniformEra.', UniformEra[this.id]);
-    let result = i18next.t(makeKey('UniformEra.', UniformEra[this.id]));
+    const key = makeKey('UniformEra.', UniformEra[this.id]);
+    const result = i18next.t(makeKey('UniformEra.', UniformEra[this.id]));
     return result === key ? this.name : result;
   }
 }

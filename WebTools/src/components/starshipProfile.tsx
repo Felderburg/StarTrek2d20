@@ -23,8 +23,8 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({
   close,
 }) => {
   const { t } = useTranslation();
-  let starship = store.getState().starship?.starship as Starship;
-  let containerClass = showProfile
+  const starship = store.getState().starship?.starship as Starship;
+  const containerClass = showProfile
     ? 'sheet-container sheet-container-visible pe-3'
     : 'sheet-container sheet-container-hidden pe-3';
   const eraModel = era != null ? Eras.instance.getEra(era) : null;
@@ -32,7 +32,7 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({
   const talents = starship?.talents
     .filter((t) => !t.talentModel.isSpecialRule(starship.version))
     .map((t, i) => {
-      let name =
+      const name =
         starship?.stereotype === Stereotype.SoloStarship
           ? t.talentModel.localizedNameForSource(Source.CaptainsLog)
           : t.displayName;
@@ -42,7 +42,7 @@ const StarshipProfile: React.FC<IStarshipProfileProperties> = ({
   const specialRules = starship?.talents
     .filter((t) => t.talentModel.isSpecialRule(starship.version))
     .map((t, i) => {
-      let name =
+      const name =
         starship?.stereotype === Stereotype.SoloStarship
           ? t.talentModel.localizedNameForSource(Source.CaptainsLog)
           : t.displayName;

@@ -56,7 +56,7 @@ class MissionPodSelectionPage extends React.Component<
     } else if (this.props.starship.hasUnreplacedMissionPodOverlaps()) {
       Dialog.show(t('MissionPodReplacement.errorMissing'));
     } else {
-      let step = this.props.workflow.peekNextStep();
+      const step = this.props.workflow.peekNextStep();
       store.dispatch(nextStarshipWorkflowStep());
       Navigation.navigateToPage(step.page);
     }

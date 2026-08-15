@@ -79,7 +79,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
         ({ CharacterSheetRegistry }) => {
           setLoadingExport(false);
           setTimeout(() => {
-            let c = store.getState().character.currentCharacter;
+            const c = store.getState().character.currentCharacter;
             store.dispatch(saveCharacterToLocalStorage(c));
             CharacterSheetDialog.show(
               CharacterSheetRegistry.getSupportingCharacterSheet(c),
@@ -94,7 +94,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
 
   const selectSpecies = (selection: Species) => {
     if (selection !== Species.Custom) {
-      let speciesModel = SpeciesHelper.getSpeciesByType(selection);
+      const speciesModel = SpeciesHelper.getSpeciesByType(selection);
       if (speciesModel.isAttributeSelectionRequired) {
         store.dispatch(setCharacterSpecies(selection));
       } else {
@@ -146,11 +146,11 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
       store.dispatch(setCharacterRank(undefined));
       setShowRank(false);
     } else if (character.type === CharacterType.Cadet) {
-      let rank = RanksHelper.instance().getRank(Rank.CadetFourthClass);
+      const rank = RanksHelper.instance().getRank(Rank.CadetFourthClass);
       store.dispatch(setCharacterRank(rank.name, rank.id));
       setShowRank(true);
     } else {
-      let ranks = RanksHelper.instance().getRanksByType(
+      const ranks = RanksHelper.instance().getRanksByType(
         characterType,
         character.version,
       );
@@ -162,7 +162,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
           if (characterType === CharacterType.Starfleet) {
             selectRank(Rank.Ensign);
           } else {
-            let middleRank = ranks[Math.floor(ranks.length / 2)];
+            const middleRank = ranks[Math.floor(ranks.length / 2)];
             selectRank(middleRank.id);
           }
         }
@@ -174,7 +174,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   const selectRandomFocus = (index: number) => {
     let done = false;
     while (!done) {
-      let focus = localizedFocus(
+      const focus = localizedFocus(
         FocusRandomTableWithHints(character.supportingStep?.disciplines[0]),
       );
       if (character.focuses.indexOf(focus) < 0) {
@@ -187,7 +187,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   };
 
   const selectRandomValue = () => {
-    let value = randomUniqueValue(
+    const value = randomUniqueValue(
       character.values,
       character.speciesStep?.species,
       character.supportingStep?.disciplines[0],
@@ -196,7 +196,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   };
 
   useEffect(() => {
-    let character = Character.createSupportingCharacter(
+    const character = Character.createSupportingCharacter(
       store.getState().context.era,
       isSecondEdition() ? 2 : 1,
     );
@@ -204,7 +204,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   }, []);
 
   const getSpeciesList = () => {
-    let speciesList = SpeciesHelper.getSpecies(CharacterType.Starfleet).map(
+    const speciesList = SpeciesHelper.getSpecies(CharacterType.Starfleet).map(
       (s) => {
         return new DropDownElement(s.id, s.localizedName);
       },
@@ -217,7 +217,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   };
 
   const characterAgeAsIndex = () => {
-    let age = character.age;
+    const age = character.age;
     let result = -1;
     AgeHelper.getAllChildAges().forEach((a, i) => {
       if (a.name === age.name) {
@@ -276,7 +276,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
     }
   };
 
-  let ageDiv =
+  const ageDiv =
     hasSource(Source.PlayersGuide) && character?.age?.isChild ? (
       <div className="mt-4">
         <div className="page-text-aligned">
@@ -292,7 +292,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
       </div>
     ) : null;
 
-  let supervisoryDiv =
+  const supervisoryDiv =
     character &&
     character?.version > 1 &&
     character?.type !== CharacterType.Child ? (

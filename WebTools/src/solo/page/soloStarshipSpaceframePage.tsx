@@ -44,7 +44,7 @@ const SoloStarshipSpaceframePage: React.FC<
       SpaceframeHelper.instance().getSpaceframe(randomSpaceframe),
     ];
   }
-  let selectionRows = selectionList.map((s, i) => {
+  const selectionRows = selectionList.map((s, i) => {
     const departments = (
       <>
         <StatView

@@ -33,7 +33,7 @@ const EducationPage: React.FC<ICharacterProperties> = ({ character }) => {
   const { t } = useTranslation();
 
   const rollTrack = () => {
-    let track = TracksHelper.instance.generateTrack(
+    const track = TracksHelper.instance.generateTrack(
       character.type,
       character.version,
     );

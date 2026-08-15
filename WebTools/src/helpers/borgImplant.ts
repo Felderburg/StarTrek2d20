@@ -28,13 +28,13 @@ export class Implant {
 
   get localizedName() {
     const key = makeKey('Implant.', BorgImplantType[this.type]);
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.name : result;
   }
 
   get localizedName2e() {
     const key = makeKey('Implant.', BorgImplantType[this.type], '.2e');
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.localizedName : result;
   }
 
@@ -48,7 +48,7 @@ export class Implant {
       BorgImplantType[this.type],
       '.description2e',
     );
-    let result = i18next.t(key);
+    const result = i18next.t(key);
     return result === key ? this.localizedDescription : result;
   }
 }
@@ -130,7 +130,7 @@ export class BorgImplants {
   }
 
   getImplantByType(type: BorgImplantType): Implant | undefined {
-    let i = this.implants.filter((i) => i.type === type);
+    const i = this.implants.filter((i) => i.type === type);
     return i.length > 0 ? i[0] : undefined;
   }
 }

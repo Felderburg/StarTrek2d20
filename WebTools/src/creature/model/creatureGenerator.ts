@@ -56,10 +56,10 @@ export const CreatureGenerator = async (
   }
   result.creatureType = CreatureTypeHelper.instance.getTypeById(creatureType);
 
-  let diet = createRandomDiet();
+  const diet = createRandomDiet();
   result.diet = DietTypeHelper.instance.getTypeById(diet);
 
-  let size = generateRandomCreatureSize();
+  const size = generateRandomCreatureSize();
   result.size = CreatureSizeHelper.instance.getTypeById(size);
 
   result.naturalAttacks = generateRandomNaturalAttacks(diet);
@@ -70,16 +70,16 @@ export const CreatureGenerator = async (
     result.additionalTalents.push(new SelectedTalent(TALENT_NAME_FLIGHT));
   }
   if (result.size?.id === CreatureSize.Swarm) {
-    let selectedTalent = new SelectedTalent(TALENT_NAME_SWARM_X);
+    const selectedTalent = new SelectedTalent(TALENT_NAME_SWARM_X);
     selectedTalent.x = determineXIfNecessary(selectedTalent.talentModel);
     result.additionalTalents.push(selectedTalent);
   }
 
-  let skillImprovements = 3;
-  let skills = [Department.Security, Department.Security, Department.Command];
+  const skillImprovements = 3;
+  const skills = [Department.Security, Department.Security, Department.Command];
   for (let i = 0; i < skillImprovements; i++) {
-    let index = Math.floor(Math.random() * skills.length);
-    let skill = skills[index];
+    const index = Math.floor(Math.random() * skills.length);
+    const skill = skills[index];
 
     result.departments[skill] += 1;
   }
@@ -88,8 +88,8 @@ export const CreatureGenerator = async (
     result.departments[Department.Security] += 1;
   }
 
-  let attributeImprovementBySize = [26, 26, 28, 28, 30, 32];
-  let attributeImprovement = attributeImprovementBySize[result.size.id];
+  const attributeImprovementBySize = [26, 26, 28, 28, 30, 32];
+  const attributeImprovement = attributeImprovementBySize[result.size.id];
   let attributes = [
     Attribute.Control,
     Attribute.Control,
@@ -109,8 +109,8 @@ export const CreatureGenerator = async (
     Attribute.Reason,
   ];
   for (let i = 0; i < attributeImprovement; i++) {
-    let index = Math.floor(Math.random() * attributes.length);
-    let attribute = attributes[index];
+    const index = Math.floor(Math.random() * attributes.length);
+    const attribute = attributes[index];
 
     result.attributes[attribute] += 1;
     if (result.attributes[attribute] >= 11) {
@@ -169,7 +169,7 @@ const addAllTalentSelection = (
 };
 
 const generateCreatureDescription = async (creature: Creature) => {
-  let data = {
+  const data = {
     type: CreatureType[creature.creatureType.id],
     name: creature.name,
     habitat:
@@ -180,11 +180,11 @@ const generateCreatureDescription = async (creature: Creature) => {
     locomotion: creature.locomotion.map((l) => l.description),
   };
 
-  let textEncoder = new TextEncoder();
-  let body = textEncoder.encode(JSON.stringify(data));
+  const textEncoder = new TextEncoder();
+  const body = textEncoder.encode(JSON.stringify(data));
 
   try {
-    let response = await fetch('/api/creature_description', {
+    const response = await fetch('/api/creature_description', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -193,7 +193,7 @@ const generateCreatureDescription = async (creature: Creature) => {
     });
 
     if (response.status === 200) {
-      let responseJson = await response.json();
+      const responseJson = await response.json();
 
       return responseJson?.description;
     } else {

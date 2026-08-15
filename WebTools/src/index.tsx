@@ -148,7 +148,7 @@ const StationTalentsPage = React.lazy(
     ),
 );
 
-let root = createRoot(document.getElementById('mainBody'));
+const root = createRoot(document.getElementById('mainBody'));
 root.render(
   <HelmetProvider>
     <Provider store={store}>

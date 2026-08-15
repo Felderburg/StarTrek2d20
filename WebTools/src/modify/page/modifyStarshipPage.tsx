@@ -68,7 +68,7 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({ starship }) => {
   }, [starship, navigate]);
 
   const milestoneTypesDropDownItems = () => {
-    let result = [];
+    const result = [];
     result.push(
       new DropDownElement(
         CharacterAdvancementType.Milestone,
@@ -177,7 +177,7 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({ starship }) => {
   };
 
   const dropDownAdvancementChoices = () => {
-    let result = [];
+    const result = [];
     result.push(new DropDownElement('', ''));
     result.push(
       new DropDownElement(
@@ -202,8 +202,8 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({ starship }) => {
 
   const viewStarship = () => {
     setTimeout(() => {
-      let c = store.getState().starship.starship;
-      let hash = store.getState().starship.hash;
+      const c = store.getState().starship.starship;
+      const hash = store.getState().starship.hash;
       store.dispatch(saveStarshipToLocalStorage(c, hash));
       const value = marshaller.encodeStarship(c);
       navigate('/view?s=' + value);

@@ -52,7 +52,7 @@ const SoloSpeciesPage: React.FC<ISoloSpeciesPageProperties> = ({
   } else if (randomSpecies === Species.Custom) {
     speciesList = [];
   }
-  let speciesRows = speciesList.map((s, i) => {
+  const speciesRows = speciesList.map((s, i) => {
     const attributes =
       s.id === Species.Ktarian ? (
         <div key={'species-' + s.id}>

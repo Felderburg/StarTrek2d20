@@ -52,8 +52,8 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
       // no change
     } else if (newTab === SpaceframeTab.Custom) {
       if (!starship.spaceframeModel?.isCustom) {
-        let scale = 3;
-        let systems = PointAllocator.allocatePointsEvenly(
+        const scale = 3;
+        const systems = PointAllocator.allocatePointsEvenly(
           BuildPoints.systemPointsForType(
             ShipBuildType.Starship,
             starship.serviceYear,
@@ -62,10 +62,10 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
             starship.version,
           ),
         );
-        let departments = PointAllocator.allocatePointsEvenly(
+        const departments = PointAllocator.allocatePointsEvenly(
           BuildPoints.departmentPointsForType(ShipBuildType.Starship),
         );
-        let spaceframe = SpaceframeModel.createCustomSpaceframe(
+        const spaceframe = SpaceframeModel.createCustomSpaceframe(
           starship?.type,
           starship?.serviceYear,
           systems,
@@ -110,7 +110,7 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
       ) {
         Navigation.navigateToPage(PageIdentity.ExtraStarshipTalentChoice);
       } else {
-        let step = workflow.peekNextStep();
+        const step = workflow.peekNextStep();
         store.dispatch(nextStarshipWorkflowStep());
         Navigation.navigateToPage(step.page);
       }

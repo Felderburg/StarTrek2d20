@@ -21,7 +21,7 @@ class SwatchButton extends React.Component<ISwatchButtonProperties, {}> {
     if (svg instanceof String || typeof svg === 'string') {
       svgContents = svg as string;
     } else {
-      let s = svg as (token: TokenModel) => string;
+      const s = svg as (token: TokenModel) => string;
       svgContents = s(token);
     }
     return (

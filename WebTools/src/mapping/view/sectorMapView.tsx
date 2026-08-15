@@ -11,7 +11,7 @@ interface ISectorMapViewProperties extends IPageProperties {
 
 class SectorMapView extends React.Component<ISectorMapViewProperties, {}> {
   render() {
-    let purple = '#9179B7';
+    const purple = '#9179B7';
 
     return this.props.sector ? (
       <div className="sectorMap">
@@ -44,19 +44,19 @@ class SectorMapView extends React.Component<ISectorMapViewProperties, {}> {
   }
 
   renderStarSystems() {
-    let systems = this.props.sector.sortedSystems;
+    const systems = this.props.sector.sortedSystems;
     return systems.map((s, i) => {
-      let z = (s.sectorCoordinates.z / 20) * 0.75 + 0.25;
-      let baseColour = s.star.spectralClass.colour;
-      let colour = baseColour.blend(new SimpleColor(0, 0, 0), 1 - z);
+      const z = (s.sectorCoordinates.z / 20) * 0.75 + 0.25;
+      const baseColour = s.star.spectralClass.colour;
+      const colour = baseColour.blend(new SimpleColor(0, 0, 0), 1 - z);
 
       let r = Math.max(1, Math.sqrt(s.star.spectralClass.radius.midpoint * 50));
 
       if (s.isBinary) {
-        let r1 = r * 0.75;
+        const r1 = r * 0.75;
 
-        let baseColour2 = s.companionStar.spectralClass.colour;
-        let colour2 = baseColour2.blend(new SimpleColor(0, 0, 0), 1 - z);
+        const baseColour2 = s.companionStar.spectralClass.colour;
+        const colour2 = baseColour2.blend(new SimpleColor(0, 0, 0), 1 - z);
 
         let r2 = Math.max(
           1,

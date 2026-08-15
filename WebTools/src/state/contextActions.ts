@@ -16,7 +16,7 @@ export const SET_ALLOW_ESOTERIC_TALENTS = 'SET_ALLOW_ESOTERIC_TALENTS';
  */
 
 export function addSource(source: Source) {
-  let payload = source;
+  const payload = source;
   return {
     type: ADD_SOURCE,
     payload: payload,
@@ -24,7 +24,7 @@ export function addSource(source: Source) {
 }
 
 export function removeSource(source: Source) {
-  let payload = source;
+  const payload = source;
   return {
     type: REMOVE_SOURCE,
     payload: payload,
@@ -32,7 +32,7 @@ export function removeSource(source: Source) {
 }
 
 export function setSources(sources: Source[]) {
-  let payload = sources;
+  const payload = sources;
   return {
     type: SET_SOURCES,
     payload: payload,
@@ -40,7 +40,7 @@ export function setSources(sources: Source[]) {
 }
 
 export function setEra(era: Era) {
-  let payload = era;
+  const payload = era;
   return {
     type: SET_ERA,
     payload: payload,
@@ -48,7 +48,7 @@ export function setEra(era: Era) {
 }
 
 export function setAllowCrossSpeciesTalents(value: boolean) {
-  let payload = value;
+  const payload = value;
   return {
     type: SET_ALLOW_CROSS_SPECIES_TALENTS,
     payload: payload,
@@ -56,7 +56,7 @@ export function setAllowCrossSpeciesTalents(value: boolean) {
 }
 
 export function setAllowEsotericTalents(value: boolean) {
-  let payload = value;
+  const payload = value;
   return {
     type: SET_ALLOW_ESOTERIC_TALENTS,
     payload: payload,

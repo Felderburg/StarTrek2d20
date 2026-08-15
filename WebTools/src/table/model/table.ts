@@ -40,7 +40,7 @@ export class Table {
   }
 
   public resolveRoll(roll: number) {
-    let results = this.rows.filter((r) =>
+    const results = this.rows.filter((r) =>
       r.to == null ? r.from === roll : r.from <= roll && roll <= r.to,
     );
     return results.length > 0 ? results[0] : undefined;
@@ -71,7 +71,7 @@ export class TableCollection {
 
   public roll: TableRoll<ValueResult[]> = () => {
     const dice = D20.roll();
-    let row = this.mainTable.resolveRoll(dice);
+    const row = this.mainTable.resolveRoll(dice);
     if (row != null) {
       return [row.result];
     } else {

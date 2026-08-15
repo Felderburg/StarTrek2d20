@@ -8,7 +8,7 @@ const StressOrShieldsView: React.FC<IStressOrShieldsViewProperties> = ({
   rows = 4,
 }) => {
   if (value) {
-    let iterator = [];
+    const iterator = [];
     for (let i = 1; i <= Math.max(rows * 5, Math.ceil(value / 5) * 5); i++) {
       iterator.push(i);
     }

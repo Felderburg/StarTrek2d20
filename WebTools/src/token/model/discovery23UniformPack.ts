@@ -152,7 +152,7 @@ export class Discovery23UniformPack
   }
 
   getUniformAndVariantBody(token: TokenModel) {
-    let base = this.getUniformAndVariantByBodyType(
+    const base = this.getUniformAndVariantByBodyType(
       token,
       token.variant,
       token.bodyType,
@@ -275,7 +275,7 @@ export class Discovery23UniformPack
   getBorderLogo(token: TokenModel): string {
     let base = borderInsignia.base;
 
-    let division = DivisionColors.getDivision(this.era, token.divisionColor);
+    const division = DivisionColors.getDivision(this.era, token.divisionColor);
     if (division === 'Medical') {
       base = base.replace(DefaultRed, SILVER);
     } else {
@@ -296,7 +296,7 @@ export class Discovery23UniformPack
   }
 
   getBorderColor(token: TokenModel): string {
-    let division = DivisionColors.getDivision(this.era, token.divisionColor);
+    const division = DivisionColors.getDivision(this.era, token.divisionColor);
     if (division === 'Medical') {
       return token.divisionColor;
     } else {
@@ -307,7 +307,7 @@ export class Discovery23UniformPack
   getRankBorderIndicator(token: TokenModel): string {
     let divisionColour = token.divisionColor;
 
-    let division = DivisionColors.getDivision(this.era, token.divisionColor);
+    const division = DivisionColors.getDivision(this.era, token.divisionColor);
     if (division === 'Medical') {
       divisionColour = '#aba7a8';
     }

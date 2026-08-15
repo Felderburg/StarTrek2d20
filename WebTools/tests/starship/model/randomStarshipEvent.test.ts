@@ -8,10 +8,10 @@ class MockSpaceframe implements IServiceYearProvider {
 
 describe('testing event selector', () => {
   test('should produce event', () => {
-    let model = new MockSpaceframe();
+    const model = new MockSpaceframe();
 
     for (let i = 0; i < 20; i++) {
-      let event = randomStarshipEvent(model, 2385);
+      const event = randomStarshipEvent(model, 2385);
       expect(event).toBeDefined();
     }
   });

@@ -109,7 +109,7 @@ export class AsteroidBeltDetails extends WorldDetails {
   }
 
   get attributeList() {
-    let result = [];
+    const result = [];
     if (this.asteroidSize != null) {
       result.push(
         new WorldAttribute(
@@ -170,7 +170,7 @@ export class GasGiantDetails extends WorldDetails {
   ecosphere: boolean;
 
   public static createBasicDistributionOfMoons(gasGiant: World) {
-    let result = new GasGiantDetails();
+    const result = new GasGiantDetails();
     let modifier = 0;
     if (gasGiant?.worldClass?.id === WorldClass.J) {
       modifier = 1;
@@ -191,7 +191,7 @@ export class GasGiantDetails extends WorldDetails {
   }
 
   public static createBasicDistributionOfMoonsWithEcosphere(gasGiant: World) {
-    let result = this.createBasicDistributionOfMoons(gasGiant);
+    const result = this.createBasicDistributionOfMoons(gasGiant);
     if (D20.roll() > 10) {
       result.giantMoons = Math.max(1, result.giantMoons);
     } else {
@@ -202,13 +202,13 @@ export class GasGiantDetails extends WorldDetails {
   }
 
   public static createFaintRing(gasGiant: World) {
-    let result = this.createBasicDistributionOfMoons(gasGiant);
+    const result = this.createBasicDistributionOfMoons(gasGiant);
     result.ring = RingTypeModel.getType(RingType.Faint);
     return result;
   }
 
   public static createTwiceAsManyWorlds(gasGiant: World) {
-    let result = this.createBasicDistributionOfMoons(gasGiant);
+    const result = this.createBasicDistributionOfMoons(gasGiant);
     result.moonlets += result.moonlets;
     result.smallMoons += result.smallMoons;
     result.mediumMoons += result.mediumMoons;
@@ -218,19 +218,19 @@ export class GasGiantDetails extends WorldDetails {
   }
 
   public static createBrightRing(gasGiant: World) {
-    let result = this.createBasicDistributionOfMoons(gasGiant);
+    const result = this.createBasicDistributionOfMoons(gasGiant);
     result.ring = RingTypeModel.getType(RingType.Spectacular);
     return result;
   }
 
   public static createOortBelt(gasGiant: World) {
-    let result = this.createBasicDistributionOfMoons(gasGiant);
+    const result = this.createBasicDistributionOfMoons(gasGiant);
     result.ring = RingTypeModel.getType(RingType.OortCloud);
     return result;
   }
 
   public static createAsteroidBelt(gasGiant: World) {
-    let result = this.createBasicDistributionOfMoons(gasGiant);
+    const result = this.createBasicDistributionOfMoons(gasGiant);
     result.moonlets = undefined;
     result.smallMoons = undefined;
     result.ring = RingTypeModel.getType(RingType.AsteroidBelt);
@@ -305,7 +305,7 @@ export class GasGiantDetails extends WorldDetails {
   }
 
   get attributeList() {
-    let result = [];
+    const result = [];
     result.push(
       new WorldAttribute(
         i18next.t('World.attribute.satellites'),
@@ -349,7 +349,7 @@ export class StandardWorldDetails extends WorldDetails {
   }
 
   get attributeList() {
-    let result = [];
+    const result = [];
     if (this.tidallyLocked != null) {
       result.push(
         new WorldAttribute(
@@ -493,7 +493,7 @@ export class World {
   }
 
   get attributeList() {
-    let result = [];
+    const result = [];
     if (this.orbitLabel != null) {
       result.push(
         new WorldAttribute(
@@ -643,7 +643,7 @@ export class World {
     }
 
     if (this.features?.length) {
-      let features = this.features
+      const features = this.features
         .map((f) =>
           typeof f === 'string' || f instanceof String
             ? f

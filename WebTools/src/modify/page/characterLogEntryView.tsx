@@ -30,7 +30,7 @@ export const CharacterLogEntryView: React.FC<
 > = ({ character, onNextStep, onPreviousStep, saveLogEntry }) => {
   const initializeLogValueEntries = () => {
     return character.values.map((v) => {
-      let result = new SelectedLogValueEntry(new LogValueEntry(v));
+      const result = new SelectedLogValueEntry(new LogValueEntry(v));
       result.selected = false;
       return result;
     });
@@ -46,7 +46,7 @@ export const CharacterLogEntryView: React.FC<
   const [directives, setDirectives] = useState<string[]>(['', '', '']);
 
   const createLogEntryAndNext = () => {
-    let valuesUsed = values.filter((v) => v.selected).map((v) => v.logEntry);
+    const valuesUsed = values.filter((v) => v.selected).map((v) => v.logEntry);
     if (title.length === 0) {
       Dialog.show('Please select a title');
     } else if (details.length === 0) {
@@ -58,7 +58,7 @@ export const CharacterLogEntryView: React.FC<
     ) {
       Dialog.show('Please provide a new value for any challenged values.');
     } else {
-      let entry = new LogEntry((character.logEntries?.length ?? 0) + 1);
+      const entry = new LogEntry((character.logEntries?.length ?? 0) + 1);
       entry.adventureTitle = title;
       entry.missionDescription = details;
       entry.notes = notes;
@@ -70,8 +70,8 @@ export const CharacterLogEntryView: React.FC<
   };
 
   const modifyValue = (index: number, value?: LogValueEntry) => {
-    let temp = [...values];
-    let entry = new SelectedLogValueEntry(
+    const temp = [...values];
+    const entry = new SelectedLogValueEntry(
       value === undefined ? values[index].logEntry : value,
     );
     entry.selected = value !== undefined;
@@ -81,7 +81,7 @@ export const CharacterLogEntryView: React.FC<
   };
 
   const modifyDirective = (directive: string, index: number) => {
-    let temp = [...directives];
+    const temp = [...directives];
     temp[index] = directive;
     let last = 0;
 

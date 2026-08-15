@@ -160,7 +160,7 @@ export class EditableTable {
   }
 
   fillGaps() {
-    let values = [
+    const values = [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
     ];
 
@@ -169,14 +169,14 @@ export class EditableTable {
     [...this.rows]
       .filter((r) => r.edited)
       .forEach((r) => {
-        let overlaps = this.rows.filter(
+        const overlaps = this.rows.filter(
           (r2) => !r2.edited && r.overlapsRangeOf(r2),
         );
         overlaps.forEach((r2) => this.rows.splice(this.rows.indexOf(r2), 1));
       });
 
     this.rows.forEach((r) => {
-      let to = r.to == null ? r.from : Math.max(r.from, r.to);
+      const to = r.to == null ? r.from : Math.max(r.from, r.to);
       for (let i = r.from; i <= to; i++) {
         if (values.includes(i)) {
           values.splice(values.indexOf(i), 1);
@@ -184,12 +184,12 @@ export class EditableTable {
       }
     });
 
-    let chunks: number[][] = [];
+    const chunks: number[][] = [];
     values.forEach((v) => {
       if (chunks.length === 0) {
         chunks.push([v]);
       } else {
-        let last = chunks[chunks.length - 1];
+        const last = chunks[chunks.length - 1];
         if (last[last.length - 1] === v - 1) {
           last.push(v);
         } else {
@@ -201,14 +201,14 @@ export class EditableTable {
     chunks.forEach((c) => {
       let existingRow = undefined;
       if (c[c.length - 1] < 20) {
-        let temp = this.rows.filter((r) => r.from === c[c.length - 1] + 1);
+        const temp = this.rows.filter((r) => r.from === c[c.length - 1] + 1);
         if (temp.length) {
           existingRow = temp[0];
         }
       }
 
       if (existingRow != null && !existingRow.edited) {
-        let index = this.rows.indexOf(existingRow);
+        const index = this.rows.indexOf(existingRow);
         this.rows[index] = new EditableTableRow(
           existingRow.result,
           c[0],
@@ -233,17 +233,17 @@ export class EditableTable {
     [...this.rows]
       .filter((r1) => r1.edited)
       .forEach((r1) => {
-        let overlaps = this.rows.filter(
+        const overlaps = this.rows.filter(
           (r2) => !r2.edited && r1.overlapsRangeOf(r2),
         );
         overlaps.forEach((r2) => {
           if (r1.containsRangeOf(r2)) {
             this.rows.splice(this.rows.indexOf(r2), 1);
           } else {
-            let from =
+            const from =
               r2.from >= r1.from && r2.from <= r1.to ? r1.to + 1 : r2.from;
-            let to = r2.to >= r1.from && r2.to <= r1.to ? r1.from - 1 : r2.to;
-            let index = this.rows.indexOf(r2);
+            const to = r2.to >= r1.from && r2.to <= r1.to ? r1.from - 1 : r2.to;
+            const index = this.rows.indexOf(r2);
             this.rows[index] = new EditableTableRow(r2.result, from, to);
           }
         });
@@ -260,7 +260,7 @@ export class EditableTableCollection {
   category?: string;
 
   static from(tableCollection?: TableCollection) {
-    let result = new EditableTableCollection();
+    const result = new EditableTableCollection();
     if (tableCollection != null) {
       result.description = tableCollection.description;
       result.category = tableCollection.category;

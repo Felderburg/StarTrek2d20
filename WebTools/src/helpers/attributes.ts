@@ -12,7 +12,7 @@ export class Attributes {
     return Attribute[attr];
   }
   getAttributeByName(attr: string) {
-    let options = this.getAllAttributes().filter(
+    const options = this.getAllAttributes().filter(
       (a) =>
         this.getAttributeName(a).toLocaleLowerCase() ===
         attr.toLocaleLowerCase(),

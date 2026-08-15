@@ -50,14 +50,14 @@ const ViewSheetPage = () => {
 
   const renderContents = () => {
     const encodedSheet = originalEncodedSheet();
-    let json = marshaller.decode(encodedSheet);
+    const json = marshaller.decode(encodedSheet);
 
     if (!json) {
       return (
         <div className="page text-white">{t('ViewPage.errorMessage')}</div>
       );
     } else if (json.stereotype === 'asset') {
-      let asset = marshaller.decodeAsset(encodedSheet);
+      const asset = marshaller.decodeAsset(encodedSheet);
       modifyTitleForAsset(asset);
       return (
         <div className="page container ms-0">
@@ -77,7 +77,7 @@ const ViewSheetPage = () => {
         </div>
       );
     } else if (json.stereotype === 'creature') {
-      let creature = marshaller.decodeCreature(json);
+      const creature = marshaller.decodeCreature(json);
       modifyTitle(creature);
       return (
         <div className="page container ms-0">
@@ -97,7 +97,7 @@ const ViewSheetPage = () => {
         </div>
       );
     } else if (json.stereotype === 'starship' || json.stereotype === 'simple') {
-      let starship = marshaller.decodeStarship(encodedSheet);
+      const starship = marshaller.decodeStarship(encodedSheet);
       modifyTitle(starship);
       return (
         <div className="page container ms-0">
@@ -117,7 +117,7 @@ const ViewSheetPage = () => {
         </div>
       );
     } else if (json.stereotype === 'supportingCharacter') {
-      let character = marshaller.decodeCharacter(json);
+      const character = marshaller.decodeCharacter(json);
       modifyTitle(character);
       return (
         <div className="page container ms-0">
@@ -137,7 +137,7 @@ const ViewSheetPage = () => {
         </div>
       );
     } else if (json.stereotype === 'npc') {
-      let character = marshaller.decodeCharacter(json);
+      const character = marshaller.decodeCharacter(json);
       modifyTitle(character);
       return (
         <div className="page container ms-0">
@@ -155,7 +155,7 @@ const ViewSheetPage = () => {
         </div>
       );
     } else if (json.stereotype === 'mainCharacter') {
-      let character = marshaller.decodeCharacter(json);
+      const character = marshaller.decodeCharacter(json);
       modifyTitle(character);
       return (
         <div className="page container ms-0">
@@ -173,7 +173,7 @@ const ViewSheetPage = () => {
         </div>
       );
     } else if (json.stereotype === 'station') {
-      let station = marshaller.decodeStation(json);
+      const station = marshaller.decodeStation(json);
       modifyTitle(station);
       return (
         <div className="page container ms-0">
@@ -191,7 +191,7 @@ const ViewSheetPage = () => {
         </div>
       );
     } else if (json.stereotype === 'soloCharacter') {
-      let character = marshaller.decodeCharacter(json);
+      const character = marshaller.decodeCharacter(json);
       modifyTitle(character);
       return (
         <div className="page container ms-0">

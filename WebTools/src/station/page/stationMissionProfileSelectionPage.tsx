@@ -43,10 +43,10 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({
 
   let availableProfiles = MissionProfiles.instance.getStationMissionProfiles();
   if (station?.stationFrameStep instanceof StandardStationSpaceframeStep) {
-    let model = (station.stationFrameStep as StandardStationSpaceframeStep)
+    const model = (station.stationFrameStep as StandardStationSpaceframeStep)
       .model;
     if (model.missionProfiles?.length) {
-      let temp = model.missionProfiles.map((p) => p.profile);
+      const temp = model.missionProfiles.map((p) => p.profile);
       availableProfiles = availableProfiles.filter((p) => temp.includes(p.id));
     }
   }
@@ -77,10 +77,10 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({
   };
 
   const getTalents = () => {
-    let talents: RankedTalent[] = [];
+    const talents: RankedTalent[] = [];
 
     selectedProfile?.talents?.forEach((t) => {
-      let talent =
+      const talent =
         t instanceof SelectedTalent
           ? (t as SelectedTalent).talentModel
           : (t as TalentModel);

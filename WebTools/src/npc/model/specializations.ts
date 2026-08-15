@@ -254,8 +254,8 @@ export class SpecializationModel {
   }
 
   get localizedName() {
-    let key = makeKey('Specialization.', Specialization[this.id]);
-    let result = i18next.t(key);
+    const key = makeKey('Specialization.', Specialization[this.id]);
+    const result = i18next.t(key);
     return key === result ? this.name : result;
   }
 }
@@ -2540,7 +2540,7 @@ export class Specializations {
   }
 
   getSpecialization(specialization: Specialization) {
-    let specializations = this.specializations.filter(
+    const specializations = this.specializations.filter(
       (s) => s.id === specialization,
     );
     return specializations?.length === 1 ? specializations[0] : null;

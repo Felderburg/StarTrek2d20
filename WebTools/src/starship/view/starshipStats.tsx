@@ -23,7 +23,7 @@ class StarshipStats extends React.Component<IStarshipStatsProperties, {}> {
   }
 
   renderAsSpaceframe() {
-    let model = this.props.model as SpaceframeModel;
+    const model = this.props.model as SpaceframeModel;
     return (
       <div className="stats-block">
         <div className="stats-row">
@@ -117,7 +117,7 @@ class StarshipStats extends React.Component<IStarshipStatsProperties, {}> {
   }
 
   renderAsMissionPod() {
-    let model = this.props.model as MissionPodModel;
+    const model = this.props.model as MissionPodModel;
     return (
       <div className="stats-block">
         <div className="stats-row">
@@ -204,7 +204,7 @@ class StarshipStats extends React.Component<IStarshipStatsProperties, {}> {
     );
   }
   renderAsMissionProfile() {
-    let model = this.props.model as MissionProfileModel;
+    const model = this.props.model as MissionProfileModel;
     return (
       <div className="stats-block">
         <div className="stats-row pt-2">

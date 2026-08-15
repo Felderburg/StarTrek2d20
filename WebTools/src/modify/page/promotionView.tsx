@@ -32,7 +32,7 @@ export const PromotionView: React.FC<IPromotionViewProperties> = ({
   const [rankName, setRankName] = useState<string | undefined>(undefined);
 
   const getRanks = () => {
-    let result = [new DropDownElement('', '')];
+    const result = [new DropDownElement('', '')];
     if (type === ModificationType.Demotion) {
       result.push(
         ...RanksHelper.instance()
@@ -78,11 +78,11 @@ export const PromotionView: React.FC<IPromotionViewProperties> = ({
                 setRank(undefined);
                 setRankName(undefined);
               } else {
-                let allRanks = RanksHelper.instance().getRanksByType(
+                const allRanks = RanksHelper.instance().getRanksByType(
                   character.type,
                   character.version,
                 );
-                let rank = allRanks.filter((r) => r.id === id)[0];
+                const rank = allRanks.filter((r) => r.id === id)[0];
                 setRank(rank.id);
                 setRankName(rank.name);
               }

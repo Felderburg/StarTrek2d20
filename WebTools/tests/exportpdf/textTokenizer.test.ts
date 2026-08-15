@@ -3,7 +3,7 @@ import { textTokenizer } from '../../src/exportpdf/textTokenizer';
 
 describe('test text tokenization', () => {
   test('should handle standard case', () => {
-    let tokens = textTokenizer('very basic case');
+    const tokens = textTokenizer('very basic case');
     expect(tokens.length).toEqual(1);
   });
 
@@ -19,17 +19,17 @@ describe('test text tokenization', () => {
   });
 
   test('should find bold markup', () => {
-    let tokens = textTokenizer('very basic **case**');
+    const tokens = textTokenizer('very basic **case**');
     expect(tokens.length).toEqual(4);
   });
 
   test('should find italic markup', () => {
-    let tokens = textTokenizer('very basic _case_ here');
+    const tokens = textTokenizer('very basic _case_ here');
     expect(tokens.length).toEqual(5);
   });
 
   test('should find mixed markup', () => {
-    let tokens = textTokenizer(
+    const tokens = textTokenizer(
       'very basic _case_ here, but also with **some** bolding going on',
     );
     expect(tokens.length).toEqual(9);

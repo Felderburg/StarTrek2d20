@@ -47,12 +47,12 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
   async populate(pdf: PDFDocument, construct: Construct) {
     await super.populate(pdf, construct);
 
-    let character = construct as Character;
+    const character = construct as Character;
 
     const page = pdf.getPage(0);
     this.writeCharacterName(page, character);
 
-    let bottom = this.writeCharacterDetails(page, character);
+    const bottom = this.writeCharacterDetails(page, character);
 
     let remainingColumn = this.mainBlock.bottomAfter(
       bottom.y - this.mainBlock.start.y + 16,
@@ -119,7 +119,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
       'M 2.835,0 C 1.269,0 0,1.269 0,2.835 V 9 c 0,1.565 1.269,2.835 2.835,2.835 h 66.567 c 1.565,0 2.835,-1.27 2.835,-2.835 V 2.835 C 72.237,1.269 70.967,0 69.402,0 Z';
 
     const rowHeight = 16;
-    let labels = {};
+    const labels = {};
     [
       Attribute.Control,
       Attribute.Fitness,
@@ -128,11 +128,11 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
       Attribute.Insight,
       Attribute.Reason,
     ].forEach((a, i) => {
-      let location = new XYLocation(
+      const location = new XYLocation(
         boxes.x + (i % 3) * 81,
         boxes.y + Math.floor(i / 3) * rowHeight,
       );
-      let x = location.x;
+      const x = location.x;
       const y = page.getHeight() - location.y;
       page.moveTo(x, y);
       page.drawSvgPath(statFrame, {
@@ -140,7 +140,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
         borderWidth: 0.5,
       });
 
-      let labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
+      const labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
       const key = i18next.t(makeKey('Construct.attribute.', Attribute[a]));
       labels[key] = labelColumn;
 
@@ -178,11 +178,11 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
       Department.Security,
       Department.Science,
     ].forEach((s, i) => {
-      let location = new XYLocation(
+      const location = new XYLocation(
         boxes.x + (i % 3) * 81,
         boxes.y + Math.floor(i / 3) * rowHeight,
       );
-      let x = location.x;
+      const x = location.x;
       const y = page.getHeight() - location.y;
       page.moveTo(x, y);
       page.drawSvgPath(statFrame, {
@@ -190,7 +190,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
         borderWidth: 0.5,
       });
 
-      let labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
+      const labelColumn = new Column(x + 2, location.y, 11.8, 72.2 * 0.8);
       const key = makeKey('Construct.discipline.', Department[s]);
       labels[key] = labelColumn;
 
@@ -224,7 +224,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
     character: Character,
     column: Column,
   ) {
-    let stressBox =
+    const stressBox =
       'm 1,0 h 7.5 c 0.554,0 1,0.446 1,1 v 7.5 c 0,0.554 -0.446,1 -1,1 H 1 C 0.446,9.5 0,9.054 0,8.5 V 1 C 0,0.446 0.446,0 1,0 Z';
 
     let x = column.translatedStart(page).x;
@@ -236,7 +236,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
         borderWidth: 0.5,
       });
 
-      let checkbox = form.createCheckBox('Stress ' + (i + 1));
+      const checkbox = form.createCheckBox('Stress ' + (i + 1));
       checkbox.addToPage(page, {
         x: x + 0.5,
         y: y - 9,
@@ -339,7 +339,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
   }
 
   writeSpeciesAbility(page: PDFPage, character: Character, column: Column) {
-    let items = assembleWritableItems(character);
+    const items = assembleWritableItems(character);
 
     if (character.version > 1 && items.length > 0) {
       if (items.length === 1 && items[0] instanceof SpeciesAbility) {
@@ -349,7 +349,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
           column.topBefore(13),
         );
         column = column.bottomAfter(16);
-        let paragraph = new Paragraph(page, column, this.fonts);
+        const paragraph = new Paragraph(page, column, this.fonts);
         paragraph.append(
           character.speciesStep.ability.name + ': ',
           new FontOptions(9, FontType.Bold),
@@ -380,7 +380,7 @@ export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
   writeCharacterName(page: PDFPage, character: Character) {
     if (character.name?.length) {
       let name = character.name;
-      let rank = character.rank?.localizedAbbreviation;
+      const rank = character.rank?.localizedAbbreviation;
       if (rank) {
         name = rank + ' ' + name;
       }
