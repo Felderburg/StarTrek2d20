@@ -13,7 +13,7 @@ import { SpaceframeHelper } from '../../helpers/spaceframes';
 import { Department } from '../../helpers/department';
 import { SpaceframeModel } from '../../helpers/spaceframeModel';
 import { setStarshipSpaceframe } from '../../state/starshipActions';
-import { SpaceframeRandomTable } from '../table/starshipRandomTable';
+import { spaceframeRandomTable } from '../table/starshipRandomTable';
 import { StatView } from '../../components/StatView';
 import { System } from '../../helpers/systems';
 import SoloStarshipBreadcrumbs from '../component/soloStarshipBreadcrumbs';
@@ -200,7 +200,7 @@ const SoloStarshipSpaceframePage: React.FC<
         <Button
           size="sm"
           className="me-3"
-          onClick={() => setRandomSpaceframe(SpaceframeRandomTable(era))}
+          onClick={() => setRandomSpaceframe(spaceframeRandomTable(era))}
         >
           <>
             <img

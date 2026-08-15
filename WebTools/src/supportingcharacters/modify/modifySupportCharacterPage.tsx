@@ -25,7 +25,7 @@ import { Attribute } from '../../helpers/attributes';
 import { SimpleAttributeSelector } from '../../components/simpleAttributeSelector';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import D20IconButton from '../../solo/component/d20IconButton';
-import { FocusRandomTable } from '../../solo/table/focusRandomTable';
+import { focusRandomTable } from '../../solo/table/focusRandomTable';
 import { TalentDescription } from '../../components/talentDescription';
 import { ModalControl } from '../../components/modal';
 import { Promotion, CharacterAdvancementStep } from '../../common/character';
@@ -250,7 +250,7 @@ const ModifySupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   const randomFocus = () => {
     let done = false;
     while (!done) {
-      const f = FocusRandomTable();
+      const f = focusRandomTable();
       if (!character?.focuses?.includes(f)) {
         done = true;
         setFocusSelection(f);

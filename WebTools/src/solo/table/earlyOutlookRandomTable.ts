@@ -1,7 +1,7 @@
 import { D20 } from '../../common/die';
 import { EarlyOutlook } from '../../helpers/upbringings';
 
-export const EarlyOutlookUpbringingRandomTable = () => {
+export const earlyOutlookUpbringingRandomTable = () => {
   let roll = D20.roll();
   while (true) {
     switch (roll) {
@@ -35,7 +35,7 @@ export const EarlyOutlookUpbringingRandomTable = () => {
   }
 };
 
-export const EarlyOutlookCasteRandomTable = () => {
+export const earlyOutlookCasteRandomTable = () => {
   let roll = D20.roll();
   while (true) {
     switch (roll) {
@@ -69,7 +69,7 @@ export const EarlyOutlookCasteRandomTable = () => {
   }
 };
 
-export const EarlyOutlookAspirationRandomTable = () => {
+export const earlyOutlookAspirationRandomTable = () => {
   let roll = D20.roll();
   while (true) {
     switch (roll) {

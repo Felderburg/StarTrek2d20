@@ -10,7 +10,7 @@ import { makeKey } from '../../common/translationKey';
 import { TrackModel, TracksHelper } from '../../helpers/tracks';
 import Button from 'react-bootstrap/Button';
 import { Window } from '../../common/window';
-import { EducationTrackRandomTable } from '../table/educationRandomTable';
+import { educationTrackRandomTable } from '../table/educationRandomTable';
 import store from '../../state/store';
 import { setCharacterEducation } from '../../state/characterActions';
 import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
@@ -76,7 +76,7 @@ const SoloEducationPage: React.FC<ICharacterProperties> = ({ character }) => {
           size="sm"
           className="me-3"
           onClick={() =>
-            setRandomTrack(EducationTrackRandomTable(character.type))
+            setRandomTrack(educationTrackRandomTable(character.type))
           }
         >
           <>

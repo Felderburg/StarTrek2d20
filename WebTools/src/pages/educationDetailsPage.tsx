@@ -39,7 +39,7 @@ import DisciplineListComponent from '../components/disciplineListComponent';
 import { PageIdentity } from './pageIdentity';
 import { Stereotype } from '../common/construct';
 import D20IconButton from '../solo/component/d20IconButton';
-import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
+import { focusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { localizedFocus } from '../components/focusHelper';
 import { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
@@ -84,7 +84,7 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({
     let done = false;
     while (!done) {
       const focus = localizedFocus(
-        FocusRandomTableWithHints(
+        focusRandomTableWithHints(
           character.educationStep?.primaryDiscipline,
           track.focuses.focusSuggestions,
         ),

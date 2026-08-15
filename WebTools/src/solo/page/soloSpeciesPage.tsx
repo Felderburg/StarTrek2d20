@@ -11,7 +11,7 @@ import { Attribute } from '../../helpers/attributes';
 import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
-import { SpeciesRandomTable } from '../table/speciesRandomTable';
+import { speciesRandomTable } from '../table/speciesRandomTable';
 import store from '../../state/store';
 import { setCharacterSpecies } from '../../state/characterActions';
 import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
@@ -103,7 +103,7 @@ const SoloSpeciesPage: React.FC<ISoloSpeciesPageProperties> = ({
         <Button
           size="sm"
           className="me-3"
-          onClick={() => setRandomSpecies(SpeciesRandomTable(era))}
+          onClick={() => setRandomSpecies(speciesRandomTable(era))}
         >
           <>
             <img

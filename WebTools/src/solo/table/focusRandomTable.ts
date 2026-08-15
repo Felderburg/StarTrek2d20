@@ -1,7 +1,7 @@
 import { D20 } from '../../common/die';
 import { Department } from '../../helpers/department';
 
-const FocusCommandRandomTable = () => {
+const focusCommandRandomTable = () => {
   const tableRoll = D20.roll();
   const roll = D20.roll();
 
@@ -96,7 +96,7 @@ const FocusCommandRandomTable = () => {
   }
 };
 
-const FocusConnRandomTable = () => {
+const focusConnRandomTable = () => {
   const tableRoll = D20.roll();
   const roll = D20.roll();
 
@@ -191,7 +191,7 @@ const FocusConnRandomTable = () => {
   }
 };
 
-const FocusSecurityRandomTable = () => {
+const focusSecurityRandomTable = () => {
   const tableRoll = D20.roll();
   const roll = D20.roll();
 
@@ -286,7 +286,7 @@ const FocusSecurityRandomTable = () => {
   }
 };
 
-const FocusEngineeringRandomTable = () => {
+const focusEngineeringRandomTable = () => {
   const tableRoll = D20.roll();
   const roll = D20.roll();
 
@@ -381,7 +381,7 @@ const FocusEngineeringRandomTable = () => {
   }
 };
 
-const FocusScienceRandomTable = () => {
+const focusScienceRandomTable = () => {
   const tableRoll = D20.roll();
   const roll = D20.roll();
 
@@ -476,7 +476,7 @@ const FocusScienceRandomTable = () => {
   }
 };
 
-const FocusMedicineRandomTable = () => {
+const focusMedicineRandomTable = () => {
   const tableRoll = D20.roll();
   const roll = D20.roll();
 
@@ -571,7 +571,7 @@ const FocusMedicineRandomTable = () => {
   }
 };
 
-export const FocusRandomTableWithHints = (
+export const focusRandomTableWithHints = (
   skill?: Department,
   hints: string[] = [],
 ) => {
@@ -579,32 +579,32 @@ export const FocusRandomTableWithHints = (
     const i = Math.floor(hints.length * Math.random());
     return hints[i];
   } else {
-    return FocusRandomTable(skill);
+    return focusRandomTable(skill);
   }
 };
 
-export const FocusRandomTable = (skill?: Department) => {
+export const focusRandomTable = (skill?: Department) => {
   if (skill == null) {
-    skill = FocusDivisionRandomTable();
+    skill = focusDivisionRandomTable();
   }
 
   if (skill === Department.Command) {
-    return FocusCommandRandomTable();
+    return focusCommandRandomTable();
   } else if (skill === Department.Conn) {
-    return FocusConnRandomTable();
+    return focusConnRandomTable();
   } else if (skill === Department.Security) {
-    return FocusSecurityRandomTable();
+    return focusSecurityRandomTable();
   } else if (skill === Department.Engineering) {
-    return FocusEngineeringRandomTable();
+    return focusEngineeringRandomTable();
   } else if (skill === Department.Science) {
-    return FocusScienceRandomTable();
+    return focusScienceRandomTable();
   } else {
     // Medicine
-    return FocusMedicineRandomTable();
+    return focusMedicineRandomTable();
   }
 };
 
-export const FocusDivisionRandomTable = () => {
+export const focusDivisionRandomTable = () => {
   let roll = D20.roll();
 
   while (true) {

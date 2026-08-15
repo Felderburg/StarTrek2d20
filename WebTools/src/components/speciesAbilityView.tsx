@@ -7,7 +7,7 @@ import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import store from '../state/store';
 import D20IconButton from '../solo/component/d20IconButton';
 import { localizedFocus } from './focusHelper';
-import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
+import { focusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { setCharacterSpeciesAbilityFocus } from '../state/characterActions';
 import { Department } from '../helpers/department';
 import { hasSource } from '../state/contextFunctions';
@@ -31,7 +31,7 @@ export const SpeciesAbilityView: React.FC<ISpeciesAbilityProperties> = ({
   const selectRandomFocus = (index: number) => {
     let done = false;
     while (!done) {
-      const focus = localizedFocus(FocusRandomTableWithHints(skill));
+      const focus = localizedFocus(focusRandomTableWithHints(skill));
       if (character.focuses.indexOf(focus) < 0) {
         done = true;
         store.dispatch(setCharacterSpeciesAbilityFocus(focus, index));

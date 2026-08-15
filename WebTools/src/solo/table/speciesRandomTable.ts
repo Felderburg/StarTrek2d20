@@ -2,11 +2,11 @@ import { D20 } from '../../common/die';
 import { Era } from '../../helpers/erasEnum';
 import { Species } from '../../helpers/speciesEnum';
 
-export const SpeciesRandomTable = (era: Era) => {
+export const speciesRandomTable = (era: Era) => {
   const tables = [
-    EnterpriseSpeciesRandomTable,
-    OriginalSeriesSpeciesRandomTable,
-    NextGenerationSpeciesRandomTable,
+    enterpriseSpeciesRandomTable,
+    originalSeriesSpeciesRandomTable,
+    nextGenerationSpeciesRandomTable,
   ];
   const table =
     tables[Math.min(tables.length - 1, Math.floor(Math.random() * (era + 1)))];
@@ -14,7 +14,7 @@ export const SpeciesRandomTable = (era: Era) => {
   return table();
 };
 
-const EnterpriseSpeciesRandomTable = () => {
+const enterpriseSpeciesRandomTable = () => {
   const roll = D20.roll();
 
   switch (roll) {
@@ -61,7 +61,7 @@ const EnterpriseSpeciesRandomTable = () => {
   }
 };
 
-const OriginalSeriesSpeciesRandomTable = () => {
+const originalSeriesSpeciesRandomTable = () => {
   const roll = D20.roll();
 
   switch (roll) {
@@ -108,7 +108,7 @@ const OriginalSeriesSpeciesRandomTable = () => {
   }
 };
 
-const NextGenerationSpeciesRandomTable = () => {
+const nextGenerationSpeciesRandomTable = () => {
   const roll = D20.roll();
 
   switch (roll) {

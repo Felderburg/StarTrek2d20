@@ -11,7 +11,7 @@ import {
 } from '../../components/dropDownInput';
 import { Habitat, HabitatHelper } from '../model/habitat';
 import { useEffect, useState } from 'react';
-import { CreatureGenerator } from '../model/creatureGenerator';
+import { creatureGenerator } from '../model/creatureGenerator';
 import { connect } from 'react-redux';
 import { Era } from '../../helpers/erasEnum';
 import { marshaller } from '../../helpers/marshaller';
@@ -78,7 +78,7 @@ const RandomCreatureConfigurationPage: React.FC<
 
   const createCreature = async () => {
     setLoading(true);
-    const creature = await CreatureGenerator(
+    const creature = await creatureGenerator(
       era,
       habitat,
       creatureType,

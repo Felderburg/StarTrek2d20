@@ -25,7 +25,7 @@ import AttributeListComponent from '../../components/attributeListComponent';
 import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
 import { Dialog } from '../../components/dialog';
 import D20IconButton from '../component/d20IconButton';
-import { FocusRandomTable } from '../table/focusRandomTable';
+import { focusRandomTable } from '../table/focusRandomTable';
 import {
   CareerEventAttributeController,
   CareerEventDisciplineController,
@@ -74,7 +74,7 @@ const SoloCareerEventDetailsPage: React.FC<ISoloCareerEventProperties> = ({
     let done = false;
     while (!done) {
       const focus = localizedFocus(
-        FocusRandomTable(careerEventStep.discipline),
+        focusRandomTable(careerEventStep.discipline),
       );
       if (character.focuses.indexOf(focus) < 0) {
         done = true;
