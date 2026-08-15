@@ -15,7 +15,7 @@ import { Window } from '../common/window';
 import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
 import { Header } from '../components/header';
 import InstructionText from '../components/instructionText';
-import { CareerLengthRandomTable } from '../solo/table/careerLengthRandomTable';
+import { careerLengthRandomTable } from '../solo/table/careerLengthRandomTable';
 import { Stereotype } from '../common/construct';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { CharacterType } from '../common/characterType';
@@ -68,7 +68,7 @@ const CareerLengthPage: React.FC<ICharacterProperties> = ({ character }) => {
     if (character.hasTalent(ADVANCED_TEAM_DYNAMICS)) {
       return D20.roll() <= 10 ? Career.Experienced : Career.Veteran;
     } else {
-      return CareerLengthRandomTable();
+      return careerLengthRandomTable();
     }
   };
 

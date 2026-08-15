@@ -21,7 +21,7 @@ import Button from 'react-bootstrap/Button';
 import { Dialog } from '../../components/dialog';
 import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
 import D20IconButton from '../component/d20IconButton';
-import { FocusRandomTable } from '../table/focusRandomTable';
+import { focusRandomTable } from '../table/focusRandomTable';
 import { EarlyOutlookDiscplineController } from '../../components/earlyOutlookControllers';
 import { localizedFocus } from '../../components/focusHelper';
 
@@ -53,7 +53,7 @@ const SoloEarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({
     let done = false;
     while (!done) {
       const focus = localizedFocus(
-        FocusRandomTable(character.upbringingStep?.discipline),
+        focusRandomTable(character.upbringingStep?.discipline),
       );
       if (character.focuses.indexOf(focus) < 0) {
         done = true;

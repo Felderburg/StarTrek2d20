@@ -2,7 +2,7 @@ import { CharacterType } from '../../common/characterType';
 import { D20 } from '../../common/die';
 import { Track } from '../../helpers/trackEnum';
 
-export const EducationCategoryRandomTable = () => {
+export const educationCategoryRandomTable = () => {
   const roll = D20.roll();
   switch (roll) {
     case 1:
@@ -33,7 +33,7 @@ export const EducationCategoryRandomTable = () => {
   }
 };
 
-export const EducationTrackRandomTable = (type: CharacterType) => {
+export const educationTrackRandomTable = (type: CharacterType) => {
   let roll = D20.roll();
   switch (type) {
     case CharacterType.Starfleet: {

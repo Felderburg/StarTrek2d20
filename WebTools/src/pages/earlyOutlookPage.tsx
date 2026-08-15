@@ -22,9 +22,9 @@ import { Department } from '../helpers/department';
 import { Window } from '../common/window';
 import { AttributesHelper } from '../helpers/attributes';
 import {
-  EarlyOutlookAspirationRandomTable,
-  EarlyOutlookCasteRandomTable,
-  EarlyOutlookUpbringingRandomTable,
+  earlyOutlookAspirationRandomTable,
+  earlyOutlookCasteRandomTable,
+  earlyOutlookUpbringingRandomTable,
 } from '../solo/table/earlyOutlookRandomTable';
 import { connect } from 'react-redux';
 import { Stereotype } from '../common/construct';
@@ -230,7 +230,7 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
             size="sm"
             className="me-3"
             onClick={() =>
-              setRandomUpbringing(EarlyOutlookUpbringingRandomTable())
+              setRandomUpbringing(earlyOutlookUpbringingRandomTable())
             }
           >
             <>
@@ -288,7 +288,7 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
         <div className="my-4">
           <Button
             className="btn btn-primary btn-sm me-3"
-            onClick={() => setRandomCaste(EarlyOutlookCasteRandomTable())}
+            onClick={() => setRandomCaste(earlyOutlookCasteRandomTable())}
           >
             <>
               <img
@@ -346,7 +346,7 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
             size="sm"
             className="me-3"
             onClick={() =>
-              setRandomAsperation(EarlyOutlookAspirationRandomTable())
+              setRandomAsperation(earlyOutlookAspirationRandomTable())
             }
           >
             <>

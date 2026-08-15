@@ -4,7 +4,7 @@ import { Source } from '../../helpers/sources';
 import { Species } from '../../helpers/speciesEnum';
 import { hasSource } from '../../state/contextFunctions';
 
-export const ValueRandomTable = (species?: Species, skill?: Department) => {
+export const valueRandomTable = (species?: Species, skill?: Department) => {
   const roll = D20.roll();
   if (roll <= 15 && hasSource(Source.ContinuingMissions)) {
     const subRoll = D20.roll();
@@ -42,9 +42,9 @@ export const randomUniqueValue = (
   species?: Species,
   skill?: Department,
 ) => {
-  let value = ValueRandomTable(species, skill);
+  let value = valueRandomTable(species, skill);
   while (existingValues.includes(value)) {
-    value = ValueRandomTable(species, skill);
+    value = valueRandomTable(species, skill);
   }
   return value;
 };

@@ -3,19 +3,19 @@ import { TableRoll } from '../../common/tableRoll';
 import { Era } from '../../helpers/erasEnum';
 import { Spaceframe } from '../../helpers/spaceframeEnum';
 
-export const SpaceframeRandomTable = (era: Era) => {
+export const spaceframeRandomTable = (era: Era) => {
   const tables = [
-    EnterpriseSpaceframeRandomTable,
-    OriginalSeriesSpaceframeRandomTable,
-    NextGenerationSpaceframeRandomTable,
-    PicardProdigySpaceframeRandomTable,
-    Discovery32SpaceframeRandomTable,
+    enterpriseSpaceframeRandomTable,
+    originalSeriesSpaceframeRandomTable,
+    nextGenerationSpaceframeRandomTable,
+    picardProdigySpaceframeRandomTable,
+    discovery32SpaceframeRandomTable,
   ];
 
   return tables[era]();
 };
 
-const EnterpriseSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
+const enterpriseSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   const roll = D20.roll();
 
   switch (roll) {
@@ -48,7 +48,7 @@ const EnterpriseSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   }
 };
 
-const OriginalSeriesSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
+const originalSeriesSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   const roll = D20.roll();
 
   switch (roll) {
@@ -96,7 +96,7 @@ const OriginalSeriesSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   }
 };
 
-const NextGenerationSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
+const nextGenerationSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   const roll = D20.roll();
 
   switch (roll) {
@@ -141,7 +141,7 @@ const NextGenerationSpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   }
 };
 
-const PicardProdigySpaceframeRandomTable: TableRoll<Spaceframe> = () => {
+const picardProdigySpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   const roll = D20.roll();
 
   switch (roll) {
@@ -178,7 +178,7 @@ const PicardProdigySpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   }
 };
 
-const Discovery32SpaceframeRandomTable: TableRoll<Spaceframe> = () => {
+const discovery32SpaceframeRandomTable: TableRoll<Spaceframe> = () => {
   const roll = D20.roll();
 
   switch (roll) {

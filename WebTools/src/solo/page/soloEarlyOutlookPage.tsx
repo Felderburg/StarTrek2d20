@@ -16,9 +16,9 @@ import {
   UpbringingsHelper,
 } from '../../helpers/upbringings';
 import {
-  EarlyOutlookAspirationRandomTable,
-  EarlyOutlookCasteRandomTable,
-  EarlyOutlookUpbringingRandomTable,
+  earlyOutlookAspirationRandomTable,
+  earlyOutlookCasteRandomTable,
+  earlyOutlookUpbringingRandomTable,
 } from '../table/earlyOutlookRandomTable';
 import { setCharacterEarlyOutlook } from '../../state/characterActions';
 import store from '../../state/store';
@@ -170,7 +170,7 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({
             size="sm"
             className="me-3"
             onClick={() =>
-              setRandomUpbringing(EarlyOutlookUpbringingRandomTable())
+              setRandomUpbringing(earlyOutlookUpbringingRandomTable())
             }
           >
             <>
@@ -226,7 +226,7 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({
           <Button
             size="sm"
             className="me-3"
-            onClick={() => setRandomCaste(EarlyOutlookCasteRandomTable())}
+            onClick={() => setRandomCaste(earlyOutlookCasteRandomTable())}
           >
             <>
               <img
@@ -282,7 +282,7 @@ const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({
             size="sm"
             className="me-3"
             onClick={() =>
-              setRandomAsperation(EarlyOutlookAspirationRandomTable())
+              setRandomAsperation(earlyOutlookAspirationRandomTable())
             }
           >
             <>

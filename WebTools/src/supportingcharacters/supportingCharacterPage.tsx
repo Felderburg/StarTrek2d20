@@ -32,7 +32,7 @@ import {
   setSupportingCharacterSupervisory,
 } from '../state/characterActions';
 import { localizedFocus } from '../components/focusHelper';
-import { FocusRandomTableWithHints } from '../solo/table/focusRandomTable';
+import { focusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import D20IconButton from '../solo/component/d20IconButton';
 import { CheckBox } from '../components/checkBox';
 import ReactMarkdown from 'react-markdown';
@@ -175,7 +175,7 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
     let done = false;
     while (!done) {
       const focus = localizedFocus(
-        FocusRandomTableWithHints(character.supportingStep?.disciplines[0]),
+        focusRandomTableWithHints(character.supportingStep?.disciplines[0]),
       );
       if (character.focuses.indexOf(focus) < 0) {
         done = true;

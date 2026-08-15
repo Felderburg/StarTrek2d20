@@ -7,7 +7,7 @@ import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
 import { Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
-import { EducationCategoryRandomTable } from '../table/educationRandomTable';
+import { educationCategoryRandomTable } from '../table/educationRandomTable';
 import { connect } from 'react-redux';
 import { Header } from '../../components/header';
 import { setCharacterType } from '../../state/characterActions';
@@ -65,7 +65,7 @@ const SoloEducationTypePage: React.FC<ICharacterProperties> = ({
         <Button
           size="sm"
           className="me-3"
-          onClick={() => setRandomType(EducationCategoryRandomTable())}
+          onClick={() => setRandomType(educationCategoryRandomTable())}
         >
           <>
             <img

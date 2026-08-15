@@ -33,7 +33,7 @@ import { generateRandomLocomotionType } from './locomotion';
 import { generateRandomNaturalAttacks } from './naturalAttacks';
 import { Attribute } from '../../helpers/attributes';
 
-export const CreatureGenerator = async (
+export const creatureGenerator = async (
   era: Era,
   habitat?: Habitat,
   creatureType?: CreatureType,

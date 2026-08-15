@@ -25,7 +25,7 @@ import { Dialog } from '../../components/dialog';
 import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
 import D20IconButton from '../component/d20IconButton';
 import { randomUniqueValue } from '../table/valueRandomTable';
-import { FocusRandomTable } from '../table/focusRandomTable';
+import { focusRandomTable } from '../table/focusRandomTable';
 import {
   EducationAttributeController,
   EducationPrimaryDisciplineController,
@@ -80,7 +80,7 @@ const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({
     let done = false;
     while (!done) {
       const focus = localizedFocus(
-        FocusRandomTable(character.educationStep?.primaryDiscipline),
+        focusRandomTable(character.educationStep?.primaryDiscipline),
       );
       if (character.focuses.indexOf(focus) < 0) {
         done = true;

@@ -5,8 +5,8 @@ import { Department } from '../helpers/department';
 import D20IconButton from '../solo/component/d20IconButton';
 import { localizedFocus } from './focusHelper';
 import {
-  FocusRandomTable,
-  FocusRandomTableWithHints,
+  focusRandomTable,
+  focusRandomTableWithHints,
 } from '../solo/table/focusRandomTable';
 import { useTranslation } from 'react-i18next';
 
@@ -41,9 +41,9 @@ export const FocusSelectionView: React.FC<IFocusSelectionProperties> = ({
       const focus =
         hints != null
           ? localizedFocus(
-              FocusRandomTableWithHints(randomFocusDepartment, hints),
+              focusRandomTableWithHints(randomFocusDepartment, hints),
             )
-          : localizedFocus(FocusRandomTable(randomFocusDepartment));
+          : localizedFocus(focusRandomTable(randomFocusDepartment));
       if (character.focuses.indexOf(focus) < 0) {
         done = true;
         addFocus(focus);

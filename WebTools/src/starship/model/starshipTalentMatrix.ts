@@ -1,6 +1,6 @@
 import { TalentsHelper } from '../../helpers/talents';
 
-export const StarshipTalentMatrix = (roll: number) => {
+export const starshipTalentMatrix = (roll: number) => {
   switch (roll) {
     case 3:
       return TalentsHelper.getTalent('Ablative Armor');
