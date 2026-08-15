@@ -1,18 +1,16 @@
-import { Rank } from "../../helpers/ranks";
-import { BaseNeckProvider } from "./baseNeckProvider";
-import { BodyType } from "./bodyTypeEnum";
-import RankIndicatorCatalog from "./rankIndicatorCatalog";
-import SpeciesRestrictions from "./speciesRestrictions";
-import Swatch from "./swatch";
-import { TokenModel } from "./tokenModel";
-import UniformCatalog from "./uniformCatalog";
-import { UniformEra } from "./uniformEra";
-import { IUniformPack } from "./uniformPack";
-
+import { Rank } from '../../helpers/ranks';
+import { BaseNeckProvider } from './baseNeckProvider';
+import { BodyType } from './bodyTypeEnum';
+import RankIndicatorCatalog from './rankIndicatorCatalog';
+import SpeciesRestrictions from './speciesRestrictions';
+import Swatch from './swatch';
+import { TokenModel } from './tokenModel';
+import UniformCatalog from './uniformCatalog';
+import { UniformEra } from './uniformEra';
+import { IUniformPack } from './uniformPack';
 
 const CardassianUniform = {
-
-    female: `<g>
+  female: `<g>
         <path id="path4" style="display:inline;opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" d="m 208.1543,243.95508 c 0.12933,3.23198 2.43182,7.03415 1.92382,10.13281 -0.46798,2.85734 -3.99015,3.86745 -6.35546,4.43945 -7.40133,1.792 -15.81652,1.84284 -23.3125,0.4375 -7.99867,-1.49998 -16.84997,1.8065 -24.36328,-1.07617 -5.39734,-2.072 -11.03435,-1.77175 -15.98633,-4.70508 -1.95333,-1.15734 -3.87533,-2.18928 -5.75,-3.47461 -1.18267,-0.81065 -2.94347,-2.56026 -4.35547,-2.93359 -1.40667,-0.372 -3.62677,1.21615 -4.9961,1.88281 -1.44531,0.70267 -3.81129,1.3692 -4.77929,2.75586 -1.23467,1.768 -0.64409,4.82371 -0.21875,6.73438 3.91998,17.59196 28.91346,11.96022 44.05078,13.96289 10.78131,1.42533 21.22758,5.13834 31.85156,7.40234 12.12398,2.584 24.48935,5.16186 36.86133,6.00586 7.36264,0.50133 14.64111,0.8345 21.98242,1.42383 4.43333,0.356 8.83363,-0.4802 13.26563,-0.9082 5.71731,-0.55333 11.10381,-0.65066 16.81445,-1.30664 7.67598,-0.88533 14.44108,-1.39343 21.92773,-3.63477 4.6731,-1.3998 10.18144,-1.89128 13.40625,-5.58984 2.06458,-2.36787 5.2914,-4.27079 3.92773,-6.394 -1.16612,-0.50441 -6.64088,-2.71503 -8.8164,-3.96147 -1.7093,-0.97933 -5.89515,-2.93325 -5.9162,-2.94514 -4.22933,1.36577 -9.79689,4.21128 -15.40802,3.7049 -3.16896,-0.28599 -6.06658,-0.94542 -9.25195,-1.23047 -1.25462,-0.11228 -1.57283,-0.65922 -2.77148,-1.19921 -1.19866,-0.54 -1.75835,-0.78762 -4.14258,-1.90235 -2.06216,-0.96416 -4.0665,-1.56882 -5.9375,-3.08398 -1.30132,-1.05383 -2.55971,-4.22847 -4.95703,-3.3418 -2.72266,1.00667 -2.52108,4.47647 -3.34375,6.61914 -0.91066,2.37066 -3.47485,3.27636 -5.85352,3.70703 -3.896,0.7067 -7.587,-0.19294 -11.375,-0.0449 -9.51465,0.37334 -18.95413,-3.30524 -26.16211,-9.50391 -4.10398,-3.52931 -6.915,-9.62065 -11.95898,-11.97265 z" />
         <path d="m 325.0238,252.85152 c -1.06009,-0.1523 -5.28784,-1.54987 -10.17948,1.96034 -3.12025,2.23907 -3.53957,3.70696 -5.28651,7.48611 0,0 5.75155,3.16127 7.464,4.11565 2.86535,1.59691 6.61234,3.11146 6.61234,3.11146 0,0 0.47483,0.97346 1.29937,-2.26437 1.36427,-5.35726 1.74242,-14.17233 0.0903,-14.40919 z" id="path9" style="fill:#000000;fill-opacity:1;stroke-width:1.31503" />
         <path fill="#808fa6" d="m 371.47599,399.98344 c 2.192,-32.69041 6.75867,-86.91069 6.75867,-86.91069 0,0 -11.16667,-28.74369 -11.172,-28.75665 -2.48,-0.13489 -4.96,-0.2633 -7.44,-0.3917 -6.71067,-0.34629 -13.42134,-0.67831 -20.132,-0.99997 -10.00133,-0.47988 -20.004,-0.93772 -30.008,-1.3735 -12.35333,-0.53825 -24.70933,-1.04407 -37.06667,-1.51228 -13.768,-0.52139 -27.536,-0.99738 -41.308,-1.41371 -14.24266,-0.4306 -28.48666,-0.80024 -42.73333,-1.08039 -13.77866,-0.27106 -27.56,-0.46042 -41.34133,-0.51101 -12.37733,-0.0467 -24.75733,0.0117 -37.132,0.29312 -10.042666,0.22827 -20.090666,0.57846 -30.106665,1.3333 -3.854667,0.29053 -7.705333,0.64071 -11.538667,1.13097 -1.572,0.20102 -3.188,0.35926 -4.737333,0.69388 -4.032,0.87287 -6.12,5.2839 -8.448,8.27085 -1.861333,2.38774 -3.864,4.81568 -5.350666,7.44856 -0.870667,1.54211 -0.969334,3.20095 -1.222667,4.94279 -0.518667,3.55762 -0.961333,7.12431 -1.368,10.6962 -1.890666,16.626 -3.073333,33.33111 -4.114666,50.02455 -0.792,12.69874 -1.464,25.40526 -2.021334,38.11568 z" id="path10" style="stroke-width:1.31503"/>
@@ -126,7 +124,7 @@ const CardassianUniform = {
         <path style="display:inline;fill:#000000;fill-opacity:1;stroke-width:1.31503" d="m 131.91602,358.22623 c 1.44132,10.06715 -4.66211,6.05681 -4.66211,6.0568 -0.848,2.73014 -3.81446,-1.36411 -3.81446,-1.36411 0,0 0.59305,2.30232 2.37305,6.39688 1.26266,2.90135 1.51406,20.59413 1.55273,30.66777 h 4.10743 c 0.88133,-11.02173 2.64648,-33.20567 2.64648,-34.16544 0,-1.28012 -2.20312,-7.5919 -2.20312,-7.5919 z" id="path3"/>
     </g>`,
 
-    male: `<g>
+  male: `<g>
         <path opacity="0.2" d="m 115.65733,234.23866 c 1.14933,-0.996 1.48273,1.2667 2.8894,0.82003 6.072,5.77467 15.04393,7.1813 23.01193,9.69997 9.24534,2.924 18.44267,4.976 27.988,6.552 11.70934,1.93333 23.812,5.272 35.504,6.53333 11.18667,1.20667 4.35467,-14.804 4.96533,-21.06 3.87867,1.48934 7.09334,8.68934 10.31867,11.864 4.308,4.23867 11.44933,8.77734 17.49867,9.39334 3.164,0.32266 6.36,-0.26667 9.52,-0.38667 3.80266,-0.14267 8.256,-0.0267 11.70533,-1.712 4.02933,-1.968 5.476,-6.42 8.88667,-9 0.55733,1.164 0.90266,2.41333 1.19066,3.668 0.25867,1.12267 0.28534,2.628 0.83067,3.64533 1.092,2.04267 3.504,3.62267 5.16533,5.17334 0.848,0.792 1.70267,2.25866 2.68934,2.784 1.10933,0.59066 2.91733,0.65466 4.148,0.88 3.12666,0.57066 6.31733,0.97466 9.34,1.996 4.43066,1.49733 9.404,1.404 13.97866,0.73466 2.43334,-0.356 6.348,-0.50533 8.048,-2.40133 1.716,-1.916 1.992,-4.97333 2.00134,-7.41733 0.007,-1.524 -0.39734,-3.27467 1.12,-3.86 1.94266,-0.74934 5.264,0.26266 6.996,1.38933 1.42,0.92267 2.33066,2.42933 3.66666,3.41733 1.264,0.936 3.004,1.216 4.54667,1.488 0.91067,0.16 2.45866,0.0707 3.16,0.78934 2.15066,2.204 -1.07867,6.548 -2.43333,8.124 -2.224,2.588 -4.79334,5.08 -7.87067,6.516 -5.84933,2.732 -12.43333,3.66133 -18.70667,5.00666 -7.66266,1.644 -15.65733,2.79467 -23.492,2.91867 -5.82533,0.092 -11.61866,-0.30133 -17.43733,-0.27867 -6.39467,0.024 -12.68933,0.0507 -19.06267,-0.54 -10.08666,-0.93466 -20.136,-1.60133 -30.12533,-3.33733 -4.66933,-0.812 -9.38533,-1.308 -14.03733,-2.236 -6.77333,-1.35067 -13.43067,-2.85333 -20.31733,-3.54267 -15.13734,-1.516 -29.56934,-6.88933 -44.31734,-10.43733 -4.59866,-1.10667 -8.84133,-1.93867 -13.17866,-3.74533 -3.87334,-1.61334 -7.97867,-4.368 -10.472,-7.812 -0.872,-1.204 -1.51734,-2.58267 -2.22934,-3.88267 -0.92666,-1.69467 -2.39466,-3.32667 -3.004,-5.172 -0.252,-0.76133 -0.60933,-2.21733 -0.29333,-2.944 0.616,-1.416 3.73467,-1.98667 5.028,-2.752" id="path1026" style="fill:#000000;fill-opacity:1;stroke-width:1.33333" />
         <path d="m 328.61866,243.44399 c -2.108,-0.30133 -11.052,-1.116 -15.108,7.60534 0,0 5.88133,1.52133 7.40267,2.94 1.52133,1.42 7.808,3.85333 7.808,3.85333 0,0 2.73733,-13.992 -0.10267,-14.39867 z" id="path1" style="fill:#000000;fill-opacity:1;stroke-width:1.33333"/>
         <path fill="#808fa6" d="m 386.70532,399.96666 c -0.11866,-34.79867 -2.70133,-115.80667 -2.70133,-115.80667 l -10.248,-7.32 c 0,0 -330.271991,-17.86 -339.934658,0.58534 C 25.381333,293.53866 15.6,378.69066 13.261333,399.96532 H 386.70532 Z" id="path2" style="stroke-width:1.33333"/>
@@ -196,70 +194,126 @@ const CardassianUniform = {
         <path opacity="0.2" d="m 364.99599,345.93066 c 0,0 -2.29867,10.14133 -2.50133,13.792 -0.20267,3.65066 4.52933,5.67866 5.408,3.92133 0.87866,-1.75733 4.616,-12.292 4.616,-12.292 0,0 -4.34667,6.34267 -0.42534,-12.51867 l -3.31333,15.27867 c 0,0 -5.408,7.16667 -1.21733,-19.74133 z" id="path1098" style="fill:#000000;fill-opacity:1;stroke-width:1.33333"/>
     </g>`,
 
-
-    logo: `<g>
+  logo: `<g>
         <path style="fill:#68d3c2;fill-opacity:1;stroke:none;stroke-width:0.45716px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 356.3133,306.84236 11.06186,-1.42011 13.60311,-9.56702 -3.8866,-10.46392 -8.52063,-8.67012 -11.88403,-6.05413 -2.4665,-8.8196 c 0,0 -7.25001,-5.53093 -7.69846,-5.53093 -0.44846,0 -5.45619,-1.27062 -5.45619,-1.27062 l -8.2964,2.01804 -5.68042,5.38145 -1.9433,8.37115 -10.31445,4.85825 -6.42784,5.00773 -6.05413,10.31445 -3.73712,10.7629 8.37115,4.78351 15.92012,13.97682 10.2397,10.09021 -6.8763,-25.03868 -0.22422,-9.79125 2.09278,-11.73455 4.03609,-2.54124 8.8196,2.09279 8.52062,-1.64434 4.26031,2.54125 1.79382,12.85568 z" id="path11"/>
         <path style="fill:#e3f052;fill-opacity:1;stroke:none;stroke-width:0.45716px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 380.6793,296.37843 -13.45362,9.04382 -11.06187,1.42011 -5.60567,19.50775 9.1933,-9.19331 14.35053,-11.06187 8.07218,-4.85825 z" id="path10"/>
         <path id="path8" style="fill:#232323;fill-opacity:1;fill-rule:evenodd;stroke-width:0.320012;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:20" d="m 340.93352,253.45168 c -7.6105,1e-5 -16.86362,5.07418 -17.81494,15.64433 -16.98269,7.64573 -20.64702,14.12807 -27.16528,34.03517 14.51633,5.10891 33.73667,26.60145 34.98789,40.48363 0.57993,6.4343 1.33882,13.17753 -4.96804,17.44082 l 8.45566,32.13332 4.33409,0.10625 2.17062,-20.61236 2.17062,20.61236 4.33409,-0.10625 8.45566,-32.13332 c -6.30686,-4.26329 -5.54797,-11.00652 -4.96804,-17.44082 1.25122,-13.88218 20.47156,-35.37472 34.98789,-40.48363 -6.51826,-19.9071 -10.18259,-26.38944 -27.16528,-34.03517 -0.95132,-10.57015 -10.20444,-15.64432 -17.81494,-15.64433 z m 0.075,4.17962 c 6.69358,0 12.24522,5.83502 12.94244,13.23799 0.0733,0.77786 1.07019,2.01653 1.64471,2.18401 11.45699,3.33985 19.42862,9.87644 23.67229,23.29907 l -12.4326,8.5012 -9.36285,1.33755 -0.20446,-9.19052 -2.64207,-13.31834 -4.96804,-2.85368 -6.97614,1.90275 0.31698,-7.29402 5.17965,-1.90185 1.69113,-7.29402 -8.93604,6.55381 -8.93604,-6.55381 1.69113,7.29402 5.17965,1.90185 0.31698,7.29402 -6.97614,-1.90275 -4.96804,2.85368 -2.64206,13.31834 -0.21162,9.51374 5.91896,17.96852 c -9.65406,-11.29529 -16.61698,-17.65756 -28.96177,-23.5714 3.80436,-16.56624 12.23548,-24.15849 24.9268,-27.85816 0.57452,-0.16748 1.57145,-1.40615 1.64471,-2.18401 0.69722,-7.40297 6.39887,-13.23799 13.09244,-13.23799 z m 38.68713,40.08987 c 0.29485,1.0267 0.57305,2.08523 0.82682,3.19029 -12.34479,5.91384 -19.30771,12.27611 -28.96177,23.5714 l 5.55198,-16.85508 10.23341,-1.46167 z m -62.51925,0.96074 a 4.1144364,4.1144364 0 0 0 -4.11444,4.11444 4.1144364,4.1144364 0 0 0 4.11444,4.11444 4.1144364,4.1144364 0 0 0 4.11443,-4.11444 4.1144364,4.1144364 0 0 0 -4.11443,-4.11444 z"/>
         <path id="path6" style="fill:#bd8391;fill-opacity:1;stroke:none;stroke-width:0.45716px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 349.66152,282.83758 3.06439,2.54117 1.19559,12.18259 -8.14673,31.84045 -3.73764,5.82968 h -1.10361 -1.10361 l -3.73764,-5.82968 -8.14673,-31.84045 1.19558,-12.18259 3.0644,-2.54117 7.17526,1.4947 0.15001,1.12058 -4.5591,2.16794 -3.1394,9.64142 2.24205,3.06439 5.90468,31.46723 0.9545,0.075 0.9545,-0.075 5.90468,-31.46723 2.24204,-3.06439 -3.13939,-9.64142 -4.5591,-2.16794 0.15,-1.12058 z m -1.71971,49.40449 -2.16704,15.99434 -3.66264,-5.90468 h -2.35722 l -3.66264,5.90468 -2.16705,-15.99434 5.15645,5.08233 h 3.7037 z m -6.42791,11.88347 5.00822,8.74496 0.74735,10.46468 c -3.11427,-1.91839 -6.21138,-7.3503 -6.33595,-12.48261 -0.12457,5.13231 -3.22169,10.56422 -6.33595,12.48261 l 0.74735,-10.46468 5.00822,-8.74496 z m -0.58038,13.15495 c 1.2457,6.67698 3.29613,9.3931 9.32534,10.38966 l -4.78321,21.52579 -2.09294,-17.78904 -2.44919,-4.5591 -2.4492,4.5591 -2.09293,17.78904 -4.78321,-21.52579 c 6.02921,-0.99656 8.07963,-3.71268 9.32534,-10.38966 z" />
         <path id="path7" style="fill:#e8d4d8;fill-opacity:1;stroke:none;stroke-width:0.45716px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 342.25857,286.21896 3.75281,2.74831 2.37777,8.24494 -2.37777,2.48403 -5.07786,29.96627 -5.07787,-29.96627 -2.37776,-2.48403 2.37776,-8.24494 3.75282,-2.74831 0.21161,1.16343 -2.11436,2.11347 -1.0045,6.39488 1.53309,2.90725 h 5.39842 l 1.53308,-2.90725 -1.00449,-6.39488 -2.11437,-2.11347 z" />
-    </g>`
+    </g>`,
 };
 
-export class CardassianUniformPack extends BaseNeckProvider implements IUniformPack {
+export class CardassianUniformPack
+  extends BaseNeckProvider
+  implements IUniformPack
+{
+  getUniformSwatches() {
+    return [
+      new Swatch(
+        BodyType.AverageMale,
+        'Average Male',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageMale,
+              token.skinColor,
+              undefined,
+              UniformEra.Cardassian,
+            ) + CardassianUniform.male,
+            BodyType.AverageMale,
+            token,
+          ),
+        'BodyType.averageMale',
+      ),
+      new Swatch(
+        BodyType.AverageFemale,
+        'Average Female',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageFemale,
+              token.skinColor,
+              undefined,
+              UniformEra.Cardassian,
+            ) + CardassianUniform.female,
+            BodyType.AverageMale,
+            token,
+          ),
+        'BodyType.averageFemale',
+      ),
+    ];
+  }
 
-    getUniformSwatches() {
-        return [
-            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.Cardassian) + CardassianUniform.male, BodyType.AverageMale, token), "BodyType.averageMale"),
-            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Cardassian) + CardassianUniform.female, BodyType.AverageMale, token), "BodyType.averageFemale"),
-        ];
-    }
+  getRankSwatches() {
+    return [
+      new Swatch(
+        Rank.None,
+        'None',
+        (token) => RankIndicatorCatalog.decorateSwatch('', Rank.None, token),
+        'Rank.none.name',
+      ),
+    ];
+  }
 
-    getRankSwatches() {
-        return [
-            new Swatch(Rank.None, "None", (token) => RankIndicatorCatalog.decorateSwatch("", Rank.None, token), "Rank.none.name"),
-        ];
-    }
+  getRankIndicator(token: TokenModel) {
+    return '';
+  }
 
-    getRankIndicator(token: TokenModel) {
-        return "";
-    }
+  getRankBorderIndicator(token: TokenModel) {
+    return '';
+  }
 
-    getRankBorderIndicator(token: TokenModel) {
-        return "";
-    }
+  getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
+    return '';
+  }
 
-    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
-        return "";
-    }
+  getBorderColor(token: TokenModel) {
+    return '#68d3c2';
+  }
 
-    getBorderColor(token: TokenModel) {
-        return "#68d3c2";
-    }
+  getUniformVariantSwatches(token: TokenModel) {
+    return [];
+  }
 
-    getUniformVariantSwatches(token: TokenModel) {
-        return [];
-    }
+  getBorderLogo(token: TokenModel): string {
+    return CardassianUniform.logo;
+  }
 
-    getBorderLogo(token: TokenModel): string {
-        return CardassianUniform.logo;
-    }
+  isDivisionColorSupported(token: TokenModel): boolean {
+    return false;
+  }
 
-    isDivisionColorSupported(token: TokenModel): boolean {
-        return false;
+  getUniformAndVariantBody(token: TokenModel) {
+    if (token.bodyType === BodyType.AverageMale) {
+      return (
+        this.getNeck(
+          token.bodyType,
+          token.skinColor,
+          token.species,
+          UniformEra.Cardassian,
+        ) +
+        CardassianUniform.male.replace(
+          SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+          token.skinColor,
+        )
+      );
+    } else {
+      return (
+        this.getNeck(
+          token.bodyType,
+          token.skinColor,
+          token.species,
+          UniformEra.Cardassian,
+        ) +
+        CardassianUniform.female.replace(
+          SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+          token.skinColor,
+        )
+      );
     }
+  }
 
-    getUniformAndVariantBody(token: TokenModel) {
-        if (token.bodyType === BodyType.AverageMale) {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.Cardassian)
-                + CardassianUniform.male.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-        } else {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.Cardassian)
-                + CardassianUniform.female.replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-        }
-    }
-
-    getRankIndicatorExtra(token: TokenModel): string {
-        return "";
-    }
+  getRankIndicatorExtra(token: TokenModel): string {
+    return '';
+  }
 }

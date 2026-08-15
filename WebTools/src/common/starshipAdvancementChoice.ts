@@ -1,11 +1,14 @@
 export enum StarshipAdvancementChoice {
-    System,
-    Department,
-    Talent
+  System,
+  Department,
+  Talent,
 }
 
-export const allStarshipAdvancementChoices = (): StarshipAdvancementChoice[] => {
-    return Object.keys(StarshipAdvancementChoice).filter((item) => {
+export const allStarshipAdvancementChoices =
+  (): StarshipAdvancementChoice[] => {
+    return Object.keys(StarshipAdvancementChoice)
+      .filter((item) => {
         return !isNaN(Number(item));
-    }).map(item => Number(item));
-}
+      })
+      .map((item) => Number(item));
+  };

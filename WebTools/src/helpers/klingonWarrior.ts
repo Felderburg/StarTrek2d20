@@ -1,4 +1,4 @@
-import { CharacterType } from "../common/characterType"
+import { CharacterType } from '../common/characterType';
 
 /**
  * True when the construct is a first-edition Klingon Warrior. First-edition
@@ -6,7 +6,7 @@ import { CharacterType } from "../common/characterType"
  * profiles, environments), so the branch is a recurring domain concept.
  */
 export const isKlingonWarrior1e = (type: CharacterType, version: number) =>
-    type === CharacterType.KlingonWarrior && version === 1;
+  type === CharacterType.KlingonWarrior && version === 1;
 
 /**
  * True when the construct's type is the Klingon Warrior character type.
@@ -14,4 +14,4 @@ export const isKlingonWarrior1e = (type: CharacterType, version: number) =>
  * covered by Character.isKlingonWarrior().)
  */
 export const isKlingonWarriorType = (type: CharacterType | undefined) =>
-    type === CharacterType.KlingonWarrior;
+  type === CharacterType.KlingonWarrior;

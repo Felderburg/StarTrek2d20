@@ -1,3 +1,3 @@
 export interface ITalent {
-    readonly name: string;
+  readonly name: string;
 }

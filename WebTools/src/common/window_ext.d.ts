@@ -1,2 +1,1 @@
-interface Window {
-}
+interface Window {}

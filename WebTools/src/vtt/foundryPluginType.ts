@@ -1,4 +1,4 @@
 export enum FoundryPluginType {
-    Standard,
-    ELH
+  Standard,
+  ELH,
 }

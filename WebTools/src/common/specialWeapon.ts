@@ -1,5 +1,4 @@
-
 export enum SpecialWeapon {
-    BatLeth,
-    MekLeth
+  BatLeth,
+  MekLeth,
 }

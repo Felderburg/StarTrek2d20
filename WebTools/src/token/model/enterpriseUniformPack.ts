@@ -1,13 +1,13 @@
-import { Rank } from "../../helpers/ranks";
-import { BaseNeckProvider } from "./baseNeckProvider";
-import { BodyType } from "./bodyTypeEnum"
-import RankIndicatorCatalog from "./rankIndicatorCatalog";
-import SpeciesRestrictions from "./speciesRestrictions";
-import Swatch from "./swatch"
-import { TokenModel } from "./tokenModel";
-import UniformCatalog, { DefaultRed } from "./uniformCatalog"
-import { UniformEra } from "./uniformEra";
-import { IUniformPack } from "./uniformPack";
+import { Rank } from '../../helpers/ranks';
+import { BaseNeckProvider } from './baseNeckProvider';
+import { BodyType } from './bodyTypeEnum';
+import RankIndicatorCatalog from './rankIndicatorCatalog';
+import SpeciesRestrictions from './speciesRestrictions';
+import Swatch from './swatch';
+import { TokenModel } from './tokenModel';
+import UniformCatalog, { DefaultRed } from './uniformCatalog';
+import { UniformEra } from './uniformEra';
+import { IUniformPack } from './uniformPack';
 
 const EnterpriseEraStarfleetLogo = `<g>
     <circle fill="none" cx="335.8212" cy="342.04849" r="52.947483" id="circle21426" style="stroke:#000000;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"/>
@@ -103,7 +103,7 @@ const EnterpriseEraStarfleetLogo = `<g>
 </g>`;
 
 const EnterpriseUniforms = {
-    averageMaleBody: `<g>
+  averageMaleBody: `<g>
         <path d="m 111.68226,386.34427 c 0.096,0.27733 0.20934,0.552 0.27334,0.83333 -0.0667,-0.28933 -0.15867,-0.56667 -0.27334,-0.83333" style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path12393"/>
         <path d="m 114.24306,312.59707 c 0.0453,0.35067 0.0987,0.53067 0.0987,0.53067 -0.0413,-0.17467 -0.064,-0.35467 -0.0987,-0.53067" style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path12409"/>
         <path d="m 263.54359,323.63867 c -4.764,-9.63733 -18.45866,-36.91333 -25.15733,-50.244 l 4.72667,-38.316 c 1.96666,0.56533 4.08533,1.11067 6.544,1.68267 2.79733,0.652 5.27733,1.14266 7.58533,1.5 0.384,0.0587 0.77067,0.10533 1.156,0.152 1.98133,0.236 3.13467,0.432 3.8,1.72533 l 1.13867,2.216 1.152,-2.07067 c 0.532,-0.45733 2.58933,-1.428 3.88666,-1.91733 l 6.25067,31.34133 c -3.70667,18.44534 -9.03867,44.64534 -11.08267,53.93067" style="fill:#1f1f1f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path12447"/>
@@ -160,7 +160,7 @@ const EnterpriseUniforms = {
         <path d="m 382.33079,331.62787 -0.29067,1.576 0.44534,1.61866 -0.79467,-0.35066 -0.48933,1.26 -0.2,-1.79334 -0.748,-0.83999 0.67066,-0.75734 0.028,-1.77866 0.61334,1.324 z" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path12711"/>
     </g>`,
 
-    averageFemaleBody: `<g>
+  averageFemaleBody: `<g>
         <path d="M 274.87986,337.10187 C 268.25853,326.4552 249.83853,297.1832 241.12119,283.33654 l -0.52666,-40.17334 c 2.12133,0.43334 4.416,0.83467 7.09733,1.24 3.084,0.468 5.83867,0.792 8.41333,0.988 0.43067,0.0333 0.86534,0.052 1.296,0.0693 2.23467,0.0947 3.55334,0.21466 4.48134,1.58533 0,0 1.56666,2.31467 1.596,2.35867 -1.14,-1.68534 5.65866,-5.88667 6.384,-6.588 1.564,-1.51067 2.69333,-0.644 3.204,1.3 0.39866,1.51733 0.39066,3.09333 0.90666,4.55066 0.648,1.828 0.53959,4.20772 1.27559,5.99839 0.89466,2.18133 2.67241,3.68028 3.31641,5.78561 1.11734,3.65734 1.00667,8.03067 1.19867,11.936 0.144,2.944 0.75467,5.64667 0.47467,8.592 -0.26667,2.82 -0.512,5.64134 -0.77067,8.46267 -0.54,5.88533 -1.084,11.76933 -1.63733,17.65333 -0.88667,9.45067 -1.756,18.90534 -2.76934,28.344 -0.06,0.55467 -0.12,1.10933 -0.18133,1.66267" style="fill:#1f1f1f;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path21535"/>
         <path d="m 261.86173,257.1536 c 0,2.528 -2.04934,4.57734 -4.57734,4.57734 -2.528,0 -4.57733,-2.04934 -4.57733,-4.57734 0,-2.528 2.04933,-4.57733 4.57733,-4.57733 2.528,0 4.57734,2.04933 4.57734,4.57733" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path21539"/>
         <path d="m 260.13653,257.1536 c 0,1.57467 -1.27734,2.852 -2.852,2.852 -1.576,0 -2.852,-1.27733 -2.852,-2.852 0,-1.57466 1.276,-2.852 2.852,-2.852 1.57466,0 2.852,1.27734 2.852,2.852" style="fill:#382e53;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path21543"/>
@@ -213,13 +213,12 @@ const EnterpriseUniforms = {
         <path d="m 204.83626,339.8588 -8.452,0.15867 0.064,3.39866 8.452,-0.15866 z m 1.736,4.70267 -11.74533,0.22133 -0.11467,-6.068 11.74667,-0.22133 z" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path21791"/>
         <path d="m 274.69986,335.23187 -0.55067,-3.63333 -3.608,0.308 0.54934,3.63333 -2.00534,0.17066 1.952,12.888 7.62134,-0.65066 -1.952,-12.88667 z" style="fill:#dfdfdf;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path21795"/>
         <path d="m 277.89186,347.34707 -6.28667,0.536 -1.75333,-11.57067 0.672,-0.0587 0.33333,2.19467 c 0.048,0.31467 0.31334,0.54667 0.62267,0.58533 -0.28933,0.0907 -0.48,0.36 -0.432,0.676 l 0.98267,6.484 c 0.0547,0.364 0.39733,0.632 0.76666,0.60134 l 3.608,-0.308 c 0.368,-0.032 0.62134,-0.35067 0.56667,-0.71467 l -0.98267,-6.48533 c -0.048,-0.31467 -0.31333,-0.54534 -0.62266,-0.58534 0.28933,-0.0893 0.48,-0.36 0.432,-0.67466 l -0.332,-2.19467 0.672,-0.0573 z m -6.584,-14.83867 2.27467,-0.19466 0.78266,5.16933 -2.27466,0.19333 z m 3.448,7.55067 0.78267,5.16933 -2.27467,0.19333 -0.78267,-5.168 z m 1.85067,-5.656 -1.34,0.11333 -0.45067,-2.97466 c -0.0547,-0.364 -0.39733,-0.632 -0.76667,-0.60134 l -3.608,0.308 c -0.368,0.032 -0.62133,0.352 -0.56666,0.71467 l 0.45066,2.97466 -1.34,0.11467 c -0.368,0.032 -0.62133,0.352 -0.56666,0.71467 l 1.952,12.888 c 0.056,0.364 0.39866,0.63333 0.76666,0.60133 l 7.62134,-0.65067 c 0.368,-0.0307 0.62133,-0.35066 0.56666,-0.71466 l -1.952,-12.888 c -0.056,-0.36267 -0.39866,-0.632 -0.76666,-0.6" style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path21799"/>
-    </g>`
-}
+    </g>`,
+};
 
 const EnterpriseInsignia = {
-
-    Border: {
-        Captain: `<g transform="rotate(33.393403,110.08803,331.83272)">
+  Border: {
+    Captain: `<g transform="rotate(33.393403,110.08803,331.83272)">
                 <g id="g107724">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect100690" width="32.203384" height="33.559334" x="30.084749" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect100796" width="20.992111" height="30.008533" x="36.186436" y="344.42737"/>
@@ -254,7 +253,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        Commander: `<g transform="rotate(33.393403,110.08803,331.83272)">
+    Commander: `<g transform="rotate(33.393403,110.08803,331.83272)">
                 <g id="g107900">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect107888" width="32.203384" height="33.559334" x="63.418083" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect107890" width="20.992111" height="30.008533" x="69.519768" y="344.42737"/>
@@ -281,8 +280,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-
-        LtCommander: `<g transform="rotate(33.393403,110.08803,331.83272)">
+    LtCommander: `<g transform="rotate(33.393403,110.08803,331.83272)">
                 <g id="g108022">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108010" width="32.203384" height="33.559334" x="63.418083" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108012" width="20.992111" height="30.008533" x="69.519768" y="344.42737"/>
@@ -307,7 +305,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        Lieutenant: `<g transform="rotate(33.393403,110.08803,331.83272)">
+    Lieutenant: `<g transform="rotate(33.393403,110.08803,331.83272)">
                 <g id="g108175">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108163" width="32.203384" height="33.559334" x="96.751419" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108165" width="20.992111" height="30.008533" x="102.8531" y="344.42737"/>
@@ -326,7 +324,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        LieutenantJG: `<g transform="rotate(33.393403,110.08803,331.83272)">
+    LieutenantJG: `<g transform="rotate(33.393403,110.08803,331.83272)">
                 <g id="g108474">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108462" width="32.203384" height="33.559334" x="96.751419" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108464" width="20.992111" height="30.008533" x="102.8531" y="344.42737"/>
@@ -343,7 +341,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        Ensign: `<g transform="rotate(33.393403,110.08803,331.83272)">
+    Ensign: `<g transform="rotate(33.393403,110.08803,331.83272)">
                <g id="g108334">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108322" width="32.203384" height="33.559334" x="130.08475" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108324" width="20.992111" height="30.008533" x="136.18643" y="344.42737"/>
@@ -354,29 +352,28 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        CrewmanFirstClass: `<g>
+    CrewmanFirstClass: `<g>
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 29.665937,297.29086 v 16.40193 l 58.983688,31.36193 -0.170965,-16.76241 z" id="path82821" />
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 29.665937,314.04002 v 16.40193 l 58.983688,31.36193 -0.170965,-16.76241 z" id="path90068" />
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M 29.665937,330.68257 V 347.0845 L 88.649625,378.44643 88.47866,361.68402 Z" id="path90070" />
                 <ellipse style="fill:#3d3d62;fill-opacity:1;fill-rule:evenodd;stroke:#77675d;stroke-width:1.81248;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="path82658" cx="99.420563" cy="356.13776" rx="29.252489" ry="30.839233"/>
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 80.614168,386.32992 c 4.616114,-23.61157 11.11287,-44.88001 19.148327,-65.24724 8.035455,20.78779 15.216085,41.57558 20.174125,65.78796 L 99.933461,371.00943 Z" id="path82723" />
             </g>`,
-        CrewmanSecondClass: `<g>
+    CrewmanSecondClass: `<g>
                 <path style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 29.665937,314.04002 v 16.40193 l 58.983688,31.36193 -0.170965,-16.76241 z" id="path90068-5" />
                 <path style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M 29.665937,330.68257 V 347.0845 L 88.649625,378.44643 88.47866,361.68402 Z" id="path90070-1" />
                 <ellipse style="fill:#3d3d62;fill-opacity:1;fill-rule:evenodd;stroke:#77675d;stroke-width:1.81248;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="ellipse100143" cx="99.420563" cy="356.13776" rx="29.252489" ry="30.839233"/>
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 80.614168,386.32992 c 4.616114,-23.61157 11.11287,-44.88001 19.148327,-65.24724 8.035455,20.78779 15.216085,41.57558 20.174125,65.78796 L 99.933461,371.00943 Z" id="path100145" />
             </g>`,
-        CrewmanThirdClass: `<g>
+    CrewmanThirdClass: `<g>
                 <path style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M 29.665937,330.68257 V 347.0845 L 88.649625,378.44643 88.47866,361.68402 Z" id="path90070-8"/>
                 <ellipse style="fill:#3d3d62;fill-opacity:1;fill-rule:evenodd;stroke:#77675d;stroke-width:1.81248;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="ellipse100170" cx="99.420563" cy="356.13776" rx="29.252489" ry="30.839233"/>
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 80.614168,386.32992 c 4.616114,-23.61157 11.11287,-44.88001 19.148327,-65.24724 8.035455,20.78779 15.216085,41.57558 20.174125,65.78796 L 99.933461,371.00943 Z" id="path100172"/>
-            </g>`
-    },
+            </g>`,
+  },
 
-    Insignia: {
-
-        CrewmanFirstClass: `<g transform="matrix(0.17263319,-0.02358571,0.02358571,0.17263319,170.86026,241.35968)">
+  Insignia: {
+    CrewmanFirstClass: `<g transform="matrix(0.17263319,-0.02358571,0.02358571,0.17263319,170.86026,241.35968)">
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 29.665937,297.29086 v 16.40193 l 58.983688,31.36193 -0.170965,-16.76241 z" id="path110769"/>
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 29.665937,314.04002 v 16.40193 l 58.983688,31.36193 -0.170965,-16.76241 z" id="path110771"/>
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M 29.665937,330.68257 V 347.0845 L 88.649625,378.44643 88.47866,361.68402 Z" id="path110773"/>
@@ -384,20 +381,20 @@ const EnterpriseInsignia = {
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 80.614168,386.32992 c 4.616114,-23.61157 11.11287,-44.88001 19.148327,-65.24724 8.035455,20.78779 15.216085,41.57558 20.174125,65.78796 L 99.933461,371.00943 Z" id="path110777"/>
             </g>`,
 
-        CrewmanSecondClass: `<g transform="matrix(0.17263319,-0.02358571,0.02358571,0.17263319,170.86026,241.35968)">
+    CrewmanSecondClass: `<g transform="matrix(0.17263319,-0.02358571,0.02358571,0.17263319,170.86026,241.35968)">
                 <path style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 29.665937,314.04002 v 16.40193 l 58.983688,31.36193 -0.170965,-16.76241 z" id="path111472"/>
                 <path style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M 29.665937,330.68257 V 347.0845 L 88.649625,378.44643 88.47866,361.68402 Z" id="path111474"/>
                 <ellipse style="fill:#3d3d62;fill-opacity:1;fill-rule:evenodd;stroke:#77675d;stroke-width:1.81248;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="ellipse111476" cx="99.420563" cy="356.13776" rx="29.252489" ry="30.839233"/>
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 80.614168,386.32992 c 4.616114,-23.61157 11.11287,-44.88001 19.148327,-65.24724 8.035455,20.78779 15.216085,41.57558 20.174125,65.78796 L 99.933461,371.00943 Z" id="path111478"/>
             </g>`,
 
-        CrewmanThirdClass: `<g transform="matrix(0.17263319,-0.02358571,0.02358571,0.17263319,170.86026,241.35968)">
+    CrewmanThirdClass: `<g transform="matrix(0.17263319,-0.02358571,0.02358571,0.17263319,170.86026,241.35968)">
                 <path style="display:inline;fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M 29.665937,330.68257 V 347.0845 L 88.649625,378.44643 88.47866,361.68402 Z" id="path113528"/>
                 <ellipse style="fill:#3d3d62;fill-opacity:1;fill-rule:evenodd;stroke:#77675d;stroke-width:1.81248;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="ellipse113530" cx="99.420563" cy="356.13776" rx="29.252489" ry="30.839233"/>
                 <path style="fill:#ffffff;fill-opacity:1;stroke:#77675d;stroke-width:1.81248;stroke-linecap:butt;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="m 80.614168,386.32992 c 4.616114,-23.61157 11.11287,-44.88001 19.148327,-65.24724 8.035455,20.78779 15.216085,41.57558 20.174125,65.78796 L 99.933461,371.00943 Z" id="path113532"/>
             </g>`,
 
-        Ensign: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
+    Ensign: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
                 <g id="g113735">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect113723" width="32.203384" height="33.559334" x="130.08475" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect113725" width="20.992111" height="30.008533" x="136.18643" y="344.42737"/>
@@ -408,7 +405,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        LieutenantJG: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
+    LieutenantJG: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
                 <g id="g108474">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108462" width="32.203384" height="33.559334" x="96.751419" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect108464" width="20.992111" height="30.008533" x="102.8531" y="344.42737"/>
@@ -425,7 +422,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        Lieutenant: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
+    Lieutenant: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
                 <g id="g114481">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect114469" width="32.203384" height="33.559334" x="96.751419" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect114471" width="20.992111" height="30.008533" x="102.8531" y="344.42737"/>
@@ -444,7 +441,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        LtCommander: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
+    LtCommander: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
                 <g id="g114200">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect114192" width="32.203384" height="33.559334" x="63.418083" y="342.62714" />
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect114194" width="20.992111" height="30.008533" x="69.519768" y="344.42737"/>
@@ -469,7 +466,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        Commander: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
+    Commander: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
                 <g id="g113944">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect113932" width="32.203384" height="33.559334" x="63.418083" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect113934" width="20.992111" height="30.008533" x="69.519768" y="344.42737"/>
@@ -496,7 +493,7 @@ const EnterpriseInsignia = {
                 </g>
             </g>`,
 
-        Captain: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
+    Captain: `<g transform="matrix(0.31657258,-0.02205342,0.02205342,0.31657258,141.53912,192.15648)">
                 <g id="g111082">
                 <rect style="fill:#c4c4c4;fill-opacity:1;fill-rule:evenodd;stroke:#313131;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect111070" width="32.203384" height="33.559334" x="30.084749" y="342.62714"/>
                 <rect style="fill:#000000;fill-opacity:0.2;fill-rule:evenodd;stroke:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:1" id="rect111072" width="20.992111" height="30.008533" x="36.186436" y="344.42737"/>
@@ -529,124 +526,255 @@ const EnterpriseInsignia = {
                 <rect style="mix-blend-mode:normal;fill:#ffffff;fill-opacity:0.5;fill-rule:evenodd;stroke:none;stroke-width:0.898552;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:0.2" id="rect111120" width="9.1280212" height="26.338984" x="142.25443" y="346.4472"/>
                 <rect style="mix-blend-mode:normal;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.9;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2;stroke-dasharray:none;stroke-opacity:0.2" id="rect111122" width="5.9924316" height="26.366693" x="143.86459" y="346.4472"/>
                 </g>
-            </g>`
+            </g>`,
+  },
+};
+
+export class EnterpriseUniformPack
+  extends BaseNeckProvider
+  implements IUniformPack
+{
+  getUniformSwatches() {
+    return [
+      new Swatch(
+        BodyType.AverageMale,
+        'Average Male',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageMale,
+              token.skinColor,
+              undefined,
+              UniformEra.Enterprise,
+            ) + EnterpriseUniforms.averageMaleBody,
+            BodyType.AverageMale,
+            token,
+          ),
+        'BodyType.averageMale',
+      ),
+      new Swatch(
+        BodyType.AverageFemale,
+        'Average Female',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageFemale,
+              token.skinColor,
+              undefined,
+              UniformEra.Enterprise,
+            ) + EnterpriseUniforms.averageFemaleBody,
+            BodyType.AverageFemale,
+            token,
+          ),
+        'BodyType.averageFemale',
+      ),
+    ];
+  }
+
+  getRankSwatches() {
+    return [
+      new Swatch(
+        Rank.None,
+        'None',
+        (token) => RankIndicatorCatalog.decorateSwatch('', Rank.None, token),
+        'Rank.none.name',
+      ),
+      new Swatch(
+        Rank.Ensign,
+        'Ensign',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.Ensign,
+            Rank.Ensign,
+            token,
+          ),
+        'Rank.ensign.name',
+      ),
+      new Swatch(
+        Rank.LieutenantJG,
+        'Lieutenant J.G.',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.LieutenantJG,
+            Rank.LieutenantJG,
+            token,
+          ),
+        'Rank.lieutenantJG.name',
+      ),
+      new Swatch(
+        Rank.Lieutenant,
+        'Lieutenant',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.Lieutenant,
+            Rank.Lieutenant,
+            token,
+          ),
+        'Rank.lieutenant.name',
+      ),
+      new Swatch(
+        Rank.LtCommander,
+        'Lt. Commander',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.LtCommander,
+            Rank.LtCommander,
+            token,
+          ),
+        'Rank.ltCommander.name',
+      ),
+      new Swatch(
+        Rank.Commander,
+        'Commander',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.Commander,
+            Rank.Commander,
+            token,
+          ),
+        'Rank.commander.name',
+      ),
+      new Swatch(
+        Rank.Captain,
+        'Captain',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.Captain,
+            Rank.Captain,
+            token,
+          ),
+        'Rank.captain.name',
+      ),
+
+      new Swatch(
+        Rank.Crewman3rdClass,
+        'Crewman 3rd Class',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.CrewmanThirdClass,
+            Rank.Crewman3rdClass,
+            token,
+          ),
+        'Rank.crewman3rdClass.name',
+      ),
+      new Swatch(
+        Rank.Crewman2ndClass,
+        'Crewman 2nd Class',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.CrewmanSecondClass,
+            Rank.Crewman2ndClass,
+            token,
+          ),
+        'Rank.crewman2ndClass.name',
+      ),
+      new Swatch(
+        Rank.Crewman1stClass,
+        'Crewman 1st Class',
+        (token) =>
+          RankIndicatorCatalog.decorateSwatch(
+            EnterpriseInsignia.Border.CrewmanFirstClass,
+            Rank.Crewman1stClass,
+            token,
+          ),
+        'Rank.crewman1stClass.name',
+      ),
+    ];
+  }
+
+  getRankIndicator(token: TokenModel) {
+    switch (token.rankIndicator) {
+      case Rank.Crewman3rdClass:
+        return EnterpriseInsignia.Insignia.CrewmanThirdClass;
+      case Rank.Crewman2ndClass:
+        return EnterpriseInsignia.Insignia.CrewmanSecondClass;
+      case Rank.Crewman1stClass:
+        return EnterpriseInsignia.Insignia.CrewmanFirstClass;
+      case Rank.Ensign:
+        return EnterpriseInsignia.Insignia.Ensign;
+      case Rank.LieutenantJG:
+        return EnterpriseInsignia.Insignia.LieutenantJG;
+      case Rank.Lieutenant:
+        return EnterpriseInsignia.Insignia.Lieutenant;
+      case Rank.LtCommander:
+        return EnterpriseInsignia.Insignia.LtCommander;
+      case Rank.Commander:
+        return EnterpriseInsignia.Insignia.Commander;
+      case Rank.Captain:
+        return EnterpriseInsignia.Insignia.Captain;
+      default:
+        return '';
     }
-}
+  }
 
+  getRankBorderIndicator(token: TokenModel) {
+    switch (token.rankIndicator) {
+      case Rank.Captain:
+        return EnterpriseInsignia.Border.Captain;
+      case Rank.Commander:
+        return EnterpriseInsignia.Border.Commander;
+      case Rank.LtCommander:
+        return EnterpriseInsignia.Border.LtCommander;
+      case Rank.Lieutenant:
+        return EnterpriseInsignia.Border.Lieutenant;
+      case Rank.LieutenantJG:
+        return EnterpriseInsignia.Border.LieutenantJG;
+      case Rank.Ensign:
+        return EnterpriseInsignia.Border.Ensign;
+      case Rank.Crewman1stClass:
+        return EnterpriseInsignia.Border.CrewmanFirstClass;
+      case Rank.Crewman2ndClass:
+        return EnterpriseInsignia.Border.CrewmanSecondClass;
+      case Rank.Crewman3rdClass:
+        return EnterpriseInsignia.Border.CrewmanThirdClass;
+      default:
+        return '';
+    }
+  }
 
+  getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
+    return '';
+  }
 
-export class EnterpriseUniformPack extends BaseNeckProvider implements IUniformPack {
-
-    getUniformSwatches() {
-        return [
-            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.Enterprise) + EnterpriseUniforms.averageMaleBody, BodyType.AverageMale, token), "BodyType.averageMale"),
-            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.Enterprise) + EnterpriseUniforms.averageFemaleBody, BodyType.AverageFemale, token), "BodyType.averageFemale"),
-        ];
+  getUniformAndVariantBody(token: TokenModel) {
+    let result = '';
+    let neck = this.getNeck(
+      token.bodyType,
+      token.skinColor,
+      token.species,
+      UniformEra.Enterprise,
+    );
+    switch (token.bodyType) {
+      case BodyType.AverageMale:
+        result = EnterpriseUniforms.averageMaleBody;
+        break;
+      case BodyType.AverageFemale:
+      default:
+        result = EnterpriseUniforms.averageFemaleBody;
     }
 
-    getRankSwatches() {
-        return [
-            new Swatch(Rank.None, "None", (token) => RankIndicatorCatalog.decorateSwatch("", Rank.None, token), "Rank.none.name"),
-            new Swatch(Rank.Ensign, "Ensign", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.Ensign, Rank.Ensign, token), "Rank.ensign.name"),
-            new Swatch(Rank.LieutenantJG, "Lieutenant J.G.", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.LieutenantJG, Rank.LieutenantJG, token), "Rank.lieutenantJG.name"),
-            new Swatch(Rank.Lieutenant, "Lieutenant", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.Lieutenant, Rank.Lieutenant, token), "Rank.lieutenant.name"),
-            new Swatch(Rank.LtCommander, "Lt. Commander", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.LtCommander, Rank.LtCommander, token), "Rank.ltCommander.name"),
-            new Swatch(Rank.Commander, "Commander", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.Commander, Rank.Commander, token), "Rank.commander.name"),
-            new Swatch(Rank.Captain, "Captain", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.Captain, Rank.Captain, token), "Rank.captain.name"),
+    return (neck + result)
+      .replace(DefaultRed, token.divisionColor)
+      .replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+  }
 
-            new Swatch(Rank.Crewman3rdClass, "Crewman 3rd Class", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.CrewmanThirdClass, Rank.Crewman3rdClass, token), "Rank.crewman3rdClass.name"),
-            new Swatch(Rank.Crewman2ndClass, "Crewman 2nd Class", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.CrewmanSecondClass, Rank.Crewman2ndClass, token), "Rank.crewman2ndClass.name"),
-            new Swatch(Rank.Crewman1stClass, "Crewman 1st Class", (token) => RankIndicatorCatalog.decorateSwatch(EnterpriseInsignia.Border.CrewmanFirstClass, Rank.Crewman1stClass, token), "Rank.crewman1stClass.name"),
+  getBorderColor(token: TokenModel) {
+    return token.divisionColor;
+  }
 
-        ];
-    }
+  getUniformVariantSwatches(token: TokenModel) {
+    return [];
+  }
 
-    getRankIndicator(token: TokenModel) {
-        switch (token.rankIndicator) {
-            case Rank.Crewman3rdClass:
-                return EnterpriseInsignia.Insignia.CrewmanThirdClass;
-            case Rank.Crewman2ndClass:
-                return EnterpriseInsignia.Insignia.CrewmanSecondClass;
-            case Rank.Crewman1stClass:
-                return EnterpriseInsignia.Insignia.CrewmanFirstClass;
-            case Rank.Ensign:
-                return EnterpriseInsignia.Insignia.Ensign;
-            case Rank.LieutenantJG:
-                return EnterpriseInsignia.Insignia.LieutenantJG;
-            case Rank.Lieutenant:
-                return EnterpriseInsignia.Insignia.Lieutenant;
-            case Rank.LtCommander:
-                return EnterpriseInsignia.Insignia.LtCommander;
-            case Rank.Commander:
-                return EnterpriseInsignia.Insignia.Commander;
-            case Rank.Captain:
-                return EnterpriseInsignia.Insignia.Captain;
-            default:
-                return "";
-        }
-    }
+  getBorderLogo(token: TokenModel): string {
+    return EnterpriseEraStarfleetLogo;
+  }
 
-    getRankBorderIndicator(token: TokenModel) {
-        switch (token.rankIndicator) {
-            case Rank.Captain:
-                return EnterpriseInsignia.Border.Captain;
-            case Rank.Commander:
-                return EnterpriseInsignia.Border.Commander;
-            case Rank.LtCommander:
-                return EnterpriseInsignia.Border.LtCommander;
-            case Rank.Lieutenant:
-                return EnterpriseInsignia.Border.Lieutenant;
-            case Rank.LieutenantJG:
-                return EnterpriseInsignia.Border.LieutenantJG;
-            case Rank.Ensign:
-                return EnterpriseInsignia.Border.Ensign;
-            case Rank.Crewman1stClass:
-                return EnterpriseInsignia.Border.CrewmanFirstClass;
-            case Rank.Crewman2ndClass:
-                return EnterpriseInsignia.Border.CrewmanSecondClass;
-            case Rank.Crewman3rdClass:
-                return EnterpriseInsignia.Border.CrewmanThirdClass;
-            default:
-                return "";
-        }
-    }
+  isDivisionColorSupported(token: TokenModel): boolean {
+    return true;
+  }
 
-    getRankBorderDefinitions(token: TokenModel, bordered: boolean) {
-        return "";
-    }
-
-    getUniformAndVariantBody(token: TokenModel) {
-        let result = "";
-        let neck = this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.Enterprise);
-        switch (token.bodyType) {
-            case BodyType.AverageMale:
-                result = EnterpriseUniforms.averageMaleBody;
-                break;
-            case BodyType.AverageFemale:
-            default:
-                result = EnterpriseUniforms.averageFemaleBody;
-        }
-
-        return (neck + result).replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-    }
-
-    getBorderColor(token: TokenModel) {
-        return token.divisionColor;
-    }
-
-    getUniformVariantSwatches(token: TokenModel) {
-        return [];
-    }
-
-    getBorderLogo(token: TokenModel): string {
-        return EnterpriseEraStarfleetLogo;
-    }
-
-    isDivisionColorSupported(token: TokenModel): boolean {
-        return true;
-    }
-
-    getRankIndicatorExtra(token: TokenModel): string {
-        return "";
-    }
+  getRankIndicatorExtra(token: TokenModel): string {
+    return '';
+  }
 }

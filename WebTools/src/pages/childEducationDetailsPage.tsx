@@ -10,7 +10,13 @@ import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import store from '../state/store';
-import { StepContext, modifyCharacterAttribute, modifyCharacterDiscipline, setCharacterFocus, setCharacterValue } from '../state/characterActions';
+import {
+  StepContext,
+  modifyCharacterAttribute,
+  modifyCharacterDiscipline,
+  setCharacterFocus,
+  setCharacterValue,
+} from '../state/characterActions';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import AttributeListComponent from '../components/attributeListComponent';
 import { IAttributeController } from '../components/attributeController';
@@ -19,304 +25,433 @@ import { Attribute } from '../helpers/attributes';
 import { Dialog } from '../components/dialog';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
-import DisciplineListComponent, { IDisciplineController } from '../components/disciplineListComponent';
+import DisciplineListComponent, {
+  IDisciplineController,
+} from '../components/disciplineListComponent';
 import { Department } from '../helpers/department';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 
 class ChildDecrementAttributeController implements IAttributeController {
+  readonly character: Character;
+  readonly count: number;
 
-    readonly character: Character;
-    readonly count: number;
+  constructor(character: Character) {
+    this.character = character;
+    this.count = character.age.options.decreaseAttributes;
+  }
 
-    constructor(character: Character) {
-        this.character = character;
-        this.count = character.age.options.decreaseAttributes;
-    }
-
-    isShown(attribute: Attribute) {
-        return true;
-    }
-    isEditable(attribute: Attribute): boolean {
-        return true;
-    }
-    getValue(attribute: Attribute): number {
-        return this.character.attributes[attribute];
-    }
-    getDeltaValue(attribute: Attribute): number|undefined {
-        return undefined;
-    }
-    canIncrease(attribute: Attribute): boolean {
-        return this.character.educationStep?.decrementAttributes?.includes(attribute);
-    }
-    canDecrease(attribute: Attribute): boolean {
-        return this.isEditable(attribute)
-            && this.character.educationStep?.decrementAttributes?.length < this.count
-            && !this.character.educationStep?.decrementAttributes?.includes(attribute);
-    }
-    onIncrease(attribute: Attribute): void {
-        store.dispatch(modifyCharacterAttribute(attribute, StepContext.Education, true, true));
-    }
-    onDecrease(attribute: Attribute): void {
-        store.dispatch(modifyCharacterAttribute(attribute, StepContext.Education, false, true));
-    }
-    get instructions() {
-        return []
-    }
+  isShown(attribute: Attribute) {
+    return true;
+  }
+  isEditable(attribute: Attribute): boolean {
+    return true;
+  }
+  getValue(attribute: Attribute): number {
+    return this.character.attributes[attribute];
+  }
+  getDeltaValue(attribute: Attribute): number | undefined {
+    return undefined;
+  }
+  canIncrease(attribute: Attribute): boolean {
+    return this.character.educationStep?.decrementAttributes?.includes(
+      attribute,
+    );
+  }
+  canDecrease(attribute: Attribute): boolean {
+    return (
+      this.isEditable(attribute) &&
+      this.character.educationStep?.decrementAttributes?.length < this.count &&
+      !this.character.educationStep?.decrementAttributes?.includes(attribute)
+    );
+  }
+  onIncrease(attribute: Attribute): void {
+    store.dispatch(
+      modifyCharacterAttribute(attribute, StepContext.Education, true, true),
+    );
+  }
+  onDecrease(attribute: Attribute): void {
+    store.dispatch(
+      modifyCharacterAttribute(attribute, StepContext.Education, false, true),
+    );
+  }
+  get instructions() {
+    return [];
+  }
 }
 
 export class ChildIncrementAttributeController implements IAttributeController {
+  readonly character: Character;
 
-    readonly character: Character;
+  constructor(character: Character) {
+    this.character = character;
+  }
 
-    constructor(character: Character) {
-        this.character = character;
-    }
-
-    isShown(attribute: Attribute) {
-        return true;
-    }
-    isEditable(attribute: Attribute): boolean {
-        return true;
-    }
-    getValue(attribute: Attribute): number {
-        return this.character.attributes[attribute];
-    }
-    getDeltaValue(attribute: Attribute): number|undefined {
-        return undefined;
-    }
-    canIncrease(attribute: Attribute): boolean {
-        return this.character.canRaiseAttributeValue(this.getValue(attribute))
-            && this.isEditable(attribute) && this.character.educationStep?.attributes?.length < 3
-            && this.character.educationStep.attributes.filter(a => a === attribute).length < 2;
-    }
-    canDecrease(attribute: Attribute): boolean {
-        return this.isEditable(attribute) && this.character.educationStep?.attributes?.includes(attribute);
-    }
-    onIncrease(attribute: Attribute): void {
-        store.dispatch(modifyCharacterAttribute(attribute, StepContext.Education));
-    }
-    onDecrease(attribute: Attribute): void {
-        store.dispatch(modifyCharacterAttribute(attribute, StepContext.Education, false));
-    }
-    get instructions() {
-        return []
-    }
+  isShown(attribute: Attribute) {
+    return true;
+  }
+  isEditable(attribute: Attribute): boolean {
+    return true;
+  }
+  getValue(attribute: Attribute): number {
+    return this.character.attributes[attribute];
+  }
+  getDeltaValue(attribute: Attribute): number | undefined {
+    return undefined;
+  }
+  canIncrease(attribute: Attribute): boolean {
+    return (
+      this.character.canRaiseAttributeValue(this.getValue(attribute)) &&
+      this.isEditable(attribute) &&
+      this.character.educationStep?.attributes?.length < 3 &&
+      this.character.educationStep.attributes.filter((a) => a === attribute)
+        .length < 2
+    );
+  }
+  canDecrease(attribute: Attribute): boolean {
+    return (
+      this.isEditable(attribute) &&
+      this.character.educationStep?.attributes?.includes(attribute)
+    );
+  }
+  onIncrease(attribute: Attribute): void {
+    store.dispatch(modifyCharacterAttribute(attribute, StepContext.Education));
+  }
+  onDecrease(attribute: Attribute): void {
+    store.dispatch(
+      modifyCharacterAttribute(attribute, StepContext.Education, false),
+    );
+  }
+  get instructions() {
+    return [];
+  }
 }
 
 class ChildDecrementDisciplineController implements IDisciplineController {
+  readonly character: Character;
+  readonly count: number;
 
-    readonly character: Character;
-    readonly count: number;
+  constructor(character: Character) {
+    this.character = character;
+    this.count = character.age.options.decreaseDisciplines;
+  }
 
-    constructor(character: Character) {
-        this.character = character;
-        this.count = character.age.options.decreaseDisciplines;
-    }
-
-    isShown(discipline: Department) {
-        return true;
-    }
-    isEditable(discipline: Department): boolean {
-        return true;
-    }
-    getValue(discipline: Department): number {
-        return this.character.departments[discipline];
-    }
-    canIncrease(discipline: Department): boolean {
-        return this.character.educationStep?.decrementDisciplines?.includes(discipline);
-    }
-    canDecrease(discipline: Department): boolean {
-        return this.isEditable(discipline)
-            && this.character.educationStep?.decrementDisciplines?.length < this.count
-            && !this.character.educationStep?.decrementDisciplines?.includes(discipline);
-    }
-    onIncrease(discipline: Department): void {
-        store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, true, [], true));
-    }
-    onDecrease(discipline: Department): void {
-        store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, false, [], true));
-    }
+  isShown(discipline: Department) {
+    return true;
+  }
+  isEditable(discipline: Department): boolean {
+    return true;
+  }
+  getValue(discipline: Department): number {
+    return this.character.departments[discipline];
+  }
+  canIncrease(discipline: Department): boolean {
+    return this.character.educationStep?.decrementDisciplines?.includes(
+      discipline,
+    );
+  }
+  canDecrease(discipline: Department): boolean {
+    return (
+      this.isEditable(discipline) &&
+      this.character.educationStep?.decrementDisciplines?.length < this.count &&
+      !this.character.educationStep?.decrementDisciplines?.includes(discipline)
+    );
+  }
+  onIncrease(discipline: Department): void {
+    store.dispatch(
+      modifyCharacterDiscipline(
+        discipline,
+        StepContext.Education,
+        true,
+        [],
+        true,
+      ),
+    );
+  }
+  onDecrease(discipline: Department): void {
+    store.dispatch(
+      modifyCharacterDiscipline(
+        discipline,
+        StepContext.Education,
+        false,
+        [],
+        true,
+      ),
+    );
+  }
 }
 
 class ChildPrimaryDisciplineController implements IDisciplineController {
+  readonly character: Character;
 
-    readonly character: Character;
+  constructor(character: Character) {
+    this.character = character;
+  }
 
-    constructor(character: Character) {
-        this.character = character;
-    }
-
-    isShown(discipline: Department) {
-        return true;
-    }
-    isEditable(discipline: Department)  {
-        return true;
-    }
-    getValue(discipline: Department) {
-        return this.character.departments[discipline];
-    }
-    canIncrease(discipline: Department) {
-        return this.character.educationStep?.primaryDiscipline == null && (this.character.departments[discipline] < (Character.maxDepartment(this.character) - 1));
-    }
-    canDecrease(discipline: Department) {
-        return this.character.educationStep?.primaryDiscipline === discipline;
-    }
-    onIncrease(discipline: Department) {
-        store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, true, [discipline]));
-    }
-    onDecrease(discipline: Department) {
-        store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, false, []));
-    }
+  isShown(discipline: Department) {
+    return true;
+  }
+  isEditable(discipline: Department) {
+    return true;
+  }
+  getValue(discipline: Department) {
+    return this.character.departments[discipline];
+  }
+  canIncrease(discipline: Department) {
+    return (
+      this.character.educationStep?.primaryDiscipline == null &&
+      this.character.departments[discipline] <
+        Character.maxDepartment(this.character) - 1
+    );
+  }
+  canDecrease(discipline: Department) {
+    return this.character.educationStep?.primaryDiscipline === discipline;
+  }
+  onIncrease(discipline: Department) {
+    store.dispatch(
+      modifyCharacterDiscipline(discipline, StepContext.Education, true, [
+        discipline,
+      ]),
+    );
+  }
+  onDecrease(discipline: Department) {
+    store.dispatch(
+      modifyCharacterDiscipline(discipline, StepContext.Education, false, []),
+    );
+  }
 }
 
 class ChildSecondaryDisciplineController implements IDisciplineController {
+  readonly character: Character;
 
-    readonly character: Character;
+  constructor(character: Character) {
+    this.character = character;
+  }
 
-    constructor(character: Character) {
-        this.character = character;
+  isShown(discipline: Department) {
+    return true;
+  }
+  isEditable(discipline: Department) {
+    return true;
+  }
+  getValue(discipline: Department) {
+    return this.character.departments[discipline];
+  }
+  canIncrease(discipline: Department) {
+    if (!this.character.canRaiseDepartmentValue(this.getValue(discipline))) {
+      return false;
+    } else if (this.character.educationStep?.primaryDiscipline === discipline) {
+      return false;
+    } else if (this.character.educationStep?.disciplines.length === 2) {
+      return false;
+    } else if (this.character.educationStep.disciplines.includes(discipline)) {
+      return false;
+    } else {
+      return true;
     }
-
-    isShown(discipline: Department) {
-        return true;
-    }
-    isEditable(discipline: Department)  {
-        return true;
-    }
-    getValue(discipline: Department) {
-        return this.character.departments[discipline];
-    }
-    canIncrease(discipline: Department) {
-        if (!this.character.canRaiseDepartmentValue(this.getValue(discipline))) {
-            return false;
-        } else if (this.character.educationStep?.primaryDiscipline === discipline) {
-            return false;
-        } else if (this.character.educationStep?.disciplines.length === 2) {
-            return false;
-        } else if (this.character.educationStep.disciplines.includes(discipline)) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-    canDecrease(discipline: Department) {
-        return this.character.educationStep?.disciplines.includes(discipline);
-    }
-    onIncrease(discipline: Department) {
-        store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, true));
-    }
-    onDecrease(discipline: Department) {
-        store.dispatch(modifyCharacterDiscipline(discipline, StepContext.Education, false));
-    }
+  }
+  canDecrease(discipline: Department) {
+    return this.character.educationStep?.disciplines.includes(discipline);
+  }
+  onIncrease(discipline: Department) {
+    store.dispatch(
+      modifyCharacterDiscipline(discipline, StepContext.Education, true),
+    );
+  }
+  onDecrease(discipline: Department) {
+    store.dispatch(
+      modifyCharacterDiscipline(discipline, StepContext.Education, false),
+    );
+  }
 }
 
+const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({
+  character,
+}) => {
+  const { t } = useTranslation();
+  const decrementAttributeController = new ChildDecrementAttributeController(
+    character,
+  );
+  const incrementAttributeController = new ChildIncrementAttributeController(
+    character,
+  );
+  const decrementDisciplineController = new ChildDecrementDisciplineController(
+    character,
+  );
+  const primaryDisciplineController = new ChildPrimaryDisciplineController(
+    character,
+  );
+  const secondaryDisciplineController = new ChildSecondaryDisciplineController(
+    character,
+  );
 
-const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({character}) => {
+  const randomValue = () => {
+    let value = randomUniqueValue(
+      character.values,
+      character.speciesStep?.species,
+      character.educationStep?.primaryDiscipline,
+    );
+    onValueChanged(value);
+  };
 
-    const { t } = useTranslation();
-    const decrementAttributeController = new ChildDecrementAttributeController(character);
-    const incrementAttributeController = new ChildIncrementAttributeController(character);
-    const decrementDisciplineController = new ChildDecrementDisciplineController(character);
-    const primaryDisciplineController = new ChildPrimaryDisciplineController(character);
-    const secondaryDisciplineController = new ChildSecondaryDisciplineController(character);
+  const onValueChanged = (value: string) => {
+    store.dispatch(setCharacterValue(value, StepContext.Education));
+  };
 
-    const randomValue = () => {
-        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-        onValueChanged(value);
+  const onNext = () => {
+    if (
+      character.educationStep.decrementAttributes?.length <
+      decrementAttributeController.count
+    ) {
+      Dialog.show(
+        'You must decrease ' +
+          (character.age.options.decreaseAttributes === 1
+            ? 'one attribute'
+            : character.age.options.decreaseAttributes + ' attributes'),
+      );
+    } else if (character.educationStep.attributes?.length < 3) {
+      Dialog.show('You must distribute all three attribute points.');
+    } else if (
+      character.educationStep?.decrementDisciplines?.length !==
+      decrementDisciplineController.count
+    ) {
+      Dialog.show(
+        'You must decrease ' +
+          (character.age.options.decreaseDisciplines === 1
+            ? 'one discipline'
+            : character.age.options.decreaseDisciplines + ' disciplines'),
+      );
+    } else if (
+      character.educationStep?.primaryDiscipline == null ||
+      character.educationStep?.disciplines?.length < 2
+    ) {
+      Dialog.show('You must select one major and two minor disciplines.');
+    } else if (
+      character.age.options.numberOfFocuses === 1 &&
+      character.age.options.numberOfFocuses !==
+        character.educationStep?.focuses?.filter((f) => f).length
+    ) {
+      Dialog.show('You must select a Focus');
+    } else if (
+      character.age.options.numberOfFocuses !==
+      character.educationStep?.focuses?.filter((f) => f).length
+    ) {
+      Dialog.show(
+        'You must select ' +
+          character.age.options.numberOfFocuses +
+          ' Focuses.',
+      );
+    } else {
+      Navigation.navigateToPage(PageIdentity.ChildCareer);
     }
+  };
 
-    const onValueChanged = (value: string) => {
-        store.dispatch(setCharacterValue(value, StepContext.Education));
-    }
+  let focuses =
+    character.age.options.numberOfFocuses === 1 ? (
+      <div className="col-lg-6 my-3">
+        <Header level={2}>{t('Construct.other.focus')}</Header>
+        <ReactMarkdown>{character.age.options.focusText}</ReactMarkdown>
 
-    const onNext = () => {
-        if (character.educationStep.decrementAttributes?.length < decrementAttributeController.count) {
-            Dialog.show("You must decrease " + (character.age.options.decreaseAttributes === 1 ? "one attribute" : (character.age.options.decreaseAttributes + " attributes")));
-        } else if (character.educationStep.attributes?.length < 3) {
-            Dialog.show("You must distribute all three attribute points.");
-        } else if (character.educationStep?.decrementDisciplines?.length !== decrementDisciplineController.count) {
-            Dialog.show("You must decrease " + (character.age.options.decreaseDisciplines === 1 ? "one discipline" : (character.age.options.decreaseDisciplines + " disciplines")));
-        } else if (character.educationStep?.primaryDiscipline == null || character.educationStep?.disciplines?.length < 2) {
-            Dialog.show("You must select one major and two minor disciplines.");
-        } else if (character.age.options.numberOfFocuses === 1 && character.age.options.numberOfFocuses !== character.educationStep?.focuses?.filter(f => f).length) {
-            Dialog.show("You must select a Focus");
-        } else if (character.age.options.numberOfFocuses !== character.educationStep?.focuses?.filter(f => f).length) {
-            Dialog.show("You must select " + character.age.options.numberOfFocuses + " Focuses.");
-        } else {
-            Navigation.navigateToPage(PageIdentity.ChildCareer);
-        }
-    }
+        <InputFieldAndLabel
+          id="focus1"
+          labelName={t('Construct.other.focus1')}
+          value={character.educationStep?.focuses[0] ?? ''}
+          onChange={(v) =>
+            store.dispatch(setCharacterFocus(v, StepContext.Education, 0))
+          }
+        />
+      </div>
+    ) : (
+      <div className="col-lg-6 my-3">
+        <Header level={2}>{t('Construct.other.focuses')}</Header>
+        <ReactMarkdown>{character.age.options.focusText}</ReactMarkdown>
 
-    let focuses = character.age.options.numberOfFocuses === 1
-        ? (<div className="col-lg-6 my-3">
-            <Header level={2}>{t('Construct.other.focus')}</Header>
-            <ReactMarkdown>{character.age.options.focusText}</ReactMarkdown>
+        <InputFieldAndLabel
+          id="focus1"
+          labelName={t('Construct.other.focus1')}
+          value={character.educationStep?.focuses[0] ?? ''}
+          onChange={(v) =>
+            store.dispatch(setCharacterFocus(v, StepContext.Education, 0))
+          }
+        />
+        <InputFieldAndLabel
+          id="focus2"
+          labelName={t('Construct.other.focus2')}
+          value={character.educationStep?.focuses[1] ?? ''}
+          onChange={(v) =>
+            store.dispatch(setCharacterFocus(v, StepContext.Education, 1))
+          }
+        />
+      </div>
+    );
 
-            <InputFieldAndLabel id="focus1" labelName={t('Construct.other.focus1')}
-                value={character.educationStep?.focuses[0] ?? ""}
-                onChange={(v) => store.dispatch(setCharacterFocus(v, StepContext.Education, 0))} />
-        </div>)
-        : (<div className="col-lg-6 my-3">
-            <Header level={2}>{t('Construct.other.focuses')}</Header>
-            <ReactMarkdown>{character.age.options.focusText}</ReactMarkdown>
+  return (
+    <div className="page container ms-0">
+      <CharacterCreationBreadcrumbs
+        pageIdentity={PageIdentity.ChildEducationDetailsPage}
+      />
+      <Header>{character.age.name}</Header>
+      <InstructionText text={character.age.description} />
+      <div className="row">
+        <div className="col-lg-6 my-3">
+          <Header level={2}>{t('Construct.other.attributes')}</Header>
+          <p className="my-2">
+            Decrease{' '}
+            {decrementAttributeController.count === 1
+              ? ' 1 attribute '
+              : ' ' + decrementAttributeController.count + ' attributes '}
+            to reflect the young age of the character:
+          </p>
+          <AttributeListComponent controller={decrementAttributeController} />
 
-            <InputFieldAndLabel id="focus1" labelName={t('Construct.other.focus1')}
-                value={character.educationStep?.focuses[0] ?? ""}
-                onChange={(v) => store.dispatch(setCharacterFocus(v, StepContext.Education, 0))} />
-            <InputFieldAndLabel id="focus2" labelName={t('Construct.other.focus2')}
-                value={character.educationStep?.focuses[1] ?? ""}
-                onChange={(v) => store.dispatch(setCharacterFocus(v, StepContext.Education, 1))} />
-        </div>);
-
-    return (<div className="page container ms-0">
-        <CharacterCreationBreadcrumbs pageIdentity={PageIdentity.ChildEducationDetailsPage} />
-        <Header>{character.age.name}</Header>
-        <InstructionText text={character.age.description} />
-        <div className="row">
-            <div className="col-lg-6 my-3">
-                <Header level={2}>{t('Construct.other.attributes')}</Header>
-                <p className="my-2">
-                    Decrease {decrementAttributeController.count === 1 ? " 1 attribute " : (" " + decrementAttributeController.count + " attributes ")}
-                    to reflect the young age of the character:
-                </p>
-                <AttributeListComponent controller={decrementAttributeController} />
-
-                <p className="mt-4 mb-2">Distribute 3 points among 2 or 3 attributes (either +2 in one and +1 in another, or +1 to three):</p>
-                <AttributeListComponent controller={incrementAttributeController} />
-
-            </div>
-            <div className="col-lg-6 my-3">
-                <Header level={2}><DisciplinesOrDepartments character={character} /></Header>
-                <p className="my-2">
-                    Decrease {decrementDisciplineController.count === 1 ? " 1 discipline " : (" " + decrementDisciplineController.count + " disciplines ")}
-                    to reflect the young age of the character:
-                </p>
-                <DisciplineListComponent controller={decrementDisciplineController} />
-
-                <p className="mb-2 mt-4">
-                    Select 1 discipline to reflect the primary area of interest:
-                </p>
-                <DisciplineListComponent controller={primaryDisciplineController} />
-
-                <p className="mb-2 mt-4">
-                    Select 2 other discipline to reflect the other areas of interest:
-                </p>
-                <DisciplineListComponent controller={secondaryDisciplineController} />
-            </div>
-            {focuses}
-            <div className="col-lg-6 my-3">
-                <Header level={2}>{t('Construct.other.value')}</Header>
-                <ValueInput value={character.educationStep?.value ?? ""} onValueChanged={(value) => onValueChanged(value)}
-                    onRandomClicked={() => randomValue()} textDescription={t('Value.childEducation.text')} />
-
-            </div>
+          <p className="mt-4 mb-2">
+            Distribute 3 points among 2 or 3 attributes (either +2 in one and +1
+            in another, or +1 to three):
+          </p>
+          <AttributeListComponent controller={incrementAttributeController} />
         </div>
+        <div className="col-lg-6 my-3">
+          <Header level={2}>
+            <DisciplinesOrDepartments character={character} />
+          </Header>
+          <p className="my-2">
+            Decrease{' '}
+            {decrementDisciplineController.count === 1
+              ? ' 1 discipline '
+              : ' ' + decrementDisciplineController.count + ' disciplines '}
+            to reflect the young age of the character:
+          </p>
+          <DisciplineListComponent controller={decrementDisciplineController} />
 
-        <div className="text-end">
-            <Button onClick={() => onNext() }>{t('Common.button.next')}</Button>
+          <p className="mb-2 mt-4">
+            Select 1 discipline to reflect the primary area of interest:
+          </p>
+          <DisciplineListComponent controller={primaryDisciplineController} />
+
+          <p className="mb-2 mt-4">
+            Select 2 other discipline to reflect the other areas of interest:
+          </p>
+          <DisciplineListComponent controller={secondaryDisciplineController} />
         </div>
-    </div>);
-}
+        {focuses}
+        <div className="col-lg-6 my-3">
+          <Header level={2}>{t('Construct.other.value')}</Header>
+          <ValueInput
+            value={character.educationStep?.value ?? ''}
+            onValueChanged={(value) => onValueChanged(value)}
+            onRandomClicked={() => randomValue()}
+            textDescription={t('Value.childEducation.text')}
+          />
+        </div>
+      </div>
 
-export default connect(characterMapStateToProperties)(ChildEducationDetailsPage);
+      <div className="text-end">
+        <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
+      </div>
+    </div>
+  );
+};
+
+export default connect(characterMapStateToProperties)(
+  ChildEducationDetailsPage,
+);

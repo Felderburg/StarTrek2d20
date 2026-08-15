@@ -1,5 +1,5 @@
-import { Starship } from "../common/starship";
+import { Starship } from '../common/starship';
 
 export interface IStarshipProperties {
-    starship: Starship;
+  starship: Starship;
 }

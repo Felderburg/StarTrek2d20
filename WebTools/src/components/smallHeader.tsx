@@ -1,9 +1,9 @@
 import React from 'react';
 
 interface ISmallHeaderProperties {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
-export const SmallHeader: React.FC<ISmallHeaderProperties> = ({children}) => {
-    return (<h5 className="header-small">{children}</h5>);
-}
+export const SmallHeader: React.FC<ISmallHeaderProperties> = ({ children }) => {
+  return <h5 className="header-small">{children}</h5>;
+};

@@ -1,10 +1,8 @@
-
 export enum SupportingCharacterModificationType {
-
-    AdditionalAttribute,
-    AdditionalDepartment,
-    AdditionalFocus,
-    AdditionalTalent,
-    AdditionalValue,
-    Promotion
+  AdditionalAttribute,
+  AdditionalDepartment,
+  AdditionalFocus,
+  AdditionalTalent,
+  AdditionalValue,
+  Promotion,
 }

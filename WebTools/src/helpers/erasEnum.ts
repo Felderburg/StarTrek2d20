@@ -1,8 +1,7 @@
 export enum Era {
-    Enterprise,
-    OriginalSeries,
-    NextGeneration,
-    PicardProdigy,
-    Discovery32
+  Enterprise,
+  OriginalSeries,
+  NextGeneration,
+  PicardProdigy,
+  Discovery32,
 }
-

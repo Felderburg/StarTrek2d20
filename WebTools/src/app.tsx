@@ -1,7 +1,11 @@
 import React from 'react';
-import {Helmet} from "@dr.pogodin/react-helmet";
+import { Helmet } from '@dr.pogodin/react-helmet';
 import { Events, EventIdentity } from './common/eventChannel';
-import { popPage, pushPage, workflowStepIndexForPage } from './common/pageHistory';
+import {
+  popPage,
+  pushPage,
+  workflowStepIndexForPage,
+} from './common/pageHistory';
 import { PageFactory } from './pages/pageFactory';
 import { PageIdentity } from './pages/pageIdentity';
 import LcarsFrame from './components/lcarsFrame';
@@ -11,99 +15,121 @@ import store from './state/store';
 import './scss/main.scss';
 
 interface IAppState {
-    activePage: PageIdentity;
-    pageHistory: PageIdentity[];
+  activePage: PageIdentity;
+  pageHistory: PageIdentity[];
 }
 
 export class CharacterCreationApp extends React.Component<{}, IAppState> {
+  constructor(props) {
+    super(props);
 
-    constructor(props) {
-        super(props);
+    this.state = {
+      activePage: PageIdentity.Home,
+      pageHistory: [],
+    };
+  }
 
-        this.state = {
-            activePage: PageIdentity.Home,
-            pageHistory: []
-        };
+  componentDidMount() {
+    Events.listen(EventIdentity.ShowPage, (page: any) => {
+      this.goForward(page as PageIdentity);
+    });
+
+    Events.listen(EventIdentity.HistoryBack, (page: any) => {
+      this.goForward(page as PageIdentity);
+    });
+
+    document.title = 'STAR TREK ADVENTURES';
+  }
+
+  componentWillUnmount(): void {
+    Events.removeAllListeners();
+  }
+
+  private goForward(page: PageIdentity) {
+    if (
+      page === this.state.activePage ||
+      ([PageIdentity.CareerEvent1, PageIdentity.CareerEvent2].includes(page) &&
+        [PageIdentity.CareerEvent1, PageIdentity.CareerEvent2].includes(
+          this.state.activePage,
+        ))
+    ) {
+      var pageComponent = document.getElementsByClassName('page')[0];
+      pageComponent.classList.remove('page-out');
+      if (page === this.state.activePage) {
+        return;
+      }
     }
 
-    componentDidMount() {
+    this.activatePage(
+      page,
+      pushPage(this.state.pageHistory, this.state.activePage, page),
+    );
+  }
 
-        Events.listen(EventIdentity.ShowPage, (page: any) => {
-            this.goForward(page as PageIdentity);
-        });
-
-        Events.listen(EventIdentity.HistoryBack, (page: any) => {
-            this.goForward(page as PageIdentity);
-        });
-
-        document.title = "STAR TREK ADVENTURES";
+  private goBack() {
+    const previous = popPage(this.state.pageHistory);
+    if (previous == null) {
+      return;
     }
 
-    componentWillUnmount(): void {
-        Events.removeAllListeners();
+    this.activatePage(previous.page, previous.history, true);
+  }
+
+  private activatePage(
+    page: PageIdentity,
+    pageHistory: PageIdentity[],
+    syncWorkflow: boolean = false,
+  ) {
+    document.getElementById('app')!.scrollTop = 0;
+
+    this.setState({
+      ...this.state,
+      activePage: page,
+      pageHistory,
+    });
+
+    if (syncWorkflow) {
+      this.syncWorkflowStep(page);
     }
+  }
 
-    private goForward(page: PageIdentity) {
-        if (page === this.state.activePage || ([PageIdentity.CareerEvent1, PageIdentity.CareerEvent2].includes(page) && [PageIdentity.CareerEvent1, PageIdentity.CareerEvent2].includes(this.state.activePage))) {
-            var pageComponent = document.getElementsByClassName('page')[0];
-            pageComponent.classList.remove('page-out');
-            if (page === this.state.activePage) {
-                return;
-            }
-        }
-
-        this.activatePage(page, pushPage(this.state.pageHistory, this.state.activePage, page));
+  private syncWorkflowStep(page: PageIdentity) {
+    const workflow = store.getState().starship?.workflow;
+    const index = workflowStepIndexForPage(workflow, page);
+    if (index != null) {
+      store.dispatch(rewindToStarshipWorkflowStep(index));
     }
+  }
 
-    private goBack() {
-        const previous = popPage(this.state.pageHistory);
-        if (previous == null) {
-            return;
-        }
+  render() {
+    const page = PageFactory.instance.createPage(this.state.activePage);
 
-        this.activatePage(previous.page, previous.history, true);
-    }
-
-    private activatePage(page: PageIdentity, pageHistory: PageIdentity[], syncWorkflow: boolean = false) {
-        document.getElementById("app")!.scrollTop = 0;
-
-        this.setState({
-            ...this.state,
-            activePage: page,
-            pageHistory
-        });
-
-        if (syncWorkflow) {
-            this.syncWorkflowStep(page);
-        }
-    }
-
-    private syncWorkflowStep(page: PageIdentity) {
-        const workflow = store.getState().starship?.workflow;
-        const index = workflowStepIndexForPage(workflow, page);
-        if (index != null) {
-            store.dispatch(rewindToStarshipWorkflowStep(index));
-        }
-    }
-
-    render() {
-        const page = PageFactory.instance.createPage(this.state.activePage);
-
-        return (<>
-            <Helmet>
-                <title>STAR TREK Adventures Character Creator</title>
-                <meta property="og:title" content="The Star Trek Adventures Character Creator" />
-                <meta property="og:description" content="A free application that you can use to create characters, ships, and tokens for Modiphius' Star Trek Adventures RPG (and the Captain's Log Solo RPG game)." />
-                <meta property="og:type" content="website" />
-                <meta property="og:image" content="/static/img/bannerImage.png" />
-                <meta property="og:url" content="https://sta.bcholmes.org" />
-            </Helmet>
-            <LcarsFrame activePage={this.state.activePage} canGoBack={this.state.pageHistory.length > 0} onBack={() => this.goBack()}>
-                <div id="app">{page}</div>
-            </LcarsFrame>
-        </>);
-    }
-
+    return (
+      <>
+        <Helmet>
+          <title>STAR TREK Adventures Character Creator</title>
+          <meta
+            property="og:title"
+            content="The Star Trek Adventures Character Creator"
+          />
+          <meta
+            property="og:description"
+            content="A free application that you can use to create characters, ships, and tokens for Modiphius' Star Trek Adventures RPG (and the Captain's Log Solo RPG game)."
+          />
+          <meta property="og:type" content="website" />
+          <meta property="og:image" content="/static/img/bannerImage.png" />
+          <meta property="og:url" content="https://sta.bcholmes.org" />
+        </Helmet>
+        <LcarsFrame
+          activePage={this.state.activePage}
+          canGoBack={this.state.pageHistory.length > 0}
+          onBack={() => this.goBack()}
+        >
+          <div id="app">{page}</div>
+        </LcarsFrame>
+      </>
+    );
+  }
 }
 
 export default CharacterCreationApp;

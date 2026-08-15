@@ -1,3 +1,6 @@
 export enum ShipBuildType {
-    Pod, Shuttlecraft, Runabout, Starship
+  Pod,
+  Shuttlecraft,
+  Runabout,
+  Starship,
 }

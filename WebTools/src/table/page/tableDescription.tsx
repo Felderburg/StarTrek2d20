@@ -1,12 +1,16 @@
-import ReactMarkdown from "react-markdown";
-import { TableCollection } from "../model/table"
+import ReactMarkdown from 'react-markdown';
+import { TableCollection } from '../model/table';
 
 interface ITableCollectionDescriptionProperties {
-    tableCollection: TableCollection;
+  tableCollection: TableCollection;
 }
 
-export const TableCollectionDescription:React.FC<ITableCollectionDescriptionProperties> = ({tableCollection}) => {
-    return (
-        <ReactMarkdown>{'**' + tableCollection.name + ':** ' + tableCollection.description}</ReactMarkdown>
-    )
-}
+export const TableCollectionDescription: React.FC<
+  ITableCollectionDescriptionProperties
+> = ({ tableCollection }) => {
+  return (
+    <ReactMarkdown>
+      {'**' + tableCollection.name + ':** ' + tableCollection.description}
+    </ReactMarkdown>
+  );
+};

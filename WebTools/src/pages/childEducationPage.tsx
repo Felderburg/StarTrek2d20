@@ -7,64 +7,77 @@ import { Header } from '../components/header';
 import InstructionText from '../components/instructionText';
 import AgeHelper, { Age } from '../helpers/age';
 import { PageIdentity } from './pageIdentity';
-import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
+import {
+  ICharacterProperties,
+  characterMapStateToProperties,
+} from '../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import store from '../state/store';
 import { setCharacterAge } from '../state/characterActions';
 
 interface ITrackSelectionProperties {
-    onSelection: (age: Age) => void;
+  onSelection: (age: Age) => void;
 }
 
-const AgeSelection : React.FC<ITrackSelectionProperties> = ({onSelection}) => {
+const AgeSelection: React.FC<ITrackSelectionProperties> = ({ onSelection }) => {
+  const { t } = useTranslation();
 
-    const { t } = useTranslation();
-
-    let ages = AgeHelper.getAllChildAges().map((a, i) => {
-        return (
-            <tr key={i}
-                onClick={() => { if (Window.isCompact()) onSelection(a); } }>
-                <td className="selection-header">{a.name}</td>
-                <td>{a.description}</td>
-                <td><Button size="sm" onClick={() => { onSelection(a) } }>{t('Common.button.select')}</Button></td>
-            </tr>
-        )
-    });
+  let ages = AgeHelper.getAllChildAges().map((a, i) => {
     return (
-        <div>
-            <Header className="mt-4">Select Child Age</Header>
-            <table className="selection-list">
-                <thead>
-                    <tr>
-                        <td>Age</td>
-                        <td>Description</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {ages}
-                </tbody>
-            </table>
-        </div>
+      <tr
+        key={i}
+        onClick={() => {
+          if (Window.isCompact()) onSelection(a);
+        }}
+      >
+        <td className="selection-header">{a.name}</td>
+        <td>{a.description}</td>
+        <td>
+          <Button
+            size="sm"
+            onClick={() => {
+              onSelection(a);
+            }}
+          >
+            {t('Common.button.select')}
+          </Button>
+        </td>
+      </tr>
     );
-}
+  });
+  return (
+    <div>
+      <Header className="mt-4">Select Child Age</Header>
+      <table className="selection-list">
+        <thead>
+          <tr>
+            <td>Age</td>
+            <td>Description</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>{ages}</tbody>
+      </table>
+    </div>
+  );
+};
 
-const ChildEducationPage: React.FC<ICharacterProperties> = ({character}) => {
+const ChildEducationPage: React.FC<ICharacterProperties> = ({ character }) => {
+  const { t } = useTranslation();
 
-    const { t } = useTranslation();
+  const selectAge = (age: Age) => {
+    store.dispatch(setCharacterAge(age));
+    Navigation.navigateToPage(PageIdentity.ChildEducationDetailsPage);
+  };
 
-    const selectAge = (age: Age) => {
-        store.dispatch(setCharacterAge(age));
-        Navigation.navigateToPage(PageIdentity.ChildEducationDetailsPage);
-    }
-
-    return (<div className="page container ms-0">
-        <CharacterCreationBreadcrumbs />
-        <InstructionText text={t('ChildSelectionPage.instruction')} />
-        <AgeSelection onSelection={(a) => selectAge(a)} />
-    </div>)
-
-}
+  return (
+    <div className="page container ms-0">
+      <CharacterCreationBreadcrumbs />
+      <InstructionText text={t('ChildSelectionPage.instruction')} />
+      <AgeSelection onSelection={(a) => selectAge(a)} />
+    </div>
+  );
+};
 
 export default connect(characterMapStateToProperties)(ChildEducationPage);

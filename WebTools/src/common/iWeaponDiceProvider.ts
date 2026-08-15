@@ -1,5 +1,5 @@
-import { Weapon } from "../helpers/weapons";
+import { Weapon } from '../helpers/weapons';
 
 export interface IWeaponDiceProvider {
-    getDiceForWeapon(weapon: Weapon): number;
+  getDiceForWeapon(weapon: Weapon): number;
 }

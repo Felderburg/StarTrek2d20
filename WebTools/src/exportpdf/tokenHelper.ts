@@ -1,39 +1,41 @@
-import { Canvg, presets } from "canvg";
-import { TokenConfig } from "../common/character";
+import { Canvg, presets } from 'canvg';
+import { TokenConfig } from '../common/character';
 
 export class TokenHelper {
-    private static async toPngBytes(data) {
-        const preset = presets.offscreen();
-        const {
-            width,
-            height,
-            svg
-        } = data;
-        const canvas = new OffscreenCanvas(width, height)
-        const ctx = canvas.getContext('2d')
-        const v = await Canvg.from(ctx, svg, preset)
+  private static async toPngBytes(data) {
+    const preset = presets.offscreen();
+    const { width, height, svg } = data;
+    const canvas = new OffscreenCanvas(width, height);
+    const ctx = canvas.getContext('2d');
+    const v = await Canvg.from(ctx, svg, preset);
 
-        // Render only first frame, ignoring animations and mouse.
-        await v.render()
+    // Render only first frame, ignoring animations and mouse.
+    await v.render();
 
-        const blob = await canvas.convertToBlob();
-        return blob.arrayBuffer();
-    }
+    const blob = await canvas.convertToBlob();
+    return blob.arrayBuffer();
+  }
 
-    static async createTokenSvg(tokenConfig: TokenConfig) {
-        let token = tokenConfig.token;
-        const { TokenSvgBuilder } = await import(/* webpackChunkName: 'token' */ '../token/tokenSvgBuilder');
-        return  await TokenSvgBuilder.loadDependenciesAndCreateSvg(token, tokenConfig.rounded, tokenConfig.rounded && tokenConfig.bordered);
-    }
+  static async createTokenSvg(tokenConfig: TokenConfig) {
+    let token = tokenConfig.token;
+    const { TokenSvgBuilder } = await import(
+      /* webpackChunkName: 'token' */ '../token/tokenSvgBuilder'
+    );
+    return await TokenSvgBuilder.loadDependenciesAndCreateSvg(
+      token,
+      tokenConfig.rounded,
+      tokenConfig.rounded && tokenConfig.bordered,
+    );
+  }
 
-    static async renderToken(tokenConfig: TokenConfig) {
-        const svg = await TokenHelper.createTokenSvg(tokenConfig);
+  static async renderToken(tokenConfig: TokenConfig) {
+    const svg = await TokenHelper.createTokenSvg(tokenConfig);
 
-        let bytes = await TokenHelper.toPngBytes({
-            width: 800,
-            height: 800,
-            svg: svg
-        });
-        return bytes;
-    }
+    let bytes = await TokenHelper.toPngBytes({
+      width: 800,
+      height: 800,
+      svg: svg,
+    });
+    return bytes;
+  }
 }

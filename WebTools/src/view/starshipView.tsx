@@ -1,220 +1,416 @@
-import React, { lazy, Suspense, useEffect } from "react";
-import { Starship } from "../common/starship";
-import { CharacterType } from "../common/characterType";
-import { Department } from "../helpers/department";
-import { System } from "../helpers/systems";
-import Button from "react-bootstrap/Button";
-import { Header } from "../components/header";
-import { StatView } from "../components/StatView";
+import React, { lazy, Suspense, useEffect } from 'react';
+import { Starship } from '../common/starship';
+import { CharacterType } from '../common/characterType';
+import { Department } from '../helpers/department';
+import { System } from '../helpers/systems';
+import Button from 'react-bootstrap/Button';
+import { Header } from '../components/header';
+import { StatView } from '../components/StatView';
 import { useTranslation } from 'react-i18next';
-import { makeKey } from "../common/translationKey";
-import { VttSelectionDialog } from "../vtt/view/VttSelectionDialog";
-import TalentsBlockView from "./talentsBlockView";
-import WeaponBlockView from "./weaponBlockView";
-import { cyrb53 } from "../common/cyrb53";
-import { originalEncodedSheet } from "./originalEncodedSheet";
-import { createStarship } from "../state/starshipActions";
-import store from "../state/store";
-import { useNavigate } from "react-router";
-import { ExportToPdfButton } from "../components/exportToPdfButton";
+import { makeKey } from '../common/translationKey';
+import { VttSelectionDialog } from '../vtt/view/VttSelectionDialog';
+import TalentsBlockView from './talentsBlockView';
+import WeaponBlockView from './weaponBlockView';
+import { cyrb53 } from '../common/cyrb53';
+import { originalEncodedSheet } from './originalEncodedSheet';
+import { createStarship } from '../state/starshipActions';
+import store from '../state/store';
+import { useNavigate } from 'react-router';
+import { ExportToPdfButton } from '../components/exportToPdfButton';
 
-const OutlineImage = lazy(() => import(/* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'));
-
+const OutlineImage = lazy(
+  () =>
+    import(
+      /* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'
+    ),
+);
 
 const NBSP = '\u00A0';
 
 interface IStarshipViewProperties {
-    starship: Starship;
+  starship: Starship;
 }
 
-const StarshipView: React.FC<IStarshipViewProperties> = ({starship}) => {
+const StarshipView: React.FC<IStarshipViewProperties> = ({ starship }) => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (starship.name) {
-            document.title = starship.name + " - STAR TREK ADVENTURES";
-        }
-    })
-
-    const refitAsString = () => {
-        let refitString = starship.refitsAsString();
-        return  refitString === "" ? NBSP : refitString;
-    }
-
-    const getAllTraits = () => {
-        let traits = starship.getAllTraits();
-        return traits === "" ? NBSP : traits;
-    }
-
-    const renderTalentNames = () => {
-        return <TalentsBlockView construct={starship} />
-    }
-
-    const renderShields = () => {
-        let shield = starship.shields;
-        if (shield) {
-            let iterator = [];
-            let iterator2 = [];
-            for (let i = 1; i <= Math.max(30, Math.ceil(shield / 10) * 10); i++) {
-                if (i % 10 > 5 || i % 10 === 0) {
-                    iterator2.push(i);
-                } else {
-                    iterator.push(i);
-                }
-            }
-
-            const pills1 = iterator.map(i => {
-                if (i <= shield) {
-                    return (<div className="empty-pill mb-2" key={'shield-' + i}></div>);
-                } else {
-                    return (<div className="empty-pill solid mb-2" key={'shield-' + i}></div>);
-                }
-            });
-
-            const pills2 = iterator2.map(i => {
-                if (i <= shield) {
-                    return (<div className="empty-pill mb-2" key={'shield-' + i}></div>);
-                } else {
-                    return (<div className="empty-pill solid mb-2" key={'shield-' + i}></div>);
-                }
-            });
-
-            return (<div className="row row-cols-2">
-                <div className="d-flex flex-wrap mt-3 mb-2">
-                    {pills1}
-                </div>
-                <div className="d-flex flex-wrap mt-3 mb-2">
-                    {pills2}
-                </div>
-            </div>);
-        } else {
-            return undefined;
-        }
-    }
-
-    const renderWeapons = () => {
-        return (<div><WeaponBlockView construct={starship} /></div>);
-    }
-
-    const showVttExportDialog = () => {
-        VttSelectionDialog.instance.show(starship);
-    }
-
-    function navigateToModification() {
-        const hash = cyrb53(originalEncodedSheet());
-        store.dispatch(createStarship(starship, hash));
-        navigate("/modify/starship");
-    }
-
-    function navigateToMissionPodSwap() {
-        const hash = cyrb53(originalEncodedSheet());
-        store.dispatch(createStarship(starship, hash));
-        navigate("/modify/starship/pod");
-    }
-
-    const { t } = useTranslation();
-
-    let name = "";
+  useEffect(() => {
     if (starship.name) {
-        name = starship.name;
-
-        if (starship.type === CharacterType.Starfleet && starship.registry) {
-            name += ' • ' + starship.registry;
-        }
-    } else {
-        name = t('ViewPage.unnamedStarship');
+      document.title = starship.name + ' - STAR TREK ADVENTURES';
     }
+  });
 
-    return (<main>
-        <Header>{name}</Header>
-        <div className="row mt-4" style={{alignItems: "baseline"}}>
-            <div className="col-md-2 view-field-label pb-2">{t('Construct.other.spaceFrame')}:</div>
-            <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{starship.localizedClassName ? starship.localizedClassName : NBSP}</div></div>
+  const refitAsString = () => {
+    let refitString = starship.refitsAsString();
+    return refitString === '' ? NBSP : refitString;
+  };
 
-            <div className="col-md-2 view-field-label pb-2">{t('Construct.other.serviceDate')}:</div>
-            <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{starship.serviceYear? starship.serviceYear : NBSP}</div></div>
+  const getAllTraits = () => {
+    let traits = starship.getAllTraits();
+    return traits === '' ? NBSP : traits;
+  };
+
+  const renderTalentNames = () => {
+    return <TalentsBlockView construct={starship} />;
+  };
+
+  const renderShields = () => {
+    let shield = starship.shields;
+    if (shield) {
+      let iterator = [];
+      let iterator2 = [];
+      for (let i = 1; i <= Math.max(30, Math.ceil(shield / 10) * 10); i++) {
+        if (i % 10 > 5 || i % 10 === 0) {
+          iterator2.push(i);
+        } else {
+          iterator.push(i);
+        }
+      }
+
+      const pills1 = iterator.map((i) => {
+        if (i <= shield) {
+          return <div className="empty-pill mb-2" key={'shield-' + i}></div>;
+        } else {
+          return (
+            <div className="empty-pill solid mb-2" key={'shield-' + i}></div>
+          );
+        }
+      });
+
+      const pills2 = iterator2.map((i) => {
+        if (i <= shield) {
+          return <div className="empty-pill mb-2" key={'shield-' + i}></div>;
+        } else {
+          return (
+            <div className="empty-pill solid mb-2" key={'shield-' + i}></div>
+          );
+        }
+      });
+
+      return (
+        <div className="row row-cols-2">
+          <div className="d-flex flex-wrap mt-3 mb-2">{pills1}</div>
+          <div className="d-flex flex-wrap mt-3 mb-2">{pills2}</div>
+        </div>
+      );
+    } else {
+      return undefined;
+    }
+  };
+
+  const renderWeapons = () => {
+    return (
+      <div>
+        <WeaponBlockView construct={starship} />
+      </div>
+    );
+  };
+
+  const showVttExportDialog = () => {
+    VttSelectionDialog.instance.show(starship);
+  };
+
+  function navigateToModification() {
+    const hash = cyrb53(originalEncodedSheet());
+    store.dispatch(createStarship(starship, hash));
+    navigate('/modify/starship');
+  }
+
+  function navigateToMissionPodSwap() {
+    const hash = cyrb53(originalEncodedSheet());
+    store.dispatch(createStarship(starship, hash));
+    navigate('/modify/starship/pod');
+  }
+
+  const { t } = useTranslation();
+
+  let name = '';
+  if (starship.name) {
+    name = starship.name;
+
+    if (starship.type === CharacterType.Starfleet && starship.registry) {
+      name += ' • ' + starship.registry;
+    }
+  } else {
+    name = t('ViewPage.unnamedStarship');
+  }
+
+  return (
+    <main>
+      <Header>{name}</Header>
+      <div className="row mt-4" style={{ alignItems: 'baseline' }}>
+        <div className="col-md-2 view-field-label pb-2">
+          {t('Construct.other.spaceFrame')}:
+        </div>
+        <div className="col-md-4 text-white">
+          <div className="view-border-bottom pb-2">
+            {starship.localizedClassName ? starship.localizedClassName : NBSP}
+          </div>
         </div>
 
-        <div className="row" style={{alignItems: "baseline"}}>
-            <div className="col-md-2 view-field-label pb-2">{t('Construct.other.missionProfile')}:</div>
-            <div className="col-md-4 text-white"><div className="view-border-bottom pb-2">{starship.missionProfileStep?.type ? starship.missionProfileStep?.type?.localizedName : NBSP}</div></div>
-
-            <div className="col-md-2 view-field-label pb-2">{t('Construct.other.refits')}:</div>
-            <div className="col-md-4 text-white"><div className="view-border-bottom pb-2 small">{refitAsString()}</div></div>
+        <div className="col-md-2 view-field-label pb-2">
+          {t('Construct.other.serviceDate')}:
+        </div>
+        <div className="col-md-4 text-white">
+          <div className="view-border-bottom pb-2">
+            {starship.serviceYear ? starship.serviceYear : NBSP}
+          </div>
+        </div>
+      </div>
+      <div className="row" style={{ alignItems: 'baseline' }}>
+        <div className="col-md-2 view-field-label pb-2">
+          {t('Construct.other.missionProfile')}:
+        </div>
+        <div className="col-md-4 text-white">
+          <div className="view-border-bottom pb-2">
+            {starship.missionProfileStep?.type
+              ? starship.missionProfileStep?.type?.localizedName
+              : NBSP}
+          </div>
         </div>
 
-        <div className="row" style={{alignItems: "baseline"}}>
-            <div className="col-md-2 view-field-label pb-2">{t('Construct.other.traits')}:</div>
-            <div className="col-md-10 text-white"><div className="view-border-bottom pb-2">{getAllTraits()}</div></div>
+        <div className="col-md-2 view-field-label pb-2">
+          {t('Construct.other.refits')}:
         </div>
+        <div className="col-md-4 text-white">
+          <div className="view-border-bottom pb-2 small">{refitAsString()}</div>
+        </div>
+      </div>
+      <div className="row" style={{ alignItems: 'baseline' }}>
+        <div className="col-md-2 view-field-label pb-2">
+          {t('Construct.other.traits')}:
+        </div>
+        <div className="col-md-10 text-white">
+          <div className="view-border-bottom pb-2">{getAllTraits()}</div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-xl-6 mt-4">
+          <Header level={2}>{t('Construct.other.systems')}</Header>
 
-        <div className="row">
-            <div className="col-xl-6 mt-4">
-                <Header level={2}>{t('Construct.other.systems')}</Header>
+          <div className="row row-cols-1 row-cols-md-3 mt-3">
+            <StatView
+              showZero={true}
+              name={t(makeKey('Construct.system.', System[System.Comms]))}
+              value={starship.getSystemValue(System.Comms)}
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(makeKey('Construct.system.', System[System.Engines]))}
+              value={starship.getSystemValue(System.Engines)}
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(makeKey('Construct.system.', System[System.Structure]))}
+              value={starship.getSystemValue(System.Structure)}
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(makeKey('Construct.system.', System[System.Computer]))}
+              value={starship.getSystemValue(System.Computer)}
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(makeKey('Construct.system.', System[System.Sensors]))}
+              value={starship.getSystemValue(System.Sensors)}
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(makeKey('Construct.system.', System[System.Weapons]))}
+              value={starship.getSystemValue(System.Weapons)}
+              className="col mb-2"
+            />
+          </div>
 
-                <div className="row row-cols-1 row-cols-md-3 mt-3">
-                    <StatView showZero={true} name={t(makeKey('Construct.system.', System[System.Comms]))} value={starship.getSystemValue(System.Comms)} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.system.', System[System.Engines]))} value={starship.getSystemValue(System.Engines)} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.system.', System[System.Structure]))} value={starship.getSystemValue(System.Structure)} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.system.', System[System.Computer]))} value={starship.getSystemValue(System.Computer)} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.system.', System[System.Sensors]))} value={starship.getSystemValue(System.Sensors)} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.system.', System[System.Weapons]))} value={starship.getSystemValue(System.Weapons)} className="col mb-2" />
+          <Header level={2} className="mt-4">
+            {t('Construct.other.departments')}
+          </Header>
+          <div className="row row-cols-1 row-cols-md-3 mt-3">
+            <StatView
+              showZero={true}
+              name={t(
+                makeKey(
+                  'Construct.department.',
+                  Department[Department.Command],
+                ),
+              )}
+              value={
+                starship.departments
+                  ? starship.departments[Department.Command]
+                  : undefined
+              }
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(
+                makeKey(
+                  'Construct.department.',
+                  Department[Department.Security],
+                ),
+              )}
+              value={
+                starship.departments
+                  ? starship.departments[Department.Security]
+                  : undefined
+              }
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(
+                makeKey(
+                  'Construct.department.',
+                  Department[Department.Science],
+                ),
+              )}
+              value={
+                starship.departments
+                  ? starship.departments[Department.Science]
+                  : undefined
+              }
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(
+                makeKey('Construct.department.', Department[Department.Conn]),
+              )}
+              value={
+                starship.departments
+                  ? starship.departments[Department.Conn]
+                  : undefined
+              }
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(
+                makeKey(
+                  'Construct.department.',
+                  Department[Department.Engineering],
+                ),
+              )}
+              value={
+                starship.departments
+                  ? starship.departments[Department.Engineering]
+                  : undefined
+              }
+              className="col mb-2"
+            />
+            <StatView
+              showZero={true}
+              name={t(
+                makeKey(
+                  'Construct.department.',
+                  Department[Department.Medicine],
+                ),
+              )}
+              value={
+                starship.departments
+                  ? starship.departments[Department.Medicine]
+                  : undefined
+              }
+              className="col mb-2"
+            />
+          </div>
+
+          <div className="mt-3">
+            <Suspense
+              fallback={
+                <div className="mt-4 text-center">
+                  <div className="spinner-border text-light" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
                 </div>
+              }
+            >
+              <OutlineImage starship={starship} size="lg" />
+            </Suspense>
 
-                <Header level={2} className="mt-4">{t('Construct.other.departments')}</Header>
-                <div className="row row-cols-1 row-cols-md-3 mt-3">
-                    <StatView showZero={true} name={t(makeKey('Construct.department.', Department[Department.Command]))} value={starship.departments ? starship.departments[Department.Command] : undefined} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.department.', Department[Department.Security]))} value={starship.departments ? starship.departments[Department.Security] : undefined} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.department.', Department[Department.Science]))} value={starship.departments ? starship.departments[Department.Science] : undefined} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.department.', Department[Department.Conn]))} value={starship.departments ? starship.departments[Department.Conn] : undefined} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.department.', Department[Department.Engineering]))} value={starship.departments ? starship.departments[Department.Engineering] : undefined} className="col mb-2" />
-                    <StatView showZero={true} name={t(makeKey('Construct.department.', Department[Department.Medicine]))} value={starship.departments ? starship.departments[Department.Medicine] : undefined} className="col mb-2" />
-                </div>
+            <div className="row row-cols-1 row-cols-xl-3 mb-2">
+              <StatView
+                showZero={true}
+                name={t('Construct.other.resistance')}
+                value={starship.resistance}
+                className="col mb-2"
+                colourClass="red"
+              />
+              <StatView
+                showZero={true}
+                name={t('Construct.other.scale')}
+                value={starship.scale}
+                className="col mb-2"
+                colourClass="red"
+              />
+              <StatView
+                showZero={true}
+                name={t('Construct.other.crew')}
+                value={starship.crewSupport}
+                className="col mb-2"
+                colourClass="red"
+              />
 
-                <div className="mt-3">
-                    <Suspense fallback={<div className="mt-4 text-center">
-                        <div className="spinner-border text-light" role="status">
-                            <span className="visually-hidden">Loading...</span>
-                        </div>
-                    </div>}>
-                        <OutlineImage starship={starship} size="lg" />
-                    </Suspense>
-
-                    <div className="row row-cols-1 row-cols-xl-3 mb-2">
-                        <StatView showZero={true} name={t('Construct.other.resistance')} value={starship.resistance} className="col mb-2" colourClass="red" />
-                        <StatView showZero={true} name={t('Construct.other.scale')} value={starship.scale} className="col mb-2" colourClass="red" />
-                        <StatView showZero={true} name={t('Construct.other.crew')} value={starship.crewSupport} className="col mb-2" colourClass="red" />
-
-                        {starship.version === 1 ? (<StatView showZero={true} name={t('Construct.other.power')} value={starship.power} className="col mb-2" colourClass="red" />) : undefined}
-                    </div>
-                </div>
-                {renderWeapons()}
-
+              {starship.version === 1 ? (
+                <StatView
+                  showZero={true}
+                  name={t('Construct.other.power')}
+                  value={starship.power}
+                  className="col mb-2"
+                  colourClass="red"
+                />
+              ) : undefined}
             </div>
-            <div className="col-xl-6 mt-4">
-                <Header level={2}>{t('Construct.other.shields')}</Header>
-                {renderShields()}
-                {renderTalentNames()}
-            </div>
+          </div>
+          {renderWeapons()}
+        </div>
+        <div className="col-xl-6 mt-4">
+          <Header level={2}>{t('Construct.other.shields')}</Header>
+          {renderShields()}
+          {renderTalentNames()}
+        </div>
+      </div>
+      (
+      <div className="d-flex justify-content-between">
+        <div className="button-container mt-5 mb-3">
+          <ExportToPdfButton construct={starship} />
+          <Button
+            size="sm"
+            className="me-3"
+            onClick={() => showVttExportDialog()}
+          >
+            {t('Common.button.exportVtt')}
+          </Button>
         </div>
 
-        (<div className="d-flex justify-content-between">
-            <div className="button-container mt-5 mb-3">
-                <ExportToPdfButton construct={starship} />
-                <Button size="sm" className="me-3" onClick={() => showVttExportDialog() }>{t('Common.button.exportVtt')}</Button>
-            </div>
-
-            {starship.spaceframeModel?.isMissionPodAvailable || starship.version > 1 ?
-            (<div className="mt-5 mb-3">
-                {starship.spaceframeModel?.isMissionPodAvailable ? (<Button size="sm" className="me-3" onClick={() => navigateToMissionPodSwap() }>{t('Common.button.swapMissionPod')}</Button>) : undefined}
-                {starship.version === 1 ? undefined :
-                (<Button size="sm" onClick={() => navigateToModification() }>{t('Common.button.modify')}</Button>)}
-            </div>) : undefined}
-        </div>)
-
-    </main>);
-
-}
+        {starship.spaceframeModel?.isMissionPodAvailable ||
+        starship.version > 1 ? (
+          <div className="mt-5 mb-3">
+            {starship.spaceframeModel?.isMissionPodAvailable ? (
+              <Button
+                size="sm"
+                className="me-3"
+                onClick={() => navigateToMissionPodSwap()}
+              >
+                {t('Common.button.swapMissionPod')}
+              </Button>
+            ) : undefined}
+            {starship.version === 1 ? undefined : (
+              <Button size="sm" onClick={() => navigateToModification()}>
+                {t('Common.button.modify')}
+              </Button>
+            )}
+          </div>
+        ) : undefined}
+      </div>
+      )
+    </main>
+  );
+};
 
 export default StarshipView;

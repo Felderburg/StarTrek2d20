@@ -1,91 +1,139 @@
-import { useTranslation } from "react-i18next";
-import { ICharacterProperties, characterMapStateToProperties } from "./soloCharacterProperties";
-import { Navigation } from "../../common/navigator";
-import { PageIdentity } from "../../pages/pageIdentity";
-import { Header } from "../../components/header";
-import { connect } from "react-redux";
-import Button from "react-bootstrap/Button";
-import SoloValueInput from "../component/soloValueInput";
-import store from "../../state/store";
-import { StepContext, setCharacterValue } from "../../state/characterActions";
-import { Dialog } from "../../components/dialog";
-import DisciplineListComponent from "../../components/disciplineListComponent";
-import SoloCharacterBreadcrumbs from "../component/soloCharacterBreadcrumbs";
-import AttributeListComponent from "../../components/attributeListComponent";
-import { randomUniqueValue } from "../table/valueRandomTable";
-import D20IconButton from "../component/d20IconButton";
-import { FinishingTouchesAttributeController, FinishingTouchesDisciplineController } from "../../components/finishingTouchesControllers";
+import { useTranslation } from 'react-i18next';
+import {
+  ICharacterProperties,
+  characterMapStateToProperties,
+} from './soloCharacterProperties';
+import { Navigation } from '../../common/navigator';
+import { PageIdentity } from '../../pages/pageIdentity';
+import { Header } from '../../components/header';
+import { connect } from 'react-redux';
+import Button from 'react-bootstrap/Button';
+import SoloValueInput from '../component/soloValueInput';
+import store from '../../state/store';
+import { StepContext, setCharacterValue } from '../../state/characterActions';
+import { Dialog } from '../../components/dialog';
+import DisciplineListComponent from '../../components/disciplineListComponent';
+import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import AttributeListComponent from '../../components/attributeListComponent';
+import { randomUniqueValue } from '../table/valueRandomTable';
+import D20IconButton from '../component/d20IconButton';
+import {
+  FinishingTouchesAttributeController,
+  FinishingTouchesDisciplineController,
+} from '../../components/finishingTouchesControllers';
 
-const SoloFinishingTouchesPage: React.FC<ICharacterProperties> = ({character}) => {
-    const { t } = useTranslation();
+const SoloFinishingTouchesPage: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
+  const { t } = useTranslation();
 
-    let attributeTotal = 0;
-    character.attributes.forEach(a => attributeTotal += a);
-    attributeTotal -= (character.finishingStep?.attributes?.length ?? 0);
+  let attributeTotal = 0;
+  character.attributes.forEach((a) => (attributeTotal += a));
+  attributeTotal -= character.finishingStep?.attributes?.length ?? 0;
 
-    const attributeCount = 56 - attributeTotal;
+  const attributeCount = 56 - attributeTotal;
 
-    let disciplineTotal = 0;
-    character.departments.forEach(a => disciplineTotal += a);
-    disciplineTotal -= (character.finishingStep?.disciplines?.length ?? 0);
+  let disciplineTotal = 0;
+  character.departments.forEach((a) => (disciplineTotal += a));
+  disciplineTotal -= character.finishingStep?.disciplines?.length ?? 0;
 
-    const disciplineCount = 16 - disciplineTotal;
+  const disciplineCount = 16 - disciplineTotal;
 
-    const attributeController = new FinishingTouchesAttributeController(character, attributeCount);
-    const disciplineController = new FinishingTouchesDisciplineController(character, disciplineCount);
+  const attributeController = new FinishingTouchesAttributeController(
+    character,
+    attributeCount,
+  );
+  const disciplineController = new FinishingTouchesDisciplineController(
+    character,
+    disciplineCount,
+  );
 
-    const navigateToNextPage = () => {
-        if (character.finishingStep?.attributes.length !== attributeCount) {
-            Dialog.show(t('SoloFinishingTouchesPage.errorAttributes', { count: attributeCount}));
-        } else if (character.finishingStep?.disciplines.length !== disciplineCount) {
-            Dialog.show(t('SoloFinishingTouchesPage.errorDisciplines', { count: disciplineCount}));
-        } else if (!character.finishingStep?.value == null) {
-            Dialog.show(t('SoloFinishingTouchesPage.errorValue'));
-        } else {
-            Navigation.navigateToPage(PageIdentity.SoloFinal);
-        }
+  const navigateToNextPage = () => {
+    if (character.finishingStep?.attributes.length !== attributeCount) {
+      Dialog.show(
+        t('SoloFinishingTouchesPage.errorAttributes', {
+          count: attributeCount,
+        }),
+      );
+    } else if (
+      character.finishingStep?.disciplines.length !== disciplineCount
+    ) {
+      Dialog.show(
+        t('SoloFinishingTouchesPage.errorDisciplines', {
+          count: disciplineCount,
+        }),
+      );
+    } else if (!character.finishingStep?.value == null) {
+      Dialog.show(t('SoloFinishingTouchesPage.errorValue'));
+    } else {
+      Navigation.navigateToPage(PageIdentity.SoloFinal);
     }
+  };
 
-    const randomValue = () => {
-        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-        store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
-    }
+  const randomValue = () => {
+    let value = randomUniqueValue(
+      character.values,
+      character.speciesStep?.species,
+      character.educationStep?.primaryDiscipline,
+    );
+    store.dispatch(setCharacterValue(value, StepContext.FinishingTouches));
+  };
 
-    return (
-        <div className="page container ms-0">
-            <SoloCharacterBreadcrumbs pageIdentity={PageIdentity.SoloFinishingTouches} />
+  return (
+    <div className="page container ms-0">
+      <SoloCharacterBreadcrumbs
+        pageIdentity={PageIdentity.SoloFinishingTouches}
+      />
 
-            <Header>{t('Page.title.soloFinishingTouches')}</Header>
+      <Header>{t('Page.title.soloFinishingTouches')}</Header>
 
-            <div className="row">
-                <div className="col-lg-6 my-3">
-                    <Header level={2} className="mb-3"><>{t('Construct.other.attribute')} {t('SoloFinishingTouchesPage.select', {count: attributeCount})}</></Header>
-                    <AttributeListComponent controller={attributeController} />
-                </div>
-                <div className="col-lg-6 my-3">
-                    <Header level={2} className="mb-3"><>{t('Construct.other.discipline')}  {t('SoloFinishingTouchesPage.select', {count: disciplineCount})}</></Header>
-                    <DisciplineListComponent controller={disciplineController} />
-                </div>
-                <div className="col-lg-6 my-3">
-                    <Header level={2} className="mb-3">{t('Construct.other.value')}</Header>
+      <div className="row">
+        <div className="col-lg-6 my-3">
+          <Header level={2} className="mb-3">
+            <>
+              {t('Construct.other.attribute')}{' '}
+              {t('SoloFinishingTouchesPage.select', { count: attributeCount })}
+            </>
+          </Header>
+          <AttributeListComponent controller={attributeController} />
+        </div>
+        <div className="col-lg-6 my-3">
+          <Header level={2} className="mb-3">
+            <>
+              {t('Construct.other.discipline')}{' '}
+              {t('SoloFinishingTouchesPage.select', { count: disciplineCount })}
+            </>
+          </Header>
+          <DisciplineListComponent controller={disciplineController} />
+        </div>
+        <div className="col-lg-6 my-3">
+          <Header level={2} className="mb-3">
+            {t('Construct.other.value')}
+          </Header>
 
-                    <div className="d-flex justify-content-between align-items-center flex-wrap">
-                        <SoloValueInput value={character?.finishingStep?.value ?? ""}
-                            onValueChanged={(string) => {store.dispatch(setCharacterValue(string, StepContext.FinishingTouches))}}/>
-                        <div style={{ flexShrink: 0 }} className="mt-2">
-                            <D20IconButton onClick={() => randomValue() }/>
-                        </div>
-                        <div className="py-1 text-white">{t('Value.final.text')}</div>
-                    </div>
-                </div>
-
+          <div className="d-flex justify-content-between align-items-center flex-wrap">
+            <SoloValueInput
+              value={character?.finishingStep?.value ?? ''}
+              onValueChanged={(string) => {
+                store.dispatch(
+                  setCharacterValue(string, StepContext.FinishingTouches),
+                );
+              }}
+            />
+            <div style={{ flexShrink: 0 }} className="mt-2">
+              <D20IconButton onClick={() => randomValue()} />
             </div>
-            <div className='text-end mt-4'>
-                <Button onClick={() => navigateToNextPage() }>{t('Common.button.next')}</Button>
-            </div>
-        </div>);
-
-}
-
+            <div className="py-1 text-white">{t('Value.final.text')}</div>
+          </div>
+        </div>
+      </div>
+      <div className="text-end mt-4">
+        <Button onClick={() => navigateToNextPage()}>
+          {t('Common.button.next')}
+        </Button>
+      </div>
+    </div>
+  );
+};
 
 export default connect(characterMapStateToProperties)(SoloFinishingTouchesPage);

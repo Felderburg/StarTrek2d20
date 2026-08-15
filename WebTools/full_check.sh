@@ -2,6 +2,7 @@ npm test &&
   tsc --noEmit &&
   npx eslint src &&
   npx eslint tests &&
+  npm run prettier:check &&
   echo "passed" || echo "failed"
 
 # If you see repeated/confusing test failures,

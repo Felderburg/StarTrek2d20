@@ -1,54 +1,55 @@
-
 export enum Track {
-    // Core
-    Command,
-    Operations,
-    Sciences,
+  // Core
+  Command,
+  Operations,
+  Sciences,
 
-    // Operations
-    EnlistedSecurityTraining,
-    ShipOperations,
+  // Operations
+  EnlistedSecurityTraining,
+  ShipOperations,
 
-    // Sciences
-    UniversityAlumni,
-    ResearchInternship,
+  // Sciences
+  UniversityAlumni,
+  ResearchInternship,
 
-    // Klingon Core
-    Technical,
-    EnlistedWarrior,
-    Laborer,
+  // Klingon Core
+  Technical,
+  EnlistedWarrior,
+  Laborer,
 
-    // Player's Guide - Allied Militaries
-    RankAndFile,
-    Officer,
-    IntelligenceTraining,
-    MilitiaAndGuerillas,
+  // Player's Guide - Allied Militaries
+  RankAndFile,
+  Officer,
+  IntelligenceTraining,
+  MilitiaAndGuerillas,
 
-    // Player's Guide - Ambassador / Diplomat
-    DiplomaticCorps,
-    HonoraryStatus,
+  // Player's Guide - Ambassador / Diplomat
+  DiplomaticCorps,
+  HonoraryStatus,
 
-    // Player's Guide - Civilian
-    FreightAndTransport,
-    LawEnforcement,
-    Physician,
-    PoliticianOrBureaucrat,
-    ScientificOrTechnicalExpert,
-    TraderOrMerchant,
+  // Player's Guide - Civilian
+  FreightAndTransport,
+  LawEnforcement,
+  Physician,
+  PoliticianOrBureaucrat,
+  ScientificOrTechnicalExpert,
+  TraderOrMerchant,
 
-    // Core 2nd Edition
-    Enlisted,
+  // Core 2nd Edition
+  Enlisted,
 
-    // Exploration Guide
-    IndependentArchaeologist,
-    OutpostScientist,
+  // Exploration Guide
+  IndependentArchaeologist,
+  OutpostScientist,
 
-    // 23rd Century Campaign
-    FreeTrader,
+  // 23rd Century Campaign
+  FreeTrader,
 }
 
 export const getAllTracks = (): Track[] => {
-    return Object.keys(Track).filter((item) => {
-        return !isNaN(Number(item));
-    }).map(item => Number(item));
-}
+  return Object.keys(Track)
+    .filter((item) => {
+      return !isNaN(Number(item));
+    })
+    .map((item) => Number(item));
+};

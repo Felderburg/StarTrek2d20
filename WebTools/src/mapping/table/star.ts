@@ -1,79 +1,85 @@
-import i18next from "i18next";
-import { makeKey } from "../../common/translationKey";
-import { SpectralClass, SpectralClassModel } from "./spectralClass";
+import i18next from 'i18next';
+import { makeKey } from '../../common/translationKey';
+import { SpectralClass, SpectralClassModel } from './spectralClass';
 
 export enum SpaceRegion {
-    AlphaQuadrant,
-    BetaQuadrant,
-    GammaQuadrant,
-    DeltaQuadrant,
-    ShackletonExpanse
+  AlphaQuadrant,
+  BetaQuadrant,
+  GammaQuadrant,
+  DeltaQuadrant,
+  ShackletonExpanse,
 }
 
 export enum SpecialSectors {
-    PinwheelSector,
-    EnduranceDivide,
-    EmberSector,
-    TKalNursery,
-    GeneralExpanse
+  PinwheelSector,
+  EnduranceDivide,
+  EmberSector,
+  TKalNursery,
+  GeneralExpanse,
 }
 
 export class SpecialSectorTypeModel {
-    id: SpecialSectors;
-    name: string;
+  id: SpecialSectors;
+  name: string;
 
-    constructor(id: SpecialSectors, name: string) {
-        this.id = id;
-        this.name = name;
-    }
+  constructor(id: SpecialSectors, name: string) {
+    this.id = id;
+    this.name = name;
+  }
 
-    public static allSpecialSectorTypes() {
-        return sectorsTypes;
-    }
+  public static allSpecialSectorTypes() {
+    return sectorsTypes;
+  }
 }
 
 let sectorsTypes = [
-    new SpecialSectorTypeModel(SpecialSectors.PinwheelSector, "Pinwheel Sector"),
-    new SpecialSectorTypeModel(SpecialSectors.EnduranceDivide, "Endurance Divide"),
-    new SpecialSectorTypeModel(SpecialSectors.EmberSector, "Ember Sector"),
-    new SpecialSectorTypeModel(SpecialSectors.TKalNursery, "T'Kal Nursery"),
-    new SpecialSectorTypeModel(SpecialSectors.GeneralExpanse, "General Expanse"),
+  new SpecialSectorTypeModel(SpecialSectors.PinwheelSector, 'Pinwheel Sector'),
+  new SpecialSectorTypeModel(
+    SpecialSectors.EnduranceDivide,
+    'Endurance Divide',
+  ),
+  new SpecialSectorTypeModel(SpecialSectors.EmberSector, 'Ember Sector'),
+  new SpecialSectorTypeModel(SpecialSectors.TKalNursery, "T'Kal Nursery"),
+  new SpecialSectorTypeModel(SpecialSectors.GeneralExpanse, 'General Expanse'),
 ];
 
 export class SpaceRegionModel {
-    id: SpaceRegion;
-    name: string;
-    prefix: string;
+  id: SpaceRegion;
+  name: string;
+  prefix: string;
 
-    constructor(id: SpaceRegion, name: string, prefix: string) {
-        this.id = id;
-        this.name = name;
-        this.prefix = prefix;
-    }
+  constructor(id: SpaceRegion, name: string, prefix: string) {
+    this.id = id;
+    this.name = name;
+    this.prefix = prefix;
+  }
 
-    public static allRegions(): SpaceRegionModel[] {
-        return regions;
-    }
+  public static allRegions(): SpaceRegionModel[] {
+    return regions;
+  }
 
-    public static for(id: SpaceRegion): SpaceRegionModel {
-        return SpaceRegionModel.allRegions()[id];
-    }
+  public static for(id: SpaceRegion): SpaceRegionModel {
+    return SpaceRegionModel.allRegions()[id];
+  }
 
-    get localizedName() {
-        let key = makeKey("SpaceRegion.", SpaceRegion[this.id]);
-        let localName = i18next.t(key);
-        return localName === key ? this.name : localName;
-    }
+  get localizedName() {
+    let key = makeKey('SpaceRegion.', SpaceRegion[this.id]);
+    let localName = i18next.t(key);
+    return localName === key ? this.name : localName;
+  }
 }
 
 let regions = [
-    new SpaceRegionModel(SpaceRegion.AlphaQuadrant, "Alpha Quadrant", "AL"),
-    new SpaceRegionModel(SpaceRegion.BetaQuadrant, "Beta Quadrant", "BE"),
-    new SpaceRegionModel(SpaceRegion.GammaQuadrant, "Gamma Quadrant", "GA"),
-    new SpaceRegionModel(SpaceRegion.DeltaQuadrant, "Delta Quadrant", "DE"),
-    new SpaceRegionModel(SpaceRegion.ShackletonExpanse, "Shackleton Expanse", "SE"),
+  new SpaceRegionModel(SpaceRegion.AlphaQuadrant, 'Alpha Quadrant', 'AL'),
+  new SpaceRegionModel(SpaceRegion.BetaQuadrant, 'Beta Quadrant', 'BE'),
+  new SpaceRegionModel(SpaceRegion.GammaQuadrant, 'Gamma Quadrant', 'GA'),
+  new SpaceRegionModel(SpaceRegion.DeltaQuadrant, 'Delta Quadrant', 'DE'),
+  new SpaceRegionModel(
+    SpaceRegion.ShackletonExpanse,
+    'Shackleton Expanse',
+    'SE',
+  ),
 ];
-
 
 /**
  * Symbol    Class of Star                  Example
@@ -87,69 +93,104 @@ let regions = [
  * VI or sd  Subdwarfs                      Kapteyn's Star (HD 33793)
  * wd or D   White dwarfs                   Sirius B
  */
- export enum LuminosityClass {
-    VI,
-    V,
-    IV,
-    III,
-    II,
-    Ib,
-    Ia
+export enum LuminosityClass {
+  VI,
+  V,
+  IV,
+  III,
+  II,
+  Ib,
+  Ia,
 }
 
 export class LuminosityClassModel {
+  public id: LuminosityClass;
+  public description: string;
 
-    public id: LuminosityClass;
-    public description: string;
-
-    constructor(id: LuminosityClass, description: string) {
-        this.id = id;
-        this.description = description;
-    }
+  constructor(id: LuminosityClass, description: string) {
+    this.id = id;
+    this.description = description;
+  }
 }
-
 
 export class Star {
-    public spectralClass: SpectralClassModel;
-    public subClass: number;
-    public luminosityClass: LuminosityClassModel|null;
-    public mass: number;
-    public luminosityValue: number|null = null;
+  public spectralClass: SpectralClassModel;
+  public subClass: number;
+  public luminosityClass: LuminosityClassModel | null;
+  public mass: number;
+  public luminosityValue: number | null = null;
 
-    constructor(spectralClass: SpectralClassModel, subClass: number, luminosity: LuminosityClassModel|null, mass: number) {
-        this.spectralClass = spectralClass;
-        this.subClass = subClass;
-        this.luminosityClass = luminosity;
-        this.mass = mass;
-    }
+  constructor(
+    spectralClass: SpectralClassModel,
+    subClass: number,
+    luminosity: LuminosityClassModel | null,
+    mass: number,
+  ) {
+    this.spectralClass = spectralClass;
+    this.subClass = subClass;
+    this.luminosityClass = luminosity;
+    this.mass = mass;
+  }
 
-    get massInKgs() { // times 10^30
-        return (1.98847 * this.mass);
-    }
+  get massInKgs() {
+    // times 10^30
+    return 1.98847 * this.mass;
+  }
 
-    get designation() {
-        if (this.spectralClass.id === SpectralClass.WhiteDwarf || this.spectralClass.id === SpectralClass.BrownDwarf) {
-            return this.spectralClass.description;
-        } else {
-            return this.spectralClass.description + this.subClass + (this.luminosityClass != null ? (LuminosityClass[this.luminosityClass.id]) : "");
-        }
+  get designation() {
+    if (
+      this.spectralClass.id === SpectralClass.WhiteDwarf ||
+      this.spectralClass.id === SpectralClass.BrownDwarf
+    ) {
+      return this.spectralClass.description;
+    } else {
+      return (
+        this.spectralClass.description +
+        this.subClass +
+        (this.luminosityClass != null
+          ? LuminosityClass[this.luminosityClass.id]
+          : '')
+      );
     }
+  }
 
-    get description() {
-        if (this.spectralClass.id === SpectralClass.WhiteDwarf || this.spectralClass.id === SpectralClass.BrownDwarf) {
-            return this.spectralClass.description;
-        } else {
-            let designation = this.spectralClass.description + this.subClass + (this.luminosityClass != null ? (LuminosityClass[this.luminosityClass.id]) : "");
-            let description = this.spectralClass.colourDescription + (this.luminosityClass != null ? (" / " + this.luminosityClass.description) : "");
-            return designation + " (" + description + ")";
-        }
+  get description() {
+    if (
+      this.spectralClass.id === SpectralClass.WhiteDwarf ||
+      this.spectralClass.id === SpectralClass.BrownDwarf
+    ) {
+      return this.spectralClass.description;
+    } else {
+      let designation =
+        this.spectralClass.description +
+        this.subClass +
+        (this.luminosityClass != null
+          ? LuminosityClass[this.luminosityClass.id]
+          : '');
+      let description =
+        this.spectralClass.colourDescription +
+        (this.luminosityClass != null
+          ? ' / ' + this.luminosityClass.description
+          : '');
+      return designation + ' (' + description + ')';
     }
-    get plainText() {
-        return this.description +
-            "\nMass: " + this.mass.toFixed(2) + " Sols" +
-            "\nMass: " + this.massInKgs.toFixed(4) + " x10^30 kg" +
-            (this.luminosityValue ? ("\nLuminosity: " + (this.luminosityValue > 100 ? this.luminosityValue.toFixed(0) : this.luminosityValue.toFixed(4)) + " Sols") : "");
-    }
+  }
+  get plainText() {
+    return (
+      this.description +
+      '\nMass: ' +
+      this.mass.toFixed(2) +
+      ' Sols' +
+      '\nMass: ' +
+      this.massInKgs.toFixed(4) +
+      ' x10^30 kg' +
+      (this.luminosityValue
+        ? '\nLuminosity: ' +
+          (this.luminosityValue > 100
+            ? this.luminosityValue.toFixed(0)
+            : this.luminosityValue.toFixed(4)) +
+          ' Sols'
+        : '')
+    );
+  }
 }
-
-

@@ -1,25 +1,26 @@
-
 export enum MouthType {
-    Mouth1,
-    Mouth2,
-    Mouth3,
-    Mouth4,
-    Mouth5,
-    Mouth6,
+  Mouth1,
+  Mouth2,
+  Mouth3,
+  Mouth4,
+  Mouth5,
+  Mouth6,
 
-    Mouth7,
-    Mouth8,
+  Mouth7,
+  Mouth8,
 
-    Mouth1Lipstick,
-    Mouth2Lipstick,
-    Mouth3Lipstick,
-    Mouth4Lipstick,
-    Mouth5Lipstick,
-    Mouth6Lipstick,
+  Mouth1Lipstick,
+  Mouth2Lipstick,
+  Mouth3Lipstick,
+  Mouth4Lipstick,
+  Mouth5Lipstick,
+  Mouth6Lipstick,
 }
 
 export const allMouthTypes = (): MouthType[] => {
-    return Object.keys(MouthType).filter((item) => {
-        return !isNaN(Number(item));
-    }).map(item => Number(item));
-}
+  return Object.keys(MouthType)
+    .filter((item) => {
+      return !isNaN(Number(item));
+    })
+    .map((item) => Number(item));
+};

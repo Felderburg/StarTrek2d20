@@ -1,15 +1,15 @@
-import { Species } from "../../helpers/speciesEnum";
-import { BaseTngEraUniformPack } from "./baseTngEraUniformPack";
-import { BodyType } from "./bodyTypeEnum";
-import SpeciesRestrictions from "./speciesRestrictions";
-import Swatch from "./swatch";
-import { TokenModel } from "./tokenModel";
-import UniformCatalog, { DefaultRed } from "./uniformCatalog";
-import { UniformEra } from "./uniformEra";
-import { IUniformPack } from "./uniformPack";
+import { Species } from '../../helpers/speciesEnum';
+import { BaseTngEraUniformPack } from './baseTngEraUniformPack';
+import { BodyType } from './bodyTypeEnum';
+import SpeciesRestrictions from './speciesRestrictions';
+import Swatch from './swatch';
+import { TokenModel } from './tokenModel';
+import UniformCatalog, { DefaultRed } from './uniformCatalog';
+import { UniformEra } from './uniformEra';
+import { IUniformPack } from './uniformPack';
 
 const LowerDeckUniforms = {
-    averageMale: `<g>
+  averageMale: `<g>
         <path id="path171958" style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" d="m 193.60179,196.48469 -8.0139,17.57723 -7.34095,4.16145 c -2.59874,0.19134 -41.97428,16.78563 -41.97428,16.78563 l -38.850355,17.6964 -14.169096,5.51664 -6.942852,4.77402 -10.418424,5.67289 c -11.834766,12.45088 -18.236587,26.45517 -24.011264,42.06344 l -14.60893,78.69588 c 0,0 0.502529,10.5717 6.644087,10.5717 h 42.386718 c 18.742349,0 32.553466,-21.75306 45.613286,-31.41016 0,0 77.47877,-4.76073 153.33203,-3.1914 75.85191,1.56934 91.18554,2.91601 91.18554,2.91601 l 3.25963,1.11809 15.59343,14.54342 -1.4761,-41.44276 c -1.52533,-11.00266 -6.3445,-45.00027 -8.67383,-52.57226 -2.78933,-9.06532 -4.29199,-11.15773 -12.44531,-16.03906 -8.97809,-4.51536 -33.96956,-14.36366 -46.09778,-19.78932 -9.78239,-4.37624 -31.49446,-13.79316 -41.71845,-18.13583 l -1.81173,1.05805 c -1.63186,2.11143 -3.49131,5.03341 -4.77439,8.69327 l -5.22461,2.25781 -2.74023,0.0293 -3.75586,-0.875 c -10.87332,-1.412 -25.98221,-10.5912 -35.01953,-17.22852 -9.03866,-6.63733 -24.78799,-29.0816 -24.78799,-29.0816 l -1.57805,-2.29133 z" />
         <path id="path171962" style="fill:#d30000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" d="m 194.5662,196.43735 c -3.54672,1.36125 -4.42966,3.83905 -4.82812,4.07812 l 4.0498,5.77229 13.93673,15.38607 15.77344,16.30859 16.20117,10.19336 14.48437,3.9707 6.71485,-0.10742 -1.57617,21.0918 -31.41016,25.03711 -26.09766,19.57422 -50.22656,31.10742 0.85547,17.10156 c -17.07363,0.39308 -29.82031,0.74805 -29.82031,0.74805 -14.19073,8.29846 -29.762191,24.25795 -45.634769,33.29687 l 308.701169,-0.0293 -0.85742,-17.8125 -14.98828,-12.26563 -3.25781,-1.11914 c 0,0 -15.19448,-3.14047 -91.06055,-3.85156 -44.4989,-0.41709 -87.42662,0.25642 -116.95117,0.89453 l -0.76563,-12.25977 39.30079,-25.33984 39.45312,-30.5 27.91992,-23.82227 0.45508,-22.15429 c 0,0 9.15641,-5.66173 9.55859,-6.37305 0.55517,-0.98191 1.25143,-7.07129 1.25143,-7.07129 l 0.18211,-3.89431 -4.45836,-1.96647 -0.70662,7.41799 -4.61426,5.81682 -4.63672,1.28125 -14.41015,-1.77539 -18.77735,-9.65626 -16.07307,-15.89217 -13.2074,-15.15991 z m -117.577919,203.55874 -39.6875,0.002 0.002,0.002 h 39.677735 c 0.0025,-10e-4 0.0053,-0.002 0.0078,-0.004 z m -39.6875,0.002 c -5.730227,-4.61293 -11.53125,-7.99414 -11.53125,-7.99414 L 25.664062,400 Z" />
         <path id="path4" style="fill:#ecfcfe;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 257.08203,364.37695 -98.41601,0.63477 0.71875,12.76367 52.63281,-0.52148 h 77.68164 l 76.82422,3.86132 18.88476,14.59375 0.42774,-11.16015 -18.45313,-16.73828 z M 124.67773,364.5918 75.585495,400 h 16.310547 l 32.781688,-22.10352 v -6.23242 l 0.64454,6.44727 28.02929,-0.27735 -0.97851,-12.78125 -27.69532,0.17969 z m -96.781053,16.95299 -2.360574,13.30513 4.715756,5.25738 L 44.068058,400 Z" />
@@ -28,7 +28,7 @@ const LowerDeckUniforms = {
         </g>
     </g>`,
 
-    averageFemale: `<g>
+  averageFemale: `<g>
         <path id="path283350" style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" d="m 193.9401,200.47645 c -3.26592,5.30656 -3.86687,7.52052 -6.56272,13.19047 -3.22718,5.3122 -3.53337,7.27532 -5.56488,10.79597 -14.34652,6.44948 -26.45648,10.66799 -50.14844,24.25195 -16.34717,4.40719 -36.791883,9.01532 -54.478513,19.41797 -3.369327,1.98133 -12.234867,6.10028 -15.736328,8.22657 -9.936666,13.29954 -9.372148,20.97017 -15.105469,36.71679 -0.656341,2.91272 -1.567847,6.39777 -3.566406,12.57227 -4.402761,16.19092 -7.37106,25.52686 -8.900391,40.02148 -0.958665,5.632 -0.927688,10.68979 -1.84375,18.00196 -0.31846,4.11345 -0.340612,11.04731 -0.964844,14.3789 0.552134,0.0642 1.23003,0.87839 1.951172,1.94922 h 50.462891 c 3.704218,-1.52068 7.373483,-3.13398 10.964844,-4.92773 4.298661,-2.148 11.447034,-7.69372 15.484374,-10.34571 2.42665,-1.59467 8.65333,-10.53464 11.228,-10.8253 0.009,-10e-4 77.2308,-5.16981 153.07864,-3.60048 28.86837,0.13315 50.12357,1.80596 80.4336,3.70703 0,0 17.15433,2.05989 25.86067,5.42395 0.0172,-10.25306 0.4109,-28.56364 -1.87044,-36.24231 -1.22133,-4.10531 -2.36753,-14.52392 -3.58487,-18.63057 -6.20398,-24.60529 -10.10382,-42.84846 -35.00676,-51.60168 -12.70759,-4.46663 -25.55737,-10.40688 -37.96306,-11.84587 -5.24832,-0.67437 -13.24175,-7.73496 -17.09375,-9.26563 l -8.25586,-6.82617 -0.37734,-2.0694 -5.86427,-7.46576 -2.91365,9.11949 -4.30926,2.33409 -2.99251,0.52494 -3.73242,-0.30273 c -10.87331,-1.412 -25.98222,-10.59121 -35.01953,-17.22852 -10.19471,-8.2966 -21.0909,-18.16971 -27.60873,-29.45519 z" />
         <path id="path9" style="fill:#d30000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 193.78921,199.52782 -2.88551,5.39513 3.11914,5.37304 16.54943,17.08682 c 0,0 10.39919,10.22617 11.95898,10.7461 1.5598,0.51993 10.74414,6.23828 10.74414,6.23828 l 21.49023,6.93359 2.06055,0.0684 -0.32617,21.94141 -38.47461,31.02343 -36.39648,24.26368 -35.875,23.22265 8.83984,25.30274 9.18555,-0.86524 -7.62696,-21.83789 33.96875,-21.83789 34.31641,-24.43555 31.71484,-25.99609 7.79883,-9.18555 0.66211,-21.34179 0.72461,0.0234 8.14649,-5.19921 0.79017,-6.34268 -2.77343,-2.94727 -1.30971,4.61026 -3.4668,4.67969 -6.75977,0.69335 -10.74414,-1.90624 -17.85156,-7.2793 -14.79223,-10.58652 -15.44665,-16.0335 z" />
         <path d="m 31.482052,395.28734 c 0.446666,2.49334 1.180614,2.08466 1.540614,4.67933 h 20.166666 c 0.196,-3.43334 -0.168,-7.00134 -0.09067,-10.296 0.142667,-6.028 1.809568,-11.8813 2.717568,-17.83597 1.664043,-10.89316 4.390792,-21.53944 8.717099,-31.40937 5.682623,-10.91971 7.04473,-14.96286 12.227828,-24.25379 8.061621,-9.83474 8.681112,-10.66445 17.276729,-16.04664 9.830784,-5.05831 15.433984,-7.8084 26.708774,-12.5209 12.06134,-4.93733 26.01867,-8.93733 38.75867,-12.128 2.82667,-0.80533 5.532,-1.54666 8.11733,-2.22666 28.43467,-7.48134 48.85975,-10.78844 48.85975,-10.78844 0,0 -11.6028,-5.51607 -20.87346,-16.6534 -3.08933,-3.71334 -5.02725,-4.512 -7.25392,-8.99734 -2.228,-4.484 -3.54315,-5.33167 -8.02103,-10.32829 -6.75333,2.5483 -26.119,9.03784 -47.707,21.33251 -18.69995,5.86575 -35.845712,11.49837 -55.441672,20.31762 -6.939001,2.88838 -12.359196,4.7333 -15.263196,7.33997 -9.815593,11.6216 -13.675677,21.85662 -18.57202,40.35778 -3.949413,17.25627 -7.765364,34.88594 -9.352248,49.71932 -1.108,6.50533 -0.995824,8.39911 -2.471784,17.39312 0.117676,5.33145 -0.859554,8.65545 -0.283552,11.86611" style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path283392" />
@@ -46,7 +46,7 @@ const LowerDeckUniforms = {
         <path id="path1" style="color:#000000;display:inline;fill:#000000;-inkscape-stroke:none" d="m 364.85547,325.46289 c 0,0 -0.51194,14.53864 -1.02735,21.63281 -0.20476,2.81845 -0.91809,7.43803 -1.38281,10.29883 -0.85612,-2.40593 -1.68043,-4.81181 -2.36133,-7.24023 -2.23763,-7.98055 -6.85351,-24.30469 -6.85351,-24.30469 0,0 1.64022,16.78278 3.95353,25.0332 2.10991,7.52499 5.40157,14.575 7.464,21.83203 1.55841,5.48362 2.99889,10.94537 3.734,16.46875 0.4375,3.28725 0.477,10.81641 0.477,10.81641 h 2.89881 c 0,0 0.10748,-7.37057 -0.39843,-11.17188 -1.19843,-7.91545 -3.33427,-15.60729 -5.94923,-23.16017 0.35883,-0.73745 2.12746,-4.40533 2.86914,-6.64844 0.86885,-2.62769 1.11038,-5.31988 1.8164,-7.77734 0.85876,-2.98907 2.37891,-9.24805 2.37891,-9.24805 0,0 -2.91971,5.69929 -3.82031,8.83398 -0.7588,2.64113 -1.00427,5.31175 -1.80078,7.72071 -0.46187,1.39684 -1.45463,3.59515 -2.16211,5.11523 -0.42045,-1.1669 -0.82916,-2.33726 -0.85892,-2.88542 0,0 1.46689,-9.099 1.79056,-13.55403 0.53275,-7.33303 -0.76758,-21.76172 -0.76758,-21.76172 z" />
     </g>`,
 
-    cetacean: `<g>
+  cetacean: `<g>
         <path d="m 356.71911,360.28577 c 0.23067,-23.44794 0.64133,-48.51321 0.808,-58.20519 -9.95598,3.49199 -47.03322,14.73197 -110.99039,14.73197 h -0.0107 c -2.64932,0 -5.35598,-0.0187 -8.09864,-0.0587 -30.1386,-0.43867 -68.63583,-6.97065 -114.42772,-19.41195 -36.626573,-9.95198 -67.434496,-20.90928 -78.979801,-25.15861 l -0.822664,-0.30399 c -1.694663,9.32797 -7.82654,41.83056 -12.681195,73.77048 5.971985,1.74399 24.470499,6.95331 48.469105,12.8573 l 11.809304,24.03061 23.541271,-15.8853 c 35.84658,7.66265 76.50248,14.4213 108.40773,14.4213 59.58919,0 112.14906,-8.49065 112.14906,-8.49065 l 12.69063,13.79064 2.41866,-17.59729 5.71732,-2.56533 c -0.0173,-1.91866 -0.02,-3.89066 0,-5.92532" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;fill:#2d2d2d;fill-opacity:1;stroke-width:1.33333" id="path1"/>
         <path d="m 117.73517,374.26706 c 37.68391,7.37865 78.60647,13.54263 105.12774,13.54263 55.77319,0 115.11171,-7.80531 115.11171,-7.80531 l 14.0773,17.42662 1.37599,-23.09061 4.99066,-1.23199 c 0.396,11.5813 -0.13867,21.06528 0.172,26.90526 H 23.019 l 5.809294,-47.53898 c 7.530647,2.85999 25.279035,7.70575 45.201652,12.39774 l 14.250631,31.50125 z" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;fill:#d30000;stroke-width:1.33333" id="path2" />
         <path d="m 351.00179,368.77775 -2.41866,17.59728 -12.69064,-13.79063 c 0,0 -52.55986,8.49065 -112.14905,8.49065 -32.36792,0 -73.11848,-6.72399 -108.64106,-14.2653 L 91.793105,382.53904 80.130467,358.8031 C 52.254537,351.97779 32.939918,346.23247 32.939918,346.23247 l -1.174663,7.02665 c 6.049318,2.69199 21.873278,7.15065 42.433227,11.9853 l 14.081298,31.12926 29.17059,-21.89328 c 37.40124,7.24531 78.46514,13.3293 105.41307,13.3293 55.7732,0 112.27706,-8.78398 112.27706,-8.78398 l 16.91195,18.40529 2.93866,-23.29194 2.02133,-0.676 v -7.31998 z" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;fill:#ffffff;stroke-width:1.33333" id="path3"/>
@@ -60,56 +60,126 @@ const LowerDeckUniforms = {
         </g>
     </g>`,
 
-    insignia: `<g>
+  insignia: `<g>
         <path style="display:inline;fill:#767676;fill-opacity:1;stroke:none;stroke-width:2.202;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 308.09274,394.52491 c 0,0 8.91472,-43.14358 15.13287,-64.12536 6.99098,-23.58949 23.29498,-54.35265 23.29498,-54.35265 0,0 17.45937,30.51339 23.99867,49.58124 5.69379,16.60245 14.34789,53.29015 14.34789,53.29015 0,0 -19.36388,-20.10585 -29.08826,-20.45932 -12.25017,-0.44528 -47.68615,36.06594 -47.68615,36.06594 z" id="path1" />
         <path style="fill:#a6a6a6;fill-opacity:1;stroke:none;stroke-width:0.851215px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 314.37119,381.96337 c 0,0 7.52414,-34.67832 12.84186,-52.45525 5.97864,-19.98631 19.31075,-44.60946 19.31075,-44.60946 0,0 13.50982,25.37886 19.1022,41.53419 4.86931,14.06652 12.03335,39.22819 12.03335,39.22819 0,0 -13.00658,-11.34949 -21.32282,-11.64898 -10.47627,-0.37727 -41.96534,27.95131 -41.96534,27.95131 z" id="path2" />
         <path id="path6" style="fill:none;stroke:#ffffff;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0.5" d="m 377.22811,364.77184 5.92217,10.77835 m -68.77909,6.41318 c 0,0 7.52414,-34.67832 12.84186,-52.45525 5.97864,-19.98631 19.31075,-44.60946 19.31075,-44.60946 0,0 13.50982,25.14198 19.1022,41.29731 4.86931,14.06652 12.03335,39.46507 12.03335,39.46507 0,0 -13.00658,-11.34949 -21.32282,-11.64898 -10.47627,-0.37727 -41.96534,27.95131 -41.96534,27.95131 z m 0.20039,-0.7279 -4.97462,10.42301 m 36.95433,-106.24368 0.11844,-7.69882" />
         <path style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:2.202;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1" d="m 308.09274,394.52491 c 0,0 8.45492,-43.52224 15.13287,-64.36224 7.93852,-24.77393 23.29498,-54.11577 23.29498,-54.11577 0,0 16.74871,30.98716 23.28801,50.05501 5.69379,16.60245 15.05855,52.81638 15.05855,52.81638 0,0 -19.36388,-20.10585 -29.08826,-20.45932 -12.25017,-0.44528 -47.68615,36.06594 -47.68615,36.06594 z" id="path7" />
-    </g>`
-}
+    </g>`,
+};
 
+export class LowerDecksUniformPack
+  extends BaseTngEraUniformPack
+  implements IUniformPack
+{
+  constructor() {
+    super(UniformEra.LowerDecks);
+  }
 
-export class LowerDecksUniformPack extends BaseTngEraUniformPack implements IUniformPack {
+  getUniformSwatches() {
+    return [
+      new Swatch(
+        BodyType.AverageMale,
+        'Average Male',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageMale,
+              token.skinColor,
+              undefined,
+              UniformEra.LowerDecks,
+            ) + LowerDeckUniforms.averageMale,
+            BodyType.AverageMale,
+            token,
+          ),
+        'BodyType.averageMale',
+      ),
+      new Swatch(
+        BodyType.AverageFemale,
+        'Average Female',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getNeck(
+              BodyType.AverageFemale,
+              token.skinColor,
+              undefined,
+              UniformEra.LowerDecks,
+            ) + LowerDeckUniforms.averageFemale,
+            BodyType.AverageFemale,
+            token,
+          ),
+        'BodyType.averageFemale',
+      ),
+    ];
+  }
 
-    constructor() {
-        super(UniformEra.LowerDecks);
+  getUniformVariantSwatches(token: TokenModel) {
+    return [];
+  }
+
+  getUniformAndVariantBody(token: TokenModel) {
+    if (token.species === Species.Cetacean) {
+      return (
+        this.getNeck(
+          token.bodyType,
+          token.skinColor,
+          token.species,
+          UniformEra.LowerDecks,
+        ) +
+        LowerDeckUniforms.cetacean
+          .replace(DefaultRed, token.divisionColor)
+          .replace(
+            SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+            token.skinColor,
+          )
+      );
+    } else if (token.bodyType === BodyType.AverageMale) {
+      return (
+        this.getNeck(
+          token.bodyType,
+          token.skinColor,
+          token.species,
+          UniformEra.LowerDecks,
+        ) +
+        LowerDeckUniforms.averageMale
+          .replace(DefaultRed, token.divisionColor)
+          .replace(
+            SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+            token.skinColor,
+          )
+      );
+    } else {
+      return (
+        this.getNeck(
+          token.bodyType,
+          token.skinColor,
+          token.species,
+          UniformEra.LowerDecks,
+        ) +
+        LowerDeckUniforms.averageFemale
+          .replace(DefaultRed, token.divisionColor)
+          .replace(
+            SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX,
+            token.skinColor,
+          )
+      );
     }
+  }
 
-    getUniformSwatches() {
-        return [
-            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageMale, token.skinColor, undefined, UniformEra.LowerDecks) + LowerDeckUniforms.averageMale, BodyType.AverageMale, token), "BodyType.averageMale"),
-            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getNeck(BodyType.AverageFemale, token.skinColor, undefined, UniformEra.LowerDecks) + LowerDeckUniforms.averageFemale, BodyType.AverageFemale, token), "BodyType.averageFemale"),
-        ];
+  getRankIndicator(token: TokenModel) {
+    let result = super.getRankIndicator(token);
+    if (token.species === Species.Cetacean) {
+      result =
+        `<g transform="rotate(-33.133696,372.37812,245.54587)">` +
+        result +
+        `</g>`;
+    } else {
+      result = `<g transform="translate(3, 5)">` + result + `</g>`;
     }
+    return result;
+  }
 
-    getUniformVariantSwatches(token: TokenModel) {
-        return [];
-    }
-
-    getUniformAndVariantBody(token: TokenModel) {
-        if (token.species === Species.Cetacean) {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.LowerDecks)
-                + LowerDeckUniforms.cetacean.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-        } else if (token.bodyType === BodyType.AverageMale) {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.LowerDecks)
-                + LowerDeckUniforms.averageMale.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-        } else {
-            return this.getNeck(token.bodyType, token.skinColor, token.species, UniformEra.LowerDecks)
-                + LowerDeckUniforms.averageFemale.replace(DefaultRed, token.divisionColor).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-        }
-    }
-
-    getRankIndicator(token: TokenModel) {
-        let result = super.getRankIndicator(token);
-        if (token.species === Species.Cetacean) {
-            result = `<g transform="rotate(-33.133696,372.37812,245.54587)">` + result + `</g>`;
-        } else {
-            result = `<g transform="translate(3, 5)">` + result + `</g>`;
-        }
-        return result;
-    }
-
-    getBorderLogo(token: TokenModel): string {
-        return LowerDeckUniforms.insignia;
-    }
+  getBorderLogo(token: TokenModel): string {
+    return LowerDeckUniforms.insignia;
+  }
 }

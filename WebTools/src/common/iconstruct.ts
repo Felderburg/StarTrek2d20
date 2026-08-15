@@ -1,7 +1,7 @@
-import { CharacterType } from "./characterType";
+import { CharacterType } from './characterType';
 
 export interface IConstruct {
-    name?: string;
-    type: CharacterType;
-    hasTalent(talentName: string);
+  name?: string;
+  type: CharacterType;
+  hasTalent(talentName: string);
 }

@@ -1,5 +1,5 @@
-import { TokenModel } from "../model/tokenModel";
+import { TokenModel } from '../model/tokenModel';
 
 export interface ITokenPageProperties {
-    token: TokenModel;
+  token: TokenModel;
 }

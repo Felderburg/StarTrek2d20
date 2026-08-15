@@ -1,17 +1,16 @@
-import { Species } from "../../helpers/speciesEnum";
-import { BaseTngEraUniformPack } from "./baseTngEraUniformPack";
-import { BodyType } from "./bodyTypeEnum";
-import SpeciesRestrictions from "./speciesRestrictions";
-import Swatch from "./swatch";
-import { TokenModel } from "./tokenModel";
-import UniformCatalog, { DefaultRed } from "./uniformCatalog";
-import { UniformEra } from "./uniformEra";
-import { IUniformPack } from "./uniformPack";
-import { UniformVariantType } from "./uniformVariantTypeEnum";
+import { Species } from '../../helpers/speciesEnum';
+import { BaseTngEraUniformPack } from './baseTngEraUniformPack';
+import { BodyType } from './bodyTypeEnum';
+import SpeciesRestrictions from './speciesRestrictions';
+import Swatch from './swatch';
+import { TokenModel } from './tokenModel';
+import UniformCatalog, { DefaultRed } from './uniformCatalog';
+import { UniformEra } from './uniformEra';
+import { IUniformPack } from './uniformPack';
+import { UniformVariantType } from './uniformVariantTypeEnum';
 
 const Discovery32CenturyUniform = {
-
-    maleBody: `<g>
+  maleBody: `<g>
         <path id="path171962" style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" d="M 191.05469 198.20898 C 186.22708 202.16483 186.21048 206.90295 181.20508 217.9043 L 135.46875 234.80273 L 94.755859 252.19336 L 83.052734 256.71875 L 73.597656 260.91992 L 65.628906 265.00195 C 53.794152 277.45282 47.655531 295.12417 41.880859 310.73242 L 34.417969 333.58789 L 35.380859 334.62891 L 25.664062 400 L 385.68945 399.9668 L 384.67969 369.10547 L 380.97266 321.60742 C 380.46405 314.90725 378.26494 305.00036 375.13672 289.96094 C 372.34739 280.89563 370.84472 278.80319 362.69141 273.92188 C 354.53674 269.04055 326.80712 259.51892 316.38477 255.0332 C 306.54113 250.79657 289.43687 245.75869 279.21289 241.41602 L 276.31445 232.3418 C 273.7313 233.33567 269.57402 235.95033 265.29883 237.79688 L 267.67969 261.87109 L 261.30273 263.57031 L 254.78516 263.28711 L 253.95898 239.89844 C 252.63573 239.94162 251.44289 239.94901 250.78516 239.88281 C 239.91185 238.47081 232.49825 233.87559 223.46094 227.23828 C 214.42229 220.60096 197.21094 203.48242 197.21094 203.48242 C 195.93525 202.02124 191.98445 199.40419 191.05469 198.20898 z "/>
         <path id="path15" style="fill:#d30000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 183.56641,214.42969 -2.4043,4.00781 -114.628907,44.48828 -16.833984,21.24219 -12.826172,38.47656 -3.957031,23.18164 7.564453,14.89453 7.214843,17.63672 26.853516,-22.8457 38.476562,-34.8711 56.51367,-22.04296 39.67969,-16.83399 39.67969,-18.03711 -0.20071,15.2312 -58.71726,25.65162 -74.14844,28.05664 -32.865233,31.6621 -36.875,33.66797 -5.611328,-11.62304 -9.619141,-20.44141 -0.855469,-1.62109 -1.949218,13.64453 L 36.072266,400 h 20.841796 l 60.521488,-56.91406 137.47389,-57.71526 -0.58946,-26.47743 -17.70562,-2.7572 -20.39333,-9.71608 -18.60061,-14.40497 z m 95.73437,27.46093 -1.27539,3.82618 -4.81836,7.50976 -5.66797,3.82617 0.42383,3.6836 6.09375,21.39844 21.82227,13.46093 35.28515,22.10547 37.41016,23.24024 16.1543,35.70898 -0.99219,-17.71289 -14.87891,-27.63086 -53.13867,-32.02539 -34.57617,-20.68945 -6.23438,-18.98828 54.41407,33.30078 40.10156,24.65625 7.08594,13.46093 7.08593,13.88868 -1.70117,-17.99805 -5.10156,-28.76563 -6.37695,-17.57031 -8.50196,-6.09375 -29.33203,-11.76172 -35.85156,-13.46289 z" />
         <path d="m 179.81154,217.96614 c -14.59807,5.14857 -31.24974,13.41454 -46.61806,18.65808 l -38.085451,15.15412 -12.055068,4.9418 -11.702333,5.00066 -6.341162,4.13161 -6.747171,10.66639 -18.386504,37.68383 C 33.495726,340.01066 28.912069,364.86061 26.4841,391.98601 L 26.678065,400 H 62.401 c 10.895089,-62.95662 27.966123,-92.52242 34.705153,-98.36756 6.739027,-5.84515 15.611687,-9.92638 23.283687,-12.71571 67.72267,-24.62667 103.64979,-29.9467 103.64979,-29.9467 -24.57088,-14.66971 -31.34835,-23.05895 -44.22809,-41.00389 z" style="display:inline;opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path172176" />
@@ -28,7 +27,7 @@ const Discovery32CenturyUniform = {
         </g>
     </g>`,
 
-    femaleBody: `<g>
+  femaleBody: `<g>
         <path id="path283350" style="fill:#2d2d2d;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" d="m 192.6582,202.07227 c -1.54022,3.0071 -3.36833,7.35845 -4.32422,10.36328 -2.7947,6.33017 -4.54784,8.50829 -6.52148,12.02734 -14.34654,6.4495 -26.45644,10.66795 -50.14844,24.25195 -16.34721,4.40719 -36.791847,9.0153 -54.478513,19.41797 -3.369333,1.98133 -12.234859,6.10026 -15.736328,8.22657 -9.936686,13.29957 -10.876243,22.36923 -14.429688,38.74609 -3.757217,17.31599 -6.124879,32.92972 -8.042969,50.56445 -0.958666,5.632 -0.927686,10.68976 -1.84375,18.00196 -0.776811,5.36027 -0.367952,11.53731 -0.146484,15.56054 0.01467,0.24667 0.03406,0.49038 0.05273,0.73438 H 381.71875 c -0.20025,-12.17983 -0.9014,-24.58833 -1.40039,-31.04688 -0.0238,-0.30798 -0.20618,-0.65433 -0.51953,-1.0293 0.90751,-9.75063 1.08513,-17.22273 -1.13672,-24.70117 -1.22133,-4.10533 -1.94086,-13.74684 -3.1582,-17.85351 -4.57851,-18.15856 -5.33719,-32.57907 -13.4961,-41.93946 -2.89662,-3.32318 -7.69664,-5.10149 -12.89062,-6.82617 -12.8914,-3.90462 -34.60406,-14.01999 -47.00977,-15.45898 -5.24834,-0.67437 -13.42524,-7.33614 -17.09375,-9.26563 -3.29362,-1.73231 -6.49193,-4.54418 -8.97851,-6.31836 -1.38326,-4.00554 -2.35514,-8.1372 -3.44727,-12.22851 l -5.55859,6.01367 c -0.42155,0.35735 -0.82993,0.68244 -1.22852,0.97852 l 1.38672,20.25586 -5.07812,3.125 -5.51758,1.24511 -3.52539,-23.34863 h -0.002 c -0.0691,-0.0118 -0.13726,-0.0216 -0.20507,-0.0293 -10.89491,-1.23461 -21.85721,-6.56775 -30.89454,-13.20508 -10.58557,-7.77327 -28.33729,-26.38484 -29.30664,-26.26171 z" />
         <path id="path12" style="fill:#d30000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 36.71875,400 h 20.3125 l 35.546875,-30.85938 21.484375,-21.875 88.67187,-39.0625 50.39063,-22.65625 1.95312,-12.89062 0.78125,-7.42188 -0.64314,-5.53577 -14.20061,-2.27673 -23.4375,-10.15625 -24.21875,-19.14062 -7.8125,-11.32813 -3.51562,6.64063 L 156.25,237.10937 119.53125,251.95312 80.078125,265.625 60.9375,275.39062 46.875,312.10937 l -7.03125,43.35938 6.25,22.65625 0.390625,0.78125 18.359375,-13.28125 23.828125,-21.875 19.531255,-16.40625 33.66483,-12.97728 65.4158,-28.10537 37.24749,-17.90173 7.42187,-3.51562 -4.32057,15.39211 -49.19505,21.71726 -52.34375,21.09375 -33.59375,15.625 -39.84375,33.98438 -28.125,25 L 37.5,383.20312 Z m 229.96547,-145.19297 0.96675,6.49102 10.358,22.3733 46.26578,27.89758 40.46529,27.62135 8.83884,14.91554 6.90534,10.2199 -2.07161,-19.05874 -8.56262,-8.97694 -5.10995,-6.35291 -38.39369,-24.4449 -28.31189,-17.67767 -15.19175,-8.97694 -10.2771,-19.65856 17.02758,10.71513 33.16239,20.26818 26.37839,17.53957 16.57282,11.32475 11.18665,13.25825 -4.41942,-22.23519 -5.38616,-20.85412 -4.83374,-8.28641 -8.42452,-3.03835 -41.98446,-13.67257 -13.53447,-2.90025 -12.15339,-9.39126 -10.0818,-6.49102 -1.10485,-3.72888 -1.38107,5.10995 -2.76214,4.83374 z" />
         <path d="m 37.722,399.96667 h 21.767 c 0.196,-3.43334 0.216103,-6.15552 0.293433,-9.45018 0.142667,-6.028 0.625418,-12.72712 1.533418,-18.68179 1.664043,-10.89316 1.52185,-15.92025 4.69467,-29.71773 2.758727,-11.99673 5.567538,-16.6545 10.750636,-25.94543 8.061621,-9.83474 8.681112,-10.66445 17.276729,-16.04664 9.830784,-5.05831 15.433984,-7.8084 26.708774,-12.5209 12.06134,-4.93733 26.01867,-8.93733 38.75867,-12.128 2.82667,-0.80533 5.532,-1.54666 8.11733,-2.22666 28.43467,-7.48134 54.26705,-13.97735 54.26705,-13.97735 0,0 -10.2328,-4.14187 -21.25684,-14.06258 -3.77167,-3.39419 -5.84537,-5.61503 -10.24435,-10.19351 -3.46901,-3.61057 -4.26085,-4.8532 -8.73873,-9.84982 -6.75333,2.5483 -27.43479,10.35363 -49.02279,22.6483 -18.69995,5.86575 -35.845712,11.49837 -55.441672,20.31762 -6.939001,2.88838 -12.359196,4.7333 -15.263196,7.33997 -9.815593,11.6216 -9.475789,21.85662 -14.372132,40.35778 -3.949413,17.25627 -6.465631,34.88594 -8.052515,49.71932 z" style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path283392" />
@@ -52,56 +51,96 @@ const Discovery32CenturyUniform = {
         </g>
         <path style="baseline-shift:baseline;display:inline;overflow:visible;opacity:1;vector-effect:none;enable-background:accumulate;stop-color:#000000;stop-opacity:1;fill:#000000;fill-opacity:1" d="m 123.98047,342.77734 -1.86719,1.16407 c 0,0 17.02044,27.28568 24.57422,41.3457 1.98615,3.69687 3.97498,7.36057 5.4082,11.19141 0.44958,1.20167 1.12696,3.52148 1.12696,3.52148 h 2.14843 c 0,0 -0.62595,-2.71175 -1.21679,-4.29102 -1.50532,-4.02354 -3.54655,-7.77429 -5.5293,-11.46484 -7.6438,-14.22758 -24.64453,-41.4668 -24.64453,-41.4668 z" id="path13" />
     </g>`,
+};
 
-}
+export class PicardRomulanEvacuationUniformPack
+  extends BaseTngEraUniformPack
+  implements IUniformPack
+{
+  constructor() {
+    super(UniformEra.PicardRomulanEvacuation);
+  }
 
-export class PicardRomulanEvacuationUniformPack extends BaseTngEraUniformPack implements IUniformPack {
+  getUniformSwatches(species: Species) {
+    return [
+      new Swatch(
+        BodyType.AverageMale,
+        'Average Male',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getUniformAndVariantByBodyType(
+              token,
+              UniformVariantType.Base,
+              BodyType.AverageMale,
+            ),
+            BodyType.AverageMale,
+            token,
+          ),
+        'BodyType.averageMale',
+      ),
+      new Swatch(
+        BodyType.AverageFemale,
+        'Average Female',
+        (token) =>
+          UniformCatalog.decorateSwatch(
+            this.getUniformAndVariantByBodyType(
+              token,
+              UniformVariantType.Base,
+              BodyType.AverageFemale,
+            ),
+            BodyType.AverageFemale,
+            token,
+          ),
+        'BodyType.averageFemale',
+      ),
+    ];
+  }
 
-    constructor() {
-        super(UniformEra.PicardRomulanEvacuation);
+  getUniformVariantSwatches(token: TokenModel) {
+    return [];
+  }
+
+  getUniformAndVariantBody(token: TokenModel) {
+    return this.getUniformAndVariantByBodyType(
+      token,
+      token.variant,
+      token.bodyType,
+    );
+  }
+
+  getUniformAndVariantByBodyType(
+    token: TokenModel,
+    variant: UniformVariantType,
+    bodyType: BodyType,
+  ) {
+    let base = '';
+    let divisionColour = token.divisionColor;
+    if (bodyType === BodyType.AverageMale) {
+      base = Discovery32CenturyUniform.maleBody;
+    } else {
+      base = Discovery32CenturyUniform.femaleBody;
     }
 
-    getUniformSwatches(species: Species) {
-        return [
-            new Swatch(BodyType.AverageMale, "Average Male", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Base, BodyType.AverageMale), BodyType.AverageMale, token), "BodyType.averageMale"),
-            new Swatch(BodyType.AverageFemale, "Average Female", (token) => UniformCatalog.decorateSwatch(this.getUniformAndVariantByBodyType(token, UniformVariantType.Base, BodyType.AverageFemale), BodyType.AverageFemale, token), "BodyType.averageFemale")
-        ];
-    }
+    base = base
+      .replace(DefaultRed, divisionColour)
+      .replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
+    return (
+      this.getNeck(bodyType, token.skinColor, token.species, this.era) + base
+    );
+  }
 
-    getUniformVariantSwatches(token: TokenModel) {
-        return [];
-    }
+  getBorderColor(token: TokenModel): string {
+    return token.divisionColor;
+  }
 
-    getUniformAndVariantBody(token: TokenModel) {
-        return this.getUniformAndVariantByBodyType(token, token.variant, token.bodyType);
-    }
+  getRankIndicator(token: TokenModel) {
+    let result = super.getRankIndicator(token);
+    result = `<g transform="translate(1, -4)">` + result + `</g>`;
+    return result.replace(/#fbb03b/g, '#fddfb1');
+  }
 
-    getUniformAndVariantByBodyType(token: TokenModel, variant: UniformVariantType, bodyType: BodyType) {
-        let base = "";
-        let divisionColour = token.divisionColor;
-        if (bodyType === BodyType.AverageMale) {
-            base = Discovery32CenturyUniform.maleBody;
-        } else {
-            base = Discovery32CenturyUniform.femaleBody;
-        }
-
-        base = base.replace(DefaultRed, divisionColour).replace(SpeciesRestrictions.DEFAULT_SKIN_COLOR_REGEX, token.skinColor);
-        return this.getNeck(bodyType, token.skinColor, token.species, this.era) + base;
-
-    }
-
-    getBorderColor(token: TokenModel): string {
-        return token.divisionColor;
-    }
-
-    getRankIndicator(token: TokenModel) {
-        let result = super.getRankIndicator(token);
-        result = `<g transform="translate(1, -4)">` + result + `</g>`;
-        return result.replace(/#fbb03b/g, "#fddfb1");
-    }
-
-    getRankBorderIndicator(token: TokenModel): string {
-        let result = super.getRankBorderIndicator(token);
-        return result.replace(/#fbb03b/g, "#fddfb1");
-    }
+  getRankBorderIndicator(token: TokenModel): string {
+    let result = super.getRankBorderIndicator(token);
+    return result.replace(/#fbb03b/g, '#fddfb1');
+  }
 }

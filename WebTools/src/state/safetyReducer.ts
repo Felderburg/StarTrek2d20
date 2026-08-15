@@ -1,23 +1,22 @@
-import { SafetyEvaluationType } from "../safety/model/safetyEvaluation";
-import { SET_SAFETY_EVALUATION } from "./safetyActions"
+import { SafetyEvaluationType } from '../safety/model/safetyEvaluation';
+import { SET_SAFETY_EVALUATION } from './safetyActions';
 
-const initialState: {[key: string]: SafetyEvaluationType } = {
-}
+const initialState: { [key: string]: SafetyEvaluationType } = {};
 
 const safety = (state: any = initialState, action) => {
-    switch (action.type) {
+  switch (action.type) {
     case SET_SAFETY_EVALUATION: {
-        const category = action.payload.category;
-        const evaluation = action.payload.evaluation;
+      const category = action.payload.category;
+      const evaluation = action.payload.evaluation;
 
-        let temp = {...state};
-        temp[category] = evaluation;
+      let temp = { ...state };
+      temp[category] = evaluation;
 
-        return temp;
+      return temp;
     }
     default:
-        return state;
-    }
-}
+      return state;
+  }
+};
 
 export default safety;

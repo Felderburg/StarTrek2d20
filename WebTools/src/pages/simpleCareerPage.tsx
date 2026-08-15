@@ -1,76 +1,107 @@
 import React, { useEffect } from 'react';
-import {Navigation} from '../common/navigator';
+import { Navigation } from '../common/navigator';
 import Button from 'react-bootstrap/Button';
-import {TalentDescription} from '../components/talentDescription';
+import { TalentDescription } from '../components/talentDescription';
 import ValueInput from '../components/valueInput';
 import { TalentsHelper } from '../helpers/talents';
 import InstructionText from '../components/instructionText';
 import { Header } from '../components/header';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { useTranslation } from 'react-i18next';
-import { ICharacterProperties, characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
+import {
+  ICharacterProperties,
+  characterMapStateToProperties,
+} from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { PageIdentity } from './pageIdentity';
 import store from '../state/store';
-import { StepContext, addCharacterTalent, setCharacterValue } from '../state/characterActions';
+import {
+  StepContext,
+  addCharacterTalent,
+  setCharacterValue,
+} from '../state/characterActions';
 import { CharacterType } from '../common/characterType';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 
 interface ISimpleCareerPageProperties extends ICharacterProperties {
-    talent: string;
-    nextPage: PageIdentity;
+  talent: string;
+  nextPage: PageIdentity;
 }
 
-const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({character, talent, nextPage}) => {
+const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({
+  character,
+  talent,
+  nextPage,
+}) => {
+  const { t } = useTranslation();
+  const talentModel = TalentsHelper.getTalent(talent);
 
-    const { t } = useTranslation();
-    const talentModel = TalentsHelper.getTalent(talent);
+  const onNext = () => {
+    Navigation.navigateToPage(nextPage);
+  };
 
-    const onNext = () => {
-        Navigation.navigateToPage(nextPage);
-    }
-
-    const randomValue = () => {
-        let value = randomUniqueValue(character.values, character.speciesStep?.species, character.educationStep?.primaryDiscipline);
-        onValueChanged(value);
-    }
-
-    const onValueChanged = (value: string) => {
-        store.dispatch(setCharacterValue(value, StepContext.Career));
-    }
-
-    useEffect(() => {
-        store.dispatch(addCharacterTalent(talentModel, StepContext.Career));
-    }, [talent, talentModel]);
-
-    let instruction = character.type === CharacterType.Child ? "CareerLength.instruction.child" : "CareerLength.instruction.cadet";
-    let valueText = character.type === CharacterType.Child ? "Value.childEducation.text" : "Value.careerLength.young.text";
-
-    return (
-        <div className="page container ms-0">
-            <CharacterCreationBreadcrumbs pageIdentity={PageIdentity.NoviceOrCadetExperience}/>
-            <main>
-                <Header>{t('Page.title.careerLength')}</Header>
-                <InstructionText text={t(instruction)} />
-                <div className="row">
-                    <div className="col-12 col-lg-6">
-                        <Header level={2}>{t('Construct.other.value')}</Header>
-                        <ValueInput value={character.careerStep?.value ?? ""} onValueChanged={(value) => onValueChanged(value)}
-                                onRandomClicked={() => randomValue()} textDescription={t(valueText)}
-                            />
-                    </div>
-                    <div className="col-12 col-lg-6">
-                        <Header level={2}>{t('Construct.other.talent')}</Header>
-                        <TalentDescription name={talentModel.localizedDisplayName}
-                            description={character.version > 1 ? talentModel.localizedDescription2e : talentModel.localizedDescription} />
-                    </div>
-                </div>
-                <div className="text-end">
-                    <Button onClick={() => onNext() }>{t('Common.button.next')}</Button>
-                </div>
-            </main>
-        </div>
+  const randomValue = () => {
+    let value = randomUniqueValue(
+      character.values,
+      character.speciesStep?.species,
+      character.educationStep?.primaryDiscipline,
     );
-}
+    onValueChanged(value);
+  };
+
+  const onValueChanged = (value: string) => {
+    store.dispatch(setCharacterValue(value, StepContext.Career));
+  };
+
+  useEffect(() => {
+    store.dispatch(addCharacterTalent(talentModel, StepContext.Career));
+  }, [talent, talentModel]);
+
+  let instruction =
+    character.type === CharacterType.Child
+      ? 'CareerLength.instruction.child'
+      : 'CareerLength.instruction.cadet';
+  let valueText =
+    character.type === CharacterType.Child
+      ? 'Value.childEducation.text'
+      : 'Value.careerLength.young.text';
+
+  return (
+    <div className="page container ms-0">
+      <CharacterCreationBreadcrumbs
+        pageIdentity={PageIdentity.NoviceOrCadetExperience}
+      />
+      <main>
+        <Header>{t('Page.title.careerLength')}</Header>
+        <InstructionText text={t(instruction)} />
+        <div className="row">
+          <div className="col-12 col-lg-6">
+            <Header level={2}>{t('Construct.other.value')}</Header>
+            <ValueInput
+              value={character.careerStep?.value ?? ''}
+              onValueChanged={(value) => onValueChanged(value)}
+              onRandomClicked={() => randomValue()}
+              textDescription={t(valueText)}
+            />
+          </div>
+          <div className="col-12 col-lg-6">
+            <Header level={2}>{t('Construct.other.talent')}</Header>
+            <TalentDescription
+              name={talentModel.localizedDisplayName}
+              description={
+                character.version > 1
+                  ? talentModel.localizedDescription2e
+                  : talentModel.localizedDescription
+              }
+            />
+          </div>
+        </div>
+        <div className="text-end">
+          <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
+        </div>
+      </main>
+    </div>
+  );
+};
 
 export default connect(characterMapStateToProperties)(SimpleCareerPage);

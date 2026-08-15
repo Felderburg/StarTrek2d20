@@ -1,11 +1,11 @@
-import { Station } from "../common/station";
+import { Station } from '../common/station';
 
 export interface IStationPageProperties {
-    station: Station;
+  station: Station;
 }
 
 export const stationMapStateToProperties = (state, ownProps) => {
-    return {
-        station: state.station?.station
-    };
-}
+  return {
+    station: state.station?.station,
+  };
+};

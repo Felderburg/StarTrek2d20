@@ -1,7 +1,7 @@
-import { NasoLabialFoldType } from "./nasoLabialFoldTypeEnum";
-import SpeciesRestrictions from "./speciesRestrictions";
-import Swatch from "./swatch";
-import { TokenModel } from "./tokenModel";
+import { NasoLabialFoldType } from './nasoLabialFoldTypeEnum';
+import SpeciesRestrictions from './speciesRestrictions';
+import Swatch from './swatch';
+import { TokenModel } from './tokenModel';
 
 const NimoyNasoLabial = `<g>
     <path style="fill:#000000;fill-opacity:0.2;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 297.11864,165.9322 c 0,0 -11.65326,14.36827 -15.08474,21.52543 -3.43148,7.15716 -3.72181,7.3278 -3.38983,10.33898 0.33198,3.01118 3.72881,6.27119 3.72881,6.27119 0,0 -1.55137,-4.21703 -1.56479,-6.46977 -0.0134,-2.25274 0.59107,-4.9969 3.66038,-11.1694 3.06931,-6.1725 12.65017,-20.49643 12.65017,-20.49643 z" id="path19851"/>
@@ -25,7 +25,7 @@ const LewisNasoLabial = `<g>
 const SubtleNasoLabial = `<g>
     <path style="fill:#000000;fill-opacity:0.2;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 297.82379,165.81055 c 0,0 -9.28417,9.86957 -11.68524,13.60281 -2.40107,3.73324 -2.51681,7.25084 -2.51681,7.25084 0,0 3.92568,-6.67508 6.41189,-10.30697 2.48621,-3.63189 7.79016,-10.54668 7.79016,-10.54668 z" id="path33734"/>
     <path style="fill:#000000;fill-opacity:0.2;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 327.36647,171.74306 c 0,0 3.16486,5.41198 4.01493,7.37068 0.85007,1.9587 2.15728,5.75274 2.15728,5.75274 0,0 0.85043,-2.66246 -10e-6,-4.67409 -0.85044,-2.01163 -6.1722,-8.44933 -6.1722,-8.44933 z" id="path33736"/>
-</g>`
+</g>`;
 
 const CherubicNasoLabial = `<g>
     <path style="fill:#000000;fill-opacity:0.2;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 278.59873,180.95541 c 0,0 3.0991,-0.21357 4.3949,-0.38216 1.2958,-0.16859 2.78549,-0.28559 4.01274,-0.63694 1.22725,-0.35135 2.36357,-0.82127 3.3121,-1.40128 0.94853,-0.58001 1.65584,-1.27982 2.35669,-1.97452 0.70085,-0.6947 1.06392,-1.18408 1.84713,-2.16561 0.78321,-0.98153 2.80255,-3.75796 2.80255,-3.75796 0,0 -1.02571,2.48542 -1.78344,3.82166 -0.75773,1.33624 -1.51461,2.5027 -2.67516,3.56688 -1.16055,1.06418 -2.20023,1.84159 -3.75796,2.35668 -1.55773,0.51509 -3.92579,0.94623 -5.5414,0.95542 -1.61561,0.009 -4.96815,-0.38217 -4.96815,-0.38217 z" id="path2"/>
@@ -35,51 +35,81 @@ const CherubicNasoLabial = `<g>
 </g>`;
 
 class NasoLabialFoldCatalog {
+  private static _instance: NasoLabialFoldCatalog;
 
-    private static _instance: NasoLabialFoldCatalog;
+  swatches = [
+    new Swatch(
+      NasoLabialFoldType.None,
+      'None',
+      NasoLabialFoldCatalog.decorateSwatch(''),
+      'NasoLabialFoldType.none',
+    ),
+    new Swatch(
+      NasoLabialFoldType.Subtle,
+      'Subtle',
+      NasoLabialFoldCatalog.decorateSwatch(SubtleNasoLabial),
+      'NasoLabialFoldType.subtle',
+    ),
+    new Swatch(
+      NasoLabialFoldType.Meaney,
+      'Subtle, Wide',
+      NasoLabialFoldCatalog.decorateSwatch(MeaneyNasoLabial),
+      'NasoLabialFoldType.meaney',
+    ),
+    new Swatch(
+      NasoLabialFoldType.Cherubic,
+      'Cherubic',
+      NasoLabialFoldCatalog.decorateSwatch(CherubicNasoLabial),
+      'NasoLabialFoldType.cherubic',
+    ),
+    new Swatch(
+      NasoLabialFoldType.Nimoy,
+      'Haughty',
+      NasoLabialFoldCatalog.decorateSwatch(NimoyNasoLabial),
+      'NasoLabialFoldType.nimoy',
+    ),
+    new Swatch(
+      NasoLabialFoldType.Lewis,
+      'Pronounced',
+      NasoLabialFoldCatalog.decorateSwatch(LewisNasoLabial),
+      'NasoLabialFoldType.lewis',
+    ),
+  ];
 
-    swatches = [
-        new Swatch(NasoLabialFoldType.None, "None", NasoLabialFoldCatalog.decorateSwatch(""), "NasoLabialFoldType.none"),
-        new Swatch(NasoLabialFoldType.Subtle, "Subtle", NasoLabialFoldCatalog.decorateSwatch(SubtleNasoLabial), "NasoLabialFoldType.subtle"),
-        new Swatch(NasoLabialFoldType.Meaney, "Subtle, Wide", NasoLabialFoldCatalog.decorateSwatch(MeaneyNasoLabial), "NasoLabialFoldType.meaney"),
-        new Swatch(NasoLabialFoldType.Cherubic, "Cherubic", NasoLabialFoldCatalog.decorateSwatch(CherubicNasoLabial), "NasoLabialFoldType.cherubic"),
-        new Swatch(NasoLabialFoldType.Nimoy, "Haughty", NasoLabialFoldCatalog.decorateSwatch(NimoyNasoLabial), "NasoLabialFoldType.nimoy"),
-        new Swatch(NasoLabialFoldType.Lewis, "Pronounced", NasoLabialFoldCatalog.decorateSwatch(LewisNasoLabial), "NasoLabialFoldType.lewis"),
-    ];
-
-    public static get instance() {
-        if (NasoLabialFoldCatalog._instance == null) {
-            NasoLabialFoldCatalog._instance = new NasoLabialFoldCatalog();
-        }
-        return NasoLabialFoldCatalog._instance;
+  public static get instance() {
+    if (NasoLabialFoldCatalog._instance == null) {
+      NasoLabialFoldCatalog._instance = new NasoLabialFoldCatalog();
     }
+    return NasoLabialFoldCatalog._instance;
+  }
 
-    getNasoLabialFold(token: TokenModel) {
-        if (SpeciesRestrictions.isRubberHeaded(token.species)) {
-            return "";
-        } else if (token.nasoLabialFold === NasoLabialFoldType.Nimoy) {
-            return NimoyNasoLabial;
-        } else if (token.nasoLabialFold === NasoLabialFoldType.Subtle) {
-            return SubtleNasoLabial;
-        } else if (token.nasoLabialFold === NasoLabialFoldType.Cherubic) {
-            return CherubicNasoLabial;
-        } else if (token.nasoLabialFold === NasoLabialFoldType.Meaney) {
-            return MeaneyNasoLabial;
-        } else if (token.nasoLabialFold === NasoLabialFoldType.Lewis) {
-            return LewisNasoLabial;
-        } else {
-            return "";
-        }
+  getNasoLabialFold(token: TokenModel) {
+    if (SpeciesRestrictions.isRubberHeaded(token.species)) {
+      return '';
+    } else if (token.nasoLabialFold === NasoLabialFoldType.Nimoy) {
+      return NimoyNasoLabial;
+    } else if (token.nasoLabialFold === NasoLabialFoldType.Subtle) {
+      return SubtleNasoLabial;
+    } else if (token.nasoLabialFold === NasoLabialFoldType.Cherubic) {
+      return CherubicNasoLabial;
+    } else if (token.nasoLabialFold === NasoLabialFoldType.Meaney) {
+      return MeaneyNasoLabial;
+    } else if (token.nasoLabialFold === NasoLabialFoldType.Lewis) {
+      return LewisNasoLabial;
+    } else {
+      return '';
     }
+  }
 
-    private static decorateSwatch(svg: string) {
-        let result = `<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <g transform="translate(-255, -140)">`
-            + svg
-            + `</g>
+  private static decorateSwatch(svg: string) {
+    let result =
+      `<svg viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <g transform="translate(-255, -140)">` +
+      svg +
+      `</g>
             </svg>`;
-        return result;
-    }
+    return result;
+  }
 }
 
 export default NasoLabialFoldCatalog;

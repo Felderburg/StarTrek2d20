@@ -1,13 +1,13 @@
-import { test, expect, describe } from '@jest/globals'
+import { test, expect, describe } from '@jest/globals';
 import Eras from '../../src/helpers/eras';
 import { Era } from '../../src/helpers/erasEnum';
 
 describe('testing era helper', () => {
-    test('should find era by name', () => {
-        let era = Eras.instance.getEraByName("NextGeneration");
-        expect(era).toBe(Era.NextGeneration);
+  test('should find era by name', () => {
+    let era = Eras.instance.getEraByName('NextGeneration');
+    expect(era).toBe(Era.NextGeneration);
 
-        let era2 = Eras.instance.getEraByName("Enterprise");
-        expect(era2).toBe(Era.Enterprise);
-    });
+    let era2 = Eras.instance.getEraByName('Enterprise');
+    expect(era2).toBe(Era.Enterprise);
+  });
 });

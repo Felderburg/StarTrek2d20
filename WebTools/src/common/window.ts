@@ -1,5 +1,5 @@
 export class Window {
-    static isCompact() {
-        return window.innerWidth <= 800;
-    }
+  static isCompact() {
+    return window.innerWidth <= 800;
+  }
 }
