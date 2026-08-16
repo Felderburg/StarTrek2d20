@@ -1,38 +1,38 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Helmet } from '@dr.pogodin/react-helmet';
-import LcarsFrame from '../components/lcarsFrame';
+import { LcarsFrame } from '../components/lcarsFrame';
 import { PageIdentity } from '../pages/pageIdentity';
 import { Header } from '../components/header';
 import Button from 'react-bootstrap/Button';
 import { Canvg, presets } from 'canvg';
-import UniformSelectionView from './view/uniformSelectionView';
-import SpeciesSelectionView from './view/speciesSelectionView';
+import { UniformSelectionView } from './view/uniformSelectionView';
+import { SpeciesSelectionView } from './view/speciesSelectionView';
 import { TokenSvgBuilder } from './tokenSvgBuilder';
 import { connect } from 'react-redux';
 import { CheckBox } from '../components/checkBox';
-import NoseSelectionView from './view/noseSelectionView';
-import MouthSelectionView from './view/mouthSelectionView';
-import HairSelectionView from './view/hairSelectionView';
-import HeadSelectionView from './view/headSelectionView';
-import EyeSelectionView from './view/eyeSelectionView';
+import { NoseSelectionView } from './view/noseSelectionView';
+import { MouthSelectionView } from './view/mouthSelectionView';
+import { HairSelectionView } from './view/hairSelectionView';
+import { HeadSelectionView } from './view/headSelectionView';
+import { EyeSelectionView } from './view/eyeSelectionView';
 import { DivisionColors } from './model/divisionColors';
 import { SpeciesHelper } from '../helpers/species';
-import ExtrasSelectionView from './view/extrasSelectionView';
+import { ExtraSelectionView as ExtrasSelectionView } from './view/extrasSelectionView';
 import { Rank } from '../helpers/ranks';
 import { UniformEra } from './model/uniformEra';
-import UniformPackCollection from './model/uniformPackCollection';
-import HeadCatalog from './model/headCatalog';
-import UniformVariantRestrictions from './model/uniformVariantRestrictions';
+import { UniformPackCollection } from './model/uniformPackCollection';
+import { HeadCatalog } from './model/headCatalog';
+import { UniformVariantRestrictions } from './model/uniformVariantRestrictions';
 import { TokenModel } from './model/tokenModel';
-import ExtrasCatalog from './model/extrasCatalog';
+import { ExtrasCatalog } from './model/extrasCatalog';
 import { Spinner } from 'react-bootstrap';
 import { marshaller } from '../helpers/marshaller';
 import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
 import { TokenConfig } from '../common/character';
-import store from '../state/store';
+import { store } from '../state/store';
 import { useNavigate } from 'react-router';
-import SpeciesRestrictions from './model/speciesRestrictions';
+import { SpeciesRestrictions } from './model/speciesRestrictions';
 import { setTokenBordered, setTokenRounded } from '../state/tokenActions';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
@@ -57,7 +57,7 @@ interface ITokenCreationPageProperties {
   bordered?: boolean;
 }
 
-const TokenCreationPage: React.FC<ITokenCreationPageProperties> = ({
+const TokenCreationPageBase: React.FC<ITokenCreationPageProperties> = ({
   token,
   characterName,
   marshalledCharacter,
@@ -420,4 +420,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(TokenCreationPage);
+export const TokenCreationPage = connect(mapStateToProps)(
+  TokenCreationPageBase,
+);

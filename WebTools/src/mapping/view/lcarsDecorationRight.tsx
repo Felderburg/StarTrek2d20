@@ -1,7 +1,10 @@
 import React from 'react';
 import type { IPageProperties } from '../../pages/iPageProperties';
 
-class LcarsDecorationRightView extends React.Component<IPageProperties, {}> {
+export class LcarsDecorationRightView extends React.Component<
+  IPageProperties,
+  {}
+> {
   render() {
     return (
       <div className="lcars-decoration-right">
@@ -101,5 +104,3 @@ class LcarsDecorationRightView extends React.Component<IPageProperties, {}> {
     );
   }
 }
-
-export default LcarsDecorationRightView;

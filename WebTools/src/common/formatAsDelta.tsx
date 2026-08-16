@@ -1,4 +1,4 @@
-const formatAsDelta = (value: number) => {
+export const formatAsDelta = (value: number) => {
   if (value && value > 0) {
     return '+' + value;
   } else if (value && value < 0) {
@@ -9,5 +9,3 @@ const formatAsDelta = (value: number) => {
     return <span>&nbsp;</span>;
   }
 };
-
-export default formatAsDelta;

@@ -8,8 +8,8 @@ import { TracksHelper } from '../helpers/tracks';
 import { CareersHelper } from '../helpers/careers';
 import { CareerEventsHelper } from '../helpers/careerEvents';
 import { Era } from '../helpers/erasEnum';
-import Eras from '../helpers/eras';
-import store from '../state/store';
+import { Eras } from '../helpers/eras';
+import { store } from '../state/store';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
@@ -26,7 +26,10 @@ interface ICharacterSheetProperties extends WithTranslation {
   close: () => void;
 }
 
-class CharacterProfile extends React.Component<ICharacterSheetProperties, {}> {
+class CharacterProfileBase extends React.Component<
+  ICharacterSheetProperties,
+  {}
+> {
   render() {
     const { t } = this.props;
     let c = Character.createMainCharacter(
@@ -491,4 +494,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default withTranslation()(connect(mapStateToProps)(CharacterProfile));
+export const CharacterProfile = withTranslation()(
+  connect(mapStateToProps)(CharacterProfileBase),
+);

@@ -3,16 +3,16 @@ import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Link, useNavigate } from 'react-router-dom';
 import type { MissionProfileModel } from '../../helpers/missionProfiles';
-import MissionProfiles from '../../helpers/missionProfiles';
+import { MissionProfiles } from '../../helpers/missionProfiles';
 import { CheckBox } from '../../components/checkBox';
 import { connect } from 'react-redux';
 import type { IStationPageProperties } from '../iStationPageProperties';
 import { stationMapStateToProperties } from '../iStationPageProperties';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   setStationMissionProfile,
   setStationMissionProfileTalent,
@@ -21,13 +21,13 @@ import { Dialog } from '../../components/dialog';
 import { SelectedTalent } from '../../common/selectedTalent';
 import { RankedTalent } from '../../helpers/rankedTalent';
 import type { TalentModel } from '../../helpers/talentModel';
-import SingleTalentSelectionList from '../../components/singleTalentSelectionList';
+import { SingleTalentSelectionList } from '../../components/singleTalentSelectionList';
 import { StandardStationSpaceframeStep } from '../../common/station';
 import { StationFrame } from '../../helpers/stationFrame';
 
-const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({
-  station,
-}) => {
+const StationMissionProfileSelectionPageBase: React.FC<
+  IStationPageProperties
+> = ({ station }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -208,6 +208,6 @@ const StationMissionProfileSelectionPage: React.FC<IStationPageProperties> = ({
   );
 };
 
-export default connect(stationMapStateToProperties)(
-  StationMissionProfileSelectionPage,
-);
+export const StationMissionProfileSelectionPage = connect(
+  stationMapStateToProperties,
+)(StationMissionProfileSelectionPageBase);

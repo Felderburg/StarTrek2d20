@@ -1,14 +1,16 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import SwatchButton from './swatchButton';
-import HairCatalog from '../model/hairCatalog';
-import store from '../../state/store';
+import { SwatchButton } from './swatchButton';
+import { HairCatalog } from '../model/hairCatalog';
+import { store } from '../../state/store';
 import { setTokenHairColor, setTokenHairType } from '../../state/tokenActions';
-import ColorSelection from './colorSelection';
-import SpeciesRestrictions from '../model/speciesRestrictions';
+import { ColorSelection } from './colorSelection';
+import { SpeciesRestrictions } from '../model/speciesRestrictions';
 import type { ITokenPageProperties } from './iTokenPageProperties';
 
-const HairSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
+export const HairSelectionView: React.FC<ITokenPageProperties> = ({
+  token,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -36,5 +38,3 @@ const HairSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
     </>
   );
 };
-
-export default HairSelectionView;

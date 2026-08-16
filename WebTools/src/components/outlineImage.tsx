@@ -9,7 +9,7 @@ interface IOutlineImageProperties {
   size?: string;
 }
 
-const OutlineImage: React.FC<IOutlineImageProperties> = ({
+export const OutlineImage: React.FC<IOutlineImageProperties> = ({
   starship,
   size,
 }) => {
@@ -44,5 +44,3 @@ const OutlineImage: React.FC<IOutlineImageProperties> = ({
     return null;
   }
 };
-
-export default OutlineImage;

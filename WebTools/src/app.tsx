@@ -8,9 +8,9 @@ import {
 } from './common/pageHistory';
 import { PageFactory } from './pages/pageFactory';
 import { PageIdentity } from './pages/pageIdentity';
-import LcarsFrame from './components/lcarsFrame';
+import { LcarsFrame } from './components/lcarsFrame';
 import { rewindToStarshipWorkflowStep } from './state/starshipActions';
-import store from './state/store';
+import { store } from './state/store';
 
 import './scss/main.scss';
 
@@ -131,5 +131,3 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
     );
   }
 }
-
-export default CharacterCreationApp;

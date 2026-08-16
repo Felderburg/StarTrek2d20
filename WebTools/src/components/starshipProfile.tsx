@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import type { Era } from '../helpers/erasEnum';
-import Eras from '../helpers/eras';
-import store from '../state/store';
+import { Eras } from '../helpers/eras';
+import { store } from '../state/store';
 import { CharacterTypeModel } from '../common/characterType';
 import { useTranslation } from 'react-i18next';
 import { Stereotype } from '../common/construct';
@@ -17,7 +17,7 @@ interface IStarshipProfileProperties {
   close: () => void;
 }
 
-const StarshipProfile: React.FC<IStarshipProfileProperties> = ({
+const StarshipProfileBase: React.FC<IStarshipProfileProperties> = ({
   showProfile,
   era,
   close,
@@ -340,4 +340,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(StarshipProfile);
+export const StarshipProfile = connect(mapStateToProps)(StarshipProfileBase);

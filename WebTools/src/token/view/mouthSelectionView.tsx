@@ -1,20 +1,22 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import SwatchButton from './swatchButton';
-import MouthCatalog from '../model/mouthCatalog';
-import store from '../../state/store';
+import { SwatchButton } from './swatchButton';
+import { MouthCatalog } from '../model/mouthCatalog';
+import { store } from '../../state/store';
 import {
   setTokenFacialHairTypes,
   setTokenLipstickColor,
   setTokenMouthType,
 } from '../../state/tokenActions';
-import ColorSelection from './colorSelection';
-import SpeciesRestrictions from '../model/speciesRestrictions';
-import FacialHairCatalog from '../model/facialHairCatalog';
+import { ColorSelection } from './colorSelection';
+import { SpeciesRestrictions } from '../model/speciesRestrictions';
+import { FacialHairCatalog } from '../model/facialHairCatalog';
 import { FacialHairCategory, FacialHairType } from '../model/facialHairEnum';
 import type { ITokenPageProperties } from './iTokenPageProperties';
 
-const MouthSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
+export const MouthSelectionView: React.FC<ITokenPageProperties> = ({
+  token,
+}) => {
   const { t } = useTranslation();
 
   const renderFacialHair = () => {
@@ -166,5 +168,3 @@ const MouthSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
     );
   }
 };
-
-export default MouthSelectionView;

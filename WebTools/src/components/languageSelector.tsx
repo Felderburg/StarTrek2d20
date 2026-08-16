@@ -5,7 +5,7 @@ import {
   supportedLanguages,
 } from '../i18n/config';
 
-const LanguageSelector: React.FC = () => {
+export const LanguageSelector: React.FC = () => {
   const [selectedLanguage, setSelectedLanguage] = useState<string>(
     getCurrentLanguageCode(),
   );
@@ -39,5 +39,3 @@ const LanguageSelector: React.FC = () => {
     </select>
   );
 };
-
-export default LanguageSelector;

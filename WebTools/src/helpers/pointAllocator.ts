@@ -1,4 +1,4 @@
-export default class PointAllocator {
+export class PointAllocator {
   static allocatePointsEvenly(points: number) {
     const base = points < 0 ? Math.ceil(points / 6) : Math.floor(points / 6);
     const remainder = points - base * 6;

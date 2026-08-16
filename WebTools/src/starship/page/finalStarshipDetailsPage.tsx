@@ -4,15 +4,15 @@ import { CharacterType } from '../../common/characterType';
 import type { Starship } from '../../common/starship';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
-import RegistryNumber from '../../components/registryNumberGenerator';
+import { RegistryNumber } from '../../components/registryNumberGenerator';
 import { marshaller } from '../../helpers/marshaller';
 import {
   setStarshipName,
   setStarshipRegistry,
   setStarshipTraits,
 } from '../../state/starshipActions';
-import store from '../../state/store';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { store } from '../../state/store';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { LoadingButton } from '../../common/loadingButton';
@@ -22,7 +22,7 @@ interface IFinalStarshipDetailsPageProperties {
   starship: Starship;
 }
 
-const FinalStarshipDetailsPage: React.FC<
+const FinalStarshipDetailsPageBase: React.FC<
   IFinalStarshipDetailsPageProperties
 > = ({ starship }) => {
   const { t } = useTranslation();
@@ -186,4 +186,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(FinalStarshipDetailsPage);
+export const FinalStarshipDetailsPage = connect(mapStateToProps)(
+  FinalStarshipDetailsPageBase,
+);

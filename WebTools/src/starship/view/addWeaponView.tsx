@@ -37,7 +37,7 @@ interface IAddWeaponViewProperties {
   version: number;
 }
 
-const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({
+export const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({
   mode = AddWeaponMode.IncludeMines,
   serviceYear,
   addWeapon,
@@ -297,5 +297,3 @@ const AddWeaponView: React.FC<IAddWeaponViewProperties> = ({
     </div>
   );
 };
-
-export default AddWeaponView;

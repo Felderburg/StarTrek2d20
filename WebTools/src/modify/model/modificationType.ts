@@ -27,7 +27,7 @@ export class ModificationModel {
   }
 }
 
-class Modifications {
+export class Modifications {
   static singleton: Modifications;
 
   private items: ModificationModel[] = [
@@ -54,5 +54,3 @@ class Modifications {
     return this.items;
   }
 }
-
-export default Modifications;

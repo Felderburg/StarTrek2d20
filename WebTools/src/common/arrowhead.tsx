@@ -1,4 +1,4 @@
-const replaceDiceWithArrowhead = (description: string) => {
+export const replaceDiceWithArrowhead = (description: string) => {
   if (description.indexOf('[D]') < 0) {
     return <span>{description}</span>;
   } else {
@@ -27,5 +27,3 @@ const replaceDiceWithArrowhead = (description: string) => {
     return <span>{content}</span>;
   }
 };
-
-export default replaceDiceWithArrowhead;

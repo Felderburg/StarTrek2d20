@@ -1,9 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
 import type { Creature } from '../model/creature';
-import WeaponBlockView from '../../view/weaponBlockView';
-import TalentsBlockView from '../../view/talentsBlockView';
-import CreatureStatBlock from './creatureStatBlock';
+import { WeaponBlockView } from '../../view/weaponBlockView';
+import { TalentsBlockView } from '../../view/talentsBlockView';
+import { CreatureStatBlock } from './creatureStatBlock';
 import Markdown from 'react-markdown';
 import { ExportToPdfButton } from '../../components/exportToPdfButton';
 
@@ -11,7 +11,9 @@ export interface ICreatureViewProperties {
   creature: Creature;
 }
 
-const CreatureView: React.FC<ICreatureViewProperties> = ({ creature }) => {
+export const CreatureView: React.FC<ICreatureViewProperties> = ({
+  creature,
+}) => {
   const { t } = useTranslation();
 
   const renderTopFields = () => {
@@ -120,5 +122,3 @@ const CreatureView: React.FC<ICreatureViewProperties> = ({ creature }) => {
     </>
   );
 };
-
-export default CreatureView;

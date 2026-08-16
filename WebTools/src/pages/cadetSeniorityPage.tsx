@@ -2,8 +2,8 @@ import React from 'react';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import Button from 'react-bootstrap/Button';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import InstructionText from '../components/instructionText';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { InstructionText } from '../components/instructionText';
 
 export const CadetSeniorityPage = () => {
   const goToFinishingTouches = () => {

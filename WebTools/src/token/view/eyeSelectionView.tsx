@@ -1,14 +1,14 @@
 import React from 'react';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setTokenEyeColor, setTokenEyeType } from '../../state/tokenActions';
-import ColorSelection from './colorSelection';
-import SpeciesRestrictions from '../model/speciesRestrictions';
-import EyeCatalog from '../model/eyeCatalog';
-import SwatchButton from './swatchButton';
+import { ColorSelection } from './colorSelection';
+import { SpeciesRestrictions } from '../model/speciesRestrictions';
+import { EyeCatalog } from '../model/eyeCatalog';
+import { SwatchButton } from './swatchButton';
 import type { ITokenPageProperties } from './iTokenPageProperties';
 import { useTranslation } from 'react-i18next';
 
-const EyeSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
+export const EyeSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
   const { t } = useTranslation();
 
   return (
@@ -39,5 +39,3 @@ const EyeSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
     </>
   );
 };
-
-export default EyeSelectionView;

@@ -5,7 +5,7 @@ import {
   setAllowEsotericTalents,
 } from '../state/contextActions';
 import { hasAnySource } from '../state/contextFunctions';
-import store from '../state/store';
+import { store } from '../state/store';
 import { CheckBox } from './checkBox';
 import { connect } from 'react-redux';
 
@@ -14,7 +14,7 @@ interface ITalentSettingsProperties {
   allowEsotericTalents: boolean;
 }
 
-const TalentSettingsView: React.FC<ITalentSettingsProperties> = ({
+const TalentSettingsViewBase: React.FC<ITalentSettingsProperties> = ({
   allowCrossSpeciesTalents,
   allowEsotericTalents,
 }) => {
@@ -62,4 +62,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(TalentSettingsView);
+export const TalentSettingsView = connect(mapStateToProps)(
+  TalentSettingsViewBase,
+);

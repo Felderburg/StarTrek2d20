@@ -3,7 +3,7 @@ import type { ICharacterProperties } from './soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import type { CharacterType } from '../../common/characterType';
 import { CharacterTypeModel } from '../../common/characterType';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
 import { Navigation } from '../../common/navigator';
@@ -12,9 +12,9 @@ import { educationCategoryRandomTable } from '../table/educationRandomTable';
 import { connect } from 'react-redux';
 import { Header } from '../../components/header';
 import { setCharacterType } from '../../state/characterActions';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
 
-const SoloEducationTypePage: React.FC<ICharacterProperties> = ({
+const SoloEducationTypePageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -101,4 +101,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SoloEducationTypePage);
+export const SoloEducationTypePage = connect(mapStateToProps)(
+  SoloEducationTypePageBase,
+);

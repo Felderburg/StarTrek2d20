@@ -12,7 +12,7 @@ interface IDisciplineComponentProperties {
   onIncrease: () => void;
 }
 
-const DisciplineComponent: React.FC<IDisciplineComponentProperties> = ({
+export const DisciplineComponent: React.FC<IDisciplineComponentProperties> = ({
   discipline,
   value,
   showDecrease,
@@ -55,5 +55,3 @@ const DisciplineComponent: React.FC<IDisciplineComponentProperties> = ({
     </div>
   );
 };
-
-export default DisciplineComponent;

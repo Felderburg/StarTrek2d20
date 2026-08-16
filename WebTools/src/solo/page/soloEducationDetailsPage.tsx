@@ -7,21 +7,21 @@ import { Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Header } from '../../components/header';
 import { TracksHelper } from '../../helpers/tracks';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import {
   StepContext,
   setCharacterFocus,
   setCharacterValue,
 } from '../../state/characterActions';
-import store from '../../state/store';
-import AttributeListComponent from '../../components/attributeListComponent';
+import { store } from '../../state/store';
+import { AttributeListComponent } from '../../components/attributeListComponent';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import Button from 'react-bootstrap/Button';
-import SoloValueInput from '../component/soloValueInput';
-import DisciplineListComponent from '../../components/disciplineListComponent';
+import { SoloValueInput } from '../component/soloValueInput';
+import { DisciplineListComponent } from '../../components/disciplineListComponent';
 import { Dialog } from '../../components/dialog';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
-import D20IconButton from '../component/d20IconButton';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
+import { D20IconButton } from '../component/d20IconButton';
 import { randomUniqueValue } from '../table/valueRandomTable';
 import { focusRandomTable } from '../table/focusRandomTable';
 import {
@@ -31,7 +31,7 @@ import {
 } from '../../components/educationControllers';
 import { localizedFocus } from '../../components/focusHelper';
 
-const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({
+const SoloEducationDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -197,4 +197,6 @@ const SoloEducationDetailsPage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(SoloEducationDetailsPage);
+export const SoloEducationDetailsPage = connect(characterMapStateToProperties)(
+  SoloEducationDetailsPageBase,
+);

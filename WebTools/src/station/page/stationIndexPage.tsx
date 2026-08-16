@@ -3,11 +3,11 @@ import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useNavigate } from 'react-router-dom';
 import { Station } from '../../common/station';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { createStation } from '../../state/stationActions';
 import { CharacterType, CharacterTypeModel } from '../../common/characterType';
 import { connect } from 'react-redux';
@@ -16,13 +16,15 @@ import {
   DropDownElement,
   DropDownSelect,
 } from '../../components/dropDownInput';
-import StationBreadcrumbs from '../view/stationBreadcrumbs';
+import { StationBreadcrumbs } from '../view/stationBreadcrumbs';
 
 interface IStationIndexPageProperties {
   era: Era;
 }
 
-const StationIndexPage: React.FC<IStationIndexPageProperties> = ({ era }) => {
+const StationIndexPageBase: React.FC<IStationIndexPageProperties> = ({
+  era,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [characterType, setCharacterType] = useState(CharacterType.Federation);
@@ -88,4 +90,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(StationIndexPage);
+export const StationIndexPage = connect(mapStateToProps)(StationIndexPageBase);

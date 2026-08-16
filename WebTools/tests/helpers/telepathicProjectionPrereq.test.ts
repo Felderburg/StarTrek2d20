@@ -3,7 +3,7 @@ import { Character, SpeciesStep } from '../../src/common/character';
 import { Species } from '../../src/helpers/speciesEnum';
 import { Source } from '../../src/helpers/sources';
 import { setSources } from '../../src/state/contextActions';
-import store from '../../src/state/store';
+import { store } from '../../src/state/store';
 import { TalentsHelper } from '../../src/helpers/talents';
 
 const localStorageMock = {

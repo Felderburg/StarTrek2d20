@@ -6,7 +6,7 @@ import { SystemMapView } from './systemMapView';
 import { createRandomValue } from '../../common/randomValueGenerator';
 import { WorldClass } from '../table/worldClass';
 
-class SystemMapUpperView extends SystemMapView {
+export class SystemMapUpperView extends SystemMapView {
   render() {
     const { system } = this.props;
     const purple = '#906F9A';
@@ -504,5 +504,3 @@ class SystemMapUpperView extends SystemMapView {
     return (x - 35) / Math.sqrt(3) + 35;
   }
 }
-
-export default SystemMapUpperView;

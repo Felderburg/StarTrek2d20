@@ -4,21 +4,21 @@ import { Navigation } from '../../common/navigator';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../../components/dialog';
 import { Header } from '../../components/header';
-import RefitsView from '../../components/refitsView';
+import { RefitsView } from '../../components/refitsView';
 import type { System } from '../../helpers/systems';
 import {
   addStarshipRefit,
   deleteStarshipRefit,
   nextStarshipWorkflowStep,
 } from '../../state/starshipActions';
-import store from '../../state/store';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { store } from '../../state/store';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { PageIdentity } from '../../pages/pageIdentity';
 import type { IStarshipProperties } from '../iStarshipProperties';
 
-const RefitPage: React.FC<IStarshipProperties> = ({ starship }) => {
+const RefitPageBase: React.FC<IStarshipProperties> = ({ starship }) => {
   const { t } = useTranslation();
   const refitCount = starship.numberOfRefits;
 
@@ -73,4 +73,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(RefitPage);
+export const RefitPage = connect(mapStateToProps)(RefitPageBase);

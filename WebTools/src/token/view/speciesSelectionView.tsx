@@ -4,15 +4,15 @@ import { Species } from '../../helpers/speciesEnum';
 import { DropDownElement } from '../../components/dropDownInput';
 import { SpeciesHelper } from '../../helpers/species';
 import { DropDownSelect } from '../../components/dropDownInput';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   setTokenSecondarySpecies,
   setTokenSpecies,
   setTokenSpeciesOption,
 } from '../../state/tokenActions';
-import SpeciesRestrictions from '../model/speciesRestrictions';
-import SpeciesOptionCatalog from '../model/speciesOptionCatalog';
-import SwatchButton from './swatchButton';
+import { SpeciesRestrictions } from '../model/speciesRestrictions';
+import { SpeciesOptionCatalog } from '../model/speciesOptionCatalog';
+import { SwatchButton } from './swatchButton';
 import type { ITokenPageProperties } from './iTokenPageProperties';
 
 interface ISpeciesSelectionProperties extends ITokenPageProperties {
@@ -20,7 +20,7 @@ interface ISpeciesSelectionProperties extends ITokenPageProperties {
   loadExtension: () => void;
 }
 
-const SpeciesSelectionView: React.FC<ISpeciesSelectionProperties> = ({
+export const SpeciesSelectionView: React.FC<ISpeciesSelectionProperties> = ({
   token,
   isLoading,
   loadExtension,
@@ -197,5 +197,3 @@ const SpeciesSelectionView: React.FC<ISpeciesSelectionProperties> = ({
     );
   }
 };
-
-export default SpeciesSelectionView;

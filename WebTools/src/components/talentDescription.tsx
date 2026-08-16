@@ -1,5 +1,5 @@
 import React from 'react';
-import replaceDiceWithArrowhead from '../common/arrowhead';
+import { replaceDiceWithArrowhead } from '../common/arrowhead';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import Markdown from 'react-markdown';
 import { Header } from './header';

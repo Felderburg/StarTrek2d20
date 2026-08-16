@@ -27,7 +27,7 @@ import { D20 } from '../../common/die';
 // This class includes code originating with https://github.com/niksudan/alien-namegen
 // The alien-namegen codebase is distributed under the MIT license, and is
 // Copyright (c) 2023 Nik Sudan
-class AlienNameGenerator {
+export class AlienNameGenerator {
   static readonly commonSuffixes = ['Prime', 'Alpha', 'Beta', 'Gamma', 'Delta'];
   static readonly commonSectorPrefixes = [
     'Proxima',
@@ -177,5 +177,3 @@ class AlienNameGenerator {
     return name;
   }
 }
-
-export default AlienNameGenerator;

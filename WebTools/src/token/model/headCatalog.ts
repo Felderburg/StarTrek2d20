@@ -2,8 +2,8 @@ import toast from 'react-hot-toast';
 import { Species } from '../../helpers/speciesEnum';
 import { HeadType } from './headTypeEnum';
 import { SpeciesOption } from './speciesOptionEnum';
-import SpeciesRestrictions from './speciesRestrictions';
-import Swatch from './swatch';
+import { SpeciesRestrictions } from './speciesRestrictions';
+import { Swatch } from './swatch';
 import { svgTranslationHelper } from './svgTranslationHelper';
 import type { TokenModel } from './tokenModel';
 
@@ -429,7 +429,7 @@ export interface IExtendedHeadCatalog {
 
 export const ReferenceHead = StandardHeads.Head3;
 
-class HeadCatalog {
+export class HeadCatalog {
   private rubberHeadCatalog: IExtendedHeadCatalog;
 
   private static singleton: HeadCatalog;
@@ -806,5 +806,3 @@ class HeadCatalog {
     return result;
   }
 }
-
-export default HeadCatalog;

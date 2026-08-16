@@ -13,7 +13,7 @@ import { AttributesHelper } from '../helpers/attributes';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   StepContext,
   modifyCharacterAttribute,
@@ -25,16 +25,16 @@ import type { IAttributeController } from '../components/attributeController';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
-import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
-import InstructionText from '../components/instructionText';
-import AttributeListComponent from '../components/attributeListComponent';
+import { SoloCharacterBreadcrumbs } from '../solo/component/soloCharacterBreadcrumbs';
+import { InstructionText } from '../components/instructionText';
+import { AttributeListComponent } from '../components/attributeListComponent';
 import type { IDisciplineController } from '../components/disciplineListComponent';
-import DisciplineListComponent from '../components/disciplineListComponent';
-import SoloValueInput from '../solo/component/soloValueInput';
-import D20IconButton from '../solo/component/d20IconButton';
+import { DisciplineListComponent } from '../components/disciplineListComponent';
+import { SoloValueInput } from '../solo/component/soloValueInput';
+import { D20IconButton } from '../solo/component/d20IconButton';
 import { connect } from 'react-redux';
 import { Stereotype } from '../common/construct';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import Markdown from 'react-markdown';
 
@@ -128,7 +128,7 @@ class SoloEnvironmentDisciplineController implements IDisciplineController {
   }
 }
 
-const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({
+const EnvironmentDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -321,4 +321,6 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(EnvironmentDetailsPage);
+export const EnvironmentDetailsPage = connect(characterMapStateToProperties)(
+  EnvironmentDetailsPageBase,
+);

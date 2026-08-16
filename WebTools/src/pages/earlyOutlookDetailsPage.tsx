@@ -5,9 +5,9 @@ import { AttributeView } from '../components/attribute';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../components/dialog';
 import { CheckBox } from '../components/checkBox';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import SingleTalentSelectionList from '../components/singleTalentSelectionList';
-import InstructionText from '../components/instructionText';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { SingleTalentSelectionList } from '../components/singleTalentSelectionList';
+import { InstructionText } from '../components/instructionText';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
@@ -17,21 +17,21 @@ import {
   setCharacterFocus,
   StepContext,
 } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import { PageIdentity } from './pageIdentity';
 import { connect } from 'react-redux';
 import { EarlyOutlookDiscplineController } from '../components/earlyOutlookControllers';
-import DisciplineListComponent from '../components/disciplineListComponent';
+import { DisciplineListComponent } from '../components/disciplineListComponent';
 import { CharacterType } from '../common/characterType';
 import { makeKey } from '../common/translationKey';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
-import TalentSettingsView from '../components/talentSettingsView';
+import { TalentSettingsView } from '../components/talentSettingsView';
 import type { SelectedTalent } from '../common/selectedTalent';
 import { FocusSelectionView } from '../components/focusSelectionView';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { getEarlyOutlookTalents } from '../helpers/earlyOutlookTalents';
 
-const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({
+const EarlyOutlookDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -205,4 +205,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(EarlyOutlookDetailsPage);
+export const EarlyOutlookDetailsPage = connect(mapStateToProps)(
+  EarlyOutlookDetailsPageBase,
+);

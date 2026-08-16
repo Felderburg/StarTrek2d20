@@ -1,19 +1,19 @@
 import type { IPageFactoryRegistry } from '../../pages/pageFactory';
 import { PageIdentity } from '../../pages/pageIdentity';
-import FinalStarshipDetailsPage from './finalStarshipDetailsPage';
-import MissionPodSelectionPage from './missionPodSelectionPage';
-import MissionProfileSelectionPage from './missionProfileSelectionPage';
-import MissionProfileTalentSelectionPage from './missionProfileTalentSelectionPage';
-import RefitsPage from './refitsPage';
-import SelectStarshipToolPage from './selectStarshipToolPage';
-import SimpleStarshipPage from './simpleStarshipPage';
-import SmallCraftStatsPage from './smallCraftStatsPage';
-import SpaceframeSelectionPage from './spaceframeSelectionPage';
-import StarshipTalentsPage from './starshipTalentsPage';
-import StarshipTypeSelectionPage from './starshipTypeSelectionPage';
-import StarshipWeaponsPage from './starshipWeaponsPage';
-import ServiceRecordPage from './serviceRecordPage';
-import ExtraStarshipTalentChoicesPage from './extraStarshipTalentChoicesPage';
+import { FinalStarshipDetailsPage } from './finalStarshipDetailsPage';
+import { MissionPodSelectionPage } from './missionPodSelectionPage';
+import { MissionProfileSelectionPage } from './missionProfileSelectionPage';
+import { MissionProfileTalentSelectionPage } from './missionProfileTalentSelectionPage';
+import { RefitPage as RefitsPage } from './refitsPage';
+import { SelectStarshipToolPage } from './selectStarshipToolPage';
+import { SimpleStarshipPage } from './simpleStarshipPage';
+import { SmallCraftStatsPage } from './smallCraftStatsPage';
+import { SpaceframeSelectionPage } from './spaceframeSelectionPage';
+import { StarshipTalentsPage } from './starshipTalentsPage';
+import { StarshipTypeSelectionPage } from './starshipTypeSelectionPage';
+import { StarshipWeaponsPageProperties as StarshipWeaponsPage } from './starshipWeaponsPage';
+import { ServiceRecordPage } from './serviceRecordPage';
+import { ExtraStarshipTalentChoicesPage } from './extraStarshipTalentChoicesPage';
 
 export class StarshipPageFactory implements IPageFactoryRegistry {
   private static singleton;

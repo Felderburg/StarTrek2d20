@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
-import StressOrShieldsView from './stressOrShieldsView';
-import CharacterStatBlock from './characterStatBlock';
+import { StressOrShieldsView } from './stressOrShieldsView';
+import { CharacterStatBlock } from './characterStatBlock';
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { VttSelectionDialog } from '../vtt/view/VttSelectionDialog';
-import WeaponBlockView from './weaponBlockView';
-import FocusBlockView from './focusBlockView';
-import ValuesBlockView from './valuesBlockView';
-import TalentsBlockView from './talentsBlockView';
-import SpeciesAbilityBlockView from './speciesAbilityBlockView';
+import { WeaponBlockView } from './weaponBlockView';
+import { FocusBlockView } from './focusBlockView';
+import { ValuesBlockView } from './valuesBlockView';
+import { TalentsBlockView } from './talentsBlockView';
+import { SpeciesAbilityBlockView } from './speciesAbilityBlockView';
 import { LoadingButton } from '../common/loadingButton';
 import Button from 'react-bootstrap/Button';
 import { EditableHeader } from '../mapping/view/editableHeader';
 import { useNavigate } from 'react-router';
 import { marshaller } from '../helpers/marshaller';
 import Markdown from 'react-markdown';
-import EquipmentBlockView from './equipmentBlockView';
+import { EquipmentBlockView } from './equipmentBlockView';
 
-const NpcView: React.FC<ICharacterPageProperties> = ({ character }) => {
+export const NpcView: React.FC<ICharacterPageProperties> = ({ character }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -216,5 +216,3 @@ const NpcView: React.FC<ICharacterPageProperties> = ({ character }) => {
     </main>
   );
 };
-
-export default NpcView;

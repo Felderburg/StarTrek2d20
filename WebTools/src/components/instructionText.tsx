@@ -28,5 +28,3 @@ export class InstructionText extends React.Component<
       });
   }
 }
-
-export default InstructionText;

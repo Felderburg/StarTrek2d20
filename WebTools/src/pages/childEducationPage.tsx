@@ -2,17 +2,17 @@ import React from 'react';
 import { Navigation } from '../common/navigator';
 import { Window } from '../common/window';
 import Button from 'react-bootstrap/Button';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { Header } from '../components/header';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import type { Age } from '../helpers/age';
-import AgeHelper from '../helpers/age';
+import { AgeHelper } from '../helpers/age';
 import { PageIdentity } from './pageIdentity';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import store from '../state/store';
+import { store } from '../state/store';
 import { setCharacterAge } from '../state/characterActions';
 
 interface ITrackSelectionProperties {
@@ -62,7 +62,9 @@ const AgeSelection: React.FC<ITrackSelectionProperties> = ({ onSelection }) => {
   );
 };
 
-const ChildEducationPage: React.FC<ICharacterProperties> = ({ character }) => {
+const ChildEducationPageBase: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
   const { t } = useTranslation();
 
   const selectAge = (age: Age) => {
@@ -79,4 +81,6 @@ const ChildEducationPage: React.FC<ICharacterProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(ChildEducationPage);
+export const ChildEducationPage = connect(characterMapStateToProperties)(
+  ChildEducationPageBase,
+);

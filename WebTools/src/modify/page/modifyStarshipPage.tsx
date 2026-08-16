@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import type { IStarshipProperties } from '../../starship/iStarshipProperties';
 import { useEffect, useState } from 'react';
@@ -15,7 +15,7 @@ import {
 import Markdown from 'react-markdown';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { saveStarshipToLocalStorage } from '../../state/savedConstructActions';
 import { marshaller } from '../../helpers/marshaller';
 import { CharacterAdvancementChoice } from '../model/characterAdvancementChoice';
@@ -32,7 +32,9 @@ import { TalentSelector } from './talentSelector';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
 import { StarshipFreeformTalentSelectionView } from '../../components/starshipFreeformTalentSelectionView';
 
-const ModifyStarshipPage: React.FC<IStarshipProperties> = ({ starship }) => {
+const ModifyStarshipPageBase: React.FC<IStarshipProperties> = ({
+  starship,
+}) => {
   const { t } = useTranslation();
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [advancementType, setAdvancementType] =
@@ -535,4 +537,6 @@ const ModifyStarshipPage: React.FC<IStarshipProperties> = ({ starship }) => {
   );
 };
 
-export default connect(starshipMapStateToProperties)(ModifyStarshipPage);
+export const ModifyStarshipPage = connect(starshipMapStateToProperties)(
+  ModifyStarshipPageBase,
+);

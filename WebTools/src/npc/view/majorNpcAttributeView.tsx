@@ -4,14 +4,14 @@ import { characterMapStateToProperties } from '../../solo/page/soloCharacterProp
 import { makeKey } from '../../common/translationKey';
 import { StatControl } from '../../starship/view/statControl';
 import { Attribute } from '../../helpers/attributes';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setNpcCharacterAttributes } from '../../state/characterActions';
 import { useEffect } from 'react';
 import { NpcType, NpcTypes } from '../model/npcType';
 import { connect } from 'react-redux';
 import { Character } from '../../common/character';
 
-const MajorNpcAttributeView: React.FC<ICharacterProperties> = ({
+const MajorNpcAttributeViewBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -163,4 +163,6 @@ const MajorNpcAttributeView: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(MajorNpcAttributeView);
+export const MajorNpcAttributeView = connect(characterMapStateToProperties)(
+  MajorNpcAttributeViewBase,
+);

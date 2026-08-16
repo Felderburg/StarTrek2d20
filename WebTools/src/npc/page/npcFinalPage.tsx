@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
-import CharacterCreationBreadcrumbs from '../../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../../components/characterCreationBreadcrumbs';
 import { connect } from 'react-redux';
 import { Header } from '../../components/header';
 import { Button } from 'react-bootstrap';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { marshaller } from '../../helpers/marshaller';
 import { saveCharacterToLocalStorage } from '../../state/savedConstructActions';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
@@ -29,10 +29,10 @@ import type { EquipmentModel } from '../../helpers/equipment';
 import { EquipmentType } from '../../helpers/equipment';
 import type { PersonalWeaponType } from '../../helpers/weapons';
 import { NpcAddWeaponView } from '../view/npcAddWeaponView';
-import D20IconButton from '../../solo/component/d20IconButton';
+import { D20IconButton } from '../../solo/component/d20IconButton';
 import { NameGenerator } from '../nameGenerator';
 
-const NpcFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
+const NpcFinalPageBase: React.FC<ICharacterProperties> = ({ character }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -274,4 +274,6 @@ const NpcFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
   ) : undefined;
 };
 
-export default connect(characterMapStateToProperties)(NpcFinalPage);
+export const NpcFinalPage = connect(characterMapStateToProperties)(
+  NpcFinalPageBase,
+);

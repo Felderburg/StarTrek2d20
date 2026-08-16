@@ -6,13 +6,15 @@ import { CharacterType } from '../common/characterType';
 import { Header } from './header';
 import { StepContext, setCharacterValue } from '../state/characterActions';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
-import store from '../state/store';
-import ValueInput from './valueInput';
+import { store } from '../state/store';
+import { ValueInput } from './valueInput';
 import { makeKey } from '../common/translationKey';
 import { Career } from '../helpers/careerEnum';
-import InstructionText from './instructionText';
+import { InstructionText } from './instructionText';
 
-const AllCharacterValues: React.FC<ICharacterProperties> = ({ character }) => {
+const AllCharacterValuesBase: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
   const randomValue = (context: StepContext) => {
     const value = randomUniqueValue(
       character.values,
@@ -139,4 +141,6 @@ const AllCharacterValues: React.FC<ICharacterProperties> = ({ character }) => {
   }
 };
 
-export default connect(characterMapStateToProperties)(AllCharacterValues);
+export const AllCharacterValues = connect(characterMapStateToProperties)(
+  AllCharacterValuesBase,
+);

@@ -5,15 +5,15 @@ import { Header } from '../../components/header';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { connect } from 'react-redux';
 import { SpeciesHelper } from '../../helpers/species';
-import InstructionText from '../../components/instructionText';
-import AttributeListComponent from '../../components/attributeListComponent';
+import { InstructionText } from '../../components/instructionText';
+import { AttributeListComponent } from '../../components/attributeListComponent';
 import Button from 'react-bootstrap/Button';
 import type { ICharacterProperties } from './soloCharacterProperties';
 import { Dialog } from '../../components/dialog';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
 import { SpeciesAttributeController } from '../../components/speciesController';
 
-const SoloSpeciesDetailsPage: React.FC<ICharacterProperties> = ({
+const SoloSpeciesDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -74,4 +74,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SoloSpeciesDetailsPage);
+export const SoloSpeciesDetailsPage = connect(mapStateToProps)(
+  SoloSpeciesDetailsPageBase,
+);

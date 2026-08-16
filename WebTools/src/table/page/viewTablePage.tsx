@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import type { TableCollection, ValueResult } from '../model/table';
 import ReactMarkdown from 'react-markdown';
@@ -8,12 +8,12 @@ import { TableView } from './tableView';
 import { useState } from 'react';
 import { ModalControl } from '../../components/modal';
 import { ShareTableModal } from './shareTableModal';
-import TableMarshaller from '../model/tableMarshaller';
+import { TableMarshaller } from '../model/tableMarshaller';
 import { connect } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { preventDefaultAnchorEvent } from '../../common/navigator';
 import { AccessingView } from '../../common/accessingView';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   deleteTableCollection,
   setTableForEditing,
@@ -26,7 +26,7 @@ interface IViewTablePageProperties {
   tableCollection?: TableCollection;
 }
 
-const ViewTablePage: React.FC<IViewTablePageProperties> = ({
+const ViewTablePageBase: React.FC<IViewTablePageProperties> = ({
   tableCollection,
 }) => {
   const { t } = useTranslation();
@@ -212,4 +212,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(ViewTablePage);
+export const ViewTablePage = connect(mapStateToProps)(ViewTablePageBase);

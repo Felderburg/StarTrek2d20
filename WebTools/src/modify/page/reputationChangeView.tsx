@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Dialog } from '../../components/dialog';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { NumericValueChangeView } from './numericValueChangeView';
 import { modifyCharacterReputation } from '../../state/characterActions';
 

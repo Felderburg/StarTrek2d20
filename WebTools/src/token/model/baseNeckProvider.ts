@@ -1,6 +1,6 @@
 import { Species } from '../../helpers/speciesEnum';
 import { BodyType } from './bodyTypeEnum';
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import { UniformEra } from './uniformEra';
 import { UniformVariantType } from './uniformVariantTypeEnum';
 

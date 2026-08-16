@@ -1,5 +1,5 @@
 import type { Species } from '../../helpers/speciesEnum';
-import type Swatch from './swatch';
+import type { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 
 export interface IUniformPack {

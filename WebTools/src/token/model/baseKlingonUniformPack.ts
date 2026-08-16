@@ -1,6 +1,6 @@
 import { Rank } from '../../helpers/ranks';
 import { BaseNeckProvider } from './baseNeckProvider';
-import Swatch from './swatch';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 
 const KlingonEmblem = `<g>

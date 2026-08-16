@@ -8,7 +8,7 @@ import { NoseType, allNoseTypes } from './noseTypeEnum';
 import { SpeciesOption } from './speciesOptionEnum';
 import { UniformEra, allUniformEras } from './uniformEra';
 
-class SpeciesRestrictions {
+export class SpeciesRestrictions {
   // default in the sense that "the drawing was originally created using this skin colour"
   static DEFAULT_SKIN_COLOR = '#cd976d';
   static DEFAULT_SKIN_COLOR_REGEX = /#cd976d/g;
@@ -644,5 +644,3 @@ class SpeciesRestrictions {
     }
   }
 }
-
-export default SpeciesRestrictions;

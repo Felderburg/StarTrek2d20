@@ -9,20 +9,19 @@ import { StatView } from '../components/StatView';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { VttSelectionDialog } from '../vtt/view/VttSelectionDialog';
-import TalentsBlockView from './talentsBlockView';
-import WeaponBlockView from './weaponBlockView';
+import { TalentsBlockView } from './talentsBlockView';
+import { WeaponBlockView } from './weaponBlockView';
 import { cyrb53 } from '../common/cyrb53';
 import { originalEncodedSheet } from './originalEncodedSheet';
 import { createStarship } from '../state/starshipActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import { useNavigate } from 'react-router';
 import { ExportToPdfButton } from '../components/exportToPdfButton';
 
-const OutlineImage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'
-    ),
+const OutlineImage = lazy(() =>
+  import(
+    /* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'
+  ).then((m) => ({ default: m.OutlineImage })),
 );
 
 const NBSP = '\u00A0';
@@ -31,7 +30,9 @@ interface IStarshipViewProperties {
   starship: Starship;
 }
 
-const StarshipView: React.FC<IStarshipViewProperties> = ({ starship }) => {
+export const StarshipView: React.FC<IStarshipViewProperties> = ({
+  starship,
+}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -412,5 +413,3 @@ const StarshipView: React.FC<IStarshipViewProperties> = ({ starship }) => {
     </main>
   );
 };
-
-export default StarshipView;

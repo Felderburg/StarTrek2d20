@@ -4,7 +4,7 @@ import { PageIdentity } from './pageIdentity';
 import type { TrackModel } from '../helpers/tracks';
 import { TracksHelper } from '../helpers/tracks';
 import Button from 'react-bootstrap/Button';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { Window } from '../common/window';
 import { useTranslation } from 'react-i18next';
 import { CharacterType } from '../common/characterType';
@@ -12,8 +12,8 @@ import { makeKey } from '../common/translationKey';
 import { Header } from '../components/header';
 import { hasSource } from '../state/contextFunctions';
 import { Source } from '../helpers/sources';
-import InstructionText from '../components/instructionText';
-import store from '../state/store';
+import { InstructionText } from '../components/instructionText';
+import { store } from '../state/store';
 import { setCharacterEducation } from '../state/characterActions';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
@@ -26,7 +26,7 @@ enum StarfleetTrackTab {
   Other,
 }
 
-const EducationPage: React.FC<ICharacterProperties> = ({ character }) => {
+const EducationPageBase: React.FC<ICharacterProperties> = ({ character }) => {
   const [randomTrack, setRandomTrack] = useState(null);
   const [tab, setTab] = useState(StarfleetTrackTab.Officer);
   const { t } = useTranslation();
@@ -194,4 +194,6 @@ const EducationPage: React.FC<ICharacterProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(EducationPage);
+export const EducationPage = connect(characterMapStateToProperties)(
+  EducationPageBase,
+);

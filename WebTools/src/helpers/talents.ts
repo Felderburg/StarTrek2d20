@@ -8,7 +8,7 @@ import { Era } from './erasEnum';
 import { Species } from './speciesEnum';
 import { Stereotype } from '../common/construct';
 import { Starship } from '../common/starship';
-import store from '../state/store';
+import { store } from '../state/store';
 import { centuryToYear } from './weapons';
 import { Spaceframe } from './spaceframeEnum';
 import type { IConstructPrerequisite } from './prerequisite';

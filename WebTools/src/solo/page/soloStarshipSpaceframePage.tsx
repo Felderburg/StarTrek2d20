@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { Era } from '../../helpers/erasEnum';
 import type { Starship } from '../../common/starship';
 import { SpaceframeHelper } from '../../helpers/spaceframes';
@@ -16,14 +16,14 @@ import { setStarshipSpaceframe } from '../../state/starshipActions';
 import { spaceframeRandomTable } from '../table/starshipRandomTable';
 import { StatView } from '../../components/StatView';
 import { System } from '../../helpers/systems';
-import SoloStarshipBreadcrumbs from '../component/soloStarshipBreadcrumbs';
+import { SoloStarshipBreadcrumbs } from '../component/soloStarshipBreadcrumbs';
 
 interface ISoloStarshipSpaceframePageProperties {
   era: Era;
   starship: Starship;
 }
 
-const SoloStarshipSpaceframePage: React.FC<
+const SoloStarshipSpaceframePageBase: React.FC<
   ISoloStarshipSpaceframePageProperties
 > = ({ era, starship }) => {
   const selectSpaceframe = (spaceframe: SpaceframeModel) => {
@@ -246,4 +246,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SoloStarshipSpaceframePage);
+export const SoloStarshipSpaceframePage = connect(mapStateToProps)(
+  SoloStarshipSpaceframePageBase,
+);

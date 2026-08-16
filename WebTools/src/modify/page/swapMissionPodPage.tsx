@@ -4,20 +4,22 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { Header } from '../../components/header';
 import { Dialog } from '../../components/dialog';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { starshipMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import type { IStarshipProperties } from '../../starship/iStarshipProperties';
-import MissionPodSelection from '../../starship/view/missionPodSelection';
-import MissionPodReplacementSelection from '../../starship/view/missionPodReplacementSelection';
+import { MissionPodSelection } from '../../starship/view/missionPodSelection';
+import { MissionPodReplacementSelection } from '../../starship/view/missionPodReplacementSelection';
 import { setStarshipMissionPod } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { saveStarshipToLocalStorage } from '../../state/savedConstructActions';
 import { marshaller } from '../../helpers/marshaller';
 
-const SwapMissionPodPage: React.FC<IStarshipProperties> = ({ starship }) => {
+const SwapMissionPodPageBase: React.FC<IStarshipProperties> = ({
+  starship,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -89,4 +91,6 @@ const SwapMissionPodPage: React.FC<IStarshipProperties> = ({ starship }) => {
   );
 };
 
-export default connect(starshipMapStateToProperties)(SwapMissionPodPage);
+export const SwapMissionPodPage = connect(starshipMapStateToProperties)(
+  SwapMissionPodPageBase,
+);

@@ -2,7 +2,7 @@ import React from 'react';
 import type { Character } from '../common/character';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import type { Department } from '../helpers/department';
-import D20IconButton from '../solo/component/d20IconButton';
+import { D20IconButton } from '../solo/component/d20IconButton';
 import { localizedFocus } from './focusHelper';
 import {
   focusRandomTable,

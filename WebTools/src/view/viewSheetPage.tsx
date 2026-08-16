@@ -1,30 +1,33 @@
 import React, { lazy } from 'react';
 import { useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import StarshipView from './starshipView';
-import SupportingCharacterView from './supportingCharacterView';
+import { StarshipView } from './starshipView';
+import { SupportingCharacterView } from './supportingCharacterView';
 import { marshaller } from '../helpers/marshaller';
-import MainCharacterView from './mainCharacterView';
-import LcarsFrame from '../components/lcarsFrame';
+import { MainCharacterView } from './mainCharacterView';
+import { LcarsFrame } from '../components/lcarsFrame';
 import { PageIdentity } from '../pages/pageIdentity';
 import type { Construct } from '../common/construct';
 import { Character } from '../common/character';
-import NpcView from './npcView';
-import SoloCharacterView from './soloCharacterView';
+import { NpcView } from './npcView';
+import { SoloCharacterView } from './soloCharacterView';
 import type { Asset } from '../asset/asset';
 import { originalEncodedSheet } from './originalEncodedSheet';
-import StationView from './stationView';
+import { StationView } from './stationView';
 import { Link } from 'react-router-dom';
 
-const AssetView = lazy(
-  () => import(/* webpackChunkName: 'asset' */ '../asset/view/assetView'),
+const AssetView = lazy(() =>
+  import(/* webpackChunkName: 'asset' */ '../asset/view/assetView').then(
+    (m) => ({ default: m.AssetView }),
+  ),
 );
-const CreatureView = lazy(
-  () =>
-    import(/* webpackChunkName: 'creature' */ '../creature/view/creatureView'),
+const CreatureView = lazy(() =>
+  import(
+    /* webpackChunkName: 'creature' */ '../creature/view/creatureView'
+  ).then((m) => ({ default: m.CreatureView })),
 );
 
-const ViewSheetPage = () => {
+export const ViewSheetPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -224,5 +227,3 @@ const ViewSheetPage = () => {
     </LcarsFrame>
   );
 };
-
-export default ViewSheetPage;

@@ -106,7 +106,7 @@ export class MissionProfileModel {
   }
 }
 
-class MissionProfiles {
+export class MissionProfiles {
   static singleton: MissionProfiles;
 
   static get instance() {
@@ -1042,5 +1042,3 @@ class MissionProfiles {
     return result;
   }
 }
-
-export default MissionProfiles;

@@ -10,7 +10,7 @@ import { CharacterType } from '../../src/common/characterType';
 import { Era } from '../../src/helpers/erasEnum';
 import { StationFrame } from '../../src/helpers/stationFrame';
 import { StationFrameModel } from '../../src/helpers/stationFrameModel';
-import PointAllocator from '../../src/helpers/pointAllocator';
+import { PointAllocator } from '../../src/helpers/pointAllocator';
 
 jest.mock('i18next', () => {
   const mockI18n: any = (key: string) => key;
@@ -33,8 +33,10 @@ jest.mock('i18next', () => {
 jest.mock('../../src/state/store', () => {
   const core2ndEdition = 1; // Source.Core2ndEdition
   return {
-    getState: () => ({ context: { sources: [core2ndEdition] } }),
-    dispatch: () => undefined,
+    store: {
+      getState: () => ({ context: { sources: [core2ndEdition] } }),
+      dispatch: () => undefined,
+    },
   };
 });
 

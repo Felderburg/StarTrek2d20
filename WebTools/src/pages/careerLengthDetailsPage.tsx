@@ -6,15 +6,15 @@ import { CareersHelper } from '../helpers/careers';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../components/dialog';
 import { TalentDescription } from '../components/talentDescription';
-import ValueInput from '../components/valueInput';
+import { ValueInput } from '../components/valueInput';
 import { TalentsHelper } from '../helpers/talents';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import SingleTalentSelectionList from '../components/singleTalentSelectionList';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { SingleTalentSelectionList } from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { Career } from '../helpers/careerEnum';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   StepContext,
   addCharacterTalent,
@@ -30,7 +30,7 @@ import { hasSource, isSecondEdition } from '../state/contextFunctions';
 import { Source } from '../helpers/sources';
 import { RankedTalent } from '../helpers/rankedTalent';
 
-const CareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
+const CareerLengthDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -213,4 +213,6 @@ const CareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(CareerLengthDetailsPage);
+export const CareerLengthDetailsPage = connect(characterMapStateToProperties)(
+  CareerLengthDetailsPageBase,
+);

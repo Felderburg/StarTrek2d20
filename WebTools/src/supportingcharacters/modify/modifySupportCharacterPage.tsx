@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import type { ICharacterPageProperties } from '../../common/iCharacterPageProperties';
 import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
@@ -14,17 +14,17 @@ import {
   DropDownSelect,
 } from '../../components/dropDownInput';
 import { SupportingCharacterModificationType } from './supportingCharacterModificationType';
-import ValueInput from '../../components/valueInput';
+import { ValueInput } from '../../components/valueInput';
 import { useNavigate } from 'react-router';
 import { Dialog } from '../../components/dialog';
 import { randomUniqueValue } from '../../solo/table/valueRandomTable';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { marshaller } from '../../helpers/marshaller';
 import { modifyCharacterAddAdvancement } from '../../state/characterActions';
 import type { Attribute } from '../../helpers/attributes';
 import { SimpleAttributeSelector } from '../../components/simpleAttributeSelector';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
-import D20IconButton from '../../solo/component/d20IconButton';
+import { D20IconButton } from '../../solo/component/d20IconButton';
 import { focusRandomTable } from '../../solo/table/focusRandomTable';
 import { TalentDescription } from '../../components/talentDescription';
 import { ModalControl } from '../../components/modal';
@@ -33,7 +33,7 @@ import { PromotionView } from '../../modify/page/promotionView';
 import { ModifyDepartmentView } from './modifyDepartmentView';
 import { saveCharacterToLocalStorage } from '../../state/savedConstructActions';
 import { CharacterAdvancementChoice } from '../../modify/model/characterAdvancementChoice';
-import SimpleTalentSelectionList from '../../components/simpleTalentSelectionList';
+import { SimpleTalentSelectionList } from '../../components/simpleTalentSelectionList';
 import type { SelectedTalent } from '../../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
 import { ModificationType } from '../../modify/model/modificationType';
@@ -43,7 +43,7 @@ import {
 } from './additionalTalentInfo';
 import { TalentsHelper } from '../../helpers/talents';
 
-const ModifySupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
+const ModifySupportingCharacterPageBase: React.FC<ICharacterPageProperties> = ({
   character,
 }) => {
   const ALLOWED_IMPROVEMENT_COUNT = [1, 1, 3, 4, 4];
@@ -583,6 +583,6 @@ const ModifySupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   }
 };
 
-export default connect(characterMapStateToProperties)(
-  ModifySupportingCharacterPage,
-);
+export const ModifySupportingCharacterPage = connect(
+  characterMapStateToProperties,
+)(ModifySupportingCharacterPageBase);

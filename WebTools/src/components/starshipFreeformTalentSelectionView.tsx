@@ -14,7 +14,7 @@ import {
   TalentsHelper,
 } from '../helpers/talents';
 import { ModalControl } from './modal';
-import SimpleTalentSelectionList from './simpleTalentSelectionList';
+import { SimpleTalentSelectionList } from './simpleTalentSelectionList';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
 import { StarshipDepartmentSelector } from './simpleDepartmentSelector';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
@@ -23,7 +23,7 @@ import { DropDownElement, DropDownSelect } from './dropDownInput';
 import type { PropulsionSystemType } from '../helpers/propulsionSystem';
 import { PropulsionSystemModel } from '../helpers/propulsionSystem';
 import { Weapon } from '../helpers/weapons';
-import AddWeaponView, { AddWeaponMode } from '../starship/view/addWeaponView';
+import { AddWeaponView, AddWeaponMode } from '../starship/view/addWeaponView';
 
 interface IStarshipFreeformTalentSelectionProperties {
   starship: Starship;

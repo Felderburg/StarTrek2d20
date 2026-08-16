@@ -4,15 +4,15 @@ import { starshipMapStateToProperties } from './soloCharacterProperties';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
 import { Header } from '../../components/header';
-import SoloStarshipBreadcrumbs from '../component/soloStarshipBreadcrumbs';
+import { SoloStarshipBreadcrumbs } from '../component/soloStarshipBreadcrumbs';
 import Button from 'react-bootstrap/Button';
-import replaceDiceWithArrowhead from '../../common/arrowhead';
+import { replaceDiceWithArrowhead } from '../../common/arrowhead';
 import { CheckBox } from '../../components/checkBox';
 import type { TalentModel } from '../../helpers/talentModel';
 import { CenturyPrerequisite, TalentsHelper } from '../../helpers/talents';
 import { Source } from '../../helpers/sources';
 import { ServiceYearPrerequisite } from '../../helpers/prerequisite';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setAdditionalTalents } from '../../state/starshipActions';
 import { Dialog } from '../../components/dialog';
 import { Navigation } from '../../common/navigator';
@@ -25,7 +25,7 @@ interface ISoloStarshipTalentsProperties {
   starship: Starship;
 }
 
-const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({
+const SoloStarshipTalentsPageBase: React.FC<ISoloStarshipTalentsProperties> = ({
   starship,
 }) => {
   const { t } = useTranslation();
@@ -190,4 +190,6 @@ const SoloStarshipTalentsPage: React.FC<ISoloStarshipTalentsProperties> = ({
   );
 };
 
-export default connect(starshipMapStateToProperties)(SoloStarshipTalentsPage);
+export const SoloStarshipTalentsPage = connect(starshipMapStateToProperties)(
+  SoloStarshipTalentsPageBase,
+);

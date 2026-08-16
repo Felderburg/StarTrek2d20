@@ -5,7 +5,7 @@ import type { Specialization } from '../common/specializationEnum';
 import { Starship } from '../common/starship';
 import type { Station } from '../common/station';
 import type { Creature } from '../creature/model/creature';
-import store from '../state/store';
+import { store } from '../state/store';
 import { Career } from './careerEnum';
 import type { Era } from './erasEnum';
 import type { Role } from './roles';

@@ -9,7 +9,7 @@ import type { ICharacterProperties } from '../solo/page/soloCharacterProperties'
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { Header } from './header';
 import { connect } from 'react-redux';
-import store from '../state/store';
+import { store } from '../state/store';
 import { setCharacterSpecies } from '../state/characterActions';
 import { useTranslation } from 'react-i18next';
 import { Dialog } from './dialog';
@@ -17,7 +17,7 @@ import { Navigation } from '../common/navigator';
 import { PageIdentity } from '../pages/pageIdentity';
 import { makeKey } from '../common/translationKey';
 
-const MixedSpeciesSelection: React.FC<ICharacterProperties> = ({
+const MixedSpeciesSelectionBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -242,4 +242,6 @@ const MixedSpeciesSelection: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(MixedSpeciesSelection);
+export const MixedSpeciesSelection = connect(characterMapStateToProperties)(
+  MixedSpeciesSelectionBase,
+);

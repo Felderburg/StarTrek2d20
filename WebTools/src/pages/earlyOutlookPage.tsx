@@ -4,9 +4,9 @@ import { PageIdentity } from './pageIdentity';
 import type { EarlyOutlook, EarlyOutlookModel } from '../helpers/upbringings';
 import { UpbringingsHelper } from '../helpers/upbringings';
 import Button from 'react-bootstrap/Button';
-import InstructionText from '../components/instructionText';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import store from '../state/store';
+import { InstructionText } from '../components/instructionText';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { store } from '../state/store';
 import { setCharacterEarlyOutlook } from '../state/characterActions';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
@@ -34,7 +34,9 @@ enum EarlyOutlookTab {
   Aspirations,
 }
 
-const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
+const EarlyOutlookPageBase: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
   const determineInitialTab = (outlook?: EarlyOutlook) => {
     if (outlook == null && !isKlingonWarriorType(character.type)) {
       return EarlyOutlookTab.Upbringings;
@@ -450,4 +452,6 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(EarlyOutlookPage);
+export const EarlyOutlookPage = connect(characterMapStateToProperties)(
+  EarlyOutlookPageBase,
+);

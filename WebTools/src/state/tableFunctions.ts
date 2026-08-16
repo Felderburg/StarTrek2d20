@@ -1,5 +1,5 @@
-import TableMarshaller from '../table/model/tableMarshaller';
-import store from './store';
+import { TableMarshaller } from '../table/model/tableMarshaller';
+import { store } from './store';
 
 export const isTableCollectionAlreadyImported = (
   uuid: string,

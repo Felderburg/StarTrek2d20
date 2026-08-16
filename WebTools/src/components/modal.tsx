@@ -11,7 +11,7 @@ interface IModalProperties {
   header: string;
 }
 
-const ModalBox: React.FC<IModalProperties> = ({
+export const ModalBox: React.FC<IModalProperties> = ({
   size,
   show,
   onClose,
@@ -28,8 +28,6 @@ const ModalBox: React.FC<IModalProperties> = ({
     </Modal>
   );
 };
-
-export default ModalBox;
 
 class ModalDialogControl {
   static rootElement;

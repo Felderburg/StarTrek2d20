@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
 import { PageIdentity } from '../../pages/pageIdentity';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import ReactMarkdown from 'react-markdown';
 import type { SafetySection } from '../model/safetySection';
 import { SafetySections } from '../model/safetySection';
@@ -11,7 +11,7 @@ import {
   SafetyEvaluationType,
 } from '../model/safetyEvaluation';
 import { connect } from 'react-redux';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setSafetyEvaluation } from '../../state/safetyActions';
 import { useNavigate } from 'react-router';
 import { preventDefaultAnchorEvent } from '../../common/navigator';
@@ -111,7 +111,7 @@ interface ISafetyChecklistPageProperties {
   evaluation: { [key: string]: SafetyEvaluationType };
 }
 
-const SafetyChecklistPage: React.FC<ISafetyChecklistPageProperties> = ({
+const SafetyChecklistPageBase: React.FC<ISafetyChecklistPageProperties> = ({
   evaluation,
 }) => {
   const { t } = useTranslation();
@@ -201,4 +201,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SafetyChecklistPage);
+export const SafetyChecklistPage = connect(mapStateToProps)(
+  SafetyChecklistPageBase,
+);

@@ -1,17 +1,17 @@
 import toast from 'react-hot-toast';
 import { AccessingView } from '../../common/accessingView';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { isTableCollectionAlreadyImported } from '../../state/tableFunctions';
-import TableMarshaller from '../model/tableMarshaller';
+import { TableMarshaller } from '../model/tableMarshaller';
 import { useNavigate } from 'react-router';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   importTableCollection,
   setTableCollectionSelection,
 } from '../../state/tableActions';
 
-const ImportTablePage = () => {
+export const ImportTablePage = () => {
   const navigate = useNavigate();
 
   const url = new URL(window.location.href);
@@ -46,5 +46,3 @@ const ImportTablePage = () => {
     </LcarsFrame>
   );
 };
-
-export default ImportTablePage;

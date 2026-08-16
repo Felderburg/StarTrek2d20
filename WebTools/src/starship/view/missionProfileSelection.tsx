@@ -4,7 +4,7 @@ import type { Starship } from '../../common/starship';
 import { CheckBox } from '../../components/checkBox';
 import { Department } from '../../helpers/department';
 import type { MissionProfileModel } from '../../helpers/missionProfiles';
-import MissionProfiles from '../../helpers/missionProfiles';
+import { MissionProfiles } from '../../helpers/missionProfiles';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
 import { StatView } from '../../components/StatView';
@@ -17,7 +17,7 @@ interface IMissionProfileSelectionProperties extends WithTranslation {
   onSelection: (s: MissionProfileModel) => void;
 }
 
-class MissionProfileSelection extends React.Component<
+class MissionProfileSelectionBase extends React.Component<
   IMissionProfileSelectionProperties,
   {}
 > {
@@ -145,4 +145,6 @@ class MissionProfileSelection extends React.Component<
   }
 }
 
-export default withTranslation()(MissionProfileSelection);
+export const MissionProfileSelection = withTranslation()(
+  MissionProfileSelectionBase,
+);

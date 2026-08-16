@@ -4,14 +4,14 @@ import { characterMapStateToProperties } from '../../solo/page/soloCharacterProp
 import { makeKey } from '../../common/translationKey';
 import { StatControl } from '../../starship/view/statControl';
 import { Department } from '../../helpers/department';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setNpcCharacterDepartments } from '../../state/characterActions';
 import { useEffect } from 'react';
 import { NpcType, NpcTypes } from '../model/npcType';
 import { connect } from 'react-redux';
 import { Character } from '../../common/character';
 
-const MajorNpcDepartmentView: React.FC<ICharacterProperties> = ({
+const MajorNpcDepartmentViewBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -165,4 +165,6 @@ const MajorNpcDepartmentView: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(MajorNpcDepartmentView);
+export const MajorNpcDepartmentView = connect(characterMapStateToProperties)(
+  MajorNpcDepartmentViewBase,
+);

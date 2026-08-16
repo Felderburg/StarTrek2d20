@@ -2,9 +2,9 @@ import { makeKey } from '../../common/translationKey';
 import { ExtraType } from './extrasTypeEnum';
 import { HairType } from './hairTypeEnum';
 import { ReferenceHead, SimpleNeck } from './headCatalog';
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
-import Swatch from './swatch';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 
 interface HairParts {
@@ -905,7 +905,7 @@ class HairItem {
   }
 }
 
-class HairCatalog {
+export class HairCatalog {
   private static singleton: HairCatalog;
 
   items = [
@@ -1151,5 +1151,3 @@ class HairCatalog {
     return result;
   }
 }
-
-export default HairCatalog;

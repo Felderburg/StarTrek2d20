@@ -23,7 +23,7 @@ export class CharacterAdvancementModel {
   }
 }
 
-class CharacterAdvancements {
+export class CharacterAdvancements {
   static singleton: CharacterAdvancements;
 
   private items: CharacterAdvancementModel[] = [
@@ -52,5 +52,3 @@ class CharacterAdvancements {
     return [this.items[0]];
   }
 }
-
-export default CharacterAdvancements;

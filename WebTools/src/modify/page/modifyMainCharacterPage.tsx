@@ -6,7 +6,7 @@ import { ModifyBreadcrumb } from '../modifyBreadcrumb';
 import { Button, Carousel } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { PageIdentity } from '../../pages/pageIdentity';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import {
   DropDownElement,
   DropDownSelect,
@@ -15,7 +15,7 @@ import { ModificationType } from '../model/modificationType';
 import Markdown from 'react-markdown';
 import { useState } from 'react';
 import { PromotionView } from './promotionView';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { marshaller } from '../../helpers/marshaller';
 import { useNavigate } from 'react-router';
 import { CharacterAdvancementType } from '../model/characterAdvancementType';
@@ -42,7 +42,7 @@ enum Step {
   Finish,
 }
 
-const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
+const ModifyMainCharacterPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const dropDownItems = () => {
@@ -520,4 +520,6 @@ const ModifyMainCharacterPage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(ModifyMainCharacterPage);
+export const ModifyMainCharacterPage = connect(characterMapStateToProperties)(
+  ModifyMainCharacterPageBase,
+);

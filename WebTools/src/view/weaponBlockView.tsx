@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import type { Construct } from '../common/construct';
 import { Header } from '../components/header';
-import WeaponView from '../components/weaponView';
+import { WeaponView } from '../components/weaponView';
 
 interface IWeaponBlockViewProperties {
   construct: Construct;
 }
 
-const WeaponBlockView: React.FC<IWeaponBlockViewProperties> = ({
+export const WeaponBlockView: React.FC<IWeaponBlockViewProperties> = ({
   construct,
 }) => {
   const { t } = useTranslation();
@@ -36,5 +36,3 @@ const WeaponBlockView: React.FC<IWeaponBlockViewProperties> = ({
     return null;
   }
 };
-
-export default WeaponBlockView;

@@ -10,7 +10,7 @@ interface ICreatureStatBlockProperties {
   creature: Creature;
 }
 
-const CreatureStatBlock: React.FC<ICreatureStatBlockProperties> = ({
+export const CreatureStatBlock: React.FC<ICreatureStatBlockProperties> = ({
   creature,
 }) => {
   const { t } = useTranslation();
@@ -167,5 +167,3 @@ const CreatureStatBlock: React.FC<ICreatureStatBlockProperties> = ({
     </>
   );
 };
-
-export default CreatureStatBlock;

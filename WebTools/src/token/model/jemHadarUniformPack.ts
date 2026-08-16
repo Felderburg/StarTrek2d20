@@ -1,9 +1,9 @@
 import { BaseNeckProvider } from './baseNeckProvider';
 import { BodyType } from './bodyTypeEnum';
-import SpeciesRestrictions from './speciesRestrictions';
-import Swatch from './swatch';
+import { SpeciesRestrictions } from './speciesRestrictions';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
-import UniformCatalog from './uniformCatalog';
+import { UniformCatalog } from './uniformCatalog';
 import { UniformEra } from './uniformEra';
 import type { IUniformPack } from './uniformPack';
 

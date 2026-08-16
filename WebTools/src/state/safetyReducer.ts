@@ -3,7 +3,7 @@ import { SET_SAFETY_EVALUATION } from './safetyActions';
 
 const initialState: { [key: string]: SafetyEvaluationType } = {};
 
-const safety = (state: any = initialState, action) => {
+export const safety = (state: any = initialState, action) => {
   switch (action.type) {
     case SET_SAFETY_EVALUATION: {
       const category = action.payload.category;
@@ -18,5 +18,3 @@ const safety = (state: any = initialState, action) => {
       return state;
   }
 };
-
-export default safety;

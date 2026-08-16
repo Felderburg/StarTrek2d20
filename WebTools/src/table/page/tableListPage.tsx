@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { connect } from 'react-redux';
 import type { TableCollection } from '../model/table';
@@ -9,7 +9,7 @@ import {
   setTableCollectionSelection,
   setTableForEditing,
 } from '../../state/tableActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { useNavigate } from 'react-router';
 import { toCamelCase } from '../../common/camelCaseUtil';
 import { TableCollectionDescription } from './tableDescription';
@@ -19,7 +19,9 @@ interface ITableListPageProperties {
   collections: TableCollection[];
 }
 
-const TableListPage: React.FC<ITableListPageProperties> = ({ collections }) => {
+const TableListPageBase: React.FC<ITableListPageProperties> = ({
+  collections,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const categories = [];
@@ -121,4 +123,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(TableListPage);
+export const TableListPage = connect(mapStateToProps)(TableListPageBase);

@@ -11,7 +11,7 @@ interface ISkillProperties extends WithTranslation {
   character: Character;
 }
 
-class SkillView extends React.Component<ISkillProperties, {}> {
+class SkillViewBase extends React.Component<ISkillProperties, {}> {
   render() {
     const { skill, points, t, character } = this.props;
 
@@ -35,4 +35,4 @@ class SkillView extends React.Component<ISkillProperties, {}> {
   }
 }
 
-export default withTranslation()(SkillView);
+export const SkillView = withTranslation()(SkillViewBase);

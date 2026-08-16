@@ -3,7 +3,7 @@ import { Source, SourcesHelper } from '../helpers/sources';
 import { Character } from '../common/character';
 import { Navigation, navigateTo } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
-import store from '../state/store';
+import { store } from '../state/store';
 import { addSource, removeSource, setSources } from '../state/contextActions';
 import { connect } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -19,7 +19,7 @@ interface ISourceSelectionPageProperties {
   sources: Source[];
 }
 
-const SourceSelectionPage: React.FC<ISourceSelectionPageProperties> = ({
+const SourceSelectionPageBase: React.FC<ISourceSelectionPageProperties> = ({
   sources,
 }) => {
   let initialValue = sources.includes(Source.Core) ? 1 : 2;
@@ -251,4 +251,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SourceSelectionPage);
+export const SourceSelectionPage = connect(mapStateToProps)(
+  SourceSelectionPageBase,
+);

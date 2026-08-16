@@ -4,7 +4,7 @@ interface ID20IconButton {
   onClick: () => void;
 }
 
-const D20IconButton: React.FC<ID20IconButton> = ({ onClick }) => {
+export const D20IconButton: React.FC<ID20IconButton> = ({ onClick }) => {
   const defaultPurple = '#de84b7';
   const highlightColour = '#e59dc5';
   const [colour, setColour] = useState(defaultPurple);
@@ -59,5 +59,3 @@ const D20IconButton: React.FC<ID20IconButton> = ({ onClick }) => {
     </button>
   );
 };
-
-export default D20IconButton;

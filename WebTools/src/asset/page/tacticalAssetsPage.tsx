@@ -8,7 +8,7 @@ import {
 } from '../../components/dropDownInput';
 import { useState } from 'react';
 import { AssetType, AssetTypes } from '../assetType';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import type { Asset } from '../asset';
@@ -23,7 +23,7 @@ import {
 } from '../assetCatalog';
 import toast from 'react-hot-toast';
 
-const TacticalAssetsPage = () => {
+export const TacticalAssetsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [type, setType] = useState<string | AssetType>('');
@@ -248,5 +248,3 @@ const TacticalAssetsPage = () => {
     </LcarsFrame>
   );
 };
-
-export default TacticalAssetsPage;

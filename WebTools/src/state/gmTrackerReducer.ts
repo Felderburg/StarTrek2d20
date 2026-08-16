@@ -10,7 +10,10 @@ interface IGMTrackerState {
   characters: CharacterWithTracking[];
 }
 
-const gmTracker = (state: IGMTrackerState = { characters: [] }, action) => {
+export const gmTracker = (
+  state: IGMTrackerState = { characters: [] },
+  action,
+) => {
   switch (action.type) {
     case ADD_GM_TRACKED_CHARACTER:
       return {
@@ -73,5 +76,3 @@ const gmTracker = (state: IGMTrackerState = { characters: [] }, action) => {
       return state;
   }
 };
-
-export default gmTracker;

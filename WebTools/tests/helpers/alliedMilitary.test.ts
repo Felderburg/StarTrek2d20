@@ -1,5 +1,6 @@
 import { test, expect, describe } from '@jest/globals';
-import AllyHelper, {
+import {
+  AllyHelper,
   AlliedMilitary,
   AlliedMilitaryType,
   allAlliedMilitaryTypes,

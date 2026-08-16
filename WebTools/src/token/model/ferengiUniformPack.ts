@@ -2,11 +2,11 @@ import { Rank } from '../../helpers/ranks';
 import { Species } from '../../helpers/speciesEnum';
 import { BaseNeckProvider } from './baseNeckProvider';
 import { BodyType } from './bodyTypeEnum';
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
-import Swatch from './swatch';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
-import UniformCatalog from './uniformCatalog';
+import { UniformCatalog } from './uniformCatalog';
 import { UniformEra } from './uniformEra';
 import type { IUniformPack } from './uniformPack';
 

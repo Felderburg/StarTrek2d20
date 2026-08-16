@@ -36,12 +36,12 @@ import {
   AlliedMilitary,
   AlliedMilitaryType,
 } from '../../helpers/alliedMilitary';
-import AllyHelper from '../../helpers/alliedMilitary';
+import { AllyHelper } from '../../helpers/alliedMilitary';
 import { Specialization } from '../../common/specializationEnum';
 import { Track } from '../../helpers/trackEnum';
-import Governments, { Polity } from '../../helpers/governments';
+import { Governments, Polity } from '../../helpers/governments';
 import type { Era } from '../../helpers/erasEnum';
-import AgeHelper from '../../helpers/age';
+import { AgeHelper } from '../../helpers/age';
 import { SpeciesAbilityList } from '../../helpers/speciesAbility';
 import { SelectedTalent } from '../../common/selectedTalent';
 import { SpecialWeapon } from '../../common/specialWeapon';

@@ -1,6 +1,6 @@
 import { Species } from '../../helpers/speciesEnum';
 import { EyeType } from './eyeTypeEnum';
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import type { TokenModel } from './tokenModel';
 import { SpeciesOption } from './speciesOptionEnum';
 import { svgTranslationHelper } from './svgTranslationHelper';
@@ -449,7 +449,7 @@ const CardassianBrows = `<g>
     <path d="m 255.59866,110.36 c -0.16533,-0.80267 -0.252,-1.88667 0.79467,-2.08934 0.53066,-0.0213 0.932,0.18134 1.432,0.0467 1.196,-0.24267 2.352,0.0107 3.15466,1.01067 0,0 -0.04,0.12666 -0.04,0.12666 -0.66,0.29067 -1.21866,0.32534 -1.75466,0.268 -0.52,-0.12133 -1.02,-0.30933 -1.49734,-0.68933 -0.29733,-0.22267 -0.796,-0.484 -0.98,-0.0907 0.052,0.40134 -0.148,1.18934 -1.00133,1.49467 0,0.003 -0.108,-0.0773 -0.108,-0.0773 z" id="path40" style="opacity:0.5;fill:#000000;fill-opacity:1;stroke-width:1.33333"/>
 </g>`;
 
-class EyeBrowCatalog {
+export class EyeBrowCatalog {
   private static singleton: EyeBrowCatalog;
 
   public static get instance() {
@@ -692,4 +692,3 @@ class EyeBrowCatalog {
     );
   }
 }
-export default EyeBrowCatalog;

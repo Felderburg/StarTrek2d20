@@ -1,13 +1,13 @@
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
-import SpeciesPage from '../../pages/speciesPage';
+import { SpeciesPage } from '../../pages/speciesPage';
 import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
-const NpcSpeciesSelectionPage: React.FC<ICharacterProperties> = ({
+const NpcSpeciesSelectionPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const navigate = useNavigate();
@@ -31,4 +31,6 @@ const NpcSpeciesSelectionPage: React.FC<ICharacterProperties> = ({
   }
 };
 
-export default connect(characterMapStateToProperties)(NpcSpeciesSelectionPage);
+export const NpcSpeciesSelectionPage = connect(characterMapStateToProperties)(
+  NpcSpeciesSelectionPageBase,
+);

@@ -12,9 +12,9 @@ import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
 import { useState } from 'react';
 import { speciesRandomTable } from '../table/speciesRandomTable';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setCharacterSpecies } from '../../state/characterActions';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
 import type { Character } from '../../common/character';
 import type { Era } from '../../helpers/erasEnum';
 
@@ -23,7 +23,7 @@ interface ISoloSpeciesPageProperties {
   character: Character;
 }
 
-const SoloSpeciesPage: React.FC<ISoloSpeciesPageProperties> = ({
+const SoloSpeciesPageBase: React.FC<ISoloSpeciesPageProperties> = ({
   era,
   character,
 }) => {
@@ -168,4 +168,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SoloSpeciesPage);
+export const SoloSpeciesPage = connect(mapStateToProps)(SoloSpeciesPageBase);

@@ -10,7 +10,7 @@ import { Species } from '../helpers/speciesEnum';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { Source, SourcesHelper } from '../helpers/sources';
-import InstructionText from './instructionText';
+import { InstructionText } from './instructionText';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
@@ -32,7 +32,7 @@ interface ISpeciesSelectionProperties extends ICharacterProperties {
   onSelection: (species: Species) => void;
 }
 
-const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({
+const SpeciesSelectionBase: React.FC<ISpeciesSelectionProperties> = ({
   character,
   onSelection,
 }) => {
@@ -311,4 +311,6 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(SpeciesSelection);
+export const SpeciesSelection = connect(characterMapStateToProperties)(
+  SpeciesSelectionBase,
+);

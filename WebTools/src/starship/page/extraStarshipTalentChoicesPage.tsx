@@ -6,12 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import type { IStarshipProperties } from '../iStarshipProperties';
 import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   nextStarshipWorkflowStep,
   setStarshipSpaceframeTalents,
 } from '../../state/starshipActions';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { StarshipDepartmentSelector } from '../../components/simpleDepartmentSelector';
 import { SelectedTalent } from '../../common/selectedTalent';
 import {
@@ -27,7 +27,7 @@ interface IExtraStarshipTalentChoicesProperties extends IStarshipProperties {
   workflow: ShipBuildWorkflow;
 }
 
-const ExtraStarshipTalentChoicesPage: React.FC<
+const ExtraStarshipTalentChoicesPageBase: React.FC<
   IExtraStarshipTalentChoicesProperties
 > = ({ starship, workflow }) => {
   let defaultTalent = null;
@@ -146,4 +146,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(ExtraStarshipTalentChoicesPage);
+export const ExtraStarshipTalentChoicesPage = connect(mapStateToProps)(
+  ExtraStarshipTalentChoicesPageBase,
+);

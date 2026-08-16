@@ -14,13 +14,13 @@ import {
 import { useNavigate } from 'react-router';
 import { hasSource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
 
-const SystemGenerationPage = () => {
+export const SystemGenerationPage = () => {
   const [region, setRegion] = useState(SpaceRegionModel.allRegions()[0].id);
   const [sectorType, setSectorType] = useState(SpecialSectors.GeneralExpanse);
   const { t } = useTranslation();
@@ -115,5 +115,3 @@ const SystemGenerationPage = () => {
     </LcarsFrame>
   );
 };
-
-export default SystemGenerationPage;

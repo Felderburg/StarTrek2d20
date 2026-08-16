@@ -12,7 +12,7 @@ interface IStarViewProperties extends IPageProperties {
   orbitalRadius?: number;
 }
 
-class StarView extends React.Component<IStarViewProperties, {}> {
+export class StarView extends React.Component<IStarViewProperties, {}> {
   render() {
     return this.props.star ? (
       <div className="col mb-4 pe-3">
@@ -87,5 +87,3 @@ class StarView extends React.Component<IStarViewProperties, {}> {
     );
   }
 }
-
-export default StarView;

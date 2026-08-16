@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { setStarSystemName } from '../../state/starActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { StarSystem } from '../table/starSystem';
 import { EditableHeader } from '../view/editableHeader';
-import NotablePhenomenonView from '../view/notablePhenomenonView';
-import StarView from '../view/starView';
-import SystemMapLowerView from '../view/systemMapLowerView';
-import SystemMapUpperView from '../view/systemMapUpperView';
-import WorldView from '../view/worldView';
+import { NotablePhenomenonView } from '../view/notablePhenomenonView';
+import { StarView } from '../view/starView';
+import { SystemMapLowerView } from '../view/systemMapLowerView';
+import { SystemMapUpperView } from '../view/systemMapUpperView';
+import { WorldView } from '../view/worldView';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { LoadingButton } from '../../common/loadingButton';
 import { Link } from 'react-router-dom';
@@ -24,7 +24,7 @@ interface IStarSystemDetailsPageProperties {
   starSystem?: StarSystem;
 }
 
-const StarSystemDetailsPage: React.FC<IStarSystemDetailsPageProperties> = ({
+const StarSystemDetailsPageBase: React.FC<IStarSystemDetailsPageProperties> = ({
   starSystem,
 }) => {
   const { t } = useTranslation();
@@ -192,4 +192,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(StarSystemDetailsPage);
+export const StarSystemDetailsPage = connect(mapStateToProps)(
+  StarSystemDetailsPageBase,
+);

@@ -1,24 +1,25 @@
-import EarCatalog from './model/earCatalog';
-import ExtrasCatalog from './model/extrasCatalog';
+import { EarCatalog } from './model/earCatalog';
+import { ExtrasCatalog } from './model/extrasCatalog';
 import { ExtraCategory } from './model/extrasTypeEnum';
-import EyeBrowCatalog from './model/eyeBrowCatalog';
-import EyeCatalog from './model/eyeCatalog';
-import FacialHairCatalog from './model/facialHairCatalog';
+import { EyeBrowCatalog } from './model/eyeBrowCatalog';
+import { EyeCatalog } from './model/eyeCatalog';
+import { FacialHairCatalog } from './model/facialHairCatalog';
 import { FacialHairCategory } from './model/facialHairEnum';
-import HairCatalog, { HairElement } from './model/hairCatalog';
-import HeadCatalog from './model/headCatalog';
-import MouthCatalog from './model/mouthCatalog';
-import NasoLabialFoldCatalog from './model/nasoLabialFoldCatalog';
-import NoseCatalog from './model/noseCatalog';
-import ProstheticCatalog, {
+import { HairCatalog, HairElement } from './model/hairCatalog';
+import { HeadCatalog } from './model/headCatalog';
+import { MouthCatalog } from './model/mouthCatalog';
+import { NasoLabialFoldCatalog } from './model/nasoLabialFoldCatalog';
+import { NoseCatalog } from './model/noseCatalog';
+import {
+  ProstheticCatalog,
   ProstheticPlacement,
 } from './model/prostheticCatalog';
-import RankIndicatorCatalog from './model/rankIndicatorCatalog';
-import SpeciesRestrictions from './model/speciesRestrictions';
+import { RankIndicatorCatalog } from './model/rankIndicatorCatalog';
+import { SpeciesRestrictions } from './model/speciesRestrictions';
 import type { TokenModel } from './model/tokenModel';
-import UniformCatalog from './model/uniformCatalog';
+import { UniformCatalog } from './model/uniformCatalog';
 import { UniformEra } from './model/uniformEra';
-import UniformPackCollection from './model/uniformPackCollection';
+import { UniformPackCollection } from './model/uniformPackCollection';
 
 const EnterpriseEraStarfleetLogoGradient = `<radialGradient xmlns="http://www.w3.org/2000/svg" id="blueSpaceBackground" cx="314.99219" cy="293.60739" r="229.5562" fx="314.99219" fy="293.60739" gradientUnits="userSpaceOnUse" gradientTransform="matrix(0.18219681,0,0,0.18219681,278.71109,288.43675)">
     <stop offset="0" style="stop-color:#4279b3;stop-opacity:1;" id="stop1320"/>

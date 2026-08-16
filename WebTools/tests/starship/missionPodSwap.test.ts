@@ -1,11 +1,11 @@
 import { test, expect, describe } from '@jest/globals';
 import '../../src/helpers/species';
-import starshipReducer from '../../src/state/starshipReducer';
+import { starshipReducer } from '../../src/state/starshipReducer';
 import { setStarshipMissionPod } from '../../src/state/starshipActions';
 import { Starship, MissionProfileStep } from '../../src/common/starship';
 import { CharacterType } from '../../src/common/characterType';
 import { Era } from '../../src/helpers/erasEnum';
-import MissionProfiles from '../../src/helpers/missionProfiles';
+import { MissionProfiles } from '../../src/helpers/missionProfiles';
 import { MissionPodHelper } from '../../src/helpers/missionPods';
 import { SelectedTalent } from '../../src/common/selectedTalent';
 
@@ -30,8 +30,10 @@ jest.mock('i18next', () => {
 jest.mock('../../src/state/store', () => {
   const core2ndEdition = 1;
   return {
-    getState: () => ({ context: { sources: [core2ndEdition] } }),
-    dispatch: () => undefined,
+    store: {
+      getState: () => ({ context: { sources: [core2ndEdition] } }),
+      dispatch: () => undefined,
+    },
   };
 });
 

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
-import D20IconButton from '../solo/component/d20IconButton';
+import { D20IconButton } from '../solo/component/d20IconButton';
 
 export interface IValueInput {
   value?: string;
@@ -11,7 +11,7 @@ export interface IValueInput {
   labelName?: string;
 }
 
-const ValueInput: React.FC<IValueInput> = ({
+export const ValueInput: React.FC<IValueInput> = ({
   textDescription,
   id,
   value,
@@ -43,5 +43,3 @@ const ValueInput: React.FC<IValueInput> = ({
     </>
   );
 };
-
-export default ValueInput;

@@ -2,24 +2,24 @@ import React, { useEffect, useState } from 'react';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import { getNameAndShortRankOf } from '../helpers/ranks';
-import CharacterStatBlock from './characterStatBlock';
+import { CharacterStatBlock } from './characterStatBlock';
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
-import ValuesBlockView from './valuesBlockView';
-import StressOrShieldsView from './stressOrShieldsView';
-import FocusBlockView from './focusBlockView';
-import WeaponBlockView from './weaponBlockView';
+import { ValuesBlockView } from './valuesBlockView';
+import { StressOrShieldsView } from './stressOrShieldsView';
+import { FocusBlockView } from './focusBlockView';
+import { WeaponBlockView } from './weaponBlockView';
 import { VttSelectionDialog } from '../vtt/view/VttSelectionDialog';
-import SpeciesAbilityBlockView from './speciesAbilityBlockView';
+import { SpeciesAbilityBlockView } from './speciesAbilityBlockView';
 import { LoadingButton } from '../common/loadingButton';
-import store from '../state/store';
+import { store } from '../state/store';
 import { setCharacter } from '../state/characterActions';
 import { useNavigate } from 'react-router';
-import TalentsBlockView from './talentsBlockView';
+import { TalentsBlockView } from './talentsBlockView';
 import Button from 'react-bootstrap/Button';
 import { cyrb53 } from '../common/cyrb53';
 import { originalEncodedSheet } from './originalEncodedSheet';
 
-const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({
+export const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({
   character,
 }) => {
   useEffect(() => {
@@ -202,5 +202,3 @@ const SupportingCharacterView: React.FC<ICharacterPageProperties> = ({
     </main>
   );
 };
-
-export default SupportingCharacterView;

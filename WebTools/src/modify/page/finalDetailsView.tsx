@@ -2,7 +2,7 @@ import React from 'react';
 import type { TFunction } from 'i18next';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import { Header } from '../../components/header';
-import D20IconButton from '../../solo/component/d20IconButton';
+import { D20IconButton } from '../../solo/component/d20IconButton';
 import type { Character } from '../../common/character';
 
 interface IFinalDetailsViewProperties {

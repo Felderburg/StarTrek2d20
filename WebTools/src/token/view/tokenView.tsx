@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useState } from 'react';
 import type { TokenConfig } from '../../common/character';
 import { LoadingSpinnerView } from '../../common/loadingSpinnerView';
-import SpeciesRestrictions from '../model/speciesRestrictions';
-import HeadCatalog from '../model/headCatalog';
-import UniformPackCollection from '../model/uniformPackCollection';
-import ExtrasCatalog from '../model/extrasCatalog';
+import { SpeciesRestrictions } from '../model/speciesRestrictions';
+import { HeadCatalog } from '../model/headCatalog';
+import { UniformPackCollection } from '../model/uniformPackCollection';
+import { ExtrasCatalog } from '../model/extrasCatalog';
 import { TokenSvgBuilder } from '../tokenSvgBuilder';
 
 interface ITokenViewProperties {
@@ -13,7 +13,7 @@ interface ITokenViewProperties {
   size?: 'sm' | 'md' | 'lg';
 }
 
-const TokenView: React.FC<ITokenViewProperties> = ({
+export const TokenView: React.FC<ITokenViewProperties> = ({
   tokenConfig,
   onClick,
 }) => {
@@ -79,5 +79,3 @@ const TokenView: React.FC<ITokenViewProperties> = ({
     );
   }
 };
-
-export default TokenView;

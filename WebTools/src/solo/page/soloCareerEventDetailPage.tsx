@@ -4,7 +4,7 @@ import { Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   StepContext,
   setCharacterFinishingTouches,
@@ -18,11 +18,11 @@ import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import { AttributeView } from '../../components/attribute';
 import { AttributesHelper } from '../../helpers/attributes';
 import { makeKey } from '../../common/translationKey';
-import DisciplineListComponent from '../../components/disciplineListComponent';
-import AttributeListComponent from '../../components/attributeListComponent';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import { DisciplineListComponent } from '../../components/disciplineListComponent';
+import { AttributeListComponent } from '../../components/attributeListComponent';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
 import { Dialog } from '../../components/dialog';
-import D20IconButton from '../component/d20IconButton';
+import { D20IconButton } from '../component/d20IconButton';
 import { focusRandomTable } from '../table/focusRandomTable';
 import {
   CareerEventAttributeController,
@@ -36,7 +36,7 @@ interface ISoloCareerEventProperties extends ICharacterProperties {
   context: StepContext;
 }
 
-const SoloCareerEventDetailsPage: React.FC<ISoloCareerEventProperties> = ({
+const SoloCareerEventDetailsPageBase: React.FC<ISoloCareerEventProperties> = ({
   character,
   context,
 }) => {
@@ -176,6 +176,6 @@ const SoloCareerEventDetailsPage: React.FC<ISoloCareerEventProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(
-  SoloCareerEventDetailsPage,
-);
+export const SoloCareerEventDetailsPage = connect(
+  characterMapStateToProperties,
+)(SoloCareerEventDetailsPageBase);

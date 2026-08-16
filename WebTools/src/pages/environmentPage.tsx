@@ -4,7 +4,7 @@ import type { ICharacterProperties } from '../solo/page/soloCharacterProperties'
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { Environment, EnvironmentsHelper } from '../helpers/environments';
 import { setCharacterEnvironment } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import { Stereotype } from '../common/construct';
@@ -12,15 +12,15 @@ import { makeKey } from '../common/translationKey';
 import { Attribute } from '../helpers/attributes';
 import { Window } from '../common/window';
 import Button from 'react-bootstrap/Button';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../solo/component/soloCharacterBreadcrumbs';
 import { Header } from '../components/header';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import { connect } from 'react-redux';
 import { Department } from '../helpers/department';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 
-const EnvironmentPage: React.FC<ICharacterProperties> = ({ character }) => {
+const EnvironmentPageBase: React.FC<ICharacterProperties> = ({ character }) => {
   const { t } = useTranslation();
   const [randomEnvironment, setRandomEnvironment] = useState(
     character?.environmentStep &&
@@ -216,4 +216,6 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(EnvironmentPage);
+export const EnvironmentPage = connect(characterMapStateToProperties)(
+  EnvironmentPageBase,
+);

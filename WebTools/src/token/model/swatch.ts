@@ -1,7 +1,7 @@
 import i18next from 'i18next';
 import type { TokenModel } from './tokenModel';
 
-class Swatch {
+export class Swatch {
   id: number;
   name: string;
   svg: string | ((token: TokenModel) => string);
@@ -30,5 +30,3 @@ class Swatch {
     }
   }
 }
-
-export default Swatch;

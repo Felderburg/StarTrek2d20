@@ -3,7 +3,7 @@ import '../../src/helpers/species';
 import { Starship, MissionProfileStep } from '../../src/common/starship';
 import { CharacterType } from '../../src/common/characterType';
 import { Era } from '../../src/helpers/erasEnum';
-import MissionProfiles from '../../src/helpers/missionProfiles';
+import { MissionProfiles } from '../../src/helpers/missionProfiles';
 import { MissionPodHelper } from '../../src/helpers/missionPods';
 import { SelectedTalent } from '../../src/common/selectedTalent';
 import { marshaller } from '../../src/helpers/marshaller';
@@ -29,8 +29,10 @@ jest.mock('i18next', () => {
 jest.mock('../../src/state/store', () => {
   const core2ndEdition = 1;
   return {
-    getState: () => ({ context: { sources: [core2ndEdition] } }),
-    dispatch: () => undefined,
+    store: {
+      getState: () => ({ context: { sources: [core2ndEdition] } }),
+      dispatch: () => undefined,
+    },
   };
 });
 

@@ -2,9 +2,9 @@ import type { Rank } from '../../helpers/ranks';
 import { isCadetRank, isEnlistedRank, isFlagRank } from './rankHelper';
 import type { TokenModel } from './tokenModel';
 import { UniformEra } from './uniformEra';
-import UniformPackCollection from './uniformPackCollection';
+import { UniformPackCollection } from './uniformPackCollection';
 
-class RankIndicatorCatalog {
+export class RankIndicatorCatalog {
   private static singleton: RankIndicatorCatalog;
 
   public static get instance() {
@@ -100,5 +100,3 @@ class RankIndicatorCatalog {
     }
   }
 }
-
-export default RankIndicatorCatalog;

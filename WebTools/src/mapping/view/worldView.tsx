@@ -194,7 +194,7 @@ interface IWorldViewProperties extends IPageProperties {
   system: StarSystem;
 }
 
-class WorldView extends React.Component<IWorldViewProperties, {}> {
+export class WorldView extends React.Component<IWorldViewProperties, {}> {
   render() {
     const { world } = this.props;
     const attributes = world.attributeList;
@@ -212,5 +212,3 @@ class WorldView extends React.Component<IWorldViewProperties, {}> {
     );
   }
 }
-
-export default WorldView;

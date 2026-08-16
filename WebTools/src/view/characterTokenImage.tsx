@@ -1,14 +1,16 @@
 import { useNavigate } from 'react-router';
 import type { Character, TokenConfig } from '../common/character';
-import store from '../state/store';
+import { store } from '../state/store';
 import { createNewToken } from '../state/tokenActions';
 import { setCharacter } from '../state/characterActions';
 import { lazy, Suspense } from 'react';
 import { LoadingSpinnerView } from '../common/loadingSpinnerView';
 import { TokenModel } from '../token/model/tokenModel';
 
-const TokenView = lazy(
-  () => import(/* webpackChunkName: 'token' */ '../token/view/tokenView'),
+const TokenView = lazy(() =>
+  import(/* webpackChunkName: 'token' */ '../token/view/tokenView').then(
+    (m) => ({ default: m.TokenView }),
+  ),
 );
 
 interface CharacterTokenImageProperties {

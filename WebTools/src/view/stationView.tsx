@@ -6,18 +6,17 @@ import { StatView } from '../components/StatView';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import type { Station } from '../common/station';
-import MissionProfiles from '../helpers/missionProfiles';
+import { MissionProfiles } from '../helpers/missionProfiles';
 import { ExportToPdfButton } from '../components/exportToPdfButton';
-import WeaponBlockView from './weaponBlockView';
-import TalentsBlockView from './talentsBlockView';
+import { WeaponBlockView } from './weaponBlockView';
+import { TalentsBlockView } from './talentsBlockView';
 import { VttSelectionDialog } from '../vtt/view/VttSelectionDialog';
 import { Button } from 'react-bootstrap';
 
-const OutlineImage = lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'
-    ),
+const OutlineImage = lazy(() =>
+  import(
+    /* webpackChunkName: 'spaceframeOutline' */ '../components/outlineImage'
+  ).then((m) => ({ default: m.OutlineImage })),
 );
 
 const NBSP = '\u00A0';
@@ -26,7 +25,7 @@ interface IStationViewProperties {
   station: Station;
 }
 
-const StationView: React.FC<IStationViewProperties> = ({ station }) => {
+export const StationView: React.FC<IStationViewProperties> = ({ station }) => {
   useEffect(() => {
     if (station.name) {
       document.title = station.name + ' - STAR TREK ADVENTURES';
@@ -350,5 +349,3 @@ const StationView: React.FC<IStationViewProperties> = ({ station }) => {
     </main>
   );
 };
-
-export default StationView;

@@ -1,5 +1,5 @@
 import { test, expect, describe } from '@jest/globals';
-import Eras from '../../src/helpers/eras';
+import { Eras } from '../../src/helpers/eras';
 import { Era } from '../../src/helpers/erasEnum';
 
 describe('testing era helper', () => {

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import type { EraModel } from '../../helpers/eras';
-import Eras, { eraDefaultYear } from '../../helpers/eras';
+import { Eras, eraDefaultYear } from '../../helpers/eras';
 import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
 import { navigateTo, Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { setEra } from '../../state/contextActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   eraRandomTable,
   eraRandomTableForStarships,
@@ -25,7 +25,7 @@ interface ISoloEraSelectionPage {
   stereotype: Stereotype;
 }
 
-const SoloEraSelectionPage: React.FC<ISoloEraSelectionPage> = ({
+export const SoloEraSelectionPage: React.FC<ISoloEraSelectionPage> = ({
   stereotype,
 }) => {
   const { t } = useTranslation();
@@ -152,5 +152,3 @@ const SoloEraSelectionPage: React.FC<ISoloEraSelectionPage> = ({
     </div>
   );
 };
-
-export default SoloEraSelectionPage;

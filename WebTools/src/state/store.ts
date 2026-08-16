@@ -1,15 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
-import characterReducer from './characterReducer';
-import star from './starReducer';
-import starshipReducer from './starshipReducer';
-import gmTracker from './gmTrackerReducer';
-import contextReducer from './contextReducer';
-import safetyReducer from './safetyReducer';
-import tokenReducer from './tokenReducer';
-import tableReducer from './tableReducer';
-import savedConstructReducer from './savedConstructReducer';
-import stationReducer from './stationReducer';
+import { characterReducer } from './characterReducer';
+import { star } from './starReducer';
+import { starshipReducer } from './starshipReducer';
+import { gmTracker } from './gmTrackerReducer';
+import { contextReducer } from './contextReducer';
+import { safety as safetyReducer } from './safetyReducer';
+import { token as tokenReducer } from './tokenReducer';
+import { tableReducer } from './tableReducer';
+import { savedConstructReducer } from './savedConstructReducer';
+import { stationReducer } from './stationReducer';
 
 const reducer = combineReducers({
   star: star,
@@ -23,10 +23,8 @@ const reducer = combineReducers({
   safety: safetyReducer,
   savedConstructReducer: savedConstructReducer,
 });
-const store = configureStore({
+export const store = configureStore({
   reducer: reducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }),
 });
-
-export default store;

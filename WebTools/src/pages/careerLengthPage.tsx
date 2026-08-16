@@ -6,24 +6,26 @@ import { characterMapStateToProperties } from '../solo/page/soloCharacterPropert
 import type { CareerModel } from '../helpers/careers';
 import { CareersHelper } from '../helpers/careers';
 import { setCharacterCareerLength } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import Button from 'react-bootstrap/Button';
 import { Window } from '../common/window';
-import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../solo/component/soloCharacterBreadcrumbs';
 import { Header } from '../components/header';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import { careerLengthRandomTable } from '../solo/table/careerLengthRandomTable';
 import { Stereotype } from '../common/construct';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { CharacterType } from '../common/characterType';
 import { ADVANCED_TEAM_DYNAMICS } from '../helpers/talents';
 import { Career } from '../helpers/careerEnum';
 import { D20 } from '../common/die';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 
-const CareerLengthPage: React.FC<ICharacterProperties> = ({ character }) => {
+const CareerLengthPageBase: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
   const { t } = useTranslation();
   const [randomLength, setRandomLength] = useState(
     character?.careerStep?.career,
@@ -154,4 +156,6 @@ const CareerLengthPage: React.FC<ICharacterProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(CareerLengthPage);
+export const CareerLengthPage = connect(characterMapStateToProperties)(
+  CareerLengthPageBase,
+);

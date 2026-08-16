@@ -54,7 +54,7 @@ export class AlliedMilitary {
   }
 }
 
-class AllyHelper {
+export class AllyHelper {
   static singleton: AllyHelper;
 
   static get instance() {
@@ -169,5 +169,3 @@ class AllyHelper {
     return result;
   }
 }
-
-export default AllyHelper;

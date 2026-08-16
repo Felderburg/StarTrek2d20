@@ -1,6 +1,6 @@
 import type { IPageFactoryRegistry } from '../../pages/pageFactory';
 import { PageIdentity } from '../../pages/pageIdentity';
-import NpcConfigurationPage from './npcConfigurationPage';
+import { NpcConfigurationPage } from './npcConfigurationPage';
 
 export class NpcPageFactory implements IPageFactoryRegistry {
   private static singleton;

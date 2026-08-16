@@ -1,12 +1,12 @@
 import type { Species } from '../../helpers/speciesEnum';
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import type { TokenModel } from './tokenModel';
 import type { UniformEra } from './uniformEra';
-import UniformPackCollection from './uniformPackCollection';
+import { UniformPackCollection } from './uniformPackCollection';
 
 export const DefaultRed = /#d30000/g;
 
-class UniformCatalog {
+export class UniformCatalog {
   private static singleton: UniformCatalog;
 
   public static get instance() {
@@ -65,5 +65,3 @@ class UniformCatalog {
     return result;
   }
 }
-
-export default UniformCatalog;

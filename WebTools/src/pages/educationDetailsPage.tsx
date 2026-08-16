@@ -6,19 +6,19 @@ import { TracksHelper } from '../helpers/tracks';
 import { Department } from '../helpers/department';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../components/dialog';
-import ValueInput from '../components/valueInput';
-import DepartmentView from '../components/skill';
+import { ValueInput } from '../components/valueInput';
+import { SkillView as DepartmentView } from '../components/skill';
 import { TalentsHelper } from '../helpers/talents';
 import { Header } from '../components/header';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import SingleTalentSelectionList from '../components/singleTalentSelectionList';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { SingleTalentSelectionList } from '../components/singleTalentSelectionList';
 import { Track } from '../helpers/trackEnum';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { useTranslation } from 'react-i18next';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import ReactMarkdown from 'react-markdown';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   StepContext,
   addCharacterTalent,
@@ -33,11 +33,11 @@ import {
   EducationPrimaryDisciplineController,
   EducationSecondaryDisciplineController,
 } from '../components/educationControllers';
-import AttributeListComponent from '../components/attributeListComponent';
-import DisciplineListComponent from '../components/disciplineListComponent';
+import { AttributeListComponent } from '../components/attributeListComponent';
+import { DisciplineListComponent } from '../components/disciplineListComponent';
 import { PageIdentity } from './pageIdentity';
 import { Stereotype } from '../common/construct';
-import D20IconButton from '../solo/component/d20IconButton';
+import { D20IconButton } from '../solo/component/d20IconButton';
 import { focusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { localizedFocus } from '../components/focusHelper';
 import type { SelectedTalent } from '../common/selectedTalent';
@@ -47,7 +47,7 @@ import { RankedTalent } from '../helpers/rankedTalent';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 
-const EducationDetailsPage: React.FC<ICharacterProperties> = ({
+const EducationDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -406,4 +406,6 @@ const EducationDetailsPage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(EducationDetailsPage);
+export const EducationDetailsPage = connect(characterMapStateToProperties)(
+  EducationDetailsPageBase,
+);

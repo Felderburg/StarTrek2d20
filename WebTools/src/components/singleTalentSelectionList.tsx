@@ -27,7 +27,7 @@ import {
   TALENT_NAME_WARRIORS_SPIRIT,
   TALENT_NAME_WISDOM_OF_YEARS,
 } from '../helpers/talents';
-import replaceDiceWithArrowhead from '../common/arrowhead';
+import { replaceDiceWithArrowhead } from '../common/arrowhead';
 import type { ITalent } from '../helpers/italent';
 import { SelectedTalent } from '../common/selectedTalent';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
@@ -35,7 +35,7 @@ import { SpecialWeapon } from '../common/specialWeapon';
 import { FocusSelectionView } from './focusSelectionView';
 import type { Character } from '../common/character';
 import { Department } from '../helpers/department';
-import ValueInput from './valueInput';
+import { ValueInput } from './valueInput';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import type { Construct } from '../common/construct';
 import { BorgImplants } from '../helpers/borgImplant';
@@ -56,7 +56,7 @@ import { PropulsionSystemModel } from '../helpers/propulsionSystem';
 import { Weapon } from '../helpers/weapons';
 import { Button } from 'react-bootstrap';
 import { ModalControl } from './modal';
-import AddWeaponView, { AddWeaponMode } from '../starship/view/addWeaponView';
+import { AddWeaponView, AddWeaponMode } from '../starship/view/addWeaponView';
 import { SimpleSystemSelector } from './simpleSystemSelector';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 
@@ -1033,12 +1033,9 @@ export const TalentSelectionRow: React.FC<ITalentSelectionRowProperties> = ({
   );
 };
 
-const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
-  talents,
-  construct,
-  initialSelection,
-  onSelection,
-}) => {
+export const SingleTalentSelectionList: React.FC<
+  ISingleTalentSelectionProperties
+> = ({ talents, construct, initialSelection, onSelection }) => {
   let original = null;
   if (initialSelection == null) {
     // do nothing
@@ -1083,5 +1080,3 @@ const SingleTalentSelectionList: React.FC<ISingleTalentSelectionProperties> = ({
 
   return <table className="selection-list">{talentList}</table>;
 };
-
-export default SingleTalentSelectionList;

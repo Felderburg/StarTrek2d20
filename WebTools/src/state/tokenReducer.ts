@@ -9,10 +9,10 @@ import { MouthType } from '../token/model/mouthTypeEnum';
 import { NasoLabialFoldType } from '../token/model/nasoLabialFoldTypeEnum';
 import { NoseType } from '../token/model/noseTypeEnum';
 import { SpeciesOption } from '../token/model/speciesOptionEnum';
-import SpeciesRestrictions from '../token/model/speciesRestrictions';
+import { SpeciesRestrictions } from '../token/model/speciesRestrictions';
 import type { Token } from '../token/model/token';
 import { UniformEra } from '../token/model/uniformEra';
-import UniformVariantRestrictions from '../token/model/uniformVariantRestrictions';
+import { UniformVariantRestrictions } from '../token/model/uniformVariantRestrictions';
 import { UniformVariantType } from '../token/model/uniformVariantTypeEnum';
 import {
   CREATE_NEW_TOKEN,
@@ -71,7 +71,7 @@ interface TokenState {
   bordered?: boolean;
 }
 
-const token = (state: TokenState = { token: initialState }, action) => {
+export const token = (state: TokenState = { token: initialState }, action) => {
   switch (action.type) {
     case SET_TOKEN_SECONDARY_SPECIES:
     case SET_TOKEN_SPECIES: {
@@ -546,5 +546,3 @@ const token = (state: TokenState = { token: initialState }, action) => {
       return state;
   }
 };
-
-export default token;

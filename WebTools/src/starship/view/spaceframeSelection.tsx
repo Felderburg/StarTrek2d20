@@ -27,7 +27,7 @@ interface ISpaceframeSelectionProperties {
   onSelection: (s: SpaceframeModel, variant?: SpaceframeVariant) => void;
 }
 
-const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({
+export const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({
   starship,
   initialSelection,
   onSelection,
@@ -257,5 +257,3 @@ const SpaceframeSelection: React.FC<ISpaceframeSelectionProperties> = ({
     </div>
   );
 };
-
-export default SpaceframeSelection;

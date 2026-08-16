@@ -7,7 +7,7 @@ import {
   overrideLanguage,
 } from '../i18n/config';
 
-const LanguageNotice = () => {
+export const LanguageNotice = () => {
   const { t } = useTranslation();
 
   return (
@@ -47,5 +47,3 @@ const LanguageNotice = () => {
     </div>
   );
 };
-
-export default LanguageNotice;

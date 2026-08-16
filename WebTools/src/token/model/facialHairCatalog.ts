@@ -1,7 +1,7 @@
 import { FacialHairCategory, FacialHairType } from './facialHairEnum';
 import { DefaultLip } from './mouthCatalog';
-import SpeciesRestrictions from './speciesRestrictions';
-import Swatch from './swatch';
+import { SpeciesRestrictions } from './speciesRestrictions';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 
 const SoulPatch = `<g>
@@ -129,7 +129,7 @@ class FacialHairItem {
   }
 }
 
-class FacialHairCatalog {
+export class FacialHairCatalog {
   private static singleton: FacialHairCatalog;
 
   items = [
@@ -353,5 +353,3 @@ class FacialHairCatalog {
     }
   }
 }
-
-export default FacialHairCatalog;

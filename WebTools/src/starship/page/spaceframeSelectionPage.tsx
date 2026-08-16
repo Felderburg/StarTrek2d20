@@ -10,18 +10,18 @@ import {
   nextStarshipWorkflowStep,
   setStarshipSpaceframe,
 } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
-import SpaceframeSelection from '../view/spaceframeSelection';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
+import { SpaceframeSelection } from '../view/spaceframeSelection';
 import { useTranslation } from 'react-i18next';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import {
   TALENT_NAME_DEDICATED_PERSONNEL,
   TALENT_NAME_REDUNDANT_SYSTEMS,
 } from '../../helpers/talents';
-import CustomSpaceframeView from '../view/customSpaceframeView';
-import PointAllocator from '../../helpers/pointAllocator';
+import { CustomSpaceframeView } from '../view/customSpaceframeView';
+import { PointAllocator } from '../../helpers/pointAllocator';
 import { BuildPoints } from '../model/buildPoints';
 import { SpaceframeModel } from '../../helpers/spaceframeModel';
 import { ShipBuildType } from '../../common/shipBuildType';
@@ -36,10 +36,9 @@ interface ISpaceframeSelectionPageProperties {
   workflow: ShipBuildWorkflow;
 }
 
-const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
-  starship,
-  workflow,
-}) => {
+const SpaceframeSelectionPageBase: React.FC<
+  ISpaceframeSelectionPageProperties
+> = ({ starship, workflow }) => {
   const { t } = useTranslation();
   const [tab, setTab] = useState<SpaceframeTab>(
     starship?.spaceframeStep?.model?.isCustom
@@ -195,4 +194,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SpaceframeSelectionPage);
+export const SpaceframeSelectionPage = connect(mapStateToProps)(
+  SpaceframeSelectionPageBase,
+);

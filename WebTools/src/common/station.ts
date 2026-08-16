@@ -1,8 +1,8 @@
 import { Department } from '../helpers/department';
 import type { Era } from '../helpers/erasEnum';
 import type { MissionProfile } from '../helpers/missionProfiles';
-import MissionProfiles from '../helpers/missionProfiles';
-import PointAllocator from '../helpers/pointAllocator';
+import { MissionProfiles } from '../helpers/missionProfiles';
+import { PointAllocator } from '../helpers/pointAllocator';
 import { StationFrame, StationFrameAppearance } from '../helpers/stationFrame';
 import { StationFrameModel } from '../helpers/stationFrameModel';
 import { System } from '../helpers/systems';

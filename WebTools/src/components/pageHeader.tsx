@@ -106,7 +106,7 @@ export const getPageTitle = (t, page) => {
   }
 };
 
-class PageHeader extends React.Component<IPageHeaderProperties, {}> {
+class PageHeaderBase extends React.Component<IPageHeaderProperties, {}> {
   render() {
     const title = getPageTitle(this.props.t, this.props.page);
 
@@ -114,4 +114,4 @@ class PageHeader extends React.Component<IPageHeaderProperties, {}> {
   }
 }
 
-export default withTranslation()(PageHeader);
+export const PageHeader = withTranslation()(PageHeaderBase);

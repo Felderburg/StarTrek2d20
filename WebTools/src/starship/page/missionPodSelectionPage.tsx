@@ -9,11 +9,11 @@ import {
   nextStarshipWorkflowStep,
   setStarshipMissionPod,
 } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import MissionPodSelection from '../view/missionPodSelection';
-import MissionPodReplacementSelection from '../view/missionPodReplacementSelection';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { MissionPodSelection } from '../view/missionPodSelection';
+import { MissionPodReplacementSelection } from '../view/missionPodReplacementSelection';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
 
@@ -22,7 +22,7 @@ interface IMissionPodSelectionPageProperties extends WithTranslation {
   workflow: ShipBuildWorkflow;
 }
 
-class MissionPodSelectionPage extends React.Component<
+class MissionPodSelectionPageBase extends React.Component<
   IMissionPodSelectionPageProperties,
   {}
 > {
@@ -71,6 +71,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default withTranslation()(
-  connect(mapStateToProps)(MissionPodSelectionPage),
+export const MissionPodSelectionPage = withTranslation()(
+  connect(mapStateToProps)(MissionPodSelectionPageBase),
 );

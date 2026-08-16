@@ -2,14 +2,14 @@ import React from 'react';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import Button from 'react-bootstrap/Button';
-import LanguageNotice from '../components/languageNotice';
+import { LanguageNotice } from '../components/languageNotice';
 import { isEnglishDefault } from '../i18n/config';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { Header } from '../components/header';
-import HomePageAnnouncement from '../components/homePageAnnouncement';
-import RecentCreationsView from '../components/recentCreationsView';
-import store from '../state/store';
+import { HomePageAnnouncement } from '../components/homePageAnnouncement';
+import { RecentCreationsView } from '../components/recentCreationsView';
+import { store } from '../state/store';
 import { createNewToken } from '../state/tokenActions';
 
 enum Tool {
@@ -19,7 +19,7 @@ enum Tool {
   OtherTools,
 }
 
-const SelectionPage = () => {
+export const SelectionPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -115,5 +115,3 @@ const SelectionPage = () => {
     </div>
   );
 };
-
-export default SelectionPage;

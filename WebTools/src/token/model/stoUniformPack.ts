@@ -4,14 +4,14 @@ import { BaseTngEraUniformPack } from './baseTngEraUniformPack';
 import { BodyType } from './bodyTypeEnum';
 import { DivisionColors } from './divisionColors';
 import { isEnlistedRank, isFlagRank } from './rankHelper';
-import RankIndicatorCatalog from './rankIndicatorCatalog';
-import SpeciesRestrictions from './speciesRestrictions';
-import Swatch from './swatch';
+import { RankIndicatorCatalog } from './rankIndicatorCatalog';
+import { SpeciesRestrictions } from './speciesRestrictions';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
-import UniformCatalog, { DefaultRed } from './uniformCatalog';
+import { UniformCatalog, DefaultRed } from './uniformCatalog';
 import { UniformEra } from './uniformEra';
 import type { IUniformPack } from './uniformPack';
-import UniformVariantRestrictions from './uniformVariantRestrictions';
+import { UniformVariantRestrictions } from './uniformVariantRestrictions';
 import { UniformVariantType } from './uniformVariantTypeEnum';
 
 const StoUniforms = {

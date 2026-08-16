@@ -1,7 +1,7 @@
 import { Species } from '../../helpers/speciesEnum';
 import { SpeciesOption } from './speciesOptionEnum';
-import SpeciesRestrictions from './speciesRestrictions';
-import SpeciesColors from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
+import { SpeciesRestrictions as SpeciesColors } from './speciesRestrictions';
 import type { TokenModel } from './tokenModel';
 
 export const StandardEar = `<g>
@@ -172,7 +172,7 @@ const CardassianEar = `<g>
     <path d="m 202.39466,130.36 c 0,0 -2.26,4.70933 -2.26,6.404 0,1.69466 0.188,5.83866 0.188,5.83866 0,0 -2.82533,-5.83866 -2.072,-7.53466 0.75334,-1.69467 4.144,-4.708 4.144,-4.708 z" id="path6" style="stroke-width:1.33333;fill:#000000;fill-opacity:1"/>
 </g>`;
 
-class EarCatalog {
+export class EarCatalog {
   private static singleton: EarCatalog;
 
   public static get instance() {
@@ -281,5 +281,3 @@ class EarCatalog {
     }
   }
 }
-
-export default EarCatalog;

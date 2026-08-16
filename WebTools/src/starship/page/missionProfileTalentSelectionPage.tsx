@@ -11,9 +11,9 @@ import {
   setStarshipMissionProfile,
   setStarshipMissionProfileTalent,
 } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { StatView } from '../../components/StatView';
@@ -23,7 +23,7 @@ import { AttributeView } from '../../components/attribute';
 import { allSystems, System } from '../../helpers/systems';
 import { CheckBox } from '../../components/checkBox';
 import { SelectedTalent } from '../../common/selectedTalent';
-import SingleTalentSelectionList from '../../components/singleTalentSelectionList';
+import { SingleTalentSelectionList } from '../../components/singleTalentSelectionList';
 import { RankedTalent } from '../../helpers/rankedTalent';
 import { PageIdentity } from '../../pages/pageIdentity';
 
@@ -32,7 +32,7 @@ interface IMissionProfileTalentSelectionPageProperties {
   workflow: ShipBuildWorkflow;
 }
 
-const MissionProfileTalentSelectionPage: React.FC<
+const MissionProfileTalentSelectionPageBase: React.FC<
   IMissionProfileTalentSelectionPageProperties
 > = ({ starship, workflow }) => {
   const { t } = useTranslation();
@@ -288,4 +288,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(MissionProfileTalentSelectionPage);
+export const MissionProfileTalentSelectionPage = connect(mapStateToProps)(
+  MissionProfileTalentSelectionPageBase,
+);

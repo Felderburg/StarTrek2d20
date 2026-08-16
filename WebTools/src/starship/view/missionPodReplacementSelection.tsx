@@ -3,16 +3,16 @@ import { useTranslation } from 'react-i18next';
 import type { Starship } from '../../common/starship';
 import type { SelectedTalent } from '../../common/selectedTalent';
 import { RankedTalent } from '../../helpers/rankedTalent';
-import SingleTalentSelectionList from '../../components/singleTalentSelectionList';
+import { SingleTalentSelectionList } from '../../components/singleTalentSelectionList';
 import { Header } from '../../components/header';
 import { setStarshipMissionPod } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 
 interface IMissionPodReplacementSelectionProperties {
   starship: Starship;
 }
 
-const MissionPodReplacementSelection: React.FC<
+export const MissionPodReplacementSelection: React.FC<
   IMissionPodReplacementSelectionProperties
 > = ({ starship }) => {
   const { t } = useTranslation();
@@ -64,5 +64,3 @@ const MissionPodReplacementSelection: React.FC<
     </div>
   );
 };
-
-export default MissionPodReplacementSelection;

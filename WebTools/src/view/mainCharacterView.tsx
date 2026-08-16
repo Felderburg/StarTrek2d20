@@ -6,22 +6,22 @@ import { CharacterSerializer } from '../common/characterSerializer';
 import { useTranslation } from 'react-i18next';
 import { getNameAndShortRankOf } from '../helpers/ranks';
 import { StatView } from '../components/StatView';
-import store from '../state/store';
+import { store } from '../state/store';
 import { setCharacter } from '../state/characterActions';
 import type { Character } from '../common/character';
-import CharacterStatBlock from './characterStatBlock';
-import ValuesBlockView from './valuesBlockView';
-import TalentsBlockView from './talentsBlockView';
-import StressOrShieldsView from './stressOrShieldsView';
-import FocusBlockView from './focusBlockView';
-import WeaponBlockView from './weaponBlockView';
+import { CharacterStatBlock } from './characterStatBlock';
+import { ValuesBlockView } from './valuesBlockView';
+import { TalentsBlockView } from './talentsBlockView';
+import { StressOrShieldsView } from './stressOrShieldsView';
+import { FocusBlockView } from './focusBlockView';
+import { WeaponBlockView } from './weaponBlockView';
 import { VttSelectionDialog } from '../vtt/view/VttSelectionDialog';
-import SpeciesAbilityBlockView from './speciesAbilityBlockView';
+import { SpeciesAbilityBlockView } from './speciesAbilityBlockView';
 import { LoadingButton } from '../common/loadingButton';
 import { originalEncodedSheet } from './originalEncodedSheet';
 import { cyrb53 } from '../common/cyrb53';
 import Markdown from 'react-markdown';
-import EquipmentBlockView from './equipmentBlockView';
+import { EquipmentBlockView } from './equipmentBlockView';
 import { CharacterTokenImage } from './characterTokenImage';
 
 export interface ICharacterViewProperties {
@@ -29,7 +29,7 @@ export interface ICharacterViewProperties {
   showButtons?: boolean;
 }
 
-const MainCharacterView: React.FC<ICharacterViewProperties> = ({
+export const MainCharacterView: React.FC<ICharacterViewProperties> = ({
   character,
   showButtons,
 }) => {
@@ -367,5 +367,3 @@ const MainCharacterView: React.FC<ICharacterViewProperties> = ({
     </main>
   );
 };
-
-export default MainCharacterView;

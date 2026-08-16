@@ -5,7 +5,7 @@ import { SelectedTalent } from '../../src/common/selectedTalent';
 import { Species } from '../../src/helpers/speciesEnum';
 import { Source } from '../../src/helpers/sources';
 import { setSources } from '../../src/state/contextActions';
-import store from '../../src/state/store';
+import { store } from '../../src/state/store';
 import { getEarlyOutlookTalents } from '../../src/helpers/earlyOutlookTalents';
 import { TALENT_NAME_BRAK_LUL } from '../../src/helpers/talents';
 

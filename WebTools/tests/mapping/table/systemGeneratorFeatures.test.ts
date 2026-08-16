@@ -5,7 +5,7 @@ import {
   SpaceRegionModel,
   SpecialSectors,
 } from '../../../src/mapping/table/star';
-import store from '../../../src/state/store';
+import { store } from '../../../src/state/store';
 
 const localStorageMock = {
   getItem: () => null,

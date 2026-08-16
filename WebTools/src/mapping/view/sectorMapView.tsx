@@ -9,7 +9,10 @@ interface ISectorMapViewProperties extends IPageProperties {
   onClick: { (s: StarSystem): void };
 }
 
-class SectorMapView extends React.Component<ISectorMapViewProperties, {}> {
+export class SectorMapView extends React.Component<
+  ISectorMapViewProperties,
+  {}
+> {
   render() {
     const purple = '#9179B7';
 
@@ -136,5 +139,3 @@ class SectorMapView extends React.Component<ISectorMapViewProperties, {}> {
     return y * 20 + 25;
   }
 }
-
-export default SectorMapView;

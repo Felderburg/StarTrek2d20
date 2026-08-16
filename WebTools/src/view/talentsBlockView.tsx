@@ -14,7 +14,7 @@ import {
   TALENT_NAME_REDUNDANT_SYSTEMS,
   TalentsHelper,
 } from '../helpers/talents';
-import replaceDiceWithArrowhead from '../common/arrowhead';
+import { replaceDiceWithArrowhead } from '../common/arrowhead';
 import { Stereotype } from '../common/construct';
 import { Starship } from '../common/starship';
 import { Character } from '../common/character';
@@ -35,7 +35,7 @@ interface IConstructPageProperties {
   construct: Character | Starship | Creature | Station;
 }
 
-const TalentsBlockView: React.FC<IConstructPageProperties> = ({
+export const TalentsBlockView: React.FC<IConstructPageProperties> = ({
   construct,
 }) => {
   const { t } = useTranslation();
@@ -392,5 +392,3 @@ const TalentsBlockView: React.FC<IConstructPageProperties> = ({
     return undefined;
   }
 };
-
-export default TalentsBlockView;

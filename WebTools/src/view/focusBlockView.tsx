@@ -1,7 +1,9 @@
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { localizedFocus } from '../components/focusHelper';
 
-const FocusBlockView: React.FC<ICharacterPageProperties> = ({ character }) => {
+export const FocusBlockView: React.FC<ICharacterPageProperties> = ({
+  character,
+}) => {
   if (character.focuses) {
     const result = character.focuses.map((f, i) => (
       <div className="text-white view-border-bottom py-2" key={'focus-' + i}>
@@ -13,5 +15,3 @@ const FocusBlockView: React.FC<ICharacterPageProperties> = ({ character }) => {
     return undefined;
   }
 };
-
-export default FocusBlockView;

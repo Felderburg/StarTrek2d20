@@ -1,4 +1,4 @@
-class ServiceYear {
+export class ServiceYear {
   private static singleton?: ServiceYear;
 
   private years = {
@@ -105,5 +105,3 @@ class ServiceYear {
     return result;
   }
 }
-
-export default ServiceYear;

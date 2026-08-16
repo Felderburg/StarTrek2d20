@@ -2,9 +2,9 @@ import React from 'react';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setStationName, setStationTraits } from '../../state/stationActions';
 import { connect } from 'react-redux';
 import type { IStationPageProperties } from '../iStationPageProperties';
@@ -12,9 +12,11 @@ import { stationMapStateToProperties } from '../iStationPageProperties';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import { ViewButton } from '../../components/viewButton';
 import { ExportToPdfButton } from '../../components/exportToPdfButton';
-import StationBreadcrumbs from '../view/stationBreadcrumbs';
+import { StationBreadcrumbs } from '../view/stationBreadcrumbs';
 
-const StationFinalPage: React.FC<IStationPageProperties> = ({ station }) => {
+const StationFinalPageBase: React.FC<IStationPageProperties> = ({
+  station,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -78,4 +80,6 @@ const StationFinalPage: React.FC<IStationPageProperties> = ({ station }) => {
   );
 };
 
-export default connect(stationMapStateToProperties)(StationFinalPage);
+export const StationFinalPage = connect(stationMapStateToProperties)(
+  StationFinalPageBase,
+);

@@ -114,6 +114,4 @@ class AgeRepository {
   }
 }
 
-const AgeHelper = new AgeRepository();
-
-export default AgeHelper;
+export const AgeHelper = new AgeRepository();

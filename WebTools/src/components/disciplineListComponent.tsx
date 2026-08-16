@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Department } from '../helpers/department';
 import { DepartmentsHelper } from '../helpers/department';
-import DisciplineComponent from './disciplineComponent';
+import { DisciplineComponent } from './disciplineComponent';
 
 export interface IDisciplineController {
   isShown: (discipline: Department) => boolean;
@@ -17,7 +17,7 @@ interface IDisciplineListControllerProperties {
   controller: IDisciplineController;
 }
 
-const DisciplineListComponent: React.FC<
+export const DisciplineListComponent: React.FC<
   IDisciplineListControllerProperties
 > = ({ controller }) => {
   const renderDiscipline = (discipline: Department) => {
@@ -61,5 +61,3 @@ const DisciplineListComponent: React.FC<
     </>
   );
 };
-
-export default DisciplineListComponent;

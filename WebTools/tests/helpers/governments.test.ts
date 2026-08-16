@@ -1,5 +1,5 @@
 import { test, expect, describe } from '@jest/globals';
-import Governments, { Government, Polity } from '../../src/helpers/governments';
+import { Governments, Government, Polity } from '../../src/helpers/governments';
 
 describe('Government', () => {
   test('stores properties', () => {

@@ -8,11 +8,11 @@ import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import Button from 'react-bootstrap/Button';
-import AllyHelper, { AlliedMilitaryType } from '../helpers/alliedMilitary';
+import { AllyHelper, AlliedMilitaryType } from '../helpers/alliedMilitary';
 import { Source } from '../helpers/sources';
-import Governments, { Polity } from '../helpers/governments';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import store from '../state/store';
+import { Governments, Polity } from '../helpers/governments';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { store } from '../state/store';
 import { hasSource } from '../state/contextFunctions';
 import { Header } from '../components/header';
 import type { WithTranslation } from 'react-i18next';
@@ -33,7 +33,7 @@ interface ICharacterTypePageState {
   otherName: string;
 }
 
-class CharacterTypePage extends React.Component<
+class CharacterTypePageBase extends React.Component<
   ICharacterTypeProperties,
   ICharacterTypePageState
 > {
@@ -228,6 +228,6 @@ const mapStateToProperties = (state, ownProps) => {
   };
 };
 
-export default withTranslation()(
-  connect(mapStateToProperties)(CharacterTypePage),
+export const CharacterTypePage = withTranslation()(
+  connect(mapStateToProperties)(CharacterTypePageBase),
 );

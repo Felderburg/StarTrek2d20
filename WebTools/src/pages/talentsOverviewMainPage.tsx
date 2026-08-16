@@ -1,10 +1,10 @@
 import React from 'react';
 import { Helmet } from '@dr.pogodin/react-helmet';
-import LcarsFrame from '../components/lcarsFrame';
+import { LcarsFrame } from '../components/lcarsFrame';
 import { PageIdentity } from './pageIdentity';
-import TalentsOverviewPage from './talentsOverviewPage';
+import { TalentsOverviewPage } from './talentsOverviewPage';
 
-class TalentsOverviewMainPage extends React.Component<{}, {}> {
+export class TalentsOverviewMainPage extends React.Component<{}, {}> {
   render() {
     return (
       <>
@@ -20,5 +20,3 @@ class TalentsOverviewMainPage extends React.Component<{}, {}> {
     );
   }
 }
-
-export default TalentsOverviewMainPage;

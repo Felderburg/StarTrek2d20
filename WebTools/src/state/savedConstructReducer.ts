@@ -25,7 +25,7 @@ const getInitialData = () => {
   return initialData;
 };
 
-const savedConstructReducer = (state = getInitialData(), action) => {
+export const savedConstructReducer = (state = getInitialData(), action) => {
   switch (action.type) {
     case SAVE_CONSTRUCT_TO_LOCAL_STORAGE: {
       let records = [...state.records];
@@ -56,5 +56,3 @@ const savedConstructReducer = (state = getInitialData(), action) => {
       return state;
   }
 };
-
-export default savedConstructReducer;

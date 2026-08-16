@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { Attribute, AttributesHelper } from '../../helpers/attributes';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { ValueView } from '../../components/valueView';
 import { makeKey } from '../../common/translationKey';
 import { setNpcCharacterAttributes } from '../../state/characterActions';

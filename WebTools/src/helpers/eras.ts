@@ -34,7 +34,7 @@ export const eraDefaultYear = (era: Era) => {
   }
 };
 
-class Eras {
+export class Eras {
   private static singleton: Eras;
 
   static get instance() {
@@ -108,5 +108,3 @@ class Eras {
     }
   }
 }
-
-export default Eras;

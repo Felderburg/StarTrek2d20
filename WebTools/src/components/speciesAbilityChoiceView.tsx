@@ -1,7 +1,7 @@
 import Markdown from 'react-markdown';
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { setCharacterSpeciesAbilityChoice } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import { CheckBox } from './checkBox';
 
 export const SpeciesAbilityChoiceView: React.FC<ICharacterPageProperties> = ({

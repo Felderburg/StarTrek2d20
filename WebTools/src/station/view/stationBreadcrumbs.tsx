@@ -9,7 +9,7 @@ interface IStationBreadcrumbProperties {
   station?: Station;
 }
 
-const StationBreadcrumbs: React.FC<IStationBreadcrumbProperties> = ({
+export const StationBreadcrumbs: React.FC<IStationBreadcrumbProperties> = ({
   station,
   pageIdentity,
 }) => {
@@ -125,5 +125,3 @@ const StationBreadcrumbs: React.FC<IStationBreadcrumbProperties> = ({
     </nav>
   );
 };
-
-export default StationBreadcrumbs;

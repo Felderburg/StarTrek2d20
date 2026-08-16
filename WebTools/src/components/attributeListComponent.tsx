@@ -2,13 +2,13 @@ import React from 'react';
 import type { Attribute } from '../helpers/attributes';
 import { AttributesHelper } from '../helpers/attributes';
 import type { IAttributeController } from './attributeController';
-import AttributeImprovement from './attributeImprovement';
+import { AttributeImprovement } from './attributeImprovement';
 
 interface IAttributeListComponentsProperties {
   controller: IAttributeController;
 }
 
-class AttributeListComponent extends React.Component<
+export class AttributeListComponent extends React.Component<
   IAttributeListComponentsProperties,
   {}
 > {
@@ -51,5 +51,3 @@ class AttributeListComponent extends React.Component<
     }
   }
 }
-
-export default AttributeListComponent;

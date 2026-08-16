@@ -3,10 +3,10 @@ import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useNavigate } from 'react-router-dom';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { IStationPageProperties } from '../iStationPageProperties';
 import { stationMapStateToProperties } from '../iStationPageProperties';
 import { connect } from 'react-redux';
@@ -24,7 +24,7 @@ import {
 } from '../../state/stationActions';
 import { CustomStationSpaceframeStep } from '../../common/station';
 import { Dialog } from '../../components/dialog';
-import StationBreadcrumbs from '../view/stationBreadcrumbs';
+import { StationBreadcrumbs } from '../view/stationBreadcrumbs';
 import { StationFrameModel } from '../../helpers/stationFrameModel';
 import { StatView } from '../../components/StatView';
 import { CheckBox } from '../../components/checkBox';
@@ -43,7 +43,7 @@ enum SpaceframeTab {
   Standard,
 }
 
-const StationSpaceframePage: React.FC<IStationPageProperties> = ({
+const StationSpaceframePageBase: React.FC<IStationPageProperties> = ({
   station,
 }) => {
   const { t } = useTranslation();
@@ -642,4 +642,6 @@ const StationSpaceframePage: React.FC<IStationPageProperties> = ({
   );
 };
 
-export default connect(stationMapStateToProperties)(StationSpaceframePage);
+export const StationSpaceframePage = connect(stationMapStateToProperties)(
+  StationSpaceframePageBase,
+);

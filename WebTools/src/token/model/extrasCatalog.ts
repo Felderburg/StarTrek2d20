@@ -1,7 +1,7 @@
 import toast from 'react-hot-toast';
 import type { ExtraCategory, ExtraType } from './extrasTypeEnum';
 import type { HairType } from './hairTypeEnum';
-import type Swatch from './swatch';
+import type { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 
 export interface IExtendedExtrasLibrary {
@@ -15,7 +15,7 @@ export interface IExtendedExtrasLibrary {
   isInCategory(type: ExtraType, category: ExtraCategory): boolean;
 }
 
-class ExtrasCatalog {
+export class ExtrasCatalog {
   private static singleton: ExtrasCatalog;
 
   private extrasLibrary: IExtendedExtrasLibrary;
@@ -76,5 +76,3 @@ class ExtrasCatalog {
     }
   }
 }
-
-export default ExtrasCatalog;

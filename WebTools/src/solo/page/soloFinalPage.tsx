@@ -4,7 +4,7 @@ import { characterMapStateToProperties } from './soloCharacterProperties';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Header } from '../../components/header';
 import { connect } from 'react-redux';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   setCharacterAssignment,
   setCharacterName,
@@ -13,7 +13,7 @@ import {
 } from '../../state/characterActions';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import Button from 'react-bootstrap/Button';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
 import {
   DropDownElement,
   DropDownSelect,
@@ -24,7 +24,7 @@ import { Role, RolesHelper } from '../../helpers/roles';
 import { marshaller } from '../../helpers/marshaller';
 import { LoadingButton } from '../../common/loadingButton';
 
-const SoloFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
+const SoloFinalPageBase: React.FC<ICharacterProperties> = ({ character }) => {
   const { t } = useTranslation();
   const [loadingExport, setLoadingExport] = useState(false);
 
@@ -253,4 +253,6 @@ const SoloFinalPage: React.FC<ICharacterProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(SoloFinalPage);
+export const SoloFinalPage = connect(characterMapStateToProperties)(
+  SoloFinalPageBase,
+);

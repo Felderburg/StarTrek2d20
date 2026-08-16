@@ -7,7 +7,7 @@ import {
   StepContext,
   modifyCharacterAttribute,
 } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import type { IAttributeController } from './attributeController';
 
 export class SpeciesAttributeController implements IAttributeController {
