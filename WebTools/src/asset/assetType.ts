@@ -15,7 +15,7 @@ export class AssetTypeModel {
 }
 
 export class AssetTypes {
-  private static _instance: AssetTypes;
+  private static singleton: AssetTypes;
 
   private readonly types: AssetTypeModel[] = [
     new AssetTypeModel(AssetType.Ship, 'Ship'),
@@ -24,10 +24,10 @@ export class AssetTypes {
   ];
 
   static get instance() {
-    if (AssetTypes._instance == null) {
-      AssetTypes._instance = new AssetTypes();
+    if (AssetTypes.singleton == null) {
+      AssetTypes.singleton = new AssetTypes();
     }
-    return AssetTypes._instance;
+    return AssetTypes.singleton;
   }
 
   public getTypes() {

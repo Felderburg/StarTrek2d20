@@ -100,7 +100,7 @@ export class EnvironmentModel {
 }
 
 class Environments {
-  private _environments: { [id: number]: EnvironmentModel } = {
+  private environments: { [id: number]: EnvironmentModel } = {
     [Environment.Homeworld]: new EnvironmentModel(
       Environment.Homeworld,
       'common',
@@ -152,7 +152,7 @@ class Environments {
     ),
   };
 
-  private _century23: { [id: number]: EnvironmentModel } = {
+  private century23: { [id: number]: EnvironmentModel } = {
     [Environment.Andoria23rd]: new EnvironmentModel(
       Environment.Andoria23rd,
       'common',
@@ -270,7 +270,7 @@ class Environments {
     ),
   };
 
-  private _alternateEnvironments: { [id: number]: EnvironmentModel } = {
+  private alternateEnvironments: { [id: number]: EnvironmentModel } = {
     [Environment.UtopianParadise]: new EnvironmentModel(
       Environment.UtopianParadise,
       'alternate',
@@ -322,7 +322,7 @@ class Environments {
     ),
   };
 
-  private _klingonEnvironments: { [id: number]: EnvironmentModel } = {
+  private klingonEnvironments: { [id: number]: EnvironmentModel } = {
     [Environment.Homeworld]: new EnvironmentModel(
       Environment.Homeworld,
       'klingon',
@@ -377,11 +377,11 @@ class Environments {
   getEnvironmentOptions(construct: Construct) {
     const result = [];
     if (construct.stereotype === Stereotype.SoloCharacter) {
-      result.push(...Object.values(this._environments));
+      result.push(...Object.values(this.environments));
     } else {
       const list = isKlingonWarrior1e(construct.type, construct.version)
-        ? this._klingonEnvironments
-        : this._environments;
+        ? this.klingonEnvironments
+        : this.environments;
       for (const environment in list) {
         result.push(list[environment]);
       }
@@ -390,10 +390,10 @@ class Environments {
         construct.version > 1 &&
         hasSource(Source.Century23)
       ) {
-        result.push(...Object.values(this._century23));
+        result.push(...Object.values(this.century23));
       }
       if (hasSource(Source.PlayersGuide)) {
-        result.push(...Object.values(this._alternateEnvironments));
+        result.push(...Object.values(this.alternateEnvironments));
       }
     }
     return result;
@@ -402,8 +402,8 @@ class Environments {
   getEnvironments(type: CharacterType) {
     let environments: EnvironmentModel[] = [];
     const environmentList = isKlingonWarriorType(type)
-      ? this._klingonEnvironments
-      : this._environments;
+      ? this.klingonEnvironments
+      : this.environments;
     for (const environment in environmentList) {
       const env = environmentList[environment];
       if (env.id !== Environment.AnotherSpeciesWorld) {
@@ -447,16 +447,16 @@ class Environments {
     version: number,
   ) {
     const list = isKlingonWarrior1e(type, version)
-      ? Object.values(this._klingonEnvironments)
-      : Object.values(this._environments);
+      ? Object.values(this.klingonEnvironments)
+      : Object.values(this.environments);
     let filtered = list.filter((e) => Environment[e.id] === typeName);
     if (filtered.length === 0) {
-      filtered = Object.values(this._alternateEnvironments).filter(
+      filtered = Object.values(this.alternateEnvironments).filter(
         (e) => Environment[e.id] === typeName,
       );
     }
     if (filtered.length === 0) {
-      filtered = Object.values(this._century23).filter(
+      filtered = Object.values(this.century23).filter(
         (e) => Environment[e.id] === typeName,
       );
     }

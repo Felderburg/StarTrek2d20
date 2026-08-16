@@ -111,7 +111,7 @@ class Sources {
     new SourceTypeModel(SourceType.Unofficial, 'Unofficial Books'),
   ];
 
-  private _sources: { [id: number]: SourceViewModel } = {
+  private sources: { [id: number]: SourceViewModel } = {
     [Source.Core]: new SourceViewModel(
       Source.Core,
       SourceType.CoreBook,
@@ -295,8 +295,8 @@ class Sources {
 
   getSources() {
     const sources: SourceViewModel[] = [];
-    for (const source in this._sources) {
-      const src = this._sources[source];
+    for (const source in this.sources) {
+      const src = this.sources[source];
       sources.push(src);
     }
     return sources;
@@ -313,11 +313,11 @@ class Sources {
   getSourceName(sources: Source[], alwaysShow: boolean = false) {
     let result = '';
     sources.forEach((s) => {
-      if (s !== Source.None && (this._sources[s].available || alwaysShow)) {
+      if (s !== Source.None && (this.sources[s].available || alwaysShow)) {
         result =
           result === ''
-            ? this._sources[s].localizedName
-            : result + ', ' + this._sources[s].localizedName;
+            ? this.sources[s].localizedName
+            : result + ', ' + this.sources[s].localizedName;
       }
     });
     return result;

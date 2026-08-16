@@ -97,7 +97,7 @@ export class EarlyOutlookModel {
 }
 
 class Upbringings {
-  private _upbringings: EarlyOutlookModel[] = [
+  private upbringings: EarlyOutlookModel[] = [
     new EarlyOutlookModel(
       EarlyOutlook.MilitaryOrExploration,
       'Starfleet',
@@ -248,7 +248,7 @@ class Upbringings {
     ),
   ];
 
-  private _alternateUpbringings: EarlyOutlookModel[] = [
+  private alternateUpbringings: EarlyOutlookModel[] = [
     new EarlyOutlookModel(
       EarlyOutlook.ToExplore,
       'To Explore',
@@ -379,7 +379,7 @@ class Upbringings {
     ),
   ];
 
-  private _genericUpbringings: EarlyOutlookModel[] = [
+  private genericUpbringings: EarlyOutlookModel[] = [
     new EarlyOutlookModel(
       EarlyOutlook.MilitaryOrExploration,
       'Military or Exploration',
@@ -542,7 +542,7 @@ class Upbringings {
     ),
   ];
 
-  private _castes: EarlyOutlookModel[] = [
+  private castes: EarlyOutlookModel[] = [
     new EarlyOutlookModel(
       EarlyOutlook.WarriorCaste,
       'Warrior',
@@ -690,13 +690,13 @@ class Upbringings {
 
   private getEarlyOutlooksList(type: CharacterType, alternate: boolean) {
     if (alternate) {
-      return this._alternateUpbringings;
+      return this.alternateUpbringings;
     } else if (type === CharacterType.Starfleet) {
-      return this._upbringings;
+      return this.upbringings;
     } else if (isKlingonWarriorType(type)) {
-      return this._castes;
+      return this.castes;
     } else {
-      return this._genericUpbringings;
+      return this.genericUpbringings;
     }
   }
 

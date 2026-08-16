@@ -8,20 +8,20 @@ interface IDieRollProperties {
 }
 
 export class DieRoll extends React.Component<IDieRollProperties, {}> {
-  private _isSelected: boolean;
+  private isSelected: boolean;
 
   constructor(props: IDieRollProperties) {
     super(props);
 
-    this._isSelected = this.props.isSelected;
+    this.isSelected = this.props.isSelected;
   }
 
   componentDidUpdate(prevProps: IDieRollProperties) {
-    this._isSelected = this.props.isSelected;
+    this.isSelected = this.props.isSelected;
   }
 
   render() {
-    const className = this._isSelected ? 'die die-selected' : 'die';
+    const className = this.isSelected ? 'die die-selected' : 'die';
 
     return (
       <div className={className} onClick={() => this.toggleSelection()}>
@@ -31,8 +31,8 @@ export class DieRoll extends React.Component<IDieRollProperties, {}> {
   }
 
   private toggleSelection() {
-    this._isSelected = !this._isSelected;
-    this.props.onSelect(this._isSelected ? this.props.index : -1);
+    this.isSelected = !this.isSelected;
+    this.props.onSelect(this.isSelected ? this.props.index : -1);
     this.forceUpdate();
   }
 }

@@ -106,16 +106,16 @@ export class MissionProfileModel {
 }
 
 class MissionProfiles {
-  static _instance: MissionProfiles;
+  static singleton: MissionProfiles;
 
   static get instance() {
-    if (this._instance == null) {
-      this._instance = new MissionProfiles();
+    if (this.singleton == null) {
+      this.singleton = new MissionProfiles();
     }
-    return this._instance;
+    return this.singleton;
   }
 
-  private _profiles2e: { [id: number]: MissionProfileModel } = {
+  private profiles2e: { [id: number]: MissionProfileModel } = {
     [MissionProfile.Battlecruiser]: new MissionProfileModel(
       MissionProfile.Battlecruiser,
       'Battlecruiser',
@@ -361,7 +361,7 @@ class MissionProfiles {
     ),
   };
 
-  private _profiles: { [id: number]: MissionProfileModel } = {
+  private profiles: { [id: number]: MissionProfileModel } = {
     [MissionProfile.StrategicAndDiplomatic]: new MissionProfileModel(
       MissionProfile.StrategicAndDiplomatic,
       'Strategic and Diplomatic Operations',
@@ -617,7 +617,7 @@ class MissionProfiles {
     ),
   };
 
-  private _klingonProfiles: { [id: number]: MissionProfileModel } = {
+  private klingonProfiles: { [id: number]: MissionProfileModel } = {
     [MissionProfile.CrisisAndEmergencyResponse]: new MissionProfileModel(
       MissionProfile.CrisisAndEmergencyResponse,
       'Crisis Response and Interception',
@@ -709,7 +709,7 @@ class MissionProfiles {
     //    []),
   };
 
-  private _klingonProfiles2e: { [id: number]: MissionProfileModel } = {
+  private klingonProfiles2e: { [id: number]: MissionProfileModel } = {
     [MissionProfile.CrisisAndEmergencyResponse]: new MissionProfileModel(
       MissionProfile.CrisisAndEmergencyResponse,
       'Crisis Response and Interception',
@@ -825,7 +825,7 @@ class MissionProfiles {
     ),
   };
 
-  private _stationProfiles: { [id: number]: MissionProfileModel } = {
+  private stationProfiles: { [id: number]: MissionProfileModel } = {
     [MissionProfile.AdministrationAndBureaucracyStation]:
       new MissionProfileModel(
         MissionProfile.AdministrationAndBureaucracyStation,
@@ -954,27 +954,27 @@ class MissionProfiles {
 
   getMissionProfiles(starship: Starship) {
     const profiles: MissionProfileModel[] = [];
-    let list = this._profiles2e;
+    let list = this.profiles2e;
     if (starship.version === 1) {
       list = isKlingonWarrior1e(starship.type, starship.version)
-        ? this._klingonProfiles
-        : this._profiles;
+        ? this.klingonProfiles
+        : this.profiles;
     } else if (isKlingonWarriorType(starship.type)) {
-      list = this._klingonProfiles2e;
+      list = this.klingonProfiles2e;
     } else if (starship.type === CharacterType.Civilian) {
       list = {
         [MissionProfile.CrisisAndEmergencyResponse]:
-          this._profiles2e[MissionProfile.CrisisAndEmergencyResponse],
+          this.profiles2e[MissionProfile.CrisisAndEmergencyResponse],
         [MissionProfile.EntertainmentPleasureShip]:
-          this._profiles2e[MissionProfile.EntertainmentPleasureShip],
+          this.profiles2e[MissionProfile.EntertainmentPleasureShip],
         [MissionProfile.CivilianMerchantMarine]:
-          this._profiles2e[MissionProfile.CivilianMerchantMarine],
+          this.profiles2e[MissionProfile.CivilianMerchantMarine],
         [MissionProfile.ColonySupport]:
-          this._profiles2e[MissionProfile.ColonySupport],
+          this.profiles2e[MissionProfile.ColonySupport],
         [MissionProfile.TechnicalTestBed]:
-          this._profiles2e[MissionProfile.TechnicalTestBed],
+          this.profiles2e[MissionProfile.TechnicalTestBed],
         [MissionProfile.ScientificAndSurvey]:
-          this._profiles2e[MissionProfile.ScientificAndSurvey],
+          this.profiles2e[MissionProfile.ScientificAndSurvey],
       };
     }
     for (const profile of Object.values(list)) {
@@ -991,7 +991,7 @@ class MissionProfiles {
   }
 
   getStationMissionProfiles() {
-    const profiles = [...Object.values(this._stationProfiles)];
+    const profiles = [...Object.values(this.stationProfiles)];
     profiles.sort((p1, p2) => {
       return p1.localizedName.localeCompare(p2.localizedName);
     });
@@ -1005,7 +1005,7 @@ class MissionProfiles {
     if ('PolicalOperationsStation' === name) {
       name = MissionProfile[MissionProfile.PoliticalOperationsStation];
     }
-    const profiles = [...Object.values(this._stationProfiles)].filter(
+    const profiles = [...Object.values(this.stationProfiles)].filter(
       (p) => MissionProfile[p.id] === name,
     );
 
@@ -1015,7 +1015,7 @@ class MissionProfiles {
   getStationMissionProfileByType(
     type: MissionProfile,
   ): MissionProfileModel | undefined {
-    return this._stationProfiles[type];
+    return this.stationProfiles[type];
   }
 
   getMissionProfileByName(
@@ -1023,13 +1023,13 @@ class MissionProfiles {
     type: CharacterType,
     version: number,
   ) {
-    let list = this._profiles2e;
+    let list = this.profiles2e;
     if (version === 1) {
       list = isKlingonWarrior1e(type, version)
-        ? this._klingonProfiles
-        : this._profiles;
+        ? this.klingonProfiles
+        : this.profiles;
     } else if (isKlingonWarriorType(type)) {
-      list = this._klingonProfiles2e;
+      list = this.klingonProfiles2e;
     }
     let result = null;
     for (const id in list) {

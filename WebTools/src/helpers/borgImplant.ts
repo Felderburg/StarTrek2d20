@@ -54,13 +54,13 @@ export class Implant {
 }
 
 export class BorgImplants {
-  static _instance: BorgImplants;
+  static singleton: BorgImplants;
 
   static get instance() {
-    if (BorgImplants._instance == null) {
-      BorgImplants._instance = new BorgImplants();
+    if (BorgImplants.singleton == null) {
+      BorgImplants.singleton = new BorgImplants();
     }
-    return BorgImplants._instance;
+    return BorgImplants.singleton;
   }
 
   readonly implants: Implant[] = [

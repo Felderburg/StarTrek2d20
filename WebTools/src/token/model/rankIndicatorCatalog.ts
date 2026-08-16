@@ -5,13 +5,13 @@ import { UniformEra } from './uniformEra';
 import UniformPackCollection from './uniformPackCollection';
 
 class RankIndicatorCatalog {
-  private static _instance: RankIndicatorCatalog;
+  private static singleton: RankIndicatorCatalog;
 
   public static get instance() {
-    if (RankIndicatorCatalog._instance == null) {
-      RankIndicatorCatalog._instance = new RankIndicatorCatalog();
+    if (RankIndicatorCatalog.singleton == null) {
+      RankIndicatorCatalog.singleton = new RankIndicatorCatalog();
     }
-    return RankIndicatorCatalog._instance;
+    return RankIndicatorCatalog.singleton;
   }
 
   getRankIndicator(token: TokenModel) {

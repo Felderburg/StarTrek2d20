@@ -906,7 +906,7 @@ class HairItem {
 }
 
 class HairCatalog {
-  private static _instance: HairCatalog;
+  private static singleton: HairCatalog;
 
   items = [
     new HairItem(HairType.Bald, 'Bald', ''),
@@ -1072,10 +1072,10 @@ class HairCatalog {
   ];
 
   public static get instance() {
-    if (HairCatalog._instance == null) {
-      HairCatalog._instance = new HairCatalog();
+    if (HairCatalog.singleton == null) {
+      HairCatalog.singleton = new HairCatalog();
     }
-    return HairCatalog._instance;
+    return HairCatalog.singleton;
   }
 
   getDefinitions(hairType: HairType, token: TokenModel) {

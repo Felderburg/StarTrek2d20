@@ -7,13 +7,13 @@ import UniformPackCollection from './uniformPackCollection';
 export const DefaultRed = /#d30000/g;
 
 class UniformCatalog {
-  private static _instance: UniformCatalog;
+  private static singleton: UniformCatalog;
 
   public static get instance() {
-    if (UniformCatalog._instance == null) {
-      UniformCatalog._instance = new UniformCatalog();
+    if (UniformCatalog.singleton == null) {
+      UniformCatalog.singleton = new UniformCatalog();
     }
-    return UniformCatalog._instance;
+    return UniformCatalog.singleton;
   }
 
   getBody(token: TokenModel) {

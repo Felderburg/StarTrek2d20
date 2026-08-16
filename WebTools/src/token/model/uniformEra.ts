@@ -58,7 +58,7 @@ export class UniformEraModel {
 }
 
 export class UniformEraHelper {
-  private static _instance: UniformEraHelper;
+  private static singleton: UniformEraHelper;
 
   types = [
     new UniformEraModel(UniformEra.None, 'None'),
@@ -101,9 +101,9 @@ export class UniformEraHelper {
   ];
 
   static get instance() {
-    if (UniformEraHelper._instance == null) {
-      UniformEraHelper._instance = new UniformEraHelper();
+    if (UniformEraHelper.singleton == null) {
+      UniformEraHelper.singleton = new UniformEraHelper();
     }
-    return UniformEraHelper._instance;
+    return UniformEraHelper.singleton;
   }
 }

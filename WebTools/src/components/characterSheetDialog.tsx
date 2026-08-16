@@ -18,11 +18,9 @@ interface ICharacterSheetDialogProperties {
   construct: Construct;
 }
 
-const _CharacterSheetDialog: React.FC<ICharacterSheetDialogProperties> = ({
-  sheets,
-  suffix,
-  construct,
-}) => {
+const CharacterSheetDialogContent: React.FC<
+  ICharacterSheetDialogProperties
+> = ({ sheets, suffix, construct }) => {
   const [selection, setSelection] = useState(sheets[0]);
   const [tags, setTags] = useState([]);
   const { t } = useTranslation();
@@ -177,7 +175,7 @@ class CharacterSheetDialogControl {
     ModalControl.show(
       'xl',
       () => {},
-      React.createElement(_CharacterSheetDialog, {
+      React.createElement(CharacterSheetDialogContent, {
         sheets: filteredSheets,
         suffix: suffix,
         construct: c,

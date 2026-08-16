@@ -123,7 +123,7 @@ class TalentViewModel {
 }
 
 const TalentsOverviewPage = () => {
-  const _allTalents: TalentViewModel[] = [];
+  const allTalents: TalentViewModel[] = [];
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [search, setSearch] = useState('');
   const [version, setVersion] = useState<TalentVersion>(TalentVersion.Both);
@@ -140,8 +140,8 @@ const TalentsOverviewPage = () => {
 
   const selectTalents = () => {
     const talents = [];
-    for (let i = 0; i < _allTalents.length; i++) {
-      const talent = _allTalents[i];
+    for (let i = 0; i < allTalents.length; i++) {
+      const talent = allTalents[i];
       if (search.length && !talent.matches(search)) {
         // don't include
       } else if (
@@ -269,7 +269,7 @@ const TalentsOverviewPage = () => {
 
   const getSpecies = () => {
     const speciesList: Species[] = [];
-    _allTalents.forEach((t) => {
+    allTalents.forEach((t) => {
       if (t.talent.category.category === TalentCategory.Species) {
         t.talent.category.type.forEach((s) => {
           if (!speciesList.includes(s as Species)) {
@@ -303,10 +303,10 @@ const TalentsOverviewPage = () => {
 
       if (available) {
         const model = TalentViewModel.from(talent);
-        _allTalents.push(model);
+        allTalents.push(model);
       }
     }
-    _allTalents.sort((left, right): number => {
+    allTalents.sort((left, right): number => {
       if (left.localizedName < right.localizedName) return -1;
       if (left.localizedName > right.localizedName) return 1;
       return 0;

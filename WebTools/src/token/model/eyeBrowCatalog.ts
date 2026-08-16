@@ -450,13 +450,13 @@ const CardassianBrows = `<g>
 </g>`;
 
 class EyeBrowCatalog {
-  private static _instance: EyeBrowCatalog;
+  private static singleton: EyeBrowCatalog;
 
   public static get instance() {
-    if (EyeBrowCatalog._instance == null) {
-      EyeBrowCatalog._instance = new EyeBrowCatalog();
+    if (EyeBrowCatalog.singleton == null) {
+      EyeBrowCatalog.singleton = new EyeBrowCatalog();
     }
-    return EyeBrowCatalog._instance;
+    return EyeBrowCatalog.singleton;
   }
 
   getBrow(

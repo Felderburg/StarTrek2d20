@@ -35,13 +35,13 @@ export interface IPageFactoryRegistry {
 }
 
 export class PageFactory {
-  private static _instance;
+  private static singleton;
 
   static get instance() {
-    if (PageFactory._instance == null) {
-      PageFactory._instance = new PageFactory();
+    if (PageFactory.singleton == null) {
+      PageFactory.singleton = new PageFactory();
     }
-    return PageFactory._instance;
+    return PageFactory.singleton;
   }
 
   private factories = {};

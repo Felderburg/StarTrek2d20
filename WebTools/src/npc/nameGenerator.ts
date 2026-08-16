@@ -74,13 +74,13 @@ const names = [
 ];
 
 export class NameGenerator {
-  private static _instance: NameGenerator;
+  private static singleton: NameGenerator;
 
   static get instance() {
-    if (NameGenerator._instance == null) {
-      NameGenerator._instance = new NameGenerator();
+    if (NameGenerator.singleton == null) {
+      NameGenerator.singleton = new NameGenerator();
     }
-    return NameGenerator._instance;
+    return NameGenerator.singleton;
   }
 
   isSupported(species: ISpecies) {

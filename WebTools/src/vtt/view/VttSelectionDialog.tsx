@@ -258,13 +258,13 @@ export const VttSelectionModal: React.FC<IVttSelectionModalProperties> = ({
 };
 
 export class VttSelectionDialog {
-  private static _instance: VttSelectionDialog;
+  private static singleton: VttSelectionDialog;
 
   static get instance() {
-    if (VttSelectionDialog._instance == null) {
-      VttSelectionDialog._instance = new VttSelectionDialog();
+    if (VttSelectionDialog.singleton == null) {
+      VttSelectionDialog.singleton = new VttSelectionDialog();
     }
-    return VttSelectionDialog._instance;
+    return VttSelectionDialog.singleton;
   }
 
   show(construct: Construct) {

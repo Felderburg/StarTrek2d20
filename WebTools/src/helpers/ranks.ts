@@ -175,26 +175,26 @@ class HasCareerEventsPrerequisite implements ICharacterPrerequisite {
 }
 
 class TrackPrerequisite implements ICharacterPrerequisite {
-  private _track: Track;
+  private track: Track;
 
   constructor(track: Track) {
-    this._track = track;
+    this.track = track;
   }
 
   isPrerequisiteFulfilled(character: Character) {
-    return this._track === character.educationStep?.track;
+    return this.track === character.educationStep?.track;
   }
 }
 
 class NotTrackPrerequisite implements ICharacterPrerequisite {
-  private _track: Track;
+  private track: Track;
 
   constructor(track: Track) {
-    this._track = track;
+    this.track = track;
   }
 
   isPrerequisiteFulfilled(character: Character) {
-    return this._track !== character.educationStep?.track;
+    return this.track !== character.educationStep?.track;
   }
   describe(): string {
     return '';
@@ -202,11 +202,11 @@ class NotTrackPrerequisite implements ICharacterPrerequisite {
 }
 
 class RolesPrerequisite implements ICharacterPrerequisite {
-  private _roles: Role[];
+  private roles: Role[];
   private noRoleAllowed: boolean;
 
   constructor(roles: Role[], noRoleAllowed: boolean = false) {
-    this._roles = roles;
+    this.roles = roles;
     this.noRoleAllowed = noRoleAllowed;
   }
 
@@ -215,23 +215,23 @@ class RolesPrerequisite implements ICharacterPrerequisite {
       return this.noRoleAllowed;
     } else {
       return (
-        this._roles.indexOf(character.role) > -1 ||
+        this.roles.indexOf(character.role) > -1 ||
         (character.secondaryRole != null &&
-          this._roles.indexOf(character.secondaryRole) >= 0)
+          this.roles.indexOf(character.secondaryRole) >= 0)
       );
     }
   }
 }
 
 class NotEraPrerequisite implements ICharacterPrerequisite {
-  private _era: Era;
+  private era: Era;
 
   constructor(era: Era) {
-    this._era = era;
+    this.era = era;
   }
 
   isPrerequisiteFulfilled(character: Character) {
-    return store.getState().context.era !== this._era;
+    return store.getState().context.era !== this.era;
   }
   describe(): string {
     return '';
@@ -289,16 +289,16 @@ export class RankModel {
 }
 
 export class RanksHelper {
-  private static _instance: RanksHelper;
+  private static singleton: RanksHelper;
 
   static instance(): RanksHelper {
-    if (RanksHelper._instance == null) {
-      RanksHelper._instance = new RanksHelper();
+    if (RanksHelper.singleton == null) {
+      RanksHelper.singleton = new RanksHelper();
     }
-    return RanksHelper._instance;
+    return RanksHelper.singleton;
   }
 
-  private _ranks: RankModel[] = [
+  private ranks: RankModel[] = [
     new RankModel(
       Rank.Captain,
       'Captain',
@@ -1371,10 +1371,10 @@ export class RanksHelper {
 
   getRanks(character: Character, ignorePrerequisites?: boolean) {
     return !ignorePrerequisites
-      ? this._ranks.filter((r) =>
+      ? this.ranks.filter((r) =>
           r.prerequisites.every((p) => p.isPrerequisiteFulfilled(character)),
         )
-      : [...this._ranks];
+      : [...this.ranks];
   }
 
   getRanksByType(type: CharacterType, version: number) {
@@ -1537,13 +1537,13 @@ export class RanksHelper {
   }
 
   getRank(rank: Rank) {
-    const ranks = this._ranks.filter((r) => r.id === rank);
+    const ranks = this.ranks.filter((r) => r.id === rank);
     return ranks?.length ? ranks[0] : null;
   }
 
   getRankByName(name: string) {
-    for (const rank in this._ranks) {
-      const r = this._ranks[rank];
+    for (const rank in this.ranks) {
+      const r = this.ranks[rank];
       if (r.name === name) {
         return r;
       }
@@ -1553,8 +1553,8 @@ export class RanksHelper {
   }
 
   getRankByRankName(name: string): Rank | undefined {
-    for (const rank in this._ranks) {
-      const r = this._ranks[rank];
+    for (const rank in this.ranks) {
+      const r = this.ranks[rank];
       if (Rank[r.id] === name) {
         return r.id;
       }

@@ -648,7 +648,7 @@ class CreaturePrerequisite implements IConstructPrerequisite {
 }
 
 export class Talents {
-  private _talents: TalentModel[] = [
+  private talents: TalentModel[] = [
     new TalentModel(
       'Advisor',
       'Whenever you assist another character using your Command Discipline, the character being assisted may re-roll one d20.',
@@ -6104,7 +6104,7 @@ export class Talents {
     ),
   ];
 
-  private _starshipTalents: TalentModel[] = [
+  private starshipTalents: TalentModel[] = [
     // Starships
     new TalentModel(
       'Ablative Armor',
@@ -7252,7 +7252,7 @@ export class Talents {
     ),
   ];
 
-  private _specialRules: TalentModel[] = [
+  private specialRules: TalentModel[] = [
     new TalentModel(
       'Additional Propulsion System',
       'The vessel includes an additional, non-standard form of propulsion, such as Transwarp or Quantum Slipstream Drive.',
@@ -9407,8 +9407,8 @@ export class Talents {
 
   getTalents(): TalentModel[] {
     const result = [];
-    this._talents.forEach((t) => result.push(t));
-    this._starshipTalents.forEach((t) => result.push(t));
+    this.talents.forEach((t) => result.push(t));
+    this.starshipTalents.forEach((t) => result.push(t));
     return result;
   }
 
@@ -9420,8 +9420,8 @@ export class Talents {
     }
 
     if (talent == null) {
-      for (let i = 0; i < this._talents.length; i++) {
-        const t = this._talents[i];
+      for (let i = 0; i < this.talents.length; i++) {
+        const t = this.talents[i];
         if (t.matches(name)) {
           talent = t;
           break;
@@ -9430,8 +9430,8 @@ export class Talents {
     }
 
     if (talent == null) {
-      for (let i = 0; i < this._starshipTalents.length; i++) {
-        const t = this._starshipTalents[i];
+      for (let i = 0; i < this.starshipTalents.length; i++) {
+        const t = this.starshipTalents[i];
         if (t.matches(name)) {
           talent = t;
           break;
@@ -9440,8 +9440,8 @@ export class Talents {
     }
 
     if (talent == null) {
-      for (let i = 0; i < this._specialRules.length; i++) {
-        const t = this._specialRules[i];
+      for (let i = 0; i < this.specialRules.length; i++) {
+        const t = this.specialRules[i];
         if (t.matches(name)) {
           talent = t;
           break;
@@ -9491,12 +9491,12 @@ export class Talents {
     ) {
       return [this.getTalent('Morphogenic Matrix')];
     } else {
-      const result = this._talents.filter((t) =>
+      const result = this.talents.filter((t) =>
         t.isPrerequisiteFulfilled(character),
       );
 
       if (character.stereotype === Stereotype.Npc) {
-        const rules = this._specialRules.filter(
+        const rules = this.specialRules.filter(
           (t) =>
             t.isPrerequisiteFulfilled(character) &&
             !character.hasTalent(t.name),
@@ -9516,8 +9516,8 @@ export class Talents {
     includeCustom: boolean = false,
   ) {
     const talents: TalentModel[] = [];
-    for (let i = 0; i < this._starshipTalents.length; i++) {
-      const talent = this._starshipTalents[i];
+    for (let i = 0; i < this.starshipTalents.length; i++) {
+      const talent = this.starshipTalents[i];
       let include = talent.isStarshipTalent;
       if (starship instanceof Station) {
         include = include || talent.isStarbaseTalent;
@@ -9546,11 +9546,11 @@ export class Talents {
   }
 
   getAllAvailableTalentsForNpc(character: Character): TalentModel[] {
-    const result = this._talents.filter((t) =>
+    const result = this.talents.filter((t) =>
       t.isPrerequisiteFulfilled(character),
     );
     result.push(
-      ...this._specialRules.filter((t) => t.isPrerequisiteFulfilled(character)),
+      ...this.specialRules.filter((t) => t.isPrerequisiteFulfilled(character)),
     );
     result.push(this.customTalent);
     return result;

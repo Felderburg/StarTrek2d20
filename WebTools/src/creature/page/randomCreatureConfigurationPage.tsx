@@ -171,7 +171,7 @@ const RandomCreatureConfigurationPage: React.FC<
                     isChecked={includeDescription}
                     value={'includeDescription'}
                     text={t('NpcConfigurationPage.includeDescription')}
-                    onChanged={(_inc) =>
+                    onChanged={() =>
                       updateIncludeDescription(!includeDescription)
                     }
                   />

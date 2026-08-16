@@ -7,17 +7,17 @@ import toast from 'react-hot-toast';
 export default class UniformPackCollection {
   uniformPacks: { [era: number]: IUniformPack } = {};
 
-  private static _instance: UniformPackCollection;
+  private static singleton: UniformPackCollection;
 
   public static get instance() {
-    if (UniformPackCollection._instance == null) {
-      UniformPackCollection._instance = new UniformPackCollection();
+    if (UniformPackCollection.singleton == null) {
+      UniformPackCollection.singleton = new UniformPackCollection();
     }
-    UniformPackCollection._instance.uniformPacks[UniformEra.DominionWar] =
+    UniformPackCollection.singleton.uniformPacks[UniformEra.DominionWar] =
       new DominionWarUniformPack();
-    UniformPackCollection._instance.uniformPacks[UniformEra.None] =
+    UniformPackCollection.singleton.uniformPacks[UniformEra.None] =
       new NoneUniformPack();
-    return UniformPackCollection._instance;
+    return UniformPackCollection.singleton;
   }
 
   getUniformPack(uniformEra: UniformEra) {

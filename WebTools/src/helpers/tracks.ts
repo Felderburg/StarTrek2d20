@@ -140,16 +140,16 @@ export class TrackModel {
 }
 
 export class TracksHelper {
-  private static _instance: TracksHelper;
+  private static singleton: TracksHelper;
 
   static get instance() {
-    if (TracksHelper._instance == null) {
-      TracksHelper._instance = new TracksHelper();
+    if (TracksHelper.singleton == null) {
+      TracksHelper.singleton = new TracksHelper();
     }
-    return TracksHelper._instance;
+    return TracksHelper.singleton;
   }
 
-  private _tracks: TrackModel[] = [
+  private tracks: TrackModel[] = [
     new TrackModel(
       Track.Command,
       'Command Track',
@@ -357,7 +357,7 @@ export class TracksHelper {
     ),
   ];
 
-  private _version2Tracks: TrackModel[] = [
+  private version2Tracks: TrackModel[] = [
     new TrackModel(
       Track.Command,
       'Command Track',
@@ -517,7 +517,7 @@ export class TracksHelper {
     ),
   ];
 
-  private _klingonTracks: TrackModel[] = [
+  private klingonTracks: TrackModel[] = [
     new TrackModel(
       Track.Command,
       'Command Officer',
@@ -630,7 +630,7 @@ export class TracksHelper {
     ),
   ];
 
-  private _alliedMilitaryTracks: TrackModel[] = [
+  private alliedMilitaryTracks: TrackModel[] = [
     new TrackModel(
       Track.RankAndFile,
       'Rank and File',
@@ -760,7 +760,7 @@ export class TracksHelper {
     ),
   ];
 
-  private _ambassardorTracks: TrackModel[] = [
+  private ambassardorTracks: TrackModel[] = [
     new TrackModel(
       Track.DiplomaticCorps,
       'Diplomatic Corps',
@@ -814,7 +814,7 @@ export class TracksHelper {
     ),
   ];
 
-  private _civilianTracks: TrackModel[] = [
+  private civilianTracks: TrackModel[] = [
     new TrackModel(
       Track.FreightAndTransport,
       'Freight and Transport',
@@ -1079,23 +1079,23 @@ export class TracksHelper {
 
   private chooseList(type: CharacterType, version: number) {
     if (type === CharacterType.AlliedMilitary) {
-      return this._alliedMilitaryTracks;
+      return this.alliedMilitaryTracks;
     } else if (type === CharacterType.AmbassadorDiplomat) {
-      return this._ambassardorTracks;
+      return this.ambassardorTracks;
     } else if (type === CharacterType.Civilian) {
-      return this._civilianTracks;
+      return this.civilianTracks;
     } else if (isKlingonWarriorType(type)) {
-      return this._klingonTracks;
+      return this.klingonTracks;
     } else if (type === CharacterType.Cadet && version === 1) {
-      return [this._tracks[0], this._tracks[1], this._tracks[2]];
+      return [this.tracks[0], this.tracks[1], this.tracks[2]];
     } else if (type === CharacterType.Cadet) {
       return [
-        this._version2Tracks[0],
-        this._version2Tracks[1],
-        this._version2Tracks[2],
+        this.version2Tracks[0],
+        this.version2Tracks[1],
+        this.version2Tracks[2],
       ];
     } else {
-      return this._tracks;
+      return this.tracks;
     }
   }
 
@@ -1119,22 +1119,22 @@ export class TracksHelper {
 
   getSoloTracks(type: CharacterType) {
     if (type === CharacterType.Starfleet) {
-      return [this._tracks[0], this._tracks[1], this._tracks[2]];
+      return [this.tracks[0], this.tracks[1], this.tracks[2]];
     } else if (type === CharacterType.AlliedMilitary) {
-      return this._alliedMilitaryTracks;
+      return this.alliedMilitaryTracks;
     } else if (type === CharacterType.AmbassadorDiplomat) {
-      return this._ambassardorTracks;
+      return this.ambassardorTracks;
     } else {
-      return this._civilianTracks;
+      return this.civilianTracks;
     }
   }
 
   getSoloTrack(track: Track): TrackModel {
     const tracks = [
-      this._tracks,
-      this._alliedMilitaryTracks,
-      this._ambassardorTracks,
-      this._civilianTracks,
+      this.tracks,
+      this.alliedMilitaryTracks,
+      this.ambassardorTracks,
+      this.civilianTracks,
     ];
     const result = tracks
       .map((list) => list.filter((t) => t.id === track))
@@ -1146,7 +1146,7 @@ export class TracksHelper {
   getTrack(track: Track, type: CharacterType, version: number): TrackModel {
     const list =
       type === CharacterType.Starfleet && version > 1
-        ? this._version2Tracks
+        ? this.version2Tracks
         : this.chooseList(type, version);
     let result = null;
     for (const t of list) {
@@ -1160,7 +1160,7 @@ export class TracksHelper {
 
   getOtherStarfleetTracks(): TrackModel[] {
     if (hasSource(Source.SciencesDivision)) {
-      return this._tracks.filter(
+      return this.tracks.filter(
         (t) =>
           t.id === Track.UniversityAlumni || t.id === Track.ResearchInternship,
       );
@@ -1171,14 +1171,14 @@ export class TracksHelper {
 
   getVersion2StarfleetTracks() {
     if (hasSource(Source.Core2ndEdition)) {
-      return this._version2Tracks;
+      return this.version2Tracks;
     } else {
       return [];
     }
   }
 
   getOfficerStarfleetTracks() {
-    return this._tracks
+    return this.tracks
       .filter(
         (t) =>
           t.id !== Track.UniversityAlumni &&
@@ -1189,7 +1189,7 @@ export class TracksHelper {
   }
 
   getEnlistedStarfleetTracks() {
-    return this._tracks
+    return this.tracks
       .filter(
         (t) =>
           t.id !== Track.UniversityAlumni && t.id !== Track.ResearchInternship,
@@ -1203,7 +1203,7 @@ export class TracksHelper {
       const roll = Math.floor(Math.random() * tracks.length);
       return tracks[roll];
     } else if (characterType === CharacterType.Starfleet) {
-      const list = this._version2Tracks;
+      const list = this.version2Tracks;
       const roll = Math.floor(Math.random() * list.length);
       return list[roll].id;
     } else {

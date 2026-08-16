@@ -30,7 +30,7 @@ export class HabitatModel {
 }
 
 export class HabitatHelper {
-  private static _instance: HabitatHelper;
+  private static singleton: HabitatHelper;
 
   private items = [
     new HabitatModel(Habitat.Caves, 'Caves'),
@@ -48,10 +48,10 @@ export class HabitatHelper {
   ];
 
   static get instance() {
-    if (HabitatHelper._instance == null) {
-      HabitatHelper._instance = new HabitatHelper();
+    if (HabitatHelper.singleton == null) {
+      HabitatHelper.singleton = new HabitatHelper();
     }
-    return HabitatHelper._instance;
+    return HabitatHelper.singleton;
   }
 
   getTypes() {

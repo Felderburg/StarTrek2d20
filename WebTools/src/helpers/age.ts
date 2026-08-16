@@ -58,7 +58,7 @@ export class Age {
   }
 }
 
-class _AgeHelper {
+class AgeRepository {
   private ages: Age[] = [
     new Age('Adult', [10, 9, 9, 8, 8, 7], [4, 3, 2, 2, 1, 1], 56, 16),
     new Age(
@@ -114,6 +114,6 @@ class _AgeHelper {
   }
 }
 
-const AgeHelper = new _AgeHelper();
+const AgeHelper = new AgeRepository();
 
 export default AgeHelper;

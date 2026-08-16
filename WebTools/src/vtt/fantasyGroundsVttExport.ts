@@ -16,13 +16,13 @@ import { NpcType } from '../npc/model/npcType';
 import { textTokenizer } from '../exportpdf/textTokenizer';
 
 export class FantasyGroupsVttExporter {
-  private static _instance: FantasyGroupsVttExporter;
+  private static singleton: FantasyGroupsVttExporter;
 
   static get instance() {
-    if (FantasyGroupsVttExporter._instance == null) {
-      FantasyGroupsVttExporter._instance = new FantasyGroupsVttExporter();
+    if (FantasyGroupsVttExporter.singleton == null) {
+      FantasyGroupsVttExporter.singleton = new FantasyGroupsVttExporter();
     }
-    return FantasyGroupsVttExporter._instance;
+    return FantasyGroupsVttExporter.singleton;
   }
 
   private exportNpc(character: Character) {

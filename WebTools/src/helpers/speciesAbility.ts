@@ -82,7 +82,7 @@ export class SpeciesAbility {
 }
 
 export class SpeciesAbilityList {
-  private static _instance: SpeciesAbilityList;
+  private static singleton: SpeciesAbilityList;
 
   private items: { [id: number]: SpeciesAbility } = {
     [Species.Aenar]: new SpeciesAbility(Species.Aenar),
@@ -413,10 +413,10 @@ export class SpeciesAbilityList {
   };
 
   static get instance() {
-    if (SpeciesAbilityList._instance == null) {
-      SpeciesAbilityList._instance = new SpeciesAbilityList();
+    if (SpeciesAbilityList.singleton == null) {
+      SpeciesAbilityList.singleton = new SpeciesAbilityList();
     }
-    return SpeciesAbilityList._instance;
+    return SpeciesAbilityList.singleton;
   }
 
   getBySpecies(species: Species) {

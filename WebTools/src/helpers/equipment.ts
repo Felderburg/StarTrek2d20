@@ -59,13 +59,13 @@ export class EquipmentModel {
 }
 
 export class EquipmentHelper {
-  static _instance: EquipmentHelper;
+  static singleton: EquipmentHelper;
 
   static get instance() {
-    if (EquipmentHelper._instance == null) {
-      EquipmentHelper._instance = new EquipmentHelper();
+    if (EquipmentHelper.singleton == null) {
+      EquipmentHelper.singleton = new EquipmentHelper();
     }
-    return EquipmentHelper._instance;
+    return EquipmentHelper.singleton;
   }
 
   public items = [

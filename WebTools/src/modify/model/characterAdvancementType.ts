@@ -24,7 +24,7 @@ export class CharacterAdvancementModel {
 }
 
 class CharacterAdvancements {
-  static _instance: CharacterAdvancements;
+  static singleton: CharacterAdvancements;
 
   private items: CharacterAdvancementModel[] = [
     new CharacterAdvancementModel(
@@ -42,10 +42,10 @@ class CharacterAdvancements {
   ];
 
   static get instance() {
-    if (CharacterAdvancements._instance == null) {
-      CharacterAdvancements._instance = new CharacterAdvancements();
+    if (CharacterAdvancements.singleton == null) {
+      CharacterAdvancements.singleton = new CharacterAdvancements();
     }
-    return CharacterAdvancements._instance;
+    return CharacterAdvancements.singleton;
   }
 
   getItems() {

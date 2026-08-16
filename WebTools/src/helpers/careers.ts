@@ -45,16 +45,16 @@ export class CareerModel {
 }
 
 export class CareersHelper {
-  private static _instance: CareersHelper;
+  private static singleton: CareersHelper;
 
   static get instance() {
-    if (CareersHelper._instance == null) {
-      CareersHelper._instance = new CareersHelper();
+    if (CareersHelper.singleton == null) {
+      CareersHelper.singleton = new CareersHelper();
     }
-    return CareersHelper._instance;
+    return CareersHelper.singleton;
   }
 
-  private _careers: CareerModel[] = [
+  private careers: CareerModel[] = [
     new CareerModel(
       Career.Young,
       'core',
@@ -70,7 +70,7 @@ export class CareersHelper {
     ),
   ];
 
-  private _civilianCareers: CareerModel[] = [
+  private civilianCareers: CareerModel[] = [
     new CareerModel(
       Career.Young,
       'civilian',
@@ -86,7 +86,7 @@ export class CareersHelper {
     ),
   ];
 
-  private _klingonCareers: CareerModel[] = [
+  private klingonCareers: CareerModel[] = [
     new CareerModel(
       Career.Young,
       'klingon',
@@ -102,7 +102,7 @@ export class CareersHelper {
     ),
   ];
 
-  private _soloCareerLengths: CareerModel[] = [
+  private soloCareerLengths: CareerModel[] = [
     new CareerModel(
       Career.Young,
       'solo',
@@ -120,11 +120,11 @@ export class CareersHelper {
 
   private getBaseList(type: CharacterType) {
     if (isKlingonWarriorType(type)) {
-      return this._klingonCareers;
+      return this.klingonCareers;
     } else if (type === CharacterType.Starfleet) {
-      return this._careers;
+      return this.careers;
     } else {
-      return this._civilianCareers; // also allied military
+      return this.civilianCareers; // also allied military
     }
   }
 
@@ -150,12 +150,12 @@ export class CareersHelper {
   }
 
   getSoloCareerLength(careerLength: Career) {
-    const result = this._soloCareerLengths.filter((c) => c.id === careerLength);
+    const result = this.soloCareerLengths.filter((c) => c.id === careerLength);
     return result ? result[0] : undefined;
   }
 
   getSoloCareerLengths() {
-    return this._soloCareerLengths;
+    return this.soloCareerLengths;
   }
 
   getCareer(career: Career, c: Character) {
@@ -186,7 +186,7 @@ export class CareersHelper {
     version: number = 1,
   ) {
     const list =
-      version === 1 ? this.getBaseList(type) : this._soloCareerLengths;
+      version === 1 ? this.getBaseList(type) : this.soloCareerLengths;
     const filtered = list.filter((c) => Career[c.id] === typeName);
     return filtered.length === 0 ? undefined : filtered[0];
   }

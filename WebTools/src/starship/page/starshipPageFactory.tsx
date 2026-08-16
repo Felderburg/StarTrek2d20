@@ -16,13 +16,13 @@ import ServiceRecordPage from './serviceRecordPage';
 import ExtraStarshipTalentChoicesPage from './extraStarshipTalentChoicesPage';
 
 export class StarshipPageFactory implements IPageFactoryRegistry {
-  private static _instance;
+  private static singleton;
 
   static get instance() {
-    if (StarshipPageFactory._instance == null) {
-      StarshipPageFactory._instance = new StarshipPageFactory();
+    if (StarshipPageFactory.singleton == null) {
+      StarshipPageFactory.singleton = new StarshipPageFactory();
     }
-    return StarshipPageFactory._instance;
+    return StarshipPageFactory.singleton;
   }
 
   private factories = {};

@@ -22,13 +22,13 @@ import SoloStarshipTalentsPage from './soloStarshipTalentsPage';
 import CustomSpeciesDetailsPage from '../../pages/customSpeciesDetailsPage';
 
 export class CaptainsLogPageFactory implements IPageFactoryRegistry {
-  private static _instance;
+  private static singleton;
 
   static get instance() {
-    if (CaptainsLogPageFactory._instance == null) {
-      CaptainsLogPageFactory._instance = new CaptainsLogPageFactory();
+    if (CaptainsLogPageFactory.singleton == null) {
+      CaptainsLogPageFactory.singleton = new CaptainsLogPageFactory();
     }
-    return CaptainsLogPageFactory._instance;
+    return CaptainsLogPageFactory.singleton;
   }
 
   private factories = {};

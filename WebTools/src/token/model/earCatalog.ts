@@ -173,13 +173,13 @@ const CardassianEar = `<g>
 </g>`;
 
 class EarCatalog {
-  private static _instance: EarCatalog;
+  private static singleton: EarCatalog;
 
   public static get instance() {
-    if (EarCatalog._instance == null) {
-      EarCatalog._instance = new EarCatalog();
+    if (EarCatalog.singleton == null) {
+      EarCatalog.singleton = new EarCatalog();
     }
-    return EarCatalog._instance;
+    return EarCatalog.singleton;
   }
 
   getHiddenEar(token: TokenModel) {

@@ -28,7 +28,7 @@ export class ModificationModel {
 }
 
 class Modifications {
-  static _instance: Modifications;
+  static singleton: Modifications;
 
   private items: ModificationModel[] = [
     new ModificationModel(ModificationType.LogEntry, 'Log Entry'),
@@ -44,10 +44,10 @@ class Modifications {
   ];
 
   static get instance() {
-    if (Modifications._instance == null) {
-      Modifications._instance = new Modifications();
+    if (Modifications.singleton == null) {
+      Modifications.singleton = new Modifications();
     }
-    return Modifications._instance;
+    return Modifications.singleton;
   }
 
   getItems() {

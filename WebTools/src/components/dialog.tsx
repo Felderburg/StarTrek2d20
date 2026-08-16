@@ -8,7 +8,7 @@ interface IDialogProperties {
   message: string;
 }
 
-const _Dialog: React.FC<IDialogProperties> = ({ message }) => {
+const DialogContent: React.FC<IDialogProperties> = ({ message }) => {
   const { t } = useTranslation();
 
   return (
@@ -24,19 +24,19 @@ const _Dialog: React.FC<IDialogProperties> = ({ message }) => {
 };
 
 class DialogControl {
-  static _root;
+  static rootElement;
 
-  private _message: string;
+  private message: string;
 
   static get root() {
-    if (DialogControl._root == null) {
-      DialogControl._root = createRoot(document.getElementById('dialog'));
+    if (DialogControl.rootElement == null) {
+      DialogControl.rootElement = createRoot(document.getElementById('dialog'));
     }
-    return DialogControl._root;
+    return DialogControl.rootElement;
   }
 
   show(message: string) {
-    this._message = message;
+    this.message = message;
     this.render(true);
   }
 
@@ -47,13 +47,13 @@ class DialogControl {
   private render(visible: boolean) {
     if (visible) {
       DialogControl.root.render(
-        React.createElement(_Dialog, {
-          message: this._message,
+        React.createElement(DialogContent, {
+          message: this.message,
         }),
       );
     } else {
       DialogControl.root.unmount();
-      DialogControl._root = null;
+      DialogControl.rootElement = null;
     }
   }
 }

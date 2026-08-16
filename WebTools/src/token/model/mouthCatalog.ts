@@ -367,13 +367,13 @@ const ZakdornMouth = `<g>
 </g>`;
 
 class MouthCatalog {
-  private static _instance: MouthCatalog;
+  private static singleton: MouthCatalog;
 
   public static get instance() {
-    if (MouthCatalog._instance == null) {
-      MouthCatalog._instance = new MouthCatalog();
+    if (MouthCatalog.singleton == null) {
+      MouthCatalog.singleton = new MouthCatalog();
     }
-    return MouthCatalog._instance;
+    return MouthCatalog.singleton;
   }
 
   getMouth(token: TokenModel) {

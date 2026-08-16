@@ -35,7 +35,7 @@ const CherubicNasoLabial = `<g>
 </g>`;
 
 class NasoLabialFoldCatalog {
-  private static _instance: NasoLabialFoldCatalog;
+  private static singleton: NasoLabialFoldCatalog;
 
   swatches = [
     new Swatch(
@@ -77,10 +77,10 @@ class NasoLabialFoldCatalog {
   ];
 
   public static get instance() {
-    if (NasoLabialFoldCatalog._instance == null) {
-      NasoLabialFoldCatalog._instance = new NasoLabialFoldCatalog();
+    if (NasoLabialFoldCatalog.singleton == null) {
+      NasoLabialFoldCatalog.singleton = new NasoLabialFoldCatalog();
     }
-    return NasoLabialFoldCatalog._instance;
+    return NasoLabialFoldCatalog.singleton;
   }
 
   getNasoLabialFold(token: TokenModel) {

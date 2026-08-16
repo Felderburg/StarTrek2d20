@@ -63,16 +63,16 @@ export class MissionPodModel {
 }
 
 export class MissionPodHelper {
-  private static _instance: MissionPodHelper;
+  private static singleton: MissionPodHelper;
 
   public static instance() {
-    if (MissionPodHelper._instance == null) {
-      MissionPodHelper._instance = new MissionPodHelper();
+    if (MissionPodHelper.singleton == null) {
+      MissionPodHelper.singleton = new MissionPodHelper();
     }
-    return MissionPodHelper._instance;
+    return MissionPodHelper.singleton;
   }
 
-  private _missionPods2e: { [id: number]: MissionPodModel } = {
+  private missionPods2e: { [id: number]: MissionPodModel } = {
     [MissionPod.AstrometricsAndNavigation]: new MissionPodModel(
       MissionPod.AstrometricsAndNavigation,
       'Astrometrics and Navigation',
@@ -197,7 +197,7 @@ export class MissionPodHelper {
     ),
   };
 
-  private _missionPods: { [id: number]: MissionPodModel } = {
+  private missionPods: { [id: number]: MissionPodModel } = {
     [MissionPod.CommandAndControl]: new MissionPodModel(
       MissionPod.CommandAndControl,
       'Command & Control',
@@ -331,7 +331,7 @@ export class MissionPodHelper {
 
   getMissionPodByName(name: string, version: number) {
     let result = undefined;
-    const list = version === 1 ? this._missionPods : this._missionPods2e;
+    const list = version === 1 ? this.missionPods : this.missionPods2e;
     for (const id in list) {
       if (MissionPod[id] === name) {
         result = list[id];
@@ -344,8 +344,7 @@ export class MissionPodHelper {
   getMissionPods(starship: Starship) {
     const missionPods: MissionPodModel[] = [];
 
-    const list =
-      starship.version === 1 ? this._missionPods : this._missionPods2e;
+    const list = starship.version === 1 ? this.missionPods : this.missionPods2e;
     for (const pod in list) {
       const p = list[pod];
       if (p.isPrerequisitesFulfilled(starship)) {

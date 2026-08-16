@@ -25,8 +25,8 @@ export interface ISpecies {
   nameSuggestions: NameModel[];
 }
 
-class _Species {
-  private _species: { [id: number]: SpeciesModel } = {
+class SpeciesRepository {
+  private species: { [id: number]: SpeciesModel } = {
     [Species.Andorian]: new SpeciesModel(
       Species.Andorian,
       'Andorian',
@@ -4200,8 +4200,8 @@ class _Species {
 
   getAllSpecies() {
     const result = [];
-    for (const archetype in this._species) {
-      const spec = this._species[archetype];
+    for (const archetype in this.species) {
+      const spec = this.species[archetype];
       result.push(spec);
     }
     return result;
@@ -4209,8 +4209,8 @@ class _Species {
 
   getSpecies(characterType: CharacterType) {
     const species: SpeciesModel[] = [];
-    for (const archetype in this._species) {
-      const spec = this._species[archetype];
+    for (const archetype in this.species) {
+      const spec = this.species[archetype];
 
       const hasEra =
         spec.eras.indexOf(store.getState().context.era) > -1 ||
@@ -4240,7 +4240,7 @@ class _Species {
           ? [Species.Klingon]
           : [Species.Klingon, Species.KlingonQuchHa, Species.KlingonQuchHa_2E];
       for (const archetype of klingonSpecies) {
-        const spec = this._species[archetype];
+        const spec = this.species[archetype];
         const hasSource = hasAnySource(spec.sources);
 
         if (hasSource && !this.ignoreSpecies(archetype)) {
@@ -4259,7 +4259,7 @@ class _Species {
       const alliedMilitary = (character.typeDetails as AlliedMilitaryDetails)
         .alliedMilitary;
       const species = alliedMilitary.species
-        .map((s) => this._species[s])
+        .map((s) => this.species[s])
         .filter((s) => hasAnySource(s.sources) && !this.ignoreSpecies(s.id));
       return species.sort((a, b) => {
         return a.localizedName.localeCompare(b.localizedName);
@@ -4273,13 +4273,13 @@ class _Species {
   }
 
   getSpeciesByType(species: Species): SpeciesModel {
-    const model = this._species[species];
+    const model = this.species[species];
     return model;
   }
 
   getSpeciesByName(name: string) {
-    for (const sp in this._species) {
-      const spec = this._species[sp];
+    for (const sp in this.species) {
+      const spec = this.species[sp];
 
       if (spec.name === name) {
         return spec.id;
@@ -4290,9 +4290,9 @@ class _Species {
 
   getSpeciesTypeByName(name: string): Species {
     let result = undefined;
-    for (const species in this._species) {
+    for (const species in this.species) {
       if (name === Species[species]) {
-        const speciesModel = this._species[species];
+        const speciesModel = this.species[species];
         result = speciesModel.id;
         break;
       }
@@ -4768,8 +4768,8 @@ class _Species {
 
   getCaptainsLogSpecies() {
     const result: SpeciesModel[] = [];
-    for (const id in this._species) {
-      const species = this._species[id];
+    for (const id in this.species) {
+      const species = this.species[id];
       if (species.sources.indexOf(Source.CaptainsLog) >= 0) {
         result.push(species);
       }
@@ -4780,4 +4780,4 @@ class _Species {
   }
 }
 
-export const SpeciesHelper = new _Species();
+export const SpeciesHelper = new SpeciesRepository();

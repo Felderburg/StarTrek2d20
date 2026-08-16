@@ -317,13 +317,13 @@ export enum ProstheticPlacement {
 }
 
 class ProstheticCatalog {
-  private static _instance: ProstheticCatalog;
+  private static singleton: ProstheticCatalog;
 
   public static get instance() {
-    if (ProstheticCatalog._instance == null) {
-      ProstheticCatalog._instance = new ProstheticCatalog();
+    if (ProstheticCatalog.singleton == null) {
+      ProstheticCatalog.singleton = new ProstheticCatalog();
     }
-    return ProstheticCatalog._instance;
+    return ProstheticCatalog.singleton;
   }
 
   getProsthetic(token: TokenModel, placement: ProstheticPlacement) {

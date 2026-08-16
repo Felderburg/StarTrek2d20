@@ -3,9 +3,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 export class EditableTableRow {
   key: string;
-  private _from: number;
-  private _to?: number;
-  private _result: ValueResult;
+  private fromValue: number;
+  private toValue?: number;
+  private resultValue: ValueResult;
   edited: boolean = false;
 
   constructor(
@@ -15,44 +15,44 @@ export class EditableTableRow {
     key: string = uuidv4(),
   ) {
     this.key = key;
-    this._from = from;
-    this._to = to == null ? from : to;
-    this._result = result;
+    this.fromValue = from;
+    this.toValue = to == null ? from : to;
+    this.resultValue = result;
   }
 
   static from(row?: TableRow) {
     const result = new EditableTableRow();
-    result._from = row?.from;
-    result._to = row?.to == null ? row?.from : row?.to;
-    result._result = row?.result;
+    result.fromValue = row?.from;
+    result.toValue = row?.to == null ? row?.from : row?.to;
+    result.resultValue = row?.result;
     result.edited = true;
     return result;
   }
 
   get result() {
-    return this._result;
+    return this.resultValue;
   }
 
   set result(value: ValueResult) {
-    this._result = value;
+    this.resultValue = value;
     this.edited = true;
   }
 
   get from() {
-    return this._from;
+    return this.fromValue;
   }
 
   set from(value: number | undefined) {
-    this._from = value;
+    this.fromValue = value;
     this.edited = true;
   }
 
   get to() {
-    return this._to;
+    return this.toValue;
   }
 
   set to(value: number | undefined) {
-    this._to = value;
+    this.toValue = value;
     this.edited = true;
   }
 
@@ -83,15 +83,15 @@ export class EditableTableRow {
   copy() {
     const result = new EditableTableRow();
     result.key = this.key;
-    result._from = this._from;
-    result._to = this._to;
-    result._result = this._result;
+    result.fromValue = this.fromValue;
+    result.toValue = this.toValue;
+    result.resultValue = this.resultValue;
     result.edited = this.edited;
     return result;
   }
 
   asTableRow() {
-    return new TableRow(this._result, this._from, this.to);
+    return new TableRow(this.resultValue, this.fromValue, this.to);
   }
 }
 

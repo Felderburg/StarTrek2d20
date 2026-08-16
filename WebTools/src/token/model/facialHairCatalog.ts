@@ -130,7 +130,7 @@ class FacialHairItem {
 }
 
 class FacialHairCatalog {
-  private static _instance: FacialHairCatalog;
+  private static singleton: FacialHairCatalog;
 
   items = [
     new FacialHairItem(
@@ -220,10 +220,10 @@ class FacialHairCatalog {
   ];
 
   public static get instance() {
-    if (FacialHairCatalog._instance == null) {
-      FacialHairCatalog._instance = new FacialHairCatalog();
+    if (FacialHairCatalog.singleton == null) {
+      FacialHairCatalog.singleton = new FacialHairCatalog();
     }
-    return FacialHairCatalog._instance;
+    return FacialHairCatalog.singleton;
   }
 
   static shift(svg: string) {

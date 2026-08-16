@@ -379,9 +379,7 @@ const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
                 isChecked={includeDescription}
                 value={'includeDescription'}
                 text={t('NpcConfigurationPage.includeDescription')}
-                onChanged={(_inc) =>
-                  updateIncludeDescription(!includeDescription)
-                }
+                onChanged={() => updateIncludeDescription(!includeDescription)}
               />
             </div>
           </div>

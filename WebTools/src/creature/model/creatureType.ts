@@ -27,7 +27,7 @@ export class CreatureTypeModel {
 }
 
 export class CreatureTypeHelper {
-  private static _instance: CreatureTypeHelper;
+  private static singleton: CreatureTypeHelper;
 
   private items = [
     new CreatureTypeModel(CreatureType.Amphibian, 'Amphibian'),
@@ -41,10 +41,10 @@ export class CreatureTypeHelper {
   ];
 
   static get instance() {
-    if (CreatureTypeHelper._instance == null) {
-      CreatureTypeHelper._instance = new CreatureTypeHelper();
+    if (CreatureTypeHelper.singleton == null) {
+      CreatureTypeHelper.singleton = new CreatureTypeHelper();
     }
-    return CreatureTypeHelper._instance;
+    return CreatureTypeHelper.singleton;
   }
 
   getTypes() {
