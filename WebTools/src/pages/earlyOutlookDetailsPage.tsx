@@ -30,6 +30,7 @@ import type { SelectedTalent } from '../common/selectedTalent';
 import { FocusSelectionView } from '../components/focusSelectionView';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { getEarlyOutlookTalents } from '../helpers/earlyOutlookTalents';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({
   character,
@@ -188,8 +189,9 @@ const EarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({
           construct={character}
         />
       </div>
-      <div className="text-end">
-        <Button className="mt-4" onClick={() => navigateToNextPage()}>
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
+        <Button onClick={() => navigateToNextPage()}>
           {t('Common.button.next')}
         </Button>
       </div>

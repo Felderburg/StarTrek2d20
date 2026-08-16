@@ -26,6 +26,7 @@ import { SelectedTalent } from '../../common/selectedTalent';
 import SingleTalentSelectionList from '../../components/singleTalentSelectionList';
 import { RankedTalent } from '../../helpers/rankedTalent';
 import { PageIdentity } from '../../pages/pageIdentity';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface IMissionProfileTalentSelectionPageProperties {
   starship: Starship;
@@ -274,7 +275,8 @@ const MissionProfileTalentSelectionPage: React.FC<
         construct={starship}
         onSelection={(talent) => saveTalent(talent)}
       />
-      <div className="text-end mt-4">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>
       </div>
     </div>

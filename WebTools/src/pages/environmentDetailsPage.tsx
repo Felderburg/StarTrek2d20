@@ -37,6 +37,7 @@ import { Stereotype } from '../common/construct';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import Markdown from 'react-markdown';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 class EnvironmentAttributeController implements IAttributeController {
   readonly character: Character;
@@ -311,7 +312,8 @@ const EnvironmentDetailsPage: React.FC<ICharacterProperties> = ({
             ) : undefined}
           </div>
         </div>
-        <div className="text-end mt-4">
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
           <Button onClick={() => navigateToNextStep()}>
             {t('Common.button.next')}
           </Button>

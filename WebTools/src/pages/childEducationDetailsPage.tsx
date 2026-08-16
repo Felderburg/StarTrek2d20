@@ -30,6 +30,7 @@ import DisciplineListComponent from '../components/disciplineListComponent';
 import type { Department } from '../helpers/department';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 class ChildDecrementAttributeController implements IAttributeController {
   readonly character: Character;
@@ -444,7 +445,8 @@ const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({
         </div>
       </div>
 
-      <div className="text-end">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
       </div>
     </div>

@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { PageIdentity } from '../../pages/pageIdentity';
 import type { IStarshipProperties } from '../iStarshipProperties';
 import { Stereotype } from '../../common/construct';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 const StarshipWeaponsPageProperties: React.FC<IStarshipProperties> = ({
   starship,
@@ -173,7 +174,8 @@ const StarshipWeaponsPageProperties: React.FC<IStarshipProperties> = ({
         {renderWeapons()}
       </table>
 
-      <div className="text-end mt-4">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>
       </div>
     </div>

@@ -16,6 +16,7 @@ import { Dialog } from './dialog';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from '../pages/pageIdentity';
 import { makeKey } from '../common/translationKey';
+import { PageHistoryBasedPreviousButton } from './pageHistoryBasedPreviousButton';
 
 const MixedSpeciesSelection: React.FC<ICharacterProperties> = ({
   character,
@@ -233,7 +234,8 @@ const MixedSpeciesSelection: React.FC<ICharacterProperties> = ({
           </table>
         </div>
       </div>
-      <div className="text-end mt-4">
+      <div className="text-end mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => navigateToNextPage()}>
           {t('Common.button.next')}
         </Button>

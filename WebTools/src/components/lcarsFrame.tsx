@@ -237,15 +237,6 @@ const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
             <div className="lcar-content-start-top"></div>
             <div className="lcar-content-action" role="button" tabIndex={0}>
               <div
-                id="back-button"
-                className={'lcar-content-back ' + (canGoBack ? '' : 'd-none')}
-                onClick={() => goBack()}
-              >
-                {t('Lcars.back')}
-              </div>
-            </div>
-            <div className="lcar-content-action" role="button" tabIndex={0}>
-              <div
                 id="history-button"
                 className="lcar-content-history"
                 onClick={() => toggleHistory()}

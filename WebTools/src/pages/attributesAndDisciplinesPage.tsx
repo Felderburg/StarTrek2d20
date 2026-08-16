@@ -34,6 +34,7 @@ import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtr
 import { isTalentSelectable } from '../helpers/talentSelection';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({
   character,
@@ -220,7 +221,9 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({
       </div>
 
       {talentSelection}
-      <div className="text-end mt-4">
+
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => navigateToNextPage()}>
           {t('Common.button.finish')}
         </Button>

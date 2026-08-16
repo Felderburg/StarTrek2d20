@@ -13,6 +13,7 @@ import { withTranslation } from 'react-i18next';
 import { eraDefaultYear } from '../../helpers/eras';
 import { isSecondEdition } from '../../state/contextFunctions';
 import { ShipBuildType } from '../../common/shipBuildType';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 class SelectStarshipToolPage extends React.Component<WithTranslation, {}> {
   render() {
@@ -70,6 +71,10 @@ class SelectStarshipToolPage extends React.Component<WithTranslation, {}> {
               {t('StarshipToolSelection.simplifiedBuildDescription')}
             </p>
           </div>
+        </div>
+
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
         </div>
       </div>
     );

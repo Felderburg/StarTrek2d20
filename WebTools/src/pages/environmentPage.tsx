@@ -19,6 +19,7 @@ import InstructionText from '../components/instructionText';
 import { connect } from 'react-redux';
 import { Department } from '../helpers/department';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 const EnvironmentPage: React.FC<ICharacterProperties> = ({ character }) => {
   const { t } = useTranslation();
@@ -211,6 +212,10 @@ const EnvironmentPage: React.FC<ICharacterProperties> = ({ character }) => {
         <InstructionText text={t('SoloEnvironmentPage.instruction')} />
 
         {renderTable()}
+
+        <div className="d-flex justify-content-end mt-4">
+          <PageHistoryBasedPreviousButton />
+        </div>
       </main>
     </div>
   );

@@ -19,6 +19,7 @@ import type { ICharacterProperties } from '../solo/page/soloCharacterProperties'
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { Track } from '../helpers/trackEnum';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 enum StarfleetTrackTab {
   Officer,
@@ -189,6 +190,10 @@ const EducationPage: React.FC<ICharacterProperties> = ({ character }) => {
         <table className="selection-list my-4">
           <tbody>{types}</tbody>
         </table>
+
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
+        </div>
       </main>
     </div>
   );

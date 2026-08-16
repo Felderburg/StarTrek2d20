@@ -33,6 +33,7 @@ import { RankedTalent } from '../helpers/rankedTalent';
 import { isTalentSelectable } from '../helpers/talentSelection';
 import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
   allowCrossSpeciesTalents: boolean;
@@ -208,7 +209,8 @@ const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({
           </div>
         </div>
         {renderTalentsSection()}
-        <div className="text-end mt-5">
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
           <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
         </div>
       </div>

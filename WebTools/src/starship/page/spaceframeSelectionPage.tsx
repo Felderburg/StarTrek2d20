@@ -25,6 +25,7 @@ import PointAllocator from '../../helpers/pointAllocator';
 import { BuildPoints } from '../model/buildPoints';
 import { SpaceframeModel } from '../../helpers/spaceframeModel';
 import { ShipBuildType } from '../../common/shipBuildType';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 enum SpaceframeTab {
   Custom,
@@ -179,10 +180,9 @@ const SpaceframeSelectionPage: React.FC<ISpaceframeSelectionPageProperties> = ({
       ) : (
         <CustomSpaceframeView starship={starship} />
       )}
-      <div className="text-end">
-        <Button className="mt-4" onClick={() => nextPage()}>
-          {t('Common.button.next')}
-        </Button>
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
+        <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>
       </div>
     </div>
   );

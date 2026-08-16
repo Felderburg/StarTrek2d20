@@ -29,6 +29,7 @@ import { isTalentSelectable } from '../helpers/talentSelection';
 import { hasSource, isSecondEdition } from '../state/contextFunctions';
 import { Source } from '../helpers/sources';
 import { RankedTalent } from '../helpers/rankedTalent';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 const CareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
   character,
@@ -206,7 +207,8 @@ const CareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
 
       {renderMainBody(career)}
 
-      <div className="text-end">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
       </div>
     </div>

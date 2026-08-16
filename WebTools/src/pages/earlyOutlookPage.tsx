@@ -27,6 +27,7 @@ import { hasSource } from '../state/contextFunctions';
 import { Source } from '../helpers/sources';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 enum EarlyOutlookTab {
   Upbringings,
@@ -267,6 +268,10 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
           </thead>
           <tbody>{settingRows}</tbody>
         </table>
+
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
+        </div>
       </>
     );
   };
@@ -323,6 +328,10 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
           </thead>
           <tbody>{settingRows}</tbody>
         </table>
+
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
+        </div>
       </>
     );
   };
@@ -383,6 +392,10 @@ const EarlyOutlookPage: React.FC<ICharacterProperties> = ({ character }) => {
           </thead>
           <tbody>{settingRows}</tbody>
         </table>
+
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
+        </div>
       </>
     );
   };

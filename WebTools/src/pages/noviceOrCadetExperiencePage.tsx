@@ -28,6 +28,7 @@ import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { CheckBox } from '../components/checkBox';
 import { makeKey } from '../common/translationKey';
 import { Dialog } from '../components/dialog';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 const NoviceOrCadetExperiencePage: React.FC<ICharacterProperties> = ({
   character,
@@ -138,7 +139,8 @@ const NoviceOrCadetExperiencePage: React.FC<ICharacterProperties> = ({
             </div>
           )}
         </div>
-        <div className="text-end mt-5">
+        <div className="mt-5 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
           <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
         </div>
       </main>

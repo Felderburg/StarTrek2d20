@@ -17,6 +17,7 @@ import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { PageIdentity } from '../../pages/pageIdentity';
 import type { IStarshipProperties } from '../iStarshipProperties';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 const RefitPage: React.FC<IStarshipProperties> = ({ starship }) => {
   const { t } = useTranslation();
@@ -60,7 +61,8 @@ const RefitPage: React.FC<IStarshipProperties> = ({ starship }) => {
         }}
       />
 
-      <div className="text-end">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>
       </div>
     </div>

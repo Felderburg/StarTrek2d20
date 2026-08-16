@@ -20,6 +20,7 @@ import {
 } from '../state/characterActions';
 import { CharacterType } from '../common/characterType';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 interface ISimpleCareerPageProperties extends ICharacterProperties {
   talent: string;
@@ -94,7 +95,8 @@ const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({
             />
           </div>
         </div>
-        <div className="text-end">
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
           <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
         </div>
       </main>

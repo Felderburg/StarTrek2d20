@@ -16,6 +16,7 @@ import MissionPodReplacementSelection from '../view/missionPodReplacementSelecti
 import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface IMissionPodSelectionPageProperties extends WithTranslation {
   starship: Starship;
@@ -41,7 +42,8 @@ class MissionPodSelectionPage extends React.Component<
           }
         />
         <MissionPodReplacementSelection starship={this.props.starship} />
-        <div className="text-end mt-4">
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
           <Button onClick={() => this.nextPage()}>
             {t('Common.button.next')}
           </Button>

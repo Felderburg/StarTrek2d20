@@ -18,6 +18,7 @@ import SplitButton from 'react-bootstrap/SplitButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import { hasSource } from '../state/contextFunctions';
 import { SpeciesAbilityList } from '../helpers/speciesAbility';
+import { PageHistoryBasedPreviousButton } from './pageHistoryBasedPreviousButton';
 
 enum RandomMode {
   All,
@@ -307,6 +308,10 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({
         </thead>
         <tbody>{species}</tbody>
       </table>
+
+      <div className="d-flex justify-content-end mt-4">
+        <PageHistoryBasedPreviousButton />
+      </div>
     </div>
   );
 };

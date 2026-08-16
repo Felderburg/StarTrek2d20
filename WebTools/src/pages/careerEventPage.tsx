@@ -24,6 +24,7 @@ import { characterMapStateToProperties } from '../solo/page/soloCharacterPropert
 import { connect } from 'react-redux';
 import { makeKey } from '../common/translationKey';
 import rehypeExternalLinks from 'rehype-external-links';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 enum EventsTab {
   Standard,
@@ -287,6 +288,10 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({
       {tab === EventsTab.Standard
         ? renderStandardTab()
         : renderStandardAndUnofficialTab()}
+
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
+      </div>
     </div>
   );
 };
