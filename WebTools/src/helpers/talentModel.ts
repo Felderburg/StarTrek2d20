@@ -62,7 +62,7 @@ export class TalentModel implements ITalent {
       }
     }
 
-    if (typeof specialRule == 'boolean') {
+    if (typeof specialRule === 'boolean') {
       const f = (version: number) => {
         return specialRule;
       };
