@@ -25,7 +25,7 @@ import { CharacterType } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { LogEntry } from '../common/logEntry';
 import { SelectedTalent } from '../common/selectedTalent';
-import AgeHelper from '../helpers/age';
+import { AgeHelper } from '../helpers/age';
 import { Department } from '../helpers/department';
 import { EquipmentModel } from '../helpers/equipment';
 import type { ITalent } from '../helpers/italent';
@@ -137,7 +137,7 @@ const withCharacter = (
   };
 };
 
-const characterReducer = (
+export const characterReducer = (
   state: CharacterState = { currentCharacter: undefined, isModified: false },
   action,
 ) => {
@@ -1132,5 +1132,3 @@ const characterReducer = (
       return state;
   }
 };
-
-export default characterReducer;

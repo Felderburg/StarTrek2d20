@@ -8,7 +8,7 @@ import { makeKey } from '../common/translationKey';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   StepContext,
   modifyCharacterAttribute,
@@ -16,7 +16,7 @@ import {
 } from '../state/characterActions';
 import { ValueView } from '../components/valueView';
 
-const SupportingCharacterAttributes: React.FC<ICharacterProperties> = ({
+const SupportingCharacterAttributesBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -204,6 +204,6 @@ const SupportingCharacterAttributes: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(
-  SupportingCharacterAttributes,
-);
+export const SupportingCharacterAttributes = connect(
+  characterMapStateToProperties,
+)(SupportingCharacterAttributesBase);

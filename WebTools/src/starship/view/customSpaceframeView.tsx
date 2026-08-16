@@ -3,7 +3,7 @@ import type { IStarshipProperties } from '../iStarshipProperties';
 import { Header } from '../../components/header';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import { BuildPoints } from '../model/buildPoints';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   changeStarshipSpaceframeClassName,
   changeStarshipSpaceframeDepartment,
@@ -12,7 +12,7 @@ import {
   changeStarshipSpaceframeSystem,
   setStarshipSpaceframeAppearance,
 } from '../../state/starshipActions';
-import PointAllocator from '../../helpers/pointAllocator';
+import { PointAllocator } from '../../helpers/pointAllocator';
 import { allSystems, System } from '../../helpers/systems';
 import { StatControl } from './statControl';
 import { makeKey } from '../../common/translationKey';
@@ -35,7 +35,9 @@ class SystemValue {
   }
 }
 
-const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
+export const CustomSpaceframeView: React.FC<IStarshipProperties> = ({
+  starship,
+}) => {
   const { t } = useTranslation();
 
   const setScale = (delta: number) => {
@@ -513,5 +515,3 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
     return undefined;
   }
 };
-
-export default CustomSpaceframeView;

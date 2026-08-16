@@ -15,14 +15,14 @@ import { Source } from '../../helpers/sources';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { hasSource, isSecondEdition } from '../../state/contextFunctions';
 import { createNewStarship } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { BuildPoints } from '../model/buildPoints';
 import { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import { ServiceYearSelector } from '../view/serviceYearView';
-import PointAllocator from '../../helpers/pointAllocator';
+import { PointAllocator } from '../../helpers/pointAllocator';
 import { ShipBuildType } from '../../common/shipBuildType';
 import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
@@ -35,7 +35,7 @@ interface StarshipTypeSelectionPageState {
   buildType: ShipBuildTypeModel;
 }
 
-class StarshipTypeSelectionPage extends React.Component<
+class StarshipTypeSelectionPageBase extends React.Component<
   StarshipTypeSelectionPageProperties,
   StarshipTypeSelectionPageState
 > {
@@ -212,6 +212,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default withTranslation()(
-  connect(mapStateToProps)(StarshipTypeSelectionPage),
+export const StarshipTypeSelectionPage = withTranslation()(
+  connect(mapStateToProps)(StarshipTypeSelectionPageBase),
 );

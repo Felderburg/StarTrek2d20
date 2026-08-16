@@ -4,7 +4,7 @@ import { CharacterType } from '../../src/common/characterType';
 import { Era } from '../../src/helpers/erasEnum';
 import { Source } from '../../src/helpers/sources';
 import { setSources } from '../../src/state/contextActions';
-import store from '../../src/state/store';
+import { store } from '../../src/state/store';
 import { TalentsHelper } from '../../src/helpers/talents';
 
 const localStorageMock = {

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
 import { Header } from '../components/header';
-import LcarsFrame from '../components/lcarsFrame';
+import { LcarsFrame } from '../components/lcarsFrame';
 import { PageIdentity } from '../pages/pageIdentity';
 import { ModalControl } from '../components/modal';
-import AddCharacterView from './addCharacterView';
+import { AddCharacterView } from './addCharacterView';
 import { connect } from 'react-redux';
-import GmCharacterView from './gmCharacterView';
+import { GMCharacterView as GmCharacterView } from './gmCharacterView';
 import type { CharacterWithTracking } from './model/characterWithTracking';
 import { useTranslation } from 'react-i18next';
 import { IconButton } from '../components/iconButton';
@@ -17,7 +17,9 @@ interface IGMTrackerPageProperties {
   characters: CharacterWithTracking[];
 }
 
-const GMTrackerPage: React.FC<IGMTrackerPageProperties> = ({ characters }) => {
+const GMTrackerPageBase: React.FC<IGMTrackerPageProperties> = ({
+  characters,
+}) => {
   const { t } = useTranslation();
   const [loadingExport, setLoadingExport] = useState<boolean>(false);
 
@@ -97,4 +99,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(GMTrackerPage);
+export const GMTrackerPage = connect(mapStateToProps)(GMTrackerPageBase);

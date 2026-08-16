@@ -4,20 +4,20 @@ import { Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { StepContext, setCharacterValue } from '../../state/characterActions';
-import SoloValueInput from '../component/soloValueInput';
+import { SoloValueInput } from '../component/soloValueInput';
 import type { ICharacterProperties } from './soloCharacterProperties';
 import { characterMapStateToProperties } from './soloCharacterProperties';
 import { CareersHelper } from '../../helpers/careers';
 import { Dialog } from '../../components/dialog';
 import { makeKey } from '../../common/translationKey';
 import { Career } from '../../helpers/careerEnum';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
-import D20IconButton from '../component/d20IconButton';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
+import { D20IconButton } from '../component/d20IconButton';
 import { randomUniqueValue } from '../table/valueRandomTable';
 
-const SoloCareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
+const SoloCareerLengthDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -87,6 +87,6 @@ const SoloCareerLengthDetailsPage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(
-  SoloCareerLengthDetailsPage,
-);
+export const SoloCareerLengthDetailsPage = connect(
+  characterMapStateToProperties,
+)(SoloCareerLengthDetailsPageBase);

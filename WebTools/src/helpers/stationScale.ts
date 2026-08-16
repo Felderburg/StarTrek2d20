@@ -1,4 +1,4 @@
-class StationScale {
+export class StationScale {
   private static singleton?: StationScale;
 
   private scales = {
@@ -31,5 +31,3 @@ class StationScale {
     return result;
   }
 }
-
-export default StationScale;

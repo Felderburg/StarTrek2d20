@@ -1,10 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { preventDefaultAnchorEvent } from '../../common/navigator';
 import { Header } from '../../components/header';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import {
   DropDownElement,
   DropDownSelect,
@@ -28,7 +28,7 @@ interface IRandomCreatureConfigurationProperties {
   era: Era;
 }
 
-const RandomCreatureConfigurationPage: React.FC<
+const RandomCreatureConfigurationPageBase: React.FC<
   IRandomCreatureConfigurationProperties
 > = ({ era }) => {
   const { t } = useTranslation();
@@ -202,4 +202,6 @@ function mapStateToProps(state, ownProps) {
     era: state.context.era,
   };
 }
-export default connect(mapStateToProps)(RandomCreatureConfigurationPage);
+export const RandomCreatureConfigurationPage = connect(mapStateToProps)(
+  RandomCreatureConfigurationPageBase,
+);

@@ -6,7 +6,7 @@ import { AttributesHelper } from '../helpers/attributes';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../components/dialog';
 import { AttributeView } from '../components/attribute';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { CharacterType } from '../common/characterType';
 import {
   StepContext,
@@ -14,15 +14,15 @@ import {
   setCharacterFinishingTouches,
   setCharacterFocus,
 } from '../state/characterActions';
-import DisciplineListComponent from '../components/disciplineListComponent';
+import { DisciplineListComponent } from '../components/disciplineListComponent';
 import { Department } from '../helpers/department';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
-import AttributeListComponent from '../components/attributeListComponent';
+import { AttributeListComponent } from '../components/attributeListComponent';
 import { makeKey } from '../common/translationKey';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import ReactMarkdown from 'react-markdown';
-import store from '../state/store';
+import { store } from '../state/store';
 import { connect } from 'react-redux';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
@@ -37,7 +37,7 @@ interface ICareerEventDetailsProperties extends ICharacterProperties {
   context: StepContext;
 }
 
-const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({
+const CareerEventDetailsPageBase: React.FC<ICareerEventDetailsProperties> = ({
   character,
   context,
 }) => {
@@ -189,4 +189,6 @@ const CareerEventDetailsPage: React.FC<ICareerEventDetailsProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(CareerEventDetailsPage);
+export const CareerEventDetailsPage = connect(characterMapStateToProperties)(
+  CareerEventDetailsPageBase,
+);

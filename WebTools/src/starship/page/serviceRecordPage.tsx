@@ -2,14 +2,14 @@ import ReactMarkdown from 'react-markdown';
 import type { Starship } from '../../common/starship';
 import { Header } from '../../components/header';
 import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
 import {
   nextStarshipWorkflowStep,
   setStarshipServiceRecord,
 } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { Navigation } from '../../common/navigator';
 import type { ServiceRecordModel } from '../model/serviceRecord';
 import { ServiceRecord, ServiceRecordList } from '../model/serviceRecord';
@@ -34,7 +34,7 @@ interface IServiceRecordPageProperties {
   workflow: ShipBuildWorkflow;
 }
 
-const ServiceRecordPage: React.FC<IServiceRecordPageProperties> = ({
+const ServiceRecordPageBase: React.FC<IServiceRecordPageProperties> = ({
   starship,
   workflow,
 }) => {
@@ -336,4 +336,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(ServiceRecordPage);
+export const ServiceRecordPage = connect(mapStateToProps)(
+  ServiceRecordPageBase,
+);

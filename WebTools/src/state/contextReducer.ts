@@ -59,7 +59,7 @@ const getInitialData = () => {
   return initialData;
 };
 
-const contextReducer = (state = getInitialData(), action) => {
+export const contextReducer = (state = getInitialData(), action) => {
   switch (action.type) {
     case SET_SOURCES: {
       const newSources = action.payload;
@@ -153,5 +153,3 @@ const contextReducer = (state = getInitialData(), action) => {
       return state;
   }
 };
-
-export default contextReducer;

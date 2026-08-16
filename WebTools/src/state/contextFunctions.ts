@@ -1,5 +1,5 @@
 import { Source } from '../helpers/sources';
-import store from './store';
+import { store } from './store';
 
 export function isSecondEdition() {
   return hasSource(Source.Core2ndEdition);

@@ -2,17 +2,17 @@ import React, { useEffect } from 'react';
 import { Navigation } from '../common/navigator';
 import Button from 'react-bootstrap/Button';
 import { TalentDescription } from '../components/talentDescription';
-import ValueInput from '../components/valueInput';
+import { ValueInput } from '../components/valueInput';
 import { TalentsHelper } from '../helpers/talents';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import { Header } from '../components/header';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { PageIdentity } from './pageIdentity';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   StepContext,
   addCharacterTalent,
@@ -27,7 +27,7 @@ interface ISimpleCareerPageProperties extends ICharacterProperties {
   nextPage: PageIdentity;
 }
 
-const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({
+const SimpleCareerPageBase: React.FC<ISimpleCareerPageProperties> = ({
   character,
   talent,
   nextPage,
@@ -104,4 +104,6 @@ const SimpleCareerPage: React.FC<ISimpleCareerPageProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(SimpleCareerPage);
+export const SimpleCareerPage = connect(characterMapStateToProperties)(
+  SimpleCareerPageBase,
+);

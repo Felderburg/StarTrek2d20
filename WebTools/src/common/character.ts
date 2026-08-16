@@ -12,7 +12,7 @@ import { AlliedMilitaryType } from '../helpers/alliedMilitary';
 import type { Government } from '../helpers/governments';
 import { Polity } from '../helpers/governments';
 import type { Age } from '../helpers/age';
-import AgeHelper from '../helpers/age';
+import { AgeHelper } from '../helpers/age';
 import type { Weapon, PersonalWeaponType } from '../helpers/weapons';
 import { PersonalWeapons } from '../helpers/weapons';
 import { Construct, Stereotype } from './construct';

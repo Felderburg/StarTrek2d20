@@ -6,7 +6,7 @@ import { CharacterType } from '../common/characterType';
 import { Era } from '../helpers/erasEnum';
 import { Source } from '../helpers/sources';
 import { Species } from './speciesEnum';
-import store from '../state/store';
+import { store } from '../state/store';
 import { hasAnySource, hasSource } from '../state/contextFunctions';
 import { BasicAttributeHandler, SpeciesModel } from './speciesModel';
 import { isKlingonWarriorType } from './klingonWarrior';

@@ -1,6 +1,6 @@
 import type { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
-import store from '../state/store';
+import { store } from '../state/store';
 import type { Career } from './careerEnum';
 import type { Era } from './erasEnum';
 import type { Role } from './roles';

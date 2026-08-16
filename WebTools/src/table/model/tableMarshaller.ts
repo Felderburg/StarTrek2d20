@@ -2,7 +2,7 @@ import { Base64 } from 'js-base64';
 import pako from 'pako';
 import { Table, TableCollection, TableRow, ValueResult } from './table';
 
-class TableMarshaller {
+export class TableMarshaller {
   private static singleton: TableMarshaller;
 
   static get instance() {
@@ -107,5 +107,3 @@ class TableMarshaller {
     return result;
   }
 }
-
-export default TableMarshaller;

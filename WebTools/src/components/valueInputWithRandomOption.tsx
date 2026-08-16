@@ -1,7 +1,7 @@
 import type { Character } from '../common/character';
 import type { Department } from '../helpers/department';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
-import ValueInput from './valueInput';
+import { ValueInput } from './valueInput';
 
 export interface IValueInputWithRandom {
   value?: string;
@@ -13,7 +13,7 @@ export interface IValueInputWithRandom {
   labelName?: string;
 }
 
-const ValueInputWithRandom: React.FC<IValueInputWithRandom> = ({
+export const ValueInputWithRandom: React.FC<IValueInputWithRandom> = ({
   textDescription,
   id,
   value,
@@ -42,5 +42,3 @@ const ValueInputWithRandom: React.FC<IValueInputWithRandom> = ({
     />
   );
 };
-
-export default ValueInputWithRandom;

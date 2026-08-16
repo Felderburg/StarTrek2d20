@@ -8,7 +8,7 @@ import {
   modifyCharacterAttribute,
   modifyCharacterDiscipline,
 } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import type { IAttributeController } from './attributeController';
 import type { IDisciplineController } from './disciplineListComponent';
 

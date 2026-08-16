@@ -1,7 +1,7 @@
 import { LogValueEntry, ValueUseType } from '../../common/logEntry';
 import { CheckBox } from '../../components/checkBox';
 import { cyrb53 } from '../../common/cyrb53';
-import ValueInputWithRandom from '../../components/valueInputWithRandomOption';
+import { ValueInputWithRandom } from '../../components/valueInputWithRandomOption';
 import type { Character } from '../../common/character';
 import {
   DropDownElement,

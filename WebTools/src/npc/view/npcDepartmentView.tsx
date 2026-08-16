@@ -3,14 +3,16 @@ import type { ICharacterProperties } from '../../solo/page/soloCharacterProperti
 import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { Department, DepartmentsHelper } from '../../helpers/department';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setNpcCharacterDepartments } from '../../state/characterActions';
 import { makeKey } from '../../common/translationKey';
 import { connect } from 'react-redux';
 import { NpcTypes } from '../model/npcType';
 import { ValueView } from '../../components/valueView';
 
-const NpcDepartmentView: React.FC<ICharacterProperties> = ({ character }) => {
+const NpcDepartmentViewBase: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
   const { t } = useTranslation();
   const [selectedDiscipline, setSelectedDiscipline] = useState(undefined);
 
@@ -87,4 +89,6 @@ const NpcDepartmentView: React.FC<ICharacterProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(NpcDepartmentView);
+export const NpcDepartmentView = connect(characterMapStateToProperties)(
+  NpcDepartmentViewBase,
+);

@@ -1,15 +1,15 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../components/header';
-import ValueInput from '../components/valueInput';
+import { ValueInput } from '../components/valueInput';
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   StepContext,
   modifyCharacterAttribute,
@@ -18,7 +18,7 @@ import {
   setCharacterValue,
 } from '../state/characterActions';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
-import AttributeListComponent from '../components/attributeListComponent';
+import { AttributeListComponent } from '../components/attributeListComponent';
 import type { IAttributeController } from '../components/attributeController';
 import { Character } from '../common/character';
 import type { Attribute } from '../helpers/attributes';
@@ -26,9 +26,9 @@ import { Dialog } from '../components/dialog';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import type { IDisciplineController } from '../components/disciplineListComponent';
-import DisciplineListComponent from '../components/disciplineListComponent';
+import { DisciplineListComponent } from '../components/disciplineListComponent';
 import type { Department } from '../helpers/department';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
@@ -265,7 +265,7 @@ class ChildSecondaryDisciplineController implements IDisciplineController {
   }
 }
 
-const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({
+const ChildEducationDetailsPageBase: React.FC<ICharacterPageProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -453,6 +453,6 @@ const ChildEducationDetailsPage: React.FC<ICharacterPageProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(
-  ChildEducationDetailsPage,
+export const ChildEducationDetailsPage = connect(characterMapStateToProperties)(
+  ChildEducationDetailsPageBase,
 );

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import ServiceYear from '../../helpers/serviceYear';
+import { ServiceYear } from '../../helpers/serviceYear';
 
 export interface IServiceYearProperties {
   campaignYear: number;

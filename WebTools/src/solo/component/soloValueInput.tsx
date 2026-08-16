@@ -8,7 +8,7 @@ export interface ISoloValueInput {
   onValueChanged: (string) => void;
 }
 
-const SoloValueInput: React.FC<ISoloValueInput> = ({
+export const SoloValueInput: React.FC<ISoloValueInput> = ({
   textDescription,
   id,
   value,
@@ -30,5 +30,3 @@ const SoloValueInput: React.FC<ISoloValueInput> = ({
     </>
   );
 };
-
-export default SoloValueInput;

@@ -5,10 +5,10 @@ import {
   ServiceRecordStep,
   Starship,
 } from '../../common/starship';
-import RegistryNumber from '../../components/registryNumberGenerator';
+import { RegistryNumber } from '../../components/registryNumberGenerator';
 import type { Era } from '../../helpers/erasEnum';
 import { MissionPodHelper } from '../../helpers/missionPods';
-import MissionProfiles from '../../helpers/missionProfiles';
+import { MissionProfiles } from '../../helpers/missionProfiles';
 import { SpaceframeHelper } from '../../helpers/spaceframes';
 import { allSystems } from '../../helpers/systems';
 import {
@@ -27,7 +27,7 @@ import { StarshipRandomNameTable } from './starshipNameTable';
 import { SelectedTalent } from '../../common/selectedTalent';
 import { BuildPoints } from './buildPoints';
 import { ShipBuildType } from '../../common/shipBuildType';
-import PointAllocator from '../../helpers/pointAllocator';
+import { PointAllocator } from '../../helpers/pointAllocator';
 import { SpaceframeModel } from '../../helpers/spaceframeModel';
 import { DepartmentsHelper } from '../../helpers/department';
 import { PropulsionSystemModel } from '../../helpers/propulsionSystem';

@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
 import type { Starship } from '../../common/starship';
 import { starshipMapStateToProperties } from './soloCharacterProperties';
-import SoloStarshipBreadcrumbs from '../component/soloStarshipBreadcrumbs';
+import { SoloStarshipBreadcrumbs } from '../component/soloStarshipBreadcrumbs';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   setStarshipName,
   setStarshipRegistry,
   setStarshipTraits,
 } from '../../state/starshipActions';
 import { useEffect, useState } from 'react';
-import RegistryNumber from '../../components/registryNumberGenerator';
+import { RegistryNumber } from '../../components/registryNumberGenerator';
 import { CharacterType } from '../../common/characterType';
 import ReactMarkdown from 'react-markdown';
 import { PageIdentity } from '../../pages/pageIdentity';
@@ -22,7 +22,7 @@ interface ISoloStarshipFinalProperties {
   starship: Starship;
 }
 
-const SoloStarshipFinalPage: React.FC<ISoloStarshipFinalProperties> = ({
+const SoloStarshipFinalPageBase: React.FC<ISoloStarshipFinalProperties> = ({
   starship,
 }) => {
   const { t } = useTranslation();
@@ -144,4 +144,6 @@ const SoloStarshipFinalPage: React.FC<ISoloStarshipFinalProperties> = ({
   );
 };
 
-export default connect(starshipMapStateToProperties)(SoloStarshipFinalPage);
+export const SoloStarshipFinalPage = connect(starshipMapStateToProperties)(
+  SoloStarshipFinalPageBase,
+);

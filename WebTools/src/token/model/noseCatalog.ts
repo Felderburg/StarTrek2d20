@@ -1,9 +1,9 @@
 import { Species } from '../../helpers/speciesEnum';
 import { NoseType } from './noseTypeEnum';
 import { SpeciesOption } from './speciesOptionEnum';
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
-import Swatch from './swatch';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 
 const BajoranNoseWrinkles = `<g>
@@ -249,7 +249,7 @@ const CardassianNose1 = `<g>
     <path d="m 303.31733,173.83866 c 0,0 -4.22267,-2.81466 -3.128,-7.50666 0,0 -4.84934,6.88133 3.128,7.50666 z" id="path5" style="stroke-width:1.33333;fill:#000000;fill-opacity:1"/>
 </g>`;
 
-class NoseCatalog {
+export class NoseCatalog {
   private static singleton: NoseCatalog;
 
   private swatches = [
@@ -481,5 +481,3 @@ class NoseCatalog {
     return result;
   }
 }
-
-export default NoseCatalog;

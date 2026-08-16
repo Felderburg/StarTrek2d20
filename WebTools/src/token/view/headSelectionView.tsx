@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import ColorSelection from './colorSelection';
-import SpeciesRestrictions from '../model/speciesRestrictions';
-import store from '../../state/store';
+import { ColorSelection } from './colorSelection';
+import { SpeciesRestrictions } from '../model/speciesRestrictions';
+import { store } from '../../state/store';
 import { setTokenHeadType, setTokenSkinColor } from '../../state/tokenActions';
-import HeadCatalog from '../model/headCatalog';
-import SwatchButton from './swatchButton';
+import { HeadCatalog } from '../model/headCatalog';
+import { SwatchButton } from './swatchButton';
 import { Species } from '../../helpers/speciesEnum';
 import type { ITokenPageProperties } from './iTokenPageProperties';
 
@@ -13,7 +13,7 @@ interface IHeadSelectionViewProperties extends ITokenPageProperties {
   isLoading: boolean;
 }
 
-const HeadSelectionView: React.FC<IHeadSelectionViewProperties> = ({
+export const HeadSelectionView: React.FC<IHeadSelectionViewProperties> = ({
   token,
   isLoading,
 }) => {
@@ -64,5 +64,3 @@ const HeadSelectionView: React.FC<IHeadSelectionViewProperties> = ({
     );
   }
 };
-
-export default HeadSelectionView;

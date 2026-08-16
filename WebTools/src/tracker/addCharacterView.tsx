@@ -4,7 +4,7 @@ import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { marshaller } from '../helpers/marshaller';
 import { addGMTrackedCharacter } from '../state/gmTrackerActions';
-import store from '../state/store';
+import { store } from '../state/store';
 
 interface IAddCharacterState {
   enabled: boolean;
@@ -16,7 +16,7 @@ interface IAddCharacterProperties extends WithTranslation {
   onDone: () => void;
 }
 
-class AddCharacterView extends React.Component<
+class AddCharacterViewBase extends React.Component<
   IAddCharacterProperties,
   IAddCharacterState
 > {
@@ -125,4 +125,4 @@ class AddCharacterView extends React.Component<
   }
 }
 
-export default withTranslation()(AddCharacterView);
+export const AddCharacterView = withTranslation()(AddCharacterViewBase);

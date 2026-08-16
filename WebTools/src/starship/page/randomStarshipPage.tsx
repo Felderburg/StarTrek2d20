@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Header } from '../../components/header';
 import { preventDefaultAnchorEvent } from '../../common/navigator';
@@ -25,7 +25,9 @@ interface IRandomStarshipProperties {
   era: Era;
 }
 
-const RandomStarshipPage: React.FC<IRandomStarshipProperties> = ({ era }) => {
+const RandomStarshipPageBase: React.FC<IRandomStarshipProperties> = ({
+  era,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [type, setType] = useState(RandomStarshipCharacterType.Starfleet);
@@ -118,4 +120,6 @@ function mapStateToProps(state, ownProps) {
     era: state.context.era,
   };
 }
-export default connect(mapStateToProps)(RandomStarshipPage);
+export const RandomStarshipPage = connect(mapStateToProps)(
+  RandomStarshipPageBase,
+);

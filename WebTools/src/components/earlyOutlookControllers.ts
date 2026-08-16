@@ -5,7 +5,7 @@ import {
   StepContext,
   modifyCharacterDiscipline,
 } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import type { IDisciplineController } from './disciplineListComponent';
 
 export class EarlyOutlookDiscplineController implements IDisciplineController {

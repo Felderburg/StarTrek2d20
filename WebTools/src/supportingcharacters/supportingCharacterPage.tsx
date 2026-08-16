@@ -3,13 +3,13 @@ import { Character } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
 import { SpeciesHelper } from '../helpers/species';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
-import SupportingCharacterAttributes from './supportingCharacterAttributes';
-import SupportingCharacterDisciplines from './supportingCharacterDisciplines';
+import { SupportingCharacterAttributes } from './supportingCharacterAttributes';
+import { SupportingCharacterDisciplines } from './supportingCharacterDisciplines';
 import { Rank, RanksHelper } from '../helpers/ranks';
-import AgeHelper from '../helpers/age';
+import { AgeHelper } from '../helpers/age';
 import { Source } from '../helpers/sources';
 import { Species } from '../helpers/speciesEnum';
-import store from '../state/store';
+import { store } from '../state/store';
 import { hasSource, isSecondEdition } from '../state/contextFunctions';
 import { Header } from '../components/header';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
@@ -33,7 +33,7 @@ import {
 } from '../state/characterActions';
 import { localizedFocus } from '../components/focusHelper';
 import { focusRandomTableWithHints } from '../solo/table/focusRandomTable';
-import D20IconButton from '../solo/component/d20IconButton';
+import { D20IconButton } from '../solo/component/d20IconButton';
 import { CheckBox } from '../components/checkBox';
 import ReactMarkdown from 'react-markdown';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
@@ -42,7 +42,7 @@ import { LoadingButton } from '../common/loadingButton';
 import { saveCharacterToLocalStorage } from '../state/savedConstructActions';
 import { ViewButton } from '../components/viewButton';
 
-const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
+const SupportingCharacterPageBase: React.FC<ICharacterPageProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -535,4 +535,6 @@ const SupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
   ) : undefined;
 };
 
-export default connect(characterMapStateToProperties)(SupportingCharacterPage);
+export const SupportingCharacterPage = connect(characterMapStateToProperties)(
+  SupportingCharacterPageBase,
+);

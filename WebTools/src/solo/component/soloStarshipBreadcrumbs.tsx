@@ -10,10 +10,9 @@ interface ISoloCharacterBreadcrumbProperties {
   starship?: Starship;
 }
 
-const SoloStarshipBreadcrumbs: React.FC<ISoloCharacterBreadcrumbProperties> = ({
-  starship,
-  pageIdentity,
-}) => {
+const SoloStarshipBreadcrumbsBase: React.FC<
+  ISoloCharacterBreadcrumbProperties
+> = ({ starship, pageIdentity }) => {
   const { t } = useTranslation();
 
   const renderSpaceframe = () => {
@@ -117,4 +116,6 @@ const SoloStarshipBreadcrumbs: React.FC<ISoloCharacterBreadcrumbProperties> = ({
   );
 };
 
-export default connect(starshipMapStateToProperties)(SoloStarshipBreadcrumbs);
+export const SoloStarshipBreadcrumbs = connect(starshipMapStateToProperties)(
+  SoloStarshipBreadcrumbsBase,
+);

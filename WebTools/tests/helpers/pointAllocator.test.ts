@@ -1,5 +1,5 @@
 import { test, expect, describe } from '@jest/globals';
-import PointAllocator from '../../src/helpers/pointAllocator';
+import { PointAllocator } from '../../src/helpers/pointAllocator';
 
 describe('testing point allocator', () => {
   test('should assign points randomly', () => {

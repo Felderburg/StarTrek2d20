@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { navigateTo } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { rewindToStarshipWorkflowStep } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type {
   ShipBuildWorkflow,
   ShipBuildWorkflowStep,
@@ -13,7 +13,7 @@ interface IShipBuildingBreadcrumbsProperies {
   workflow: ShipBuildWorkflow;
 }
 
-class ShipBuildingBreadcrumbs extends React.Component<
+class ShipBuildingBreadcrumbsBase extends React.Component<
   IShipBuildingBreadcrumbsProperies,
   {}
 > {
@@ -73,4 +73,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(ShipBuildingBreadcrumbs);
+export const ShipBuildingBreadcrumbs = connect(mapStateToProps)(
+  ShipBuildingBreadcrumbsBase,
+);

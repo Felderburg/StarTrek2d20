@@ -2,7 +2,7 @@ import React from 'react';
 import type { ICharacterProperties } from './soloCharacterProperties';
 import { connect } from 'react-redux';
 import { Header } from '../../components/header';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import { Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
@@ -10,8 +10,8 @@ import { AttributeView } from '../../components/attribute';
 import { AttributesHelper } from '../../helpers/attributes';
 import { CheckBox } from '../../components/checkBox';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
-import DisciplineListComponent from '../../components/disciplineListComponent';
-import store from '../../state/store';
+import { DisciplineListComponent } from '../../components/disciplineListComponent';
+import { store } from '../../state/store';
 import {
   StepContext,
   setCharacterEarlyOutlook,
@@ -19,13 +19,13 @@ import {
 } from '../../state/characterActions';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../../components/dialog';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
-import D20IconButton from '../component/d20IconButton';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
+import { D20IconButton } from '../component/d20IconButton';
 import { focusRandomTable } from '../table/focusRandomTable';
 import { EarlyOutlookDiscplineController } from '../../components/earlyOutlookControllers';
 import { localizedFocus } from '../../components/focusHelper';
 
-const SoloEarlyOutlookDetailsPage: React.FC<ICharacterProperties> = ({
+const SoloEarlyOutlookDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -177,4 +177,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SoloEarlyOutlookDetailsPage);
+export const SoloEarlyOutlookDetailsPage = connect(mapStateToProps)(
+  SoloEarlyOutlookDetailsPageBase,
+);

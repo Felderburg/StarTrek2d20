@@ -1,5 +1,5 @@
 import { test, expect, describe } from '@jest/globals';
-import AgeHelper, { Age, AgeLifepathOptions } from '../../src/helpers/age';
+import { AgeHelper, Age, AgeLifepathOptions } from '../../src/helpers/age';
 
 describe('AgeLifepathOptions', () => {
   test('default constructor', () => {

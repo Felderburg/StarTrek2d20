@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { CheckBox } from './checkBox';
 import type { TalentModel } from '../helpers/talentModel';
 import { TALENT_NAME_CUSTOM_TALENT } from '../helpers/talents';
-import replaceDiceWithArrowhead from '../common/arrowhead';
+import { replaceDiceWithArrowhead } from '../common/arrowhead';
 import type { Construct } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';
 import type { ITalent } from '../helpers/italent';
@@ -14,12 +14,9 @@ interface ISimpleTalentSelectionProperties {
   onSelection: (talent?: SelectedTalent) => void;
 }
 
-const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
-  talents,
-  construct,
-  onSelection,
-  initialSelection,
-}) => {
+export const SimpleTalentSelectionList: React.FC<
+  ISimpleTalentSelectionProperties
+> = ({ talents, construct, onSelection, initialSelection }) => {
   const [selection, setSelection] = useState<string | undefined>(
     initialSelection,
   );
@@ -107,5 +104,3 @@ const SimpleTalentSelectionList: React.FC<ISimpleTalentSelectionProperties> = ({
     </table>
   );
 };
-
-export default SimpleTalentSelectionList;

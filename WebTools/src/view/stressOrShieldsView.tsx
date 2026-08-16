@@ -3,7 +3,7 @@ interface IStressOrShieldsViewProperties {
   rows?: number;
 }
 
-const StressOrShieldsView: React.FC<IStressOrShieldsViewProperties> = ({
+export const StressOrShieldsView: React.FC<IStressOrShieldsViewProperties> = ({
   value,
   rows = 4,
 }) => {
@@ -27,5 +27,3 @@ const StressOrShieldsView: React.FC<IStressOrShieldsViewProperties> = ({
     return undefined;
   }
 };
-
-export default StressOrShieldsView;

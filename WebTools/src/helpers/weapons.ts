@@ -1697,9 +1697,7 @@ class StarshipWeaponList {
   }
 }
 
-const StarshipWeaponRegistry = new StarshipWeaponList();
-
-export default StarshipWeaponRegistry;
+export const StarshipWeaponRegistry = new StarshipWeaponList();
 
 export enum PersonalWeaponType {
   Phaser1,

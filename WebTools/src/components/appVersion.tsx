@@ -10,5 +10,3 @@ export class AppVersion extends React.Component<{}, {}> {
     );
   }
 }
-
-export default AppVersion;

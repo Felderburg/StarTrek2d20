@@ -8,18 +8,18 @@ import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
 import { Dialog } from '../components/dialog';
 import { Source } from '../helpers/sources';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import store from '../state/store';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { store } from '../state/store';
 import {
   setAllowCrossSpeciesTalents,
   setAllowEsotericTalents,
 } from '../state/contextActions';
 import { connect } from 'react-redux';
 import { hasSource } from '../state/contextFunctions';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import { Header } from '../components/header';
-import AttributeListComponent from '../components/attributeListComponent';
-import SingleTalentSelectionList from '../components/singleTalentSelectionList';
+import { AttributeListComponent } from '../components/attributeListComponent';
+import { SingleTalentSelectionList } from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
 import {
   StepContext,
@@ -50,7 +50,7 @@ interface ISpeciesDetailsProperties extends ICharacterProperties {
   allowEsotericTalents: boolean;
 }
 
-const SpeciesDetailsPage: React.FC<ISpeciesDetailsProperties> = ({
+const SpeciesDetailsPageBase: React.FC<ISpeciesDetailsProperties> = ({
   character,
   allowCrossSpeciesTalents,
   allowEsotericTalents,
@@ -439,4 +439,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SpeciesDetailsPage);
+export const SpeciesDetailsPage = connect(mapStateToProps)(
+  SpeciesDetailsPageBase,
+);

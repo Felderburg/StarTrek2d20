@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { createNewStarship } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
@@ -15,7 +15,7 @@ import { isSecondEdition } from '../../state/contextFunctions';
 import { ShipBuildType } from '../../common/shipBuildType';
 import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
-class SelectStarshipToolPage extends React.Component<WithTranslation, {}> {
+class SelectStarshipToolPageBase extends React.Component<WithTranslation, {}> {
   render() {
     const { t } = this.props;
     return (
@@ -105,4 +105,6 @@ class SelectStarshipToolPage extends React.Component<WithTranslation, {}> {
   }
 }
 
-export default withTranslation()(SelectStarshipToolPage);
+export const SelectStarshipToolPage = withTranslation()(
+  SelectStarshipToolPageBase,
+);

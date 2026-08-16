@@ -106,6 +106,4 @@ class GovernmentRepository {
   }
 }
 
-const Governments = new GovernmentRepository();
-
-export default Governments;
+export const Governments = new GovernmentRepository();

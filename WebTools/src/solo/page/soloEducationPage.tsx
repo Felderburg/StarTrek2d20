@@ -12,11 +12,13 @@ import { TracksHelper } from '../../helpers/tracks';
 import Button from 'react-bootstrap/Button';
 import { Window } from '../../common/window';
 import { educationTrackRandomTable } from '../table/educationRandomTable';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setCharacterEducation } from '../../state/characterActions';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
 
-const SoloEducationPage: React.FC<ICharacterProperties> = ({ character }) => {
+const SoloEducationPageBase: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
   const { t } = useTranslation();
   const [randomTrack, setRandomTrack] = useState(
     character?.educationStep?.track,
@@ -113,4 +115,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SoloEducationPage);
+export const SoloEducationPage = connect(mapStateToProps)(
+  SoloEducationPageBase,
+);

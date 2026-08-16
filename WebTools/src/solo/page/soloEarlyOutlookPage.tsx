@@ -9,7 +9,7 @@ import { makeKey } from '../../common/translationKey';
 import { AttributesHelper } from '../../helpers/attributes';
 import { Department } from '../../helpers/department';
 import { Window } from '../../common/window';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import type {
   EarlyOutlook,
   EarlyOutlookModel,
@@ -21,9 +21,9 @@ import {
   earlyOutlookUpbringingRandomTable,
 } from '../table/earlyOutlookRandomTable';
 import { setCharacterEarlyOutlook } from '../../state/characterActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { ICharacterProperties } from './soloCharacterProperties';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
 
 enum EarlyOutlookTab {
   Upbringings,
@@ -31,7 +31,7 @@ enum EarlyOutlookTab {
   Aspirations,
 }
 
-const SoloEarlyOutlookPage: React.FC<ICharacterProperties> = ({
+const SoloEarlyOutlookPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const determineInitialTab = (outlook: EarlyOutlook) => {
@@ -380,4 +380,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SoloEarlyOutlookPage);
+export const SoloEarlyOutlookPage = connect(mapStateToProps)(
+  SoloEarlyOutlookPageBase,
+);

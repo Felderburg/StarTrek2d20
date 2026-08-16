@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router';
 import { Header } from '../components/header';
 import { PageIdentity } from './pageIdentity';
 import { useTranslation } from 'react-i18next';
-import LcarsFrame from '../components/lcarsFrame';
+import { LcarsFrame } from '../components/lcarsFrame';
 
-const CreditsPage = () => {
+export const CreditsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -606,5 +606,3 @@ const CreditsPage = () => {
     </LcarsFrame>
   );
 };
-
-export default CreditsPage;

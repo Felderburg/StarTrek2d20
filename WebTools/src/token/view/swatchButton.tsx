@@ -10,7 +10,7 @@ interface ISwatchButtonProperties {
   size?: string;
 }
 
-class SwatchButton extends React.Component<ISwatchButtonProperties, {}> {
+export class SwatchButton extends React.Component<ISwatchButtonProperties, {}> {
   render() {
     const { svg, title, onClick, active, size, token } = this.props;
     let width = '75px';
@@ -37,5 +37,3 @@ class SwatchButton extends React.Component<ISwatchButtonProperties, {}> {
     );
   }
 }
-
-export default SwatchButton;

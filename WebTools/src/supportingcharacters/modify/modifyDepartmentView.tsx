@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Dialog } from '../../components/dialog';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { modifyCharacterAddAdvancement } from '../../state/characterActions';
 import type { Department } from '../../helpers/department';
 import { CharacterAdvancementChoice } from '../../modify/model/characterAdvancementChoice';

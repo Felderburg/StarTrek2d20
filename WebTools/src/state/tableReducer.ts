@@ -4,7 +4,7 @@ import {
   TableRow,
   ValueResult,
 } from '../table/model/table';
-import TableMarshaller from '../table/model/tableMarshaller';
+import { TableMarshaller } from '../table/model/tableMarshaller';
 import {
   ADD_TABLE_COLLECTION,
   DELETE_TABLE_COLLECTION,
@@ -359,7 +359,7 @@ const getInitialData = () => {
   return initialData;
 };
 
-const tableReducer = (state = getInitialData(), action) => {
+export const tableReducer = (state = getInitialData(), action) => {
   switch (action.type) {
     case IMPORT_TABLE_COLLECTION:
     case ADD_TABLE_COLLECTION: {
@@ -404,5 +404,3 @@ const tableReducer = (state = getInitialData(), action) => {
       return state;
   }
 };
-
-export default tableReducer;

@@ -10,7 +10,7 @@ interface ISystemViewProperties extends WithTranslation {
   onClick: { (): void };
 }
 
-class SystemView extends React.Component<ISystemViewProperties, {}> {
+class SystemViewBase extends React.Component<ISystemViewProperties, {}> {
   render() {
     const { t } = this.props;
     return this.props.system ? (
@@ -36,4 +36,4 @@ class SystemView extends React.Component<ISystemViewProperties, {}> {
   }
 }
 
-export default withTranslation()(SystemView);
+export const SystemView = withTranslation()(SystemViewBase);

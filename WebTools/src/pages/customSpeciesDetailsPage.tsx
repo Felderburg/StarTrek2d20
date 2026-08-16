@@ -6,18 +6,18 @@ import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
 import { Dialog } from '../components/dialog';
 import { Source } from '../helpers/sources';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
-import store from '../state/store';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
+import { store } from '../state/store';
 import {
   setAllowCrossSpeciesTalents,
   setAllowEsotericTalents,
 } from '../state/contextActions';
 import { connect } from 'react-redux';
 import { hasSource } from '../state/contextFunctions';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import { Header } from '../components/header';
-import AttributeListComponent from '../components/attributeListComponent';
-import SingleTalentSelectionList from '../components/singleTalentSelectionList';
+import { AttributeListComponent } from '../components/attributeListComponent';
+import { SingleTalentSelectionList } from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import { Stereotype } from '../common/construct';
@@ -31,7 +31,7 @@ import { CustomSpeciesAttributeController } from '../components/speciesControlle
 import type { SelectedTalent } from '../common/selectedTalent';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { isTalentSelectable } from '../helpers/talentSelection';
-import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
+import { SoloCharacterBreadcrumbs } from '../solo/component/soloCharacterBreadcrumbs';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
@@ -40,11 +40,9 @@ interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
   allowEsotericTalents: boolean;
 }
 
-const CustomSpeciesDetailsPage: React.FC<ICustomSpeciesDetailsProperties> = ({
-  character,
-  allowCrossSpeciesTalents,
-  allowEsotericTalents,
-}) => {
+const CustomSpeciesDetailsPageBase: React.FC<
+  ICustomSpeciesDetailsProperties
+> = ({ character, allowCrossSpeciesTalents, allowEsotericTalents }) => {
   const { t } = useTranslation();
   const controller = new CustomSpeciesAttributeController(character);
 
@@ -226,4 +224,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(CustomSpeciesDetailsPage);
+export const CustomSpeciesDetailsPage = connect(mapStateToProps)(
+  CustomSpeciesDetailsPageBase,
+);

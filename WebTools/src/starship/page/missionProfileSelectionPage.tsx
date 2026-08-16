@@ -7,10 +7,10 @@ import { Dialog } from '../../components/dialog';
 import { Header } from '../../components/header';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { setStarshipMissionProfile } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import MissionProfileSelection from '../view/missionProfileSelection';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { MissionProfileSelection } from '../view/missionProfileSelection';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import type { MissionProfileModel } from '../../helpers/missionProfiles';
 import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
@@ -20,7 +20,7 @@ interface IMissionProfileSelectionPageProperties {
   workflow: ShipBuildWorkflow;
 }
 
-const MissionProfileSelectionPage: React.FC<
+const MissionProfileSelectionPageBase: React.FC<
   IMissionProfileSelectionPageProperties
 > = ({ starship }) => {
   const { t } = useTranslation();
@@ -66,4 +66,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(MissionProfileSelectionPage);
+export const MissionProfileSelectionPage = connect(mapStateToProps)(
+  MissionProfileSelectionPageBase,
+);

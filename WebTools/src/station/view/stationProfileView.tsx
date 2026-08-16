@@ -1,23 +1,23 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type {
   StandardStationSpaceframeStep,
   Station,
 } from '../../common/station';
 import { CustomStationSpaceframeStep } from '../../common/station';
-import Eras from '../../helpers/eras';
+import { Eras } from '../../helpers/eras';
 import { CharacterTypeModel } from '../../common/characterType';
 import { System } from '../../helpers/systems';
 import { Department } from '../../helpers/department';
-import MissionProfiles from '../../helpers/missionProfiles';
+import { MissionProfiles } from '../../helpers/missionProfiles';
 
 interface IStationProfileProperties {
   showProfile: boolean;
   close: () => void;
 }
 
-const StationProfileView: React.FC<IStationProfileProperties> = ({
+export const StationProfileView: React.FC<IStationProfileProperties> = ({
   showProfile,
   close,
 }) => {
@@ -294,5 +294,3 @@ const StationProfileView: React.FC<IStationProfileProperties> = ({
     </div>
   );
 };
-
-export default StationProfileView;

@@ -2,20 +2,20 @@ import React, { useEffect } from 'react';
 import { Navigation } from '../common/navigator';
 import Button from 'react-bootstrap/Button';
 import { TalentDescription } from '../components/talentDescription';
-import ValueInput from '../components/valueInput';
+import { ValueInput } from '../components/valueInput';
 import {
   TALENT_NAME_UNTAPPED_POTENTIAL,
   TalentsHelper,
 } from '../helpers/talents';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import { Header } from '../components/header';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { PageIdentity } from './pageIdentity';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   StepContext,
   addCharacterTalent,
@@ -30,7 +30,7 @@ import { makeKey } from '../common/translationKey';
 import { Dialog } from '../components/dialog';
 import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
-const NoviceOrCadetExperiencePage: React.FC<ICharacterProperties> = ({
+const NoviceOrCadetExperiencePageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -148,6 +148,6 @@ const NoviceOrCadetExperiencePage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(
-  NoviceOrCadetExperiencePage,
-);
+export const NoviceOrCadetExperiencePage = connect(
+  characterMapStateToProperties,
+)(NoviceOrCadetExperiencePageBase);

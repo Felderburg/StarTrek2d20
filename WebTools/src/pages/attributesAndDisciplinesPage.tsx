@@ -5,14 +5,14 @@ import { PageIdentity } from './pageIdentity';
 import { TalentsHelper } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../components/dialog';
-import ValueInput from '../components/valueInput';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { ValueInput } from '../components/valueInput';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { CharacterType } from '../common/characterType';
-import SingleTalentSelectionList from '../components/singleTalentSelectionList';
+import { SingleTalentSelectionList } from '../components/singleTalentSelectionList';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import {
   FinishingTouchesAttributeController,
   FinishingTouchesDisciplineController,
@@ -20,9 +20,9 @@ import {
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
-import AttributeListComponent from '../components/attributeListComponent';
-import DisciplineListComponent from '../components/disciplineListComponent';
-import store from '../state/store';
+import { AttributeListComponent } from '../components/attributeListComponent';
+import { DisciplineListComponent } from '../components/disciplineListComponent';
+import { store } from '../state/store';
 import {
   addCharacterTalent,
   setCharacterFinishingTouches,
@@ -36,7 +36,7 @@ import { RankedTalent } from '../helpers/rankedTalent';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
-const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({
+const AttributesAndDisciplinesPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -232,6 +232,6 @@ const AttributesAndDisciplinesPage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(
-  AttributesAndDisciplinesPage,
-);
+export const AttributesAndDisciplinesPage = connect(
+  characterMapStateToProperties,
+)(AttributesAndDisciplinesPageBase);

@@ -6,7 +6,7 @@ import { withTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 
 interface IRefitImprovementProperties {
-  controller: RefitsView;
+  controller: RefitsViewBase;
   system: System;
   value: number;
   name: string;
@@ -71,7 +71,7 @@ interface IRefitsViewProperties extends WithTranslation {
   onDecrease?: (system: System) => void;
 }
 
-export class RefitsView extends React.Component<IRefitsViewProperties, {}> {
+export class RefitsViewBase extends React.Component<IRefitsViewProperties, {}> {
   private absoluteMax: number = 12;
 
   render() {
@@ -131,4 +131,4 @@ export class RefitsView extends React.Component<IRefitsViewProperties, {}> {
   }
 }
 
-export default withTranslation()(RefitsView);
+export const RefitsView = withTranslation()(RefitsViewBase);

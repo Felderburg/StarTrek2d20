@@ -4,14 +4,14 @@ import { characterMapStateToProperties } from '../page/soloCharacterProperties';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
 import { navigateTo } from '../../common/navigator';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setCharacterFinishingTouches } from '../../state/characterActions';
 
 interface ISoloCharacterBreadcrumbProperties extends ICharacterProperties {
   pageIdentity: PageIdentity;
 }
 
-const SoloCharacterBreadcrumbs: React.FC<
+const SoloCharacterBreadcrumbsBase: React.FC<
   ISoloCharacterBreadcrumbProperties
 > = ({ character, pageIdentity }) => {
   const { t } = useTranslation();
@@ -283,4 +283,6 @@ const SoloCharacterBreadcrumbs: React.FC<
   );
 };
 
-export default connect(characterMapStateToProperties)(SoloCharacterBreadcrumbs);
+export const SoloCharacterBreadcrumbs = connect(characterMapStateToProperties)(
+  SoloCharacterBreadcrumbsBase,
+);

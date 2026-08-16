@@ -14,9 +14,9 @@ import {
   changeStarshipSimpleSystem,
   nextStarshipWorkflowStep,
 } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { StatControl } from '../view/statControl';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
@@ -390,6 +390,8 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-class SimpleStarshipPage extends BaseSimpleStarshipPage {}
+class SimpleStarshipPageBase extends BaseSimpleStarshipPage {}
 
-export default withTranslation()(connect(mapStateToProps)(SimpleStarshipPage));
+export const SimpleStarshipPage = withTranslation()(
+  connect(mapStateToProps)(SimpleStarshipPageBase),
+);

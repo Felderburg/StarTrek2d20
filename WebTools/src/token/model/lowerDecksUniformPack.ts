@@ -1,10 +1,10 @@
 import { Species } from '../../helpers/speciesEnum';
 import { BaseTngEraUniformPack } from './baseTngEraUniformPack';
 import { BodyType } from './bodyTypeEnum';
-import SpeciesRestrictions from './speciesRestrictions';
-import Swatch from './swatch';
+import { SpeciesRestrictions } from './speciesRestrictions';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
-import UniformCatalog, { DefaultRed } from './uniformCatalog';
+import { UniformCatalog, DefaultRed } from './uniformCatalog';
 import { UniformEra } from './uniformEra';
 import type { IUniformPack } from './uniformPack';
 

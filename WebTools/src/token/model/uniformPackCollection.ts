@@ -4,7 +4,7 @@ import type { IUniformPack } from './uniformPack';
 import { NoneUniformPack } from './noneUniformPack';
 import toast from 'react-hot-toast';
 
-export default class UniformPackCollection {
+export class UniformPackCollection {
   uniformPacks: { [era: number]: IUniformPack } = {};
 
   private static singleton: UniformPackCollection;

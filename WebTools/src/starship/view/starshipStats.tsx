@@ -1,5 +1,5 @@
 import React from 'react';
-import formatAsDelta from '../../common/formatAsDelta';
+import { formatAsDelta } from '../../common/formatAsDelta';
 import { Department } from '../../helpers/department';
 import type { MissionPodModel } from '../../helpers/missionPods';
 import type { MissionProfileModel } from '../../helpers/missionProfiles';
@@ -11,7 +11,10 @@ interface IStarshipStatsProperties {
   type: string;
 }
 
-class StarshipStats extends React.Component<IStarshipStatsProperties, {}> {
+export class StarshipStats extends React.Component<
+  IStarshipStatsProperties,
+  {}
+> {
   render() {
     if (this.props.type === 'spaceframe') {
       return this.renderAsSpaceframe();
@@ -251,5 +254,3 @@ class StarshipStats extends React.Component<IStarshipStatsProperties, {}> {
     );
   }
 }
-
-export default StarshipStats;

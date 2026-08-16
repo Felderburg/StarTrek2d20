@@ -2,7 +2,7 @@ import React from 'react';
 import { Implant } from '../helpers/borgImplant';
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 
-const EquipmentBlockView: React.FC<ICharacterPageProperties> = ({
+export const EquipmentBlockView: React.FC<ICharacterPageProperties> = ({
   character,
 }) => {
   if (character?.equipmentAndImplants) {
@@ -31,5 +31,3 @@ const EquipmentBlockView: React.FC<ICharacterPageProperties> = ({
     return undefined;
   }
 };
-
-export default EquipmentBlockView;

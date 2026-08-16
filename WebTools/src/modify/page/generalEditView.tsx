@@ -4,7 +4,7 @@ import Markdown from 'react-markdown';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
 import { Header } from '../../components/header';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { FinalDetailsView } from './finalDetailsView';
 import {
   addCharacterTalent,
@@ -37,19 +37,19 @@ import { SpeciesHelper } from '../../helpers/species';
 import type { SpeciesModel } from '../../helpers/speciesModel';
 import { TalentsHelper } from '../../helpers/talents';
 import { ModalControl } from '../../components/modal';
-import SimpleTalentSelectionList from '../../components/simpleTalentSelectionList';
+import { SimpleTalentSelectionList } from '../../components/simpleTalentSelectionList';
 import type { SelectedTalent } from '../../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
 import { Dialog } from '../../components/dialog';
 import { SpeciesAbilityChoiceView } from '../../components/speciesAbilityChoiceView';
 import { RankedTalent } from '../../helpers/rankedTalent';
-import SingleTalentSelectionList from '../../components/singleTalentSelectionList';
+import { SingleTalentSelectionList } from '../../components/singleTalentSelectionList';
 import { Species } from '../../helpers/speciesEnum';
 import { Source } from '../../helpers/sources';
 import { hasSource } from '../../state/contextFunctions';
 import { BorgImplantSelectionView } from '../../components/borgImplantSelectionView';
 import { FocusSelectionView } from '../../components/focusSelectionView';
-import ValueInputWithRandom from '../../components/valueInputWithRandomOption';
+import { ValueInputWithRandom } from '../../components/valueInputWithRandomOption';
 
 interface IGeneralEditViewProperties extends ICharacterProperties {
   onNextStep: () => void;

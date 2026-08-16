@@ -6,7 +6,7 @@ import { StandardWorldDetails } from '../table/world';
 import { SystemMapView } from './systemMapView';
 import { WorldClass } from '../table/worldClass';
 
-class SystemMapLowerView extends SystemMapView {
+export class SystemMapLowerView extends SystemMapView {
   render() {
     const { system } = this.props;
     const purple = '#906F9A';
@@ -605,5 +605,3 @@ class SystemMapLowerView extends SystemMapView {
     }
   }
 }
-
-export default SystemMapLowerView;

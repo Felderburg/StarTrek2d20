@@ -9,7 +9,7 @@ interface IRecentCreationsProperties {
   records: ILocalStorageConstructRecord[];
 }
 
-const RecentCreationsView: React.FC<IRecentCreationsProperties> = ({
+const RecentCreationsViewBase: React.FC<IRecentCreationsProperties> = ({
   records,
 }) => {
   const { t } = useTranslation();
@@ -47,4 +47,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(RecentCreationsView);
+export const RecentCreationsView = connect(mapStateToProps)(
+  RecentCreationsViewBase,
+);

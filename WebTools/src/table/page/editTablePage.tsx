@@ -3,7 +3,7 @@ import type { TableCollection } from '../model/table';
 import { ValueResult } from '../model/table';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { preventDefaultAnchorEvent } from '../../common/navigator';
 import { Header } from '../../components/header';
@@ -17,7 +17,7 @@ import type { EditableTableRow } from '../model/editableTable';
 import { EditableTableCollection } from '../model/editableTable';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import Button from 'react-bootstrap/Button';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   addTableCollection,
   replaceTableCollection,
@@ -34,7 +34,7 @@ interface IEditTablePageProperties {
 const OTHER = -2;
 const NO_SELECTION = -1;
 
-const EditTablePage: React.FC<IEditTablePageProperties> = ({
+const EditTablePageBase: React.FC<IEditTablePageProperties> = ({
   initialTableCollection,
   categories,
 }) => {
@@ -368,4 +368,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(EditTablePage);
+export const EditTablePage = connect(mapStateToProps)(EditTablePageBase);

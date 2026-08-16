@@ -10,7 +10,7 @@ import {
   KlingonForehead7,
 } from './speciesOptionCatalog';
 import { SpeciesOption } from './speciesOptionEnum';
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
 import type { TokenModel } from './tokenModel';
 
@@ -316,7 +316,7 @@ export enum ProstheticPlacement {
   VeryFront,
 }
 
-class ProstheticCatalog {
+export class ProstheticCatalog {
   private static singleton: ProstheticCatalog;
 
   public static get instance() {
@@ -484,5 +484,3 @@ class ProstheticCatalog {
     }
   }
 }
-
-export default ProstheticCatalog;

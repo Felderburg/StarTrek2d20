@@ -29,8 +29,10 @@ jest.mock('i18next', () => {
 jest.mock('../../src/state/store', () => {
   const core2ndEdition = 1;
   return {
-    getState: () => ({ context: { sources: [core2ndEdition] } }),
-    dispatch: () => undefined,
+    store: {
+      getState: () => ({ context: { sources: [core2ndEdition] } }),
+      dispatch: () => undefined,
+    },
   };
 });
 

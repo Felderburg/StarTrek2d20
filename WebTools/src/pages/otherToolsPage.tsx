@@ -4,9 +4,9 @@ import { Header } from '../components/header';
 import Button from 'react-bootstrap/Button';
 import { PageIdentity } from './pageIdentity';
 import { preventDefaultAnchorEvent } from '../common/navigator';
-import LcarsFrame from '../components/lcarsFrame';
+import { LcarsFrame } from '../components/lcarsFrame';
 
-const OtherToolsPage = () => {
+export const OtherToolsPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -87,5 +87,3 @@ const OtherToolsPage = () => {
     </LcarsFrame>
   );
 };
-
-export default OtherToolsPage;

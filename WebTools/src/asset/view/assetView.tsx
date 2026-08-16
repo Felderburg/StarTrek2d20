@@ -35,7 +35,7 @@ interface IAssetViewProperties {
   asset: Asset;
 }
 
-const AssetView: React.FC<IAssetViewProperties> = ({ asset }) => {
+export const AssetView: React.FC<IAssetViewProperties> = ({ asset }) => {
   const { t } = useTranslation();
   const [loadingExport, setLoadingExport] = useState(false);
 
@@ -193,5 +193,3 @@ const AssetView: React.FC<IAssetViewProperties> = ({ asset }) => {
     </main>
   );
 };
-
-export default AssetView;

@@ -12,7 +12,7 @@ interface StarState {
   starSystem?: StarSystem;
 }
 
-const star = (
+export const star = (
   state: StarState = { starSystem: undefined, sector: undefined },
   action,
 ) => {
@@ -82,5 +82,3 @@ const star = (
       return state;
   }
 };
-
-export default star;

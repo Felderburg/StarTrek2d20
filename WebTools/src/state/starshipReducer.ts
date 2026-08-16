@@ -63,7 +63,7 @@ const withStarship = (
   };
 };
 
-const starshipReducer = (
+export const starshipReducer = (
   state: StarshipState = {
     starship: undefined,
     workflow: undefined,
@@ -399,5 +399,3 @@ const starshipReducer = (
       return state;
   }
 };
-
-export default starshipReducer;

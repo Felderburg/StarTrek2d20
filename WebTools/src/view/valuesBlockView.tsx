@@ -2,7 +2,9 @@ import { useTranslation } from 'react-i18next';
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { Header } from '../components/header';
 
-const ValuesBlockView: React.FC<ICharacterPageProperties> = ({ character }) => {
+export const ValuesBlockView: React.FC<ICharacterPageProperties> = ({
+  character,
+}) => {
   const { t } = useTranslation();
   if (character?.values?.length) {
     return (
@@ -24,5 +26,3 @@ const ValuesBlockView: React.FC<ICharacterPageProperties> = ({ character }) => {
     return undefined;
   }
 };
-
-export default ValuesBlockView;

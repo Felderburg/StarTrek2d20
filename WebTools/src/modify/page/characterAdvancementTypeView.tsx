@@ -15,11 +15,11 @@ import { makeKey } from '../../common/translationKey';
 import { SimpleAttributeSelector } from '../../components/simpleAttributeSelector';
 import type { Department } from '../../helpers/department';
 import { SimpleDepartmentSelector } from '../../components/simpleDepartmentSelector';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { modifyCharacterAddAdvancement } from '../../state/characterActions';
 import { Dialog } from '../../components/dialog';
 import { randomUniqueValue } from '../../solo/table/valueRandomTable';
-import ValueInput from '../../components/valueInput';
+import { ValueInput } from '../../components/valueInput';
 import { ModalControl } from '../../components/modal';
 import {
   TALENT_NAME_AUGMENTED_ABILITY,
@@ -52,7 +52,7 @@ import type { SelectedTalent } from '../../common/selectedTalent';
 import { SimpleStringSelector } from './simpleStringSelector';
 import { Character } from '../../common/character';
 import type { SpecialWeapon } from '../../common/specialWeapon';
-import SimpleTalentSelectionList from '../../components/simpleTalentSelectionList';
+import { SimpleTalentSelectionList } from '../../components/simpleTalentSelectionList';
 import { FocusSelectionView } from '../../components/focusSelectionView';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
 import type { AttackType } from '../../common/attackType';

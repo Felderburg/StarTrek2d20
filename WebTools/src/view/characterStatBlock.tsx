@@ -7,7 +7,7 @@ import { Department } from '../helpers/department';
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { DisciplinesOrDepartments } from './disciplinesOrDepartments';
 
-const CharacterStatBlock: React.FC<ICharacterPageProperties> = ({
+export const CharacterStatBlock: React.FC<ICharacterPageProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -326,5 +326,3 @@ const CharacterStatBlock: React.FC<ICharacterPageProperties> = ({
     );
   }
 };
-
-export default CharacterStatBlock;

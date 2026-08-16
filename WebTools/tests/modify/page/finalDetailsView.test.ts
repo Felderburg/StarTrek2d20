@@ -1,7 +1,7 @@
 import { test, expect, describe, jest } from '@jest/globals';
 import { FinalDetailsView } from '../../../src/modify/page/finalDetailsView';
 import { Character } from '../../../src/common/character';
-import D20IconButton from '../../../src/solo/component/d20IconButton';
+import { D20IconButton } from '../../../src/solo/component/d20IconButton';
 
 function isLeafNode(node: any): boolean {
   return node == null || typeof node === 'string' || typeof node === 'number';

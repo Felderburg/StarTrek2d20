@@ -11,15 +11,15 @@ import {
   isSecondEdition,
 } from '../state/contextFunctions';
 import { useTranslation } from 'react-i18next';
-import InstructionText from '../components/instructionText';
+import { InstructionText } from '../components/instructionText';
 import { PageFactory } from './pageFactory';
 import { LoadingButton } from '../common/loadingButton';
 import { useNavigate } from 'react-router';
-import store from '../state/store';
+import { store } from '../state/store';
 import { setCharacter } from '../state/characterActions';
 import { Header } from '../components/header';
 
-const ToolSelectionPage = () => {
+export const ToolSelectionPage = () => {
   const { t } = useTranslation();
   const [loadingNpc, setLoadingNpc] = useState(false);
   const [loadingStarship, setLoadingStarship] = useState(false);
@@ -252,5 +252,3 @@ const ToolSelectionPage = () => {
     </div>
   );
 };
-
-export default ToolSelectionPage;

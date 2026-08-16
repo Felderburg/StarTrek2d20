@@ -1,18 +1,20 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import SwatchButton from './swatchButton';
-import ExtrasCatalog from '../model/extrasCatalog';
+import { SwatchButton } from './swatchButton';
+import { ExtrasCatalog } from '../model/extrasCatalog';
 import {
   ExtraCategory,
   ExtraType,
   getExtraCategory,
 } from '../model/extrasTypeEnum';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setTokenExtrasTypes } from '../../state/tokenActions';
 import { Species } from '../../helpers/speciesEnum';
 import type { ITokenPageProperties } from './iTokenPageProperties';
 
-const ExtraSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
+export const ExtraSelectionView: React.FC<ITokenPageProperties> = ({
+  token,
+}) => {
   const { t } = useTranslation();
 
   const isExtraCategoryPresent = (category: ExtraCategory) => {
@@ -147,5 +149,3 @@ const ExtraSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
     </>
   );
 };
-
-export default ExtraSelectionView;

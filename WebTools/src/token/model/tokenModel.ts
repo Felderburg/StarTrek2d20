@@ -11,7 +11,7 @@ import { MouthType } from './mouthTypeEnum';
 import { NasoLabialFoldType } from './nasoLabialFoldTypeEnum';
 import { NoseType } from './noseTypeEnum';
 import { SpeciesOption } from './speciesOptionEnum';
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import type { Token } from './token';
 import { UniformEra } from './uniformEra';
 import { UniformVariantType } from './uniformVariantTypeEnum';

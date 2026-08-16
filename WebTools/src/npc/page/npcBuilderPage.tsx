@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import type { Era } from '../../helpers/erasEnum';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   DropDownElement,
@@ -15,7 +15,7 @@ import { useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { Character, OtherDetails } from '../../common/character';
 import { isSecondEdition } from '../../state/contextFunctions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setCharacter } from '../../state/characterActions';
 import { CharacterType, CharacterTypeModel } from '../../common/characterType';
 import type { Source } from '../../helpers/sources';
@@ -26,7 +26,7 @@ interface INpcConfigurationPageProperties {
   sources: Source[];
 }
 
-const NpcBuilderPage: React.FC<INpcConfigurationPageProperties> = ({
+const NpcBuilderPageBase: React.FC<INpcConfigurationPageProperties> = ({
   era,
   sources,
 }) => {
@@ -153,4 +153,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(NpcBuilderPage);
+export const NpcBuilderPage = connect(mapStateToProps)(NpcBuilderPageBase);

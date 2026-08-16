@@ -1,17 +1,19 @@
 import React from 'react';
-import NoseCatalog from '../model/noseCatalog';
-import SwatchButton from './swatchButton';
-import store from '../../state/store';
+import { NoseCatalog } from '../model/noseCatalog';
+import { SwatchButton } from './swatchButton';
+import { store } from '../../state/store';
 import {
   setTokenNasoLabialFoldType,
   setTokenNoseType,
 } from '../../state/tokenActions';
-import NasoLabialFoldCatalog from '../model/nasoLabialFoldCatalog';
-import SpeciesRestrictions from '../model/speciesRestrictions';
+import { NasoLabialFoldCatalog } from '../model/nasoLabialFoldCatalog';
+import { SpeciesRestrictions } from '../model/speciesRestrictions';
 import type { ITokenPageProperties } from './iTokenPageProperties';
 import { useTranslation } from 'react-i18next';
 
-const NoseSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
+export const NoseSelectionView: React.FC<ITokenPageProperties> = ({
+  token,
+}) => {
   const { t } = useTranslation();
 
   if (SpeciesRestrictions.isRubberHeaded(token.species)) {
@@ -50,5 +52,3 @@ const NoseSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
     );
   }
 };
-
-export default NoseSelectionView;

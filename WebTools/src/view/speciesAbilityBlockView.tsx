@@ -7,9 +7,9 @@ interface ISpeciesAbilityPageProperties {
   character: Character;
 }
 
-const SpeciesAbilityBlockView: React.FC<ISpeciesAbilityPageProperties> = ({
-  character,
-}) => {
+export const SpeciesAbilityBlockView: React.FC<
+  ISpeciesAbilityPageProperties
+> = ({ character }) => {
   const { t } = useTranslation();
   const renderSpeciesAbility = () => {
     return (
@@ -48,5 +48,3 @@ const SpeciesAbilityBlockView: React.FC<ISpeciesAbilityPageProperties> = ({
     return undefined;
   }
 };
-
-export default SpeciesAbilityBlockView;

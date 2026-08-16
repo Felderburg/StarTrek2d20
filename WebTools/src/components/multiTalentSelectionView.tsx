@@ -10,12 +10,9 @@ interface IMultiTalentSelectionProperties {
   onSelection: (rankedTalent: RankedTalent, talent?: SelectedTalent) => void;
 }
 
-const MultiTalentSelectionView: React.FC<IMultiTalentSelectionProperties> = ({
-  talents,
-  onSelection,
-  selections,
-  construct,
-}) => {
+export const MultiTalentSelectionView: React.FC<
+  IMultiTalentSelectionProperties
+> = ({ talents, onSelection, selections, construct }) => {
   const findSelection = (talent: RankedTalent) => {
     const temp = selections.filter((s) => s.talent === talent.name);
     return talent.rank === undefined ? temp[0] : temp[talent.rank - 1];
@@ -35,5 +32,3 @@ const MultiTalentSelectionView: React.FC<IMultiTalentSelectionProperties> = ({
     </table>
   );
 };
-
-export default MultiTalentSelectionView;

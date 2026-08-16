@@ -2,7 +2,7 @@ import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { BorgImplants } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   addCharacterBorgImplantSpeciesOption,
   removeCharacterBorgImplantSpeciesOption,

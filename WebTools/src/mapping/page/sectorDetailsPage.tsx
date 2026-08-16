@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Header } from '../../components/header';
 import { setSectorName, setStar } from '../../state/starActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { EditableHeader } from '../view/editableHeader';
-import LcarsDecorationLeftView from '../view/lcarsDecorationLeft';
-import LcarsDecorationRightView from '../view/lcarsDecorationRight';
-import SectorMapView from '../view/sectorMapView';
-import SystemView from '../view/systemView';
+import { LcarsDecorationLeftView } from '../view/lcarsDecorationLeft';
+import { LcarsDecorationRightView } from '../view/lcarsDecorationRight';
+import { SectorMapView } from '../view/sectorMapView';
+import { SystemView } from '../view/systemView';
 import type { Sector } from '../table/sector';
 import type { StarSystem } from '../table/starSystem';
 import { PDFDocument } from '@cantoo/pdf-lib';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { LoadingButton } from '../../common/loadingButton';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Link } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ interface ISectorDetailsPageProperties {
   sector: Sector;
 }
 
-const SectorDetailsPage: React.FC<ISectorDetailsPageProperties> = ({
+const SectorDetailsPageBase: React.FC<ISectorDetailsPageProperties> = ({
   sector,
 }) => {
   const [loadingExport, setLoadingExport] = useState(false);
@@ -144,4 +144,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(SectorDetailsPage);
+export const SectorDetailsPage = connect(mapStateToProps)(
+  SectorDetailsPageBase,
+);

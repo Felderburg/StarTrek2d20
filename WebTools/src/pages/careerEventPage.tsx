@@ -4,8 +4,8 @@ import { PageIdentity } from './pageIdentity';
 import type { CareerEventModel } from '../helpers/careerEvents';
 import { CareerEventsHelper } from '../helpers/careerEvents';
 import Button from 'react-bootstrap/Button';
-import InstructionText from '../components/instructionText';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { InstructionText } from '../components/instructionText';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { AttributesHelper } from '../helpers/attributes';
 import { DepartmentsHelper } from '../helpers/department';
 import { Window } from '../common/window';
@@ -18,7 +18,7 @@ import {
 import { hasSource } from '../state/contextFunctions';
 import { Source, SourcesHelper } from '../helpers/sources';
 import ReactMarkdown from 'react-markdown';
-import store from '../state/store';
+import { store } from '../state/store';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
@@ -35,7 +35,7 @@ interface ICareerEventProperties extends ICharacterProperties {
   context: StepContext;
 }
 
-const CareerEventPage: React.FC<ICareerEventProperties> = ({
+const CareerEventPageBase: React.FC<ICareerEventProperties> = ({
   character,
   context,
 }) => {
@@ -296,4 +296,6 @@ const CareerEventPage: React.FC<ICareerEventProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(CareerEventPage);
+export const CareerEventPage = connect(characterMapStateToProperties)(
+  CareerEventPageBase,
+);

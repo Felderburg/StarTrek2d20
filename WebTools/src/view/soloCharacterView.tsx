@@ -7,15 +7,15 @@ import { CharacterTypeModel } from '../common/characterType';
 import { useTranslation } from 'react-i18next';
 import { getNameAndShortRankOf } from '../helpers/ranks';
 import { StatView } from '../components/StatView';
-import store from '../state/store';
+import { store } from '../state/store';
 import { setCharacter } from '../state/characterActions';
 import type { Character } from '../common/character';
-import CharacterStatBlock from './characterStatBlock';
-import ValuesBlockView from './valuesBlockView';
-import TalentsBlockView from './talentsBlockView';
-import StressOrShieldsView from './stressOrShieldsView';
-import FocusBlockView from './focusBlockView';
-import WeaponBlockView from './weaponBlockView';
+import { CharacterStatBlock } from './characterStatBlock';
+import { ValuesBlockView } from './valuesBlockView';
+import { TalentsBlockView } from './talentsBlockView';
+import { StressOrShieldsView } from './stressOrShieldsView';
+import { FocusBlockView } from './focusBlockView';
+import { WeaponBlockView } from './weaponBlockView';
 import { VttSelectionDialog } from '../vtt/view/VttSelectionDialog';
 import { TracksHelper } from '../helpers/tracks';
 import { LoadingButton } from '../common/loadingButton';
@@ -26,7 +26,7 @@ export interface ICharacterViewProperties {
   showButtons?: boolean;
 }
 
-const SoloCharacterView: React.FC<ICharacterViewProperties> = ({
+export const SoloCharacterView: React.FC<ICharacterViewProperties> = ({
   character,
   showButtons,
 }) => {
@@ -317,5 +317,3 @@ const SoloCharacterView: React.FC<ICharacterViewProperties> = ({
     </main>
   );
 };
-
-export default SoloCharacterView;

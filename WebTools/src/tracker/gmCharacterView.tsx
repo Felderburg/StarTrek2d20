@@ -11,7 +11,7 @@ import {
   removeGMTrackedCharacter,
   setGMTrackedCharacterStress,
 } from '../state/gmTrackerActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import type { CharacterWithTracking } from './model/characterWithTracking';
 import { IconButton } from '../components/iconButton';
 
@@ -19,7 +19,7 @@ interface IGMCharacterViewProperties {
   tracking: CharacterWithTracking;
 }
 
-const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({
+export const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({
   tracking,
 }) => {
   const { t } = useTranslation();
@@ -332,5 +332,3 @@ const GMCharacterView: React.FC<IGMCharacterViewProperties> = ({
     </div>
   );
 };
-
-export default GMCharacterView;

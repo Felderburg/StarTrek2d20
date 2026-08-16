@@ -2,15 +2,15 @@ import React from 'react';
 import { Navigation, navigateTo } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import Button from 'react-bootstrap/Button';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setCharacter } from '../../state/characterActions';
 import { Character } from '../../common/character';
 import { Starship } from '../../common/starship';
 import { createStarship } from '../../state/starshipActions';
 
-const SoloConstructTypePage = () => {
+export const SoloConstructTypePage = () => {
   const createCharacter = () => {
     store.dispatch(
       setCharacter(Character.createSoloCharacter(store.getState().context.era)),
@@ -71,5 +71,3 @@ const SoloConstructTypePage = () => {
     </div>
   );
 };
-
-export default SoloConstructTypePage;

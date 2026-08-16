@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import replaceDiceWithArrowhead from '../common/arrowhead';
+import { replaceDiceWithArrowhead } from '../common/arrowhead';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import Markdown from 'react-markdown';
 import { Header } from './header';
@@ -9,7 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
 import { FocusSelectionView } from './focusSelectionView';
 import type { Character } from '../common/character';
-import ValueInput from './valueInput';
+import { ValueInput } from './valueInput';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import type { BorgImplantType } from '../helpers/borgImplant';
 import { BorgImplants } from '../helpers/borgImplant';

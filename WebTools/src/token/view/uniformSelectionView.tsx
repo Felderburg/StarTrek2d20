@@ -1,13 +1,13 @@
 import React from 'react';
 import type { UniformEra } from '../model/uniformEra';
 import { UniformEraHelper } from '../model/uniformEra';
-import ColorSelection from './colorSelection';
+import { ColorSelection } from './colorSelection';
 import { DivisionColors } from '../model/divisionColors';
 import {
   DropDownElement,
   DropDownSelect,
 } from '../../components/dropDownInput';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   setTokenBodyType,
   setTokenDivisionColor,
@@ -15,12 +15,12 @@ import {
   setTokenUniformVariantType,
   setUniformEra,
 } from '../../state/tokenActions';
-import RankIndicatorCatalog from '../model/rankIndicatorCatalog';
-import SwatchButton from './swatchButton';
+import { RankIndicatorCatalog } from '../model/rankIndicatorCatalog';
+import { SwatchButton } from './swatchButton';
 import { useTranslation } from 'react-i18next';
-import UniformCatalog from '../model/uniformCatalog';
-import UniformVariantRestrictions from '../model/uniformVariantRestrictions';
-import SpeciesRestrictions from '../model/speciesRestrictions';
+import { UniformCatalog } from '../model/uniformCatalog';
+import { UniformVariantRestrictions } from '../model/uniformVariantRestrictions';
+import { SpeciesRestrictions } from '../model/speciesRestrictions';
 import type { ITokenPageProperties } from './iTokenPageProperties';
 
 interface IUniformSelectionViewProperties extends ITokenPageProperties {
@@ -28,11 +28,9 @@ interface IUniformSelectionViewProperties extends ITokenPageProperties {
   isLoading: boolean;
 }
 
-const UniformSelectionView: React.FC<IUniformSelectionViewProperties> = ({
-  token,
-  loadPack,
-  isLoading,
-}) => {
+export const UniformSelectionView: React.FC<
+  IUniformSelectionViewProperties
+> = ({ token, loadPack, isLoading }) => {
   const { t } = useTranslation();
 
   const handleUniformEraChange = (era: UniformEra) => {
@@ -156,5 +154,3 @@ const UniformSelectionView: React.FC<IUniformSelectionViewProperties> = ({
     );
   }
 };
-
-export default UniformSelectionView;

@@ -7,7 +7,7 @@ interface IColorProperties {
   onSelection: (color: string) => void;
 }
 
-const ColorSelection: React.FC<IColorProperties> = ({
+export const ColorSelection: React.FC<IColorProperties> = ({
   colors,
   onSelection,
 }) => {
@@ -40,5 +40,3 @@ const ColorSelection: React.FC<IColorProperties> = ({
     </div>
   );
 };
-
-export default ColorSelection;

@@ -6,7 +6,7 @@ import { Track } from './trackEnum';
 import type { AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { AlliedMilitaryType } from './alliedMilitary';
-import store from '../state/store';
+import { store } from '../state/store';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
 import { isCadetRank, isEnlistedRank } from '../token/model/rankHelper';

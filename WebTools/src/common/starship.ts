@@ -12,7 +12,7 @@ import {
   TALENT_NAME_MISSION_POD,
   TalentsHelper,
 } from '../helpers/talents';
-import StarshipWeaponRegistry, { Weapon, WeaponType } from '../helpers/weapons';
+import { StarshipWeaponRegistry, Weapon, WeaponType } from '../helpers/weapons';
 import { CharacterType } from './characterType';
 import { Construct, Stereotype } from './construct';
 import { makeKey } from './translationKey';

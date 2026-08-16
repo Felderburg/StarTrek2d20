@@ -40,7 +40,7 @@ const withStation = (
   };
 };
 
-const stationReducer = (
+export const stationReducer = (
   state: StationState = { station: undefined },
   action,
 ) => {
@@ -230,5 +230,3 @@ const stationReducer = (
       return state;
   }
 };
-
-export default stationReducer;

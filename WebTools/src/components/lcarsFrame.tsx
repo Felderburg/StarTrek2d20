@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { PageIdentity } from '../pages/pageIdentity';
-import AppVersion from './appVersion';
-import CharacterProfile from './characterProfile';
-import History, { HistoryType } from './history';
-import News from './news';
-import PageHeader from './pageHeader';
+import { AppVersion } from './appVersion';
+import { CharacterProfile } from './characterProfile';
+import { History, HistoryType } from './history';
+import { News } from './news';
+import { PageHeader } from './pageHeader';
 import { RandomLcarsReadout } from './randomLcarsReadout';
 import { useTranslation } from 'react-i18next';
-import StarshipProfile from './starshipProfile';
-import LanguageSelector from './languageSelector';
-import StationProfileView from '../station/view/stationProfileView';
+import { StarshipProfile } from './starshipProfile';
+import { LanguageSelector } from './languageSelector';
+import { StationProfileView } from '../station/view/stationProfileView';
 
 interface ILcarsFrameProperties {
   activePage: PageIdentity;
@@ -19,7 +19,7 @@ interface ILcarsFrameProperties {
   children: React.ReactNode;
 }
 
-const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
+export const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
   activePage,
   onBack,
   children,
@@ -334,5 +334,3 @@ const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
     </>
   );
 };
-
-export default LcarsFrame;

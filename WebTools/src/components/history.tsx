@@ -9,7 +9,7 @@ import type {
   ShipBuildWorkflowStep,
 } from '../starship/model/shipBuildWorkflow';
 import { rewindToStarshipWorkflowStep } from '../state/starshipActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
 import { getPageTitle } from './pageHeader';
@@ -28,7 +28,7 @@ interface IHistoryProperties extends WithTranslation {
   close: () => void;
 }
 
-class History extends React.Component<IHistoryProperties, {}> {
+class HistoryBase extends React.Component<IHistoryProperties, {}> {
   renderHistoryByType() {
     const { t } = this.props;
     if (this.props.type === HistoryType.None) {
@@ -211,4 +211,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(withTranslation()(History));
+export const History = connect(mapStateToProps)(withTranslation()(HistoryBase));

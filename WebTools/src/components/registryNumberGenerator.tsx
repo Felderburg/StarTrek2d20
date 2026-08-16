@@ -122,6 +122,4 @@ class RegistryNumberGenerator {
   }
 }
 
-const RegistryNumber = new RegistryNumberGenerator();
-
-export default RegistryNumber;
+export const RegistryNumber = new RegistryNumberGenerator();

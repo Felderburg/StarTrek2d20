@@ -10,9 +10,9 @@ import {
   deleteStarshipWeapon,
   nextStarshipWorkflowStep,
 } from '../../state/starshipActions';
-import store from '../../state/store';
-import AddWeaponView, { AddWeaponMode } from '../view/addWeaponView';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { store } from '../../state/store';
+import { AddWeaponView, AddWeaponMode } from '../view/addWeaponView';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { IconButton } from '../../components/iconButton';
 import { useTranslation } from 'react-i18next';
 import { PageIdentity } from '../../pages/pageIdentity';
@@ -20,7 +20,7 @@ import type { IStarshipProperties } from '../iStarshipProperties';
 import { Stereotype } from '../../common/construct';
 import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
-const StarshipWeaponsPageProperties: React.FC<IStarshipProperties> = ({
+const StarshipWeaponsPagePropertiesBase: React.FC<IStarshipProperties> = ({
   starship,
 }) => {
   const { t } = useTranslation();
@@ -188,4 +188,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(StarshipWeaponsPageProperties);
+export const StarshipWeaponsPageProperties = connect(mapStateToProps)(
+  StarshipWeaponsPagePropertiesBase,
+);

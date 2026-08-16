@@ -3,7 +3,7 @@ import React from 'react';
 import { CheckBox } from '../../components/checkBox';
 import { System } from '../../helpers/systems';
 import { Department } from '../../helpers/department';
-import formatAsDelta from '../../common/formatAsDelta';
+import { formatAsDelta } from '../../common/formatAsDelta';
 import type { Starship } from '../../common/starship';
 import type { MissionPodModel } from '../../helpers/missionPods';
 import { MissionPodHelper } from '../../helpers/missionPods';
@@ -16,7 +16,7 @@ interface IMissionPodSelectionProperties extends WithTranslation {
   onSelection: (s: MissionPodModel) => void;
 }
 
-class MissionPodSelection extends React.Component<
+class MissionPodSelectionBase extends React.Component<
   IMissionPodSelectionProperties,
   {}
 > {
@@ -238,4 +238,4 @@ class MissionPodSelection extends React.Component<
   }
 }
 
-export default withTranslation()(MissionPodSelection);
+export const MissionPodSelection = withTranslation()(MissionPodSelectionBase);

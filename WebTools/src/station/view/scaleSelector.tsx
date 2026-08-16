@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import StationScale from '../../helpers/stationScale';
+import { StationScale } from '../../helpers/stationScale';
 import { CustomStationSpaceframeStep } from '../../common/station';
 
 export interface IScaleSelectorProperties {

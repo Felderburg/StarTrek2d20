@@ -5,7 +5,7 @@ import type { TalentModel } from '../helpers/talentModel';
 import { TalentsHelper } from '../helpers/talents';
 import { Source, SourcesHelper } from '../helpers/sources';
 import { SpeciesHelper } from '../helpers/species';
-import replaceDiceWithArrowhead from '../common/arrowhead';
+import { replaceDiceWithArrowhead } from '../common/arrowhead';
 import type { Species } from '../helpers/speciesEnum';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
@@ -122,7 +122,7 @@ class TalentViewModel {
   }
 }
 
-const TalentsOverviewPage = () => {
+export const TalentsOverviewPage = () => {
   const allTalents: TalentViewModel[] = [];
   const [showAdvanced, setShowAdvanced] = useState<boolean>(false);
   const [search, setSearch] = useState('');
@@ -496,5 +496,3 @@ const TalentsOverviewPage = () => {
     </div>
   );
 };
-
-export default TalentsOverviewPage;

@@ -14,7 +14,7 @@ interface IAttributeImprovementProperties extends WithTranslation {
   onIncrease: () => void;
 }
 
-class AttributeImprovement extends React.Component<
+class AttributeImprovementBase extends React.Component<
   IAttributeImprovementProperties,
   {}
 > {
@@ -64,4 +64,4 @@ class AttributeImprovement extends React.Component<
   }
 }
 
-export default withTranslation()(AttributeImprovement);
+export const AttributeImprovement = withTranslation()(AttributeImprovementBase);

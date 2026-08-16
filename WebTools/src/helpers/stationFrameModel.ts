@@ -6,7 +6,7 @@ import { StationFrame } from './stationFrame';
 import type { TalentModel } from './talentModel';
 import { TalentsHelper } from './talents';
 import type { Weapon } from './weapons';
-import StarshipWeaponRegistry from './weapons';
+import { StarshipWeaponRegistry } from './weapons';
 import { makeKey } from '../common/translationKey';
 import { System } from './systems';
 

@@ -1,6 +1,6 @@
 import { Header } from './header';
 
-const HomePageAnnouncement = () => {
+export const HomePageAnnouncement = () => {
   if (false) {
     return undefined;
   } else {
@@ -22,5 +22,3 @@ const HomePageAnnouncement = () => {
     );
   }
 };
-
-export default HomePageAnnouncement;

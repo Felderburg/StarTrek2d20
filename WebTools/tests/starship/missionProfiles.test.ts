@@ -3,7 +3,8 @@ import '../../src/helpers/species';
 import { Starship } from '../../src/common/starship';
 import { CharacterType } from '../../src/common/characterType';
 import { Era } from '../../src/helpers/erasEnum';
-import MissionProfiles, {
+import {
+  MissionProfiles,
   MissionProfile,
 } from '../../src/helpers/missionProfiles';
 import { Department } from '../../src/helpers/department';
@@ -31,8 +32,10 @@ const mockStoreState: { context: { sources: number[] } } = {
   context: { sources: [Source.Core2ndEdition] },
 };
 jest.mock('../../src/state/store', () => ({
-  getState: () => mockStoreState,
-  dispatch: () => undefined,
+  store: {
+    getState: () => mockStoreState,
+    dispatch: () => undefined,
+  },
 }));
 
 function createStarship(type: CharacterType, version: number) {

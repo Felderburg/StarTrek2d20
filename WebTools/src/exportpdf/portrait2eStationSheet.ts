@@ -46,7 +46,7 @@ import { PortraitSheetDecorations } from './portraitSheetDecorations';
 import { assembleStarshipTalents } from './generatedsheet';
 import { PageArea } from './pageArea';
 import type { Station } from '../common/station';
-import MissionProfiles from '../helpers/missionProfiles';
+import { MissionProfiles } from '../helpers/missionProfiles';
 import { Generated2eStarshipSheet } from './generated2eStarshipSheet';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 

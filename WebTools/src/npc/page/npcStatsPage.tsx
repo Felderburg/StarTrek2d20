@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
-import CharacterCreationBreadcrumbs from '../../components/characterCreationBreadcrumbs';
+import { CharacterCreationBreadcrumbs } from '../../components/characterCreationBreadcrumbs';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
-import NpcDepartmentView from '../view/npcDepartmentView';
+import { NpcDepartmentView } from '../view/npcDepartmentView';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import {
   addNpcCharacterValue,
   setCharacterAssignment,
@@ -23,11 +23,11 @@ import { NpcType, NpcTypes } from '../model/npcType';
 import { FocusSelectionView } from '../../components/focusSelectionView';
 import { DepartmentsHelper } from '../../helpers/department';
 import { makeKey } from '../../common/translationKey';
-import ValueInputWithRandom from '../../components/valueInputWithRandomOption';
+import { ValueInputWithRandom } from '../../components/valueInputWithRandomOption';
 import { NpcAttributesView } from '../view/npcAttributesView';
 import { Button } from 'react-bootstrap';
-import MajorNpcDepartmentView from '../view/majorNpcDepartmentView';
-import MajorNpcAttributeView from '../view/majorNpcAttributeView';
+import { MajorNpcDepartmentView } from '../view/majorNpcDepartmentView';
+import { MajorNpcAttributeView } from '../view/majorNpcAttributeView';
 import { Dialog } from '../../components/dialog';
 import {
   DropDownElement,
@@ -37,7 +37,7 @@ import { CharacterType } from '../../common/characterType';
 import type { Rank } from '../../helpers/ranks';
 import { RanksHelper } from '../../helpers/ranks';
 
-const NpcStatsPage: React.FC<ICharacterProperties> = ({ character }) => {
+const NpcStatsPageBase: React.FC<ICharacterProperties> = ({ character }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -405,4 +405,6 @@ const NpcStatsPage: React.FC<ICharacterProperties> = ({ character }) => {
   ) : undefined;
 };
 
-export default connect(characterMapStateToProperties)(NpcStatsPage);
+export const NpcStatsPage = connect(characterMapStateToProperties)(
+  NpcStatsPageBase,
+);

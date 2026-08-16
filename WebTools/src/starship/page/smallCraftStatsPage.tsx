@@ -12,7 +12,7 @@ import {
   nextStarshipWorkflowStep,
   setStarshipSpaceframeAppearance,
 } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { Navigation } from '../../common/navigator';
 import { ShipBuildType } from '../../common/shipBuildType';
 import { PageIdentity } from '../../pages/pageIdentity';
@@ -23,7 +23,7 @@ import {
 } from '../../components/dropDownInput';
 import type { SpaceframeAppearance } from '../../helpers/spaceframeAppearance';
 
-class SmallCraftStatsPage extends BaseSimpleStarshipPage {
+class SmallCraftStatsPageBase extends BaseSimpleStarshipPage {
   renderHeader() {
     const { t } = this.props;
     return <Header>{t('Page.title.smallCraftStats')}</Header>;
@@ -174,4 +174,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default withTranslation()(connect(mapStateToProps)(SmallCraftStatsPage));
+export const SmallCraftStatsPage = withTranslation()(
+  connect(mapStateToProps)(SmallCraftStatsPageBase),
+);

@@ -11,7 +11,7 @@ import type { Rank } from '../../helpers/ranks';
 import { RanksHelper } from '../../helpers/ranks';
 import { Button } from 'react-bootstrap';
 import { Dialog } from '../../components/dialog';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { modifyCharacterRank } from '../../state/characterActions';
 import { CharacterRank } from '../../common/character';
 import { ModificationType } from '../model/modificationType';

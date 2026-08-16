@@ -6,21 +6,21 @@ import { PageIdentity } from '../../pages/pageIdentity';
 import { Header } from '../../components/header';
 import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
-import SoloValueInput from '../component/soloValueInput';
-import store from '../../state/store';
+import { SoloValueInput } from '../component/soloValueInput';
+import { store } from '../../state/store';
 import { StepContext, setCharacterValue } from '../../state/characterActions';
 import { Dialog } from '../../components/dialog';
-import DisciplineListComponent from '../../components/disciplineListComponent';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
-import AttributeListComponent from '../../components/attributeListComponent';
+import { DisciplineListComponent } from '../../components/disciplineListComponent';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
+import { AttributeListComponent } from '../../components/attributeListComponent';
 import { randomUniqueValue } from '../table/valueRandomTable';
-import D20IconButton from '../component/d20IconButton';
+import { D20IconButton } from '../component/d20IconButton';
 import {
   FinishingTouchesAttributeController,
   FinishingTouchesDisciplineController,
 } from '../../components/finishingTouchesControllers';
 
-const SoloFinishingTouchesPage: React.FC<ICharacterProperties> = ({
+const SoloFinishingTouchesPageBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
   const { t } = useTranslation();
@@ -134,4 +134,6 @@ const SoloFinishingTouchesPage: React.FC<ICharacterProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(SoloFinishingTouchesPage);
+export const SoloFinishingTouchesPage = connect(characterMapStateToProperties)(
+  SoloFinishingTouchesPageBase,
+);

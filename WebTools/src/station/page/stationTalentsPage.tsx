@@ -10,17 +10,19 @@ import { TalentsHelper } from '../../helpers/talents';
 import { Header } from '../../components/header';
 import Markdown from 'react-markdown';
 import { Button } from 'react-bootstrap';
-import MultiTalentSelectionView from '../../components/multiTalentSelectionView';
+import { MultiTalentSelectionView } from '../../components/multiTalentSelectionView';
 import { connect } from 'react-redux';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setStationAdditionalTalents } from '../../state/stationActions';
 import { useNavigate } from 'react-router';
-import StationBreadcrumbs from '../view/stationBreadcrumbs';
+import { StationBreadcrumbs } from '../view/stationBreadcrumbs';
 import { StationFrame } from '../../helpers/stationFrame';
 
-const StationTalentsPage: React.FC<IStationPageProperties> = ({ station }) => {
+const StationTalentsPageBase: React.FC<IStationPageProperties> = ({
+  station,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -167,4 +169,6 @@ const StationTalentsPage: React.FC<IStationPageProperties> = ({ station }) => {
   );
 };
 
-export default connect(stationMapStateToProperties)(StationTalentsPage);
+export const StationTalentsPage = connect(stationMapStateToProperties)(
+  StationTalentsPageBase,
+);

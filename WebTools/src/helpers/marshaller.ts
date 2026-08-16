@@ -33,13 +33,13 @@ import {
   Starship,
   StarshipAdvancementStep,
 } from '../common/starship';
-import AgeHelper from './age';
+import { AgeHelper } from './age';
 import { Attribute, AttributesHelper } from './attributes';
 import { Career } from './careerEnum';
 import { CareersHelper } from './careers';
 import { Environment, EnvironmentsHelper } from './environments';
 import { MissionPod, MissionPodHelper } from './missionPods';
-import MissionProfiles, { MissionProfile } from './missionProfiles';
+import { MissionProfiles, MissionProfile } from './missionProfiles';
 import { Rank, RanksHelper } from './ranks';
 import { DepartmentsHelper, Department } from './department';
 import { Spaceframe } from './spaceframeEnum';
@@ -88,7 +88,7 @@ import {
   allSpecializations,
 } from '../common/specializationEnum';
 import { Era } from './erasEnum';
-import Eras from './eras';
+import { Eras } from './eras';
 import { Asset, AssetAbility, AssetStat } from '../asset/asset';
 import { AssetType } from '../asset/assetType';
 import { AssetStatType, allAssetStatTypes } from '../asset/assetStat';
@@ -98,11 +98,12 @@ import {
   ServiceRecord,
   ServiceRecordList,
 } from '../starship/model/serviceRecord';
-import AllyHelper, {
+import {
+  AllyHelper,
   AlliedMilitary,
   AlliedMilitaryType,
 } from './alliedMilitary';
-import Governments, { Government, Polity } from './governments';
+import { Governments, Government, Polity } from './governments';
 import { NpcType, NpcTypes } from '../npc/model/npcType';
 import { Creature } from '../creature/model/creature';
 import { Habitat, HabitatHelper } from '../creature/model/habitat';

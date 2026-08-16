@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Header } from '../../components/header';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import type { ICharacterProperties } from './soloCharacterProperties';
 import { characterMapStateToProperties } from './soloCharacterProperties';
 import React, { useState } from 'react';
@@ -18,14 +18,14 @@ import { CareerEventsHelper } from '../../helpers/careerEvents';
 import { CharacterType } from '../../common/characterType';
 import { AttributesHelper } from '../../helpers/attributes';
 import { DepartmentsHelper } from '../../helpers/department';
-import store from '../../state/store';
-import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
+import { store } from '../../state/store';
+import { SoloCharacterBreadcrumbs } from '../component/soloCharacterBreadcrumbs';
 
 interface ISoloCareerEventProperties extends ICharacterProperties {
   context: StepContext;
 }
 
-const SoloCareerEventPage: React.FC<ISoloCareerEventProperties> = ({
+const SoloCareerEventPageBase: React.FC<ISoloCareerEventProperties> = ({
   character,
   context,
 }) => {
@@ -152,4 +152,6 @@ const SoloCareerEventPage: React.FC<ISoloCareerEventProperties> = ({
   );
 };
 
-export default connect(characterMapStateToProperties)(SoloCareerEventPage);
+export const SoloCareerEventPage = connect(characterMapStateToProperties)(
+  SoloCareerEventPageBase,
+);

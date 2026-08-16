@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import Modal from './modal';
+import { ModalBox as Modal } from './modal';
 import { useTranslation } from 'react-i18next';
 
 interface INewsProperties {
@@ -8,7 +8,7 @@ interface INewsProperties {
   onClose: () => void;
 }
 
-const News: React.FC<INewsProperties> = ({ showModal, onClose }) => {
+export const News: React.FC<INewsProperties> = ({ showModal, onClose }) => {
   const { t } = useTranslation();
 
   return (
@@ -248,5 +248,3 @@ const News: React.FC<INewsProperties> = ({ showModal, onClose }) => {
     </Modal>
   );
 };
-
-export default News;

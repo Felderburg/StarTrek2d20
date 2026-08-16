@@ -3,13 +3,13 @@ import type { ICharacterProperties } from '../../solo/page/soloCharacterProperti
 import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
-import LcarsFrame from '../../components/lcarsFrame';
-import CharacterCreationBreadcrumbs from '../../components/characterCreationBreadcrumbs';
+import { LcarsFrame } from '../../components/lcarsFrame';
+import { CharacterCreationBreadcrumbs } from '../../components/characterCreationBreadcrumbs';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Header } from '../../components/header';
 import { connect } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import MultiTalentSelectionView from '../../components/multiTalentSelectionView';
+import { MultiTalentSelectionView } from '../../components/multiTalentSelectionView';
 import Markdown from 'react-markdown';
 import { makeKey } from '../../common/translationKey';
 import { NpcType } from '../model/npcType';
@@ -19,7 +19,7 @@ import {
 } from '../../helpers/talents';
 import { RankedTalent } from '../../helpers/rankedTalent';
 import type { SelectedTalent } from '../../common/selectedTalent';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import { setNpcCharacterTalents } from '../../state/characterActions';
 import { Dialog } from '../../components/dialog';
 import { isMultiSelectionTalent } from '../../helpers/isMultiSelectionTalent';
@@ -35,7 +35,9 @@ class Range {
   }
 }
 
-const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({ character }) => {
+const NpcSpecialRulesPageBase: React.FC<ICharacterProperties> = ({
+  character,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -201,4 +203,6 @@ const NpcSpecialRulesPage: React.FC<ICharacterProperties> = ({ character }) => {
   ) : undefined;
 };
 
-export default connect(characterMapStateToProperties)(NpcSpecialRulesPage);
+export const NpcSpecialRulesPage = connect(characterMapStateToProperties)(
+  NpcSpecialRulesPageBase,
+);

@@ -9,15 +9,15 @@ import { RanksHelper } from '../helpers/ranks';
 import type { RoleModel } from '../helpers/roles';
 import { RolesHelper } from '../helpers/roles';
 import { AlliedMilitaryType } from '../helpers/alliedMilitary';
-import replaceDiceWithArrowhead from '../common/arrowhead';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { replaceDiceWithArrowhead } from '../common/arrowhead';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { marshaller } from '../helpers/marshaller';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
-import store from '../state/store';
+import { store } from '../state/store';
 import {
   setCharacterAdditionalTraits,
   setCharacterAssignedShip,
@@ -29,7 +29,7 @@ import {
   setCharacterPronouns,
   setCharacterRank,
 } from '../state/characterActions';
-import AllCharacterValues from '../components/allCharacterValues';
+import { AllCharacterValues } from '../components/allCharacterValues';
 import { PageIdentity } from './pageIdentity';
 import ReactMarkdown from 'react-markdown';
 import { LoadingButton } from '../common/loadingButton';
@@ -39,7 +39,7 @@ interface IFinishPageProperties {
   character: Character;
 }
 
-const FinishPage: React.FC<IFinishPageProperties> = ({ character }) => {
+const FinishPageBase: React.FC<IFinishPageProperties> = ({ character }) => {
   const { t } = useTranslation();
   const [roleSelectionAllowed, setRoleSelectionAllowed] = useState(null);
   const [roleOther, setRoleOther] = useState(character.jobAssignment);
@@ -538,4 +538,6 @@ const FinishPage: React.FC<IFinishPageProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(FinishPage);
+export const FinishPage = connect(characterMapStateToProperties)(
+  FinishPageBase,
+);

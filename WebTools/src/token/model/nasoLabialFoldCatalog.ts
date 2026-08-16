@@ -1,6 +1,6 @@
 import { NasoLabialFoldType } from './nasoLabialFoldTypeEnum';
-import SpeciesRestrictions from './speciesRestrictions';
-import Swatch from './swatch';
+import { SpeciesRestrictions } from './speciesRestrictions';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 
 const NimoyNasoLabial = `<g>
@@ -34,7 +34,7 @@ const CherubicNasoLabial = `<g>
     <path style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 326.66532,172.85833 c 0,0 0.70882,1.34664 1.171,2.07178 0.46218,0.72514 1.48628,2.20689 1.48628,2.20689 0,0 -1.16632,-1.42554 -1.62139,-2.16185 -0.45507,-0.73631 -1.03589,-2.11682 -1.03589,-2.11682 z" id="path5"/>
 </g>`;
 
-class NasoLabialFoldCatalog {
+export class NasoLabialFoldCatalog {
   private static singleton: NasoLabialFoldCatalog;
 
   swatches = [
@@ -111,5 +111,3 @@ class NasoLabialFoldCatalog {
     return result;
   }
 }
-
-export default NasoLabialFoldCatalog;

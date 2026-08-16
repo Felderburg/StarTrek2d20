@@ -10,7 +10,7 @@ import { UniformVariantType } from './uniformVariantTypeEnum';
 
 // While it's tempting to merge this functionality into the Uniform Pack for encapsulation
 // purposes, it needs to be bundled with the main bundle (with the Redux stuff)
-export default class UniformVariantRestrictions {
+export class UniformVariantRestrictions {
   static getAvailableVariants(
     uniformEra: UniformEra,
     bodyType: BodyType,

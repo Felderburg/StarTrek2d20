@@ -8,7 +8,7 @@ interface IWeaponViewProperties {
   version: number;
 }
 
-const WeaponView: React.FC<IWeaponViewProperties> = ({
+export const WeaponView: React.FC<IWeaponViewProperties> = ({
   weapon,
   dice,
   version,
@@ -51,5 +51,3 @@ const WeaponView: React.FC<IWeaponViewProperties> = ({
     return null;
   }
 };
-
-export default WeaponView;

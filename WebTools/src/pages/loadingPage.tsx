@@ -1,9 +1,9 @@
 import React from 'react';
 import { PageIdentity } from './pageIdentity';
-import LcarsFrame from '../components/lcarsFrame';
+import { LcarsFrame } from '../components/lcarsFrame';
 import { AccessingView } from '../common/accessingView';
 
-const LoadingPage = () => {
+export const LoadingPage = () => {
   return (
     <LcarsFrame activePage={PageIdentity.CreditsPage}>
       <div id="app">
@@ -14,5 +14,3 @@ const LoadingPage = () => {
     </LcarsFrame>
   );
 };
-
-export default LoadingPage;

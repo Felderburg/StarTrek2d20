@@ -4,8 +4,9 @@ import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { ModalControl } from '../../components/modal';
 import type { Weapon } from '../../helpers/weapons';
-import store from '../../state/store';
-import AddWeaponView, {
+import { store } from '../../state/store';
+import {
+  AddWeaponView,
   AddWeaponMode,
 } from '../../starship/view/addWeaponView';
 import { IconButton } from '../../components/iconButton';
@@ -14,14 +15,16 @@ import { PageIdentity } from '../../pages/pageIdentity';
 import type { IStationPageProperties } from '../iStationPageProperties';
 import { stationMapStateToProperties } from '../iStationPageProperties';
 import { useNavigate } from 'react-router';
-import LcarsFrame from '../../components/lcarsFrame';
+import { LcarsFrame } from '../../components/lcarsFrame';
 import {
   addStationWeapon,
   deleteStationWeapon,
 } from '../../state/stationActions';
-import StationBreadcrumbs from '../view/stationBreadcrumbs';
+import { StationBreadcrumbs } from '../view/stationBreadcrumbs';
 
-const StationWeaponsPage: React.FC<IStationPageProperties> = ({ station }) => {
+const StationWeaponsPageBase: React.FC<IStationPageProperties> = ({
+  station,
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -185,4 +188,6 @@ const StationWeaponsPage: React.FC<IStationPageProperties> = ({ station }) => {
   );
 };
 
-export default connect(stationMapStateToProperties)(StationWeaponsPage);
+export const StationWeaponsPage = connect(stationMapStateToProperties)(
+  StationWeaponsPageBase,
+);

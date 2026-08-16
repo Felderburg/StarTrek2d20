@@ -1,151 +1,168 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CharacterCreationApp from './app';
+import { CharacterCreationApp } from './app';
 import { Provider } from 'react-redux';
-import store from './state/store';
+import { store } from './state/store';
 import './i18n/config';
 import React, { Suspense } from 'react';
-import LoadingPage from './pages/loadingPage';
+import { LoadingPage } from './pages/loadingPage';
 import { Toaster } from 'react-hot-toast';
-import ImportTablePage from './table/page/importTablePage';
-import OtherToolsPage from './pages/otherToolsPage';
+import { ImportTablePage } from './table/page/importTablePage';
+import { OtherToolsPage } from './pages/otherToolsPage';
 import { HelmetProvider } from '@dr.pogodin/react-helmet';
 
-const CreditsPage = React.lazy(() => import('./pages/creditsPage'));
-const TalentsOverviewMainPage = React.lazy(
-  () => import('./pages/talentsOverviewMainPage'),
+const CreditsPage = React.lazy(() =>
+  import('./pages/creditsPage').then((m) => ({ default: m.CreditsPage })),
 );
-const ViewSheetPage = React.lazy(
-  () => import(/* webpackChunkName: 'view' */ './view/viewSheetPage'),
+const TalentsOverviewMainPage = React.lazy(() =>
+  import('./pages/talentsOverviewMainPage').then((m) => ({
+    default: m.TalentsOverviewMainPage,
+  })),
 );
-const TokenCreationPage = React.lazy(
-  () => import(/* webpackChunkName: 'token' */ './token/tokenCreationPage'),
+const ViewSheetPage = React.lazy(() =>
+  import(/* webpackChunkName: 'view' */ './view/viewSheetPage').then((m) => ({
+    default: m.ViewSheetPage,
+  })),
 );
-const TableListPage = React.lazy(
-  () => import(/* webpackChunkName: 'table' */ './table/page/tableListPage'),
+const TokenCreationPage = React.lazy(() =>
+  import(/* webpackChunkName: 'token' */ './token/tokenCreationPage').then(
+    (m) => ({ default: m.TokenCreationPage }),
+  ),
 );
-const ViewTablePage = React.lazy(
-  () => import(/* webpackChunkName: 'table' */ './table/page/viewTablePage'),
+const TableListPage = React.lazy(() =>
+  import(/* webpackChunkName: 'table' */ './table/page/tableListPage').then(
+    (m) => ({ default: m.TableListPage }),
+  ),
 );
-const EditTablePage = React.lazy(
-  () => import(/* webpackChunkName: 'table' */ './table/page/editTablePage'),
+const ViewTablePage = React.lazy(() =>
+  import(/* webpackChunkName: 'table' */ './table/page/viewTablePage').then(
+    (m) => ({ default: m.ViewTablePage }),
+  ),
 );
-const SafetyChecklistPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'safety' */ './safety/page/safetyChecklistPage'
-    ),
+const EditTablePage = React.lazy(() =>
+  import(/* webpackChunkName: 'table' */ './table/page/editTablePage').then(
+    (m) => ({ default: m.EditTablePage }),
+  ),
 );
-const RandomStarshipPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'starship' */ './starship/page/randomStarshipPage'
-    ),
+const SafetyChecklistPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'safety' */ './safety/page/safetyChecklistPage'
+  ).then((m) => ({ default: m.SafetyChecklistPage })),
 );
-const RandomCreaturePage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'npc' */ './creature/page/randomCreatureConfigurationPage'
-    ),
+const RandomStarshipPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'starship' */ './starship/page/randomStarshipPage'
+  ).then((m) => ({ default: m.RandomStarshipPage })),
 );
-const TacticalAssetsPage = React.lazy(
-  () =>
-    import(/* webpackChunkName: 'statc' */ './asset/page/tacticalAssetsPage'),
+const RandomCreaturePage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'npc' */ './creature/page/randomCreatureConfigurationPage'
+  ).then((m) => ({ default: m.RandomCreatureConfigurationPage })),
 );
-const ModifySupportCharacterPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'modify' */ './supportingcharacters/modify/modifySupportCharacterPage'
-    ),
+const TacticalAssetsPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'statc' */ './asset/page/tacticalAssetsPage'
+  ).then((m) => ({ default: m.TacticalAssetsPage })),
 );
-const ModifyCharacterPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'modify' */ './modify/page/modifyMainCharacterPage'
-    ),
+const ModifySupportCharacterPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'modify' */ './supportingcharacters/modify/modifySupportCharacterPage'
+  ).then((m) => ({ default: m.ModifySupportingCharacterPage })),
 );
-const ModifyStarshipPage = React.lazy(
-  () =>
-    import(/* webpackChunkName: 'modify' */ './modify/page/modifyStarshipPage'),
+const ModifyCharacterPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'modify' */ './modify/page/modifyMainCharacterPage'
+  ).then((m) => ({ default: m.ModifyMainCharacterPage })),
 );
-const SwapMissionPodPage = React.lazy(
-  () =>
-    import(/* webpackChunkName: 'modify' */ './modify/page/swapMissionPodPage'),
+const ModifyStarshipPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'modify' */ './modify/page/modifyStarshipPage'
+  ).then((m) => ({ default: m.ModifyStarshipPage })),
 );
-const NpcBuilderPage = React.lazy(
-  () => import(/* webpackChunkName: 'npc' */ './npc/page/npcBuilderPage'),
+const SwapMissionPodPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'modify' */ './modify/page/swapMissionPodPage'
+  ).then((m) => ({ default: m.SwapMissionPodPage })),
 );
-const NpcSpeciesSelectionPage = React.lazy(
-  () =>
-    import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesSelectionPage'),
+const NpcBuilderPage = React.lazy(() =>
+  import(/* webpackChunkName: 'npc' */ './npc/page/npcBuilderPage').then(
+    (m) => ({ default: m.NpcBuilderPage }),
+  ),
 );
-const NpcSpeciesDetailsPage = React.lazy(
-  () =>
-    import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesDetailsPage'),
+const NpcSpeciesSelectionPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'npc' */ './npc/page/npcSpeciesSelectionPage'
+  ).then((m) => ({ default: m.NpcSpeciesSelectionPage })),
 );
-const NpcStatsPage = React.lazy(
-  () => import(/* webpackChunkName: 'npc' */ './npc/page/npcStatsPage'),
+const NpcSpeciesDetailsPage = React.lazy(() =>
+  import(/* webpackChunkName: 'npc' */ './npc/page/npcSpeciesDetailsPage').then(
+    (m) => ({ default: m.NpcSpeciesDetailsPage }),
+  ),
 );
-const NpcSpecialRulesPage = React.lazy(
-  () => import(/* webpackChunkName: 'npc' */ './npc/page/npcSpecialRulesPage'),
+const NpcStatsPage = React.lazy(() =>
+  import(/* webpackChunkName: 'npc' */ './npc/page/npcStatsPage').then((m) => ({
+    default: m.NpcStatsPage,
+  })),
 );
-const NpcFinalPage = React.lazy(
-  () => import(/* webpackChunkName: 'npc' */ './npc/page/npcFinalPage'),
+const NpcSpecialRulesPage = React.lazy(() =>
+  import(/* webpackChunkName: 'npc' */ './npc/page/npcSpecialRulesPage').then(
+    (m) => ({ default: m.NpcSpecialRulesPage }),
+  ),
 );
-const GMTrackerPage = React.lazy(
-  () => import(/* webpackChunkName: 'tracker' */ './tracker/gmTrackerPage'),
+const NpcFinalPage = React.lazy(() =>
+  import(/* webpackChunkName: 'npc' */ './npc/page/npcFinalPage').then((m) => ({
+    default: m.NpcFinalPage,
+  })),
 );
-const SystemGenerationPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'sector' */ './mapping/page/systemGenerationPage'
-    ),
+const GMTrackerPage = React.lazy(() =>
+  import(/* webpackChunkName: 'tracker' */ './tracker/gmTrackerPage').then(
+    (m) => ({ default: m.GMTrackerPage }),
+  ),
 );
-const SectorDetailsPage = React.lazy(
-  () =>
-    import(/* webpackChunkName: 'sector' */ './mapping/page/sectorDetailsPage'),
+const SystemGenerationPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'sector' */ './mapping/page/systemGenerationPage'
+  ).then((m) => ({ default: m.SystemGenerationPage })),
 );
-const StarSystemDetailsPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'sector' */ './mapping/page/starSystemDetailsPage'
-    ),
+const SectorDetailsPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'sector' */ './mapping/page/sectorDetailsPage'
+  ).then((m) => ({ default: m.SectorDetailsPage })),
 );
-const StationIndexPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'starship' */ './station/page/stationIndexPage'
-    ),
+const StarSystemDetailsPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'sector' */ './mapping/page/starSystemDetailsPage'
+  ).then((m) => ({ default: m.StarSystemDetailsPage })),
 );
-const StationSpaceframePage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'starship' */ './station/page/stationSpaceframePage'
-    ),
+const StationIndexPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'starship' */ './station/page/stationIndexPage'
+  ).then((m) => ({ default: m.StationIndexPage })),
 );
-const StationMissionProfileSelectionPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'starship' */ './station/page/stationMissionProfileSelectionPage'
-    ),
+const StationSpaceframePage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'starship' */ './station/page/stationSpaceframePage'
+  ).then((m) => ({ default: m.StationSpaceframePage })),
 );
-const StationWeaponsPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'starship' */ './station/page/stationWeaponsPage'
-    ),
+const StationMissionProfileSelectionPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'starship' */ './station/page/stationMissionProfileSelectionPage'
+  ).then((m) => ({ default: m.StationMissionProfileSelectionPage })),
 );
-const StationFinalPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'starship' */ './station/page/stationFinalPage'
-    ),
+const StationWeaponsPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'starship' */ './station/page/stationWeaponsPage'
+  ).then((m) => ({ default: m.StationWeaponsPage })),
 );
-const StationTalentsPage = React.lazy(
-  () =>
-    import(
-      /* webpackChunkName: 'starship' */ './station/page/stationTalentsPage'
-    ),
+const StationFinalPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'starship' */ './station/page/stationFinalPage'
+  ).then((m) => ({ default: m.StationFinalPage })),
+);
+const StationTalentsPage = React.lazy(() =>
+  import(
+    /* webpackChunkName: 'starship' */ './station/page/stationTalentsPage'
+  ).then((m) => ({ default: m.StationTalentsPage })),
 );
 
 const root = createRoot(document.getElementById('mainBody'));

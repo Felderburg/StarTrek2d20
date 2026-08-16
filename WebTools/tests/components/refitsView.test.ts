@@ -1,5 +1,5 @@
 import { test, expect, describe, jest } from '@jest/globals';
-import { RefitsView } from '../../src/components/refitsView';
+import { RefitsViewBase } from '../../src/components/refitsView';
 import { System } from '../../src/helpers/systems';
 
 function createMockStarship(baseValues: number[], currentValues: number[]) {
@@ -18,7 +18,7 @@ function createRefits(starship: any, refits: System[], points: number) {
     i18n: {} as any,
     tReady: true,
   };
-  const instance = new RefitsView(props as any);
+  const instance = new RefitsViewBase(props as any);
   (instance as any).forceUpdate = jest.fn();
   return instance;
 }

@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { PageIdentity } from './pageIdentity';
-import MixedSpeciesSelection from '../components/mixedSpeciesSelection';
-import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
+import { MixedSpeciesSelection } from '../components/mixedSpeciesSelection';
+import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { Header } from '../components/header';
-import InstructionText from '../components/instructionText';
-import SpeciesSelection from '../components/speciesSelection';
+import { InstructionText } from '../components/instructionText';
+import { SpeciesSelection } from '../components/speciesSelection';
 import { Species } from '../helpers/speciesEnum';
 import { SpeciesHelper } from '../helpers/species';
 import { setCharacterSpecies } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import { Navigation } from '../common/navigator';
 import Button from 'react-bootstrap/Button';
 import { Stereotype } from '../common/construct';
@@ -26,7 +26,7 @@ enum SpeciesTab {
   Mixed,
 }
 
-const SpeciesPage: React.FC<ICharacterProperties> = ({ character }) => {
+const SpeciesPageBase: React.FC<ICharacterProperties> = ({ character }) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -167,4 +167,6 @@ const SpeciesPage: React.FC<ICharacterProperties> = ({ character }) => {
   );
 };
 
-export default connect(characterMapStateToProperties)(SpeciesPage);
+export const SpeciesPage = connect(characterMapStateToProperties)(
+  SpeciesPageBase,
+);

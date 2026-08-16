@@ -7,7 +7,7 @@ import {
   DropDownSelect,
 } from '../../components/dropDownInput';
 import { Header } from '../../components/header';
-import InstructionText from '../../components/instructionText';
+import { InstructionText } from '../../components/instructionText';
 import { Era } from '../../helpers/erasEnum';
 import { marshaller } from '../../helpers/marshaller';
 import { SpeciesHelper } from '../../helpers/species';
@@ -29,7 +29,7 @@ interface INpcConfigurationPageProperties {
   era: Era;
 }
 
-const NpcConfigurationPage: React.FC<INpcConfigurationPageProperties> = ({
+const NpcConfigurationPageBase: React.FC<INpcConfigurationPageProperties> = ({
   era,
 }) => {
   const { t } = useTranslation();
@@ -404,4 +404,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(NpcConfigurationPage);
+export const NpcConfigurationPage = connect(mapStateToProps)(
+  NpcConfigurationPageBase,
+);

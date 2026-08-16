@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import { navigateTo } from '../common/navigator';
 import { CharacterType } from '../common/characterType';
 import { setCharacterFinishingTouches } from '../state/characterActions';
-import store from '../state/store';
+import { store } from '../state/store';
 import { Stereotype } from '../common/construct';
 import { Link } from 'react-router-dom';
 
@@ -403,7 +403,7 @@ const StandardCharacterCreationBreadcrumbs: React.FC<
   );
 };
 
-const CharacterCreationBreadcrumbs: React.FC<
+const CharacterCreationBreadcrumbsBase: React.FC<
   ICharacterBreadcrumbProperties
 > = ({ character, pageIdentity }) => {
   if (character?.stereotype === Stereotype.Npc) {
@@ -423,6 +423,6 @@ const CharacterCreationBreadcrumbs: React.FC<
   }
 };
 
-export default connect(characterMapStateToProperties)(
-  CharacterCreationBreadcrumbs,
-);
+export const CharacterCreationBreadcrumbs = connect(
+  characterMapStateToProperties,
+)(CharacterCreationBreadcrumbsBase);

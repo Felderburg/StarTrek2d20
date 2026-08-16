@@ -1,4 +1,4 @@
-import type Swatch from './swatch';
+import type { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 import type { IUniformPack } from './uniformPack';
 

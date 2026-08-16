@@ -7,7 +7,7 @@ interface INotablePhenomenonViewProperties extends IPageProperties {
   phenomenon?: NotableSpatialPhenomenonModel;
 }
 
-class NotablePhenomenonView extends React.Component<
+export class NotablePhenomenonView extends React.Component<
   INotablePhenomenonViewProperties,
   {}
 > {
@@ -29,5 +29,3 @@ class NotablePhenomenonView extends React.Component<
     ) : null;
   }
 }
-
-export default NotablePhenomenonView;

@@ -1,4 +1,4 @@
-import SpeciesRestrictions from './speciesRestrictions';
+import { SpeciesRestrictions } from './speciesRestrictions';
 import type { TokenModel } from './tokenModel';
 import type { IUniformPack } from './uniformPack';
 

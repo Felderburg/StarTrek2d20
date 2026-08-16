@@ -10,13 +10,13 @@ import {
   nextStarshipWorkflowStep,
   setAdditionalTalents,
 } from '../../state/starshipActions';
-import store from '../../state/store';
+import { store } from '../../state/store';
 import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
+import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import type { SelectedTalent } from '../../common/selectedTalent';
-import MultiTalentSelectionView from '../../components/multiTalentSelectionView';
+import { MultiTalentSelectionView } from '../../components/multiTalentSelectionView';
 import { RankedTalent } from '../../helpers/rankedTalent';
 import { isMultiSelectionTalent } from '../../helpers/isMultiSelectionTalent';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
@@ -27,7 +27,7 @@ interface ISimpleStarshipPageProperties {
   workflow: ShipBuildWorkflow;
 }
 
-const StarshipTalentsPage: React.FC<ISimpleStarshipPageProperties> = ({
+const StarshipTalentsPageBase: React.FC<ISimpleStarshipPageProperties> = ({
   starship,
   workflow,
 }) => {
@@ -180,4 +180,6 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(StarshipTalentsPage);
+export const StarshipTalentsPage = connect(mapStateToProps)(
+  StarshipTalentsPageBase,
+);

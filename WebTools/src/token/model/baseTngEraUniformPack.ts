@@ -1,10 +1,10 @@
 import { Rank } from '../../helpers/ranks';
 import { BaseNeckProvider } from './baseNeckProvider';
-import RankIndicatorCatalog from './rankIndicatorCatalog';
-import Swatch from './swatch';
+import { RankIndicatorCatalog } from './rankIndicatorCatalog';
+import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
 import type { UniformEra } from './uniformEra';
-import UniformVariantRestrictions from './uniformVariantRestrictions';
+import { UniformVariantRestrictions } from './uniformVariantRestrictions';
 
 const DominionWarCommbadge = `<g id="g6426">
     <path id="path882_1_" fill="#ffffff" d="m 328.76833,314.91763 c -15.72989,0.062 -31.06633,1.08076 -39.00882,3.49535 -1.32402,0.34773 -1.83501,0.94526 -2.65783,2.39172 -2.2301,5.49689 -3.92635,13.13572 -4.14838,20.14438 0.43426,1.94766 -0.13551,3.10026 2.38683,3.27985 31.89893,6.34583 82.19702,3.20965 95.26744,-1.32239 1.93787,-0.67589 1.46442,-0.74935 1.46605,-2.8766 -0.20243,-8.91877 -2.23826,-14.45648 -5.71075,-20.64558 -1.05465,-1.21301 -1.33055,-1.21464 -2.77702,-1.62605 -8.65592,-1.75339 -26.98977,-2.91252 -44.81752,-2.84068 z m -34.48984,12.44187 h 75.76793 c 1.48402,0 2.67906,1.19505 2.67906,2.67906 0,1.48402 -1.19504,2.67906 -2.67906,2.67906 h -75.76793 c -1.48401,0 -2.67906,-1.19504 -2.67906,-2.67906 0,-1.48401 1.19505,-2.67906 2.67906,-2.67906 z" style="fill:#d9a14b;fill-opacity:1;stroke:#000000;stroke-width:1.63258;stroke-opacity:1"/>
