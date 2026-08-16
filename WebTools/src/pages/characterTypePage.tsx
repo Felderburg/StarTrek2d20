@@ -21,7 +21,6 @@ import { setCharacter } from '../state/characterActions';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
 import type { Era } from '../helpers/erasEnum';
 import { connect } from 'react-redux';
-import { PreviousButton } from '../components/previousButton';
 import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 interface ICharacterTypeProperties extends WithTranslation {

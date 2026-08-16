@@ -21,7 +21,6 @@ interface ILcarsFrameProperties {
 
 const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
   activePage,
-  canGoBack,
   onBack,
   children,
 }) => {
@@ -165,15 +164,6 @@ const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
       e.stopPropagation();
     }
     navigate('/credits');
-  };
-
-  const goBack = () => {
-    setShowNews(false);
-    setShowProfile(false);
-    setShowHistory(false);
-    if (onBack) {
-      onBack();
-    }
   };
 
   const historyType = () => {
