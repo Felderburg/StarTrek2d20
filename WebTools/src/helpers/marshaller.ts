@@ -1445,8 +1445,8 @@ class Marshaller {
         if (s === '-') {
           stats[a] = new AssetStat();
         } else if (s?.length && s?.indexOf('/') >= 0) {
-          const base = parseInt(s.substring(0, s.indexOf('/')));
-          const critical = parseInt(s.substring(s.indexOf('/') + 1));
+          const base = Number(s.substring(0, s.indexOf('/')));
+          const critical = Number(s.substring(s.indexOf('/') + 1));
 
           stats[a] = new AssetStat(base, critical);
         }

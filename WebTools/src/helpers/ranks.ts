@@ -269,7 +269,7 @@ export class RankModel {
 
   get levelValue() {
     if (this.level.length > 1) {
-      return parseInt(this.level.substring(1));
+      return Number(this.level.substring(1));
     } else {
       return 0;
     }

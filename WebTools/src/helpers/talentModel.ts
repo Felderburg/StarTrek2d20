@@ -57,7 +57,7 @@ export class TalentModel implements ITalent {
       } else {
         this.category = new TalentCategorization(
           TalentCategory.Species,
-          parseInt(species[0]),
+          Number(species[0]),
         );
       }
     }

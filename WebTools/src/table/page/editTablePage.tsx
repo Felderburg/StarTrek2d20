@@ -125,7 +125,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({
   const selectRowFrom = (from: string, index: number) => {
     const collection = tableCollection.copy();
     const row = collection.mainTable.rows[index];
-    row.from = parseInt(from);
+    row.from = Number(from);
     collection.mainTable.fillGaps();
 
     setTableCollection(collection);
@@ -134,7 +134,7 @@ const EditTablePage: React.FC<IEditTablePageProperties> = ({
   const selectRowTo = (to: string, index: number) => {
     const collection = tableCollection.copy();
     const row = collection.mainTable.rows[index];
-    row.to = parseInt(to);
+    row.to = Number(to);
     collection.mainTable.fillGaps();
 
     setTableCollection(collection);

@@ -176,7 +176,7 @@ class CharacterTypePage extends React.Component<
   }
 
   private selectType(typeAsString: string) {
-    const type = parseInt(typeAsString) as CharacterType;
+    const type = Number(typeAsString) as CharacterType;
     this.setState((state) => ({
       ...state,
       type: type,
@@ -184,7 +184,7 @@ class CharacterTypePage extends React.Component<
   }
 
   private selectAlliedMilitaryType(typeAsString: string) {
-    const type = parseInt(typeAsString) as AlliedMilitaryType;
+    const type = Number(typeAsString) as AlliedMilitaryType;
     this.setState((state) => ({
       ...state,
       alliedMilitary: type,
