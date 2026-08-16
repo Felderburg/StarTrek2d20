@@ -14,6 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import { store } from '../state/store';
 import { setCharacterAge } from '../state/characterActions';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 interface ITrackSelectionProperties {
   onSelection: (age: Age) => void;
@@ -77,6 +78,10 @@ const ChildEducationPageBase: React.FC<ICharacterProperties> = ({
       <CharacterCreationBreadcrumbs />
       <InstructionText text={t('ChildSelectionPage.instruction')} />
       <AgeSelection onSelection={(a) => selectAge(a)} />
+
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
+      </div>
     </div>
   );
 };

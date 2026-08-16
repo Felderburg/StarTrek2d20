@@ -21,6 +21,7 @@ import { StatControl } from '../view/statControl';
 import type { WithTranslation } from 'react-i18next';
 import { withTranslation } from 'react-i18next';
 import { makeKey } from '../../common/translationKey';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface ISimpleStarshipPageProperties extends WithTranslation {
   starship: Starship;
@@ -290,7 +291,8 @@ export class BaseSimpleStarshipPage extends React.Component<
           </div>
         </section>
 
-        <section className="text-end">
+        <section className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
           <Button onClick={() => this.nextPage()}>
             {t('Common.button.next')}
           </Button>

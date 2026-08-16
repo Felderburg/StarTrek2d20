@@ -24,6 +24,7 @@ import { InstructionText } from '../../components/instructionText';
 import { ServiceYearSelector } from '../view/serviceYearView';
 import { PointAllocator } from '../../helpers/pointAllocator';
 import { ShipBuildType } from '../../common/shipBuildType';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface StarshipTypeSelectionPageProperties extends WithTranslation {
   era: Era;
@@ -112,7 +113,8 @@ class StarshipTypeSelectionPageBase extends React.Component<
             {typeSelection}
             <div className="col-lg-6">{buildTypeSelection}</div>
           </div>
-          <div className="mt-4 text-end">
+          <div className="mt-4 d-flex justify-content-end">
+            <PageHistoryBasedPreviousButton />
             <Button onClick={() => this.startWorkflow()}>
               {t('Common.button.create')}
             </Button>

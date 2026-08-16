@@ -46,6 +46,7 @@ import { isTalentSelectable } from '../helpers/talentSelection';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 const EducationDetailsPageBase: React.FC<ICharacterProperties> = ({
   character,
@@ -397,7 +398,8 @@ const EducationDetailsPageBase: React.FC<ICharacterProperties> = ({
         </div>
       </div>
       {renderTalents()}
-      <div className="mt-5 text-end">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => navigateToNextPage()}>
           {t('Common.button.next')}
         </Button>

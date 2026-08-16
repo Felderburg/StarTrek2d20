@@ -13,6 +13,7 @@ import { MissionProfileSelection } from '../view/missionProfileSelection';
 import { ShipBuildingBreadcrumbs } from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import type { MissionProfileModel } from '../../helpers/missionProfiles';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface IMissionProfileSelectionPageProperties {
   starship: Starship;
@@ -48,7 +49,8 @@ const MissionProfileSelectionPageBase: React.FC<
         starship={starship}
         onSelection={(profile) => onSelectProfile(profile)}
       />
-      <div className="text-end mt-4">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button size="sm" onClick={() => nextPage()}>
           {t('Common.button.next')}
         </Button>

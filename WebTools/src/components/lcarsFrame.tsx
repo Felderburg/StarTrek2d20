@@ -21,7 +21,6 @@ interface ILcarsFrameProperties {
 
 export const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
   activePage,
-  canGoBack,
   onBack,
   children,
 }) => {
@@ -167,15 +166,6 @@ export const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
     navigate('/credits');
   };
 
-  const goBack = () => {
-    setShowNews(false);
-    setShowProfile(false);
-    setShowHistory(false);
-    if (onBack) {
-      onBack();
-    }
-  };
-
   const historyType = () => {
     if (isStarshipPage()) {
       return HistoryType.Starship;
@@ -235,15 +225,6 @@ export const LcarsFrame: React.FC<ILcarsFrameProperties> = ({
         <div className="lcar-content">
           <div className="lcar-content-start">
             <div className="lcar-content-start-top"></div>
-            <div className="lcar-content-action" role="button" tabIndex={0}>
-              <div
-                id="back-button"
-                className={'lcar-content-back ' + (canGoBack ? '' : 'd-none')}
-                onClick={() => goBack()}
-              >
-                {t('Lcars.back')}
-              </div>
-            </div>
             <div className="lcar-content-action" role="button" tabIndex={0}>
               <div
                 id="history-button"

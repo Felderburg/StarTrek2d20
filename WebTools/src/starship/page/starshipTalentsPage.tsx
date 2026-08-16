@@ -20,6 +20,7 @@ import { MultiTalentSelectionView } from '../../components/multiTalentSelectionV
 import { RankedTalent } from '../../helpers/rankedTalent';
 import { isMultiSelectionTalent } from '../../helpers/isMultiSelectionTalent';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface ISimpleStarshipPageProperties {
   starship: Starship;
@@ -164,7 +165,8 @@ const StarshipTalentsPageBase: React.FC<ISimpleStarshipPageProperties> = ({
           }
         />
       ) : null}
-      <div className="text-end mt-3">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>
       </div>
     </div>

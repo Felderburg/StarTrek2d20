@@ -22,6 +22,7 @@ import { ADVANCED_TEAM_DYNAMICS } from '../helpers/talents';
 import { Career } from '../helpers/careerEnum';
 import { D20 } from '../common/die';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 const CareerLengthPageBase: React.FC<ICharacterProperties> = ({
   character,
@@ -152,6 +153,10 @@ const CareerLengthPageBase: React.FC<ICharacterProperties> = ({
       <table className="selection-list">
         <tbody>{lengths}</tbody>
       </table>
+
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
+      </div>
     </div>
   );
 };

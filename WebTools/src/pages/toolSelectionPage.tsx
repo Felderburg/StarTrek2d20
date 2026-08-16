@@ -30,6 +30,7 @@ export const ToolSelectionPage = () => {
     if (hasAnySource([Source.ShackletonExpanse, Source.ExplorationGuide])) {
       return (
         <Button
+          size="lg"
           className="mt-4"
           onClick={() => navigate('/tools/sector/generator')}
         >
@@ -45,6 +46,7 @@ export const ToolSelectionPage = () => {
     if (hasSource(Source.FederationKlingonWar)) {
       return (
         <Button
+          size="lg"
           className="mt-4"
           onClick={() => goToPage(PageIdentity.TacticalAssets)}
         >
@@ -158,10 +160,10 @@ export const ToolSelectionPage = () => {
         <main>
           <Header>{t('Page.title.toolSelection')}</Header>
           <InstructionText text={t('ToolSelection.instruction')} />
-
           <div className="row">
             <div className="col-md-6 button-column">
               <Button
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   startCharacterCreation();
@@ -170,6 +172,7 @@ export const ToolSelectionPage = () => {
                 {t('ToolSelection.mainCharacter')}
               </Button>
               <Button
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   goToPage(PageIdentity.SupportingCharacter);
@@ -179,6 +182,7 @@ export const ToolSelectionPage = () => {
               </Button>
               {isSecondEdition() ? (
                 <Button
+                  size="lg"
                   className="mt-4"
                   onClick={() => {
                     loadNpcAndGoToPage();
@@ -188,6 +192,7 @@ export const ToolSelectionPage = () => {
                 </Button>
               ) : undefined}
               <LoadingButton
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   loadStarshipAndGoToPage();
@@ -197,13 +202,18 @@ export const ToolSelectionPage = () => {
                 {t('ToolSelection.starship')}
               </LoadingButton>
               {isSecondEdition() && hasSource(Source.UtopiaPlanitia) ? (
-                <Button className="mt-4" onClick={() => navigate('/station')}>
+                <Button
+                  size="lg"
+                  className="mt-4"
+                  onClick={() => navigate('/station')}
+                >
                   {t('ToolSelection.station')}
                 </Button>
               ) : undefined}
             </div>
             <div className="col-md-6 button-column">
               <LoadingButton
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   loadRandomNpcAndGoToPage();
@@ -213,6 +223,7 @@ export const ToolSelectionPage = () => {
                 {t('ToolSelection.randomNpc')}
               </LoadingButton>
               <LoadingButton
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   loadRandomStarshipAndGoToPage();
@@ -223,6 +234,7 @@ export const ToolSelectionPage = () => {
               </LoadingButton>
               {isSecondEdition() ? (
                 <Button
+                  size="lg"
                   className="mt-4"
                   onClick={() => {
                     goToPage(PageIdentity.RandomCreature);

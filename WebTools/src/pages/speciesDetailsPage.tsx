@@ -43,6 +43,7 @@ import { ModalControl } from '../components/modal';
 import { SimpleSpeciesSelection } from '../components/simpleSpeciesSelection';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 interface ISpeciesDetailsProperties extends ICharacterProperties {
   allowCrossSpeciesTalents: boolean;
@@ -420,7 +421,8 @@ const SpeciesDetailsPageBase: React.FC<ISpeciesDetailsProperties> = ({
             </div>
           </div>
           {renderTalentsSection()}
-          <div className="text-end mt-4">
+          <div className="text-end mt-4 d-flex justify-content-end">
+            <PageHistoryBasedPreviousButton />
             <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
           </div>
         </main>

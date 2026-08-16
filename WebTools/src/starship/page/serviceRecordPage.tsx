@@ -27,6 +27,7 @@ import { StarshipFreeformTalentSelectionView } from '../../components/starshipFr
 import type { SelectedTalent } from '../../common/selectedTalent';
 import { Dialog } from '../../components/dialog';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface IServiceRecordPageProperties {
   starship: Starship;
@@ -320,7 +321,8 @@ const ServiceRecordPageBase: React.FC<IServiceRecordPageProperties> = ({
         </thead>
         {rows}
       </table>
-      <div className="text-end mt-4">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => nextPage()}>{t('Common.button.next')}</Button>
       </div>
     </div>

@@ -19,6 +19,7 @@ import { useState } from 'react';
 import { marshaller } from '../../helpers/marshaller';
 import { connect } from 'react-redux';
 import { ServiceYearSelector } from '../view/serviceYearView';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface IRandomStarshipProperties {
   era: Era;
@@ -98,7 +99,8 @@ const RandomStarshipPageBase: React.FC<IRandomStarshipProperties> = ({
                 </div>
               </div>
             </div>
-            <div className="mt-5 text-end">
+            <div className="mt-4 d-flex justify-content-end">
+              <PageHistoryBasedPreviousButton />
               <Button
                 className="btn btn-primary"
                 onClick={() => createStarship()}

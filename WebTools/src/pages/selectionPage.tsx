@@ -67,6 +67,7 @@ export const SelectionPage = () => {
             <p className="mt-3">{t('Home.selection')}</p>
             <div className="button-column">
               <Button
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   selectTool(Tool.CharacterGenerator);
@@ -75,6 +76,7 @@ export const SelectionPage = () => {
                 {t('Home.characterButton')}
               </Button>
               <Button
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   selectTool(Tool.TalentsOverview);
@@ -83,6 +85,7 @@ export const SelectionPage = () => {
                 {t('Home.talentsButton')}
               </Button>
               <Button
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   selectTool(Tool.TokenCreator);
@@ -91,6 +94,7 @@ export const SelectionPage = () => {
                 {t('Home.tokenCreator')}
               </Button>
               <Button
+                size="lg"
                 className="mt-4"
                 onClick={() => {
                   selectTool(Tool.OtherTools);

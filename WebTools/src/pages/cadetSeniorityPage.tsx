@@ -4,6 +4,7 @@ import { PageIdentity } from './pageIdentity';
 import Button from 'react-bootstrap/Button';
 import { CharacterCreationBreadcrumbs } from '../components/characterCreationBreadcrumbs';
 import { InstructionText } from '../components/instructionText';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 export const CadetSeniorityPage = () => {
   const goToFinishingTouches = () => {
@@ -36,6 +37,9 @@ export const CadetSeniorityPage = () => {
         >
           Senior
         </Button>
+      </div>
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
       </div>
     </div>
   );

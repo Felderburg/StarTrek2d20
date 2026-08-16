@@ -31,6 +31,7 @@ import {
   CareerEventDisciplineController,
 } from '../components/careerEventDetailsControllers';
 import { FocusSelectionView } from '../components/focusSelectionView';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 interface ICareerEventDetailsProperties extends ICharacterProperties {
   context: StepContext;
@@ -178,7 +179,8 @@ const CareerEventDetailsPageBase: React.FC<ICareerEventDetailsProperties> = ({
           </div>
         ) : undefined}
       </div>
-      <div className="text-end mt-4">
+      <div className="mt-4 d-flex justify-content-end">
+        <PageHistoryBasedPreviousButton />
         <Button onClick={() => navigateToNextStep()}>
           {t('Common.button.next')}
         </Button>

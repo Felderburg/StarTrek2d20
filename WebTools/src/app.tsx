@@ -9,6 +9,7 @@ import {
 import { PageFactory } from './pages/pageFactory';
 import { PageIdentity } from './pages/pageIdentity';
 import { LcarsFrame } from './components/lcarsFrame';
+import { PageHistoryProvider } from './components/pageHistoryContext';
 import { rewindToStarshipWorkflowStep } from './state/starshipActions';
 import { store } from './state/store';
 
@@ -120,13 +121,19 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
           <meta property="og:image" content="/static/img/bannerImage.png" />
           <meta property="og:url" content="https://sta.bcholmes.org" />
         </Helmet>
-        <LcarsFrame
+        <PageHistoryProvider
           activePage={this.state.activePage}
           canGoBack={this.state.pageHistory.length > 0}
           onBack={() => this.goBack()}
         >
-          <div id="app">{page}</div>
-        </LcarsFrame>
+          <LcarsFrame
+            activePage={this.state.activePage}
+            canGoBack={this.state.pageHistory.length > 0}
+            onBack={() => this.goBack()}
+          >
+            <div id="app">{page}</div>
+          </LcarsFrame>
+        </PageHistoryProvider>
       </>
     );
   }

@@ -22,6 +22,7 @@ import {
 import Markdown from 'react-markdown';
 import { SimpleSystemSelector } from '../../components/simpleSystemSelector';
 import { Dialog } from '../../components/dialog';
+import { PageHistoryBasedPreviousButton } from '../../components/pageHistoryBasedPreviousButton';
 
 interface IExtraStarshipTalentChoicesProperties extends IStarshipProperties {
   workflow: ShipBuildWorkflow;
@@ -131,7 +132,8 @@ const ExtraStarshipTalentChoicesPageBase: React.FC<
             : undefined}
         </div>
 
-        <div className="text-end my-4">
+        <div className="mt-4 d-flex justify-content-end">
+          <PageHistoryBasedPreviousButton />
           <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
         </div>
       </main>

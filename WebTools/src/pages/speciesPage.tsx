@@ -18,6 +18,7 @@ import Button from 'react-bootstrap/Button';
 import { Stereotype } from '../common/construct';
 import { useNavigate } from 'react-router';
 import { Window } from '../common/window';
+import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
 
 enum SpeciesTab {
   Standard,
@@ -81,6 +82,10 @@ const SpeciesPageBase: React.FC<ICharacterProperties> = ({ character }) => {
             </tr>
           </tbody>
         </table>
+
+        <div className="d-flex justify-content-end mt-4">
+          <PageHistoryBasedPreviousButton />
+        </div>
       </div>
     );
   };
