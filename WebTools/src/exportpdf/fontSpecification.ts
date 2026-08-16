@@ -1,4 +1,4 @@
-import { PDFFont } from '@cantoo/pdf-lib';
+import type { PDFFont } from '@cantoo/pdf-lib';
 
 export class FontSpecification {
   font: PDFFont;

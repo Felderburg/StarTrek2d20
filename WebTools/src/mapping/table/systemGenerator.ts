@@ -1,5 +1,5 @@
 import { D20, D6 } from '../../common/die';
-import { TableRoll } from '../../common/tableRoll';
+import type { TableRoll } from '../../common/tableRoll';
 import { Source } from '../../helpers/sources';
 import { hasSource } from '../../state/contextFunctions';
 import { setSector, setStar } from '../../state/starActions';
@@ -12,21 +12,18 @@ import { addNoiseToValue } from './noise';
 import { NotableSpatialPhenomenon } from './notableSpacialPhenomena';
 import { notableSpatialPhenomenaTable } from './notableSpacialPhenomenaTable';
 import { notableSystemTable } from './notableSystemTable';
-import { Orbit, Orbits } from './orbit';
+import type { Orbit } from './orbit';
+import { Orbits } from './orbit';
 import { planetaryFeaturesOfInterest } from './planetaryFeature';
 import { isolatedColonyFeaturesOfInterest } from './planetaryFeaturesTable';
 import { Sector, SectorCoordinates } from './sector';
-import {
-  SpectralClass,
-  SpectralClassModel,
-  SpectralClassRegistry,
-} from './spectralClass';
+import type { SpectralClassModel } from './spectralClass';
+import { SpectralClass, SpectralClassRegistry } from './spectralClass';
+import type { SpaceRegionModel, SpecialSectors } from './star';
 import {
   LuminosityClass,
   LuminosityClassModel,
   Star,
-  SpaceRegionModel,
-  SpecialSectors,
   SpaceRegion,
 } from './star';
 import { CompanionType, StarSystem } from './starSystem';
@@ -37,7 +34,8 @@ import {
   World,
   WorldCoreType,
 } from './world';
-import { WorldClassModel, WorldClass, worldClasses } from './worldClass';
+import type { WorldClassModel } from './worldClass';
+import { WorldClass, worldClasses } from './worldClass';
 import {
   innerWorldShackletonExpanseTable,
   outerWorldExplorationGuideTable,

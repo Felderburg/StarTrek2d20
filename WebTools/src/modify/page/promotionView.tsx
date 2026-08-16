@@ -1,13 +1,14 @@
 import Markdown from 'react-markdown';
 import { Header } from '../../components/header';
-import { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import {
   DropDownElement,
   DropDownSelect,
 } from '../../components/dropDownInput';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { Rank, RanksHelper } from '../../helpers/ranks';
+import type { Rank } from '../../helpers/ranks';
+import { RanksHelper } from '../../helpers/ranks';
 import { Button } from 'react-bootstrap';
 import { Dialog } from '../../components/dialog';
 import store from '../../state/store';

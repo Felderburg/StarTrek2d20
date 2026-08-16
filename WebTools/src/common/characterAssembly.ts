@@ -1,4 +1,4 @@
-import { SelectedTalent } from './selectedTalent';
+import type { SelectedTalent } from './selectedTalent';
 
 export enum AssemblyContext {
   Species,

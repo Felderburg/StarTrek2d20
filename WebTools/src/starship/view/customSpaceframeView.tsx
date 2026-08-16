@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { IStarshipProperties } from '../iStarshipProperties';
+import type { IStarshipProperties } from '../iStarshipProperties';
 import { Header } from '../../components/header';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import { BuildPoints } from '../model/buildPoints';
@@ -22,7 +22,7 @@ import {
   DropDownElement,
   DropDownSelect,
 } from '../../components/dropDownInput';
-import { SpaceframeAppearance } from '../../helpers/spaceframeAppearance';
+import type { SpaceframeAppearance } from '../../helpers/spaceframeAppearance';
 import { Department, DepartmentsHelper } from '../../helpers/department';
 
 class SystemValue {

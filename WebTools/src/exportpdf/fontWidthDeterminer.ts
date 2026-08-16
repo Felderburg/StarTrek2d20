@@ -1,4 +1,4 @@
-import { PDFFont } from '@cantoo/pdf-lib';
+import type { PDFFont } from '@cantoo/pdf-lib';
 
 export const determineIdealFontWidth = (
   text: string[],

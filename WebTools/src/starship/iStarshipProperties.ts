@@ -1,4 +1,4 @@
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 
 export interface IStarshipProperties {
   starship: Starship;

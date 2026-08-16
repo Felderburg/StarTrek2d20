@@ -1,6 +1,6 @@
-import { Species } from '../../helpers/speciesEnum';
-import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { Species } from '../../helpers/speciesEnum';
+import type Swatch from './swatch';
+import type { TokenModel } from './tokenModel';
 
 export interface IUniformPack {
   getUniformSwatches(species?: Species): Swatch[];

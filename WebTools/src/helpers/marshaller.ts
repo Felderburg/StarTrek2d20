@@ -22,7 +22,8 @@ import {
   TokenConfig,
 } from '../common/character';
 import { CharacterType, CharacterTypeModel } from '../common/characterType';
-import { Construct, Stereotype } from '../common/construct';
+import type { Construct } from '../common/construct';
+import { Stereotype } from '../common/construct';
 import {
   MissionProfileStep,
   ServiceRecordStep,

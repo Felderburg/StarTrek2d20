@@ -10,7 +10,7 @@ import { NasoLabialFoldType } from '../token/model/nasoLabialFoldTypeEnum';
 import { NoseType } from '../token/model/noseTypeEnum';
 import { SpeciesOption } from '../token/model/speciesOptionEnum';
 import SpeciesRestrictions from '../token/model/speciesRestrictions';
-import { Token } from '../token/model/token';
+import type { Token } from '../token/model/token';
 import { UniformEra } from '../token/model/uniformEra';
 import UniformVariantRestrictions from '../token/model/uniformVariantRestrictions';
 import { UniformVariantType } from '../token/model/uniformVariantTypeEnum';

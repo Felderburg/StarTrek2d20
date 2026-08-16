@@ -1,6 +1,6 @@
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { cyrb53 } from '../common/cyrb53';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 import { marshaller } from '../helpers/marshaller';
 
 export const SAVE_CONSTRUCT_TO_LOCAL_STORAGE =

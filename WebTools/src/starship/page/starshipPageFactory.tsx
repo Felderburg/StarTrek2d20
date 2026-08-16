@@ -1,4 +1,4 @@
-import { IPageFactoryRegistry } from '../../pages/pageFactory';
+import type { IPageFactoryRegistry } from '../../pages/pageFactory';
 import { PageIdentity } from '../../pages/pageIdentity';
 import FinalStarshipDetailsPage from './finalStarshipDetailsPage';
 import MissionPodSelectionPage from './missionPodSelectionPage';

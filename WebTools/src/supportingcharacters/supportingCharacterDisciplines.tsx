@@ -2,10 +2,8 @@ import React, { useState } from 'react';
 import { Department, DepartmentsHelper } from '../helpers/department';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import store from '../state/store';
 import { setSupportingCharacterDepartments } from '../state/characterActions';

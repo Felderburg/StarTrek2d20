@@ -1,9 +1,9 @@
 // See https://github.com/Hopding/pdf-lib/discussions/1196
 
+import type { Color, PDFFont, TextPosition } from '@cantoo/pdf-lib';
 import {
   adjustDimsForRotation,
   cmyk,
-  Color,
   componentsToColor,
   drawTextField,
   findLastMatch,
@@ -11,13 +11,11 @@ import {
   layoutCombedText,
   layoutMultilineText,
   layoutSinglelineText,
-  PDFFont,
   reduceRotation,
   rgb,
   rotateInPlace,
   setFillingColor,
   setFontAndSize,
-  TextPosition,
 } from '@cantoo/pdf-lib';
 
 const tfRegex =

@@ -1,7 +1,7 @@
 import { Attribute, AttributesHelper } from './attributes';
 import { Department } from './department';
 import { SpeciesHelper } from './species';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { isKlingonWarrior1e, isKlingonWarriorType } from './klingonWarrior';
 import { Species } from './speciesEnum';
@@ -10,7 +10,8 @@ import { makeKey } from '../common/translationKey';
 import { Era } from './erasEnum';
 import { hasSource } from '../state/contextFunctions';
 import { Source } from './sources';
-import { Construct, Stereotype } from '../common/construct';
+import type { Construct } from '../common/construct';
+import { Stereotype } from '../common/construct';
 
 export enum Environment {
   // Core

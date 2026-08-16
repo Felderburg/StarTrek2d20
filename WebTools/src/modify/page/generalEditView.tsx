@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import Markdown from 'react-markdown';
 import { Button } from 'react-bootstrap';
 import { useState } from 'react';
@@ -20,12 +20,12 @@ import {
   updateCharacterGeneralEditTalentChange,
   updateCharacterGeneralEditValueChange,
 } from '../../state/characterActions';
-import {
-  AssemblyContext,
+import type {
   FocusAssembly,
   TalentAssembly,
   ValueAssembly,
 } from '../../common/characterAssembly';
+import { AssemblyContext } from '../../common/characterAssembly';
 import { SpeciesAbilityList } from '../../helpers/speciesAbility';
 import { AttributesHelper } from '../../helpers/attributes';
 import { AttributeView } from '../../components/attribute';
@@ -34,11 +34,11 @@ import { AdditionalTalentInfo } from '../../supportingcharacters/modify/addition
 import { SelectedTalentDescriptionView } from '../../components/selectedTalentDescriptionView';
 import { NameGenerator } from '../../npc/nameGenerator';
 import { SpeciesHelper } from '../../helpers/species';
-import { SpeciesModel } from '../../helpers/speciesModel';
+import type { SpeciesModel } from '../../helpers/speciesModel';
 import { TalentsHelper } from '../../helpers/talents';
 import { ModalControl } from '../../components/modal';
 import SimpleTalentSelectionList from '../../components/simpleTalentSelectionList';
-import { SelectedTalent } from '../../common/selectedTalent';
+import type { SelectedTalent } from '../../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
 import { Dialog } from '../../components/dialog';
 import { SpeciesAbilityChoiceView } from '../../components/speciesAbilityChoiceView';

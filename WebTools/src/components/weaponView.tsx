@@ -1,5 +1,5 @@
 import React from 'react';
-import { Weapon } from '../helpers/weapons';
+import type { Weapon } from '../helpers/weapons';
 import { useTranslation } from 'react-i18next';
 
 interface IWeaponViewProperties {

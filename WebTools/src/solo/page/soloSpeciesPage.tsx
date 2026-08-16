@@ -3,7 +3,7 @@ import { Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Header } from '../../components/header';
 import { SpeciesHelper } from '../../helpers/species';
-import { SpeciesModel } from '../../helpers/speciesModel';
+import type { SpeciesModel } from '../../helpers/speciesModel';
 import { connect } from 'react-redux';
 import { Species } from '../../helpers/speciesEnum';
 import { makeKey } from '../../common/translationKey';
@@ -15,8 +15,8 @@ import { speciesRandomTable } from '../table/speciesRandomTable';
 import store from '../../state/store';
 import { setCharacterSpecies } from '../../state/characterActions';
 import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
-import { Character } from '../../common/character';
-import { Era } from '../../helpers/erasEnum';
+import type { Character } from '../../common/character';
+import type { Era } from '../../helpers/erasEnum';
 
 interface ISoloSpeciesPageProperties {
   era: Era;

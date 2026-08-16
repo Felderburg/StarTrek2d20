@@ -1,5 +1,6 @@
-import { PDFPage } from '@cantoo/pdf-lib';
-import { FontLibrary, FontType } from './fontLibrary';
+import type { PDFPage } from '@cantoo/pdf-lib';
+import type { FontLibrary } from './fontLibrary';
+import { FontType } from './fontLibrary';
 import { SimpleColor } from '../common/colour';
 import {
   TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM,
@@ -18,11 +19,12 @@ import {
   TALENT_NAME_WARRIORS_SPIRIT,
 } from '../helpers/talents';
 import { RoleModel } from '../helpers/roles';
-import { Column } from './column';
-import { CharacterType } from '../common/characterType';
-import { BorgImplants, Implant } from '../helpers/borgImplant';
+import type { Column } from './column';
+import type { CharacterType } from '../common/characterType';
+import type { Implant } from '../helpers/borgImplant';
+import { BorgImplants } from '../helpers/borgImplant';
 import { Attribute } from '../helpers/attributes';
-import { MissionPodModel } from '../helpers/missionPods';
+import type { MissionPodModel } from '../helpers/missionPods';
 import { FontOptions } from './fontOptions';
 import { Paragraph } from './paragraph';
 import i18next from 'i18next';
@@ -30,14 +32,12 @@ import { makeKey } from '../common/translationKey';
 import { SpecialWeapon } from '../common/specialWeapon';
 import { AttackType } from '../common/attackType';
 import { Department } from '../helpers/department';
-import {
-  PropulsionSystemModel,
-  PropulsionSystemType,
-} from '../helpers/propulsionSystem';
-import { OtherSelection } from '../common/selectedTalent';
+import type { PropulsionSystemType } from '../helpers/propulsionSystem';
+import { PropulsionSystemModel } from '../helpers/propulsionSystem';
+import type { OtherSelection } from '../common/selectedTalent';
 import { System } from '../helpers/systems';
 import { SpeciesAbilityAndOptions } from './generatedsheet';
-import { TalentModel } from '../helpers/talentModel';
+import type { TalentModel } from '../helpers/talentModel';
 import { PageArea } from './pageArea';
 
 export class ReadableTalentModel {

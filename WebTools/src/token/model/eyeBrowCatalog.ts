@@ -1,7 +1,7 @@
 import { Species } from '../../helpers/speciesEnum';
 import { EyeType } from './eyeTypeEnum';
 import SpeciesRestrictions from './speciesRestrictions';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import { SpeciesOption } from './speciesOptionEnum';
 import { svgTranslationHelper } from './svgTranslationHelper';
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { ILocalStorageConstructRecord } from '../common/iLocalStorageConstructRecord';
+import type { ILocalStorageConstructRecord } from '../common/iLocalStorageConstructRecord';
 import { Header } from './header';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';

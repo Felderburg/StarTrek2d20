@@ -2,10 +2,10 @@ import { BaseNeckProvider } from './baseNeckProvider';
 import { BodyType } from './bodyTypeEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import UniformCatalog from './uniformCatalog';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 
 const Uniform = {
   averageMaleBody: `<g>

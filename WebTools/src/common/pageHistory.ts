@@ -1,5 +1,5 @@
 import { PageIdentity } from '../pages/pageIdentity';
-import { ShipBuildWorkflow } from '../starship/model/shipBuildWorkflow';
+import type { ShipBuildWorkflow } from '../starship/model/shipBuildWorkflow';
 
 const FLOW_START_PAGES: PageIdentity[] = [
   PageIdentity.Home,

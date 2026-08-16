@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { AlliedMilitaryDetails, Character } from '../common/character';
+import type { AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
 import { ANY_NAMES, SpeciesHelper } from '../helpers/species';
-import { RankModel, RanksHelper } from '../helpers/ranks';
-import { RolesHelper, RoleModel } from '../helpers/roles';
+import type { RankModel } from '../helpers/ranks';
+import { RanksHelper } from '../helpers/ranks';
+import type { RoleModel } from '../helpers/roles';
+import { RolesHelper } from '../helpers/roles';
 import { AlliedMilitaryType } from '../helpers/alliedMilitary';
 import replaceDiceWithArrowhead from '../common/arrowhead';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';

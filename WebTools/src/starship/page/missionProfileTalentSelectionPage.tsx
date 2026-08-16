@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigation } from '../../common/navigator';
-import { Starship } from '../../common/starship';
+import type { Starship } from '../../common/starship';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../../components/dialog';
 import { Header } from '../../components/header';
-import { TalentModel } from '../../helpers/talentModel';
+import type { TalentModel } from '../../helpers/talentModel';
 import {
   nextStarshipWorkflowStep,
   setStarshipMissionProfile,
   setStarshipMissionProfileTalent,
 } from '../../state/starshipActions';
 import store from '../../state/store';
-import { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
+import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
 import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';

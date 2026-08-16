@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 
 export const DisciplinesOrDepartments: React.FC<ICharacterPageProperties> = ({
   character,

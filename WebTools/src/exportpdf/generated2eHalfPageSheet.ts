@@ -1,4 +1,4 @@
-import { PDFDocument, PDFForm, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFForm, PDFPage } from '@cantoo/pdf-lib';
 import { SimpleColor } from '../common/colour';
 import { BaseNonForm2eSheet } from './generated2eBaseSheet';
 import { SheetTag } from './icharactersheet';
@@ -6,10 +6,10 @@ import i18next from 'i18next';
 import { makeKey } from '../common/translationKey';
 import { Attribute } from '../helpers/attributes';
 import { Department } from '../helpers/department';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { Paragraph } from './paragraph';
 import { FontSpecification } from './fontSpecification';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { Column } from './column';
 import { XYLocation } from '../common/xyLocation';
 import { FontOptions } from './fontOptions';
@@ -21,7 +21,7 @@ import { TextAlign } from './textAlign';
 import { assembleWritableItems } from './generatedsheet';
 import { SpeciesAbility } from '../helpers/speciesAbility';
 import { TalentWriter } from './talentWriter';
-import { CharacterType } from '../common/characterType';
+import type { CharacterType } from '../common/characterType';
 
 export class BasicGeneratedHalfPageCharacterSheet extends BaseNonForm2eSheet {
   secondBlock: Column = new Column(314, 72, 338 - 72, 552 - 314);

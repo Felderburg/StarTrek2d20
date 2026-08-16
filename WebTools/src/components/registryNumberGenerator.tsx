@@ -1,5 +1,5 @@
 import { CharacterType } from '../common/characterType';
-import { SpaceframeModel } from '../helpers/spaceframeModel';
+import type { SpaceframeModel } from '../helpers/spaceframeModel';
 
 class RegistryNumberGenerator {
   static NUMBERS: string = '0123456789';

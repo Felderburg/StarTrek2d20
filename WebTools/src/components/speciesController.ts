@@ -1,14 +1,14 @@
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { Attribute } from '../helpers/attributes';
 import { SpeciesHelper } from '../helpers/species';
-import { SpeciesModel } from '../helpers/speciesModel';
+import type { SpeciesModel } from '../helpers/speciesModel';
 import { Species } from '../helpers/speciesEnum';
 import {
   StepContext,
   modifyCharacterAttribute,
 } from '../state/characterActions';
 import store from '../state/store';
-import { IAttributeController } from './attributeController';
+import type { IAttributeController } from './attributeController';
 
 export class SpeciesAttributeController implements IAttributeController {
   readonly character: Character;

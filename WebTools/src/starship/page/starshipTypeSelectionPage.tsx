@@ -10,7 +10,7 @@ import {
 } from '../../components/dropDownInput';
 import { Header } from '../../components/header';
 import { eraDefaultYear } from '../../helpers/eras';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import { Source } from '../../helpers/sources';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { hasSource, isSecondEdition } from '../../state/contextFunctions';
@@ -18,7 +18,8 @@ import { createNewStarship } from '../../state/starshipActions';
 import store from '../../state/store';
 import { BuildPoints } from '../model/buildPoints';
 import { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import InstructionText from '../../components/instructionText';
 import { ServiceYearSelector } from '../view/serviceYearView';
 import PointAllocator from '../../helpers/pointAllocator';

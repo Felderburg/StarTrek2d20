@@ -1,4 +1,4 @@
-import { CharacterType } from './characterType';
+import type { CharacterType } from './characterType';
 
 export interface IConstruct {
   name?: string;

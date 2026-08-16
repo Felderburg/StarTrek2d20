@@ -2,7 +2,7 @@ import { LogValueEntry, ValueUseType } from '../../common/logEntry';
 import { CheckBox } from '../../components/checkBox';
 import { cyrb53 } from '../../common/cyrb53';
 import ValueInputWithRandom from '../../components/valueInputWithRandomOption';
-import { Character } from '../../common/character';
+import type { Character } from '../../common/character';
 import {
   DropDownElement,
   DropDownSelect,

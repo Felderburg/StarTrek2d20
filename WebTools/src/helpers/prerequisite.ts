@@ -1,16 +1,16 @@
 import { Character } from '../common/character';
-import { CharacterType } from '../common/characterType';
+import type { CharacterType } from '../common/characterType';
 import { Stereotype } from '../common/construct';
-import { Specialization } from '../common/specializationEnum';
+import type { Specialization } from '../common/specializationEnum';
 import { Starship } from '../common/starship';
-import { Station } from '../common/station';
-import { Creature } from '../creature/model/creature';
+import type { Station } from '../common/station';
+import type { Creature } from '../creature/model/creature';
 import store from '../state/store';
 import { Career } from './careerEnum';
-import { Era } from './erasEnum';
-import { Role } from './roles';
-import { Source } from './sources';
-import { Species } from './speciesEnum';
+import type { Era } from './erasEnum';
+import type { Role } from './roles';
+import type { Source } from './sources';
+import type { Species } from './speciesEnum';
 
 export interface IConstructPrerequisite {
   isPrerequisiteFulfilled(

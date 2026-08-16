@@ -6,7 +6,7 @@ import { Header } from '../../components/header';
 import { preventDefaultAnchorEvent } from '../../common/navigator';
 import Button from 'react-bootstrap/Button';
 import { starshipGenerator } from '../model/starshipGenerator';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import { eraDefaultYear } from '../../helpers/eras';
 import ReactMarkdown from 'react-markdown';
 import {

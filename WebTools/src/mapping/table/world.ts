@@ -1,9 +1,10 @@
 import { D20 } from '../../common/die';
 import i18next from 'i18next';
-import { AtmosphereDetails } from './atmosphereTable';
-import { WorldClass, WorldClassModel } from './worldClass';
+import type { AtmosphereDetails } from './atmosphereTable';
+import type { WorldClassModel } from './worldClass';
+import { WorldClass } from './worldClass';
 import { WorldAttribute } from './worldAttribute';
-import { PlanetaryFeature } from './planetaryFeature';
+import type { PlanetaryFeature } from './planetaryFeature';
 
 const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 

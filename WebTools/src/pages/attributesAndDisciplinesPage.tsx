@@ -17,10 +17,8 @@ import {
   FinishingTouchesAttributeController,
   FinishingTouchesDisciplineController,
 } from '../components/finishingTouchesControllers';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import AttributeListComponent from '../components/attributeListComponent';
 import DisciplineListComponent from '../components/disciplineListComponent';

@@ -4,7 +4,7 @@ import { navigateTo } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { rewindToStarshipWorkflowStep } from '../../state/starshipActions';
 import store from '../../state/store';
-import {
+import type {
   ShipBuildWorkflow,
   ShipBuildWorkflowStep,
 } from '../model/shipBuildWorkflow';

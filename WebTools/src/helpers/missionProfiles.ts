@@ -1,10 +1,11 @@
 import i18next from 'i18next';
 import { CharacterType } from '../common/characterType';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 import { isKlingonWarrior1e, isKlingonWarriorType } from './klingonWarrior';
-import { IConstructPrerequisite, SourcePrerequisite } from './prerequisite';
+import type { IConstructPrerequisite } from './prerequisite';
+import { SourcePrerequisite } from './prerequisite';
 import { Source } from './sources';
-import { TalentModel } from './talentModel';
+import type { TalentModel } from './talentModel';
 import { TalentsHelper } from './talents';
 import { makeKey } from '../common/translationKey';
 import { allSystems, System } from './systems';

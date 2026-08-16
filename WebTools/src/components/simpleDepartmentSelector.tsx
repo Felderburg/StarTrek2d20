@@ -2,9 +2,9 @@ import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { Department, DepartmentsHelper } from '../helpers/department';
 import { CheckBox } from './checkBox';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { Character } from '../common/character';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 
 interface ISimpleDepartmentSelectorProperties extends ICharacterPageProperties {
   isChecked: (department: Department) => boolean;

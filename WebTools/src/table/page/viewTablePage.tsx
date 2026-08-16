@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
-import { TableCollection, ValueResult } from '../model/table';
+import type { TableCollection, ValueResult } from '../model/table';
 import ReactMarkdown from 'react-markdown';
 import { TableView } from './tableView';
 import { useState } from 'react';

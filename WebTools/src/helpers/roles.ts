@@ -1,11 +1,12 @@
 import { DepartmentsHelper, Department } from './department';
 import { Source } from './sources';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Career } from './careerEnum';
 import { Era } from './erasEnum';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
+import type { ICharacterPrerequisite } from './characterPrerequisite';
 import {
   AllOfCharacterPrerequisite,
   AnyEraCharacterPrerequisite,
@@ -14,7 +15,6 @@ import {
   CareersCharacterPrerequisite,
   CharacterTypePrerequisite,
   EnlistedCharacterPrerequisite,
-  ICharacterPrerequisite,
   KlingonCharacterPrerequisite,
   NotCharacterPrerequisite,
   SourceCharacterPrerequisite,

@@ -5,12 +5,11 @@ import Button from 'react-bootstrap/Button';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { Header } from '../components/header';
 import InstructionText from '../components/instructionText';
-import AgeHelper, { Age } from '../helpers/age';
+import type { Age } from '../helpers/age';
+import AgeHelper from '../helpers/age';
 import { PageIdentity } from './pageIdentity';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
 import store from '../state/store';

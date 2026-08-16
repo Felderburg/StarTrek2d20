@@ -1,5 +1,5 @@
-import { PDFPage } from '@cantoo/pdf-lib';
-import { Column } from './column';
+import type { PDFPage } from '@cantoo/pdf-lib';
+import type { Column } from './column';
 
 export class PageArea {
   readonly column: Column;

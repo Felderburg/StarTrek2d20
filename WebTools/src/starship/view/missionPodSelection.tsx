@@ -4,9 +4,11 @@ import { CheckBox } from '../../components/checkBox';
 import { System } from '../../helpers/systems';
 import { Department } from '../../helpers/department';
 import formatAsDelta from '../../common/formatAsDelta';
-import { Starship } from '../../common/starship';
-import { MissionPodHelper, MissionPodModel } from '../../helpers/missionPods';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { Starship } from '../../common/starship';
+import type { MissionPodModel } from '../../helpers/missionPods';
+import { MissionPodHelper } from '../../helpers/missionPods';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 interface IMissionPodSelectionProperties extends WithTranslation {
   initialSelection?: MissionPodModel;

@@ -1,10 +1,11 @@
 import { Species } from '../../helpers/speciesEnum';
-import HeadCatalog, { IExtendedHeadCatalog } from './headCatalog';
+import type { IExtendedHeadCatalog } from './headCatalog';
+import HeadCatalog from './headCatalog';
 import { HeadType } from './headTypeEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import { UniformEra } from './uniformEra';
 
 const ArioloHead = `<g>

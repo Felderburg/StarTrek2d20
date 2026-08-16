@@ -3,7 +3,7 @@ import EyeBrowCatalog from './eyeBrowCatalog';
 import { EyeType } from './eyeTypeEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 
 const Eye1 = `<g>
     <path d="m 336.80719,143.55774 c 0.612,-0.15067 0.89867,-0.34267 0.89867,-0.34267 l 2.96666,-2.912 -0.0587,-5.84266 -7.29467,-0.92934 c 0,0 -6.65466,1.56934 -8.02133,2.90667 -1.36533,1.336 -2.03467,4.272 -2.064,4.35867 0,0 0.14533,0.90133 0.69867,1.01733 0.552,0.116 3.57466,2.03467 4.64933,1.976 1.076,-0.0573 8.22533,-0.232 8.22533,-0.232" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333" id="path14542"/>

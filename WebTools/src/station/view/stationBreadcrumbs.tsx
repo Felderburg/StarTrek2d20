@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Station } from '../../common/station';
+import type { Station } from '../../common/station';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Link } from 'react-router-dom';
 import { StationFrame } from '../../helpers/stationFrame';

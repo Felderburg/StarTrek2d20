@@ -1,8 +1,8 @@
 import i18next from 'i18next';
 import { Department } from '../helpers/department';
-import { MissionPodModel } from '../helpers/missionPods';
-import { MissionProfileModel } from '../helpers/missionProfiles';
-import { SpaceframeModel } from '../helpers/spaceframeModel';
+import type { MissionPodModel } from '../helpers/missionPods';
+import type { MissionProfileModel } from '../helpers/missionProfiles';
+import type { SpaceframeModel } from '../helpers/spaceframeModel';
 import { allSystems, System } from '../helpers/systems';
 import {
   TALENT_NAME_ABLATIVE_ARMOUR,
@@ -17,18 +17,16 @@ import { CharacterType } from './characterType';
 import { Construct, Stereotype } from './construct';
 import { makeKey } from './translationKey';
 import { Era } from '../helpers/erasEnum';
-import { IWeaponDiceProvider } from './iWeaponDiceProvider';
-import {
-  ServiceRecord,
-  ServiceRecordModel,
-} from '../starship/model/serviceRecord';
+import type { IWeaponDiceProvider } from './iWeaponDiceProvider';
+import type { ServiceRecordModel } from '../starship/model/serviceRecord';
+import { ServiceRecord } from '../starship/model/serviceRecord';
 import { DepartmentsHelper } from '../helpers/department';
 import { SelectedTalent } from './selectedTalent';
 import { StarshipAdvancementChoice } from './starshipAdvancementChoice';
-import { SpaceframeVariant } from '../helpers/spaceframeVariant';
-import { SpaceframeAppearance } from '../helpers/spaceframeAppearance';
+import type { SpaceframeVariant } from '../helpers/spaceframeVariant';
+import type { SpaceframeAppearance } from '../helpers/spaceframeAppearance';
 import { BuildPoints } from '../starship/model/buildPoints';
-import { TalentModel } from '../helpers/talentModel';
+import type { TalentModel } from '../helpers/talentModel';
 import { ShipBuildType } from './shipBuildType';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 

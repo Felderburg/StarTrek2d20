@@ -10,7 +10,7 @@ import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import InstructionText from '../components/instructionText';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
-import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import {
   addCharacterTalent,
   setCharacterEarlyOutlook,
@@ -26,7 +26,7 @@ import { CharacterType } from '../common/characterType';
 import { makeKey } from '../common/translationKey';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 import TalentSettingsView from '../components/talentSettingsView';
-import { SelectedTalent } from '../common/selectedTalent';
+import type { SelectedTalent } from '../common/selectedTalent';
 import { FocusSelectionView } from '../components/focusSelectionView';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { getEarlyOutlookTalents } from '../helpers/earlyOutlookTalents';

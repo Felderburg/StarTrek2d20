@@ -3,10 +3,8 @@ import { Navigation } from '../../common/navigator';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Header } from '../../components/header';
 import InstructionText from '../../components/instructionText';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
+import { characterMapStateToProperties } from './soloCharacterProperties';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Window } from '../../common/window';
@@ -15,10 +13,8 @@ import {
   StepContext,
   addCharacterCareerEvent,
 } from '../../state/characterActions';
-import {
-  CareerEventModel,
-  CareerEventsHelper,
-} from '../../helpers/careerEvents';
+import type { CareerEventModel } from '../../helpers/careerEvents';
+import { CareerEventsHelper } from '../../helpers/careerEvents';
 import { CharacterType } from '../../common/characterType';
 import { AttributesHelper } from '../../helpers/attributes';
 import { DepartmentsHelper } from '../../helpers/department';

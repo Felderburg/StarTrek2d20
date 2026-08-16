@@ -1,5 +1,5 @@
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { BorgImplants } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';
 import store from '../state/store';

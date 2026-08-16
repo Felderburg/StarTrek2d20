@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { TokenConfig } from '../../common/character';
+import type { TokenConfig } from '../../common/character';
 import { LoadingSpinnerView } from '../../common/loadingSpinnerView';
 import SpeciesRestrictions from '../model/speciesRestrictions';
 import HeadCatalog from '../model/headCatalog';

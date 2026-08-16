@@ -1,5 +1,5 @@
 import React from 'react';
-import { TokenModel } from '../model/tokenModel';
+import type { TokenModel } from '../model/tokenModel';
 
 interface ISwatchButtonProperties {
   svg: string | ((token: TokenModel) => string);

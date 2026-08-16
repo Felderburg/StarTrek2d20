@@ -1,15 +1,10 @@
-import {
-  PDFDocument,
-  PDFFont,
-  PDFPage,
-  RGB,
-  rgb,
-  TextAlignment,
-} from '@cantoo/pdf-lib';
+import type { PDFFont, PDFPage, RGB } from '@cantoo/pdf-lib';
+import { PDFDocument, rgb, TextAlignment } from '@cantoo/pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
-import { Sector } from '../table/sector';
+import type { Sector } from '../table/sector';
 import { SimpleColor } from '../../common/colour';
-import { CompanionType, StarSystem } from '../table/starSystem';
+import type { StarSystem } from '../table/starSystem';
+import { CompanionType } from '../table/starSystem';
 import { createRandomValue } from '../../common/randomValueGenerator';
 import { AsteroidBeltDetails } from '../table/world';
 import i18next from 'i18next';

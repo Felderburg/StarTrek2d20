@@ -1,6 +1,7 @@
 import i18next from 'i18next';
 import { makeKey } from '../../common/translationKey';
-import { SpectralClass, SpectralClassModel } from './spectralClass';
+import type { SpectralClassModel } from './spectralClass';
+import { SpectralClass } from './spectralClass';
 
 export enum SpaceRegion {
   AlphaQuadrant,

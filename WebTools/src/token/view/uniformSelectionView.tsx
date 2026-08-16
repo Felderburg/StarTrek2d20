@@ -1,5 +1,6 @@
 import React from 'react';
-import { UniformEra, UniformEraHelper } from '../model/uniformEra';
+import type { UniformEra } from '../model/uniformEra';
+import { UniformEraHelper } from '../model/uniformEra';
 import ColorSelection from './colorSelection';
 import { DivisionColors } from '../model/divisionColors';
 import {
@@ -20,7 +21,7 @@ import { useTranslation } from 'react-i18next';
 import UniformCatalog from '../model/uniformCatalog';
 import UniformVariantRestrictions from '../model/uniformVariantRestrictions';
 import SpeciesRestrictions from '../model/speciesRestrictions';
-import { ITokenPageProperties } from './iTokenPageProperties';
+import type { ITokenPageProperties } from './iTokenPageProperties';
 
 interface IUniformSelectionViewProperties extends ITokenPageProperties {
   loadPack: (era: UniformEra) => void;

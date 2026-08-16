@@ -1,17 +1,17 @@
-import { Rank } from '../../helpers/ranks';
-import { Species } from '../../helpers/speciesEnum';
-import { BodyType } from './bodyTypeEnum';
-import { ExtraType } from './extrasTypeEnum';
-import { EyeType } from './eyeTypeEnum';
-import { FacialHairType } from './facialHairEnum';
-import { HairType } from './hairTypeEnum';
-import { HeadType } from './headTypeEnum';
-import { MouthType } from './mouthTypeEnum';
-import { NasoLabialFoldType } from './nasoLabialFoldTypeEnum';
-import { NoseType } from './noseTypeEnum';
-import { SpeciesOption } from './speciesOptionEnum';
-import { UniformEra } from './uniformEra';
-import { UniformVariantType } from './uniformVariantTypeEnum';
+import type { Rank } from '../../helpers/ranks';
+import type { Species } from '../../helpers/speciesEnum';
+import type { BodyType } from './bodyTypeEnum';
+import type { ExtraType } from './extrasTypeEnum';
+import type { EyeType } from './eyeTypeEnum';
+import type { FacialHairType } from './facialHairEnum';
+import type { HairType } from './hairTypeEnum';
+import type { HeadType } from './headTypeEnum';
+import type { MouthType } from './mouthTypeEnum';
+import type { NasoLabialFoldType } from './nasoLabialFoldTypeEnum';
+import type { NoseType } from './noseTypeEnum';
+import type { SpeciesOption } from './speciesOptionEnum';
+import type { UniformEra } from './uniformEra';
+import type { UniformVariantType } from './uniformVariantTypeEnum';
 
 export interface Token {
   species: Species;

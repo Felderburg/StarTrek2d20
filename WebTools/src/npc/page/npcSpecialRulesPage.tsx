@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import LcarsFrame from '../../components/lcarsFrame';
@@ -20,7 +18,7 @@ import {
   TalentsHelper,
 } from '../../helpers/talents';
 import { RankedTalent } from '../../helpers/rankedTalent';
-import { SelectedTalent } from '../../common/selectedTalent';
+import type { SelectedTalent } from '../../common/selectedTalent';
 import store from '../../state/store';
 import { setNpcCharacterTalents } from '../../state/characterActions';
 import { Dialog } from '../../components/dialog';

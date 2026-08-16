@@ -1,6 +1,7 @@
-import { degrees, PDFFont, PDFPage, Rotation } from '@cantoo/pdf-lib';
-import { SimpleColor } from '../common/colour';
-import { FontSpecification } from './fontSpecification';
+import type { PDFFont, PDFPage, Rotation } from '@cantoo/pdf-lib';
+import { degrees } from '@cantoo/pdf-lib';
+import type { SimpleColor } from '../common/colour';
+import type { FontSpecification } from './fontSpecification';
 
 export class TextBlock {
   text: string;

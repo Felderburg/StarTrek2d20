@@ -1,5 +1,5 @@
-import { PDFPage } from '@cantoo/pdf-lib';
-import { SimpleColor } from '../common/colour';
+import type { PDFPage } from '@cantoo/pdf-lib';
+import type { SimpleColor } from '../common/colour';
 
 export class LandscapeSheetDecorations {
   static readonly sideBubblesOpen =

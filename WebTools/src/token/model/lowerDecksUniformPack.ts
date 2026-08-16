@@ -3,10 +3,10 @@ import { BaseTngEraUniformPack } from './baseTngEraUniformPack';
 import { BodyType } from './bodyTypeEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import UniformCatalog, { DefaultRed } from './uniformCatalog';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 
 const LowerDeckUniforms = {
   averageMale: `<g>

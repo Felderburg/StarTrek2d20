@@ -1,5 +1,5 @@
-import { Era } from '../helpers/erasEnum';
-import { Source } from '../helpers/sources';
+import type { Era } from '../helpers/erasEnum';
+import type { Source } from '../helpers/sources';
 
 export const ADD_SOURCE = 'ADD_SOURCE';
 export const REMOVE_SOURCE = 'REMOVE_SOURCE';

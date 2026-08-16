@@ -1,18 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigation } from '../../common/navigator';
-import { Starship } from '../../common/starship';
+import type { Starship } from '../../common/starship';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../../components/dialog';
 import { Header } from '../../components/header';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { setStarshipMissionProfile } from '../../state/starshipActions';
 import store from '../../state/store';
-import { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
+import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
 import MissionProfileSelection from '../view/missionProfileSelection';
 import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
-import { MissionProfileModel } from '../../helpers/missionProfiles';
+import type { MissionProfileModel } from '../../helpers/missionProfiles';
 
 interface IMissionProfileSelectionPageProperties {
   starship: Starship;

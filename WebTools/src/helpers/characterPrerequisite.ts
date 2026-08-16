@@ -1,10 +1,10 @@
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import store from '../state/store';
-import { Career } from './careerEnum';
-import { Era } from './erasEnum';
-import { Role } from './roles';
-import { Source } from './sources';
+import type { Career } from './careerEnum';
+import type { Era } from './erasEnum';
+import type { Role } from './roles';
+import type { Source } from './sources';
 
 export interface ICharacterPrerequisite {
   isPrerequisiteFulfilled(character: Character): boolean;

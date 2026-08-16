@@ -4,7 +4,7 @@ import { StatView } from '../components/StatView';
 import { makeKey } from '../common/translationKey';
 import { Attribute } from '../helpers/attributes';
 import { Department } from '../helpers/department';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { DisciplinesOrDepartments } from './disciplinesOrDepartments';
 
 const CharacterStatBlock: React.FC<ICharacterPageProperties> = ({

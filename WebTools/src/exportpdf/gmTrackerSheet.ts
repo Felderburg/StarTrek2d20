@@ -1,5 +1,6 @@
-import { PDFDocument, PDFFont, PDFForm, PDFPage } from '@cantoo/pdf-lib';
-import { Character } from '../common/character';
+import type { PDFFont, PDFForm, PDFPage } from '@cantoo/pdf-lib';
+import { PDFDocument } from '@cantoo/pdf-lib';
+import type { Character } from '../common/character';
 import { FontLibrary, FontType } from './fontLibrary';
 import { Column } from './column';
 import i18next from 'i18next';
@@ -21,7 +22,8 @@ import { Department } from '../helpers/department';
 import { labelWriter, VerticalAlignment } from './labelWriter';
 import { TextAlign } from './textAlign';
 import { FontOptions } from './fontOptions';
-import { Construct, Stereotype } from '../common/construct';
+import type { Construct } from '../common/construct';
+import { Stereotype } from '../common/construct';
 import { WeaponDescriber } from './weaponDescriber';
 import { bullet2EWriter } from './bullet2eWriter';
 import { NpcType } from '../npc/model/npcType';

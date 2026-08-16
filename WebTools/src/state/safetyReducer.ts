@@ -1,4 +1,4 @@
-import { SafetyEvaluationType } from '../safety/model/safetyEvaluation';
+import type { SafetyEvaluationType } from '../safety/model/safetyEvaluation';
 import { SET_SAFETY_EVALUATION } from './safetyActions';
 
 const initialState: { [key: string]: SafetyEvaluationType } = {};

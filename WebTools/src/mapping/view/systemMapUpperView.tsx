@@ -1,7 +1,7 @@
 import React from 'react';
 import { SimpleColor } from '../../common/colour';
 import { CompanionType } from '../table/starSystem';
-import { AsteroidBeltDetails } from '../table/world';
+import type { AsteroidBeltDetails } from '../table/world';
 import { SystemMapView } from './systemMapView';
 import { createRandomValue } from '../../common/randomValueGenerator';
 import { WorldClass } from '../table/worldClass';

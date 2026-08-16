@@ -1,7 +1,8 @@
 import React from 'react';
 import { System } from '../helpers/systems';
-import { Starship } from '../common/starship';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { Starship } from '../common/starship';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 
 interface IRefitImprovementProperties {

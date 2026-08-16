@@ -24,10 +24,8 @@ import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import ReactMarkdown from 'react-markdown';
 import store from '../state/store';
 import { connect } from 'react-redux';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import {
   CareerEventAttributeController,
   CareerEventDisciplineController,

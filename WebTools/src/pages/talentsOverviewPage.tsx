@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
 import { Department } from '../helpers/department';
-import { TalentModel } from '../helpers/talentModel';
+import type { TalentModel } from '../helpers/talentModel';
 import { TalentsHelper } from '../helpers/talents';
 import { Source, SourcesHelper } from '../helpers/sources';
 import { SpeciesHelper } from '../helpers/species';
 import replaceDiceWithArrowhead from '../common/arrowhead';
-import { Species } from '../helpers/speciesEnum';
+import type { Species } from '../helpers/speciesEnum';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { hasSource } from '../state/contextFunctions';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { CharacterType } from '../../common/characterType';
-import { Starship } from '../../common/starship';
+import type { Starship } from '../../common/starship';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import RegistryNumber from '../../components/registryNumberGenerator';

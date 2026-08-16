@@ -1,7 +1,8 @@
 import { D20 } from '../../common/die';
 import { LuminosityTable } from './luminosityTable';
-import { CompanionType, StarSystem } from './starSystem';
-import { World } from './world';
+import type { StarSystem } from './starSystem';
+import { CompanionType } from './starSystem';
+import type { World } from './world';
 
 const BLAGG_CONSTANT = 1.7275;
 

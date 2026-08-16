@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 
 class Swatch {
   id: number;

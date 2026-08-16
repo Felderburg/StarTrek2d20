@@ -15,12 +15,12 @@ import {
   NpcGenerationStep,
   ReputationChangeStep,
 } from '../common/character';
-import {
-  AssemblyContext,
+import type {
   FocusAssembly,
   TalentAssembly,
   ValueAssembly,
 } from '../common/characterAssembly';
+import { AssemblyContext } from '../common/characterAssembly';
 import { CharacterType } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { LogEntry } from '../common/logEntry';
@@ -28,7 +28,7 @@ import { SelectedTalent } from '../common/selectedTalent';
 import AgeHelper from '../helpers/age';
 import { Department } from '../helpers/department';
 import { EquipmentModel } from '../helpers/equipment';
-import { ITalent } from '../helpers/italent';
+import type { ITalent } from '../helpers/italent';
 import { Species } from '../helpers/speciesEnum';
 import {
   TALENT_NAME_BORG_IMPLANTS,

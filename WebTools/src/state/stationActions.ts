@@ -1,10 +1,13 @@
-import { SelectedTalent } from '../common/selectedTalent';
-import { Station } from '../common/station';
-import { Department } from '../helpers/department';
-import { MissionProfile } from '../helpers/missionProfiles';
-import { StationFrame, StationFrameAppearance } from '../helpers/stationFrame';
-import { System } from '../helpers/systems';
-import { Weapon } from '../helpers/weapons';
+import type { SelectedTalent } from '../common/selectedTalent';
+import type { Station } from '../common/station';
+import type { Department } from '../helpers/department';
+import type { MissionProfile } from '../helpers/missionProfiles';
+import type {
+  StationFrame,
+  StationFrameAppearance,
+} from '../helpers/stationFrame';
+import type { System } from '../helpers/systems';
+import type { Weapon } from '../helpers/weapons';
 
 export const CREATE_STATION = 'CREATE_STATION';
 export const SET_STATION_MISSION_PROFILE = 'SET_STATION_MISSION_PROFILE';

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { CheckBox } from './checkBox';
-import { TalentModel } from '../helpers/talentModel';
+import type { TalentModel } from '../helpers/talentModel';
 import { TALENT_NAME_CUSTOM_TALENT } from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';
-import { ITalent } from '../helpers/italent';
+import type { ITalent } from '../helpers/italent';
 
 interface ISimpleTalentSelectionProperties {
   talents: TalentModel[];

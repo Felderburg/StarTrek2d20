@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { ICharacterPageProperties } from '../../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../../common/iCharacterPageProperties';
 import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
@@ -21,7 +21,7 @@ import { randomUniqueValue } from '../../solo/table/valueRandomTable';
 import store from '../../state/store';
 import { marshaller } from '../../helpers/marshaller';
 import { modifyCharacterAddAdvancement } from '../../state/characterActions';
-import { Attribute } from '../../helpers/attributes';
+import type { Attribute } from '../../helpers/attributes';
 import { SimpleAttributeSelector } from '../../components/simpleAttributeSelector';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import D20IconButton from '../../solo/component/d20IconButton';
@@ -34,7 +34,7 @@ import { ModifyDepartmentView } from './modifyDepartmentView';
 import { saveCharacterToLocalStorage } from '../../state/savedConstructActions';
 import { CharacterAdvancementChoice } from '../../modify/model/characterAdvancementChoice';
 import SimpleTalentSelectionList from '../../components/simpleTalentSelectionList';
-import { SelectedTalent } from '../../common/selectedTalent';
+import type { SelectedTalent } from '../../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
 import { ModificationType } from '../../modify/model/modificationType';
 import {

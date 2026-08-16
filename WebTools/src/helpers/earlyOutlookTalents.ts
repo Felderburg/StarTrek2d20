@@ -1,4 +1,4 @@
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { Species } from './speciesEnum';
 import { isTalentSelectable } from './talentSelection';
 import { RankedTalent } from './rankedTalent';

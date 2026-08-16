@@ -1,6 +1,6 @@
 import i18next from 'i18next';
 import { Attribute } from '../helpers/attributes';
-import { BorgImplantType } from '../helpers/borgImplant';
+import type { BorgImplantType } from '../helpers/borgImplant';
 import {
   TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM,
   TALENT_NAME_AUGMENTED_ABILITY,
@@ -18,16 +18,14 @@ import {
   TALENT_NAME_REDUNDANT_SYSTEMS,
   TalentsHelper,
 } from '../helpers/talents';
-import { SpecialWeapon } from './specialWeapon';
+import type { SpecialWeapon } from './specialWeapon';
 import { makeKey } from './translationKey';
 import { AttackType } from './attackType';
 import { Department } from '../helpers/department';
-import { ITalent } from '../helpers/italent';
+import type { ITalent } from '../helpers/italent';
 import { Weapon } from '../helpers/weapons';
-import {
-  PropulsionSystemModel,
-  PropulsionSystemType,
-} from '../helpers/propulsionSystem';
+import type { PropulsionSystemType } from '../helpers/propulsionSystem';
+import { PropulsionSystemModel } from '../helpers/propulsionSystem';
 import { System } from '../helpers/systems';
 
 export class OtherSelection {

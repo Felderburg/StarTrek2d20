@@ -1,4 +1,4 @@
-import { IServiceYearProvider } from '../../common/serviceYearProvider';
+import type { IServiceYearProvider } from '../../common/serviceYearProvider';
 
 const majorEvents = {
   2160: ['Earth-Romulan War'],

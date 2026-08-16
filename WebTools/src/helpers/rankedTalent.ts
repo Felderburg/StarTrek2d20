@@ -1,4 +1,4 @@
-import { TalentModel } from './talentModel';
+import type { TalentModel } from './talentModel';
 import { TALENT_NAME_CUSTOM_TALENT } from './talents';
 
 export class RankedTalent {

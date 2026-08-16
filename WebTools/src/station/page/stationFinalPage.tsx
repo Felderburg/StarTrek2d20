@@ -7,10 +7,8 @@ import { PageIdentity } from '../../pages/pageIdentity';
 import store from '../../state/store';
 import { setStationName, setStationTraits } from '../../state/stationActions';
 import { connect } from 'react-redux';
-import {
-  IStationPageProperties,
-  stationMapStateToProperties,
-} from '../iStationPageProperties';
+import type { IStationPageProperties } from '../iStationPageProperties';
+import { stationMapStateToProperties } from '../iStationPageProperties';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import { ViewButton } from '../../components/viewButton';
 import { ExportToPdfButton } from '../../components/exportToPdfButton';

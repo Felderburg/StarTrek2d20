@@ -1,10 +1,10 @@
-import { PDFDocument, PDFFont, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFFont, PDFPage } from '@cantoo/pdf-lib';
 import { BasicGeneratedSheet } from './generatedsheet';
 import { TextBlock } from './textBlock';
 import { FontSpecification } from './fontSpecification';
 import { Column } from './column';
 import { SimpleColor } from '../common/colour';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { DepartmentsHelper, Department } from '../helpers/department';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
 import i18next from 'i18next';

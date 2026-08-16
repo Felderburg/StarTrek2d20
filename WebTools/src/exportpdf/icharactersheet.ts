@@ -1,6 +1,6 @@
-import { PDFDocument } from '@cantoo/pdf-lib';
-import { Construct } from '../common/construct';
-import { CharacterType } from '../common/characterType';
+import type { PDFDocument } from '@cantoo/pdf-lib';
+import type { Construct } from '../common/construct';
+import type { CharacterType } from '../common/characterType';
 
 export enum SheetTag {
   LanguageSupport,

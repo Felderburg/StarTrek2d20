@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { useEffect, useState } from 'react';
 import { CheckBox } from '../../components/checkBox';
 import { Button } from 'react-bootstrap';

@@ -7,10 +7,8 @@ import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useNavigate } from 'react-router-dom';
 import store from '../../state/store';
-import {
-  IStationPageProperties,
-  stationMapStateToProperties,
-} from '../iStationPageProperties';
+import type { IStationPageProperties } from '../iStationPageProperties';
+import { stationMapStateToProperties } from '../iStationPageProperties';
 import { connect } from 'react-redux';
 import { StatControl } from '../../starship/view/statControl';
 import { makeKey } from '../../common/translationKey';
@@ -31,10 +29,8 @@ import { StationFrameModel } from '../../helpers/stationFrameModel';
 import { StatView } from '../../components/StatView';
 import { CheckBox } from '../../components/checkBox';
 import Markdown from 'react-markdown';
-import {
-  StationFrame,
-  StationFrameAppearance,
-} from '../../helpers/stationFrame';
+import type { StationFrameAppearance } from '../../helpers/stationFrame';
+import { StationFrame } from '../../helpers/stationFrame';
 import {
   DropDownElement,
   DropDownSelect,

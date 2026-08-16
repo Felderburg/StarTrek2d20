@@ -3,7 +3,7 @@ import { Header } from '../../components/header';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { connect } from 'react-redux';
-import { TableCollection } from '../model/table';
+import type { TableCollection } from '../model/table';
 import Button from 'react-bootstrap/Button';
 import {
   setTableCollectionSelection,

@@ -1,5 +1,5 @@
 import { Stereotype } from '../common/construct';
-import { SelectedTalent } from '../common/selectedTalent';
+import type { SelectedTalent } from '../common/selectedTalent';
 import {
   MissionProfileStep,
   ServiceRecordStep,
@@ -9,7 +9,7 @@ import {
   StarshipAdvancementStep,
 } from '../common/starship';
 import { StarshipAdvancementChoice } from '../common/starshipAdvancementChoice';
-import { System } from '../helpers/systems';
+import type { System } from '../helpers/systems';
 import { ShipBuildWorkflow } from '../starship/model/shipBuildWorkflow';
 import {
   ADD_STARSHIP_REFIT,

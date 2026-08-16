@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import store from '../../state/store';
-import {
-  CustomStationSpaceframeStep,
+import type {
   StandardStationSpaceframeStep,
   Station,
 } from '../../common/station';
+import { CustomStationSpaceframeStep } from '../../common/station';
 import Eras from '../../helpers/eras';
 import { CharacterTypeModel } from '../../common/characterType';
 import { System } from '../../helpers/systems';

@@ -1,4 +1,4 @@
-import { TableCollection } from '../table/model/table';
+import type { TableCollection } from '../table/model/table';
 
 export const IMPORT_TABLE_COLLECTION = 'IMPORT_TABLE_COLLECTION';
 export const ADD_TABLE_COLLECTION = 'ADD_TABLE_COLLECTION';

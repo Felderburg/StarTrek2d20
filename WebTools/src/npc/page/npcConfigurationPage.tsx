@@ -13,14 +13,12 @@ import { marshaller } from '../../helpers/marshaller';
 import { SpeciesHelper } from '../../helpers/species';
 import { Species } from '../../helpers/speciesEnum';
 import { PageIdentity } from '../../pages/pageIdentity';
-import {
-  NpcCharacterType,
-  NpcCharacterTypeModel,
-  NpcCharacterTypes,
-} from '../model/npcCharacterType';
+import type { NpcCharacterTypeModel } from '../model/npcCharacterType';
+import { NpcCharacterType, NpcCharacterTypes } from '../model/npcCharacterType';
 import { NpcGenerator } from '../model/npcGenerator';
 import { NpcType, NpcTypes } from '../model/npcType';
-import { SpecializationModel, Specializations } from '../model/specializations';
+import type { SpecializationModel } from '../model/specializations';
+import { Specializations } from '../model/specializations';
 import { hasAnySource, hasSource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
 import { Specialization } from '../../common/specializationEnum';

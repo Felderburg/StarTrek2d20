@@ -14,7 +14,7 @@ import { hasSource, isSecondEdition } from '../state/contextFunctions';
 import { Header } from '../components/header';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import { useTranslation } from 'react-i18next';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { connect } from 'react-redux';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import {

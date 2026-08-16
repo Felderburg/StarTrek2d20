@@ -3,7 +3,7 @@ import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import StressOrShieldsView from './stressOrShieldsView';
 import CharacterStatBlock from './characterStatBlock';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { VttSelectionDialog } from '../vtt/view/VttSelectionDialog';
 import WeaponBlockView from './weaponBlockView';
 import FocusBlockView from './focusBlockView';

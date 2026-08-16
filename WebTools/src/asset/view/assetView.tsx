@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
-import { Asset, AssetAbility } from '../asset';
+import type { Asset, AssetAbility } from '../asset';
 import { AssetType, AssetTypes } from '../assetType';
 import { AssetStatType } from '../assetStat';
 import { useState } from 'react';
@@ -8,7 +8,8 @@ import { LoadingButton } from '../../common/loadingButton';
 import { PDFDocument } from '@cantoo/pdf-lib';
 import { SpaceframeHelper } from '../../helpers/spaceframes';
 import { Spaceframe } from '../../helpers/spaceframeEnum';
-import { Rank, RanksHelper } from '../../helpers/ranks';
+import type { Rank } from '../../helpers/ranks';
+import { RanksHelper } from '../../helpers/ranks';
 
 declare function download(bytes: any, fileName: any, contentType: any): any;
 

@@ -1,14 +1,14 @@
-import { CareerEventStep, Character } from '../common/character';
-import { Attribute } from '../helpers/attributes';
-import { Department } from '../helpers/department';
+import type { CareerEventStep, Character } from '../common/character';
+import type { Attribute } from '../helpers/attributes';
+import type { Department } from '../helpers/department';
+import type { StepContext } from '../state/characterActions';
 import {
-  StepContext,
   modifyCharacterAttribute,
   modifyCharacterDiscipline,
 } from '../state/characterActions';
 import store from '../state/store';
-import { IAttributeController } from './attributeController';
-import { IDisciplineController } from './disciplineListComponent';
+import type { IAttributeController } from './attributeController';
+import type { IDisciplineController } from './disciplineListComponent';
 
 export class CareerEventDisciplineController implements IDisciplineController {
   readonly character: Character;

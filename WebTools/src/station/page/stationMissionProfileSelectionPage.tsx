@@ -6,15 +6,12 @@ import ReactMarkdown from 'react-markdown';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { Link, useNavigate } from 'react-router-dom';
-import MissionProfiles, {
-  MissionProfileModel,
-} from '../../helpers/missionProfiles';
+import type { MissionProfileModel } from '../../helpers/missionProfiles';
+import MissionProfiles from '../../helpers/missionProfiles';
 import { CheckBox } from '../../components/checkBox';
 import { connect } from 'react-redux';
-import {
-  IStationPageProperties,
-  stationMapStateToProperties,
-} from '../iStationPageProperties';
+import type { IStationPageProperties } from '../iStationPageProperties';
+import { stationMapStateToProperties } from '../iStationPageProperties';
 import store from '../../state/store';
 import {
   setStationMissionProfile,
@@ -23,7 +20,7 @@ import {
 import { Dialog } from '../../components/dialog';
 import { SelectedTalent } from '../../common/selectedTalent';
 import { RankedTalent } from '../../helpers/rankedTalent';
-import { TalentModel } from '../../helpers/talentModel';
+import type { TalentModel } from '../../helpers/talentModel';
 import SingleTalentSelectionList from '../../components/singleTalentSelectionList';
 import { StandardStationSpaceframeStep } from '../../common/station';
 import { StationFrame } from '../../helpers/stationFrame';

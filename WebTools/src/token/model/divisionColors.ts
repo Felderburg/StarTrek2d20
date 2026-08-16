@@ -2,7 +2,7 @@ import i18next from 'i18next';
 import { Division } from '../../common/character';
 import { NamedColor } from './namedColour';
 import { UniformEra } from './uniformEra';
-import { Rank } from '../../helpers/ranks';
+import type { Rank } from '../../helpers/ranks';
 import { isCadetRank } from './rankHelper';
 
 export class DivisionColors {

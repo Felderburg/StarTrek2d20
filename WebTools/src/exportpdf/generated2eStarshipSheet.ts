@@ -1,9 +1,9 @@
 import i18next from 'i18next';
 import { BaseNonForm2eSheet } from './generated2eBaseSheet';
 import { makeKey } from '../common/translationKey';
-import { PDFDocument, PDFForm, PDFPage } from '@cantoo/pdf-lib';
-import { Construct } from '../common/construct';
-import { Starship } from '../common/starship';
+import type { PDFDocument, PDFForm, PDFPage } from '@cantoo/pdf-lib';
+import type { Construct } from '../common/construct';
+import type { Starship } from '../common/starship';
 import { XYLocation } from '../common/xyLocation';
 import { SheetTag } from './icharactersheet';
 import { Paragraph } from './paragraph';

@@ -7,10 +7,8 @@ import Button from 'react-bootstrap/Button';
 import store from '../../state/store';
 import { StepContext, setCharacterValue } from '../../state/characterActions';
 import SoloValueInput from '../component/soloValueInput';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
+import { characterMapStateToProperties } from './soloCharacterProperties';
 import { CareersHelper } from '../../helpers/careers';
 import { Dialog } from '../../components/dialog';
 import { makeKey } from '../../common/translationKey';

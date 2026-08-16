@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Character } from '../../common/character';
-import { Construct } from '../../common/construct';
+import type { Construct } from '../../common/construct';
 import { Starship } from '../../common/starship';
 import Button from 'react-bootstrap/Button';
 import {

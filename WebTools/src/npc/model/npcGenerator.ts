@@ -16,7 +16,7 @@ import { RanksHelper, Rank } from '../../helpers/ranks';
 import { DepartmentsHelper } from '../../helpers/department';
 import { Species } from '../../helpers/speciesEnum';
 import { SpeciesHelper } from '../../helpers/species';
-import { SpeciesModel } from '../../helpers/speciesModel';
+import type { SpeciesModel } from '../../helpers/speciesModel';
 import {
   TALENT_NAME_AUGMENTED_ABILITY,
   TALENT_NAME_BOLD,
@@ -27,12 +27,8 @@ import {
 } from '../../helpers/talents';
 import { NameGenerator } from '../nameGenerator';
 import { NpcType, NpcTypes } from './npcType';
-import {
-  SpecializationModel,
-  Specializations,
-  Specialty,
-  Value,
-} from './specializations';
+import type { SpecializationModel } from './specializations';
+import { Specializations, Specialty, Value } from './specializations';
 import { NpcCharacterType } from './npcCharacterType';
 import { hasAnySource, hasSource } from '../../state/contextFunctions';
 import { Source } from '../../helpers/sources';
@@ -44,7 +40,7 @@ import AllyHelper from '../../helpers/alliedMilitary';
 import { Specialization } from '../../common/specializationEnum';
 import { Track } from '../../helpers/trackEnum';
 import Governments, { Polity } from '../../helpers/governments';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import AgeHelper from '../../helpers/age';
 import { SpeciesAbilityList } from '../../helpers/speciesAbility';
 import { SelectedTalent } from '../../common/selectedTalent';

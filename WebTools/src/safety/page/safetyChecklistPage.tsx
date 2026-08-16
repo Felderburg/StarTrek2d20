@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { PageIdentity } from '../../pages/pageIdentity';
 import LcarsFrame from '../../components/lcarsFrame';
 import ReactMarkdown from 'react-markdown';
-import { SafetySection, SafetySections } from '../model/safetySection';
+import type { SafetySection } from '../model/safetySection';
+import { SafetySections } from '../model/safetySection';
 import {
   SafetyEvaluation,
   SafetyEvaluationType,

@@ -11,10 +11,8 @@ import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { Source, SourcesHelper } from '../helpers/sources';
 import InstructionText from './instructionText';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import SplitButton from 'react-bootstrap/SplitButton';
 import Dropdown from 'react-bootstrap/Dropdown';

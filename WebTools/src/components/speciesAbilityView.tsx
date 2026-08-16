@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { Header } from './header';
 import { useTranslation } from 'react-i18next';
 import { Species } from '../helpers/speciesEnum';
@@ -9,7 +9,7 @@ import D20IconButton from '../solo/component/d20IconButton';
 import { localizedFocus } from './focusHelper';
 import { focusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { setCharacterSpeciesAbilityFocus } from '../state/characterActions';
-import { Department } from '../helpers/department';
+import type { Department } from '../helpers/department';
 import { hasSource } from '../state/contextFunctions';
 import { Source } from '../helpers/sources';
 import { SpeciesAbilityChoiceView } from './speciesAbilityChoiceView';

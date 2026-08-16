@@ -1,12 +1,12 @@
 import { Character } from '../common/character';
-import { Department } from '../helpers/department';
-import { EarlyOutlookModel } from '../helpers/upbringings';
+import type { Department } from '../helpers/department';
+import type { EarlyOutlookModel } from '../helpers/upbringings';
 import {
   StepContext,
   modifyCharacterDiscipline,
 } from '../state/characterActions';
 import store from '../state/store';
-import { IDisciplineController } from './disciplineListComponent';
+import type { IDisciplineController } from './disciplineListComponent';
 
 export class EarlyOutlookDiscplineController implements IDisciplineController {
   readonly character: Character;

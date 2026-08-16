@@ -3,7 +3,8 @@ import { navigateTo } from '../common/navigator';
 import { makeKey } from '../common/translationKey';
 import { PageIdentity } from '../pages/pageIdentity';
 import { CharacterAdvancementType } from './model/characterAdvancementType';
-import { NavigateFunction, useNavigate } from 'react-router';
+import type { NavigateFunction } from 'react-router';
+import { useNavigate } from 'react-router';
 import { ModificationType } from './model/modificationType';
 
 export interface IModifyBreadcrumbProperties {

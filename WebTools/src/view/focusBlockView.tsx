@@ -1,4 +1,4 @@
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { localizedFocus } from '../components/focusHelper';
 
 const FocusBlockView: React.FC<ICharacterPageProperties> = ({ character }) => {

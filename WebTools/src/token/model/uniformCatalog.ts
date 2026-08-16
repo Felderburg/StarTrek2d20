@@ -1,7 +1,7 @@
-import { Species } from '../../helpers/speciesEnum';
+import type { Species } from '../../helpers/speciesEnum';
 import SpeciesRestrictions from './speciesRestrictions';
-import { TokenModel } from './tokenModel';
-import { UniformEra } from './uniformEra';
+import type { TokenModel } from './tokenModel';
+import type { UniformEra } from './uniformEra';
 import UniformPackCollection from './uniformPackCollection';
 
 export const DefaultRed = /#d30000/g;

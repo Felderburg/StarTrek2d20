@@ -1,6 +1,7 @@
 import { Attribute, AttributesHelper } from './attributes';
 import { TalentsHelper } from './talents';
-import { AlliedMilitaryDetails, Character } from '../common/character';
+import type { AlliedMilitaryDetails } from '../common/character';
+import { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Era } from '../helpers/erasEnum';
 import { Source } from '../helpers/sources';

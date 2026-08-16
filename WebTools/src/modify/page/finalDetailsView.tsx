@@ -1,9 +1,9 @@
 import React from 'react';
-import { TFunction } from 'i18next';
+import type { TFunction } from 'i18next';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import { Header } from '../../components/header';
 import D20IconButton from '../../solo/component/d20IconButton';
-import { Character } from '../../common/character';
+import type { Character } from '../../common/character';
 
 interface IFinalDetailsViewProperties {
   character: Character;

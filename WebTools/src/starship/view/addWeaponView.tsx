@@ -4,16 +4,18 @@ import {
   DropDownElement,
   DropDownSelect,
 } from '../../components/dropDownInput';
-import {
+import type {
   CaptureType,
-  CaptureTypeModel,
   DeliverySystem,
-  DeliverySystemModel,
   EnergyLoadType,
-  EnergyLoadTypeModel,
   MineType,
-  MineTypeModel,
   TorpedoLoadType,
+} from '../../helpers/weapons';
+import {
+  CaptureTypeModel,
+  DeliverySystemModel,
+  EnergyLoadTypeModel,
+  MineTypeModel,
   TorpedoLoadTypeModel,
   Weapon,
   WeaponType,

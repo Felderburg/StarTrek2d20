@@ -1,8 +1,8 @@
 import toast from 'react-hot-toast';
-import { ExtraCategory, ExtraType } from './extrasTypeEnum';
-import { HairType } from './hairTypeEnum';
-import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { ExtraCategory, ExtraType } from './extrasTypeEnum';
+import type { HairType } from './hairTypeEnum';
+import type Swatch from './swatch';
+import type { TokenModel } from './tokenModel';
 
 export interface IExtendedExtrasLibrary {
   getExtra(

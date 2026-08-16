@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 import { CharacterType } from '../common/characterType';
 import { Department } from '../helpers/department';
 import { System } from '../helpers/systems';

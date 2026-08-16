@@ -1,7 +1,7 @@
 import ReactMarkdown from 'react-markdown';
-import { Starship } from '../../common/starship';
+import type { Starship } from '../../common/starship';
 import { Header } from '../../components/header';
-import { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
+import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
 import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
 import Button from 'react-bootstrap/Button';
 import { useTranslation } from 'react-i18next';
@@ -11,23 +11,20 @@ import {
 } from '../../state/starshipActions';
 import store from '../../state/store';
 import { Navigation } from '../../common/navigator';
-import {
-  ServiceRecord,
-  ServiceRecordList,
-  ServiceRecordModel,
-} from '../model/serviceRecord';
+import type { ServiceRecordModel } from '../model/serviceRecord';
+import { ServiceRecord, ServiceRecordList } from '../model/serviceRecord';
 import { TalentsHelper } from '../../helpers/talents';
 import { CheckBox } from '../../components/checkBox';
 import { connect } from 'react-redux';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import { hasSource } from '../../state/contextFunctions';
 import { SimpleSystemSelector } from '../../components/simpleSystemSelector';
-import { System } from '../../helpers/systems';
+import type { System } from '../../helpers/systems';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { SimpleStringSelector } from '../../modify/page/simpleStringSelector';
 import Markdown from 'react-markdown';
 import { StarshipFreeformTalentSelectionView } from '../../components/starshipFreeformTalentSelectionView';
-import { SelectedTalent } from '../../common/selectedTalent';
+import type { SelectedTalent } from '../../common/selectedTalent';
 import { Dialog } from '../../components/dialog';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
 

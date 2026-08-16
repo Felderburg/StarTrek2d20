@@ -1,7 +1,5 @@
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import SpeciesDetailsPage from '../../pages/speciesDetailsPage';

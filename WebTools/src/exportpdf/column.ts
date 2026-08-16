@@ -1,4 +1,4 @@
-import { PDFPage } from '@cantoo/pdf-lib';
+import type { PDFPage } from '@cantoo/pdf-lib';
 import { XYLocation } from '../common/xyLocation';
 import { PageArea } from './pageArea';
 

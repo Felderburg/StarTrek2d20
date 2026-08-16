@@ -1,8 +1,8 @@
 import { Era } from '../helpers/erasEnum';
-import { Weapon } from '../helpers/weapons';
+import type { Weapon } from '../helpers/weapons';
 import { CharacterType } from './characterType';
-import { IConstruct } from './iconstruct';
-import { IWeaponDiceProvider } from './iWeaponDiceProvider';
+import type { IConstruct } from './iconstruct';
+import type { IWeaponDiceProvider } from './iWeaponDiceProvider';
 
 export enum Stereotype {
   MainCharacter,

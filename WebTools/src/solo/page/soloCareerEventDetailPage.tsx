@@ -10,10 +10,8 @@ import {
   setCharacterFinishingTouches,
   setCharacterFocus,
 } from '../../state/characterActions';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
+import { characterMapStateToProperties } from './soloCharacterProperties';
 import { CareerEventsHelper } from '../../helpers/careerEvents';
 import { CharacterType } from '../../common/characterType';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';

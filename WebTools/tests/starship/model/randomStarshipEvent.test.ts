@@ -1,6 +1,6 @@
 import { test, expect, describe } from '@jest/globals';
 import { randomStarshipEvent } from '../../../src/starship/model/randomStarshipEvent';
-import { IServiceYearProvider } from '../../../src/common/serviceYearProvider';
+import type { IServiceYearProvider } from '../../../src/common/serviceYearProvider';
 
 class MockSpaceframe implements IServiceYearProvider {
   serviceYear: number = 2365;

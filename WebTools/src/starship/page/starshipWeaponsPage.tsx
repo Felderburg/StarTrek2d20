@@ -4,7 +4,7 @@ import { Navigation } from '../../common/navigator';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { ModalControl } from '../../components/modal';
-import { Weapon } from '../../helpers/weapons';
+import type { Weapon } from '../../helpers/weapons';
 import {
   addStarshipWeapon,
   deleteStarshipWeapon,
@@ -16,7 +16,7 @@ import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
 import { IconButton } from '../../components/iconButton';
 import { useTranslation } from 'react-i18next';
 import { PageIdentity } from '../../pages/pageIdentity';
-import { IStarshipProperties } from '../iStarshipProperties';
+import type { IStarshipProperties } from '../iStarshipProperties';
 import { Stereotype } from '../../common/construct';
 
 const StarshipWeaponsPageProperties: React.FC<IStarshipProperties> = ({

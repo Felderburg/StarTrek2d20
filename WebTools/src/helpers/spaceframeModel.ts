@@ -1,9 +1,9 @@
 import i18next from 'i18next';
 import { CharacterType } from '../common/characterType';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 import { makeKey } from '../common/translationKey';
+import type { IConstructPrerequisite } from './prerequisite';
 import {
-  IConstructPrerequisite,
   NeverPrerequisite,
   ServiceYearPrerequisite,
   SourcePrerequisite,
@@ -11,10 +11,10 @@ import {
 } from './prerequisite';
 import { Source } from './sources';
 import { Spaceframe } from './spaceframeEnum';
-import { IServiceYearProvider } from '../common/serviceYearProvider';
+import type { IServiceYearProvider } from '../common/serviceYearProvider';
 import { CenturyPrerequisite, MaxServiceYearPrerequisite } from './talents';
 import { SelectedTalent } from '../common/selectedTalent';
-import { TalentModel } from './talentModel';
+import type { TalentModel } from './talentModel';
 
 export class SoloSpaceframeStats {
   departments: number[];

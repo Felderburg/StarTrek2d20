@@ -1,14 +1,12 @@
 import { DepartmentsHelper, Department } from './department';
 import { Attribute, AttributesHelper } from './attributes';
-import { CharacterType } from '../common/characterType';
+import type { CharacterType } from '../common/characterType';
 import { isKlingonWarrior1e, isKlingonWarriorType } from './klingonWarrior';
 import i18next from 'i18next';
 import { Source } from './sources';
-import {
-  ICharacterPrerequisite,
-  SourceCharacterPrerequisite,
-} from './characterPrerequisite';
-import { Character } from '../common/character';
+import type { ICharacterPrerequisite } from './characterPrerequisite';
+import { SourceCharacterPrerequisite } from './characterPrerequisite';
+import type { Character } from '../common/character';
 import { AnyEraPrerequisite } from './prerequisite';
 import { Era } from './erasEnum';
 

@@ -4,10 +4,10 @@ import { BodyType } from './bodyTypeEnum';
 import RankIndicatorCatalog from './rankIndicatorCatalog';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import UniformCatalog from './uniformCatalog';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 import { UniformVariantType } from './uniformVariantTypeEnum';
 
 const CivilianOutfits = {

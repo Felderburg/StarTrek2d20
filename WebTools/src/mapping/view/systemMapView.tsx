@@ -1,5 +1,5 @@
 import React from 'react';
-import { StarSystem } from '../table/starSystem';
+import type { StarSystem } from '../table/starSystem';
 import { AsteroidBeltDetails } from '../table/world';
 import { WorldClass } from '../table/worldClass';
 

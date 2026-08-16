@@ -7,7 +7,7 @@ import { ModalControl } from '../components/modal';
 import AddCharacterView from './addCharacterView';
 import { connect } from 'react-redux';
 import GmCharacterView from './gmCharacterView';
-import { CharacterWithTracking } from './model/characterWithTracking';
+import type { CharacterWithTracking } from './model/characterWithTracking';
 import { useTranslation } from 'react-i18next';
 import { IconButton } from '../components/iconButton';
 import { LoadingButton } from '../common/loadingButton';

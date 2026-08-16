@@ -1,7 +1,7 @@
-import { AttackType } from '../../common/attackType';
-import { Character } from '../../common/character';
-import { SelectedTalent } from '../../common/selectedTalent';
-import { SpecialWeapon } from '../../common/specialWeapon';
+import type { AttackType } from '../../common/attackType';
+import type { Character } from '../../common/character';
+import type { SelectedTalent } from '../../common/selectedTalent';
+import type { SpecialWeapon } from '../../common/specialWeapon';
 import {
   AugmentedAbilitySelectionView,
   BoldOrCautiousDepartmentSelectionView,
@@ -13,7 +13,7 @@ import {
   WarriorsSpiritSelectionView,
   WisdomOfYearsSelectionView,
 } from '../../components/selectedTalentDescriptionView';
-import { ITalent } from '../../helpers/italent';
+import type { ITalent } from '../../helpers/italent';
 import {
   TALENT_NAME_AUGMENTED_ABILITY,
   TALENT_NAME_BOLD,

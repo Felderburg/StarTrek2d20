@@ -1,8 +1,6 @@
 import { connect } from 'react-redux';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { CharacterType } from '../common/characterType';
 import { Header } from './header';

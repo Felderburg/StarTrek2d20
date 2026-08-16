@@ -5,7 +5,7 @@ import { Header } from '../components/header';
 import { StatView } from '../components/StatView';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
-import { Station } from '../common/station';
+import type { Station } from '../common/station';
 import MissionProfiles from '../helpers/missionProfiles';
 import { ExportToPdfButton } from '../components/exportToPdfButton';
 import WeaponBlockView from './weaponBlockView';

@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
-import { Creature } from '../model/creature';
+import type { Creature } from '../model/creature';
 import WeaponBlockView from '../../view/weaponBlockView';
 import TalentsBlockView from '../../view/talentsBlockView';
 import CreatureStatBlock from './creatureStatBlock';

@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
 import CharacterCreationBreadcrumbs from '../../components/characterCreationBreadcrumbs';
@@ -27,8 +25,9 @@ import { ANY_NAMES, SpeciesHelper } from '../../helpers/species';
 import { IconButton } from '../../components/iconButton';
 import { ModalControl } from '../../components/modal';
 import { NpcAddEquipmentView } from '../view/npcAddEquipmentView';
-import { EquipmentModel, EquipmentType } from '../../helpers/equipment';
-import { PersonalWeaponType } from '../../helpers/weapons';
+import type { EquipmentModel } from '../../helpers/equipment';
+import { EquipmentType } from '../../helpers/equipment';
+import type { PersonalWeaponType } from '../../helpers/weapons';
 import { NpcAddWeaponView } from '../view/npcAddWeaponView';
 import D20IconButton from '../../solo/component/d20IconButton';
 import { NameGenerator } from '../nameGenerator';

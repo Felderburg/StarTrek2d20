@@ -9,7 +9,7 @@ import { Header } from '../../components/header';
 import { Dialog } from '../../components/dialog';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { starshipMapStateToProperties } from '../../solo/page/soloCharacterProperties';
-import { IStarshipProperties } from '../../starship/iStarshipProperties';
+import type { IStarshipProperties } from '../../starship/iStarshipProperties';
 import MissionPodSelection from '../../starship/view/missionPodSelection';
 import MissionPodReplacementSelection from '../../starship/view/missionPodReplacementSelection';
 import { setStarshipMissionPod } from '../../state/starshipActions';

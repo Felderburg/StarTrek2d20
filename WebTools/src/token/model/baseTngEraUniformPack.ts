@@ -2,8 +2,8 @@ import { Rank } from '../../helpers/ranks';
 import { BaseNeckProvider } from './baseNeckProvider';
 import RankIndicatorCatalog from './rankIndicatorCatalog';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
-import { UniformEra } from './uniformEra';
+import type { TokenModel } from './tokenModel';
+import type { UniformEra } from './uniformEra';
 import UniformVariantRestrictions from './uniformVariantRestrictions';
 
 const DominionWarCommbadge = `<g id="g6426">

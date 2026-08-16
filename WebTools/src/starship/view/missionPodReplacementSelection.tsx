@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Starship } from '../../common/starship';
-import { SelectedTalent } from '../../common/selectedTalent';
+import type { Starship } from '../../common/starship';
+import type { SelectedTalent } from '../../common/selectedTalent';
 import { RankedTalent } from '../../helpers/rankedTalent';
 import SingleTalentSelectionList from '../../components/singleTalentSelectionList';
 import { Header } from '../../components/header';

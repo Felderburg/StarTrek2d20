@@ -1,14 +1,14 @@
 import i18next from 'i18next';
+import type { Weapon } from '../helpers/weapons';
 import {
   InjuryType,
   PersonalWeaponType,
-  Weapon,
   WeaponType,
   WeaponTypeModel,
 } from '../helpers/weapons';
 import { makeKey } from '../common/translationKey';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
-import { IWeaponDiceProvider } from '../common/iWeaponDiceProvider';
+import type { IWeaponDiceProvider } from '../common/iWeaponDiceProvider';
 
 export class WeaponDescriber {
   readonly version: number;

@@ -1,5 +1,5 @@
 import { Stereotype } from '../../common/construct';
-import { IPageFactoryRegistry } from '../../pages/pageFactory';
+import type { IPageFactoryRegistry } from '../../pages/pageFactory';
 import { PageIdentity } from '../../pages/pageIdentity';
 import SoloConstructTypePage from './soloConstructTypePage';
 import SoloEraSelectionPage from './soloEraSelectionPage';

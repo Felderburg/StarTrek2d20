@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
-import { SelectedTalent } from '../common/selectedTalent';
-import { Starship } from '../common/starship';
+import type { SelectedTalent } from '../common/selectedTalent';
+import type { Starship } from '../common/starship';
 import { SelectedTalentDescriptionView } from './selectedTalentDescriptionView';
 import { useTranslation } from 'react-i18next';
 import {
@@ -20,10 +20,8 @@ import { StarshipDepartmentSelector } from './simpleDepartmentSelector';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import { SimpleSystemSelector } from './simpleSystemSelector';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
-import {
-  PropulsionSystemModel,
-  PropulsionSystemType,
-} from '../helpers/propulsionSystem';
+import type { PropulsionSystemType } from '../helpers/propulsionSystem';
+import { PropulsionSystemModel } from '../helpers/propulsionSystem';
 import { Weapon } from '../helpers/weapons';
 import AddWeaponView, { AddWeaponMode } from '../starship/view/addWeaponView';
 

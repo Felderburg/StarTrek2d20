@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
-import { CareerEventModel, CareerEventsHelper } from '../helpers/careerEvents';
+import type { CareerEventModel } from '../helpers/careerEvents';
+import { CareerEventsHelper } from '../helpers/careerEvents';
 import Button from 'react-bootstrap/Button';
 import InstructionText from '../components/instructionText';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
@@ -18,10 +19,8 @@ import { hasSource } from '../state/contextFunctions';
 import { Source, SourcesHelper } from '../helpers/sources';
 import ReactMarkdown from 'react-markdown';
 import store from '../state/store';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { makeKey } from '../common/translationKey';
 import rehypeExternalLinks from 'rehype-external-links';

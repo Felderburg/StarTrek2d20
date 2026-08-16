@@ -1,9 +1,9 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { Character } from '../common/character';
-import { Starship } from '../common/starship';
-import { Station } from '../common/station';
-import { Creature } from '../creature/model/creature';
+import type { Character } from '../common/character';
+import type { Starship } from '../common/starship';
+import type { Station } from '../common/station';
+import type { Creature } from '../creature/model/creature';
 import { marshaller } from '../helpers/marshaller';
 import { useTranslation } from 'react-i18next';
 

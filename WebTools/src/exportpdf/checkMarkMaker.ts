@@ -1,5 +1,5 @@
-import { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
-import { Column } from './column';
+import type { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
+import type { Column } from './column';
 import { SimpleColor } from '../common/colour';
 
 const stressPill2e =

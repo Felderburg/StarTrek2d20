@@ -3,13 +3,14 @@ import { Role } from './roles';
 import { Era } from './erasEnum';
 import { Source } from './sources';
 import { Track } from './trackEnum';
-import { AlliedMilitaryDetails, Character } from '../common/character';
+import type { AlliedMilitaryDetails, Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { AlliedMilitaryType } from './alliedMilitary';
 import store from '../state/store';
 import { makeKey } from '../common/translationKey';
 import i18next from 'i18next';
 import { isCadetRank, isEnlistedRank } from '../token/model/rankHelper';
+import type { ICharacterPrerequisite } from './characterPrerequisite';
 import {
   AllOfCharacterPrerequisite,
   AnyEraCharacterPrerequisite,
@@ -17,7 +18,6 @@ import {
   CareersCharacterPrerequisite,
   CharacterTypePrerequisite,
   EnlistedCharacterPrerequisite,
-  ICharacterPrerequisite,
   KlingonCharacterPrerequisite,
   NotCharacterPrerequisite,
   NotRolesCharacterPrerequisite,

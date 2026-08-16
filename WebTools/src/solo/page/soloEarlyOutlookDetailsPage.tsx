@@ -1,5 +1,5 @@
 import React from 'react';
-import { ICharacterProperties } from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
 import { connect } from 'react-redux';
 import { Header } from '../../components/header';
 import InstructionText from '../../components/instructionText';

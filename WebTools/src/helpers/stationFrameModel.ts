@@ -3,9 +3,10 @@ import { CharacterType } from '../common/characterType';
 import { SelectedTalent } from '../common/selectedTalent';
 import { MissionProfile } from './missionProfiles';
 import { StationFrame } from './stationFrame';
-import { TalentModel } from './talentModel';
+import type { TalentModel } from './talentModel';
 import { TalentsHelper } from './talents';
-import StarshipWeaponRegistry, { Weapon } from './weapons';
+import type { Weapon } from './weapons';
+import StarshipWeaponRegistry from './weapons';
 import { makeKey } from '../common/translationKey';
 import { System } from './systems';
 

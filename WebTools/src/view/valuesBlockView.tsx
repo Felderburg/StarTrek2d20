@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { Header } from '../components/header';
 
 const ValuesBlockView: React.FC<ICharacterPageProperties> = ({ character }) => {

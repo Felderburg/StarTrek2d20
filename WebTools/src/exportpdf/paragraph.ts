@@ -1,13 +1,14 @@
-import { PDFPage } from '@cantoo/pdf-lib';
-import { Column } from './column';
+import type { PDFPage } from '@cantoo/pdf-lib';
+import type { Column } from './column';
 import { SimpleColor } from '../common/colour';
 import { XYLocation } from '../common/xyLocation';
 import { FontSpecification } from './fontSpecification';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import { TextBlock } from './textBlock';
-import { FontLibrary, FontType } from './fontLibrary';
+import type { FontLibrary } from './fontLibrary';
+import { FontType } from './fontLibrary';
 import { textTokenizer } from './textTokenizer';
-import { FontOptions } from './fontOptions';
+import type { FontOptions } from './fontOptions';
 import { TextAlign } from './textAlign';
 import { PageArea } from './pageArea';
 

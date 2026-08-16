@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { LogEntry, LogValueEntry, ValueUseType } from '../../common/logEntry';
-import { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import Markdown from 'react-markdown';
 import { Button } from 'react-bootstrap';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';

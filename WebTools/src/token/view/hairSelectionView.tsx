@@ -6,7 +6,7 @@ import store from '../../state/store';
 import { setTokenHairColor, setTokenHairType } from '../../state/tokenActions';
 import ColorSelection from './colorSelection';
 import SpeciesRestrictions from '../model/speciesRestrictions';
-import { ITokenPageProperties } from './iTokenPageProperties';
+import type { ITokenPageProperties } from './iTokenPageProperties';
 
 const HairSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
   const { t } = useTranslation();

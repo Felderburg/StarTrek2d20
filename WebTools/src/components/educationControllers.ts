@@ -1,15 +1,16 @@
 import { Character } from '../common/character';
-import { Attribute } from '../helpers/attributes';
-import { Department } from '../helpers/department';
-import { ImprovementRuleType, TrackModel } from '../helpers/tracks';
+import type { Attribute } from '../helpers/attributes';
+import type { Department } from '../helpers/department';
+import type { TrackModel } from '../helpers/tracks';
+import { ImprovementRuleType } from '../helpers/tracks';
 import {
   StepContext,
   modifyCharacterAttribute,
   modifyCharacterDiscipline,
 } from '../state/characterActions';
 import store from '../state/store';
-import { IAttributeController } from './attributeController';
-import { IDisciplineController } from './disciplineListComponent';
+import type { IAttributeController } from './attributeController';
+import type { IDisciplineController } from './disciplineListComponent';
 
 export class EducationAttributeController implements IAttributeController {
   readonly character: Character;

@@ -1,5 +1,5 @@
-import { PDFPage } from '@cantoo/pdf-lib';
-import { Paragraph } from './paragraph';
+import type { PDFPage } from '@cantoo/pdf-lib';
+import type { Paragraph } from './paragraph';
 import { SimpleColor } from '../common/colour';
 
 const bulletPath =
