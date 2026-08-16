@@ -28,7 +28,7 @@ export const ScaleSelector: React.FC<IScaleSelectorProperties> = ({
           defaultValue={scale.toString()}
           onChange={(e) => {
             const value = e.target.value;
-            onChange(parseInt(value));
+            onChange(Number(value));
           }}
         />
       </div>

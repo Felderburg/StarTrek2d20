@@ -100,7 +100,7 @@ const CustomSpaceframeView: React.FC<IStarshipProperties> = ({ starship }) => {
   };
 
   const setServiceYear = (serviceYear: string) => {
-    const year = parseInt(serviceYear);
+    const year = Number(serviceYear);
     const systems = getCurrentSystemValuesSortedMaxToMin();
     const newTotalPoints = BuildPoints.systemPointsForType(
       starship.buildType,

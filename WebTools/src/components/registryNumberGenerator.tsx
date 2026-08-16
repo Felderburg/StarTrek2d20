@@ -81,7 +81,7 @@ class RegistryNumberGenerator {
     keys.sort();
 
     for (const key of keys) {
-      const year = parseInt(key);
+      const year = Number(key);
       if (serviceYear > year) {
         lower = this.serviceYearRegistryNumbers[key];
       }

@@ -234,7 +234,7 @@ const SpeciesSelection: React.FC<ISpeciesSelectionProperties> = ({
               title={buttonTitle}
               size="sm"
               onSelect={(eventKey) => {
-                setMode(parseInt(eventKey) as RandomMode);
+                setMode(Number(eventKey) as RandomMode);
               }}
               onClick={() => setRandomSpecies(determineRandomSpecies(mode))}
               className="me-3"

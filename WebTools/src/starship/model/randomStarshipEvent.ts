@@ -46,8 +46,8 @@ export const randomStarshipEvent = (
 ) => {
   const events = [];
   Object.keys(majorEvents)
-    .filter((year) => parseInt(year) <= currentYear)
-    .filter((year) => parseInt(year) >= spaceframe.serviceYear)
+    .filter((year) => Number(year) <= currentYear)
+    .filter((year) => Number(year) >= spaceframe.serviceYear)
     .forEach((year) => events.push(...majorEvents[year]));
 
   return events?.length
