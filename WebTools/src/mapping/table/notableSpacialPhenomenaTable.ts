@@ -66,6 +66,9 @@ export const notableSpatialPhenomenaTable = (
                 NotableSpatialPhenomenon.StellarFlareClass1
               ],
             ];
+            break;
+          default:
+            break;
         }
         break;
       case SpectralClass.F:
@@ -119,6 +122,9 @@ export const notableSpatialPhenomenaTable = (
                 NotableSpatialPhenomenon.RadiationStormClass3
               ],
             ];
+            break;
+          default:
+            break;
         }
         break;
       case SpectralClass.A:
@@ -172,6 +178,9 @@ export const notableSpatialPhenomenaTable = (
                 NotableSpatialPhenomenon.IonStormClass3
               ],
             ];
+            break;
+          default:
+            break;
         }
         break;
       case SpectralClass.B:
@@ -238,6 +247,9 @@ export const notableSpatialPhenomenaTable = (
                 NotableSpatialPhenomenon.IonStormClass4
               ],
             ];
+            break;
+          default:
+            break;
         }
         break;
       default:
@@ -294,6 +306,9 @@ export const notableSpatialPhenomenaTable = (
                 NotableSpatialPhenomenon.StellarFlareClass3
               ],
             ];
+            break;
+          default:
+            break;
         }
     }
   } else {
@@ -349,6 +364,8 @@ export const notableSpatialPhenomenaTable = (
                 NotableSpatialPhenomenon.GravittionalWavesClass3
               ],
             ];
+            break;
+          default:
             break;
         }
         break;
@@ -410,6 +427,8 @@ export const notableSpatialPhenomenaTable = (
               ],
             ];
             break;
+          default:
+            break;
         }
         break;
       case SpecialSectors.EmberSector:
@@ -463,6 +482,8 @@ export const notableSpatialPhenomenaTable = (
                 NotableSpatialPhenomenon.StellarFlareClass2
               ],
             ];
+            break;
+          default:
             break;
         }
         break;
@@ -518,6 +539,8 @@ export const notableSpatialPhenomenaTable = (
               ],
             ];
             break;
+          default:
+            break;
         }
         break;
       case SpecialSectors.GeneralExpanse:
@@ -572,6 +595,8 @@ export const notableSpatialPhenomenaTable = (
                 NotableSpatialPhenomenon.IonStormClass2
               ],
             ];
+            break;
+          default:
             break;
         }
         break;

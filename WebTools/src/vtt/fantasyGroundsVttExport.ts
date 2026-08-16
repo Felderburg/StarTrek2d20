@@ -583,6 +583,8 @@ export class FantasyGroupsVttExporter {
           return 'Notable Character';
         case NpcType.Major:
           return 'Major Character';
+        default:
+          break;
       }
     }
   }

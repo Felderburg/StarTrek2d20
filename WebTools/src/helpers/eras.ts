@@ -29,6 +29,8 @@ export const eraDefaultYear = (era: Era) => {
       return 2400;
     case Era.Discovery32:
       return 3190;
+    default:
+      break;
   }
 };
 

@@ -131,6 +131,8 @@ const ModifySupportingCharacterPage: React.FC<ICharacterPageProperties> = ({
           character.improvements?.filter((i) => i instanceof Promotion)
             ?.length ?? 0
         );
+      default:
+        break;
     }
   };
 

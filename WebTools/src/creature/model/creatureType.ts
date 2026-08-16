@@ -192,6 +192,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
           return CreatureType.Plant;
         case 20:
           return CreatureType.Energy;
+        default:
+          break;
       }
       break;
     case Habitat.Mountains:
@@ -223,6 +225,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
         case 19:
         case 20:
           return CreatureType.Plant;
+        default:
+          break;
       }
       break;
     case Habitat.Swamp:
@@ -255,6 +259,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
         case 19:
         case 20:
           return CreatureType.Fish;
+        default:
+          break;
       }
       break;
     case Habitat.Forest:
@@ -286,6 +292,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
         case 19:
         case 20:
           return CreatureType.Plant;
+        default:
+          break;
       }
       break;
     case Habitat.Ocean:
@@ -316,6 +324,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
           return CreatureType.Fish;
         case 20:
           return CreatureType.Energy;
+        default:
+          break;
       }
       break;
     case Habitat.UpperAtmosphere:
@@ -345,6 +355,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
           return CreatureType.Reptile;
         case 20:
           return CreatureType.Energy;
+        default:
+          break;
       }
       break;
     case Habitat.Space:
@@ -373,6 +385,8 @@ export const createRandomCreatureType = (habitat: Habitat) => {
         case 19:
         case 20:
           return CreatureType.Energy;
+        default:
+          break;
       }
       break;
     default:

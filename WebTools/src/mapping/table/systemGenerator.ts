@@ -529,6 +529,8 @@ class SystemGeneration {
       case 19:
       case 20:
         return AsteroidBeltZone.CarbonaceousOrIce;
+      default:
+        break;
     }
   };
 
@@ -1335,6 +1337,8 @@ class SystemGeneration {
           case 10:
             result.rotationPeriod = period;
             break;
+          default:
+            break;
         }
       } else {
         result.rotationPeriod = addNoiseToValue(period);
@@ -1402,6 +1406,8 @@ class SystemGeneration {
           90,
           addNoiseToValue(D20.roll() / 2 + subRoll),
         );
+        break;
+      default:
         break;
     }
 

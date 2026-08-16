@@ -48,6 +48,8 @@ export const generateRandomBasicCreatureTalent = () => {
         generateRandomBasicCreatureTalent(),
       );
       return result;
+    default:
+      break;
   }
 };
 
@@ -98,6 +100,8 @@ export const generateRandomCreatureDietTalent = (diet: DietType) => {
             generateRandomCreatureDietTalent(diet),
           );
           return result;
+        default:
+          break;
       }
       break;
     case DietType.Carnivore:
@@ -141,6 +145,8 @@ export const generateRandomCreatureDietTalent = (diet: DietType) => {
             generateRandomCreatureDietTalent(diet),
           );
           return result;
+        default:
+          break;
       }
       break;
 
@@ -187,6 +193,8 @@ export const generateRandomCreatureDietTalent = (diet: DietType) => {
             generateRandomCreatureDietTalent(diet),
           );
           return result;
+        default:
+          break;
       }
       break;
     default:
@@ -240,6 +248,8 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
             generateRandomCreatureTypeTalent(type),
           );
           return result;
+        default:
+          break;
       }
       break;
 
@@ -316,6 +326,8 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
             generateRandomCreatureTypeTalent(type),
           );
           return result;
+        default:
+          break;
       }
       break;
 
@@ -405,6 +417,8 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
             generateRandomCreatureTypeTalent(type),
           );
           return result;
+        default:
+          break;
       }
       break;
 
@@ -454,6 +468,8 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
             generateRandomCreatureTypeTalent(type),
           );
           return result;
+        default:
+          break;
       }
       break;
     case CreatureType.Plant:
@@ -510,6 +526,8 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
             generateRandomCreatureTypeTalent(type),
           );
           return result;
+        default:
+          break;
       }
       break;
     case CreatureType.Reptile:
@@ -586,6 +604,8 @@ export const generateRandomCreatureTypeTalent = (type: CreatureType) => {
             generateRandomCreatureTypeTalent(type),
           );
           return result;
+        default:
+          break;
       }
       break;
 

@@ -594,6 +594,8 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
         case Attribute.Reason:
           this.fillField(form, 'Reason', '' + attributes[a]);
           break;
+        default:
+          break;
       }
     });
   }
@@ -619,6 +621,8 @@ abstract class BasicShortCharacterSheet extends BasicSheet {
           break;
         case Department.Medicine:
           this.fillField(form, 'Medicine', '' + departments[d]);
+          break;
+        default:
           break;
       }
     });

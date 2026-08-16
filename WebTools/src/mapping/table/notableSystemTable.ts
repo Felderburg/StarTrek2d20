@@ -33,5 +33,7 @@ export const notableSystemTable: TableRoll<number> = () => {
       return 9;
     case 20:
       return 11;
+    default:
+      break;
   }
 };

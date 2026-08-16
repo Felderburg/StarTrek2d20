@@ -85,5 +85,7 @@ export const generateRandomCreatureSize = () => {
     case 19:
     case 20:
       return CreatureSize.Gigantic;
+    default:
+      break;
   }
 };

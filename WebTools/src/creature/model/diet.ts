@@ -83,6 +83,8 @@ export const createRandomDiet = () => {
       return DietType.Omnivore;
     case 20:
       return createRandomEsotericDietType();
+    default:
+      break;
   }
 };
 
@@ -111,5 +113,7 @@ export const createRandomEsotericDietType = () => {
     case 19:
     case 20:
       return DietType.PsychicEnergy;
+    default:
+      break;
   }
 };

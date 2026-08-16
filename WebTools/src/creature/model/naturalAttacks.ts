@@ -128,6 +128,8 @@ export class NaturalAttacksHelper {
           WeaponType.MELEE,
           1,
         );
+      default:
+        break;
     }
   }
 
@@ -211,6 +213,8 @@ export const generateRandomNaturalAttacks = (diet: DietType) => {
         case 19:
         case 20:
           return NaturalAttacks.SharpBeak;
+        default:
+          break;
       }
       break;
 
@@ -244,6 +248,8 @@ export const generateRandomNaturalAttacks = (diet: DietType) => {
         case 19:
         case 20:
           return NaturalAttacks.Bludgeoning;
+        default:
+          break;
       }
       break;
 
@@ -274,7 +280,11 @@ export const generateRandomNaturalAttacks = (diet: DietType) => {
         case 19:
         case 20:
           return NaturalAttacks.Bludgeoning;
+        default:
+          break;
       }
+      break;
+    default:
       break;
   }
 };

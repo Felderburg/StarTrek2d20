@@ -41,6 +41,8 @@ const SelectionPage = () => {
         navigate('/tools');
         break;
       }
+      default:
+        break;
     }
   };
 

@@ -228,7 +228,10 @@ export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
             redColour2e,
           );
           evaluationParagraph.write();
+          break;
         }
+        default:
+          break;
       }
 
       this.writeLine(

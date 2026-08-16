@@ -30,5 +30,7 @@ export const assetTypeRandomTable = (numberOfCharacters: number) => {
     case 19:
     case 20:
       return AssetTypes.instance.getTypes()[AssetType.Character];
+    default:
+      break;
   }
 };

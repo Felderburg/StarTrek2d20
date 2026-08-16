@@ -102,5 +102,7 @@ export const createRandomHabitat = () => {
       return Habitat.Swamp;
     case 20:
       return Habitat.UpperAtmosphere;
+    default:
+      break;
   }
 };

@@ -184,6 +184,8 @@ const atmosphereTableClassM = () => {
     case 20:
       result.density = AtmosphericDensityType.VeryDense;
       break;
+    default:
+      break;
   }
 
   result.contaiminants = atmosphericContaminantTable();
@@ -244,5 +246,7 @@ const atmosphericContaminantTable = () => {
         }
       });
       return result;
+    default:
+      break;
   }
 };
