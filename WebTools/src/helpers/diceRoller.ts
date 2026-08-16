@@ -71,6 +71,8 @@ export class Roller {
         case 6:
           result.special++;
           break;
+        default:
+          break;
       }
     }
 

@@ -672,6 +672,8 @@ const deriveForm = (creature: Creature) => {
           }
         }
         break;
+      default:
+        break;
     }
   }
   return result;

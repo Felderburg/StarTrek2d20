@@ -41,6 +41,8 @@ export const ModifyBreadcrumb = (props: IModifyBreadcrumbProperties) => {
       case ModificationType.Reputation:
         activePageTitle = 'reputationChange';
         break;
+      default:
+        break;
     }
   }
 

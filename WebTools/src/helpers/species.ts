@@ -4416,6 +4416,8 @@ class SpeciesRepository {
           }
           break;
         }
+        default:
+          break;
       }
 
       return species;
@@ -4629,6 +4631,8 @@ class SpeciesRepository {
         }
         break;
       }
+      default:
+        break;
     }
 
     return species;
@@ -4741,6 +4745,8 @@ class SpeciesRepository {
         }
         break;
       }
+      default:
+        break;
     }
 
     return species;

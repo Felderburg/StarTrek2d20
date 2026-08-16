@@ -104,6 +104,8 @@ const transporterInhibitorFeature = () => {
       return new TransporterInhibitingConditionsFeature(
         'Atmosphere contains hyperonic radition, lethal to humans, and rendering transporters and phasers inoperable',
       );
+    default:
+      break;
   }
 };
 

@@ -1458,6 +1458,8 @@ export class RanksHelper {
           Rank.CadetFourthClass,
         ];
         break;
+      default:
+        break;
     }
     return ranks.map((r) => this.getRank(r));
   }

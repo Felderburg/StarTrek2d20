@@ -58,6 +58,8 @@ const enterpriseSpeciesRandomTable = () => {
       return Species.XindiPrimate;
     case 20:
       return Species.XindiReptilian;
+    default:
+      break;
   }
 };
 
@@ -105,6 +107,8 @@ const originalSeriesSpeciesRandomTable = () => {
       return Species.Xahean;
     case 20:
       return Species.Zaranite;
+    default:
+      break;
   }
 };
 
@@ -152,5 +156,7 @@ const nextGenerationSpeciesRandomTable = () => {
       return Species.Tamarian;
     case 20:
       return Species.Zakdorn;
+    default:
+      break;
   }
 };

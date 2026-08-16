@@ -143,6 +143,8 @@ export const generateRandomLocomotionType = (
               12,
             ),
           ];
+        default:
+          break;
       }
       break;
     case CreatureType.Mammal:
@@ -197,6 +199,8 @@ export const generateRandomLocomotionType = (
               6,
             ),
           ];
+        default:
+          break;
       }
       break;
     case CreatureType.Bird:
@@ -251,6 +255,8 @@ export const generateRandomLocomotionType = (
               2,
             ),
           ];
+        default:
+          break;
       }
       break;
     case CreatureType.Reptile:
@@ -300,6 +306,8 @@ export const generateRandomLocomotionType = (
               6,
             ),
           ];
+        default:
+          break;
       }
       break;
     case CreatureType.Amphibian:
@@ -359,6 +367,8 @@ export const generateRandomLocomotionType = (
               6,
             ),
           ];
+        default:
+          break;
       }
       break;
     case CreatureType.Plant: {
@@ -403,6 +413,8 @@ export const generateRandomLocomotionType = (
               4,
             ),
           ];
+        default:
+          break;
       }
       break;
     default:

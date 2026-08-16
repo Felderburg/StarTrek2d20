@@ -108,5 +108,7 @@ export const starshipTalentMatrix = (roll: number) => {
       return TalentsHelper.getTalent('Versatile Tractor Beam');
     case 60:
       return TalentsHelper.getTalent('Wormhole Relay System');
+    default:
+      break;
   }
 };
