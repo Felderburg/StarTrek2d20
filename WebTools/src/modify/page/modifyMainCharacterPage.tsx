@@ -1,9 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import { ModifyBreadcrumb } from '../modifyBreadcrumb';
 import { Button, Carousel } from 'react-bootstrap';
 import { connect } from 'react-redux';
@@ -24,7 +22,7 @@ import { CharacterAdvancementType } from '../model/characterAdvancementType';
 import { saveCharacterToLocalStorage } from '../../state/savedConstructActions';
 import { CharacterAdvancementTypeView } from './characterAdvancementTypeView';
 import { CharacterLogEntryView } from './characterLogEntryView';
-import { LogEntry } from '../../common/logEntry';
+import type { LogEntry } from '../../common/logEntry';
 import { addCharacterLogEntry } from '../../state/characterActions';
 import { CheckBox } from '../../components/checkBox';
 import { Dialog } from '../../components/dialog';

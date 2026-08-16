@@ -1,6 +1,6 @@
 import { D20 } from '../../common/die';
 import { SelectedTalent } from '../../common/selectedTalent';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import { Department } from '../../helpers/department';
 import {
   TALENT_NAME_FLIGHT,

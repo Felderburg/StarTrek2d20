@@ -2,13 +2,8 @@ import i18next from 'i18next';
 import { assembleStarshipTalents, BasicGeneratedSheet } from './generatedsheet';
 import { makeKey } from '../common/translationKey';
 import { SheetTag } from './icharactersheet';
-import {
-  PDFDocument,
-  PDFFont,
-  PDFForm,
-  PDFPage,
-  PDFTextField,
-} from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFFont, PDFForm, PDFPage } from '@cantoo/pdf-lib';
+import { PDFTextField } from '@cantoo/pdf-lib';
 import { FontLibrary, FontType } from './fontLibrary';
 import { Starship } from '../common/starship';
 import { Column } from './column';
@@ -19,7 +14,7 @@ import {
   darkGreyColour2e,
   labelColourProvider,
 } from './colourProvider2e';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { XYLocation } from '../common/xyLocation';
 import { SimpleColor } from '../common/colour';
 import { WeaponDescriber } from './weaponDescriber';
@@ -31,8 +26,8 @@ import { Department } from '../helpers/department';
 import { staTextFieldAppearanceProvider } from '../helpers/pdfTextFieldAppearance';
 import { determineIdealFontWidth } from './fontWidthDeterminer';
 import { TextBlock } from './textBlock';
-import { CharacterType } from '../common/characterType';
-import { IWeaponDiceProvider } from '../common/iWeaponDiceProvider';
+import type { CharacterType } from '../common/characterType';
+import type { IWeaponDiceProvider } from '../common/iWeaponDiceProvider';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 
 export class Standard2eStarshipSheet extends BasicGeneratedSheet {

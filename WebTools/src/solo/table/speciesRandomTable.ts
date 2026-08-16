@@ -1,5 +1,5 @@
 import { D20 } from '../../common/die';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import { Species } from '../../helpers/speciesEnum';
 
 export const speciesRandomTable = (era: Era) => {

@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import { makeKey } from '../../common/translationKey';
 import { StatControl } from '../../starship/view/statControl';
 import { Department } from '../../helpers/department';

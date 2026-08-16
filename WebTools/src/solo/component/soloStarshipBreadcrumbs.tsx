@@ -3,7 +3,7 @@ import { starshipMapStateToProperties } from '../page/soloCharacterProperties';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
 import { navigateTo } from '../../common/navigator';
-import { Starship } from '../../common/starship';
+import type { Starship } from '../../common/starship';
 
 interface ISoloCharacterBreadcrumbProperties {
   pageIdentity: PageIdentity;

@@ -1,4 +1,4 @@
-import { LogEntry } from '../../common/logEntry';
+import type { LogEntry } from '../../common/logEntry';
 import { CheckBox } from '../../components/checkBox';
 
 interface ILogEntrySelectionView {

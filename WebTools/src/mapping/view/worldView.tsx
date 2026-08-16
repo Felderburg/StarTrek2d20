@@ -1,7 +1,8 @@
 import React from 'react';
-import { IPageProperties } from '../../pages/iPageProperties';
-import { GasGiantDetails, RingType, World } from '../table/world';
-import { StarSystem } from '../table/starSystem';
+import type { IPageProperties } from '../../pages/iPageProperties';
+import type { World } from '../table/world';
+import { GasGiantDetails, RingType } from '../table/world';
+import type { StarSystem } from '../table/starSystem';
 import { DataValueRow } from './dataValueRow';
 import { WorldClass } from '../table/worldClass';
 

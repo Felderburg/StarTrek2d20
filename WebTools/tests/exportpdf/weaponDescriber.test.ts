@@ -1,6 +1,7 @@
 import { test, expect, describe, jest } from '@jest/globals';
-import { IWeaponDiceProvider } from '../../src/common/iWeaponDiceProvider';
-import { PersonalWeapons, Weapon } from '../../src/helpers/weapons';
+import type { IWeaponDiceProvider } from '../../src/common/iWeaponDiceProvider';
+import type { Weapon } from '../../src/helpers/weapons';
+import { PersonalWeapons } from '../../src/helpers/weapons';
 import { WeaponDescriber } from '../../src/exportpdf/weaponDescriber';
 
 jest.mock('i18next', () => {

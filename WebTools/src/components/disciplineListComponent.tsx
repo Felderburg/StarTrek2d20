@@ -1,5 +1,6 @@
 import React from 'react';
-import { Department, DepartmentsHelper } from '../helpers/department';
+import type { Department } from '../helpers/department';
+import { DepartmentsHelper } from '../helpers/department';
 import DisciplineComponent from './disciplineComponent';
 
 export interface IDisciplineController {

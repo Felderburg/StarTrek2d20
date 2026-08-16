@@ -4,10 +4,10 @@ import { BodyType } from './bodyTypeEnum';
 import RankIndicatorCatalog from './rankIndicatorCatalog';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import UniformCatalog, { DefaultRed } from './uniformCatalog';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 
 const EnterpriseEraStarfleetLogo = `<g>
     <circle fill="none" cx="335.8212" cy="342.04849" r="52.947483" id="circle21426" style="stroke:#000000;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"/>

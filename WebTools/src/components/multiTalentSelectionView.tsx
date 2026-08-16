@@ -1,6 +1,6 @@
-import { Construct } from '../common/construct';
-import { SelectedTalent } from '../common/selectedTalent';
-import { RankedTalent } from '../helpers/rankedTalent';
+import type { Construct } from '../common/construct';
+import type { SelectedTalent } from '../common/selectedTalent';
+import type { RankedTalent } from '../helpers/rankedTalent';
 import { TalentSelectionRow } from './singleTalentSelectionList';
 
 interface IMultiTalentSelectionProperties {

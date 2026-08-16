@@ -1,9 +1,9 @@
 import React from 'react';
 import formatAsDelta from '../../common/formatAsDelta';
 import { Department } from '../../helpers/department';
-import { MissionPodModel } from '../../helpers/missionPods';
-import { MissionProfileModel } from '../../helpers/missionProfiles';
-import { SpaceframeModel } from '../../helpers/spaceframeModel';
+import type { MissionPodModel } from '../../helpers/missionPods';
+import type { MissionProfileModel } from '../../helpers/missionProfiles';
+import type { SpaceframeModel } from '../../helpers/spaceframeModel';
 import { System } from '../../helpers/systems';
 
 interface IStarshipStatsProperties {

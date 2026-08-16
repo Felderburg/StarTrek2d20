@@ -13,7 +13,7 @@ import {
 import SpeciesRestrictions from '../model/speciesRestrictions';
 import SpeciesOptionCatalog from '../model/speciesOptionCatalog';
 import SwatchButton from './swatchButton';
-import { ITokenPageProperties } from './iTokenPageProperties';
+import type { ITokenPageProperties } from './iTokenPageProperties';
 
 interface ISpeciesSelectionProperties extends ITokenPageProperties {
   isLoading: boolean;

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { Starship } from '../../common/starship';
+import type { Starship } from '../../common/starship';
 import { starshipMapStateToProperties } from './soloCharacterProperties';
 import SoloStarshipBreadcrumbs from '../component/soloStarshipBreadcrumbs';
 import { Header } from '../../components/header';

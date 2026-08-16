@@ -2,8 +2,8 @@ import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { CheckBox } from './checkBox';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
-import { Character } from '../common/character';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { Character } from '../common/character';
 
 interface ISimpleAttributeSelectorProperties extends ICharacterPageProperties {
   isChecked: (attribute: Attribute) => boolean;

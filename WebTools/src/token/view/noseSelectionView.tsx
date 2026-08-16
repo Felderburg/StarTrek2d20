@@ -8,7 +8,7 @@ import {
 } from '../../state/tokenActions';
 import NasoLabialFoldCatalog from '../model/nasoLabialFoldCatalog';
 import SpeciesRestrictions from '../model/speciesRestrictions';
-import { ITokenPageProperties } from './iTokenPageProperties';
+import type { ITokenPageProperties } from './iTokenPageProperties';
 import { useTranslation } from 'react-i18next';
 
 const NoseSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {

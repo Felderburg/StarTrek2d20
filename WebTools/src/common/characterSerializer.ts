@@ -1,9 +1,9 @@
-import { Character } from './character';
+import type { Character } from './character';
 import { SpeciesHelper } from '../helpers/species';
 import { EnvironmentsHelper, Environment } from '../helpers/environments';
-import { Species } from '../helpers/speciesEnum';
+import type { Species } from '../helpers/speciesEnum';
 import i18next from 'i18next';
-import { Construct } from './construct';
+import type { Construct } from './construct';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 
 export interface ICharacterData {

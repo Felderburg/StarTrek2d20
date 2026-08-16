@@ -1,6 +1,7 @@
 import { Department } from '../helpers/department';
-import { Era } from '../helpers/erasEnum';
-import MissionProfiles, { MissionProfile } from '../helpers/missionProfiles';
+import type { Era } from '../helpers/erasEnum';
+import type { MissionProfile } from '../helpers/missionProfiles';
+import MissionProfiles from '../helpers/missionProfiles';
 import PointAllocator from '../helpers/pointAllocator';
 import { StationFrame, StationFrameAppearance } from '../helpers/stationFrame';
 import { StationFrameModel } from '../helpers/stationFrameModel';
@@ -9,8 +10,10 @@ import {
   TALENT_NAME_ABLATIVE_ARMOUR,
   TALENT_NAME_IMPROVED_HULL_INTEGRITY,
 } from '../helpers/talents';
-import { Weapon, WeaponType } from '../helpers/weapons';
-import { CharacterType, CharacterTypeModel } from './characterType';
+import type { Weapon } from '../helpers/weapons';
+import { WeaponType } from '../helpers/weapons';
+import type { CharacterType } from './characterType';
+import { CharacterTypeModel } from './characterType';
 import { Construct, Stereotype } from './construct';
 import { SelectedTalent } from './selectedTalent';
 

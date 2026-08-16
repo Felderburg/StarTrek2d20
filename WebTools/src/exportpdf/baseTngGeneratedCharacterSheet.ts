@@ -1,9 +1,10 @@
-import { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
-import { Character } from '../common/character';
+import type { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
+import type { Character } from '../common/character';
 import { SimpleColor } from '../common/colour';
-import { Construct, Stereotype } from '../common/construct';
-import { Column } from './column';
-import { XYLocation } from '../common/xyLocation';
+import type { Construct } from '../common/construct';
+import { Stereotype } from '../common/construct';
+import type { Column } from './column';
+import type { XYLocation } from '../common/xyLocation';
 import i18next from 'i18next';
 import { getCurrentLanguageCode } from '../i18n/config';
 import { FontLibrary, FontType } from './fontLibrary';

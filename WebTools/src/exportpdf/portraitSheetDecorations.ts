@@ -1,8 +1,8 @@
-import { PDFFont, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFFont, PDFPage } from '@cantoo/pdf-lib';
 import { SimpleColor } from '../common/colour';
 import { TextBlock } from './textBlock';
 import { FontSpecification } from './fontSpecification';
-import { Column } from './column';
+import type { Column } from './column';
 
 export class PortraitSheetDecorations {
   static readonly sideBubblesOpen =

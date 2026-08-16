@@ -1,4 +1,4 @@
-import { Character } from '../../common/character';
+import type { Character } from '../../common/character';
 import { v4 as uuidv4 } from 'uuid';
 
 export class CharacterWithTracking {

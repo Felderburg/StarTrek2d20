@@ -1,6 +1,7 @@
 import React from 'react';
 import { PageIdentity } from '../pages/pageIdentity';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 
 interface IPageHeaderProperties extends WithTranslation {

@@ -1,5 +1,5 @@
-import { Character } from '../common/character';
-import { Department } from '../helpers/department';
+import type { Character } from '../common/character';
+import type { Department } from '../helpers/department';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import ValueInput from './valueInput';
 

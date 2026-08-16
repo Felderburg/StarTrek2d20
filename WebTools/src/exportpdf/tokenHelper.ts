@@ -1,5 +1,5 @@
 import { Canvg, presets } from 'canvg';
-import { TokenConfig } from '../common/character';
+import type { TokenConfig } from '../common/character';
 
 export class TokenHelper {
   private static async toPngBytes(data) {

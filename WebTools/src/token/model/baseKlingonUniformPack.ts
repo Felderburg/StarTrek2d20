@@ -1,7 +1,7 @@
 import { Rank } from '../../helpers/ranks';
 import { BaseNeckProvider } from './baseNeckProvider';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 
 const KlingonEmblem = `<g>
     <path d="m 373.45807,351.99135 a 41.83528,41.83528 0 1 1 -83.67056,0 41.83528,41.83528 0 1 1 83.67056,0 z" id="path3776" style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2.14577;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"/>

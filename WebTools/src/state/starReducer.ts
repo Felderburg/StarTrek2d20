@@ -1,5 +1,5 @@
 import { Sector } from '../mapping/table/sector';
-import { StarSystem } from '../mapping/table/starSystem';
+import type { StarSystem } from '../mapping/table/starSystem';
 import {
   SET_SECTOR,
   SET_SECTOR_NAME,

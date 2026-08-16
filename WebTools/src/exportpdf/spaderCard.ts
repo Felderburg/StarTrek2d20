@@ -1,7 +1,7 @@
-import { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import { Column } from './column';
-import { Asset } from '../asset/asset';
+import type { Asset } from '../asset/asset';
 import { SimpleColor } from '../common/colour';
 import { determineIdealFontWidth } from './fontWidthDeterminer';
 import { TextBlock } from './textBlock';

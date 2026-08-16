@@ -11,11 +11,11 @@ import { AssetType, AssetTypes } from '../assetType';
 import LcarsFrame from '../../components/lcarsFrame';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
-import { Asset } from '../asset';
+import type { Asset } from '../asset';
 import { marshaller } from '../../helpers/marshaller';
 import { AssetStatType } from '../assetStat';
 import { SpaceframeHelper } from '../../helpers/spaceframes';
-import { Spaceframe } from '../../helpers/spaceframeEnum';
+import type { Spaceframe } from '../../helpers/spaceframeEnum';
 import {
   characterAssets,
   resourceAssets,

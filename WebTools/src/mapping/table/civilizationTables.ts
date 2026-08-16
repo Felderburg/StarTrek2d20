@@ -1,5 +1,5 @@
 import { D20 } from '../../common/die';
-import { TableRoll } from '../../common/tableRoll';
+import type { TableRoll } from '../../common/tableRoll';
 
 export enum GovernmentType {
   Anarchy,

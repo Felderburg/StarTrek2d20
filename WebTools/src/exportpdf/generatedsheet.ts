@@ -1,11 +1,12 @@
-import { PDFDocument, PDFFont, PDFPage } from '@cantoo/pdf-lib';
-import { ICharacterSheet, SheetTag } from './icharactersheet';
+import type { PDFDocument, PDFFont, PDFPage } from '@cantoo/pdf-lib';
+import type { ICharacterSheet, SheetTag } from './icharactersheet';
 import fontkit from '@pdf-lib/fontkit';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { ReadableTalentModel } from './talentWriter';
-import { RoleModel, RolesHelper } from '../helpers/roles';
-import { SpeciesAbility } from '../helpers/speciesAbility';
-import { Character, SpeciesAbilityOptions } from '../common/character';
+import type { RoleModel } from '../helpers/roles';
+import { RolesHelper } from '../helpers/roles';
+import type { SpeciesAbility } from '../helpers/speciesAbility';
+import type { Character, SpeciesAbilityOptions } from '../common/character';
 import {
   TALENT_NAME_ADDITIONAL_PROPULSION_SYSTEM,
   TALENT_NAME_AUGMENTED_ABILITY,
@@ -24,12 +25,12 @@ import {
 } from '../helpers/talents';
 import { BorgImplants } from '../helpers/borgImplant';
 import { Starship } from '../common/starship';
-import { Column } from './column';
+import type { Column } from './column';
 import { SimpleColor } from '../common/colour';
 import { TextBlock } from './textBlock';
 import { FontSpecification } from './fontSpecification';
-import { CharacterType } from '../common/characterType';
-import { Station } from '../common/station';
+import type { CharacterType } from '../common/characterType';
+import type { Station } from '../common/station';
 
 export class SpeciesAbilityAndOptions {
   readonly ability: SpeciesAbility;

@@ -1,7 +1,8 @@
 import i18next from 'i18next';
-import { Career } from './careerEnum';
-import { Department, DepartmentsHelper } from './department';
-import { Species } from './speciesEnum';
+import type { Career } from './careerEnum';
+import type { Department } from './department';
+import { DepartmentsHelper } from './department';
+import type { Species } from './speciesEnum';
 import { makeKey } from '../common/translationKey';
 import { SpeciesHelper } from './species';
 import { CareersHelper } from './careers';

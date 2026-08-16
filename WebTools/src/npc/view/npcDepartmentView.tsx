@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { Department, DepartmentsHelper } from '../../helpers/department';
 import store from '../../state/store';

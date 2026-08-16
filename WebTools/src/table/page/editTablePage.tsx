@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { TableCollection, ValueResult } from '../model/table';
+import type { TableCollection } from '../model/table';
+import { ValueResult } from '../model/table';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import LcarsFrame from '../../components/lcarsFrame';
@@ -12,10 +13,8 @@ import {
   DropDownSelect,
 } from '../../components/dropDownInput';
 import { useState } from 'react';
-import {
-  EditableTableCollection,
-  EditableTableRow,
-} from '../model/editableTable';
+import type { EditableTableRow } from '../model/editableTable';
+import { EditableTableCollection } from '../model/editableTable';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 import Button from 'react-bootstrap/Button';
 import store from '../../state/store';

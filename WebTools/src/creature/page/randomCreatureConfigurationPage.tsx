@@ -9,14 +9,15 @@ import {
   DropDownElement,
   DropDownSelect,
 } from '../../components/dropDownInput';
-import { Habitat, HabitatHelper } from '../model/habitat';
+import type { Habitat } from '../model/habitat';
+import { HabitatHelper } from '../model/habitat';
 import { useEffect, useState } from 'react';
 import { creatureGenerator } from '../model/creatureGenerator';
 import { connect } from 'react-redux';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import { marshaller } from '../../helpers/marshaller';
+import type { CreatureType } from '../model/creatureType';
 import {
-  CreatureType,
   CreatureTypeHelper,
   habitatsByCreatureType,
 } from '../model/creatureType';

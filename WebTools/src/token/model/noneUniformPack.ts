@@ -1,6 +1,6 @@
-import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
-import { IUniformPack } from './uniformPack';
+import type Swatch from './swatch';
+import type { TokenModel } from './tokenModel';
+import type { IUniformPack } from './uniformPack';
 
 export class NoneUniformPack implements IUniformPack {
   getUniformSwatches(): Swatch[] {

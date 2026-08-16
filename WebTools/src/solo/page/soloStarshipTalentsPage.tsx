@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Starship } from '../../common/starship';
+import type { Starship } from '../../common/starship';
 import { starshipMapStateToProperties } from './soloCharacterProperties';
 import { connect } from 'react-redux';
 import ReactMarkdown from 'react-markdown';
@@ -8,7 +8,7 @@ import SoloStarshipBreadcrumbs from '../component/soloStarshipBreadcrumbs';
 import Button from 'react-bootstrap/Button';
 import replaceDiceWithArrowhead from '../../common/arrowhead';
 import { CheckBox } from '../../components/checkBox';
-import { TalentModel } from '../../helpers/talentModel';
+import type { TalentModel } from '../../helpers/talentModel';
 import { CenturyPrerequisite, TalentsHelper } from '../../helpers/talents';
 import { Source } from '../../helpers/sources';
 import { ServiceYearPrerequisite } from '../../helpers/prerequisite';

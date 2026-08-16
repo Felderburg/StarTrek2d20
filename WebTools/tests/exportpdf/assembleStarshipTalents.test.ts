@@ -6,7 +6,7 @@ import { Era } from '../../src/helpers/erasEnum';
 import { SelectedTalent } from '../../src/common/selectedTalent';
 import { TALENT_NAME_CUSTOM_TALENT } from '../../src/helpers/talents';
 import { assembleStarshipTalents } from '../../src/exportpdf/generatedsheet';
-import { ReadableTalentModel } from '../../src/exportpdf/talentWriter';
+import type { ReadableTalentModel } from '../../src/exportpdf/talentWriter';
 
 jest.mock('i18next', () => {
   const mockI18n: any = (key: string) => key;

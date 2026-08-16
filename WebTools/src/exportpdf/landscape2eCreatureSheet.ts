@@ -1,11 +1,11 @@
-import { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
 import { Column } from './column';
 import { SimpleColor } from '../common/colour';
 import { determineIdealFontWidth } from './fontWidthDeterminer';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { labelColourProvider, tealColour2e } from './colourProvider2e';
 import { LandscapeSheetDecorations } from './landscapeSheetDecorations';
-import { Creature } from '../creature/model/creature';
+import type { Creature } from '../creature/model/creature';
 import { Paragraph } from './paragraph';
 import { FontOptions } from './fontOptions';
 import { BaseNonForm2eSheet } from './generated2eBaseSheet';
@@ -18,11 +18,11 @@ import { labelWriter, VerticalAlignment } from './labelWriter';
 import { TextAlign } from './textAlign';
 import { FontSpecification } from './fontSpecification';
 import { ReadableTalentModel, TalentWriter } from './talentWriter';
-import { RoleModel } from '../helpers/roles';
+import type { RoleModel } from '../helpers/roles';
 import { bullet2EWriter } from './bullet2eWriter';
 import { PageArea } from './pageArea';
-import { CharacterType } from '../common/characterType';
-import { SpeciesAbilityAndOptions } from './generatedsheet';
+import type { CharacterType } from '../common/characterType';
+import type { SpeciesAbilityAndOptions } from './generatedsheet';
 
 export class Landscape2eCreatureSheet extends BaseNonForm2eSheet {
   static readonly column3 = new Column(

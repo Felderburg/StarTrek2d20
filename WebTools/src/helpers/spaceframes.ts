@@ -1,16 +1,16 @@
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Stereotype } from '../common/construct';
 import { SelectedTalent } from '../common/selectedTalent';
-import { Starship } from '../common/starship';
-import { Station } from '../common/station';
-import { Creature } from '../creature/model/creature';
+import type { Starship } from '../common/starship';
+import type { Station } from '../common/station';
+import type { Creature } from '../creature/model/creature';
 import { hasAnySource } from '../state/contextFunctions';
 import { Department } from './department';
 import { Era } from './erasEnum';
+import type { IConstructPrerequisite } from './prerequisite';
 import {
   AnyOfPrerequisite,
-  IConstructPrerequisite,
   ServiceYearPrerequisite,
   SourcePrerequisite,
   StarshipTypePrerequisite,

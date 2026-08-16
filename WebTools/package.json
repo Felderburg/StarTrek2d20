@@ -114,7 +114,8 @@
       "unicode-bom": 0,
       "semi": "error",
       "no-var": "error",
-      "prefer-const": "error"
+      "prefer-const": "error",
+      "@typescript-eslint/consistent-type-imports": "error"
     }
   },
   "browserslist": {

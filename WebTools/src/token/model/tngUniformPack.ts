@@ -3,10 +3,10 @@ import { BodyType } from './bodyTypeEnum';
 import { isFlagRank } from './rankHelper';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import UniformCatalog, { DefaultRed } from './uniformCatalog';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 
 const TngUniforms = {
   averageMale: `<g>

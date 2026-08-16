@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
-import { TrackModel, TracksHelper } from '../helpers/tracks';
+import type { TrackModel } from '../helpers/tracks';
+import { TracksHelper } from '../helpers/tracks';
 import Button from 'react-bootstrap/Button';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { Window } from '../common/window';
@@ -14,10 +15,8 @@ import { Source } from '../helpers/sources';
 import InstructionText from '../components/instructionText';
 import store from '../state/store';
 import { setCharacterEducation } from '../state/characterActions';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { Track } from '../helpers/trackEnum';
 

@@ -1,11 +1,11 @@
 import { Button } from 'react-bootstrap';
-import { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { Header } from '../../components/header';
 import Markdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
 import { CharacterAdvancementChoice } from '../model/characterAdvancementChoice';
 import { useEffect, useState } from 'react';
-import { Attribute } from '../../helpers/attributes';
+import type { Attribute } from '../../helpers/attributes';
 import {
   DropDownElement,
   DropDownSelect,
@@ -13,7 +13,7 @@ import {
 import { CharacterAdvancementType } from '../model/characterAdvancementType';
 import { makeKey } from '../../common/translationKey';
 import { SimpleAttributeSelector } from '../../components/simpleAttributeSelector';
-import { Department } from '../../helpers/department';
+import type { Department } from '../../helpers/department';
 import { SimpleDepartmentSelector } from '../../components/simpleDepartmentSelector';
 import store from '../../state/store';
 import { modifyCharacterAddAdvancement } from '../../state/characterActions';
@@ -48,17 +48,17 @@ import {
   WarriorsSpiritSelectionView,
   WisdomOfYearsSelectionView,
 } from '../../components/selectedTalentDescriptionView';
-import { SelectedTalent } from '../../common/selectedTalent';
+import type { SelectedTalent } from '../../common/selectedTalent';
 import { SimpleStringSelector } from './simpleStringSelector';
 import { Character } from '../../common/character';
-import { SpecialWeapon } from '../../common/specialWeapon';
+import type { SpecialWeapon } from '../../common/specialWeapon';
 import SimpleTalentSelectionList from '../../components/simpleTalentSelectionList';
 import { FocusSelectionView } from '../../components/focusSelectionView';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
-import { AttackType } from '../../common/attackType';
+import type { AttackType } from '../../common/attackType';
 import { TalentSelector } from './talentSelector';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
-import { LogEntry } from '../../common/logEntry';
+import type { LogEntry } from '../../common/logEntry';
 
 interface ICharacterAdvancementTypeViewProperties extends ICharacterProperties {
   logEntry?: LogEntry;

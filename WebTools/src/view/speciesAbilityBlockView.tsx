@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/header';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import ReactMarkdown from 'react-markdown';
 
 interface ISpeciesAbilityPageProperties {

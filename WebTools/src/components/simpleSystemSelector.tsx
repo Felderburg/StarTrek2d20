@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 import { allSystems, System } from '../helpers/systems';
 import { CheckBox } from './checkBox';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 
 interface ISimpleSystemSelectorProperties {
   starship: Starship;

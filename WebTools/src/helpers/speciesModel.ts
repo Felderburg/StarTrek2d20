@@ -1,11 +1,11 @@
 import i18next from 'i18next';
 import { makeKey } from '../common/translationKey';
-import { Attribute } from './attributes';
-import { Era } from './erasEnum';
-import { Source } from './sources';
-import { ISpecies, NameModel } from './species';
+import type { Attribute } from './attributes';
+import type { Era } from './erasEnum';
+import type { Source } from './sources';
+import type { ISpecies, NameModel } from './species';
 import { Species } from './speciesEnum';
-import { TalentModel } from './talentModel';
+import type { TalentModel } from './talentModel';
 
 export class BasicAttributeHandler {
   readonly attributes: Attribute[];

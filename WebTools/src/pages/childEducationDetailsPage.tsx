@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../components/header';
 import ValueInput from '../components/valueInput';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import InstructionText from '../components/instructionText';
@@ -19,16 +19,15 @@ import {
 } from '../state/characterActions';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
 import AttributeListComponent from '../components/attributeListComponent';
-import { IAttributeController } from '../components/attributeController';
+import type { IAttributeController } from '../components/attributeController';
 import { Character } from '../common/character';
-import { Attribute } from '../helpers/attributes';
+import type { Attribute } from '../helpers/attributes';
 import { Dialog } from '../components/dialog';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
-import DisciplineListComponent, {
-  IDisciplineController,
-} from '../components/disciplineListComponent';
-import { Department } from '../helpers/department';
+import type { IDisciplineController } from '../components/disciplineListComponent';
+import DisciplineListComponent from '../components/disciplineListComponent';
+import type { Department } from '../helpers/department';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { DisciplinesOrDepartments } from '../view/disciplinesOrDepartments';
 

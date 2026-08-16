@@ -1,12 +1,14 @@
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { CharacterSerializer } from '../common/characterSerializer';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
-import { Role, RoleModel, RolesHelper } from '../helpers/roles';
+import type { RoleModel } from '../helpers/roles';
+import { Role, RolesHelper } from '../helpers/roles';
 import { DepartmentsHelper, Department } from '../helpers/department';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import { TalentModel } from '../helpers/talentModel';
 import { TALENT_NAME_UNTAPPED_POTENTIAL } from '../helpers/talents';
+import type { Weapon } from '../helpers/weapons';
 import {
   DeliverySystem,
   EnergyLoadType,
@@ -14,7 +16,6 @@ import {
   PersonalWeapons,
   Quality,
   TorpedoLoadType,
-  Weapon,
   WeaponRange,
   WeaponType,
 } from '../helpers/weapons';
@@ -22,7 +23,7 @@ import { allSystems, System } from '../helpers/systems';
 import { Spaceframe } from '../helpers/spaceframeEnum';
 import { Species } from '../helpers/speciesEnum';
 import { EquipmentModel } from '../helpers/equipment';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { CareerEventsHelper } from '../helpers/careerEvents';
 import { CareersHelper } from '../helpers/careers';
 import { CharacterTypeModel } from '../common/characterType';
@@ -31,8 +32,8 @@ import { SpeciesAbility } from '../helpers/speciesAbility';
 import { markupToHtml } from './markupToHtml';
 import { FoundryPluginType } from './foundryPluginType';
 import { marshaller } from '../helpers/marshaller';
-import { SelectedTalent } from '../common/selectedTalent';
-import { Station } from '../common/station';
+import type { SelectedTalent } from '../common/selectedTalent';
+import type { Station } from '../common/station';
 import { TalentCategory } from '../helpers/talentCategory';
 import { ShipBuildType } from '../common/shipBuildType';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';

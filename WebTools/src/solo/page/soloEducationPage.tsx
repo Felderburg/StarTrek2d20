@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ICharacterProperties } from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
 import { connect } from 'react-redux';
 import { Header } from '../../components/header';
 import { Navigation } from '../../common/navigator';
@@ -7,7 +7,8 @@ import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
 import { CharacterType } from '../../common/characterType';
 import { makeKey } from '../../common/translationKey';
-import { TrackModel, TracksHelper } from '../../helpers/tracks';
+import type { TrackModel } from '../../helpers/tracks';
+import { TracksHelper } from '../../helpers/tracks';
 import Button from 'react-bootstrap/Button';
 import { Window } from '../../common/window';
 import { educationTrackRandomTable } from '../table/educationRandomTable';

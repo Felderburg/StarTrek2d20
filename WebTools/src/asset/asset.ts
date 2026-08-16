@@ -1,6 +1,6 @@
-import { Rank } from '../helpers/ranks';
-import { Spaceframe } from '../helpers/spaceframeEnum';
-import { AssetType } from './assetType';
+import type { Rank } from '../helpers/ranks';
+import type { Spaceframe } from '../helpers/spaceframeEnum';
+import type { AssetType } from './assetType';
 
 export class AssetAbility {
   readonly title: string;

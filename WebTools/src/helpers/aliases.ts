@@ -1,4 +1,4 @@
-import { Source } from './sources';
+import type { Source } from './sources';
 
 export class AliasModel {
   name: string;

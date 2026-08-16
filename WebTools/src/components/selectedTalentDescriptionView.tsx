@@ -3,17 +3,18 @@ import replaceDiceWithArrowhead from '../common/arrowhead';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import Markdown from 'react-markdown';
 import { Header } from './header';
-import { SelectedTalent } from '../common/selectedTalent';
+import type { SelectedTalent } from '../common/selectedTalent';
 import { SpecialWeapon } from '../common/specialWeapon';
 import { useTranslation } from 'react-i18next';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
 import { FocusSelectionView } from './focusSelectionView';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import ValueInput from './valueInput';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
-import { BorgImplants, BorgImplantType } from '../helpers/borgImplant';
+import type { BorgImplantType } from '../helpers/borgImplant';
+import { BorgImplants } from '../helpers/borgImplant';
 import { CheckBox } from './checkBox';
-import { Attribute } from '../helpers/attributes';
+import type { Attribute } from '../helpers/attributes';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
 import {
   TALENT_NAME_AUGMENTED_ABILITY,
@@ -22,9 +23,9 @@ import {
   TALENT_NAME_COLLABORATION,
 } from '../helpers/talents';
 import { SimpleDepartmentSelector } from './simpleDepartmentSelector';
-import { Department } from '../helpers/department';
+import type { Department } from '../helpers/department';
 import { AttackType } from '../common/attackType';
-import { TalentModel } from '../helpers/talentModel';
+import type { TalentModel } from '../helpers/talentModel';
 
 interface ISelectedTalentDescriptionProperties {
   version: number;

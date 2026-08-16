@@ -5,7 +5,7 @@ import { ReferenceHead, SimpleNeck } from './headCatalog';
 import SpeciesRestrictions from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 
 interface HairParts {
   BehindHeadAndBody?: string;

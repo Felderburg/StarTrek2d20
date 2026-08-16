@@ -6,7 +6,7 @@ import {
   Starship,
 } from '../../common/starship';
 import RegistryNumber from '../../components/registryNumberGenerator';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import { MissionPodHelper } from '../../helpers/missionPods';
 import MissionProfiles from '../../helpers/missionProfiles';
 import { SpaceframeHelper } from '../../helpers/spaceframes';

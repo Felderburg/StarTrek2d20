@@ -1,6 +1,7 @@
 import React from 'react';
 import { Attribute } from '../helpers/attributes';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
 
 interface IAttributeImprovementProperties extends WithTranslation {

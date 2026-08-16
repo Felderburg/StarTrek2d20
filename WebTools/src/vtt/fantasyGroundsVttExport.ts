@@ -1,4 +1,4 @@
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import convert from 'xml-js';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { DepartmentsHelper, Department } from '../helpers/department';
@@ -9,7 +9,8 @@ import { Rank, RanksHelper } from '../helpers/ranks';
 import { CharacterSerializer } from '../common/characterSerializer';
 import { TracksHelper } from '../helpers/tracks';
 import { CareerEventsHelper } from '../helpers/careerEvents';
-import { InjuryType, WeaponQuality, WeaponType } from '../helpers/weapons';
+import type { WeaponQuality } from '../helpers/weapons';
+import { InjuryType, WeaponType } from '../helpers/weapons';
 import { EarlyOutlook } from '../helpers/upbringings';
 import { Stereotype } from '../common/construct';
 import { NpcType } from '../npc/model/npcType';

@@ -1,6 +1,6 @@
 import { DominionWarUniformPack } from './dominionWarUniformPack';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 import { NoneUniformPack } from './noneUniformPack';
 import toast from 'react-hot-toast';
 

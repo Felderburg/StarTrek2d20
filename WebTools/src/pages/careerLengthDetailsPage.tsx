@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
-import { CareerModel, CareersHelper } from '../helpers/careers';
+import type { CareerModel } from '../helpers/careers';
+import { CareersHelper } from '../helpers/careers';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../components/dialog';
 import { TalentDescription } from '../components/talentDescription';
@@ -19,12 +20,10 @@ import {
   addCharacterTalent,
   setCharacterValue,
 } from '../state/characterActions';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
-import { SelectedTalent } from '../common/selectedTalent';
+import type { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isTalentSelectable } from '../helpers/talentSelection';
 import { hasSource, isSecondEdition } from '../state/contextFunctions';

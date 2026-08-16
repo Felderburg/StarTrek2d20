@@ -1,5 +1,5 @@
-import { Sector } from '../mapping/table/sector';
-import { StarSystem } from '../mapping/table/starSystem';
+import type { Sector } from '../mapping/table/sector';
+import type { StarSystem } from '../mapping/table/starSystem';
 
 export const SET_STAR = 'SET_STAR';
 export const SET_SECTOR = 'SET_SECTOR';

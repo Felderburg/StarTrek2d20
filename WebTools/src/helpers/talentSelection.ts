@@ -1,5 +1,5 @@
-import { Character } from '../common/character';
-import { TalentModel } from './talentModel';
+import type { Character } from '../common/character';
+import type { TalentModel } from './talentModel';
 import { isMultiSelectionTalent } from './isMultiSelectionTalent';
 
 /**

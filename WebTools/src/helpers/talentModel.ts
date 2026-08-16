@@ -1,12 +1,14 @@
 import i18next from 'i18next';
 import { AliasModel } from './aliases';
-import { ITalent } from './italent';
+import type { ITalent } from './italent';
+import type {
+  ICompositePrerequisite,
+  IConstructPrerequisite,
+} from './prerequisite';
 import {
   AllOfPrerequisite,
   AnyOfPrerequisite,
   AnySpeciesPrerequisite,
-  ICompositePrerequisite,
-  IConstructPrerequisite,
   ServiceYearPrerequisite,
   SourcePrerequisite,
   SpeciesPrerequisite,
@@ -15,10 +17,10 @@ import { Species } from './speciesEnum';
 import { TalentCategorization, TalentCategory } from './talentCategory';
 import { toCamelCase } from '../common/camelCaseUtil';
 import { Source, SourcesHelper } from './sources';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { Starship } from '../common/starship';
-import { Creature } from '../creature/model/creature';
-import { Station } from '../common/station';
+import type { Creature } from '../creature/model/creature';
+import type { Station } from '../common/station';
 import { NotSourcePrerequisite } from './spaceframes';
 import { MaxServiceYearPrerequisite } from './talents';
 

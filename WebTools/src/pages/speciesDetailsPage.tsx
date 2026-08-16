@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import { SpeciesHelper } from '../helpers/species';
-import { SpeciesModel } from '../helpers/speciesModel';
+import type { SpeciesModel } from '../helpers/speciesModel';
 import { TalentsHelper } from '../helpers/talents';
 import Button from 'react-bootstrap/Button';
 import { CheckBox } from '../components/checkBox';
@@ -26,13 +26,13 @@ import {
   addCharacterTalent,
   setCharacterSpecies,
 } from '../state/characterActions';
-import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import { SpeciesAttributeController } from '../components/speciesController';
 import { Stereotype } from '../common/construct';
 
 import ReactMarkdown from 'react-markdown';
 import { SpeciesAbilityView } from '../components/speciesAbilityView';
-import { SelectedTalent } from '../common/selectedTalent';
+import type { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isTalentSelectable } from '../helpers/talentSelection';
 import { useNavigate } from 'react-router';

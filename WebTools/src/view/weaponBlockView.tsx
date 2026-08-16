@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { Header } from '../components/header';
 import WeaponView from '../components/weaponView';
 

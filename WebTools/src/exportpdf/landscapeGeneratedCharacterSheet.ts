@@ -1,15 +1,15 @@
-import { PDFDocument, PDFForm, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFForm, PDFPage } from '@cantoo/pdf-lib';
 import { SimpleColor } from '../common/colour';
 import { XYLocation } from '../common/xyLocation';
 import { SheetTag } from './icharactersheet';
 import i18next from 'i18next';
-import { Character } from '../common/character';
-import { Construct } from '../common/construct';
+import type { Character } from '../common/character';
+import type { Construct } from '../common/construct';
 import { BaseTNGGeneratedCharacterSheet } from './baseTngGeneratedCharacterSheet';
 import { Column } from './column';
 import { TalentWriter } from './talentWriter';
 import { assembleWritableItems } from './generatedsheet';
-import { CharacterType } from '../common/characterType';
+import type { CharacterType } from '../common/characterType';
 
 export class LandscapeGeneratedCharacterSheet extends BaseTNGGeneratedCharacterSheet {
   static readonly talentsColumn = new Column(583, 45, 563 - 45, 757 - 583);

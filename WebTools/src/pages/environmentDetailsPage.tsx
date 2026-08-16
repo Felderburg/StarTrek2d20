@@ -1,14 +1,15 @@
 import React from 'react';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
 import { Environment, EnvironmentsHelper } from '../helpers/environments';
 import { SpeciesHelper } from '../helpers/species';
-import { Department } from '../helpers/department';
+import type { Department } from '../helpers/department';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../components/dialog';
 import { Species } from '../helpers/speciesEnum';
-import { Attribute, AttributesHelper } from '../helpers/attributes';
+import type { Attribute } from '../helpers/attributes';
+import { AttributesHelper } from '../helpers/attributes';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
@@ -20,18 +21,15 @@ import {
   setCharacterEnvironment,
   setCharacterValue,
 } from '../state/characterActions';
-import { IAttributeController } from '../components/attributeController';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { IAttributeController } from '../components/attributeController';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
 import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';
 import InstructionText from '../components/instructionText';
 import AttributeListComponent from '../components/attributeListComponent';
-import DisciplineListComponent, {
-  IDisciplineController,
-} from '../components/disciplineListComponent';
+import type { IDisciplineController } from '../components/disciplineListComponent';
+import DisciplineListComponent from '../components/disciplineListComponent';
 import SoloValueInput from '../solo/component/soloValueInput';
 import D20IconButton from '../solo/component/d20IconButton';
 import { connect } from 'react-redux';

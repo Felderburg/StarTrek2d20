@@ -1,8 +1,8 @@
-import { PDFDocument, RGB } from '@cantoo/pdf-lib';
+import type { PDFDocument, RGB } from '@cantoo/pdf-lib';
 import { CharacterType } from '../common/characterType';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 import { Spaceframe } from './spaceframeEnum';
-import { XYLocation } from '../common/xyLocation';
+import type { XYLocation } from '../common/xyLocation';
 import { SpaceframeVariant } from './spaceframeVariant';
 import { Station } from '../common/station';
 import { StationFrameAppearance } from './stationFrame';

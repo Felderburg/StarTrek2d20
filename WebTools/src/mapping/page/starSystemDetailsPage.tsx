@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { setStarSystemName } from '../../state/starActions';
 import store from '../../state/store';
-import { StarSystem } from '../table/starSystem';
+import type { StarSystem } from '../table/starSystem';
 import { EditableHeader } from '../view/editableHeader';
 import NotablePhenomenonView from '../view/notablePhenomenonView';
 import StarView from '../view/starView';

@@ -1,4 +1,4 @@
-import { Attribute } from '../helpers/attributes';
+import type { Attribute } from '../helpers/attributes';
 
 export interface IAttributeController {
   isShown(attribute: Attribute): boolean;

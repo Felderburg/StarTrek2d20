@@ -1,11 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
-import { CareerModel, CareersHelper } from '../helpers/careers';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
+import type { CareerModel } from '../helpers/careers';
+import { CareersHelper } from '../helpers/careers';
 import { setCharacterCareerLength } from '../state/characterActions';
 import store from '../state/store';
 import { Navigation } from '../common/navigator';

@@ -1,4 +1,4 @@
-import { PDFFont } from '@cantoo/pdf-lib';
+import type { PDFFont } from '@cantoo/pdf-lib';
 
 export enum FontType {
   Standard,

@@ -1,6 +1,6 @@
-import { Rank } from '../../helpers/ranks';
+import type { Rank } from '../../helpers/ranks';
 import { isCadetRank, isEnlistedRank, isFlagRank } from './rankHelper';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import { UniformEra } from './uniformEra';
 import UniformPackCollection from './uniformPackCollection';
 

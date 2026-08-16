@@ -1,29 +1,27 @@
-import { Character, CharacterRank } from '../common/character';
-import { CharacterType } from '../common/characterType';
-import { Age } from '../helpers/age';
-import { Attribute } from '../helpers/attributes';
-import { BorgImplantType } from '../helpers/borgImplant';
-import { Career } from '../helpers/careerEnum';
-import { Environment } from '../helpers/environments';
-import { Rank } from '../helpers/ranks';
-import { Role } from '../helpers/roles';
-import { Department } from '../helpers/department';
-import { Species } from '../helpers/speciesEnum';
-import { ITalent } from '../helpers/italent';
-import { Track } from '../helpers/trackEnum';
-import { EarlyOutlookModel } from '../helpers/upbringings';
-import { CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
-import { SelectedTalent } from '../common/selectedTalent';
-import { ModificationType } from '../modify/model/modificationType';
-import { EquipmentModel, EquipmentType } from '../helpers/equipment';
-import { PersonalWeaponType } from '../helpers/weapons';
-import { LogEntry } from '../common/logEntry';
-import {
-  SpeciesAbilityChoice,
-  SpeciesAbilityList,
-} from '../helpers/speciesAbility';
+import type { Character, CharacterRank } from '../common/character';
+import type { CharacterType } from '../common/characterType';
+import type { Age } from '../helpers/age';
+import type { Attribute } from '../helpers/attributes';
+import type { BorgImplantType } from '../helpers/borgImplant';
+import type { Career } from '../helpers/careerEnum';
+import type { Environment } from '../helpers/environments';
+import type { Rank } from '../helpers/ranks';
+import type { Role } from '../helpers/roles';
+import type { Department } from '../helpers/department';
+import type { Species } from '../helpers/speciesEnum';
+import type { ITalent } from '../helpers/italent';
+import type { Track } from '../helpers/trackEnum';
+import type { EarlyOutlookModel } from '../helpers/upbringings';
+import type { CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
+import type { SelectedTalent } from '../common/selectedTalent';
+import type { ModificationType } from '../modify/model/modificationType';
+import type { EquipmentModel, EquipmentType } from '../helpers/equipment';
+import type { PersonalWeaponType } from '../helpers/weapons';
+import type { LogEntry } from '../common/logEntry';
+import type { SpeciesAbilityChoice } from '../helpers/speciesAbility';
+import { SpeciesAbilityList } from '../helpers/speciesAbility';
 import { hasSource } from './contextFunctions';
-import {
+import type {
   FocusAssembly,
   TalentAssembly,
   ValueAssembly,

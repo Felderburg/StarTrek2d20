@@ -1,5 +1,5 @@
-import { PDFFont, PDFPage } from '@cantoo/pdf-lib';
-import { Column } from './column';
+import type { PDFFont, PDFPage } from '@cantoo/pdf-lib';
+import type { Column } from './column';
 import i18next from 'i18next';
 import { SimpleColor } from '../common/colour';
 import { TextAlign } from './textAlign';

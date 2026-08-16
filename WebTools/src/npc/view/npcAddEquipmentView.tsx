@@ -5,7 +5,7 @@ import {
   EquipmentModel,
   EquipmentType,
 } from '../../helpers/equipment';
-import { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { useState } from 'react';
 import { CheckBox } from '../../components/checkBox';
 import { Button } from 'react-bootstrap';

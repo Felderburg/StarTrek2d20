@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { Attribute, AttributesHelper } from '../../helpers/attributes';
 import store from '../../state/store';

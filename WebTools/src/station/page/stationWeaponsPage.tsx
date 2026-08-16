@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Button from 'react-bootstrap/Button';
 import { Header } from '../../components/header';
 import { ModalControl } from '../../components/modal';
-import { Weapon } from '../../helpers/weapons';
+import type { Weapon } from '../../helpers/weapons';
 import store from '../../state/store';
 import AddWeaponView, {
   AddWeaponMode,
@@ -11,10 +11,8 @@ import AddWeaponView, {
 import { IconButton } from '../../components/iconButton';
 import { useTranslation } from 'react-i18next';
 import { PageIdentity } from '../../pages/pageIdentity';
-import {
-  IStationPageProperties,
-  stationMapStateToProperties,
-} from '../iStationPageProperties';
+import type { IStationPageProperties } from '../iStationPageProperties';
+import { stationMapStateToProperties } from '../iStationPageProperties';
 import { useNavigate } from 'react-router';
 import LcarsFrame from '../../components/lcarsFrame';
 import {

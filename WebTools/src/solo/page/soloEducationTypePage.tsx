@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ICharacterProperties } from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
-import { CharacterType, CharacterTypeModel } from '../../common/characterType';
+import type { CharacterType } from '../../common/characterType';
+import { CharacterTypeModel } from '../../common/characterType';
 import store from '../../state/store';
 import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';

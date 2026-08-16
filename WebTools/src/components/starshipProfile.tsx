@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Era } from '../helpers/erasEnum';
+import type { Era } from '../helpers/erasEnum';
 import Eras from '../helpers/eras';
 import store from '../state/store';
 import { CharacterTypeModel } from '../common/characterType';
@@ -9,7 +9,7 @@ import { Stereotype } from '../common/construct';
 import { Source } from '../helpers/sources';
 import { System } from '../helpers/systems';
 import { Department } from '../helpers/department';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 
 interface IStarshipProfileProperties {
   era?: Era;

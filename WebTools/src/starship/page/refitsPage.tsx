@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { Dialog } from '../../components/dialog';
 import { Header } from '../../components/header';
 import RefitsView from '../../components/refitsView';
-import { System } from '../../helpers/systems';
+import type { System } from '../../helpers/systems';
 import {
   addStarshipRefit,
   deleteStarshipRefit,
@@ -16,7 +16,7 @@ import ShipBuildingBreadcrumbs from '../view/shipBuildingBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import ReactMarkdown from 'react-markdown';
 import { PageIdentity } from '../../pages/pageIdentity';
-import { IStarshipProperties } from '../iStarshipProperties';
+import type { IStarshipProperties } from '../iStarshipProperties';
 
 const RefitPage: React.FC<IStarshipProperties> = ({ starship }) => {
   const { t } = useTranslation();

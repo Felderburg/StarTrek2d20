@@ -1,5 +1,6 @@
 import React from 'react';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import Button from 'react-bootstrap/Button';
 import { marshaller } from '../helpers/marshaller';
 import { addGMTrackedCharacter } from '../state/gmTrackerActions';

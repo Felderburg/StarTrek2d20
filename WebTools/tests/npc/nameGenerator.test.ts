@@ -1,6 +1,6 @@
 import { test, expect, describe } from '@jest/globals';
 import { NameGenerator } from '../../src/npc/nameGenerator';
-import { ISpecies, NameModel } from '../../src/helpers/species';
+import type { ISpecies, NameModel } from '../../src/helpers/species';
 import { Species } from '../../src/helpers/speciesEnum';
 
 class MockSpecies implements ISpecies {

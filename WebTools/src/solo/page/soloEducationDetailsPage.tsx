@@ -1,8 +1,6 @@
 import { useTranslation } from 'react-i18next';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
+import { characterMapStateToProperties } from './soloCharacterProperties';
 import React from 'react';
 import { connect } from 'react-redux';
 import { Navigation } from '../../common/navigator';

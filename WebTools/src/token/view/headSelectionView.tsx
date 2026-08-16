@@ -7,7 +7,7 @@ import { setTokenHeadType, setTokenSkinColor } from '../../state/tokenActions';
 import HeadCatalog from '../model/headCatalog';
 import SwatchButton from './swatchButton';
 import { Species } from '../../helpers/speciesEnum';
-import { ITokenPageProperties } from './iTokenPageProperties';
+import type { ITokenPageProperties } from './iTokenPageProperties';
 
 interface IHeadSelectionViewProperties extends ITokenPageProperties {
   isLoading: boolean;

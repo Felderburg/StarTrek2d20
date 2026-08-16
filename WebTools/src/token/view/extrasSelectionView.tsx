@@ -10,7 +10,7 @@ import {
 import store from '../../state/store';
 import { setTokenExtrasTypes } from '../../state/tokenActions';
 import { Species } from '../../helpers/speciesEnum';
-import { ITokenPageProperties } from './iTokenPageProperties';
+import type { ITokenPageProperties } from './iTokenPageProperties';
 
 const ExtraSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
   const { t } = useTranslation();

@@ -1,5 +1,5 @@
 import Markdown from 'react-markdown';
-import { ICharacterPageProperties } from '../../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../../common/iCharacterPageProperties';
 import { Header } from '../../components/header';
 import { SimpleDepartmentSelector } from '../../components/simpleDepartmentSelector';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +8,7 @@ import { Button } from 'react-bootstrap';
 import { Dialog } from '../../components/dialog';
 import store from '../../state/store';
 import { modifyCharacterAddAdvancement } from '../../state/characterActions';
-import { Department } from '../../helpers/department';
+import type { Department } from '../../helpers/department';
 import { CharacterAdvancementChoice } from '../../modify/model/characterAdvancementChoice';
 
 interface IModifyDepartmentViewProperties extends ICharacterPageProperties {

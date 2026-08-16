@@ -1,31 +1,32 @@
-import { Character } from '../common/character';
-import { CharacterType, CharacterTypeModel } from '../common/characterType';
+import type { Character } from '../common/character';
+import type { CharacterType } from '../common/characterType';
+import { CharacterTypeModel } from '../common/characterType';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { DepartmentsHelper, Department } from '../helpers/department';
-import {
+import type {
   PDFCheckBox,
   PDFDocument,
   PDFFont,
   PDFForm,
   PDFPage,
-  PDFTextField,
-  rgb,
-  StandardFonts,
 } from '@cantoo/pdf-lib';
+import { PDFTextField, rgb, StandardFonts } from '@cantoo/pdf-lib';
 import fontkit from '@pdf-lib/fontkit';
 import { CharacterSerializer } from '../common/characterSerializer';
 import { Era } from '../helpers/erasEnum';
 import { System } from '../helpers/systems';
-import { Weapon } from '../helpers/weapons';
+import type { Weapon } from '../helpers/weapons';
 import { CareerEventsHelper } from '../helpers/careerEvents';
-import { Construct, Stereotype } from '../common/construct';
-import { Starship } from '../common/starship';
+import type { Construct } from '../common/construct';
+import { Stereotype } from '../common/construct';
+import type { Starship } from '../common/starship';
 import { staTextFieldAppearanceProvider } from '../helpers/pdfTextFieldAppearance';
 import { CareersHelper } from '../helpers/careers';
 import { TracksHelper } from '../helpers/tracks';
 import { localizedFocus } from '../components/focusHelper';
 import { XYLocation } from '../common/xyLocation';
-import { ICharacterSheet, SheetTag } from './icharactersheet';
+import type { ICharacterSheet } from './icharactersheet';
+import { SheetTag } from './icharactersheet';
 import { BasicGeneratedHalfPageCharacterSheet } from './generated2eHalfPageSheet';
 import { FontSpecification } from './fontSpecification';
 import { LandscapeGeneratedCharacterSheet } from './landscapeGeneratedCharacterSheet';
@@ -42,7 +43,7 @@ import { Landscape2eCharacterSheet } from './landscape2eCharacterSheet';
 import { Standard2eStarshipSheet } from './standard2eStarshipSheet';
 import { BasicGeneratedTentCardCharacterSheet } from './generated2eTentCard';
 import { Landscape2eCreatureSheet } from './landscape2eCreatureSheet';
-import { Station } from '../common/station';
+import type { Station } from '../common/station';
 import { Portrait2eStationSheet } from './portrait2eStationSheet';
 import { Implant } from '../helpers/borgImplant';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';

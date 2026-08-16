@@ -1,27 +1,28 @@
 import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { Department, DepartmentsHelper } from '../helpers/department';
-import { Career } from '../helpers/careerEnum';
-import { Environment } from '../helpers/environments';
+import type { Career } from '../helpers/careerEnum';
+import type { Environment } from '../helpers/environments';
 import { Species } from '../helpers/speciesEnum';
 import { Track } from '../helpers/trackEnum';
-import { EarlyOutlookModel } from '../helpers/upbringings';
-import { ITalent } from '../helpers/italent';
+import type { EarlyOutlookModel } from '../helpers/upbringings';
+import type { ITalent } from '../helpers/italent';
 import { CharacterType } from './characterType';
-import { AlliedMilitary, AlliedMilitaryType } from '../helpers/alliedMilitary';
-import { Government, Polity } from '../helpers/governments';
-import AgeHelper, { Age } from '../helpers/age';
-import {
-  Weapon,
-  PersonalWeapons,
-  PersonalWeaponType,
-} from '../helpers/weapons';
+import type { AlliedMilitary } from '../helpers/alliedMilitary';
+import { AlliedMilitaryType } from '../helpers/alliedMilitary';
+import type { Government } from '../helpers/governments';
+import { Polity } from '../helpers/governments';
+import type { Age } from '../helpers/age';
+import AgeHelper from '../helpers/age';
+import type { Weapon, PersonalWeaponType } from '../helpers/weapons';
+import { PersonalWeapons } from '../helpers/weapons';
 import { Construct, Stereotype } from './construct';
 import { SpeciesHelper } from '../helpers/species';
 import { Rank, RanksHelper } from '../helpers/ranks';
 import { makeKey } from './translationKey';
 import i18next from 'i18next';
 import { Role, RolesHelper } from '../helpers/roles';
-import { BorgImplantType, BorgImplants, Implant } from '../helpers/borgImplant';
+import type { Implant } from '../helpers/borgImplant';
+import { BorgImplantType, BorgImplants } from '../helpers/borgImplant';
 import { Specialization } from './specializationEnum';
 import {
   EquipmentHelper,
@@ -29,12 +30,12 @@ import {
   EquipmentType,
 } from '../helpers/equipment';
 import { Era } from '../helpers/erasEnum';
+import type { SpeciesAbility } from '../helpers/speciesAbility';
 import {
-  SpeciesAbility,
   SpeciesAbilityChoice,
   SpeciesAbilityList,
 } from '../helpers/speciesAbility';
-import { IWeaponDiceProvider } from './iWeaponDiceProvider';
+import type { IWeaponDiceProvider } from './iWeaponDiceProvider';
 import { NpcType } from '../npc/model/npcType';
 import { SelectedTalent } from './selectedTalent';
 import { CharacterAdvancementChoice } from '../modify/model/characterAdvancementChoice';
@@ -52,7 +53,7 @@ import {
   TalentAssembly,
   ValueAssembly,
 } from './characterAssembly';
-import { TokenModel } from '../token/model/tokenModel';
+import type { TokenModel } from '../token/model/tokenModel';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 
 export enum Division {

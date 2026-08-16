@@ -5,10 +5,10 @@ import { BodyType } from './bodyTypeEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import UniformCatalog from './uniformCatalog';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 
 const FerengiBody = `<g>
     <path fill="#7d7d7d" d="m 280.17599,237.63599 c -2.23066,-0.768 -13.076,8.57467 -16.29333,9.47867 -8.63733,2.42533 -19.36133,2.916 -28.24667,1.93067 -8.26133,-0.91734 -16.58,-8.36 -24.01733,-12.04 -9.58267,-4.74134 -18.85466,-7.48934 -29.30533,-9.76667 -8.76267,-1.90933 -20.73467,-7.94533 -29.48933,-5.22267 -4.62134,1.43734 -9.6,5.52267 -13.82,7.908 -8.41734,4.75734 -16.83334,9.51467 -25.25067,14.272 l -42.245332,23.068 c 0,0 -26.269332,11.628 -37.687999,44.568 -11.418666,32.93733 -20.201333,88.168 -20.201333,88.168 H 385.06132 c 0,0 -1.916,-45.32933 -6.29733,-70.244 -4.38133,-24.91466 -11.49867,-42.71066 -18.344,-49.55466 -6.844,-6.844 -35.592,-24.64 -43.80533,-28.74667 -8.21333,-4.10667 -36.436,-13.81867 -36.43867,-13.81867 z" id="path1" style="stroke-width:1.33333"/>

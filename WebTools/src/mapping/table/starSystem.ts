@@ -1,7 +1,8 @@
-import { NotableSpatialPhenomenonModel } from './notableSpacialPhenomena';
-import { SectorCoordinates } from './sector';
-import { Star } from './star';
-import { GasGiantDetails, World } from './world';
+import type { NotableSpatialPhenomenonModel } from './notableSpacialPhenomena';
+import type { SectorCoordinates } from './sector';
+import type { Star } from './star';
+import type { World } from './world';
+import { GasGiantDetails } from './world';
 
 export enum CompanionType {
   Close,

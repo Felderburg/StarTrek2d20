@@ -1,5 +1,5 @@
 import Markdown from 'react-markdown';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import { setCharacterSpeciesAbilityChoice } from '../state/characterActions';
 import store from '../state/store';
 import { CheckBox } from './checkBox';

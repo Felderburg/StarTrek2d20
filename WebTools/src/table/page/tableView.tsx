@@ -1,6 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import { Header } from '../../components/header';
-import { Table } from '../model/table';
+import type { Table } from '../model/table';
 
 interface ITableViewProperties {
   name?: string;

@@ -1,4 +1,5 @@
-import { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFPage } from '@cantoo/pdf-lib';
+import { PDFDocument } from '@cantoo/pdf-lib';
 import { BaseNonForm2eSheet } from './generated2eBaseSheet';
 import { SafetyEvaluationType } from '../safety/model/safetyEvaluation';
 import { PortraitSheetDecorations } from './portraitSheetDecorations';
@@ -8,7 +9,8 @@ import { Column } from './column';
 import { Paragraph } from './paragraph';
 import { FontOptions } from './fontOptions';
 import { bullet2EWriter } from './bullet2eWriter';
-import { SafetySection, SafetySections } from '../safety/model/safetySection';
+import type { SafetySection } from '../safety/model/safetySection';
+import { SafetySections } from '../safety/model/safetySection';
 import { FontSpecification } from './fontSpecification';
 import { FontType } from './fontLibrary';
 import { TextAlign } from './textAlign';

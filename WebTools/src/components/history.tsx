@@ -1,16 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { CharacterType } from '../common/characterType';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from '../pages/pageIdentity';
-import {
+import type {
   ShipBuildWorkflow,
   ShipBuildWorkflowStep,
 } from '../starship/model/shipBuildWorkflow';
 import { rewindToStarshipWorkflowStep } from '../state/starshipActions';
 import store from '../state/store';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { getPageTitle } from './pageHeader';
 
 export enum HistoryType {

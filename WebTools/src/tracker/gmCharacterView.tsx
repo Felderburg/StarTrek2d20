@@ -12,7 +12,7 @@ import {
   setGMTrackedCharacterStress,
 } from '../state/gmTrackerActions';
 import store from '../state/store';
-import { CharacterWithTracking } from './model/characterWithTracking';
+import type { CharacterWithTracking } from './model/characterWithTracking';
 import { IconButton } from '../components/iconButton';
 
 interface IGMCharacterViewProperties {

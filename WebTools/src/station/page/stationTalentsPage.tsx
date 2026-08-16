@@ -1,12 +1,10 @@
 import { useTranslation } from 'react-i18next';
-import {
-  IStationPageProperties,
-  stationMapStateToProperties,
-} from '../iStationPageProperties';
+import type { IStationPageProperties } from '../iStationPageProperties';
+import { stationMapStateToProperties } from '../iStationPageProperties';
 import { determineSelectedTalentExtraErrors } from '../../common/selectedTalentExtraCheck';
 import { Dialog } from '../../components/dialog';
 import { RankedTalent } from '../../helpers/rankedTalent';
-import { SelectedTalent } from '../../common/selectedTalent';
+import type { SelectedTalent } from '../../common/selectedTalent';
 import { isMultiSelectionTalent } from '../../helpers/isMultiSelectionTalent';
 import { TalentsHelper } from '../../helpers/talents';
 import { Header } from '../../components/header';

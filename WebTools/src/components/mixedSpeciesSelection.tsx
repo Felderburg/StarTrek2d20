@@ -5,10 +5,8 @@ import { AttributesHelper } from '../helpers/attributes';
 import { CheckBox } from './checkBox';
 import Button from 'react-bootstrap/Button';
 import { Species } from '../helpers/speciesEnum';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { Header } from './header';
 import { connect } from 'react-redux';
 import store from '../state/store';

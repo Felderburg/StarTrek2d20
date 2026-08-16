@@ -14,13 +14,18 @@ import {
   TALENT_NAME_SPIKED_TAIL,
   TALENT_NAME_WHIP_LIKE_TAIL,
 } from '../../helpers/talents';
-import { Weapon } from '../../helpers/weapons';
-import { CreatureSize, CreatureSizeModel } from './creatureSize';
-import { CreatureType, CreatureTypeModel } from './creatureType';
-import { DietTypeModel } from './diet';
-import { Habitat, HabitatModel } from './habitat';
-import { LocomotionModel, LocomotionType } from './locomotion';
-import { NaturalAttacks, NaturalAttacksHelper } from './naturalAttacks';
+import type { Weapon } from '../../helpers/weapons';
+import type { CreatureSizeModel } from './creatureSize';
+import { CreatureSize } from './creatureSize';
+import type { CreatureTypeModel } from './creatureType';
+import { CreatureType } from './creatureType';
+import type { DietTypeModel } from './diet';
+import type { HabitatModel } from './habitat';
+import { Habitat } from './habitat';
+import type { LocomotionModel } from './locomotion';
+import { LocomotionType } from './locomotion';
+import type { NaturalAttacks } from './naturalAttacks';
+import { NaturalAttacksHelper } from './naturalAttacks';
 
 export class Creature extends Construct {
   description?: string;

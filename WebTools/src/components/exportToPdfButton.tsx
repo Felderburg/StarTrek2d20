@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { Starship } from '../common/starship';
 import { Station } from '../common/station';
 import { Creature } from '../creature/model/creature';

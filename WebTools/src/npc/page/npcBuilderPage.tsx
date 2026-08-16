@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import LcarsFrame from '../../components/lcarsFrame';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import { PageIdentity } from '../../pages/pageIdentity';
 import { useTranslation } from 'react-i18next';
 import { Header } from '../../components/header';
@@ -18,7 +18,7 @@ import { isSecondEdition } from '../../state/contextFunctions';
 import store from '../../state/store';
 import { setCharacter } from '../../state/characterActions';
 import { CharacterType, CharacterTypeModel } from '../../common/characterType';
-import { Source } from '../../helpers/sources';
+import type { Source } from '../../helpers/sources';
 import { InputFieldAndLabel } from '../../common/inputFieldAndLabel';
 
 interface INpcConfigurationPageProperties {

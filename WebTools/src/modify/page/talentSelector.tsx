@@ -1,4 +1,4 @@
-import { SelectedTalent } from '../../common/selectedTalent';
+import type { SelectedTalent } from '../../common/selectedTalent';
 import { CheckBox } from '../../components/checkBox';
 
 interface ITalentSelectorProperties {

@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { Navigation } from '../common/navigator';
 import { PageIdentity } from './pageIdentity';
-import {
-  EarlyOutlook,
-  EarlyOutlookModel,
-  UpbringingsHelper,
-} from '../helpers/upbringings';
+import type { EarlyOutlook, EarlyOutlookModel } from '../helpers/upbringings';
+import { UpbringingsHelper } from '../helpers/upbringings';
 import Button from 'react-bootstrap/Button';
 import InstructionText from '../components/instructionText';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import store from '../state/store';
 import { setCharacterEarlyOutlook } from '../state/characterActions';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';

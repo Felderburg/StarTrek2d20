@@ -1,7 +1,7 @@
 import { NasoLabialFoldType } from './nasoLabialFoldTypeEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 
 const NimoyNasoLabial = `<g>
     <path style="fill:#000000;fill-opacity:0.2;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" d="m 297.11864,165.9322 c 0,0 -11.65326,14.36827 -15.08474,21.52543 -3.43148,7.15716 -3.72181,7.3278 -3.38983,10.33898 0.33198,3.01118 3.72881,6.27119 3.72881,6.27119 0,0 -1.55137,-4.21703 -1.56479,-6.46977 -0.0134,-2.25274 0.59107,-4.9969 3.66038,-11.1694 3.06931,-6.1725 12.65017,-20.49643 12.65017,-20.49643 z" id="path19851"/>

@@ -4,10 +4,8 @@ import MixedSpeciesSelection from '../components/mixedSpeciesSelection';
 import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcrumbs';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { Header } from '../components/header';
 import InstructionText from '../components/instructionText';
 import SpeciesSelection from '../components/speciesSelection';

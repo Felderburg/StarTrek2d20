@@ -1,4 +1,4 @@
-import { ITalent } from './italent';
+import type { ITalent } from './italent';
 import {
   TALENT_NAME_AUGMENTED_ABILITY,
   TALENT_NAME_BOLD,

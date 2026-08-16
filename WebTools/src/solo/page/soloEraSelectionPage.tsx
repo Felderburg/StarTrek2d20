@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import Eras, { EraModel, eraDefaultYear } from '../../helpers/eras';
+import type { EraModel } from '../../helpers/eras';
+import Eras, { eraDefaultYear } from '../../helpers/eras';
 import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
 import { navigateTo, Navigation } from '../../common/navigator';
@@ -18,7 +19,7 @@ import {
 } from '../../state/starshipActions';
 import { Starship } from '../../common/starship';
 import { Header } from '../../components/header';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 
 interface ISoloEraSelectionPage {
   stereotype: Stereotype;

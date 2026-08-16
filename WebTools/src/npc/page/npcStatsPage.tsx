@@ -1,10 +1,8 @@
 import { connect } from 'react-redux';
 import LcarsFrame from '../../components/lcarsFrame';
 import { PageIdentity } from '../../pages/pageIdentity';
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../../solo/page/soloCharacterProperties';
 import CharacterCreationBreadcrumbs from '../../components/characterCreationBreadcrumbs';
 import { useNavigate } from 'react-router';
 import { useEffect } from 'react';
@@ -36,7 +34,8 @@ import {
   DropDownSelect,
 } from '../../components/dropDownInput';
 import { CharacterType } from '../../common/characterType';
-import { Rank, RanksHelper } from '../../helpers/ranks';
+import type { Rank } from '../../helpers/ranks';
+import { RanksHelper } from '../../helpers/ranks';
 
 const NpcStatsPage: React.FC<ICharacterProperties> = ({ character }) => {
   const { t } = useTranslation();

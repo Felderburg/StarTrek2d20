@@ -1,4 +1,4 @@
-import { Character } from './character';
+import type { Character } from './character';
 
 export interface ICharacterPageProperties {
   character: Character;

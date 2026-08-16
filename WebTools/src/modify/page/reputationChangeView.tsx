@@ -1,6 +1,6 @@
 import Markdown from 'react-markdown';
 import { Header } from '../../components/header';
-import { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../../solo/page/soloCharacterProperties';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { Button } from 'react-bootstrap';

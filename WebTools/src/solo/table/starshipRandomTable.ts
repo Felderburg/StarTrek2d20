@@ -1,6 +1,6 @@
 import { D20 } from '../../common/die';
-import { TableRoll } from '../../common/tableRoll';
-import { Era } from '../../helpers/erasEnum';
+import type { TableRoll } from '../../common/tableRoll';
+import type { Era } from '../../helpers/erasEnum';
 import { Spaceframe } from '../../helpers/spaceframeEnum';
 
 export const spaceframeRandomTable = (era: Era) => {

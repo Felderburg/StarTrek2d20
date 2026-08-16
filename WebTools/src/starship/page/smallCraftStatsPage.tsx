@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { Dialog } from '../../components/dialog';
 import { Header } from '../../components/header';
-import { Department } from '../../helpers/department';
-import { allSystems, System } from '../../helpers/systems';
+import type { Department } from '../../helpers/department';
+import type { System } from '../../helpers/systems';
+import { allSystems } from '../../helpers/systems';
 import { BuildPoints } from '../model/buildPoints';
 import { BaseSimpleStarshipPage } from './simpleStarshipPage';
 import { withTranslation } from 'react-i18next';
@@ -20,7 +21,7 @@ import {
   DropDownElement,
   DropDownSelect,
 } from '../../components/dropDownInput';
-import { SpaceframeAppearance } from '../../helpers/spaceframeAppearance';
+import type { SpaceframeAppearance } from '../../helpers/spaceframeAppearance';
 
 class SmallCraftStatsPage extends BaseSimpleStarshipPage {
   renderHeader() {

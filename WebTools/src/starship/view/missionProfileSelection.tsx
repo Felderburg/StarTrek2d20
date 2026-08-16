@@ -1,15 +1,15 @@
 import React from 'react';
 
-import { Starship } from '../../common/starship';
+import type { Starship } from '../../common/starship';
 import { CheckBox } from '../../components/checkBox';
 import { Department } from '../../helpers/department';
-import MissionProfiles, {
-  MissionProfileModel,
-} from '../../helpers/missionProfiles';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { MissionProfileModel } from '../../helpers/missionProfiles';
+import MissionProfiles from '../../helpers/missionProfiles';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { StatView } from '../../components/StatView';
 import { SelectedTalent } from '../../common/selectedTalent';
-import { TalentModel } from '../../helpers/talentModel';
+import type { TalentModel } from '../../helpers/talentModel';
 
 interface IMissionProfileSelectionProperties extends WithTranslation {
   initialSelection?: MissionProfileModel;

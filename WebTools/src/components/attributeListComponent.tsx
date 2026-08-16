@@ -1,6 +1,7 @@
 import React from 'react';
-import { Attribute, AttributesHelper } from '../helpers/attributes';
-import { IAttributeController } from './attributeController';
+import type { Attribute } from '../helpers/attributes';
+import { AttributesHelper } from '../helpers/attributes';
+import type { IAttributeController } from './attributeController';
 import AttributeImprovement from './attributeImprovement';
 
 interface IAttributeListComponentsProperties {

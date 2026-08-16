@@ -1,8 +1,9 @@
 import React from 'react';
 import { Department } from '../helpers/department';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { makeKey } from '../common/translationKey';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 
 interface ISkillProperties extends WithTranslation {
   skill: Department;

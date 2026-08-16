@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router';
-import { Character, TokenConfig } from '../common/character';
+import type { Character, TokenConfig } from '../common/character';
 import store from '../state/store';
 import { createNewToken } from '../state/tokenActions';
 import { setCharacter } from '../state/characterActions';

@@ -1,7 +1,8 @@
 import React from 'react';
 import { CharacterType } from '../common/characterType';
 import { Navigation } from '../common/navigator';
-import { TrackModel, TracksHelper } from '../helpers/tracks';
+import type { TrackModel } from '../helpers/tracks';
+import { TracksHelper } from '../helpers/tracks';
 import { Department } from '../helpers/department';
 import Button from 'react-bootstrap/Button';
 import { Dialog } from '../components/dialog';
@@ -24,10 +25,8 @@ import {
   setCharacterFocus,
   setCharacterValue,
 } from '../state/characterActions';
-import {
-  ICharacterProperties,
-  characterMapStateToProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import {
   EducationAttributeController,
@@ -41,7 +40,7 @@ import { Stereotype } from '../common/construct';
 import D20IconButton from '../solo/component/d20IconButton';
 import { focusRandomTableWithHints } from '../solo/table/focusRandomTable';
 import { localizedFocus } from '../components/focusHelper';
-import { SelectedTalent } from '../common/selectedTalent';
+import type { SelectedTalent } from '../common/selectedTalent';
 import { determineSelectedTalentExtraErrors } from '../common/selectedTalentExtraCheck';
 import { isTalentSelectable } from '../helpers/talentSelection';
 import { RankedTalent } from '../helpers/rankedTalent';

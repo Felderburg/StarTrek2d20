@@ -1,5 +1,5 @@
 import { createRandomValue } from '../../common/randomValueGenerator';
-import { StarSystem } from './starSystem';
+import type { StarSystem } from './starSystem';
 
 export class Sector {
   public prefix: string;

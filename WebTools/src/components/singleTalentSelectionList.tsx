@@ -28,16 +28,16 @@ import {
   TALENT_NAME_WISDOM_OF_YEARS,
 } from '../helpers/talents';
 import replaceDiceWithArrowhead from '../common/arrowhead';
-import { ITalent } from '../helpers/italent';
+import type { ITalent } from '../helpers/italent';
 import { SelectedTalent } from '../common/selectedTalent';
 import { DropDownElement, DropDownSelect } from './dropDownInput';
 import { SpecialWeapon } from '../common/specialWeapon';
 import { FocusSelectionView } from './focusSelectionView';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { Department } from '../helpers/department';
 import ValueInput from './valueInput';
 import { randomUniqueValue } from '../solo/table/valueRandomTable';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { BorgImplants } from '../helpers/borgImplant';
 import { SimpleAttributeSelector } from './simpleAttributeSelector';
 import {
@@ -48,12 +48,11 @@ import { AttackType } from '../common/attackType';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import Markdown from 'react-markdown';
 import { t } from 'i18next';
-import { RankedTalent, rankedTalentNameCompare } from '../helpers/rankedTalent';
-import { Starship } from '../common/starship';
-import {
-  PropulsionSystemModel,
-  PropulsionSystemType,
-} from '../helpers/propulsionSystem';
+import type { RankedTalent } from '../helpers/rankedTalent';
+import { rankedTalentNameCompare } from '../helpers/rankedTalent';
+import type { Starship } from '../common/starship';
+import type { PropulsionSystemType } from '../helpers/propulsionSystem';
+import { PropulsionSystemModel } from '../helpers/propulsionSystem';
 import { Weapon } from '../helpers/weapons';
 import { Button } from 'react-bootstrap';
 import { ModalControl } from './modal';

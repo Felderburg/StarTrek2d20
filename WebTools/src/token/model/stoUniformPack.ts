@@ -7,10 +7,10 @@ import { isEnlistedRank, isFlagRank } from './rankHelper';
 import RankIndicatorCatalog from './rankIndicatorCatalog';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import UniformCatalog, { DefaultRed } from './uniformCatalog';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 import UniformVariantRestrictions from './uniformVariantRestrictions';
 import { UniformVariantType } from './uniformVariantTypeEnum';
 

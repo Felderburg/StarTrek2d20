@@ -1,8 +1,9 @@
 import React from 'react';
 import { Window } from '../../common/window';
 import Button from 'react-bootstrap/Button';
-import { StarSystem } from '../table/starSystem';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { StarSystem } from '../table/starSystem';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 interface ISystemViewProperties extends WithTranslation {
   system?: StarSystem;

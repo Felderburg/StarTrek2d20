@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
 
-import { CharacterType } from '../../common/characterType';
-import { Starship } from '../../common/starship';
+import type { CharacterType } from '../../common/characterType';
+import type { Starship } from '../../common/starship';
 import { CheckBox } from '../../components/checkBox';
 import { Department } from '../../helpers/department';
 import { Source } from '../../helpers/sources';
-import { SpaceframeModel } from '../../helpers/spaceframeModel';
+import type { SpaceframeModel } from '../../helpers/spaceframeModel';
 import { SpaceframeHelper } from '../../helpers/spaceframes';
 import { System } from '../../helpers/systems';
 import { hasAnySource } from '../../state/contextFunctions';
 import { useTranslation } from 'react-i18next';
 import { StatView } from '../../components/StatView';
-import {
-  SpaceframeVariant,
-  SpaceframeVariantModel,
-} from '../../helpers/spaceframeVariant';
+import type { SpaceframeVariant } from '../../helpers/spaceframeVariant';
+import { SpaceframeVariantModel } from '../../helpers/spaceframeVariant';
 import {
   DropDownElement,
   DropDownSelect,
 } from '../../components/dropDownInput';
-import { Spaceframe } from '../../helpers/spaceframeEnum';
+import type { Spaceframe } from '../../helpers/spaceframeEnum';
 
 interface ISpaceframeSelectionProperties {
   serviceYear: number;

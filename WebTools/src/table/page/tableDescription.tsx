@@ -1,5 +1,5 @@
 import ReactMarkdown from 'react-markdown';
-import { TableCollection } from '../model/table';
+import type { TableCollection } from '../model/table';
 
 interface ITableCollectionDescriptionProperties {
   tableCollection: TableCollection;

@@ -15,10 +15,11 @@ import CharacterCreationBreadcrumbs from '../components/characterCreationBreadcr
 import store from '../state/store';
 import { hasSource } from '../state/contextFunctions';
 import { Header } from '../components/header';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { setCharacter } from '../state/characterActions';
 import { DropDownElement, DropDownSelect } from '../components/dropDownInput';
-import { Era } from '../helpers/erasEnum';
+import type { Era } from '../helpers/erasEnum';
 import { connect } from 'react-redux';
 
 interface ICharacterTypeProperties extends WithTranslation {

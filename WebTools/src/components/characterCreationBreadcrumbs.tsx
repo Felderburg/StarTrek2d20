@@ -1,10 +1,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { PageIdentity } from '../pages/pageIdentity';
-import {
-  characterMapStateToProperties,
-  ICharacterProperties,
-} from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import { characterMapStateToProperties } from '../solo/page/soloCharacterProperties';
 import { connect } from 'react-redux';
 import { navigateTo } from '../common/navigator';
 import { CharacterType } from '../common/characterType';

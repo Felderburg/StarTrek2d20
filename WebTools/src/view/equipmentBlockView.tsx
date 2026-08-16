@@ -1,6 +1,6 @@
 import React from 'react';
 import { Implant } from '../helpers/borgImplant';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 
 const EquipmentBlockView: React.FC<ICharacterPageProperties> = ({
   character,

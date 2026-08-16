@@ -10,11 +10,11 @@ import { AttributesHelper } from '../../helpers/attributes';
 import { Department } from '../../helpers/department';
 import { Window } from '../../common/window';
 import InstructionText from '../../components/instructionText';
-import {
+import type {
   EarlyOutlook,
   EarlyOutlookModel,
-  UpbringingsHelper,
 } from '../../helpers/upbringings';
+import { UpbringingsHelper } from '../../helpers/upbringings';
 import {
   earlyOutlookAspirationRandomTable,
   earlyOutlookCasteRandomTable,
@@ -22,7 +22,7 @@ import {
 } from '../table/earlyOutlookRandomTable';
 import { setCharacterEarlyOutlook } from '../../state/characterActions';
 import store from '../../state/store';
-import { ICharacterProperties } from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
 import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
 
 enum EarlyOutlookTab {

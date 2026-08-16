@@ -1,5 +1,5 @@
 import React from 'react';
-import { Era } from '../helpers/erasEnum';
+import type { Era } from '../helpers/erasEnum';
 import Eras from '../helpers/eras';
 import { navigateTo, Navigation } from '../common/navigator';
 import { Window } from '../common/window';
@@ -7,7 +7,8 @@ import { PageIdentity } from './pageIdentity';
 import Button from 'react-bootstrap/Button';
 import store from '../state/store';
 import { setEra } from '../state/contextActions';
-import { withTranslation, WithTranslation } from 'react-i18next';
+import type { WithTranslation } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { Header } from '../components/header';
 
 class EraSelectionPage extends React.Component<WithTranslation, {}> {

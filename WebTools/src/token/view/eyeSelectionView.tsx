@@ -5,7 +5,7 @@ import ColorSelection from './colorSelection';
 import SpeciesRestrictions from '../model/speciesRestrictions';
 import EyeCatalog from '../model/eyeCatalog';
 import SwatchButton from './swatchButton';
-import { ITokenPageProperties } from './iTokenPageProperties';
+import type { ITokenPageProperties } from './iTokenPageProperties';
 import { useTranslation } from 'react-i18next';
 
 const EyeSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {

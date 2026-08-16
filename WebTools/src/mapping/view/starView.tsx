@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header } from '../../components/header';
-import { IPageProperties } from '../../pages/iPageProperties';
-import { Star } from '../table/star';
+import type { IPageProperties } from '../../pages/iPageProperties';
+import type { Star } from '../table/star';
 import { CompanionType } from '../table/starSystem';
 import { DataValueRow } from './dataValueRow';
 

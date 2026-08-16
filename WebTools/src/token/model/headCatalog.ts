@@ -5,7 +5,7 @@ import { SpeciesOption } from './speciesOptionEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
 import { svgTranslationHelper } from './svgTranslationHelper';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 
 const StandardHeads = {
   Head1: svgTranslationHelper(`<g>

@@ -21,9 +21,9 @@ import {
   TALENT_NAME_WARRIORS_SPIRIT,
   TALENT_NAME_WISDOM_OF_YEARS,
 } from '../helpers/talents';
-import { SelectedTalent } from './selectedTalent';
-import { Construct } from './construct';
-import { Starship } from './starship';
+import type { SelectedTalent } from './selectedTalent';
+import type { Construct } from './construct';
+import type { Starship } from './starship';
 import { Weapon, WeaponType } from '../helpers/weapons';
 
 export const determineSelectedTalentExtraErrors = (

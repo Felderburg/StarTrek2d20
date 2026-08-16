@@ -9,7 +9,7 @@ import { getNameAndShortRankOf } from '../helpers/ranks';
 import { StatView } from '../components/StatView';
 import store from '../state/store';
 import { setCharacter } from '../state/characterActions';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import CharacterStatBlock from './characterStatBlock';
 import ValuesBlockView from './valuesBlockView';
 import TalentsBlockView from './talentsBlockView';

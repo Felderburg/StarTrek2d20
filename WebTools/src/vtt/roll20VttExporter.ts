@@ -1,24 +1,21 @@
 import i18next from 'i18next';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { CharacterSerializer } from '../common/characterSerializer';
-import { Starship } from '../common/starship';
+import type { Starship } from '../common/starship';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
-import { BorgImplants, Implant } from '../helpers/borgImplant';
-import { EquipmentModel } from '../helpers/equipment';
+import type { Implant } from '../helpers/borgImplant';
+import { BorgImplants } from '../helpers/borgImplant';
+import type { EquipmentModel } from '../helpers/equipment';
 import { DepartmentsHelper, Department } from '../helpers/department';
 import { SpeciesHelper } from '../helpers/species';
 import { Species } from '../helpers/speciesEnum';
-import { TalentModel } from '../helpers/talentModel';
+import type { TalentModel } from '../helpers/talentModel';
 import { TalentsHelper } from '../helpers/talents';
-import {
-  Weapon,
-  WeaponRange,
-  WeaponType,
-  WeaponTypeModel,
-} from '../helpers/weapons';
+import type { Weapon } from '../helpers/weapons';
+import { WeaponRange, WeaponType, WeaponTypeModel } from '../helpers/weapons';
 import { System, allSystems } from '../helpers/systems';
 import { makeKey } from '../common/translationKey';
-import { SelectedTalent } from '../common/selectedTalent';
+import type { SelectedTalent } from '../common/selectedTalent';
 import { TalentCategory } from '../helpers/talentCategory';
 
 interface IRoll20Attribute {

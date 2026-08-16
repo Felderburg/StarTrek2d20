@@ -4,7 +4,7 @@ import { Species } from '../../helpers/speciesEnum';
 import { BodyType } from './bodyTypeEnum';
 import { DivisionColors } from './divisionColors';
 import { isCadetRank, isEnlistedRank, isFlagRank } from './rankHelper';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import { UniformEra } from './uniformEra';
 import { UniformVariantType } from './uniformVariantTypeEnum';
 

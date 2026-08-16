@@ -1,4 +1,4 @@
-import { Station } from '../common/station';
+import type { Station } from '../common/station';
 
 export interface IStationPageProperties {
   station: Station;

@@ -1,4 +1,4 @@
-import { ILocalStorageConstructRecord } from '../common/iLocalStorageConstructRecord';
+import type { ILocalStorageConstructRecord } from '../common/iLocalStorageConstructRecord';
 import { SAVE_CONSTRUCT_TO_LOCAL_STORAGE } from './savedConstructActions';
 
 const persistItems = (records: ILocalStorageConstructRecord[]) => {

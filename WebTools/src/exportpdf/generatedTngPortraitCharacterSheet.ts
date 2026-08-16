@@ -1,15 +1,15 @@
-import { PDFDocument, PDFForm, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFForm, PDFPage } from '@cantoo/pdf-lib';
 import { XYLocation } from '../common/xyLocation';
 import { BaseTNGGeneratedCharacterSheet } from './baseTngGeneratedCharacterSheet';
 import { SheetTag } from './icharactersheet';
-import { Character } from '../common/character';
+import type { Character } from '../common/character';
 import { SimpleColor } from '../common/colour';
 import i18next from 'i18next';
 import { CharacterSerializer } from '../common/characterSerializer';
 import { Column } from './column';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { isMultiSelectionTalent } from '../helpers/isMultiSelectionTalent';
-import { CharacterType } from '../common/characterType';
+import type { CharacterType } from '../common/characterType';
 
 export class GeneratedTngPortraitCharacterSheet extends BaseTNGGeneratedCharacterSheet {
   static readonly headingColumn = new Column(167.9, 12.9, 17.8, 401);

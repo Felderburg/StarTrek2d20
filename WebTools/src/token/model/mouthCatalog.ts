@@ -4,7 +4,7 @@ import { MouthType } from './mouthTypeEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 
 const StandardMouths = {
   Mouth1: `<g>

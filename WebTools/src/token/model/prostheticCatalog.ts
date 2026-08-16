@@ -12,7 +12,7 @@ import {
 import { SpeciesOption } from './speciesOptionEnum';
 import SpeciesRestrictions from './speciesRestrictions';
 import { svgTranslationHelper } from './svgTranslationHelper';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 
 const AndorianAntenna = {
   back: `<g>

@@ -1,12 +1,14 @@
-import { degrees, PDFDocument, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFPage } from '@cantoo/pdf-lib';
+import { degrees } from '@cantoo/pdf-lib';
 import { BaseNonForm2eSheet } from './generated2eBaseSheet';
 import { SheetTag } from './icharactersheet';
 import i18next from 'i18next';
 import { makeKey } from '../common/translationKey';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
 import { Department, DepartmentsHelper } from '../helpers/department';
-import { Character, Division } from '../common/character';
-import { Construct } from '../common/construct';
+import type { Character } from '../common/character';
+import { Division } from '../common/character';
+import type { Construct } from '../common/construct';
 import { Column } from './column';
 import { FontType } from './fontLibrary';
 import {

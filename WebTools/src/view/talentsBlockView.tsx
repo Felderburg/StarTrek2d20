@@ -20,18 +20,16 @@ import { Starship } from '../common/starship';
 import { Character } from '../common/character';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 import ReactMarkdown from 'react-markdown';
-import { Creature } from '../creature/model/creature';
+import type { Creature } from '../creature/model/creature';
 import { makeKey } from '../common/translationKey';
 import { Attribute } from '../helpers/attributes';
 import { Department } from '../helpers/department';
 import { System } from '../helpers/systems';
-import {
-  PropulsionSystemModel,
-  PropulsionSystemType,
-} from '../helpers/propulsionSystem';
+import type { PropulsionSystemType } from '../helpers/propulsionSystem';
+import { PropulsionSystemModel } from '../helpers/propulsionSystem';
 import { Weapon } from '../helpers/weapons';
 import { Station } from '../common/station';
-import { TalentModel } from '../helpers/talentModel';
+import type { TalentModel } from '../helpers/talentModel';
 
 interface IConstructPageProperties {
   construct: Character | Starship | Creature | Station;

@@ -1,12 +1,12 @@
-import { PDFDocument, PDFFont, PDFForm, PDFPage } from '@cantoo/pdf-lib';
+import type { PDFDocument, PDFFont, PDFForm, PDFPage } from '@cantoo/pdf-lib';
 import { BasicGeneratedSheet } from './generatedsheet';
-import { Construct } from '../common/construct';
+import type { Construct } from '../common/construct';
 import { Character } from '../common/character';
 import { CharacterSerializer } from '../common/characterSerializer';
 import { DepartmentsHelper, Department } from '../helpers/department';
 import { CareerEventsHelper } from '../helpers/careerEvents';
 import { Attribute, AttributesHelper } from '../helpers/attributes';
-import { Column } from './column';
+import type { Column } from './column';
 import i18next from 'i18next';
 import { SimpleColor } from '../common/colour';
 import { TextAlign } from './textAlign';

@@ -8,7 +8,7 @@ import { SpeciesHelper } from '../../helpers/species';
 import InstructionText from '../../components/instructionText';
 import AttributeListComponent from '../../components/attributeListComponent';
 import Button from 'react-bootstrap/Button';
-import { ICharacterProperties } from './soloCharacterProperties';
+import type { ICharacterProperties } from './soloCharacterProperties';
 import { Dialog } from '../../components/dialog';
 import SoloCharacterBreadcrumbs from '../component/soloCharacterBreadcrumbs';
 import { SpeciesAttributeController } from '../../components/speciesController';

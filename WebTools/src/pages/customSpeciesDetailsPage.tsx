@@ -21,14 +21,14 @@ import SingleTalentSelectionList from '../components/singleTalentSelectionList';
 import { useTranslation } from 'react-i18next';
 import { InputFieldAndLabel } from '../common/inputFieldAndLabel';
 import { Stereotype } from '../common/construct';
-import { ICharacterProperties } from '../solo/page/soloCharacterProperties';
+import type { ICharacterProperties } from '../solo/page/soloCharacterProperties';
 import {
   addCharacterTalent,
   setCharacterSpecies,
   StepContext,
 } from '../state/characterActions';
 import { CustomSpeciesAttributeController } from '../components/speciesController';
-import { SelectedTalent } from '../common/selectedTalent';
+import type { SelectedTalent } from '../common/selectedTalent';
 import { RankedTalent } from '../helpers/rankedTalent';
 import { isTalentSelectable } from '../helpers/talentSelection';
 import SoloCharacterBreadcrumbs from '../solo/component/soloCharacterBreadcrumbs';

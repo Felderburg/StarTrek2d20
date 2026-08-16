@@ -4,8 +4,8 @@ import { Navigation } from '../../common/navigator';
 import { Header } from '../../components/header';
 import { useTranslation } from 'react-i18next';
 import { connect } from 'react-redux';
-import { IStarshipProperties } from '../iStarshipProperties';
-import { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
+import type { IStarshipProperties } from '../iStarshipProperties';
+import type { ShipBuildWorkflow } from '../model/shipBuildWorkflow';
 import store from '../../state/store';
 import {
   nextStarshipWorkflowStep,

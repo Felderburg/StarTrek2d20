@@ -15,7 +15,7 @@ import ProstheticCatalog, {
 } from './model/prostheticCatalog';
 import RankIndicatorCatalog from './model/rankIndicatorCatalog';
 import SpeciesRestrictions from './model/speciesRestrictions';
-import { TokenModel } from './model/tokenModel';
+import type { TokenModel } from './model/tokenModel';
 import UniformCatalog from './model/uniformCatalog';
 import { UniformEra } from './model/uniformEra';
 import UniformPackCollection from './model/uniformPackCollection';

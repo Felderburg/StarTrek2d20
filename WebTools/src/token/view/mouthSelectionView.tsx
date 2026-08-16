@@ -12,7 +12,7 @@ import ColorSelection from './colorSelection';
 import SpeciesRestrictions from '../model/speciesRestrictions';
 import FacialHairCatalog from '../model/facialHairCatalog';
 import { FacialHairCategory, FacialHairType } from '../model/facialHairEnum';
-import { ITokenPageProperties } from './iTokenPageProperties';
+import type { ITokenPageProperties } from './iTokenPageProperties';
 
 const MouthSelectionView: React.FC<ITokenPageProperties> = ({ token }) => {
   const { t } = useTranslation();

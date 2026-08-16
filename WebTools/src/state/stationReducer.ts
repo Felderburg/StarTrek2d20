@@ -1,7 +1,7 @@
+import type { Station } from '../common/station';
 import {
   CustomStationSpaceframeStep,
   StandardStationSpaceframeStep,
-  Station,
   StationMissionProfileStep,
 } from '../common/station';
 import { StationFrame } from '../helpers/stationFrame';

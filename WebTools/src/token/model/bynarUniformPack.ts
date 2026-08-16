@@ -4,10 +4,10 @@ import { BodyType } from './bodyTypeEnum';
 import RankIndicatorCatalog from './rankIndicatorCatalog';
 import SpeciesRestrictions from './speciesRestrictions';
 import Swatch from './swatch';
-import { TokenModel } from './tokenModel';
+import type { TokenModel } from './tokenModel';
 import UniformCatalog from './uniformCatalog';
 import { UniformEra } from './uniformEra';
-import { IUniformPack } from './uniformPack';
+import type { IUniformPack } from './uniformPack';
 
 const BynarBody = `<g>
     <path id="path76" style="stroke-width:1.33333;fill:#645c6c;fill-opacity:1" d="m 223.99066,399.99999 c 0,0 1.89315,-11.63712 0.0259,-27.48539 -3.00458,-25.50154 -11.6055,-62.49814 -22.43934,-83.8961 -17.56667,-34.696 -23.2047,-48.32722 -35.06203,-55.79389 l -46.70791,19.78843 -43.297958,23.068 c 0,0 -13.637754,5.57537 -25.056421,38.51537 -11.418666,32.94 -10.202666,85.54042 -10.202666,85.54042 z m 161.06933,0 c 0,0 -1.916,-45.32933 -6.29733,-70.244 -4.38,-24.91466 -14.66204,-37.31432 -21.50737,-44.15832 -6.844,-6.844 -33.41569,-19.06559 -41.62902,-23.17226 -8.21334,-4.10667 -36.80274,-12.71837 -36.80274,-12.71837 0,0 16.76365,51.85029 18.40632,78.68095 1.64267,26.83067 6.07515,54.17067 6.07515,71.61333 h 81.75499 z"/>

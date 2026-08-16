@@ -3,7 +3,7 @@ import { Header } from '../components/header';
 import { useTranslation } from 'react-i18next';
 import { getNameAndShortRankOf } from '../helpers/ranks';
 import CharacterStatBlock from './characterStatBlock';
-import { ICharacterPageProperties } from '../common/iCharacterPageProperties';
+import type { ICharacterPageProperties } from '../common/iCharacterPageProperties';
 import ValuesBlockView from './valuesBlockView';
 import StressOrShieldsView from './stressOrShieldsView';
 import FocusBlockView from './focusBlockView';

@@ -1,5 +1,5 @@
 import React from 'react';
-import { IPageProperties } from '../../pages/iPageProperties';
+import type { IPageProperties } from '../../pages/iPageProperties';
 
 class LcarsDecorationRightView extends React.Component<IPageProperties, {}> {
   render() {

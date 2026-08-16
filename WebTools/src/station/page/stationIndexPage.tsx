@@ -11,7 +11,7 @@ import store from '../../state/store';
 import { createStation } from '../../state/stationActions';
 import { CharacterType, CharacterTypeModel } from '../../common/characterType';
 import { connect } from 'react-redux';
-import { Era } from '../../helpers/erasEnum';
+import type { Era } from '../../helpers/erasEnum';
 import {
   DropDownElement,
   DropDownSelect,

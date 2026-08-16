@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRandomValue } from '../common/randomValueGenerator';
-import { PageIdentity } from '../pages/pageIdentity';
+import type { PageIdentity } from '../pages/pageIdentity';
 
 interface IRandomLcarsReadoutProperties {
   page: PageIdentity;

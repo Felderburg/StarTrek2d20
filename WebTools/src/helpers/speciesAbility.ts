@@ -2,7 +2,7 @@ import i18next from 'i18next';
 import { Species } from './speciesEnum';
 import { makeKey } from '../common/translationKey';
 import { Source } from './sources';
-import { ITalent } from './italent';
+import type { ITalent } from './italent';
 
 export enum SpeciesAbilityChoice {
   Choice1,
