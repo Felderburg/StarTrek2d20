@@ -229,7 +229,7 @@ export abstract class BaseFormFillingSheet extends BasicGeneratedSheet {
     return {};
   }
 
-  getStatLabelColour(key: String): SimpleColor {
+  getStatLabelColour(key: string): SimpleColor {
     return SimpleColor.from('#ffffff');
   }
 

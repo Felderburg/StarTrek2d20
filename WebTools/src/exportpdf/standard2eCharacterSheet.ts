@@ -339,7 +339,7 @@ export class Standard2eCharacterSheet extends BaseFormFillingSheet {
     this.writePersonalLogTitle(page);
   }
 
-  getStatLabelColour(key: String): SimpleColor {
+  getStatLabelColour(key: string): SimpleColor {
     switch (key) {
       case 'Construct.discipline.command':
       case 'Construct.discipline.conn':

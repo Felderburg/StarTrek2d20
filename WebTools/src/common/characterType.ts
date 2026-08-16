@@ -116,7 +116,7 @@ export class CharacterTypeModel {
     });
   }
 
-  public static getCharacterTypeByTypeName(name: String) {
+  public static getCharacterTypeByTypeName(name: string) {
     const matches = CharacterTypeModel.TYPES.filter(
       (t) => CharacterType[t.type] === name,
     );

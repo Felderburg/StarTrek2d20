@@ -47,7 +47,7 @@ export function setStationMissionProfileTalent(talent: SelectedTalent) {
   };
 }
 
-export function setStationName(name: String) {
+export function setStationName(name: string) {
   const payload = { name: name };
   return {
     type: SET_STATION_NAME,
@@ -63,7 +63,7 @@ export function setStationCustomScale(scale: number) {
   };
 }
 
-export function setStationTraits(traits: String[]) {
+export function setStationTraits(traits: string[]) {
   const payload = { traits: traits };
   return {
     type: SET_STATION_TRAITS,
