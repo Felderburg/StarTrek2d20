@@ -7,7 +7,6 @@
     "Lcars.credits": "Créditos",
     "Lcars.feedback": "Feedback",
     "Lcars.history": "Historial",
-    "Lcars.back": "Atrás",
     "Lcars.news": "Novedades",
     "Lcars.profile": "Perfil",
 
@@ -999,37 +998,37 @@
     "Environment.klingon.homeworld.name": "Qo'noS",
     "Environment.klingon.homeworld.description": "Provienes del mundo natal klingon de Qo'noS, a menudo llamado Kronos por los forasteros, y has estado rodeado por los legados culturales y espirituales de Kahless y el Imperio durante toda tu vida. Las tradiciones klingon más antiguas y veneradas provienen de su mundo natal y son una parte decisiva de su educación.",
 
-    "Environment.klingon.busyColony.name": "Colonia Ajetreada",
+    "Environment.klingon.busyColony.name": "Colonia ajetreada",
     "Environment.klingon.busyColony.description": "Provienes de una de las colonias más antiguas o prósperas del Imperio. Estas colonias a menudo tienen una perspectiva independiente bastante agresiva, ya que se desarrollaron con poca ayuda del Imperio en sus primeros días, y el orgullo que acompaña a estar entre los primeros de su tipo en colonizarun mundo extraño aún permanece en los descendientes de esos primeros colonos.",
 
-    "Environment.klingon.isolatedColony.name": "Colonia Aislada",
+    "Environment.klingon.isolatedColony.name": "Colonia aislada",
     "Environment.klingon.isolatedColony.description": "Provienes de una colonia aislada del resto del Imperio y de la galaxia en general. Mundos como Boreth utilizan este aislamiento como una oportunidad para la espiritualidad y la contemplación, mientras que otros se asientan porque presentan oportunidades únicas para realizar investigaciones lejos del escrutinio y la politiquería de los mundos centrales. Incluso en el Imperio, en estos mundos se enfatiza el aprendizaje y la introspección.",
 
-    "Environment.klingon.frontierColony.name": "Colonia Fronteriza",
+    "Environment.klingon.frontierColony.name": "Colonia fronteriza",
     "Environment.klingon.frontierColony.description": "Provienes de una colonia ubicada en los márgenes del Imperio, ya sea en el borde del espacio explorado o en la frontera con la Federación o el Imperio Romulano. Es posible que incluso tu mundo haya sido reclamado a una de esas potencias rivales durante un conflicto en generaciones anteriores. Las colonias fronterizas tienden a producir personas decididas, testarudas y bien preparadas para los peligros que pueda presentar su hogar, y totalmente dispuestas a luchar para conservar lo que es suyo.",
 
     "Environment.klingon.starshipOrStarbase.name": "Nave o Base Estelar",
     "Environment.klingon.starshipOrStarbase.description": "Creciste en el espacio, viajaste a bordo de una nave o viviste a bordo de una estación espacial. No habrás crecido a bordo de una nave de guerra, pero muchos cargueros, transportes y otros buques civiles si que tienen una tradición de tripulaciones familiares o generacionales. Aquellos que crecieron en el espacio aprenden todo sobre la vida a bordo desde que eran niños y, como resultado, muchos se adaptan fácilmente una vida en el espacio.",
 
-    "Environment.klingon.anotherSpeciesWorld.name": "Mundo de otra Especie",
+    "Environment.klingon.anotherSpeciesWorld.name": "Mundo de otra especie",
     "Environment.klingon.anotherSpeciesWorld.description": "Creciste entre gente que no era klingon. Quizás fuiste parte de un enclave klingon que supervisaba un mundo conquistado, o fuiste criado entre exiliados, o quedaste huérfano durante una batalla o desastre y fuiste criado por extraterrestres. Es posible que hayas crecido en el Imperio o que seas un extraño en él. En cualquier caso, has elegido servir al Imperio y demostrar que eres tan klingon como cualquiera nacido en Qo'noS, incluso si tienes perspectivas diferentes sobre la cultura y tradición klingon.",
 
-    "Environment.alternate.utopianParadise.name": "Paraíso Utópico",
+    "Environment.alternate.utopianParadise.name": "Paraíso utópico",
     "Environment.alternate.utopianParadise.description": "Creciste en un ambiente de paz, prosperidad y abundancia. No había guerra en vuestro mundo, ni pobreza, escasez de vivienda, hambre o crimen. Sólo sabías de esas cosas gracias a los estudios de historia y nunca has podido entender realmente cómo una sociedad puede producir una desigualdad tan destructiva. Siempre has tenido acceso a los recursos no sólo para sobrevivir, sino también para prosperar en cualquier cosa que decidas llevar a cabo.",
 
     "Environment.alternate.cosmopolitan.name": "Cosmopolita",
     "Environment.alternate.cosmopolitan.description": "Creciste en entornos de comercio o diplomacia y en una mezcla de diferentes comunidades y culturas. Lo desconocido siempre ha sido lo normal y te familiarizaste con docenas de culturas de mundos distantes mucho antes de ser adulto. El ritmo frenético de la vida y la necesidad básica de deleitarse con las diferencias entre grupos e individuos te parecen simplemente la realidad de la existencia en esta enorme Galaxia.",
 
-    "Environment.alternate.rigorousDiscipline.name": "Disciplina Severa",
+    "Environment.alternate.rigorousDiscipline.name": "Disciplina severa",
     "Environment.alternate.rigorousDiscipline.description": "Siempre has estado rodeado de nociones de deber y propósito, y tu infancia fue estricta, orientada a prepararte para asumir un rol concreto o alcanzar una meta específica. Esto significaba relativamente poca libertad personal, pero te inculcó un poderoso sentido de lo que eras capaz de hacer cuando te exigían alcanzar el éxito.",
 
-    "Environment.alternate.ascetismAndIntrospection.name": "Ascetismo e Introspección",
+    "Environment.alternate.ascetismAndIntrospection.name": "Ascetismo e introspección",
     "Environment.alternate.ascetismAndIntrospection.description": "Tu vida era sencilla y carecía de muchos de los lujos que los mundos prósperos dan por sentado. Esto no se debía a una carencia, sino más bien a una elección: una creencia entre aquellos con quienes creciste de que la abundancia externa y material puede distraerte del autoconocimiento y el crecimiento personal.",
 
-    "Environment.alternate.struggleAndHardship.name": "Lucha y Dificultades",
+    "Environment.alternate.struggleAndHardship.name": "Lucha y dificultades",
     "Environment.alternate.struggleAndHardship.description": "Por diferentes motivos, tu mundo tenía pocos recursos disponibles. Los mundos en la frontera, así como los puestos de avanzada aislados, son a menudo lugares penosos donde la supervivencia continua es difícil, mientras que otros mundos luchan por sobrevivir a raíz de desastres naturales o ecológicos, las secuelas de la guerra o el colapso social que deja la infraestructura más básica en ruinas. Algunos buscan mundos como este, donde el “trabajo honesto” se considera una virtud, mientras que otros se encuentran en vidas de lucha diaria sin elección propia y buscan mejorar su mundo o escapar de él.",
 
-    "Environment.alternate.occupationOrWar.name": "Ocupación o Guerra",
+    "Environment.alternate.occupationOrWar.name": "Ocupación o guerra",
     "Environment.alternate.occupationOrWar.description": "Aunque los miembros de la Federación ya no se declaran la guerra entre ellos, pero la guerra sigue formando parte de la Galaxia. Los conflictos locales o planetarios azotan a muchos mundos independientes, y los conflictos interestelares que van desde escaramuzas fronterizas hasta guerras sectoriales son algo para lo que todas las civilizaciones deben prepararse. Los mundos asolados por la guerra, o incluso ocupados por una nación o cultura hostil, son lugares difíciles para vivir, y a menudo obligan a las personas a adaptarse a condiciones horribles y a decisiones de vida o muerte.",
 
     "Environment.special.name": "{{name}} ({{species}})",
@@ -1073,11 +1072,14 @@
     "Equipment.uniform": "Uniforme",
     "Equipment.clothing": "Vestimenta",
     "Equipment.armouredVest": "Armadura",
+    "Equipment.bodyArmour": "Armadura corporal",
+    "Equipment.environmentSuit": "Traje de protección ambiental",
+    "Equipment.personalForceField": "Campo de fuerza personal",
     "Equipment.communicator": "Comunicador",
     "Equipment.tricorder": "Tricorder",
     "Equipment.medKit": "Botiquín",
     "Equipment.engineeringKit": "Set de herramientas de Ingeniería",
-    "Equipment.orionMultiKey": "Multiherramienta Orión",
+    "Equipment.orionMultiKey": "Multi-llave de Orión",
     "Equipment.ushaanTor": "Picahielos Ushaan-Tor",
 
     "Era.name.enterprise": "Enterprise (siglo 22)",
@@ -1087,14 +1089,14 @@
     "Era.name.discovery32": "Discovery (siglo 32)",
 
     "ExtraType.none": "Ninguno",
-    "ExtraType.bajoranEarring": "Pendiente Bajorano",
-    "ExtraType.simpleEarring": "Pendiente Sencillo",
-    "ExtraType.hoopEarring": "Pendiente de Aro",
-    "ExtraType.smallBindi": "Bindi Pequeño",
-    "ExtraType.risanSymbol": "Símbolo Risiano",
-    "ExtraType.inuitTattoo": "Tatuaje Inuit",
-    "ExtraType.zaraniteMask": "Respirador Zaranita",
-    "ExtraType.ferengiHeadFlap": "Velo Ferengi",
+    "ExtraType.bajoranEarring": "Pendiente bajorano",
+    "ExtraType.simpleEarring": "Pendiente sencillo",
+    "ExtraType.hoopEarring": "Pendiente de aro",
+    "ExtraType.smallBindi": "Bindi pequeño",
+    "ExtraType.risanSymbol": "Símbolo risiano",
+    "ExtraType.inuitTattoo": "Tatuaje inuit",
+    "ExtraType.zaraniteMask": "Respirador zaranita",
+    "ExtraType.ferengiHeadFlap": "Velo ferengi",
 
     "Focus.advancedHolograms": "Hologramas Avanzados",
     "Focus.ambushTactics": "Tácticas de Emboscada",
@@ -1111,7 +1113,7 @@
     "Focus.bargain": "Negociar",
     "Focus.bladeWeapons": "Armas de Filo",
     "Focus.botany": "Botánica",
-    "Focus.boatPilotSubmersibles": "Pilotar Botes/Sumergibles",
+    "Focus.boatPilotSubmersibles": "Pilotar barcos/sumergibles",
     "Focus.bureaucracy": "Burocracia",
     "Focus.callToAction": "Llamada a la Acción",
     "Focus.camouflage": "Camuflaje",
@@ -1359,10 +1361,10 @@
 
     "MissionProfile.default.projectEscalante": "Proyecto Escalante",
     "MissionProfile.default.battlecruiser": "Crucero de Batalla",
-    "MissionProfile.default.reserveFleet": "Flota de Reserva",
-    "MissionProfile.default.civilianMerchantMarine": "Marina Mercante Civil",
-    "MissionProfile.default.colonySupport": "Soporte a Colonias",
-    "MissionProfile.default.entertainmentPleasureShip": "Nave Recreativa/de placer",
+    "MissionProfile.default.reserveFleet": "Flota de reserva",
+    "MissionProfile.default.civilianMerchantMarine": "Marina mercante civil",
+    "MissionProfile.default.colonySupport": "Soporte a colonias",
+    "MissionProfile.default.entertainmentPleasureShip": "Nave recreativa/de placer",
     "MissionProfile.default.espionageIntelligence": "Espionaje/Inteligencia",
     "MissionProfile.default.flagship": "Nave Insignia",
     "MissionProfile.default.logisticalQuartermaster": "Logística/Intendencia",
@@ -1550,9 +1552,14 @@
 
     "Role.scienceOfficer.description": "Un oficial científico es el responsable de aconsejar al oficial al mando en cuestiones científicas y aportar hipótesis en asuntos relacionados con lo desconocido. No todas las naves tienen asignado un oficial científico entre el personal del puente y a menudo el jefe de operaciones asume sus funciones. ",
     "Role.scienceOfficer.description2e": "El oficial científico (a veces denominado «oficial científico jefe») es el responsable de aconsejar al oficial al mando en cuestiones científicas y aportar hipótesis en asuntos relacionados con lo desconocido. El oficial científico también es responsable de todo el personal científico de la nave o la estación.",
-    "Role.scienceOfficer.ability": "Cuando el oficial científico tenga éxito en una Tarea en que cuente con la ayuda de los ordenadores o sensores de la nave o en que utilice un tricorder, el personaje genera un punto de Inercia adicional que solo se puede utilizar para el Uso de Inercia “\"Obtener información\"”.",
+    "Role.scienceOfficer.ability": "Cuando el oficial científico tenga éxito en una Tarea en que cuente con la ayuda de los ordenadores o sensores de la nave o en que utilice un tricorder, el personaje genera un punto de Inercia adicional que solo se puede utilizar para el Uso de Inercia _Obtener información_.",
+    "Role.scienceOfficer.ability2e": "Cuando tengas éxito en una Tarea con la ayuda de los Sensores o Computadoras de la nave, o una tarea usando el tricorder u otro dispositivo sensor, puedes realizar una pregunta adicional como si hubieras gastado Inercia en _Obtener información_.",
 
-    "Role.tacticalOfficer": "Oficial Táctico",
+    "Role.tacticalOfficer": "Oficial táctico",
+
+    "Role.tacticalOfficer.description": "Este puesto, presente en las naves de la Flota Estelar de los siglos XXII y XXIII y habitual en otras organizaciones, también se conoce como jefe de arsenal u oficial de armamento. El oficial es responsable del mantenimiento y el uso del armamento de la nave y suele ser un experto en combate entre naves.",
+    "Role.tacticalOfficer.ability": "Cuando tengas éxito en un _Ataque_ con las armas de la nave, puedes incrementar el valor del daño del sistema de armas gastando 1 punto de Inercia en vez de 2.",
+
     "Role.flightController": "Controlador de vuelo",
 
     "Role.flightController.description": "Aunque no es un puesto habitual entre el personal del puente, algunos capitanes (especialmente los que operan en espacio inexplorado) escogen al timonel o navegante más veterano para que sirva también como oficial del puente.",
@@ -1643,10 +1650,14 @@
     "Sheet.standardTngCharacterSheet": "Hoja de Personaje Estándard TNG (US-Letter)",
     "Sheet.standard2eCharacterSheet": "Hoja de Personaje Estándard 2E (US-Letter)",
 
-    "Sheet.text.title": "Registro de personal de la Flota Estelar",
+    "Sheet.text.title": "Archivo personal de la Flota Estelar",
 
-    "Sheet.text.title.starship": "Entrada de Registro de Nave",
-    "Sheet.text.title.alt": "Archivo de Personal",
+    "Sheet.text.title.starship": "Entrada registro de nave estelar",
+    "Sheet.text.title.alt": "Archivo personal",
+
+    "Sheet.text.log.title": "Registro personal",
+    "Sheet.text.log.entryNumber": "Entrada nº",
+    "Sheet.text.log.notes": "Notas",
 
     "SheetTag.a4": "A4",
     "SheetTag.halfPage": "Media Página",
@@ -1736,7 +1747,7 @@
 
     "Spaceframe.constitution.description": "El símbolo de la Flota Estelar a mediados y finales del siglo 23, la clase Constitución se volvería legendaria en todo el Brazo de Orion debido a sus misiones de cinco años.\n\nLa construcción de las naves se llevó a cabo principalmente en el sistema solar, pero después de que se completó el bloque inicial de naves y finalizaron las primeras misiones de cinco años, este modelo también se fabricó en otros sistemas centrales del mundo capaces de manejar la gran estructura espacial necesaria. La clase Constitución se convertiría en el banco de pruebas de nuevas tecnologías a principios de la década de 2270 que se desarrollaron a partir de las misiones de cinco años de las mismas clases y las lecciones aprendidas de la breve guerra con el Imperio Klingon. Esta clase de nave continuó en servicio hasta mediados del siglo XXIV.",
 
-    "Spaceframe.crossfield": "Class Crossfield",
+    "Spaceframe.crossfield": "Clase Crossfield",
     "Spaceframe.daedalus": "Clase Daedalus",
 
     "Spaceframe.daedalus.description": "En los años previos a la Guerra Terrícola-Romulana, la flota necesitaba una nave de mayor tamaño para ayudar a proteger y patrullar las pocas colonias y rutas comerciales establecidas por la Tierra Unificada. La clase Daedalus se diseñó para desempeñar esta función, pero consumiendo tan pocos recursos y usando tan poca tecnología avanzada como fuese posible. El desarrollo y éxito de la clase NX provocó que el Almirantazgo empezase a acercar las naves clase Daedalus lo máximo posible a la Tierra, para su futuro desmantelamiento, pero la Guerra Terrícola-Romulana insufló nueva vida a estos navíos, debido a la necesidad desesperada de más naves de combate, algo que obligo a mante-nerlas en activo hasta finales de la década de 2190 (aunque algunas siguieron hasta mediados del siglo XXIII).",
@@ -1772,7 +1783,7 @@
     "Spaceframe.malachowski": "Clase Malachowski",
     "Spaceframe.miranda": "Clase Miranda",
     "Spaceframe.nebula": "Clase Nebula",
-    "Spaceframe.newOrleans": "Clase New Orlans",
+    "Spaceframe.newOrleans": "Clase Nueva Orleans",
     "Spaceframe.nimitz": "Clase Nimitz",
     "Spaceframe.norway": "Clase Norway",
     "Spaceframe.nova": "Clase Nova",
@@ -1799,6 +1810,10 @@
     "SpaceRegion.betaQuadrant": "Cuadrante Beta",
     "SpaceRegion.gammaQuadrant": "Cuadrante Gamma",
     "SpaceRegion.deltaQuadrant": "Cuadrante Delta",
+    "SpaceRegion.shackletonExpanse": "Expansión Shackleton",
+
+    "SpecialWeapon.batLeth": "Bat'Leth",
+    "SpecialWeapon.mekLeth": "Mek'Leth",
 
     "Specialization.admiral": "Almirante",
     "Specialization.admin": "Terrateniente",
@@ -2063,7 +2078,7 @@
 
     "SpeciesAbility.andorian": "Intenso",
 
-    "SpeciesAbility.andorian.description": "Cuando tienes éxito en una Tarea en la que has comprado uno o más d20 sumando Amenaza, generas 1 de Inercia adicional por cada d20 comprado. Esta Inercia adicional no se puede guardar.",
+    "SpeciesAbility.andorian.description": "Cuando tengas éxito en una Tarea en la que adquieras uno o más d20 sumando Amenaza, generas 1 punto de Inercia adicional por cada d20 comprado. Esta Inercia adicional no se puede guardar.",
 
     "SpeciesAbility.aenar": "Telepático",
 
@@ -2386,9 +2401,9 @@
     "Talent.combatGunner": "Artillero de combate",
     "Talent.combatMedic": "Médico de combate",
 
-    "Talent.combatMedic.description2a": "Al intentar una Tarea de Medicina durante el combate, puedes elegir un rasgo que aumente la Dificultad de la Tarea e ignorarlo.",
+    "Talent.combatMedic.description2a": "Al emprender una Tarea de Medicina durante el combate, puedes elegir un rasgo que aumente la Dificultad de la Tarea e ignorarlo.",
 
-    "Talent.commandShip": "Nave de Comando",
+    "Talent.commandShip": "Nave de mando",
     "Talent.compactVessel": "Nave compacta",
     "Talent.computerExpertise": "Pericia informática",
 
@@ -2423,7 +2438,7 @@
 
     "Talent.cyberneticist": "Cibernético",
 
-    "Talent.cyberneticist.description2e": "Cuando intentas una Tarea para trabajar, instalar o retirar un dispositivo cibernético de un paciente, el primer d20 adicional que compras es gratis.",
+    "Talent.cyberneticist.description2e": "Cuando intentas una Tarea para trabajar, instalar o retirar un dispositivo cibernético de un paciente, el primer d20 adicional que adquieras es gratis.",
 
     "Talent.dauntless": "Intrépido",
 
@@ -2436,7 +2451,7 @@
 
     "Talent.dedicatedFocusX": "Especialidad dedicada (X)",
 
-    "Talent.dedicatedFocusX.description2e": "Cuando adquieras este talento, elige una de tus especialidades. Al intentar una Tarea en la que se aplique esa especialidad, obtienes un éxito crítico en cualquier dado cuya tirada sea igual o inferior al doble del departamento correspondiente.",
+    "Talent.dedicatedFocusX.description2e": "Cuando adquieras este talento, elige una de tus especialidades. Al emprender una Tarea en la que se aplique esa especialidad, obtienes un éxito crítico en cualquier dado cuya tirada sea igual o inferior al doble del departamento correspondiente.",
 
     "Talent.defensiveTraining": "Entrenamiento defensivo",
     "Talent.defensiveTrainingMelee": "Entrenamiento defensivo:cuerpo a cuerpo",
@@ -2452,7 +2467,7 @@
     "Talent.defuseTheTension": "Reducir la tensión",
 
     "Talent.defuseTheTension.description": "Cuando emprendas una Tarea para convencer a alguien de no actuar con violencia, puedes añadir 1d20 adicional a tu reserva de dados.",
-    "Talent.defuseTheTension.description2e": "Cuando emprendas una Tarea para convencer a alguien de no actuar con violencia, el primer d20 que compras para esta Tarea es gratis.",
+    "Talent.defuseTheTension.description2e": "Cuando emprendas una Tarea para convencer a alguien de no actuar con violencia, el primer d20 que adquieras para esta Tarea es gratis.",
 
     "Talent.dedicatedSubspaceTransceiverArray": "Matriz Dedicada de Transceptores Subespaciales",
     "Talent.deluxeGalley": "Cocina Lujosa",
@@ -2533,7 +2548,7 @@
     "Talent.firstResponse": "Atención primaria",
 
     "Talent.firstResponse.description": "Cuando emprendas una Tarea de “Primeros Auxilios” en combate, recibes 1d20 adicional. Además, siempre puedes tener Éxito por un Precio, de modo que cada Complicación que sufras sume un +1 a la Dificultad a los posteriores intentos de curar la Herida del paciente.",
-    "Talent.firstResponse.description2e": "Cuando emprendas una Tarea de “Primeros Auxilios” en combate, el primer d20 que compras es gratuito. Además, siempre puedes tener Éxito por un Precio, de modo que cada Complicación que sufras sume un +1 a la Dificultad a los posteriores intentos de curar la Herida del paciente.",
+    "Talent.firstResponse.description2e": "Cuando emprendas una Tarea de “Primeros Auxilios” en combate, el primer d20 que adquieras es gratuito. Además, siempre puedes tener Éxito por un Precio, de modo que cada Complicación que sufras sume un +1 a la Dificultad a los posteriores intentos de curar la Herida del paciente.",
 
     "Talent.flyBy": "Pasar volando",
 
@@ -2606,7 +2621,7 @@
 
     "Talent.indefatigable": "Inagotable",
 
-    "Talent.indefatigable.description2e": "Cuando fallas una Tarea, y vuelves a intentar esa Tarea durante la misma escena, reduces la Dificultad del segundo intento (y de cualquier intento posterior si sigues fallando) en 1.",
+    "Talent.indefatigable.description2e": "Cuando fracases en una Tarea, y vuelvas a emprender esa Tarea durante la misma escena, reduces la Dificultad del segundo intento (y de cualquier intento posterior si sigues fracasando) en 1.",
 
     "Talent.independentPhaserSupply": "Suplemento independiente de Faser",
     "Talent.inertia": "Inercia",
@@ -2717,7 +2732,7 @@
     "Talent.multiVectorAssaultMode": "Modo de ataque Multi-vector",
     "Talent.nervePinch": "Pinza vulcana",
 
-    "Talent.nervePinch.description": "Has aprendido numerosas técnicas de estimulación y control de impulsos nerviosos (llamadas en conjunto “neuropresión”). Algunas aplicaciones de la neuropresión permiten incapacitar a un agresor de forma rápida y no letal. La pinza vulcana, también llamado pellizco vulcano, se considera un arma Cuerpo a cuerpo con 1[D], Tamaño 1M y las cualidades Intensa y No Letal. Puedes usar Ciencia o Medicina en lugar de Seguridad al intentar realizar un Ataque de pinza vulcana y puedes aumentar el daño utilizando las Disciplinas Ciencia o Medicina en lugar de Seguridad.",
+    "Talent.nervePinch.description": "Has aprendido numerosas técnicas de estimulación y control de impulsosnerviosos (llamadas en conjunto “neuropresión”). Algunas aplicaciones de laneuropresión permiten incapacitar a un agresor de forma rápida y no letal.La pinza vulcana, también llamado pellizco vulcano, se considera un armaCuerpo a cuerpo con 1[D], Tamaño 1M y las cualidades Intensa y No Letal.Puedes usar Ciencia o Medicina en lugar de Seguridad al intentar realizar unAtaque de pinza vulcana y puedes aumentar el daño utilizando las DisciplinasCiencia o Medicina en lugar de Seguridad.",
     "Talent.nervePinch.description2e": "Has aprendido numerosas técnicas de estimulación y control de impulsos nerviosos (llamadas en conjunto “neuropresión”). Algunas aplicaciones de la neuropresión permiten incapacitar a un agresor de forma rápida y no letal. La pinza vulcana, también llamado pellizco vulcano, se considera un arma Cuerpo a cuerpo que inflige heridas no letales con una Gravedad de 3 y la cualidad Intensa. Puedes usar Ciencia o Medicina en lugar de Seguridad cuando realices el ataque de pinza vulcana. ",
 
     "Talent.neuralInterface": "Interfaz neuronal",
@@ -2735,7 +2750,7 @@
 
     "Talent.noPainNoGain": "Quién no arriesga no gana",
 
-    "Talent.noPainNoGain.description2e": "Cuando fallas una Tarea (pero no una Tarea enfrentada) en la que has utilizado tu Osadía, siempre puedes elegir tener éxito con un coste.",
+    "Talent.noPainNoGain.description2e": "Cuando fracases en una Tarea (pero no una Tarea enfrentada) en la que has utilizado tu Osadía, siempre puedes elegir tener Éxito con un coste.",
 
     "Talent.novice": "Novato",
     "Talent.orbExperience": "Experiencia del orbe",
@@ -2791,7 +2806,7 @@
     "Talent.polarizedHullPlatingSpecialRule": "Blindaje del Casco Polarizado",
     "Talent.positiveReinforcement": "Refuerzo positivo",
 
-    "Talent.positiveReinforcement.description2e": "Una vez por misión, puedes intentar una Tarea de Presencia + Medicina con una Dificultad de 3, mientras proporcionas tratamiento emocional o mental a otro personaje. El éxito crea un rasgo de carácter para tu paciente que dura hasta el final de la misión: Confianza Aumentada. Además de los efectos normales del rasgo, ese personaje puede volver a tirar su reserva de dados, como si hubiera gastado Determinación, una vez antes del final de la misión. Si la Tarea en la que el personaje utilizó su repetición de tirada falla, pierde el rasgo creado por este talento.",
+    "Talent.positiveReinforcement.description2e": "Una vez por misión, puedes emprender una Tarea de Presencia + Medicina con una Dificultad de 3, mientras proporcionas tratamiento emocional o mental a otro personaje. El éxito crea un rasgo de carácter para tu paciente que dura hasta el final de la misión: Confianza Aumentada. Además de los efectos normales del rasgo, ese personaje puede volver a tirar su reserva de dados, como si hubiera gastado Determinación, una vez antes del final de la misión. Si la Tarea en la que el personaje utilizó su repetición de tirada fracasa, pierde el rasgo creado por este talento.",
 
     "Talent.practiceMakesPerfect": "La práctica hace al maestro",
 
@@ -2899,9 +2914,18 @@
     "Talent.saboteur.description2e": "Cuando realizas un Ataque contra una estructura, máquina o vehículo inmóvil mientras estás en combate personal (es decir, no estás usando las armas de una nave para realizar el Ataque), puedes usar tu Ingeniería en lugar de tu Seguridad para realizar el Ataque.",
 
     "Talent.saboteurWar": "Saboteador",
-    "Talent.saucerSeparation": "Separador de disco",
-    "Talent.saucerSeparation2ndEdition": "Separador de disco",
-    "Talent.saucerSeparationAndReconnect": "Separador y reconector de disco",
+    "Talent.saucerSeparation": "Separación de Platillo",
+
+    "Talent.saucerSeparation.soloDescription": "La nave está diseñada de manera que la sección del platillo, se pueda separar del sector de motores para operar como dos naves distintas. Cada sección posee los mismos Sistemas, Departamentos y Armas. El platillo, que contiene los camarotes y las zonas recrativas, no tiene capacidad de entrar en curvatura.",
+
+    "Talent.saucerSeparation2ndEdition": "Separación de Platillo",
+
+    "Talent.saucerSeparation2ndEdition.description2e": "La nave está diseñada de manera que la sección del platillo se pueda separar en caso de emergencia. Una vez que el platillo se ha separado, las dos secciones de la nave no se pueden reconectar fuera de un dique seco. Los sistemas de la nave se dividen (redondeado hacia arriba) entre el platillo y el casco secundario cuando se separan, el platillo no tiene capacidad de entrar en curvatura o lanzar vehículos menores y cada sección se considera una nave separada con una 1 Escala inferior a la de la nave original; el casco secundario se controla desde ingeneria. El platillo puede aterrizar en la superficie de un planeta utilizando el tren de aterrizaje de emergencia.",
+
+    "Talent.saucerSeparationAndReconnect": "Separador y reacoplamiento del platillo",
+
+    "Talent.saucerSeparationAndReconnect.description": "La nave está diseñada de manera que la sección del platillo se pueda separar del sector de motores para operar como dos naves distintas. Cada sección posee los mismos Sistemas, Departamentos, Talentos y Armas, pero su Escala es un punto inferior a la de la nave completa (se debe recalcular cualquier valor que dependa de la Escala) y cada sección cuenta solo con la mitad de la Energía (redondeando hacia abajo) que tuviera la nave antes de separarse. Además, si la nave ha sufrido algún daño antes de la separación, los efectos persistentes de ello se aplican también a ambas secciones. El platillo, que contiene los camarotes y las zonas recreativas, no tiene la capacidad de entrar en curvatura. \n\nSepararse es una Tarea de **Control + Pilotaje** de Dificultad 3 con la ayuda de **Estructura + Ingeniería** de la nave que se lleva a cabo desde el puesto de Control de Sistemas Internos o desde la sala de máquinas. Reacoplarse requiere una Tarea similar con Dificultad 1 que deben realizar tripulantes en ambas partes de la nave: si se falla alguna de las Tareas, no se logra el reensamble. No es posible separarse ni reacoplarse si la Estructura de alguna de las partes queda Dañada o Incapacitada.",
+
     "Talent.secondaryReactors": "Reactores Secundarios",
     "Talent.secondWind": "Tomar aliento",
 
@@ -2917,7 +2941,7 @@
     "Talent.sophisticatedAstrometricsFacilities": "Instalaciones astrométricas sofisticadas",
     "Talent.spacewalk": "Paseo espacial",
 
-    "Talent.spacewalk.description2e": "Siempre que la Dificultad de una Tarea aumente debido a la gravedad baja o cero, ignora ese aumento de Dificultad. Si una Tarea que normalmente es posible resulta imposible debido a la gravedad baja o nula, puedes intentarla con una dificultad +1.",
+    "Talent.spacewalk.description2e": "Siempre que la Dificultad de una Tarea aumente debido a la gravedad baja o cero, ignora ese aumento de Dificultad. Si una Tarea que normalmente es posible resulta imposible debido a la gravedad baja o nula, puedes emprenderla con +1 a la Dificultad.",
 
     "Talent.specializedShuttlebay": "Bahía de lanzadera especializada",
     "Talent.spiritOfDiscovery": "Espíritu pionero",
@@ -2967,7 +2991,7 @@
 
     "Talent.surverySavant": "Cirujano experto",
 
-    "Talent.surverySavant.description2e": "Al intentar una Tarea de Medicina durante una Tarea extendida relacionada con la cirugía, tu Impacto aumenta en 1.",
+    "Talent.surverySavant.description2e": "Al emprender una Tarea de Medicina durante una Tarea extendida relacionada con la cirugía, tu Impacto aumenta en 1.",
 
     "Talent.tachyonDetectionField": "Campo de detección de taquiones",
     "Talent.teacher": "Profesor",
@@ -3056,7 +3080,7 @@
 
     "Talent.warriorsSpirit": "Espíritu guerrero",
 
-    "Talent.warriorsSpirit.description2e": "Cuando realizas un Ataque cuerpo a cuerpo, o eres objetivo de un Ataque cuerpo a cuerpo, y compras uno o más d20 sumando Amenaza, puedes repetir la tirada de dados de la Tarea. Además, posees un mek'leth (una espada) o un bat'leth (una espada pesada) a tu elección, que cuenta como equipo estándar para ti.",
+    "Talent.warriorsSpirit.description2e": "Cuando realizas un Ataque cuerpo a cuerpo, o eres objetivo de un Ataque cuerpo a cuerpo, y adquieras uno o más d20 sumando Amenaza, puedes repetir la tirada de dados de la Tarea. Además, posees un mek'leth (una espada) o un bat'leth (una espada pesada) a tu elección, que cuenta como equipo estándar para ti.",
 
     "Talent.wary": "Receloso",
 
