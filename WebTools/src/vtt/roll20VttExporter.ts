@@ -49,7 +49,7 @@ interface IRoll20Json {
 }
 
 class IdHelper {
-  static readonly ID_PARTS: String = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  static readonly ID_PARTS: string = 'abcdefghijklmnopqrstuvwxyz0123456789';
   currentId: string;
 
   constructor() {
