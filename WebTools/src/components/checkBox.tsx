@@ -1,14 +1,14 @@
 import React from 'react';
 
-interface ICheckBoxProperties {
-  value: any;
-  onChanged: (val: any) => void;
+interface ICheckBoxProperties<T> {
+  value: T;
+  onChanged: (val: T) => void;
   isChecked: boolean;
   text?: string;
   disabled?: boolean;
 }
 
-export class CheckBox extends React.Component<ICheckBoxProperties, {}> {
+export class CheckBox<T> extends React.Component<ICheckBoxProperties<T>, {}> {
   render() {
     const { value, onChanged, isChecked, text, disabled } = this.props;
 
@@ -17,7 +17,7 @@ export class CheckBox extends React.Component<ICheckBoxProperties, {}> {
         <label>
           <input
             type="checkbox"
-            value={value}
+            value={value as string | number}
             onChange={(e) => onChanged(value)}
             checked={isChecked}
             onClick={(e) => {

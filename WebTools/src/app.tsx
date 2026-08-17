@@ -30,12 +30,12 @@ export class CharacterCreationApp extends React.Component<{}, IAppState> {
   }
 
   componentDidMount() {
-    Events.listen(EventIdentity.ShowPage, (page: any) => {
-      this.goForward(page as PageIdentity);
+    Events.listen(EventIdentity.ShowPage, (page: PageIdentity) => {
+      this.goForward(page);
     });
 
-    Events.listen(EventIdentity.HistoryBack, (page: any) => {
-      this.goForward(page as PageIdentity);
+    Events.listen(EventIdentity.HistoryBack, (page: PageIdentity) => {
+      this.goForward(page);
     });
 
     document.title = 'STAR TREK ADVENTURES';

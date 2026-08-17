@@ -25,6 +25,13 @@ interface IRoll20Attribute {
   id: string;
 }
 
+interface IRoll20Ability {
+  name: string;
+  current: string | boolean | number;
+  max: string | number;
+  id: string;
+}
+
 interface IRoll20Character {
   oldId: string;
   name: string;
@@ -36,7 +43,7 @@ interface IRoll20Character {
   controlledby: string;
   inplayerjournals: string;
   attribs: IRoll20Attribute[];
-  abilities: any[];
+  abilities: IRoll20Ability[];
 }
 
 interface IRoll20Json {

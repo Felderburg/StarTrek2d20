@@ -1,8 +1,9 @@
 import React from 'react';
+import type { OtherSelection } from '../common/selectedTalent';
 
 interface IDropDownSelectProperties {
   items: DropDownElement[];
-  defaultValue: any;
+  defaultValue: string | number | OtherSelection;
   onChange: (index: string | number) => void;
   id?: string;
   className?: string;
@@ -39,7 +40,7 @@ export class DropDownSelect extends React.Component<
 
     return (
       <select
-        value={defaultValue}
+        value={defaultValue as string | number}
         className={className}
         onChange={(e) =>
           onChange(items[(e.target as HTMLSelectElement).selectedIndex].value)

@@ -17,7 +17,11 @@ import { TextAlign } from './textAlign';
 import { makeKey } from '../common/translationKey';
 import { CHALLENGE_DICE_NOTATION } from '../common/challengeDiceNotation';
 
-declare function download(bytes: any, fileName: any, contentType: any): any;
+declare function download(
+  bytes: Uint8Array | ArrayBuffer,
+  fileName: string,
+  contentType: string,
+): void;
 
 export class GeneratedSafetyChecklistSheet extends BaseNonForm2eSheet {
   getPdfUrl(): string {

@@ -29,7 +29,11 @@ import { bullet2EWriter } from './bullet2eWriter';
 import { NpcType } from '../npc/model/npcType';
 import { PageArea } from './pageArea';
 
-declare function download(bytes: any, fileName: any, contentType: any): any;
+declare function download(
+  bytes: Uint8Array | ArrayBuffer,
+  fileName: string,
+  contentType: string,
+): void;
 
 export class GmTrackerPdfSheet {
   static COLUMNS = [

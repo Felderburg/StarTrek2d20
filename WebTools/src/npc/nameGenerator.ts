@@ -2,7 +2,20 @@ import { D20 } from '../common/die';
 import type { ISpecies } from '../helpers/species';
 import { Species } from '../helpers/speciesEnum';
 
-const names = [
+interface NameEntry {
+  name: string;
+  gender: string;
+  type: string;
+  tags: string[];
+  variants?: string[];
+}
+
+interface NameList {
+  species: string;
+  names: NameEntry[];
+}
+
+const names: NameList[] = [
   {
     species: 'Bynar',
     names: require('./names-bynar.json'),
@@ -228,7 +241,7 @@ export class NameGenerator {
     return result;
   }
 
-  private determineNameOrigin(firstName: any, lastName: any) {
+  private determineNameOrigin(firstName: NameEntry, lastName: NameEntry) {
     const tags = lastName.tags.filter(
       (t) => firstName.tags.includes('Common') || firstName.tags.includes(t),
     );
@@ -243,7 +256,7 @@ export class NameGenerator {
     lastName: string,
     species: ISpecies,
     pronouns: string,
-    names: [] = [],
+    names: NameEntry[] = [],
   ) {
     const parts = [];
 

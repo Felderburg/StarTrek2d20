@@ -15,7 +15,11 @@ import { Roll20VttExporter } from '../roll20VttExporter';
 import { FoundryPluginType } from '../foundryPluginType';
 import { Station } from '../../common/station';
 
-declare function download(bytes: any, fileName: any, contentType: any): any;
+declare function download(
+  bytes: Uint8Array | ArrayBuffer,
+  fileName: string,
+  contentType: string,
+): void;
 
 interface IVttSelectionModalProperties {
   construct: Construct;
