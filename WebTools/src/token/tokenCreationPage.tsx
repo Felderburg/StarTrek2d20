@@ -35,7 +35,11 @@ import { useNavigate } from 'react-router';
 import { SpeciesRestrictions } from './model/speciesRestrictions';
 import { setTokenBordered, setTokenRounded } from '../state/tokenActions';
 
-declare function download(bytes: any, fileName: any, contentType: any): any;
+declare function download(
+  bytes: Uint8Array | ArrayBuffer,
+  fileName: string,
+  contentType: string,
+): void;
 
 enum Tab {
   Species,
@@ -268,7 +272,7 @@ const TokenCreationPageBase: React.FC<ITokenCreationPageProperties> = ({
                   <div
                     className="mw-100"
                     style={{ width: '400px', aspectRatio: '1' }}
-                    dangerouslySetInnerHTML={{ __html: svg as any }}
+                    dangerouslySetInnerHTML={{ __html: svg as string }}
                   ></div>
 
                   <div className="row">

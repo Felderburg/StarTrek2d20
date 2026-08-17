@@ -1409,7 +1409,7 @@ class Marshaller {
     }
   }
 
-  encode(json: any) {
+  encode(json: unknown) {
     const text = JSON.stringify(json);
     const encoded = pako.deflate(new TextEncoder().encode(text));
     const result = Base64.fromUint8Array(encoded, true);

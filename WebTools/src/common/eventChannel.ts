@@ -5,13 +5,13 @@ export enum EventIdentity {
 }
 
 export class EventChannel {
-  private listeners: { [id: number]: Array<(arg?: {}) => void> };
+  private listeners: { [id: number]: Array<(arg?: unknown) => void> };
 
   constructor() {
     this.listeners = {};
   }
 
-  signal(id: EventIdentity, arg?: {}) {
+  signal<T>(id: EventIdentity, arg?: T) {
     const listeners = this.listeners[id];
     if (listeners && listeners.length > 0) {
       listeners.forEach((listen) => {
@@ -20,12 +20,12 @@ export class EventChannel {
     }
   }
 
-  listen(id: EventIdentity, handler: (arg?: {}) => void) {
+  listen<T>(id: EventIdentity, handler: (arg?: T) => void) {
     const listeners = this.listeners[id];
     if (listeners) {
-      listeners.push(handler);
+      listeners.push(handler as (arg?: unknown) => void);
     } else {
-      this.listeners[id] = [handler];
+      this.listeners[id] = [handler as (arg?: unknown) => void];
     }
   }
 

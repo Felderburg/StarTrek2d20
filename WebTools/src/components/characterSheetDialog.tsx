@@ -11,7 +11,11 @@ import { SelectablePill } from './selectablePill';
 import { makeKey } from '../common/translationKey';
 import { useTranslation } from 'react-i18next';
 
-declare function download(bytes: any, fileName: any, contentType: any): any;
+declare function download(
+  bytes: Uint8Array | ArrayBuffer,
+  fileName: string,
+  contentType: string,
+): void;
 
 interface ICharacterSheetDialogProperties {
   sheets: ICharacterSheet[];

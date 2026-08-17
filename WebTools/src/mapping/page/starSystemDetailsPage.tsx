@@ -18,7 +18,11 @@ import { PageIdentity } from '../../pages/pageIdentity';
 import { LoadingButton } from '../../common/loadingButton';
 import { Link } from 'react-router-dom';
 
-declare function download(bytes: any, fileName: any, contentType: any): any;
+declare function download(
+  bytes: Uint8Array | ArrayBuffer,
+  fileName: string,
+  contentType: string,
+): void;
 
 interface IStarSystemDetailsPageProperties {
   starSystem?: StarSystem;

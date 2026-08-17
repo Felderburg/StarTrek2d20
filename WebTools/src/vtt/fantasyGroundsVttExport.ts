@@ -16,6 +16,13 @@ import { Stereotype } from '../common/construct';
 import { NpcType } from '../npc/model/npcType';
 import { textTokenizer } from '../exportpdf/textTokenizer';
 
+interface XmlElement {
+  type?: string;
+  name?: string;
+  attributes?: { [key: string]: string | number };
+  elements?: XmlElement[];
+}
+
 export class FantasyGroupsVttExporter {
   private static singleton: FantasyGroupsVttExporter;
 
@@ -456,7 +463,7 @@ export class FantasyGroupsVttExporter {
     return this.nodesToXml(characterNode);
   }
 
-  nodesToXml(characterNode: any) {
+  nodesToXml(characterNode: XmlElement) {
     characterNode.elements = characterNode.elements.filter((e) => e != null);
 
     const result = {

@@ -32,7 +32,7 @@ export class TalentCategorization {
   }
 
   includes(item: Species | Department | Career) {
-    return (this.type as any[]).includes(item);
+    return (this.type as Array<Species | Department | Career>).includes(item);
   }
 
   get localizedDescription() {

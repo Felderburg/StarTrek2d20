@@ -11,7 +11,11 @@ import { Spaceframe } from '../../helpers/spaceframeEnum';
 import type { Rank } from '../../helpers/ranks';
 import { RanksHelper } from '../../helpers/ranks';
 
-declare function download(bytes: any, fileName: any, contentType: any): any;
+declare function download(
+  bytes: Uint8Array | ArrayBuffer,
+  fileName: string,
+  contentType: string,
+): void;
 
 interface IAssetAbilityViewProperties {
   ability?: AssetAbility;
