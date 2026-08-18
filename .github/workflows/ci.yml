@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [sta-complete]
+  pull_request:
+    branches: [sta-complete]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: WebTools
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          cache: npm
+          cache-dependency-path: WebTools/package-lock.json
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run typecheck
+      - run: npm run lint
+      - run: npm run prettier:check

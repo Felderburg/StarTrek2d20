@@ -1,7 +1,6 @@
 npm test &&
-  tsc --noEmit &&
-  npx eslint src &&
-  npx eslint tests &&
+  npm run typecheck &&
+  npm run lint &&
   npm run prettier:check &&
   echo "passed" || echo "failed"
 
