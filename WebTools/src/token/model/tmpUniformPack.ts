@@ -120,10 +120,9 @@ const TmpRankIndicators = {
       <rect style="opacity:1;fill:#94a5bd;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
       <path id="rect45766" style="opacity:1;fill:#ffd59c;fill-opacity:1;stroke:#000000;stroke-width:0.45;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" d="m 95.390026,373.33286 1.20648,0.831 4.107634,0.18509 c 1.46002,0.0755 2.15153,-0.0982 2.91449,-1.09012 l 2.75357,-3.99771 -6.00035,-0.27072 c -1.380164,-0.15891 -2.037984,0.18426 -2.932764,1.36755 z m 5.556904,-8.0677 5.89863,0.26518 c 1.41516,0.0483 2.18905,-0.25034 2.88193,-1.14051 l 2.72015,-3.9492 -6.33071,-0.28564 c -1.30378,-0.0518 -1.90011,0.47864 -2.64347,1.44211 z m 6.07545,-8.82048 6.15941,0.2769 c 1.20942,0.10771 1.93319,-0.26923 2.72907,-1.30894 l 2.20445,-3.20048 -0.94848,-0.65329 -5.03368,-0.22705 c -1.04005,-0.10919 -1.77994,0.27708 -2.36458,1.12587 z"/>
       <rect style="opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect47378" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
-    </g>`
-  }
+    </g>`,
+  },
 };
-
 
 const TosLieutenantBorder = `<g>
     <rect style="opacity:1;fill:#94a5bd;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-miterlimit:40;stroke-dasharray:none;stroke-opacity:1" id="rect34812" width="126.25761" height="30.247616" x="195.43486" y="222.39742" rx="4" ry="4" transform="rotate(34.627047)"/>
