@@ -13,7 +13,6 @@
    inkscape:version="1.4.4 (dcaf3e7, 2026-05-05)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><defs
    id="defs214">
@@ -30,12 +29,12 @@
    inkscape:deskcolor="#d1d1d1"
    showgrid="false"
    inkscape:zoom="2.1525"
-   inkscape:cx="200"
+   inkscape:cx="200.23229"
    inkscape:cy="200"
    inkscape:window-width="1920"
    inkscape:window-height="1080"
    inkscape:window-x="2383"
-   inkscape:window-y="173"
+   inkscape:window-y="145"
    inkscape:window-maximized="0"
    inkscape:current-layer="Layer_1" />
 
@@ -56,17 +55,4 @@
      d="m 333.71968,294.31242 3.23399,30.64028 9.82392,2.60893 -8.01964,2.82519 2.46654,11.46353 -7.48738,-10.23468 -8.25237,9.87673 2.90347,-11.52325 -9.46813,-2.65377 11.03707,-2.15217 z"
      style="display:inline;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.94912"
      id="path2508"
-     sodipodi:nodetypes="ccccccccccc" /></g><g
-   inkscape:groupmode="layer"
-   id="layer1"
-   inkscape:label="Image"
-   sodipodi:insensitive="true"
-   style="display:none"><image
-     width="577.13959"
-     height="678.61462"
-     preserveAspectRatio="none"
-     xlink:href="../../../../../../../Pictures/STA%20Miniature%20Maker/P497_1-4283716989.jpg"
-     id="image1"
-     x="-13.54651"
-     y="-10.916812"
-     style="opacity:0.389" /></g></svg>
+     sodipodi:nodetypes="ccccccccccc" /></g></svg>
