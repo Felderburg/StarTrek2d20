@@ -273,7 +273,10 @@ export class TmpUniformPack extends BaseNeckProvider implements IUniformPack {
         'Ensign',
         (token) =>
           TmpUniformPack.decorateRankSwatch(
-            TmpRankIndicators.swatches.Ensign.replace(BluishGreyBaseUniformColour, this.getUniformBaseColour(token)),
+            TmpRankIndicators.swatches.Ensign.replace(
+              BluishGreyBaseUniformColour,
+              this.getUniformBaseColour(token),
+            ),
             Rank.Ensign,
             token,
           ),
@@ -284,7 +287,10 @@ export class TmpUniformPack extends BaseNeckProvider implements IUniformPack {
         'Lieutenant J.G.',
         (token) =>
           TmpUniformPack.decorateRankSwatch(
-            TmpRankIndicators.swatches.LieutenantJG.replace(BluishGreyBaseUniformColour, this.getUniformBaseColour(token)),
+            TmpRankIndicators.swatches.LieutenantJG.replace(
+              BluishGreyBaseUniformColour,
+              this.getUniformBaseColour(token),
+            ),
             Rank.LieutenantJG,
             token,
           ),
@@ -295,7 +301,10 @@ export class TmpUniformPack extends BaseNeckProvider implements IUniformPack {
         'Lieutenant',
         (token) =>
           TmpUniformPack.decorateRankSwatch(
-            TmpRankIndicators.swatches.Lieutenant.replace(BluishGreyBaseUniformColour, this.getUniformBaseColour(token)),
+            TmpRankIndicators.swatches.Lieutenant.replace(
+              BluishGreyBaseUniformColour,
+              this.getUniformBaseColour(token),
+            ),
             Rank.Lieutenant,
             token,
           ),
@@ -306,7 +315,10 @@ export class TmpUniformPack extends BaseNeckProvider implements IUniformPack {
         'Lt. Commander',
         (token) =>
           TmpUniformPack.decorateRankSwatch(
-            TmpRankIndicators.swatches.LtCommander.replace(BluishGreyBaseUniformColour, this.getUniformBaseColour(token)),
+            TmpRankIndicators.swatches.LtCommander.replace(
+              BluishGreyBaseUniformColour,
+              this.getUniformBaseColour(token),
+            ),
             Rank.LtCommander,
             token,
           ),
@@ -317,7 +329,10 @@ export class TmpUniformPack extends BaseNeckProvider implements IUniformPack {
         'Commander',
         (token) =>
           TmpUniformPack.decorateRankSwatch(
-            TmpRankIndicators.swatches.Commander.replace(BluishGreyBaseUniformColour, this.getUniformBaseColour(token)),
+            TmpRankIndicators.swatches.Commander.replace(
+              BluishGreyBaseUniformColour,
+              this.getUniformBaseColour(token),
+            ),
             Rank.Commander,
             token,
           ),
@@ -328,7 +343,10 @@ export class TmpUniformPack extends BaseNeckProvider implements IUniformPack {
         'Captain',
         (token) =>
           TmpUniformPack.decorateRankSwatch(
-            TmpRankIndicators.swatches.Captain.replace(BluishGreyBaseUniformColour, this.getUniformBaseColour(token)),
+            TmpRankIndicators.swatches.Captain.replace(
+              BluishGreyBaseUniformColour,
+              this.getUniformBaseColour(token),
+            ),
             Rank.Captain,
             token,
           ),
@@ -372,7 +390,10 @@ export class TmpUniformPack extends BaseNeckProvider implements IUniformPack {
         break;
       default:
     }
-    return result.replace(BluishGreyBaseUniformColour, this.getUniformBaseColour(token));
+    return result.replace(
+      BluishGreyBaseUniformColour,
+      this.getUniformBaseColour(token),
+    );
   }
 
   getBorderColor(token: TokenModel) {
