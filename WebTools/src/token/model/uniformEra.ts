@@ -76,6 +76,7 @@ export class UniformEraHelper {
     new UniformEraModel(UniformEra.Maco, 'MACO'),
     new UniformEraModel(UniformEra.NextGeneration, 'The Next Generation'),
     new UniformEraModel(UniformEra.OriginalSeries, 'Original Series'),
+    new UniformEraModel(UniformEra.TheMotionPicture, 'The Motion Picture'),
     new UniformEraModel(
       UniformEra.OriginalSeriesKlingon,
       'Klingon (Original Series)',

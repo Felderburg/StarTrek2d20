@@ -125,6 +125,7 @@ export abstract class BaseNeckProvider {
       uniformEra === UniformEra.Suliban ||
       uniformEra === UniformEra.Bynar ||
       uniformEra === UniformEra.OriginalSeries ||
+      uniformEra === UniformEra.TheMotionPicture ||
       uniformEra === UniformEra.StrangeNewWorlds ||
       uniformEra === UniformEra.JemHadar ||
       uniformEra === UniformEra.RomulanNemesis ||

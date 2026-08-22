@@ -171,6 +171,12 @@ export class UniformPackCollection {
           );
           this.uniformPacks[era] = new Discovery23UniformPack();
           completion();
+        } else if (era === UniformEra.TheMotionPicture) {
+          const { TmpUniformPack } = await import(
+            /* webpackChunkName: 'discovery' */ './tmpUniformPack'
+          );
+          this.uniformPacks[era] = new TmpUniformPack();
+          completion();
         } else if (era === UniformEra.Discovery32) {
           const { Discovery32UniformPack } = await import(
             /* webpackChunkName: 'discovery' */ './discovery32UniformPack'
