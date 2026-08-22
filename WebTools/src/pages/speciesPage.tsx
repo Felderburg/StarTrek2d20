@@ -58,7 +58,11 @@ const SpeciesPageBase: React.FC<ICharacterProperties> = ({ character }) => {
 
   const showCustomSpecies = () => {
     store.dispatch(setCharacterSpecies(Species.Custom));
-    Navigation.navigateToPage(PageIdentity.CustomSpeciesDetails);
+    if (character.stereotype === Stereotype.Npc) {
+      navigate('/npc/species');
+    } else {
+      Navigation.navigateToPage(PageIdentity.CustomSpeciesDetails);
+    }
   };
 
   const selectCustomSpecies = () => {

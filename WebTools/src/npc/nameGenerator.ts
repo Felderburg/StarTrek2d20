@@ -96,22 +96,26 @@ export class NameGenerator {
     return NameGenerator.singleton;
   }
 
-  isSupported(species: ISpecies) {
-    let result = false;
-    for (const name of names) {
-      if (name.species === species.name) {
-        result = true;
-        break;
+  isSupported(species?: ISpecies) {
+    if (species == null) {
+      return false;
+    } else {
+      let result = false;
+      for (const name of names) {
+        if (name.species === species?.name) {
+          result = true;
+          break;
+        }
       }
-    }
 
-    if (!result) {
-      if (species.nameSuggestions?.length) {
-        result = true;
+      if (!result) {
+        if (species?.nameSuggestions?.length) {
+          result = true;
+        }
       }
-    }
 
-    return result;
+      return result;
+    }
   }
 
   createName(

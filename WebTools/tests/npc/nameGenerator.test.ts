@@ -45,6 +45,18 @@ describe('testing name generation', () => {
     }
   });
 
+  test('is not supported for custom species', () => {
+    expect(NameGenerator.instance.isSupported(undefined)).toBeFalsy();
+  });
+
+  test('is supported for human', () => {
+    const result = NameGenerator.instance.isSupported(
+      new MockSpecies(Species.Human, 'Human'),
+    );
+    expect(result).toBeTruthy();
+  });
+
+
   test('should create Vulcan name', () => {
     const { name } = NameGenerator.instance.createName(
       new MockSpecies(Species.Vulcan, 'Vulcan'),

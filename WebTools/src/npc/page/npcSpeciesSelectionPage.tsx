@@ -6,6 +6,8 @@ import { characterMapStateToProperties } from '../../solo/page/soloCharacterProp
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
+import { CustomSpeciesDetailsPage } from '../../pages/customSpeciesDetailsPage';
+import { Species } from '../../helpers/speciesEnum';
 
 const NpcSpeciesSelectionPageBase: React.FC<ICharacterProperties> = ({
   character,
@@ -22,7 +24,9 @@ const NpcSpeciesSelectionPageBase: React.FC<ICharacterProperties> = ({
     return (
       <LcarsFrame activePage={PageIdentity.NpcSpeciesSelection}>
         <div id="app">
-          <SpeciesPage />
+          {character.speciesStep?.species === Species.Custom
+          ? (<CustomSpeciesDetailsPage />)
+          : (<SpeciesPage />)}
         </div>
       </LcarsFrame>
     );

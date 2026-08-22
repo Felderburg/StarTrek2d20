@@ -34,6 +34,7 @@ import { isTalentSelectable } from '../helpers/talentSelection';
 import { SoloCharacterBreadcrumbs } from '../solo/component/soloCharacterBreadcrumbs';
 import { isKlingonWarriorType } from '../helpers/klingonWarrior';
 import { PageHistoryBasedPreviousButton } from '../components/pageHistoryBasedPreviousButton';
+import { useNavigate } from 'react-router';
 
 interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
   allowCrossSpeciesTalents: boolean;
@@ -43,7 +44,9 @@ interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
 const CustomSpeciesDetailsPageBase: React.FC<
   ICustomSpeciesDetailsProperties
 > = ({ character, allowCrossSpeciesTalents, allowEsotericTalents }) => {
+console.log("Custom Species Page");
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const controller = new CustomSpeciesAttributeController(character);
 
   const renderTalentsSection = () => {
@@ -149,7 +152,11 @@ const CustomSpeciesDetailsPageBase: React.FC<
       return;
     }
 
-    Navigation.navigateToPage(PageIdentity.Environment);
+    if (character.stereotype === Stereotype.Npc) {
+      navigate('/npc/stats');
+    } else {
+      Navigation.navigateToPage(PageIdentity.Environment);
+    }
   };
 
   const selectDesc = t('SpeciesDetails.selectThree');
