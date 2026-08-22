@@ -92,6 +92,8 @@ export class UniformVariantRestrictions {
           result.push(UniformVariantType.Variant15);
         }
       }
+    } else if (uniformEra === UniformEra.TheMotionPicture) {
+      result.push(UniformVariantType.Variant1);
     } else if (uniformEra === UniformEra.OriginalSeries) {
       if (species === Species.Edosian) {
       } else {

@@ -1418,10 +1418,13 @@
     "NpcCharacterType.minorPolity": "Político Menor",
     "NpcCharacterType.rogueRuffianMercenary": "Pícaros, rufianes y mercenarios",
 
+    "NpcType.minor.description": "Los PNJ Menores forman el grueso de los miembros de una organización. Son los extras sin nombre de una misión, grupos de adversarios a los que enfrentarse en un Encuentro de Conflicto o guardias de PNJ Notables o Mayores y, por sí solos, no deberían aguantar demasiado frente a los Personajes Jugadores.",
     "NpcType.minor.name": "PNJ Menor",
 
+    "NpcType.notable.description": "Los PNJ Notables están por encima de los Menores y suelen ser tenientes de PNJ Mayores. Son comparables a los Personajes de Apoyo y, si se encuentran en grupo o con varios PNJ Menores, pueden plantear un obstáculo más arduo y agotar los recursos de los Personajes Jugadores, lo que les obligará a utilizar Determinación o aumentar la Amenaza para derrotarlos.",
     "NpcType.notable.name": "PNJ Notable",
 
+    "NpcType.major.description": "Los PNJ Mayores son el equivalente narrativo de los Personajes Jugadores para el Director de Juego. Debe invertirse mucha más atención y creatividad, darle nombre, trasfondo y cualidades comparables a los de los Personajes Jugadores de la partida.",
     "NpcType.major.name": "PNJ Mayor",
 
     "Rank.admiral.name": "Almirante",
@@ -2432,6 +2435,7 @@
     "Talent.culturalFlexibility.description": "Tu pueblo es cordial, paciente y curioso y tú ejemplificas esos aspectos. Te sientes cómodo cuando te expones a nuevas culturas y te adaptas fácilmente a estructuras sociales con las que no estás familiarizado. Cuando emprendes una Tarea para averiguar algo sobre una cultura que no te sea familiar o para actuar de forma apropiada al interactuar con miembros de dicha cultura, reduces la Dificultad en 1.",
     "Talent.culturalFlexibility.description2e": "Te sientes cómodo cuando conoces nuevas culturas y te adaptas fácilmente a estructuras sociales desconocidas. Cuando intentas una Tarea para aprender sobre una cultura desconocida, o para actuar de forma apropiada al interactuar con miembros de dicha cultura, puedes volver a tirar 1d20.",
 
+    "Talent.customTalent": "Talento personalizado",
     "Talent.cuttingEdgeMedicine": "Medicina de vanguardia",
 
     "Talent.cuttingEdgeMedicine.description2e": "Siempre que intentes una Tarea de Medicina con una Dificultad de 3 o superior, puedes gastar hasta 3 puntos de Inercia (Inmediatos) para reducir la Dificultad en el número de puntos de Inercia gastados, hasta una Dificultad mínima de 1. Sin embargo, como estos últimos avances suelen ser experimentales, el rango de complicación de la Tarea aumenta en 1 por cada punto de Inercia gastada.",
@@ -2550,6 +2554,7 @@
     "Talent.firstResponse.description": "Cuando emprendas una Tarea de “Primeros Auxilios” en combate, recibes 1d20 adicional. Además, siempre puedes tener Éxito por un Precio, de modo que cada Complicación que sufras sume un +1 a la Dificultad a los posteriores intentos de curar la Herida del paciente.",
     "Talent.firstResponse.description2e": "Cuando emprendas una Tarea de “Primeros Auxilios” en combate, el primer d20 que adquieras es gratuito. Además, siempre puedes tener Éxito por un Precio, de modo que cada Complicación que sufras sume un +1 a la Dificultad a los posteriores intentos de curar la Herida del paciente.",
 
+    "Talent.fleetCommanderNpc": "Comandante de flota",
     "Talent.flyBy": "Pasar volando",
 
     "Talent.flyBy.description": "Cuando emplees el Uso de Inercia “Tarea Rápida”, no aumentes la Dificultad de la segunda Tarea si esta consiste en pilotar una nave o vehículo.",

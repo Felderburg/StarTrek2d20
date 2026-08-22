@@ -1,5 +1,5 @@
-import { BaseTngEraUniformPack } from './baseTngEraUniformPack';
 import { BodyType } from './bodyTypeEnum';
+import { LaterTngBaseUniformPack } from './laterTngBaseUniformPack';
 import { SpeciesRestrictions } from './speciesRestrictions';
 import { Swatch } from './swatch';
 import type { TokenModel } from './tokenModel';
@@ -123,7 +123,7 @@ const borderInsignia = {
 };
 
 export class ProdigyUniformPack
-  extends BaseTngEraUniformPack
+  extends LaterTngBaseUniformPack
   implements IUniformPack
 {
   constructor() {
