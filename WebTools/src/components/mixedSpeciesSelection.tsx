@@ -240,9 +240,9 @@ const MixedSpeciesSelectionBase: React.FC<ICharacterProperties> = ({
         </div>
       </div>
       <div className="text-end mt-4 d-flex justify-content-end">
-        {character.stereotype === Stereotype.MainCharacter
-          ? (<PageHistoryBasedPreviousButton />)
-          : undefined}
+        {character.stereotype === Stereotype.MainCharacter ? (
+          <PageHistoryBasedPreviousButton />
+        ) : undefined}
         <Button onClick={() => navigateToNextPage()}>
           {t('Common.button.next')}
         </Button>

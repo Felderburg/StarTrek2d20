@@ -88,9 +88,9 @@ const SpeciesPageBase: React.FC<ICharacterProperties> = ({ character }) => {
         </table>
 
         <div className="d-flex justify-content-end mt-4">
-          {character.stereotype === Stereotype.MainCharacter
-            ? (<PageHistoryBasedPreviousButton />)
-            : undefined}
+          {character.stereotype === Stereotype.MainCharacter ? (
+            <PageHistoryBasedPreviousButton />
+          ) : undefined}
         </div>
       </div>
     );

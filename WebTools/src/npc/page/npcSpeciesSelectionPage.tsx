@@ -24,9 +24,11 @@ const NpcSpeciesSelectionPageBase: React.FC<ICharacterProperties> = ({
     return (
       <LcarsFrame activePage={PageIdentity.NpcSpeciesSelection}>
         <div id="app">
-          {character.speciesStep?.species === Species.Custom
-          ? (<CustomSpeciesDetailsPage />)
-          : (<SpeciesPage />)}
+          {character.speciesStep?.species === Species.Custom ? (
+            <CustomSpeciesDetailsPage />
+          ) : (
+            <SpeciesPage />
+          )}
         </div>
       </LcarsFrame>
     );

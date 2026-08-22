@@ -44,7 +44,7 @@ interface ICustomSpeciesDetailsProperties extends ICharacterProperties {
 const CustomSpeciesDetailsPageBase: React.FC<
   ICustomSpeciesDetailsProperties
 > = ({ character, allowCrossSpeciesTalents, allowEsotericTalents }) => {
-console.log("Custom Species Page");
+  console.log('Custom Species Page');
   const { t } = useTranslation();
   const navigate = useNavigate();
   const controller = new CustomSpeciesAttributeController(character);
@@ -215,9 +215,9 @@ console.log("Custom Species Page");
         </div>
         {renderTalentsSection()}
         <div className="mt-4 d-flex justify-content-end">
-          {character.stereotype === Stereotype.MainCharacter
-            ? (<PageHistoryBasedPreviousButton />)
-            : undefined}
+          {character.stereotype === Stereotype.MainCharacter ? (
+            <PageHistoryBasedPreviousButton />
+          ) : undefined}
           <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
         </div>
       </div>

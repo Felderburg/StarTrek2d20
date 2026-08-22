@@ -56,7 +56,6 @@ describe('testing name generation', () => {
     expect(result).toBeTruthy();
   });
 
-
   test('should create Vulcan name', () => {
     const { name } = NameGenerator.instance.createName(
       new MockSpecies(Species.Vulcan, 'Vulcan'),
