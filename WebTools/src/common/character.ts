@@ -1852,7 +1852,7 @@ export class Character extends Construct implements IWeaponDiceProvider {
           );
       }
       this.npcGenerationStep?.focuses?.forEach((f, i) => {
-        if (f.trim().length) {
+        if (f?.trim().length) {
           result.push(new FocusAssembly(f, AssemblyContext.Npc, i));
         }
       });

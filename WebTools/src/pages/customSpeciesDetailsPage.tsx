@@ -215,7 +215,9 @@ console.log("Custom Species Page");
         </div>
         {renderTalentsSection()}
         <div className="mt-4 d-flex justify-content-end">
-          <PageHistoryBasedPreviousButton />
+          {character.stereotype === Stereotype.MainCharacter
+            ? (<PageHistoryBasedPreviousButton />)
+            : undefined}
           <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
         </div>
       </div>

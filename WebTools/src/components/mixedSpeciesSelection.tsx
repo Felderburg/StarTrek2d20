@@ -17,10 +17,13 @@ import { Navigation } from '../common/navigator';
 import { PageIdentity } from '../pages/pageIdentity';
 import { makeKey } from '../common/translationKey';
 import { PageHistoryBasedPreviousButton } from './pageHistoryBasedPreviousButton';
+import { Stereotype } from '../common/construct';
+import { useNavigate } from 'react-router';
 
 const MixedSpeciesSelectionBase: React.FC<ICharacterProperties> = ({
   character,
 }) => {
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const [primarySpecies, setPrimarySpecies] = useState(
     character?.speciesStep?.species === Species.Custom
@@ -189,6 +192,8 @@ const MixedSpeciesSelectionBase: React.FC<ICharacterProperties> = ({
       character.speciesStep?.mixedSpecies == null
     ) {
       Dialog.show(t('SpeciesPage.selectTwoSpeciesError'));
+    } else if (character.stereotype === Stereotype.Npc) {
+      navigate('/npc/species');
     } else {
       Navigation.navigateToPage(PageIdentity.SpeciesDetails);
     }
@@ -235,7 +240,9 @@ const MixedSpeciesSelectionBase: React.FC<ICharacterProperties> = ({
         </div>
       </div>
       <div className="text-end mt-4 d-flex justify-content-end">
-        <PageHistoryBasedPreviousButton />
+        {character.stereotype === Stereotype.MainCharacter
+          ? (<PageHistoryBasedPreviousButton />)
+          : undefined}
         <Button onClick={() => navigateToNextPage()}>
           {t('Common.button.next')}
         </Button>

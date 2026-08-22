@@ -19,6 +19,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { hasSource } from '../state/contextFunctions';
 import { SpeciesAbilityList } from '../helpers/speciesAbility';
 import { PageHistoryBasedPreviousButton } from './pageHistoryBasedPreviousButton';
+import { Stereotype } from '../common/construct';
 
 enum RandomMode {
   All,
@@ -310,7 +311,9 @@ const SpeciesSelectionBase: React.FC<ISpeciesSelectionProperties> = ({
       </table>
 
       <div className="d-flex justify-content-end mt-4">
-        <PageHistoryBasedPreviousButton />
+        {character.stereotype === Stereotype.MainCharacter
+          ? (<PageHistoryBasedPreviousButton />)
+          : undefined}
       </div>
     </div>
   );

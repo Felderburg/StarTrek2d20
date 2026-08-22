@@ -422,7 +422,9 @@ const SpeciesDetailsPageBase: React.FC<ISpeciesDetailsProperties> = ({
           </div>
           {renderTalentsSection()}
           <div className="text-end mt-4 d-flex justify-content-end">
-            <PageHistoryBasedPreviousButton />
+            {character.stereotype === Stereotype.MainCharacter
+              ? (<PageHistoryBasedPreviousButton />)
+              : undefined}
             <Button onClick={() => onNext()}>{t('Common.button.next')}</Button>
           </div>
         </main>
