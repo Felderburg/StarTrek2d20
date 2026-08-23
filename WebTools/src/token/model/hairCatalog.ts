@@ -1051,7 +1051,7 @@ export class HairCatalog {
       new HairItem(
         HairType.PulledBackStraightWithLowBun,
         'Pulled Back, Straight, with Low Bun',
-        PulledBackStraightWithLowBun
+        PulledBackStraightWithLowBun,
       ),
       new HairItem(
         HairType.RomulanPeakedHair,
@@ -1112,7 +1112,9 @@ export class HairCatalog {
   }
 
   getHair(token: TokenModel, element: HairElement) {
-    const hair = this.items(token.species).filter((i) => i.id === token.hairType)[0];
+    const hair = this.items(token.species).filter(
+      (i) => i.id === token.hairType,
+    )[0];
 
     if (
       token.extras.indexOf(ExtraType.SecurityHelmet) >= 0 ||
