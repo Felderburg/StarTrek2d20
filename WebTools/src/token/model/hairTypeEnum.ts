@@ -38,6 +38,7 @@ export enum HairType {
   CurlyLong,
   PartedShoulderLength,
   RomulanAfro,
+  PulledBackStraightWithLowBun,
 }
 
 export const allHairTypes = (): HairType[] => {
