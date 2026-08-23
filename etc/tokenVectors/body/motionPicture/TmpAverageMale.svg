@@ -12,7 +12,6 @@
    xml:space="preserve"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><defs
      id="defs1156" /><sodipodi:namedview
@@ -26,8 +25,8 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="2.3925"
-     inkscape:cx="199.79101"
-     inkscape:cy="200"
+     inkscape:cx="194.56635"
+     inkscape:cy="365.51724"
      inkscape:window-width="2179"
      inkscape:window-height="1176"
      inkscape:window-x="2259"
@@ -120,17 +119,4 @@
        d="m 371.68598,327.75391 c 0,0 -1.30101,5.6458 -2.20313,8.39453 -0.68053,2.07355 -1.79332,6.26092 -2.41406,6.08594 -0.57543,-0.16222 -1.46875,-10.75391 -1.46875,-10.75391 1.04913,1.27018 0.34857,47.5586 1.19141,36.5 L 367.07856,400 h 5.14257 c 0,0 -0.47705,-5.33447 -0.74609,-13.85742 -0.16278,-5.15665 -1.23643,-13.06957 -1.81257,-20.92813 -0.13321,-1.81697 0.0174,-6.15337 0.76374,-7.81601 1.14675,-2.55456 2.97467,-4.8452 3.67383,-7.55664 0.66902,-2.59455 0.41992,-8.02735 0.41992,-8.02735 0,0 -0.92332,2.80548 -1.62695,4.09375 -0.76305,1.39705 -2.24522,4.26436 -2.78125,3.88282 -0.47534,-0.33834 2.00491,-7.63073 2.25586,-11.54297 0.22437,-3.49792 -0.68164,-10.49414 -0.68164,-10.49414 z"
        style="display:inline;opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
        id="path1-8"
-       sodipodi:nodetypes="cssccccsssscsssc" /></g><g
-     inkscape:groupmode="layer"
-     id="layer1"
-     inkscape:label="Image"
-     sodipodi:insensitive="true"
-     style="display:none"><image
-       width="400"
-       height="400"
-       preserveAspectRatio="none"
-       xlink:href="../../../../../../../Pictures/STA%20Miniature%20Maker/MotionPictureMale.png"
-       id="image1"
-       x="0"
-       y="0"
-       style="opacity:0.28" /></g></svg>
+       sodipodi:nodetypes="cssccccsssscsssc" /></g></svg>

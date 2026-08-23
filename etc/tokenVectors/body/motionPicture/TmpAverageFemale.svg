@@ -12,7 +12,6 @@
    xml:space="preserve"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg"><defs
      id="defs18726" /><sodipodi:namedview
@@ -26,7 +25,7 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="2.375"
-     inkscape:cx="199.78947"
+     inkscape:cx="200"
      inkscape:cy="200"
      inkscape:window-width="2200"
      inkscape:window-height="1169"
@@ -126,17 +125,4 @@
        d="m 200.81534,251.57417 c -3.10501,-2.26324 -7.28431,-6.18681 -10.73631,-9.66281 -5.99385,-6.26874 -9.7975,-12.93459 -10.56119,-15.80245 -0.93418,-3.50813 3.57747,-4.15178 6.36304,-6.44349 l 2.05459,4.26669 c 9.36013,10.82175 13.77017,16.0213 23.1093,23.09499 8.41476,6.37355 16.91108,7.06688 29.28075,11.02466 2.56078,0.81934 -1.57081,2.40471 -2.38497,4.64871 -0.83748,2.30827 -3.63097,5.30461 -17.63144,-0.0366 0,0 -13.96138,-7.05713 -19.49377,-11.08971 z"
        style="opacity:0.199997;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.33333"
        id="path283456"
-       sodipodi:nodetypes="scsccssscs" /></g><g
-     inkscape:groupmode="layer"
-     id="layer2"
-     inkscape:label="Image"
-     sodipodi:insensitive="true"
-     style="display:none"><image
-       width="400"
-       height="400"
-       preserveAspectRatio="none"
-       xlink:href="../../../../../../../Pictures/STA%20Miniature%20Maker/MotionPictureFemale.png"
-       id="image1"
-       x="0"
-       y="0"
-       style="opacity:0.8" /></g></svg>
+       sodipodi:nodetypes="scsccssscs" /></g></svg>
