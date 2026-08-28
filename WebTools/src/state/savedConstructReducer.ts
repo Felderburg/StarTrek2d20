@@ -1,5 +1,6 @@
+import { createSlice } from '@reduxjs/toolkit';
+import type { AnyAction } from '@reduxjs/toolkit';
 import type { ILocalStorageConstructRecord } from '../common/iLocalStorageConstructRecord';
-import { SAVE_CONSTRUCT_TO_LOCAL_STORAGE } from './savedConstructActions';
 
 const persistItems = (records: ILocalStorageConstructRecord[]) => {
   const data = {
@@ -8,8 +9,20 @@ const persistItems = (records: ILocalStorageConstructRecord[]) => {
   window.localStorage.setItem('constructs.records', JSON.stringify(data));
 };
 
-const getInitialData = () => {
-  const base = { records: [] };
+interface SavedConstructState {
+  records: ILocalStorageConstructRecord[];
+}
+
+interface SaveConstructPayload {
+  type: 'Character' | 'Starship';
+  name: string;
+  marshalled: string;
+  hash: number;
+  replacementHash?: number;
+}
+
+const getInitialData = (): SavedConstructState => {
+  const base: SavedConstructState = { records: [] };
   const initialData = { ...base };
   try {
     const dataJson = window.localStorage.getItem('constructs.records');
@@ -25,34 +38,38 @@ const getInitialData = () => {
   return initialData;
 };
 
-export const savedConstructReducer = (state = getInitialData(), action) => {
-  switch (action.type) {
-    case SAVE_CONSTRUCT_TO_LOCAL_STORAGE: {
-      let records = [...state.records];
-      const hash = action.payload.hash;
-      if (action.payload.replacementHash != null) {
-        records = records.filter(
-          (r) => r.hash !== action.payload.replacementHash,
-        );
-      }
-      if (records.filter((r) => r.hash === hash).length === 0) {
-        records.push({
-          type: action.payload.type,
-          marshalled: action.payload.marshalled,
-          hash: action.payload.hash,
-          name: action.payload.name,
-        });
-      }
-
-      if (records.length > 5) {
-        records.splice(0, records.length - 5);
-      }
-      persistItems(records);
-      return {
-        records: records,
-      };
-    }
-    default:
-      return state;
+const handleSave = (state: SavedConstructState, action: AnyAction) => {
+  const payload = action.payload as SaveConstructPayload;
+  let records: ILocalStorageConstructRecord[] = [...state.records];
+  const hash = payload.hash;
+  if (payload.replacementHash != null) {
+    records = records.filter((r) => r.hash !== payload.replacementHash);
   }
+  if (records.filter((r) => r.hash === hash).length === 0) {
+    records.push({
+      type: payload.type,
+      marshalled: payload.marshalled,
+      hash: payload.hash,
+      name: payload.name,
+    });
+  }
+
+  if (records.length > 5) {
+    records.splice(0, records.length - 5);
+  }
+  persistItems(records);
+  return {
+    records: records,
+  };
 };
+
+export const savedConstructSlice = createSlice({
+  name: 'savedConstruct',
+  initialState: getInitialData,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase('SAVE_CONSTRUCT_TO_LOCAL_STORAGE', handleSave);
+  },
+});
+
+export const savedConstructReducer = savedConstructSlice.reducer;

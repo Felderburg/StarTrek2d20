@@ -1,3 +1,4 @@
+import { createAction } from '@reduxjs/toolkit';
 import type { Character } from '../common/character';
 import type { CharacterWithTracking } from '../tracker/model/characterWithTracking';
 
@@ -7,40 +8,30 @@ export const SET_GM_TRACKED_CHARACTER_STRESS =
   'SET_GM_TRACKED_CHARACTER_STRESS';
 export const SET_GM_TRACKED_CHARACTER_NOTES = 'SET_GM_TRACKED_CHARACTER_NOTES';
 
-export function addGMTrackedCharacter(character: Character) {
-  const payload = { character: character };
-  return {
-    type: ADD_GM_TRACKED_CHARACTER,
-    payload: payload,
-  };
-}
+export const addGMTrackedCharacter = createAction(
+  ADD_GM_TRACKED_CHARACTER,
+  (character: Character) => ({
+    payload: { character: character },
+  }),
+);
 
-export function removeGMTrackedCharacter(character: CharacterWithTracking) {
-  const payload = { character: character };
-  return {
-    type: REMOVE_GM_TRACKED_CHARACTER,
-    payload: payload,
-  };
-}
+export const removeGMTrackedCharacter = createAction(
+  REMOVE_GM_TRACKED_CHARACTER,
+  (character: CharacterWithTracking) => ({
+    payload: { character: character },
+  }),
+);
 
-export function setGMTrackedCharacterStress(
-  character: CharacterWithTracking,
-  stress: number,
-) {
-  const payload = { character: character, stress: stress };
-  return {
-    type: SET_GM_TRACKED_CHARACTER_STRESS,
-    payload: payload,
-  };
-}
+export const setGMTrackedCharacterStress = createAction(
+  SET_GM_TRACKED_CHARACTER_STRESS,
+  (character: CharacterWithTracking, stress: number) => ({
+    payload: { character: character, stress: stress },
+  }),
+);
 
-export function setGMTrackedCharacterNotes(
-  character: CharacterWithTracking,
-  notes: string,
-) {
-  const payload = { character: character, notes: notes };
-  return {
-    type: SET_GM_TRACKED_CHARACTER_NOTES,
-    payload: payload,
-  };
-}
+export const setGMTrackedCharacterNotes = createAction(
+  SET_GM_TRACKED_CHARACTER_NOTES,
+  (character: CharacterWithTracking, notes: string) => ({
+    payload: { character: character, notes: notes },
+  }),
+);

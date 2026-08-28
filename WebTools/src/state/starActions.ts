@@ -1,3 +1,4 @@
+import { createAction } from '@reduxjs/toolkit';
 import type { Sector } from '../mapping/table/sector';
 import type { StarSystem } from '../mapping/table/starSystem';
 
@@ -6,34 +7,21 @@ export const SET_SECTOR = 'SET_SECTOR';
 export const SET_SECTOR_NAME = 'SET_SECTOR_NAME';
 export const SET_STAR_SYSTEM_NAME = 'SET_STAR_SYSTEM_NAME';
 
-export function setStar(starSystem: StarSystem) {
-  const payload = { starSystem: starSystem };
-  return {
-    type: SET_STAR,
-    payload: payload,
-  };
-}
+export const setStar = createAction(SET_STAR, (starSystem: StarSystem) => ({
+  payload: { starSystem: starSystem },
+}));
 
-export function setSector(sector: Sector) {
-  const payload = { sector: sector };
-  return {
-    type: SET_SECTOR,
-    payload: payload,
-  };
-}
+export const setSector = createAction(SET_SECTOR, (sector: Sector) => ({
+  payload: { sector: sector },
+}));
 
-export function setSectorName(name: string) {
-  const payload = { name: name };
-  return {
-    type: SET_SECTOR_NAME,
-    payload: payload,
-  };
-}
+export const setSectorName = createAction(SET_SECTOR_NAME, (name: string) => ({
+  payload: { name: name },
+}));
 
-export function setStarSystemName(name: string) {
-  const payload = { name: name };
-  return {
-    type: SET_STAR_SYSTEM_NAME,
-    payload: payload,
-  };
-}
+export const setStarSystemName = createAction(
+  SET_STAR_SYSTEM_NAME,
+  (name: string) => ({
+    payload: { name: name },
+  }),
+);
