@@ -1,10 +1,11 @@
+import { createSlice } from '@reduxjs/toolkit';
 import { Sector } from '../mapping/table/sector';
 import type { StarSystem } from '../mapping/table/starSystem';
 import {
-  SET_SECTOR,
-  SET_SECTOR_NAME,
-  SET_STAR,
-  SET_STAR_SYSTEM_NAME,
+  setSector,
+  setSectorName,
+  setStar,
+  setStarSystemName,
 } from './starActions';
 
 interface StarState {
@@ -12,73 +13,78 @@ interface StarState {
   starSystem?: StarSystem;
 }
 
-export const star = (
-  state: StarState = { starSystem: undefined, sector: undefined },
-  action,
-) => {
-  switch (action.type) {
-    case SET_SECTOR:
-      return {
-        ...state,
-        sector: action.payload.sector,
-      };
-    case SET_SECTOR_NAME: {
-      const name = action.payload.name;
-      const systems = state.sector.systems.map((s) => {
-        const system = s.clone();
-        system.rootName = name;
-        return system;
-      });
-      const sector = new Sector(state.sector.prefix);
-      sector.id = state.sector.id;
-      sector.simpleName = name;
-      sector.systems = systems;
+const initialState: StarState = { starSystem: undefined, sector: undefined };
 
-      const starSystem = state.starSystem
-        ? state.starSystem.clone()
-        : undefined;
-      if (starSystem) {
-        starSystem.rootName = name;
-      }
-      return {
-        ...state,
-        sector: sector,
-        starSystem: starSystem,
-      };
-    }
-    case SET_STAR_SYSTEM_NAME: {
-      const starSystem = state.starSystem
-        ? state.starSystem.clone()
-        : undefined;
-      if (starSystem) {
-        starSystem.friendlyName = action.payload.name;
-        const systems = state.sector.systems.map((s) => {
-          if (s.id === starSystem.id) {
-            return starSystem;
-          } else {
-            return s;
-          }
-        });
-        const sector = new Sector(state.sector.prefix);
-        sector.id = state.sector.id;
-        sector.simpleName = state.sector.simpleName;
-        sector.systems = systems;
-
+export const starSlice = createSlice({
+  name: 'star',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(setSector, (state, action) => {
         return {
           ...state,
-          sector: sector,
-          starSystem: starSystem,
+          sector: action.payload.sector,
         };
-      } else {
-        return state;
-      }
-    }
-    case SET_STAR:
-      return {
-        ...state,
-        starSystem: action.payload.starSystem,
-      };
-    default:
-      return state;
-  }
-};
+      })
+      .addCase(setSectorName, (state, action) => {
+        const sector = state.sector as Sector;
+        const starSystem = state.starSystem as StarSystem | undefined;
+        const name = action.payload.name;
+        const systems = sector.systems.map((s) => {
+          const system = s.clone();
+          system.rootName = name;
+          return system;
+        });
+        const newSector = new Sector(sector.prefix);
+        newSector.id = sector.id;
+        newSector.simpleName = name;
+        newSector.systems = systems;
+
+        const newStarSystem = starSystem ? starSystem.clone() : undefined;
+        if (newStarSystem) {
+          newStarSystem.rootName = name;
+        }
+        return {
+          ...state,
+          sector: newSector,
+          starSystem: newStarSystem,
+        };
+      })
+      .addCase(setStarSystemName, (state, action) => {
+        const sector = state.sector as Sector;
+        const starSystem = state.starSystem as StarSystem | undefined;
+        const newStarSystem = starSystem ? starSystem.clone() : undefined;
+        if (newStarSystem) {
+          newStarSystem.friendlyName = action.payload.name;
+          const systems = sector.systems.map((s) => {
+            if (s.id === newStarSystem.id) {
+              return newStarSystem;
+            } else {
+              return s;
+            }
+          });
+          const newSector = new Sector(sector.prefix);
+          newSector.id = sector.id;
+          newSector.simpleName = sector.simpleName;
+          newSector.systems = systems;
+
+          return {
+            ...state,
+            sector: newSector,
+            starSystem: newStarSystem,
+          };
+        } else {
+          return state;
+        }
+      })
+      .addCase(setStar, (state, action) => {
+        return {
+          ...state,
+          starSystem: action.payload.starSystem,
+        };
+      });
+  },
+});
+
+export const star = starSlice.reducer;

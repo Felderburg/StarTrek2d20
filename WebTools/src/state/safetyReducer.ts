@@ -1,11 +1,15 @@
+import { createSlice } from '@reduxjs/toolkit';
 import type { SafetyEvaluationType } from '../safety/model/safetyEvaluation';
-import { SET_SAFETY_EVALUATION } from './safetyActions';
+import { setSafetyEvaluation } from './safetyActions';
 
 const initialState: { [key: string]: SafetyEvaluationType } = {};
 
-export const safety = (state: any = initialState, action) => {
-  switch (action.type) {
-    case SET_SAFETY_EVALUATION: {
+export const safetySlice = createSlice({
+  name: 'safety',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(setSafetyEvaluation, (state, action) => {
       const category = action.payload.category;
       const evaluation = action.payload.evaluation;
 
@@ -13,8 +17,8 @@ export const safety = (state: any = initialState, action) => {
       temp[category] = evaluation;
 
       return temp;
-    }
-    default:
-      return state;
-  }
-};
+    });
+  },
+});
+
+export const safety = safetySlice.reducer;
